@@ -721,14 +721,14 @@ Please change your configuration and define command lists only at &apos;Options 
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="108"/>
-        <location filename="../src/additionaltranslations.cpp" line="110"/>
+        <location filename="../src/additionaltranslations.cpp" line="109"/>
+        <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>num</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="109"/>
-        <location filename="../src/additionaltranslations.cpp" line="111"/>
+        <location filename="../src/additionaltranslations.cpp" line="110"/>
+        <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>den</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1257,7 +1257,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1593"/>
         <location filename="../src/configdialog.cpp" line="527"/>
-        <location filename="../src/configmanager.cpp" line="1513"/>
+        <location filename="../src/configmanager.cpp" line="1518"/>
         <source>Editor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3000,7 +3000,7 @@ options again to only view the most common settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1514"/>
+        <location filename="../src/configmanager.cpp" line="1519"/>
         <source>Basic Key Mapping</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3073,37 +3073,27 @@ options again to only view the most common settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="25"/>
-        <source>Math Equations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math &amp;Functions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="27"/>
+        <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math Font St&amp;yles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="28"/>
-        <source>Math Stacking symbols</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="29"/>
+        <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Math &amp;Accents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="30"/>
+        <location filename="../src/additionaltranslations.cpp" line="31"/>
         <source>Math S&amp;paces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="31"/>
+        <location filename="../src/additionaltranslations.cpp" line="32"/>
         <source>AMS packages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3118,407 +3108,422 @@ options again to only view the most common settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="32"/>
-        <source>\begin{document}</source>
+        <location filename="../src/additionaltranslations.cpp" line="25"/>
+        <source>Math &amp;Equations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="27"/>
+        <source>Math &amp;Definitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="29"/>
+        <source>Math &amp;Stacking Symbols</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="33"/>
-        <source>part</source>
+        <source>\begin{document}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="34"/>
-        <source>chapter</source>
+        <source>part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="35"/>
-        <source>section</source>
+        <source>chapter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
-        <source>subsection</source>
+        <source>section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
-        <source>subsubsection</source>
+        <source>subsection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
-        <source>paragraph</source>
+        <source>subsubsection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
-        <source>subparagraph</source>
+        <source>paragraph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
-        <source>part*</source>
+        <source>subparagraph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
-        <source>chapter*</source>
+        <source>part*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
-        <source>section*</source>
+        <source>chapter*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="43"/>
-        <source>subsection*</source>
+        <source>section*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="44"/>
-        <source>subsubsection*</source>
+        <source>subsection*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="45"/>
-        <source>paragraph*</source>
+        <source>subsubsection*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="46"/>
-        <source>subparagraph*</source>
+        <source>paragraph*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="47"/>
-        <source>\begin{&lt;environment&gt;}</source>
+        <source>subparagraph*</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="48"/>
-        <source>\begin{center}</source>
+        <source>\begin{&lt;environment&gt;}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="49"/>
-        <source>\begin{flushleft}</source>
+        <source>\begin{center}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="50"/>
-        <source>\begin{flushright}</source>
+        <source>\begin{flushleft}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="51"/>
-        <source>\begin{quote}</source>
+        <source>\begin{flushright}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="52"/>
-        <source>\begin{quotation}</source>
+        <source>\begin{quote}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="53"/>
-        <source>\begin{verse}</source>
+        <source>\begin{quotation}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="54"/>
-        <source>\begin{verbatim}</source>
+        <source>\begin{verse}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="55"/>
-        <source>\begin{table}</source>
+        <source>\begin{verbatim}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="56"/>
-        <source>\begin{figure}</source>
+        <source>\begin{table}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="57"/>
-        <source>\begin{titlepage}</source>
+        <source>\begin{figure}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="58"/>
-        <source>\begin{itemize}</source>
+        <source>\begin{titlepage}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="59"/>
-        <source>\begin{enumerate}</source>
+        <source>\begin{itemize}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="60"/>
-        <source>\begin{description}</source>
+        <source>\begin{enumerate}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="61"/>
-        <source>\begin{list}</source>
+        <source>\begin{description}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="62"/>
-        <source>mbox</source>
+        <source>\begin{list}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="63"/>
-        <source>makebox</source>
+        <source>mbox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="64"/>
-        <source>fbox</source>
+        <source>makebox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="65"/>
-        <source>framebox</source>
+        <source>fbox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="66"/>
-        <source>newsavebox</source>
+        <source>framebox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="67"/>
-        <source>sbox</source>
+        <source>newsavebox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
-        <source>savebox</source>
+        <source>sbox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
-        <source>usebox</source>
+        <source>savebox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
-        <source>raisebox</source>
+        <source>usebox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
-        <source>parbox</source>
+        <source>raisebox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
-        <source>\begin{minipage}</source>
+        <source>parbox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="73"/>
-        <source>rule</source>
+        <source>\begin{minipage}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
-        <source>Emphasis - \emph</source>
+        <source>rule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
-        <source>Italics - \textit</source>
+        <source>Emphasis - \emph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="76"/>
-        <source>Slanted - \textsl</source>
+        <source>Italics - \textit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="77"/>
-        <source>Boldface - \textbf</source>
+        <source>Slanted - \textsl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="78"/>
-        <source>Typewriter - \texttt</source>
+        <source>Boldface - \textbf</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="79"/>
-        <source>Small Caps - \textsc</source>
+        <source>Typewriter - \texttt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="80"/>
-        <source>Sans Serif - \textsf</source>
+        <source>Small Caps - \textsc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="81"/>
-        <source>Underline - \underline</source>
+        <source>Sans Serif - \textsf</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="82"/>
-        <source>tiny</source>
+        <source>Underline - \underline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="83"/>
-        <source>scriptsize</source>
+        <source>tiny</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="84"/>
-        <source>footnotesize</source>
+        <source>scriptsize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="85"/>
-        <source>small</source>
+        <source>footnotesize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="86"/>
-        <source>normalsize</source>
+        <source>small</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="87"/>
-        <source>large</source>
+        <source>normalsize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="88"/>
-        <source>Large</source>
+        <source>large</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="89"/>
-        <source>LARGE</source>
+        <source>Large</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="90"/>
-        <source>huge</source>
+        <source>LARGE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="91"/>
-        <source>Huge</source>
+        <source>huge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="92"/>
-        <source>\begin{tabbing}</source>
+        <source>Huge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="93"/>
-        <source>\begin{tabular}</source>
+        <source>\begin{tabbing}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="94"/>
-        <source>New line - \\</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="97"/>
-        <source>\includeonly{filelist}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="98"/>
-        <source>\includegraphics{file}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="96"/>
-        <source>\include{file}</source>
+        <source>\begin{tabular}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="95"/>
-        <source>\input{file}</source>
+        <source>New line - \\</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="98"/>
+        <source>\includeonly{filelist}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="99"/>
-        <source>label</source>
+        <source>\includegraphics{file}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="97"/>
+        <source>\include{file}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="96"/>
+        <source>\input{file}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="100"/>
-        <source>index</source>
+        <source>label</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="101"/>
-        <source>cite</source>
+        <source>index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="102"/>
-        <source>footnote</source>
+        <source>cite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
-        <source>Inline math mode $...$</source>
+        <source>footnote</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
-        <source>LaTeX inline math mode \(...\)</source>
+        <source>Inline math mode $...$</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="105"/>
-        <source>Display math mode \[...\]</source>
+        <source>LaTeX inline math mode \(...\)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="106"/>
-        <source>Subscript - _{}</source>
+        <source>Display math mode \[...\]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="107"/>
+        <source>Subscript - _{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="108"/>
         <source>Superscript - ^{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="112"/>
+        <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>\begin{array}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="113"/>
+        <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>env equation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="114"/>
+        <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env equation* (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="115"/>
+        <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env align (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="116"/>
+        <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env align* (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3528,309 +3533,359 @@ options again to only view the most common settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="118"/>
+        <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>env alignat* (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="119"/>
+        <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env flalign (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="120"/>
+        <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>env flalign* (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="121"/>
+        <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env gather (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="122"/>
+        <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env gather* (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="123"/>
+        <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env multline (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="124"/>
+        <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>env multline* (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="125"/>
+        <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>env cases (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="126"/>
+        <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>env split (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="127"/>
-        <source>Roman - \mathrm{}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
-        <source>Italic - \mathit{}</source>
+        <source>env Corollary (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
-        <source>Bold - \mathbf{}</source>
+        <source>env Definition (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
-        <source>Sans Serif - \mathsf{}</source>
+        <source>env Example (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
-        <source>Typewriter - \mathtt{}</source>
+        <source>env Lemma (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
-        <source>Calligraphic - \mathcal{}</source>
+        <source>env Proof (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="133"/>
-        <source>Blackboard Bold - \mathbb{} (amssymb)</source>
+        <source>env Proposition (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
-        <source>Fraktur - \mathfrak{} (amssymb)</source>
+        <source>env Remark (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
-        <source>\overset (amsmath)</source>
+        <source>env Theorem (ntheorem)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="136"/>
-        <source>\underset (amsmath)</source>
+        <source>Roman - \mathrm{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
-        <source>Negative - \!</source>
+        <source>Italic - \mathit{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
-        <source>Thin - \,</source>
+        <source>Bold - \mathbf{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
-        <source>Medium - \:</source>
+        <source>Sans Serif - \mathsf{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
-        <source>Thick - \;</source>
+        <source>Typewriter - \mathtt{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
-        <source>Interword - \ </source>
+        <source>Calligraphic - \mathcal{}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
-        <source>One quad - \quad</source>
+        <source>Blackboard Bold - \mathbb{} (amssymb)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
-        <source>Two quads - \qquad</source>
+        <source>Fraktur - \mathfrak{} (amssymb)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="144"/>
-        <source>ref</source>
+        <source>\overset (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
-        <source>eqref</source>
+        <source>\underset (amsmath)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="146"/>
+        <source>\sideset (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <source>\prescript (mathtools)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <source>Negative - \!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <source>Thin - \,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <source>Medium - \:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <source>Thick - \;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <source>Interword - \ </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <source>One quad - \quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <source>Two quads - \qquad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <source>ref</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <source>eqref</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>pageref</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1082"/>
-        <location filename="../src/configmanager.cpp" line="1088"/>
-        <location filename="../src/configmanager.cpp" line="1104"/>
-        <location filename="../src/configmanager.cpp" line="1109"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>Key replacement: %1 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1082"/>
-        <location filename="../src/configmanager.cpp" line="1104"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
         <source>before word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1088"/>
-        <location filename="../src/configmanager.cpp" line="1109"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>after word</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1433"/>
-        <location filename="../src/configmanager.cpp" line="1434"/>
-        <location filename="../src/configmanager.cpp" line="1612"/>
-        <location filename="../src/configmanager.cpp" line="1618"/>
-        <location filename="../src/configmanager.cpp" line="1888"/>
-        <location filename="../src/configmanager.cpp" line="1896"/>
+        <location filename="../src/configmanager.cpp" line="1438"/>
+        <location filename="../src/configmanager.cpp" line="1439"/>
+        <location filename="../src/configmanager.cpp" line="1617"/>
+        <location filename="../src/configmanager.cpp" line="1623"/>
+        <location filename="../src/configmanager.cpp" line="1895"/>
+        <location filename="../src/configmanager.cpp" line="1903"/>
         <source>default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1491"/>
+        <location filename="../src/configmanager.cpp" line="1496"/>
         <source>Menus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1499"/>
+        <location filename="../src/configmanager.cpp" line="1504"/>
         <source>Menus PDF-Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1535"/>
-        <location filename="../src/configmanager.cpp" line="2739"/>
+        <location filename="../src/configmanager.cpp" line="1540"/>
+        <location filename="../src/configmanager.cpp" line="2749"/>
         <source>&lt;none&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1581"/>
+        <location filename="../src/configmanager.cpp" line="1586"/>
         <source>Insert New Menu Item (before)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1584"/>
+        <location filename="../src/configmanager.cpp" line="1589"/>
         <source>Insert New Sub Menu (before)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1587"/>
+        <location filename="../src/configmanager.cpp" line="1592"/>
         <source>Revert/Remove User Menu Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1605"/>
+        <location filename="../src/configmanager.cpp" line="1610"/>
         <source>Latex/Math menus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1606"/>
+        <location filename="../src/configmanager.cpp" line="1611"/>
         <source>All menus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1607"/>
+        <location filename="../src/configmanager.cpp" line="1612"/>
         <source>Special Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1687"/>
+        <location filename="../src/configmanager.cpp" line="1694"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1939"/>
+        <location filename="../src/configmanager.cpp" line="1949"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1954"/>
+        <location filename="../src/configmanager.cpp" line="1964"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1957"/>
+        <location filename="../src/configmanager.cpp" line="1967"/>
         <source>Recent File %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1958"/>
+        <location filename="../src/configmanager.cpp" line="1968"/>
         <source>Clear file list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1959"/>
+        <location filename="../src/configmanager.cpp" line="1969"/>
         <source>File list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1960"/>
+        <location filename="../src/configmanager.cpp" line="1970"/>
         <source>Open first non-open file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1961"/>
+        <location filename="../src/configmanager.cpp" line="1971"/>
         <source>&amp;* Open all files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1971"/>
+        <location filename="../src/configmanager.cpp" line="1981"/>
         <source>Master Document: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2740"/>
+        <location filename="../src/configmanager.cpp" line="2750"/>
         <source>&lt;default&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2980"/>
+        <location filename="../src/configmanager.cpp" line="2991"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2987"/>
+        <location filename="../src/configmanager.cpp" line="2998"/>
         <source>Select Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2994"/>
+        <location filename="../src/configmanager.cpp" line="3005"/>
         <source>Restore Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3041"/>
+        <location filename="../src/configmanager.cpp" line="3052"/>
         <source>Repeat contained compilation commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3089"/>
+        <location filename="../src/configmanager.cpp" line="3100"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3152"/>
+        <location filename="../src/configmanager.cpp" line="3163"/>
         <source>Browse program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3488"/>
+        <location filename="../src/configmanager.cpp" line="3502"/>
         <source>text is restored after restart</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4369,52 +4424,52 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1416"/>
-        <location filename="../src/latexcompleter.cpp" line="1426"/>
+        <location filename="../src/latexcompleter.cpp" line="1422"/>
+        <location filename="../src/latexcompleter.cpp" line="1432"/>
         <source>typical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1417"/>
-        <location filename="../src/latexcompleter.cpp" line="1427"/>
+        <location filename="../src/latexcompleter.cpp" line="1423"/>
+        <location filename="../src/latexcompleter.cpp" line="1433"/>
         <source>most used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1418"/>
-        <location filename="../src/latexcompleter.cpp" line="1428"/>
+        <location filename="../src/latexcompleter.cpp" line="1424"/>
+        <location filename="../src/latexcompleter.cpp" line="1434"/>
         <source>fuzzy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1419"/>
-        <location filename="../src/latexcompleter.cpp" line="1429"/>
+        <location filename="../src/latexcompleter.cpp" line="1425"/>
+        <location filename="../src/latexcompleter.cpp" line="1435"/>
         <source>all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1420"/>
-        <location filename="../src/latexcompleter.cpp" line="1430"/>
+        <location filename="../src/latexcompleter.cpp" line="1426"/>
+        <location filename="../src/latexcompleter.cpp" line="1436"/>
         <source>press shift+space to change view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1630"/>
+        <location filename="../src/latexcompleter.cpp" line="1636"/>
         <source> (Usertag)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1976"/>
+        <location filename="../src/latexcompleter.cpp" line="1982"/>
         <source>label missing!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1978"/>
+        <location filename="../src/latexcompleter.cpp" line="1984"/>
         <source>label defined multiple times!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1987"/>
+        <location filename="../src/latexcompleter.cpp" line="1993"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation type="unfinished"></translation>
@@ -5144,438 +5199,438 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2582"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2577"/>
         <source>Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2636"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2631"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2637"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2632"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2638"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2633"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2639"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2634"/>
         <source>Grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2640"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2635"/>
         <source>&amp;Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2641"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2636"/>
         <source>&amp;Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2642"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2637"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2648"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2643"/>
         <source>User &amp;Manual...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2651"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2646"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2652"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2647"/>
         <source>&amp;Open...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2653"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2648"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2654"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2649"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2656"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2651"/>
         <source>&amp;Quit TeXstudio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2657"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2652"/>
         <source>&amp;Configure TeXstudio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2659"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2654"/>
         <source>Scrolling follows cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2661"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2656"/>
         <source>Cursor follows scrolling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2663"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2658"/>
         <source>Synchronize multiple views</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2665"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2660"/>
         <source>Ignore for synchronization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2668"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2663"/>
         <source>Invert Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2670"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2665"/>
         <source>Grayscale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2673"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2668"/>
         <source>&amp;Magnify</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2674"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2669"/>
         <source>&amp;Scroll</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2676"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2671"/>
         <source>&amp;First Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2677"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2672"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2678"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2673"/>
         <source>&amp;Previous Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2679"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2674"/>
         <source>&amp;Next Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2680"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2675"/>
         <source>Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2681"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2676"/>
         <source>&amp;Last Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2683"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2678"/>
         <source>&amp;Go to Page...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2685"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2680"/>
         <source>Zoom &amp;In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2686"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2681"/>
         <source>Zoom &amp;Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2687"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2682"/>
         <source>&amp;Actual Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2688"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2683"/>
         <source>Fit to Wi&amp;dth</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2690"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2685"/>
         <source>Fit to &amp;Text Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2692"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2687"/>
         <source>Fit to &amp;Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2694"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2689"/>
         <source>&amp;Continuous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2699"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2694"/>
         <source>Full &amp;Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2700"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2695"/>
         <source>Presentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2701"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2696"/>
         <source>External Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2702"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2697"/>
         <source>Enlarge Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2703"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2698"/>
         <source>Shrink Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2704"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2699"/>
         <source>Windowed/Embedded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2705"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2700"/>
         <source>Auto-hide Toolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2715"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2710"/>
         <source>Custom...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2718"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2713"/>
         <source>Single Page Step</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2721"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2723"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2716"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2718"/>
         <source>&amp;Close something</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2726"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2721"/>
         <source>Stac&amp;k</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2727"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2722"/>
         <source>&amp;Tile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2728"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2723"/>
         <source>&amp;Side by Side</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2730"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2725"/>
         <source>&amp;Go to Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2731"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2726"/>
         <source>Focus Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2733"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2728"/>
         <source>New Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2734"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2729"/>
         <source>&amp;Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2735"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2730"/>
         <source>Find &amp;again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2737"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2732"/>
         <source>Quick Build</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2772"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2800"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2795"/>
         <source>Windowed Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2803"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2798"/>
         <source>Embedded Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2866"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2861"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2889"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2884"/>
         <source>Scale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2907"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2902"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2917"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2912"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2926"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2921"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2954"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2957"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2949"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2952"/>
         <source>Annotations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3078"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3073"/>
         <source>Page Down</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3082"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3077"/>
         <source>Page Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3272"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3267"/>
         <source>Retry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3275"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4414"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3270"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4409"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3278"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3273"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3292"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3287"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3295"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3290"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3298"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3293"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3301"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3296"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3304"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3299"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3306"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3301"/>
         <source>PDF password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3306"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3301"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3648"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3643"/>
         <source>Searching for</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3760"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3755"/>
         <source>No SyncTeX data available</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3762"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3757"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3853"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3848"/>
         <source>%1[*] - %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3935"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3930"/>
         <source>Page %1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3936"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3931"/>
         <source>Pages %1 to %2 of %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3961"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3956"/>
         <source>Open PDF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4236"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4231"/>
         <source>Print</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4415"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4410"/>
         <source>Close Message</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5817,42 +5872,42 @@ You can now enter the password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1205"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1200"/>
         <source>Opening external files is currently only supported for PDFs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1224"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1219"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1224"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1219"/>
         <source>Could not open link:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1340"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1335"/>
         <source>Go to Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2046"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2041"/>
         <source>Go to Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2047"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2042"/>
         <source>Page number:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2437"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2432"/>
         <source>Calculating text width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2437"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2432"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5958,56 +6013,56 @@ You can now enter the password:</source>
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="840"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="776"/>
         <source>Replacement prompt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="841"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="777"/>
         <source>Shall it be replaced?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="846"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="782"/>
         <source>Replacing Canceled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="846"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="782"/>
         <source>%1 (of %2 found so far) occurrences have been replaced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="885"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="821"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="890"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="826"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="897"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="833"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="917"/>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="939"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="853"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
         <source>Replacing Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="918"/>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="939"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="854"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="875"/>
         <source>%1 (of %2) occurrences have been replaced</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="919"/>
+        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="855"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6616,462 +6671,462 @@ Notes:
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>background</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <location filename="../src/additionaltranslations.cpp" line="159"/>
         <source>line:error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <location filename="../src/additionaltranslations.cpp" line="160"/>
         <source>line:warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>line:badbox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>line:bookmark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <location filename="../src/additionaltranslations.cpp" line="163"/>
         <source>line:bookmark0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>line:bookmark1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>line:bookmark2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>line:bookmark3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>line:bookmark4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="157"/>
+        <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>line:bookmark5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="158"/>
+        <location filename="../src/additionaltranslations.cpp" line="169"/>
         <source>line:bookmark6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="159"/>
+        <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>line:bookmark7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>line:bookmark8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>line:bookmark9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="162"/>
+        <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>magicComment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="163"/>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>commentTodo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="164"/>
+        <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="165"/>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="166"/>
+        <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>extra-keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="167"/>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>math-keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="168"/>
+        <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="169"/>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>align-ampersand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="170"/>
+        <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>verbatim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="171"/>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>sweave-block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>sweave-delimiter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="173"/>
+        <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>pweave-block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>pweave-delimiter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="175"/>
+        <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>picture-keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="177"/>
+        <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>braceMatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>braceMismatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="179"/>
+        <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>numbers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="181"/>
+        <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>math-delimiter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>math-text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="183"/>
+        <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="184"/>
+        <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>escapeseq</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="185"/>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>spellingMistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="186"/>
+        <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>wordRepetition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="187"/>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>wordRepetitionLongRange</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="188"/>
+        <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>badWord</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="189"/>
+        <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>grammarMistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="190"/>
+        <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>grammarMistakeSpecial1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="191"/>
+        <location filename="../src/additionaltranslations.cpp" line="202"/>
         <source>grammarMistakeSpecial2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="192"/>
+        <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>grammarMistakeSpecial3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="193"/>
+        <location filename="../src/additionaltranslations.cpp" line="204"/>
         <source>grammarMistakeSpecial4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="194"/>
+        <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>latexSyntaxMistake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="195"/>
+        <location filename="../src/additionaltranslations.cpp" line="206"/>
         <source>temporaryCodeCompletion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="197"/>
+        <location filename="../src/additionaltranslations.cpp" line="208"/>
         <source>referencePresent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>referenceMissing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="199"/>
+        <location filename="../src/additionaltranslations.cpp" line="210"/>
         <source>referenceMultiple</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="200"/>
+        <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>citationPresent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="201"/>
+        <location filename="../src/additionaltranslations.cpp" line="212"/>
         <source>citationMissing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="202"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>packagePresent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="203"/>
+        <location filename="../src/additionaltranslations.cpp" line="214"/>
         <source>packageMissing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="204"/>
+        <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>structure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="205"/>
+        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>current</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="206"/>
+        <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="207"/>
+        <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>replacement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="208"/>
+        <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>diffDelete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="209"/>
+        <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>diffAdd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="210"/>
+        <location filename="../src/additionaltranslations.cpp" line="221"/>
         <source>diffReplace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="211"/>
+        <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>previewSelection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="212"/>
+        <location filename="../src/additionaltranslations.cpp" line="223"/>
         <source>txs-test</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
+        <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>txs-test-summary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="214"/>
+        <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>txs-test-pass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="215"/>
+        <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>txs-test-fail</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="216"/>
+        <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>txs-test-warn</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="217"/>
+        <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>txs-test-qdebug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="218"/>
+        <location filename="../src/additionaltranslations.cpp" line="229"/>
         <source>dtx:guard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="219"/>
+        <location filename="../src/additionaltranslations.cpp" line="230"/>
         <source>dtx:macro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="220"/>
+        <location filename="../src/additionaltranslations.cpp" line="231"/>
         <source>dtx:verbatim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="221"/>
+        <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>dtx:specialchar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="222"/>
+        <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>dtx:commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="223"/>
+        <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>lua:keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="224"/>
+        <location filename="../src/additionaltranslations.cpp" line="235"/>
         <source>lua:comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="225"/>
+        <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>asymptote:block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="226"/>
+        <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>asymptote:keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="227"/>
+        <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>asymptote:type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="228"/>
+        <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>asymptote:numbers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="229"/>
+        <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>asymptote:string</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="230"/>
+        <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>asymptote:comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="231"/>
+        <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>qtscript:comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="232"/>
+        <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>qtscript:string</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="233"/>
+        <location filename="../src/additionaltranslations.cpp" line="244"/>
         <source>qtscript:number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="234"/>
+        <location filename="../src/additionaltranslations.cpp" line="245"/>
         <source>qtscript:keyword</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="235"/>
+        <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>qtscript:txs-variable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="236"/>
+        <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>qtscript:txs-function</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="237"/>
+        <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>preedit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="238"/>
+        <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>normal</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7835,7 +7890,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/searchresultmodel.cpp" line="362"/>
+        <location filename="../src/searchresultmodel.cpp" line="363"/>
         <source>Results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8711,142 +8766,142 @@ failed.</source>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="239"/>
+        <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="240"/>
+        <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="241"/>
+        <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="242"/>
+        <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="243"/>
+        <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>Math</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="244"/>
+        <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/additionaltranslations.cpp" line="256"/>
         <source>Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="246"/>
+        <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>Diff</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="247"/>
+        <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>Review</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="248"/>
+        <location filename="../src/additionaltranslations.cpp" line="259"/>
         <location filename="../src/texstudio.cpp" line="288"/>
         <source>Central</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="249"/>
+        <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="250"/>
+        <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="251"/>
+        <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="252"/>
+        <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="253"/>
+        <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="254"/>
+        <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="255"/>
+        <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="256"/>
+        <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="257"/>
+        <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="258"/>
+        <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="259"/>
+        <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="260"/>
+        <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="261"/>
+        <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="262"/>
+        <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2115"/>
+        <location filename="../src/configmanager.cpp" line="2125"/>
         <source>Edit &amp;Macros...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12011,7 +12066,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="70"/>
-        <source>Ordered list of commands :</source>
+        <source>Ordered list of commands:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
