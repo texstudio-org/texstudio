@@ -1,15 +1,21 @@
 # tikz-trackschematic package
-# Matthew Bertucci 10/17/2021 for v0.6.2
+# Matthew Bertucci 4/8/2022 for v0.7.0
 
 #include:tikz
 #include:xkeyval
 #include:etoolbox
+# loads calc, intersections, arrows.meta, and patterns tikzlibraries
+# symbology sublibrary loads the following
+#include:booktabs
+#include:xltabular
+#include:multicol
+#include:adjustbox
 
 \tsFullSymbology#*
 \tsSymbol[width]{symbol name}#*
 
 #keyvals:\tikzset#c
-traffic practice=
+traffic practice=#left,right
 #endkeyvals
 
 \maintrack
@@ -19,7 +25,7 @@ traffic practice=
 
 \bufferstop[options%keyvals]
 
-#keyvals:\bufferstop
+#keyvals:\bufferstop#c
 face=#forward,backward
 forward
 backward
@@ -31,7 +37,7 @@ foreground=#%color
 
 \turnout[options%keyvals]
 
-#keyvals:\turnout
+#keyvals:\turnout#c
 face=#forward,backward
 forward
 backward
@@ -45,7 +51,7 @@ foreground=#%color
 
 \crossing[options%keyvals]
 
-#keyvals:\crossing
+#keyvals:\crossing#c
 branch=#left,right
 fouling point
 shift label={%<(x,y)%>}
@@ -54,7 +60,7 @@ foreground=#%color
 
 \slipturnout[options%keyvals]
 
-#keyvals:\slipturnout
+#keyvals:\slipturnout#c
 branch=#left,right
 slip=#double,none,left,right
 operation=#manual
@@ -67,17 +73,18 @@ foreground=#%color
 
 \derailer[options%keyvals]
 
-#keyvals:\derailer
+#keyvals:\derailer#c
 face=#forward,backward
 forward
 backward
+branch=#left,right
 shift label={%<(x,y)%>}
 foreground=#%color
 #endkeyvals
 
 \parkedvehicles[options%keyvals]
 
-#keyvals:\parkedvehicles
+#keyvals:\parkedvehicles#c
 length=##L
 label at={%<(x,y)%>}
 label align=#left,right
@@ -87,7 +94,7 @@ background=#%color
 
 \shunting[options%keyvals]
 
-#keyvals:\shunting
+#keyvals:\shunting#c
 face=#forward,backward
 movement
 forward
@@ -103,7 +110,7 @@ background=#%color
 
 \train[options%keyvals]
 
-#keyvals:\train
+#keyvals:\train#c
 face=#forward,backward
 run=#slow,normal,fast
 forward
@@ -121,7 +128,7 @@ background=#%color
 
 \signal[options%keyvals]
 
-#keyvals:\signal
+#keyvals:\signal#c
 distant
 speed type
 block
@@ -129,14 +136,17 @@ route
 shunt limit
 shunting
 berth
+face=#forward,backward
+forward
+backward
 speed=
 distant speed=
 locked#true,false
 position=#left,right
 shift label={%<(x,y)%>}
 foreground=#%color
+rotate=%<degrees%>
 #endkeyvals
-
 
 \distantsignal[options%keyvals]
 \speedsignal[options%keyvals]
@@ -148,25 +158,26 @@ foreground=#%color
 \berthsignal[options%keyvals]
 \berthsign[options%keyvals]#*
 
-#keyvals:\distantsignal,\speedsignal,\speedsign,\blocksignal,\routesignal,\shuntsignal,\shuntlimit,\berthsignal,\berthsign
+#keyvals:\distantsignal#c,\speedsignal#c,\speedsign#c,\blocksignal#c,\routesignal#c,\shuntsignal#c,\shuntlimit#c,\berthsignal#c,\berthsign#c
 face=#forward,backward
 forward
 backward
 position=#left,right
 shift label={%<(x,y)%>}
 foreground=#%color
+rotate=%<degrees%>
 #endkeyvals
 
-#keyvals:\speedsignal,\speedsign
+#keyvals:\speedsignal#c,\speedsign#c
 speed=
 #endkeyvals
 
-#keyvals:\routesignal
+#keyvals:\routesignal#c
 speed=
 locked#true,false
 #endkeyvals
 
-#keyvals:\shuntsignal
+#keyvals:\shuntsignal#c
 locked#true,false
 #endkeyvals
 
@@ -176,31 +187,31 @@ locked#true,false
 \blockclearing[options%keyvals]
 \routeclearing[options%keyvals]
 
-#keyvals:\viewpoint,\clearingpoint,\standardclearing,\blockclearing,\routeclearing
+#keyvals:\viewpoint#c,\clearingpoint#c,\standardclearing#c,\blockclearing#c,\routeclearing#c
 face=#forward,backward
 forward
 backward
 position=#left,right
 foreground=#%color
+rotate=%<degrees%>
 #endkeyvals
 
-#keyvals:\clearingpoint
+#keyvals:\clearingpoint#c
 standard
 block
 route
 shift label={%<(x,y)%>}
 #endkeyvals
 
-#keyvals:\standardclearing,\blockclearing,\routeclearing
+#keyvals:\standardclearing#c,\blockclearing#c,\routeclearing#c
 shift label={%<(x,y)%>}
 #endkeyvals
 
 \brakingpoint[options%keyvals]
 \movementauthority[options%keyvals]
 \dangerpoint[options%keyvals]
-\balise[options%keyvals]
 
-#keyvals:\brakingpoint,\movementauthority,\dangerpoint,\balise
+#keyvals:\brakingpoint#c,\movementauthority#c,\dangerpoint#c
 face=#forward,backward,bidirectional
 forward
 backward
@@ -213,20 +224,36 @@ foreground=#%color
 \route[options%keyvals]
 \directioncontrol[options%keyvals]
 
-#keyvals:\route,\directioncontrol
+#keyvals:\route#c,\directioncontrol#c
 face=#forward,backward
 forward
 backward
 background=#%color
 #endkeyvals
 
-#keyvals:\directioncontrol
+#keyvals:\directioncontrol#c
 bidirectional
+#endkeyvals
+
+\balise[options%keyvals]
+
+#keyvals:\balise#c
+face=#forward,backward
+forward
+backward
+switched
+shift label={%<(x,y)%>}
+foreground=#%color
+along={%<list of integers%>}
+oppose={%<list of integers%>}
+along switched={%<list of integers%>}
+oppose switched={%<list of integers%>}
+index
 #endkeyvals
 
 \transmitter[options%keyvals]
 
-#keyvals:\transmitter
+#keyvals:\transmitter#c
 face=#forward,backward,bidirectional
 type=#balise,loop
 forward
@@ -239,7 +266,7 @@ foreground=#%color
 
 \trackloop[options%keyvals]
 
-#keyvals:\trackloop
+#keyvals:\trackloop#c
 position=#left,right
 shift label={%<(x,y)%>}
 foreground=#%color
@@ -247,7 +274,7 @@ foreground=#%color
 
 \platform[options%keyvals]
 
-#keyvals:\platform
+#keyvals:\platform#c
 side=#left,right,both
 length=##L
 width=##L
@@ -256,7 +283,7 @@ foreground=#%color
 
 \levelcrossing[options%keyvals]
 
-#keyvals:\levelcrossing
+#keyvals:\levelcrossing#c
 barrier=#none,semi,full
 side=#both,left,right
 road width=##L
@@ -267,7 +294,7 @@ foreground=#%color
 
 \bridge[options%keyvals]
 
-#keyvals:\bridge
+#keyvals:\bridge#c
 length=##L
 width=##L
 shift left=##L
@@ -283,7 +310,7 @@ no background
 
 \pylon[options%keyvals]
 
-#keyvals:\pylon
+#keyvals:\pylon#c
 side=#right,left,both
 foreground=#%color
 background=#%color
@@ -297,7 +324,7 @@ background=#%color
 \pantographup[options%keyvals]
 \wirelimit[options%keyvals]
 
-#keyvals:\distantpoweroff,\poweroff,\poweron,\distantpantographdown,\pantographdown,\pantographup,\wirelimit
+#keyvals:\distantpoweroff#c,\poweroff#c,\poweron#c,\distantpantographdown#c,\pantographdown#c,\pantographup#c,\wirelimit#c
 face=#forward,backward,bidirectional
 forward
 backward
@@ -313,7 +340,7 @@ background=#%color
 
 \berth[options%keyvals]
 
-#keyvals:\berth
+#keyvals:\berth#c
 face=#forward,backward,bidirectional
 forward
 backward
@@ -327,7 +354,7 @@ foreground=#%color
 
 \hectometer[options%keyvals]
 
-#keyvals:\hectometer
+#keyvals:\hectometer#c
 hectometer base={%<(x,y)%>}
 orientation=#left,right
 shift label={%<(x,y)%>}
@@ -335,3 +362,75 @@ hectometer color=#%color
 #endkeyvals
 
 \trackmarking[color%plain]
+
+## not documented ##
+# from tikzlibrarytrackschematic.constructions.code.tex
+\background#S
+\barrier#S
+\foreground#S
+\objectwidth#S
+\roadwidth#S
+\shiftleft#S
+\shiftright#S
+\side#S
+\sidefactor#S
+\trafficfactor#S
+\trafficpractice#S
+
+# from tikzlibrarytrackschematic.electrics.code.tex
+\align#S
+\coordcommand#S
+\facefactor#S
+\labelcommand#S
+\labelcontent#S
+\labelcoord#S
+\signalcolor#S
+
+# from tikzlibrarytrackschematic.measures.code.tex
+\basecoord#S
+\hectometercolor#S
+\objectlength#S
+
+# from tikzlibrarytrackschematic.topology.code.tex
+\backwardpoints#S
+\branch#S
+\branchfactor#S
+\forwardpoints#S
+\friction#S
+\labelcontentleft#S
+\labelcontentright#S
+\operationmode#S
+\patterntype#S
+\points#S
+
+# from tikzlibrarytrackschematic.trafficcontrol.code.tex
+\along#S
+\alongswitched#S
+\distantspeed#S
+\face#S
+\oppose#S
+\opposeswitched#S
+\speed#S
+\trafficfactorTEST#S
+\trafficfactorX#S
+\type#S
+
+# from tikzlibrarytrackschematic.vehicles.code.tex
+\baseX#S
+\baseY#S
+\bendfactor#S
+\bendleftcoord#S
+\bendlength#S
+\bendrightcoord#S
+\bendrightX#S
+\bendrightY#S
+\bendX#S
+\bendY#S
+\frontBendfactor#S
+\frontBendX#S
+\labelalign#S
+\labelanchor#S
+\rearBendfactor#S
+\rearBendX#S
+\rearBendY#S
+\trainrun#S

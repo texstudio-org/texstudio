@@ -4,6 +4,19 @@
 #include:ifthen
 #include:amssymb
 
+#keyvals:\usepackage/ntheorem#c
+thmmarks
+leqno
+fleqn
+thref
+amsmath
+standard
+noconfig
+amsthm
+framed
+hyperref
+#endkeyvals
+
 \renewtheorem{envname}[numbered like]{caption}#N
 \renewtheorem{envname}{caption}#N
 \renewtheorem{envname}{caption}[within]#N
