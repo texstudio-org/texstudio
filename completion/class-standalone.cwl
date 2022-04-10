@@ -38,6 +38,12 @@ varwidth#true,false
 varwidth=##L
 #endkeyvals
 
+#keyvals:\documentclass/standalone
+10pt
+11pt
+12pt
+#endkeyvals
+
 #ifOption:beamer
 #include:class-beamer
 \begin{standaloneframe}
