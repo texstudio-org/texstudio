@@ -99,6 +99,8 @@
 <file>completion/appendixnumberbeamer.cwl</file>
 <file>completion/apptools.cwl</file>
 <file>completion/apxproof.cwl</file>
+<file>completion/arabluatex.cwl</file>
+<file>completion/arabxetex.cwl</file>
 <file>completion/aramaic.cwl</file>
 <file>completion/Archivo.cwl</file>
 <file>completion/ar.cwl</file>
@@ -416,6 +418,7 @@
 <file>completion/circle.cwl</file>
 <file>completion/circledsteps.cwl</file>
 <file>completion/circuitikz.cwl</file>
+<file>completion/citation-style-language.cwl</file>
 <file>completion/citeall.cwl</file>
 <file>completion/cite.cwl</file>
 <file>completion/cjhebrew.cwl</file>
@@ -430,6 +433,7 @@
 <file>completion/class-amsproc.cwl</file>
 <file>completion/class-aomart.cwl</file>
 <file>completion/class-apa7.cwl</file>
+<file>completion/class-arabic-book.cwl</file>
 <file>completion/class-artikel1.cwl</file>
 <file>completion/class-artikel2.cwl</file>
 <file>completion/class-artikel3.cwl</file>
@@ -438,6 +442,7 @@
 <file>completion/class-bankstatement.cwl</file>
 <file>completion/class-beamer.cwl</file>
 <file>completion/class-beamerswitch.cwl</file>
+<file>completion/class-beilstein.cwl</file>
 <file>completion/class-bfhbeamer.cwl</file>
 <file>completion/class-boek3.cwl</file>
 <file>completion/class-boek.cwl</file>
@@ -712,6 +717,7 @@
 <file>completion/desclist.cwl</file>
 <file>completion/dhua.cwl</file>
 <file>completion/diagbox.cwl</file>
+<file>completion/diagram.cwl</file>
 <file>completion/diagxy.cwl</file>
 <file>completion/dichokey.cwl</file>
 <file>completion/diffcoeff.cwl</file>
@@ -756,6 +762,7 @@
 <file>completion/droidsansmono.cwl</file>
 <file>completion/droidserif.cwl</file>
 <file>completion/dsfont.cwl</file>
+<file>completion/dsptricks.cwl</file>
 <file>completion/dsserif.cwl</file>
 <file>completion/dtk-extern.cwl</file>
 <file>completion/dtk-logos.cwl</file>
@@ -1138,8 +1145,10 @@
 <file>completion/hobete.cwl</file>
 <file>completion/hologo.cwl</file>
 <file>completion/holtpolt.cwl</file>
+<file>completion/holtxdoc.cwl</file>
 <file>completion/hrefhide.cwl</file>
 <file>completion/hulipsum.cwl</file>
+<file>completion/hvarabic.cwl</file>
 <file>completion/hvfloat.cwl</file>
 <file>completion/hvfloat-fps.cwl</file>
 <file>completion/hvindex.cwl</file>
@@ -1714,6 +1723,7 @@
 <file>completion/pdfrender.cwl</file>
 <file>completion/pdfreview.cwl</file>
 <file>completion/pdfswitch.cwl</file>
+<file>completion/pdftexcmds.cwl</file>
 <file>completion/pdfx.cwl</file>
 <file>completion/penlight.cwl</file>
 <file>completion/perfectcut.cwl</file>
@@ -1923,6 +1933,7 @@
 <file>completion/pst-tvz.cwl</file>
 <file>completion/pst-venn.cwl</file>
 <file>completion/pst-xkey.cwl</file>
+<file>completion/ptext.cwl</file>
 <file>completion/PTMono.cwl</file>
 <file>completion/ptolemaicastronomy.cwl</file>
 <file>completion/PTSansCaption.cwl</file>
@@ -1953,6 +1964,10 @@
 <file>completion/quattrocento.cwl</file>
 <file>completion/quotchap.cwl</file>
 <file>completion/quoting.cwl</file>
+<file>completion/quran-bn.cwl</file>
+<file>completion/quran.cwl</file>
+<file>completion/quran-de.cwl</file>
+<file>completion/quran-ur.cwl</file>
 <file>completion/ragged2e.cwl</file>
 <file>completion/raleway.cwl</file>
 <file>completion/randomlist.cwl</file>
@@ -2552,6 +2567,8 @@
 <file>completion/xeindex.cwl</file>
 <file>completion/xellipsis.cwl</file>
 <file>completion/xepersian.cwl</file>
+<file>completion/xepersian-mathdigitspec.cwl</file>
+<file>completion/xepersian-persiancal.cwl</file>
 <file>completion/xesearch.cwl</file>
 <file>completion/xespotcolor.cwl</file>
 <file>completion/xetex.cwl</file>
