@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr_TR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="tr_TR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -886,7 +884,7 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Almak istediğiniz güncelleme bildirimlerini belirleyin:
 - Kararlı Sürümler: Sizin için en önemlisi kararlılık ise bunu seçin.
@@ -1094,7 +1092,7 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harfe duyarlıdır.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2641,8 +2639,8 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
         <location filename="../src/configdialog.ui" line="4354"/>
         <location filename="../src/configdialog.ui" line="4408"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>PDF kitaplığı oluşturucu arka plan uygulaması olarak poppler kullanıyor.
 Varsayılan değer olan &apos;Splash&apos; çoğu durum için uygundur.
@@ -3112,10 +3110,6 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <translation>&amp;Matematik</translation>
     </message>
     <message>
-        <source>Math Equations</source>
-        <translation type="vanished">Matematik denklemleri</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math &amp;Functions</source>
         <translation>Matematik iş&amp;levleri</translation>
@@ -3124,10 +3118,6 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math Font St&amp;yles</source>
         <translation>Matematik &amp;yazı biçemleri</translation>
-    </message>
-    <message>
-        <source>Math Stacking symbols</source>
-        <translation type="vanished">Matematik yığın simgeleri</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
@@ -3157,17 +3147,17 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="25"/>
         <source>Math &amp;Equations</source>
-        <translation type="unfinished"></translation>
+        <translation>Metematik &amp;denklemleri</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Definitions</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematik &amp;tanımları</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="29"/>
         <source>Math &amp;Stacking Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematik &amp;küme simgeleri</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="33"/>
@@ -3627,42 +3617,42 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>env Corollary (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Sonucu (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>env Definition (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Tanımı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>env Example (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Örneği (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>env Lemma (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Ön kabulu (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>env Proof (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env İspatı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>env Proposition (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Önermesi (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>env Remark (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Notu (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>env Theorem (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Teoremi (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="136"/>
@@ -3717,12 +3707,12 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>\sideset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>\sideset (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>\prescript (mathtools)</source>
-        <translation type="unfinished"></translation>
+        <translation>\prescript (mathtools)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
@@ -4418,7 +4408,7 @@ Tüm değişiklikleri geri almak istediğinize emin misiniz?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Şekil konumu ayarları
@@ -4536,7 +4526,7 @@ Yardımcı komutu desteklemiyor</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1993"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya adı: %1&lt;/b&gt;
 </translation>
@@ -4684,7 +4674,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2540"/>
         <location filename="../src/latexeditorview.cpp" line="2612"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya adı: %1&lt;/b&gt;
 </translation>
@@ -4692,9 +4682,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2553"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>bu etikete %n başvuru</numerusform>
-        </translation>
+        <translation><numerusform>bu etikete %n başvuru</numerusform><numerusform>bu etikete %n başvuru</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2558"/>
@@ -6394,7 +6382,7 @@ dosyasına yazılamadı.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Disk üzerindeki özgün dosya kayıt sırasında silindi.
 Dosyanın kopyasını şu konumda bulabilirsiniz
@@ -10937,7 +10925,7 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5678"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Dosya adı belirlenemedi.
 Bir belgeyi derlemeden önce bir kez kaydetmeniz gerekir.</translation>
@@ -12251,13 +12239,9 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
         <translation>Ekle</translation>
     </message>
     <message>
-        <source>Ordered list of commands :</source>
-        <translation type="vanished">Sıralı komut listesi :</translation>
-    </message>
-    <message>
         <location filename="../src/userquickdialog.ui" line="70"/>
         <source>Ordered list of commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sıralanmış komut listesi:</translation>
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="80"/>
