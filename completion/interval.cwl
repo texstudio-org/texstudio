@@ -4,10 +4,10 @@
 
 \interval{%<start%>}{%<end%>}#m
 \interval[%<options%>]{%<start%>}{%<end%>}#m
-\ointerval[%<options%>]{%<start%>}{%<end%>}#m*
-\linterval[%<options%>]{%<start%>}{%<end%>}#m*
-\rinterval[%<options%>]{%<start%>}{%<end%>}#m*
-\intervalconfig{%<options%>}#*
+\ointerval[%<options%>]{%<start%>}{%<end%>}#m
+\linterval[%<options%>]{%<start%>}{%<end%>}#m
+\rinterval[%<options%>]{%<start%>}{%<end%>}#m
+\intervalconfig{%<options%>}
 
 #keyvals:\interval
 open
@@ -16,15 +16,17 @@ open right
 #endkeyvals
 #keyvals:\interval,\ointerval,\linterval,\rinterval
 scaled
-scaled=
+scaled=%<scale command%>
 #endkeyvals
 
 #keyvals:\intervalconfig
-separator symbol=
-left open fence=
-left closed fence=
-right open fence=
-right closed fence=
+separator symbol=%<symbol%>
+left open fence=%<symbol%>
+left closed fence=%<symbol%>
+right open fence=%<symbol%>
+right closed fence=%<symbol%>
 soft open fences
-colorize=
+colorize=%<color commands%>
 #endkeyvals
+
+\INTVversion#S
