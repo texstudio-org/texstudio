@@ -43,6 +43,17 @@ silent
 \addjfontfeature{font features%keyvals}#S
 
 #keyvals:\jfontspec,\setmainjfont,\setsansjfont,\setmonojfont,\newjfontfamily,\renewjfontfamily,\setjfontfamily,\newjfontface,\defaultjfontfeatures,\addjfontfeatures,\addjfontfeature
+# features specific to luatexja
+CID=%<name%>
+JFM=%<name%>
+JFM-var=%<name%>
+NoEmbed
+Kanjiskip#true,false
+TateFeatures={%<features%>}
+TateFont=%<font%>
+YokoFeatures={%<features%>}
+AltFont={%<specification%>}
+# regular fontspec font features
 Alternate=%<feature%>
 Annotation=
 AutoFakeBold=%<number%>
