@@ -25,19 +25,19 @@ silent
 
 ## Sec. II.1 Main commands
 \setmainfont{font}
-\setmainfont[font features]{font}*
+\setmainfont[font features]{font}#*
 \setmainfont{font}[font features%keyvals]
 \setmainfont[font features]{font}[font features%keyvals]#*
 \setromanfont{font}
-\setromanfont[font features]{font}*
+\setromanfont[font features]{font}#*
 \setromanfont{font}[font features%keyvals]
 \setromanfont[font features]{font}[font features%keyvals]#*
 \setsansfont{font}
-\setsansfont[font features]{font}*
+\setsansfont[font features]{font}#*
 \setsansfont{font}[font features%keyvals]
 \setsansfont[font features]{font}[font features%keyvals]#*
 \setmonofont{font}
-\setmonofont[font features]{font}*
+\setmonofont[font features]{font}#*
 \setmonofont{font}[font features%keyvals]
 \setmonofont[font features]{font}[font features%keyvals]#*
 
