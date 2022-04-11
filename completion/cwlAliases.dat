@@ -566,3 +566,7 @@ beilstein:
 class-beilstein
 latex-document
 tex
+gztarticle:
+class-gztarticle
+latex-document
+tex
