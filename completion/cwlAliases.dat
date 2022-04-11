@@ -570,3 +570,11 @@ gztarticle:
 class-gztarticle
 latex-document
 tex
+smfart:
+class-smfart
+latex-document
+tex
+smfbook:
+class-smfbook
+latex-document
+tex
