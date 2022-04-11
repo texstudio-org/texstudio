@@ -475,6 +475,7 @@
 <file>completion/class-graphpaper.cwl</file>
 <file>completion/class-gridslides.cwl</file>
 <file>completion/class-guitartabs.cwl</file>
+<file>completion/class-gztarticle.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
@@ -544,6 +545,8 @@
 <file>completion/class-skdoc.cwl</file>
 <file>completion/class-skrapport.cwl</file>
 <file>completion/class-slides.cwl</file>
+<file>completion/class-smfart.cwl</file>
+<file>completion/class-smfbook.cwl</file>
 <file>completion/class-sslides.cwl</file>
 <file>completion/class-stage.cwl</file>
 <file>completion/class-standalone.cwl</file>
@@ -665,6 +668,7 @@
 <file>completion/csvsimple-l3.cwl</file>
 <file>completion/csvsimple-legacy.cwl</file>
 <file>completion/ctable.cwl</file>
+<file>completion/ctablestack.cwl</file>
 <file>completion/ctex.cwl</file>
 <file>completion/currency.cwl</file>
 <file>completion/currfile-abspath.cwl</file>
@@ -1343,6 +1347,12 @@
 <file>completion/listofitems.cwl</file>
 <file>completion/listofsymbols.cwl</file>
 <file>completion/llncsconf.cwl</file>
+<file>completion/lltjcore.cwl</file>
+<file>completion/lltjdefs.cwl</file>
+<file>completion/lltjext.cwl</file>
+<file>completion/lltjfont.cwl</file>
+<file>completion/lltjp-atbegshi.cwl</file>
+<file>completion/lltjp-geometry.cwl</file>
 <file>completion/lmacs.cwl</file>
 <file>completion/lmake.cwl</file>
 <file>completion/lmodern.cwl</file>
@@ -1364,6 +1374,8 @@
 <file>completion/lstbayes.cwl</file>
 <file>completion/lstfiracode.cwl</file>
 <file>completion/ltablex.cwl</file>
+<file>completion/ltj-base.cwl</file>
+<file>completion/ltj-latex.cwl</file>
 <file>completion/ltx4yt.cwl</file>
 <file>completion/ltxdockit.cwl</file>
 <file>completion/ltxnew.cwl</file>
@@ -1384,12 +1396,17 @@
 <file>completion/lualatex-truncate.cwl</file>
 <file>completion/luamesh.cwl</file>
 <file>completion/luamplib.cwl</file>
+<file>completion/luaotfload.cwl</file>
 <file>completion/luapackageloader.cwl</file>
 <file>completion/luaprogtable.cwl</file>
 <file>completion/luarandom.cwl</file>
 <file>completion/luasseq.cwl</file>
 <file>completion/luatexbase.cwl</file>
 <file>completion/luatex.cwl</file>
+<file>completion/luatexja-compat.cwl</file>
+<file>completion/luatexja-core.cwl</file>
+<file>completion/luatexja.cwl</file>
+<file>completion/luatexja-fontspec.cwl</file>
 <file>completion/luatodonotes.cwl</file>
 <file>completion/lua-typo.cwl</file>
 <file>completion/lua-ul.cwl</file>
@@ -2147,6 +2164,7 @@
 <file>completion/smartdiagram.cwl</file>
 <file>completion/smart-eqn.cwl</file>
 <file>completion/smartunits.cwl</file>
+<file>completion/smfthm.cwl</file>
 <file>completion/snapshot.cwl</file>
 <file>completion/snaptodo.cwl</file>
 <file>completion/snotez.cwl</file>
