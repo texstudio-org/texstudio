@@ -6784,7 +6784,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		QFileInfo ftl(fileToLoad);
 		if (fileToLoad != "") {
 			if (ftl.exists()) {
-				if (ftl.suffix() == Session::fileExtension()) {
+                if (ftl.suffix() == Session::fileExtension() || ftl.suffix() == "txss") {
 					loadSession(ftl.filePath());
 				} else {
 					load(fileToLoad, hasExplicitRoot);
