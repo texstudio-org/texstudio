@@ -31,6 +31,7 @@
 <file>completion/adjustbox.cwl</file>
 <file>completion/adobecaslon.cwl</file>
 <file>completion/adtrees.cwl</file>
+<file>completion/advdate.cwl</file>
 <file>completion/ae.cwl</file>
 <file>completion/aeguill.cwl</file>
 <file>completion/aesupp.cwl</file>
@@ -338,6 +339,7 @@
 <file>completion/bussproofs.cwl</file>
 <file>completion/bussproofs-extra.cwl</file>
 <file>completion/bxcalcux.cwl</file>
+<file>completion/bxghost.cwl</file>
 <file>completion/bxnewfont.cwl</file>
 <file>completion/bxorigcapt.cwl</file>
 <file>completion/bxtexlogo.cwl</file>
@@ -472,6 +474,7 @@
 <file>completion/class-fancyhandout.cwl</file>
 <file>completion/class-fancyslides.cwl</file>
 <file>completion/class-FUbeamer.cwl</file>
+<file>completion/class-gammas.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
 <file>completion/class-gridslides.cwl</file>
 <file>completion/class-guitartabs.cwl</file>
@@ -497,11 +500,16 @@
 <file>completion/classlist.cwl</file>
 <file>completion/class-llncs.cwl</file>
 <file>completion/class-lni.cwl</file>
+<file>completion/class-ltjarticle.cwl</file>
+<file>completion/class-ltjbook.cwl</file>
+<file>completion/class-ltjltxdoc.cwl</file>
+<file>completion/class-ltjreport.cwl</file>
 <file>completion/class-ltxdoc.cwl</file>
 <file>completion/class-ltxdockit.cwl</file>
 <file>completion/class-ltxguide.cwl</file>
 <file>completion/class-ltxguidex.cwl</file>
 <file>completion/class-matapli.cwl</file>
+<file>completion/class-meetingmins.cwl</file>
 <file>completion/class-memoir.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
 <file>completion/class-metanorma.cwl</file>
@@ -518,6 +526,7 @@
 <file>completion/class-pdfArticle.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
 <file>completion/class-proc.cwl</file>
+<file>completion/class-protocol.cwl</file>
 <file>completion/class-pylatex.cwl</file>
 <file>completion/class-qcm.cwl</file>
 <file>completion/class-quantumarticle.cwl</file>
@@ -660,6 +669,7 @@
 <file>completion/crossreference.cwl</file>
 <file>completion/crossreftools.cwl</file>
 <file>completion/crumbs.cwl</file>
+<file>completion/cryptocode.cwl</file>
 <file>completion/csquotes.cwl</file>
 <file>completion/css-colors.cwl</file>
 <file>completion/cstypo.cwl</file>
@@ -1407,6 +1417,8 @@
 <file>completion/luatexja-core.cwl</file>
 <file>completion/luatexja.cwl</file>
 <file>completion/luatexja-fontspec.cwl</file>
+<file>completion/luatexja-otf.cwl</file>
+<file>completion/luatexja-preset.cwl</file>
 <file>completion/luatodonotes.cwl</file>
 <file>completion/lua-typo.cwl</file>
 <file>completion/lua-ul.cwl</file>

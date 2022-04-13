@@ -2,8 +2,6 @@
 #include "configmanager.h"
 #include "smallUsefulFunctions.h"
 
-QString Session::m_fileExtension = "txss2";
-
 Session::Session(const Session &s)
 {
 	m_files.append(s.m_files);

@@ -46,14 +46,12 @@ public:
 	void setPDFEmbedded(bool b) { m_pdfEmbedded = b; }
 	bool PDFEmbedded() const { return m_pdfEmbedded; }
 
-	static QString fileExtension() { return m_fileExtension; }
+    static QString fileExtension() { return QString("txss2"); }
 	static QString fmtPath(const QDir &dir, const QString &file, bool relPath=true);
 
 private:
     bool load_v1(const QString &file);
     bool load_v2(const QString &file);
-
-	static QString m_fileExtension;
 
 	QList<FileInSession> m_files;
 	QString m_masterFile;
