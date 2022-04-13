@@ -2,6 +2,7 @@
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
 
+#include:expl3
 #include:xparse
 #include:l3keys2e
 
@@ -9,6 +10,7 @@
 \zhnumber[options%keyvals]{number}
 
 \zhdigits{number}
+\zhdigits[options%keyvals]{number}
 \zhdigits*{number}
 \zhdigits*[options%keyvals]{number}
 
@@ -32,21 +34,21 @@
 \zhganzhi{number}#*
 \zhganzhinian{year}#*
 
+\zhnumExtendScaleMap{character1, character2, ..., charactern}#*
 \zhnumExtendScaleMap[character]{character1, character2, ..., charactern}#*
 
 \zhnumsetup{options%keyvals}
 
-
-#keyvals:\zhnumsetup,\zhnumber,\zhdigits*,\zhnum,\zhdig
+#keyvals:\zhnumsetup,\zhnumber,\zhdigits,\zhdigits*,\zhnum,\zhdig
 encoding=#GBK,Big5,UTF8
 #
 time=#Arabic,Chinese
-arabicsep=
+arabicsep={%<separator%>}
 style=#Simplified,Traditional,Normal,Financial,Ancient
-null=#true,false
-ganzhi-cyclic=#true,false
+null#true,false
+ganzhi-cyclic#true,false
 reset
-activebar=#true,false
+activechar#true,false
 #
 -=
 -0=
@@ -118,3 +120,9 @@ fri=
 sat=
 sun=
 #endkeyvals
+
+# not documented
+\zhnumberwithoptions{options}{number}#S
+\zhdigitswithoptions{options}{number}#S
+\zhnumwithoptions{options}{counter}#S
+\zhdigwithoptions{options}{counter}#S
