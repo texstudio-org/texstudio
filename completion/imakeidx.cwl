@@ -31,7 +31,7 @@ columnsep=##L
 columnseprule#true,false
 #endkeyvals
 
-\indexsetup
+\indexsetup{options%keyvals}
 #keyvals:\indexsetup
 level=%<section cmd%>
 toclevel=%<section csname%>
