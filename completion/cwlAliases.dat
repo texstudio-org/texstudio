@@ -22,7 +22,7 @@ ctex
 ctexbook:
 book
 ctex
-ctexreport:
+ctexrep:
 report
 ctex
 letter:
