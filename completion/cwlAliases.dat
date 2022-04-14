@@ -606,3 +606,11 @@ protocol:
 class-protocol
 latex-document
 tex
+ltugboat:
+class-ltugboat
+latex-document
+tex
+nwejmart:
+class-nwejmart
+latex-document
+tex
