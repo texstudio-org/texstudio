@@ -7,6 +7,7 @@
 #include:pgfopts
 #include:relsize
 #include:tikz
+# loads positioning, backgrounds, and shapes.misc tikzlibraries
 #include:enumitem
 #include:fontawesome
 #include:sfmath
@@ -15,10 +16,18 @@
 #include:environ
 #include:FiraSans
 
+#keyvals:\documentclass/modernposter#c
+hlcolor=%<HTML color%>
+logo=%<imagefile%>
+helvet
+#endkeyvals
+
 #ifOption:helvet
 #include:helvet
 #endif
 
+mDarkTeal#B
+mDarkBrown#B
 hlcol#B
 \highlight{text}
 
@@ -32,13 +41,13 @@ hlcol#B
 \begin{postercolumn}
 \end{postercolumn}
 
-\posterbox{title%plain}{contents%text}
-\doubleposterbox{title1%plain}{contents1%text}{title2%plain}{contents2%text}
-\doubleposterbox[height]{title1%plain}{contents1%text}{title2%plain}{contents2%text}
+\posterbox{title%text}{contents%text}
+\doubleposterbox{title1%text}{contents1%text}{title2%text}{contents2%text}
+\doubleposterbox[height]{title1%text}{contents1%text}{title2%text}{contents2%text}
 
 \oldparboxrestore#S
-\faiconold#S
+\faiconold{arg}#S
 
-\email{address}
+\email{email%URL}#U
 
 \thenumcols#*
