@@ -294,6 +294,7 @@
 <file>completion/bitpattern.cwl</file>
 <file>completion/bitset.cwl</file>
 <file>completion/bitter.cwl</file>
+<file>completion/bkltprnt.cwl</file>
 <file>completion/blindtext.cwl</file>
 <file>completion/blkarray.cwl</file>
 <file>completion/blochsphere.cwl</file>
@@ -312,6 +313,7 @@
 <file>completion/boldline.cwl</file>
 <file>completion/bondgraph.cwl</file>
 <file>completion/bondgraphs.cwl</file>
+<file>completion/booklet.cwl</file>
 <file>completion/bookmark.cwl</file>
 <file>completion/booktabs.cwl</file>
 <file>completion/boolexpr.cwl</file>
@@ -504,6 +506,7 @@
 <file>completion/class-ltjbook.cwl</file>
 <file>completion/class-ltjltxdoc.cwl</file>
 <file>completion/class-ltjreport.cwl</file>
+<file>completion/class-ltugboat.cwl</file>
 <file>completion/class-ltxdoc.cwl</file>
 <file>completion/class-ltxdockit.cwl</file>
 <file>completion/class-ltxguide.cwl</file>
@@ -521,6 +524,7 @@
 <file>completion/class-ncc.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
 <file>completion/class-novel.cwl</file>
+<file>completion/class-nwejmart.cwl</file>
 <file>completion/class-oup-authoring-template.cwl</file>
 <file>completion/class-papertex.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
@@ -656,6 +660,7 @@
 <file>completion/counttexruns.cwl</file>
 <file>completion/couriers.cwl</file>
 <file>completion/courierten.cwl</file>
+<file>completion/CoverPage.cwl</file>
 <file>completion/covington.cwl</file>
 <file>completion/cprotect.cwl</file>
 <file>completion/cpssp.cwl</file>
@@ -951,6 +956,7 @@
 <file>completion/FiraSans.cwl</file>
 <file>completion/fitbox.cwl</file>
 <file>completion/fixfoot.cwl</file>
+<file>completion/fixlatvian.cwl</file>
 <file>completion/fixmath.cwl</file>
 <file>completion/fixme.cwl</file>
 <file>completion/fjodor.cwl</file>
@@ -1784,7 +1790,9 @@
 <file>completion/pgfrcs.cwl</file>
 <file>completion/pgf-soroban.cwl</file>
 <file>completion/pgf-spectra.cwl</file>
+<file>completion/pgfsubpic.cwl</file>
 <file>completion/pgfsys.cwl</file>
+<file>completion/pgftree.cwl</file>
 <file>completion/pgf-umlcd.cwl</file>
 <file>completion/pgf-umlsd.cwl</file>
 <file>completion/pgothic.cwl</file>
@@ -2405,6 +2413,7 @@
 <file>completion/tikz-page.cwl</file>
 <file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
+<file>completion/tikz-qtree.cwl</file>
 <file>completion/tikzrput.cwl</file>
 <file>completion/tikzscale.cwl</file>
 <file>completion/tikzsymbols.cwl</file>
