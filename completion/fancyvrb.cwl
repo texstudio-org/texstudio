@@ -2,7 +2,7 @@
 # neeraavi 12 Apr 2007
 # muzimuzhi 15 Mar 2020, fancyvrb v3.5
 # muzimuzhi 25 Mar 2020
-# Matthew Bertucci 27 Sep 2021 for v3.8
+# Matthew Bertucci 13 Mar 2022 for v4.2
 
 #include:keyval
 
@@ -103,7 +103,7 @@ label=%<label text%>
 labelposition=#none,topline,bottomline,all
 numbers=#none,left,right
 numbersep=##L
-firstnumber=#auto,last,integer
+firstnumber=%<auto|last|<integer>%>
 stepnumber=%<integer%>
 numberblanklines#true,false
 firstline=%<integer%>
@@ -124,6 +124,7 @@ codes*={%<code%>}
 defineactive={%<code%>}
 defineactive*={%<code%>}
 reflabel=##l
+fileext=%<extension%>
 #endkeyvals
 
 #keyvals:\begin{BVerbatim},\begin{BVerbatim*},\fvset,\DefineVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\BUseVerbatim,\BVerbatimInput
