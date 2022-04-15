@@ -140,7 +140,7 @@ qasm
 \yquantredefinemultibox{name}[style]{content}
 
 ## << keyvals >> ##
-#keyvals:\begin{yquant},\begin{yquant*},\yquantset,\yquantimport,\yquantimport*,\begin{yquantgroup},\begin{yquantgroup*}
+#keyvals:\begin{yquant}#c,\begin{yquant*}#c,\yquantset#c,\yquantimport#c,\yquantimport*#c,\begin{yquantgroup}#c,\begin{yquantgroup*}#c
 #  Circuit layout #
 register/minimum height=##L
 register/minimum depth=##L
@@ -252,7 +252,7 @@ every nobit output/.style={%<TikZ keys%>}
 \shiftright*
 \shiftright*[where]
 
-#keyvals:\yquantset,\begin{yquantgroup},\begin{yquantgroup*}
+#keyvals:\yquantset#c,\begin{yquantgroup}#c,\begin{yquantgroup*}#c
 group/every group/.style={%<TikZ keys%>}
 group/line separation=##L
 group/aligned#true,false
@@ -260,7 +260,7 @@ operators/every group circuit/.style={%<TikZ keys%>}
 operators/every group equals/.style={%<TikZ keys%>}
 #endkeyvals
 
-#keyvals:\begin{yquantgroup},\begin{yquantgroup*}
+#keyvals:\begin{yquantgroup}#c,\begin{yquantgroup*}#c
 preamble={%<TikZ keys%>}
 #endkeyvals
 
@@ -277,7 +277,7 @@ preamble={%<TikZ keys%>}
 \controls#S
 \qasmname{arg}#*
 
-#keyvals:\yquantset
+#keyvals:\yquantset#c
 operators/every s/.style={%<TikZ keys%>}
 operators/every t/.style={%<TikZ keys%>}
 operators/every utwo/.style={%<TikZ keys%>}
