@@ -614,3 +614,15 @@ nwejmart:
 class-nwejmart
 latex-document
 tex
+sciposter:
+class-sciposter
+latex-document
+tex
+tikz-kalender:
+class-tikz-kalender
+latex-document
+tex
+xebaposter:
+class-xebaposter
+latex-document
+tex
