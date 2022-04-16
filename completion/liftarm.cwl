@@ -1,5 +1,5 @@
 # liftarm package
-# Matthew Bertucci 3/14/2022 for v1.0
+# Matthew Bertucci 4/16/2022 for v2.0
 
 #include:etoolbox
 #include:xcolor
@@ -53,6 +53,50 @@ liftarm 2={%<options%>}
 
 \liftarmconstruct{text}{commands}
 \liftarmconstruct[TikZ options]{text}{commands}
+
+\liftarmanimate{frame rate}{list}{commands}
+\liftarmanimate[options%keyvals]{frame rate}{list}{commands}
+
+#keyvals:\liftarmanimate#c
+label=%<label%>
+type=%<file ext%>
+poster
+poster=#first,last,none,%<number%>
+every=%<number%>
+autopause
+autoplay
+autoresume
+loop
+palindrome
+step
+width=##L
+height=##L
+totalheight=##L
+keepaspectratio
+scale=%<factor%>
+bb=%<llx lly urx ury%>
+viewport=%<llx lly urx ury%>
+trim=%<left bottom right top%>
+clip
+hiresbb
+interpolate
+pagebox=
+controls=#all,true,on,none,false,off
+controlsaligned=
+buttonsize=##L
+buttonbg=#%color
+buttonfg=#%color
+buttonalpha=%<opacity%>
+draft
+final
+nomouse
+method=#icon,widget,ocg
+measure
+alttext=#none,%<alt description%>
+begin={%<begin code%>}
+end={%<end code%>}
+timeline=%<file%>
+#endkeyvals
 
 # from dvipsnames option of xcolor
 Apricot#B
