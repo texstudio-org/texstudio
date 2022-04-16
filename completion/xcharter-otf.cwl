@@ -174,7 +174,7 @@ Scale=%<factor%>
 \widearc{arg}#m
 \Zbar#m
 
-\XCottoksT#S
-\XCottoksM#S
+\XCottoksT#*
+\XCottoksM#*
 \fileversion#S
 \filedate#S
