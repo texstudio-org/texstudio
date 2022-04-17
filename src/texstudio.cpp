@@ -651,6 +651,7 @@ void Texstudio::setupDockWidgets()
         }
         connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
         connect(leftPanel, SIGNAL(currentWidgetChanged(QWidget*)), this, SLOT(leftPanelChanged(QWidget*)));
+        connect(sidePanel,&TitledPanel::showPanel,this,&Texstudio::updateTOCs);
     }
 
     // load icons for structure view

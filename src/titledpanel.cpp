@@ -257,6 +257,8 @@ void TitledPanel::setVisible(bool visible)
 {
 	QFrame::setVisible(visible);
 	mToggleViewAction->setChecked(visible);
+    if(visible)
+        emit showPanel();
 }
 
 void TitledPanel::updateTopbar()
