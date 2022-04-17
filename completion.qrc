@@ -546,6 +546,7 @@
 <file>completion/class-schulma-komp.cwl</file>
 <file>completion/class-schulma-mdlprf.cwl</file>
 <file>completion/class-schulma-praes.cwl</file>
+<file>completion/class-sciposter.cwl</file>
 <file>completion/class-scrartcl.cwl</file>
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
 <file>completion/class-scrbook.cwl</file>
@@ -565,6 +566,7 @@
 <file>completion/class-standalone.cwl</file>
 <file>completion/class-suftesi.cwl</file>
 <file>completion/class-talk.cwl</file>
+<file>completion/class-tikz-kalender.cwl</file>
 <file>completion/class-tikzposter.cwl</file>
 <file>completion/class-tkz-doc.cwl</file>
 <file>completion/class-tlc-article.cwl</file>
@@ -574,6 +576,7 @@
 <file>completion/class-turabian-thesis.cwl</file>
 <file>completion/class-webquiz.cwl</file>
 <file>completion/class-willowtreebook.cwl</file>
+<file>completion/class-xebaposter.cwl</file>
 <file>completion/cleanthesis.cwl</file>
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
@@ -898,6 +901,7 @@
 <file>completion/exam-randomizechoices.cwl</file>
 <file>completion/exceltex.cwl</file>
 <file>completion/excludeonly.cwl</file>
+<file>completion/exercisebank.cwl</file>
 <file>completion/exercisepoints.cwl</file>
 <file>completion/exercises.cwl</file>
 <file>completion/exesheet.cwl</file>
@@ -931,6 +935,7 @@
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
 <file>completion/fancyvrb-ex.cwl</file>
+<file>completion/fast-diagram.cwl</file>
 <file>completion/fbb.cwl</file>
 <file>completion/fbox.cwl</file>
 <file>completion/fclfont.cwl</file>
@@ -1847,7 +1852,9 @@
 <file>completion/polyglossia.cwl</file>
 <file>completion/polynom.cwl</file>
 <file>completion/polynomial.cwl</file>
+<file>completion/polytable.cwl</file>
 <file>completion/popupmenu.cwl</file>
+<file>completion/poster.cwl</file>
 <file>completion/prelim2e.cwl</file>
 <file>completion/prerex.cwl</file>
 <file>completion/preview.cwl</file>
@@ -1979,6 +1986,7 @@
 <file>completion/PTSerifCaption.cwl</file>
 <file>completion/PTSerif.cwl</file>
 <file>completion/punk.cwl</file>
+<file>completion/puyotikz.cwl</file>
 <file>completion/px-ds.cwl</file>
 <file>completion/pxfonts.cwl</file>
 <file>completion/pxgreeks.cwl</file>
@@ -2036,6 +2044,7 @@
 <file>completion/relinput.cwl</file>
 <file>completion/relsize.cwl</file>
 <file>completion/renditions.cwl</file>
+<file>completion/reotex.cwl</file>
 <file>completion/repltext.cwl</file>
 <file>completion/rerunfilecheck.cwl</file>
 <file>completion/resizegather.cwl</file>
@@ -2121,6 +2130,7 @@
 <file>completion/secdot.cwl</file>
 <file>completion/secnum.cwl</file>
 <file>completion/secsty.cwl</file>
+<file>completion/sectionbox.cwl</file>
 <file>completion/sectionbreak.cwl</file>
 <file>completion/sectsty.cwl</file>
 <file>completion/seealso.cwl</file>
@@ -2368,6 +2378,7 @@
 <file>completion/tikz-among-us.cwl</file>
 <file>completion/tikz-among-us-fancyhdr.cwl</file>
 <file>completion/tikz-among-us-watermark-eso-pic.cwl</file>
+<file>completion/tikz-bagua.cwl</file>
 <file>completion/tikzbricks.cwl</file>
 <file>completion/tikz-cd.cwl</file>
 <file>completion/tikzcodeblocks.cwl</file>
@@ -2411,6 +2422,7 @@
 <file>completion/tikzorbital.cwl</file>
 <file>completion/tikzPackets.cwl</file>
 <file>completion/tikz-page.cwl</file>
+<file>completion/tikz-palattice.cwl</file>
 <file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
 <file>completion/tikz-qtree.cwl</file>
@@ -2666,6 +2678,7 @@
 <file>completion/ydoc-expl.cwl</file>
 <file>completion/yfonts.cwl</file>
 <file>completion/yhmath.cwl</file>
+<file>completion/yquant.cwl</file>
 <file>completion/ytableau.cwl</file>
 <file>completion/zahl2string.cwl</file>
 <file>completion/Zallman.cwl</file>
