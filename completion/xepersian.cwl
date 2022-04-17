@@ -27,6 +27,10 @@ localise
 \eqenvironment{environment-name in Persian}{original LATEX environment-name}
 \settextfont{font name}
 \settextfont[Options%keyvals]{font name}
+\settextdigitfont{font name}#*
+\settextdigitfont[Options%keyvals]{font name}#*
+\setdigitfont{font name}#*
+\setdigitfont[Options%keyvals]{font name}#*
 \setlatintextfont{font name}
 \setlatintextfont[Options%keyvals]{font name}
 \defpersianfont%<\CS%>[%<Options%>]{%<font name%>}
@@ -85,7 +89,7 @@ localise
 \writexviiitrue#*
 \writexviiifalse#*
 
-#keyvals:\settextfont,\setlatintextfont,\setpersiansansfont,\setpersianmonofont,\setiranicfont,\setnavarfont,\setpookfont,\setsayehfont,\setlatinsansfont,\setlatinmonofont
+#keyvals:\settextfont,\settextdigitfont,\setdigitfont,\setlatintextfont,\setpersiansansfont,\setpersianmonofont,\setiranicfont,\setnavarfont,\setpookfont,\setsayehfont,\setlatinsansfont,\setlatinmonofont
 Alternate=%<feature%>
 Annotation=
 AutoFakeBold=%<number%>

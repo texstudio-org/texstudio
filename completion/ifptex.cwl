@@ -1,5 +1,5 @@
 # ifptex package
-# Matthew Bertucci 1/21/2022 for v2.1
+# Matthew Bertucci 4/16/2022 for v2.2
 
 #include:iftex
 
@@ -25,6 +25,10 @@
 \RequireNativeupTeX
 \RequirepTeXng
 \RequireStrictpTeXng
+
+\upTeXguessedversion
+\RequireupTeXAtLeast{version}
+\RequireNativeupTeXAtLeast{version}
 
 \bxipIfptexLoaded#S
 

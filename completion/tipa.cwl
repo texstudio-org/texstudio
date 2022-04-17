@@ -1,6 +1,14 @@
 # tipa package
 # Matthew Bertucci 1/21/2022 for v1.3
 
+#keyvals:\usepackage/tipa#c
+extra
+tone
+safe
+T1
+noenc
+#endkeyvals
+
 #ifOption:tone
 #include:tone
 #endif
@@ -32,14 +40,6 @@
 \guillemetleft#n
 \guillemetright#n
 #endif
-
-#keyvals:\usepackage/tipa#c
-extra
-tone
-safe
-T1
-noenc
-#endkeyvals
 
 \begin{IPA}
 \end{IPA}
