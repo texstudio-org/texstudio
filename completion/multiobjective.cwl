@@ -1,5 +1,7 @@
 # multiobjective package
-# Matthew Bertucci 7/30/2021
+# Matthew Bertucci 7/30/2021 for v1.0
+
+#include:amssymb
 
 \dom#m
 \negdom#m
