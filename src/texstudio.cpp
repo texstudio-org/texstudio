@@ -2830,6 +2830,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 	}
 
 	updateCaption();
+    updateTOCs();
 }
 /*!
  * \brief save all files
