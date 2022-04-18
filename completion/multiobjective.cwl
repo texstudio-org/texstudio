@@ -14,5 +14,5 @@
 \better#m
 \vec{arg}#m
 \set{arg}#m
-\argmin_{sub}{arg}#m
-\argmax_{sub}{arg}#m
+\argmin#m
+\argmax#m
