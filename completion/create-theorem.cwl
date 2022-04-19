@@ -1,5 +1,5 @@
 # create-theorem package
-# Matthew Bertucci 3/7/2022 for release 2022-03-03
+# Matthew Bertucci 2022-04-17 for release 2022-04-16
 
 #include:l3keys2e
 #include:aliascnt
@@ -14,7 +14,7 @@ no preset names
 
 \NameTheorem{envname}{keyvals}
 
-#keyvals:\NameTheorem
+#keyvals:\NameTheorem#c
 heading=%<string%>
 heading={%<lang1=string1,lang2=string2,...%>}
 heading style=%<font commands%>
@@ -25,13 +25,14 @@ Crefname={%<singular name%>}{%<plural name%>}
 Crefname={%<lang1={name1}{pluralname1},...%>}
 Crefname style=%<font commands%>
 numbering style=%<font commands%>
+use name={%<envname1;envname2;...%>}
 #endkeyvals
 
 \CreateTheorem{envname}{keyvals}#N
 
-#keyvals:\CreateTheorem
+#keyvals:\CreateTheorem#c
 name={%<\NameTheorem keyvals%>}
-name style=
+use name={%<envname1;envname2;...%>}
 style=%<theorem style%>
 parent counter=%<counter%>
 shared counter=%<counter%>
@@ -42,8 +43,8 @@ copy existed=%<envname%>
 
 \SetTheorem{envname}{keyvals}
 
-#keyvals:\SetTheorem
-name style=
+#keyvals:\SetTheorem#c
+name={%<\NameTheorem keyvals%>}
 parent counter=%<counter%>
 shared counter=%<counter%>
 #endkeyvals

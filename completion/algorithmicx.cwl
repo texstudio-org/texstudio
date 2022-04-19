@@ -42,8 +42,8 @@
 \algblock[block]{start}{end}#*
 \algblockdefx[block]{start}{end}[start args]{start text}[end args]{end text}#*
 \algblockdefx[block]{start}{end}[start args][default]{start text}[end args][default]{end text}#*
-\algdefx[block]{start}{end}[start args]{start text}[end args]{end text}#*
-\algdefx[block]{start}{end}[start args][default]{start text}[end args][default]{end text}#*
+\algblockx[block]{start}{end}[start args]{start text}[end args]{end text}#*
+\algblockx[block]{start}{end}[start args][default]{start text}[end args][default]{end text}#*
 
 \algloop[loop]{start}#*
 \algloopdefx[loop]{start}[start args][default]{start text}#*
@@ -80,3 +80,5 @@
 \algrenewtext{name}[args]{definition}#*
 \algtext{name}{definition}#*
 \algtext{name}[args]{definition}#*
+\algdef{flags}{old block}{start}{end}{lifetime}{indent}{start text}{end text}#*
+\algdef{flags}[new block]{old block}{start}{end}{lifetime}{indent}[start args][default]{start text}[end args][default]{end text}#*
