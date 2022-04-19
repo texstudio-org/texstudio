@@ -310,6 +310,7 @@
 <file>completion/boisik.cwl</file>
 <file>completion/boites.cwl</file>
 <file>completion/boites_exemples.cwl</file>
+<file>completion/bold-extra.cwl</file>
 <file>completion/boldline.cwl</file>
 <file>completion/bondgraph.cwl</file>
 <file>completion/bondgraphs.cwl</file>
@@ -461,6 +462,8 @@
 <file>completion/class-cnltx-doc.cwl</file>
 <file>completion/class-codedoc.cwl</file>
 <file>completion/class-combine.cwl</file>
+<file>completion/class-cours.cwl</file>
+<file>completion/class-droit-fr.cwl</file>
 <file>completion/class-dtk.cwl</file>
 <file>completion/class-einfart.cwl</file>
 <file>completion/class-elpres.cwl</file>
@@ -475,6 +478,7 @@
 <file>completion/class-extreport.cwl</file>
 <file>completion/class-fancyhandout.cwl</file>
 <file>completion/class-fancyslides.cwl</file>
+<file>completion/class-fiche.cwl</file>
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-gammas.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
@@ -528,6 +532,7 @@
 <file>completion/class-oup-authoring-template.cwl</file>
 <file>completion/class-papertex.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
+<file>completion/class-petiteannonce.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
 <file>completion/class-proc.cwl</file>
 <file>completion/class-protocol.cwl</file>
@@ -1033,6 +1038,7 @@
 <file>completion/fr-fancy.cwl</file>
 <file>completion/frimurer.cwl</file>
 <file>completion/froufrou.cwl</file>
+<file>completion/frpseudocode.cwl</file>
 <file>completion/fullminipage.cwl</file>
 <file>completion/fullpage.cwl</file>
 <file>completion/fullwidth.cwl</file>
@@ -1441,6 +1447,7 @@
 <file>completion/lyluatex.cwl</file>
 <file>completion/macrolist.cwl</file>
 <file>completion/macroswap.cwl</file>
+<file>completion/mafr.cwl</file>
 <file>completion/magaz.cwl</file>
 <file>completion/magicnum.cwl</file>
 <file>completion/Magra.cwl</file>
@@ -1626,6 +1633,7 @@
 <file>completion/ncctitle.cwl</file>
 <file>completion/ncctitlepage.cwl</file>
 <file>completion/needspace.cwl</file>
+<file>completion/newalg.cwl</file>
 <file>completion/newclude.cwl</file>
 <file>completion/newcomputermodern.cwl</file>
 <file>completion/newfile.cwl</file>
@@ -2248,6 +2256,7 @@
 <file>completion/stringenc.cwl</file>
 <file>completion/stringstrings.cwl</file>
 <file>completion/structmech.cwl</file>
+<file>completion/stubs.cwl</file>
 <file>completion/studenthandouts.cwl</file>
 <file>completion/styledcmd.cwl</file>
 <file>completion/subcaption.cwl</file>
@@ -2289,6 +2298,7 @@
 <file>completion/tableof.cwl</file>
 <file>completion/tablestyles.cwl</file>
 <file>completion/tablists.cwl</file>
+<file>completion/tablor.cwl</file>
 <file>completion/tabls.cwl</file>
 <file>completion/tablvar.cwl</file>
 <file>completion/taborder.cwl</file>
@@ -2302,6 +2312,7 @@
 <file>completion/tabularray.cwl</file>
 <file>completion/tabularx.cwl</file>
 <file>completion/tabulary.cwl</file>
+<file>completion/tabvar.cwl</file>
 <file>completion/tagging.cwl</file>
 <file>completion/tagpair.cwl</file>
 <file>completion/tasks.cwl</file>
@@ -2553,6 +2564,7 @@
 <file>completion/utfsym.cwl</file>
 <file>completion/uwa-colours.cwl</file>
 <file>completion/variablelm.cwl</file>
+<file>completion/variations.cwl</file>
 <file>completion/varioref.cwl</file>
 <file>completion/varsfromjobname.cwl</file>
 <file>completion/varvbtm.cwl</file>
