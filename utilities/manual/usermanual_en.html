@@ -10,6 +10,8 @@
 <h1 align=center id="top">TeXstudio : User manual</h1>
 <h2 id="sommaire">Contents:</h2>
 <ul class="two-columns">
+<li><a href="#SECTION00">0. A first look at TeXstudio</a>
+</li>
 <li><a href="#SECTION0">1. Configuring TeXstudio</a>
 	<ul>
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
@@ -33,8 +35,11 @@
 	<li><a href="#SECTION12">2.2 Creating a new document</a></li>
 	<li><a href="#SECTION12a">2.2.1 Setting the preamble of a TeX document</a></li>
 	<li><a href="#SECTION12b">2.2.2 Using Templates to start a new document</a></li>
-	<li><a href="#SECTION13">2.3 Structure of a document</a></li>
+	<li><a href="#SECTION13">2.3 Structure your document</a></li>
 	<li><a href="#SECTION14">2.4 Browsing your document</a></li>
+	<li><a href="#SECTION141">2.4.1 The Structure View</a></li>
+	<li><a href="#SECTION142">2.4.2 The TOC View</a></li>
+	<li><a href="#SECTION143">2.4.3 Using Bookmarks</a></li>
 	<li><a href="#SECTION15">2.5 Formatting your text</a></li>
 	<li><a href="#SECTION16">2.6 Spacings</a></li>
 	<li><a href="#SECTION17">2.7 Inserting a list</a></li>
@@ -86,6 +91,25 @@
 <li><a href="#CHANGELOG">Changelog</a></li>
 </ul>
 <hr>
+
+<h1 id="SECTION00">0. A first look at TeXstudio</h1>
+<p>Before we take a closer look at all the possibilities of TeXstudio, let's look at the application window first. After start of TeXstudio we see a lot of things. Some elements in the image are framed in different colors for further explanations:</p>
+<p><IMG src="TeXstudio_App_Window.png" border="1" alt="TeXstudio Application Window"></p>
+<p>The main window is divided into three parts (blue): On the left we have a "side panel" (currently showing an empty Structure) that provides many different functions. On the lower right is a "message panel" where you find tabs for messages, the build log,
+and so on. The third area is left to the editor. You can have multiple editors open, which you select using tabs. You may increase the area for editors by turning off the side panel or the message panel. This can be done easily via the two icons in the lower
+left corner (marked orange). They are in the status bar, which can be hidden (s. menu View/Show).
+</p>
+<p>The information presented in the side bar depends on the icon you select from the vertical toolbar on the left side of the panel. These icons can be understood as vertically aligned tabs. A click with the right mouse button allows you to select which
+icons are presented:
+</p>
+<p><IMG src="Side_Panel_Menu.png" border="1" alt="Side Panel Menu"></p>
+<p>TeXstudio offers a lot of toolbars (marked red), many of which are arranged in a row above the side panel and the editor area (called the main toolbar, the vertical toolbars are called secondary toolbars). One vertical aligend toolbar (the central one, s.
+image below) resides to the left of the editor area. You can choose which ones to show with a click of the right mouse button on any of them:
+</p>
+<p><IMG src="Tool_Bar_Menu.png" border="1" alt="Side Panel Menu"></p>
+<p> The custom toolbar will be discussed in <a href="#SECTION07">1.8 Configuring the Custom Toolbar</a>. The toolbars in the main toolbar can be rearranged, moved somewhere in the window or even disconnected from the window at all. All toolbars are scalable,
+s. option GUI scaling (needs advanced options) in the config dialog.
+</p>
 
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
 <p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advanced options" in the lower left corner.</p>
@@ -377,12 +401,14 @@ Built-in templates can not be changed.</p>
 </pre>
 <p>FilesToOpen only has an effect for mutli-file documents. You may add a preview image next to the template file. Again, it must have the same name, but extension ".png".</p>
 
-<h2 id="SECTION13">2.3 Structure of a document</h2>
-<p>To define a new part (section,subsection...) in your document with TeXstudio, just use this combo box button in the tool bar :</p>
+<h2 id="SECTION13">2.3 Structure your document</h2>
+<p>To define a new part in your document (part, section, subsection, ...) with TeXstudio, just use this combo box button in the format toolbar of the main toolbar:</p>
 <p><IMG src="doc3.png" border="1" alt="Sectioning"></p>
 
-
 <h2 id="SECTION14">2.4 Browsing your document</h2>
+
+<h2 id="SECTION141">2.4.1 The Structure View</h2>
+
 <p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
 <p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
 <p><IMG src="doc5.png" border="1" alt="Appendix"></p>
@@ -392,8 +418,25 @@ Built-in templates can not be changed.</p>
 <p>
 The structure view also offers a context menu which allows one to copy/cut all text which belongs to a section (including subsection) and paste it before or after a section.
 Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
-
 </p>
+
+<h2 id="SECTION142">2.4.2 The TOC View</h2>
+
+<p>The side panel on the left offers a TOC view (if not, s. <a href="#SECTION00">0. A first look at TeXstudio</a>). The TOC shows the structure of your whole document by means of section commands (part, section, subsection, …). A mouse over shows you, in which file the section
+actually is.
+</p>
+<p><IMG src="TOC_standard.png" border="1" alt="TOC View"></p>
+<p>The image shows this: A root file named document.tex that includes the file named file1.tex. The root file contains the section „Main text“, while file1.tex contains the subsection „External“. By placing the mouse pointer over this subsection in the
+TOC view, you find the file name file1.tex in the mouse over. This works even if the file is not open (but the document must be loaded by TeXstudio, s. Automatically load included files in editor settings). In this case a mouse click on the subsection in
+the TOC will open the file for you. Notice the different shades of color that indicate the sections are in different files. It can happen, that an included file doesn’t contain any sections. Then the file name itself appears in the TOC (without file extension):
+</p>
+<p><IMG src="TOC_file.png" border="1" alt="TOC View with file"></p>
+<p>The mouse over now would show the name of the file that includes file1.tex (namely document.tex). The indentation shows that the text of file1.tex is part of the section “Main text”. You may like to choose a different color in the configuration dialog
+(s. option Use color in global TOC in advanced editor settings).
+</p>
+
+<h2 id="SECTION143">2.4.3 Using Bookmarks</h2>
+
 <p>For each file, three bookmarks can be used to speed up navigation : just click on a line number to add or remove a bookmark. When you have already defined three bookmarks, you must remove one of them to add a new bookmark. To jump to the line corresponding to a bookmark in the editor, just click on the buttons in the status bar.</p>
 <p><IMG src="doc20.png" border="1" alt="Bookmark"></p>
 <h2 id="SECTION15">2.5 Formatting your text</h2>
