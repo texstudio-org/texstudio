@@ -427,8 +427,8 @@ exists(./.git)  {
     SOURCES += src/git_revision.cpp
   } else {
     message(GIT)
-    QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
-    LIBS += git_revision.o
+    system(\"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
+    SOURCES += src/git_revision.cpp
   }
 } else {
   !exists(src/git_revision.cpp){
