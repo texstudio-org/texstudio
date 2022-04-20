@@ -21,6 +21,7 @@ jobs:
       - name: Configure
         run: |
           . ./.github/scripts/get-version.sh
+          . ./git_revision.sh
           sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
           sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
           qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
