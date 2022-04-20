@@ -1,5 +1,5 @@
 # functional package
-# Matthew Bertucci 4/2/2022 for v2022C
+# Matthew Bertucci 4/17/2022 for v2022D
 
 # Note on cwl: the package author Jianrui Lyu encourages use of spaces between
 # args which along with the need to have proper "\newcommand" completion
@@ -29,7 +29,7 @@ tracing#true,false
 \PrgNewConditional{cmd}{xargs}{def}#Sd
 
 # Collecting Returned Values
-\Result{tokens}
+\Return{tokens}
 \gResultTl
 
 ## Argument Using (Use) ##
@@ -94,6 +94,12 @@ tracing#true,false
 \BoolVarOrTF %<\boolvar1 \boolvar2%> {%<true code%>} {%<false code%>}
 \BoolVarXor %<\boolvar1 \boolvar2%>
 \BoolVarXorTF %<\boolvar1 \boolvar2%> {%<true code%>} {%<false code%>}
+
+# Booleans and Logical Loops #
+\BoolDoUntil %<\boolvar%> {%<code%>}
+\BoolDoWhile %<\boolvar%> {%<code%>}
+\BoolUntilDo %<\boolvar%> {%<code%>}
+\BoolWhileDo %<\boolvar%> {%<code%>}
 
 ## Token Lists (Tl) ##
 # Constant and Scratch Token Lists
@@ -796,6 +802,15 @@ tracing#true,false
 \QuarkVarIfNoValue %<\tlvar%>
 \QuarkVarIfNoValueTF %<\tlvar%> {%<true code%>} {%<false code%>}
 
+## Legacy Concepts (Legacy) ##
+\LegacyIf {%<name%>}
+\LegacyIfT {%<name%>} {%<true code%>}
+\LegacyIfF {%<name%>} {%<false code%>}
+\LegacyIfTF {%<name%>} {%<true code%>} {%<false code%>}
+\LegacyIfSetTrue {%<name%>}
+\LegacyIfSetFalse {%<name%>}
+\LegacyIfSet {%<name%>} {%<bool expr%>}
+
 ## not documented ##
 \Break#*
 \BreakDo#*
@@ -815,3 +830,6 @@ tracing#true,false
 \SeqVarSort{arg1}{arg2}#*
 \SortReturnSame#*
 \SortReturnSwapped#*
+
+# deprecated
+\Result{tokens}#S

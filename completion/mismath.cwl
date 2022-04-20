@@ -1,15 +1,36 @@
 # mismath package
-# Matthew Bertucci 7/30/2021
+# Matthew Bertucci 4/18/2022 for v1.8
 
 #include:amsmath
 #include:esvect
+#include:ifthen
 #include:xspace
 #include:mathtools
 #include:upgreek
 
+# all options passed to amsmath
+#keyvals:\usepackage/mismath#c
+intlimits
+nointlimits
+sumlimits
+nosumlimits
+namelimits
+nonamelimits
+leqno
+reqno
+centertags
+tbtags
+cmex10
+fleqn
+alignedleftspaceyes
+alignedleftspaceno
+alignedleftspaceyesifneg
+#endkeyvals
+
 \enumber
 \inumber
 \jnumber
+\pinumber
 \pinumber[font%keyvals]
 
 #keyvals:\pinumber
@@ -32,7 +53,7 @@ Symbolsmallscale
 \bigO#m
 \bigo#m
 \boldvect{arg}#m
-\boldvectcommand#*
+\boldvectcommand{arg}#*
 \C#m
 \Conv#m
 \Cov#m
@@ -57,31 +78,31 @@ Symbolsmallscale
 \hlbar{arg}#m
 \hvec{arg}#m
 \hvect{arg}#m
-\i#m
 \id#m
 \Id#m
 \iif
 \im#m
-\Im#m
 \itpi#*m
-\j#m
 \K#m
 \lb#m
 \lbar{arg}#m
 \lcm#m
 \lfrac{numerator}{denominator}#m
 \lito#m
-\mathset#*
+\mathset{text%plain}#*
 \mathup{arg}#m
 \mul#m
 \N#m
 \norm{arg}#m
 \oldIm#*m
+\oldi#*
+\oldj#*
 \oldRe#*m
 \P#m
 \Par#m
 \Par#m
 \paren{arg}#m
+\PEupright#*
 \pow{expr}{exponent}#m
 \probastyle#*
 \Q#m
@@ -101,13 +122,14 @@ Symbolsmallscale
 \vect{arg}#m
 \Z#m
 \Zu#m
-\begin{system}[cols]#m/array
+\begin{system}#m\array
+\begin{system}[cols]#m\array
 \end{system}#m
-\begin{spmatrix}#m/array
+\begin{spmatrix}#m\array
 \end{spmatrix}#m
 \systemsep#*
 \systemstretch#*
-\begin{mathcols}#m/array
+\begin{mathcols}#m\array
 \end{mathcols}#m
 \changecol#/mathcols
-\bslash
+\bslash#*

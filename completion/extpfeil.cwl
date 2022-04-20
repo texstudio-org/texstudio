@@ -1,18 +1,21 @@
 # extpfeil package
-# Matthew Bertucci 7/30/2021
+# Matthew Bertucci 4/17/2022 for v0.4
 
-\xlongequal[under]{over}#m
-\xtwoheadleftarrow[under]{over}#m
-\xmapsto[under]{over}#m
-\xtwoheadrightarrow[under]{over}#m
-\xtofrom[under]{over}#m
+#include:amsmath
+#include:amssymb
+#include:mathtools
+# loads stmaryrd symbols \shortleftarrow and \shortrightarrow
+\shortleftarrow#m
+\shortrightarrow#m
+
+\xlongequal[sub]{sup}#m
+\xtwoheadleftarrow[sub]{sup}#m
+\xtwoheadrightarrow[sub]{sup}#m
+\xtofrom[sub]{sup}#m
 \newextarrow{cmd}{space}{arrow}#d
 \twoarrowsleft{arrow1}{arrow2}#*m
 \twoarrowsright{arrow1}{arrow2}#*m
 \bigtwoarrowsleft{arrow1}{arrow2}#*m
 \bigtwoarrowsright{arrow1}{arrow2}#*m
-\relbar#*
-\Relbar#*
 \bigRelbar#*
-\arrowfill@{left}{middle}{right}{size}#*
-\ext@arrow{left1}{right1}{left2}{right2}{arrow}{over}{under}#*
+\bigRelbar[dimen%l]#*

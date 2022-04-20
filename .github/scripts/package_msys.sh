@@ -22,7 +22,8 @@ ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .
 ldd texstudio.exe
 cd ..
 echo "copy directories"
-cp -r ./translation ./package-zip/translations
+mkdir -p ./package-zip/translations
+cp -r ./translation/* ./package-zip/translations
 cp -r ./templates package-zip
 cp -r ./utilities/manual package-zip/help
 cp ./utilities/latex2e.css package-zip/help

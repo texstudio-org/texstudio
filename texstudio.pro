@@ -422,13 +422,13 @@ include(src/tests/tests.pri)
 # add git revision
 exists(./.git)  {
   win32:isEmpty(MXE): {
-    message(GIT)
+    message(GIT bat)
     system(\"$${PWD}/git_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
     SOURCES += src/git_revision.cpp
   } else {
-    message(GIT)
-    QMAKE_PRE_LINK += \"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\"
-    LIBS += git_revision.o
+    message(GIT sh)
+    system(\"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
+    SOURCES += src/git_revision.cpp
   }
 } else {
   !exists(src/git_revision.cpp){

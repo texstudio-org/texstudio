@@ -1,5 +1,7 @@
 # multiobjective package
-# Matthew Bertucci 7/30/2021
+# Matthew Bertucci 7/30/2021 for v1.0
+
+#include:amssymb
 
 \dom#m
 \negdom#m
@@ -12,5 +14,5 @@
 \better#m
 \vec{arg}#m
 \set{arg}#m
-\argmin_{sub}{arg}#m
-\argmax_{sub}{arg}#m
+\argmin#m
+\argmax#m

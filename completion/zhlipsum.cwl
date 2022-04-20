@@ -1,24 +1,27 @@
 # OsbertWang/2019-10-4 for zhlipsum v1.1.1
+# updated by Matthew Bertucci 2022-04-18 for v1.2.0
 
 #include:expl3
 #include:l3keys2e
 #include:xparse
 
-\zhlipsum
-\zhlipsum[keyvals]
-\zhlipsum[num]
-\zhlipsum[num][keyvals]
-
-\zhlipsum*
-\zhlipsum*[keyvals]
-\zhlipsum*[num]
-\zhlipsum*[num][keyvals]
-
-#keyvals:\zhlipsum
-name=#simp,trad,nanshanjing,xiangyu,zhufu,aspirin
-before=
-after=
-inter=
+#keyvals:\usepackage/zhlipsum#c
+encoding=#utf8,gbk,big5
 #endkeyvals
 
-\newzhlipsum{name}{paragrph}
+\zhlipsum
+\zhlipsum[paragraph]
+\zhlipsum[paragraph][keyvals]
+
+\zhlipsum*
+\zhlipsum*[paragraph]
+\zhlipsum*[paragraph][keyvals]
+
+#keyvals:\zhlipsum,\zhlipsum*
+name=#simp,trad,nanshanjing,xiangyu,zhufu,aspirin
+before=%<content%>
+after=%<content%>
+inter=%<content%>
+#endkeyvals
+
+\newzhlipsum{name}{paragraphs list%text}

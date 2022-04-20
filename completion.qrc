@@ -32,6 +32,7 @@
 <file>completion/adobecaslon.cwl</file>
 <file>completion/adtrees.cwl</file>
 <file>completion/advdate.cwl</file>
+<file>completion/aecompl.cwl</file>
 <file>completion/ae.cwl</file>
 <file>completion/aeguill.cwl</file>
 <file>completion/aesupp.cwl</file>
@@ -310,6 +311,7 @@
 <file>completion/boisik.cwl</file>
 <file>completion/boites.cwl</file>
 <file>completion/boites_exemples.cwl</file>
+<file>completion/bold-extra.cwl</file>
 <file>completion/boldline.cwl</file>
 <file>completion/bondgraph.cwl</file>
 <file>completion/bondgraphs.cwl</file>
@@ -461,8 +463,12 @@
 <file>completion/class-cnltx-doc.cwl</file>
 <file>completion/class-codedoc.cwl</file>
 <file>completion/class-combine.cwl</file>
+<file>completion/class-cours.cwl</file>
+<file>completion/class-ctxdoc.cwl</file>
+<file>completion/class-droit-fr.cwl</file>
 <file>completion/class-dtk.cwl</file>
 <file>completion/class-einfart.cwl</file>
+<file>completion/class-ejpecp.cwl</file>
 <file>completion/class-elpres.cwl</file>
 <file>completion/class-elsarticle.cwl</file>
 <file>completion/class-europecv.cwl</file>
@@ -475,6 +481,7 @@
 <file>completion/class-extreport.cwl</file>
 <file>completion/class-fancyhandout.cwl</file>
 <file>completion/class-fancyslides.cwl</file>
+<file>completion/class-fiche.cwl</file>
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-gammas.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
@@ -486,9 +493,13 @@
 <file>completion/classicthesis-arsclassica.cwl</file>
 <file>completion/classicthesis.cwl</file>
 <file>completion/class-idcc.cwl</file>
+<file>completion/class-IEEEconf.cwl</file>
+<file>completion/class-IEEEtran.cwl</file>
 <file>completion/class-ijdc-v14.cwl</file>
 <file>completion/class-ijdc-v9.cwl</file>
+<file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
+<file>completion/class-jacow.cwl</file>
 <file>completion/class-jmlr.cwl</file>
 <file>completion/class-komacv.cwl</file>
 <file>completion/class-l3doc.cwl</file>
@@ -497,6 +508,7 @@
 <file>completion/class-leaflet.cwl</file>
 <file>completion/class-letgut.cwl</file>
 <file>completion/class-letter.cwl</file>
+<file>completion/class-lettre.cwl</file>
 <file>completion/class-limap.cwl</file>
 <file>completion/class-limecv.cwl</file>
 <file>completion/classlist.cwl</file>
@@ -519,8 +531,10 @@
 <file>completion/class-minimart.cwl</file>
 <file>completion/class-minimbook.cwl</file>
 <file>completion/class-mla.cwl</file>
+<file>completion/class-mnras.cwl</file>
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
+<file>completion/class-mucproc.cwl</file>
 <file>completion/class-ncc.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
 <file>completion/class-novel.cwl</file>
@@ -528,9 +542,11 @@
 <file>completion/class-oup-authoring-template.cwl</file>
 <file>completion/class-papertex.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
+<file>completion/class-petiteannonce.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
 <file>completion/class-proc.cwl</file>
 <file>completion/class-protocol.cwl</file>
+<file>completion/class-prtec.cwl</file>
 <file>completion/class-pylatex.cwl</file>
 <file>completion/class-qcm.cwl</file>
 <file>completion/class-quantumarticle.cwl</file>
@@ -1033,6 +1049,7 @@
 <file>completion/fr-fancy.cwl</file>
 <file>completion/frimurer.cwl</file>
 <file>completion/froufrou.cwl</file>
+<file>completion/frpseudocode.cwl</file>
 <file>completion/fullminipage.cwl</file>
 <file>completion/fullpage.cwl</file>
 <file>completion/fullwidth.cwl</file>
@@ -1144,6 +1161,7 @@
 <file>completion/handoutWithNotes.cwl</file>
 <file>completion/hang.cwl</file>
 <file>completion/hanging.cwl</file>
+<file>completion/hanzibox.cwl</file>
 <file>completion/hardwrap.cwl</file>
 <file>completion/harmony.cwl</file>
 <file>completion/harpoon.cwl</file>
@@ -1441,6 +1459,7 @@
 <file>completion/lyluatex.cwl</file>
 <file>completion/macrolist.cwl</file>
 <file>completion/macroswap.cwl</file>
+<file>completion/mafr.cwl</file>
 <file>completion/magaz.cwl</file>
 <file>completion/magicnum.cwl</file>
 <file>completion/Magra.cwl</file>
@@ -1626,6 +1645,7 @@
 <file>completion/ncctitle.cwl</file>
 <file>completion/ncctitlepage.cwl</file>
 <file>completion/needspace.cwl</file>
+<file>completion/newalg.cwl</file>
 <file>completion/newclude.cwl</file>
 <file>completion/newcomputermodern.cwl</file>
 <file>completion/newfile.cwl</file>
@@ -1845,6 +1865,7 @@
 <file>completion/plprefix.cwl</file>
 <file>completion/pmboxdraw.cwl</file>
 <file>completion/pm-isomath.cwl</file>
+<file>completion/poemscol.cwl</file>
 <file>completion/poetrytex.cwl</file>
 <file>completion/PoiretOne.cwl</file>
 <file>completion/polexpr.cwl</file>
@@ -2248,6 +2269,7 @@
 <file>completion/stringenc.cwl</file>
 <file>completion/stringstrings.cwl</file>
 <file>completion/structmech.cwl</file>
+<file>completion/stubs.cwl</file>
 <file>completion/studenthandouts.cwl</file>
 <file>completion/styledcmd.cwl</file>
 <file>completion/subcaption.cwl</file>
@@ -2289,6 +2311,7 @@
 <file>completion/tableof.cwl</file>
 <file>completion/tablestyles.cwl</file>
 <file>completion/tablists.cwl</file>
+<file>completion/tablor.cwl</file>
 <file>completion/tabls.cwl</file>
 <file>completion/tablvar.cwl</file>
 <file>completion/taborder.cwl</file>
@@ -2302,6 +2325,7 @@
 <file>completion/tabularray.cwl</file>
 <file>completion/tabularx.cwl</file>
 <file>completion/tabulary.cwl</file>
+<file>completion/tabvar.cwl</file>
 <file>completion/tagging.cwl</file>
 <file>completion/tagpair.cwl</file>
 <file>completion/tasks.cwl</file>
@@ -2553,6 +2577,7 @@
 <file>completion/utfsym.cwl</file>
 <file>completion/uwa-colours.cwl</file>
 <file>completion/variablelm.cwl</file>
+<file>completion/variations.cwl</file>
 <file>completion/varioref.cwl</file>
 <file>completion/varsfromjobname.cwl</file>
 <file>completion/varvbtm.cwl</file>
@@ -2688,6 +2713,7 @@
 <file>completion/zhnumber.cwl</file>
 <file>completion/zhspacing.cwl</file>
 <file>completion/zi4.cwl</file>
+<file>completion/zitie.cwl</file>
 <file>completion/zlmtt.cwl</file>
 <file>completion/zref-abspage.cwl</file>
 <file>completion/zref-base.cwl</file>
