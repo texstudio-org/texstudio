@@ -18,6 +18,10 @@ jobs:
           msystem: MINGW64
           update: true
           install: git make mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-declarative mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-5compat  mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-poppler-qt6 mingw-w64-x86_64-nsis zip unzip
+
+      - name: Fetch tag annotations
+        run: git fetch --tags --force
+
       - name: Configure
         run: |
           . ./.github/scripts/get-version.sh
