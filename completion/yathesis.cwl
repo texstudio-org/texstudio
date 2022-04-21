@@ -43,6 +43,10 @@
 #include:xkeyval
 #include:xpatch
 #include:xstring
+# loads skins tcolorbox library, which loads tikz
+#include:tikz
+# loads pagestyles option of titlesec, which loads titleps
+#include:titleps
 #
 # Document class
 #
