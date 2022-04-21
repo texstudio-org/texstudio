@@ -2000,6 +2000,9 @@ override#true,false
 \mkdaterangeyearextra{datetype}#*
 \mkdaterangeiso{datetype}#*
 \mkdaterangeisoextra{datetype}#*
+\BiblatexHungarianWarningOff#*
+\BiblatexLatvianWarningOff#*
+\BiblatexSplitbibDefernumbersWarningOff#*
 
 ### biblatex-apa v9.15 ###
 #ifOption:style=apa
