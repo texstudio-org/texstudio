@@ -566,7 +566,7 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 <p>As a last resort, you may set an <i>explicit root document</i> via <code>Options -> Root Document -> Set Current Document As Explicit Root</code>. This setting takes absolute precedence. All the commands of the "Tools" menu will be called on this document (to be more precise, the build system will expand the placeholder <code>%</code> to the root document), no matter which document is active in the editor. Additionally, labels and usercommands which are defined in any open document, can be used for completion in any open document.</p>
 <p>In earlier versions, the <i>explicit root document</i> was somewhat misleadingly called <i>master document</i>.</p>
 
-<h3 id="sec:rootdocument">4.1.2 Loaded Documents</h3>
+<h3 id="sec:LoadedDocuments">4.1.2 Loaded Documents</h3>
 <p>Obviously, TeXstudio can only use information (defined commands, labels, document hirachy, etc.) that it is aware of. We use the information in all opened files, but if a label in a multi-file document is defined in a not-loaded files, TeXstudio does not know about it and will mark it as missing in references. To remedy this, you can just open the corresponding file as well.</p>
 
 <p>More recent versions of TeXstudio have an advanced option <code>Editor -> Automatically load included files</code>. It's disabled by default for performance reasons with older systems. When you enable this option, TeXstudio will automatically load and parse all files of multi-file-documents as soon as one of the files is opened. You may have to set the magic comment <code>% !TeX root = root-filename</code> if you do not have the root document open.
