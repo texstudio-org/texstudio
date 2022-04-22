@@ -1075,6 +1075,7 @@ SuppressWarning#true,false
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
 \boi
+\bname{text}
 \bsc{text}
 \CaptionSeparator#*
 \captionsfrench
