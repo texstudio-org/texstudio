@@ -64,7 +64,7 @@ fontenc=%<encoding%>
 \babelshorthand{shorthand}
 \ifbabelshorthand{character}{true}{false}
 \aliasshorthand{original}{alias}
-\textormath#*
+\textormath{text code}{math code%formula}#*
 
 #ifOption:base
 \AfterBabelLanguage{option_name}{code}
