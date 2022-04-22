@@ -31,6 +31,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#555580</foreground>
+        <priority>0</priority>
     </format>
     <format id="commentTodo" >
         <bold>false</bold>
@@ -40,6 +41,7 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <background>#a8cf83</background>
+        <priority>0</priority>
     </format>
     <format id="comment" >
         <bold>false</bold>
