@@ -2537,9 +2537,9 @@ SuppressWarning#true,false
 \alsoname#*
 \proofname#*
 \glossaryname#*
-\ap{arg}
-\ped{arg}
-\unit{arg}#*
+\ap{text%plain}
+\ped{text%plain}
+\unit{unit}
 \virgola
 \virgoladecimale
 \LtxSymbCaporali#*
