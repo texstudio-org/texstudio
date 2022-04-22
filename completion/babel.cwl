@@ -64,7 +64,7 @@ fontenc=%<encoding%>
 \babelshorthand{shorthand}
 \ifbabelshorthand{character}{true}{false}
 \aliasshorthand{original}{alias}
-\textormath#*
+\textormath{text code}{math code%formula}#*
 
 #ifOption:base
 \AfterBabelLanguage{option_name}{code}
@@ -1075,6 +1075,7 @@ SuppressWarning#true,false
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
 \boi
+\bname{text}
 \bsc{text}
 \CaptionSeparator#*
 \captionsfrench
@@ -2537,9 +2538,9 @@ SuppressWarning#true,false
 \alsoname#*
 \proofname#*
 \glossaryname#*
-\ap{arg}
-\ped{arg}
-\unit{arg}#*
+\ap{text%plain}
+\ped{text%plain}
+\unit{unit}
 \virgola
 \virgoladecimale
 \LtxSymbCaporali#*
