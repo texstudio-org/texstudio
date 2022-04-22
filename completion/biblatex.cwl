@@ -24,6 +24,7 @@ citestyle=%<file%>
 natbib#true,false
 mcite#true,false
 casechanger=#auto,latex2e,expl3
+datamodel=%<model%>
 #endkeyvals
 
 ## 3.2 Global Customization ##
@@ -69,6 +70,9 @@ citereset=#none,part,chapter,chapter+,section,section+,subsection,subsection+
 abbreviate#true,false
 date=#year,short,long,terse,comp,ymd,iso
 labeldate=#year,short,long,terse,comp,ymd,iso
+eventdate=#year,short,long,terse,comp,ymd,iso
+origdate=#year,short,long,terse,comp,ymd,iso
+urldate=#year,short,long,terse,comp,ymd,iso
 alldates=#year,short,long,terse,comp,iso
 julian#true,false
 gregorianstart=%<YYYY-MM-DD%>
@@ -83,9 +87,15 @@ dateera=#astronomical,secular,christian
 dateeraauto=%<integer%>
 time=#12h,24h,24hcomp
 labeltime=#12h,24h,24hcomp
+eventtime=#12h,24h,24hcomp
+origtime=#12h,24h,24hcomp
+urltime=#12h,24h,24hcomp
 alltimes=#12h,24h,24hcomp
 dateusetime#true,false
 labeldateusetime#true,false
+eventdateusetime#true,false
+origdateusetime#true,false
+urldateusetime#true,false
 alldatesusetime#true,false
 defernumbers#true,false
 punctfont#true,false
@@ -119,6 +129,7 @@ idemtracker=#true,false,context,strict,constrict
 trackfloats#true,false
 parentracker#true,false
 maxparens=%<integer%>
+giveninits#true,false
 terseinits#true,false
 labelalpha#true,false
 maxalphanames=%<integer%>
@@ -543,6 +554,13 @@ name=%<refcontextname%>
 \citetitle*[postnote]{bibid}#C
 \citetitle*{bibid}#C
 
+\Citetitle[prenote][postnote]{bibid}#C
+\Citetitle[postnote]{bibid}#C
+\Citetitle{bibid}#C
+\Citetitle*[prenote][postnote]{bibid}#C
+\Citetitle*[postnote]{bibid}#C
+\Citetitle*{bibid}#C
+
 \citeyear[prenote][postnote]{bibid}#C
 \citeyear[postnote]{bibid}#C
 \citeyear{bibid}#C
@@ -648,6 +666,31 @@ name=%<refcontextname%>
 \Fvolcites[pre]{volume}{bibid}[pre]{volume}{bibid}#*C
 \Fvolcites[pre][post]{volume}{bibid}[pre][post]{volume}{bibid}#*C
 \Fvolcites(pre)(post)[pre][post]{volume}{bibid}[pre][post]{volume}{bibid}#C
+
+\ftvolcite{volume}{bibid}#C
+\ftvolcite[prenote]{volume}{bibid}#C
+\ftvolcite{volume}[pages]{bibid}#C
+\ftvolcite[prenote]{volume}[pages]{bibid}#C
+\Ftvolcite{volume}{bibid}#C
+\Ftvolcite[prenote]{volume}{bibid}#C
+\Ftvolcite{volume}[pages]{bibid}#C
+\Ftvolcite[prenote]{volume}[pages]{bibid}#C
+
+\ftvolcites{volume}{bibid}{volume}{bibid}#C
+\ftvolcites(pre){volume}{bibid}{volume}{bibid}#*C
+\ftvolcites(pre)(post){volume}{bibid}{volume}{bibid}#C
+\ftvolcites(pre)(post)[pre]{volume}{bibid}[pre]{volume}{bibid}#*C
+\ftvolcites[pre]{volume}{bibid}[pre]{volume}{bibid}#*C
+\ftvolcites[pre][post]{volume}{bibid}[pre][post]{volume}{bibid}#*C
+\ftvolcites(pre)(post)[pre][post]{volume}{bibid}[pre][post]{volume}{bibid}#C
+
+\Ftvolcites{volume}{bibid}{volume}{bibid}#C
+\Ftvolcites(pre){volume}{bibid}{volume}{bibid}#*C
+\Ftvolcites(pre)(post){volume}{bibid}{volume}{bibid}#C
+\Ftvolcites(pre)(post)[pre]{volume}{bibid}[pre]{volume}{bibid}#*C
+\Ftvolcites[pre]{volume}{bibid}[pre]{volume}{bibid}#*C
+\Ftvolcites[pre][post]{volume}{bibid}[pre][post]{volume}{bibid}#*C
+\Ftvolcites(pre)(post)[pre][post]{volume}{bibid}[pre][post]{volume}{bibid}#C
 
 \svolcite{volume}{bibid}#C
 \svolcite[prenote]{volume}{bibid}#C
@@ -1165,6 +1208,14 @@ name=%<refcontextname%>
 \bibnamesep#*
 \bibinitsep#*
 \bibparsep#*
+\theabbrvpenalty#*
+\thehighnamepenalty#*
+\thelownamepenalty#*
+\thebiburlbigbreakpenalty#*
+\thebiburlbreakpenalty#*
+\thebiburlnumpenalty#*
+\thebiburlucpenalty#*
+\thebiburllcpenalty#*
 \biburlbigskip#*
 \biburlnumskip#*
 \biburlucskip#*
@@ -1183,8 +1234,17 @@ name=%<refcontextname%>
 
 ## 3.13 Language-specific Notes ##
 # Spanish
-\forceE#*
-\forceY#*
+\thesmartand#*
+\forceE{text}#*
+\forceY{text}#*
+# catalan and french
+\smartof#*
+\forceD{text}#*
+\forceDE{text}#*
+
+## 3.14 Usage Notes ##
+\bibabstractprefix#*
+\bibannotationprefix#*
 
 ## 3.15 Hints and Caveats ##
 # koma-script classes
@@ -1460,6 +1520,7 @@ lowercase#true,false
 strwidth=%<integer%>
 strside=#left,right
 padside=#left,right
+padwidth=%<integer%>
 padchar=%<character%>
 uppercase#true,false
 varwidth#true,false
@@ -1545,6 +1606,7 @@ notfield=
 \DeclareLabeldate{specification}#*
 \DeclareLabeldate[entrytype list]{specification}#*
 \DeclareExtradate{specification}#*
+\scope{code}#*
 \DeclareLabeltitle{specification}#*
 \DeclareLabeltitle[entrytype list]{specification}#*
 
@@ -1601,8 +1663,11 @@ override#true,false
 \clearname{name list}#*
 
 \ifdatejulian{true}{false}#*
+\ifenddatejulian{true}{false}#*
 \ifdateera{era}{true}{false}#*
+\ifenddateera{era}{true}{false}#*
 \ifdatecirca{true}{false}#*
+\ifenddatecirca{true}{false}#*
 \ifdateuncertain{true}{false}#*
 \ifenddateuncertain{true}{false}#*
 \ifdateunknown{true}{false}#*
@@ -1694,11 +1759,11 @@ override#true,false
 \ifciteindex{true}{false}#*
 \ifbibindex{true}{false}#*
 \iffootnote{true}{false}#*
-\thecitecounter
-\themaxcitecounter
-\theuniquename
-\theuniquelist
-\theparenlevel
+\thecitecounter#*
+\themaxcitecounter#*
+\theuniquename#*
+\theuniquelist#*
+\theparenlevel#*
 
 \ifboolexpr{expression}{true}{false}#*
 \ifthenelse{tests}{true}{false}#*
@@ -1982,27 +2047,72 @@ override#true,false
 \DeclareUniquenameTemplate[name]{specification}#*
 
 # miscellaneous
-\mkdaterangeshort{datetype}#*
-\mkdaterangelong{datetype}#*
-\mkdaterangeterse{datetype}#*
-\mkdaterangecomp{datetype}#*
-\mkdaterangeshortextra{datetype}#*
-\mkdaterangelongextra{datetype}#*
-\mkdaterangeterseextra{datetype}#*
-\mkdaterangecompextra{datetype}#*
-\mkdaterangefull{short|long}{datetype}#*
-\mkdaterangefullextra{short|long}{datetype}#*
-\mkdaterangetrunc{short|long}{datetype}#*
-\mkdaterangetruncextra{short|long}{datetype}#*
-\mkdaterangeyear{datetype}#*
-\mkdaterangeymd{datetype}#*
-\mkdaterangeymdextra{datetype}#*
-\mkdaterangeyearextra{datetype}#*
-\mkdaterangeiso{datetype}#*
-\mkdaterangeisoextra{datetype}#*
+\actualoperator#*
+\begrelateddelimmultivolume#*
 \BiblatexHungarianWarningOff#*
 \BiblatexLatvianWarningOff#*
 \BiblatexSplitbibDefernumbersWarningOff#*
+\biburlsetup#*
+\iffinalcitedelim{true}{false}#*
+\iftextcitepunct{true}{false}#*
+\mkbibindexentry{entry}{text}#*
+\mkbibindexfield{entry}{text}#*
+\mkbibindexname{family name}{given name}{prefix}{suffix}#*
+\mkbibindexsubentry{csname1}{csname2}#*
+\mkdaterangecomp{datetype}#*
+\mkdaterangecompextra{datetype}#*
+\mkdaterangefull{short|long}{datetype}#*
+\mkdaterangefullextra{short|long}{datetype}#*
+\mkdaterangeiso{datetype}#*
+\mkdaterangeisoextra{datetype}#*
+\mkdaterangelong{datetype}#*
+\mkdaterangelongextra{datetype}#*
+\mkdaterangeshort{datetype}#*
+\mkdaterangeshortextra{datetype}#*
+\mkdaterangeterse{datetype}#*
+\mkdaterangeterseextra{datetype}#*
+\mkdaterangetrunc{short|long}{datetype}#*
+\mkdaterangetruncextra{short|long}{datetype}#*
+\mkdaterangeyear{datetype}#*
+\mkdaterangeyearextra{datetype}#*
+\mkdaterangeymd{datetype}#*
+\mkdaterangeymdextra{datetype}#*
+\mkrelatedstringtext{text}#*
+\mktimehh{number}#*
+\multivolcitecmd#*
+\shorthandwidth#*
+\shortjournalwidth#*
+\shortserieswidth#*
+\subentryoperator#*
+\thetextcitecount#*
+\thetextcitemaxnames#*
+\thetextcitetotal#*
+\volcitecmd#*
+
+# valid but superfluous aliases
+\Fnotecite[postnote]{bibid}#SC
+\Fnotecite[prenote][postnote]{bibid}#SC
+\Fnotecite{bibid}#SC
+\Footcite[postnote]{bibid}#SC
+\Footcite[prenote][postnote]{bibid}#SC
+\Footcite{bibid}#SC
+\Footcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#SC
+\Footcites(pre)(post)[pre]{bibid}[pre]{bibid}#SC
+\Footcites(pre)(post){bibid}{bibid}#SC
+\Footcites(pre){bibid}{bibid}#SC
+\Footcites[pre][post]{bibid}[pre][post]{bibid}#SC
+\Footcites[pre]{bibid}[pre]{bibid}#SC
+\Footcites{bibid}{bibid}#SC
+\Footcitetext[postnote]{bibid}#SC
+\Footcitetext[prenote][postnote]{bibid}#SC
+\Footcitetext{bibid}#SC
+\Footcitetexts(post){bibid}{bibid}#SC
+\Footcitetexts(pre)(post)[post]{bibid}[post]{bibid}#SC
+\Footcitetexts(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#SC
+\Footcitetexts(pre)(post){bibid}{bibid}#SC
+\Footcitetexts[post]{bibid}[post]{bibid}#SC
+\Footcitetexts[pre][post]{bibid}[pre][post]{bibid}#SC
+\Footcitetexts{bibid}{bibid}#SC
 
 ### biblatex-apa v9.15 ###
 #ifOption:style=apa
