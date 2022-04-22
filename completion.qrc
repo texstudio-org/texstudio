@@ -473,6 +473,7 @@
 <file>completion/class-elsarticle.cwl</file>
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
+<file>completion/class-exam-n.cwl</file>
 <file>completion/class-exesheet.cwl</file>
 <file>completion/class-extarticle.cwl</file>
 <file>completion/class-extbook.cwl</file>
@@ -562,6 +563,7 @@
 <file>completion/class-schulma-komp.cwl</file>
 <file>completion/class-schulma-mdlprf.cwl</file>
 <file>completion/class-schulma-praes.cwl</file>
+<file>completion/class-schwalbe.cwl</file>
 <file>completion/class-sciposter.cwl</file>
 <file>completion/class-scrartcl.cwl</file>
 <file>completion/class-scrartcl,scrreprt,scrbook.cwl</file>
@@ -586,10 +588,13 @@
 <file>completion/class-tikzposter.cwl</file>
 <file>completion/class-tkz-doc.cwl</file>
 <file>completion/class-tlc-article.cwl</file>
+<file>completion/class-toptesi.cwl</file>
 <file>completion/class-tufte-book.cwl</file>
 <file>completion/class-tufte-handout.cwl</file>
 <file>completion/class-turabian-researchpaper.cwl</file>
 <file>completion/class-turabian-thesis.cwl</file>
+<file>completion/class-ulthese.cwl</file>
+<file>completion/class-upmethodology-document.cwl</file>
 <file>completion/class-webquiz.cwl</file>
 <file>completion/class-willowtreebook.cwl</file>
 <file>completion/class-xebaposter.cwl</file>
@@ -1048,6 +1053,7 @@
 <file>completion/frenchmath.cwl</file>
 <file>completion/fr-fancy.cwl</file>
 <file>completion/frimurer.cwl</file>
+<file>completion/frontespizio.cwl</file>
 <file>completion/froufrou.cwl</file>
 <file>completion/frpseudocode.cwl</file>
 <file>completion/fullminipage.cwl</file>
@@ -1433,6 +1439,7 @@
 <file>completion/luakeys.cwl</file>
 <file>completion/luakeys-debug.cwl</file>
 <file>completion/lualatex-truncate.cwl</file>
+<file>completion/luamathalign.cwl</file>
 <file>completion/luamesh.cwl</file>
 <file>completion/luamplib.cwl</file>
 <file>completion/luaotfload.cwl</file>
@@ -1500,12 +1507,14 @@
 <file>completion/mathfont.cwl</file>
 <file>completion/mathpartir.cwl</file>
 <file>completion/mathpazo.cwl</file>
+<file>completion/mathpi.cwl</file>
 <file>completion/mathptmx.cwl</file>
 <file>completion/mathpunctspace.cwl</file>
 <file>completion/mathrsfs.cwl</file>
 <file>completion/mathspec.cwl</file>
 <file>completion/mathstone.cwl</file>
 <file>completion/mathstyle.cwl</file>
+<file>completion/mathtime.cwl</file>
 <file>completion/mathtools.cwl</file>
 <file>completion/matlab-prettifier.cwl</file>
 <file>completion/mattens.cwl</file>
@@ -1837,6 +1846,8 @@
 <file>completion/physconst.cwl</file>
 <file>completion/physics.cwl</file>
 <file>completion/physunits.cwl</file>
+<file>completion/picinpar.cwl</file>
+<file>completion/picins.cwl</file>
 <file>completion/pict2e.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/pinoutikz.cwl</file>
@@ -2119,6 +2130,7 @@
 <file>completion/schooldocs.cwl</file>
 <file>completion/schulma.cwl</file>
 <file>completion/schulma-physik.cwl</file>
+<file>completion/schwalbe.cwl</file>
 <file>completion/scientific-thesis-cover.cwl</file>
 <file>completion/sclang-prettifier.cwl</file>
 <file>completion/scontents.cwl</file>
@@ -2493,8 +2505,13 @@
 <file>completion/tokenizer.cwl</file>
 <file>completion/tone.cwl</file>
 <file>completion/tonevalue.cwl</file>
+<file>completion/topcoman.cwl</file>
+<file>completion/topfront.cwl</file>
 <file>completion/topiclongtable.cwl</file>
 <file>completion/topsection.cwl</file>
+<file>completion/toptesi.cwl</file>
+<file>completion/toptesi-scudo.cwl</file>
+<file>completion/toptesi-sss.cwl</file>
 <file>completion/totalcount.cwl</file>
 <file>completion/totcount.cwl</file>
 <file>completion/totpages.cwl</file>
@@ -2567,6 +2584,16 @@
 <file>completion/universalis.cwl</file>
 <file>completion/unravel.cwl</file>
 <file>completion/upgreek.cwl</file>
+<file>completion/upmethodology-backpage.cwl</file>
+<file>completion/upmethodology-code.cwl</file>
+<file>completion/upmethodology-document.cwl</file>
+<file>completion/upmethodology-extension.cwl</file>
+<file>completion/upmethodology-fmt.cwl</file>
+<file>completion/upmethodology-frontpage.cwl</file>
+<file>completion/upmethodology-p-common.cwl</file>
+<file>completion/upmethodology-spec.cwl</file>
+<file>completion/upmethodology-task.cwl</file>
+<file>completion/upmethodology-version.cwl</file>
 <file>completion/uri.cwl</file>
 <file>completion/url.cwl</file>
 <file>completion/urwchancal.cwl</file>
@@ -2602,6 +2629,7 @@
 <file>completion/vhistory.cwl</file>
 <file>completion/vietnam.cwl</file>
 <file>completion/virginialake.cwl</file>
+<file>completion/vmargin.cwl</file>
 <file>completion/vntex.cwl</file>
 <file>completion/vowel.cwl</file>
 <file>completion/vplref.cwl</file>
