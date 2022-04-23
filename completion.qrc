@@ -270,6 +270,7 @@
 <file>completion/bguq.cwl</file>
 <file>completion/bibentry.cwl</file>
 <file>completion/biblatex2bibitem.cwl</file>
+<file>completion/biblatex-chicago.cwl</file>
 <file>completion/biblatex.cwl</file>
 <file>completion/bibleref.cwl</file>
 <file>completion/bibleref-mouth.cwl</file>
@@ -289,6 +290,7 @@
 <file>completion/bigintcalc.cwl</file>
 <file>completion/bigints.cwl</file>
 <file>completion/bigstrut.cwl</file>
+<file>completion/bilingualpages.cwl</file>
 <file>completion/binarytree.cwl</file>
 <file>completion/biochemistry-colors.cwl</file>
 <file>completion/biolinum.cwl</file>
@@ -612,6 +614,7 @@
 <file>completion/cmdstring.cwl</file>
 <file>completion/cmdtrack.cwl</file>
 <file>completion/cmll.cwl</file>
+<file>completion/cmsendnotes.cwl</file>
 <file>completion/cmsrb.cwl</file>
 <file>completion/cmtt.cwl</file>
 <file>completion/cmupint.cwl</file>
@@ -656,6 +659,7 @@
 <file>completion/comicsans.cwl</file>
 <file>completion/comma.cwl</file>
 <file>completion/commath.cwl</file>
+<file>completion/commedit.cwl</file>
 <file>completion/comment.cwl</file>
 <file>completion/commonunicode.cwl</file>
 <file>completion/commutative-diagrams.cwl</file>
@@ -1779,6 +1783,8 @@
 <file>completion/pbsi.cwl</file>
 <file>completion/pcarl.cwl</file>
 <file>completion/pdfcol.cwl</file>
+<file>completion/pdfcolparallel.cwl</file>
+<file>completion/pdfcolparcolumns.cwl</file>
 <file>completion/pdfcomment.cwl</file>
 <file>completion/pdfcrypt.cwl</file>
 <file>completion/pdfescape.cwl</file>
@@ -2073,6 +2079,7 @@
 <file>completion/register.cwl</file>
 <file>completion/regstats.cwl</file>
 <file>completion/reledmac.cwl</file>
+<file>completion/reledpar.cwl</file>
 <file>completion/relinput.cwl</file>
 <file>completion/relsize.cwl</file>
 <file>completion/renditions.cwl</file>
