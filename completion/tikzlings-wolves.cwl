@@ -1,25 +1,20 @@
-# tikzlings-cats package
+# tikzlings-wolves package
 # Matthew Bertucci 4/23/2022 for v0.9
 
 #include:tikz
 #include:tikzlings-addons
+# loads decorations.pathmorphing tikzlibrary
 
-\cat
-\cat[options%keyvals]
+\wolf
+\wolf[options%keyvals]
 
-#keyvals:\cat#c
+#keyvals:\wolf#c
 body=#%color
 eye=#%color
 pupil=#%color
-nose=#%color
-whiskers=#%color
-paws=#%color
-pupilwidth=%<number%>
-narrow pupils
-medium pupils
-wide pupils
-very wide pupils
-schroedinger
+rotatearms=%<degrees%>
+leftstep
+rightstep
 back
 3D
 contour
@@ -141,10 +136,10 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\cathookbackground#*
-\cathookbelly#*
-\cathookbody#*
-\cathookforeground#*
+\wolfhookbackground#*
+\wolfhookbelly#*
+\wolfhookbody#*
+\wolfhookforeground#*
 \tikzlinghookbackground#*
 \tikzlinghookbelly#*
 \tikzlinghookbody#*
