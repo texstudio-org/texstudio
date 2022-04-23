@@ -1,5 +1,5 @@
 # concmath-otf package
-# Matthew Bertucci 4/16/2022 for v0.20
+# Matthew Bertucci 4/23/2022 for v0.21
 
 #include:iftex
 #include:unicode-math
@@ -15,7 +15,7 @@ nabla=#italic,upright,literal
 partial=#italic,upright,literal
 CharacterVariant={%<glyph num list%>:%<variety num%>}
 StylisticSet=#4,5,6
-Style=#leqslant,smaller,subsetneq
+Style=#leqslant,smaller,subsetneq,upint
 #endkeyvals
 
 # text or math mode commands
