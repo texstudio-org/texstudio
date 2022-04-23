@@ -1,5 +1,5 @@
 # projlib-language package
-# Matthew Bertucci 2022/04/04 for 2022/04/03 release
+# Matthew Bertucci 2022/04/23 for 2022/04/18 release
 
 #include:l3keys2e
 #include:fontenc
@@ -106,6 +106,7 @@ SuppressWarning#true,false
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
 \boi
+\bname{text}
 \bsc{text}
 \CaptionSeparator#*
 \captionsfrench#*
