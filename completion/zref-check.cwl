@@ -1,10 +1,9 @@
 # zref-check package
-# Matthew Bertucci 2/10/2022 for v0.2.4
+# Matthew Bertucci 4/24/2022 for v0.3.0
 
 #include:zref-user
 #include:zref-abspage
 #include:ifdraft
-#include:l3keys2e
 #include:zref-hyperref
 
 \zcheck{labellist}{text}#r
@@ -46,7 +45,7 @@ far
 
 \zrefchecksetup{options%keyvals}
 
-#keyvals:\zrefchecksetup,\usepackage/zref-check#c
+#keyvals:\zrefchecksetup
 hyperref=#auto,true,false
 msglevel=#warn,info,none,infoifdraft,warniffinal
 onpage=#labelseq,msg,labelseqifdraft,msgiffinal
