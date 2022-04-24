@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 07.02.2021 for v3.17
+# Matthew Bertucci 23.04.2022 for v3.17
 
 #include:pdftexcmds
 #include:etoolbox
@@ -1177,6 +1177,7 @@ name=%<refcontextname%>
 \printdelim[context]{name}#*
 \delimcontext{context}#*
 \DeclareDelimcontextAlias{alias}{name}#*
+\UndeclareDelimcontextAlias{alias}#*
 
 \bibrangedash#*
 \bibrangessep#*
@@ -1567,6 +1568,7 @@ final#true,false
 sortcase#true,false
 sortupper#true,false
 #endkeyvals
+\citecount#*
 \citeorder#*
 \DeclareSortingNamekeyTemplate{specification}#*
 \DeclareSortingNamekeyTemplate[name]{specification}#*
@@ -1600,6 +1602,9 @@ notfield=
 
 \DeclareNosort{specification}#*
 \nosort{field}{regexp}#*
+
+\DeclareNonamestring{specification}#*
+\nonamestring{field}{regexp}#*
 
 \DeclareLabelname{specification}#*
 \DeclareLabelname[entrytype list]{specification}#*
@@ -1967,9 +1972,14 @@ override#true,false
 \bibxlstring[wrapper]{string key}#*
 \bibxsstring{string key}#*
 \bibxsstring[wrapper]{string key}#*
-\mainlang#*
+\mainlang#S
 \textmainlang{text}#*
 \texouterlang{text}#*
+\DeclareBibstringSet{name}{key1,key2,...}#*
+\UndeclareBibstringSet{name}#*
+\UndeclareBibstringSets#*
+\DeclareBibstringSetFormat{name}{code}#*
+\UneclareBibstringSetFormat{name}#*
 
 ## 4.9 Localization Modules ##
 \DeclareLanguageMapping{language}{file}#*
@@ -2147,6 +2157,2422 @@ apamaxprtauth=%<number%>
 \nptextcites[pre]{bibid}[pre]{bibid}#*C
 \nptextcites[pre][post]{bibid}[pre][post]{bibid}#*C
 \nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
+#endif
+
+### biblatex-claves v1.2.0 ###
+#ifOption:bibstyle=claves
+#include:xpatch
+\AddBiblatexClavis{abbrev}
+\multiclavesseparator#*
+\clavisseparator#*
+\clavisformat{text}#*
+\citeallclaves
+\clavesadddashinset
+#endif
+
+### biblatex-ext v0.15 ###
+# all ext- styles load ext-biblatex-aux.def and ext-standard.bbx
+#ifOption:style=ext-numeric
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-numeric-comp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-numeric-verb
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-alphabetic
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-alphabetic-verb
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+# all ext-authoryear- styles load ext-authoryear-common.bbx which loads ext-dashed-common.bbx
+#ifOption:style=ext-authoryear
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-comp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-ibid
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-ecomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-iecomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-terse
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-tcomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-tecomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-ticomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authoryear-tiecomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+# all ext-authortitle- styles load ext-authortitle-common.bbx which loads ext-dashed-common.bbx
+#ifOption:style=ext-authortitle
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authortitle-comp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authortitle-ibid
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authortitle-icomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authortitle-terse
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authortitle-tcomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authortitle-ticomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-verbose
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-verbose-ibid
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-verbose-note
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-verbose-inote
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-verbose-trad1
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-verbose-trad2
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-verbose-trad3
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+# all ext-authornumber- styles load ext-authortitle-common.bbx which loads ext-dashed-common.bbx
+#ifOption:style=ext-authornumber
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authornumber
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authornumber-comp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authornumber-ecomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authornumber-terse
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authornumber-tcomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+#ifOption:style=ext-authornumber-tecomp
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
 #endif
 
 ### biblatex-ieee v1.3f ###
