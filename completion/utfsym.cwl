@@ -1,6 +1,7 @@
 # utfsym package
-# Matthew Bertucci 8/23/2021 for v0.8.3
+# Matthew Bertucci 4/24/2022 for v0.9.0
 
+#include:l3keys2e
 #include:xcolor
 #include:tikz
 #include:graphicx
