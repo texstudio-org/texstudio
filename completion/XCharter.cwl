@@ -1,17 +1,17 @@
 # XCharter package
-# Matthew Bertucci 3/8/2022 for v1.23
+# Matthew Bertucci 4/24/2022 for v1.24
 
+#include:iftex
+#include:xkeyval
+#include:etoolbox
+#include:textcomp
+#include:xstring
+#include:ifthen
+#include:scalefnt
+#include:mweights
 #include:fontenc
 # loads T1 option of fontenc
 #include:fontaxes
-#include:textcomp
-#include:iftex
-#include:scalefnt
-#include:mweights
-#include:etoolbox
-#include:xstring
-#include:ifthen
-#include:xkeyval
 
 #keyvals:\usepackage/XCharter#c
 aftsolidus=##L
@@ -20,11 +20,13 @@ foresolidus=##L
 lf
 lining
 nofontspec
+notextnu
 oldSS
 oldstyle
 oldstyleI
 osf
 osfI
+otfmath#true,false
 p
 proportional
 scaled=%<factor%>
@@ -37,6 +39,43 @@ thmlining
 type1
 type1text
 #endkeyvals
+
+#ifOption:otfmath
+#include:fontspec
+#include:xcharter-otf
+#keyvals:\usepackage/XCharter#c
+no-text
+tight
+loose
+fulloldstyle
+math-style=#ISO,TeX,french,upright
+bold-style=#ISO,TeX,upright
+nabla=#italic,upright,literal
+partial=#italic,upright,literal
+CharacterVariant={%<glyph num list%>:%<variety num%>}
+StylisticSet=#4,5,6
+Style=#upint,leqslant,smaller,subsetneq,parallelslant
+Scale=%<factor%>
+#endkeyvals
+#endif
+#ifOption:otfmath=true
+#include:fontspec
+#include:xcharter-otf
+#keyvals:\usepackage/XCharter#c
+no-text
+tight
+loose
+fulloldstyle
+math-style=#ISO,TeX,french,upright
+bold-style=#ISO,TeX,upright
+nabla=#italic,upright,literal
+partial=#italic,upright,literal
+CharacterVariant={%<glyph num list%>:%<variety num%>}
+StylisticSet=#4,5,6
+Style=#upint,leqslant,smaller,subsetneq,parallelslant
+Scale=%<factor%>
+#endkeyvals
+#endif
 
 \circledtxt#*
 \defigures
@@ -60,7 +99,8 @@ type1text
 \textlf{text}
 \textosf{text}
 \textosfI{text}
-\textnu{text}#*
+\textnu{text}#S
+\textnum{text}#*
 \textnumerator{text}
 \textruble
 \textsu{text}
