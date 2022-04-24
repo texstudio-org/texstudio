@@ -565,7 +565,7 @@
 \nobreakdashes#*
 \nobreakspace#*
 \normalsfcodes#*
-\numberline#*
+\numberline{number}#*
 \poptabs#*
 \pushtabs#*
 \requestedLaTeXdate#*
