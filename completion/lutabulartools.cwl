@@ -1,5 +1,5 @@
 # lutabulartools package
-# Matthew Bertucci 3/8/2022 for release 2022-02-07
+# Matthew Bertucci 4/24/2022 for release 2022-04-16
 
 #include:booktabs
 #include:multirow
@@ -14,6 +14,9 @@
 #keyvals:\usepackage/lutabulartools#c
 notrim
 #endkeyvals
+
+\lttdebugON
+\lttdebugOFF
 
 \MC{contents%text}#t
 \MC[cell spec]{contents%text}#t
