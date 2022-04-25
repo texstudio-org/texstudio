@@ -1,5 +1,5 @@
 # projlib-theorem package
-# Matthew Bertucci 2022/04/04 for 2022/04/06 release
+# Matthew Bertucci 2022/04/23 for 2022/04/18 release
 
 #include:l3keys2e
 #include:projlib-language
@@ -17,6 +17,12 @@ simple name#true,false
 no preset names#true,false
 #endkeyvals
 
+\begin{application}
+\begin{application}[heading%text]
+\end{application}
+\begin{application*}
+\begin{application*}[heading%text]
+\end{application*}
 \begin{assertion}
 \begin{assertion}[heading%text]
 \end{assertion}
@@ -181,4 +187,5 @@ no preset names#true,false
 \begin{theorem-with-name*}{arg}[opt]
 \end{theorem-with-name*}
 
-\DisableTheoremNumbering{theorem envname}
+\DisableTheoremNumbering{envname}
+\SwitchTheoremNumbering{envname}

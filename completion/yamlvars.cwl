@@ -1,5 +1,5 @@
-# YAMLvars package
-# Matthew Bertucci 3/8/2022 for release 2022-03-03
+# yamlvars package
+# Matthew Bertucci 4/24/2022 for release 2022-04-16
 
 #include:luacode
 #include:xspace
@@ -29,3 +29,8 @@ debug
 \resetYAMLvarsspec
 \AllowUndeclaredYV
 \ForbidUndeclaredYV
+\lowercasevarYVon
+\lowercasevarYVoff
+
+\begin{parseYAMLpdfdata}
+\end{parseYAMLpdfdata}

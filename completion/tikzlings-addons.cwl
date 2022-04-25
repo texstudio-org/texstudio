@@ -1,30 +1,13 @@
-# tikzlings-cats package
+# tikzlings-addons package
 # Matthew Bertucci 4/23/2022 for v0.9
 
 #include:tikz
-#include:tikzlings-addons
+# loads patterns tikzlibrary
+#include:expl3
 
-\cat
-\cat[options%keyvals]
+\thing[options%keyvals]
 
-#keyvals:\cat#c
-body=#%color
-eye=#%color
-pupil=#%color
-nose=#%color
-whiskers=#%color
-paws=#%color
-pupilwidth=%<number%>
-narrow pupils
-medium pupils
-wide pupils
-very wide pupils
-schroedinger
-back
-3D
-contour
-contour=#%color
-## << accessories >> ##
+#keyvals:\thing#c
 hat
 hat=#%color
 tophat
@@ -141,11 +124,6 @@ xshift=##L
 yshift=##L
 #endkeyvals
 
-\cathookbackground#*
-\cathookbelly#*
-\cathookbody#*
-\cathookforeground#*
-\tikzlinghookbackground#*
-\tikzlinghookbelly#*
-\tikzlinghookbody#*
-\tikzlinghookforeground#*
+\scalingfactor#*
+\xscalefactor#*
+\yscalefactor#*

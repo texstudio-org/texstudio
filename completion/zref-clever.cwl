@@ -1,21 +1,11 @@
 # zref-clever package
-# Matthew Bertucci 2/8/2022 for v0.2.1-alpha
+# Matthew Bertucci 4/24/2022 for v0.3.0
 
 #include:zref-base
 #include:zref-user
 #include:zref-abspage
-#include:l3keys2e
 #include:ifdraft
 #include:zref-hyperref
-#ifOption:titleref
-#include:zref-titleref
-#endif
-#ifOption:vario
-#include:zref-vario
-#endif
-#ifOption:check
-#include:zref-check
-#endif
 
 \zcref{labellist}#r
 \zcref[options%keyvals]{labellist}#r
@@ -29,7 +19,8 @@
 
 \zcsetup{options%keyvals}
 
-#keyvals:\zcref,\zcref*,\zcpageref,\zcpageref*,\zcsetup,\usepackage/zref-clever#c
+#keyvals:\zcref,\zcref*,\zcpageref,\zcpageref*,\zcsetup
+# standard keys
 ref=#default,page,thecounter,title
 page
 typeset=#ref,name,both
@@ -46,14 +37,13 @@ range#true,false
 rangetopair#true,false
 cap#true,false
 nocap
-capfirst
+capfirst#true,false
 abbrev#true,false
 noabbrev
 noabbrevfirst
 S
 hyperref=#auto,true,false
 nameinlink=#true,false,single,tsingle
-preposinlink#true,false
 lang=%<language%>
 d=%<declension case%>
 nudge=#true,false,ifdraft,iffinal
@@ -61,63 +51,52 @@ nudgeif=#multitype,comptosing,gender,all
 nonudge
 sg
 g=
-font=%<cmds%>
-titleref
-vario
+font=%<font commands%>
 note=%<text%>
 check={%<checks%>}
 countertype={%<<counter>%> = %<<type> list%>}
 counterresetters={%<counter list%>}
 counterresetby={%<<counter=encl counter> list%>}
-currentcounter
-#endkeyvals
-
-#keyvals:\zcsetup,\usepackage/zref-clever#c
 currentcounter=%<counter%>
+# "general" keys
+tpairsep={%<separator%>}
+tlistsep={%<separator%>}
+tlastsep={%<separator%>}
+notesep={%<separator%>}
+namesep={%<separator%>}
+pairsep={%<separator%>}
+listsep={%<separator%>}
+lastsep={%<separator%>}
+rangesep={%<separator%>}
+refbounds={%<preref*,preref,postref,postref*%>}
+namefont=%<name%>
+reffont=%<name%>
+#endkeyvals
+
+#keyvals:\zcsetup
+# preamble-only keys
 nocompat={%<module list%>}
-#endkeyvals
-
-#keyvals:\zcref,\zcref*,\zcpageref,\zcpageref*,\zcsetup
-check={%<checks%>}
-tpairsep=
-tlistsep=
-tlastsep=
-notesep=
-namesep=
-pairsep=
-listsep=
-lastsep=
-rangesep=
-preref=
-postref=
-namefont=
-reffont=
-#endkeyvals
-
-#keyvals:\zcsetup,\usepackage/zref-clever#c
-check
 #endkeyvals
 
 \zcRefTypeSetup{type}{options%keyvals}
 
 #keyvals:\zcRefTypeSetup
-namesep=
-pairsep=
-listsep=
-lastsep=
-rangesep=
-preref=
-postref=
-Name-sg=
-name-sg=
-Name-pl=
-name-pl=
-Name-sg-ab=
-name-sg-ab=
-Name-pl-ab=
-name-pl-ab=
-namefont=
-reffont=
+namesep={%<separator%>}
+pairsep={%<separator%>}
+listsep={%<separator%>}
+lastsep={%<separator%>}
+rangesep={%<separator%>}
+refbounds={%<preref*,preref,postref,postref*%>}
+Name-sg=%<name%>
+name-sg=%<name%>
+Name-pl=%<name%>
+name-pl=%<name%>
+Name-sg-ab=%<name%>
+name-sg-ab=%<name%>
+Name-pl-ab=%<name%>
+name-pl-ab=%<name%>
+namefont=%<font commands%>
+reffont=%<font commands%>
 cap#true,false
 abbrev#true,false
 endrange=#ref,stripprefix,pagecomp,pagecomp2
@@ -137,29 +116,33 @@ allcaps
 
 \zcLanguageSetup{language}{options%keyvals}
 
-#keyvals:\zcLanguageSetup#c
-tpairsep=
-tlistsep=
-tlastsep=
-notesep=
-namesep=
-pairsep=
-listsep=
-lastsep=
-rangesep=
-preref=
-postref=
+#keyvals:\zcLanguageSetup
+tpairsep={%<separator%>}
+tlistsep={%<separator%>}
+tlastsep={%<separator%>}
+notesep={%<separator%>}
+namesep={%<separator%>}
+pairsep={%<separator%>}
+listsep={%<separator%>}
+lastsep={%<separator%>}
+rangesep={%<separator%>}
+refbounds={%<preref*,preref,postref,postref*%>}
+Name-sg=%<name%>
+name-sg=%<name%>
+Name-pl=%<name%>
+name-pl=%<name%>
+Name-sg-ab=%<name%>
+name-sg-ab=%<name%>
+Name-pl-ab=%<name%>
+name-pl-ab=%<name%>
+namefont=%<font commands%>
+reffont=%<font commands%>
+cap#true,false
+abbrev#true,false
+endrange=#ref,stripprefix,pagecomp,pagecomp2
+rangetopair#true,false
+# language-specific keys
 type=%<type%>
 case=#N,A,D,G
 gender={%<gender list%>}
-Name-sg=
-name-sg=
-Name-pl=
-name-pl=
-Name-sg-ab=
-name-sg-ab=
-Name-pl-ab=
-name-pl-ab=
-cap#true,false
-abbrev#true,false
 #endkeyvals

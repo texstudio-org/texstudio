@@ -1,12 +1,13 @@
 # tikzlings-moles package
-# Matthew Bertucci 8/12/2021
+# Matthew Bertucci 4/23/2022 for v0.9
 
 #include:tikz
+#include:tikzlings-addons
 
-\mole
-\mole[options%keyvals]
+\moles
+\moles[options%keyvals]
 
-#keyvals:\mole#c
+#keyvals:\moles#c
 body=#%color
 eye=#%color
 muzzle=#%color
@@ -17,11 +18,7 @@ back
 3D
 contour
 contour=#%color
-#endkeyvals
-
-\thing[options%keyvals]
-
-#keyvals:\mole#c,\thing#c
+## << accessories >> ##
 hat
 hat=#%color
 tophat
@@ -59,17 +56,17 @@ tassel=#%color
 alien
 alien=#%color
 book
-book=
+book={%<text%>}
 bookcolour=#%color
 signpost
-signpost=
+signpost={%<text%>}
 signcolour=#%color
 signback=#%color
 speech
-speech=
+speech={%<text%>}
 bubblecolour=#%color
 think
-think=
+think={%<text%>}
 pizza
 cheese
 cheese=#%color
@@ -131,12 +128,17 @@ umbrellaclosed=#%color
 handbag
 handbag=#%color
 cocktail
+## << common tikz options >> ##
+rotate=%<degrees%>
+scale=%<factor%>
+xshift=##L
+yshift=##L
 #endkeyvals
 
-\molehookbackground#*
-\molehookbelly#*
-\molehookbody#*
-\molehookforeground#*
+\moleshookbackground#*
+\moleshookbelly#*
+\moleshookbody#*
+\moleshookforeground#*
 \tikzlinghookbackground#*
 \tikzlinghookbelly#*
 \tikzlinghookbody#*
