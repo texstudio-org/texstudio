@@ -73,12 +73,11 @@
 	<li><a href="#SECTION35">4.8 MetaPost support</a></li>
 	<li><a href="#SECTION36">4.9 The "Convert to Html" command</a></li>
 	<li><a href="#SECTION37">4.10 "Forward/Inverse search" with TeXstudio</a></li>
-	<li><a href="#TEXCOM">4.11 Advanced header usage</a></li>
+	<li><a href="#TEXCOM">4.11 Advanced header usage with magic comments</a></li>
 	<li><a href="#TEXSTUDIO-CMD">4.12 Synopsis of the TeXstudio command</a></li>
 	<li><a href="#SHORTCUTS">4.13 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.14 Description of the cwl format</a></li>
 	<li><a href="#TABLETEMPLATE">4.15 Using table templates</a></li>
-  <li><a href="#MISC-FEATURES">4.16 Miscellaneous Features</a></li>
 	</ul>
 </li>
 <li><a href="#TENTATIVE-FEATURES">5. Experimental Features</a>
@@ -1386,9 +1385,14 @@ Launch qpdfview from TeXstudio: <span class="command">qpdfview --unique ?am.pdf#
 Launch TeXstudio from qpdfview: <span class="command">texstudio "%1" -line %2</span>
 </p>
 
-<h2 id="TEXCOM">4.11 Advanced header usage</h2>
+<h2 id="TEXCOM">4.11 Advanced header usage with magic comments</h2>
 <p>So called "magic comments" are a way to adapt the options of the editor on a per-document level. The concept was <a href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a> and has been adopted in a number of editors since. TeXstudio supports the following magic comments:</p>
 <ul class="magiccomments">
+<li>
+<code>% BEGIN_FOLD</code> and <code>% END_FOLD</code>
+<p>Mark an extra foldable range. Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by
+inserting special comments <code>% BEGIN_FOLD</code> and <code>% END_FOLD</code>.
+</li>
 <li>
 <code>% !TeX spellcheck = de_DE</code>
 <p>Defines the language used for spell checking of the document. This overrides the global spellchecking settings. Nevertheless, an appropriate dictionary has to be installed.<br> If no spellchecking is desired, set value to "<em>none</em>".</p>
@@ -1817,13 +1821,6 @@ for(var i=0;i&lt;tab.length;i++){
 println("\\end{"+env+"}")
 </pre>
 </p>
-
-<h2 id="MISC-FEATURES">4.16 Miscellaneous Features</h2>
-
-<ul>
-  <li>Mark an extra foldable range</li>
-  Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments <code>%BEGIN_FOLD</code> and <code>%END_FOLD</code>.
-</ul>
 
 <h1 id="TENTATIVE-FEATURES">5. Tentative Features</h1>
 <p>These features allow you to modify core aspects of TeXstudio and thus provide a great flexibility of adapting TeXstudio to your needs. Since these features are either complex or are tightly bound to the internals, we cannot guarantee functionality in all cases and forever. For once, we do not have enough resources to provide full support. Additionally, the dependence on internals conflicts with our need to freely change internals without restriction for future development.</p>
