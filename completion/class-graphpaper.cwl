@@ -1,5 +1,5 @@
 # graphpaper class
-# Matthew Bertucci 11/12/2021 for v1.0
+# Matthew Bertucci 4/25/2022 for v1.1
 
 #keyvals:\documentclass/graphpaper#c
 a4paper
@@ -47,38 +47,62 @@ letterpaper
 \carta[0 or 1]{x-decades}{y-decades}#*
 \carta{x-decades}{y-decades}#*
 
+gridcolor#B
+
 \A#S
+\Adue#S
 \Auxx#S
+\Cifre#S
 \Czero#S
-\LAng#S
-\LPLA#S
-\LnDieci#S
-\Logaritmo#S
-\LowResZero#S
-\Rbox#S
-\RotLab#S
-\Rout#S
-\RoutCifre#S
-\RoutTak#S
-\Rxx#S
-\Scala#S
-\ScalaDecade#S
-\SmithChart#S
+\Dec#S
 \decx#S
 \decxx#S
 \decy#S
 \decyy#S
 \factor#S
 \hlines#S
+\I#S
+\Idue#S
+\IIdue#S
+\Inter#S
+\J#S
+\LAng#S
+\LnDieci#S
+\Logaritmo#S
+\LowResUno#S
+\LowResZero#S
+\LPLA#S
+\lwa#S
+\lwb#S
+\lwc#S
+\mb#S
+\Mdue#S
+\mindistanceunit#S
 \minimumdistance#S
 \minorticklength#S
+\ml#S
+\Mod#S
+\mr#S
+\mt#S
 \plstep#S
+\pmargin#S
+\Rbox#S
+\RotLab#S
+\Rout#S
+\RoutCifre#S
+\RoutTak#S
+\Rxx#S
+\Rzero#S
+\Scala#S
+\ScalaDecade#S
+\SmithChart#S
 \ticklength#S
 \vlines#S
 \xlength#S
 \xlinsq#S
 \xmindiv#S
 \xmindivfloat#S
+\xsideunit#S
 \xstep#S
 \xtick#S
 \ylength#S
@@ -86,6 +110,7 @@ letterpaper
 \ylinsq#S
 \ymindiv#S
 \ymindivfloat#S
+\ysideunit#S
 \ystep#S
 \ytickstart#S
 \ytickstop#S
