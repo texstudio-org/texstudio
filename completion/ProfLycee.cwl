@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 3/18/2022 for v1.0.8
+# Matthew Bertucci 4/25/2022 for v1.0.9
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -132,6 +132,22 @@ label#true,false
 \liencapytale[prefix]{code}
 \liencapytale*{code}
 \liencapytale*[prefix]{code}
+
+\pavePL
+\pavePL[paramètres%keyvals]
+
+#keyvals:\pavePL
+largeur=%<num%>
+profondeur=%<num%>
+hauteur=%<num%>
+angle=%<degrees%>
+fuite=%<num%>
+sommets=%<A1§...§A8%>
+epaisseur=%<épaisseur%>
+aff#true,false
+plein#true,false
+cube#true,false
+#endkeyvals
 
 # from table option of xcolor
 #include:colortbl
@@ -387,6 +403,23 @@ Teal#B
 \PLOSXLG#*
 \termosxtitre#*
 \termosxtitre[opt]#*
+\PFPaveLg#S
+\PFPavePf#S
+\PFPaveHt#S
+\PFPaveAngl#S
+\PFPaveFuite#S
+\PFPaveSommets#S
+\PFPaveThick#S
+\PFListeSommets#S
+\PFPaveSommets#S
+\PaveA#S
+\PaveB#S
+\PaveC#S
+\PaveD#S
+\PaveE#S
+\PaveF#S
+\PaveG#S
+\PaveH#S
 
 PLmpurple#B
 PLmgray#B
