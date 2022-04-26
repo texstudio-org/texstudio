@@ -550,12 +550,11 @@ E.g. you have a "text", select it and start typing "\textbf", command which is c
 <p><IMG src="compile_toolbar.png" border="1" alt="compile_toolbar">
 <p><b>Warning: all your files must have an extension and you can't compile a file with a space in its name</b>.</p>
 <h2 id="SECTION23">3.2 The log files</h2>
-<p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
-Remark : a summary of the latex errors and warnings is displayed before the full log file.</p>
-<p><IMG src="doc15.png" border="1" alt="doc15"></p>
-<p>The "Next Latex Error"and "Previous LaTeX Error" commands allow to get to the errors detected during compilation.</p>
-<p>Lines with errors, warnings, bad boxes will be highlighted with red, yellow or blue background and you can jump between them using Ctrl+Up/Down. (Ctrl+Shift for errors only, Ctrl+Alt for warnings only, Alt+Shift for bad boxes only)<br>
-A tool tip will show more details of the mistake if you jump to a line (it is also shown if you move the mouse over the mark left from the line numbers).</p>
+<p>The Log tab helps with error handling. It provides the tabs Log File and Issues as well as some controls (see figure). The Issues tab displays a table of messages taken from the log file displayed below the table.</p>
+<p><IMG src="errorlog.png" border="1" alt="Display of Error Log"></p>
+<p>The first three controls can be used to choose whether errors (red), warnings (yellow) or bad boxes (blue) are shown, another whether to show error markers in the editor, and the last two to toggle back and forth between errors to be jumped. The shortcuts for this are Ctrl+Shift+Up/Down, accordingly Ctrl+Alt+Up/Down and Alt+Shift+Up/Down are used for warnings and bad boxes respectively. You jump unspecifically between the messages with Ctrl+Up/Down.</p>
+<p>If a table row is selected, the cursor jumps to the corresponding line in the editor and the corresponding position in the log file is displayed. When you do not need the log file information, the display can be turned off by clicking on the Log File tab. The Issues tab offers a similar function for the table with the messages.</p>
+<p>The tooltips for the error markers to the left of the lines in the editor show details about the errors if required.</p>
 <h1 id="SECTION3">4. Other features</h1>
 <h2 id="SECTION31">4.1 About documents separated in several files</h2>
 <p>LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the detection of the root document and knowledge on defined labels and commands.</p>
