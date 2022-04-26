@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -886,7 +884,7 @@ Cambie su configuración y defina las listas de orden solo en &apos;Opciones -&g
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define los tipos de notificaciones de actualización que recibirá:
 - Versiones estables: Escoge esto si la estabilidad es lo más importante para ti.
@@ -1093,7 +1091,7 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2641,8 +2639,8 @@ aquí.</translation>
         <location filename="../src/configdialog.ui" line="4354"/>
         <location filename="../src/configdialog.ui" line="4408"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>El motor usado por la librería PDF. 
 &apos;Splash&apos; es la opción predeterminada y funciona en la mayoría de las situaciones.
@@ -3113,10 +3111,6 @@ comunes.</translation>
         <translation>&amp;Matemáticas</translation>
     </message>
     <message>
-        <source>Math Equations</source>
-        <translation type="vanished">Ecuaciones matemáticas</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math &amp;Functions</source>
         <translation>Funciones matemáticas</translation>
@@ -3125,10 +3119,6 @@ comunes.</translation>
         <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math Font St&amp;yles</source>
         <translation>Estilos de tipos de letra matemáticas</translation>
-    </message>
-    <message>
-        <source>Math Stacking symbols</source>
-        <translation type="vanished">Símbolos matemáticos de apilamiento</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
@@ -3158,17 +3148,17 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="25"/>
         <source>Math &amp;Equations</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ecuaciones matemáticas</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Definitions</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Definiciones matemáticas</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="29"/>
         <source>Math &amp;Stacking Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Símbolos apilable&amp;s matemáticos</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="33"/>
@@ -3628,42 +3618,42 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>env Corollary (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>env Definition (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>env Example (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>env Lemma (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>env Proof (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>env Proposition (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>env Remark (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>env Theorem (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="136"/>
@@ -3718,12 +3708,12 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>\sideset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>\prescript (mathtools)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
@@ -4418,7 +4408,7 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferencia sobre la posición de una figura:
@@ -4536,7 +4526,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="1993"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre: %1&lt;/b&gt;
 </translation>
@@ -4684,17 +4674,14 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2540"/>
         <location filename="../src/latexeditorview.cpp" line="2612"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre del archivo: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2553"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n referencia a esta etiqueta</numerusform>
-            <numerusform>%n referencias a esta etiqueta</numerusform>
-        </translation>
+        <translation><numerusform>%n referencia a esta etiqueta</numerusform><numerusform>%n referencias a esta etiqueta</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2558"/>
@@ -6393,7 +6380,7 @@ falló.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1103"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>El fichero original fue eliminado durante la operación de guardado. 
 Encontrará una copia en %1</translation>
@@ -10938,7 +10925,7 @@ No se pudo guardar el archivo de imagen.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5678"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>No se puede detectar el nombre del archivo.
 Usted tiene que guardar un documento antes de poder compilarlo.</translation>
@@ -12265,13 +12252,9 @@ Usted puede utilizar el valor especial ?txs-start para iniciar la secuencia de �
         <translation>Agregar</translation>
     </message>
     <message>
-        <source>Ordered list of commands :</source>
-        <translation type="vanished">Lista ordenada de órdenes :</translation>
-    </message>
-    <message>
         <location filename="../src/userquickdialog.ui" line="70"/>
         <source>Ordered list of commands:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="80"/>
