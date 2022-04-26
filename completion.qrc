@@ -271,6 +271,7 @@
 <file>completion/bibentry.cwl</file>
 <file>completion/biblatex2bibitem.cwl</file>
 <file>completion/biblatex-chicago.cwl</file>
+<file>completion/biblatex-cv.cwl</file>
 <file>completion/biblatex.cwl</file>
 <file>completion/biblatex-ext-oa.cwl</file>
 <file>completion/biblatex-ext-oa-doapi.cwl</file>
@@ -504,6 +505,7 @@
 <file>completion/class-gridslides.cwl</file>
 <file>completion/class-guitartabs.cwl</file>
 <file>completion/class-gztarticle.cwl</file>
+<file>completion/class-harnon-cv.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
@@ -1216,6 +1218,7 @@
 <file>completion/hrefhide.cwl</file>
 <file>completion/hulipsum.cwl</file>
 <file>completion/hvarabic.cwl</file>
+<file>completion/hvextern.cwl</file>
 <file>completion/hvfloat.cwl</file>
 <file>completion/hvfloat-fps.cwl</file>
 <file>completion/hvindex.cwl</file>
@@ -1504,6 +1507,7 @@
 <file>completion/mandi.cwl</file>
 <file>completion/mandiexp.cwl</file>
 <file>completion/manfnt.cwl</file>
+<file>completion/manuscript.cwl</file>
 <file>completion/manyfoot.cwl</file>
 <file>completion/manyind.cwl</file>
 <file>completion/marcellus.cwl</file>
@@ -1722,6 +1726,7 @@
 <file>completion/noto-serif.cwl</file>
 <file>completion/Nouveaud.cwl</file>
 <file>completion/nowidow.cwl</file>
+<file>completion/nowtoaux.cwl</file>
 <file>completion/nth.cwl</file>
 <file>completion/ntheorem.cwl</file>
 <file>completion/nucleardata.cwl</file>
@@ -2197,7 +2202,9 @@
 <file>completion/semantic.cwl</file>
 <file>completion/semantic-markup.cwl</file>
 <file>completion/semesterplanner.cwl</file>
+<file>completion/semioneside.cwl</file>
 <file>completion/semtrans.cwl</file>
+<file>completion/sepfootnotes.cwl</file>
 <file>completion/sepnum.cwl</file>
 <file>completion/seqsplit.cwl</file>
 <file>completion/sesstime.cwl</file>
@@ -2558,6 +2565,7 @@
 <file>completion/trsym.cwl</file>
 <file>completion/truncate.cwl</file>
 <file>completion/truthtable.cwl</file>
+<file>completion/tucv.cwl</file>
 <file>completion/tudacolors.cwl</file>
 <file>completion/tudafonts.cwl</file>
 <file>completion/tudarules.cwl</file>
@@ -2567,6 +2575,7 @@
 <file>completion/tweaklist.cwl</file>
 <file>completion/twemojis.cwl</file>
 <file>completion/twoopt.cwl</file>
+<file>completion/twoup.cwl</file>
 <file>completion/tx-ds.cwl</file>
 <file>completion/txfonts.cwl</file>
 <file>completion/txgreeks.cwl</file>
@@ -2659,6 +2668,7 @@
 <file>completion/virginialake.cwl</file>
 <file>completion/vmargin.cwl</file>
 <file>completion/vntex.cwl</file>
+<file>completion/volumes.cwl</file>
 <file>completion/vowel.cwl</file>
 <file>completion/vplref.cwl</file>
 <file>completion/vrsion.cwl</file>
