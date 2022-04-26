@@ -1,11 +1,12 @@
 # llncsconf package
-# Matthew Bertucci 3/27/2022 for v1.1.0
+# Matthew Bertucci 4/25/2022 for v1.2.0
 
 #include:hyperref
 #include:ifthen
 
 #keyvals:\usepackage/llncsconf#c
 crop
+nocrop
 rcsinfo
 svninfo
 accepted
@@ -27,3 +28,4 @@ proceedings
 \conference{conference name%text}
 \llncs{text}{page number}
 \llncsdoi{DOI}
+\copyrightnote
