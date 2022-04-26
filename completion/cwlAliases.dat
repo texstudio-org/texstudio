@@ -710,3 +710,7 @@ easybook:
 class-easybook
 latex-document
 tex
+harnon-cv:
+class-harnon-cv
+latex-document
+tex
