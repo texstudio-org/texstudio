@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 2/16/2022 for v3.0.49
+# Matthew Bertucci 4/27/2022 for v3.1.0
 
 #include:translations
 #include:amstext
@@ -27,13 +27,14 @@
 \bel
 \bit
 \byte
+\C#*
 \candela
 \centi
 \cm#*
 \complexnum{%<number%>}
 \complexnum[%<options%>]{%<number%>}
-\complexqty{%<number%>}{%<unit%>}
-\complexqty[%<options%>]{%<number%>}{%<unit%>}
+\complexqty{number}{unit%formula}
+\complexqty[options%keyvals]{number}{unit%formula}
 \coulomb
 \cubed
 \cubic
@@ -60,6 +61,7 @@
 \femto
 \fF#*
 \fg#*
+\fH#*
 \fmol#*
 \fs#*
 \g#*
@@ -109,6 +111,7 @@
 \lux
 \m#*
 \mA#*
+\mC#*
 \mebi
 \mega
 \meter
@@ -142,6 +145,7 @@
 \N#*
 \nA#*
 \nano
+\nC#*
 \neper
 \newton
 \nF#*
@@ -158,6 +162,7 @@
 \numrange[%<options%>]{%<number1%>}{%<number2%>}
 \numrange{%<number1%>}{%<number2%>}
 \nV#*
+\nW#*
 \of{text%plain}
 \ohm
 \Pa#*
@@ -169,19 +174,20 @@
 \peta
 \pF#*
 \pg#*
+\pH#*
 \pico
 \pm#*
 \pmol#*
 \ps#*
 \pV#*
-\qty[%<options%>]{%<number%>}{%<unit%>}
-\qty{%<number%>}{%<unit%>}
-\qtylist[%<options%>]{%<numbers%>}{%<unit%>}
-\qtylist{%<numbers%>}{%<unit%>}
-\qtyproduct[%<options%>]{%<numbers%>}{%<unit%>}
-\qtyproduct{%<numbers%>}{%<unit%>}
-\qtyrange[%<options%>]{%<number1%>}{%<number2%>}{%<unit%>}
-\qtyrange{%<number1%>}{%<number2%>}{%<unit%>}
+\qty[options%keyvals]{number}{unit%formula}
+\qty{number}{unit%formula}
+\qtylist[options%keyvals]{numbers}{unit%formula}
+\qtylist{numbers}{unit%formula}
+\qtyproduct[options%keyvals]{numbers}{unit%formula}
+\qtyproduct{numbers}{unit%formula}
+\qtyrange[options%keyvals]{number1}{number2}{unit%formula}
+\qtyrange{number1}{number2}{unit%formula}
 \radian
 \raiseto{%<power%>}
 \s#*
@@ -202,6 +208,7 @@
 \tonne
 \tothe{%<power%>}
 \uA#*
+\uC#*
 \uF#*
 \ug#*
 \uH#*
@@ -210,8 +217,8 @@
 \ul#*
 \um#*
 \umol#*
-\unit[%<options%>]{%<unit%>}
-\unit{%<unit%>}
+\unit[options%keyvals]{unit%formula}
+\unit{unit%formula}
 \us#*
 \uV#*
 \uW#*
@@ -277,6 +284,8 @@ reset-text-family#true,false
 reset-text-series#true,false
 reset-text-shape#true,false
 text-family-to-math#true,false
+text-subscript-command=%<command%>
+text-superscript-command=%<command%>
 text-font-command=%<commands%>
 text-series-to-math#true,false
 unit-color=#%color
@@ -299,8 +308,15 @@ input-uncertainty-signs=%<symbols%>
 parse-numbers#true,false
 retain-explicit-decimal-marker#true,false
 retain-explicit-plus#true,false
+retain-negative-zero#true,false
 retain-zero-uncertainty#true,false
 #endkeyvals
+
+# following math commands allowed in arg of \num etc.; listed here so not marked invalid
+\ll
+\gg
+\le
+\ge
 
 ## 4.4 Post-processing numbers
 #keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
@@ -316,12 +332,16 @@ round-minimum=%<number%>
 round-mode=#none,figures,places,uncertainty
 round-pad#true,false
 round-precision=%<integer%>
+round-zero-positive#true,false
 #endkeyvals
 
 ## 4.5 Printing numbers
 #keyvals:\sisetup,\ang,\complexnum,\complexqty,\DeclareSIUnit,\num,\numlist,\numproduct,\numrange,\qty,\qtylist,\qtyproduct,\qtyrange,\tablenum,\SI,\si,\SIlist,\SIrange
 bracket-ambiguous-numbers#true,false
 bracket-negative-numbers#true,false
+digit-group-size=%<integer%>
+digit-group-first-size=%<integer%>
+digit-group-other-size=%<integer%>
 exponent-base=%<value%>
 exponent-product=%<symbol%>
 group-digits=#none,decimal,integer
@@ -338,8 +358,13 @@ print-zero-exponent#true,false
 print-zero-integer#true,false
 separate-uncertainty#true,false
 tight-spacing#true,false
+uncertainty-descriptor-mode=#bracket,bracket-separator,separator,subscript
+uncertainty-descriptor-separator=%<separator%>
+uncertainty-descriptors={%<desc1,desc2,...%>}
 uncertainty-mode=#separate,compact,compact-marker,full
 uncertainty-separator=%<separator%>
+zero-decimal-as-symbol#true,false
+zero-symbol=%<symbol%>
 #endkeyvals
 
 ## 4.6 Lists, products and ranges
@@ -367,8 +392,12 @@ range-units=#bracket,repeat,single
 
 ## 4.7 Complex numbers
 #keyvals:\sisetup,\complexnum,\complexqty
+complex-angle-unit=#degrees,radians
+complex-mode=#cartesian,polar,input
 complex-root-position=#after-number,before-number
-input-complex-roots=%<tokens%>
+complex-symbol-angle=%<symbol%>
+complex-symbol-degree=%<symbol%>
+input-complex-root=%<tokens%>
 output-complex-root=%<symbol%>
 #endkeyvals
 
@@ -402,9 +431,13 @@ forbid-literal-units#true,false
 fraction-command=%<command%>
 inter-unit-product=%<separator%>
 parse-units#true,false
-per-mode=#fraction,power,power-positive-first,repeated-symbol,symbol,symbol-or-fraction
+per-mode=#fraction,power,power-positive-first,repeated-symbol,symbol,single-symbol
+display-per-mode=#fraction,power,power-positive-first,repeated-symbol,symbol,single-symbol
+inline-per-mode=#fraction,power,power-positive-first,repeated-symbol,symbol,single-symbol
+per-symbol-script-correction=%<separator%>
 per-symbol=%<symbol%>
-qualifier-mode=#subscript,space,text,bracket,phrase
+power-half-as-sqrt#true,false
+qualifier-mode=#subscript,bracket,combine,phrase
 qualifier-phrase=%<text%>
 sticky-per#true,false
 unit-font-command=%<command%>
@@ -416,7 +449,7 @@ allow-quantity-breaks#true,false
 extract-mass-in-kilograms#true,false
 prefix-mode=#input,combine-exponent,extract-exponent
 quantity-product=%<symbol%>
-separate-uncertainty-units=#brackets,repeat,single
+separate-uncertainty-units=#bracket,repeat,single
 #endkeyvals
 
 ## 4.12 Tabular material
