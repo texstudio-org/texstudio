@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 4/27/2022 for v3.1.0
+# Matthew Bertucci 2022-04-27 for v3.1.0
 
 #include:translations
 #include:amstext
