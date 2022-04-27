@@ -65,6 +65,7 @@ openbib
 
 \pdfstringnewline#*
 
+\eTeX
 \IniTeX
 \Lua
 \LuaTeX
@@ -167,7 +168,7 @@ replace#true,false
 
 \DocInputAgain#*
 \DocInclude{file}#i
-
+\currentfile#*
 \filesep#*
 \docincludeaux#*
 \filekey#*
