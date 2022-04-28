@@ -1,5 +1,5 @@
 # authorarchive package
-# Matthew Bertucci 1/29/2022 for v2.7
+# Matthew Bertucci 4/27/2022 for v1.2.1
 
 #include:ifthen
 #include:enumitem
@@ -11,7 +11,7 @@
 #include:hyperref
 #include:calc
 #include:qrcode
-#include:dtk-logos
+#include:hvlogos
 #include:lastpage
 
 \authorsetup{option%keyvals}
