@@ -1,9 +1,8 @@
 # circuitikz package
-# updated 4/24/2022 for v1.5.0
+# updated 4/27/2022 for v1.5.1
 
 #include:tikz
 # loads calc, arrows.meta, bending, and fpu tikzlibraries
-#include:regexpatch
 
 #keyvals:\usepackage/circuitikz#c
 european
