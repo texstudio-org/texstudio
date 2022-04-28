@@ -714,3 +714,11 @@ harnon-cv:
 class-harnon-cv
 latex-document
 tex
+yaletter:
+class-yaletter
+latex-document
+tex
+pressrelease:
+class-pressrelease
+latex-document
+tex
