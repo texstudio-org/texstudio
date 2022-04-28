@@ -1,5 +1,5 @@
 # projlib-theorem package
-# Matthew Bertucci 2022/04/23 for 2022/04/18 release
+# Matthew Bertucci 2022/04/28 for 2022/04/24 release
 
 #include:l3keys2e
 #include:projlib-language
@@ -41,6 +41,12 @@ no preset names#true,false
 \begin{axiom*}
 \begin{axiom*}[heading%text]
 \end{axiom*}
+\begin{claim}
+\begin{claim}[heading%text]
+\end{claim}
+\begin{claim*}
+\begin{claim*}[heading%text]
+\end{claim*}
 \begin{conclusion}
 \begin{conclusion}[heading%text]
 \end{conclusion}
@@ -53,6 +59,12 @@ no preset names#true,false
 \begin{conjecture*}
 \begin{conjecture*}[heading%text]
 \end{conjecture*}
+\begin{construction}
+\begin{construction}[heading%text]
+\end{construction}
+\begin{construction*}
+\begin{construction*}[heading%text]
+\end{construction*}
 \begin{convention}
 \begin{convention}[heading%text]
 \end{convention}
@@ -143,6 +155,12 @@ no preset names#true,false
 \begin{question*}
 \begin{question*}[heading%text]
 \end{question*}
+\begin{recall}
+\begin{recall}[heading%text]
+\end{recall}
+\begin{recall*}
+\begin{recall*}[heading%text]
+\end{recall*}
 \begin{remark}
 \begin{remark}[heading%text]
 \end{remark}
