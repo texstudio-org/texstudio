@@ -33,6 +33,7 @@ fleqn
 \location{address}
 \telephone{number}
 \subject{text}
+\makelabels
 
 \ccname#*
 \enclname#*
