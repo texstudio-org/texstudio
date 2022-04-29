@@ -261,6 +261,7 @@
 <file>completion/berasans.cwl</file>
 <file>completion/beraserif.cwl</file>
 <file>completion/berenis.cwl</file>
+<file>completion/betababel.cwl</file>
 <file>completion/beton.cwl</file>
 <file>completion/beuron.cwl</file>
 <file>completion/bez123.cwl</file>
@@ -296,6 +297,7 @@
 <file>completion/bidihl.cwl</file>
 <file>completion/bidishadowtext.cwl</file>
 <file>completion/bigdelim.cwl</file>
+<file>completion/bigfoot.cwl</file>
 <file>completion/bigintcalc.cwl</file>
 <file>completion/bigints.cwl</file>
 <file>completion/bigstrut.cwl</file>
@@ -434,6 +436,7 @@
 <file>completion/cinzel.cwl</file>
 <file>completion/circle.cwl</file>
 <file>completion/circledsteps.cwl</file>
+<file>completion/circledtext.cwl</file>
 <file>completion/circuitikz.cwl</file>
 <file>completion/citation-style-language.cwl</file>
 <file>completion/citeall.cwl</file>
@@ -562,6 +565,7 @@
 <file>completion/class-pdfArticle.cwl</file>
 <file>completion/class-petiteannonce.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
+<file>completion/class-pressrelease.cwl</file>
 <file>completion/class-proc.cwl</file>
 <file>completion/class-protocol.cwl</file>
 <file>completion/class-prtec.cwl</file>
@@ -615,6 +619,7 @@
 <file>completion/class-webquiz.cwl</file>
 <file>completion/class-willowtreebook.cwl</file>
 <file>completion/class-xebaposter.cwl</file>
+<file>completion/class-yaletter.cwl</file>
 <file>completion/cleanthesis.cwl</file>
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
@@ -1165,6 +1170,7 @@
 <file>completion/greek6cbc.cwl</file>
 <file>completion/greekctr.cwl</file>
 <file>completion/greekdates.cwl</file>
+<file>completion/greektonoi.cwl</file>
 <file>completion/grfext.cwl</file>
 <file>completion/grfpaste.cwl</file>
 <file>completion/grid.cwl</file>
@@ -1916,6 +1922,7 @@
 <file>completion/postnotes.cwl</file>
 <file>completion/prelim2e.cwl</file>
 <file>completion/prerex.cwl</file>
+<file>completion/pressrelease-symbols.cwl</file>
 <file>completion/preview.cwl</file>
 <file>completion/prftree.cwl</file>
 <file>completion/principia.cwl</file>
@@ -2090,6 +2097,7 @@
 <file>completion/realhats.cwl</file>
 <file>completion/realscripts.cwl</file>
 <file>completion/realtranspose.cwl</file>
+<file>completion/rec-thy.cwl</file>
 <file>completion/rectopma.cwl</file>
 <file>completion/recycle.cwl</file>
 <file>completion/refcount.cwl</file>
@@ -2322,6 +2330,7 @@
 <file>completion/subfigure.cwl</file>
 <file>completion/subfiles.cwl</file>
 <file>completion/subfloat.cwl</file>
+<file>completion/substances.cwl</file>
 <file>completion/substitutefont.cwl</file>
 <file>completion/substr.cwl</file>
 <file>completion/subsupscripts.cwl</file>
