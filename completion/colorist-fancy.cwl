@@ -1,5 +1,5 @@
 # colorist-fancy package
-# Matthew Bertucci 2022/04/07 for release 2022/04/03
+# Matthew Bertucci 2022/04/28 for release 2022/04/24
 
 #include:l3keys2e
 #include:anyfontsize
@@ -38,7 +38,6 @@
 \end{emphasis}
 \begin{proof}[heading%text]
 \end{proof}
-\mparadjust{length}
 
 \AfterEnvEnd{code}#*
 \ScanEnv{arg1}{arg2}{arg3}#*

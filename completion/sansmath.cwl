@@ -1,12 +1,20 @@
 # sansmath package
 # Matthew Bertucci 11/11/2021 for v1.1
 
-\sansmath#m
-\unsansmath#m
+#keyvals:\usepackage/sansmath#c
+T1
+EULERGREEK
+eulergreek
+#endkeyvals
+
+\sansmath
+\unsansmath
+\begin{sansmath}
+\end{sansmath}
 \mathsfsl{text%plain}#m
-\sfsl#*m
+\sfsl#S
 \mathsfbf{text%plain}#m
-\sfbf#*m
+\sfbf#S
 
 #ifOption:eulergreek
 \matheug{arg}

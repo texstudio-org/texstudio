@@ -2,7 +2,7 @@
 # Matthew Bertucci 11/11/2021 for v3.5
 
 \tablinesep
-\tablelineskip#*
+\tablineskip#*
 \arraylinesep
 \arraylineskip#*
 \extrarulesep

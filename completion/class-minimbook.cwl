@@ -1,5 +1,5 @@
 # minimbook class
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/04/28 for 2022/04/24 release
 
 #include:class-book
 #include:l3keys2e
@@ -12,6 +12,7 @@
 #include:newpxtext
 #include:amssymb
 #include:nowidow
+#include:regexpatch
 #include:embrac
 #include:graphicx
 #include:wrapfig
