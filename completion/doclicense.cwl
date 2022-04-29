@@ -1,5 +1,5 @@
 # doclicense package
-# Matthew Bertucci 2/7/2022 for v3.0.0
+# Matthew Bertucci 2022/04/29 for v3.1.0
 
 #include:kvoptions
 #include:xifthen
@@ -44,6 +44,7 @@ hyperxmp#true,false
 \doclicenseLongNameRef
 \doclicenseText
 \doclicenseLongText
+\doclicenseLongTextForHyperref
 \doclicensePlainFullText
 \doclicensePlainFullTextFileName
 \doclicenseFullText
