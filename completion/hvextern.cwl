@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 4/25/2022 for v0.19
+# Matthew Bertucci 4/28/2022 for v0.20
 
 #include:shellesc
 #include:xkeyval
@@ -17,11 +17,8 @@
 \begin{externalDocument}{filename}
 \begin{externalDocument}[options%keyvals]{filename}
 \end{externalDocument}
-\begin{ErstelleGrafik}{filename}#*
-\begin{ErstelleGrafik}[options%keyvals]{filename}#*
-\end{ErstelleGrafik}#*
 
-#keyvals:\begin{externalDocument},\begin{ErstelleGrafik}
+#keyvals:\begin{externalDocument}
 progpath=%<path%>
 runsequence=
 runs=%<integer%>
@@ -279,7 +276,6 @@ keywordcommentsemicolon={%<keywords%>}{%<keywords%>}{%<keywords%>}
 podcomment#true,false
 #endkeyvals
 
-\LineWidth#*
 \ResetKeys
 \perCent#*
 \DoubleperCent#*
@@ -287,4 +283,3 @@ podcomment#true,false
 \DoubleNumChar#*
 \hvExternDateiname#*
 \hvexternFileversion#S
-\hvFileversion#S
