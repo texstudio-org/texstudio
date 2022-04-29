@@ -264,7 +264,6 @@
 \makeglossary
 \makeindex
 \makelabel#*
-\makelabels{number}
 \MakeLowercase{text}#*
 \maketitle
 \MakeUppercase{text}#*
