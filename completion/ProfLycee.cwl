@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 4/25/2022 for v1.0.9
+# Matthew Bertucci 2022/04/29 for v1.1.1
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -147,6 +147,21 @@ epaisseur=%<épaisseur%>
 aff#true,false
 plein#true,false
 cube#true,false
+#endkeyvals
+
+\tetraPL
+\tetraPL[paramètres%keyvals]
+
+#keyvals:\tetraPL
+largeur=%<num%>
+profondeur=%<num%>
+hauteur=%<num%>
+alpha=%<degrees%>
+beta=%<degrees%>
+sommets=%<A1§...§A8%>
+epaisseur=%<épaisseur%>
+aff#true,false
+plein#true,false
 #endkeyvals
 
 # from table option of xcolor
@@ -420,6 +435,17 @@ Teal#B
 \PaveF#S
 \PaveG#S
 \PaveH#S
+\PFTetraSommets#S
+\TetraA#S
+\TetraB#S
+\TetraC#S
+\TetraD#S
+\PFTetraAlpha#S
+\PFTetraBeta#S
+\PFTetraPf#S
+\PFTetraLg#S
+\PFTetraThick#S
+\PFTetraHt#S
 
 PLmpurple#B
 PLmgray#B
