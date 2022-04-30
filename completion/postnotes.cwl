@@ -1,5 +1,5 @@
 # postnotes package
-# Matthew Bertucci 4/23/2022 for v0.1.1
+# Matthew Bertucci 2022/04/29 for v0.1.2
 
 \postnote{text}
 \postnote[options%keyvals]{text}
@@ -14,8 +14,10 @@ zlabel=##l
 
 \postnotesection{text}
 \postnotesection[options%keyvals]{text}
+\postnotesectionx{text}
+\postnotesectionx[options%keyvals]{text}
 
-#keyvals:\postnotesection
+#keyvals:\postnotesection,\postnotesectionx
 name=%<name%>
 #endkeyvals
 

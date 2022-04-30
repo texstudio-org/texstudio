@@ -722,3 +722,11 @@ pressrelease:
 class-pressrelease
 latex-document
 tex
+image-gallery:
+class-image-gallery
+latex-document
+tex
+newlfm:
+class-newlfm
+latex-document
+tex
