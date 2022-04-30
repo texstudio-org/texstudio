@@ -22,6 +22,7 @@
 <file>completion/actuarialsymbol.cwl</file>
 <file>completion/addfont.cwl</file>
 <file>completion/addlines.cwl</file>
+<file>completion/addrset.cwl</file>
 <file>completion/adfarrows.cwl</file>
 <file>completion/adfbullets.cwl</file>
 <file>completion/adforn.cwl</file>
@@ -356,10 +357,16 @@
 <file>completion/bussproofs.cwl</file>
 <file>completion/bussproofs-extra.cwl</file>
 <file>completion/bxcalcux.cwl</file>
+<file>completion/bxdvidriver.cwl</file>
+<file>completion/bxenclose.cwl</file>
 <file>completion/bxghost.cwl</file>
+<file>completion/bxjaholiday.cwl</file>
+<file>completion/bxjalipsum.cwl</file>
 <file>completion/bxnewfont.cwl</file>
 <file>completion/bxorigcapt.cwl</file>
+<file>completion/bxpdfver.cwl</file>
 <file>completion/bxtexlogo.cwl</file>
+<file>completion/bxwareki.cwl</file>
 <file>completion/byo-twemojis.cwl</file>
 <file>completion/bytefield.cwl</file>
 <file>completion/cabin.cwl</file>
@@ -518,6 +525,7 @@
 <file>completion/class-IEEEtran.cwl</file>
 <file>completion/class-ijdc-v14.cwl</file>
 <file>completion/class-ijdc-v9.cwl</file>
+<file>completion/class-image-gallery.cwl</file>
 <file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-jacow.cwl</file>
@@ -557,6 +565,7 @@
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-mucproc.cwl</file>
 <file>completion/class-ncc.cwl</file>
+<file>completion/class-newlfm.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
 <file>completion/class-novel.cwl</file>
 <file>completion/class-nwejmart.cwl</file>
@@ -888,6 +897,7 @@
 <file>completion/emp.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/endfloat.cwl</file>
+<file>completion/endiagram.cwl</file>
 <file>completion/endnotes.cwl</file>
 <file>completion/endnotes-hy.cwl</file>
 <file>completion/endofproofwd.cwl</file>
@@ -900,6 +910,7 @@
 <file>completion/enumerate.cwl</file>
 <file>completion/enumitem.cwl</file>
 <file>completion/environ.cwl</file>
+<file>completion/envlab.cwl</file>
 <file>completion/envmath.cwl</file>
 <file>completion/eolgrab.cwl</file>
 <file>completion/epic.cwl</file>
@@ -1096,6 +1107,7 @@
 <file>completion/gates.cwl</file>
 <file>completion/gatherenum.cwl</file>
 <file>completion/gb4e.cwl</file>
+<file>completion/gckanbun.cwl</file>
 <file>completion/genealogytree.cwl</file>
 <file>completion/gensymb.cwl</file>
 <file>completion/gentium.cwl</file>
@@ -1317,6 +1329,7 @@
 <file>completion/jurabib.cwl</file>
 <file>completion/jvlisting.cwl</file>
 <file>completion/kalendarium.cwl</file>
+<file>completion/kanbun.cwl</file>
 <file>completion/kantlipsum.cwl</file>
 <file>completion/karnaugh-map.cwl</file>
 <file>completion/karnaughmap.cwl</file>
@@ -1748,6 +1761,9 @@
 <file>completion/numspell.cwl</file>
 <file>completion/nunito.cwl</file>
 <file>completion/oands.cwl</file>
+<file>completion/ocg-p.cwl</file>
+<file>completion/ocgx2.cwl</file>
+<file>completion/ocgx.cwl</file>
 <file>completion/ocr.cwl</file>
 <file>completion/octave.cwl</file>
 <file>completion/odsfile.cwl</file>
@@ -1907,6 +1923,7 @@
 <file>completion/plimsoll.cwl</file>
 <file>completion/plprefix.cwl</file>
 <file>completion/pmboxdraw.cwl</file>
+<file>completion/pmhanguljamo.cwl</file>
 <file>completion/pm-isomath.cwl</file>
 <file>completion/poemscol.cwl</file>
 <file>completion/poetrytex.cwl</file>
@@ -1932,6 +1949,7 @@
 <file>completion/prodint.cwl</file>
 <file>completion/productbox.cwl</file>
 <file>completion/ProfCollege.cwl</file>
+<file>completion/ProfLabo.cwl</file>
 <file>completion/ProfLycee.cwl</file>
 <file>completion/program.cwl</file>
 <file>completion/progressbar.cwl</file>
@@ -2217,6 +2235,7 @@
 <file>completion/seqsplit.cwl</file>
 <file>completion/sesstime.cwl</file>
 <file>completion/setdeck.cwl</file>
+<file>completion/setdim.cwl</file>
 <file>completion/setouterhbox.cwl</file>
 <file>completion/sets.cwl</file>
 <file>completion/setspace.cwl</file>
