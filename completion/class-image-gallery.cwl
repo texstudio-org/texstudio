@@ -51,12 +51,3 @@ rows=%<integer%>
 columns=%<integer%>
 autorotate#true,false
 #endkeyvals
-
-
-
-
-
-
-
-
-
