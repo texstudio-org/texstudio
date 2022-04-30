@@ -11641,7 +11641,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location filename="../src/textanalysis.ui" line="133"/>
         <source>Characters in phrases</source>
-        <translation>Lettres par phrase</translation>
+        <translation>Caractères dans les phrases</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="166"/>
