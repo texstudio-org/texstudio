@@ -1866,12 +1866,18 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
     ProcessX *p1 = nullptr;
 	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
 		// start conversion
-		// tex -> dvi
+		// tex -> pdf
 		p1 = firstProcessOfDirectExpansion(CMD_PDFLATEX, QFileInfo(ffn)); //no delete! goes automatically
 	} else {
-		// start conversion
-		// tex -> dvi
-		p1 = firstProcessOfDirectExpansion(CMD_LATEX, QFileInfo(ffn)); //no delete! goes automatically
+		if (dvi2pngMode == DPM_LUA_EMBEDDED_PDF) {
+			// start conversion
+			// tex -> pdf
+			p1 = firstProcessOfDirectExpansion(CMD_LUALATEX, QFileInfo(ffn)); //no delete! goes automatically
+		} else {
+			// start conversion
+			// tex -> dvi
+			p1 = firstProcessOfDirectExpansion(CMD_LATEX, QFileInfo(ffn)); //no delete! goes automatically
+		}
 	}
 	if (!p1) return; // command failed, not set ?
 	addLaTeXInputPaths(p1, addPaths);
