@@ -272,6 +272,7 @@
 <file>completion/bguq.cwl</file>
 <file>completion/bibentry.cwl</file>
 <file>completion/biblatex2bibitem.cwl</file>
+<file>completion/biblatex-archaeology.cwl</file>
 <file>completion/biblatex-chicago.cwl</file>
 <file>completion/biblatex-cv.cwl</file>
 <file>completion/biblatex.cwl</file>
@@ -364,6 +365,7 @@
 <file>completion/bxjalipsum.cwl</file>
 <file>completion/bxnewfont.cwl</file>
 <file>completion/bxorigcapt.cwl</file>
+<file>completion/bxpapersize.cwl</file>
 <file>completion/bxpdfver.cwl</file>
 <file>completion/bxtexlogo.cwl</file>
 <file>completion/bxwareki.cwl</file>
@@ -495,6 +497,7 @@
 <file>completion/class-easybook.cwl</file>
 <file>completion/class-einfart.cwl</file>
 <file>completion/class-ejpecp.cwl</file>
+<file>completion/class-elegantbook.cwl</file>
 <file>completion/class-elpres.cwl</file>
 <file>completion/class-elsarticle.cwl</file>
 <file>completion/class-europecv.cwl</file>
@@ -837,6 +840,7 @@
 <file>completion/droidsans.cwl</file>
 <file>completion/droidsansmono.cwl</file>
 <file>completion/droidserif.cwl</file>
+<file>completion/drs.cwl</file>
 <file>completion/dsfont.cwl</file>
 <file>completion/dsptricks.cwl</file>
 <file>completion/dsserif.cwl</file>
@@ -848,6 +852,7 @@
 <file>completion/duckuments.cwl</file>
 <file>completion/duerer.cwl</file>
 <file>completion/dutchcal.cwl</file>
+<file>completion/dvgloss.cwl</file>
 <file>completion/dvipscol.cwl</file>
 <file>completion/dynamicnumber.cwl</file>
 <file>completion/dynblocks.cwl</file>
@@ -918,6 +923,7 @@
 <file>completion/epigraph.cwl</file>
 <file>completion/epigraph-keys.cwl</file>
 <file>completion/epiolmec.cwl</file>
+<file>completion/epltxfn.cwl</file>
 <file>completion/epsdice.cwl</file>
 <file>completion/epspdfconversion.cwl</file>
 <file>completion/epstopdf.cwl</file>
@@ -963,6 +969,8 @@
 <file>completion/exercises.cwl</file>
 <file>completion/exesheet.cwl</file>
 <file>completion/exframe.cwl</file>
+<file>completion/expex-acro.cwl</file>
+<file>completion/expex.cwl</file>
 <file>completion/expkv-cs.cwl</file>
 <file>completion/expkv.cwl</file>
 <file>completion/expkv-def.cwl</file>
@@ -1727,6 +1735,7 @@
 <file>completion/ninecolors.cwl</file>
 <file>completion/nl-interval.cwl</file>
 <file>completion/nmbib.cwl</file>
+<file>completion/nnext.cwl</file>
 <file>completion/nodetree.cwl</file>
 <file>completion/nodetree-embed.cwl</file>
 <file>completion/noindentafter.cwl</file>
@@ -2454,6 +2463,7 @@
 <file>completion/theorem.cwl</file>
 <file>completion/theoremref.cwl</file>
 <file>completion/thepdfnumber.cwl</file>
+<file>completion/thermodynamics.cwl</file>
 <file>completion/thinsp.cwl</file>
 <file>completion/thm-autoref.cwl</file>
 <file>completion/thmbox.cwl</file>
