@@ -48,7 +48,7 @@
 #include:listings
 #include:bm
 
-#keyvals:\usepackage/elegantbook#c
+#keyvals:\documentclass/elegantbook#c
 lang=#en,cn,it,fr,nl,hu,de,es,mn,jp,pt
 device=#normal,pad
 color=#green,cyan,blue,gray,black
