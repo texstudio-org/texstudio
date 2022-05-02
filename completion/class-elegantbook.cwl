@@ -92,6 +92,7 @@ openbib
 
 #ifOption:lang=cn
 #include:ctex
+#include:xeCJK
 \songti
 \heiti
 \kaishu
@@ -99,6 +100,7 @@ openbib
 #endif
 #ifOption:cn
 #include:ctex
+#include:xeCJK
 \songti
 \heiti
 \kaishu
