@@ -1,5 +1,5 @@
 # functional package
-# Matthew Bertucci 4/17/2022 for v2022D
+# Matthew Bertucci 2022/04/30 for v2022E
 
 # Note on cwl: the package author Jianrui Lyu encourages use of spaces between
 # args which along with the need to have proper "\newcommand" completion
@@ -83,16 +83,28 @@ tracing#true,false
 
 # Booleans and Conditionals
 \BoolIfExist %<\boolvar%>
+\BoolIfExistT %<\boolvar%> {%<true code%>}
+\BoolIfExistF %<\boolvar%> {%<false code%>}
 \BoolIfExistTF %<\boolvar%> {%<true code%>} {%<false code%>}
 \BoolVarIf %<\boolvar%>
+\BoolVarIfT %<\boolvar%> {%<true code%>}
+\BoolVarIfF %<\boolvar%> {%<false code%>}
 \BoolVarIfTF %<\boolvar%> {%<true code%>} {%<false code%>}
 \BoolVarNot %<\boolvar%>
+\BoolVarNotT %<\boolvar%> {%<true code%>}
+\BoolVarNotF %<\boolvar%> {%<false code%>}
 \BoolVarNotTF %<\boolvar%> {%<true code%>} {%<false code%>}
 \BoolVarAnd %<\boolvar1 \boolvar2%>
+\BoolVarAndT %<\boolvar1 \boolvar2%> {%<true code%>}
+\BoolVarAndF %<\boolvar1 \boolvar2%> {%<false code%>}
 \BoolVarAndTF %<\boolvar1 \boolvar2%> {%<true code%>} {%<false code%>}
 \BoolVarOr %<\boolvar1 \boolvar2%>
+\BoolVarOrT %<\boolvar1 \boolvar2%> {%<true code%>}
+\BoolVarOrF %<\boolvar1 \boolvar2%> {%<false code%>}
 \BoolVarOrTF %<\boolvar1 \boolvar2%> {%<true code%>} {%<false code%>}
 \BoolVarXor %<\boolvar1 \boolvar2%>
+\BoolVarXorT %<\boolvar1 \boolvar2%> {%<true code%>}
+\BoolVarXorF %<\boolvar1 \boolvar2%> {%<false code%>}
 \BoolVarXorTF %<\boolvar1 \boolvar2%> {%<true code%>} {%<false code%>}
 
 # Booleans and Logical Loops #
@@ -180,24 +192,44 @@ tracing#true,false
 
 # Token List Conditionals
 \TlIfExist %<\tlvar%>
+\TlIfExistT %<\tlvar%> {%<true code%>}
+\TlIfExistF %<\tlvar%> {%<false code%>}
 \TlIfExistTF %<\tlvar%> {%<true code%>} {%<false code%>}
 \TlIfEmpty {tokens}
+\TlIfEmptyT {tokens} {true code}
+\TlIfEmptyF {tokens} {false code}
 \TlIfEmptyTF {tokens} {true code} {false code}
 \TlVarIfEmpty %<\tlvar%>
+\TlVarIfEmptyT %<\tlvar%> {%<true code%>}
+\TlVarIfEmptyF %<\tlvar%> {%<false code%>}
 \TlVarIfEmptyTF %<\tlvar%> {%<true code%>} {%<false code%>}
 \TlIfBlank {tokens}
+\TlIfBlankT {tokens} {true code}
+\TlIfBlankF {tokens} {false code}
 \TlIfBlankTF {tokens} {true code} {false code}
 \TlIfEq {tokens1} {tokens2}
+\TlIfEqT {tokens1} {tokens2} {true code}
+\TlIfEqF {tokens1} {tokens2} {false code}
 \TlIfEqTF {tokens1} {tokens2} {true code} {false code}
 \TlVarIfEq %<\tlvar1 \tlvar2%>
+\TlVarIfEqT %<\tlvar1 \tlvar2%> {%<true code%>}
+\TlVarIfEqF %<\tlvar1 \tlvar2%> {%<false code%>}
 \TlVarIfEqTF %<\tlvar1 \tlvar2%> {%<true code%>} {%<false code%>}
 \TlIfIn {tokens1} {tokens2}
+\TlIfInT {tokens1} {tokens2} {true code}
+\TlIfInF {tokens1} {tokens2} {false code}
 \TlIfInTF {tokens1} {tokens2} {true code} {false code}
 \TlVarIfIn %<\tlvar%> {%<tokens%>}
+\TlVarIfInT %<\tlvar%> {%<tokens%>} {%<true code%>}
+\TlVarIfInF %<\tlvar%> {%<tokens%>} {%<false code%>}
 \TlVarIfInTF %<\tlvar%> {%<tokens%>} {%<true code%>} {%<false code%>}
 \TlIfSingle {tokens}
+\TlIfSingleT {tokens} {true code}
+\TlIfSingleF {tokens} {false code}
 \TlIfSingleTF {tokens} {true code} {false code}
 \TlVarIfSingle %<\tlvar%>
+\TlVarIfSingleT %<\tlvar%> {%<true code%>}
+\TlVarIfSingleF %<\tlvar%> {%<false code%>}
 \TlVarIfSingleTF %<\tlvar%> {%<true code%>} {%<false code%>}
 
 # Token List Case Functions
@@ -290,20 +322,36 @@ tracing#true,false
 
 # String Conditionals
 \StrIfExist %<\strvar%>
+\StrIfExistT %<\strvar%> {%<true code%>}
+\StrIfExistF %<\strvar%> {%<false code%>}
 \StrIfExistTF %<\strvar%> {%<true code%>} {%<false code%>}
 \StrVarIfEmpty %<\strvar%>
+\StrVarIfEmptyT %<\strvar%> {%<true code%>}
+\StrVarIfEmptyF %<\strvar%> {%<false code%>}
 \StrVarIfEmptyTF %<\strvar%> {%<true code%>} {%<false code%>}
 \StrIfEq {tokens1} {tokens2}
+\StrIfEqT {tokens1} {tokens2} {true code}
+\StrIfEqF {tokens1} {tokens2} {false code}
 \StrIfEqTF {tokens1} {tokens2} {true code} {false code}
 \StrVarIfEq %<\strvar1 \strvar2%>
+\StrVarIfEqT %<\strvar1 \strvar2%> {%<true code%>}
+\StrVarIfEqF %<\strvar1 \strvar2%> {%<false code%>}
 \StrVarIfEqTF %<\strvar1 \strvar2%> {%<true code%>} {%<false code%>}
 \StrIfIn {tokens1} {tokens2}
+\StrIfInT {tokens1} {tokens2} {true code}
+\StrIfInF {tokens1} {tokens2} {false code}
 \StrIfInTF {tokens1} {tokens2} {true code} {false code}
 \StrVarIfIn %<\strvar%> {%<tokens%>}
+\StrVarIfInT %<\strvar%> {%<tokens%>} {%<true code%>}
+\StrVarIfInF %<\strvar%> {%<tokens%>} {%<false code%>}
 \StrVarIfInTF %<\strvar%> {%<tokens%>} {%<true code%>} {%<false code%>}
 \StrCompare {%<tokens1%>} %<<relation>%> {%<tokens2%>}
+\StrCompareT {%<tokens1%>} %<<relation>%> {%<tokens2%>} {%<true code%>}
+\StrCompareF {%<tokens1%>} %<<relation>%> {%<tokens2%>} {%<false code%>}
 \StrCompareTF {%<tokens1%>} %<<relation>%> {%<tokens2%>} {%<true code%>} {%<false code%>}
 \StrIfCompare {%<tokens1%>} %<<relation>%> {%<tokens2%>}#*
+\StrIfCompareT {%<tokens1%>} %<<relation>%> {%<tokens2%>} {%<true code%>}#*
+\StrIfCompareF {%<tokens1%>} %<<relation>%> {%<tokens2%>} {%<false code%>}#*
 \StrIfCompareTF {%<tokens1%>} %<<relation>%> {%<tokens2%>} {%<true code%>} {%<false code%>}#*
 
 # String Case Functions
@@ -373,18 +421,30 @@ tracing#true,false
 \IntSub %<\intvar%> {%<int expr%>}
 
 # Integer Step Functions
+\IntReplicate {int expr} {tokens}
 \IntStepInline {init value} {step} {final value} {code}
+\IntStepOneInline {init value} {final value} {code}
 \IntStepVariable{init value}{step}{final value}{cmd}{code%definition}#Sd
 \IntStepVariable {%<init value%>} {%<step%>} {%<final value%>} %<\tlvar%> {%<code%>}
+\IntStepOneVariable{init value}{final value}{cmd}{code%definition}#Sd
+\IntStepOneVariable {%<init value%>} {%<final value%>} %<\tlvar%> {%<code%>}
 
 # Integer Conditionals
 \IntIfExist %<\intvar%>
+\IntIfExistT %<\intvar%> {%<true code%>}
+\IntIfExistF %<\intvar%> {%<false code%>}
 \IntIfExistTF %<\intvar%> {%<true code%>} {%<false code%>}
 \IntIfOdd {int expr}
+\IntIfOddT {int expr} {true code}
+\IntIfOddF {int expr} {false code}
 \IntIfOddTF {int expr} {true code} {false code}
 \IntIfEven {int expr}
+\IntIfEvenT {int expr} {true code}
+\IntIfEvenF {int expr} {false code}
 \IntIfEvenTF {int expr} {true code} {false code}
 \IntCompare {%<int expr1%>} %<<relation>%> {%<int expr2%>}
+\IntCompareT {%<int expr1%>} %<<relation>%> {%<int expr2%>} {%<true code%>}
+\IntCompareF {%<int expr1%>} %<<relation>%> {%<int expr2%>} {%<false code%>}
 \IntCompareTF {%<int expr1%>} %<<relation>%> {%<int expr2%>} {%<true code%>} {%<false code%>}
 
 # Integer Case Functions
@@ -458,8 +518,12 @@ tracing#true,false
 
 # Float Point Conditionals
 \FpIfExist %<\fpvar%>
+\FpIfExistT %<\fpvar%> {%<true code%>}
+\FpIfExistF %<\fpvar%> {%<false code%>}
 \FpIfExistTF %<\fpvar%> {%<true code%>} {%<false code%>}
 \FpCompare {%<fp expr1%>} %<<relation>%> {%<fp expr2%>}
+\FpCompareT {%<fp expr1%>} %<<relation>%> {%<fp expr2%>} {%<true code%>}
+\FpCompareF {%<fp expr1%>} %<<relation>%> {%<fp expr2%>} {%<false code%>}
 \FpCompareTF {%<fp expr1%>} %<<relation>%> {%<fp expr2%>} {%<true code%>} {%<false code%>}
 
 ## Dimensions (Dim) ##
@@ -520,8 +584,12 @@ tracing#true,false
 
 # Dimension Conditionals
 \DimIfExist %<\dimen%>
+\DimIfExistT %<\dimen%> {%<true code%>}
+\DimIfExistF %<\dimen%> {%<false code%>}
 \DimIfExistTF %<\dimen%> {%<true code%>} {%<false code%>}
 \DimCompare {%<dim expr1%>} %<<relation>%> {%<dim expr2%>}
+\DimCompareT {%<dim expr1%>} %<<relation>%> {%<dim expr2%>} {%<true code%>}
+\DimCompareF {%<dim expr1%>} %<<relation>%> {%<dim expr2%>} {%<false code%>}
 \DimCompareTF {%<dim expr1%>} %<<relation>%> {%<dim expr2%>} {%<true code%>} {%<false code%>}
 
 # Dimension Case Functions
@@ -618,14 +686,24 @@ tracing#true,false
 
 # Comma List Conditionals
 \ClistIfExist %<\clistvar%>
+\ClistIfExistT %<\clistvar%> {%<true code%>}
+\ClistIfExistF %<\clistvar%> {%<false code%>}
 \ClistIfExistTF %<\clistvar%> {%<true code%>} {%<false code%>}
 \ClistIfEmpty {comma list}
+\ClistIfEmptyT {comma list} {true code}
+\ClistIfEmptyF {comma list} {false code}
 \ClistIfEmptyTF {comma list} {true code} {false code}
 \ClistVarIfEmpty %<\clistvar%>
+\ClistVarIfEmptyT %<\clistvar%> {%<true code%>}
+\ClistVarIfEmptyF %<\clistvar%> {%<false code%>}
 \ClistVarIfEmptyTF %<\clistvar%> {%<true code%>} {%<false code%>}
 \ClistIfIn {comma list} {item}
+\ClistIfInT {comma list} {item} {true code}
+\ClistIfInF {comma list} {item} {false code}
 \ClistIfInTF {comma list} {item} {true code} {false code}
 \ClistVarIfIn %<\clistvar%> {%<item%>}
+\ClistVarIfInT %<\clistvar%> {%<item%>} {%<true code%>}
+\ClistVarIfInF %<\clistvar%> {%<item%>} {%<false code%>}
 \ClistVarIfInTF %<\clistvar%> {%<item%>} {%<true code%>} {%<false code%>}
 
 ## Sequences and Stacks (Seq) ##
@@ -716,10 +794,16 @@ tracing#true,false
 
 # Sequence Conditionals
 \SeqIfExist %<\seqvar%>
+\SeqIfExistT %<\seqvar%> {%<true code%>}
+\SeqIfExistF %<\seqvar%> {%<false code%>}
 \SeqIfExistTF %<\seqvar%> {%<true code%>} {%<false code%>}
 \SeqVarIfEmpty %<\seqvar%>
+\SeqVarIfEmptyT %<\seqvar%> {%<true code%>}
+\SeqVarIfEmptyF %<\seqvar%> {%<false code%>}
 \SeqVarIfEmptyTF %<\seqvar%> {%<true code%>} {%<false code%>}
 \SeqVarIfIn %<\seqvar%> {%<item%>}
+\SeqVarIfInT %<\seqvar%> {%<item%>} {%<true code%>}
+\SeqVarIfInF %<\seqvar%> {%<item%>} {%<false code%>}
 \SeqVarIfInTF %<\seqvar%> {%<item%>} {%<true code%>} {%<false code%>}
 
 ## Property Lists (Prop) ##
@@ -788,11 +872,64 @@ tracing#true,false
 
 # Property List Conditionals
 \PropIfExist %<\propvar%>
+\PropIfExistT %<\propvar%> {%<true code%>}
+\PropIfExistF %<\propvar%> {%<false code%>}
 \PropIfExistTF %<\propvar%> {%<true code%>} {%<false code%>}
 \PropVarIfEmpty %<\propvar%>
+\PropVarIfEmptyT %<\propvar%> {%<true code%>}
+\PropVarIfEmptyF %<\propvar%> {%<false code%>}
 \PropVarIfEmptyTF %<\propvar%> {%<true code%>} {%<false code%>}
 \PropVarIfIn %<\propvar%> {%<key%>}
+\PropVarIfInT %<\propvar%> {%<key%>} {%<true code%>}
+\PropVarIfInF %<\propvar%> {%<key%>} {%<false code%>}
 \PropVarIfInTF %<\propvar%> {%<key%>} {%<true code%>} {%<false code%>}
+
+## Token Manipulation (Token) ##
+\CharLowercase %<char%>
+\CharUppercase %<char%>
+\CharTitlecase %<char%>
+\CharFoldcase %<char%>
+\CharStrLowercase %<char%>
+\CharStrUppercase %<char%>
+\CharStrTitlecase %<char%>
+\CharStrFoldcase %<char%>
+\CharSetLccode {int expr1} {int expr2}
+\CharSetUccode {int expr1} {int expr2}
+\CharValueLccode {int expr}
+\CharValueUccode {int expr}
+
+## Text Processing (Text) ##
+# Case Changing
+\TextExpand {text}
+\TextLowercase {text}
+\TextUppercase {text}
+\TextTitlecase {text}
+\TextTitlecaseFirst {text}
+\TextLangLowercase {language} {text}
+\TextLangUppercase {language} {text}
+\TextLangTitlecase {language} {text}
+\TextLangTitlecaseFirst {language} {text}
+
+## Files (File) ##
+# File Operation Functions
+\FileInput {file name}
+\FileInput{file}#Si
+\FileIfExistInput {file name}
+\FileIfExistInput{file}#Si
+\FileIfExistInputF {file name} {false code}
+\FileIfExistInputF{file}{false code}#Si
+\FileGet {%<file name%>} {%<setup%>} %<\tlvar%>
+\FileGet{file name}{setup}{cmd}#Sd
+\FileGetT {%<file name%>} {%<setup%>} %<\tlvar%> {%<true code%>}
+\FileGetT{file name}{setup}{cmd}{true code}#Sd
+\FileGetF {%<file name%>} {%<setup%>} %<\tlvar%> {%<false code%>}
+\FileGetF{file name}{setup}{cmd}{false code}#Sd
+\FileGetTF {%<file name%>} {%<setup%>} %<\tlvar%> {%<true code%>} {%<false code%>}
+\FileGetTF{file name}{setup}{cmd}{true code}{false code}#Sd
+\FileIfExist {%<file name%>}
+\FileIfExistT {%<file name%>} {%<true code%>}
+\FileIfExistF {%<file name%>} {%<false code%>}
+\FileIfExistTF {%<file name%>} {%<true code%>} {%<false code%>}
 
 ## Quarks (Quark) ##
 # Constant Quarks
@@ -800,6 +937,8 @@ tracing#true,false
 
 # Quark Conditionals
 \QuarkVarIfNoValue %<\tlvar%>
+\QuarkVarIfNoValueT %<\tlvar%> {%<true code%>}
+\QuarkVarIfNoValueF %<\tlvar%> {%<false code%>}
 \QuarkVarIfNoValueTF %<\tlvar%> {%<true code%>} {%<false code%>}
 
 ## Legacy Concepts (Legacy) ##
@@ -817,12 +956,19 @@ tracing#true,false
 \ClistMapBreak#*
 \ClistVarSort{arg1}{arg2}#*
 \cNoValueTl#*
+\Do{arg}#*
+\ExpName{csname}#*
+\ExpPartial{arg}#*
+\ExpValue %<\variable%>#*
+\ExpWhole{arg}#*
+\FileInputStop#*
 \Local#*
 \NoExpand{tokens}#*
-\OnlyExpandF{tokens}#*
-\OnlyExpandO{tokens}#*
+\OnlyOnce{tokens}#*
+\OnlyPartial{tokens}#*
 \PrgBreak#*
 \PrgBreakDo#*
+\PrgDo{arg}#*
 \PropMapBreak#*
 \SeqJoin{arg1}{arg2}#*
 \SeqJoinExtended{arg1}{arg2}{arg3}{arg4}#*

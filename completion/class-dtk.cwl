@@ -1,5 +1,5 @@
 # dtk class
-# Matthew Bertucci 3/27/2022 for v2.08h
+# Matthew Bertucci 2022/04/30 for v2.08m
 
 #include:hyphsubst
 #include:iftex
@@ -8,7 +8,7 @@
 #include:dtk-url
 #include:class-scrbook
 #include:scrhack
-#include:dtk-extern
+#include:hvextern
 #include:babel
 # loads english and main=ngerman options of babel
 #include:csquotes
@@ -18,7 +18,6 @@
 #include:dtk-logos
 #include:scrlayer-scrpage
 #include:xcolor
-#include:listings
 #include:lstautogobble
 #include:marginnote
 #include:enumitem

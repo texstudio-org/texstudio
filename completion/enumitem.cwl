@@ -6,6 +6,7 @@ shortlabels
 inline
 sizes
 ignoredisplayed
+includedisplayed
 series=override
 loadonly
 #endkeyvals

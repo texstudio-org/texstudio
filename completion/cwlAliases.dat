@@ -730,3 +730,7 @@ newlfm:
 class-newlfm
 latex-document
 tex
+elegantbook:
+class-elegantbook
+latex-document
+tex
