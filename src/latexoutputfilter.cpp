@@ -22,6 +22,7 @@
 
 
 QColor LatexLogEntry::textColors[LT_MAX] = {QColor(Qt::black), QColor(230, 32, 32), QColor(234, 136, 32), QColor(58, 58, 230), QColor(Qt::darkBlue)};
+QColor LatexLogEntry::textColorsDark[LT_MAX] = {QColor(Qt::black), QColor(250, 112, 66), QColor(230, 201, 65), QColor(98, 197, 246), QColor(Qt::darkBlue)};
 
 //====================texstudio log data struct=======================
 LatexLogEntry::LatexLogEntry()

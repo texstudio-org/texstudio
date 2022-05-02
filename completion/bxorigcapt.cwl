@@ -1,11 +1,13 @@
 # bxorigcapt package
-# Matthew Bertucci 3/18/2022 for v0.4
+# Matthew Bertucci 4/24/2022 for v1.0
 
 #include:etoolbox
 
 #keyvals:\usepackage/bxorigcapt#c
-warn
+main
 %<language%>
+warn
+nowarn
 #endkeyvals
 
 \bxDebug{message}#*

@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 3/29/2022 for v1.54
+# Matthew Bertucci 4/10/2022 for v1.55a
 
 #include:etoolbox
 #include:makecmds
@@ -672,6 +672,12 @@ variant=#bokmal,nynorsk
 #keyvals:\setdefaultlanguage/persian#c,\setmainlanguage/persian#c,\setotherlanguage/persian#c,\textlang/persian#c,\textpersian#c,\begin{lang}/persian#c,\begin{persian}#c,\selectlanguage/persian#c,\foreignlanguage/persian#c,\begin{otherlanguage}/persian#c,\begin{otherlanguage*}/persian#c,\resetdefaultlanguage/persian#c,\setlanguagealias/persian#c,\setlanguagealias*/persian#c,\pghyphenation/persian#c,\setlanghyphenmins/persian#c
 numerals=#western,eastern
 abjadjimnotail#true,false
+#endkeyvals
+
+#keyvals:\setdefaultlanguage/polish#c,\setmainlanguage/polish#c,\setotherlanguage/polish#c,\textlang/polish#c,\textpolish#c,\begin{lang}/polish#c,\begin{polish}#c,\selectlanguage/polish#c,\foreignlanguage/polish#c,\begin{otherlanguage}/polish#c,\begin{otherlanguage*}/polish#c,\resetdefaultlanguage/polish#c,\setlanguagealias/polish#c,\setlanguagealias*/polish#c,\pghyphenation/polish#c,\setlanghyphenmins/polish#c
+babelshorthands#true,false
+splithyphens#true,false
+vlna#true,false
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/portuguese#c,\setmainlanguage/portuguese#c,\setotherlanguage/portuguese#c,\textlang/portuguese#c,\textportuguese#c,\begin{lang}/portuguese#c,\begin{portuguese}#c,\selectlanguage/portuguese#c,\foreignlanguage/portuguese#c,\begin{otherlanguage}/portuguese#c,\begin{otherlanguage*}/portuguese#c,\resetdefaultlanguage/portuguese#c,\setlanguagealias/portuguese#c,\setlanguagealias*/portuguese#c,\pghyphenation/portuguese#c,\setlanghyphenmins/portuguese#c

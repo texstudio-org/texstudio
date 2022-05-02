@@ -1,3 +1,7 @@
+TeXstudio 4.2.4
+-----------------
+- 
+
 TeXstudio 4.2.3
 -----------------
 - fix unable to save under special circumstances (#2124)

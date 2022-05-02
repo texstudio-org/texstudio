@@ -16,10 +16,12 @@
 \PushCatcodeTableNumStack#*
 \PopCatcodeTableNumStack#*
 \newluatexcatcodetable{catcodetable%cmd}#*d
+\setcatcodetable#*
 \setluatexcatcodetable#*
 \RequireLuaModule{file}#*
 \RequireLuaModule{file}[info]#*
-\newluatexattribute%<<16-bit number>%>=%<32-bit number>%>#*
+\luatexattribute%<<16-bit number>%>=%<32-bit number>%>#*
+\newluatexattribute{attribute}#*
 \setluatexattribute{attribute}{value}#*
 \unsetluatexattribute{attribute}#*
 \luatexattributedef%<\csname%>=%<<16-bit number>%>#*
@@ -29,3 +31,4 @@
 \luatexlatelua{lua code}#*
 \luatexoutputbox = %<<integer>%>#*
 \luatexscantextokens#*
+\emuatcatcode#S

@@ -76,6 +76,7 @@ public:
 signals:
 	void widgetContextMenuRequested(QWidget *widget, const QPoint &globalPosition);
 	void pageChanged(const QString &id);
+    void showPanel();
 
 public slots:
 	virtual void setVisible(bool visible);

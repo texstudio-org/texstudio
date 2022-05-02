@@ -211,6 +211,7 @@
 \mathbin#*
 \mathchar#*
 \mathchardef#*
+\mathchardef{cmd}#Sd
 \mathchoice#*
 \mathclose#*
 \mathcode#*

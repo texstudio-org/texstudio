@@ -1,5 +1,5 @@
 # projlib-theorem package
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/04/28 for 2022/04/24 release
 
 #include:l3keys2e
 #include:projlib-language
@@ -17,6 +17,12 @@ simple name#true,false
 no preset names#true,false
 #endkeyvals
 
+\begin{application}
+\begin{application}[heading%text]
+\end{application}
+\begin{application*}
+\begin{application*}[heading%text]
+\end{application*}
 \begin{assertion}
 \begin{assertion}[heading%text]
 \end{assertion}
@@ -35,6 +41,12 @@ no preset names#true,false
 \begin{axiom*}
 \begin{axiom*}[heading%text]
 \end{axiom*}
+\begin{claim}
+\begin{claim}[heading%text]
+\end{claim}
+\begin{claim*}
+\begin{claim*}[heading%text]
+\end{claim*}
 \begin{conclusion}
 \begin{conclusion}[heading%text]
 \end{conclusion}
@@ -47,6 +59,12 @@ no preset names#true,false
 \begin{conjecture*}
 \begin{conjecture*}[heading%text]
 \end{conjecture*}
+\begin{construction}
+\begin{construction}[heading%text]
+\end{construction}
+\begin{construction*}
+\begin{construction*}[heading%text]
+\end{construction*}
 \begin{convention}
 \begin{convention}[heading%text]
 \end{convention}
@@ -137,6 +155,12 @@ no preset names#true,false
 \begin{question*}
 \begin{question*}[heading%text]
 \end{question*}
+\begin{recall}
+\begin{recall}[heading%text]
+\end{recall}
+\begin{recall*}
+\begin{recall*}[heading%text]
+\end{recall*}
 \begin{remark}
 \begin{remark}[heading%text]
 \end{remark}
@@ -161,3 +185,25 @@ no preset names#true,false
 \begin{definition-theorem*}
 \begin{definition-theorem*}[heading%text]
 \end{definition-theorem*}
+\begin{proposition-definition}
+\begin{proposition-definition}[heading%text]
+\end{proposition-definition}
+\begin{proposition-definition*}
+\begin{proposition-definition*}[heading%text]
+\end{proposition-definition*}
+\begin{theorem-definition}
+\begin{theorem-definition}[heading%text]
+\end{theorem-definition}
+\begin{theorem-definition*}
+\begin{theorem-definition*}[heading%text]
+\end{theorem-definition*}
+
+\begin{theorem-with-name}{arg}
+\begin{theorem-with-name}{arg}[opt]
+\end{theorem-with-name}
+\begin{theorem-with-name*}{arg}
+\begin{theorem-with-name*}{arg}[opt]
+\end{theorem-with-name*}
+
+\DisableTheoremNumbering{envname}
+\SwitchTheoremNumbering{envname}

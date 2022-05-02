@@ -1,5 +1,5 @@
 # circuitikz package
-# updated 2/26/2022 for v1.4.6
+# updated 4/27/2022 for v1.5.1
 
 #include:tikz
 # loads calc, arrows.meta, bending, and fpu tikzlibraries
@@ -117,6 +117,9 @@ example
 # from pgfcircbipoles.tex
 \wiper#S
 \zigs#S
+\coredistance#S
+\dotXdistance#S
+\dotYdistance#S
 \midtap#S
 \centerprim#S
 \centersec#S
@@ -196,6 +199,7 @@ example
 \pgfcircmathresult#*
 \texti#S
 \textii#S
+\componentisboxed#S
 \pgfcircdeclarefourport{name}{code}#*
 
 # from pgfcircmultipoles.tex

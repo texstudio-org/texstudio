@@ -1,5 +1,5 @@
 # witharrows package
-# Matthew Bertucci 1/3/2022 for v2.6d
+# Matthew Bertucci 4/22/2022 for v2.7
 
 #include:expl3
 #include:l3keys2e
@@ -53,6 +53,7 @@ interline=##L
 tikz-code={%<code%>}
 start-adjust=##L
 end-adjust=##L
+adjust=##L
 ygap=##L
 ystart=##L
 max-length-of-arrow=##L
@@ -126,7 +127,7 @@ down={%<options%>}
 
 \WithArrowsNbLines#*
 
-\Witharrows#S
+\WithArrows#S
 \endWithArrows#S
 \DispWithArrows#S
 \endDispWithArrows#S

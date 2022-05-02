@@ -2578,7 +2578,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				ts.pop();
 				tk = ts.top();
 			}
-			text = QString("\\noident{\\color%1 \\rule{1cm}{1cm} }").arg(tk.getText());
+            text = QString("\\noindent{\\color%1 \\rule{1cm}{1cm} }").arg(tk.getText());
 			m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
 			emit showPreview(text);
 		}

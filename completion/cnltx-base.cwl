@@ -20,7 +20,7 @@
 \setcnltx{options%keyvals}
 
 #keyvals:\setcnltx#c
-color-scheme=
+color-scheme=%<color scheme name%>
 set-trail-punct={%<punctuation marks%>}
 #endkeyvals
 
@@ -56,5 +56,23 @@ cnltxgray#B
 cnltxyellow#B
 cnltxformalblue#B
 cnltxformalred#B
+cs#B
+option#B
+module#B
+comment#B
+beginend#B
+env#B
+argument#B
+meta#B
+cnltx#B
+cnltxbg#B
+link#B
+versionnote#B
+bibentry#B
+bibentryfield#B
+expandable#B
+unexpandable#B
+makeidxkey#B
+makeidxstring#B
 
 \definecolorscheme{name}{color assignments}

@@ -1,6 +1,15 @@
 # parallel package
 # Matthew Bertucci 11/17/2021
 
+#keyvals:\usepackage/parallel#c
+Verbose
+OldStyleNums
+RaiseNums
+ItalicNums
+RomanNums
+SeparatedFootnotes
+#endkeyvals
+
 \begin{Parallel}{left-width%l}{right-width%l}
 \begin{Parallel}[options%keyvals]{left-width%l}{right-width%l}
 \end{Parallel}

@@ -1,9 +1,9 @@
 # autopuncitems package
-# Matthew Bertucci 2022-02-09 for release 2022-01-30
+# Matthew Bertucci 2022-04-24 for release 2022-04-16
 
-#include:enumitem
-#include:etoolbox
 #include:luacode
+#include:etoolbox
+#include:enumitem
 
 #keyvals:\usepackage/autopuncitem#c
 noenumitem
@@ -33,3 +33,6 @@ autopuncE
 \end{AutoPuncItemsO}#*
 \begin{AutoPuncItemsE}#*
 \end{AutoPuncItemsE}#*
+
+\begin{AutoPuncTabular}
+\end{AutoPuncTabular}

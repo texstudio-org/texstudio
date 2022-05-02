@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 3/18/2022 for v1.0.8
+# Matthew Bertucci 2022/04/29 for v1.1.1
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -132,6 +132,37 @@ label#true,false
 \liencapytale[prefix]{code}
 \liencapytale*{code}
 \liencapytale*[prefix]{code}
+
+\pavePL
+\pavePL[paramètres%keyvals]
+
+#keyvals:\pavePL
+largeur=%<num%>
+profondeur=%<num%>
+hauteur=%<num%>
+angle=%<degrees%>
+fuite=%<num%>
+sommets=%<A1§...§A8%>
+epaisseur=%<épaisseur%>
+aff#true,false
+plein#true,false
+cube#true,false
+#endkeyvals
+
+\tetraPL
+\tetraPL[paramètres%keyvals]
+
+#keyvals:\tetraPL
+largeur=%<num%>
+profondeur=%<num%>
+hauteur=%<num%>
+alpha=%<degrees%>
+beta=%<degrees%>
+sommets=%<A1§...§A8%>
+epaisseur=%<épaisseur%>
+aff#true,false
+plein#true,false
+#endkeyvals
 
 # from table option of xcolor
 #include:colortbl
@@ -387,6 +418,34 @@ Teal#B
 \PLOSXLG#*
 \termosxtitre#*
 \termosxtitre[opt]#*
+\PFPaveLg#S
+\PFPavePf#S
+\PFPaveHt#S
+\PFPaveAngl#S
+\PFPaveFuite#S
+\PFPaveSommets#S
+\PFPaveThick#S
+\PFListeSommets#S
+\PFPaveSommets#S
+\PaveA#S
+\PaveB#S
+\PaveC#S
+\PaveD#S
+\PaveE#S
+\PaveF#S
+\PaveG#S
+\PaveH#S
+\PFTetraSommets#S
+\TetraA#S
+\TetraB#S
+\TetraC#S
+\TetraD#S
+\PFTetraAlpha#S
+\PFTetraBeta#S
+\PFTetraPf#S
+\PFTetraLg#S
+\PFTetraThick#S
+\PFTetraHt#S
 
 PLmpurple#B
 PLmgray#B

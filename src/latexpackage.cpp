@@ -290,6 +290,12 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					}
 					valid.remove('i');
 				}
+                if (valid.contains('I')) { // include like command
+                    if (res > -1) {
+                        package.possibleCommands["%import"] << rxCom.cap(1);
+                    }
+                    valid.remove('I');
+                }
 				if (valid.contains('l')) { // label command
 					if (res > -1) {
 						package.possibleCommands["%label"] << rxCom.cap(1);

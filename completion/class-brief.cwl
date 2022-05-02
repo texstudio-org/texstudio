@@ -40,6 +40,7 @@ french
 \location{location}
 \maakbriefhoofd*{header%text}{address}
 \maakbriefhoofd{header%text}{address}
+\makelabels
 \name{name}
 \ondertekening{signature}
 \onskenmerk{text}

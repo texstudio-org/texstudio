@@ -1,10 +1,15 @@
 # acro package (commands taken from the acro manual of V1.4C)
 # The acro package was created by Clemens Niederberger
 # This file was created by Bjoern Menke (2014-01-08). It contains most of the current commands of the acro package.
-# updated by Matthew Bertucci, 2022-02-07 for v3.7
+# updated by Matthew Bertucci, 2022-04-18 for v3.8
 
 #include:l3keys2e
 #include:translations
+#include:etoolbox
+
+#keyvals:\usepackage/acro#c
+upgrade#true,false
+#endkeyvals
 
 \DeclareAcronym{id}{properties%keyvals}
 \NewAcroPreset{set name}{properties%keyvals}
@@ -195,12 +200,13 @@ extra-format={%<code%>}
 foreign-format={%<code%>}
 single-format={%<code%>}
 list-format={%<code%>}
+%acroproperty
 #endkeyvals
 
 \printacronyms[options%keyvals]
 
 #keyvals:\printacronyms#c
-template=#description,tabular,longtable,supertabular,lof,toc
+template=#description,lof,longtable,supertabular,tabularray,tabular,toc,xltabular
 sort#true,false
 display=#all,used
 exclude={%<csv list of tags%>}
@@ -217,6 +223,9 @@ pages={%<keyvals%>}
 \acsetup{options%keyvals}
 
 #keyvals:\acsetup#c
+case-sensitive#true,false
+case-insensitive#true,false
+use-id-as-short#true,false
 first-style=#long-short,short-long,short,long,footnote
 subsequent-style=#long-short,short-long,short,long,footnote
 single#true,false
@@ -291,6 +300,7 @@ patch/tabu#true,false
 patch/caption#true,false
 patch/maketitle#true,false
 load-style=%<name%>
+templates/colspec={%<value%>}
 #endkeyvals
 
 \acrodotfill#*
@@ -377,11 +387,14 @@ load-style=%<name%>
 \DeclareAcroArticle{name}{default}#*
 \DeclareAcroTranslation{key%plain}{language-translation list}#*
 \AddAcroTranslations{key%plain}{language-translation list}#*
-\DeclareAcroProperty{name}#*
-\DeclareAcroPropertyAlias{name1}{name2}#*
+\DeclareAcroProperty{name}#*s#%acroproperty
+\DeclareAcroProperty*{name}#*s#%acroproperty
+\DeclareAcroPropertyAlias{name1}{name2}#*s#%acroproperty
 \MakeAcroPropertyAlias{name1}{name2}#*
-\NewAcroCommand{cmd}{args}{definition}#*d
-\RenewAcroCommand{cmd}{args}{definition}#*
+\NewAcroCommand{cmd}{xargs}{definition}#*d
+\RenewAcroCommand{cmd}{xargs}{definition}#*
+\DeclareAcroCommand{cmd}{xargs}{definition}#*d
+\ProvideAcroCommand{cmd}{xargs}{definition}#*d
 \UseAcroTemplate{name}#*
 \UseAcroTemplate[type]{name}[argument number]#*
 \acrocite#*
@@ -390,3 +403,29 @@ load-style=%<name%>
 \acroindefinite#*
 \acroupper#*
 \acrofull#*
+
+# not documented
+\nospace#*
+\AcroModule{name}{description%text}#*
+\AcroModuleEnd#*
+\AcroStyle{name}#*
+\AcroMap{arg1}{arg2}#*
+\acroloadstyle{style}#*
+\acsimple{arg1}{arg2}#*
+\acfootnote{arg}#*
+\acgobbletrail#*
+\acroheading#*
+\acropreamble#*
+\acropostamble#*
+\acrofield{arg1}{arg2}#*
+\acroprintfield{arg1}{arg2}#*
+\acroiffieldTF{arg1}{arg2}{true}{false}#*
+\acroifanyfieldTF{arg1}{arg2}{true}{false}#*
+\acroifallfieldsTF{arg1}{arg2}{true}{false}#*
+\acroifpagefieldTF{arg}#*
+\acroifpropertyTF{arg}#*
+\acroifpropertyT{arg}#*
+\acroifpropertyF{arg}#*
+\acshow{id}#*
+\acshow[options]{id}#*
+\acroendfootnote#*

@@ -651,6 +651,7 @@ void Texstudio::setupDockWidgets()
         }
         connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
         connect(leftPanel, SIGNAL(currentWidgetChanged(QWidget*)), this, SLOT(leftPanelChanged(QWidget*)));
+        connect(sidePanel,&TitledPanel::showPanel,this,&Texstudio::updateTOCs);
     }
 
     // load icons for structure view
@@ -902,9 +903,9 @@ void Texstudio::setupMenus()
 	menu = newManagedMenu("main/edit", tr("&Edit"));
 	actUndo = newManagedAction(menu, "undo", tr("&Undo"), SLOT(editUndo()), QKeySequence::Undo, "edit-undo");
 	actRedo = newManagedAction(menu, "redo", tr("&Redo"), SLOT(editRedo()), QKeySequence::Redo, "edit-redo");
-//#ifndef QT_NO_DEBUG
+#ifndef QT_NO_DEBUG
 	newManagedAction(menu, "debughistory", tr("Debug undo stack"), SLOT(editDebugUndoStack()));
-//#endif
+#endif
 	menu->addSeparator();
     newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "edit-cut");
 	newManagedAction(menu, "copy", tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "edit-copy");
@@ -2829,6 +2830,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 	}
 
 	updateCaption();
+    updateTOCs();
 }
 /*!
  * \brief save all files
@@ -6784,7 +6786,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		QFileInfo ftl(fileToLoad);
 		if (fileToLoad != "") {
 			if (ftl.exists()) {
-				if (ftl.suffix() == Session::fileExtension()) {
+                if (ftl.suffix() == Session::fileExtension() || ftl.suffix() == "txss") {
 					loadSession(ftl.filePath());
 				} else {
 					load(fileToLoad, hasExplicitRoot);

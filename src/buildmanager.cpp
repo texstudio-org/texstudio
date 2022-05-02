@@ -2046,7 +2046,9 @@ void BuildManager::preamblePrecompileCompleted(int status)
 //now either dvips or dvipng is necessary if not already running
 void BuildManager::latexPreviewCompleted(int status)
 {
-	Q_UNUSED(status)
+    if(status>0){
+        return; // compilation has failed
+    }
 	if (dvi2pngMode == DPM_DVIPNG) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;

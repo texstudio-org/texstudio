@@ -10,7 +10,8 @@
 \showitems{list cmd}
 \ignoreemptyitems#*
 \reademptyitems#*
-\foreachitem %<variable%> \in %<list cmd%>{%<code%>}
+\foreachitem%<\var%>\in%<\list%>{%<code%>}
+\foreachitem{cmd}#Sd
 \in#S
 \itemtomacro{list cmd}[index]{cmd}#d
 \gitemtomacro{list cmd}[index]{cmd}#d

@@ -4,6 +4,12 @@
 #include:multicol
 #include:ifthen
 
+#keyvals:\usepackage/multitoc#c
+toc
+lot
+lof
+#endkeyvals
+
 \multicolumntoc
 \multicolumnlot
 \multicolumnlof

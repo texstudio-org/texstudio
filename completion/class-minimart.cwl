@@ -1,5 +1,5 @@
 # minimart class
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/04/28 for 2022/04/24 release
 
 #include:l3keys2e
 #include:silence
@@ -11,6 +11,7 @@
 #include:newpxtext
 #include:amssymb
 #include:nowidow
+#include:regexpatch
 #include:embrac
 #include:graphicx
 #include:wrapfig
@@ -27,7 +28,7 @@ b5paper
 11pt
 12pt
 # options passed to minimalist package
-allowbf#true,false
+use boldface#true,false
 runin#true,false
 nothms#true,false
 nothmnum#true,false

@@ -1014,11 +1014,9 @@ after
 \inastanzaLtrue#S
 \inastanzaRfalse#S
 \inastanzaRtrue#S
-\inserthangingsymbol#S
+\inserthangingsymbol#*
 \inserthangingsymbolfalse#S
 \inserthangingsymboltrue#S
-\inserthangingymbolfalse#S
-\inserthangingymboltrue#S
 \insertparafootsepX{arg1}#S
 \instanzafalse#S
 \instanzaLfalse#S

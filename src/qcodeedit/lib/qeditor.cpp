@@ -4630,8 +4630,8 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		registerEditOperation(NextPlaceHolder);
 		registerEditOperation(PreviousPlaceHolder);
 	#ifdef Q_OS_MAC
-		registerEditOperation(NextPlaceHolderOrWord);
-		registerEditOperation(PreviousPlaceHolderOrWord);
+        addEditOperation(NextPlaceHolderOrWord, Qt::AltModifier, Qt::Key_Right);
+        addEditOperation(PreviousPlaceHolderOrWord, Qt::AltModifier, Qt::Key_Left);
 	#else
 		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);

@@ -1,7 +1,8 @@
 # tikzlings-bugs package
-# Matthew Bertucci 8/12/2021
+# Matthew Bertucci 4/23/2022 for v0.9
 
 #include:tikz
+#include:tikzlings-addons
 
 \bug
 \bug[options%keyvals]
@@ -19,11 +20,6 @@ back
 3D
 contour
 contour=#%color
-#endkeyvals
-
-\thing[options%keyvals]
-
-#keyvals:bug#c,\thing#c
 hat
 hat=#%color
 tophat

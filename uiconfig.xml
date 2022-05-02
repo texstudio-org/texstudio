@@ -240,10 +240,10 @@
   <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
 
   
-  <menu id="equations" text="Math Equations">
+  <menu id="equations" text="Math &amp;Equations">
       <insert id="equation" text="env equation" insert="\begin{equation}\label{%&lt;key%>}%\%|%\\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>
       <insert id="equation*" text="env equation* (amsmath)" insert="\begin{equation*}%\%|%\\end{equation*}"/>
-	  <insert id="align" text="env align (amsmath)" insert="\begin{align}%\%|%\\end{align}"/>
+      <insert id="align" text="env align (amsmath)" insert="\begin{align}%\%|%\\end{align}"/>
       <insert id="alignat" text="env alignat (amsmath)" insert="\begin{alignat}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat}"/>
       <insert id="flalign" text="env flalign (amsmath)" insert="\begin{flalign}%\%|%\\end{flalign}"/>
       <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\%|%\\end{gather}"/>
@@ -294,18 +294,18 @@
     <insert id="tanh" text="\tanh" insert="\tanh "/>
   </menu>
   
-  <!-- deactivated as they are user defined theorems and not part of any package
+  <!-- definitions from \usepackage[standard]{ntheorem} -->
   <menu id="definitions" text="Math &amp;Definitions">
-     <insert id="definition" text="definition" insert="\begin{definition}\label{%&lt;key%>}%\%|%\\end{definition}"/>
-     <insert id="remark" text="remark" insert="\begin{remark}\label{%&lt;key%>}%\%|%\\end{remark}"/>
-     <insert id="lemma" text="lemma" insert="\begin{lemma}\label{%&lt;key%>}%\%|%\\end{lemma}"/>
-     <insert id="proposition" text="proposition" insert="\begin{proposition}\label{%&lt;key%>}%\%|%\\end{proposition}"/>
-     <insert id="theorem" text="theorem" insert="\begin{theorem}\label{%&lt;key%>}%\%|%\\end{theorem}"/>
-     <insert id="corollary" text="corollary" insert="\begin{corollary}\label{%&lt;key%>}%\%|%\\end{corollary}"/>
-     <insert id="proof" text="proof" insert="\begin{proof}%\%|%\\end{proof}"/>
+     <insert id="Corollary" text="env Corollary (ntheorem)" insert="\begin{Corollary}\label{%&lt;key%>}%\%|%\\end{Corollary}"/>
+     <insert id="Definition" text="env Definition (ntheorem)" insert="\begin{Definition}\label{%&lt;key%>}%\%|%\\end{Definition}"/>
+     <insert id="Example" text="env Example (ntheorem)" insert="\begin{Example}\label{%&lt;key%>}%\%|%\\end{Example}"/>
+     <insert id="Lemma" text="env Lemma (ntheorem)" insert="\begin{Lemma}\label{%&lt;key%>}%\%|%\\end{Lemma}"/>
+     <insert id="Proof" text="env Proof (ntheorem)" insert="\begin{Proof}%\%|%\\end{Proof}"/>
+     <insert id="Proposition" text="env Proposition (ntheorem)" insert="\begin{Proposition}\label{%&lt;key%>}%\%|%\\end{Proposition}"/>
+     <insert id="Remark" text="env Remark (ntheorem)" insert="\begin{Remark}\label{%&lt;key%>}%\%|%\\end{Remark}"/>
+     <insert id="Theorem" text="env Theorem (ntheorem)" insert="\begin{Theorem}\label{%&lt;key%>}%\%|%\\end{Theorem}"/>
   </menu>
-  -->
-   
+     
   <menu id="fontstyles" text="Math Font St&amp;yles">
     <insert id="mathrm" text="Roman - \mathrm{}" insert="\mathrm{%|}" icon="font_mathrm"/>
     <insert id="mathit" text="Italic - \mathit{}" insert="\mathit{%|}" icon="font_mathit"/>
@@ -317,7 +317,7 @@
     <insert id="mathfrak" text="Fraktur - \mathfrak{} (amssymb)" insert="\mathfrak{%|}" icon="font_mathfrak"/>
   </menu>
 
-  <menu id="grouping" text="Math Stacking symbols">
+  <menu id="grouping" text="Math &amp;Stacking Symbols">
      <insert id="overline" text="\overline" insert="\overline{%&lt;content%>}"/>
      <insert id="underline" text="\underline" insert="\underline{%&lt;content%>}"/> 
      <insert id="overbrace" text="\overbrace" insert="\overbrace{%&lt;content%>}"/> 
@@ -327,9 +327,8 @@
      <insert id="stackrel" text="\stackrel" insert="\stackrel{%&lt;top symbol%>}{%&lt;bottom symbol%>}"/>
      <insert id="overset" text="\overset (amsmath)" insert="\overset{%&lt;top symbol%>}{%&lt;symbol%>}"/>
      <insert id="underset" text="\underset (amsmath)" insert="\underset{%&lt;bottom symbol%>}{%&lt;symbol%>}"/>
-     <!-- no package found where following command is valid
-     <insert id="sideset" text="\sideset" insert="\sideset{%&lt;left ind+exp%>}{%&lt;right ind+exp%>}"/>
-    -->
+     <insert id="sideset" text="\sideset (amsmath)" insert="\sideset{%&lt;left ind+exp%>}{%&lt;right ind+exp%>}"/>
+     <insert id="prescript" text="\prescript (mathtools)" insert="\prescript{%&lt;left exp%>}{%&lt;left ind%>}{%&lt;arg%>}"/>
   </menu>
   
   

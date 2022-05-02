@@ -1,6 +1,12 @@
 # mathabx package
 # Matthew Bertucci 8/9/2021
 
+#keyvals:\usepackage/mathabx#c
+matha
+mathb
+mathx
+#endkeyvals
+
 \Aries#m
 \asterisk#m
 \Asterisk#m

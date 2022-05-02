@@ -17,10 +17,10 @@
 \showkeys
 
 \setupdocument{options%keyvals}
-\letter{content}
-\letter[options%keyvals]{content}
-\invoice{content}
-\invoice[options%keyvals]{content}
+\letter{content%text}
+\letter[options%keyvals]{content%text}
+\invoice{content%text}
+\invoice[options%keyvals]{content%text}
 
 #keyvals:\setupdocument#c,\letter#c,\invoice#c
 language=#en-GB,en-US,fr-FR,de-DE,nl-NL,nl-BE,it-IT,es-ES,ca-ES,nb-NO,sr-RS
@@ -106,7 +106,7 @@ vertical
 novertical
 #endkeyvals
 
-\itable{table contents}
+\itable{table contents%text}
 \iitem{item}{amount}
 \itotal{amount}
 \itotal[text]{amount}

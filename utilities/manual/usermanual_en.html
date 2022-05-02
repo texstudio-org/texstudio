@@ -10,6 +10,8 @@
 <h1 align=center id="top">TeXstudio : User manual</h1>
 <h2 id="sommaire">Contents:</h2>
 <ul class="two-columns">
+<li><a href="#SECTION00">0. A first look at TeXstudio</a>
+</li>
 <li><a href="#SECTION0">1. Configuring TeXstudio</a>
 	<ul>
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
@@ -33,8 +35,11 @@
 	<li><a href="#SECTION12">2.2 Creating a new document</a></li>
 	<li><a href="#SECTION12a">2.2.1 Setting the preamble of a TeX document</a></li>
 	<li><a href="#SECTION12b">2.2.2 Using Templates to start a new document</a></li>
-	<li><a href="#SECTION13">2.3 Structure of a document</a></li>
+	<li><a href="#SECTION13">2.3 Structure your document</a></li>
 	<li><a href="#SECTION14">2.4 Browsing your document</a></li>
+	<li><a href="#SECTION141">2.4.1 The Structure View</a></li>
+	<li><a href="#SECTION142">2.4.2 The TOC View</a></li>
+	<li><a href="#SECTION143">2.4.3 Using Bookmarks</a></li>
 	<li><a href="#SECTION15">2.5 Formatting your text</a></li>
 	<li><a href="#SECTION16">2.6 Spacings</a></li>
 	<li><a href="#SECTION17">2.7 Inserting a list</a></li>
@@ -86,6 +91,25 @@
 <li><a href="#CHANGELOG">Changelog</a></li>
 </ul>
 <hr>
+
+<h1 id="SECTION00">0. A first look at TeXstudio</h1>
+<p>Before we take a closer look at all the possibilities of TeXstudio, let's look at the application window first. After start of TeXstudio we see a lot of things. Some elements in the image are framed in different colors for further explanations:</p>
+<p><IMG src="TeXstudio_App_Window.png" border="1" alt="TeXstudio Application Window"></p>
+<p>The main window is divided into three parts (blue): On the left we have a "side panel" (currently showing an empty Structure) that provides many different functions. On the lower right is a "message panel" where you find tabs for messages, the build log,
+and so on. The third area is left to the editor. You can have multiple editors open, which you select using tabs. You may increase the area for editors by turning off the side panel or the message panel. This can be done easily via the two icons in the lower
+left corner (marked orange). They are in the status bar, which can be hidden (s. menu View/Show).
+</p>
+<p>The information presented in the side bar depends on the icon you select from the vertical toolbar on the left side of the panel. These icons can be understood as vertically aligned tabs. A click with the right mouse button allows you to select which
+icons are presented:
+</p>
+<p><IMG src="Side_Panel_Menu.png" border="1" alt="Side Panel Menu"></p>
+<p>TeXstudio offers a lot of toolbars (marked red), many of which are arranged in a row above the side panel and the editor area (called the main toolbar, the vertical toolbars are called secondary toolbars). One vertical aligend toolbar (the central one, s.
+image below) resides to the left of the editor area. You can choose which ones to show with a click of the right mouse button on any of them:
+</p>
+<p><IMG src="Tool_Bar_Menu.png" border="1" alt="Side Panel Menu"></p>
+<p> The custom toolbar will be discussed in <a href="#SECTION07">1.8 Configuring the Custom Toolbar</a>. The toolbars in the main toolbar can be rearranged, moved somewhere in the window or even disconnected from the window at all. All toolbars are scalable,
+s. option GUI scaling (needs advanced options) in the config dialog.
+</p>
 
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
 <p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advanced options" in the lower left corner.</p>
@@ -377,12 +401,14 @@ Built-in templates can not be changed.</p>
 </pre>
 <p>FilesToOpen only has an effect for mutli-file documents. You may add a preview image next to the template file. Again, it must have the same name, but extension ".png".</p>
 
-<h2 id="SECTION13">2.3 Structure of a document</h2>
-<p>To define a new part (section,subsection...) in your document with TeXstudio, just use this combo box button in the tool bar :</p>
+<h2 id="SECTION13">2.3 Structure your document</h2>
+<p>To define a new part in your document (part, section, subsection, ...) with TeXstudio, just use this combo box button in the format toolbar of the main toolbar:</p>
 <p><IMG src="doc3.png" border="1" alt="Sectioning"></p>
 
-
 <h2 id="SECTION14">2.4 Browsing your document</h2>
+
+<h2 id="SECTION141">2.4.1 The Structure View</h2>
+
 <p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
 <p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
 <p><IMG src="doc5.png" border="1" alt="Appendix"></p>
@@ -392,8 +418,25 @@ Built-in templates can not be changed.</p>
 <p>
 The structure view also offers a context menu which allows one to copy/cut all text which belongs to a section (including subsection) and paste it before or after a section.
 Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
-
 </p>
+
+<h2 id="SECTION142">2.4.2 The TOC View</h2>
+
+<p>The side panel on the left offers a TOC view (if not, s. <a href="#SECTION00">0. A first look at TeXstudio</a>). The TOC shows the structure of your whole document by means of section commands (part, section, subsection, …). A mouse over shows you, in which file the section
+actually is.
+</p>
+<p><IMG src="TOC_standard.png" border="1" alt="TOC View"></p>
+<p>The image shows this: A root file named document.tex that includes the file named file1.tex. The root file contains the section „Main text“, while file1.tex contains the subsection „External“. By placing the mouse pointer over this subsection in the
+TOC view, you find the file name file1.tex in the mouse over. This works even if the file is not open (but the document must be loaded by TeXstudio, s. Automatically load included files in editor settings). In this case a mouse click on the subsection in
+the TOC will open the file for you. Notice the different shades of color that indicate the sections are in different files. It can happen, that an included file doesn’t contain any sections. Then the file name itself appears in the TOC (without file extension):
+</p>
+<p><IMG src="TOC_file.png" border="1" alt="TOC View with file"></p>
+<p>The mouse over now would show the name of the file that includes file1.tex (namely document.tex). The indentation shows that the text of file1.tex is part of the section “Main text”. You may like to choose a different color in the configuration dialog
+(s. option Use color in global TOC in advanced editor settings).
+</p>
+
+<h2 id="SECTION143">2.4.3 Using Bookmarks</h2>
+
 <p>For each file, three bookmarks can be used to speed up navigation : just click on a line number to add or remove a bookmark. When you have already defined three bookmarks, you must remove one of them to add a new bookmark. To jump to the line corresponding to a bookmark in the editor, just click on the buttons in the status bar.</p>
 <p><IMG src="doc20.png" border="1" alt="Bookmark"></p>
 <h2 id="SECTION15">2.5 Formatting your text</h2>
@@ -445,7 +488,7 @@ Following commands are offered:</p>
 <p>To insert a picture in your document, just use the "\includegraphics" command in the "LaTeX" menu. Then, click on the "browser" button in the dialog to select the graphic file.<br>Note : you can insert a "figure" LaTeX environment ("LaTeX - Environments" menu) before inserting the picture.</p>
 <p><IMG src="doc9.png" border="1" alt="Figure Environment"></p>
 <h2 id="SECTION110a">2.10.1 Inserting a picture using a "wizard"</h2>
-<p>Properly inserting figures is a challenge for LaTeX beginners and still quite a bit of text to type for the expert. Therefore TeXstudio offers a wizard for handling graphics insertion code in your document. "Graphics options" defines the optional parameter of <code>\insertgraphics[options]{file}</code>. While the most used width/height attributes can be easily set, alternatively you have full control with the user defined setting.<br>
+<p>Properly inserting figures is a challenge for LaTeX beginners and still quite a bit of text to type for the expert. Therefore TeXstudio offers a wizard for handling graphics insertion code in your document. "Graphics options" defines the optional parameter of <code>\includegraphics[options]{file}</code>. While the most used width/height attributes can be easily set, alternatively you have full control with the user defined setting.<br>
 Place the graphic inside a <code>figure</code> environment if it does not have to be at an exact position in the text. Then LaTeX will determine an optimal position on the page.<br>
 By pressing the "Save as default" button the current settings (except file, caption and label) are stored and will hence be used as default when you open the wizard.<br>
 The wizard also comes into play when you drag   drop an image file to your document or use copy in explorer and paste in TeXstudio. Together with the adjustable default parameters this makes insertion of new pictures very fast. Furthermore, if you start the wizard while the cursor is on picture code, the wizard is used to manipulate the existing picture settings.</p>
@@ -496,7 +539,7 @@ If it is a command, the command is deleted including opening and closing braces.
 E.g. "\textbf{text}" leave "text".
 If it is an environment, the enclosing begin/end are removed.</p>
 <h3>Rename environment</h3>
-<p>If you place the cursor on an environment name or the corresponding begin- or end-command, after a moment a mirror-cursor is activated on the environment name which allows synchronous change of the environment name in the begin- and end-command.
+<p>If you place the cursor on an environment name, after a moment a mirror-cursor is activated on the environment name which allows synchronous change of the environment name in the begin- and end-command.
 So if you want to change a "\begin{tabular}...\end{tabular}" construction to "\begin{tabularx}...\end{tabularx}", place the text cursor on "tabular", wait for a second and then, after the mirror-cursor appears, change "tabular" to "tabularx".</p>
 <h3>Cut Buffer</h3>
 <p>If you select something and then start to type in a command and complete it, the selection is put in as first argument.
@@ -523,7 +566,7 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 <p>As a last resort, you may set an <i>explicit root document</i> via <code>Options -> Root Document -> Set Current Document As Explicit Root</code>. This setting takes absolute precedence. All the commands of the "Tools" menu will be called on this document (to be more precise, the build system will expand the placeholder <code>%</code> to the root document), no matter which document is active in the editor. Additionally, labels and usercommands which are defined in any open document, can be used for completion in any open document.</p>
 <p>In earlier versions, the <i>explicit root document</i> was somewhat misleadingly called <i>master document</i>.</p>
 
-<h3 id="sec:rootdocument">4.1.2 Loaded Documents</h3>
+<h3 id="sec:LoadedDocuments">4.1.2 Loaded Documents</h3>
 <p>Obviously, TeXstudio can only use information (defined commands, labels, document hirachy, etc.) that it is aware of. We use the information in all opened files, but if a label in a multi-file document is defined in a not-loaded files, TeXstudio does not know about it and will mark it as missing in references. To remedy this, you can just open the corresponding file as well.</p>
 
 <p>More recent versions of TeXstudio have an advanced option <code>Editor -> Automatically load included files</code>. It's disabled by default for performance reasons with older systems. When you enable this option, TeXstudio will automatically load and parse all files of multi-file-documents as soon as one of the files is opened. You may have to set the magic comment <code>% !TeX root = root-filename</code> if you do not have the root document open.
@@ -640,7 +683,7 @@ Apart from normal text, some special codes are recognized and replaced on insert
 <li>id:123: The id of the placeholder</li>
 <li>columnShift:-12: The placeholder is not placed where the %&lt; markers are, but some columns to the left of it</li>
 <li>translatable: The text of the placeholder should be added to translations (only applicable to macros that are known during the compilation of texstudio).</li>
-<li>cutInsert: The text of the placeholder is replaced by cut buffer (selected text when the snippet is inserted). This code is only necessary if the not the first placeholder is intended to take the cut buffer, e.g. generate env (ctrl+e).</li>
+<li>cutInsert: The text of the placeholder is replaced by cut buffer (selected text when the snippet is inserted). This code is only necessary if not the first placeholder is intended to take the cut buffer, e.g. generate env (ctrl+e).</li>
 </ul></li>
 <li>The option %(<i>filefilter</i>%) will be replaced by a filename which is asked for in a file dialog. The file filter is the standard Qt-Filefilterformat.
 For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)", see also <a href="http://doc.trolltech.com/4.6/qfiledialog.html#getOpenFileName">Qt-Doc</a></li>
@@ -1422,8 +1465,8 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>New : Ctrl+N</li>
 	<li>Open : Ctrl+O</li>
 	<li>Save : Ctrl+S</li>
-	<li>Save as: Ctrl+Alt+S</li>
-	<li>Save all: Ctrl+Shift+Alt+S</li>
+	<li>Save as : Ctrl+Alt+S</li>
+	<li>Save all : Ctrl+Shift+Alt+S</li>
 	<li>Close : Ctrl+W</li>
 	<li>Print Source Code : Ctrl+P</li>
 	<li>Exit : Ctrl+Q</li>
@@ -1444,15 +1487,15 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Find : Ctrl+F</li>
 	<li>Find next : F3 / Ctrl+G</li>
 	<li>Find prev : Shift+F3 / Ctrl+Shift+G</li>
-	<li>Replace : CTrl+R</li>
+	<li>Replace : Ctrl+R</li>
 	<li>Go to line : Ctrl+G</li>
-	<li>Go to previous change: Ctrl+H</li>
-	<li>Go to to next change: Ctrl+Shift+H</li>
-	<li>Go to Bookmark 0..9: Ctrl+0..9</li>
-	<li>Set Bookmark 0..9: Ctrl+Shift+0..9</li>
-	<li>Set Unnamed Bookmark: Ctrl+Shift+B</li>
-	<li>Next Marker: Ctrl+Down</li>
-	<li>Previous Marker: Ctrl+Up</li>
+	<li>Go to previous change : Ctrl+H</li>
+	<li>Go to to next change : Ctrl+Shift+H</li>
+	<li>Go to Bookmark 1..9 : Ctrl+1..9</li>		<!-- 04/26/2022 it is assumed that Ctrl+0 would make problems, s. #2275 -->
+	<li>Toggle Bookmark 0..9 : Ctrl+Shift+0..9</li>
+	<li>Set Unnamed Bookmark : Ctrl+Shift+B</li>
+	<li>Next Marker : Ctrl+Down</li>
+	<li>Previous Marker : Ctrl+Up</li>
 	<li>Go Back : Alt+Left</li>
 	<li>Go Forward : Alt+Right</li>
 	<li>Insert Unicode Character : Ctrl+Alt+U</li>
@@ -1460,21 +1503,21 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 </li>
 <li> "Idefix" menu :
 	<ul>
-	<li>Erase Word/Cmd/Env: Alt+Del</li>
-	<li>Paste as LaTeX: Ctrl+Shift+V</li>
+	<li>Erase Word/Cmd/Env : Alt+Del</li>
+	<li>Paste as LaTeX : Ctrl+Shift+V</li>
 	<li>Show preview : Alt+P</li>
 	<li>Comment : Ctrl+T</li>
 	<li>Uncomment : Ctrl+U</li>
-	<li>Next Latex Error: Ctrl+Shift+Down</li>
-	<li>Previous Latex Error: Ctrl+Shift+Up</li>
-	<li>Next Latex Bad Box: Shift+Alt+Down</li>
-	<li>Previous Latex Bad Box: Shift+Alt+Up</li>
-	<li>Go to definition: Ctrl+Alt+F</li>
-	<li>Normal Completion: Ctrl+Space</li>
-	<li>\begin Completion: Ctrl+Alt+Space</li>
-	<li>Normal Text Completion: Alt+Shift+Space</li>
-	<li>Close Last Open Environment: Alt+Return</li>
-	<li>Remove Placeholders: Ctrl+Shift+K</li>
+	<li>Next Latex Error : Ctrl+Shift+Down</li>
+	<li>Previous Latex Error : Ctrl+Shift+Up</li>
+	<li>Next Latex Bad Box : Shift+Alt+Down</li>
+	<li>Previous Latex Bad Box : Shift+Alt+Up</li>
+	<li>Go to definition : Ctrl+Alt+F</li>
+	<li>Normal Completion : Ctrl+Space</li>
+	<li>\begin Completion : Ctrl+Alt+Space</li>
+	<li>Normal Text Completion : Alt+Shift+Space</li>
+	<li>Close Last Open Environment : Alt+Return</li>
+	<li>Remove Placeholders : Ctrl+Shift+K</li>
 	</ul>
 </li>
 
@@ -1622,6 +1665,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>d</td><td>this command declares a definition command like "\newcommand{cmd}{def}"</td></tr>
   <tr><td>g</td><td>this command declares an include graphics command like "\includegraphics{file}"</td></tr>
   <tr><td>i</td><td>this command declares an include file command like "\include{file}"</td></tr>
+  <tr><td>I</td><td>this command declares an import file command like "\import{path}{file}"</td></tr>
   <tr><td>u</td><td>this command declares an used package like "\usepackage{package}"</td></tr>
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>

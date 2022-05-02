@@ -1,12 +1,14 @@
 # projlib-language package
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/04/28 for 2022/04/24 release
 
 #include:l3keys2e
 #include:fontenc
 # loads T1 option of fontenc
 #include:babel
 # loads italian, portuguese, brazilian, spanish, ngerman, french, and english options of babel
+#include:silence
 #include:setspace
+#include:csquotes
 
 #keyvals:\usepackage/projlib-language#c
 English
@@ -105,6 +107,7 @@ SuppressWarning#true,false
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
 \boi
+\bname{text}
 \bsc{text}
 \CaptionSeparator#*
 \captionsfrench#*
