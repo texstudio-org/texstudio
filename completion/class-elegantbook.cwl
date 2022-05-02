@@ -92,18 +92,13 @@ openbib
 
 #ifOption:lang=cn
 #include:ctex
-#endif
-#ifOption:cn
-#include:ctex
-#endif
-
-#ifOption:chinesefont=founder
 \songti
 \heiti
 \kaishu
 \fangsong
 #endif
-#ifOption:founder
+#ifOption:cn
+#include:ctex
 \songti
 \heiti
 \kaishu
