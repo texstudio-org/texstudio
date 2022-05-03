@@ -123,6 +123,7 @@
 <file>completion/asapsym.cwl</file>
 <file>completion/ascii.cwl</file>
 <file>completion/asciilist.cwl</file>
+<file>completion/ascmac.cwl</file>
 <file>completion/askinclude.cwl</file>
 <file>completion/askmaps.cwl</file>
 <file>completion/association-matrix.cwl</file>
@@ -498,6 +499,8 @@
 <file>completion/class-einfart.cwl</file>
 <file>completion/class-ejpecp.cwl</file>
 <file>completion/class-elegantbook.cwl</file>
+<file>completion/class-elegantnote.cwl</file>
+<file>completion/class-elegantpaper.cwl</file>
 <file>completion/class-elpres.cwl</file>
 <file>completion/class-elsarticle.cwl</file>
 <file>completion/class-europecv.cwl</file>
@@ -590,6 +593,7 @@
 <file>completion/class-ReadableCV.cwl</file>
 <file>completion/class-report.cwl</file>
 <file>completion/class-resphilosophica.cwl</file>
+<file>completion/class-resumecls.cwl</file>
 <file>completion/class-schulma-ab.cwl</file>
 <file>completion/class-schulma-gutachten.cwl</file>
 <file>completion/class-schulma-klausur.cwl</file>
@@ -828,6 +832,7 @@
 <file>completion/dox.cwl</file>
 <file>completion/dozenal.cwl</file>
 <file>completion/DPcircling.cwl</file>
+<file>completion/dpfloat.cwl</file>
 <file>completion/drac.cwl</file>
 <file>completion/draftfigure.cwl</file>
 <file>completion/draftmark.cwl</file>
@@ -860,6 +865,7 @@
 <file>completion/dynkin-diagrams.cwl</file>
 <file>completion/easybase.cwl</file>
 <file>completion/easyfig.cwl</file>
+<file>completion/easyfloats.cwl</file>
 <file>completion/easyformat.cwl</file>
 <file>completion/easylist.cwl</file>
 <file>completion/easyReview.cwl</file>
@@ -905,6 +911,7 @@
 <file>completion/endiagram.cwl</file>
 <file>completion/endnotes.cwl</file>
 <file>completion/endnotes-hy.cwl</file>
+<file>completion/endnotesj.cwl</file>
 <file>completion/endofproofwd.cwl</file>
 <file>completion/engord.cwl</file>
 <file>completion/engpron.cwl</file>
@@ -1119,6 +1126,7 @@
 <file>completion/genealogytree.cwl</file>
 <file>completion/gensymb.cwl</file>
 <file>completion/gentium.cwl</file>
+<file>completion/gentombow.cwl</file>
 <file>completion/geometry.cwl</file>
 <file>completion/german.cwl</file>
 <file>completion/getfiledate.cwl</file>
@@ -1727,6 +1735,7 @@
 <file>completion/niceframe.cwl</file>
 <file>completion/nicematrix.cwl</file>
 <file>completion/niceverb.cwl</file>
+<file>completion/nidanfloat.cwl</file>
 <file>completion/nimbusmono.cwl</file>
 <file>completion/nimbusmononarrow.cwl</file>
 <file>completion/nimbussans.cwl</file>
@@ -2409,6 +2418,7 @@
 <file>completion/tabvar.cwl</file>
 <file>completion/tagging.cwl</file>
 <file>completion/tagpair.cwl</file>
+<file>completion/tascmac.cwl</file>
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
 <file>completion/tdsfrmath.cwl</file>
@@ -2743,6 +2753,7 @@
 <file>completion/xcpdftips.cwl</file>
 <file>completion/xeCJK.cwl</file>
 <file>completion/xeCJKfntef.cwl</file>
+<file>completion/xeCJK-listings.cwl</file>
 <file>completion/xecolor.cwl</file>
 <file>completion/xeindex.cwl</file>
 <file>completion/xellipsis.cwl</file>
