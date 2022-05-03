@@ -242,9 +242,15 @@ deleteemph={%<identifier list%>}
 deleteemph=[%<number%>]{%<identifier list%>}
 emphstyle={%<style%>}
 emphstyle=[%<number%>]{%<style%>}
-delim=
-moredelim=
-deletedelim=
+delim=[%<type%>][%<style%>]%<delimiters%>
+delim=*[%<type%>][%<style%>]%<delimiters%>
+delim=**[%<type%>][%<style%>]%<delimiters%>
+moredelim=[%<type%>][%<style%>]%<delimiters%>
+moredelim=*[%<type%>][%<style%>]%<delimiters%>
+moredelim=**[%<type%>][%<style%>]%<delimiters%>
+deletedelim=[%<type%>][%<style%>]%<delimiters%>
+deletedelim=*[%<type%>][%<style%>]%<delimiters%>
+deletedelim=**[%<type%>][%<style%>]%<delimiters%>
 extendedchars#true,false
 inputencoding=%<encoding%>
 upquote#true,false
@@ -260,7 +266,7 @@ numberfirstline#true,false
 numberstyle=%<style%>
 numbersep=##L
 numberblanklines#true,false
-firstnumber=
+firstnumber=%<auto|last|<number>%>
 name=%<name%>
 title=%<title text%>
 caption={%<caption text%>}
@@ -281,7 +287,7 @@ prebreak=%<tokens%>
 postbreak=%<tokens%>
 breakindent=##L
 breakautoindent#true,false
-frame=
+frame=%<type%>
 frameround=
 framesep=##L
 rulesep=##L
@@ -295,11 +301,19 @@ rulecolor=#%color
 fillcolor=#%color
 rulesepcolor=#%color
 frameshape={%<top shape%>}{%<left shape%>}{%<right shape%>}{%<bottom shape%>}
-index=
-moreindex=
-deleteindex=
-indexstyle=
-columns=
+index={%<identifiers%>}
+index=[%<number%>]{%<identifiers%>}
+index=[%<number%>][%<keyword classes%>]{%<identifiers%>}
+moreindex={%<identifiers%>}
+moreindex=[%<number%>]{%<identifiers%>}
+moreindex=[%<number%>][%<keyword classes%>]{%<identifiers%>}
+deleteindex={%<identifiers%>}
+deleteindex=[%<number%>]{%<identifiers%>}
+deleteindex=[%<number%>][%<keyword classes%>]{%<identifiers%>}
+indexstyle=%<one-parameter macro%>
+indexstyle=[%<number%>]%<one-parameter macro%>
+columns=%<alignment%>
+columns=[%<c|l|r%>]%<alignment%>
 flexiblecolumns#true,false
 keepspaces#true,false
 basewidth=##L
@@ -307,25 +321,26 @@ fontadjust#true,false
 texcl#true,false
 mathescape#true,false
 escapechar=%<character%>
-escapeinside=
+escapeinside=%<<char1><char2>%>
 escapebegin=%<tokens%>
 escapeend=%<tokens%>
 fancyvrb#true,false
-fvcmdparams=
-morefvcmdparams=
-literate=
-rangebeginprefix=
-rangebeginsuffix=
-rangeendprefix=
-rangeendsuffix=
-rangeprefix=
-rangesuffix=
+fvcmdparams=%<<cmd1> <num1> ...%>
+morefvcmdparams=%<<cmd1> <num1> ...%>
+literate={%<replace%>}{%<replacement text%>}{%<length%>}%<...%>
+literate=*{%<replace%>}{%<replacement text%>}{%<length%>}%<...%>
+rangebeginprefix=%<prefix%>
+rangebeginsuffix=%<suffix%>
+rangeendprefix=%<prefix%>
+rangeendsuffix=%<suffix%>
+rangeprefix=%<prefix%>
+rangesuffix=%<suffix%>
 includerangemarker#true,false
 multicols=%<number%>
 float
 float=%<subset of tbph%>
 float=*%<subset of tbph%>
-floatplacement=
+floatplacement=%<place specifiers%>
 firstline=%<number%>
 lastline=%<number%>
 linerange={%<first1-last1,first2-last2,...%>}
@@ -340,24 +355,33 @@ deletekeywords=[%<number%>]{%<list of keywords%>}
 ndkeywords={%<list of keywords%>}
 moreendkeywords={%<list of keywords%>}
 deleteendkeywords={%<list of keywords%>}
-texcs=
-moretexcs=
-deletetxcs=
-directives=
-moredirectives=
-deletedirectives=
+texcs={%<list of csnames%>}
+texcs=[%<class number%>]{%<list of csnames%>}
+moretexcs={%<list of csnames%>}
+moretexcs=[%<class number%>]{%<list of csnames%>}
+deletetxcs={%<list of csnames%>}
+deletetxcs=[%<class number%>]{%<list of csnames%>}
+directives={%<list of compiler directives%>}
+moredirectives={%<list of compiler directives%>}
+deletedirectives={%<list of compiler directives%>}
 sensitive#true,false
 alsoletter={%<character sequence%>}
 alsodigit={%<character sequence%>}
 alsoother={%<character sequence%>}
 otherkeywords={%<keywords%>}
-tag=
-string=
-morestring=
-deletestring=
-comment=
-morecomment=
-deletecomment=
+tag=%<<char1><char2>%>
+string=%<delimiter%>
+string=[%<b|d|m|bd|s%>]%<delimiter%>
+morestring=%<delimiter%>
+morestring=[%<b|d|m|bd|s%>]%<delimiter%>
+deletestring=%<delimiter%>
+deletestring=[%<b|d|m|bd|s%>]%<delimiter%>
+comment=%<delimiter(s)%>
+comment=[%<type%>]%<delimiter(s)%>
+morecomment=%<delimiter(s)%>
+morecomment=[%<type%>]%<delimiter(s)%>
+deletecomment=%<delimiter(s)%>
+deletecomment=[%<type%>]%<delimiter(s)%>
 keywordcomment={%<keywords%>}
 morekeywordcomment={%<keywords%>}
 deletekeywordcomment={%<keywords%>}
@@ -385,13 +409,17 @@ podcomment#true,false
 \lstDeleteShortInline%<<character>%>#*
 
 \lstdefinelanguage{language name}{keyvals}#*
+\lstdefinelanguage{language name}{keyvals}[required aspects]#*
+\lstdefinelanguage[dialect]{language name}{keyvals}#*
+\lstdefinelanguage[dialect]{language name}{keyvals}[required aspects]#*
+\lstdefinelanguage[dialect]{language name}[base dialect]{base language}{keyvals}[required aspects]#*
 \lstalias{alias}{language}#*
 
 \lstaspectfiles#*
 \lstlanguagefiles#*
 
 #ifOption:procnames
-#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
 procnamekeys={%<keywords%>}
 moreprocnamekeys={%<keywords%>}
 deleteprocnamekeys={%<keywords%>}
@@ -401,17 +429,17 @@ indexprocnames#true,false
 #endif
 
 #ifOption:hyper
-#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
 hyperref={%<identifiers%>}
 morehyperref={%<identifiers%>}
 deletehyperref={%<identifiers%>}
-hyperanchor=
-hyperlink=
+hyperanchor=%<two-parameter macro%>
+hyperlink=%<two-parameter macro%>
 #endkeyvals
 #endif
 
 #ifOption:lgrind
-#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting
+#keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
 lgrindef=%<language%>
 #endkeyvals
 \lstlgrindeffile

@@ -48,7 +48,7 @@
 #include:listings
 #include:bm
 
-#keyvals:\usepackage/elegantbook#c
+#keyvals:\documentclass/elegantbook#c
 lang=#en,cn,it,fr,nl,hu,de,es,mn,jp,pt
 device=#normal,pad
 color=#green,cyan,blue,gray,black
@@ -92,18 +92,15 @@ openbib
 
 #ifOption:lang=cn
 #include:ctex
-#endif
-#ifOption:cn
-#include:ctex
-#endif
-
-#ifOption:chinesefont=founder
+#include:xeCJK
 \songti
 \heiti
 \kaishu
 \fangsong
 #endif
-#ifOption:founder
+#ifOption:cn
+#include:ctex
+#include:xeCJK
 \songti
 \heiti
 \kaishu

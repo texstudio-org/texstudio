@@ -19,7 +19,7 @@ tmargin=##L
 bmargin=##L
 vmargin=##L
 lmargin=##L
-rmarghin=##L
+rmargin=##L
 hmargin=##L
 margin=##L
 #endkeyvals

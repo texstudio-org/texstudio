@@ -734,3 +734,15 @@ elegantbook:
 class-elegantbook
 latex-document
 tex
+elegantnote:
+class-elegantnote
+latex-document
+tex
+elegantpaper:
+class-elegantpaper
+latex-document
+tex
+resumecls:
+class-resumecls
+latex-document
+tex

@@ -1,5 +1,5 @@
 # endnotes package
-# Matthew Bertucci 2/6/2022
+# Matthew Bertucci 2022/05/02
 
 \endnote{text}
 \endnote[number]{text}
@@ -9,10 +9,11 @@
 \endnotetext[number]{text}
 \addtoendnotes{text}
 \enotesize
-\theendnote
+\theendnotes
+\theendnote#*
 \theenmark#*
 \makeenmark#*
 \enoteformat#*
 \enoteheading#*
 \notesname#*
-\theendnotes
+\endnotesep#*
