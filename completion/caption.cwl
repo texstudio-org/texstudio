@@ -16,7 +16,7 @@ indention=##L
 labelformat=#original,empty,simple,brace,parens
 labelsep=#none,colon,period,space,quad,newline,endash
 textformat=#empty,simple,period
-justification=#justified,centering,centerlast,centerfirst,raggedright,RaggedRight,raggedleft
+justification=#justified,centering,centerlast,centerfirst,raggedright,raggedleft,Justified,Centering,RaggedRight,RaggedLeft
 singlelinecheck#true,false
 font=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
 labelfont=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
@@ -47,6 +47,19 @@ type=%<float type%>
 #keyvals:\usepackage/caption#c
 compatibility#true,false
 #endkeyvals
+
+#ifOption:justification=Justified
+#include:ragged2e
+#endif
+#ifOption:justification=Centering
+#include:ragged2e
+#endif
+#ifOption:justification=RaggedRight
+#include:ragged2e
+#endif
+#ifOption:justification=RaggedLeft
+#include:ragged2e
+#endif
 
 \clearcaptionsetup[option%keyvals]{float type}
 \clearcaptionsetup{float type}
