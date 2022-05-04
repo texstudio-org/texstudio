@@ -7,7 +7,7 @@ jobs:
   build-win:
     name: win build (msys2)
     if: false
-    if: github.event_name == 'push'
+    # if: github.event_name == 'push'
     runs-on: windows-latest
     defaults:
       run:
