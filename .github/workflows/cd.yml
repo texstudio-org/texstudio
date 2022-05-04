@@ -64,7 +64,7 @@ jobs:
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
 
   build-win10:
-    name: win build (msys2)
+    name: win10 build (msys2)
     if: github.event_name == 'push'
     runs-on: windows-latest
     defaults:
@@ -76,7 +76,7 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git make mingw-ucrt-x86_64-toolchain mingw-ucrt-x86_64-qt6-base mingw-ucrt-x86_64-qt6-declarative mingw-ucrt-x86_64-qt6-svg mingw-ucrt-x86_64-qt6-5compat  mingw-ucrt-x86_64-qt6-tools mingw-ucrt-x86_64-poppler-qt6 mingw-ucrt-x86_64-nsis zip unzip
+          install: git make mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-qt6-declarative mingw-w64-ucrt-x86_64-qt6-svg mingw-w64-ucrt-x86_64-qt6-5compat  mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 mingw-w64-ucrt-x86_64-nsis zip unzip
 
       - name: Fetch tag annotations
         run: git fetch --tags --force
