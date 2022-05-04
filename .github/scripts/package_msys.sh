@@ -20,6 +20,7 @@ cd package-zip
 #cp /mingw64/bin/libicudt68.dll /mingw64/bin/icudt68.dll
 windeployqt-qt6 texstudio.exe
 ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
+ldd texstudio.exe | awk '{print $3}'| grep ucrt64 | xargs -I{} cp -u {} .
 # force ssl/crypto copy
 ldd texstudio.exe | awk '{print $3}'| grep libcrypto | xargs -I{} cp -u {} .
 ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .
