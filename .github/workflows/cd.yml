@@ -404,7 +404,7 @@ jobs:
 
   release:
     name: Release
-    needs: [build-win, build-linux-win, build-linux-release, macosx] # macosx-qt5 is disabled
+    needs: [build-win10, build-linux-win, build-linux-release, macosx] # macosx-qt5 is disabled
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
