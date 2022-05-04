@@ -74,7 +74,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: msys2/setup-msys2@v2
         with:
-          msystem: MINGW64
+          msystem: UCRT64
           update: true
           install: git make mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-qt6-declarative mingw-w64-ucrt-x86_64-qt6-svg mingw-w64-ucrt-x86_64-qt6-5compat  mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 mingw-w64-ucrt-x86_64-nsis zip unzip
 
