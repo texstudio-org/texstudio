@@ -63,6 +63,65 @@ jobs:
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
 
+  build-win10:
+    name: win build (msys2)
+    if: github.event_name == 'push'
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git make mingw-ucrt-x86_64-toolchain mingw-ucrt-x86_64-qt6-base mingw-ucrt-x86_64-qt6-declarative mingw-ucrt-x86_64-qt6-svg mingw-ucrt-x86_64-qt6-5compat  mingw-ucrt-x86_64-qt6-tools mingw-ucrt-x86_64-poppler-qt6 mingw-ucrt-x86_64-nsis zip unzip
+
+      - name: Fetch tag annotations
+        run: git fetch --tags --force
+
+      - name: Configure
+        run: |
+          . ./.github/scripts/get-version.sh
+          . ./git_revision.sh
+          sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+          sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
+          qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+      - name: Build
+        run: make -j 2
+      - name: Package
+        id: package
+        run: |
+          . ./.github/scripts/get-version.sh
+          ./.github/scripts/package_msys.sh
+          echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+          echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+          echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+
+      - name: Upload zip to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: texstudio-win-qt6-zip
+          path: ./package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+          
+      - name: Upload to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: texstudio-win-qt6-exe
+          path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
+
+      - name: Upload release file(s)
+        uses: actions/upload-artifact@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: release
+          path: |
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
+
 
   build-linux-win:
     name: win build (mxe)
