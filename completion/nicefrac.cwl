@@ -8,4 +8,5 @@ nice
 ugly
 #endkeyvals
 
-\nicefrac{nom}{denom}
+\nicefrac[%<fontcmd%:translatable%>]{%<num%:translatable%>}{%<den%:translatable%>}
+\nicefrac{%<num%:translatable%>}{%<den%:translatable%>}
