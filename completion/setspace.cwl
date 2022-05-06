@@ -1,3 +1,5 @@
+# setspace package, v6.7a
+
 #keyvals:\usepackage/setspace#c
 nodisplayskipstretch
 singlespacing

@@ -746,3 +746,7 @@ resumecls:
 class-resumecls
 latex-document
 tex
+oblivoir:
+class-oblivoir
+latex-document
+tex

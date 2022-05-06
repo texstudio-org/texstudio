@@ -60,9 +60,13 @@ hideerrors
 #ifOption:table
 #include:colortbl
 ## double command as workaround for color args to be recognized properly as colors
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
 \rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
 \rowcolors*[commands]{row}{color}{color}#S
 \showrowcolors
 \hiderowcolors
@@ -105,10 +109,10 @@ hideerrors
 \preparecolor[type]{name}{model-list}{spec-list}#*s#%color
 \preparecolorset[type]{model-list}{head}{tail}{set-spec}#*
 \ifdefinecolors#*
-\DefineNamedColor{type}{name}{model-list}{spec-list}#Ss#%color
-\definecolors{id-list}#*
 \definecolorstrue#*
 \definecolorsfalse#*
+\DefineNamedColor{type}{name}{model-list}{spec-list}#Ss#%color
+\definecolors{id-list}#*
 \providecolors{id-list}#*
 \ifglobalcolors#*
 \globalcolorstrue#*
@@ -136,10 +140,10 @@ hideerrors
 \resetcolorseries[div]{name}
 \colorseriescycle#*
 
-\extractcolorspec{color}{cmd}#*
-\extractcolorspecs{color}{model-cmd}{color-cmd}#*
-\tracingcolors#*
-\convertcolorspec{model}{spec}{target-model}{cmd}#*
+\extractcolorspec{color}{cmd}#*d
+\extractcolorspecs{color}{model-cmd%cmd}{color-cmd%cmd}#*d
+\tracingcolors=%<integer%>#*
+\convertcolorspec{model}{spec}{target-model}{cmd}#*d
 
 #keyvals:\definecolorseries
 step
