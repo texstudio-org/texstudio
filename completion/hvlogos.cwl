@@ -1,5 +1,5 @@
 # hvlogos package
-# Matthew Bertucci 1/10/2022 for v0.05
+# Matthew Bertucci 2022/05/05 for v0.08
 
 #include:fetamont
 #include:hologo
@@ -15,6 +15,7 @@
 \biber#n
 \Biber#n
 \BibLaTeX#n
+\BibLaTeXML#n
 \BibTeX#n
 \BibTeX8#n
 \BibTool#n
@@ -46,6 +47,8 @@
 \MetaFun#n
 \METAPOST#n
 \mfShort#n
+\mkII#n
+\mkIV#n
 \MiKTeX#n
 \mpShort#n
 \NTS#n
@@ -94,6 +97,8 @@
 \luatex#*n
 \MetaPost#*n
 \MFun#*n
+\mkii#*n
+\mkiv#*n
 \pdflatex#*n
 \pdftex#*n
 \pgftikz#*n
