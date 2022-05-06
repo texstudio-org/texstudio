@@ -51,7 +51,7 @@ force
 \textcelsius
 \textcent
 \textcentoldstyle
-\textcircled
+\textcircled{text}
 \textcircledP
 \textcolonmonetary
 \textcopyleft
