@@ -6,6 +6,7 @@
 #include:keyval
 #include:kvoptions
 #include:fvextra
+#include:ifthen
 #include:calc
 #include:shellesc
 #include:ifplatform
@@ -14,6 +15,7 @@
 #include:xstring
 #include:lineno
 #include:framed
+#include:catchfile
 #include:xcolor
 #include:float
 #ifOption:newfloat
@@ -25,6 +27,7 @@
 
 #keyvals:\usepackage/minted#c
 chapter
+section
 cache#true,false
 cachedir=%<directory%>
 finalizecache#true,false
@@ -175,6 +178,8 @@ breaksymbolseprightnchars=%<int%>
 
 \DeleteFile{file}#*
 \DeleteFile[directory]{file}#*
+\ProvideDirectory{directory}#*
+\TestAppExists{application}#*
 \MintedPygmentize#*
 \MintedPython#*
 \PYG#*
