@@ -1,4 +1,4 @@
-# pict2e class
+# pict2e package
 # Matthew Bertucci 11/12/2021 for v0.4b
 
 #include:trig
