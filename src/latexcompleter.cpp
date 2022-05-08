@@ -1180,8 +1180,10 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
             }
         }
         // switch most used to top position (favorite)
-        words.takeAt(mostUsedPosition); // possible expensive
-        words.prepend(mostUsedCW);
+        if(mostUsedPosition>=0){
+            words.takeAt(mostUsedPosition); // possible expensive
+            words.prepend(mostUsedCW);
+        }
     }
 
     curWord = word;
