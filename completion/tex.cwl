@@ -91,6 +91,7 @@
 \delimitershortfall#*
 \dimen#*
 \dimendef#*
+\dimendef{cmd}#Sd
 \discretionary#*
 \displayindent#*
 \displaylimits#*
@@ -196,7 +197,7 @@
 \leqno{eqn num}#*m
 # for command interpretation
 \let
-\let{cmd}{def}#dS
+\let{cmd}{def}#Sd
 \limits#*
 \linepenalty#*
 \lineskip#*
@@ -235,6 +236,7 @@
 \multiply#*
 \muskip#*
 \muskipdef#*
+\muskipdef{cmd}#Sd
 \newlinechar#*
 \noalign
 \noboundary#*
@@ -307,6 +309,7 @@
 \skewchar#*
 \skip#*
 \skipdef#*
+\skipdef{cmd}#Sd
 \spacefactor#*
 \spaceskip#*
 \span#*
@@ -326,6 +329,7 @@
 \time#*
 \toks#*
 \toksdef#*
+\toksdef{cmd}#Sd
 \tolerance#*
 \topmark#*
 \topskip#*

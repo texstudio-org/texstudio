@@ -1,4 +1,4 @@
-# pict2e class
+# pict2e package
 # Matthew Bertucci 11/12/2021 for v0.4b
 
 #include:trig
@@ -51,11 +51,11 @@ hide
 \arc*[angle1,angle2]{radius}#/picture
 
 \Line(x1,y1)(x2,y2)#/picture
-\polyline(x1,y1)(x2,y2)%<...(xN,yN)%>#/picture
+\polyline(%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>#/picture
 \Vector(x1,y1)(x2,y2)#/picture
-\polyvector(x1,y1)(x2,y2)%<...(xN,yN)%>#/picture
-\polygon(x1,y1)(x2,y2)%<...(xN,yN)%>#/picture
-\polygon*(x1,y1)(x2,y2)%<...(xN,yN)%>#/picture
+\polyvector(%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>#/picture
+\polygon(%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>#/picture
+\polygon*(%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>#/picture
 
 \moveto(x,y)#/picture
 \lineto(x,y)#/picture

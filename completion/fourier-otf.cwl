@@ -1,10 +1,11 @@
 # fourier-otf package
-# Matthew Bertucci 4/16/2022 for v0.52
+# Matthew Bertucci 2022/05/07 for v0.53
 
 #include:iftex
 #include:fourier-orns
 #include:unicode-math
 #include:xkeyval
+#include:realscripts
 
 #keyvals:\usepackage/fourier-otf#c
 no-text
@@ -15,7 +16,7 @@ math-style=#ISO,TeX,french,upright
 bold-style=#ISO,TeX,upright
 nabla=#italic,upright
 partial=#italic,upright
-CharacterVariant=
+CharacterVariant={%<variants%>}
 StylisticSet=#3,4,5,6,7
 Style=#upint,leqslant,smaller,subsetneq,parallelslant,fulloldstyle
 Scale=%<factor%>
@@ -108,6 +109,7 @@ Scale=%<factor%>
 \mscre#*m
 \mscrg#*m
 \mscro#*m
+\mupvarpartial#*m
 \mupvarvarpi#*m
 \mupvarzero#*m
 \ngeqq#m
