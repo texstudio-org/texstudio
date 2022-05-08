@@ -47,8 +47,8 @@ public:
 						 CF_FORCE_PACKAGE = 64, ///< complete a package name
 						 CF_FORCE_KEYVAL = 128, ///< complete key/value pair
 						 CF_FORCE_SPECIALOPTION = 256,
-						 CF_FORCE_LENGTH = 512,
-						 CF_FORCE_REFLIST = 1024};
+                         CF_FORCE_LENGTH = 512, ///< complete a a length
+                         CF_FORCE_REFLIST = 1024}; ///< complete a reference list (more than one reference,separated by comma)
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag)
 
     LatexCompleter(const LatexParser &latexParser, QObject *p = nullptr); ///< constructor
