@@ -438,6 +438,7 @@
 <file>completion/chemschemex.cwl</file>
 <file>completion/chemsec.cwl</file>
 <file>completion/chemstyle.cwl</file>
+<file>completion/cherokee.cwl</file>
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
 <file>completion/chickenize.cwl</file>
@@ -573,6 +574,7 @@
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-mucproc.cwl</file>
+<file>completion/class-nanicolle.cwl</file>
 <file>completion/class-ncc.cwl</file>
 <file>completion/class-newlfm.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
@@ -583,6 +585,7 @@
 <file>completion/class-papertex.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
 <file>completion/class-petiteannonce.cwl</file>
+<file>completion/class-phfextendedabstract.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
 <file>completion/class-pressrelease.cwl</file>
 <file>completion/class-proc.cwl</file>
@@ -598,6 +601,7 @@
 <file>completion/class-report.cwl</file>
 <file>completion/class-resphilosophica.cwl</file>
 <file>completion/class-resumecls.cwl</file>
+<file>completion/class-revtex4-2.cwl</file>
 <file>completion/class-schulma-ab.cwl</file>
 <file>completion/class-schulma-gutachten.cwl</file>
 <file>completion/class-schulma-klausur.cwl</file>
@@ -639,6 +643,7 @@
 <file>completion/class-webquiz.cwl</file>
 <file>completion/class-willowtreebook.cwl</file>
 <file>completion/class-xebaposter.cwl</file>
+<file>completion/class-xepersian-magazine.cwl</file>
 <file>completion/class-yaletter.cwl</file>
 <file>completion/cleanthesis.cwl</file>
 <file>completion/ClearSans.cwl</file>
@@ -758,6 +763,7 @@
 <file>completion/currfile.cwl</file>
 <file>completion/currvita.cwl</file>
 <file>completion/cursor.cwl</file>
+<file>completion/curve2e.cwl</file>
 <file>completion/curves.cwl</file>
 <file>completion/cuted.cwl</file>
 <file>completion/cutwin.cwl</file>
@@ -953,6 +959,7 @@
 <file>completion/eqparbox.cwl</file>
 <file>completion/erewhon.cwl</file>
 <file>completion/errata.cwl</file>
+<file>completion/esindex.cwl</file>
 <file>completion/esint.cwl</file>
 <file>completion/esk.cwl</file>
 <file>completion/eso-pic.cwl</file>
@@ -967,6 +974,7 @@
 <file>completion/etoolbox.cwl</file>
 <file>completion/etruscan.cwl</file>
 <file>completion/eucal.cwl</file>
+<file>completion/euclideangeometry.cwl</file>
 <file>completion/euflag.cwl</file>
 <file>completion/eufrak.cwl</file>
 <file>completion/eukdate.cwl</file>
@@ -1130,6 +1138,7 @@
 <file>completion/gamebooklib.cwl</file>
 <file>completion/gandhi.cwl</file>
 <file>completion/garamondlibre.cwl</file>
+<file>completion/garamondx.cwl</file>
 <file>completion/gates.cwl</file>
 <file>completion/gatherenum.cwl</file>
 <file>completion/gb4e.cwl</file>
@@ -1210,6 +1219,7 @@
 <file>completion/greekctr.cwl</file>
 <file>completion/greekdates.cwl</file>
 <file>completion/greektonoi.cwl</file>
+<file>completion/gregoriotex.cwl</file>
 <file>completion/grfext.cwl</file>
 <file>completion/grfpaste.cwl</file>
 <file>completion/grid.cwl</file>
@@ -1337,6 +1347,7 @@
 <file>completion/inversepath.cwl</file>
 <file>completion/invoice2.cwl</file>
 <file>completion/ionumbers.cwl</file>
+<file>completion/ipaex-type1.cwl</file>
 <file>completion/isodate.cwl</file>
 <file>completion/isomath.cwl</file>
 <file>completion/isonums.cwl</file>
@@ -1496,6 +1507,7 @@
 <file>completion/ltj-base.cwl</file>
 <file>completion/ltj-latex.cwl</file>
 <file>completion/ltx4yt.cwl</file>
+<file>completion/ltxdocext.cwl</file>
 <file>completion/ltxdockit.cwl</file>
 <file>completion/ltxnew.cwl</file>
 <file>completion/ltxtable.cwl</file>
@@ -1629,6 +1641,7 @@
 <file>completion/mflogo.cwl</file>
 <file>completion/mfpic.cwl</file>
 <file>completion/mftinc.cwl</file>
+<file>completion/mgltex.cwl</file>
 <file>completion/mhchem.cwl</file>
 <file>completion/mhequ.cwl</file>
 <file>completion/mhsetup.cwl</file>
@@ -1702,6 +1715,7 @@
 <file>completion/musikui.cwl</file>
 <file>completion/mVersion.cwl</file>
 <file>completion/mwe.cwl</file>
+<file>completion/mxedruli.cwl</file>
 <file>completion/myfilist.cwl</file>
 <file>completion/nabatean.cwl</file>
 <file>completion/nag.cwl</file>
@@ -2181,6 +2195,7 @@
 <file>completion/rerunfilecheck.cwl</file>
 <file>completion/resizegather.cwl</file>
 <file>completion/returntogrid.cwl</file>
+<file>completion/revsymb4-2.cwl</file>
 <file>completion/rgltxdoc.cwl</file>
 <file>completion/ribbonproofs.cwl</file>
 <file>completion/rjlpshap.cwl</file>
@@ -2470,6 +2485,7 @@
 <file>completion/tex-locale.cwl</file>
 <file>completion/texments.cwl</file>
 <file>completion/texnames.cwl</file>
+<file>completion/texnegar.cwl</file>
 <file>completion/texosquery.cwl</file>
 <file>completion/texsort.cwl</file>
 <file>completion/texsurgery.cwl</file>
@@ -2789,6 +2805,7 @@
 <file>completion/xeindex.cwl</file>
 <file>completion/xellipsis.cwl</file>
 <file>completion/xepersian.cwl</file>
+<file>completion/xepersian-hm.cwl</file>
 <file>completion/xepersian-mathdigitspec.cwl</file>
 <file>completion/xepersian-persiancal.cwl</file>
 <file>completion/xesearch.cwl</file>
@@ -2826,6 +2843,7 @@
 <file>completion/xparse.cwl</file>
 <file>completion/xpatch.cwl</file>
 <file>completion/xpiano.cwl</file>
+<file>completion/xpicture.cwl</file>
 <file>completion/xpinyin.cwl</file>
 <file>completion/xprintlen.cwl</file>
 <file>completion/xpunctuate.cwl</file>
@@ -2839,6 +2857,7 @@
 <file>completion/xstring.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xtemplate.cwl</file>
+<file>completion/xucuri.cwl</file>
 <file>completion/xurl.cwl</file>
 <file>completion/xxcolor.cwl</file>
 <file>completion/xy.cwl</file>
