@@ -5253,7 +5253,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			/* eats up delimiters */
 			bool delimiter_used=false;
-			while ( (offset > 0) && isDelimiter(l.text().at(offset-1)) ){
+            if ( (offset > 0) && isDelimiter(l.text().at(offset-1)) ){ // don't jump over more than one delimiter (see https://github.com/texstudio-org/texstudio/issues/2311)
 				--offset;
 				delimiter_used=true;
 			}
@@ -5307,7 +5307,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			/* next char */
 			bool delimiter_used=false;
-			while ( (offset < lineLength) && isDelimiter(l.text().at(offset)) ){
+            if ( (offset < lineLength) && isDelimiter(l.text().at(offset)) ){ // don't jump over more than one delimiter (see https://github.com/texstudio-org/texstudio/issues/2311)
 				++offset;
 				delimiter_used=true;
 			}
