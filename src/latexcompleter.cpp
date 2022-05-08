@@ -1161,8 +1161,10 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                     mostUsedPosition=words.size(); // point to last valid element, will be filled below
                                 }
                             }else{
-                                mostUsedCW=*it;
-                                mostUsedPosition=0;
+                                if(it->usageCount>0){ // don't bother with never used cw
+                                    mostUsedCW=*it;
+                                    mostUsedPosition=words.size();
+                                }
                             }
                             words.append(*it);
                         }
