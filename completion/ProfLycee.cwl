@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/05/04 for v1.1.3
+# Matthew Bertucci 2022/05/09 for v1.1.4
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -194,6 +194,29 @@ taillelabel=%<fontsize cmd%>
 afftermes#true,false
 #endkeyvals
 
+\cercletrigoPL
+\cercletrigoPL[options%keyvals]
+
+#keyvals:\cercletrigoPL
+rayon=%<rayon%>
+epaisseur=%<épaisseur%>
+epaisseursol=%<épaisseur%>
+marge=%<marge%>
+taillevaleurs=%<fontsize cmd%>
+tailleangles=%<fontsize cmd%>
+couleurfond=#%color
+decal=##L
+moinspi#true,false
+affangles#true,false
+afftraits#true,false
+affvaleurs#true,false
+equationcos#true,false
+equationsin#true,false
+cos=%<degrees%>
+sin=%<degrees%>
+couleursol=#%color
+#endkeyvals
+
 # from table option of xcolor
 #include:colortbl
 \rowcolors{row}{odd-row-color}{even-row-color}
@@ -373,9 +396,8 @@ Teal#B
 #include:minted
 
 # not documented
-\begin{pythont}#S
-\end{pythont}#S
 \algomathttPL{text%plain}#*
+\begin{pythont}#S
 \begin{tcpythontexcode}#*
 \begin{tcpythontexcode}[width]#*
 \begin{tcpythontexcodeno}#*
@@ -404,6 +426,7 @@ Teal#B
 \COEFFB#S
 \CSPYlargeur#S
 \denominateur#S
+\end{pythont}#S
 \end{tcpythontexcode}#*
 \end{tcpythontexcodeno}#*
 \extractcoeff{liste}{numero}#*
@@ -438,6 +461,17 @@ Teal#B
 \PFTetraPf#S
 \PFTetraSommets#S
 \PFTetraThick#S
+\PLcercleangles#S
+\PLcerclecoleq#S
+\PLcercledecal#S
+\PLcerclefond#S
+\PLcerclemarge#S
+\PLcerclerayon#S
+\PLcerclesolthick#S
+\PLcerclethick#S
+\PLcerclevalcos#S
+\PLcerclevaleurs#S
+\PLcerclevalsin#S
 \PLcommandeswin#*
 \PLensopt#S
 \PLenssep#S
@@ -494,7 +528,7 @@ Teal#B
 \xb#S
 \ya#S
 \yb#S
-
+	
 PLlinux#B
 PLmgray#B
 PLmpurple#B
