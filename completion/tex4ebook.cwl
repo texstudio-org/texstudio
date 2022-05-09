@@ -1,19 +1,13 @@
 # tex4ebook package
-# Matthew Bertucci 2/20/2022 for v0.1d
+# Matthew Bertucci 2022/05/09 for v0.1d
 
 #include:etoolbox
-#include:graphicx
 #include:kvoptions
+#include:graphicx
 
-\Author
-\Date
-\DeclareLanguageEbook{language}{lang code}
-\GetLanguage
-\Title
-\title[short title]{text}
-\author[short author]{name}
 \coverimage{imagefile}#g
 \coverimage[options%keyvals]{imagefile}#g
+
 #keyvals:\coverimage
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>
@@ -45,6 +39,13 @@ page=%<page number%>
 interpolate#true,false
 decodearray={%<color array%>}
 #endkeyvals
-\ncxtable#*
-\opftable#*
-\origdate{date}#*
+
+\DeclareLanguageEbook{lang name}{lang code}#*
+\GetLanguage#*
+
+\ncxtable#S
+\opftable#S
+\Title#S
+\Author#S
+\Date#S
+\origdate{date}#S
