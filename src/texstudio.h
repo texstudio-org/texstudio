@@ -35,7 +35,7 @@
 #include "searchresultwidget.h"
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
-#include "PDFDocument.h"
+//#include "PDFDocument.h"
 #include <QSplashScreen>
 #include "session.h"
 #include "sessionlist.h"

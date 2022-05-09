@@ -35,6 +35,7 @@
 #include "quickbeamerdialog.h"
 #include "mathassistant.h"
 #include "maketemplatedialog.h"
+#include "PDFDocument.h"
 #include "templateselector.h"
 #include "templatemanager.h"
 #include "usermenudialog.h"
