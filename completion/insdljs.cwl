@@ -35,6 +35,7 @@ usealtadobe
 \dlJSStr{cmd}{JS string%definition}#d
 \dlJSStr*{cmd}{JS string%definition}#d
 \cs{csname}
+\eqbs#*
 \jslit
 
 \begin{insDLJS}{base name}{script name}
