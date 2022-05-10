@@ -220,6 +220,7 @@ jobs:
 
   build-linux-win-qt6:
     name: win build (mxe qt6)
+    if: false
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
