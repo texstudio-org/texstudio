@@ -1,5 +1,5 @@
 # roboto-mono package
-# Matthew Bertucci 7/27/2021
+# Matthew Bertucci 2022/05/10 for release 2019/12/11
 
 #include:ifxetex
 #include:ifluatex
@@ -11,7 +11,6 @@
 
 #keyvals:\usepackage/roboto-mono#c
 scale=%<factor%>
-scaled=%<factor%>
 type1
 medium
 bold
