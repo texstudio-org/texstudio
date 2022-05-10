@@ -632,7 +632,7 @@
 \newfam#*
 \newfam{cmd}#dS
 \newhelp#*
-\newhelp{cmd}{help text}#*S
+\newhelp{cmd}{help text}#Sd
 \newif#*
 \newif{cmd}#dS
 \newinsert#*
