@@ -224,8 +224,8 @@
 \RenewDocumentCommand{cmd}{xargs}{def}#d
 \RenewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
 \RenewExpandableDocumentCommand{cmd}{xargs}{def}#*d
-\RequirePackage[optionlist]{package}#*u
-\RequirePackage[optionlist]{package}[release]#*u
+\RequirePackage[options%keyvals]{package}#*u
+\RequirePackage[options%keyvals]{package}[release]#*u
 \RequirePackage{package}#u
 \RequirePackage{package}[release]#*u
 \RequirePackageWithOptions{package}#*u
