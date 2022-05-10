@@ -313,7 +313,7 @@
 \spacefactor#*
 \spaceskip#*
 \span#*
-\special#*
+\special{code}#*
 \splitbotmark#*
 \splitfirstmark#*
 \splitmaxdepth#*
