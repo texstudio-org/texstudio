@@ -442,6 +442,7 @@
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
 <file>completion/chickenize.cwl</file>
+<file>completion/chinesechess.cwl</file>
 <file>completion/Chivo.cwl</file>
 <file>completion/chngcntr.cwl</file>
 <file>completion/chordbars.cwl</file>
@@ -743,6 +744,8 @@
 <file>completion/crefthe.cwl</file>
 <file>completion/crimson.cwl</file>
 <file>completion/CrimsonPro.cwl</file>
+<file>completion/CronosPro.cwl</file>
+<file>completion/CronosPro-FontDef.cwl</file>
 <file>completion/crop.cwl</file>
 <file>completion/crossreference.cwl</file>
 <file>completion/crossreftools.cwl</file>
@@ -1080,6 +1083,7 @@
 <file>completion/fonetika.cwl</file>
 <file>completion/fontawesome5.cwl</file>
 <file>completion/fontawesome.cwl</file>
+<file>completion/fontaxes.cwl</file>
 <file>completion/fontbook.cwl</file>
 <file>completion/fontenc.cwl</file>
 <file>completion/fontmfizz.cwl</file>
@@ -1271,6 +1275,7 @@
 <file>completion/hologo.cwl</file>
 <file>completion/holtpolt.cwl</file>
 <file>completion/holtxdoc.cwl</file>
+<file>completion/hpstatement.cwl</file>
 <file>completion/hrefhide.cwl</file>
 <file>completion/hulipsum.cwl</file>
 <file>completion/hvarabic.cwl</file>
@@ -1599,6 +1604,14 @@
 <file>completion/mathptmx.cwl</file>
 <file>completion/mathpunctspace.cwl</file>
 <file>completion/mathrsfs.cwl</file>
+<file>completion/mathsemantics-abbreviations.cwl</file>
+<file>completion/mathsemantics-commons.cwl</file>
+<file>completion/mathsemantics.cwl</file>
+<file>completion/mathsemantics-manifolds.cwl</file>
+<file>completion/mathsemantics-names.cwl</file>
+<file>completion/mathsemantics-optimization.cwl</file>
+<file>completion/mathsemantics-semantic.cwl</file>
+<file>completion/mathsemantics-syntax.cwl</file>
 <file>completion/mathspec.cwl</file>
 <file>completion/mathstone.cwl</file>
 <file>completion/mathstyle.cwl</file>
@@ -1717,6 +1730,8 @@
 <file>completion/mwe.cwl</file>
 <file>completion/mxedruli.cwl</file>
 <file>completion/myfilist.cwl</file>
+<file>completion/MyriadPro.cwl</file>
+<file>completion/MyriadPro-FontDef.cwl</file>
 <file>completion/nabatean.cwl</file>
 <file>completion/nag.cwl</file>
 <file>completion/nahuatl.cwl</file>
@@ -1831,6 +1846,7 @@
 <file>completion/oldprsn.cwl</file>
 <file>completion/OldStandard.cwl</file>
 <file>completion/oldstyle.cwl</file>
+<file>completion/onedown.cwl</file>
 <file>completion/onlyamsmath.cwl</file>
 <file>completion/opcit.cwl</file>
 <file>completion/opensans.cwl</file>
@@ -1843,6 +1859,7 @@
 <file>completion/ordinalpt.cwl</file>
 <file>completion/orientation.cwl</file>
 <file>completion/Oswald.cwl</file>
+<file>completion/otfontdef.cwl</file>
 <file>completion/othelloboard.cwl</file>
 <file>completion/ot-tableau.cwl</file>
 <file>completion/oubraces.cwl</file>
@@ -2216,6 +2233,7 @@
 <file>completion/roundbox.cwl</file>
 <file>completion/Royal.cwl</file>
 <file>completion/rsfso.cwl</file>
+<file>completion/rsphrase.cwl</file>
 <file>completion/rterface.cwl</file>
 <file>completion/rubikcube.cwl</file>
 <file>completion/rubikpatterns.cwl</file>
@@ -2327,6 +2345,7 @@
 <file>completion/signchart.cwl</file>
 <file>completion/silence.cwl</file>
 <file>completion/sillypage.cwl</file>
+<file>completion/simplebnf.cwl</file>
 <file>completion/simpleinvoice.cwl</file>
 <file>completion/simplekv.cwl</file>
 <file>completion/simplenodes.cwl</file>
