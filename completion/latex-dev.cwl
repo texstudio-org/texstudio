@@ -158,7 +158,7 @@
 \IfValueTF{arg}{ValueCode}{-NoValue-Code}#*
 \IncludeInRelease{date}{command}{description}#*
 \IndentBox#*
-\InputIfFileExists{file}{then}{else}#*
+\InputIfFileExists{file}{then}{else}#*i
 \LastDeclaredEncoding#*
 \LoadClass[optionlist]{class}#*u
 \LoadClass[optionlist]{class}[release]#*u

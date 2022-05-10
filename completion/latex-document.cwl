@@ -288,7 +288,7 @@
 \mathsterling#m
 \mathtt{text}#m
 \mathunderscore#m
-\mathversion#*
+\mathversion{version%keyvals}#*
 \mbox{text}
 \medspace
 \mdseries#*
@@ -620,6 +620,11 @@ ieeetr
 plain
 siam
 unsrt
+#endkeyvals
+
+#keyvals:\mathversion#c
+bold
+normal
 #endkeyvals
 
 #keyvals:\pagenumbering#c
