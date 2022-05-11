@@ -241,6 +241,7 @@ star
 \mlstrut{strut}
 \mlcrackat{number}
 \mlhyph{y|n}
+\mlfix{y|n}#*
 \mlignore{0|1}
 \mlcrackinsat{LaTeX content}
 
@@ -283,10 +284,13 @@ star
 \efSupprIndent#S
 \eqtemp#S
 \eqTextField#S
+\fixmlinksfalse#S
+\fixmlinkstrue#S
 \getFfValue#S
 \getFValue#S
 \HexGlyph{arg1}{arg2}#S
 \HGERROR#S
+\iffixmlinks#S
 \inlineCenter#S
 \inputCalcOrderJS#S
 \isRadioParent#S
@@ -302,8 +306,7 @@ star
 \listBoxDefaults#S
 \mlfixOff#S
 \mlfixOn#S
-\mlhypertext{arg1}{arg2}#S
-\mlsetLink#S
+\mlstrutbox#S
 \N#S
 \nameuse#S
 \Next{arg1}#S
