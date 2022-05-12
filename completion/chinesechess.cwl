@@ -1,10 +1,14 @@
 # chinesechess package
-# Matthew Bertucci 2022/05/09 for v1.1.0
+# Matthew Bertucci 2022/05/11 for v1.2.0
 
 #include:expl3
 #include:l3keys2e
 #include:l3draw
 #include:xparse
+
+#keyvals:\usepackage/chinesechess#c
+draft
+#endkeyvals
 
 \cchessboard
 \cchessboard[外观选项%keyvals]
@@ -31,17 +35,12 @@
 \cchessset{外观选项%keyvals}
 
 #keyvals:\cchessboard,\cchessboard*,\cchessman,\begin{setcchessman},\begin{setcchessman*},\printman,\cchessset
+draft
 gridsize=##L
 boardtype=#x,x+,x+t,x+tn,x+Xtn
 boardlinewd=##L
 boardlinecolor=#%color
 boardbg=%<imagefile%>
-resize=#none,real
-xscale=%<factor%>
-yscale=%<factor%>
-scale=%<factor%>
-width=##L
-height=##L
 piecechar={%<piece%>}{%<symbol%>}
 piecefont=%<font commands%>
 piecetype=#o,oo,ooo
@@ -55,6 +54,14 @@ redupper=#%color
 blkupper=#%color
 shadow=#%color
 charstroke=#none,solid,white,bold,invisible
-label=##l
-mansperline=%<integer%>
+man={%<man options%>}
+man/label=##l
+man/nums=%<integer%>
+resize={%<resize options%>}
+resize/type=#none,real
+resize/xscale=%<factor%>
+resize/yscale=%<factor%>
+resize/scale=%<factor%>
+resize/width=##L
+resize/height=##L
 #endkeyvals
