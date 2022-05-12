@@ -1,6 +1,8 @@
 # lcg package
 # Matthew Bertucci 9/30/2021 for v1.3
 
+#include:keyval
+
 \rand
 \reinitrand[options%keyvals]
 \chgrand[options%keyvals]
