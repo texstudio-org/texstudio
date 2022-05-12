@@ -766,3 +766,7 @@ xepersian-magazine:
 class-xepersian-magazine
 latex-document
 tex
+jj_game:
+class-jj_game
+latex-document
+tex
