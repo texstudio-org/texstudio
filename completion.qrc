@@ -16,7 +16,9 @@
 <file>completion/achemso.cwl</file>
 <file>completion/Acorn.cwl</file>
 <file>completion/acro.cwl</file>
+<file>completion/acromemory.cwl</file>
 <file>completion/acronym.cwl</file>
+<file>completion/acrosort.cwl</file>
 <file>completion/actcodes.cwl</file>
 <file>completion/actuarialangle.cwl</file>
 <file>completion/actuarialsymbol.cwl</file>
@@ -34,6 +36,11 @@
 <file>completion/adobecaslon.cwl</file>
 <file>completion/adtrees.cwl</file>
 <file>completion/advdate.cwl</file>
+<file>completion/aeb-comment.cwl</file>
+<file>completion/aeb-minitoc.cwl</file>
+<file>completion/aeb_mlink.cwl</file>
+<file>completion/aeb_mobile.cwl</file>
+<file>completion/aeb_tilebg.cwl</file>
 <file>completion/aecompl.cwl</file>
 <file>completion/ae.cwl</file>
 <file>completion/aeguill.cwl</file>
@@ -167,6 +174,7 @@
 <file>completion/backnaur.cwl</file>
 <file>completion/backref.cwl</file>
 <file>completion/balance.cwl</file>
+<file>completion/bargraph-js.cwl</file>
 <file>completion/barracuda.cwl</file>
 <file>completion/bashful.cwl</file>
 <file>completion/basicarith.cwl</file>
@@ -548,6 +556,7 @@
 <file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-jacow.cwl</file>
+<file>completion/class-jj_game.cwl</file>
 <file>completion/class-jmlr.cwl</file>
 <file>completion/class-komacv.cwl</file>
 <file>completion/class-l3doc.cwl</file>
@@ -863,6 +872,7 @@
 <file>completion/dozenal.cwl</file>
 <file>completion/DPcircling.cwl</file>
 <file>completion/dpfloat.cwl</file>
+<file>completion/dps.cwl</file>
 <file>completion/drac.cwl</file>
 <file>completion/draftfigure.cwl</file>
 <file>completion/draftmark.cwl</file>
@@ -1045,6 +1055,7 @@
 <file>completion/fast-diagram.cwl</file>
 <file>completion/fbb.cwl</file>
 <file>completion/fbox.cwl</file>
+<file>completion/fc_arith.cwl</file>
 <file>completion/fclfont.cwl</file>
 <file>completion/fcolumn.cwl</file>
 <file>completion/fdsymbol.cwl</file>
@@ -1234,6 +1245,7 @@
 <file>completion/graphicxsp.cwl</file>
 <file>completion/graphpap.cwl</file>
 <file>completion/graphviz.cwl</file>
+<file>completion/grayhints.cwl</file>
 <file>completion/greek4cbc.cwl</file>
 <file>completion/greek6cbc.cwl</file>
 <file>completion/greekctr.cwl</file>
@@ -1314,6 +1326,8 @@
 <file>completion/hyphsubst.cwl</file>
 <file>completion/ibarra.cwl</file>
 <file>completion/icite.cwl</file>
+<file>completion/icon-appr.cwl</file>
+<file>completion/icon-doc.cwl</file>
 <file>completion/identkey.cwl</file>
 <file>completion/idxcmds.cwl</file>
 <file>completion/idxlayout.cwl</file>
@@ -1568,7 +1582,12 @@
 <file>completion/lua-ul.cwl</file>
 <file>completion/luavlna.cwl</file>
 <file>completion/lua-widow-control.cwl</file>
+<file>completion/lucbmath.cwl</file>
+<file>completion/lucidabr.cwl</file>
 <file>completion/lucida-otf.cwl</file>
+<file>completion/lucmin.cwl</file>
+<file>completion/lucmtime.cwl</file>
+<file>completion/luctime.cwl</file>
 <file>completion/lutabulartools.cwl</file>
 <file>completion/lwarp.cwl</file>
 <file>completion/lyluatex.cwl</file>
@@ -1933,6 +1952,7 @@
 <file>completion/pdfprivacy.cwl</file>
 <file>completion/pdfrender.cwl</file>
 <file>completion/pdfreview.cwl</file>
+<file>completion/pdfscreen.cwl</file>
 <file>completion/pdfswitch.cwl</file>
 <file>completion/pdftexcmds.cwl</file>
 <file>completion/pdfx.cwl</file>
@@ -2199,6 +2219,7 @@
 <file>completion/randomlist.cwl</file>
 <file>completion/randomwalk.cwl</file>
 <file>completion/randtext.cwl</file>
+<file>completion/rangen.cwl</file>
 <file>completion/rank-2-roots.cwl</file>
 <file>completion/ran_toks.cwl</file>
 <file>completion/rawfonts.cwl</file>
@@ -2235,6 +2256,7 @@
 <file>completion/revsymb4-2.cwl</file>
 <file>completion/rgltxdoc.cwl</file>
 <file>completion/ribbonproofs.cwl</file>
+<file>completion/richtext.cwl</file>
 <file>completion/rjlpshap.cwl</file>
 <file>completion/rmathbr.cwl</file>
 <file>completion/robotarm.cwl</file>
@@ -2639,6 +2661,7 @@
 <file>completion/tikz-timing.cwl</file>
 <file>completion/tikz-trackschematic.cwl</file>
 <file>completion/tikz-truchet.cwl</file>
+<file>completion/tile-graphic.cwl</file>
 <file>completion/time.cwl</file>
 <file>completion/tinos.cwl</file>
 <file>completion/tipa.cwl</file>
@@ -2819,6 +2842,7 @@
 <file>completion/warpcol.cwl</file>
 <file>completion/wasysym.cwl</file>
 <file>completion/watermark.cwl</file>
+<file>completion/web.cwl</file>
 <file>completion/widetable.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
 <file>completion/wiki.cwl</file>
