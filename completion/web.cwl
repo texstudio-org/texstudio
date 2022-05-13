@@ -682,6 +682,29 @@ reset=#font,all
 \dddDingTocColor{color}#*
 #endif
 
+webgreen#B
+webbrown#B
+webyellow#B
+webgray#B
+webgrey#B
+webblue#B
+wheat#B
+oldlace#B
+snow#B
+ghostwhite#B
+cornsilk#B
+honeydew#B
+lavenderdark#B
+lavender#B
+lightblue#B
+lightgray#B
+lightsteelblue#B
+lightturquoise#B
+darkgreen#B
+yellowgreen#B
+vlightblue#B
+khaki#B
+
 # not documented
 \BGColorAndGraphic#*
 \BGColorAndGraphicFullWidth#*
