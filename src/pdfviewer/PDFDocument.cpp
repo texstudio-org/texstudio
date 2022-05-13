@@ -2754,13 +2754,13 @@ void PDFDocument::getPosFromCLick(const QPointF &pos)
 {
 	int page = pdfWidget->pageFromPos(pos.toPoint());
 	if (page < 0) return;
-	float height = (pdfWidget->pageRect(page).height()/pdfWidget->totalScaleFactor()) / 28.45;
+	const float ptToCm = 2.54 / 72; // 1pt = 1/72 inch = 2.54/72 cm.
+	float height = (pdfWidget->pageRect(page).height()/pdfWidget->totalScaleFactor()) * ptToCm;
 	QClipboard *clipboard = QGuiApplication::clipboard();
 	QString tmp;
-	QTextStream(&tmp) << "" << pos.x() / 28.45  << "," << height- pos.y() / 28.45;
+	QTextStream(&tmp) << "" << pos.x() * ptToCm  << ", " << height- pos.y() * ptToCm;
 	clipboard->setText(tmp);
 	//qDebug() << "Position: " << qPrintable(tmp) << "\n";
-	
 }
 /*!
  * \brief the shortcuts will only be triggered if this widget has focus (used in embedded mode)
