@@ -241,6 +241,7 @@ public slots:
 	void fitWindow(bool checked = true);
 	void setTool(int tool);
 	void syncWindowClick(const QPoint &p, bool activate);
+	void callGetPosFromClick(const QPoint &p);
 	void syncCurrentPage(bool activate);
 	void fixedScale(qreal scale = 1.0);
 	void setImage(QPixmap img, int pageNr);
@@ -251,6 +252,7 @@ signals:
 	void changedZoom(qreal);
 	void changedScaleOption(autoScaleOption);
 	void syncClick(int, const QPointF &, bool activate); //page position in page coordinates
+	void getPosFromCLick(const QPointF &);
 
 protected:
 	virtual void paintEvent(QPaintEvent *event);
@@ -467,6 +469,7 @@ private slots:
 	void enableZoomActions(qreal);
 	void adjustScaleActions(autoScaleOption);
 	void syncClick(int page, const QPointF &pos, bool activate);
+	void getPosFromCLick(const QPointF &pos);
 	void stopReloadTimer();
 	void reloadWhenIdle();
 	void idleReload();
