@@ -1,6 +1,11 @@
-TeXstudio 4.2.4
+TeXstudio 4.3.0
 -----------------
-- 
+- show most used command at first place in completer
+- more cwls
+- get position into clipboard in pdf on ctrl+shift+click (#2623)
+- move to next/previous word now stops at every delimiter (no skip over several brackets) #2311
+- build qt6/win for win10+
+- small bug fixes
 
 TeXstudio 4.2.3
 -----------------
