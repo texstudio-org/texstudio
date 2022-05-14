@@ -3,6 +3,9 @@ on:
   - push
   - pull_request
 
+permissions:
+  contents: read
+
 jobs:
   build-win:
     name: win build (msys2)
@@ -499,6 +502,8 @@ jobs:
 
 
   release:
+    permissions:
+      contents: write  # for softprops/action-gh-release to create GitHub release
     name: Release
     needs: [build-win10, build-linux-win, build-linux-release, macosx] # macosx-qt5 is disabled
     runs-on: ubuntu-latest
