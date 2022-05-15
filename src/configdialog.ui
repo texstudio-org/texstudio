@@ -3811,6 +3811,11 @@ them here.</string>
                   <string>Preview with pdflatex</string>
                  </property>
                 </item>
+                <item>
+                 <property name="text">
+                  <string>Preview with lualatex</string>
+                 </property>
+                </item>
                </widget>
               </item>
               <item row="1" column="0">

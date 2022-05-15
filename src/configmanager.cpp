@@ -1749,7 +1749,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
         previewMode = static_cast<PreviewMode>(confDlg->ui.comboBoxPreviewMode->currentIndex());
         buildManager->dvi2pngMode = static_cast<BuildManager::Dvi2PngMode>(confDlg->ui.comboBoxDvi2PngMode->currentIndex());
 #ifdef NO_POPPLER_PREVIEW
-		if (buildManager->dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) {
+		if (buildManager->dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF || buildManager->dvi2pngMode == BuildManager::DPM_LUA_EMBEDDED_PDF) {
 			buildManager->dvi2pngMode = BuildManager::DPM_DVIPNG; //fallback when poppler is not included
 		}
 #endif

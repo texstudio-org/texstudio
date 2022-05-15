@@ -867,11 +867,12 @@ QString findGhostscriptDLL()   //called dll, may also find an exe
 	}
 	//file search
 	foreach (const QString &p, getProgramFilesPaths())
-		if (QDir(p + "gs").exists())
+		if (QDir(p + "gs").exists()) {
 			foreach (const QString &gsv, QDir(p + "gs").entryList(QStringList() << "gs*.*", QDir::Dirs, QDir::Time)) {
 				QString x = p + "gs/" + gsv + "/bin/gswin32c.exe";
 				if (QFile::exists(x)) return x;
 			}
+		}
 	return "";
 }
 #endif
@@ -1427,7 +1428,7 @@ void BuildManager::readSettings(QSettings &settings)
 
 	int md = dvi2pngMode;
 #ifdef NO_POPPLER_PREVIEW
-	if (md == DPM_EMBEDDED_PDF)
+	if (md == DPM_EMBEDDED_PDF || md == DPM_LUA_EMBEDDED_PDF)
 		md = -1;
 #endif
 	if (md < 0) {
@@ -1808,6 +1809,8 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 				ProcessX *p = nullptr;
 				if (dvi2pngMode == DPM_EMBEDDED_PDF) {
                     p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %2 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
+				} else if (dvi2pngMode == DPM_LUA_EMBEDDED_PDF) {
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&lualatex %2 \\dump\"").arg(getCommandInfo(CMD_LUALATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				} else {
                     p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %2 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName(),preambleFormatFile), QFileInfo(tf->fileName())); //no delete! goes automatically
 				}
@@ -1866,8 +1869,17 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
     ProcessX *p1 = nullptr;
 	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
 		// start conversion
-		// tex -> dvi
+		// tex -> pdf
 		p1 = firstProcessOfDirectExpansion(CMD_PDFLATEX, QFileInfo(ffn)); //no delete! goes automatically
+	} else if (dvi2pngMode == DPM_LUA_EMBEDDED_PDF) {
+		// start conversion
+		// tex -> pdf
+		QString command = getCommandInfo(CMD_LUALATEX).commandLine;
+		if (preambleFormatFile != "") {
+			QString pgm = getCommandInfo(CMD_LUALATEX).getProgramName();
+			command = command.insert(pgm.length(), " -fmt=" + preambleFormatFile);
+		}
+		p1 = firstProcessOfDirectExpansion(command, QFileInfo(ffn)); //no delete! goes automatically
 	} else {
 		// start conversion
 		// tex -> dvi
@@ -2072,6 +2084,20 @@ void BuildManager::latexPreviewCompleted(int status)
 		p2->startCommand();
 	}
 	if (dvi2pngMode == DPM_EMBEDDED_PDF) {
+		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
+		if (!p1) return;
+		QString processedFile = p1->getFile();
+		if (processedFile.endsWith(".tex"))
+            processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", QFileInfo(processedFile)).constFirst());
+			// TODO: fromNativeSeparators is a workaround to fix bug
+			// yields different dir separators depending on the context. This should be fixed (which direction?).
+			// Test (on win): switch preview between dvipng and pdflatex
+        QString fn = parseExtendedCommandLine("?am).pdf", QFileInfo(processedFile)).constFirst();
+        if (QFileInfo::exists(fn)) {
+			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
+		}
+	}
+	if (dvi2pngMode == DPM_LUA_EMBEDDED_PDF) {
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		QString processedFile = p1->getFile();
