@@ -8509,7 +8509,7 @@ void Texstudio::showPreview(const QString &text)
 	QStringList header;
 	for (int l = 0; l < m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
-	if (buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) {
+	if (buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF || buildManager.dvi2pngMode == BuildManager::DPM_LUA_EMBEDDED_PDF) {
 		header << "\\usepackage[active,tightpage]{preview}"
 		       << "\\usepackage{varwidth}"
 		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
@@ -8609,7 +8609,8 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 			header << newLine;
 		}
 	}
-	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
+	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF || buildManager.dvi2pngMode == BuildManager::DPM_LUA_EMBEDDED_PDF)
+			&& configManager.previewMode != ConfigManager::PM_EMBEDDED) {
 		header << "\\usepackage[active,tightpage]{preview}"
 		       << "\\usepackage{varwidth}"
 		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
