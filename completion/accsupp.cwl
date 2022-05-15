@@ -1,29 +1,36 @@
 # accsupp package
-# Matthew Bertucci 10/18/2021 for v0.6
+# Matthew Bertucci 2022/05/14 for v0.6
 
 #include:pdfescape
 #include:iftex
 #include:kvoptions
+
+#keyvals:\usepackage/accsupp#c
+pdftex
+luatex
+dvips
+dvipdfm
+#endkeyvals
 
 \BeginAccSupp{options%keyvals}
 \AccSuppSetup{options%keyvals}
 
 #keyvals:\BeginAccSupp,\AccSuppSetup
 ActualText=%<text%>
-Alt=
-E=
+Alt=%<text%>
+E=%<text%>
 Lang=%<language%>
 method=#plain,escape,hex,pdfstringdef
 unicode
 space#true,false
-spacefont=
-spacechar=
+spacefont=%<font name%>
+spacechar=%<slot%>
 #endkeyvals
 
 \EndAccSupp{options%keyvals}
 
 #keyvals:\BeginAccSupp,\AccSuppSetup,\EndAccSupp
-pdfliteral=
+pdfliteral=%<keyword%>
 #endkeyvals
 
 \ActualTextDriverDefault#*
