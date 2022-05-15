@@ -37,10 +37,13 @@
 <file>completion/adtrees.cwl</file>
 <file>completion/advdate.cwl</file>
 <file>completion/aeb-comment.cwl</file>
+<file>completion/aeb_dad.cwl</file>
+<file>completion/aeb_envelope.cwl</file>
 <file>completion/aeb-minitoc.cwl</file>
 <file>completion/aeb_mlink.cwl</file>
 <file>completion/aeb_mobile.cwl</file>
 <file>completion/aeb_tilebg.cwl</file>
+<file>completion/aebxmp.cwl</file>
 <file>completion/aecompl.cwl</file>
 <file>completion/ae.cwl</file>
 <file>completion/aeguill.cwl</file>
@@ -99,6 +102,7 @@
 <file>completion/animate.cwl</file>
 <file>completion/annee-scolaire.cwl</file>
 <file>completion/annotate-equations.cwl</file>
+<file>completion/annot_pro.cwl</file>
 <file>completion/AnnSton.cwl</file>
 <file>completion/anonchap.cwl</file>
 <file>completion/anonymous-acm.cwl</file>
@@ -158,6 +162,7 @@
 <file>completion/authorindex.cwl</file>
 <file>completion/autoaligne.cwl</file>
 <file>completion/autobreak.cwl</file>
+<file>completion/autofancyhdr.cwl</file>
 <file>completion/autolist.cwl</file>
 <file>completion/autopdf.cwl</file>
 <file>completion/auto-pst-pdf.cwl</file>
@@ -301,6 +306,7 @@
 <file>completion/bibleref-mouth.cwl</file>
 <file>completion/bibleref-parse.cwl</file>
 <file>completion/bibletext.cwl</file>
+<file>completion/bibpes.cwl</file>
 <file>completion/bibtopic.cwl</file>
 <file>completion/bibtopicprefix.cwl</file>
 <file>completion/bibunits.cwl</file>
@@ -841,6 +847,7 @@
 <file>completion/diagxy.cwl</file>
 <file>completion/dichokey.cwl</file>
 <file>completion/diffcoeff.cwl</file>
+<file>completion/digicap-pro.cwl</file>
 <file>completion/digiconfigs.cwl</file>
 <file>completion/dijkstra.cwl</file>
 <file>completion/dimnum.cwl</file>
@@ -1043,6 +1050,7 @@
 <file>completion/fancypar.cwl</file>
 <file>completion/fancyref.cwl</file>
 <file>completion/fancytabs.cwl</file>
+<file>completion/fancytooltips.cwl</file>
 <file>completion/fancyunits-base.cwl</file>
 <file>completion/fancyunits_big-fractions.cwl</file>
 <file>completion/fancyunits_medium-fractions.cwl</file>
@@ -1060,6 +1068,7 @@
 <file>completion/fcolumn.cwl</file>
 <file>completion/fdsymbol.cwl</file>
 <file>completion/fetamont.cwl</file>
+<file>completion/fetchbibpes.cwl</file>
 <file>completion/fetchcls.cwl</file>
 <file>completion/fewerfloatpages.cwl</file>
 <file>completion/feyn.cwl</file>
@@ -1714,6 +1723,7 @@
 <file>completion/minutes.cwl</file>
 <file>completion/mismath.cwl</file>
 <file>completion/missaali.cwl</file>
+<file>completion/mkstmp_pro.cwl</file>
 <file>completion/mleftright.cwl</file>
 <file>completion/mlist.cwl</file>
 <file>completion/mlmodern.cwl</file>
@@ -1872,7 +1882,9 @@
 <file>completion/oblivoir-misc.cwl</file>
 <file>completion/oblivoir-xl.cwl</file>
 <file>completion/ob-mathleading.cwl</file>
+<file>completion/ocg.cwl</file>
 <file>completion/ocg-p.cwl</file>
+<file>completion/ocgtools.cwl</file>
 <file>completion/ocgx2.cwl</file>
 <file>completion/ocgx.cwl</file>
 <file>completion/ocr.cwl</file>
@@ -1885,6 +1897,7 @@
 <file>completion/oldstyle.cwl</file>
 <file>completion/onedown.cwl</file>
 <file>completion/onlyamsmath.cwl</file>
+<file>completion/opacity-pro.cwl</file>
 <file>completion/opcit.cwl</file>
 <file>completion/opensans.cwl</file>
 <file>completion/oplotsymbl.cwl</file>
@@ -2038,6 +2051,7 @@
 <file>completion/plimsoll.cwl</file>
 <file>completion/plprefix.cwl</file>
 <file>completion/pmboxdraw.cwl</file>
+<file>completion/pmdb.cwl</file>
 <file>completion/pmhanguljamo.cwl</file>
 <file>completion/pm-isomath.cwl</file>
 <file>completion/poemscol.cwl</file>
@@ -2204,6 +2218,7 @@
 <file>completion/qqru.cwl</file>
 <file>completion/qrbill.cwl</file>
 <file>completion/qrcode.cwl</file>
+<file>completion/qrcstamps.cwl</file>
 <file>completion/qstest.cwl</file>
 <file>completion/qtree.cwl</file>
 <file>completion/quantikz.cwl</file>
@@ -2258,6 +2273,7 @@
 <file>completion/ribbonproofs.cwl</file>
 <file>completion/richtext.cwl</file>
 <file>completion/rjlpshap.cwl</file>
+<file>completion/rmannot.cwl</file>
 <file>completion/rmathbr.cwl</file>
 <file>completion/robotarm.cwl</file>
 <file>completion/roboto.cwl</file>
