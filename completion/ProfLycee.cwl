@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/05/09 for v1.1.4
+# Matthew Bertucci 2022/05/16 for v1.1.5
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -215,6 +215,25 @@ equationsin#true,false
 cos=%<degrees%>
 sin=%<degrees%>
 couleursol=#%color
+#endkeyvals
+
+\aidesignePL
+\aidesignePL[options%keyvals]
+
+\aidesignetkztabPL{numligne}
+\aidesignetkztabPL{numligne}[echelle]
+\aidesignetkztabPL{numligne}[echelle][décalage horizontal]
+\aidesignetkztabPL[options%keyvals]{numligne}
+\aidesignetkztabPL[options%keyvals]{numligne}[echelle]
+\aidesignetkztabPL[options%keyvals]{numligne}[echelle][décalage horizontal]
+
+#keyvals:\aidesignePL,\aidesignetkztabPL
+code=
+couleur=#%color
+racines=%<racines%>
+largeur=%<num%>
+hauteur=%<num%>
+cadre#true,false
 #endkeyvals
 
 # from table option of xcolor
@@ -491,6 +510,10 @@ Teal#B
 \PLUbuntuMax#*
 \PLUbuntuMin#*
 \PLUbuntuWhite#*
+\schematdsaff*{arg1}{arg2}{arg3}{arg4}#*
+\schematdsaff{arg1}{arg2}{arg3}{arg4}#*
+\schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}#*
+\schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}[opt]#*
 \SPLcoeffs#S
 \SPLcouleur#S
 \SPLcouleurpoints#S
@@ -501,6 +524,11 @@ Teal#B
 \SPLnbsplines#S
 \SPLstyle#S
 \SPLtaillepoints#S
+\tdscouleur#S
+\tdshaut#S
+\tdslarg#S
+\tdsparam#S
+\tdsracine#S
 \termnuxtitre#*
 \termnuxtitre[opt]#*
 \termosxtitre#*
@@ -528,7 +556,7 @@ Teal#B
 \xb#S
 \ya#S
 \yb#S
-	
+
 PLlinux#B
 PLmgray#B
 PLmpurple#B
