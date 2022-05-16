@@ -1,5 +1,5 @@
 # functional package
-# Matthew Bertucci 2022/04/30 for v2022E
+# Matthew Bertucci 2022/05/16 for v2022F
 
 # Note on cwl: the package author Jianrui Lyu encourages use of spaces between
 # args which along with the need to have proper "\newcommand" completion
@@ -25,12 +25,22 @@ tracing#true,false
 # Defining Functions and Conditionals
 \PrgNewFunction %<\function%> {%<arg spec%>} {%<code%>}
 \PrgNewFunction{cmd}{xargs}{def}#Sd
+\PrgSetEqFunction %<\function1 \function2%>
+\PrgSetEqFunction{cmd}#Sd
 \PrgNewConditional %<\function%> {%<arg spec%>} {%<code%>}
 \PrgNewConditional{cmd}{xargs}{def}#Sd
 
 # Collecting Returned Values
 \Return{tokens}
+\Print{tokens}
 \gResultTl
+
+# Running Code with Anonymous Functions
+\Do{code}
+\PrgRunOneArgCode{arg1}{code}
+\PrgRunTwoArgCode{arg1}{arg2}{code}
+\PrgRunThreeArgCode{arg1}{arg2}{arg3}{code}
+\PrgRunFourArgCode{arg1}{arg2}{arg3}{arg4}{code}
 
 ## Argument Using (Use) ##
 # Expanding Tokens
@@ -108,10 +118,10 @@ tracing#true,false
 \BoolVarXorTF %<\boolvar1 \boolvar2%> {%<true code%>} {%<false code%>}
 
 # Booleans and Logical Loops #
-\BoolDoUntil %<\boolvar%> {%<code%>}
-\BoolDoWhile %<\boolvar%> {%<code%>}
-\BoolUntilDo %<\boolvar%> {%<code%>}
-\BoolWhileDo %<\boolvar%> {%<code%>}
+\BoolVarDoUntil %<\boolvar%> {%<code%>}
+\BoolVarDoWhile %<\boolvar%> {%<code%>}
+\BoolVarUntilDo %<\boolvar%> {%<code%>}
+\BoolVarWhileDo %<\boolvar%> {%<code%>}
 
 ## Token Lists (Tl) ##
 # Constant and Scratch Token Lists
@@ -884,6 +894,172 @@ tracing#true,false
 \PropVarIfInF %<\propvar%> {%<key%>} {%<false code%>}
 \PropVarIfInTF %<\propvar%> {%<key%>} {%<true code%>} {%<false code%>}
 
+## Regular Expressions (Regex) ##
+# Regular Expression Variables
+\lTmpaRegex
+\lTmpbRegex
+\lTmpcRegex
+\lTmpiRegex
+\lTmpjRegex
+\lTmpkRegex
+\gTmpaRegex
+\gTmpbRegex
+\gTmpcRegex
+\gTmpiRegex
+\gTmpjRegex
+\gTmpkRegex
+
+\RegexNew %<\regexvar%>
+\Regex{cmd}#Sd
+\RegexSet %<\regexvar%> {%<regex%>}
+\RegexSet{cmd}{def}#Sd
+\RegexConst %<\regexvar%> {%<regex%>}
+\RegexConst{cmd}{def}#Sd
+\RegexLog {%<regex%>}
+\RegexVarLog %<\regexvar%>
+\RegexShow {%<regex%>}
+\RegexVarShow %<\regexvar%>
+
+# Regular Expression Matching
+\RegexMatch {%<regex%>} {%<tokens%>}
+\RegexMatchT {%<regex%>} {%<tokens%>} {%<true code%>}
+\RegexMatchF {%<regex%>} {%<tokens%>} {%<false code%>}
+\RegexMatchTF {%<regex%>} {%<tokens%>} {%<true code%>} {%<false code%>}
+\RegexVarMatch %<\regexvar%> {%<tokens%>}
+\RegexVarMatchT %<\regexvar%> {%<tokens%>} {%<true code%>}
+\RegexVarMatchF %<\regexvar%> {%<tokens%>} {%<false code%>}
+\RegexVarMatchTF %<\regexvar%> {%<tokens%>} {%<true code%>} {%<false code%>}
+\RegexCount {%<regex%>} {%<tokens%>} %<\intvar%>
+\RegexVarCount  %<\regexvar%> {%<tokens%>} %<\intvar%>
+\RegexMatchCase {%<{regex1} {code1} {regex2} {code2} ...%>} {%<tokens%>}
+\RegexMatchCaseT {%<{regex1} {code1} {regex2} {code2} ...%>} {%<tokens%>} {%<true code%>}
+\RegexMatchCaseF {%<{regex1} {code1} {regex2} {code2} ...%>} {%<tokens%>} {%<false code%>}
+\RegexMatchCaseTF {%<{regex1} {code1} {regex2} {code2} ...%>} {%<tokens%>} {%<true code%>} {%<false code%>}
+
+# Regular Expression Submatch Extraction
+\RegexExtractOnce {%<regex%>} {%<tokens%>} %<\seqvar%>
+\RegexExtractOnce{regex}{tokens}{cmd}#Sd
+\RegexExtractOnceT {%<regex%>} {%<tokens%>} %<\seqvar%> {%<true code%>}
+\RegexExtractOnceT{regex}{tokens}{cmd}#Sd
+\RegexExtractOnceF {%<regex%>} {%<tokens%>} %<\seqvar%> {%<false code%>}
+\RegexExtractOnceF{regex}{tokens}{cmd}#Sd
+\RegexExtractOnceTF {%<regex%>} {%<tokens%>} %<\seqvar%> {%<true code%>} {%<false code%>}
+\RegexExtractOnceTF{regex}{tokens}{cmd}#Sd
+\RegexVarExtractOnce %<\regexvar%> {%<tokens%>} %<\seqvar%>
+\RegexVarExtractOnce{regexvar}{tokens}{cmd}#Sd
+\RegexVarExtractOnceT %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<true code%>}
+\RegexVarExtractOnceT{regexvar}{tokens}{cmd}#Sd
+\RegexVarExtractOnceF %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<false code%>}
+\RegexVarExtractOnceF{regexvar}{tokens}{cmd}#Sd
+\RegexVarExtractOnceTF %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<true code%>} {%<false code%>}
+\RegexVarExtractOnceTF{regexvar}{tokens}{cmd}#Sd
+\RegexExtractAll {%<regex%>} {%<tokens%>} %<\seqvar%>
+\RegexExtractAll{regex}{tokens}{cmd}#Sd
+\RegexExtractAllT {%<regex%>} {%<tokens%>} %<\seqvar%> {%<true code%>}
+\RegexExtractAllT{regex}{tokens}{cmd}#Sd
+\RegexExtractAllF {%<regex%>} {%<tokens%>} %<\seqvar%> {%<false code%>}
+\RegexExtractAllF{regex}{tokens}{cmd}#Sd
+\RegexExtractAllTF {%<regex%>} {%<tokens%>} %<\seqvar%> {%<true code%>} {%<false code%>}
+\RegexExtractAllTF{regex}{tokens}{cmd}#Sd
+\RegexVarExtractAll %<\regexvar%> {%<tokens%>} %<\seqvar%>
+\RegexVarExtractAll{regexvar}{tokens}{cmd}#Sd
+\RegexVarExtractAllT %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<true code%>}
+\RegexVarExtractAllT{regexvar}{tokens}{cmd}#Sd
+\RegexVarExtractAllF %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<false code%>}
+\RegexVarExtractAllF{regexvar}{tokens}{cmd}#Sd
+\RegexVarExtractAllTF %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<true code%>} {%<false code%>}
+\RegexVarExtractAllTF{regexvar}{tokens}{cmd}#Sd
+\RegexSplit {%<regex%>} {%<tokens%>} %<\seqvar%>
+\RegexSplit{regex}{tokens}{cmd}#Sd
+\RegexSplitT {%<regex%>} {%<tokens%>} %<\seqvar%> {%<true code%>}
+\RegexSplitT{regex}{tokens}{cmd}#Sd
+\RegexSplitF {%<regex%>} {%<tokens%>} %<\seqvar%> {%<false code%>}
+\RegexSplitF{regex}{tokens}{cmd}#Sd
+\RegexSplitTF {%<regex%>} {%<tokens%>} %<\seqvar%> {%<true code%>} {%<false code%>}
+\RegexSplitTF{regex}{tokens}{cmd}#Sd
+\RegexVarSplit %<\regexvar%> {%<tokens%>} %<\seqvar%>
+\RegexVarSplit{regexvar}{tokens}{cmd}#Sd
+\RegexVarSplitT %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<true code%>}
+\RegexVarSplitT{regexvar}{tokens}{cmd}#Sd
+\RegexVarSplitF %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<false code%>}
+\RegexVarSplitF{regexvar}{tokens}{cmd}#Sd
+\RegexVarSplitTF %<\regexvar%> {%<tokens%>} %<\seqvar%> {%<true code%>} {%<false code%>}
+\RegexVarSplitTF{regexvar}{tokens}{cmd}#Sd
+
+# Regular Expression Replacement
+\RegexReplaceOnce {%<regex%>} {%<replacement%>} %<\tlvar%>
+\RegexReplaceOnceT {%<regex%>} {%<replacement%>} %<\tlvar%> {%<true code%>}
+\RegexReplaceOnceF {%<regex%>} {%<replacement%>} %<\tlvar%> {%<false code%>}
+\RegexReplaceOnceTF {%<regex%>} {%<replacement%>} %<\tlvar%> {%<true code%>} {%<false code%>}
+\RegexVarReplaceOnce %<\regexvar%> {%<replacement%>} %<\tlvar%>
+\RegexVarReplaceOnceT %<\regexvar%> {%<replacement%>} %<\tlvar%> {%<true code%>}
+\RegexVarReplaceOnceF %<\regexvar%> {%<replacement%>} %<\tlvar%> {%<false code%>}
+\RegexVarReplaceOnceTF %<\regexvar%> {%<replacement%>} %<\tlvar%> {%<true code%>} {%<false code%>}
+\RegexReplaceAll {%<regex%>} {%<replacement%>} %<\tlvar%>
+\RegexReplaceAllT {%<regex%>} {%<replacement%>} %<\tlvar%> {%<true code%>}
+\RegexReplaceAllF {%<regex%>} {%<replacement%>} %<\tlvar%> {%<false code%>}
+\RegexReplaceAllTF {%<regex%>} {%<replacement%>} %<\tlvar%> {%<true code%>} {%<false code%>}
+\RegexVarReplaceAll %<\regexvar%> {%<replacement%>} %<\tlvar%>
+\RegexVarReplaceAllT %<\regexvar%> {%<replacement%>} %<\tlvar%> {%<true code%>}
+\RegexVarReplaceAllF %<\regexvar%> {%<replacement%>} %<\tlvar%> {%<false code%>}
+\RegexVarReplaceAllTF %<\regexvar%> {%<replacement%>} %<\tlvar%> {%<true code%>} {%<false code%>}
+\RegexReplaceCaseOnce {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%>
+\RegexReplaceCaseOnceT {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%> {%<true code%>}
+\RegexReplaceCaseOnceF {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%> {%<false code%>}
+\RegexReplaceCaseOnceTF {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%> {%<true code%>} {%<false code%>}
+\RegexReplaceCaseAll {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%>
+\RegexReplaceCaseAllT {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%> {%<true code%>}
+\RegexReplaceCaseAllF {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%> {%<false code%>}
+\RegexReplaceCaseAllTF {%<{regex1} {replacement1} {regex2} {replacement2} ...%>} %<\tlvar%> {%<true code%>} {%<false code%>}
+
+# Characters in Regular Expressions
+\x{hh}#*
+\a#*
+\e#*
+\f#*
+\n#*
+\r#*
+\t#*
+
+# Characters Classes
+\d#*
+\h#*
+\s#*
+\v#*
+\w#*
+\D#*
+\H#*
+\N#*
+\S#*
+\V#*
+\W#*
+\K#*
+
+# Matching Exact Tokens
+\c{regex}#*
+\cC#*
+\cB#*
+\cE#*
+\cM#*
+\cT#*
+\cP#*
+\cU#*
+\cD#*
+\cS#*
+\cL#*
+\cO#*
+\cA#*
+\u{var name}#*
+\ur{var name}#*
+
+# Miscellaneous
+\b#*
+\B#*
+\A#*
+\Z#*
+\z#*
+\G#*
+
 ## Token Manipulation (Token) ##
 \CharLowercase %<char%>
 \CharUppercase %<char%>
@@ -956,11 +1132,10 @@ tracing#true,false
 \ClistMapBreak#*
 \ClistVarSort{arg1}{arg2}#*
 \cNoValueTl#*
-\Do{arg}#*
 \ExpName{csname}#*
 \ExpPartial{arg}#*
 \ExpValue %<\variable%>#*
-\ExpWhole{arg}#*
+\ExpWhole{tokens}#*
 \FileInputStop#*
 \Local#*
 \NoExpand{tokens}#*
@@ -969,6 +1144,7 @@ tracing#true,false
 \PrgBreak#*
 \PrgBreakDo#*
 \PrgDo{arg}#*
+\PrgPrint{tokens}#*
 \PropMapBreak#*
 \SeqJoin{arg1}{arg2}#*
 \SeqJoinExtended{arg1}{arg2}{arg3}{arg4}#*
