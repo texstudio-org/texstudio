@@ -508,6 +508,7 @@
 <file>completion/class-bookshelf.cwl</file>
 <file>completion/class-brief.cwl</file>
 <file>completion/class-businesscard-qrcode.cwl</file>
+<file>completion/class-caesar_book.cwl</file>
 <file>completion/class-cas-dc.cwl</file>
 <file>completion/class-cas-sc.cwl</file>
 <file>completion/class-cheatsheet.cwl</file>
@@ -1746,6 +1747,7 @@
 <file>completion/mparhack.cwl</file>
 <file>completion/mpgraphics.cwl</file>
 <file>completion/mpostinl.cwl</file>
+<file>completion/msc.cwl</file>
 <file>completion/mtgreek.cwl</file>
 <file>completion/mtpro2.cwl</file>
 <file>completion/MULEenc.cwl</file>
@@ -2512,6 +2514,7 @@
 <file>completion/svn-multi.cwl</file>
 <file>completion/svn-prov.cwl</file>
 <file>completion/svrsymbols.cwl</file>
+<file>completion/swfigure.cwl</file>
 <file>completion/symbolpalette.cwl</file>
 <file>completion/sympytex.cwl</file>
 <file>completion/synproof.cwl</file>
