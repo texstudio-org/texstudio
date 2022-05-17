@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 23 Feb 2022 for v7.00n
+#modified Matthew Bertucci 16 May 2022 for v7.00o
 
 #include:iftex
 #include:keyval
@@ -112,7 +112,6 @@ linkcolor=#%color
 linkfileprefix=%<prefix%>
 linktoc=#section,page,all,none
 linktocpage#true,false
-localanchorname#true,false
 luatex
 menubordercolor=#%color
 menucolor=#%color
@@ -203,11 +202,18 @@ ismap#true,false
 nextactionraw=
 #endkeyvals
 
+\MakeLinkTarget{counter}
+\MakeLinkTarget[prefix]{counter}
+\MakeLinkTarget*{target name}
+\NextLinkTarget{target name}
+\LinkTargetOn
+\LinkTargetOff
+\SetLinkTargetFilter{filter code}
+
 \url{URL}#U
 \nolinkurl{URL}#U
-
 \hyperbaseurl{URL}#U
-\hyperimage{imageURL}{text}#U
+\hyperimage{imageURL%URL}{text}#U
 \hyperdef{category}{name}{text}
 \hyperref{URL}{category}{name}{text}#M
 # trick for commandExtract, for now
@@ -365,6 +371,8 @@ width=##L
 \ifpdfstringunicode{unicode chars}{chars}#*
 \Itemautorefname#*
 \itemautorefname#*
+\MakeLowercaseUnsupportedInPdfStrings{text}#*
+\MakeUppercaseUnsupportedInPdfStrings{text}#*
 \MaybeStopEarly#*
 \MaybeStopNow#*
 \nohyperpage{arg}#*

@@ -1,5 +1,5 @@
 # begingreek package
-# Matthew Bertucci 1/23/2022 for v1.5
+# Matthew Bertucci 2022/05/16 for v1.7
 
 #include:iftex
 
@@ -24,3 +24,5 @@ lmr
 \end{greek}
 \greektxt{greek text}
 \greektxt[font family]{greek text}
+\CBverifyandselectfont#S
+\Greekfontfamily#S

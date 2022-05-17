@@ -259,7 +259,7 @@
 \outputpenalty#*
 \over#*
 \overfullrule#*
-\overline{text}#m
+\overline{text%plain}#m
 \overwithdelims#*
 \pagedepth#*
 \pagefilllstretch#*
@@ -678,9 +678,9 @@
 \oplus#m
 \oslash#m
 \otimes#m
-\overbrace{text}#m
-\overleftarrow{text}#m
-\overrightarrow{text}#m
+\overbrace{text%plain}#m
+\overleftarrow{text%plain}#m
+\overrightarrow{text%plain}#m
 \owns#m
 \P#n
 \parallel#m
@@ -793,7 +793,7 @@
 \tt#*
 \u{o}#n
 \underbar{text}#*
-\underbrace{text}#m
+\underbrace{text%plain}#m
 \uparrow#m
 \Uparrow#m
 \upbracefill#*

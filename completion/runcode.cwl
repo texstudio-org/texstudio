@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 12/30/2021 for v1.1
+# Matthew Bertucci 2022/05/16 for v1.3
 
 #include:morewrites
 #include:tcolorbox
@@ -17,6 +17,9 @@
 #include:tikz
 #include:pdfcol
 
+# from utf8x option of inputenc
+#include:ucs
+
 #keyvals:\usepackage/runcode#c
 run
 cache
@@ -25,6 +28,7 @@ nohup
 R
 julia
 matlab
+python
 stopserver
 #endkeyvals
 
@@ -78,7 +82,18 @@ inline
 \inlnR[server spec]{code%definition}
 \inlnR[server spec]{code%definition}[type%keyvals]
 
-#keyvals:\inln,\inlnJulia,\inlnMatLab,\inlnR
+\runPython{program}{source file}{output file}
+\runPython{program}{source file}{output file}[run or cache]
+\runPython{program}{file}{output file}#Si
+
+\inlnPython{code%definition}
+\inlnPython{code%definition}[type%keyvals]
+\inlnPython[server spec]{code%definition}
+\inlnPython[server spec]{code%definition}[type%keyvals]
+
+\runPythonBatch{code%definition}{output file}
+
+#keyvals:\inln,\inlnJulia,\inlnMatLab,\inlnR,\inlnPython
 vbox
 inline
 #endkeyvals
@@ -93,7 +108,7 @@ inline
 \thecodelisting#*
 \tempfile#S
 \tmpname#S
-
+bg#B
 \ifruncode#*
 \runcodetrue#*
 \runcodefalse#*
