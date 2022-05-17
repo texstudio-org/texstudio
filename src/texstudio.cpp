@@ -11370,11 +11370,13 @@ void Texstudio::customMenuStructure(const QPoint &pos){
         /*menu.addSeparator();
         menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        menu.addSeparator();
+        */
+		menu.addSeparator();
         menu.addAction(tr("Expand Subitems"), this, SLOT(expandSubitems()));
         menu.addAction(tr("Collapse Subitems"), this, SLOT(collapseSubitems()));
-        menu.addAction(tr("Expand all documents"), this, SLOT(expandAllDocuments()));
-        menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));*/
+        /*menu.addAction(tr("Expand all documents"), this, SLOT(expandAllDocuments()));
+        menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));
+		*/
         menu.addSeparator();
         menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
