@@ -770,3 +770,7 @@ jj_game:
 class-jj_game
 latex-document
 tex
+caesar_book:
+class-caesar_book
+latex-document
+tex
