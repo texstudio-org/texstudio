@@ -1,38 +1,82 @@
 # doc package
-# Matthew Bertucci 11/1/2021 for v2.1n
+# Matthew Bertucci 2022/05/18 for v3.0h
 
+#include:l3keys2e
 #include:multicol
+#include:hypdoc
+
+\SetupDoc{options%keyvals}#c
+
+#keyvals:\usepackage/doc#c,\SetupDoc#c
+hyperref#true,false
+nohyperref#true,false
+multicol#true,false
+nomulticol#true,false
+debugshow#true,false
+noindex#true,false
+noprint#true,false
+reportchangedates#true,false
+toplevel#true,false
+notoplevel#true,false
+#endkeyvals
 
 \DocInput{file}#i
-\IndexInput{file}
+\IndexInput{file}#i
 
 \begin{macrocode}
 \end{macrocode}
 \begin{macrocode*}
 \end{macrocode*}
 
-\DescribeMacro{cmd}
+\DescribeMacro{macro%cmd}
+\DescribeMacro[options%keyvals]{macro%cmd}
 \DescribeEnv{envname}
+\DescribeEnv[options%keyvals]{envname}
 
-\begin{macro}{cmd}
+\begin{macro}{macro%cmd}
+\begin{macro}[options%keyvals]{macro%cmd}
 \end{macro}
 \begin{environment}{envname}
+\begin{environment}[options%keyvals]{envname}
 \end{environment}
+
+#keyvals:\DescribeMacro#c,\DescribeEnv#c,\begin{macro}#c,\begin{environment}#c
+noindex
+noprint
+#endkeyvals
+
 \MacrocodeTopsep#*
 \MacroTopsep#*
 \MacroIndent#*
 \MacroFont#*
 
-\PrintDescribeMacro#*
-\PrintDescribeEnv#*
-\PrintMacroName#*
-\PrintEnvName#*
+\PrintDescribeMacro{macro%cmd}
+\PrintDescribeEnv{envname}
+\PrintMacroName{macro%cmd}
+\PrintEnvName{envname}
+
+\NewDocElement{element}{envname}#N
+\NewDocElement[options%keyvals]{element}{envname}#N
+\RenewDocElement{element}{envname}#N
+\RenewDocElement[options%keyvals]{element}{envname}#N
+
+#keyvals:\NewDocElement#c,\RenewDocElement#c
+macrolike#true,false
+envlike#true,false
+toplevel#true,false
+notoplevel#true,false
+idxtype=%<string%>
+printtype=%<string%>
+idxgroup=%<string%>
+noindex#true,false
+noprint#true,false
+#endkeyvals
 
 \SpecialEscapechar
 
 \DisableCrossrefs
 \EnableCrossrefs
-\DoNotIndex{macro list}
+\DoNotIndex{macro list%definition}
 \PageIndex
 \CodelineIndex
 \theCodelineNo
@@ -42,29 +86,24 @@
 \quotechar#*
 \encapchar#*
 \levelchar#*
-\SpecialMainIndex{cmd}
+\SpecialMainMacroIndex{cmd}
 \SpecialMainEnvIndex{envname}
-\SpecialIndex{cmd}
-\SpecialUsageIndex{cmd}
+\SpecialMacroIndex{cmd}
 \SpecialEnvIndex{envname}
-\SortIndex{sort key}{entry}
+\SpecialIndex{cmd}
+\SpecialShortIndex{cmd}
+\SpecialMainIndex{cmd}#*
+\SpecialUsageIndex{cmd}#*
+\SortIndex{sort key}{index entry}
 \verbatimchar#*
 \*#S
-\LeftBraceIndex#*
-\RightBraceIndex#*
-\PercentIndex#*
-\OldMakeindex#*
-\percentchar#*
-
 \PrintIndex
 \IndexMin#*
 \IndexPrologue{text}
 \IndexParms#*
-\efill#*
-\pfill#*
-\dotfil#*
-\main{text}
-\usage{text}
+\main{text%plain}#*
+\usage{text%plain}#*
+\code{text%plain}#*
 
 \DocstyleParms#*
 
@@ -83,10 +122,13 @@
 \PlainTeX
 \meta{arg}
 \OnlyDescription
-\StopEventually{code}
+\MaybeStop{finale code}
+\StopEventually{finale code}#*
 \Finale
 \AlsoImplementation
 \changes{version}{date}{text}
+\generalname#*
+\cs{csname}
 \RecordChanges
 \PrintChanges
 \GlossaryMin#*
@@ -94,9 +136,6 @@
 \GlossaryParms#*
 \begin{theglossary}
 \end{theglossary}
-\CharacterTable{contents}
-\CharTableChanges#*
-\CheckSum{number}
 \bslash
 \MakePrivateLetters
 \DontCheckModules
@@ -104,11 +143,26 @@
 \Module{directive}
 \AltMacroFont#*
 \theStandardModuleDepth#*
-\generalname#*
-\MakePercentIgnore#*
-\MakePercentComment#*
-\GetFileInfo{file}
+
+\OldMakeindex#*
+\percentchar#*
+\CharacterTable{contents}#*
+\CharTableChanges#*
+\CheckSum{number}#*
+
+# not in main documentation
+\efill#*
 \filedate#*
 \fileinfo#*
 \filename#*
 \fileversion#*
+\GetFileInfo{file}
+\LeftBraceIndex#*
+\MakePercentComment#*
+\MakePercentIgnore#*
+\PercentIndex#*
+\pfill#*
+\RecordIndexType{cmd}{type}#*
+\RecordIndexTypeAux{cmd}{type}#*
+\RightBraceIndex#*
+\ShowIndexingState#*
