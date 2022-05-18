@@ -1,7 +1,8 @@
 # scrlayer-notecolumn package
-# Matthew Bertucci 11/19/2021 for v0.3.3601
+# Matthew Bertucci 11/19/2021 for v0.3.3694
 
 #include:scrlayer
+#include:scrlogo
 
 #keyvals:\KOMAoptions#c
 autoclearnotecolumns=#true,on,yes,false,off,no
