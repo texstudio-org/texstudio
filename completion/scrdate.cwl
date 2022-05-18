@@ -1,8 +1,9 @@
 # mode: scrdate.sty
 # dani/2006-02-21
-# Matthew Bertucci updated 11/19/2021 for v3.34
+# Matthew Bertucci updated 2022/05/18 for v3.36
 
 #include:scrkbase
+#include:scrlogo
 
 \CenturyPart{year}
 \DecadePart{year}
