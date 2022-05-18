@@ -1,8 +1,9 @@
 # scrhack package
-# Matthew Bertucci 11/19/2021 for v3.34
+# Matthew Bertucci 2022/05/18 for v3.36
 
 #include:scrkbase
 #include:xpatch
+#include:scrlogo
 
 #keyvals:\KOMAoptions#c,\usepackage/scrhack#c
 hyperref#true,false
