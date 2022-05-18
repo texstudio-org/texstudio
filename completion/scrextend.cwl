@@ -1,7 +1,8 @@
 # scrextend package
-# Matthew Bertucci 11/19/2021 for v3.34
+# Matthew Bertucci 2022/05/18 for v3.36
 
 #include:scrkbase
+#include:scrlogo
 
 #keyvals:\KOMAoptions#c
 draft=#true,on,yes,false,off,no
