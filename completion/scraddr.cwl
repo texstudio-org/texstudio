@@ -1,6 +1,8 @@
 # mode: scraddr.sty
 # dani/2006-02-21
-# Matthew Bertucci updated 11/19/2021 for v3.34
+# Matthew Bertucci updated 2022/05/17 for v3.36
+
+#include:scrlogo
 
 #keyvals:\usepackage/scraddr#c
 adrFreeIVempty
@@ -24,4 +26,3 @@ adrFreeIVstop
 \Comment{Key}
 \FreeIII{Key}
 \FreeIV{Key}
-\KOMAScript
