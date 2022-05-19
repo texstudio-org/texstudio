@@ -53,6 +53,7 @@ gray#B
 black#B
 white#B
 cyan#B
+magenta#B
 ## dvipsnames colors
 #ifOption:dvipsnames
 Apricot#B
