@@ -550,8 +550,8 @@ void CustomWidgetList::showWidgets()
 			widgets[i]->setProperty("associatedAction", QVariant::fromValue<QAction *>(act));
 		} else widgets[i]->hide();
 
-	if (!widgets.empty()) //name after last active widget
-		emit titleChanged(widgets[ConfigManagerInterface::getInstance()->getOption("GUI/sidePanel/currentPage").toInt()]->property("Name").toString());
+	if (!widgets.empty()) //name after active (first) widget
+		emit titleChanged(widgets.first()->property("Name").toString());
 }
 
 void CustomWidgetList::setToolbarIconSize(int sz)
