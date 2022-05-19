@@ -1,9 +1,10 @@
 # scrreprt class
-# Matthew Bertucci 11/21/21 for v3.34
+# Matthew Bertucci 2022/05/18 for v3.36
 
 #include:scrkbase
 #include:tocbasic
 #include:typearea
+#include:scrlogo
 
 #ifOption:emulatestandardclasses
 \defaultpapersize

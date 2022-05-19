@@ -1,12 +1,18 @@
 # expex-acro package
-# Matthew Bertucci 2022/04/30 for v0.0.1
+# Matthew Bertucci 2022/05/18 for v0.0.2
 
 #include:expex
-#include:ifthen
-#include:acro
+#include:etoolbox
 #include:xspace
+#include:l3keys2e
+#include:acro
 #include:enumitem
 # loads inline option of enumitem
+
+#keyvals:\usepackage/expex-acro#c
+abbrevs=#leipzig,all
+refmode=#expex,latex
+#endkeyvals
 
 \exref{tag}
 \exref[tag1]{tag2}
@@ -27,15 +33,3 @@
 \ungr{text}
 \bad{text}
 \lxm{text}
-\glosstilde
-
-# from inline option of enumitem
-\begin{enumerate*}
-\begin{enumerate*}[options%keyvals]
-\end{enumerate*}
-\begin{itemize*}
-\begin{itemize*}[options%keyvals]
-\end{itemize*}
-\begin{description*}
-\begin{description*}[options%keyvals]
-\end{description*}

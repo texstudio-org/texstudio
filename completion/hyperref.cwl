@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 16 May 2022 for v7.00o
+#modified Matthew Bertucci 18 May 2022 for v7.00p
 
 #include:iftex
 #include:keyval
@@ -181,7 +181,6 @@ runcolor=#%color
 setpagesize#true,false
 tex4ht
 textures
-typexml#true,false
 unicode#true,false
 urlbordercolor=#%color
 urlcolor=#%color
