@@ -3353,6 +3353,9 @@ void Texstudio::fileSaveSession()
 
 	QString fn = FileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
+    if(!fn.endsWith(Session::fileExtension())){
+        fn=replaceFileExtension(fn, Session::fileExtension(),true);
+    }
 	if (!getCurrentSession().save(fn, configManager.sessionStoreRelativePaths)) {
 		UtilsUi::txsCritical(tr("Saving of session failed."));
 		return;
