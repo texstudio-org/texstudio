@@ -101,7 +101,7 @@ blackpiece=#%color
 \setinffontfamily{family}#*
 
 \checksymbol
-\castlinghyphen,
+\castlinghyphen
 \withattack
 \withinit
 \zugzwang
