@@ -2,6 +2,7 @@
 # Matthew Bertucci 10/4/2021 for v1.2a
 
 #include:ifthen
+#include:xkeyval
 
 \figfont#*
 \figsymbol{text}#*
