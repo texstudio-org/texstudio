@@ -163,3 +163,7 @@ blackpiece=#%color
 \novelty
 \chesscomment
 \various
+
+# deprecated
+\setfigtextchars{king}{queen}{rook}{bishop}{knight}{pawn}#S
+\setfigtextchars[lang]{king}{queen}{rook}{bishop}{knight}{pawn}#S
