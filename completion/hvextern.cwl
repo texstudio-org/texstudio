@@ -1,10 +1,9 @@
 # hvextern package
-# Matthew Bertucci 2022/05/13 for v0.24
+# Matthew Bertucci 2022/05/21 for v0.25
 
 #include:shellesc
 #include:xkeyval
 #include:graphicx
-#include:marginnote
 #include:fancyvrb
 #include:tikz
 #include:listings
@@ -27,6 +26,7 @@ runsequence={%<command sequence%>}
 runs=%<integer%>
 grfOptions={%<\includegraphics options%>}
 lstOptions={%<listings options%>}
+textOptions={%<fancyvrb options%>}
 BGpreamble=#%color
 BGbody=#%color
 BOpreamble=#%color
@@ -53,7 +53,9 @@ xindexOptions={%<xindex options%>}
 includegraphic#true,false
 inline#true,false
 frame#true,false
+framesep=##L
 float#true,false
+floatsetting=%<placement%>
 cleanup={%<ext1,ext2,...%>}
 moveToExampleDir#true,false
 align=%<alignment commands%>
@@ -61,6 +63,10 @@ ExampleDir=%<name%>
 eps#true,false
 verbose#true,false
 compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua
+aboveskip=##L
+belowpreambleskip=##L
+belowbodyskip=##L
+belowskip=##L
 #endkeyvals
 
 \PreambleVerbatim{file}#i
