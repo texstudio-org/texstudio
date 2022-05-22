@@ -539,14 +539,14 @@ void CustomWidgetList::showWidgets()
 	foreach(QAction *act, toolbar->actions()) {
 		toolbar->removeAction(act);
 	}
-	bool foundFirstNonHiddenWidget = 0;
+	bool foundFirstNonHiddenWidget = false;
 	for (int i = 0; i < widgets.size(); i++) {
 		if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
 			stack->addWidget(widgets[i]);
 			QAction *act = toolbar->addAction(QIcon(widgets[i]->property("iconName").toString()), widgets[i]->property("Name").toString());
 			act->setCheckable(true);
 			if (!foundFirstNonHiddenWidget) {
-				foundFirstNonHiddenWidget = !foundFirstNonHiddenWidget;
+				foundFirstNonHiddenWidget = true;
 				act->setChecked(true);
 				emit titleChanged(widgets[i]->property("Name").toString());
 			}
