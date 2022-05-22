@@ -3338,7 +3338,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 				}
 				cursorMoveOperation(cur, op);
 				leftLine = curHadSelection && cur.lineNumber() != curLine;
-				overlappingCursors.insert(QPair(cur.lineNumber(), cur.columnNumber()), i);
+				overlappingCursors.insert(QPair<int,int>(cur.lineNumber(), cur.columnNumber()), i);
 			}
 
 			if (leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))
