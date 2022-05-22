@@ -2,6 +2,7 @@
 # Matthew Bertucci 10/4/2021 for v1.2a
 
 #include:ifthen
+#include:xkeyval
 
 \figfont#*
 \figsymbol{text}#*
@@ -100,7 +101,7 @@ blackpiece=#%color
 \setinffontfamily{family}#*
 
 \checksymbol
-\castlinghyphen,
+\castlinghyphen
 \withattack
 \withinit
 \zugzwang
@@ -162,3 +163,7 @@ blackpiece=#%color
 \novelty
 \chesscomment
 \various
+
+# deprecated
+\setfigtextchars{king}{queen}{rook}{bishop}{knight}{pawn}#S
+\setfigtextchars[lang]{king}{queen}{rook}{bishop}{knight}{pawn}#S

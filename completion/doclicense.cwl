@@ -1,5 +1,5 @@
 # doclicense package
-# Matthew Bertucci 2022/04/29 for v3.1.0
+# Matthew Bertucci 2022/05/20 for v3.2.0
 
 #include:kvoptions
 #include:xifthen
@@ -17,7 +17,7 @@
 type=%<type%>
 modifier=#by,by-sa,by-nd,by-nc,by-nc-sa,by-nc-nd
 version=#1.0,3.0,4.0
-lang=#UKenglish,USenglish,acadian,american,australian,brazilian,british,bulgarian,canadian,canadien,catalan,chinese-gbk,chinese-utf8,croatian,english,french,galician,german,italian,japanese,marathi,newzealand,ngerman,polish,portuguese,russian,spanish
+lang=#UKenglish,USenglish,acadian,american,australian,brazilian,british,bulgarian,canadian,canadien,catalan,chinese-gbk,chinese-utf8,croatian,english,french,galician,german,italian,japanese,marathi,newzealand,ngerman,polish,portuguese,russian,spanish,ukrainian
 imagemodifier=%<modifier%>
 imageposition=#right,left
 imagewidth=##L
