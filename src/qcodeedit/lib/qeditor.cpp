@@ -37,6 +37,9 @@
 #include "qgotolinedialog.h"
 #include "qlinemarksinfocenter.h"
 
+#include "algorithm"
+#include "functional"
+
 #include "qreliablefilewatch.h"
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexparser.h"
@@ -3321,9 +3324,11 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			}
 
 			bool leftLine = false;
+			QMultiHash<QPair<int, int>, int > overlappingCursors; //cursors at the same position (ignoring selection)
 			for ( int i = -1; !leftLine && (i < m_mirrors.count()); ++i ) {
 				QDocumentCursor &cur = (i==-1) ? m_cursor : m_mirrors[i];
 				int curLine = cur.lineNumber();
+				bool curHadSelection = cur.hasSelection();
 				// handle unequal line lenghts
 				if ((op == SelectCursorRight || op == SelectCursorWordRight) && cur.atLineEnd()) continue;
 				if (op == SelectCursorLeft) {
@@ -3332,19 +3337,27 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 					if (len < maxSelect) continue;
 				}
 				cursorMoveOperation(cur, op);
-				leftLine = cur.lineNumber() != curLine;
-                if( op == CursorEndOfLine || op == CursorStartOfLine)
-                    leftLine = true;
+				leftLine = curHadSelection && cur.lineNumber() != curLine;
+				overlappingCursors.insert(QPair(cur.lineNumber(), cur.columnNumber()), i);
 			}
 
-			if ( leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))
+			if (leftLine || (m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && m_placeHolders[m_curPlaceHolder].autoRemoveIfLeft && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor)))
 				setPlaceHolder(-1);
-			if (leftLine) {
-				clearCursorMirrors();
-				viewport()->update();
-			} else {
-				repaintCursor();
+			QList<QPair<int, int>> cursorMirrorPositions = overlappingCursors.uniqueKeys();
+			if (cursorMirrorPositions.size() < m_mirrors.count() + 1) {
+				QList<int> cursorMirrorsToRemove;
+				for (const auto& position: cursorMirrorPositions) {
+					QList<int> mirrors = overlappingCursors.values(position);
+					for (int i = 0; i < mirrors.size() - 1; i++) cursorMirrorsToRemove.append(mirrors[i]);
+				}
+				std::sort(cursorMirrorsToRemove.begin(), cursorMirrorsToRemove.end(), std::greater<int>());
+				for (auto i: cursorMirrorsToRemove) {
+					m_mirrors[i].setAutoUpdated(false);
+					m_mirrors.removeAt(i);
+				}
 			}
+			if (leftLine) clearCursorMirrors();
+			viewport()->update();
 		} else {
 			// normal single cursor movement
 			cursorMoveOperation(m_cursor, op);
