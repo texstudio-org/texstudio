@@ -6,6 +6,8 @@
 <file>completion/a4wide.cwl</file>
 <file>completion/abc.cwl</file>
 <file>completion/abntcite.cwl</file>
+<file>completion/abntex2abrev.cwl</file>
+<file>completion/abntex2cite.cwl</file>
 <file>completion/aboensis.cwl</file>
 <file>completion/abraces.cwl</file>
 <file>completion/abstract.cwl</file>
@@ -50,6 +52,7 @@
 <file>completion/aesupp.cwl</file>
 <file>completion/afterpackage.cwl</file>
 <file>completion/afterpage.cwl</file>
+<file>completion/akshar.cwl</file>
 <file>completion/Alegreya.cwl</file>
 <file>completion/AlegreyaSans.cwl</file>
 <file>completion/alertmessage.cwl</file>
@@ -490,6 +493,7 @@
 <file>completion/cjkutf8-ko.cwl</file>
 <file>completion/clara.cwl</file>
 <file>completion/class-a0poster.cwl</file>
+<file>completion/class-abntex2.cwl</file>
 <file>completion/class-achemso.cwl</file>
 <file>completion/class-acmart.cwl</file>
 <file>completion/class-altacv.cwl</file>
@@ -553,6 +557,15 @@
 <file>completion/class-fiche.cwl</file>
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-gammas.cwl</file>
+<file>completion/class-grant-afosr.cwl</file>
+<file>completion/class-grant-aro.cwl</file>
+<file>completion/class-grant.cwl</file>
+<file>completion/class-grant-darpa.cwl</file>
+<file>completion/class-grant-doe.cwl</file>
+<file>completion/class-grant-nih.cwl</file>
+<file>completion/class-grant-nrl.cwl</file>
+<file>completion/class-grant-nsf.cwl</file>
+<file>completion/class-grant-onr.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
 <file>completion/class-gridslides.cwl</file>
 <file>completion/class-guitartabs.cwl</file>
@@ -607,6 +620,7 @@
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-mucproc.cwl</file>
+<file>completion/class-mynsfc.cwl</file>
 <file>completion/class-nanicolle.cwl</file>
 <file>completion/class-ncc.cwl</file>
 <file>completion/class-newlfm.cwl</file>
@@ -934,9 +948,11 @@
 <file>completion/eco.cwl</file>
 <file>completion/econlipsum.cwl</file>
 <file>completion/econometrics.cwl</file>
+<file>completion/edcntwd0.cwl</file>
 <file>completion/ed.cwl</file>
 <file>completion/edichokey.cwl</file>
 <file>completion/ednmath0.cwl</file>
+<file>completion/ednotes.cwl</file>
 <file>completion/edtable.cwl</file>
 <file>completion/eepic.cwl</file>
 <file>completion/efbox.cwl</file>
@@ -2094,6 +2110,7 @@
 <file>completion/principia.cwl</file>
 <file>completion/printlen.cwl</file>
 <file>completion/proba.cwl</file>
+<file>completion/probsoln.cwl</file>
 <file>completion/processkv.cwl</file>
 <file>completion/procIAGssymp.cwl</file>
 <file>completion/prodint.cwl</file>
@@ -2427,6 +2444,7 @@
 <file>completion/silence.cwl</file>
 <file>completion/sillypage.cwl</file>
 <file>completion/simplebnf.cwl</file>
+<file>completion/simpleicons.cwl</file>
 <file>completion/simpleinvoice.cwl</file>
 <file>completion/simplekv.cwl</file>
 <file>completion/simplenodes.cwl</file>
@@ -2589,6 +2607,7 @@
 <file>completion/texdate.cwl</file>
 <file>completion/texdimens.cwl</file>
 <file>completion/tex-locale.cwl</file>
+<file>completion/texmate.cwl</file>
 <file>completion/texments.cwl</file>
 <file>completion/texnames.cwl</file>
 <file>completion/texnegar.cwl</file>
@@ -2861,6 +2880,7 @@
 <file>completion/verbatim.cwl</file>
 <file>completion/verbdef.cwl</file>
 <file>completion/verbments.cwl</file>
+<file>completion/verifiche.cwl</file>
 <file>completion/verse.cwl</file>
 <file>completion/version.cwl</file>
 <file>completion/versions.cwl</file>
