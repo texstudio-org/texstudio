@@ -62,6 +62,7 @@ usealtadobe
 \sigField{title%text}{width}{height}
 \sigField[modifications]{title%text}{width}{height}
 \everySigField{modifications}
+\everyButtonField{modifications}
 
 \makeXasPDOn
 \makeXasPDOff
