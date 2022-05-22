@@ -267,6 +267,8 @@ lock={%<KV-pairs%>}
 \NaviBarOff
 \navibarTextColor{color}
 \navibarBgColor{color}
+\navibariconHeight{height}
+\navibariconWidth{width}
 \newNaviIcon{cmd}{width}{height}{text}{action%definition}#d
 \newNaviIcon[m|j|l]{cmd}{width}{height}{text}{action%definition}#d
 \insertnaviiconhere{code}
