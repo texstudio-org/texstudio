@@ -710,7 +710,7 @@ void Texstudio::setupDockWidgets()
 
     leftPanel->showWidgets();
     // restore selected view in sidepanel
-	QList hiddenWidgetsIdsList = leftPanel->hiddenWidgets().split("|");
+	QList<QString> hiddenWidgetsIdsList = leftPanel->hiddenWidgets().split("|");
     int viewNr = configManager.getOption("GUI/sidePanel/currentPage", 0).toInt();
 	int k = -1; // index of visible tool found
 	for (int i = 0; i < leftPanel->widgetCount(); i++)  {
