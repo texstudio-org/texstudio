@@ -539,19 +539,24 @@ void CustomWidgetList::showWidgets()
 	foreach(QAction *act, toolbar->actions()) {
 		toolbar->removeAction(act);
 	}
-	for (int i = 0; i < widgets.size(); i++)
+	bool foundFirstNonHiddenWidget = false;
+	for (int i = 0; i < widgets.size(); i++) {
 		if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
 			stack->addWidget(widgets[i]);
 			QAction *act = toolbar->addAction(QIcon(widgets[i]->property("iconName").toString()), widgets[i]->property("Name").toString());
 			act->setCheckable(true);
-			if (i == 0) act->setChecked(true);
+			if (!foundFirstNonHiddenWidget) {
+				foundFirstNonHiddenWidget = true;
+				act->setChecked(true);
+				emit titleChanged(widgets[i]->property("Name").toString());
+			}
 			act->setData(widgetId(widgets[i]));
 			connect(act, SIGNAL(triggered()), this, SLOT(showPageFromAction()));
 			widgets[i]->setProperty("associatedAction", QVariant::fromValue<QAction *>(act));
 		} else widgets[i]->hide();
-
-	if (!widgets.empty()) //name after active (first) widget
-		emit titleChanged(widgets.first()->property("Name").toString());
+	}
+	if (!foundFirstNonHiddenWidget)
+		emit titleChanged("");
 }
 
 void CustomWidgetList::setToolbarIconSize(int sz)
