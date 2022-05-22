@@ -232,6 +232,7 @@ lock={%<KV-pairs%>}
 \optionalPageMatter[vspace]{content%text}
 \nocopyright
 \minimumskip#*
+\copyrightLabel{text}
 \revisionLabel{text}
 \versionLabel{text}
 \webtitle#*
