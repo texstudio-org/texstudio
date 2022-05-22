@@ -276,6 +276,7 @@ star
 \csarg{arg1}{arg2}#S
 \efCalcOrder#S
 \efHxError#S
+\eflength#S
 \efPreviewOnRule#S
 \efrestore#S
 \efrestorei{arg1}#S
