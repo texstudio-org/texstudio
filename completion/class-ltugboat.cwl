@@ -229,6 +229,7 @@ runningoff
 \nohyphens#*
 \nomarkfootnote{commands}{text}#*
 \NoParIndent
+\normalparindent#*
 \NormalParIndent
 \normalspaces
 \now
@@ -356,6 +357,7 @@ runningoff
 \TeXMaG
 \texorpdfstring{arg1}{arg2}#*
 \textSMC{text}#*
+\texttub{text}#*
 \TeXtures
 \Textures
 \TeXworks
@@ -368,6 +370,9 @@ runningoff
 \thenetaddress{number}
 \theORCID{number}
 \thePersonalURL{number}
+\therevauth#*
+\therevpubinfo#*
+\therevtitle#*
 \thinskip#*
 \TIFF
 \TikZ
@@ -438,7 +443,7 @@ runningoff
 \XekernafterE#*
 \XekernbeforeE#*
 \XeLaTeX
-\XeT
+\XeT#*
 \XeTeX
 \XHTML
 \xlap{text}
