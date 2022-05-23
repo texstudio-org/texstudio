@@ -29,11 +29,23 @@ usealtadobe
 #endkeyvals
 
 \flJSStr{cmd}{JS string%definition}#d
+\flJSStr[options%keyvals]{cmd}{JS string%definition}#d
 \flJSStr*{cmd}{JS string%definition}#d
+\flJSStr*[options%keyvals]{cmd}{JS string%definition}#d
 \defineJSStr{cmd}{JS string%definition}#*d
 \fieldJSStr{cmd}{JS string%definition}#*d
 \dlJSStr{cmd}{JS string%definition}#d
+\dlJSStr[options%keyvals]{cmd}{JS string%definition}#d
 \dlJSStr*{cmd}{JS string%definition}#d
+\dlJSStr*[options%keyvals]{cmd}{JS string%definition}#d
+
+#keyvals:\flJSStr#c,\flJSStr*#c,\dlJSStr#c,\dlJSStr*#c
+quotes
+noquotes
+parens
+noparens
+#endkeyvals
+
 \cs{csname}
 \eqbs#*
 \jslit
