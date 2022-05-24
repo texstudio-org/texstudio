@@ -818,3 +818,15 @@ mynsfc:
 class-mynsfc
 latex-document
 tex
+mwart:
+class-mwart
+latex-document
+tex
+mwbk:
+class-mwbk
+latex-document
+tex
+mwrep:
+class-mwrep
+latex-document
+tex
