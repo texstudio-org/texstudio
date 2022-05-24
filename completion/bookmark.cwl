@@ -1,7 +1,19 @@
 # bookmark package
-# Matthew Bertucci 10/17/2021 for v1.29
+# Matthew Bertucci 2022/05/24 for v1.29
 
 #include:hyperref
+
+#keyvals:\usepackage/bookmark#c
+draft
+final
+atend
+pdftex
+dvips
+dvipdfm
+dvipdfmx
+xetex
+vtex
+#endkeyvals
 
 \bookmarksetup{options%keyvals}
 \bookmarksetupnext{options%keyvals}
@@ -9,24 +21,25 @@
 \bookmark[options%keyvals]{title%text}
 \bookmarkdefinestyle{name}{options%keyvals}
 
-#keyvals:\bookmarksetup,\bookmarksetupnext,\bookmark,\bookmarkdefinestyle
+#keyvals:\bookmarksetup,\bookmarksetupnext,\bookmark,\bookmarkdefinestyle,\usepackage/bookmark#c
 bold#true,false
 italic#true,false
-color=
+color=%<color%>
+color=[%<model%>]{%<color spec%>}
 dest=%<destination name%>
 page=%<number%>
 view={%<view specs%>}
 named=#FirstPage,LastPage,NextPage,PrevPage
 gotor=%<file%>
-uri=
-rawaction=
+uri={%<uri%>}
+rawaction=%<action spec%>
 level=%<integer%>
 rellevel=%<integer%>
 keeplevel#true,false
 startatroot#true,false
-style=
+style=%<style name%>
 addtohook=%<code%>
-depth=
+depth=%<integer%>
 open#true,false
 openlevel=%<integer%>
 numbered#true,false
