@@ -25,6 +25,7 @@ provide=*
 provide+=*
 provide*=*
 base
+ensureinfo=off
 #endkeyvals
 
 \selectlanguage{language}
@@ -110,8 +111,9 @@ variant=
 \languagename
 \iflanguage{language}{true}{false}
 \localeinfo{field%keyvals}
+\localeinfo*{field%keyvals}
 
-#keyvals:\localeinfo#c
+#keyvals:\localeinfo#c,\localeinfo*#c
 name.english
 tag.ini
 tag.bcp47
@@ -120,6 +122,11 @@ tag.opentype
 script.name
 script.tag.bcp47
 script.tag.opentype
+region.tag.bcp47
+variant.tag.bcp47
+extension.x.tag.bcp47
+extension.t.tag.bcp47
+extension.u.tag.bcp47
 #endkeyvals
 
 \getlocaleproperty{cmd}{locale}{property}#*d
