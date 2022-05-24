@@ -388,6 +388,7 @@
 <file>completion/bxdvidriver.cwl</file>
 <file>completion/bxenclose.cwl</file>
 <file>completion/bxghost.cwl</file>
+<file>completion/bxghost-lib.cwl</file>
 <file>completion/bxjaholiday.cwl</file>
 <file>completion/bxjalipsum.cwl</file>
 <file>completion/bxnewfont.cwl</file>
@@ -882,6 +883,7 @@
 <file>completion/dlfltxbmarkup.cwl</file>
 <file>completion/dlfltxbmisc.cwl</file>
 <file>completion/dline.cwl</file>
+<file>completion/dljslib.cwl</file>
 <file>completion/dnaseq.cwl</file>
 <file>completion/docassembly.cwl</file>
 <file>completion/doc.cwl</file>
@@ -1008,13 +1010,18 @@
 <file>completion/epsdice.cwl</file>
 <file>completion/epspdfconversion.cwl</file>
 <file>completion/epstopdf.cwl</file>
+<file>completion/eq2db.cwl</file>
 <file>completion/eqell.cwl</file>
+<file>completion/eqexam.cwl</file>
 <file>completion/eqexpl.cwl</file>
+<file>completion/eq-fetchbbl.cwl</file>
 <file>completion/eqlist.cwl</file>
 <file>completion/eqname.cwl</file>
 <file>completion/eqnarray.cwl</file>
 <file>completion/eqnnumwarn.cwl</file>
 <file>completion/eqparbox.cwl</file>
+<file>completion/eq-pin2corr.cwl</file>
+<file>completion/eq-save.cwl</file>
 <file>completion/erewhon.cwl</file>
 <file>completion/errata.cwl</file>
 <file>completion/esindex.cwl</file>
@@ -1050,6 +1057,7 @@
 <file>completion/exercisebank.cwl</file>
 <file>completion/exercisepoints.cwl</file>
 <file>completion/exercises.cwl</file>
+<file>completion/exerquiz.cwl</file>
 <file>completion/exesheet.cwl</file>
 <file>completion/exframe.cwl</file>
 <file>completion/expex-acro.cwl</file>
@@ -1104,6 +1112,7 @@
 <file>completion/fibnum.cwl</file>
 <file>completion/fifo-stack.cwl</file>
 <file>completion/figchild.cwl</file>
+<file>completion/figsize.cwl</file>
 <file>completion/filecontentsdef.cwl</file>
 <file>completion/filehook.cwl</file>
 <file>completion/filemod.cwl</file>
@@ -1165,6 +1174,7 @@
 <file>completion/forloop.cwl</file>
 <file>completion/formal-grammar.cwl</file>
 <file>completion/forms16be.cwl</file>
+<file>completion/fortextbook.cwl</file>
 <file>completion/forum.cwl</file>
 <file>completion/fouridx.cwl</file>
 <file>completion/fourier.cwl</file>
@@ -1210,6 +1220,7 @@
 <file>completion/gckanbun.cwl</file>
 <file>completion/genealogytree.cwl</file>
 <file>completion/gensymb.cwl</file>
+<file>completion/gentiumbook.cwl</file>
 <file>completion/gentium.cwl</file>
 <file>completion/gentombow.cwl</file>
 <file>completion/geometry.cwl</file>
@@ -1583,6 +1594,7 @@
 <file>completion/ltablex.cwl</file>
 <file>completion/ltj-base.cwl</file>
 <file>completion/ltj-latex.cwl</file>
+<file>completion/ltugcomn.cwl</file>
 <file>completion/ltx4yt.cwl</file>
 <file>completion/ltxdocext.cwl</file>
 <file>completion/ltxdockit.cwl</file>
@@ -1756,6 +1768,7 @@
 <file>completion/mintspirit.cwl</file>
 <file>completion/minutes.cwl</file>
 <file>completion/mismath.cwl</file>
+<file>completion/mi-solns.cwl</file>
 <file>completion/missaali.cwl</file>
 <file>completion/mkstmp_pro.cwl</file>
 <file>completion/mleftright.cwl</file>
@@ -2440,6 +2453,7 @@
 <file>completion/sidebars.cwl</file>
 <file>completion/sidecap.cwl</file>
 <file>completion/sidenotes.cwl</file>
+<file>completion/sidenotesplus.cwl</file>
 <file>completion/signchart.cwl</file>
 <file>completion/silence.cwl</file>
 <file>completion/sillypage.cwl</file>
@@ -2653,6 +2667,7 @@
 <file>completion/thm-patch.cwl</file>
 <file>completion/thm-restate.cwl</file>
 <file>completion/thmtools.cwl</file>
+<file>completion/thorshammer.cwl</file>
 <file>completion/threadcol.cwl</file>
 <file>completion/threeparttable.cwl</file>
 <file>completion/threeparttablex.cwl</file>
