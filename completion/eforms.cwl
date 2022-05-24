@@ -62,6 +62,7 @@ usealtadobe
 \sigField{title%text}{width}{height}
 \sigField[modifications]{title%text}{width}{height}
 \everySigField{modifications}
+\everyButtonField{modifications}
 
 \makeXasPDOn
 \makeXasPDOff
@@ -276,6 +277,7 @@ star
 \csarg{arg1}{arg2}#S
 \efCalcOrder#S
 \efHxError#S
+\eflength#S
 \efPreviewOnRule#S
 \efrestore#S
 \efrestorei{arg1}#S
