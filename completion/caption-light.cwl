@@ -1,10 +1,10 @@
-# bicaption package
-# Matthew Bertucci 2022/05/24 for v1.3
+# caption-light package
+# Matthew Bertucci 2022/05/24 for v1.0a
 
-#include:caption
+#include:caption3
 
-#keyvals:\usepackage/bicaption#c
-# options defined in caption3 package
+# options defined by caption3 package
+#keyvals:\usepackage/caption-light#c
 aboveskip=##L
 belowskip=##L
 box=#empty,none,parbox,colorbox
@@ -27,6 +27,7 @@ indention=##L
 justification=#justified,centering,centerlast,centerfirst,raggedright,raggedleft,Justified,Centering,RaggedRight,RaggedLeft
 labelfont+=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
 labelfont=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
+labelformat=#original,empty,simple,brace,parens,autodot,unnumbered
 labelsep=#none,colon,period,space,quad,newline,endash,gobble,gobbletwo
 list=#on,off,true,false
 listfigurename=%<name%>
@@ -63,26 +64,12 @@ width*=##L
 width=##L
 within=%<counter%>
 without
-# options defined in caption package
-list-entry=#default,list-entry,entry
-hypcap#true,false
-hypcapspace=##L
-type=%<float type%>
-type*=%<float type%>
-subtype=%<float type%>
-subtype*=%<float type%>
-compatibility#true,false
-config=%<file name%>
 #endkeyvals
 
-\captionsetup[float type][biling selection]{options%keyvals}
-
-#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/bicaption#c,\DeclareCaptionStyle#c
-lang=%<language%>
-bi-lang=#both,first,second
-bi-slc#true,false
-bi-swap#true,false
-bi-separator=#none,default,smallskip,medskip,largeskip
+# options defined by caption-light package
+#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/caption-light#c,\DeclareCaptionStyle#c
+type=%<float type%>
+type*=%<float type%>
 #endkeyvals
 
 #ifOption:font=onehalfspacing
@@ -162,35 +149,9 @@ bi-separator=#none,default,smallskip,medskip,largeskip
 #include:ragged2e
 #endif
 
-\DeclareBiCaptionSeparator{name}{code}
-
-\bicaption{heading1%text}{heading2%text}
-\bicaption[list-entry1]{heading1%text}[list-entry2]{heading2%text}
-\bicaption*{heading1%text}{heading2%text}
-
-\bicaptionbox{heading1%text}{heading2%text}{content%text}
-\bicaptionbox[list-entry1]{heading1%text}[list-entry2]{heading2%text}{content%text}
-\bicaptionbox{heading1%text}{heading2%text}[width][inner-pos]{content%text}
-\bicaptionbox[list-entry1]{heading1%text}[list-entry2]{heading2%text}[width][inner-pos]{content%text}
-\bicaptionbox*{heading1%text}{heading2%text}{content%text}
-\bicaptionbox*{heading1%text}{heading2%text}[width][inner-pos]{content%text}
-
-\bisubcaption{heading1%text}{heading2%text}#*
-\bisubcaption[list-entry1]{heading1%text}[list-entry2]{heading2%text}
-\bisubcaption*{heading1%text}{heading2%text}
-
-\bisubcaptionbox{heading1%text}{heading2%text}{content%text}
-\bisubcaptionbox[list-entry1]{heading1%text}[list-entry2]{heading2%text}{content%text}
-\bisubcaptionbox{heading1%text}{heading2%text}[width][inner-pos]{content%text}
-\bisubcaptionbox[list-entry1]{heading1%text}[list-entry2]{heading2%text}[width][inner-pos]{content%text}
-\bisubcaptionbox*{heading1%text}{heading2%text}{content%text}
-\bisubcaptionbox*{heading1%text}{heading2%text}[width][inner-pos]{content%text}
-
-\captionmainlanguage#*
-\selectcaptionlanguage{font or list entry}{language}#*
-
-\DeclareCaptionLangOption{name}#*
-
-# compatibility
-\DeclareCaptionLanguageOption{name}#S
-\subbicaptionbox#S
+\caption*{heading%text}
+\captionof{float type}[list entry]{heading%text}
+\captionof{float type}{heading%text}
+\captionof*{float type}{heading%text}
+\setcaptiontype{float type}
+\setcaptiontype*{float type}
