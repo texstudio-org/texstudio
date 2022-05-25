@@ -2994,11 +2994,17 @@ void PDFDocument::init(bool embedded)
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
         // set grid menu entry checked
         QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
+        bool found=false;
         for(QAction *a:actionGroupGrid->actions()){
             if(a->property("grid").toString()==gs){
                 a->setChecked(true);
+                found=true;
                 break;
             }
+        }
+        if(!found){
+            // if no other grid action fits, use custom
+            actionCustom->setChecked(true);
         }
 
         //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
