@@ -2992,6 +2992,14 @@ void PDFDocument::init(bool embedded)
 		conf->registerOption("Preview/GridX", &globalConfig->gridx, 1);
 		conf->registerOption("Preview/GridY", &globalConfig->gridy, 1);
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
+        // set grid menu entry checked
+        QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
+        for(QAction *a:actionGroupGrid->actions()){
+            if(a->property("grid").toString()==gs){
+                a->setChecked(true);
+                break;
+            }
+        }
 
         //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
