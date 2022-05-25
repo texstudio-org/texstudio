@@ -414,7 +414,9 @@
 <file>completion/cantarell.cwl</file>
 <file>completion/captcont.cwl</file>
 <file>completion/captdef.cwl</file>
+<file>completion/caption3.cwl</file>
 <file>completion/caption.cwl</file>
+<file>completion/caption-light.cwl</file>
 <file>completion/capt-of.cwl</file>
 <file>completion/carbohydrates.cwl</file>
 <file>completion/carlito.cwl</file>
@@ -621,6 +623,9 @@
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
 <file>completion/class-mucproc.cwl</file>
+<file>completion/class-mwart.cwl</file>
+<file>completion/class-mwbk.cwl</file>
+<file>completion/class-mwrep.cwl</file>
 <file>completion/class-mynsfc.cwl</file>
 <file>completion/class-nanicolle.cwl</file>
 <file>completion/class-ncc.cwl</file>
@@ -1068,6 +1073,7 @@
 <file>completion/expkv-opt.cwl</file>
 <file>completion/expl3.cwl</file>
 <file>completion/export.cwl</file>
+<file>completion/exsol.cwl</file>
 <file>completion/extarrows.cwl</file>
 <file>completion/extdash.cwl</file>
 <file>completion/extpfeil.cwl</file>
@@ -1137,6 +1143,7 @@
 <file>completion/floatrow.cwl</file>
 <file>completion/flowchart.cwl</file>
 <file>completion/flowfram.cwl</file>
+<file>completion/fltpage.cwl</file>
 <file>completion/fltpoint.cwl</file>
 <file>completion/flushend.cwl</file>
 <file>completion/fmp.cwl</file>
