@@ -2152,8 +2152,8 @@ void PDFWidget::fitWindow(bool checked)
 			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
 			qreal portHeight = scrollArea->viewport()->height() - GridBorder * (gridy - 1);
 			QSizeF	pageSize = maxPageSizeFDpiAdjusted();
-			qreal sfh = portWidth / pageSize.width();
-			qreal sfv = portHeight / pageSize.height();
+            qreal sfh = portWidth / pageSize.width() / gridx;
+            qreal sfv = portHeight / pageSize.height() / gridy;
 			scaleFactor = sfh < sfv ? sfh : sfv;
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
