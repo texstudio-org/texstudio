@@ -2066,7 +2066,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	if (p < 0) p = 0;
 	if (p >= realNumPages()) p = realNumPages() - 1;
-	p = normalizedPageIndex(p);
+    p = normalizedPageIndex(p);
 	if (p != realPageIndex && !document.isNull()) { //the first condition is important: it prevents a recursive sync crash
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
@@ -2150,10 +2150,10 @@ void PDFWidget::fitWindow(bool checked)
 		PDFScrollArea	*scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
-			qreal portHeight = scrollArea->viewport()->height() - GridBorder * (gridy - 1);
+            qreal portHeight = scrollArea->viewport()->height() - GridBorder * (globalConfig->gridy - 1); // use globalConfig->gridy as gridy is automatically increased in continous mode to force rendering of surrounding pages
 			QSizeF	pageSize = maxPageSizeFDpiAdjusted();
             qreal sfh = portWidth / pageSize.width() / gridx;
-            qreal sfv = portHeight / pageSize.height() / gridy;
+            qreal sfv = portHeight / pageSize.height() / globalConfig->gridy;
 			scaleFactor = sfh < sfv ? sfh : sfv;
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
