@@ -1744,13 +1744,11 @@ int PDFWidget::getPageIndex()
 
 void PDFWidget::reloadPage(bool sync)
 {
-    //QList<int> oldpages = pages;
 	pages.clear();
     if (magnifier != nullptr)
 		magnifier->setPage(-1, 0, QRect());
 	imagePage = -1;
 	image = QPixmap();
-	//highlightPath = QPainterPath();
 	if (!document.isNull()) {
 		if (realPageIndex >= realNumPages())
 			realPageIndex = realNumPages() - 1;
@@ -1758,19 +1756,6 @@ void PDFWidget::reloadPage(bool sync)
 			int visiblePageCount = qMin(gridx * gridy, realNumPages() - realPageIndex);
 			for (int i = 0; i < visiblePageCount; i++)
 				pages << i + realPageIndex;
-			/*/use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
-			int firstCommonPage = qMax(pageIndex, oldPageIndex);
-			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
-
-			if (lastCommonPage < firstCommonPage) {
-				for (int i=0; i < pageCount; i++)
-					pages.append(pageIndex + i);
-			} else {
-				for (int i=pageIndex; i < firstCommonPage; i++) pages.append(i);
-				for (int i=firstCommonPage; i <= lastCommonPage; i++) pages.append(oldpages[i-oldPageIndex]);
-				for (int i=lastCommonPage + 1; i < pageIndex + pageCount; i++) pages.append(i);
-			}*/
-			//oldPageIndex = pageIndex;
 			oldRealPageIndex = realPageIndex;
 		}
 	}
