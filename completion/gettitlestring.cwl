@@ -12,5 +12,5 @@ expand#true,false
 \GetTitleString{text}#*
 \GetTitleStringExpand{text}#*
 \GetTitleStringNonExpand{text}#*
-
+\GetTitleStringResult#*
 \GetTitleStringDisableCommands{code}#*
