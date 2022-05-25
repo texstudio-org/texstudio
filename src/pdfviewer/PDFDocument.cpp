@@ -2699,20 +2699,20 @@ void PDFDocument::setupMenus(bool embedded)
 
     static QStringList sl;
     configManager->registerOption("Preview/Possible Grid Sizes", &sl, QStringList() << "1x1" << "2x1" << "1x2" << "2x2" << "3x1" << "3x2" << "3x3");
-    QActionGroup *gridAcrionGroup=new QActionGroup(this);
+    actionGroupGrid=new QActionGroup(this);
     bool first=true;
     foreach (const QString &gs, sl) {
         QAction *a = configManager->newManagedAction(menuroot,menuGrid, "grid"+gs, gs, this, SLOT(setGrid()), QList<QKeySequence>());
         a->setProperty("grid", gs);
         a->setCheckable(true);
         a->setChecked(first);
-        gridAcrionGroup->addAction(a);
+        actionGroupGrid->addAction(a);
         first=false;
     }
     actionCustom=configManager->newManagedAction(menuroot,menuGrid, "gridCustom", tr("Custom..."), this, SLOT(setGrid()), QList<QKeySequence>());
     actionCustom->setProperty("grid","xx");
     actionCustom->setCheckable(true);
-    gridAcrionGroup->addAction(actionCustom);
+    actionGroupGrid->addAction(actionCustom);
 	menuGrid->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
 	menuWindow->addAction(menuShow->menuAction());

@@ -638,6 +638,7 @@ private:
     QAction *actionFit_to_Text_Width;
     QAction *actionGrayscale;
     QAction *actionSplitMerge;
+    QActionGroup *actionGroupGrid;
 
     QStatusBar *statusbar;
     QToolBar *toolBar;
