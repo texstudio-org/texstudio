@@ -73,7 +73,6 @@ bool PDFDocument::isMaybeCompiling = false;
 
 static const int GridBorder = 5;
 
-
 QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGray)
 {
 	if (pixmap.isNull()) return pixmap;
@@ -1874,12 +1873,13 @@ int PDFWidget::realNumPages() const
 int PDFWidget::pageStep()
 {
 	bool cont = getScrollArea()->getContinuous();
-	int result = 1;
-	if (singlePageStep && !cont) return 1;
+	int result;
 	if (cont) {
 		result = gridx;
 	} else {
-		if (!singlePageStep)
+		if (singlePageStep)
+			result = 1;
+		else
 			result = gridx * gridy;
 	}
 	return result;
@@ -1919,16 +1919,13 @@ void PDFWidget::goFirst()
 void PDFWidget::goPrev()
 {
 	if (document.isNull()) return;
-	getScrollArea()->goToPage(realPageIndex + getPageOffset() - pageStep());
+	getScrollArea()->goToPage(realPageIndex - pageStep());
 }
 
 void PDFWidget::goNext()
 {
 	if (document.isNull()) return;
-	int pageOffset = getPageOffset();
-	if (realPageIndex == 0 && pageOffset == 1)
-		pageOffset = -1;
-	getScrollArea()->goToPage(realPageIndex + pageOffset + pageStep());
+	getScrollArea()->goToPage(realPageIndex + pageStep());
 }
 
 void PDFWidget::goLast()
@@ -2061,7 +2058,7 @@ void PDFWidget::doPageDialog()
 
 int PDFWidget::normalizedPageIndex(int p)
 {
-	if (p > 0) return  p - (p - getPageOffset())  % pageStep();
+	if (p > 0) return  p - (p + getPageOffset()) % pageStep();
 	else return p;
 }
 
