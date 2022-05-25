@@ -209,9 +209,3 @@ without
 planb#true,false
 planb-fileext=%<file extension%>
 #endkeyvals
-
-
-
-
-
-
