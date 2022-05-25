@@ -748,7 +748,7 @@ void PDFScrollArea::goToPage(int page, bool sync)
 {
 	if (continuous) {
 		int rowHeight = pdf->gridRowHeight();
-		verticalScrollBar()->setValue((page / pdf->gridCols())  * rowHeight);
+        verticalScrollBar()->setValue(((page+pdf->getPageOffset())/ pdf->gridCols())  * rowHeight);
 	} else pdf->goToPageDirect(page, sync);
 }
 
