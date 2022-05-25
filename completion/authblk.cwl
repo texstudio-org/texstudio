@@ -31,3 +31,6 @@ german
 \theMaxaffil#*
 \theaffil#*
 \theauthors#*
+\ifnewaffil#*
+\newaffiltrue#*
+\newaffilfalse#*
