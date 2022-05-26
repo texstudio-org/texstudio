@@ -30,6 +30,14 @@ twocolumn
 leqno
 fleqn
 openbib
+rmheadings
+sfheadings
+floatssmall
+floatsnormalsize
+authortitle
+titleauthor
+indentfirst
+noindentfirst
 #endkeyvals
 
 \SetSectionFormatting{nazwa polecenia}{odstęp przed}{nagłówek}{odstęp p}

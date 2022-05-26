@@ -2,7 +2,6 @@
 # Matthew Bertucci 11/26/2021 for v2.7
 
 #include:keyval
-#include:rotating
 
 #keyvals:\usepackage/endfloat#c
 nofiglist
@@ -76,10 +75,10 @@ head
 \nofiglist#*
 \notablist#*
 \processotherdelayedfloats#*
-\thepostfig#*
 \thepostfigure#*
 \theposttable#*
-\theposttable#*
+\thepostfig#S
+\theposttbl#S
 
 \docdate#S
 \filedate#S
