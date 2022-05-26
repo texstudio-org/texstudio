@@ -1919,6 +1919,11 @@ void PDFWidget::goLast()
 	getScrollArea()->goToPage(realNumPages() - 1);
 }
 
+int PDFWidget::gridRows() const
+{
+	return gridy;
+}
+
 void PDFWidget::goForward()
 {
 	if (pageHistoryIndex + 1 < pageHistory.size()) {
@@ -2627,7 +2632,7 @@ void PDFDocument::setupMenus(bool embedded)
     menuFile=configManager->newManagedMenu(menuroot,menubar,"pdf/file",QApplication::translate("PDFDocument", "&File"));
     menuEdit_2=configManager->newManagedMenu(menuroot,menubar,"pdf/edit",QApplication::translate("PDFDocument", "&Edit"));
     menuView=configManager->newManagedMenu(menuroot,menubar,"pdf/view",QApplication::translate("PDFDocument", "&View"));
-    menuGrid=configManager->newManagedMenu(menuView,nullptr,"pdf/view/grid",QApplication::translate("PDFDocument", "Grid"));
+    menuGrid=configManager->newManagedMenu(menuView,nullptr,"pdf/view/grid",QApplication::translate("PDFDocument", "Grid (x,y)"));
     menuWindow=configManager->newManagedMenu(menuroot,menubar,"pdf/window",QApplication::translate("PDFDocument", "&Window"));
     menuEdit=configManager->newManagedMenu(menuroot,menubar,"pdf/config",QApplication::translate("PDFDocument", "&Configure"));
     menuHelp=configManager->newManagedMenu(menuroot,menubar,"pdf/help",QApplication::translate("PDFDocument", "&Help"));
@@ -3442,7 +3447,9 @@ void PDFDocument::setGrid()
 	QString gs = sender()->property("grid").toString();
 	if (gs == "xx") {
 		UniversalInputDialog d;
-		int x = 1, y = 1;
+		int x, y;
+		x = pdfWidget->gridCols();
+		y = pdfWidget->gridRows();
 		d.addVariable(&x , "X-Grid:");
 		d.addVariable(&y , "Y-Grid:");
 		if (d.exec()) {
