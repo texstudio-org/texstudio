@@ -3457,7 +3457,8 @@ void PDFDocument::setGrid()
 	QString gs = sender()->property("grid").toString();
 	if (gs == "xx") {
 		UniversalInputDialog d;
-		int x = 1, y = 1;
+        int x = pdfWidget->gridCols();
+        int y = pdfWidget->gridRows();
 		d.addVariable(&x , "X-Grid:");
 		d.addVariable(&y , "Y-Grid:");
 		if (d.exec()) {
