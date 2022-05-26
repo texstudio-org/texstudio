@@ -671,6 +671,7 @@
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
+<file>completion/class-simplethesisdissertation.cwl</file>
 <file>completion/class-simplivre.cwl</file>
 <file>completion/class-skdoc.cwl</file>
 <file>completion/class-skrapport.cwl</file>
@@ -698,6 +699,7 @@
 <file>completion/class-xebaposter.cwl</file>
 <file>completion/class-xepersian-magazine.cwl</file>
 <file>completion/class-yaletter.cwl</file>
+<file>completion/class-ycbook.cwl</file>
 <file>completion/cleanthesis.cwl</file>
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
@@ -861,9 +863,11 @@
 <file>completion/DejaVuSerifCondensed.cwl</file>
 <file>completion/DejaVuSerif.cwl</file>
 <file>completion/delim.cwl</file>
+<file>completion/delimseasy.cwl</file>
 <file>completion/delimset.cwl</file>
 <file>completion/derivative.cwl</file>
 <file>completion/desclist.cwl</file>
+<file>completion/dgruyter.cwl</file>
 <file>completion/dhua.cwl</file>
 <file>completion/dhucsfn.cwl</file>
 <file>completion/dhucs-gremph.cwl</file>
@@ -1060,6 +1064,7 @@
 <file>completion/exceltex.cwl</file>
 <file>completion/excludeonly.cwl</file>
 <file>completion/exercisebank.cwl</file>
+<file>completion/exercise.cwl</file>
 <file>completion/exercisepoints.cwl</file>
 <file>completion/exercises.cwl</file>
 <file>completion/exerquiz.cwl</file>
@@ -1559,6 +1564,7 @@
 <file>completion/linenoamsmath.cwl</file>
 <file>completion/lineno.cwl</file>
 <file>completion/ling-macros.cwl</file>
+<file>completion/linguex.cwl</file>
 <file>completion/linguisticspro.cwl</file>
 <file>completion/linop.cwl</file>
 <file>completion/linsys.cwl</file>
@@ -2226,6 +2232,7 @@
 <file>completion/pst-poker.cwl</file>
 <file>completion/pst-poly.cwl</file>
 <file>completion/pst-pulley.cwl</file>
+<file>completion/ps-trees.cwl</file>
 <file>completion/pstricks-add.cwl</file>
 <file>completion/pstricks.cwl</file>
 <file>completion/pstricks-pdf.cwl</file>
@@ -2576,6 +2583,7 @@
 <file>completion/svn-prov.cwl</file>
 <file>completion/svrsymbols.cwl</file>
 <file>completion/swfigure.cwl</file>
+<file>completion/symbats3.cwl</file>
 <file>completion/symbolpalette.cwl</file>
 <file>completion/sympytex.cwl</file>
 <file>completion/synproof.cwl</file>
@@ -2802,6 +2810,7 @@
 <file>completion/translations.cwl</file>
 <file>completion/translator.cwl</file>
 <file>completion/transparent.cwl</file>
+<file>completion/tree-dvips.cwl</file>
 <file>completion/trfsigns.cwl</file>
 <file>completion/trig.cwl</file>
 <file>completion/trimclip.cwl</file>
@@ -2842,6 +2851,7 @@
 <file>completion/ugarite.cwl</file>
 <file>completion/uhrzeit.cwl</file>
 <file>completion/ulem.cwl</file>
+<file>completion/ulgothic.cwl</file>
 <file>completion/ulsy.cwl</file>
 <file>completion/umoline.cwl</file>
 <file>completion/underlin.cwl</file>
