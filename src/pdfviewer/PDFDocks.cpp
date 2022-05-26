@@ -736,7 +736,7 @@ void PDFScrollArea::setContinuous(bool cont)
 	Q_ASSERT(pdf);
 	if (cont == continuous) return;
 	continuous = cont;
-	if (!cont) pdf->setGridSize(pdf->gridCols(), 1);
+    if (!cont) pdf->setGridSize(pdf->gridCols(), pdf->gridRows());
 	else {
 		int page = pdf->getPageIndex();
         resizeEvent(nullptr);

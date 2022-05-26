@@ -1869,10 +1869,22 @@ int PDFWidget::pageStep()
 	}
 	return result;
 }
+/*!
+ * \brief return number of grid columns
+ * \return
+ */
 
 int PDFWidget::gridCols() const
 {
 	return gridx;
+}
+/*!
+ * \brief return number set grid rows
+ * \return
+ */
+int PDFWidget::gridRows() const
+{
+    return gridy;
 }
 
 int PDFWidget::gridRowHeight() const
@@ -1880,7 +1892,10 @@ int PDFWidget::gridRowHeight() const
     double result=maxPageSizeF().height() * scaleFactor * dpi / 72.0 + GridBorder;
     return qRound(result)>0 ? qRound(result) : 10; // avoid crashes
 }
-
+/*!
+ * \brief return width of border between grid pages
+ * \return
+ */
 int PDFWidget::gridBorder() const
 {
 	return GridBorder;
