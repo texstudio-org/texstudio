@@ -1870,21 +1870,24 @@ int PDFWidget::pageStep()
 	return result;
 }
 /*!
- * \brief return number of grid columns
+ * \brief return number set grid columns
+ * \param fromConfig: use configration as information source
  * \return
  */
-
-int PDFWidget::gridCols() const
+int PDFWidget::gridCols(bool fromConfig) const
 {
-	return gridx;
+    int result= fromConfig ? globalConfig->gridx : gridx;
+    return result;
 }
 /*!
  * \brief return number set grid rows
+ * \param fromConfig: use configration as information source as gridy is changed for continous mode
  * \return
  */
-int PDFWidget::gridRows() const
+int PDFWidget::gridRows(bool fromConfig) const
 {
-    return gridy;
+    int result= fromConfig ? globalConfig->gridy : gridy;
+    return result;
 }
 
 int PDFWidget::gridRowHeight() const

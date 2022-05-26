@@ -182,8 +182,8 @@ public:
 	Q_INVOKABLE int pseudoNumPages() const;
 	Q_INVOKABLE int realNumPages() const;
 	Q_INVOKABLE int pageStep();
-	Q_INVOKABLE int gridCols() const;
-    Q_INVOKABLE int gridRows() const;
+    Q_INVOKABLE int gridCols(bool fromConfig=false) const;
+    Q_INVOKABLE int gridRows(bool fromConfig=false) const;
 	Q_INVOKABLE int gridRowHeight() const;
 	Q_INVOKABLE int gridBorder() const;
 	Q_INVOKABLE PDFDocument *getPDFDocument();
