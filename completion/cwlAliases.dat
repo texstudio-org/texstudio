@@ -830,3 +830,11 @@ mwrep:
 class-mwrep
 latex-document
 tex
+simplethesisdissertation:
+class-simplethesisdissertation
+latex-document
+tex
+ycbook:
+class-ycbook
+latex-document
+tex
