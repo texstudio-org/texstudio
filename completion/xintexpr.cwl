@@ -1,5 +1,5 @@
 # xintexpr package
-# Matthew Bertucci 11/16/2021 for v1.4j
+# Matthew Bertucci 2022/05/26 for v1.4k
 
 #include:xintfrac
 #include:xinttools
@@ -8,6 +8,7 @@
 
 \xintexpr %<<expr>%> \relax
 \xintthe
+\xintthealign
 \xinttheexpr %<<expr>%> \relax
 
 \xintexprSafeCatcodes#*
@@ -36,7 +37,9 @@
 \xintiieval{expr}
 \xintfloateval{expr}
 
-\xintthealign
+\xintFracToSci{%<A/B[n]%>}
+\xintFracToDecimal{%<A/B[n]%>}
+
 \xintthecoords
 \xintthespaceseparated
 
@@ -103,9 +106,6 @@
 \xintthebarefloateval{expr}#*
 \xintthebareiieval{expr}#*
 \xintthebareroundedfloateval{expr}#*
-\ifxintexprsafecatcodes#*
-\xintexprsafecatcodestrue#*
-\xintexprsafecatcodesfalse#*
 \XINTusenoargfunc{func}#*
 \XINTusefunc{func}#*
 \XINTuseufunc{func}#*
