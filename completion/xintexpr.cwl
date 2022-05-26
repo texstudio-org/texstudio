@@ -34,8 +34,10 @@
 
 \xinteval{expr}
 \xintieval{expr}
+\xintieval[digits]{expr}
 \xintiieval{expr}
 \xintfloateval{expr}
+\xintfloateval[digits]{expr}
 
 \xintFracToSci{%<A/B[n]%>}
 \xintFracToDecimal{%<A/B[n]%>}
