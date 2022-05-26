@@ -3692,7 +3692,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 			if (pageIdx < 0 || pageIdx >= pdfWidget->realNumPages())
 				return;
 
-			statusBar()->showMessage(tr("Searching for") + QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx), 1000);
+			statusBar()->showMessage(tr("Searching for") + QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx+1), 1000);
 
             std::unique_ptr<Poppler::Page> page(document->page(pageIdx));
 			if (!page)
