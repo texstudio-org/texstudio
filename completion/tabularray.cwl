@@ -6,7 +6,7 @@
 #include:ninecolors
 
 \begin{tblr}{preamble%keyvals}#\tabular
-\begin{tblr}[outer specs]{preamble%keyvals}#\tabular
+\begin{tblr}[outer specs]{preamble}#\tabular
 \end{tblr}
 \SetTblrInner{options%keyvals}
 \SetTblrInner[envname]{options%keyvals}
@@ -433,11 +433,11 @@ varwidth
 \bottomrule[options]#*
 \cmidrulemore{i-j}#*
 \morecmidrules#*
-\begin{booktabs}{preamble%keyvals}#*\tabular
+\begin{booktabs}{preamble}#*\tabular
 \end{booktabs}#*
-\begin{longtabs}{preamble%keyvals}#*\tabular
+\begin{longtabs}{preamble}#*\tabular
 \end{longtabs}#*
-\begin{talltabs}{preamble%keyvals}#*\tabular
+\begin{talltabs}{preamble}#*\tabular
 \end{talltabs}#*
 \specialrule{width}{sep1}{sep2}#*
 \addrowspace#*
