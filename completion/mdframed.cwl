@@ -274,6 +274,7 @@ userdefinedwidth
 \mdfboundingboxtotalheight#*
 \mdfsubtitleheight#*
 \mdfsubsubtitleheight#*
+\themdfcountframes#*
 \mdfframedtitleenv{text}#*
 \mdversion#S
 \mdframedpackagename#S
