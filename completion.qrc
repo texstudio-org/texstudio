@@ -574,6 +574,7 @@
 <file>completion/class-guitartabs.cwl</file>
 <file>completion/class-gztarticle.cwl</file>
 <file>completion/class-harnon-cv.cwl</file>
+<file>completion/class-hepthesis.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
@@ -589,6 +590,8 @@
 <file>completion/class-jacow.cwl</file>
 <file>completion/class-jj_game.cwl</file>
 <file>completion/class-jmlr.cwl</file>
+<file>completion/class-kaobook.cwl</file>
+<file>completion/class-kaohandt.cwl</file>
 <file>completion/class-komacv.cwl</file>
 <file>completion/class-l3doc.cwl</file>
 <file>completion/class-langscibook.cwl</file>
@@ -768,6 +771,7 @@
 <file>completion/concepts.cwl</file>
 <file>completion/concmath.cwl</file>
 <file>completion/concmath-otf.cwl</file>
+<file>completion/conditionals.cwl</file>
 <file>completion/constants.cwl</file>
 <file>completion/conteq.cwl</file>
 <file>completion/continue.cwl</file>
@@ -1466,6 +1470,10 @@
 <file>completion/kalendarium.cwl</file>
 <file>completion/kanbun.cwl</file>
 <file>completion/kantlipsum.cwl</file>
+<file>completion/kaobiblio.cwl</file>
+<file>completion/kao.cwl</file>
+<file>completion/kaorefs.cwl</file>
+<file>completion/kaotheorems.cwl</file>
 <file>completion/karnaugh-map.cwl</file>
 <file>completion/karnaughmap.cwl</file>
 <file>completion/kbordermatrix.cwl</file>
@@ -2500,6 +2508,7 @@
 <file>completion/snotez.cwl</file>
 <file>completion/sobolev.cwl</file>
 <file>completion/somedefs.cwl</file>
+<file>completion/songbook.cwl</file>
 <file>completion/soul.cwl</file>
 <file>completion/soulpos.cwl</file>
 <file>completion/soulutf8.cwl</file>
@@ -2968,6 +2977,7 @@
 <file>completion/xepersian.cwl</file>
 <file>completion/xepersian-hm.cwl</file>
 <file>completion/xepersian-mathdigitspec.cwl</file>
+<file>completion/xepersian-multiplechoice.cwl</file>
 <file>completion/xepersian-persiancal.cwl</file>
 <file>completion/xesearch.cwl</file>
 <file>completion/xespotcolor.cwl</file>
