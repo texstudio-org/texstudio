@@ -1,5 +1,5 @@
 # erewhon package
-# Matthew Bertucci 2/7/2022 for v1.119
+# Matthew Bertucci 2022/05/26 for v1.12
 
 #include:fontenc
 #include:textcomp
@@ -12,7 +12,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/erewhon#c
-scale=%<factor%>
 scaled=%<factor%>
 spacing=##L
 stretch=##L
@@ -21,11 +20,8 @@ space=%<factor%>
 foresolidus=##L
 aftsolidus=##L
 lining
-lf
 oldstyle
-osf
 tabular
-p
 proportional
 sups
 scosf

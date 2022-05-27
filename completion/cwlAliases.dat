@@ -838,3 +838,15 @@ ycbook:
 class-ycbook
 latex-document
 tex
+hepthesis:
+class-hepthesis
+latex-document
+tex
+kaobook:
+class-kaobook
+latex-document
+tex
+kaohandt:
+class-kaohandt
+latex-document
+tex

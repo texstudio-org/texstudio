@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2022/05/21 for v0.25
+# Matthew Bertucci 2022/05/21 for v0.26
 
 #include:shellesc
 #include:xkeyval
@@ -8,6 +8,7 @@
 #include:tikz
 #include:listings
 #include:ifplatform
+#include:ifoddpage
 #include:tcolorbox
 # loads skins and breakable tcolorbox libraries
 # from breakable tcolorbox library
@@ -20,7 +21,9 @@
 \runExtCmd{command with arguments%definition}{filename%definition}
 \runExtCmd[options%keyvals]{command with arguments%definition}{filename%definition}
 
-#keyvals:\begin{externalDocument},\runExtCmd
+\hvExternSetKeys{options%keyvals}
+
+#keyvals:\begin{externalDocument},\runExtCmd,\hvExternSetKeys
 progpath=%<path%>
 runsequence={%<command sequence%>}
 runs=%<integer%>
@@ -43,6 +46,7 @@ mpvalign=#t,c,b
 ext=%<file ext%>
 usefancyvrb#true,false
 showFilename#true,false
+outerFN#true,false
 code#true,false
 force#true,false
 crop#true,false
