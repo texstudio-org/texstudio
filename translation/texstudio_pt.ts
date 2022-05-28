@@ -2424,7 +2424,7 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3816"/>
         <source>Preview with lualatex</source>
-        <translation>Visualizar com lualatex</translation>
+        <translation>Antever com lualatex</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3824"/>
@@ -4686,7 +4686,7 @@ o assistente não suporta o comando </translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2553"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n referência a este rótulo</numerusform><numerusform>%n referências a este rótulo</numerusform></translation>
+        <translation><numerusform>%n referência a este rótulo</numerusform><numerusform>%n referências a este rótulo</numerusform><numerusform>%n referências a este rótulo</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2558"/>
