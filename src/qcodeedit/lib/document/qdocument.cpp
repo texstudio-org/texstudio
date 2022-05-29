@@ -6123,23 +6123,6 @@ void QDocumentCursorHandle::boundaries(int& begline, int& begcol, int& endline, 
 {
 	beginBoundary(begline, begcol);
 	endBoundary(endline, endcol);
-
-	/*
-	if ( m_begLine == m_endLine )
-	{
-		endline = m_endLine;
-		if ( m_begOffset < m_endOffset //&& (m_endOffset!=-1)\\)
-			endcol = m_endOffset;
-		else
-			endcol = m_begOffset;
-	} else if ( m_begLine < m_endLine) {
-		endline = m_endLine;
-		endcol = m_endOffset;
-	} else {
-		endline = m_begLine;
-		endcol = m_begOffset;
-	}
-	*/
 }
 
 void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, int cend)
