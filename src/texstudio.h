@@ -350,6 +350,7 @@ protected slots:
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
 	void editDeleteLine(); ///< delete current line in current text editor
+    void editCutLine(); ///< cut current line in current text editor
 	void editDeleteToEndOfLine();
 	void editDeleteFromStartOfLine();
 	void editMoveLineUp();

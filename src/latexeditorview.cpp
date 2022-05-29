@@ -786,7 +786,46 @@ void LatexEditorView::deleteLines(bool toStart, bool toEnd)
     editor->setCursor(cursors[0]);
 	if (!toStart || !toEnd)
 		for (int i=0;i<newMirrors.size();i++)
-			editor->addCursorMirror(newMirrors[i]); //one cursor / line
+            editor->addCursorMirror(newMirrors[i]); //one cursor / line
+}
+/*!
+ * \brief cut lines
+ * Cut lines are copied into clipboard. To do so sensibly, cursors are sorted by line number first.
+ */
+void LatexEditorView::cutLines()
+{
+    QList<QDocumentCursor> cursors = editor->cursors();
+    if (cursors.empty()) return;
+    // sort cursors by start linenumber
+    std::sort(cursors.begin(),cursors.end());
+    document->beginMacro();
+    QString clipboard;
+    int lastEndLine=-1;
+    QList<int> skipCursors;
+    for (int i=0;i<cursors.size();i++){
+        int begincolumn,beginline,endcolumn,endline;
+        cursors[i].boundaries(beginline,begincolumn,endline,endcolumn);
+        if(lastEndLine>=0){
+            if(beginline<=lastEndLine){ // second cursor in same line
+                beginline=lastEndLine+1; // force start to next line
+                if(endline<beginline){
+                    skipCursors<<i;
+                    continue; // skip cursor if endline is before beginline, i.e. cursor intersected previous extended cursor
+                }
+            }
+        }
+        cursors[i].select(beginline,0,endline,-1);
+        lastEndLine=endline;
+        clipboard+=cursors[i].selectedText()+"\n";
+    }
+    // delete lines later to not mess cursor positions
+    for (int i=0;i<cursors.size();i++){
+        if(skipCursors.contains(i)) continue;
+        cursors[i].eraseLine();
+    }
+    document->endMacro();
+    QApplication::clipboard()->setText(clipboard);
+    editor->setCursor(cursors[0]);
 }
 
 void LatexEditorView::moveLines(int delta)
