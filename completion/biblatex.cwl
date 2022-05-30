@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 23.04.2022 for v3.17
+# Matthew Bertucci 30.05.2022 for v3.17
 
 #include:pdftexcmds
 #include:etoolbox
@@ -1073,7 +1073,7 @@ name=%<refcontextname%>
 ## 3.11 Entry Querying Commands ##
 \ifentryseen{entrykey}{true}{false}#*
 \ifentryinbib{entrykey}{true}{false}#*
-\ifentrycategory{entrykey}category}{true}{false}#*
+\ifentrycategory{entrykey}{category}{true}{false}#*
 \ifentrykeyword{entrykey}{keyword}{true}{false}#*
 
 ## 3.12 Formatting Commands ##
@@ -1848,6 +1848,9 @@ override#true,false
 \mkpagetotal{text}#*
 \mkpagetotal[pagination]{text}#*
 \mkpagetotal[pagination][postpro]{text}#*
+\themincomprange#*
+\themaxcomprange#*
+\themincompwidth#*
 \mkcomprange{text}#*
 \mkcomprange[postpro]{text}#*
 \mkcomprange[postpro][itempostpro]{text}#*
@@ -2125,6 +2128,68 @@ override#true,false
 \Footcitetexts[pre][post]{bibid}[pre][post]{bibid}#SC
 \Footcitetexts{bibid}{bibid}#SC
 
+### biblatex-archaeologie v2.4.5 ###
+#ifOption:style=archaeologie
+#include:ulem
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from archaeologie.bbx
+bibancient#true,false
+bibcorpora#true,false
+lstabbrv#true,false
+lstlocations#true,false
+lstpublishers#true,false
+bibfullname#true,false
+scshape#true,false
+edby#true,false
+publisher#true,false
+translation#true,false
+yearseries#true,false
+width=##L
+counter#true,false
+jstor#true,false
+arachne#true,false
+zenon#true,false
+urn#true,false
+biblabel=#plain,bold,brackets,parens
+inreferencesasfullcite#true,false
+eventdatelanguage#true,false
+# from archaeologie.cbx
+citeauthorformat=#initials,full,family,firstfulltheninitials,firstfullthenfamily
+seenote#true,false
+yearinparens#true,false
+nametracker#true,false
+#endkeyvals
+# from archaeologie.bbx
+\archDate#S
+\archVersion#S
+\archaeologieversion#*
+\archaeologiedate#*
+\labwidthsameline#*
+\labwidthsamelineVALUE#S
+\archaeologieoptions#*
+\archaeologieoptions[plain]%|#*
+\seperator#*
+\maintitlepunct#*
+\locationdelim#*
+\relateddelimmultivolume#*
+\volnumdelim#*
+\yearnumdelim#*
+\jourvoldelim#*
+\bibdatesubseqesep#*
+\bibdaterangesepx{arg}#*
+\begin{fullexpotherlanguage}{language}#*
+\end{fullexpotherlanguage}#*
+# from archaeologie.cbx
+\labelyeardelim#*
+\citeauthorformatVALUE#S
+\citetranslator[prenote][postnote]{bibid}#C
+\citetranslator[postnote]{bibid}#C
+\citetranslator{bibid}#C
+\citetranslator*[prenote][postnote]{bibid}#C
+\citetranslator*[postnote]{bibid}#C
+\citetranslator*{bibid}#C
+#endif
+
 ### biblatex-archaeology v2.2 ###
 #ifOption:style=aefkw
 #include:biblatex-archaeology
@@ -2373,6 +2438,66 @@ apamaxprtauth=%<number%>
 \nptextcites[pre]{bibid}[pre]{bibid}#*C
 \nptextcites[pre][post]{bibid}[pre][post]{bibid}#*C
 \nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
+#endif
+
+### biblatex-bath v6.0 ###
+#ifOption:style=bath
+# from bath.bbx
+#include:xpatch
+#include:xstring
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+nonodate#true,false
+#endkeyvals
+\Version#S
+\dononameyeardelim#*
+\mknoyeardaterangefull{arg1}{arg2}#*
+\mknoyeardaterangetrunc{arg1}{arg2}#*
+\ifrelatedloop{true}{false}#*
+#endif
+
+### biblatex-chem v1.1z ###
+#ifOption:style=chem-acs
+# from chem-acs.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articletitle#true,false
+chaptertitle#true,false
+pageranges#true,false
+biblabel=#parens,brackets,plain,dot
+#endkeyvals
+#endif
+
+#ifOption:style=chem-angew
+# from chem-angew.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articletitle#true,false
+chaptertitle#true,false
+pageranges#true,false
+biblabel=#parens,brackets,plain,dot
+#endkeyvals
+\mkbibnocomma{arg}#*
+# from chem-angew.cbx
+\mkbibsuperbracket{arg}#*
+#endif
+
+#ifOption:style=chem-biochem
+# from chem-biochem.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articletitle#true,false
+chaptertitle#true,false
+pageranges#true,false
+biblabel=#parens,brackets,plain,dot
+#endkeyvals
+#endif
+
+#ifOption:style=chem-rsc
+# from chem-rsc.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articletitle#true,false
+chaptertitle#true,false
+pageranges#true,false
+biblabel=#parens,brackets,plain,dot
+#endkeyvals
+\mkgroupeddigits{arg}#*
 #endif
 
 ### biblatex-claves v1.2.0 ###
@@ -4957,6 +5082,270 @@ introcite=#false,plain,label
 \pubdatedelim#*
 #endif
 
+### biblatex-german-legal v002 ###
+#ifOption:style=german-legal-book
+#include:xpatch
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+edsuper#true,false
+#endkeyvals
+# loads ext-authortitle.bbx and ext-authortitle.cbx
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+### biblatex-ieee v1.3f ###
+#ifOption:style=ieee
+\mkpagegrouped{text}#*
+\mkonepagegrouped{text}#*
+#endif
+#ifOption:style=ieee-alphabetic
+\mkpagegrouped{text}#*
+\mkonepagegrouped{text}#*
+#endif
+
+### biblatex-juradiss v0.23 ###
+#ifOption:style=biblatex-juradiss
+# loads authortitle-dw.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from standard-dw.bbx
+acronyms#true,false
+shorthandinbib#true,false
+shorthandwidth=##L
+shortjournal#true,false
+terselos#true,false
+xref#true,false
+pagetotal#true,false
+journalnumber=#standard,afteryear,date
+bernhard#true,false
+series=#standard,afteryear,beforeedition
+seriesformat=#standard,parens
+# from authortitle-dw.bbx
+annotation#true,false
+edbyidem#true,false
+editionstring#true,false
+edsuper#true,false
+idembib#true,false
+library#true,false
+nolocation#true,false
+nopublisher#true,false
+oldauthor#true,false
+origfields#true,false
+pseudoauthor#true,false
+origfieldsformat=#parens,brackets,punct
+namefont=#smallcaps,italic,bold,normal
+firstnamefont=#smallcaps,italic,bold,normal
+idemfont=#smallcaps,italic,bold,normal
+ibidemfont=#smallcaps,italic,bold,normal
+idembibformat=#idem,dash
+editorstring=#parens,brackets,normal
+editorstringfont=#normal,namefont
+# from standard-dw.cbx
+citedas#true,false
+edstringincitations#true,false
+omiteditor#true,false
+shorthandibid#true,false
+citeauthor=#namefont,namefontfoot,normalfont
+citeauthorname=#normal,firstfull,full
+ibidpage#true,false
+pageref#true,false
+citepages=#permit,suppress,omit,separate
+# from authortitle-dw.cbx
+addyear#true,false
+firstfull#true,false
+inreference=#normal,full
+#endkeyvals
+# from standard-dw.bbx
+\shorthandsep#*
+\jourvolstring#*
+\jourvolnumsep#*
+\journumstring#*
+\seriespunct#*
+\sernumstring#*
+\shorthandpunct#*
+\shorthandinbibpunct#*
+# from authortitle-dw.bbx
+\titleaddonpunct#*
+\locationdatepunct#*
+\locationpublisherpunct#*
+\publisherdatepunct#*
+\origfieldspunct#*
+\bibleftpseudo#*
+\bibrightpseudo#*
+\bibrevsdnamedelim#*
+\bibmultinamedelim#*
+\bibfinalnamedelim#*
+\annotationfont#*
+\libraryfont#*
+\mkidem{arg}#*
+# from biblatex-juradiss.cbx
+\qverweis{label}#r
+#endif
+
+### biblatex-jura2 v0.4 ###
+#ifOption:style=jura2
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from jura2.bbx
+citedbytitle#true,false
+howcited#true,false
+bearbeiterin#true,false
+fshowcited#true,false
+# from jura2.cbx
+citedbypage#true,false
+#endkeyvals
+# from jura2.cbx
+\oldpostnotedelim#S
+\mkpostnote{arg}#*
+\footcite[(%<postnote:prefix%>)%<postnote:stem%>]{%<bibid%>}
+# loads ext-authortitle-ibid.bbx and ext-authortitle-ibid.cbx
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
+### biblatex-lncs v0.5 ###
+#ifOption:style=lncs
+# from lncs.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+acronym#true,false
+series=#short,full,no
+conference=#long,full,acronym
+#endkeyvals
+#endif
+
+### biblatex-lni v0.5 ###
+#ifOption:style=LNI
+# from LNI.bbx
+\LNIversion#S
+\LNIdate#S
+\volnumdelim#*
+\aftertitledelim#*
+#endif
+
 ### biblatex-manuscripts-philology v2.1.2 ###
 #ifOption:bibstyle=manuscripts
 #include:xpatch
@@ -5027,16 +5416,6 @@ introcite=#false,plain,label
 \recto#*
 \verso#*
 \manuscriptaddshortened{arg}#*
-#endif
-
-### biblatex-ieee v1.3f ###
-#ifOption:style=ieee
-\mkpagegrouped{text}#*
-\mkonepagegrouped{text}#*
-#endif
-#ifOption:style=ieee-alphabetic
-\mkpagegrouped{text}#*
-\mkonepagegrouped{text}#*
 #endif
 
 ### biblatex-mla v2.0 ###
@@ -5163,6 +5542,148 @@ mladraft
 articletitle#true,false
 intitle#true,false
 #endkeyvals
+#endif
+
+### oscola v1.7 ###
+#ifOption:style=oscola
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from oscola.bbx
+caseshorthands#true,false
+ecli=#yes,no,only
+ibidstyle=#lc,uc
+shortindex#true,false
+# from oscola.cbx
+eutreaty#true,false
+#endkeyvals
+# from oscola.bbx
+\oldbibnamedelima#S
+\oldbibnamedelimb#S
+\oldbibnamedelimc#S
+\oldbibnamedelimd#S
+\oldbibnamedelimi#S
+\bbxinitsep#*
+\bibyearwatershed#*
+\nameaddonpseud#*
+\subtypemag#*
+\subtypenewsp#*
+\subtypeclassic#*
+\subtypebiblical#*
+\subtypeearlybook#*
+\subtypevideo#*
+\entrytypearchive#*
+\subtypevolume#*
+\subtypeonline#*
+\subtypedatabase#*
+\subtypeblog#*
+\subtypelistmessage#*
+\subtypebooklike#*
+\subtypepublicdocument#*
+\authortypeanon#*
+\authortypeunsure#*
+\authortyperedundant#*
+\authortypealternate#*
+\authortypejournal#*
+\subtypeintro#*
+\subtypeexcerpt#*
+\subtypenone#*
+\edtypecorp#*
+\entrytypeper#*
+\entrytypemanual#*
+\entrytypecoll#*
+\entrytypebook#*
+\subtypeprimarylegislation#*
+\subtypesecondarylegislation#*
+\subtypecourtrules#*
+\entrytyperef#*
+\entrytypeproc#*
+\entrytypereport#*
+\entrytypebooklet#*
+\entrytypemisc#*
+\entrytypeonline#*
+\entrytypevideo#*
+\entrytypeaudio#*
+\entrytypebookinbook#*
+\entrytypearticle#*
+\entrytypelegislation#*
+\entrytypeletter#*
+\entrytypeperformance#*
+\optionaddoriginal#*
+\optionnoreprints#*
+\optionorigfirst#*
+\optiontransfromorig#*
+\optionorigtransas#*
+\optiondoubledate#*
+\noplace#*
+\nopublisher#*
+\officialjournaltitle#*
+\ojspecedtitle#*
+\ecrreporttitle#*
+\commission#*
+\Commission#*
+\pcijrep#*
+\explanatorynote#*
+\eudirective#*
+\euregulation#*
+\eudecision#*
+\treatysubtype#*
+\comdocsubtype#*
+\jurisechr#*
+\eutreaty#*
+\casenote#*
+\pagemarkings#*
+\paragraphmarkings#*
+\paragraphtext#*
+\seriesa#*
+\echrreports#*
+\decisionsandreports#*
+\collectionofdecisions#*
+\parliamentarytype#*
+\houseofcommons#*
+\houseoflords#*
+\undoctype#*
+\extracitedelim#*
+\casenotetext#*
+\firstpublishedstr#*
+\legalstarturl#*
+\legalendurl#*
+\paratextformatted{text}#*
+\csusebibmacro{name}#*
+\forbbxrange#*
+\rangesplit{arg}#*
+\formatpostnote{text}#*
+\ifnumeralfirst{arg1}{arg2}{arg3}#*
+\ifnumeralsfirst{arg1}{arg2}{arg3}#*
+\numeraljustfirst{arg1}{arg2}{arg3}#*
+\siganddate{arg}#*
+\treatypartysep#*
+\SetStandardIndices#*
+\DeclareIndexAssociation{category}{index}
+\ShowIndexAssociation{category}#*
+\legislationindex#*
+\iflistcontains{arg1}{arg2}{true}{false}#*
+\printindexearly
+\printindexearly[name]
+# from oscola.cbx
+\DNI
+\reponly[prenote][postnote]{bibid}#*C
+\reponly[postnote]{bibid}#*C
+\reponly{bibid}#*C
+\footciteref[prenote][postnote]{bibid}#*C
+\footciteref[postnote]{bibid}#*C
+\footciteref{bibid}#*C
+\dopipedlist#*
+\setuppostnotes#*
+\postnotefirst#*
+\postnotesecond#*
+\citeinindex[prenote][postnote]{bibid}#C
+\citeinindex[postnote]{bibid}#C
+\citeinindex{bibid}#C
+\citeinindexnum[prenote][postnote]{bibid}#*C
+\citeinindexnum[postnote]{bibid}#*C
+\citeinindexnum{bibid}#*C
+\indexonly[prenote][postnote]{bibid}#C
+\indexonly[postnote]{bibid}#C
+\indexonly{bibid}#C
 #endif
 
 ### biblatex-oxalph v2.2 ###
@@ -5534,6 +6055,18 @@ commacit#true,false
 \editorstrgdelim#*
 #endif
 
+### biblatex-phys v1.1b ###
+#ifOption:style=phys
+# from phys.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articletitle#true,false
+chaptertitle#true,false
+pageranges#true,false
+biblabel=#superscript,brackets
+#endkeyvals
+\mkibid{arg}#*
+#endif
+
 ### biblatex-publist v1.26 ###
 #ifOption:style=publist
 # from publist.bbx
@@ -5633,11 +6166,193 @@ linktitleissn#true,false
 \thenonpleditor#*
 #endif
 
+### biblatex-realauthor v2.7.1a ###
+#ifOption:bibstyle=realauthor
+#include:xpatch
+\mkbibrealauthor{arg}#*
+\mkrealauthor{arg}#*
+\realauthorequalsign#*
+\mkbibrealeditor{arg}#*
+\mkrealeditor{arg}#*
+\realeditorequalsign#*
+#endif
+
+### biblatex-sbl v0.13 ###
+#ifOption:style=sbl
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from biblatex-sbl.def (loaded by sbl.bbx)
+accessdate#true,false
+citepages=#sbl,permit,omit,separate
+eprintdate=#year,short,long,terse,comp,iso8601
+fullbibrefs#true,false
+idemtracker=#true,false,context,strict,constrict,citation,sbl
+sblfootnotes#true,false
+shorthand=#true,false,short,intro
+useshorttitle#true,false
+usefullcite#true,false
+usevolume#true,false
+useseries#true,false
+#endkeyvals
+# from biblatex-sbl.def (loaded by sbl.bbx)
+\printsblversion#S
+\printsbldate#S
+\xprintsbldateiso#S
+\xprintsbldateau#S
+\ifciteidemsbl{true}{false}#*
+\namedashpunct#*
+\lexiconfinalnamedelim#*
+\volpostnotedelim#*
+\mkibid{arg}#*
+\addskipentry{arg}#*
+\addincludeentry{arg}#*
+\abbrevwidth#*
+\setmaxlength{length1}{length2}#*
+\iffirstcharsec{arg}{true}{false}#*
+\iffirstcharnum{arg}{true}{false}#*
+\thecurrentpublisher#*
+\thecurrentlocation#*
+\thecurrentorganization#*
+\thecurrentinstitution#*
+\thepublishertotal#*
+\thelocationtotal#*
+\theorganizationtotal#*
+\theinstitutiontotal#*
+\savepostnotes#*
+\postnotefirst#*
+\postnotelast#*
+\splitpostnote#*
+\volsplitpostnote{arg1}{arg2}#*
+\volvol#S
+\setuppostnotes#*
+# from sbl.cbx
+\citefullauthor{bibid}#C
+\citefullauthor[postnote]{bibid}#C
+\citefullauthor[prenote][postnote]{bibid}#C
+\citefullauthor*{bibid}#C
+\citefullauthor*[postnote]{bibid}#C
+\citefullauthor*[prenote][postnote]{bibid}#C
+\Citefullauthor{bibid}#C
+\Citefullauthor[postnote]{bibid}#C
+\Citefullauthor[prenote][postnote]{bibid}#C
+\Citefullauthor*{bibid}#C
+\Citefullauthor*[postnote]{bibid}#C
+\Citefullauthor*[prenote][postnote]{bibid}#C
+\citejournal{bibid}#C
+\citeseries{bibid}#C
+\citeshorthand{bibid}#C
+\bibentrycite{bibid}#*C
+\biblistcite{bibid}#*C
+\DeclareNestableCiteCommand{cmd}{def}#*d
+#endif
+
 ### biblatex-science v1.2 ###
 #ifOption:style=science
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 articletitle#true,false
 #endkeyvals
+#endif
+
+### biblatex-software v1.2-4 ###
+#ifOption:bibstyle=software
+# from software.bbx
+#include:xurl
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+halid#true,false
+swhid#true,false
+shortswhid#true,false
+swlabels#true,false
+vcs#true,false
+license#true,false
+#endkeyvals
+#endif
+
+### biblatex-spbasic v0.04 ###
+#ifOption:style=biblatex-spbasic
+# from biblatex-spbasic.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+pubstate#true,false
+#endkeyvals
+#endif
+
+### biblatex-trad v0.5 ###
+#ifOption:style=trad-abbrv
+# from trad-abbrv.bbx
+# loads trad-standard.bbx
+\volumenumberdelim#*
+\newcommaunit#*
+\newcommaunit*#*
+\newcommaunitStar#S
+\newcommaunitNoStar#S
+#endif
+
+#ifOption:style=trad-alpha
+# from trad-alpha.bbx
+# loads trad-standard.bbx
+\volumenumberdelim#*
+\newcommaunit#*
+\newcommaunit*#*
+\newcommaunitStar#S
+\newcommaunitNoStar#S
+#endif
+
+#ifOption:style=trad-plain
+# from trad-plain.bbx
+# loads trad-standard.bbx
+\volumenumberdelim#*
+\newcommaunit#*
+\newcommaunit*#*
+\newcommaunitStar#S
+\newcommaunitNoStar#S
+#endif
+
+#ifOption:style=trad-standard
+# from trad-standard.bbx
+\volumenumberdelim#*
+\newcommaunit#*
+\newcommaunit*#*
+\newcommaunitStar#S
+\newcommaunitNoStar#S
+#endif
+
+#ifOption:style=trad-unsrt
+# from trad-unsrt.bbx
+# loads trad-standard.bbx
+\volumenumberdelim#*
+\newcommaunit#*
+\newcommaunit*#*
+\newcommaunitStar#S
+\newcommaunitNoStar#S
+#endif
+
+### biblatex-unified v1.00 ###
+#ifOption:style=unified
+# from unified.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+issueandeditor#true,false
+compactdois#true,false
+#endkeyvals
+\mkbibdateunified{arg1}{arg2}{arg3}#*
+# from unified.cbx
+#include:xpatch
+\iflinkparens{true}{false}#*
+# deprecated
+\pgcitep{bibid}{text}#SC
+\pgcitealt{bibid}{text}#SC
+\pgcitet{bibid}{text}#SC
+\pgposscitet{bibid}{text}#SC
+\seccitealt{bibid}{text}#SC
+\seccitep{bibid}{text}#SC
+\seccitet{bibid}{text}#SC
+\secposscitet{bibid}{text}#SC
+\posscitet{bibid}#SC
+\posscitet[postnote]{bibid}#SC
+\posscitet[prenote][postnote]{bibid}#SC
+\posscitealt{bibid}#SC
+\posscitealt[postnote]{bibid}#SC
+\posscitealt[prenote][postnote]{bibid}#SC
+\possciteauthor{bibid}#SC
+\possciteauthor[postnote]{bibid}#SC
+\possciteauthor[prenote][postnote]{bibid}#SC
 #endif
 
 ### windycity 2021-12-04 ###
