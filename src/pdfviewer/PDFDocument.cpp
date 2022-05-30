@@ -1057,11 +1057,20 @@ void PDFWidget::openAnnotationDialog(const PDFAnnotation *annon)
 	dlg->show();
 }
 
-void PDFWidget::callGetPosFromClick(const QPoint &p){
+/*
+ * Copies to clipboard position in cm captured from the pdf viewer (w.r.t. south west corner)
+ */
+void PDFWidget::getPosFromClick(const QPoint &p){
 	int page = pageFromPos(p);
 	if (page < 0) return;
+	const float ptToCm = 2.54 / 72; // 1pt = 1/72 inch = 2.54/72 cm.
 	QRect r = pageRect(page);
-	emit getPosFromCLick(QPointF(p - r.topLeft()) / totalScaleFactor());
+	QPointF pos = (p - r.topLeft()) / totalScaleFactor();
+	float height = (r.height()/totalScaleFactor()) * ptToCm;
+	QClipboard *clipboard = QGuiApplication::clipboard();
+	QString tmp;
+	QTextStream(&tmp) << "" << pos.x() * ptToCm  << ", " << height- pos.y() * ptToCm;
+	clipboard->setText(tmp);
 }
 
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -1100,7 +1109,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			// ctrl-shift-click to get position
 			if ((mouseDownModifiers & Qt::ControlModifier) && (mouseDownModifiers & Qt::ShiftModifier)) {
 				if ((event->modifiers() & Qt::ControlModifier) && (event->modifiers() & Qt::ShiftModifier)) {
-					callGetPosFromClick(event->pos());
+					getPosFromClick(event->pos());
 				}
 				break;
 			}
@@ -2755,21 +2764,6 @@ void PDFDocument::setupMenus(bool embedded)
 
     configManager->modifyManagedShortcuts("pdf");
 }
-/*
- * Copies to clipboard position in cm captured from the pdf viewer (w.r.t. south west corner)
- */
-void PDFDocument::getPosFromCLick(const QPointF &pos)
-{
-	int page = pdfWidget->pageFromPos(pos.toPoint());
-	if (page < 0) return;
-	const float ptToCm = 2.54 / 72; // 1pt = 1/72 inch = 2.54/72 cm.
-	float height = (pdfWidget->pageRect(page).height()/pdfWidget->totalScaleFactor()) * ptToCm;
-	QClipboard *clipboard = QGuiApplication::clipboard();
-	QString tmp;
-	QTextStream(&tmp) << "" << pos.x() * ptToCm  << ", " << height- pos.y() * ptToCm;
-	clipboard->setText(tmp);
-	//qDebug() << "Position: " << qPrintable(tmp) << "\n";
-}
 /*!
  * \brief the shortcuts will only be triggered if this widget has focus (used in embedded mode)
  * \param actions
@@ -3044,7 +3038,6 @@ void PDFDocument::init(bool embedded)
 	connect(pdfWidget, SIGNAL(changedZoom(qreal)), this, SLOT(enableZoomActions(qreal)));
 	connect(pdfWidget, SIGNAL(changedScaleOption(autoScaleOption)), this, SLOT(adjustScaleActions(autoScaleOption)));
     connect(pdfWidget, SIGNAL(syncClick(int,const QPointF&,bool)), this, SLOT(syncClick(int,const QPointF&,bool)));
-    connect(pdfWidget, SIGNAL(getPosFromCLick(const QPointF&)), this, SLOT(getPosFromCLick(const QPointF&)));
 
 	if (actionZoom_In->shortcut() == QKeySequence("Ctrl++"))
         new QShortcut(QKeySequence("Ctrl+="), pdfWidget, SLOT(zoomIn()), Q_NULLPTR, Qt::WidgetShortcut);
