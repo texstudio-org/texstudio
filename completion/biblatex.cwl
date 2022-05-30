@@ -2128,6 +2128,56 @@ override#true,false
 \Footcitetexts[pre][post]{bibid}[pre][post]{bibid}#SC
 \Footcitetexts{bibid}{bibid}#SC
 
+### biblatex-acmart v0.1 ###
+#ifOption:style=acmauthoryear
+# from acmauthoryear.bbx
+\newcommaunit#*
+\newcommaunit*#*
+\newcommaunitStar#S
+\newcommaunitNoStar#S
+# loads software.bbx
+#include:xurl
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+halid#true,false
+swhid#true,false
+shortswhid#true,false
+swlabels#true,false
+vcs#true,false
+license#true,false
+#endkeyvals
+# from acmauthoryear.cbx
+#include:xpatch
+\citeyearpar[prenote][postnote]{bibid}#*C
+\citeyearpar[postnote]{bibid}#*C
+\citeyearpar{bibid}#*C
+\citep[prenote][postnote]{bibid}#*C
+\citep[postnote]{bibid}#*C
+\citep{bibid}#*C
+\citet[prenote][postnote]{bibid}#*C
+\citet[postnote]{bibid}#*C
+\citet{bibid}#*C
+#endif
+
+#ifOption:style=acmnumeric
+# from acmnumeric.bbx
+# loads trad-plain.bbx
+\volumenumberdelim#*
+\newcommaunit#*
+\newcommaunit*#*
+\newcommaunitStar#S
+\newcommaunitNoStar#S
+# loads software.bbx
+#include:xurl
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+halid#true,false
+swhid#true,false
+shortswhid#true,false
+swlabels#true,false
+vcs#true,false
+license#true,false
+#endkeyvals
+#endif
+
 ### biblatex-archaeologie v2.4.5 ###
 #ifOption:style=archaeologie
 #include:ulem
