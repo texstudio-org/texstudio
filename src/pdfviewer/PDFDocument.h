@@ -182,7 +182,8 @@ public:
 	Q_INVOKABLE int pseudoNumPages() const;
 	Q_INVOKABLE int realNumPages() const;
 	Q_INVOKABLE int pageStep();
-	Q_INVOKABLE int gridCols() const;
+    Q_INVOKABLE int gridCols(bool fromConfig=false) const;
+    Q_INVOKABLE int gridRows(bool fromConfig=false) const;
 	Q_INVOKABLE int gridRowHeight() const;
 	Q_INVOKABLE int gridBorder() const;
 	Q_INVOKABLE PDFDocument *getPDFDocument();
@@ -241,6 +242,7 @@ public slots:
 	void fitWindow(bool checked = true);
 	void setTool(int tool);
 	void syncWindowClick(const QPoint &p, bool activate);
+	void getPosFromClick(const QPoint &p);
 	void syncCurrentPage(bool activate);
 	void fixedScale(qreal scale = 1.0);
 	void setImage(QPixmap img, int pageNr);
@@ -635,6 +637,7 @@ private:
     QAction *actionFit_to_Text_Width;
     QAction *actionGrayscale;
     QAction *actionSplitMerge;
+    QActionGroup *actionGroupGrid;
 
     QStatusBar *statusbar;
     QToolBar *toolBar;

@@ -13,10 +13,10 @@
 \storechessboardstyle{name}{options%keyvals}
 
 #keyvals:\chessboard,\setchessboard,\storechessboardstyle,\newchessgame,\resumechessgame
-style=
+style=%<style%>
 maxfield=%<field%>
 zero#true,false
-clearboard=
+clearboard#true,false
 cleararea=%<area%>
 clearfile=%<file%>
 clearfiles=%<files%>
@@ -42,14 +42,14 @@ startstore=%<field%>
 stopstore=%<field%>
 storearea=%<area%>
 mover=#w,b
-castling=
+castling=%<castling possibilies%>
 enpassant=%<field%>
 halfmove=%<integer%>
 fullmove=%<integer%>
 getpiecelists
 restorefen=%<name%>
 loadfen=%<name%>
-language=
+language=%<language%>
 marginleftwidth=##L
 marginrightwidth=##L
 margintopwidth=##L
@@ -91,9 +91,9 @@ tinyboard
 smallboard
 normalboard
 largeboard
-boardfontfamily=
-boardfontseries=
-boardfontencoding=
+boardfontfamily=%<font family%>
+boardfontseries=%<font series%>
+boardfontencoding=%<font encoding%>
 clearfontcolors
 whitefieldmaskcolor=#%color
 blackfieldmaskcolor=#%color
@@ -227,17 +227,20 @@ markmoves={%<list of moves%>}
 markmove={%<list of moves%>}
 backmoves={%<list of moves%>}
 backmove={%<list of moves%>}
-markstyle=
-backstyle=
-pgfstyle=
+markstyle=%<style%>
+markstyle=[%<options%>]%<style%>
+backstyle=%<style%>
+backstyle=[%<options%>]%<style%>
+pgfstyle=%<style%>
+pgfstyle=[%<options%>]%<style%>
 color=#%color
 pgfcolor=#%color
-opacity=
-pgfopacity=
-fillopacity=
-pgffillopacity=
-strokeopacity=
-pgfstrokeopacity=
+opacity=%<factor%>
+pgfopacity=%<factor%>
+fillopacity=%<factor%>
+pgffillopacity=%<factor%>
+strokeopacity=%<factor%>
+pgfstrokeopacity=%<factor%>
 padding=##L
 pgfpadding=##L
 arrow=%<arrow type%>
@@ -287,7 +290,7 @@ trim#true,false
 trimtocolor=#white,black,false
 psset#true,false
 psskak#true,false
-text=
+text=%<text%>
 #endkeyvals
 
 \cblistK

@@ -1,10 +1,9 @@
 # bxghost package
-# Matthew Bertucci 4/11/2022 for v0.4.0
+# Matthew Bertucci 2022/05/23 for v0.5.0
+
+#include:bxghost-lib
 
 #keyvals:\usepackage/bxghost#c
 verb
 noverb
 #endkeyvals
-
-\eghostguarded{text}
-\jghostguarded{text}

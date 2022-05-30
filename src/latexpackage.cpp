@@ -1,6 +1,7 @@
 #include "latexpackage.h"
 #include "latexcompleter_config.h"
 #include "latexparser/latexparser.h"
+#include "tablemanipulation.h"
 
 
 CommandDescription extractCommandDef(QString line, QString definition);
@@ -532,8 +533,15 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 						if (rxCom.cap(1) == "\\begin") {
 							QString envName = rxCom.cap(3);
 							if (!envName.isEmpty()) {
-								foreach (const QString &elem, env)
+                                foreach (const QString &elem, env){
 									package.environmentAliases.insert(rxCom.cap(3), elem);
+                                    if(elem=="tabular"){
+                                        LatexTables::tabularNames.insert(envName);
+                                    }
+                                    if(elem=="array"){
+                                        LatexTables::mathTables.insert(envName);
+                                    }
+                                }
 							}
 						}
 					}

@@ -1,6 +1,11 @@
 # totalcount package
 # Matthew Bertucci 11/26/2021 for v1.0a
 
+#keyvals:\usepackage/totalcount#c
+%<counter%>
+xspace
+#endkeyvals
+
 #ifOption:xspace
 #include:xspace
 #endif

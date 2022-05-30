@@ -1,9 +1,10 @@
 # scrletter package
-# Matthew Bertucci 11/21/21 for v3.34
+# Matthew Bertucci 2022/05/18 for v3.36
 
 #include:scrkbase
 #include:scrextend
 #include:scrlayer-scrpage
+#include:scrlogo
 
 #keyvals:\KOMAoptions#c
 foldmarks=%<setting%>
@@ -36,8 +37,6 @@ pagenumber=#bot,foot,botcenter,botcentered,botmittle,footcenter,footcentered,foo
 \addtoplength[factor]{pseudo-length%keyvals}{value}
 \addtoplength{pseudo-length%keyvals}{value}
 \addtoreffields{name}
-\adrchar{initial letter}
-\adrentry{last name}{first name}{address}{phone}{F1}{F2}{comment}{key%plain}
 \AtBeginLetter{code}#*
 \AtEndLetter{code}#*
 \bankname#*
@@ -302,5 +301,7 @@ plain.letter
 #endkeyvals
 
 # deprecated
+\adrentry{last name}{first name}{address}{phone}{F1}{F2}{comment}{key%plain}#S
+\adrchar{initial letter}#S
 \ifkomavar#S
 \ifkomavarempty#S

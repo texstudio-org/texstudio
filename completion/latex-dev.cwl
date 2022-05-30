@@ -158,7 +158,7 @@
 \IfValueTF{arg}{ValueCode}{-NoValue-Code}#*
 \IncludeInRelease{date}{command}{description}#*
 \IndentBox#*
-\InputIfFileExists{file}{then}{else}#*
+\InputIfFileExists{file}{then}{else}#*i
 \LastDeclaredEncoding#*
 \LoadClass[optionlist]{class}#*u
 \LoadClass[optionlist]{class}[release]#*u
@@ -224,8 +224,8 @@
 \RenewDocumentCommand{cmd}{xargs}{def}#d
 \RenewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
 \RenewExpandableDocumentCommand{cmd}{xargs}{def}#*d
-\RequirePackage[optionlist]{package}#*u
-\RequirePackage[optionlist]{package}[release]#*u
+\RequirePackage[options%keyvals]{package}#*u
+\RequirePackage[options%keyvals]{package}[release]#*u
 \RequirePackage{package}#u
 \RequirePackage{package}[release]#*u
 \RequirePackageWithOptions{package}#*u

@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 3/3/2022 for v6.7
+# Matthew Bertucci 2022/05/26 for v6.9
 
 #include:amsmath
 #include:array
@@ -115,7 +115,9 @@ code-for-last-col=%<code%>
 nullify-dots
 renew-dots
 xdots/color=#%color
+xdots/radius=##L
 xdots/shorten=##L
+xdots/inter=##L
 xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
 code-after=%<code%>
 cell-space-top-limit=##L
@@ -270,7 +272,9 @@ auto-columns-width
 
 #keyvals:\Ldots,\Cdots,\Vdots,\Ddots,\Iddots,\line
 color=#%color
+radius=##L
 shorten=##L
+inter=##L
 line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
 #endkeyvals
 
@@ -335,6 +339,7 @@ color=#%color
 
 \tabularnote{note%text}
 \rotate
+\ShowCellNames#t
 
 \AutoNiceMatrix{i-j}{pattern}#m
 \AutoNiceMatrix[options%keyvals]{i-j}{pattern}#m

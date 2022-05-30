@@ -2,6 +2,9 @@ name: Limit bintray entries
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
   build:
 

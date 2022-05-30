@@ -1,7 +1,9 @@
 # crefthe package
 # Matthew Bertucci 2/6/2022
 
+#include:l3keys2e
 #include:cleveref
+#include:regexpatch
 
 #keyvals:\usepackage/crefthe#c
 overwrite#true,false

@@ -289,6 +289,7 @@ public:
 	void insertSnippet(QString text);
 
 	void deleteLines(bool toStart, bool toEnd);
+    void cutLines();
 	void moveLines(int delta);
 	QList<QPair<int, int> > getSelectedLineBlocks();
 	static QMultiMap<int, QDocumentCursor* > getSelectedLines(QList<QDocumentCursor>& cursors);

@@ -14,6 +14,10 @@ quiet
 silent
 #endkeyvals
 
+#ifOption:euenc
+#include:xunicode
+#endif
+
 ## Sec. I.4 Interaction with LaTeX2e and other packages
 \oldstylenums{text}
 \liningnums{text}
@@ -201,6 +205,17 @@ WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
 Renderer=%<renderer%>
 #endkeyvals
+
+# not documented
+\cyrillicencoding#*
+\latinencoding#*
+\UTFencname#*
+\emfontdeclare{font-switching list}#*
+\FontspecSetCheckBoolFalse#*
+\FontspecSetCheckBoolTrue#*
+\scitdefault#*
+\scsldefault#*
+\scswdefault#*
 
 # from tuenc.def
 \UnicodeEncodingName#*

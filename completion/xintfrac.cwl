@@ -1,5 +1,5 @@
 # xintfrac package
-# Matthew Bertucci 11/16/2021 for v1.4j
+# Matthew Bertucci 2022/05/26 for v1.4k
 
 #include:xint
 
@@ -21,7 +21,6 @@
 \xintJrr{%<A/B[n]%>}
 \xintPRaw{%<A/B[n]%>}
 \xintSPRaw{%<A/B[n]%>}#*
-\xintFracToSci{%<A/B[n]%>}
 \xintDecToStringREZ{%<A/B[n]%>}
 \xintDecToString{%<A/B[n]%>}
 \xintTrunc{%<integer%>}{%<A/B[n]%>}
@@ -95,12 +94,24 @@
 \xintSetDigits{expr}
 \xintFloat{%<A/B[n]%>}
 \xintFloat[%<digits%>]{%<A/B[n]%>}
+\xintFloatZero
 \xintFloatE{%<A/B[n]%>}
 \xintFloatE[%<digits%>]{%<A/B[n]%>}
+\xintFloatSciExp{%<A/B[n]%>}
+\xintFloatSciExp[%<digits%>]{%<A/B[n]%>}
+\xintFloatSignificand{%<A/B[n]%>}
+\xintFloatSignificand[%<digits%>]{%<A/B[n]%>}
 \xintPFloat{%<A/B[n]%>}
 \xintPFloat[%<digits%>]{%<A/B[n]%>}
-\xintPFloatE{%<A/B[n]%>}
-\xintPFloatE[%<digits%>]{%<A/B[n]%>}
+\xintPFloatZero
+\xintPFloatE
+\xintPFloatNoSciEmax
+\xintPFloatNoSciEmin
+\xintPFloatIntSuffix
+\xintPFloatLengthOneSuffix
+\xintPFloatMinTrimmed
+\xintFloatToDecimal{%<A/B[n]%>}
+\xintFloatToDecimal[%<digits%>]{%<A/B[n]%>}
 \xintFloatAdd{%<A1/B1[n1]%>}{%<A2/B2[n2]%>}
 \xintFloatAdd[%<digits%>]{%<A1/B1[n1]%>}{%<A2/B2[n2]%>}
 \xintFloatSub{%<A1/B1[n1]%>}{%<A2/B2[n2]%>}
@@ -244,10 +255,13 @@
 \XINTdigits#S
 \XINTguarddigits#S
 \xintfloat#S
+\xintpfloatsciexp#S
+\xintfloatsignificand#S
 \XINTinfloat#S
 \XINTinfloatS#S
 \XINTfloatilogten#S
 \xintpfloat#S
+\xintfloattodecimal#S
 \XINTinfloatfrac#S
 \xintfloatadd#S
 \XINTinfloatadd#S

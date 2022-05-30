@@ -5191,10 +5191,8 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			if ( !count )
 			{
-				//*line = *it;
 				offset = 0;
 			} else {
-				//*line = QDocumentLine(*(m_doc->impl()->end() - 1));
 				offset = m_doc->line(line).length();
 			}
 
@@ -5218,14 +5216,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			if ( !count )
 			{
-				//*line = *it;
 				offset = m_doc->line(line).length();
 			} else {
 				offset = 0;
-				//*line = QDocumentLine(*(m_doc->impl()->begin()));
 			}
-
-			//*line = *it;
 
 			break;
 
@@ -5237,11 +5231,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			l = m_doc->line(line);
 
-			//for ( int loop = 0; loop <= 1; ++loop )
-			//{
-			//	while ( l.isValid() )
-
-			// -- patch --
 			/* eats up white space */
 			while ( (offset > 0) && !isWord(l.text().at(offset - 1)) && !isDelimiter(l.text().at(offset - 1)) )
 				--offset;
@@ -5254,57 +5243,17 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 					return true;
 
 				do
-			// -- patch --
 				{
-// 					//offset = qMin(offset, l.length() - 1);
-// 					bool next = (l.length() && offset >= 0) ? isWord(l.text().at(offset)) : true;
-//
-// 					if ( loop )
-// 						next = !next;
-//
-// 					if ( !next )
-// 						break;
-//
-// 					if ( offset > 0 )
-// 					{
-// 						--offset;
-// 					} else if ( line != beg ) {
-// 						do
-// 						{
-// 							//*line = *(--it);
-// 							--line;
-// 							l = m_doc->line(line);
-// 							offset = l.length() - 1;
-// 						} while ( l.isValid() && (line != beg) && l.hasFlag(QDocumentLine::Hidden) );
-// 					} else {
-// 						break;
-// 					}
-// 				}
-// 			}
-//
-// 			while ( l.isValid() )
-// 			{
-// 				offset = qMin(offset, l.length());
-// 				bool next = (offset <= 0) ? false : isWord(l.text().at(offset - 1));
-//
-// 				if ( !next )
-// 					break;
-//
-// 				--offset;
-
-			// -- patch --
 					--line;
 					l = m_doc->line(line);
 					offset = l.length();
 				} while ( (line != beg) && l.isValid() && l.hasFlag(QDocumentLine::Hidden) && !(m & QDocumentCursor::ThroughFolding));
 				return true;
-			// -- patch --
 			}
 
-			// -- patch --
 			/* eats up delimiters */
 			bool delimiter_used=false;
-			while ( (offset > 0) && isDelimiter(l.text().at(offset-1)) ){
+            if ( (offset > 0) && isDelimiter(l.text().at(offset-1)) ){ // don't jump over more than one delimiter (see https://github.com/texstudio-org/texstudio/issues/2311)
 				--offset;
 				delimiter_used=true;
 			}
@@ -5313,7 +5262,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				while ( (offset > 0) && isWord(l.text().at(offset - 1)) )
 					--offset;
 			}
-			// -- patch --
 
 			refreshColumnMemory();
 
@@ -5329,39 +5277,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			l = m_doc->line(line);
 			int lineLength = l.text().length();
 
-// 			for ( int loop = 0; loop <= 1; ++loop )
-			// -- patch --
-			/* end of line */
 			if ( offset == lineLength )
  			{
-// 				while ( l.isValid() )
 				/* last line, last char => nothing to do */
 				if ( line == end )
 					return true;
-			// -- patch --
 				do
 				{
-// 					//offset = qBound(0, offset, l.length() - 1);
-// 					bool next = (offset < l.length()) ? isWord(l.text().at(offset)) : true;
-//
-// 					if ( loop )
-// 						next = !next;
-//
-// 					if ( !next )
-// 						break;
-//
-// 					if ( offset < l.length() )
-// 					{
-// 						++offset;
-// 					} else if ( (line + 1) != end ) {
-// 						offset = 0;
-// 						do
-// 						{
-// 							++line;
-// 							l = m_doc->line(line);
-// 						} while ( l.isValid() && ((line + 1) != end) && (l.hasFlag(QDocumentLine::Hidden) || !l.length()) );
-// 					} else {
-			// -- patch --
 					++line;
 					l = m_doc->line(line);
 					offset = 0;
@@ -5379,19 +5301,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 					/* move to end of line */
 					if ( offset == lineLength )
 						break;
-			// -- patch --
-//					}
 				}
-			// -- patch --
 				return true;
-			// -- patch --
 			}
 
-			// -- patch --
 			/* next char */
-			//++offset;
 			bool delimiter_used=false;
-			while ( (offset < lineLength) && isDelimiter(l.text().at(offset)) ){
+            if ( (offset < lineLength) && isDelimiter(l.text().at(offset)) ){ // don't jump over more than one delimiter (see https://github.com/texstudio-org/texstudio/issues/2311)
 				++offset;
 				delimiter_used=true;
 			}
@@ -5405,7 +5321,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			/* eats up white space */
 			while ( (offset < lineLength) && !isWord(l.text().at(offset))&&!isDelimiter(l.text().at(offset)) )
 				++offset;
-			// -- patch --
 
 			refreshColumnMemory();
 
@@ -6208,23 +6123,6 @@ void QDocumentCursorHandle::boundaries(int& begline, int& begcol, int& endline, 
 {
 	beginBoundary(begline, begcol);
 	endBoundary(endline, endcol);
-
-	/*
-	if ( m_begLine == m_endLine )
-	{
-		endline = m_endLine;
-		if ( m_begOffset < m_endOffset //&& (m_endOffset!=-1)\\)
-			endcol = m_endOffset;
-		else
-			endcol = m_begOffset;
-	} else if ( m_begLine < m_endLine) {
-		endline = m_endLine;
-		endcol = m_endOffset;
-	} else {
-		endline = m_begLine;
-		endcol = m_begOffset;
-	}
-	*/
 }
 
 void QDocumentCursorHandle::substractBoundaries(int lbeg, int cbeg, int lend, int cend)

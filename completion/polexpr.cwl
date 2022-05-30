@@ -1,12 +1,12 @@
 # polexpr package
-# Matthew Bertucci 12/18/2021 for v0.8.5
+# Matthew Bertucci 2022/05/16 for v0.8.7
 
 #include:xintexpr
 
 ## Non-expandable macros ##
 \poldef %<polname(letter)%> := %<pol expr%>;
-\PolDef{polname}{pol expr}
-\PolDef[letter]{polname}{pol expr}
+\PolDef{polname}{pol expr%definition}
+\PolDef[letter]{polname}{pol expr%definition}
 \PolGenFloatVariant{polname}
 \PolTypeset{polname}
 \PolTypeset[letter]{polname}

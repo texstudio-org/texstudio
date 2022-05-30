@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 23 Feb 2022 for v7.00n
+#modified Matthew Bertucci 18 May 2022 for v7.00p
 
 #include:iftex
 #include:keyval
@@ -47,6 +47,20 @@
 #endif
 #ifOption:colorlinks=true
 #include:color
+#endif
+
+#ifOption:destlabel
+\HyperDestRename{destination}{newname}
+#endif
+#ifOption:destlabel=true
+\HyperDestRename{destination}{newname}
+#endif
+
+#ifOption:hyperindex
+\hyperindexformat{arg1}{arg2}#*
+#endif
+#ifOption:hyperindex=true
+\hyperindexformat{arg1}{arg2}#*
 #endif
 
 \hypersetup{keyvals}
@@ -93,16 +107,15 @@ hyperindex#true,false
 hypertex
 hypertexnames#true,false
 implicit#true,false
-latex2html
 linkbordercolor=#%color
 linkcolor=#%color
 linkfileprefix=%<prefix%>
 linktoc=#section,page,all,none
 linktocpage#true,false
-localanchorname#true,false
+luatex
 menubordercolor=#%color
 menucolor=#%color
-nativepdf#true,false
+nativepdf
 naturalnames#true,false
 nesting#true,false
 next-anchor=%<anchor name%>
@@ -127,7 +140,7 @@ pdfinfo={%<info keys%>}
 pdfkeywords={%<keyword list%>}
 pdflang=%<lang id%>
 pdflinkmargin=##L
-pdfmark#true,false
+pdfmark
 pdfmenubar#true,false
 pdfmoddate=%<date%>
 pdfnewwindow#true,false
@@ -168,12 +181,12 @@ runcolor=#%color
 setpagesize#true,false
 tex4ht
 textures
-typexml#true,false
 unicode#true,false
 urlbordercolor=#%color
 urlcolor=#%color
 verbose#true,false
 vtex
+vtexpdfmark
 xetex
 #endkeyvals
 
@@ -188,11 +201,18 @@ ismap#true,false
 nextactionraw=
 #endkeyvals
 
+\MakeLinkTarget{counter}
+\MakeLinkTarget[prefix]{counter}
+\MakeLinkTarget*{target name}
+\NextLinkTarget{target name}
+\LinkTargetOn
+\LinkTargetOff
+\SetLinkTargetFilter{filter code}
+
 \url{URL}#U
 \nolinkurl{URL}#U
-
 \hyperbaseurl{URL}#U
-\hyperimage{imageURL}{text}#U
+\hyperimage{imageURL%URL}{text}#U
 \hyperdef{category}{name}{text}
 \hyperref{URL}{category}{name}{text}#M
 # trick for commandExtract, for now
@@ -317,55 +337,77 @@ width=##L
 \DefaultHeightofText#*
 \DefaultHeightofTextMultiline#*
 \DefaultWidthofText#*
+\DefaultOptionsofSubmit#*
+\DefaultOptionsofReset#*
+\DefaultOptionsofPushButton#*
+\DefaultOptionsofCheckBox#*
+\DefaultOptionsofText#*
+\DefaultOptionsofListBox#*
+\DefaultOptionsofComboBox#*
+\DefaultOptionsofPopdownBox#*
+\DefaultOptionsofRadio#*
 
-\XeTeXLinkBox{contents}#*
-\XeTeXLinkMargin#*
-\IfHyperBooleanExists{option}{true}{false}#*
+\AfterBeginDocument{code}#*
+\AMSautorefname#*
+\appendixautorefname#*
+\chapterautorefname#*
+\equationautorefname#*
+\FancyVerbLineautorefname#*
+\figureautorefname#*
+\footnoteautorefname#*
+\Hfootnoteautorefname#*
+\Hurl{URL}#*U
+\HyperDestLabelReplace{dest}#*
+\HyperDestNameFilter{arg}#*
+\hypergetpageref{label}#*r
+\hypergetref{label}#*r
+\hyperlinkfileprefix{prefix}#*
+\hyperpage{arg}#*
+\HyperRaiseLinkDefault#*
+\HyperRaiseLinkHook#*
 \IfHyperBoolean{options}{true}{false}#*
+\IfHyperBooleanExists{option}{true}{false}#*
+\ifpdfstringunicode{unicode chars}{chars}#*
+\Itemautorefname#*
+\itemautorefname#*
+\MakeLowercaseUnsupportedInPdfStrings{text}#*
+\MakeUppercaseUnsupportedInPdfStrings{text}#*
 \MaybeStopEarly#*
 \MaybeStopNow#*
-\unichar{char num}#*
-\ifpdfstringunicode{unicode chars}{chars}#*
-\hyperpage{arg}#*
 \nohyperpage{arg}#*
-\HyperDestNameFilter{arg}#*
-\HyperDestLabelReplace{dest}#*
-#ifOption:destlabel
-\HyperDestRename{destination}{newname}
-#endif
-\theHequation#*
-\theHpart#*
+\pageautorefname#*
+\paragraphautorefname#*
+\partautorefname#*
+\pdfstringdefPostHook#*
+\pdfstringdefPreHook#*
+\pdfstringdefWarn{arg}#*
+\sectionautorefname#*
+\setpdflinkmargin{length}#*
+\subparagraphautorefname#*
+\subsectionautorefname#*
+\subsubsectionautorefname#*
+\tableautorefname#*
 \theHchapter#*
-\theHfigure#*
-\theHtable#*
-\theHsection#*
-\theHsubsection#*
-\theHsubsubsection#*
-\theHparagraph#*
-\theHsubparagraph#*
-\theHtheorem#*
-\theHthm#* 
 \theHenumi#*
 \theHenumii#*
 \theHenumiii#*
 \theHenumiv#*
+\theHequation#*
+\theHfigure#*
 \theHHfootnote#*
+\theHHmpfootnote#*
+\theHItem#*
 \theHmpfootnote#*
-\pdfstringdefPreHook#*
-\pdfstringdefPostHook#*
-\equationautorefname#*
-\footnoteautorefname#*
-\itemautorefname#*
-\figureautorefname#*
-\tableautorefname#*
-\partautorefname#*
-\appendixautorefname#*
-\chapterautorefname#*
-\sectionautorefname#*
-\subsectionautorefname#*
-\subsubsectionautorefname#*
-\paragraphautorefname#*
-\subparagraphautorefname#*
-\FancyVerbLineautorefname#*
+\theHparagraph#*
+\theHpart#*
+\theHsection#*
+\theHsubparagraph#*
+\theHsubsection#*
+\theHsubsubsection#*
+\theHtable#*
+\theHtheorem#*
+\theHthm#* 
 \theoremautorefname#*
-\pageautorefname#*
+\unichar{char num}#*
+\XeTeXLinkBox{contents}#*
+\XeTeXLinkMargin#*

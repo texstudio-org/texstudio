@@ -20,7 +20,6 @@
 */
 
 #ifndef NO_POPPLER_PREVIEW
-
 #include "PDFDocument.h"
 #include "PDFDocks.h"
 //#include "FindDialog.h"
@@ -73,7 +72,6 @@ bool PDFDocument::isCompiling = false;
 bool PDFDocument::isMaybeCompiling = false;
 
 static const int GridBorder = 5;
-
 
 QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGray)
 {
@@ -1059,6 +1057,22 @@ void PDFWidget::openAnnotationDialog(const PDFAnnotation *annon)
 	dlg->show();
 }
 
+/*
+ * Copies to clipboard position in cm captured from the pdf viewer (w.r.t. south west corner)
+ */
+void PDFWidget::getPosFromClick(const QPoint &p){
+	int page = pageFromPos(p);
+	if (page < 0) return;
+	const float ptToCm = 2.54 / 72; // 1pt = 1/72 inch = 2.54/72 cm.
+	QRect r = pageRect(page);
+	QPointF pos = (p - r.topLeft()) / totalScaleFactor();
+	float height = (r.height()/totalScaleFactor()) * ptToCm;
+	QClipboard *clipboard = QGuiApplication::clipboard();
+	QString tmp;
+	QTextStream(&tmp) << "" << pos.x() * ptToCm  << ", " << height- pos.y() * ptToCm;
+	clipboard->setText(tmp);
+}
+
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if (pdfdocument && pdfdocument->embeddedMode)
@@ -1092,11 +1106,17 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 				else if (event->button() == Qt::RightButton) goPrev();
 				break;
 			}
+			// ctrl-shift-click to get position
+			if ((mouseDownModifiers & Qt::ControlModifier) && (mouseDownModifiers & Qt::ShiftModifier)) {
+				if ((event->modifiers() & Qt::ControlModifier) && (event->modifiers() & Qt::ShiftModifier)) {
+					getPosFromClick(event->pos());
+				}
+				break;
+			}
 			// Ctrl-click to sync
 			if (mouseDownModifiers & Qt::ControlModifier) {
 				if (event->modifiers() & Qt::ControlModifier)
 					syncWindowClick(event->pos(), true);
-
 				break;
 			}
 			// check whether to zoom
@@ -1498,6 +1518,8 @@ void PDFWidget::syncWindowClick(const QPoint &p, bool activate)
 
 }
 
+
+
 void PDFWidget::syncCurrentPage(bool activate)
 {
 	if (pages.isEmpty()) return;
@@ -1731,13 +1753,11 @@ int PDFWidget::getPageIndex()
 
 void PDFWidget::reloadPage(bool sync)
 {
-    //QList<int> oldpages = pages;
 	pages.clear();
     if (magnifier != nullptr)
 		magnifier->setPage(-1, 0, QRect());
 	imagePage = -1;
 	image = QPixmap();
-	//highlightPath = QPainterPath();
 	if (!document.isNull()) {
 		if (realPageIndex >= realNumPages())
 			realPageIndex = realNumPages() - 1;
@@ -1745,19 +1765,6 @@ void PDFWidget::reloadPage(bool sync)
 			int visiblePageCount = qMin(gridx * gridy, realNumPages() - realPageIndex);
 			for (int i = 0; i < visiblePageCount; i++)
 				pages << i + realPageIndex;
-			/*/use old pages if available ([a<=b], [c<=d] find [x<=y] with a <= x, c <= x, y <= b, y <= d)
-			int firstCommonPage = qMax(pageIndex, oldPageIndex);
-			int lastCommonPage = qMin(pageIndex + pageCount - 1, oldPageIndex + oldpages.size() - 1);
-
-			if (lastCommonPage < firstCommonPage) {
-				for (int i=0; i < pageCount; i++)
-					pages.append(pageIndex + i);
-			} else {
-				for (int i=pageIndex; i < firstCommonPage; i++) pages.append(i);
-				for (int i=firstCommonPage; i <= lastCommonPage; i++) pages.append(oldpages[i-oldPageIndex]);
-				for (int i=lastCommonPage + 1; i < pageIndex + pageCount; i++) pages.append(i);
-			}*/
-			//oldPageIndex = pageIndex;
 			oldRealPageIndex = realPageIndex;
 		}
 	}
@@ -1860,20 +1867,36 @@ int PDFWidget::realNumPages() const
 int PDFWidget::pageStep()
 {
 	bool cont = getScrollArea()->getContinuous();
-	int result = 1;
-	if (singlePageStep && !cont) return 1;
+	int result;
 	if (cont) {
 		result = gridx;
 	} else {
-		if (!singlePageStep)
+		if (singlePageStep)
+			result = 1;
+		else
 			result = gridx * gridy;
 	}
 	return result;
 }
-
-int PDFWidget::gridCols() const
+/*!
+ * \brief return number set grid columns
+ * \param fromConfig: use configration as information source
+ * \return
+ */
+int PDFWidget::gridCols(bool fromConfig) const
 {
-	return gridx;
+    int result= fromConfig ? globalConfig->gridx : gridx;
+    return result;
+}
+/*!
+ * \brief return number set grid rows
+ * \param fromConfig: use configration as information source as gridy is changed for continous mode
+ * \return
+ */
+int PDFWidget::gridRows(bool fromConfig) const
+{
+    int result= fromConfig ? globalConfig->gridy : gridy;
+    return result;
 }
 
 int PDFWidget::gridRowHeight() const
@@ -1881,7 +1904,10 @@ int PDFWidget::gridRowHeight() const
     double result=maxPageSizeF().height() * scaleFactor * dpi / 72.0 + GridBorder;
     return qRound(result)>0 ? qRound(result) : 10; // avoid crashes
 }
-
+/*!
+ * \brief return width of border between grid pages
+ * \return
+ */
 int PDFWidget::gridBorder() const
 {
 	return GridBorder;
@@ -1905,16 +1931,13 @@ void PDFWidget::goFirst()
 void PDFWidget::goPrev()
 {
 	if (document.isNull()) return;
-	getScrollArea()->goToPage(realPageIndex + getPageOffset() - pageStep());
+	getScrollArea()->goToPage(realPageIndex - pageStep());
 }
 
 void PDFWidget::goNext()
 {
 	if (document.isNull()) return;
-	int pageOffset = getPageOffset();
-	if (realPageIndex == 0 && pageOffset == 1)
-		pageOffset = -1;
-	getScrollArea()->goToPage(realPageIndex + pageOffset + pageStep());
+	getScrollArea()->goToPage(realPageIndex + pageStep());
 }
 
 void PDFWidget::goLast()
@@ -2047,7 +2070,7 @@ void PDFWidget::doPageDialog()
 
 int PDFWidget::normalizedPageIndex(int p)
 {
-	if (p > 0) return  p - (p - getPageOffset())  % pageStep();
+	if (p > 0) return  p - (p + getPageOffset()) % pageStep();
 	else return p;
 }
 
@@ -2055,7 +2078,7 @@ void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	if (p < 0) p = 0;
 	if (p >= realNumPages()) p = realNumPages() - 1;
-	p = normalizedPageIndex(p);
+    p = normalizedPageIndex(p);
 	if (p != realPageIndex && !document.isNull()) { //the first condition is important: it prevents a recursive sync crash
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
@@ -2139,10 +2162,10 @@ void PDFWidget::fitWindow(bool checked)
 		PDFScrollArea	*scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
-			qreal portHeight = scrollArea->viewport()->height() - GridBorder * (gridy - 1);
+            qreal portHeight = scrollArea->viewport()->height() - GridBorder * (globalConfig->gridy - 1); // use globalConfig->gridy as gridy is automatically increased in continous mode to force rendering of surrounding pages
 			QSizeF	pageSize = maxPageSizeFDpiAdjusted();
-			qreal sfh = portWidth / pageSize.width();
-			qreal sfv = portHeight / pageSize.height();
+            qreal sfh = portWidth / pageSize.width() / gridx;
+            qreal sfv = portHeight / pageSize.height() / globalConfig->gridy;
 			scaleFactor = sfh < sfv ? sfh : sfv;
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
@@ -2703,12 +2726,20 @@ void PDFDocument::setupMenus(bool embedded)
 
     static QStringList sl;
     configManager->registerOption("Preview/Possible Grid Sizes", &sl, QStringList() << "1x1" << "2x1" << "1x2" << "2x2" << "3x1" << "3x2" << "3x3");
+    actionGroupGrid=new QActionGroup(this);
+    bool first=true;
     foreach (const QString &gs, sl) {
         QAction *a = configManager->newManagedAction(menuroot,menuGrid, "grid"+gs, gs, this, SLOT(setGrid()), QList<QKeySequence>());
         a->setProperty("grid", gs);
+        a->setCheckable(true);
+        a->setChecked(first);
+        actionGroupGrid->addAction(a);
+        first=false;
     }
     actionCustom=configManager->newManagedAction(menuroot,menuGrid, "gridCustom", tr("Custom..."), this, SLOT(setGrid()), QList<QKeySequence>());
     actionCustom->setProperty("grid","xx");
+    actionCustom->setCheckable(true);
+    actionGroupGrid->addAction(actionCustom);
 	menuGrid->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
 	menuWindow->addAction(menuShow->menuAction());
@@ -2733,7 +2764,6 @@ void PDFDocument::setupMenus(bool embedded)
 
     configManager->modifyManagedShortcuts("pdf");
 }
-
 /*!
  * \brief the shortcuts will only be triggered if this widget has focus (used in embedded mode)
  * \param actions
@@ -2974,6 +3004,20 @@ void PDFDocument::init(bool embedded)
 		conf->registerOption("Preview/GridX", &globalConfig->gridx, 1);
 		conf->registerOption("Preview/GridY", &globalConfig->gridy, 1);
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
+        // set grid menu entry checked
+        QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
+        bool found=false;
+        for(QAction *a:actionGroupGrid->actions()){
+            if(a->property("grid").toString()==gs){
+                a->setChecked(true);
+                found=true;
+                break;
+            }
+        }
+        if(!found){
+            // if no other grid action fits, use custom
+            actionCustom->setChecked(true);
+        }
 
         //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
@@ -3409,7 +3453,8 @@ void PDFDocument::setGrid()
 	QString gs = sender()->property("grid").toString();
 	if (gs == "xx") {
 		UniversalInputDialog d;
-		int x = 1, y = 1;
+        int x = pdfWidget->gridCols();
+        int y = pdfWidget->gridRows();
 		d.addVariable(&x , "X-Grid:");
 		d.addVariable(&y , "Y-Grid:");
 		if (d.exec()) {
@@ -3640,7 +3685,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 			if (pageIdx < 0 || pageIdx >= pdfWidget->realNumPages())
 				return;
 
-			statusBar()->showMessage(tr("Searching for") + QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx), 1000);
+			statusBar()->showMessage(tr("Searching for") + QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx+1), 1000);
 
             std::unique_ptr<Poppler::Page> page(document->page(pageIdx));
 			if (!page)

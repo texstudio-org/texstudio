@@ -464,10 +464,17 @@ QString QDocumentSearch::replaceTextExpanded() const
 {
 	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
 
-	if (hasOption(RegExp))
-		for( int i=m_match.lastCapturedIndex();i >=0; --i )
+    if (hasOption(RegExp)){
+        for( int i=m_match.lastCapturedIndex();i >=0; --i ){
 			replacement.replace(QString("\\") + QString::number(i),
-			                    m_match.captured(i));
+                                QChar(0) + QString::number(i));
+        }
+        for( int i=m_match.lastCapturedIndex();i >=0; --i ){
+            replacement.replace(QChar(0) + QString::number(i),
+                                m_match.captured(i));
+        }
+    }
+
 
 	return replacement;
 }

@@ -1,9 +1,10 @@
 # xcharter-otf package
-# Matthew Bertucci 4/16/2022 for v0.31
+# Matthew Bertucci 2022/05/16 for v0.32
 
 #include:iftex
 #include:unicode-math
 #include:xkeyval
+#include:realscripts
 
 #keyvals:\usepackage/xcharter-otf#c
 no-text
@@ -25,7 +26,6 @@ Scale=%<factor%>
 \circledS
 
 # math mode commands
-\Bbbbackslash#m
 \blacklozenge#m
 \blacksquare#m
 \Box#m
@@ -63,24 +63,9 @@ Scale=%<factor%>
 \lvertneqq#m
 \mbfdotlessi#*m
 \mbfdotlessj#*m
-\mbfell#*m
-\mbfhbar#*m
 \mbfimath#*m
-\mbfitell#*m
-\mbfithbar#*m
-\mbfitvarpartial#*m
-\mbfitvarvarpi#*m
-\mbfitvarvarrho#*m
-\mbfitwp#*m
 \mbfjmath#*m
-\mbftriangleleft#*m
-\mbftriangleright#*m
-\mbfvarpartial#*m
-\mbfvarvarpi#*m
-\mbfvarvarrho#*m
 \mbfvarzero#*m
-\mbfvec#*m
-\mbfwp#*m
 \mdblkcircle#m
 \mdblkdiamond#m
 \mdblklozenge#m
@@ -96,13 +81,9 @@ Scale=%<factor%>
 \mdwhtlozenge#m
 \mdwhtsquare#m
 \mithbar#*m
-\mitvarpartial#*m
-\mitvarvarpi#*m
-\mitvarvarrho#*m
 \mscre#*m
 \mscrg#*m
 \mscro#*m
-\mupvarvarpi#*m
 \mupvarzero#*m
 \ngeqq#m
 \ngeqqslant#m
@@ -112,12 +93,10 @@ Scale=%<factor%>
 \nleqslant#m
 \nparallelslant#m
 \npreceq#m
-\npreceq#m
 \nshortmid#m
 \nshortparallel#m
 \nshortparallelslant#m
 \nsubseteqq#m
-\nsucceq#m
 \nsucceq#m
 \nsupseteqq#m
 \ntriangleleft#m

@@ -1,9 +1,10 @@
 # scrbook class
-# Matthew Bertucci 11/21/21 for v3.34
+# Matthew Bertucci 2022/05/18 for v3.36
 
 #include:scrkbase
 #include:tocbasic
 #include:typearea
+#include:scrlogo
 
 #ifOption:emulatestandardclasses
 \defaultpapersize
@@ -23,7 +24,7 @@ footnotes=#multiple,nomultiple
 open=#any,left,right
 chapterprefix=#true,on,yes,false,off,no
 appendixprefix=#true,on,yes,false,off,no
-headings=#big,normal,onelineappendix, noappendixprefix, appendixwithoutprefix,appendixwithoutprefixline,onelinechapter, nochapterprefix, chapterwithoutprefix,chapterwithoutprefixline,openany,openleft,openright,optiontohead,optiontoheadandtoc,optiontotocandhead,optiontotoc,small,standardclasses,twolineappendix,appendixprefix,appendixwithprefix,appendixwithprefixline,twolinechapter,chapterprefix,chapterwithprefix,chapterwithprefixline
+headings=#big,normal,onelineappendix,noappendixprefix,appendixwithoutprefix,appendixwithoutprefixline,onelinechapter,nochapterprefix,chapterwithoutprefix,chapterwithoutprefixline,openany,openleft,openright,optiontohead,optiontoheadandtoc,optiontotocandhead,optiontotoc,small,standardclasses,twolineappendix,appendixprefix,appendixwithprefix,appendixwithprefixline,twolinechapter,chapterprefix,chapterwithprefix,chapterwithprefixline
 numbers=#autoendperiod,autoenddot,auto,endperiod,withendperiod,periodatend,enddot,withenddot,dotatend,noendperiod,noperiodatend,noenddot,nodotatend
 chapteratlists
 chapteratlists=##L

@@ -1,5 +1,5 @@
 # paralist package
-# Matthew Bertucci 8/27/2021 for v2.7
+# Matthew Bertucci 2022/05/10 for v2.7
 
 #keyvals:\usepackage/paralist#c
 newitem
@@ -10,6 +10,7 @@ alwaysadjust
 neveradjust
 neverdecrease
 defblank
+pointlessenum
 pointedenum
 flushright
 flushleft
@@ -52,6 +53,10 @@ nocfg
 \begin{inparablank}
 \end{inparablank}
 #endif
+
+\setdefaultitem{label1}{label2}{label3}{label4}
+\setdefaultenum{label1}{label2}{label3}{label4}
+\setdefaultleftmargin{length1}{length2}{length3}{length4}{length5}{length6}
 
 \pointedenum#*
 \pointlessenum#*

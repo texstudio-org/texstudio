@@ -249,15 +249,11 @@ public:
 		QString my_curWord = getCurWord();
 		if (my_curWord.isEmpty()) return false;
 		if (!completer) return false;
-		/*if (!completer->list->isVisible()) {
-			resetBinding();
-			return false;
-		}*/
 		// get list of most recent choices
 		const QList<CompletionWord> &words = completer->listModel->getWords();
 		// filter list for longest common characters
 		if (words.count() > 1) {
-			QString myResult = words.first().word;
+            QString myResult = words.at(1).word; // skip favorite
 			int curWordLength = my_curWord.length();
 			my_curWord = completer->listModel->getLastWord().word;
 
@@ -1083,6 +1079,8 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
             }
         }
         //
+        CompletionWord mostUsedCW;
+        int mostUsedPosition=-1;
         while (it != baselist.end()) {
             if (it->word.startsWith(word, cs) &&
                     (!checkFirstChar || it->word[1] == word[1]) ) {
@@ -1156,6 +1154,18 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                 }
                             }
                         } else {
+
+                            if(mostUsedPosition>=0){
+                                if(it->usageCount>mostUsedCW.usageCount){
+                                    mostUsedCW=*it;
+                                    mostUsedPosition=words.size(); // point to last valid element, will be filled below
+                                }
+                            }else{
+                                if(it->usageCount>0){ // don't bother with never used cw
+                                    mostUsedCW=*it;
+                                    mostUsedPosition=words.size();
+                                }
+                            }
                             words.append(*it);
                         }
                     }
@@ -1171,7 +1181,13 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                 break;
             }
         }
+        // switch most used to top position (favorite)
+        if(mostUsedPosition>=0){
+            words.takeAt(mostUsedPosition); // possible expensive
+            words.prepend(mostUsedCW);
+        }
     }
+
     curWord = word;
     if (!fetchMore) {
         mWordCount = words.count();

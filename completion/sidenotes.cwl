@@ -1,11 +1,15 @@
 # sidenotes package
-# Matthew Bertucci 11/3/2021 for v1.00
+# Matthew Bertucci 2021/11/03 for v1.00
 
 #include:l3keys2e
 #include:marginnote
 #include:caption
 #include:xparse
 #include:changepage
+
+#keyvals:\usepackage/sidenotes#c
+oneside
+#endkeyvals
 
 \sidenote{text}
 \sidenote[number]{text}

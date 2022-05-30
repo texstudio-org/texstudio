@@ -2,58 +2,175 @@
 # Axel Sommerfeldt 04/16/2013
 # muzimuzhi/1 Sep 2019, subcaption v1.2
 # muzimuzhi/1 Nov 2019, subcaption v1.3
-# Matthew Bertucci 26 Feb 2022 for v1.5
+# Matthew Bertucci 24 May 2022 for v1.5
 # URL: https://ctan.org/pkg/subcaption
 
 #include:caption
 
 #keyvals:\usepackage/subcaption#c
-format=#plain,hang
-indention=##L
-labelformat=#original,empty,simple,brace,parens
-labelsep=#none,colon,period,space,quad,newline,endash
-textformat=#empty,simple,period
-justification=#justified,centering,centerlast,centerfirst,raggedright,RaggedRight,raggedleft
-singlelinecheck#true,false
-font=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
-labelfont=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
-textfont=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
-font+=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
-labelfont+=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
-textfont+=#scriptsize,footnotesize,small,normalsize,large,Large,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,normalcolor,normal
-margin=##L
-width=##L
-oneside
-twoside
-margin*=##L
-minmargin=##L
-maxmargin=##L
-parskip=##L
-hangindent=##L
-style=#base,default
-skip=##L
-position=#top,above,bottom,below,auto
+# options defined in caption3 package
+aboveskip=##L
+belowskip=##L
+box=#empty,none,parbox,colorbox
+boxcolor=#%color
+boxsep=##L
+calcmargin*=##L
+calcmargin=##L
+calcwidth*=##L
+calcwidth=##L
+debug
+figurename=%<name%>
 figureposition=#top,above,bottom,below,auto
-tableposition=#top,above,bottom,below,auto
+figurewithin=%<counter%>
+figurewithout
+font+=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
+font=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
+format=#plain,hang
+hangindent=##L
+indention=##L
+justification=#justified,centering,centerlast,centerfirst,raggedright,raggedleft,Justified,Centering,RaggedRight,RaggedLeft
+labelfont+=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
+labelfont=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
+labelsep=#none,colon,period,space,quad,newline,endash,gobble,gobbletwo
 list=#on,off,true,false
-listformat=#empty,simple,parens,subsimple,subparens
+listfigurename=%<name%>
+listformat=#empty,simple,parens,subsimple,subparens,period,subperiod
+listtablename=%<name%>
+listtype=%<list type%>
+listtype+=%<list type ext%>
+lofdepth=%<integer%>
+lotdepth=%<integer%>
+margin*=##L
+margin=##L
+maxmargin=##L
+minmargin=##L
 name=%<name%>
+oneside
+parbox=#empty,none,parbox,colorbox
+parindent=##L
+parskip=##L
+position=#top,above,bottom,below,auto
+singlelinecheck#true,false
+skip=##L
+strut=#on,off
+style=#%captionstyle
+style*=#%captionstyle
+tablename=%<name%>
+tableposition=#top,above,bottom,below,auto
+tablewithin=%<counter%>
+tablewithout
+textfont+=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
+textfont=#scriptsize,footnotesize,small,normalsize,large,Large,LARGE,huge,Huge,smaller,larger,none,normalfont,up,it,sl,sc,md,bf,rm,sf,tt,singlespacing,onehalfspacing,doublespacing,{stretch=%<factor%>},normalcolor,{color=%<color%>},normal,{hypersetup=%<options%>},sansmath
+textformat=#empty,simple,period
+twoside#true,false
+width*=##L
+width=##L
+within=%<counter%>
+without
+# options defined in caption package
+list-entry=#default,list-entry,entry
+hypcap#true,false
+hypcapspace=##L
 type=%<float type%>
+type*=%<float type%>
+subtype=%<float type%>
+subtype*=%<float type%>
+compatibility#true,false
+config=%<file name%>
 #endkeyvals
 
-#keyvals:\captionsetup#c,\usepackage/subcaption#c
-subrefformat=#original,empty,simple,brace,parens
+#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/subcaption#c,\DeclareCaptionStyle#c
+# options added or changed in subcaption package
+labelformat=#original,empty,simple,brace,parens,autodot,unnumbered,subsimple,subparens
+subrefformat=#original,empty,simple,brace,parens,autodot,unnumbered,subsimple,subparens
 #endkeyvals
 
-\subcaptionbox{heading%text}{contents}
-\subcaptionbox{heading%text}[width]{contents}#*
-\subcaptionbox{heading%text}[width][inner pos]{contents}
-\subcaptionbox[list entry]{heading%text}{contents}
-\subcaptionbox[list entry]{heading%text}[width]{contents}#*
-\subcaptionbox[list entry]{heading%text}[width][inner pos]{contents}
-\subcaptionbox*{heading%text}{contents}
-\subcaptionbox*{heading%text}[width]{contents}#*
-\subcaptionbox*{heading%text}[width][inner pos]{contents}
+#ifOption:font=onehalfspacing
+#include:setspace
+#endif
+#ifOption:labelfont=onehalfspacing
+#include:setspace
+#endif
+#ifOption:textfont=onehalfspacing
+#include:setspace
+#endif
+#ifOption:font+=onehalfspacing
+#include:setspace
+#endif
+#ifOption:labelfont+=onehalfspacing
+#include:setspace
+#endif
+#ifOption:textfont+=onehalfspacing
+#include:setspace
+#endif
+
+#ifOption:font=doublespacing
+#include:setspace
+#endif
+#ifOption:labelfont=doublespacing
+#include:setspace
+#endif
+#ifOption:textfont=doublespacing
+#include:setspace
+#endif
+#ifOption:font+=doublespacing
+#include:setspace
+#endif
+#ifOption:labelfont+=doublespacing
+#include:setspace
+#endif
+#ifOption:textfont+=doublespacing
+#include:setspace
+#endif
+
+#ifOption:font=sansmath
+#include:sansmath
+#endif
+#ifOption:labelfont=sansmath
+#include:sansmath
+#endif
+#ifOption:textfont=sansmath
+#include:sansmath
+#endif
+#ifOption:font+=sansmath
+#include:sansmath
+#endif
+#ifOption:labelfont+=sansmath
+#include:sansmath
+#endif
+#ifOption:textfont+=sansmath
+#include:sansmath
+#endif
+
+#ifOption:justification=RaggedRight
+#include:ragged2e
+#endif
+#ifOption:justification=RaggedLeft
+#include:ragged2e
+#endif
+
+#ifOption:justification=Justified
+#include:ragged2e
+#endif
+#ifOption:justification=Centering
+#include:ragged2e
+#endif
+#ifOption:justification=RaggedRight
+#include:ragged2e
+#endif
+#ifOption:justification=RaggedLeft
+#include:ragged2e
+#endif
+
+\subcaptionbox{heading%text}{content%text}
+\subcaptionbox{heading%text}[width]{content%text}
+\subcaptionbox{heading%text}[width][inner-pos]{content%text}
+\subcaptionbox[list entry]{heading%text}{content%text}
+\subcaptionbox[list entry]{heading%text}[width]{content%text}
+\subcaptionbox[list entry]{heading%text}[width][inner-pos]{content%text}
+\subcaptionbox*{heading%text}{content%text}
+\subcaptionbox*{heading%text}[width]{content%text}
+\subcaptionbox*{heading%text}[width][inner-pos]{content%text}
 
 \begin{subfigure}[position][height][inner pos]{width}
 \begin{subfigure}[position][height]{width}
@@ -69,11 +186,6 @@ subrefformat=#original,empty,simple,brace,parens
 \subcaption{heading%text}
 \subcaption[list entry]{heading%text}
 \subcaption*{heading%text}
-
-\DeclareCaptionSubType{type}
-\DeclareCaptionSubType[numbering scheme]{type}
-\DeclareCaptionSubType*{type}
-\DeclareCaptionSubType*[numbering scheme]{type}
 
 \subref{key}#r
 \subref*{key}#r

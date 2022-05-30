@@ -91,6 +91,7 @@
 \delimitershortfall#*
 \dimen#*
 \dimendef#*
+\dimendef{cmd}#Sd
 \discretionary#*
 \displayindent#*
 \displaylimits#*
@@ -196,7 +197,7 @@
 \leqno{eqn num}#*m
 # for command interpretation
 \let
-\let{cmd}{def}#dS
+\let{cmd}{def}#Sd
 \limits#*
 \linepenalty#*
 \lineskip#*
@@ -235,6 +236,7 @@
 \multiply#*
 \muskip#*
 \muskipdef#*
+\muskipdef{cmd}#Sd
 \newlinechar#*
 \noalign
 \noboundary#*
@@ -257,7 +259,7 @@
 \outputpenalty#*
 \over#*
 \overfullrule#*
-\overline{text}#m
+\overline{text%plain}#m
 \overwithdelims#*
 \pagedepth#*
 \pagefilllstretch#*
@@ -307,10 +309,11 @@
 \skewchar#*
 \skip#*
 \skipdef#*
+\skipdef{cmd}#Sd
 \spacefactor#*
 \spaceskip#*
 \span#*
-\special#*
+\special{code}#*
 \splitbotmark#*
 \splitfirstmark#*
 \splitmaxdepth#*
@@ -326,6 +329,7 @@
 \time#*
 \toks#*
 \toksdef#*
+\toksdef{cmd}#Sd
 \tolerance#*
 \topmark#*
 \topskip#*
@@ -628,7 +632,7 @@
 \newfam#*
 \newfam{cmd}#dS
 \newhelp#*
-\newhelp{cmd}{help text}#*S
+\newhelp{cmd}{help text}#Sd
 \newif#*
 \newif{cmd}#dS
 \newinsert#*
@@ -674,9 +678,9 @@
 \oplus#m
 \oslash#m
 \otimes#m
-\overbrace{text}#m
-\overleftarrow{text}#m
-\overrightarrow{text}#m
+\overbrace{text%plain}#m
+\overleftarrow{text%plain}#m
+\overrightarrow{text%plain}#m
 \owns#m
 \P#n
 \parallel#m
@@ -789,7 +793,7 @@
 \tt#*
 \u{o}#n
 \underbar{text}#*
-\underbrace{text}#m
+\underbrace{text%plain}#m
 \uparrow#m
 \Uparrow#m
 \upbracefill#*

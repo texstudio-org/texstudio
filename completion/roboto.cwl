@@ -1,5 +1,5 @@
 # roboto package
-# Matthew Bertucci 7/27/2021
+# Matthew Bertucci 2022/05/10 for release 2019/12/11
 
 #include:ifxetex
 #include:ifluatex
@@ -11,7 +11,6 @@
 
 #keyvals:\usepackage/roboto#c
 scale=%<factor%>
-scaled=%<factor%>
 default
 sfdefault
 type1
@@ -22,16 +21,11 @@ thin
 light
 regular
 condensed
-rm
+slab
 lining
-nf
-lf
 oldstyle
-osf
 tabular
-t
 proportional
-p
 #endkeyvals
 
 \robotoLF{text}

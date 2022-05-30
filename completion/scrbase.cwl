@@ -1,8 +1,9 @@
 # scrbase package
-# Matthew Bertucci 11/19/2021 for v3.34
+# Matthew Bertucci 2022/05/17 for v3.36
 
 #include:scrlfile
 #include:keyval
+#include:scrlogo
 
 \KOMAScriptVersion#*
 \rloop{arg}#*
@@ -35,14 +36,14 @@
 \Ifnotundefined{name}{then code}{else code}#*
 \Ifstr{string1}{string2}{then code}{else code}#*
 \Ifstrstart{string1}{string2}{then code}{else code}#*
-\ifislengthprimitive{expression}{then code}{else code}#*
+\Ifislengthprimitive{expression}{then code}{else code}#*
 \Ifisdimen{string}{then code}{else code}#*
 \Ifisskip{expression}{then code}{else code}#*
 \Ifiscount{count}{then code}{else code}#*
 \Ifisdimexpr{expression}{then code}{else code}#*
 \Ifisglueexpr{expression}{then code}{else code}#*
 \Ifisnumexpr{expression}{then code}{else code}#*
-\ifisdefchar{arg}{then code}{else code}#*
+\Ifisdefchar{arg}{then code}{else code}#*
 \Ifiscounter{counter}{then code}{else code}#*
 \Ifisinteger{expression}{then code}{else code}#*
 \Ifisdimension{expression}{then code}{else code}#*
@@ -126,6 +127,8 @@
 
 # deprecated
 \ifnotundefined#S
+\ifislengthprimitive#S
+\ifisdefchar#S
 \ifstr#S
 \ifstrstart#S
 \ifisdimen#S

@@ -1,10 +1,12 @@
 # ProfLycee package
-# Matthew Bertucci 2022/04/29 for v1.1.1
+# Matthew Bertucci 2022/05/16 for v1.1.5
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
 #include:tikz
-# loads calc, decorations.pathreplacing, decorations.markings, and arrows.meta tikzlibraries
+# loads calc, decorations.pathreplacing, decorations.markings, arrows, and arrows.meta tikzlibraries
+#include:tkz-tab
+#include:mathtools
 #include:pgf
 #include:pgffor
 #include:ifthen
@@ -12,9 +14,9 @@
 #include:xkeyval
 #include:xfp
 #include:xstring
+#include:xintexpr
 #include:simplekv
 #include:listofitems
-#include:xintexpr
 #include:tabularray
 #include:fontawesome5
 #include:tcolorbox
@@ -29,7 +31,7 @@ build
 #endkeyvals
 
 \splinetikz
-\splinetikz[paramètres%keyvals]
+\splinetikz[options%keyvals]
 
 #keyvals:\splinetikz
 liste=%<x1/y1/d1§x2/y2/d2§...%>
@@ -43,7 +45,7 @@ affpoints#true,false
 #endkeyvals
 
 \tangentetikz
-\tangentetikz[paramètres%keyvals]
+\tangentetikz[options%keyvals]
 
 #keyvals:\tangentetikz
 liste=%<x1/y1/d1§x2/y2/d2§...%>
@@ -56,7 +58,7 @@ point=%<num%>
 #endkeyvals
 
 \paramCF
-\paramCF[paramètres%keyvals]
+\paramCF[options%keyvals]
 
 #keyvals:\paramCF
 larg=%<largeur%>
@@ -77,7 +79,7 @@ labeltitre
 #endkeyvals
 
 \ligneCF{commande de celui%text}{commande de sortie%text}
-\ligneCF[paramètres%keyvals]{commande de celui%text}{commande de sortie%text}
+\ligneCF[options%keyvals]{commande de celui%text}{commande de sortie%text}
 
 #keyvals:\ligneCF
 hc=%<hauteur%>
@@ -85,7 +87,7 @@ hr=%<hauteur%>
 #endkeyvals
 
 \begin{envcodepythontex}#V
-\begin{envcodepythontex}[paramètres%keyvals]#V
+\begin{envcodepythontex}[options%keyvals]#V
 \end{envcodepythontex}
 
 #keyvals:\begin{envcodepythontex}
@@ -101,7 +103,7 @@ lignes#true,false
 \end{envcodepythonminted}
 
 \begin{envconsolepythontex}#V
-\begin{envconsolepythontex}[paramètres%keyvals]#V
+\begin{envconsolepythontex}[options%keyvals]#V
 \end{envconsolepythontex}
 
 #keyvals:\begin{envconsolepythontex}
@@ -134,7 +136,7 @@ label#true,false
 \liencapytale*[prefix]{code}
 
 \pavePL
-\pavePL[paramètres%keyvals]
+\pavePL[options%keyvals]
 
 #keyvals:\pavePL
 largeur=%<num%>
@@ -150,7 +152,7 @@ cube#true,false
 #endkeyvals
 
 \tetraPL
-\tetraPL[paramètres%keyvals]
+\tetraPL[options%keyvals]
 
 #keyvals:\tetraPL
 largeur=%<num%>
@@ -164,11 +166,85 @@ aff#true,false
 plein#true,false
 #endkeyvals
 
+\convertfraction{fraction expr}
+\convertfraction[d ou t]{fraction expr}
+
+\ensPL{a1/a2/...}
+\ensPL[options%keyvals]{a1/a2/...}
+
+#keyvals:\ensPL
+sep={%<separator%>}
+option={%<code%>}
+mathpunct#true,false
+#endkeyvals
+
+\recurrPL[options%keyvals]
+\recurrPL[options%keyvals][options du tracé]
+\recurrPL[options%keyvals][options du tracé][option supplémentaire des termes]
+
+#keyvals:\recurrPL
+fct=%<fonction%>
+nom=%<nom%>
+no=%<l’indice initial%>
+uno=%<la valeur du terme initial%>
+nb=%<nombre%>
+poslabel=%<pos%>
+decallabel=##L
+taillelabel=%<fontsize cmd%>
+afftermes#true,false
+#endkeyvals
+
+\cercletrigoPL
+\cercletrigoPL[options%keyvals]
+
+#keyvals:\cercletrigoPL
+rayon=%<rayon%>
+epaisseur=%<épaisseur%>
+epaisseursol=%<épaisseur%>
+marge=%<marge%>
+taillevaleurs=%<fontsize cmd%>
+tailleangles=%<fontsize cmd%>
+couleurfond=#%color
+decal=##L
+moinspi#true,false
+affangles#true,false
+afftraits#true,false
+affvaleurs#true,false
+equationcos#true,false
+equationsin#true,false
+cos=%<degrees%>
+sin=%<degrees%>
+couleursol=#%color
+#endkeyvals
+
+\aidesignePL
+\aidesignePL[options%keyvals]
+
+\aidesignetkztabPL{numligne}
+\aidesignetkztabPL{numligne}[echelle]
+\aidesignetkztabPL{numligne}[echelle][décalage horizontal]
+\aidesignetkztabPL[options%keyvals]{numligne}
+\aidesignetkztabPL[options%keyvals]{numligne}[echelle]
+\aidesignetkztabPL[options%keyvals]{numligne}[echelle][décalage horizontal]
+
+#keyvals:\aidesignePL,\aidesignetkztabPL
+code=
+couleur=#%color
+racines=%<racines%>
+largeur=%<num%>
+hauteur=%<num%>
+cadre#true,false
+#endkeyvals
+
 # from table option of xcolor
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
 \rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
 \rowcolors*[commands]{row}{color}{color}#S
 \showrowcolors
 \hiderowcolors
@@ -339,94 +415,47 @@ Teal#B
 #include:minted
 
 # not documented
+\algomathttPL{text%plain}#*
 \begin{pythont}#S
-\end{pythont}#S
-\extractcoeff{liste}{numero}#*
-\lcoeffs#S
-\COEFFA#S
-\COEFFB#S
-\COEFF#S
-\SPLliste#S
-\SPLepaisseur#S
-\SPLcouleur#S
-\SPLcoeffs#S
-\SPLcouleurpoints#S
-\SPLtaillepoints#S
-\SPLstyle#S
-\SPLlistepoints#S
-\SPLnbsplines#S
-\SPLlistepointslen#S
-\xa#S
-\ya#S
-\fprimea#S
-\xb#S
-\yb#S
-\fprimeb#S
-\TGTliste#S
-\TGTepaisseur#S
-\TGTcouleur#S
-\TGTXL#S
-\TGTXR#S
-\TGTstyle#S
-\TGTnumpt#S
-\TGTlistepoints#S
-\TGTDEB#S
-\TGTFIN#S
-\CFchap#S
-\theCFnum#S
-\CFlarg#S
-\CFesplg#S
-\CFpremcol#S
-\CFhpremcol#S
-\CFtaille#S
-\CFcouleur#S
-\CFtailletitre#S
-\CFcoulcmd#S
-\CFcoulres#S
-\CFposcmd#S
-\CFposres#S
-\CFlabeltitre#S
-\CFhle#S
-\CFhlr#S
-\CFL#S
-\CFLA#S
-\CSPYlargeur#S
-\hookcenterpre#S
-\hookcenterpost#S
-\CODPYlargeur#S
-\verbcenterpre#S
-\verbcenterpost#S
 \begin{tcpythontexcode}#*
 \begin{tcpythontexcode}[width]#*
-\end{tcpythontexcode}#*
 \begin{tcpythontexcodeno}#*
 \begin{tcpythontexcodeno}[width]#*
+\calculargument#S
+\CFchap#S
+\CFcoulcmd#S
+\CFcouleur#S
+\CFcoulres#S
+\CFesplg#S
+\CFhle#S
+\CFhlr#S
+\CFhpremcol#S
+\CFL#S
+\CFLA#S
+\CFlabeltitre#S
+\CFlarg#S
+\CFposcmd#S
+\CFposres#S
+\CFpremcol#S
+\CFtaille#S
+\CFtailletitre#S
+\CODPYlargeur#S
+\COEFF#S
+\COEFFA#S
+\COEFFB#S
+\CSPYlargeur#S
+\denominateur#S
+\end{pythont}#S
+\end{tcpythontexcode}#*
 \end{tcpythontexcodeno}#*
-\algomathttPL{text%plain}#*
-\PLcommandeswin#*
-\termwintitre#*
-\termwintitre[opt]#*
-\PLUbuntuWhite#*
-\PLUbuntuMin#*
-\PLUbuntuClose#*
-\PLUbuntuMax#*
-\termnuxtitre#*
-\termnuxtitre[opt]#*
-\PLOSXRed#*
-\PLOSXOrange#*
-\PLOSXGreen#*
-\PLOSXLG#*
-\termosxtitre#*
-\termosxtitre[opt]#*
-\PFPaveLg#S
-\PFPavePf#S
-\PFPaveHt#S
-\PFPaveAngl#S
-\PFPaveFuite#S
-\PFPaveSommets#S
-\PFPaveThick#S
-\PFListeSommets#S
-\PFPaveSommets#S
+\extractcoeff{liste}{numero}#*
+\fprimea#S
+\fprimeb#S
+\hookcenterpost#S
+\hookcenterpre#S
+\indice#S
+\lcoeffs#S
+\numerateur#S
 \PaveA#S
 \PaveB#S
 \PaveC#S
@@ -435,26 +464,107 @@ Teal#B
 \PaveF#S
 \PaveG#S
 \PaveH#S
+\PFListeSommets#S
+\PFPaveAngl#S
+\PFPaveFuite#S
+\PFPaveHt#S
+\PFPaveLg#S
+\PFPavePf#S
+\PFPaveSommets#S
+\PFPaveSommets#S
+\PFPaveThick#S
+\PFTetraAlpha#S
+\PFTetraBeta#S
+\PFTetraHt#S
+\PFTetraLg#S
+\PFTetraPf#S
 \PFTetraSommets#S
+\PFTetraThick#S
+\PLcercleangles#S
+\PLcerclecoleq#S
+\PLcercledecal#S
+\PLcerclefond#S
+\PLcerclemarge#S
+\PLcerclerayon#S
+\PLcerclesolthick#S
+\PLcerclethick#S
+\PLcerclevalcos#S
+\PLcerclevaleurs#S
+\PLcerclevalsin#S
+\PLcommandeswin#*
+\PLensopt#S
+\PLenssep#S
+\PLOSXGreen#*
+\PLOSXLG#*
+\PLOSXOrange#*
+\PLOSXRed#*
+\PLRecurfct#S
+\PLRecurlabelsize#S
+\PLRecurnb#S
+\PLRecurno#S
+\PLRecurnom#S
+\PLRecuroffset#S
+\PLRecurposlab#S
+\PLRecuruno#S
+\PLUbuntuClose#*
+\PLUbuntuMax#*
+\PLUbuntuMin#*
+\PLUbuntuWhite#*
+\schematdsaff*{arg1}{arg2}{arg3}{arg4}#*
+\schematdsaff{arg1}{arg2}{arg3}{arg4}#*
+\schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}#*
+\schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}[opt]#*
+\SPLcoeffs#S
+\SPLcouleur#S
+\SPLcouleurpoints#S
+\SPLepaisseur#S
+\SPLliste#S
+\SPLlistepoints#S
+\SPLlistepointslen#S
+\SPLnbsplines#S
+\SPLstyle#S
+\SPLtaillepoints#S
+\tdscouleur#S
+\tdshaut#S
+\tdslarg#S
+\tdsparam#S
+\tdsracine#S
+\termnuxtitre#*
+\termnuxtitre[opt]#*
+\termosxtitre#*
+\termosxtitre[opt]#*
+\termwintitre#*
+\termwintitre[opt]#*
 \TetraA#S
 \TetraB#S
 \TetraC#S
 \TetraD#S
-\PFTetraAlpha#S
-\PFTetraBeta#S
-\PFTetraPf#S
-\PFTetraLg#S
-\PFTetraThick#S
-\PFTetraHt#S
+\TGTcouleur#S
+\TGTDEB#S
+\TGTepaisseur#S
+\TGTFIN#S
+\TGTliste#S
+\TGTlistepoints#S
+\TGTnumpt#S
+\TGTstyle#S
+\TGTXL#S
+\TGTXR#S
+\theCFnum#S
+\verbcenterpost#S
+\verbcenterpre#S
+\xa#S
+\xb#S
+\ya#S
+\yb#S
 
-PLmpurple#B
+PLlinux#B
 PLmgray#B
+PLmpurple#B
 PLogray#B
 PLoorange#B
-PLterminal#B
-PLlinux#B
-PLwinblue#B
 PLosxgray#B
+PLterminal#B
+PLwinblue#B
 vertcapyt#B
 
 #keyvals:\tcbset,\begin{tcolorbox},\tcbsetforeverylayer,\tcbox,\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,\tcolorboxenvironment,\tcbsubtitle,\tcbsidebyside,\tcbsubskin,\tcbincludegraphics,\tcbincludepdf,\begin{tcbraster},\begin{tcbitemize},\tcbitem,\begin{tcboxedraster},\begin{tcboxeditemize},\begin{tcblisting},\tcbinputlisting,\newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,\newtcbtheorem,\renewtcbtheorem,\tcboxmath,\tcbhighmath,\usetcboxarray,\consumetcboxarray,\posterbox,\begin{posterboxenv},\tcboxfit,\newtcboxfit,\renewtcboxfit,\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit,\tcboxverb,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*},\tcbdocmarginnote

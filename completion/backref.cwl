@@ -8,12 +8,17 @@
 
 \backrefsetup{options%keyvals}
 
-#keyvals:\backrefsetup,\usepackage/backref#c
-verbose
-pageref
+#keyvals:\backrefsetup#c,\usepackage/backref#c
 ref
+pageref
 hyperref
 hyperpageref
+english
+german
+french
+spanish
+brazil
+verbose
 enable
 disable
 #endkeyvals

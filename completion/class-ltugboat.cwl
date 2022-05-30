@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 4/13/2022 for v2.26
+# Matthew Bertucci 2022/05/21 for v2.27
 
 #include:mflogo
 
@@ -229,6 +229,7 @@ runningoff
 \nohyphens#*
 \nomarkfootnote{commands}{text}#*
 \NoParIndent
+\normalparindent#*
 \NormalParIndent
 \normalspaces
 \now
@@ -336,10 +337,12 @@ runningoff
 \TBError{text}#*
 \tbgobbledash#*
 \tbhurl{URL}#U
+\tbhurlfootnote{URL}#U
 \TBInfo{text}#*
 \tbotregister#*
 \TBremark{text}#*
 \tbsurl{URL}#U
+\tbsurlfootnote{URL}#U
 \TBtocsectionfont#*
 \tbUTF
 \TBWarning{text}#*
@@ -354,6 +357,7 @@ runningoff
 \TeXMaG
 \texorpdfstring{arg1}{arg2}#*
 \textSMC{text}#*
+\texttub{text}#*
 \TeXtures
 \Textures
 \TeXworks
@@ -366,6 +370,9 @@ runningoff
 \thenetaddress{number}
 \theORCID{number}
 \thePersonalURL{number}
+\therevauth#*
+\therevpubinfo#*
+\therevtitle#*
 \thinskip#*
 \TIFF
 \TikZ
@@ -380,6 +387,7 @@ runningoff
 \tubbraced{text%plain}
 \tubcaptionfonts#*
 \tubcaptionleftglue#*
+\TUBdefaulteTeX#*
 \tubdoiprefix#*
 \TUBedit{text}#*
 \TUBfilename{arg1}{arg2}#*
@@ -388,6 +396,7 @@ runningoff
 \tubheadhook#*
 \tubhideheight{height}#*
 \tubissue{volume}(issue)
+\tubjustifiedpar
 \tubmakecaptionbox{arg1}{arg2}#*
 \tubmultipleaffilauthor#*
 \tubmultipleaffilnet#*
@@ -400,6 +409,7 @@ runningoff
 \tubsechook#*
 \tubsecondcolstartfalse#*
 \tubsecondcolstarttrue#*
+\tubsentencespace
 \tubsmallerskip#*
 \tubthinnerspace#*
 \tubthinnerspaceneg#*
@@ -433,7 +443,7 @@ runningoff
 \XekernafterE#*
 \XekernbeforeE#*
 \XeLaTeX
-\XeT
+\XeT#*
 \XeTeX
 \XHTML
 \xlap{text}

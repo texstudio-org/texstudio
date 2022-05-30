@@ -35,6 +35,7 @@
 #include "quickbeamerdialog.h"
 #include "mathassistant.h"
 #include "maketemplatedialog.h"
+#include "PDFDocument.h"
 #include "templateselector.h"
 #include "templatemanager.h"
 #include "usermenudialog.h"
@@ -709,8 +710,22 @@ void Texstudio::setupDockWidgets()
 
     leftPanel->showWidgets();
     // restore selected view in sidepanel
-    int viewNr=configManager.getOption("GUI/sidePanel/currentPage", 0).toInt();
-    leftPanel->setCurrentWidget(leftPanel->widget(viewNr));
+	QList<QString> hiddenWidgetsIdsList = leftPanel->hiddenWidgets().split("|");
+    int viewNr = configManager.getOption("GUI/sidePanel/currentPage", 0).toInt();
+	int k = -1; // index of visible tool found
+	for (int i = 0; i < leftPanel->widgetCount(); i++)  {
+		QString currentWidgetId = leftPanel->widget(i)->property("id").toString();
+		if (!hiddenWidgetsIdsList.contains(currentWidgetId)) {
+			k++;
+			if (k == viewNr) {
+				leftPanel->setCurrentWidget(leftPanel->widget(i));
+				emit leftPanel->titleChanged(leftPanel->widget(i)->property("Name").toString());
+				break;
+			}
+		}
+	}
+	if (k == -1) // there are no visible tools
+		emit leftPanel->titleChanged("");
 
     // OUTPUT WIDGETS
     if (!outputView) {
@@ -923,6 +938,7 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "lineoperations", tr("&Line Operations"));
     newManagedAction(submenu, "deleteLine", tr("Delete &Line"), SLOT(editDeleteLine()), Qt::CTRL | Qt::Key_K);
+    newManagedAction(submenu, "cutLine", tr("C&ut Line"), SLOT(editCutLine()), Qt::SHIFT | Qt::Key_Delete);
 #if QT_VERSION>=QT_VERSION_CHECK(6,0,0)
     newManagedAction(submenu, "deleteToEndOfLine", tr("Delete To &End Of Line"), SLOT(editDeleteToEndOfLine()), MAC_OR_DEFAULT(Qt::CTRL | Qt::Key_Delete,  Qt::AltModifier | Qt::Key_K));
 #else
@@ -2641,16 +2657,6 @@ void Texstudio::alignTableCols()
 	int col = cur.columnNumber();
 	if (!cur.isValid())
 		return;
-    LatexDocument *doc=currentEditorView()->getDocument();
-    LatexParser lp=doc->lp;
-    QStringList keys=lp.environmentAliases.uniqueKeys();
-    QSet<QString> results;
-    foreach(const QString &elem,keys){
-        if(lp.environmentAliases.values(elem).contains("array")){
-            results<<elem;
-        }
-    }
-    LatexTables::mathTables.unite(results);
 	LatexTables::alignTableCols(cur);
 	cur.setLineNumber(linenr);
 	cur.setColumnNumber(col);
@@ -3352,6 +3358,9 @@ void Texstudio::fileSaveSession()
 
 	QString fn = FileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
+    if(!fn.endsWith(Session::fileExtension())){
+        fn=replaceFileExtension(fn, Session::fileExtension(),true);
+    }
 	if (!getCurrentSession().save(fn, configManager.sessionStoreRelativePaths)) {
 		UtilsUi::txsCritical(tr("Saving of session failed."));
 		return;
@@ -3629,6 +3638,12 @@ void Texstudio::editDeleteLine()
 {
 	if (!currentEditorView()) return;
 	currentEditorView()->deleteLines(true, true);
+}
+
+void Texstudio::editCutLine()
+{
+    if (!currentEditorView()) return;
+    currentEditorView()->cutLines();
 }
 
 void Texstudio::editDeleteToEndOfLine()
@@ -8508,7 +8523,7 @@ void Texstudio::showPreview(const QString &text)
 	QStringList header;
 	for (int l = 0; l < m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
-	if (buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) {
+	if (buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF || buildManager.dvi2pngMode == BuildManager::DPM_LUA_EMBEDDED_PDF) {
 		header << "\\usepackage[active,tightpage]{preview}"
 		       << "\\usepackage{varwidth}"
 		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
@@ -8608,7 +8623,8 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 			header << newLine;
 		}
 	}
-	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
+	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF || buildManager.dvi2pngMode == BuildManager::DPM_LUA_EMBEDDED_PDF)
+			&& configManager.previewMode != ConfigManager::PM_EMBEDDED) {
 		header << "\\usepackage[active,tightpage]{preview}"
 		       << "\\usepackage{varwidth}"
 		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
@@ -11368,11 +11384,13 @@ void Texstudio::customMenuStructure(const QPoint &pos){
         /*menu.addSeparator();
         menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        menu.addSeparator();
+        */
+		menu.addSeparator();
         menu.addAction(tr("Expand Subitems"), this, SLOT(expandSubitems()));
         menu.addAction(tr("Collapse Subitems"), this, SLOT(collapseSubitems()));
-        menu.addAction(tr("Expand all documents"), this, SLOT(expandAllDocuments()));
-        menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));*/
+        /*menu.addAction(tr("Expand all documents"), this, SLOT(expandAllDocuments()));
+        menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));
+		*/
         menu.addSeparator();
         menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
         menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));

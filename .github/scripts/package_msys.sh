@@ -7,7 +7,12 @@ set -e
  
 echo "package build into zip for win"
 # workaround for botched qt6 installation
+if [-f /mingw64/bin/qmake-qt6.exe ]; then 
 cp /mingw64/bin/qmake-qt6.exe /mingw64/bin/qmake.exe
+fi
+if [-f /ucrt64/bin/qmake-qt6.exe ]; then 
+cp /ucrt64/bin/qmake-qt6.exe /ucrt64/bin/qmake.exe 
+fi
 echo "copy dlls and qt5 plugins"
 mkdir -p package-zip
 cp texstudio.exe package-zip/
@@ -15,6 +20,7 @@ cd package-zip
 #cp /mingw64/bin/libicudt68.dll /mingw64/bin/icudt68.dll
 windeployqt-qt6 texstudio.exe
 ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
+ldd texstudio.exe | awk '{print $3}'| grep ucrt64 | xargs -I{} cp -u {} .
 # force ssl/crypto copy
 ldd texstudio.exe | awk '{print $3}'| grep libcrypto | xargs -I{} cp -u {} .
 ldd texstudio.exe | awk '{print $3}'| grep libssl | xargs -I{} cp -u {} .

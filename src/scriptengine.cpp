@@ -22,8 +22,8 @@ Q_DECLARE_METATYPE(SubScriptObject *)
 Q_DECLARE_METATYPE(QList<LatexDocument *>)
 #ifndef NO_POPPLER_PREVIEW
 //Q_DECLARE_METATYPE(PDFDocument *)
-//Q_DECLARE_METATYPE(PDFWidget *)
-Q_DECLARE_METATYPE(QList<PDFDocument *>)
+Q_DECLARE_METATYPE(PDFWidget *)
+//Q_DECLARE_METATYPE(QList<PDFDocument *>)
 #endif
 //Q_DECLARE_METATYPE(QString *)
 
@@ -155,7 +155,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), m_
     qmlRegisterType<QEditor>("com.txs.qmlcomponents", 1, 0, "QEditor");
 #ifndef NO_POPPLER_PREVIEW
     //qmlRegisterType<PDFDocument>("com.txs.qmlcomponents", 1, 0, "PDFDocument");
-    //qmlRegisterType<PDFWidget>("com.txs.qmlcomponents", 1, 0, "PDFWidget");
+    qmlRegisterType<PDFWidget>("com.txs.qmlcomponents", 1, 0, "PDFWidget");
 #endif
 
 	//qmlRegisterType<QList<LatexDocument *> >();

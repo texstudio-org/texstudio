@@ -62,16 +62,17 @@ LatexDocument::~LatexDocument()
 {
 	SynChecker.stop();
 	SynChecker.wait();
-	if (!magicCommentList->parent) delete magicCommentList;
-	if (!labelList->parent) delete labelList;
-	if (!todoList->parent) delete todoList;
-	if (!bibTeXList->parent) delete bibTeXList;
-	if (!blockList->parent) delete blockList;
 
 	foreach (QDocumentLineHandle *dlh, mLineSnapshot) {
 		dlh->deref();
 	}
 	mLineSnapshot.clear();
+
+	if (!magicCommentList->parent) delete magicCommentList;
+	if (!labelList->parent) delete labelList;
+	if (!todoList->parent) delete todoList;
+	if (!bibTeXList->parent) delete bibTeXList;
+	if (!blockList->parent) delete blockList;
 
 	delete baseStructure;
 }

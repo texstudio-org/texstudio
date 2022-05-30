@@ -3,6 +3,17 @@
 
 #include:ifthen
 
+#keyvals:\usepackage/sidecap#c
+outercaption
+innercaption
+leftcaption
+rightcaption
+wide
+raggedright
+raggedleft
+ragged
+#endkeyvals
+
 #ifOption:raggedright
 #include:ragged2e
 #endif

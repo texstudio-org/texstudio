@@ -1,9 +1,10 @@
 # mode: koma letter class (scrlttr2)
 # dani/2006-02-21
-# Matthew Bertucci updated 11/21/21 for v3.34
+# Matthew Bertucci updated 2022/05/18 for v3.36
 
 #include:scrkbase
 #include:typearea
+#include:scrlogo
 
 #keyvals:\KOMAoptions#c
 draft=#true,on,yes,false,off,no
@@ -42,8 +43,6 @@ footnotes=#multiple,nomultiple
 \addtoplength[factor]{pseudo-length%keyvals}{value}
 \addtoplength{pseudo-length%keyvals}{value}
 \addtoreffields{name}
-\adrchar{initial letter}
-\adrentry{last name}{first name}{address}{phone}{F1}{F2}{comment}{key%plain}
 \AtBeginLetter{code}#*
 \AtEndLetter{code}#*
 \bankname#*
@@ -357,6 +356,8 @@ plain
 #endkeyvals
 
 # deprecated
+\adrchar{initial letter}#S
+\adrentry{last name}{first name}{address}{phone}{F1}{F2}{comment}{key%plain}#S
 \ifkomavar#S
 \ifkomavarempty#S
 \ifthispageodd#S

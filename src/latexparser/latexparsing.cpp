@@ -643,6 +643,15 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                         }
                     }
+                    // special treatment for numbers after word (join them to word, see https://github.com/texstudio-org/texstudio/issues/2306 )
+                    if (tk.type == Token::number) {
+                        if(lastComma==(lexed.length()-2)){
+                            if((lexed[lastComma+1].start+lexed[lastComma+1].length==tk.start)&&lexed[lastComma+1].type==Token::word){
+                                lexed[lastComma+1].length+=tk.length;
+                                continue;
+                            }
+                        }
+                    }
                     // special treatment for $ as mathstart
                     if (line.mid(tk.start, 1) == "$") {
                         tk.type = Token::command;

@@ -1,29 +1,35 @@
 # hvextern package
-# Matthew Bertucci 4/28/2022 for v0.20
+# Matthew Bertucci 2022/05/21 for v0.26
 
 #include:shellesc
 #include:xkeyval
 #include:graphicx
-#include:marginnote
 #include:fancyvrb
 #include:tikz
 #include:listings
 #include:ifplatform
+#include:ifoddpage
 #include:tcolorbox
 # loads skins and breakable tcolorbox libraries
 # from breakable tcolorbox library
 #include:pdfcol
 
-\begin{externalDocument}{filename}
-\begin{externalDocument}[options%keyvals]{filename}
+\begin{externalDocument}{filename%definition}
+\begin{externalDocument}[options%keyvals]{filename%definition}
 \end{externalDocument}
 
-#keyvals:\begin{externalDocument}
+\runExtCmd{command with arguments%definition}{filename%definition}
+\runExtCmd[options%keyvals]{command with arguments%definition}{filename%definition}
+
+\hvExternSetKeys{options%keyvals}
+
+#keyvals:\begin{externalDocument},\runExtCmd,\hvExternSetKeys
 progpath=%<path%>
-runsequence=
+runsequence={%<command sequence%>}
 runs=%<integer%>
 grfOptions={%<\includegraphics options%>}
 lstOptions={%<listings options%>}
+textOptions={%<fancyvrb options%>}
 BGpreamble=#%color
 BGbody=#%color
 BOpreamble=#%color
@@ -32,28 +38,39 @@ docType=#context,lua,pl,tex,latex,mp,py
 caption={%<text%>}
 label=##l
 pages={%<page numbers%>}
+pagesep=##L
 cropmargin=%<length in pt%>
 mpwidth=##L
+mpsep=##L
+mpvalign=#t,c,b
 ext=%<file ext%>
 usefancyvrb#true,false
 showFilename#true,false
+outerFN#true,false
 code#true,false
 force#true,false
 crop#true,false
+tcbox#true,false
 biber#true,false
 xindex#true,false
-xindexOptions=
+xindexOptions={%<xindex options%>}
 includegraphic#true,false
 inline#true,false
 frame#true,false
+framesep=##L
 float#true,false
-cleanup=
+floatsetting=%<placement%>
+cleanup={%<ext1,ext2,...%>}
 moveToExampleDir#true,false
-align=
-ExampleDir=
+align=%<alignment commands%>
+ExampleDir=%<name%>
 eps#true,false
 verbose#true,false
-compiler=
+compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua
+aboveskip=##L
+belowpreambleskip=##L
+belowbodyskip=##L
+belowskip=##L
 #endkeyvals
 
 \PreambleVerbatim{file}#i
@@ -153,9 +170,15 @@ deleteemph={%<identifier list%>}
 deleteemph=[%<number%>]{%<identifier list%>}
 emphstyle={%<style%>}
 emphstyle=[%<number%>]{%<style%>}
-delim=
-moredelim=
-deletedelim=
+delim=[%<type%>][%<style%>]%<delimiters%>
+delim=*[%<type%>][%<style%>]%<delimiters%>
+delim=**[%<type%>][%<style%>]%<delimiters%>
+moredelim=[%<type%>][%<style%>]%<delimiters%>
+moredelim=*[%<type%>][%<style%>]%<delimiters%>
+moredelim=**[%<type%>][%<style%>]%<delimiters%>
+deletedelim=[%<type%>][%<style%>]%<delimiters%>
+deletedelim=*[%<type%>][%<style%>]%<delimiters%>
+deletedelim=**[%<type%>][%<style%>]%<delimiters%>
 extendedchars#true,false
 inputencoding=%<encoding%>
 upquote#true,false
@@ -171,7 +194,7 @@ numberfirstline#true,false
 numberstyle=%<style%>
 numbersep=##L
 numberblanklines#true,false
-firstnumber=
+firstnumber=%<auto|last|<number>%>
 name=%<name%>
 title=%<title text%>
 caption={%<caption text%>}
@@ -192,7 +215,7 @@ prebreak=%<tokens%>
 postbreak=%<tokens%>
 breakindent=##L
 breakautoindent#true,false
-frame=
+frame=%<type%>
 frameround=
 framesep=##L
 rulesep=##L
@@ -206,11 +229,19 @@ rulecolor=#%color
 fillcolor=#%color
 rulesepcolor=#%color
 frameshape={%<top shape%>}{%<left shape%>}{%<right shape%>}{%<bottom shape%>}
-index=
-moreindex=
-deleteindex=
-indexstyle=
-columns=
+index={%<identifiers%>}
+index=[%<number%>]{%<identifiers%>}
+index=[%<number%>][%<keyword classes%>]{%<identifiers%>}
+moreindex={%<identifiers%>}
+moreindex=[%<number%>]{%<identifiers%>}
+moreindex=[%<number%>][%<keyword classes%>]{%<identifiers%>}
+deleteindex={%<identifiers%>}
+deleteindex=[%<number%>]{%<identifiers%>}
+deleteindex=[%<number%>][%<keyword classes%>]{%<identifiers%>}
+indexstyle=%<one-parameter macro%>
+indexstyle=[%<number%>]%<one-parameter macro%>
+columns=%<alignment%>
+columns=[%<c|l|r%>]%<alignment%>
 flexiblecolumns#true,false
 keepspaces#true,false
 basewidth=##L
@@ -218,25 +249,26 @@ fontadjust#true,false
 texcl#true,false
 mathescape#true,false
 escapechar=%<character%>
-escapeinside=
+escapeinside=%<<char1><char2>%>
 escapebegin=%<tokens%>
 escapeend=%<tokens%>
 fancyvrb#true,false
-fvcmdparams=
-morefvcmdparams=
-literate=
-rangebeginprefix=
-rangebeginsuffix=
-rangeendprefix=
-rangeendsuffix=
-rangeprefix=
-rangesuffix=
+fvcmdparams=%<<cmd1> <num1> ...%>
+morefvcmdparams=%<<cmd1> <num1> ...%>
+literate={%<replace%>}{%<replacement text%>}{%<length%>}%<...%>
+literate=*{%<replace%>}{%<replacement text%>}{%<length%>}%<...%>
+rangebeginprefix=%<prefix%>
+rangebeginsuffix=%<suffix%>
+rangeendprefix=%<prefix%>
+rangeendsuffix=%<suffix%>
+rangeprefix=%<prefix%>
+rangesuffix=%<suffix%>
 includerangemarker#true,false
 multicols=%<number%>
 float
 float=%<subset of tbph%>
 float=*%<subset of tbph%>
-floatplacement=
+floatplacement=%<place specifiers%>
 firstline=%<number%>
 lastline=%<number%>
 linerange={%<first1-last1,first2-last2,...%>}
@@ -251,24 +283,33 @@ deletekeywords=[%<number%>]{%<list of keywords%>}
 ndkeywords={%<list of keywords%>}
 moreendkeywords={%<list of keywords%>}
 deleteendkeywords={%<list of keywords%>}
-texcs=
-moretexcs=
-deletetxcs=
-directives=
-moredirectives=
-deletedirectives=
+texcs={%<list of csnames%>}
+texcs=[%<class number%>]{%<list of csnames%>}
+moretexcs={%<list of csnames%>}
+moretexcs=[%<class number%>]{%<list of csnames%>}
+deletetxcs={%<list of csnames%>}
+deletetxcs=[%<class number%>]{%<list of csnames%>}
+directives={%<list of compiler directives%>}
+moredirectives={%<list of compiler directives%>}
+deletedirectives={%<list of compiler directives%>}
 sensitive#true,false
 alsoletter={%<character sequence%>}
 alsodigit={%<character sequence%>}
 alsoother={%<character sequence%>}
 otherkeywords={%<keywords%>}
-tag=
-string=
-morestring=
-deletestring=
-comment=
-morecomment=
-deletecomment=
+tag=%<<char1><char2>%>
+string=%<delimiter%>
+string=[%<b|d|m|bd|s%>]%<delimiter%>
+morestring=%<delimiter%>
+morestring=[%<b|d|m|bd|s%>]%<delimiter%>
+deletestring=%<delimiter%>
+deletestring=[%<b|d|m|bd|s%>]%<delimiter%>
+comment=%<delimiter(s)%>
+comment=[%<type%>]%<delimiter(s)%>
+morecomment=%<delimiter(s)%>
+morecomment=[%<type%>]%<delimiter(s)%>
+deletecomment=%<delimiter(s)%>
+deletecomment=[%<type%>]%<delimiter(s)%>
 keywordcomment={%<keywords%>}
 morekeywordcomment={%<keywords%>}
 deletekeywordcomment={%<keywords%>}

@@ -1,5 +1,5 @@
 # xepersian-mathdigitspec package
-# Matthew Bertucci 4/9/2022 for v1.1.9
+# Matthew Bertucci 2022/05/26 for v1.2.0
 
 \setmathdigitfont{font name}
 \setmathdigitfont[Options%keyvals]{font name}
@@ -84,17 +84,17 @@ Renderer=%<renderer%>
 \AutoInlineMathDigits#*
 \DefaultDisplayMathDigits#*
 \DefaultInlineMathDigits#*
-\DefaultZifferLeer#*
+\DefaultMathDecimalSeparator#*
+\MathDecimalSeparator#*
+\persiandecimalseparator#*
 \PersianDisplayMathDigits#*
 \PersianInlineMathDigits#*
+\persianmathdigits#*
+\persianmathsfdigits#*
+\persianmathttdigits#*
 \SetDisplayMathDigits#*
 \SetInlineMathDigits#*
 \SetMathCharDef{arg1}{arg2}{arg3}{arg4}#*
 \SetMathCode{arg1}{arg2}{arg3}{arg4}#*
 \SwitchToDefaultMathDigits#*
 \SwitchToPersianMathDigits#*
-\ZifferAn#*
-\ZifferLeer#*
-\persianmathdigits#*
-\persianmathsfdigits#*
-\persianmathttdigits#*

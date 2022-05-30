@@ -1,8 +1,10 @@
 # xskak package
-# Matthew Bertucci 10/4/2021 for v1.5
+# Matthew Bertucci 2022/05/21 for v1.5
 
-#include:chessboard
 #include:skak
+#include:xifthen
+#include:etoolbox
+#include:chessboard
 
 #keyvals:\usepackage/xskak#c
 nopdfmatch
@@ -17,7 +19,7 @@ id
 id=%<GameID%>
 movenr=%<number%>
 player=#w,b
-moveid=
+moveid=%<⟨number⟩⟨w or b⟩%>
 newvar=%<GameID%>
 refid=%<tag%>
 refpastmoveid=%<tag%>
@@ -29,27 +31,29 @@ refnextplayer=%<tag%>
 refpast=%<tag%>
 refnext=%<tag%>
 reffen=%<tag%>
-reftag=
+reftag=%<tag%>
+%xskakkey
 #endkeyvals
 
 #keyvals:\newchessgame
-result=
-white=
-black=
-whiteelo=
-blackelo=
-site=
-date=
-event=
-round=
+result=%<result%>
+white=%<name%>
+black=%<name%>
+whiteelo=%<rating%>
+blackelo=%<rating%>
+site=%<site%>
+date=%<date%>
+event=%<event name%>
+round=%<round%>
 #endkeyvals
 
 #keyvals:\chessboard
+stepmoveid=%<number%>
 lastmoveid
-lastmoveid=
+lastmoveid=%<GameID%>
 #endkeyvals
 
-\xskaknewpgninfo{keyname}
+\xskaknewpgninfo{keyname}#s#%xskakkey
 \xskaknewpgninfo[default]{keyname}
 
 \xskakgetgame{type%keyvals}
@@ -68,6 +72,7 @@ nextmovenr
 nextmoveid
 diagramlist
 gameid
+parentid
 result
 white
 black
@@ -77,6 +82,7 @@ site
 event
 date
 round
+%xskakkey
 #endkeyvals
 
 \xskakget{type%keyvals}
@@ -117,6 +123,10 @@ refpastmovenr
 refnextmovenr
 refpastplayer
 refnextplayer
+check
+mate
+move
+nag
 #endkeyvals
 
 \xskakcomment{text}
@@ -139,19 +149,19 @@ stepmoveid=%<number%>
 lastmoveid=%<GameID%>
 tag=%<name%>
 defaultid=%<GameID%>
-defaultresult=
-defaultwhite=
-defaultblack=
-defaultwhiteelo=
-defaultblackelo=
-defaultsite=
-defaultdate=
-defaultevent=
-defaultround=
+defaultresult=%<result%>
+defaultwhite=%<name%>
+defaultblack=%<name%>
+defaultwhiteelo=%<rating%>
+defaultblackelo=%<rating%>
+defaultsite=%<site%>
+defaultdate=%<date%>
+defaultevent=%<event name%>
+defaultround=%<round%>
 defaultmovenr=%<number%>
 defaultplayer=#w,b
-defaultmoveid=
-defaultfen=
+defaultmoveid=%<⟨number⟩⟨w or b⟩%>
+defaultfen=%<FEN%>
 #endkeyvals
 
 \xskaktestmoveid{movenr}{player}
@@ -159,25 +169,25 @@ defaultfen=
 \xskakloop[options%keyvals]{code}
 
 #keyvals:\xskakloop
-id=
+id=%<GameID%>
 initmovenr=%<number%>
 initplayer=#w,b
-initmoveid=
+initmoveid=%<⟨number⟩⟨w or b⟩%>
 stopmovenr=%<number%>
 stopplayer=#w,b
-stopmoveid=
+stopmoveid=%<⟨number⟩⟨w or b⟩%>
 step=%<number%>
 showlast#true,false
 #endkeyvals
 
-\xskakenpassantext#*
+\xskakenpassanttext#*
 
 \mainline[option%keyvals]{moves}
 \variation[option%keyvals]{moves}
 
 #keyvals:\mainline,\variation,\xskakset,\printchessgame
-style=
-gstyle=
+style=%<style name%>
+gstyle=%<style name%>
 level=%<number%>
 glevel=%<number%>
 invar
@@ -224,11 +234,51 @@ id=%<GameID%>
 refid=%<tag%>
 initmovenr=%<number%>
 initplayer=#w,b
-initmoveid=
+initmoveid=%<⟨number⟩⟨w or b⟩%>
 stopmovenr=%<number%>
 stopplayer=#w,b
-stopmoveid=
+stopmoveid=%<⟨number⟩⟨w or b⟩%>
 reftag=%<tag%>
 #endkeyvals
 
+\chessdiagramname#*
 \xskakaddtoid#*
+
+# not documented
+\ifxskakboolcapture#S
+\ifxskakboolcastling#S
+\ifxskakboolcheck#S
+\ifxskakboolcomment#S
+\ifxskakboolenpassant#S
+\ifxskakboollongcastling#S
+\ifxskakboolmate#S
+\ifxskakboolnag#S
+\ifxskakboolpromotion#S
+\ifxskakboolvar#S
+\ifxskakpdfmatch#S
+\ParseCastlingAA(arg)#S
+\skaklongmoves#S
+\variationmovemode#*
+\xskakboolcapturefalse#S
+\xskakboolcapturetrue#S
+\xskakboolcastlingfalse#S
+\xskakboolcastlingtrue#S
+\xskakboolcheckfalse#S
+\xskakboolchecktrue#S
+\xskakboolcommentfalse#S
+\xskakboolcommenttrue#S
+\xskakboolenpassantfalse#S
+\xskakboolenpassanttrue#S
+\xskakboollongcastlingfalse#S
+\xskakboollongcastlingtrue#S
+\xskakboolmatefalse#S
+\xskakboolmatetrue#S
+\xskakboolnagfalse#S
+\xskakboolnagtrue#S
+\xskakboolpromotionfalse#S
+\xskakboolpromotiontrue#S
+\xskakboolvarfalse#S
+\xskakboolvartrue#S
+\xskakmovehyphen#*
+\xskakpdfmatchfalse#S
+\xskakpdfmatchtrue#S

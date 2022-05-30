@@ -35,7 +35,7 @@
 #include "searchresultwidget.h"
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
-#include "PDFDocument.h"
+//#include "PDFDocument.h"
 #include <QSplashScreen>
 #include "session.h"
 #include "sessionlist.h"
@@ -350,6 +350,7 @@ protected slots:
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
 	void editDeleteLine(); ///< delete current line in current text editor
+    void editCutLine(); ///< cut current line in current text editor
 	void editDeleteToEndOfLine();
 	void editDeleteFromStartOfLine();
 	void editMoveLineUp();
