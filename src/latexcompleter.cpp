@@ -926,12 +926,48 @@ void CompletionListModel::setEnvironMode(bool mode)
 {
 	mEnvMode = mode;
 }
-
+/*!
+ * \brief special less operator for comapring fuzzy based on scores
+ * \param s1
+ * \param s2
+ * \return
+ */
 bool cwLessThan(const CompletionWord &s1, const CompletionWord &s2)
 {
     return s1.score > s2.score;
 }
-
+/*!
+ * \brief replace key in completion word with replacement
+ * \param cw base completion word which is copied
+ * \param key
+ * \param replacement
+ * \param makePlaceholder make replaced word as a new placeholder
+ * \return copied and manipulated completion word
+ */
+CompletionWord manipulateCompletionWord(CompletionWord cw,QString key,QString replacement,bool makePlaceholder=false){
+    int index = cw.lines[0].indexOf(key);
+    cw.word.replace(key, replacement);
+    cw.sortWord.replace(key, replacement);
+    cw.lines[0].replace(key, replacement);
+    for (int i = 0; i < cw.placeHolders.count(); i++) {
+        if (cw.placeHolders[i].isEmpty())
+            continue;
+        for (int j = 0; j < cw.placeHolders[i].count(); j++) {
+            CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
+            if (ph.offset > index)
+                ph.offset += replacement.length() - 1;
+        }
+    }
+    if(makePlaceholder){
+        CodeSnippetPlaceHolder ph;
+        ph.offset=index;
+        ph.length=replacement.length();
+        ph.id=-1;
+        ph.flags=0;
+        cw.placeHolders.last().append(ph);
+    }
+    return cw;
+}
 
 void CompletionListModel::filterList(const QString &word, int mostUsed, bool fetchMore, CodeSnippet::Type type)
 {
@@ -1048,8 +1084,8 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                         if(ln.contains(searchWord)){
                             if(repl->id.startsWith("{%<"+citeStart)){
                                 // keep general id if it matches input
-                                ln.replace(searchWord, repl->id);
-                                words.append(CompletionWord(ln));
+                                CompletionWord cw = manipulateCompletionWord(*lIt,key,repl->id,true);
+                                words.append(cw);
                             }
                             cnt++;
                             foreach (const CompletionWord id, repl->lst) {
@@ -1071,7 +1107,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                 }
                                 words.append(cw);
                             }
-                            cnt += repl->id.length();
+                            cnt += repl->lst.length();
                         }
                     }
                 }
@@ -1120,36 +1156,23 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                 };
 
                                 QMap<QString,std::shared_ptr<Rpl>>replacement;
-                                std::shared_ptr<Rpl> r0(new Rpl{"{%<bibid%>}",wordsCitations});
+                                std::shared_ptr<Rpl> r0(new Rpl{"bibid",wordsCitations});
                                 replacement.insert("@",r0);
-                                std::shared_ptr<Rpl> r1(new Rpl{"{%<label%>}",wordsLabels});
+                                std::shared_ptr<Rpl> r1(new Rpl{"label",wordsLabels});
                                 replacement.insert("@l",r1);
                                 for(QMap<QString,std::shared_ptr<Rpl>>::const_iterator localIt=replacement.cbegin();localIt!=replacement.cend();++localIt){
                                     QString searchWord="{"+localIt.key()+"}";
                                     QString key=localIt.key();
                                     std::shared_ptr<Rpl> repl=*localIt;
                                     if(ln.contains(searchWord)){
-                                        ln.replace(searchWord, repl->id);
-                                        words.append(CompletionWord(ln));
-                                        cnt++;
+                                        CompletionWord cw = manipulateCompletionWord(*it,key,repl->id,true);
+                                        words.append(cw);
+                                        ++cnt;
                                         foreach (const CompletionWord id, repl->lst) {
-                                            CompletionWord cw = *it;
-                                            int index = cw.lines[0].indexOf(key);
-                                            cw.word.replace(key, id.word);
-                                            cw.sortWord.replace(key, id.word);
-                                            cw.lines[0].replace(key, id.word);
-                                            for (int i = 0; i < cw.placeHolders.count(); i++) {
-                                                if (cw.placeHolders[i].isEmpty())
-                                                    continue;
-                                                for (int j = 0; j < cw.placeHolders[i].count(); j++) {
-                                                    CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
-                                                    if (ph.offset > index)
-                                                        ph.offset += id.word.length() - 1;
-                                                }
-                                            }
+                                            CompletionWord cw = manipulateCompletionWord(*it,key,id.word,false);
                                             words.append(cw);
                                         }
-                                        cnt += repl->id.length();
+                                        cnt += repl->lst.length();
                                     }
                                 }
                             }
