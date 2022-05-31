@@ -62,12 +62,15 @@ Addition#true,false
 \Multiplication[clés%keyvals]{n1}{n2}
 \Division{n1}{n2}
 \Division[clés%keyvals]{n1}{n2}
+\DivisionD{n1}{n2}
+\DivisionD[clés%keyvals]{n1}{n2}
 
-#keyvals:\Addition,\Soustraction,\Multiplication,\Division
+#keyvals:\Addition,\Soustraction,\Multiplication,\Division,\DivisionD
 CouleurCadre=#%color
 CouleurFond=#%color
 CouleurVirgule=#%color
 Solution#true,false
+CouleurSolution=#%color
 #endkeyvals
 
 ## Différents types de papiers ##
@@ -256,6 +259,17 @@ Volume#true,false
 Solide=#pave,cube,cylindre,prisme,cone,pyramide,boule
 #endkeyvals
 
+## La géométrie ##
+\begin{Geometrie}
+\begin{Geometrie}[clés%keyvals]
+\end{Geometrie}
+
+#keyvals:\begin{Geometrie}
+CoinBG={%<(x,y)%>}
+CoinHD={%<(x,y)%>}
+TypeTrace="%<type%>"
+#endkeyvals
+
 ## Le théorème de Pythagore ##
 \Pythagore{Nom du triangle}{a}{b}{c}
 \Pythagore[clés%keyvals]{Nom du triangle}{a}{b}{c}
@@ -435,6 +449,7 @@ Details#true,false
 
 #keyvals:\Decomposition
 Tableau#true,false
+TableauVide#true,false
 TableauVertical#true,false
 TableauVerticalVide#true,false
 Dot=%<dot code%>
@@ -443,7 +458,7 @@ Exposant#true,false
 Longue#true,false
 All#true,false
 Nombre=%<nombre%>
-AllNombre#true,false
+AllNombre=%<nombre%>
 Arbre#true,false
 ArbreComplet#true,false
 Entoure#true,false
@@ -518,6 +533,7 @@ Details#true,false
 \Propor[clés%keyvals]{Liste des éléments par colonne}
 
 #keyvals:\Propor
+Vertical#true,false
 GrandeurA=%<texte%>
 GrandeurB=%<texte%>
 Math#true,false
@@ -528,10 +544,14 @@ CouleurTab=#%color
 
 \FlechesPH{a}{b}{texte}
 \FlechesPB{a}{b}{texte}
+\FlechesPG{a}{b}{texte}
+\FlechesPD{a}{b}{texte}
 \FlecheCoef{texte}
 \FlecheCoefDebut{texte}
 \FlecheLineaireH{a}{b}{c}{opération}
 \FlecheLineaireB{a}{b}{c}{opération}
+\FlecheLineaireG{a}{b}{c}{opération}
+\FlecheLineaireD{a}{b}{c}{opération}
 \FlecheRatio{texte%plain}
 \FlecheInvRatio{texte%plain}
 
@@ -584,6 +604,8 @@ Nom#true,false
 \Cartographie[clés%keyvals]{longitude}{latitude}
 
 #keyvals:\Cartographie
+Arborescence="%<path%>"
+Carte#true,false
 Fleuves#true,false
 Capitales#true,false
 CouleurFond=#%color
@@ -601,8 +623,11 @@ Amnord#true,false
 Amcentre#true,false
 Afrique#true,false
 Caraibes#true,false
-Pays=%<pays%>
-Villes=%<villes%>
+Pays="%<pays%>"
+Villes="%<.dat file%>"
+Projection#true,false
+TypeProjection="%<type%>"
+CouleurPays=#%color
 #endkeyvals
 
 ## Les statistiques ##
@@ -628,9 +653,9 @@ SemiAngle#true,false
 AngVide#true,false
 ECC#true,false
 ECCVide#true,false
-ColVide=%<integer%>
 Total#true,false
-TotalVide#true,false
+ColVide=%<integer%>
+CasesVides={%<cases%>}
 Graphique#true,false
 Batons#true,false
 Unitex=%<nombre%>
@@ -638,13 +663,24 @@ Unitey=%<nombre%>
 Grille#true,false
 Pasx=%<nombre%>
 Pasy=%<nombre%>
+EpaisseurBatons=%<nombre%>
 Origine=%<nombre%>
-AbscisseRotation#true,false
+AngleRotationAbscisse=%<degrees%>
+Lecture#true,false
+LectureFine#true,false
+AideLecture#true,false
+Tiret#true,false
+Reponses#true,false
+DonneesSup#true,false
+ListeCouleursB={%<liste des coleurs%>}
 Angle#true,false
 SemiAngle#true,false
 Rayon=##L
 AffichageAngle#true,false
+AffichageDonnees#true,false
 LectureInverse#true,false
+Legende#true,false
+LegendesVides={%<liste de numéros%>}
 Hachures#true,false
 EcartHachures=%<nombre%>
 EpaisseurHachures=%<nombre%>
@@ -652,6 +688,7 @@ ListeCouleurs={%<liste des coleurs%>}
 Barre#true,false
 Longueur=##L
 Hauteur=##L
+Bicolore#true,false
 Representation#true,false
 Xmin=%<nombre%>
 Xmax=%<nombre%>
@@ -678,6 +715,7 @@ Coupure=%<integer%>
 Moyenne#true,false
 Precision=%<integer%>
 SET#true,false
+ValeurExacte#true,false
 #endkeyvals
 
 \EffectifTotal
@@ -815,6 +853,7 @@ CouleurReduction=#%color
 AideAdda#true,false
 AideAddb#true,false
 CouleurAide=#%color
+Cours#true,false
 Tuile#true,false
 Vide#true,false
 Impression#true,false
@@ -859,7 +898,7 @@ FlecheDiv#true,false
 Pose#true,false
 Laurent#true,false
 Terme#true,false
-CouleurTerme#true,false
+CouleurTerme=#%color
 Composition#true,false
 CouleurCompo=#%color
 Symbole#true,false
@@ -1197,6 +1236,23 @@ Ratio=%<ratio%>
 Superieur#true,false
 #endkeyvals
 
+## Des Enquêtes ##
+\Enquete[clés%keyvals]
+
+#keyvals:\Enquete
+Largeur=##L
+Perso=%<nom%>
+Objet=%<nom%>
+Lieu=%<nom%>
+#endkeyvals
+
+\ListePersonnages{p1§p2§...}
+\ListeObjets{o1§o2§...}
+\ListeLieux{l1§l2§...}
+\ListeQuestions{e1/r1§e2/r2§...}
+\AffichageQuestions
+\AffichageTableau
+
 ## Professeur principal ##
 \Radar{Liste des éléments du diagramme en radar}
 \Radar[clés%keyvals]{Liste des éléments du diagramme en radar}
@@ -1457,9 +1513,11 @@ Teal#B
 \buildtab#S
 \buildtabfonction#S
 \buildtabpropor#S
+\Buildtabpropor#S
 \buildtabratio#S
 \buildtabrelie#S
 \buildtabrelieold#S
+\BuildtabStat#S
 \buildtabt#S
 \CalculAngle{arg1}#S
 \CalculECC{arg1}#S
@@ -1606,6 +1664,7 @@ Teal#B
 \mathcolor[model]{color}{arg}#*m
 \mathcolor{color}{arg}#*m
 \mathunderline{color}{arg}#S
+\MelangeListe{arg1}{arg2}#S
 \mois#*
 \MotifTexte#S
 \MoyenCote#S
@@ -1673,6 +1732,7 @@ Teal#B
 \MPSeyes{arg1}{arg2}{arg3}#S
 \MPStat{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \MPStatCirculaireQ{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPStatNew{arg1}{arg2}#S
 \MPStatQ{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \MPTest{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}{arg9}#S
 \MPTestCours{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}{arg9}#S
@@ -1694,6 +1754,7 @@ Teal#B
 \NbDepart#S
 \NbDonnees#S
 \NbTrois#S
+\NewMPDiagBarreHor{arg1}{arg2}{arg3}{arg4}#S
 \NomA#S
 \NomAngleDroit#S
 \NomB#S
@@ -1704,6 +1765,7 @@ Teal#B
 \NombrePremierPotence{arg1}#S
 \NombrePremierVertical{arg1}#S
 \NombrePremierVerticalVide{arg1}#S
+\NombrePremierVide{arg}#S
 \NomComp#S
 \NomCouleurTab#S
 \NomFin#S
@@ -1843,18 +1905,24 @@ Teal#B
 \theNbFrac#S
 \theNBprog#S
 \theNbPropor#S
+\theNbProporD#S
+\theNbProporG#S
 \theNbRelie#S
 \thenexo#S
+\thePfCCompteLignes#S
 \theQuestionQCM#S
 \thesubxlop#S
 \theTitreQCM#S
 \Tikzmark{arg1}#S
 \TikzPB#S
 \TikzPBD#S
+\TikzPG#S
 \TikzPH#S
 \TikzPHD#S
 \TikzRB#S
 \TikzRH#S
+\toklistecouleur#S
+\toklistelegende#S
 \toklistemodelbarreinf#S
 \toklistemodelbarresup#S
 \totalangle#S
@@ -1883,6 +1951,7 @@ Teal#B
 \UpdateCoul{arg1}#S
 \UpdateDefDroites{arg1}#S
 \UpdateDefLignes{arg1}#S
+\UpdateLegende{arg}#S
 \UpdateLignes{arg1}#S
 \UpdatePtsFN{arg1}#S
 \UpdatePtsFn{arg1}#S
@@ -1901,6 +1970,7 @@ Teal#B
 \UpdatetoksMosaique{arg1}#S
 \Updatetoksproba{arg1}#S
 \Updatetoksprobaechelle{arg1}#S
+\updatetokspropor#S
 \UpdatetoksPyramide{arg1}#S
 \Updatetoksq{arg1}#S
 \Updatetoksrepere{arg1}#S

@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2/24/2022 for v1.83
+# Matthew Bertucci 2022/05/30 for v1.85
 
 #include:xkeyval
 #include:xstring
@@ -32,7 +32,7 @@
 #include:fancyhdr
 
 #keyvals:\documentclass/acmart#c
-format=#manuscript,acmsmall,acmlarge,acmtog,sigconf,sigplan
+format=#manuscript,acmsmall,acmlarge,acmtog,sigconf,sigplan,acmengage
 manuscript#true,false
 acmsmall#true,false
 acmlarge#true,false
@@ -141,6 +141,7 @@ JEA
 JERIC
 JETC
 JOCCH
+JRC
 PACMCGIT
 PACMHCI
 PACMPL
@@ -252,6 +253,20 @@ othergov
 licensedothergov
 iw3c2w3
 iw3c2w3g
+cc
+#endkeyvals
+
+\setcctype{type%keyvals}
+\setcctype[version]{type%keyvals}
+
+#keyvals:\setcctype
+zero
+by
+by-sa
+by-nd
+by-nc
+by-nc-sa
+by-nc-nd
 #endkeyvals
 
 \copyrightyear{year}
@@ -269,6 +284,7 @@ authorsperrow=%<number%>
 
 \received{date}
 \received[stage]{date}
+\setengagemetadata{name}{value}
 \Description{description%text}
 \Description[short description%text]{description%text}
 
@@ -470,6 +486,7 @@ SuppressWarning#true,false
 \AddThinSpaceBeforeFootnotes#*
 \alsoname#*
 \at
+\bibname#*
 \AutoSpaceBeforeFDP#*
 \begin{descriptionFB}
 \begin{enumerateFB}
@@ -477,6 +494,7 @@ SuppressWarning#true,false
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
 \boi
+\bname{text}
 \bsc{text}
 \CaptionSeparator#*
 \captionsfrench#*
