@@ -1847,8 +1847,12 @@ void PDFWidget::setPageOffset(int offset, bool setAsDefault){
 
 	int delta = pageOffset - lastPageOffset;
 	if (delta != 0) {
-		getScrollArea()->goToPage(realPageIndex - delta);	// keep position
+		PDFScrollArea	*scrollArea = getScrollArea();
+		if (!scrollArea->getContinuous())
+			scrollArea->goToPage(realPageIndex - delta);	// keep position
 		reloadPage();
+		emit scrollArea->resized();
+		scrollArea->updateScrollBars();
 	}
 }
 
