@@ -144,6 +144,9 @@ bool QStatusPanel::paint(QPainter *p, QEditor *e)
 				s += spacing + tr("Lines: %1").arg(se.lineNumber() - ss.lineNumber() + 1);
 			}
 		}
+		if (e->document()) {
+			s += spacing + tr("Zoom: %1").arg(e->document()->fontSizeModifier());
+		}
 		if (c->isRTL()) {
 			s+= spacing + tr("RTL", "Abbreviation for Right-To-Left used in status bar.");
 		}
