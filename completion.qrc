@@ -305,11 +305,17 @@
 <file>completion/biblatex-ext-oasymb-pict2e.cwl</file>
 <file>completion/biblatex-ext-oasymb-tikz.cwl</file>
 <file>completion/biblatex-ext-tabular.cwl</file>
+<file>completion/biblatex-license.cwl</file>
 <file>completion/biblatex-multiple-dm.cwl</file>
+<file>completion/biblatex-readbbl.cwl</file>
 <file>completion/biblatex-shortfields.cwl</file>
 <file>completion/bibleref.cwl</file>
+<file>completion/bibleref-french.cwl</file>
+<file>completion/bibleref-german.cwl</file>
+<file>completion/bibleref-lds.cwl</file>
 <file>completion/bibleref-mouth.cwl</file>
 <file>completion/bibleref-parse.cwl</file>
+<file>completion/bibleref-xidx.cwl</file>
 <file>completion/bibletext.cwl</file>
 <file>completion/bibpes.cwl</file>
 <file>completion/bibtopic.cwl</file>
@@ -359,6 +365,7 @@
 <file>completion/bondgraphs.cwl</file>
 <file>completion/booklet.cwl</file>
 <file>completion/bookmark.cwl</file>
+<file>completion/book-of-common-prayer.cwl</file>
 <file>completion/booktabs.cwl</file>
 <file>completion/boolexpr.cwl</file>
 <file>completion/BOONDOX-cal.cwl</file>
@@ -919,6 +926,7 @@
 <file>completion/dpfloat.cwl</file>
 <file>completion/dps.cwl</file>
 <file>completion/drac.cwl</file>
+<file>completion/draftcopy.cwl</file>
 <file>completion/draftfigure.cwl</file>
 <file>completion/draftmark.cwl</file>
 <file>completion/draftwatermark.cwl</file>
@@ -1108,6 +1116,7 @@
 <file>completion/fancyvrb.cwl</file>
 <file>completion/fancyvrb-ex.cwl</file>
 <file>completion/fapapersize.cwl</file>
+<file>completion/fascicules.cwl</file>
 <file>completion/fast-diagram.cwl</file>
 <file>completion/fbb.cwl</file>
 <file>completion/fbox.cwl</file>
@@ -1125,6 +1134,7 @@
 <file>completion/fgruler.cwl</file>
 <file>completion/fhgtechdoku_additional.cwl</file>
 <file>completion/fibnum.cwl</file>
+<file>completion/fifinddo.cwl</file>
 <file>completion/fifo-stack.cwl</file>
 <file>completion/figchild.cwl</file>
 <file>completion/figsize.cwl</file>
@@ -1137,6 +1147,7 @@
 <file>completion/FiraSans.cwl</file>
 <file>completion/fitbox.cwl</file>
 <file>completion/fitr.cwl</file>
+<file>completion/fixdif.cwl</file>
 <file>completion/fixfoot.cwl</file>
 <file>completion/fixlatvian.cwl</file>
 <file>completion/fixmath.cwl</file>
@@ -1599,6 +1610,7 @@
 <file>completion/logicproof.cwl</file>
 <file>completion/logicpuzzle.cwl</file>
 <file>completion/logix.cwl</file>
+<file>completion/logreq.cwl</file>
 <file>completion/logsys.cwl</file>
 <file>completion/longdivision.cwl</file>
 <file>completion/longfbox.cwl</file>
@@ -2139,6 +2151,7 @@
 <file>completion/prelim2e.cwl</file>
 <file>completion/prerex.cwl</file>
 <file>completion/pressrelease-symbols.cwl</file>
+<file>completion/prettytok.cwl</file>
 <file>completion/preview.cwl</file>
 <file>completion/prftree.cwl</file>
 <file>completion/principia.cwl</file>
@@ -2201,6 +2214,7 @@
 <file>completion/pst-eps.cwl</file>
 <file>completion/pst-eucl.cwl</file>
 <file>completion/pst-exa.cwl</file>
+<file>completion/pst-feyn.cwl</file>
 <file>completion/pst-fill.cwl</file>
 <file>completion/pst-fit.cwl</file>
 <file>completion/pst-fractal.cwl</file>
@@ -2341,6 +2355,7 @@
 <file>completion/rerunfilecheck.cwl</file>
 <file>completion/resizegather.cwl</file>
 <file>completion/returntogrid.cwl</file>
+<file>completion/revquantum.cwl</file>
 <file>completion/revsymb4-2.cwl</file>
 <file>completion/rgltxdoc.cwl</file>
 <file>completion/ribbonproofs.cwl</file>
@@ -2387,6 +2402,7 @@
 <file>completion/SASnRdisplay.cwl</file>
 <file>completion/savesym.cwl</file>
 <file>completion/savetrees.cwl</file>
+<file>completion/sbl-paper.cwl</file>
 <file>completion/scalebar.cwl</file>
 <file>completion/scalefnt.cwl</file>
 <file>completion/scalerel.cwl</file>
@@ -2507,6 +2523,7 @@
 <file>completion/snaptodo.cwl</file>
 <file>completion/snotez.cwl</file>
 <file>completion/sobolev.cwl</file>
+<file>completion/software-biblatex.cwl</file>
 <file>completion/somedefs.cwl</file>
 <file>completion/songbook.cwl</file>
 <file>completion/soul.cwl</file>
