@@ -1,5 +1,5 @@
 # updated 2/21/2022 for v3.7q
-#include:etex
+
 #include:iftex
 #include:array
 #include:dcolumn
