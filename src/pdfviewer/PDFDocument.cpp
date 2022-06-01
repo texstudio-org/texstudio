@@ -3517,6 +3517,9 @@ void PDFDocument::setGrid()
 		int p = gs.indexOf("x");
 		globalConfig->gridx = gs.left(p).toInt();
 		globalConfig->gridy = gs.mid(p + 1).toInt();
+		if (globalConfig->gridx == 2 && globalConfig->gridy == 1) {
+			pdfWidget->setPageOffset(1);
+		}
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy);
 	}
     pdfWidget->windowResized();
