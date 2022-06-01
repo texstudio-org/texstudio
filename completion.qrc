@@ -144,6 +144,7 @@
 <file>completion/ascmac.cwl</file>
 <file>completion/askinclude.cwl</file>
 <file>completion/askmaps.cwl</file>
+<file>completion/assoccnt.cwl</file>
 <file>completion/association-matrix.cwl</file>
 <file>completion/assurelatexmode.cwl</file>
 <file>completion/asyalign.cwl</file>
@@ -152,6 +153,7 @@
 <file>completion/asymptote.cwl</file>
 <file>completion/asypictureB.cwl</file>
 <file>completion/asyprocess.cwl</file>
+<file>completion/at.cwl</file>
 <file>completion/atendofenv.cwl</file>
 <file>completion/athnum.cwl</file>
 <file>completion/atkinson.cwl</file>
@@ -233,6 +235,7 @@
 <file>completion/beamerseminar.cwl</file>
 <file>completion/beamersubframe.cwl</file>
 <file>completion/beamertexpower.cwl</file>
+<file>completion/beamerthemeAmurmaple.cwl</file>
 <file>completion/beamerthemeArguelles.cwl</file>
 <file>completion/beamerthemeBergen.cwl</file>
 <file>completion/beamerthemeBerkeley.cwl</file>
@@ -339,6 +342,7 @@
 <file>completion/biokey.cwl</file>
 <file>completion/biolinum.cwl</file>
 <file>completion/biolist.cwl</file>
+<file>completion/bitelist.cwl</file>
 <file>completion/bitpattern.cwl</file>
 <file>completion/bitset.cwl</file>
 <file>completion/bitter.cwl</file>
@@ -391,6 +395,7 @@
 <file>completion/bullenum.cwl</file>
 <file>completion/bussproofs.cwl</file>
 <file>completion/bussproofs-extra.cwl</file>
+<file>completion/bxbase.cwl</file>
 <file>completion/bxcalcux.cwl</file>
 <file>completion/bxdvidriver.cwl</file>
 <file>completion/bxenclose.cwl</file>
@@ -398,11 +403,14 @@
 <file>completion/bxghost-lib.cwl</file>
 <file>completion/bxjaholiday.cwl</file>
 <file>completion/bxjalipsum.cwl</file>
+<file>completion/bxjaprnind.cwl</file>
+<file>completion/bxjatoucs.cwl</file>
 <file>completion/bxnewfont.cwl</file>
 <file>completion/bxorigcapt.cwl</file>
 <file>completion/bxpapersize.cwl</file>
 <file>completion/bxpdfver.cwl</file>
 <file>completion/bxtexlogo.cwl</file>
+<file>completion/bxtoolbox.cwl</file>
 <file>completion/bxwareki.cwl</file>
 <file>completion/byo-twemojis.cwl</file>
 <file>completion/bytefield.cwl</file>
@@ -813,6 +821,7 @@
 <file>completion/CronosPro.cwl</file>
 <file>completion/CronosPro-FontDef.cwl</file>
 <file>completion/crop.cwl</file>
+<file>completion/cropmark.cwl</file>
 <file>completion/crossreference.cwl</file>
 <file>completion/crossreftools.cwl</file>
 <file>completion/crumbs.cwl</file>
@@ -2517,6 +2526,7 @@
 <file>completion/sltables.cwl</file>
 <file>completion/smartdiagram.cwl</file>
 <file>completion/smart-eqn.cwl</file>
+<file>completion/smartref.cwl</file>
 <file>completion/smartunits.cwl</file>
 <file>completion/smfthm.cwl</file>
 <file>completion/snapshot.cwl</file>
@@ -2661,6 +2671,7 @@
 <file>completion/tex.cwl</file>
 <file>completion/texdate.cwl</file>
 <file>completion/texdimens.cwl</file>
+<file>completion/texlinks.cwl</file>
 <file>completion/tex-locale.cwl</file>
 <file>completion/texmate.cwl</file>
 <file>completion/texments.cwl</file>
@@ -2862,6 +2873,7 @@
 <file>completion/txuprcal.cwl</file>
 <file>completion/typearea.cwl</file>
 <file>completion/typed-checklist.cwl</file>
+<file>completion/typedref.cwl</file>
 <file>completion/typewriter.cwl</file>
 <file>completion/typicons.cwl</file>
 <file>completion/typoaid.cwl</file>
@@ -2962,6 +2974,7 @@
 <file>completion/wasysym.cwl</file>
 <file>completion/watermark.cwl</file>
 <file>completion/web.cwl</file>
+<file>completion/weekday.cwl</file>
 <file>completion/widetable.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
 <file>completion/wiki.cwl</file>
@@ -3097,8 +3110,10 @@
 <file>completion/zref-xr.cwl</file>
 <file>completion/zwgetfdate.cwl</file>
 <file>completion/zwpagelayout.cwl</file>
+<file>completion/zxbase.cwl</file>
 <file>completion/zx-calculus.cwl</file>
 <file>completion/zxjafont.cwl</file>
+<file>completion/zxjatype.cwl</file>
 <file>completion/cwlAliases.dat</file>
 </qresource>
 </RCC>
