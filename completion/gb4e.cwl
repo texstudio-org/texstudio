@@ -1,5 +1,5 @@
 # gb4e package
-# Matthew Bertucci 11/22/2021
+# Matthew Bertucci 2022/06/01 for v4e
 
 #include:cgloss4e
 
@@ -78,6 +78,7 @@
 \indexgroupmark{text}#*
 \begin{qlist}#*
 \end{qlist}#*
+\theexx#*
 \thexnumi#*
 \thexnumii#*
 \thexnumiii#*
@@ -101,3 +102,4 @@
 \bovenop{arg1}{arg2}#*
 \vl#*
 \|#S
+\gbVersion#S
