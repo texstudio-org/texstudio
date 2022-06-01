@@ -25,6 +25,9 @@ bg
 
 fg#B
 bg#B
+structure#B
+averagebackgroundcolor#B
+alert#B
 
 \begin{beamercolorbox}{beamer color}
 \begin{beamercolorbox}[options%keyvals]{beamer color}

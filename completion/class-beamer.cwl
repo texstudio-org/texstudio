@@ -121,4 +121,7 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 #include:inputenc
 #endif
 
+\headdp#*L
+\footheight#*L
+\sidebarheight#*L
 \mathfamilydefault#S
