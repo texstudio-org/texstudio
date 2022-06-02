@@ -327,10 +327,14 @@
 <file>completion/bicaption.cwl</file>
 <file>completion/bickham.cwl</file>
 <file>completion/bidi-atbegshi.cwl</file>
+<file>completion/bidicode.cwl</file>
 <file>completion/bidicontour.cwl</file>
 <file>completion/bidi.cwl</file>
 <file>completion/bidihl.cwl</file>
+<file>completion/bidi-perpage.cwl</file>
+<file>completion/bidipoem.cwl</file>
 <file>completion/bidishadowtext.cwl</file>
+<file>completion/biditools.cwl</file>
 <file>completion/bigdelim.cwl</file>
 <file>completion/bigfoot.cwl</file>
 <file>completion/bigintcalc.cwl</file>
@@ -575,6 +579,7 @@
 <file>completion/class-fiche.cwl</file>
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-gammas.cwl</file>
+<file>completion/class-geradwp.cwl</file>
 <file>completion/class-grant-afosr.cwl</file>
 <file>completion/class-grant-aro.cwl</file>
 <file>completion/class-grant.cwl</file>
@@ -624,6 +629,14 @@
 <file>completion/class-ltjbook.cwl</file>
 <file>completion/class-ltjltxdoc.cwl</file>
 <file>completion/class-ltjreport.cwl</file>
+<file>completion/class-ltjsarticle.cwl</file>
+<file>completion/class-ltjsbook.cwl</file>
+<file>completion/class-ltjskiyou.cwl</file>
+<file>completion/class-ltjspf.cwl</file>
+<file>completion/class-ltjsreport.cwl</file>
+<file>completion/class-ltjtarticle.cwl</file>
+<file>completion/class-ltjtbook.cwl</file>
+<file>completion/class-ltjtreport.cwl</file>
 <file>completion/class-ltugboat.cwl</file>
 <file>completion/class-ltxdoc.cwl</file>
 <file>completion/class-ltxdockit.cwl</file>
@@ -640,6 +653,7 @@
 <file>completion/class-mnras.cwl</file>
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
+<file>completion/class-msu-thesis.cwl</file>
 <file>completion/class-mucproc.cwl</file>
 <file>completion/class-mwart.cwl</file>
 <file>completion/class-mwbk.cwl</file>
@@ -696,10 +710,12 @@
 <file>completion/class-slides.cwl</file>
 <file>completion/class-smfart.cwl</file>
 <file>completion/class-smfbook.cwl</file>
+<file>completion/class-sr-vorl.cwl</file>
 <file>completion/class-sslides.cwl</file>
 <file>completion/class-stage.cwl</file>
 <file>completion/class-standalone.cwl</file>
 <file>completion/class-suftesi.cwl</file>
+<file>completion/class-svmult.cwl</file>
 <file>completion/class-talk.cwl</file>
 <file>completion/class-tikz-kalender.cwl</file>
 <file>completion/class-tikzposter.cwl</file>
@@ -711,6 +727,10 @@
 <file>completion/class-turabian-researchpaper.cwl</file>
 <file>completion/class-turabian-thesis.cwl</file>
 <file>completion/class-ulthese.cwl</file>
+<file>completion/class-univie-ling-expose.cwl</file>
+<file>completion/class-univie-ling-paper.cwl</file>
+<file>completion/class-univie-ling-thesis.cwl</file>
+<file>completion/class-univie-ling-wlg.cwl</file>
 <file>completion/class-upmethodology-document.cwl</file>
 <file>completion/class-webquiz.cwl</file>
 <file>completion/class-willowtreebook.cwl</file>
@@ -718,6 +738,7 @@
 <file>completion/class-xepersian-magazine.cwl</file>
 <file>completion/class-yaletter.cwl</file>
 <file>completion/class-ycbook.cwl</file>
+<file>completion/class-zbMATH.cwl</file>
 <file>completion/cleanthesis.cwl</file>
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
@@ -777,6 +798,7 @@
 <file>completion/comicneue.cwl</file>
 <file>completion/comicsans.cwl</file>
 <file>completion/comma.cwl</file>
+<file>completion/commado.cwl</file>
 <file>completion/commath.cwl</file>
 <file>completion/commedit.cwl</file>
 <file>completion/comment.cwl</file>
@@ -914,6 +936,7 @@
 <file>completion/dline.cwl</file>
 <file>completion/dljslib.cwl</file>
 <file>completion/dnaseq.cwl</file>
+<file>completion/doafter.cwl</file>
 <file>completion/docassembly.cwl</file>
 <file>completion/doc.cwl</file>
 <file>completion/doclicense.cwl</file>
@@ -1099,6 +1122,7 @@
 <file>completion/expkv-opt.cwl</file>
 <file>completion/expl3.cwl</file>
 <file>completion/export.cwl</file>
+<file>completion/exp-testopt.cwl</file>
 <file>completion/exsol.cwl</file>
 <file>completion/extarrows.cwl</file>
 <file>completion/extdash.cwl</file>
@@ -1132,7 +1156,10 @@
 <file>completion/fc_arith.cwl</file>
 <file>completion/fclfont.cwl</file>
 <file>completion/fcolumn.cwl</file>
+<file>completion/fcprefix.cwl</file>
 <file>completion/fdsymbol.cwl</file>
+<file>completion/fenixpar.cwl</file>
+<file>completion/fenixtok.cwl</file>
 <file>completion/fetamont.cwl</file>
 <file>completion/fetchbibpes.cwl</file>
 <file>completion/fetchcls.cwl</file>
@@ -1151,6 +1178,8 @@
 <file>completion/filehook.cwl</file>
 <file>completion/filemod.cwl</file>
 <file>completion/filemod-expmin.cwl</file>
+<file>completion/filesdo.cwl</file>
+<file>completion/finstrut.cwl</file>
 <file>completion/firamath-otf.cwl</file>
 <file>completion/FiraMono.cwl</file>
 <file>completion/FiraSans.cwl</file>
@@ -1482,6 +1511,7 @@
 <file>completion/jmlrutils.cwl</file>
 <file>completion/jmsdelim.cwl</file>
 <file>completion/josefin.cwl</file>
+<file>completion/jslogo.cwl</file>
 <file>completion/jumplines.cwl</file>
 <file>completion/junicode.cwl</file>
 <file>completion/jupynotex.cwl</file>
@@ -1568,6 +1598,7 @@
 <file>completion/lettrine.cwl</file>
 <file>completion/lewisstruc.cwl</file>
 <file>completion/lexend.cwl</file>
+<file>completion/lhelp.cwl</file>
 <file>completion/libertine.cwl</file>
 <file>completion/libertinegc.cwl</file>
 <file>completion/libertineMono.cwl</file>
@@ -2160,6 +2191,7 @@
 <file>completion/prelim2e.cwl</file>
 <file>completion/prerex.cwl</file>
 <file>completion/pressrelease-symbols.cwl</file>
+<file>completion/prettyref.cwl</file>
 <file>completion/prettytok.cwl</file>
 <file>completion/preview.cwl</file>
 <file>completion/prftree.cwl</file>
@@ -2189,6 +2221,7 @@
 <file>completion/projlib-titlepage.cwl</file>
 <file>completion/proof.cwl</file>
 <file>completion/proofread.cwl</file>
+<file>completion/properties.cwl</file>
 <file>completion/protecteddef.cwl</file>
 <file>completion/protosem.cwl</file>
 <file>completion/pseudocode.cwl</file>
@@ -3079,6 +3112,7 @@
 <file>completion/ytableau.cwl</file>
 <file>completion/zahl2string.cwl</file>
 <file>completion/Zallman.cwl</file>
+<file>completion/zb-basics.cwl</file>
 <file>completion/zebra-goodies.cwl</file>
 <file>completion/zhlineskip.cwl</file>
 <file>completion/zhlipsum.cwl</file>
