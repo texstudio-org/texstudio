@@ -65,6 +65,7 @@ disablejfam
 \Cjascale
 \ifptexmin#*
 \if西暦#*
+\heisei#*
 \postchaptername
 \postpartname
 \prechaptername
