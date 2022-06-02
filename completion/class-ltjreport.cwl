@@ -66,10 +66,10 @@ disablejfam
 \ifptexmin#*
 \if西暦#*
 \heisei#*
-\postchaptername
-\postpartname
-\prechaptername
-\prepartname
+\postchaptername#*
+\postpartname#*
+\prechaptername#*
+\prepartname#*
 \ptexminfalse#*
 \ptexmintrue#*
 \thechapter#*
