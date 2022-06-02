@@ -61,7 +61,7 @@ disablejfam
 \chapter*{title}#L1
 \chapter[short title]{title}#L1
 \chapter{title}#L1
-\chaptermark{code}
+\chaptermark{code}#*
 \Cjascale
 \ifptexmin#*
 \if西暦#*
