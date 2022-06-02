@@ -1,10 +1,11 @@
-# ltjarticle class
-# Matthew Bertucci 4/11/2022 for v1.8f
+# ltjtbook class
+# Matthew Bertucci 2022/06/01 for v1.8f
 
 #include:luatexja
+#include:lltjext
 #include:stfloats
 
-#keyvals:\documentclass/ltjarticle#c
+#keyvals:\documentclass/ltjtbook#c
 a4paper
 a5paper
 b4paper
@@ -31,6 +32,9 @@ onecolumn
 twocolumn
 titlepage
 notitlepage
+openright
+openleft
+openany
 leqno
 fleqn
 openbib
@@ -42,26 +46,37 @@ disablejfam
 #endkeyvals
 
 #ifOption:tombow
-\stockheight#*
-\stockwidth#*
+\stockheight#L
+\stockwidth#L
 #endif
 #ifOption:tombo
-\stockheight#*
-\stockwidth#*
+\stockheight#L
+\stockwidth#L
 #endif
 #ifOption:mentuke
-\stockheight#*
-\stockwidth#*
+\stockheight#L
+\stockwidth#L
 #endif
 
+\backmatter#n
+\bibname#n
+\chapter*{title}#L1
+\chapter[short title]{title}#L1
+\chapter{title}#L1
+\chaptermark{code}#*
 \Cjascale
+\frontmatter#n
 \heisei#*
 \ifptexmin#*
 \if西暦#*
+\mainmatter#n
+\postchaptername#*
 \postpartname#*
+\prechaptername#*
 \prepartname#*
 \ptexminfalse#*
 \ptexmintrue#*
+\thechapter#*
 \和暦
 \西暦
 \西暦false#*

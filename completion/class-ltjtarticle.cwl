@@ -1,10 +1,11 @@
-# ltjarticle class
-# Matthew Bertucci 4/11/2022 for v1.8f
+# ltjtarticle class
+# Matthew Bertucci 2022/06/01 for v1.8f
 
 #include:luatexja
+#include:lltjext
 #include:stfloats
 
-#keyvals:\documentclass/ltjarticle#c
+#keyvals:\documentclass/ltjtarticle#c
 a4paper
 a5paper
 b4paper
@@ -42,16 +43,16 @@ disablejfam
 #endkeyvals
 
 #ifOption:tombow
-\stockheight#*
-\stockwidth#*
+\stockheight#L
+\stockwidth#L
 #endif
 #ifOption:tombo
-\stockheight#*
-\stockwidth#*
+\stockheight#L
+\stockwidth#L
 #endif
 #ifOption:mentuke
-\stockheight#*
-\stockwidth#*
+\stockheight#L
+\stockwidth#L
 #endif
 
 \Cjascale

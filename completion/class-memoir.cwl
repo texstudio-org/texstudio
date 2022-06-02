@@ -1,5 +1,5 @@
 # updated 2/21/2022 for v3.7q
-#include:etex
+
 #include:iftex
 #include:array
 #include:dcolumn
@@ -25,11 +25,13 @@ a3paper
 a4paper
 a5paper
 a6paper
+a7paper
 article
 b3paper
 b4paper
 b5paper
 b6paper
+b7paper
 broadsheetpaper
 crownvopaper
 dbillpaper
@@ -78,6 +80,7 @@ twoside
 
 \abnormalparskip{length}#*
 \abovecaptionskip
+\abovecolumnspenalty#*
 \aboverulesep#*
 \abscolnamefont#*
 \abscoltextfont#*
@@ -111,11 +114,16 @@ twoside
 \afterepigraphskip
 \afterloftitle#*
 \afterlottitle#*
+\afterparaskip#*
 \afterpartskip#*
 \afterPoemTitle#*
 \afterPoemTitlenum#*
 \afterPoemTitleskip
 \afterpoemtitleskip
+\aftersecskip#*
+\aftersubparaskip#*
+\aftersubsecskip#*
+\aftersubsubsecskip#*
 \aftertoctitle#*
 \aliaspagestyle{alias}{original}#*
 \alsoname#*
@@ -150,9 +158,14 @@ twoside
 \beforebookskip#*
 \beforechapskip
 \beforeepigraphskip
+\beforeparaskip#*
 \beforepartskip#*
 \beforePoemTitleskip
 \beforepoemtitleskip
+\beforesecskip#*
+\beforesubparaskip#*
+\beforesubsecskip#*
+\beforesubsubsecskip#*
 \begin{adjustwidth*}{left%l}{right%l}
 \begin{adjustwidth}#*
 \begin{altverse}#
@@ -336,6 +349,7 @@ twoside
 \cftfigurenumwidth#*
 \cftfigurepagefont#*
 \cftfigurepresnum#*
+\cftinsert{name}#*
 \cftinsertcode{name}{code}#*
 \cftinserthook{file}{name}#*
 \cftlocalchange{ext}{pnumwidth}{toc}#*
@@ -450,6 +464,9 @@ twoside
 \changeglossref{thecounter}#*
 \changeglossref[file]{thecounter}#*
 \changemarks#*
+\changepage{textheight}{textwidth}{evensidemargin}{oddsidemargin}{columnsep}{topmargin}{headheight}{headsep}{footskip}#*
+\changetext{textheight}{textwidth}{evensidemargin}{oddsidemargin}{columnsep}#*
+\changetocdepth{integer}#*
 \chapindent
 \chapnamefont#*
 \chapnumfont#*
@@ -569,7 +586,10 @@ both
 right
 #endkeyvals
 \Cref{key}
+\crtok#*
 \cs{name}
+\ctableftskip#*
+\ctabrightskip#*
 \ctabsetlines#*
 \ctabular{preamble}#*
 \currenttitle#*
@@ -681,6 +701,7 @@ right
 \epigraphsourceposition{flush}#*
 \epigraphtextposition{flush}#*
 \epigraphwidth#*
+\everylistparindent#*
 \extrafeetendmini#*
 \extrafeetendminihook#*
 \extrafeetins#*
@@ -693,7 +714,9 @@ right
 \fboxverbatim#*
 \fcardinal{number}#*
 \feetabovefloat#*
+\feetatbottom#*
 \feetbelowfloat#*
+\feetbelowragged#*
 \figurename#*
 \figurerefname#*
 \firmlist#*
@@ -778,7 +801,7 @@ right
 \hideindexmarks#*
 \hline#*
 \hmpunct#*
-\huge#*
+\HUGE
 \hyperlink{target name}{link text}#*
 \hyperpage{arg}#*
 \hyperspindexpage#*
@@ -1040,7 +1063,6 @@ none
 \maxtocdepth{secname}#*
 \medievalpage{spine%l}#*
 \medspace#*
-\mem#*
 \memappchapinfo{chapter}{for toc}{for head}{title%plain}#*
 \memappchapstarinfo{for toc}{title%plain}#*
 \memapppageinfo{title%plain}#*
@@ -1086,6 +1108,7 @@ none
 \memorigpar#*
 \mempartinfo{part}{for toc}{title%plain}#*
 \mempartstarinfo{title%plain}#*
+\memPD#*
 \mempnofilewarn#*
 \mempoeminfo{title%plain}#*
 \mempoemstarinfo{title%plain}#*
@@ -1099,6 +1122,7 @@ none
 \mempreaddbooktotochook#*
 \mempreaddchaptertotochook#*
 \mempreaddparttotochook#*
+\MemRestoreOrigMakecase#*
 \memRTLleftskip#*
 \memRTLmainraggedleft#*
 \memRTLmainraggedright#*
@@ -1219,6 +1243,7 @@ none
 \noindexintoc#*
 \nonzeroparskip#*
 \nopartblankpage#*
+\nopfbreakOutput#*
 \noprelistbreak#*
 \normalbottomsection#*
 \normalcaption#*
@@ -1258,7 +1283,7 @@ none
 \numberlinehook{number}#*
 \NumberPoemTitle#*
 \numdigits{number}#*
-\NumtoName{number}#*
+\NumToName{number}#*
 \numtoName{number}#*
 \numtoname{number}#*
 \oarg{arg}
@@ -1274,7 +1299,7 @@ none
 \openoutputfile{file}{stream}#*
 \openright#*
 \ordinal{number}#*
-\OrdinaltoName{number}#*
+\OrdinalToName{number}#*
 \ordinaltoName{number}#*
 \ordinaltoname{number}#*
 \ordscript{chars}#*
@@ -1288,6 +1313,7 @@ none
 \pageao#*
 \pageav#*
 \pageavi#*
+\pageavii#*
 \pagebi#*
 \pagebii#*
 \pagebiii#*
@@ -1296,6 +1322,7 @@ none
 \pagebroadsheet#*
 \pagebv#*
 \pagebvi#*
+\pagebvii#*
 \pagecrownvo#*
 \pagedbill#*
 \pagedemyvo#*
@@ -1532,7 +1559,7 @@ none
 \setDisplayskipStretch{factor}#*
 \setfillsize{T}{C}{L}{R}{r}#*
 \setfloatadjustment{float name}{code}#*
-\setFloatBLockFor{sectional name}#*
+\setFloatBlockFor{sectional name}#*
 \setfloatlocations{float}{locs}#*
 \setFloatSpacing{factor}#*
 \setfootins{length normal}{length minipage}#*
@@ -1553,6 +1580,7 @@ none
 \setpagebm{height}{width}{ratio}#*
 \setpagebr{height}{width}{ratio}#*
 \setpagecc{height}{width}{ratio}#*
+\setpagemm{height}{width}{ratio}#S
 \setpageml{height}{width}{ratio}#*
 \setpagemr{height}{width}{ratio}#*
 \setPagenoteSpacing{factor}#*
@@ -1653,8 +1681,10 @@ none
 \sidefootform#*
 \sidefootheight
 \sidefoothsep
+\sidefootins#*
 \sidefootmargin{margin%l}#*
 \sidefootmarksep
+\sidefootmarkstyle{code}
 \sidefootmarkwidth
 \sidefootnote#*
 \sidefootnotemark#*
@@ -1664,6 +1694,7 @@ none
 \sidefoottextfont#*
 \sidefootvsep
 \sidefootwidth
+\sideins#*
 \sidelegend#*
 \sidenamedlegend#*
 \sidepar#*
@@ -1694,6 +1725,7 @@ none
 \stockao#*
 \stockav#*
 \stockavi#*
+\stockavii#*
 \stockbi#*
 \stockbii#*
 \stockbiii#*
@@ -1702,6 +1734,7 @@ none
 \stockbroadsheet#*
 \stockbv#*
 \stockbvi#*
+\stockbvii#*
 \stockcrownvo#*
 \stockdbill#*
 \stockdemyvo#*
@@ -1740,6 +1773,12 @@ none
 \subcaptionsize{size}#*
 \subcaptionstyle{style}#*
 \subconcluded#*
+\subfloatbottomskip#*
+\subfloatcapmargin#*
+\subfloatcapskip#*
+\subfloatcaptopadj#*
+\subfloatlabelskip#*
+\subfloattopskip#*
 \subitem#*
 \subparagraph*{title}#*
 \subparagraph[toc-title%title][head-title%title]{title}#*
