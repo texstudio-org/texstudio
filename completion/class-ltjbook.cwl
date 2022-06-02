@@ -69,10 +69,10 @@ disablejfam
 \ifptexmin#*
 \if西暦#*
 \mainmatter#n
-\postchaptername
-\postpartname
-\prechaptername
-\prepartname
+\postchaptername#*
+\postpartname#*
+\prechaptername#*
+\prepartname#*
 \ptexminfalse#*
 \ptexmintrue#*
 \thechapter#*
