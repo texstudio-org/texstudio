@@ -55,6 +55,7 @@ disablejfam
 #endif
 
 \Cjascale
+\heisei#*
 \ifptexmin#*
 \if西暦#*
 \postpartname
