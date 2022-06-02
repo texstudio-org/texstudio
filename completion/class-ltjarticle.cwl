@@ -58,8 +58,8 @@ disablejfam
 \heisei#*
 \ifptexmin#*
 \if西暦#*
-\postpartname
-\prepartname
+\postpartname#*
+\prepartname#*
 \ptexminfalse#*
 \ptexmintrue#*
 \和暦
