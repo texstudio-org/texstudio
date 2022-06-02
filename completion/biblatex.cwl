@@ -2128,6 +2128,213 @@ override#true,false
 \Footcitetexts[pre][post]{bibid}[pre][post]{bibid}#SC
 \Footcitetexts{bibid}{bibid}#SC
 
+### biblatex-abnt v3.4 ###
+#ifOption:style=abnt
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from abnt.bbx
+ittitles#true,false
+scbib#true,false
+nosl#true,false
+nosn#true,false
+noslsn#true,false
+repeattitles#true,false
+repeatfirstfields#true,false
+repeatfields#true,false
+usedashes#true,false
+indent#true,false
+extradate#true,false
+extrayear#true,false
+justify#true,false
+pretty#true,false
+citecount#true,false
+# from abnt.cbx
+sccite#true,false
+#endkeyvals
+# from abnt.bbx
+#include:xpatch
+\origbibsetup#S
+\FirstWordUpper{text}#*
+\FirstWordSC{text}#*
+\FirstWordLCSC{text}#*
+\traceparam{arg}#S
+\paramL#S
+\traceparamA#S
+\traceparamB#S
+\traceparamS#S
+\traceparamC{arg}#S
+\traceparamD{arg}#S
+\traceparamE#S
+\smartuppercase{text}#*
+\smartlowercase{text}#*
+\smartlcsc{text}#*
+\smartsc{text}#*
+\UpperOrSC{text}#*
+\NormalOrSC{text}#*
+\iffieldregex{field}{regex}{true}{false}#*
+\iffieldendswithpunct{field}{true}{false}#*
+\IfGivenIsInitial{arg1}{arg2}#*
+\multinamedelimorig#S
+\finalnamedelimorig#S
+\abntnum{number}#*
+\bibnameunderscore#*
+\nopunctdash#*
+# from abnt.cbx
+\UpperOrSCCite{text}#*
+\NormalOrSCCite{text}#*
+\IfGivenIsInit{arg1}{arg2}#*
+\origmkbibnamefamily#S
+\origmkbibnamegiven#S
+\origmkbibnameprefix#S
+\origmkbibnamesuffix#S
+\FirstWord{text}#*
+\addapud#*
+\apud{bibid}{bibid}#C
+\apud(pre){bibid}{bibid}#*C
+\apud(pre)(post){bibid}{bibid}#C
+\apud(pre)(post)[pre]{bibid}[pre]{bibid}#*C
+\apud[pre]{bibid}[pre]{bibid}#*C
+\apud[pre][post]{bibid}[pre][post]{bibid}#*C
+\apud(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#C
+\plaincite[prenote][postnote]{bibid}#*C
+\plaincite[postnote]{bibid}#*C
+\plaincite{bibid}#*C
+\citelastname[prenote][postnote]{bibid}#*C
+\citelastname[postnote]{bibid}#*C
+\citelastname{bibid}#*C
+\textapud{bibid}{bibid}#C
+\textapud{bibid}[post]{bibid}#*C
+\textapud[post]{bibid}{bibid}#*C
+\textapud[post]{bibid}[post]{bibid}#C
+\textapud[pre][post]{bibid}[pre][post]{bibid}#C
+\citeyearorsh*[prenote][postnote]{bibid}#*C
+\citeyearorsh*[postnote]{bibid}#*C
+\citeyearorsh*{bibid}#*C
+#endif
+
+#ifOption:style=abnt-ibid
+# loads abnt.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from abnt.bbx
+ittitles#true,false
+scbib#true,false
+nosl#true,false
+nosn#true,false
+noslsn#true,false
+repeattitles#true,false
+repeatfirstfields#true,false
+repeatfields#true,false
+usedashes#true,false
+indent#true,false
+extradate#true,false
+extrayear#true,false
+justify#true,false
+pretty#true,false
+citecount#true,false
+# from abnt.cbx
+sccite#true,false
+#endkeyvals
+# from abnt.bbx
+#include:xpatch
+\origbibsetup#S
+\FirstWordUpper{text}#*
+\FirstWordSC{text}#*
+\FirstWordLCSC{text}#*
+\traceparam{arg}#S
+\paramL#S
+\traceparamA#S
+\traceparamB#S
+\traceparamS#S
+\traceparamC{arg}#S
+\traceparamD{arg}#S
+\traceparamE#S
+\smartuppercase{text}#*
+\smartlowercase{text}#*
+\smartlcsc{text}#*
+\smartsc{text}#*
+\UpperOrSC{text}#*
+\NormalOrSC{text}#*
+\iffieldregex{field}{regex}{true}{false}#*
+\iffieldendswithpunct{field}{true}{false}#*
+\IfGivenIsInitial{arg1}{arg2}#*
+\multinamedelimorig#S
+\finalnamedelimorig#S
+\abntnum{number}#*
+\bibnameunderscore#*
+\nopunctdash#*
+# from abnt-ibid.cbx
+\UpperOrSCCite{text}#*
+\NormalOrSCCite{text}#*
+\IfInitial{arg1}{arg2}{arg3}#*
+\origmkbibnamefamily#S
+\origmkbibnamegiven#S
+\origmkbibnameprefix#S
+\origmkbibnamesuffix#S
+\mkidem{arg}#*
+\mkibid{arg}#*
+\mkopcit{arg}#*
+\mkloccit{arg}#*
+\addapud#*
+\apud{bibid}{bibid}#C
+\apud(pre){bibid}{bibid}#*C
+\apud(pre)(post){bibid}{bibid}#C
+\apud(pre)(post)[pre]{bibid}[pre]{bibid}#*C
+\apud[pre]{bibid}[pre]{bibid}#*C
+\apud[pre][post]{bibid}[pre][post]{bibid}#*C
+\apud(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#C
+#endif
+
+#ifOption:style=abnt-numeric
+# loads abnt.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from abnt.bbx
+ittitles#true,false
+scbib#true,false
+nosl#true,false
+nosn#true,false
+noslsn#true,false
+repeattitles#true,false
+repeatfirstfields#true,false
+repeatfields#true,false
+usedashes#true,false
+indent#true,false
+extradate#true,false
+extrayear#true,false
+justify#true,false
+pretty#true,false
+citecount#true,false
+# from abnt-numeric.cbx
+comp#true,false
+#endkeyvals
+# from abnt.bbx
+#include:xpatch
+\origbibsetup#S
+\FirstWordUpper{text}#*
+\FirstWordSC{text}#*
+\FirstWordLCSC{text}#*
+\traceparam{arg}#S
+\paramL#S
+\traceparamA#S
+\traceparamB#S
+\traceparamS#S
+\traceparamC{arg}#S
+\traceparamD{arg}#S
+\traceparamE#S
+\smartuppercase{text}#*
+\smartlowercase{text}#*
+\smartlcsc{text}#*
+\smartsc{text}#*
+\UpperOrSC{text}#*
+\NormalOrSC{text}#*
+\iffieldregex{field}{regex}{true}{false}#*
+\iffieldendswithpunct{field}{true}{false}#*
+\IfGivenIsInitial{arg1}{arg2}#*
+\multinamedelimorig#S
+\finalnamedelimorig#S
+\abntnum{number}#*
+\bibnameunderscore#*
+\nopunctdash#*
+#endif
+
 ### biblatex-acmart v0.1 ###
 #ifOption:style=acmauthoryear
 # from acmauthoryear.bbx
@@ -2490,6 +2697,36 @@ apamaxprtauth=%<number%>
 \nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
 #endif
 
+### biblatex-arthistory-bonn v1.2 ###
+#ifOption:style=arthistory-bonn
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from arthistory-bonn.bbx
+width=##L
+publisher#true,false
+jstor#true,false
+urn#true,false
+arthist#true,false
+enddot#true,false
+pagesfull#true,false
+# from arthistory-bonn.cbx
+firstcitefull#true,false
+allnamesfamilygiven#true,false
+namelinked#true,false
+#endkeyvals
+# from arthistory-bonn.bbx
+#include:csquotes
+\arthistoryversion#S
+\arthistorydate#S
+\labwidthsameline#*
+\titleaddondelim#*
+\volnumdelim#*
+\jourvoldelim#*
+\volissuedelim#*
+\exhibbibdaterangesep#*
+# from arthistory-bonn.cbx
+#include:xpatch
+#endif
+
 ### biblatex-bath v6.0 ###
 #ifOption:style=bath
 # from bath.bbx
@@ -2725,6 +2962,23 @@ citepages=#permit,suppress,omit,separate
 \mkfootnotecite{arg}#*
 \mkparencite{arg}#*
 \footnotecheck#*
+#endif
+
+### biblatex-enc v1.0 ###
+#ifOption:style=enc
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from enc.bbx
+annotatedBibliography#true,false
+# from enc.cbx
+postnote=#afterparen,inparen
+#endkeyvals
+# from enc.bbx
+\thebibitem#*
+\thelositem#*
+\begin{theshorthands}
+\end{theshorthands}
+# from enc.cbx
+\mkibid{arg}#*
 #endif
 
 ### biblatex-ext v0.15 ###
@@ -5216,6 +5470,137 @@ introcite=#false,plain,label
 \mkonepagegrouped{text}#*
 #endif
 
+### biblatex-iso690 v0.4.1 ###
+#ifOption:style=iso-alphabetic
+# loads iso.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from iso.bbx
+spacecolon#true,false
+pagetotal#true,false
+shortnumeration#true,false
+thesisinfoinnotes#true,false
+articlepubinfo#true,false
+currentlang#true,false
+noenddot#true,false
+#endkeyvals
+# from iso.bbx
+\stdidentifierspunct#*
+\dateaddonpunct#*
+\numerationpunct#*
+\addspacecolon#*
+\familynameformat{text}#*
+\mainlangbibstring{string}#*
+\mainlangbibstring[wrapper]{string}#*
+\mainlangbiblstring{string}#*
+\mainlangbiblstring[wrapper]{string}#*
+\mainlangbibsstring{string}#*
+\mainlangbibsstring[wrapper]{string}#*
+\mkmlpagetotal{text}#*
+\mkmlpagetotal[pagination]{text}#*
+\mkmlpageprefix{prefix}#*
+\mkmlpageprefix[pagination]{prefix}#*
+\addspcolon#*
+\mkopenendeddaterange#*
+#endif
+
+#ifOption:style=iso-authortitle
+# loads iso.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from iso.bbx
+spacecolon#true,false
+pagetotal#true,false
+shortnumeration#true,false
+thesisinfoinnotes#true,false
+articlepubinfo#true,false
+currentlang#true,false
+noenddot#true,false
+#endkeyvals
+# from iso.bbx
+\stdidentifierspunct#*
+\dateaddonpunct#*
+\numerationpunct#*
+\addspacecolon#*
+\familynameformat{text}#*
+\mainlangbibstring{string}#*
+\mainlangbibstring[wrapper]{string}#*
+\mainlangbiblstring{string}#*
+\mainlangbiblstring[wrapper]{string}#*
+\mainlangbibsstring{string}#*
+\mainlangbibsstring[wrapper]{string}#*
+\mkmlpagetotal{text}#*
+\mkmlpagetotal[pagination]{text}#*
+\mkmlpageprefix{prefix}#*
+\mkmlpageprefix[pagination]{prefix}#*
+\addspcolon#*
+\mkopenendeddaterange#*
+#endif
+
+#ifOption:style=iso-authoryear
+# loads iso.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from iso.bbx
+spacecolon#true,false
+pagetotal#true,false
+shortnumeration#true,false
+thesisinfoinnotes#true,false
+articlepubinfo#true,false
+currentlang#true,false
+noenddot#true,false
+#endkeyvals
+# from iso-authoryear.bbx
+\ifdatehasyearonly{true}{false}#*
+# from iso.bbx
+\stdidentifierspunct#*
+\dateaddonpunct#*
+\numerationpunct#*
+\addspacecolon#*
+\familynameformat{text}#*
+\mainlangbibstring{string}#*
+\mainlangbibstring[wrapper]{string}#*
+\mainlangbiblstring{string}#*
+\mainlangbiblstring[wrapper]{string}#*
+\mainlangbibsstring{string}#*
+\mainlangbibsstring[wrapper]{string}#*
+\mkmlpagetotal{text}#*
+\mkmlpagetotal[pagination]{text}#*
+\mkmlpageprefix{prefix}#*
+\mkmlpageprefix[pagination]{prefix}#*
+\addspcolon#*
+\mkopenendeddaterange#*
+#endif
+
+#ifOption:style=iso-numeric
+# loads iso.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from iso.bbx
+spacecolon#true,false
+pagetotal#true,false
+shortnumeration#true,false
+thesisinfoinnotes#true,false
+articlepubinfo#true,false
+currentlang#true,false
+noenddot#true,false
+#endkeyvals
+# from iso.bbx
+\stdidentifierspunct#*
+\dateaddonpunct#*
+\numerationpunct#*
+\addspacecolon#*
+\familynameformat{text}#*
+\mainlangbibstring{string}#*
+\mainlangbibstring[wrapper]{string}#*
+\mainlangbiblstring{string}#*
+\mainlangbiblstring[wrapper]{string}#*
+\mainlangbibsstring{string}#*
+\mainlangbibsstring[wrapper]{string}#*
+\mkmlpagetotal{text}#*
+\mkmlpagetotal[pagination]{text}#*
+\mkmlpageprefix{prefix}#*
+\mkmlpageprefix[pagination]{prefix}#*
+\addspcolon#*
+\mkopenendeddaterange#*
+#endif
+
 ### biblatex-juradiss v0.23 ###
 #ifOption:style=biblatex-juradiss
 # loads authortitle-dw.bbx
@@ -5592,6 +5977,19 @@ mladraft
 articletitle#true,false
 intitle#true,false
 #endkeyvals
+#endif
+
+### biblatex-nejm v0.5 ###
+#ifOption:style=nejm
+# from nejm.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articledoi#true,false
+articlein#true,false
+printlang#true,false
+#endkeyvals
+\biblatexnejmversionbbx#S
+\biblatexnejmpackagenamebbx#S
+\biblatexnejmsvnbbx#S
 #endif
 
 ### oscola v1.7 ###
@@ -6302,6 +6700,84 @@ articletitle#true,false
 #endkeyvals
 #endif
 
+### biblatex-socialscienceshuberlin v0.0.1 ###
+#ifOption:style=socialscienceshuberlin
+# from socialscienceshuberlin.bbx
+#include:xcolor
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+colornames#true,false
+#endkeyvals
+\socialscienceshuberlinversion#S
+\socialscienceshuberlindate#S
+sshuberlincolor#B
+# loads ext-authoryear.bbx and ext-authoryear.cbx
+\mkoutercitedelims{arg}#*
+\mkinnercitedelims{arg}#*
+\mkouterparencitedelims{arg}#*
+\mkinnerparencitedelims{arg}#*
+\mkoutertextcitedelims{arg}#*
+\mkinnertextcitedelims{arg}#*
+\mkouterfootcitedelims{arg}#*
+\mkinnerfootcitedelims{arg}#*
+\mkoutersupercitedelims{arg}#*
+\namenumberdelim#*
+\nonamenumberdelim#*
+\innametitledelim#*
+\extradateonlycompcitedelim#*
+\extradateonlycompciterangedelim#*
+\extranameonlycompcitedelim#*
+\extranameonlycompciterangedelim#*
+# from ext-dashed-common.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+dashed=#true,false,fullhash,bibnamehash
+#endkeyvals
+# from ext-biblatex-aux.def
+\DeclareOuterCiteDelims{cite cmd}{open delim}{close delim}
+\DeclareInnerCiteDelims{cite cmd}{open delim}{close delim}
+\UndeclareOuterCiteDelims{cite cmd}
+\UndeclareInnerCiteDelims{cite cmd}
+\UndeclareCiteDelims{cite cmd}
+\DeclareOuterCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareOuterCiteDelimsAlias*{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias{cite alias}{cite cmd}
+\DeclareInnerCiteDelimsAlias*{cite alias}{cite cmd}
+\RegisterCiteDelims{modifier}{cite cmd}
+\mkextblxsupercite{text}#*
+\mkextblxfootcite{text}#*
+\mkextblxfootcitetext{text}#*
+\mksmartcite{text}#*
+# from ext-standard.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+articlein#true,false
+citexref#true,false
+innamebeforetitle#true,false
+innameidem#true,false
+maintitleaftertitle#true,false
+introcite=#false,plain,label
+#endkeyvals
+\mkibid{arg}#*
+\introcitepunct#*
+\introcitebreak#*
+\introcitewidth#*
+\introcitesep#*
+\AtIntrocite{code}
+\AtIntrocite*{code}
+\titleaddonpunct#*
+\titlemaintitledelim#*
+\maintitletitledelim#*
+\voltitledelim#*
+\jourvoldelim#*
+\jourserdelim#*
+\servoldelim#*
+\volnumdatedelim#*
+\volnumdelim#*
+\sernumdelim#*
+\locdatedelim#*
+\locpubdelim#*
+\publocdelim#*
+\pubdatedelim#*
+#endif
+
 ### biblatex-software v1.2-4 ###
 #ifOption:bibstyle=software
 # from software.bbx
@@ -6403,6 +6879,15 @@ compactdois#true,false
 \possciteauthor{bibid}#SC
 \possciteauthor[postnote]{bibid}#SC
 \possciteauthor[prenote][postnote]{bibid}#SC
+#endif
+
+### univie-ling v1.17 ###
+#ifOption:style=univie-ling
+# from univie-ling.bbx
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+issueeditor#true,false
+#endkeyvals
+\mkbibdateunified{arg1}{arg2}{arg3}#*
 #endif
 
 ### windycity 2021-12-04 ###
