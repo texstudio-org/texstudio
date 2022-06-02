@@ -1,17 +1,44 @@
 # tabularray package
-# Matthew Bertucci 3/2/2022 for v2022A
+# Matthew Bertucci 2022/06/02 for v2022B
 
 #include:expl3
 #include:xparse
 #include:ninecolors
 
-\begin{tblr}{preamble%keyvals}#\tabular
-\begin{tblr}[outer specs]{preamble}#\tabular
+\begin{tblr}{preamble}#\tabular
+\begin{tblr}[outer specs%keyvals]{preamble}#\tabular
 \end{tblr}
+
+\SetTblrOuter{options%keyvals}
+\SetTblrOuter[envname]{options%keyvals}
+
+#keyvals:\begin{tblr}#c,\SetTblrOuter#c
+halign=#l,c,r
+valign=#t,m,b
+l
+c
+r
+t
+m
+b
+headsep=##L
+footsep=##L
+presep=##L
+postsep=##L
+theme=%<theme%>
+caption=%<caption text%>
+entry=%<short caption text%>
+label=##l
+baseline=#t,T,m,b,B,%<row number%>
+long
+tall
+expand
+#endkeyvals
+
 \SetTblrInner{options%keyvals}
 \SetTblrInner[envname]{options%keyvals}
 
-#keyvals:\begin{tblr}#c,\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c,\begin{booktabs}#c,\begin{longtabs}#c,\begin{talltabs}#c
+#keyvals:\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c
 colspec={%<col types%>}
 rowspec={%<row types%>}
 width=##L
@@ -51,32 +78,6 @@ measure=#vbox
 baseline=#t,T,m,b,B,%<row number%>
 #endkeyvals
 
-\SetTblrOuter{options%keyvals}
-\SetTblrOuter[envname]{options%keyvals}
-
-#keyvals:\SetTblrOuter#c
-halign=#l,c,r
-valign=#t,m,b
-l
-c
-r
-t
-m
-b
-headsep=##L
-footsep=##L
-presep=##L
-postsep=##L
-theme=%<theme%>
-caption=%<caption text%>
-entry=%<short caption text%>
-label=##l
-baseline=#t,T,m,b,B,%<row number%>
-long
-tall
-expand
-#endkeyvals
-
 \SetHline{cols}{styles%keyvals}#*
 \SetHline[index]{cols}{styles%keyvals}#*
 \SetHlines{cols}{styles%keyvals}#*
@@ -88,12 +89,15 @@ expand
 \cline[styles%keyvals]{index}#*
 
 #keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c
+dash=#solid,dashed,dotted
 solid
 dashed
 dotted
 text=
 wd=##L
+%<width%>
 fg=#%color
+%<color%>
 leftpos=
 rightpos=
 endpos#true,false
@@ -120,9 +124,14 @@ belowspace+=##L
 
 #keyvals:\SetVline#c,\SetVlines#c,\vline#c,\rline#c
 dash=#solid,dashed,dotted
+solid
+dashed
+dotted
 text=
 wd=##L
+%<width%>
 fg=#%color
+%<color%>
 abovepos=
 belowpos=
 #endkeyvals
@@ -134,17 +143,19 @@ belowpos=
 
 #keyvals:\SetCell#c,\SetCells#c
 halign=#l,c,r
-valign=#t,m,b,h,f
 l
 c
 r
+valign=#t,m,b,h,f
 t
 m
 b
 h
 f
 wd=##L
+%<width%>
 bg=#%color
+%<background color%>
 fg=#%color
 font=%<font commands%>
 mode=#math,imath,dmath,text
@@ -160,18 +171,19 @@ appto=%<text%>
 
 #keyvals:\SetRow#c,\SetRows#c
 halign=#l,c,r
-valign=#t,m,b,h,f
 l
 c
 r
+valign=#t,m,b,h,f
 t
 m
 b
 h
 f
 ht=##L
-wd=##L
+%<height%>
 bg=#%color
+%<background color%>
 fg=#%color
 font=%<font commands%>
 mode=#math,imath,dmath,text
@@ -193,18 +205,20 @@ appto=%<text%>
 
 #keyvals:\SetColumn#c,\SetColumns#c
 halign=#l,c,r
-valign=#t,m,b,h,f
 l
 c
 r
+valign=#t,m,b,h,f
 t
 m
 b
 h
 f
 wd=##L
-co=
+%<width%>
+co=%<coeff%>
 bg=#%color
+%<background color%>
 fg=#%color
 font=%<font commands%>
 mode=#math,imath,dmath,text
@@ -318,11 +332,11 @@ footsep=##L
 presep=##L
 postsep=##L
 theme=#%tblrtheme
-caption=%<text%>
-entry=%<text%>
+caption={%<text%>}
+entry={%<text%>}
 label=##l
-note{%<name%>}=%<text%>
-remark{%<name%>}=%<text%>
+note{%<name%>}={%<text%>}
+remark{%<name%>}={%<text%>}
 #endkeyvals
 
 \DefTblrTemplate{element%keyvals}{template name}{definition}#*
@@ -365,7 +379,9 @@ foot
 
 #keyvals:\SetTblrStyle#c
 fg=#%color
+%<color%>
 font=%<commands%>
+%<font commands%>
 halign=#l,c,r
 l
 c
@@ -387,12 +403,16 @@ hang=##L
 
 \NewTblrLibrary{name}{code}#*
 \UseTblrLibrary{library%keyvals}
+# note \UseTblrLibrary is not a package loading command, however each tblrlibrary
+# except "counter" loads the package of the same name, so the #u designation is convenient
+\UseTblrLibrary{package}#Su
 
 #keyvals:\UseTblrLibrary#c
 amsmath
 booktabs
 counter
 diagbox
+functional
 siunitx
 varwidth
 #endkeyvals
@@ -444,6 +464,21 @@ varwidth
 \addrowspace[space%l]#*
 \addlinespace#*
 \addlinespace[space%l]#*
+
+# from functional tblrlibrary
+#keyvals:\begin{tblr}#c,\SetTblrOuter#c
+evaluate=%<function%>
+#endkeyvals
+
+#keyvals:\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c
+process=%<function%>
+#endkeyvals
+
+\cellGetText{rownum}{colnum}#*
+\cellSetText{rownum}{colnum}{text}#*
+\cellSetStyle{rownum}{colnum}{style}#*
+\rowSetStyle{rownum}{style}#*
+\columnSetStyle{style}#*
 
 # from diagbox tblrlibrary
 \diagbox{lower}{upper}#*
