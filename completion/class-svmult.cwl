@@ -400,6 +400,17 @@ tintedcolor#B
 \vec{text%plain}
 \verbatimindent#*
 
+trailer#B
+example#B
+question#B
+important#B
+warning#B
+programcode#B
+tips#B
+overview#B
+backgroundinformation#B
+legaltext#B
+
 # from x11names option of xcolor
 AntiqueWhite1#B
 AntiqueWhite2#B
