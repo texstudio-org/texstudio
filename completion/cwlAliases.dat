@@ -914,3 +914,7 @@ univie-ling-wlg:
 class-univie-ling-wlg
 latex-document
 tex
+zbMATH:
+class-zbMATH
+latex-document
+tex
