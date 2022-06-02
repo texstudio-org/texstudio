@@ -65,6 +65,7 @@ disablejfam
 \chaptermark{code}
 \Cjascale
 \frontmatter#n
+\heisei#*
 \ifptexmin#*
 \if西暦#*
 \mainmatter#n
