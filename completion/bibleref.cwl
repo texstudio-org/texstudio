@@ -1,10 +1,23 @@
 # bibleref package
-# Matthew Bertucci 10/23/2021 for v1.25
+# Matthew Bertucci 2022/05/30 for v1.25
 
 #include:ifthen
 #include:fmtcount
 #include:amsgen
 #include:ifxetex
+
+#keyvals:\usepackage/bibleref#c,\biblerefstyle
+default
+jerusalem
+anglosaxon
+JEH
+MHRA
+NTG
+MLA
+chicago
+text
+%biblerefstyle
+#endkeyvals
 
 \bibleverse{book title}
 \bibleverse{book title}(chapter:verse)
@@ -15,11 +28,12 @@
 \BRchvsep#*
 \BRperiod#*
 
-\biblerefstyle{style}
+\biblerefstyle{style name%keyvals}
 \setbooktitle{name}{new title}
 \setindexbooktitle{name}{title%plain}
 \addbiblebook{name}{title%plain}
-\newbiblerefstyle{style name}{commands}
+\brthreeabbrvname
+\newbiblerefstyle{style name}{commands}#s#%biblerefstyle
 
 \ibibleverse{book title}
 \ibibleverse{book title}(chapter:verse)
@@ -40,3 +54,21 @@
 
 \biblerefindex#*
 \biblerefmap{label}{new sort key}#*
+
+# not documented
+\brabbrvname#*
+\braltabbrvname#*
+\BRbkchsep#*
+\BRbooknumberstyle{text}#*
+\BRbookof#*
+\BRbooktitlestyle{text}#*
+\BRchapterstyle{text}#*
+\BRepistlenumberstyle{text}#*
+\BRepistleof#*
+\BRepistleto#*
+\BRepistletothe#*
+\brfullname#*
+\BRgospel#*
+\BRotherchapterstyle{text}#*
+\BRversestyle{text}#*
+\BRversesuffixstyle{text}#*

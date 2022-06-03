@@ -1,5 +1,5 @@
 # cgloss4e package
-# Matthew Bertucci 11/22/2021
+# Matthew Bertucci 2022/06/01 for v4e
 
 \gll
 \glll
@@ -26,6 +26,9 @@
 \donewords#*
 \twosent#*
 \threesent#*
+\eachwordone#*
+\eachwordtwo#*
+\eachwordthree#*
 
 # obsolete
 \glend#S

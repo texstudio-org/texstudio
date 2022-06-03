@@ -1,5 +1,5 @@
 # gamebooklib package
-# Matthew Bertucci 1/18/2022 for v1.1
+# Matthew Bertucci 2022/05/29 for v1.3
 
 #include:environ
 #include:macroswap
@@ -10,6 +10,7 @@
 #keyvals:\usepackage/gamebooklib#c
 verbose
 endpage
+jukebox
 footnote
 noshuffle
 # options passed to lcg
@@ -34,6 +35,7 @@ quiet
 \thegentries
 \gentrycount#*
 \gentryheader{counterIdx}{fixedIdx}{code}{title%text}#*
+\gentryshouldoutput#*
 \gentryfooter#*
 \thefncounter#*
 \outputfootnotes{maxIdx}#*

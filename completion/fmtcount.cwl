@@ -145,9 +145,4 @@ ngermanb
 italian
 #endkeyvals
 
-\latinnumeralstring{counter}
-\latinnumeralstring{counter}[prefix options]
-\latinnumeralstringnum{number}
-\latinnumeralstringnum{number}[prefix options]
-
 \ProvidesFCLanguage{language}#*

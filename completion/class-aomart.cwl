@@ -1,5 +1,5 @@
 # aomart class
-# Matthew Bertucci 2/12/2022 for v1.25
+# Matthew Bertucci 2022/05/31 for v1.27
 
 #include:class-amsart
 #include:fancyhdr
@@ -51,6 +51,9 @@ twoside
 \givenname{name}
 \surname{name}
 \fulladdress{full address%text}
+\contrib{name}
+\contrib[role%text]{name}
+\contribs#*
 \copyrightnote{note text%text}
 \keyword{keyword%text}
 \subject{primary or secondary}{classification scheme}{subject}
@@ -87,12 +90,19 @@ twoside
 \fullpageref[prefix text%text]{label}#r
 \newtheorem[code]{envname}{caption}#*N
 \newtheorem*[code]{envname}{caption}#*N
+\funding{sponsor}{grant-id}
+\funding[text]{sponsor}{grant-id}
 \doi{DOI%URL}#U
 \mr{mathscinet path%URL}#U
 \zbl{zentralblatt path%URL}#U
 \jfm{jahrbuch path%URL}#U
 \arxiv{arxiv path%URL}#U
 \annalsurl{URL}#*U
+
+#keyvals:\bibliographystyle#c
+aomplain
+aomalpha
+#endkeyvals
 
 # deprecated
 \specialdigits#S

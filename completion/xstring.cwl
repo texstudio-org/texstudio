@@ -30,6 +30,8 @@
 \IfDecimal{number}{true}{false}#*
 \integerpart#*
 \decimalpart#*
+\afterinteger#*
+\afterdecimal#*
 
 \IfStrEq{stringA}{stringB}{true}{false}#*
 \IfStrEq*{stringA}{stringB}{true}{false}#*
@@ -166,3 +168,8 @@
 
 \StrRemoveBraces{string}#*
 \StrRemoveBraces{string}[name%cmd]#*d
+
+\restorexstringcatcode#S
+\xstringdate#S
+\xstringname#S
+\xstringversion#S

@@ -939,7 +939,15 @@ int LatexTableModel::findRowBreak(const QString &text, int startCol) const
 {
 	bool previousIsBackslash = false;
 	int braceDepth = 0;
-	for (int col=startCol; col < text.length(); col++) {
+    for(int col=startCol; col < text.length(); ++col) {
+        if(text.mid(col,2)=="\\{"){
+            ++col;
+            continue;
+        }
+        if(text.mid(col,2)=="\\}"){
+            ++col;
+            continue;
+        }
 		switch (text.at(col).toLatin1()) {
 		case '{':
 			braceDepth++;

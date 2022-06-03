@@ -1,5 +1,5 @@
-# dowith package
-# Matthew Bertucci 10/27/2021 for v0.3
+# domore package
+# Matthew Bertucci 10/27/2021 for v0.32
 
 \DoWith{%<repeat%>}%<<arg1><arg2>...<argN>%>\StopDoing#*
 \DoWithMore{%<repeat%>}%<<arg1><arg2>...<argN>%>\StopDoing#*

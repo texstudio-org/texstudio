@@ -1,5 +1,5 @@
 # xtemplate package
-# Matthew Bertucci 9/19/2021
+# Matthew Bertucci 2022/05/31 for release 2022/05/30
 
 #include:expl3
 
@@ -8,7 +8,6 @@
 \KeyValue{key name}#*
 \DeclareTemplateCode{object type}{template}{args}{key bindings}{code}#*
 \AssignTemplateKeys#*
-\EvaluateNow{expression}#*
 \DeclareInstance{object type}{instance}{template}{parameters}#*
 \IfInstanceExistT{object type}{instance}{true}{false}#*
 \IfInstanceExistF{object type}{instance}{true}{false}#*
@@ -18,6 +17,7 @@
 \EditTemplateDefaults{object type}{template}{new defaults}#*
 \EditInstance{object type}{instance}{new values}#*
 \DeclareRestrictedTemplate{object type}{parent template}{new template}{parameters}#*
+\SetTemplateKeys{object type}{template}{keyvals}#*
 \ShowInstanceValues{object type}{instance}#*
 \ShowTemplateCode{object type}{template}#*
 \ShowTemplateDefaults{object type}{template}#*

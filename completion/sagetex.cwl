@@ -1,10 +1,10 @@
 # sagetex package
-# Matthew Bertucci 1/31/2022 for v3.5
+# Matthew Bertucci 2022/05/28 for v3.6
 
 #include:verbatim
 #include:fancyvrb
 #include:listings
-#include:color
+#include:xcolor
 #include:graphicx
 #include:makecmds
 #include:ifpdf

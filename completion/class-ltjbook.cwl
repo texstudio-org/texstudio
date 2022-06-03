@@ -62,16 +62,17 @@ disablejfam
 \chapter*{title}#L1
 \chapter[short title]{title}#L1
 \chapter{title}#L1
-\chaptermark{code}
+\chaptermark{code}#*
 \Cjascale
 \frontmatter#n
+\heisei#*
 \ifptexmin#*
 \if西暦#*
 \mainmatter#n
-\postchaptername
-\postpartname
-\prechaptername
-\prepartname
+\postchaptername#*
+\postpartname#*
+\prechaptername#*
+\prepartname#*
 \ptexminfalse#*
 \ptexmintrue#*
 \thechapter#*

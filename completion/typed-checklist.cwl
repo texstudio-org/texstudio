@@ -1,26 +1,30 @@
 # typed-checklist package
-# Matthew Bertucci 1/18/2022 for v2.0
+# Matthew Bertucci 2022/05/31 for v2.1
 
 #include:xkeyval
 #include:etoolbox
 #include:xcolor
 #include:bbding
 #include:marginnote
-#include:longtable
-#include:tabu
+#include:array
+#include:xltabular
+
+#keyvals:\usepackage/typed-checklist#c
+withAsciilist#true,false
+tablepkg=#ltablex,tabularx,xltabular
+onecounter#true,false
+layout=#list,table,hidden
+input-dates=#d.m.y,m/d/y,y-m-d
+output-dates=#d.m.y,m/d/y,y-m-d,d.m.yy,m/d/yy,yy-m-d,d.m.,m/d,m-d,same,datetime
+strict-dates#true,false
+#endkeyvals
 
 #ifOption:tablepkg=ltablex
 #include:ltablex
 #endif
 
 #ifOption:tablepkg=tabularx
-#include:array
 #include:tabularx
-#endif
-
-#ifOption:tablepkg=xltabular
-#include:array
-#include:xltabular
 #endif
 
 #ifOption:withAsciilist
