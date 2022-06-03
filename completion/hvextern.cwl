@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2022/05/21 for v0.26
+# Matthew Bertucci 2022/06/03 for v0.28
 
 #include:shellesc
 #include:xkeyval
@@ -55,6 +55,7 @@ biber#true,false
 xindex#true,false
 xindexOptions={%<xindex options%>}
 includegraphic#true,false
+output#true,false
 inline#true,false
 frame#true,false
 framesep=##L
@@ -317,7 +318,10 @@ keywordcommentsemicolon={%<keywords%>}{%<keywords%>}{%<keywords%>}
 podcomment#true,false
 #endkeyvals
 
+\defMarkerType{name}{start-main}{stop-main}{start-preamble}{stop-preamble}
 \ResetKeys
+
+\hvExternLineWidth#*
 \perCent#*
 \DoubleperCent#*
 \NumChar#*
