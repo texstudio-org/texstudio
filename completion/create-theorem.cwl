@@ -1,5 +1,5 @@
 # create-theorem package
-# Matthew Bertucci 2022-04-17 for release 2022-04-16
+# Matthew Bertucci 2022-06-02 for release 2022-06-01
 
 #include:l3keys2e
 #include:aliascnt
@@ -34,6 +34,7 @@ use name={%<envname1;envname2;...%>}
 name={%<\NameTheorem keyvals%>}
 use name={%<envname1;envname2;...%>}
 style=%<theorem style%>
+qed=%<symbol%>
 parent counter=%<counter%>
 shared counter=%<counter%>
 numberless
@@ -45,6 +46,7 @@ copy existed=%<envname%>
 
 #keyvals:\SetTheorem#c
 name={%<\NameTheorem keyvals%>}
+qed=%<symbol%>
 parent counter=%<counter%>
 shared counter=%<counter%>
 #endkeyvals

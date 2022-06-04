@@ -1,12 +1,12 @@
-# svmult class
-# Matthew Bertucci 2022/06/01 for v5.9
+# svmono class
+# Matthew Bertucci 2022/06/02 for v5.10
 
 #include:xcolor
 # loads x11names option of xcolor
 #include:ntheorem
 # loads thmmarks and thref options of ntheorem
 
-#keyvals:\documentclass/svmult#c
+#keyvals:\documentclass/svmono#c
 natbib
 nospthms
 envcountresetchap
@@ -14,14 +14,17 @@ envcountresetsect
 envcountsame
 envcountchap
 envcountsect
+numart
 nosecnum
+nochapnum
+nonum
 vecphys
 vecarrow
 norunningheads
 referee
 openbib
 oribibl
-chaprefs
+sectrefs
 footinfo
 openany
 fleqn
@@ -43,9 +46,6 @@ tintedcolor#B
 \end{tinted}
 #endif
 
-\begin{abbrsymblist}
-\begin{abbrsymblist}[largelabel]
-\end{abbrsymblist}
 \begin{acknowledgement}
 \end{acknowledgement}
 \begin{backgroundinformation}{heading%text}
@@ -139,7 +139,6 @@ tintedcolor#B
 \begin{warning}{heading%text}
 \end{warning}
 
-\abbrsymbname#*
 \abstract*{text}
 \abstract{text}
 \ackname#*
@@ -151,7 +150,6 @@ tintedcolor#B
 \allmodesymb{cmd}{char}#*
 \andname#*
 \at#S
-\authcount{integer}#*
 \authorrunning{names}
 \authrun#*
 \backmatter
@@ -173,7 +171,6 @@ tintedcolor#B
 \bibname#*
 \bibsection#*
 \boxtext{text}
-\bppendix#*
 \calctocindent#*
 \capstrut#*
 \captionstyle#*
@@ -190,7 +187,7 @@ tintedcolor#B
 \chapter{title}#L1
 \chaptermark{code}#*
 \chaptername#*
-\chpbibl#S
+\secbibl#S
 \circledmark[color]{text}#*
 \circledmark{text}#*
 \claimname#*
@@ -199,14 +196,11 @@ tintedcolor#B
 \clearheadinfo#*
 \conjecturename#*
 \contriblistname#*
-\contributors#L1
-\contributors[title]#L1
 \corollaryname#*
 \customizhead#*
 \D#m
 \definitionname#*
 \describelabel{arg}#*
-\dominitoc
 \E#m
 \email{email%URL}#U
 \emailname#*
@@ -232,10 +226,13 @@ tintedcolor#B
 \greeksym{arg}#*
 \greeksymbold{arg}#*
 \grole#m
+\guidelinedefn#*
+\guidemaketitle#*
+\guidetitle{text}#*
+\guidetitle*{text}#*
 \guisection{title}#*L2
 \guisubsection{title}#*L3
 \headlineindent#*
-\hyperhrefextend#*
 \I
 \iand#*
 \idxquad#*
@@ -269,7 +266,6 @@ tintedcolor#B
 \mottostyle#*
 \mottowidth#*
 \mpicplace{width}{height}
-\mtaddtocont{arg}#*
 \nand#*
 \nixchapnum#*
 \nocaption
@@ -339,7 +335,7 @@ tintedcolor#B
 \svhline#t
 \svitemindent#*
 \svlanginfo#*
-\SVMultOpt#S
+\SVMonoOpt#S
 \svparindent#*
 \tabcapgap#*
 \tens{text%plain}
@@ -359,9 +355,7 @@ tintedcolor#B
 \title*{text}
 \titlerunning{text}
 \titrun#*
-\tocaftauthskip#*
 \tocauthor{names}
-\tocauthorstyle#*
 \tocchpnum#*
 \tocparanum#*
 \tocparatotal#*
@@ -373,7 +367,6 @@ tintedcolor#B
 \tocsubsubsecnum#*
 \tocsubsubsectotal#*
 \toctitle{text}
-\toctitlestyle#*
 \ts#*
 \twocaptionwidth{width1%l}{width2%l}
 \ualpha

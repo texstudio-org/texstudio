@@ -32,9 +32,9 @@ force-eol#true,false
 #endkeyvals
 
 \newenvsc{envname}#N
+\newenvsc{envname}[initial keys%keyvals]#N
 
 ## for the moment keyval completion in last arg is broken
-## \newenvsc{envname][initial keys]
 ## #keyvals:\newenvsc
 ## store-env=%<seq name%>
 ## print-env#true,false

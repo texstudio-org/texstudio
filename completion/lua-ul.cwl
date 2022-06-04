@@ -1,5 +1,5 @@
 # lua-ul package
-# Matthew Bertucci 8/10/2021 for v0.1.4
+# Matthew Bertucci 2022/06/03 for v0.2.0
 
 #include:luatex
 
@@ -9,6 +9,16 @@ soul
 #endkeyvals
 
 \underLine{text}
+\underLine[options%keyvals]{text}
+
+#keyvals:\underLine,\ul,\textul
+textcolor#true,false
+color=#%color
+top=##L
+bottom=##L
+height=##L
+#endkeyvals
+
 \highLight{text}
 \highLight[color]{text}
 \strikeThrough{text}
@@ -16,7 +26,9 @@ soul
 
 #ifOption:soul
 \ul{text}
+\ul[options%keyvals]{text}
 \textul{text}#*
+\textul[options%keyvals]{text}#*
 \hl{text}
 \hl[color]{text}
 \texthl{text}#*
@@ -28,5 +40,5 @@ soul
 #endif
 
 \LuaULSetHighLightColor{color}
-\newunderlinetype{cmd}{leaderscmd}#*d
-\newunderlinetype{cmd}[context]{leaderscmd}#*d
+\newunderlinetype{cmd}{leaderscmd%definition}#d
+\newunderlinetype{cmd}[context specifier]{leaderscmd%definition}#d
