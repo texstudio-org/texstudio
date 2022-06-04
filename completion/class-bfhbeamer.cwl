@@ -82,7 +82,7 @@ BFH-table#B
 BFH-tablehead#B
 \BFHarraystretch#*
 \BFHarrayrulewidth#*
-\setupBfhTabular
+\setupBfhTabular#*
 \begin{bfhTabular}{preamble}
 \begin{bfhTabular}[pos]{preamble}
 \end{bfhTabular}
