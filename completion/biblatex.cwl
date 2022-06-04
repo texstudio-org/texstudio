@@ -18,9 +18,9 @@
 ## 3.1 Package Options ##
 #keyvals:\usepackage/biblatex#c
 backend=#bibtex,bibtex8,biber
-style=%<file%>
-bibstyle=%<file%>
-citestyle=%<file%>
+style=#authoryear,authortitle,alphabetic,numeric,alphabetic-verb,authortitle-comp,authortitle-ibid,authortitle-icomp,authortitle-tcomp,authortitle-terse,authortitle-ticomp,authoryear-comp,authoryear-ibid,authoryear-icomp,debug,draft,numeric-comp,numeric-verb,reading,verbose,verbose-ibid,verbose-inote,verbose-note,verbose-trad1,verbose-trad2,verbose-trad3
+bibstyle=#authoryear,authortitle,numeric,alphabetic,verbose,reading,draft,debug
+citestyle=#authoryear,authortitle,alphabetic,numeric,numeric-comp,numeric-verb,alphabetic-verb,authoryear-comp,authoryear-ibid,authoryear-icomp,authortitle-comp,authortitle-ibid,authortitle-icomp,authortitle-terse,authortitle-tcomp,authortitle-ticomp,verbose,verbose-ibid,verbose-note,verbose-inote,verbose-trad1,verbose-trad2,verbose-trad3,reading,draft,debug
 natbib#true,false
 mcite#true,false
 casechanger=#auto,latex2e,expl3
