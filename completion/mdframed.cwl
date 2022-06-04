@@ -186,6 +186,7 @@ frametitleleftline#true,false
 frametitlerightline#true,false
 frametitlerule#true,false
 frametitletopline#true,false
+hidealllines#true,false
 ignorelastdescenders#true,false
 leftline#true,false
 ntheorem#true,false
