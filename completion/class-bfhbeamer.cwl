@@ -82,12 +82,12 @@ BFH-table#B
 BFH-tablehead#B
 \BFHarraystretch#*
 \BFHarrayrulewidth#*
-\setupBfhTabular#*
-\begin{bfhTabular}{preamble}
-\begin{bfhTabular}[pos]{preamble}
+\setupBfhTabular
+\begin{bfhTabular}{preamble}#\tabular
+\begin{bfhTabular}[pos]{preamble}#\tabular
 \end{bfhTabular}
-\begin{bfhTblr}#S
-\end{bfhTblr}#S
+\begin{bfhTblr}{preamble}#*\tabular
+\end{bfhTblr}#*
 
 # from table option of xcolor
 #include:colortbl
