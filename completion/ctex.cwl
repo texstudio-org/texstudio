@@ -26,10 +26,10 @@ linespread=%<number%>
 \heiti
 \fangsong
 \kaishu
-\lishu#*
-\youyuan#*
-\yahei#*
-\pingfang#*
+\lishu
+\youyuan
+\yahei
+\pingfang
 
 \ctexset{options%keyvals}
 
