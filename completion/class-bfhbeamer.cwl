@@ -5,6 +5,7 @@
 #include:class-beamer
 # loads table option of xcolor
 #include:beamerthemeBFH
+#include:bfhmodule
 
 #keyvals:\documentclass/bfhbeamer#c
 authorontitle#true,false
@@ -62,9 +63,11 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 
 #ifOption:beamerarticle
 #include:bfhpub
+#include:beamerarticle
 #endif
 #ifOption:beamerarticle=true
 #include:bfhpub
+#include:beamerarticle
 #endif
 
 #ifOption:printNotes
@@ -73,16 +76,6 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 #ifOption:paperNotes
 #include:handoutWithNotes
 #endif
-
-\LoadBFHModule{list of modules%keyvals}
-
-#keyvals:\LoadBFHModule
-tabular
-listings
-terminal
-boxes
-rules
-#endkeyvals
 
 # tabular BFH module loaded by default
 BFH-table#B
@@ -98,9 +91,13 @@ BFH-tablehead#B
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
 \rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
 \rowcolors*[commands]{row}{color}{color}#S
 \showrowcolors
 \hiderowcolors
