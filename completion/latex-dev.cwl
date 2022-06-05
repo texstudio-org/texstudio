@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 10/21/2021
+# Matthew Bertucci 2022/06/05 for June 2022 release
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
@@ -64,6 +64,8 @@
 \CurrentOption#*
 \DebugHooksOff#*
 \DebugHooksOn#*
+\DebugMarksOff#*
+\DebugMarksOn#*
 \DebugShipoutsOff#*
 \DebugShipoutsOn#*
 \DeclareCommandCopy{cmd}{def}#d
@@ -87,6 +89,8 @@
 \DeclareFontShapeChangeRule{shape1}{shape2}{result1}{result2}#*
 \DeclareFontSubstitution{encoding}{family}{series}{shape}#*
 \DeclareHookRule{hook}{label1}{relation}{label2}#*
+\DeclareKeys{declarations}#*
+\DeclareKeys[family]{declarations}#*
 \DeclareMathAccent{cmd}{type}{sym-font}{slot}#*d
 \DeclareMathAlphabet{math-alph%cmd}{encoding}{family}{series}{shape}#*d
 \DeclareMathDelimiter{cmd}{type}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
@@ -121,6 +125,8 @@
 \DeclareTextSymbol{cmd}{encoding}{slot}#*d
 \DeclareTextSymbolDefault{cmd}{encoding}#*
 \DeclareUnicodeCharacter{hexadecimal}{definition}#*
+\DeclareUnknownKeyHandler{code}#*
+\DeclareUnknownKeyHandler[family]{code}#*
 \DisableGenericHook{hook}#*
 \DisableHook{hook}#*
 \DiscardShipoutBox#*
@@ -128,13 +134,19 @@
 \EndModuleRelease#*
 \EveryShipout{code}#*
 \ExecuteOptions{optionlist}#*
+\ExpandArgs{spec}#*
 \ExplSyntaxOff#*
 \ExplSyntaxOn#*
+\FirstMark{class%plain}#*
+\FirstMark[region]{class%plain}#*
 \GenericError{continuation}{message%text}{help location%text}{help info%text}#*
 \GenericInfo{continuation}{message%text}#*
 \GenericWarning{continuation}{message%text}#*
 \GetDocumentCommandArgSpec{cmd}#*
 \GetDocumentEnvironmentArgSpec{envname}#*
+\IfBlankF{arg}{false code}#*
+\IfBlankT{arg}{true code}#*
+\IfBlankTF{arg}{true code}{false code}#*
 \IfBooleanF{arg}{falseCode}
 \IfBooleanT{arg}{trueCode}
 \IfBooleanTF{arg}{trueCode}{falseCode}
@@ -145,6 +157,8 @@
 \IfFontSeriesContextTF{face}{true code}{false code}#*
 \IfFormatAtLeastTF{date}{true code}{false code}#*
 \IfHookEmptyTF{hook}{true code}{false code}#*
+\IfMarksEqualTF{class%plain}{pos1}{pos2}{true code}{false code}#*
+\IfMarksEqualTF[region]{class%plain}{pos1}{pos2}{true code}{false code}#*
 \IfNoValueF{arg}{ValueCode}
 \IfNoValueT{arg}{-NoValue-Code}
 \IfNoValueTF{arg}{-NoValue-Code}{ValueCode}
@@ -159,7 +173,10 @@
 \IncludeInRelease{date}{command}{description}#*
 \IndentBox#*
 \InputIfFileExists{file}{then}{else}#*i
+\InsertMark{class%plain}{text}#*
 \LastDeclaredEncoding#*
+\LastMark{class%plain}#*
+\LastMark[region]{class%plain}#*
 \LoadClass[optionlist]{class}#*u
 \LoadClass[optionlist]{class}[release]#*u
 \LoadClass{class}#*u
@@ -177,6 +194,7 @@
 \NewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
 \NewExpandableDocumentCommand{cmd}{xargs}{def}#*d
 \NewHook{hook}#*
+\NewMarkClass{class%plain}#*
 \NewMirroredHookPair{hook1}{hook2}#*
 \NewModuleRelease{date}{name}#*
 \NewReversedHook{hook}#*
@@ -193,6 +211,8 @@
 \PopDefaultHookLabel#*
 \PreviousTotalPages#*
 \ProcessedArgument#*
+\ProcessKeyOptions#*
+\ProcessKeyOptions[family]#*
 \ProcessList{list}{cmd}#*
 \ProcessOptions#*
 \ProcessOptions*#*
@@ -232,6 +252,8 @@
 \RequirePackageWithOptions{package}[release]#*u
 \ReverseBoolean#*
 \SetDefaultHookLabel{default label}#*
+\SetKeys{keyvals}#*
+\SetKeys[family]{keyvals}#*
 \SetMathAlphabet{math-alph%cmd}{version}{encoding}{family}{series}{shape}#*d
 \SetSymbolFont{sym-font}{version}{encoding}{family}{series}{shape}#*
 \ShipoutBox#*
@@ -246,14 +268,30 @@
 \SplitArgument{number}{tokens}#*
 \SplitList{tokens}#*
 \TextSymbolUnavailable{arg}#*
+\TopMark{class%plain}#*
+\TopMark[region]{class%plain}#*
 \TrimSpaces#*
 \UndeclareTextCommand{cmd}{encoding}#*
 \UseHook{hook}#*
 \UseLegacyTextSymbols#*
+\UseName{csname}#*
 \UseOneTimeHook{hook}#*
 \UseRawInputEncoding#*
 \UseTextAccent{encoding}{cmd}{text}#*
 \UseTextSymbol{encoding}{cmd}#*
+
+# document metadata
+\DocumentMetadata{options%keyvals}#*
+#keyvals:\DocumentMetadata#c
+backend=%<backend%>
+pdfversion=%<version%>
+uncompress
+lang=%<lang%>
+pdfstandard=#A-1b,A-2a,A-2b,A-2u,A-3a,A-3b,A-3u,A-4 
+colorprofiles={%<options%>}
+testphase=#phase-I,phase-II
+debug={%<options%>}
+#endkeyvals
 
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
