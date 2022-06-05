@@ -111,7 +111,6 @@ hideerrors
 \ifdefinecolors#*
 \definecolorstrue#*
 \definecolorsfalse#*
-\DefineNamedColor{type}{name}{model-list}{spec-list}#Ss#%color
 \definecolors{id-list}#*
 \providecolors{id-list}#*
 \ifglobalcolors#*
@@ -119,7 +118,6 @@ hideerrors
 \globalcolorsfalse#*
 \xglobal#*
 
-\nopagecolor#*
 \boxframe{width}{height}{depth}#*
 \begin{testcolors}#*\tabular
 \begin{testcolors}[model-list]#*\tabular
