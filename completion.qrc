@@ -115,6 +115,7 @@
 <file>completion/antanilipsum.cwl</file>
 <file>completion/antpolt.cwl</file>
 <file>completion/anttor.cwl</file>
+<file>completion/apacite.cwl</file>
 <file>completion/appendix.cwl</file>
 <file>completion/appendixnumberbeamer.cwl</file>
 <file>completion/apptools.cwl</file>
@@ -335,6 +336,12 @@
 <file>completion/bidipoem.cwl</file>
 <file>completion/bidishadowtext.cwl</file>
 <file>completion/biditools.cwl</file>
+<file>completion/bidituftefloat.cwl</file>
+<file>completion/bidituftegeneralstructure.cwl</file>
+<file>completion/bidituftehyperref.cwl</file>
+<file>completion/bidituftesidenote.cwl</file>
+<file>completion/bidituftetitle.cwl</file>
+<file>completion/bidituftetoc.cwl</file>
 <file>completion/bigdelim.cwl</file>
 <file>completion/bigfoot.cwl</file>
 <file>completion/bigintcalc.cwl</file>
@@ -535,6 +542,8 @@
 <file>completion/class-beamerswitch.cwl</file>
 <file>completion/class-beilstein.cwl</file>
 <file>completion/class-bfhbeamer.cwl</file>
+<file>completion/class-biditufte-book.cwl</file>
+<file>completion/class-biditufte-handout.cwl</file>
 <file>completion/class-boek3.cwl</file>
 <file>completion/class-boek.cwl</file>
 <file>completion/class-bookcover.cwl</file>
@@ -710,11 +719,13 @@
 <file>completion/class-slides.cwl</file>
 <file>completion/class-smfart.cwl</file>
 <file>completion/class-smfbook.cwl</file>
+<file>completion/class-sn-jnl.cwl</file>
 <file>completion/class-sr-vorl.cwl</file>
 <file>completion/class-sslides.cwl</file>
 <file>completion/class-stage.cwl</file>
 <file>completion/class-standalone.cwl</file>
 <file>completion/class-suftesi.cwl</file>
+<file>completion/class-svmono.cwl</file>
 <file>completion/class-svmult.cwl</file>
 <file>completion/class-talk.cwl</file>
 <file>completion/class-tikz-kalender.cwl</file>
@@ -1881,6 +1892,7 @@
 <file>completion/multienum.cwl</file>
 <file>completion/multienv.cwl</file>
 <file>completion/multiexpand.cwl</file>
+<file>completion/multifootnote.cwl</file>
 <file>completion/multilang.cwl</file>
 <file>completion/multilang-sect.cwl</file>
 <file>completion/multilang-tags.cwl</file>
