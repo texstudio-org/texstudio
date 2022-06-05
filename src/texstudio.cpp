@@ -2886,6 +2886,7 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 		} else if (edView->editor->isContentModified() || edView->editor->isInConflict()) {
 			removeDiffMarkers();// clean document from diff markers first
 			edView->editor->save(); //only save modified documents
+            edView->document->markViewDirty();//force repaint of line markers (yellow -> green)
 
 			if (edView->editor->fileName().endsWith(".bib")) {
 				QString temp = edView->editor->fileName();
