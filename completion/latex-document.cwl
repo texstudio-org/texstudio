@@ -3,6 +3,7 @@
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
+# Matthew Bertucci 2022/06/05 for June 2022 release
 #include:latex-dev
 #include:textcomp
 \abstractname#*
@@ -169,6 +170,7 @@
 \date{text}
 \depth#*
 \descriptionlabel{code}#*
+\dimeval{dimen expression}#*
 \documentclass[keyvals]{class}
 \documentclass{class}
 \em#*
@@ -196,6 +198,7 @@
 \footnote[number]{text}
 \footnote{text}
 \footref{label}#r
+\fpeval{fp expression%definition}
 \frac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \framebox(xdimen,ydimen)[position]{text}
 \framebox(xdimen,ydimen){text}
@@ -222,6 +225,7 @@
 \index{entry}
 \input{file}#i
 \inputencodingname#*
+\inteval{int expression}
 \intop#*m
 \it#*
 \item %|
@@ -333,6 +337,7 @@
 \pagebreak[number]
 \pagenumbering{numstyle%keyvals}
 \pageref{label}#r
+\pageref*{label}#r
 \pagestyle{pagestyle%keyvals}
 \paragraph*{title}#L5
 \paragraph[short title]{title}#L5
@@ -360,7 +365,9 @@
 \r{letter}
 \rbrack#*
 \ref{label}#r
-\Ref{label}#*r
+\ref*{label}#r
+\Ref{label}#r
+\Ref*{label}#r
 \refname
 \relbar#*m
 \Relbar#*m
@@ -390,6 +397,7 @@
 \sffamily
 \shortstack[position]{text\\text}
 \shortstack{text\\text}
+\skipeval{skip expression}#*
 \sl#*
 \sloppy#*
 \slshape
