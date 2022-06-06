@@ -797,7 +797,7 @@ autoload.options=
 #repl:"' “
 #endif
 
-### english.ldf v3.3r (and variants american, australian, british, canadian, newzealand) ###
+### english.ldf v3.3r (and variants american, australian, british, canadian, newzealand, UKenglish, USenglish) ###
 #ifOption:english
 \captionsenglish
 \dateenglish
@@ -914,6 +914,48 @@ autoload.options=
 \britishhyphenmins#*
 \americanhyphenmins#*
 \newzealandhyphenmins#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+\glossaryname#*
+#endif
+
+#ifOption:UKenglish
+\captionsUKenglish
+\dateUKenglish
+\extrasUKenglish
+\noextrasUKenglish
+\englishhyphenmins#*
+\britishhyphenmins#*
+\americanhyphenmins#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+\glossaryname#*
+#endif
+
+#ifOption:USenglish
+\captionsUSenglish
+\dateUSenglish
+\extrasUSenglish
+\noextrasUSenglish
+\englishhyphenmins#*
+\britishhyphenmins#*
+\americanhyphenmins#*
 \prefacename#*
 \bibname#*
 \chaptername#*
