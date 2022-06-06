@@ -1881,6 +1881,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		}
 
 		//  interface
+        if(interfaceFontFamily.isEmpty()){
+            interfaceFontFamily = QApplication::font().family();
+        }
 		if (changedProperties.contains(&interfaceFontFamily) || changedProperties.contains(&interfaceFontSize)) {
 #ifdef Q_OS_MAC
 			// workaround for unwanted font changes when changing the desktop
