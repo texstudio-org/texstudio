@@ -1835,16 +1835,19 @@ PDFDocument *PDFWidget::getPDFDocument()
 	return doc;
 }
 
-void PDFWidget::setPageOffset(int offset, bool setAsDefault){
+void PDFWidget::setPageOffset(int offset, bool setAsDefault, bool refresh){
 	int lastPageOffset = pageOffset;
 	if (0 <= offset && offset < gridx)
 		pageOffset = offset;
-	else
-		pageOffset = 0;
-	if (setAsDefault)
-		return;
-	globalConfig->pageOffset = pageOffset;
+	else {
+		pageOffset = gridx - 1;
+		globalConfig->pageOffset = pageOffset;
+	}
+	if (!setAsDefault)
+		globalConfig->pageOffset = pageOffset;
 
+	if (!refresh)
+		return;
 	int delta = pageOffset - lastPageOffset;
 	if (delta != 0) {
 		PDFScrollArea	*scrollArea = getScrollArea();
@@ -1860,7 +1863,7 @@ void PDFWidget::setPageOffsetClick(const QPoint &p){
 	int pi = gridPageIndex(p);
 	if (pi < 0 || singlePageStep) return;
 	int pageOffset = pi % gridx;
-	setPageOffset(pageOffset);
+	setPageOffset(pageOffset, false, true);
 }
 
 int PDFWidget::getPageOffset() const
@@ -1876,10 +1879,13 @@ void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault)
 		return;
 	gridx = gx;
 	gridy = gy;
-	if (pageOffset >= gridx) {
-		pageOffset = 0;	// suppress reloadPage in setPageOffset
-		setPageOffset(pageOffset, false);
-	}
+	if (gridx == 1)
+		setPageOffset(0, true, true);
+	else if (gridx == 2 && gridy == 1)
+		setPageOffset(1, false, true);
+	else
+		setPageOffset(globalConfig->pageOffset, true, true);
+
 	if (setAsDefault)
 		return;
 	int pi = realPageIndex;
@@ -3517,9 +3523,6 @@ void PDFDocument::setGrid()
 		int p = gs.indexOf("x");
 		globalConfig->gridx = gs.left(p).toInt();
 		globalConfig->gridy = gs.mid(p + 1).toInt();
-		if (globalConfig->gridx == 2 && globalConfig->gridy == 1) {
-			pdfWidget->setPageOffset(1);
-		}
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy);
 	}
     pdfWidget->windowResized();
