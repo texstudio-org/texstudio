@@ -92,7 +92,7 @@ mdyy
 pdf
 #endkeyvals
 
-#keyvals:\DTMsettimestyle#c,\DTMsetstyle#c
+#keyvals:\DTMsettimestyle#c
 hmmss
 #endkeyvals
 
@@ -146,16 +146,16 @@ hhmm
 
 ## 8 Package Options ##
 \DTMsetup{options%keyvals}
-#keyvals:\DTMsetup
-yearmonthsep=
-monthdaysep=
-dayyearsep=
-datesep=
-hourminsep=
-minsecsep=
-timesep=
-datetimesep=
-timezonesep=
+#keyvals:\DTMsetup,\usepackage/datetime2#c
+yearmonthsep=%<separator%>
+monthdaysep=%<separator%>
+dayyearsep=%<separator%>
+datesep=%<separator%>
+hourminsep=%<separator%>
+minsecsep=%<separator%>
+timesep=%<separator%>
+datetimesep=%<separator%>
+timezonesep=%<separator%>
 showseconds#true,false
 showdate#true,false
 showzone#true,false
@@ -164,6 +164,12 @@ showisoZ#true,false
 useregional=#false,text,numeric,num
 showdow#true,false
 warn#true,false
+#endkeyvals
+
+#keyvals:\usepackage/datetime2#c
+style=%<style name%>
+calc
+%<language%>
 #endkeyvals
 
 \DTMsetregional
@@ -365,21 +371,21 @@ dutch-numeric
 
 # datetime2-english v1.05
 #keyvals:\DTMlangsetup#c
-dowdaysep=
-daymonthsep=
-monthyearsep=
-datesep=
-timesep=
-datetimesep=
-timezonesep=
+dowdaysep=%<separator%>
+daymonthsep=%<separator%>
+monthyearsep=%<separator%>
+datesep=%<separator%>
+timesep=%<separator%>
+datetimesep=%<separator%>
+timezonesep=%<separator%>
 abbr#true,false
 mapzone#true,false
 ord=#level,raise,omit,sc
 showdayofmonth#true,false
 showyear#true,false
-monthdaysep=
-dayyearsep=
-dowmonthsep=
+monthdaysep=%<separator%>
+dayyearsep=%<separator%>
+dowmonthsep=%<separator%>
 zone=#std,standard,dst,daylight,atlantic,eastern,central,mountain,pacific,alaska,hawaii-aleutian,hawaii,aleutian,samoa,chamorro,clear,newfoundland,central-western,western,christmas,lord-howe,norfolk,cocos,keeling
 #endkeyvals
 \DTMenglishordinal{number}#*
