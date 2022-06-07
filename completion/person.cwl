@@ -1,5 +1,5 @@
 # person package
-# Matthew Bertucci 10/31/2021 for v2.32
+# Matthew Bertucci 2022/06/07 for v2.32
 
 #include:ifthen
 #include:datatool
@@ -82,3 +82,36 @@
 \getpersongender{cmd}{label}#*d
 \getpersonname{cmd}{label}#*d
 \getpersonfullname{cmd}{label}#*d
+
+# not in main documentation
+\andname#*
+\femalechild#*
+\femalechildren#*
+\femaleobjpronoun#*
+\femaleparent#*
+\femalepossadj#*
+\femaleposspronoun#*
+\femalepronoun#*
+\femalesibling#*
+\femalesiblings#*
+\malechild#*
+\malechildren#*
+\maleobjpronoun#*
+\maleparent#*
+\malepossadj#*
+\maleposspronoun#*
+\malepronoun#*
+\malesibling#*
+\malesiblings#*
+\persongender{label}#*
+\personlastsep#*
+\personsep#*
+\pluralchild#*
+\pluralobjpronoun#*
+\pluralparent#*
+\pluralpossadj#*
+\pluralposspronoun#*
+\pluralpronoun#*
+\pluralsibling#*
+\theperson#*
+\twopeoplesep#*
