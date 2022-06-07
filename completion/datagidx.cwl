@@ -1,5 +1,5 @@
 # datagidx package
-# Matthew Bertucci 10/31/2021 for v2.32
+# Matthew Bertucci 2022/06/07 for v2.32
 
 #include:datatool
 #include:etoolbox
@@ -11,49 +11,64 @@
 #include:afterpage
 
 #keyvals:\usepackage/datagidx#c
-final
+utf8#true,false
+optimize=#off,low,high
+columns=%<integer%>
+child=#named,noname
+namecase=#nochange,uc,lc,firstuc,capitalise
+namefont=%<font cmd%>
+postname=%<text%>
+postdesc=#dot,none
+prelocation=#none,enspace,space,dotfill,hfill
+location=#hide,list,first
+see=#comma,brackets,dot,space,nosep,semicolon,location
+symboldesc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
+compositor=%<symbol%>
 draft
+final
+verbose#true,false
+nowarn#true,false
 #endkeyvals
 
 ## 7.1 Defining Index/Glossary Databases ##
-\loadgidx{filename}{title%plain}
-\loadgidx[options%keyvals]{filename}{title%plain}
-\newgidx{db}{title%plain}#s#%db
-\newgidx[options%keyvals]{db}{title%plain}#s#%db
+\loadgidx{file}{title%text}#i
+\loadgidx[options%keyvals]{file}{title%text}#i
+\newgidx{db}{title%text}#s#%db
+\newgidx[options%keyvals]{db}{title%text}#s#%db
 
 #keyvals:\loadgidx,\newgidx
 showgroups#true,false
 style=#index,indexalign,align,gloss,dict
-sort=
+sort={%<sort cmd%>}
 balance#true,false
-heading=
-postheading=
+heading=%<text%>
+postheading=%<text%>
 #endkeyvals
 
 ## 7.2 Locations ##
 \DTLgidxCounter#*
 \DTLgidxAddLocationType{cmd}
-\DTLgidxSetCompositor
+\DTLgidxSetCompositor{symbol}
 
 ## 7.3 Defining Terms ##
 \newterm{name}
 \newterm[options%keyvals]{name}
 
-#keyvals:\newterm#c
-database=
-label=
-sort=
-parent=
-text=
-description=
-plural=
-symbol=
-short=
-long=
-shortplural=
-longplural=
-see=
-seealso=
+#keyvals:\newterm,\newacro
+database=%<database name%>
+label=%<label%>
+sort=%<sort key%>
+parent=%<parent entry%>
+text=%<text%>
+description=%<text%>
+plural=%<plural form%>
+symbol=%<symbol%>
+short=%<short form%>
+long=%<long form%>
+shortplural=%<short plural form%>
+longplural=%<long plural form%>
+see=%<label%>
+seealso=%<label%>
 #endkeyvals
 
 \DTLgidxSetDefaultDB{label%plain}
@@ -74,7 +89,6 @@ seealso=
 \DTLgidxStripBackslash{cmd}
 
 ## 7.4 Referencing Terms ##
-
 \useentry{label%plain}{field}
 \Useentry{label%plain}{field}
 \USEentry{label%plain}{field}
@@ -109,17 +123,6 @@ seealso=
 \acronymfont#*
 \DTLgidxAcrStyle{long}{short}
 
-#keyvals:\newacro
-database=
-label=
-parent=
-symbol=
-shortplural=
-longplural=
-see=
-seealso=
-#endkeyvals
-
 \acr{label%plain}
 \acrpl{label%plain}
 \Acr{label%plain}#*
@@ -138,15 +141,15 @@ seealso=
 \printterms[options%keyvals]
 
 #keyvals:\printterms
-database=
+database=%<database name%>
 postdesc=#dot,none
 prelocation=#none,enspace,space,dotfill,hfill
 location=#hide,list,first
 symboldesc=#symbol,desc,(symbol) desc,desc (symbol),symbol desc,desc symbol
 columns=%<integer%>
 namecase=#nochange,uc,lc,firstuc,capitalise
-namefont=
-postname=
+namefont=%<font cmd%>
+postname=%<text%>
 see=#comma,brackets,dot,space,nosep,semicolon,location
 child=#named,noname
 showgroups#true,false
@@ -154,11 +157,11 @@ style=#index,indexalign,align,gloss,dict
 symbolwidth=##L
 locationwidth=##L
 childsort#true,false
-heading=
-postheading=
-sort=
+heading=%<text%>
+postheading=%<text%>
+sort={%<sort cmd%>}
 balance#true,false
-condition=
+condition={%<condition%>}
 #endkeyvals
 
 \DTLgidxChildSep#*
@@ -170,3 +173,93 @@ condition=
 \datagidxdictindent#*
 
 \DTLgidxCurrentdb
+
+# not in main documentation
+\datagidxbalancefalse#*
+\datagidxbalancetrue#*
+\datagidxchildend#*
+\datagidxchilditem#*
+\datagidxchildstart#*
+\datagidxconvertchars#*
+\datagidxcurrentgroup#*
+\datagidxdb{entry}#*
+\datagidxdescwidth#*
+\datagidxdictparshape#*
+\datagidxdoseealso{arg}#*
+\datagidxend#*
+\datagidxextendedtoascii#*
+\datagidxgroupheader#*
+\datagidxgroupsep#*
+\datagidxhighoptfilename{filename}#*
+\datagidxindent#*
+\datagidxitem#*
+\datagidxlastlabel#*
+\datagidxlink{arg1}{arg2}#*
+\datagidxlocalign#*
+\datagidxlocationwidth#*
+\datagidxnamewidth#*
+\datagidxprevgroup#*
+\datagidxseealsoend#*
+\datagidxseealsostart#*
+\datagidxsetstyle{style}#*
+\datagidxshowgroupsfalse#*
+\datagidxshowgroupstrue#*
+\datagidxshowifdraft{arg}#*
+\datagidxstart#*
+\datagidxstripaccents#*
+\datagidxsymalign#*
+\datagidxsymbolwidth#*
+\datagidxtarget{arg}#*
+\datagidxtermkeys#*
+\datagidxwordifygreek#*
+\dtldofirstlocation#*
+\dtldolocationlist#*
+\DTLgidxChildCountLabel#*
+\DTLgidxChildren#*
+\DTLgidxChildrenSeeAlso#*
+\DTLgidxChildStyle{text}#*
+\DTLgidxDictHead#*
+\DTLgidxDisableHyper#*
+\DTLgidxDoSeeOrLocation#*
+\DTLgidxEnableHyper#*
+\DTLgidxForeachEntry{body}#*
+\DTLgidxFormatAcr{label}{long}{short}#*
+\DTLgidxFormatAcrUC{label}{long}{short}#*
+\DTLgidxFormatDesc{text}#*
+\DTLgidxFormatSee{tag}{label list}#*
+\DTLgidxFormatSeeAlso{tag}{label list}#*
+\DTLgidxGroupHeaderTitle{text}#*
+\DTLgidxLocation#*
+\DTLgidxLocationF{loc1}{loc2}#*
+\DTLgidxLocationFF{loc1}{loc2}#*
+\DTLgidxLocationSep#*
+\DTLgidxNameCase{text}#*
+\DTLgidxNameFont{text}#*
+\DTLgidxNoHeading#*
+\DTLgidxPostChildName#*
+\DTLgidxPostDescription#*
+\DTLgidxPostName#*
+\DTLgidxPreLocation#*
+\DTLgidxSee#*
+\DTLgidxSeeAlso#*
+\DTLgidxSeeList{label list}#*
+\DTLgidxSeeTagFont{text}#*
+\DTLgidxSetColumns{integer}#*
+\DTLgidxSymbolDescLeft#*
+\DTLgidxSymbolDescRight#*
+\DTLgidxSymbolDescription#*
+\DTLgidxSymDescSep#*
+\DTLidxFormatSeeItem{label}#*
+\DTLidxSeeLastSep#*
+\DTLidxSeeSep#*
+\ifdatagidxbalance#*
+\ifdatagidxshowgroups#*
+\ifnewtermfield{name}{true}{false}#*
+\newtermfield{name}#*
+\postnewtermhook#*
+\printtermsrestoreonecolumn#*
+\printtermsstartpar#*
+\seealsoname#*
+\seename#*
+\theDTLgidxChildCount#*
+\theHDTLgidxChildCount#*
