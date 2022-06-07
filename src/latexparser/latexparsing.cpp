@@ -249,8 +249,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             continue;
                         }
                     }else{
-                        verbatimMode = false;
-                        stack.pop();
+                        // second option, env in optionalCommandName
+                        if(verbatimStart.optionalCommandName.isEmpty() || verbatimStart.optionalCommandName==env){
+                            verbatimMode = false;
+                            stack.pop();
+                        }else{
+                            continue;
+                        }
+
                     }
                 } else
                     continue;
@@ -568,7 +574,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     lexed.append(tk);
                 }
                 if (!commandStack.isEmpty() && commandStack.top().level == level) {
-                    CommandDescription &cd = commandStack.top();
+                    CommandDescription cd = commandStack.top();
                     if (cd.args <= 0 && cd.bracketArgs <= 0) {
                         // all args handled, stop handling this command
                         commandStack.pop();
@@ -578,6 +584,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             tk3.dlh = dlh;
                             tk3.level = level - 1;
                             tk3.type = Token::verbatim;
+                            QString env=cd.optionalCommandName.mid(7,cd.optionalCommandName.length()-8); // dirty solution, does not use tokens as it should
+                            tk3.optionalCommandName=env;
                             stack.push(tk3);
                         }
                     }
