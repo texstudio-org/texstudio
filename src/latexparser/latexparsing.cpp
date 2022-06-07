@@ -240,8 +240,18 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             if (tk2.type == Token::openBrace && tk3.type == Token::word) {
                 QString env = line.mid(tk3.start, tk3.length);
                 if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing corresponds to open !
-                    verbatimMode = false;
-                    stack.pop();
+                    Token verbatimStart=stack.top();
+                    if(verbatimStart.length>0){
+                        if(verbatimStart.getText()==env){
+                            verbatimMode = false;
+                            stack.pop();
+                        }else{
+                            continue;
+                        }
+                    }else{
+                        verbatimMode = false;
+                        stack.pop();
+                    }
                 } else
                     continue;
             } else
@@ -519,6 +529,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                         tk3.dlh = dlh;
                                         tk3.level = level - 1;
                                         tk3.type = Token::verbatim;
+                                        tk3.start=tk2.start; // store verbatim env name (fix #2386, \end{diffVerbatim} was falsely used to close verbatim)
+                                        tk3.length=tk2.length;
                                         stack.push(tk3);
                                     }
                                 } else { // only care for further arguments if not in verbatim mode (see minted)
