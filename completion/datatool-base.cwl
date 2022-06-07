@@ -12,6 +12,7 @@
 #keyvals:\usepackage/datatool-base#c
 verbose#true,false
 math=#fp,pgfmath
+utf8#true,false
 #endkeyvals
 
 #ifOption:math=pgfmath
@@ -192,6 +193,8 @@ math=#fp,pgfmath
 \dtlparsewords{phrase}{handler cmd}#*
 \dtlforint#*
 \dtlgforint#*
+\to{arg}#S
+\step{arg}#S
 \ifdtlverbose#*
 \dtlverbosetrue#*
 \dtlverbosefalse#*
