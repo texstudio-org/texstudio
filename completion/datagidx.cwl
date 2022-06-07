@@ -54,7 +54,7 @@ postheading=%<text%>
 \newterm{name}
 \newterm[options%keyvals]{name}
 
-#keyvals:\newterm,\newacro
+#keyvals:\newterm#c,\newacro#c
 database=%<database name%>
 label=%<label%>
 sort=%<sort key%>
