@@ -211,6 +211,7 @@ lastfoot={%|}
 \dtlbeforerow#*
 \dtlafterrow#*
 \dtlrownum#*
+\dtlcolumnnum#*
 \dtldbname#*
 \dtlgetrow{db%special}{row index}#*
 \dtlgetrowforvalue{db%special}{col index}{value}#*
@@ -238,6 +239,7 @@ lastfoot={%|}
 \theHDTLrowi#*
 \theHDTLrowii#*
 \theHDTLrowiii#*
+\dtlforeachlevel#*
 \dtlshowdb{db%special}#*
 \dtlshowdbkeys{db%special}#*
 \dtlshowtype{db%special}{dbkey}#*
