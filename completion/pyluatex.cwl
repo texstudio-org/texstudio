@@ -1,9 +1,10 @@
 # pyluatex package
-# Matthew Bertucci 3/12/2022 for v0.4.3
+# Matthew Bertucci 2022/06/06 for v0.5.0
 
 #include:luatex
 #include:expl3
 #include:kvoptions
+#include:atveryend
 
 #keyvals:\usepackage/pyluatex#c
 executable=%<path%>
@@ -26,6 +27,7 @@ verbose#true,false
 ignoreerrors
 verbose
 #endkeyvals
+\pyif{test}{then clause}{else clause}
 \begin{python}#V
 \end{python}
 \begin{pythonq}#V
