@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2022/04/30 for v3.74
+# tbraun 4.11.2008; Matthew Bertucci 2022/06/07 for v3.76
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -104,9 +104,12 @@ mapdigits
 \localedate[options%keyvals]{year}{month}{day}
 
 #keyvals:\localedate
-calendar=
-variant=
+calendar=%<calendar%>
+variant=%<variant%>
 #endkeyvals
+
+\babelcalendar{calendar}{year-macro%cmd}{month-macro%cmd}{day-macro%cmd}#d
+\babelcalendar[YYYY-MM-DD]{calendar}{year-macro%cmd}{month-macro%cmd}{day-macro%cmd}#d
 
 \languagename
 \iflanguage{language}{true}{false}
