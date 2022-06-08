@@ -8,9 +8,11 @@
 showboxes
 noshowtext
 absolute
+relative
 overlay
-verbose
 quiet
+verbose
+discardcontent
 #endkeyvals
 
 \begin{textblock}{hsize}(hpos,vpos)
@@ -39,6 +41,7 @@ discardcontent#true,false
 \TPReferencePosition{val1,val2}
 \TPHorizModule
 \TPVertModule
+\ifTPshowboxes#*
 \TPshowboxestrue
 \TPshowboxesfalse
 \TPboxrulesize
@@ -50,5 +53,4 @@ discardcontent#true,false
 \textblockrulecolour{color}#*
 \textblockrulecolor{color}
 \tekstblokkulur{color}#*
-\textblockrulecolor{color}#*
 \tekstblokroolkulur{color}#*
