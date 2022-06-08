@@ -749,7 +749,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 #if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
     int dpi=QApplication::desktop()->logicalDpiX();
 #else
-    int dpi=72; // how to access main screen dpi?
+    int dpi = qRound(QGuiApplication::primaryScreen()->physicalDotsPerInch()); // main screen dpi
+	if (dpi < 10 || dpi > 1000)
+		dpi = 96;
 #endif
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, dpi, &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
