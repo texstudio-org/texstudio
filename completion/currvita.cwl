@@ -1,14 +1,25 @@
 # currvita.sty
 # tbraun 11/15/2006
-\begin{cv}{heading of the curriculum vitae}
+
+#include:ifthen
+
+#keyvals:\usepackage/currvita#c
+LabelsAligned
+TextAligned
+openbib
+ManyBibs
+NoDate
+#endkeyvals
+
+\begin{cv}{heading of the curriculum vitae%text}
 \end{cv}
-\begin{cvlist}{heading of the list}\item
+\begin{cvlist}{heading of the list%text}\item
 \end{cvlist}
 \cvplace{location}
 \cvheadingfont
 \cvlistheadingfont
 \cvlabelfont
-\cvlabelwidth
-\cvlabelskip
-\cvlabelsep
+\cvlabelwidth#L
+\cvlabelskip#L
+\cvlabelsep#L
 \cvbibname
