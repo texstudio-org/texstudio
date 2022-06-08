@@ -241,22 +241,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 QString env = line.mid(tk3.start, tk3.length);
                 if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing corresponds to open !
                     Token verbatimStart=stack.top();
-                    if(verbatimStart.length>0){
-                        if(verbatimStart.getText()==env){
-                            verbatimMode = false;
-                            stack.pop();
-                        }else{
-                            continue;
-                        }
+                    // second option, env in optionalCommandName
+                    if(verbatimStart.optionalCommandName.isEmpty() || verbatimStart.optionalCommandName==env){
+                        verbatimMode = false;
+                        stack.pop();
                     }else{
-                        // second option, env in optionalCommandName
-                        if(verbatimStart.optionalCommandName.isEmpty() || verbatimStart.optionalCommandName==env){
-                            verbatimMode = false;
-                            stack.pop();
-                        }else{
-                            continue;
-                        }
-
+                        continue;
                     }
                 } else
                     continue;
@@ -535,8 +525,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                         tk3.dlh = dlh;
                                         tk3.level = level - 1;
                                         tk3.type = Token::verbatim;
-                                        tk3.start=tk2.start; // store verbatim env name (fix #2386, \end{diffVerbatim} was falsely used to close verbatim)
-                                        tk3.length=tk2.length;
+                                        tk3.optionalCommandName=env; // store verbatim env name (fix #2386, \end{diffVerbatim} was falsely used to close verbatim)
                                         stack.push(tk3);
                                     }
                                 } else { // only care for further arguments if not in verbatim mode (see minted)
