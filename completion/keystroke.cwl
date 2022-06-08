@@ -1,5 +1,14 @@
 # keystroke package
-# Matthew Bertucci 8/23/2021 for v1.6
+# Matthew Bertucci 2022/06/07 for v1.6
+
+#include:graphics
+
+#keyvals:\usepackage/keystroke#c
+english
+german
+french
+spanish
+#endkeyvals
 
 \Spacebar
 \Enter
@@ -25,4 +34,4 @@
 \Scroll
 \Break
 \NumLock
-\keystroke{arg}
+\keystroke{text%plain}
