@@ -1015,8 +1015,8 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			int space = cmd.indexOf(' ');
 			if (space == -1) space = cmd.size();
 			if (cmd.startsWith(TXS_CMD_PREFIX) && internalCommands.contains(cmd.left(space))) {
-				QStringList exp=parseExtendedCommandLine(cmd, options.mainFile, options.currentFile, options.currentLine);
-				res.commands << CommandToRun(exp.first()+" "+parameters);
+                QStringList exp=parseExtendedCommandLine(cmd+" "+parameters, options.mainFile, options.currentFile, options.currentLine);
+                res.commands << CommandToRun(exp.first());
 				res.commands.last().parentCommand = res.commands.last().command;
 				if (user) res.commands.last().flags |= RCF_CHANGE_PDF;
 				continue;
