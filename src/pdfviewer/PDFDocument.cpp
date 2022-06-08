@@ -1664,9 +1664,10 @@ void PDFWidget::updateCursor(const QPoint &pos)
 void PDFWidget::adjustSize()
 {
 	if (pages.empty()) return;
-	QSize pageSize = (maxPageSizeFDpiAdjusted() * scaleFactor).toSize();
-	pageSize.rwidth() = pageSize.rwidth() * gridx + (gridx - 1) * GridBorder;
-	pageSize.rheight() = pageSize.rheight() * gridy + (gridy - 1) * GridBorder;
+	QSizeF pageSizeF = (maxPageSizeFDpiAdjusted() * scaleFactor);
+	QSize pageSize;
+	pageSize.rwidth() = qRound(pageSizeF.rwidth() * gridx + (gridx - 1) * GridBorder);
+	pageSize.rheight() = qRound(pageSizeF.rheight() * gridy + (gridy - 1) * GridBorder);
 	if (pageSize != size()) {
 		PDFScrollArea *scrollArea = getScrollArea();
 		if (!scrollArea) return;
