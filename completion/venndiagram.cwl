@@ -1,5 +1,5 @@
 # venndiagram package
-# Matthew Bertucci 9/21/2021 for v1.2
+# Matthew Bertucci 2021/09/21 for v1.2
 
 #include:xkeyval
 #include:tikz
@@ -14,31 +14,31 @@
 
 #keyvals:\begin{venndiagram3sets},\begin{venndiagram2sets}
 shade=#%color
-labelA=
-labelB=
-labelOnlyA=
-labelOnlyB=
+labelA=%<label text%>
+labelB=%<label text%>
+labelOnlyA=%<label text%>
+labelOnlyB=%<label text%>
 radius=##L
 hgap=##L
 vgap=##L
 overlap=##L
 showframe#true,false
-tikzoptions=
+tikzoptions={%<TikZ options%>}
 #endkeyvals
 
 #keyvals:\begin{venndiagram3sets}
-labelC=
-labelOnlyC=
-labelOnlyAB=
-labelOnlyAC=
-labelOnlyBC=
-labelABC=
-labelNotABC=
+labelC=%<label text%>
+labelOnlyC=%<label text%>
+labelOnlyAB=%<label text%>
+labelOnlyAC=%<label text%>
+labelOnlyBC=%<label text%>
+labelABC=%<label text%>
+labelNotABC=%<label text%>
 #endkeyvals
 
 #keyvals:\begin{venndiagram2sets}
-labelAB=
-labelNotAB=
+labelAB=%<label text%>
+labelNotAB=%<label text%>
 #endkeyvals
 
 \fillA#/venndiagram3sets,venndiagram2sets
@@ -83,3 +83,6 @@ labelNotAB=
 \ifvennoldpgf#*
 \vennoldpgftrue#*
 \vennoldpgffalse#*
+\ifvennshowframe#*
+\vennshowframetrue#*
+\vennshowframefalse#*
