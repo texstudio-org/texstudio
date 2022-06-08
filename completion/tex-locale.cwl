@@ -1,5 +1,5 @@
 # tex-locale package
-# Matthew Bertucci 1/22/2022 for v1.0
+# Matthew Bertucci 2022/01/22 for v1.0
 
 #include:etoolbox
 #include:xfor
@@ -68,6 +68,10 @@ currency=#official,unofficial,sym,tex
 #endif
 #ifOption:inputenc=utf8
 #include:inputenc
+#endif
+#ifOption:inputenc=utf8x
+#include:inputenc
+#include:ucs
 #endif
 
 #ifOption:datetime=iso
