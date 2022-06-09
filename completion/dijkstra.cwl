@@ -32,7 +32,7 @@ path-sep=
 \initdijk
 
 \formatnodewithprev{arg1}{arg2}#*
-\highlightfistnode{arg}#*
+\highlightfirstnode{arg}#*
 \highlightnode{arg1}{arg2}#*
 \dijkname#S
 \dijkver#S
