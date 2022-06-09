@@ -12,3 +12,6 @@
 \definirseparateurs{sep_line}{sep_members}{sep_terms}#*
 \definirespacements{space_members}{space_terms}#*
 \definirespacements[%<dimen1%>,%<dimen2%>]{%<space_members%>}{%<space_terms%>}#*
+\aanom#S
+\aaversion#S
+\aadate#S
