@@ -4,6 +4,11 @@
 #include:xstring
 #include:fp
 
+#keyvals:\usepackage/spreadtab#c
+fp
+xfp
+#endkeyvals
+
 #ifOption:xfp
 #include:xfp
 #endif
@@ -42,7 +47,7 @@ true
 false
 #endkeyvals
 \STdebug{option%keyvals}
-#keyvals:\STmessage
+#keyvals:\STdebug
 formula
 text
 code
@@ -54,6 +59,26 @@ code
 \STnumericfieldmarker#*
 \STtransposecar#*
 \STprintnum{arg}#*
+\STeval{variable%cmd}{expression}#*d
+\STround{variable%cmd}{value}{digits}#*d
+\STclip{variable%cmd}{value}#*d
+\STtrunc{variable%cmd}{value}{digits}#*d
+\STadd{variable%cmd}{value1}{value2}#*d
+\STmul{variable%cmd}{value1}{value2}#*d
+\STdiv{variable%cmd}{value1}{value2}#*d
+\STseed#*
+\STrandom{variable%cmd}#*d
+\STifzero{value}#*
+\STifgt{value1}{value2}#*
+\STiflt{value1}{value2}#*
+\STifeq{value1}{value2}#*
+\STifint{value}#*
+\STifneg{value}#*
+\STaddcol#*
+\STaddrow#*
+\STrounddigit#S
+\STdatetonum{cmd}{jj}{mm}{aa}#*d
+\STdisplaytab#*
 \STname#S
 \STver#S
 \STdate#S
