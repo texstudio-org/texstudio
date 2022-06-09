@@ -59,6 +59,7 @@
 	<ul>
 	<li><a href="#SECTION22">3.1 Compiling</a></li>
 	<li><a href="#SECTION23">3.2 The log files</a></li>
+	<li><a href="#SECTION24">3.3 Internal pdf viewer</a></li>
 	</ul>
 </li>
 <li><a href="#SECTION3">4. Other features</a>
@@ -568,6 +569,46 @@ Alt+Shift+Up/Down are used for warnings and bad boxes respectively. You can jump
 <p>When you select an entry in the table then the editor (and the log file) scrolls to the corresponding location. The log markers will be activated
 (check option <i>Show log markers when clicking log entry</i>, s. Adv. Editor settings). The log file informations can be shown or hidden by clicking on
 the Log File button. The Issues button offers a similar function for the table with the messages.</p>
+<h2 id="SECTION24">3.3 Internal pdf viewer</h2>
+<p>TeXstudio has an internal (built-in) pdf viewer that lets you view your pdf documents. The viewer can be embedded
+or window-based (in a separate window). The former uses an area to the right of the editor, the latter uses its own
+window and gives the user more options. The viewer can be opened by clicking the <it>View</it> button or by pressing the
+F7 key.</p>
+<p>You can choose main mode <i>Magnify</i> or <i>Scroll</i> from the toolbar. These offer following actions:</p>
+
+<ul>
+<li>Magnify</li>
+		<ul>
+			<li>left mouse button click opens magnifier showing enlarged part of the text</li>
+			<li>Shift + left mouse button click increase zoom level</li>
+			<li>Alt + left mouse button click decrease zoom level</li>
+			<li>Ctrl + left mouse button click jumps to the source (sync)</li>
+			<li>Ctrl + Shift + left mouse button click copies coordinates to clipboard (s. <i><a href="#SUBSECTION241">Special features</a></i>)</li>
+		</ul>
+<li>Scroll</li>
+		<ul>
+			<li>left mouse button click grabs the document so you can scroll it around or follows a link</li>
+			<li>double left mouse button click opens magnifier</li>
+			<li>Shift + left mouse button click sets grid column for the first page (s. <i><a href="#SUBSECTION241">Special features</a></i>)</li>
+			<li>Ctrl + left mouse button click jumps to the source (sync)</li>
+			<li>Ctrl + Shift + left mouse button click copies coordinates to clipboard (s. <i><a href="#SUBSECTION241">Special features</a></i>)</li>
+		</ul>
+</ul>
+
+<p>You may want to change otions in the config dialog (s. Internal PDF Viewer). For searching see <i><a href="#SECTION37">4.10 "Forward/Inverse search" with TeXstudio</a></i>.</p>
+<h3 id="SUBSECTION241">3.3.1 Special features</h3>
+<p>The viewer arranges the pages in a grid of columns and rows in which the pages are placed. Normally, the first page is
+placed on the left in the first row and the following pages fill the row and so on. This behavior may not be appropriate
+in all cases. For example, if you are working on a book, since books have odd pages on the right. To meet this
+requirement, the first page is automatically moved to the right when you select the 2x1 grid from the menu. The space on
+the left side remains empty. You can manually change the location for the first page in any grid. To do this, use Shift
++ left mouse button click on any place of the grid while in Scroll mode. The first page will be moved to the place that
+is in the first row and in the same column as the place you selected.</p>
+<p>You can also use the pdf viewer to get the (x,y) coordinates of a point by 
+performing Ctrl + Shift + left mouse button click on a given page. By doing so, the 
+(x,y) coordinates of the mouse position (in centimeters) with respect to the bottom 
+left corner of the current page are copied into your clipboard. This becomes 
+particularly useful when adjusting margins or working with TikZ.</p>
 <h1 id="SECTION3">4. Other features</h1>
 <h2 id="SECTION31">4.1 About documents separated in several files</h2>
 <p>LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the detection of the root document and knowledge on defined labels and commands.</p>
