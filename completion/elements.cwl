@@ -1,6 +1,7 @@
 # elements package
 # Matthew Bertucci 9/19/2021 for v0.3
 
+#include:etoolbox
 #include:translations
 
 \elementname{%<atomic number|element symbol%>}
@@ -23,6 +24,7 @@
 \writeelconf{electron distribution}
 \setelectrondistribution{atomic number}{element distribution}
 \DeclareElectronDistribution{atomic number}{element distribution}#*
+\setangularmomentum{type}{output}#*
 \printangularmomentum{value}#*
 
 \setatomisotopes{atomic number}{isotope list}
