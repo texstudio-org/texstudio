@@ -1,5 +1,5 @@
 # tipa package
-# Matthew Bertucci 1/21/2022 for v1.3
+# Matthew Bertucci 2022/01/21 for v1.3
 
 #keyvals:\usepackage/tipa#c
 extra
@@ -45,8 +45,8 @@ noenc
 \end{IPA}
 \IJ#n
 \ij#n
-\ipabar#*
-\ipaclap#*
+\ipabar{symbol}{height}{width}{lkern}{rkern}#*
+\ipaclap{arg1}{arg2}#*
 \s{character}
 \SS#n
 \textacutemacron{arg}#n
@@ -266,17 +266,33 @@ noenc
 \textwynn#n
 \textyogh#n
 \tipaencoding#n
-\tipaloweraccent#*
-\tipaLoweraccent#*
 \tipamedspace#*
 \tipanegthinspace#*
 \tipasafemode#*
 \tipathickspace#*
-\tipaupperaccent#*
-\tipaUpperaccent#*
 \tsipa#*
 \tipa#*
 \tipx#*
 \super{text}
 \nrsuper{text}#*
 \sups{arg1}{arg2}#*
+\upperaccent{slot}{char}#*
+\upperaccent[shift%l]{slot}{char}#*
+\Upperaccent{slot}{char}#*
+\Upperaccent[shift%l]{slot}{char}#*
+\loweraccent{slot}{char}#*
+\loweraccent[shift%l]{slot}{char}#*
+\Loweraccent{slot}{char}#*
+\Loweraccent[shift%l]{slot}{char}#*
+\tipaupperaccent{slot}{char}#*
+\tipaupperaccent[shift%l]{slot}{char}#*
+\tipaUpperaccent{slot}{char}#*
+\tipaUpperaccent[shift%l]{slot}{char}#*
+\tipaloweraccent{slot}{char}#*
+\tipaloweraccent[shift%l]{slot}{char}#*
+\tipaLoweraccent{slot}{char}#*
+\tipaLoweraccent[shift%l]{slot}{char}#*
+\*#*
+\|#*
+\tipasterisktmp#S
+\tipapipetmp#S
