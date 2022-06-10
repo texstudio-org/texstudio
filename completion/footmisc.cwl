@@ -42,14 +42,9 @@ wiley
 \removehboxes#*
 \footnotehint#*
 
-#ifOption:marginal
-\footnotemargin
-#endif
-
-#ifOption:hang
+\footnotemargin#*
 \hangfootparskip#*
 \hangfootparindent#*
-#endif
 
 #ifOption:splitrule
 \mpfootnoterule

@@ -24,3 +24,8 @@
 \syssubstitute{%<symbol1%>%<symbol2%>%<{term1}{term2}...%>}#*
 \sysnosubstitute#*
 \+#*
+\SYSunder#S
+\SYSstyfile#S
+\SYSname#S
+\SYSver#S
+\SYSdate#S

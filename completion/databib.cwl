@@ -3,6 +3,10 @@
 
 #include:datatool
 
+#keyvals:\usepackage/databib#c
+style=#plain,abbrv,alpha
+#endkeyvals
+
 \DTLloadbbl{db}{bib list}#s#%db
 \DTLloadbbl[bbl name]{db}{bib list}#s#%db
 \DTLbibliography{db%special}
@@ -15,6 +19,7 @@
 \DTLbibfieldisle{field label}{value}#*
 \DTLbibfieldisgt{field label}{value}#*
 \DTLbibfieldisge{field label}{value}#*
+\DTLmonthname{nn}#*
 
 \DTLbibliographystyle{style}#*
 \DTLformatauthor{von part}{surname}{jr part}{forname}#*
@@ -24,6 +29,7 @@
 \DTLformatsurname{surname}#*
 \DTLformatvon{von part}#*
 \DTLformatjr{jr part}#*
+\DTLcheckendsperiod{string}#*
 
 \DTLandlast#*
 \DTLandnotlast#*
@@ -45,7 +51,7 @@
 \DTLbibfield{field label}#*
 \DTLbibfieldlet{cmd}{field label}#*d
 \DTLifbibfieldexists{field label}{true case}{false case}#*
-\DTLifbibanyfieldexists{field label list}{true case}{false case}#*
+\DTLifanybibfieldexists{field label list}{true case}{false case}#*
 \DTLformatbibentry#*
 \gDTLformatbibentry#*
 \DBIBentrytype#*
@@ -63,3 +69,91 @@
 \DTLloadmbbl{mbib}{db}{bib list}#s#%db
 \DTLmbibliography{mbib}{db%special}#*
 \DTLmbibliography[condition]{mbib}{db%special}#*
+\DTLBIBdbname#*
+
+# not in main documentation
+\begin{DTLthebibliography}{db}#*
+\begin{DTLthebibliography}[condition]{db}#*
+\end{DTLthebibliography}#*
+\andname#*
+\DBIBname#*
+\DTLacmcs#*
+\DTLacta#*
+\DTLaddcomma#*
+\DTLaddperiod#*
+\DTLcacm#*
+\DTLcheckbibfieldendsperiod{label}#*
+\DTLformatarticle#*
+\DTLformatarticlecrossref#*
+\DTLformatauthorlist#*
+\DTLformatbook#*
+\DTLformatbookcrossref#*
+\DTLformatbooklet#*
+\DTLformatbooktitle{text}#*
+\DTLformatbvolume#*
+\DTLformatchapterpages#*
+\DTLformatcrossrefeditor#*
+\DTLformatcrossrefeditor#*
+\DTLformatdate#*
+\DTLformatedition{text}#*
+\DTLformateditorlist#*
+\DTLformatinbook#*
+\DTLformatincollection#*
+\DTLformatincollproccrossref#*
+\DTLformatinedbooktitle#*
+\DTLformatinproceedings#*
+\DTLformatmanual#*
+\DTLformatmastersthesis#*
+\DTLformatmisc#*
+\DTLformatnumberseries#*
+\DTLformatpages#*
+\DTLformatphdthesis#*
+\DTLformatproceedings#*
+\DTLformatsurnameonly{von part}{surname}{jr part}{forenames}#*
+\DTLformattechreport#*
+\DTLformatunpublished#*
+\DTLformatvolnumpages#*
+\DTLibmjrd#*
+\DTLibmsj#*
+\DTLieeese#*
+\DTLieeetc#*
+\DTLieeetcad#*
+\DTLipl#*
+\DTLjacm#*
+\DTLjcss#*
+\DTLmidsentencefalse#*
+\DTLmidsentencetrue#*
+\DTLnewbibitem{key%plain}{value}#*
+\DTLnewbibrow#*
+\DTLpcite{bibid}#*c
+\DTLperiodfalse#*
+\DTLperiodtrue#*
+\DTLscp#*
+\DTLsicomp#*
+\DTLstartsentencefalse#*
+\DTLstartsentencespace#*
+\DTLstartsentencetrue#*
+\DTLtcs#*
+\DTLtocs#*
+\DTLtods#*
+\DTLtog#*
+\DTLtoms#*
+\DTLtoois#*
+\DTLtoplas#*
+\editionname#*
+\editorname#*
+\editorsname#*
+\etalname#*
+\ifDTLmidsentence#*
+\ifDTLperiod#*
+\ifDTLstartsentence#*
+\inname#*
+\mscthesisname#*
+\numbername#*
+\ofname#*
+\pagename#*
+\pagesname#*
+\phdthesisname#*
+\techreportname#*
+\theHDTLbibrow#*
+\volumename#*

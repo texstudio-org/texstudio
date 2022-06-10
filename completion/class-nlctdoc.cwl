@@ -4,12 +4,26 @@
 #include:ifpdf
 #include:ifxetex
 #include:xcolor
+#include:inputenc
+#include:fontenc
+# loads T1 option of fontenc
+#include:cmap
 #include:fourier
 #include:etoolbox
 #include:doc
 #include:dox
 #include:upquote
 #include:class-scrartcl
+
+#keyvals:\documentclass/nlctdoc#c
+article
+book
+report
+a5paper
+normalmp
+inlinetitle
+wbprompt
+#endkeyvals
 
 #ifOption:book
 #include:class-scrbook
@@ -33,7 +47,7 @@
 \nlctdocmarginfmt
 \nlctdocmargin{text}
 \nlctdocmarginwide{text}
-\cs{arg}
+\cs{csname}
 \mgroup{arg}
 \marg{arg}
 \oarg{arg}
@@ -125,7 +139,7 @@ defbackground#B
 \ctandoc{text}
 \theexample
 \examplename#*
-\begin{example}{title%plain}{label}#l
+\begin{example}{title%text}{label}#l
 \end{example}
 \toTop
 \oldlabel{label}#*l
@@ -142,3 +156,26 @@ defbackground#B
 \nlcthrangle
 \aargh
 \promptsymbol#*
+
+# from T1 option of fontenc
+\DH#n
+\dh#n
+\dj#n
+\DJ#n
+\guillemetleft#n
+\guillemetright#n
+\guillemotleft#*n
+\guillemotright#*n
+\guilsinglleft#n
+\guilsinglright#n
+\Hwithstroke#n
+\hwithstroke#n
+\k{arg}#n
+\NG#n
+\ng#n
+\quotedblbase#n
+\quotesinglbase#n
+\textogonekcentered{arg}#n
+\textquotedbl#n
+\th#n
+\TH#n

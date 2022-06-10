@@ -1,5 +1,5 @@
 # datapie package
-# Matthew Bertucci 10/31/2021 for v2.32
+# Matthew Bertucci 2022/06/07 for v2.32
 
 #include:xkeyval
 #include:datatool
@@ -18,18 +18,19 @@ norotateouter
 \DTLpiechart[condition]{settings%keyvals}{db%special}{values}
 
 #keyvals:\DTLpiechart
-variable=
+variable=%<\var%>
 start=%<angle%>
 radius=##L
-innerratio=
-outerratio=
-cutawayratio=
+innerratio=%<factor%>
+outerratio=%<factor%>
+cutawayratio=%<factor%>
 inneroffset=##L
 outeroffset=##L
 cutawayoffset=##L
-cutaway=
-innerlabel=
-outerlabel=
+cutaway={%<num1,num2,...%>}
+cutaway={%<range1,range2,...%>}
+innerlabel=%<text%>
+outerlabel=%<text%>
 rotateinner#true,false
 rotateouter#true,false
 #endkeyvals
@@ -45,3 +46,21 @@ rotateouter#true,false
 \DTLpieoutlinewidth#*
 \DTLpieatbegintikz
 \DTLpieatendtikz
+
+# not in main documentation
+\DTLcolorpiechartfalse#*
+\DTLcolorpiecharttrue#*
+\DTLcutawayratio#*
+\DTLgetpiesegmentcolor{index}#*
+\DTLinnerratio#*
+\DTLouterratio#*
+\DTLradius#*
+\DTLrotateinnerfalse#*
+\DTLrotateinnertrue#*
+\DTLrotateouterfalse#*
+\DTLrotateoutertrue#*
+\DTLstartangle#*
+\ifDTLcolorpiechart#*
+\ifDTLrotateinner#*
+\ifDTLrotateouter#*
+\theDTLpieroundvar#*

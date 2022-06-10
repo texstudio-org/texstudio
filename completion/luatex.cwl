@@ -374,10 +374,12 @@
 ## 10 The TeX related libraries ##
 \luacopyinputnodes#*
 
-### from ltluatex.tex ###
+### from ltluatex.tex v1.1x ###
 \newattribute{attribute%cmd}#*d
 \newcatcodetable{catcodetable%cmd}#*d
 \newluafunction{function}#*d
+\newluacmd{cmd}#*d
+\newprotectedluacmd{cmd}#*d
 \newwhatsit{whatsit%cmd}#*d
 \newluabytecode{bytecode%cmd}#*d
 \newluachunkname{chunkname%cmd}#*d

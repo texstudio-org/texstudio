@@ -1,5 +1,5 @@
 # databar package
-# Matthew Bertucci 10/31/2021 for v2.32
+# Matthew Bertucci 2022/06/07 for v2.32
 
 #include:xkeyval
 #include:dataplot
@@ -19,27 +19,27 @@ horizontal
 \DTLmultibarchart[condition]{settings%keyvals}{db%special}{values}
 
 #keyvals:\DTLbarchart
-variable=
-upperbarlabel=
+variable=%<\var%>
+upperbarlabel=%<text%>
 #endkeyvals
 
 #keyvals:\DTLmultibarchart
-variables=
-multibarlabels=
-uppermultibarlabels=
+variables={%<\var1,\var2,...%>}
+multibarlabels={%<text1,text2,...%>}
+uppermultibarlabels={%<text1,text2,...%>}
 groupgap=##L
 #endkeyvals
 
 #keyvals:\DTLbarchart,\DTLmultibarchart
-max=
+max=%<decimal%>
 length=##L
-maxdepth=
+maxdepth=%<decimal%>
 axes=#both,x,y,none
-barlabel=
-yticpoints=
+barlabel=%<text%>
+yticpoints={%<decimal1,decimal2,...%>}
 yticgap=##L
-yticlabels=
-ylabel=
+yticlabels={%<text1,text2,...%>}
+ylabel=%<text%>
 verticalbars#true,false
 barwidth=##L
 #endkeyvals
@@ -54,6 +54,9 @@ barwidth=##L
 \DTLbaratbegintikz
 \DTLbaratendtikz
 \DTLeverybarhook#*
+\DTLstartpt#*
+\DTLmidpt#*
+\DTLendpt#*
 \ifDTLverticalbars#*
 \DTLverticalbarstrue#*
 \DTLverticalbarsfalse#*
@@ -70,12 +73,21 @@ barwidth=##L
 \DTLbaryticstrue#*
 \DTLbaryticsfalse#*
 \DTLbarXlabelalign#*
-\DTLbarYlabelalign#*
+\DTLbarYticklabelalign#*
 \DTLbardisplayYticklabel{text}#*
 \DTLdisplaylowerbarlabel{text}#*
 \DTLdisplaylowermultibarlabel{text}#*
 \DTLdisplayupperbarlabel{text}#*
 \DTLdisplayuppermultibarlabel{text}#*
 \DTLbarchartwidth#*
+\DTLbargroupwidth#*
 \DTLnegextent#*
 \DTLbarmax#*
+
+# not in main documentation
+\DTLbarvariable#*
+\DTLBarXAxisStyle#*
+\DTLBarYAxisStyle#*
+\DTLdocurrentbarcolor#*
+\DTLgetbarcolor{index}#*
+\theDTLbarroundvar#*

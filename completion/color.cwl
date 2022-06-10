@@ -1,5 +1,6 @@
 # color.sty
 # tbraun 11/2/2006
+# updated 2022/06/05 for v1.3d
 
 #keyvals:\usepackage/color#c
 monochrome
@@ -35,8 +36,12 @@ usenames
 
 \textcolor{color}{text}
 \textcolor[model]{color}{text}
+\mathcolor{color}{math}
+\mathcolor[model]{color}{math}
 \pagecolor{color}
+\nopagecolor
 \definecolor{name}{model}{color-spec}#s#%color
+\DefineNamedColor{type}{name}{model}{spec}#*
 \normalcolor
 \color[model]{color}
 \color{color}
@@ -44,16 +49,20 @@ usenames
 \colorbox{color}{text}
 \fcolorbox[model]{border-color}{fill-color}{text}
 \fcolorbox{border-color}{fill-color}{text}
+# repeat with #S for color completion
+\fcolorbox[model]{color}{color}{text}#S
+\fcolorbox{color}{color}{text}#S
+
 # colors
 red#B
 blue#B
 green#B
 yellow#B
-gray#B
 black#B
 white#B
 cyan#B
 magenta#B
+
 ## dvipsnames colors
 #ifOption:dvipsnames
 Apricot#B

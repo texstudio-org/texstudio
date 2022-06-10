@@ -1,5 +1,9 @@
 # tracklang package
-# Matthew Bertucci 1/22/2022 for v1.5
+# Matthew Bertucci 2022/01/22 for v1.5
+
+#keyvals:\usepackage/tracklang#c
+%<language%>
+#endkeyvals
 
 \TrackPredefinedDialect{dialect label}#*
 \TrackLocale{locale}#*

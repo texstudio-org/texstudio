@@ -229,8 +229,6 @@ nextactionraw=
 \autopageref*{label}#r
 \autoref{label}#r
 \autoref*{label}#r
-\ref*{label}#r
-\pageref*{label}#r
 \thispdfpagelabel
 \pdfstringdef{macroname%cmd}{TeXstring}#d
 \begin{NoHyper}

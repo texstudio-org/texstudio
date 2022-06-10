@@ -5,6 +5,7 @@
 
 #keyvals:\documentclass/ltxdoc#c
 nocfg
+doc2
 # options passed to article class
 a4paper
 b5paper

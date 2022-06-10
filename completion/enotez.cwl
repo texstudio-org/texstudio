@@ -57,3 +57,8 @@ split-title={%<token list%>}
 \AfterEveryListSplit{code}#*
 \EnotezCurrentSplitTitle#*
 \NewSplitTitleTag{tag}{replacement}#*
+
+\enotezlistheading{text}#*
+\enotezsplitlistheading#*
+\enotezdisable#*
+\theendnote#*

@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2022/04/30 for v3.74
+# tbraun 4.11.2008; Matthew Bertucci 2022/06/07 for v3.76
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -104,9 +104,12 @@ mapdigits
 \localedate[options%keyvals]{year}{month}{day}
 
 #keyvals:\localedate
-calendar=
-variant=
+calendar=%<calendar%>
+variant=%<variant%>
 #endkeyvals
+
+\babelcalendar{calendar}{year-macro%cmd}{month-macro%cmd}{day-macro%cmd}#d
+\babelcalendar[YYYY-MM-DD]{calendar}{year-macro%cmd}{month-macro%cmd}{day-macro%cmd}#d
 
 \languagename
 \iflanguage{language}{true}{false}
@@ -797,7 +800,7 @@ autoload.options=
 #repl:"' “
 #endif
 
-### english.ldf v3.3r (and variants american, australian, british, canadian, newzealand) ###
+### english.ldf v3.3r (and variants american, australian, british, canadian, newzealand, UKenglish, USenglish) ###
 #ifOption:english
 \captionsenglish
 \dateenglish
@@ -914,6 +917,48 @@ autoload.options=
 \britishhyphenmins#*
 \americanhyphenmins#*
 \newzealandhyphenmins#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+\glossaryname#*
+#endif
+
+#ifOption:UKenglish
+\captionsUKenglish
+\dateUKenglish
+\extrasUKenglish
+\noextrasUKenglish
+\englishhyphenmins#*
+\britishhyphenmins#*
+\americanhyphenmins#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+\glossaryname#*
+#endif
+
+#ifOption:USenglish
+\captionsUSenglish
+\dateUSenglish
+\extrasUSenglish
+\noextrasUSenglish
+\englishhyphenmins#*
+\britishhyphenmins#*
+\americanhyphenmins#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2843,6 +2888,188 @@ SuppressWarning#true,false
 \textoverlineshort{arg}#*
 \IfItalic{arg1}{arg2}#*
 \tbar{arg}#*
+#endif
+
+### magyar.ldf v1.5c (and alias hungarian) ###
+#ifOption:magyar
+\captionsmagyar
+\datemagyar
+\extrasmagyar
+\noextrasmagyar
+\ondatemagyar
+\prefacename#*
+\bibname#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\proofname#*
+\glossaryname#*
+\chaptername#*
+\notesname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\acite*{keylist}#c
+\Acite*{keylist}#c
+\acite{keylist}#c
+\Acite{keylist}#c
+\apageref*{label}#r
+\Apageref*{label}#r
+\apageref{label}#r
+\Apageref{label}#r
+\aref({label})#r
+\Aref({label})#r
+\aref*{label}#r
+\Aref*{label}#r
+\aref{label}#r
+\Aref{label}#r
+\atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\Atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\az*{szó}
+\Az*{szó}
+\az{szó}
+\Az{szó}
+\az+%<\refcmd{label}%>
+\Az+%<\refcmd{label}%>
+\azc{keylist}#*c
+\Azc{keylist}#*c
+\azp{label}#*r
+\Azp{label}#*r
+\azr{label}#*r
+\Azr{label}#*r
+\captionlabeldelim#S
+\dMf#S
+\editorfootnote{lábjegyzet-szöveg%text}
+\emitdate[toldalék]{formátum}{dátum}
+\emitdate{formátum}{dátum}
+\factorial#m
+\footnotestyle{előírás%keyvals}
+#keyvals:\footnotestyle
+reset=#none,section,chapter,page,page-resume,page-cont
+resume
+indent=#article-nosp,article-sp,hulist
+ruler=#none,one-line,fourth,choose
+marksize=max-normal
+mark=#arabic,stars,stars-max
+mpmark=#arabic,stars,stars-max
+plain
+huplain
+starplain
+editor
+#endkeyvals
+\hang{bekezdéskezdő jel}
+\headingfootnote[szám]{lábjegyzet-szöveg%text}
+\headingfootnote{lábjegyzet-szöveg%text}
+\HuComma#*
+\hunnewlabel#*
+\Hunumeral{counter}
+\hunumeral{counter}
+\huordinal{counter}
+\Huordinal{counter}
+\magyarDumpHuMin#*
+\makeFootnotable{környezet-név}
+\MathBrk{szimbólum}#m
+\MathBrkAll{szimbólum}#m
+\MathReal{képlet tizedestörtekkel%formula}
+\mond %<⟨kimondott szöveg⟩%>
+\ondatemagyar
+\ontoday
+\refstruc{label}#r
+\refstrucparen{label}#*r
+\SafeToday
+\textqq{szövegközti idézet%text}
+\told%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{}
+#endif
+
+#ifOption:hungarian
+\captionshungarian
+\datehungarian
+\extrashungarian
+\noextrashungarian
+\prefacename#*
+\bibname#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\proofname#*
+\glossaryname#*
+\chaptername#*
+\notesname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\acite*{keylist}#c
+\Acite*{keylist}#c
+\acite{keylist}#c
+\Acite{keylist}#c
+\apageref*{label}#r
+\Apageref*{label}#r
+\apageref{label}#r
+\Apageref{label}#r
+\aref({label})#r
+\Aref({label})#r
+\aref*{label}#r
+\Aref*{label}#r
+\aref{label}#r
+\Aref{label}#r
+\atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\Atold%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\az*{szó}
+\Az*{szó}
+\az{szó}
+\Az{szó}
+\az+%<\refcmd{label}%>
+\Az+%<\refcmd{label}%>
+\azc{keylist}#*c
+\Azc{keylist}#*c
+\azp{label}#*r
+\Azp{label}#*r
+\azr{label}#*r
+\Azr{label}#*r
+\captionlabeldelim#S
+\dMf#S
+\editorfootnote{lábjegyzet-szöveg%text}
+\emitdate[toldalék]{formátum}{dátum}
+\emitdate{formátum}{dátum}
+\factorial#m
+\footnotestyle{előírás%keyvals}
+#keyvals:\footnotestyle
+reset=#none,section,chapter,page,page-resume,page-cont
+resume
+indent=#article-nosp,article-sp,hulist
+ruler=#none,one-line,fourth,choose
+marksize=max-normal
+mark=#arabic,stars,stars-max
+mpmark=#arabic,stars,stars-max
+plain
+huplain
+starplain
+editor
+#endkeyvals
+\hang{bekezdéskezdő jel}
+\headingfootnote[szám]{lábjegyzet-szöveg%text}
+\headingfootnote{lábjegyzet-szöveg%text}
+\HuComma#*
+\hunnewlabel#*
+\Hunumeral{counter}
+\hunumeral{counter}
+\huordinal{counter}
+\Huordinal{counter}
+\magyarDumpHuMin#*
+\makeFootnotable{környezet-név}
+\MathBrk{szimbólum}#m
+\MathBrkAll{szimbólum}#m
+\MathReal{képlet tizedestörtekkel%formula}
+\mond %<⟨kimondott szöveg⟩%>
+\ondatehungarian
+\ontoday
+\refstruc{label}#r
+\refstrucparen{label}#*r
+\SafeToday
+\textqq{szövegközti idézet%text}
+\told%<⟨szám⟩%>+%<⟨toldalék⟩%>{}
+\told%<⟨szám⟩%>+%<⟨toldalék1⟩%>+%<⟨toldalék2⟩%>{}
 #endif
 
 ### malay.ldf v1.0m (and proxies bahasam.ldf, melayu.ldf, and meyalu.ldf) ###

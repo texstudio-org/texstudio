@@ -101,6 +101,14 @@ kernelglossredefs={%<value%>}
 \glsshowaccsupp{options}{tag}{replacement text}
 #endif
 
+#ifOption:translate
+#include:translator
+#include:tracklang
+#endif
+#ifOption:translate=true
+#include:translator
+#include:tracklang
+#endif
 #ifOption:translate=babel
 #include:glossaries-babel
 #endif
@@ -1933,6 +1941,7 @@ inline
 \glshyperfirstfalse#*
 \glshyperfirsttrue#*
 \glsifusedtranslatordict{dict}{true}{false}#*
+\glsifusetranslator{true}{false}#*
 \glsindexonlyfirstfalse#*
 \glskeylisttok#*
 \glslongkey#*

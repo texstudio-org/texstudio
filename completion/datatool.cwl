@@ -41,9 +41,9 @@ separator=%<separator%>
 \DTLloaddb[options%keyvals]{db}{filename}#s#%db
 #keyvals:\DTLloaddb,\DTLloadrawdb
 noheader#true,false
-keys={%|}
+keys={%<key1,key2,...%>}
 autokeys#true,false
-headers={%|}
+headers={%<header1,header2,...%>}
 omitlines=%<integer%>
 #endkeyvals
 \ifDTLnewdbonload#*
@@ -64,13 +64,13 @@ omitlines=%<integer%>
 \DTLdisplaylongdb{db%special}
 \DTLdisplaylongdb[options%keyvals]{db%special}
 #keyvals:\DTLdisplaylongdb
-caption={%|}
-contcaption={%|}
-shortcaption={%|}
-label={%|}
-omit={%|}
-foot={%|}
-lastfoot={%|}
+caption={%<text%>}
+contcaption={%<text%>}
+shortcaption={%<text%>}
+label=##l
+omit={%<key1,key2,...%>}
+foot={%<text%>}
+lastfoot={%<text%>}
 #endkeyvals
 \dtlstringalign#*
 \dtlintalign#*
@@ -211,6 +211,7 @@ lastfoot={%|}
 \dtlbeforerow#*
 \dtlafterrow#*
 \dtlrownum#*
+\dtlcolumnnum#*
 \dtldbname#*
 \dtlgetrow{db%special}{row index}#*
 \dtlgetrowforvalue{db%special}{col index}{value}#*
@@ -238,6 +239,7 @@ lastfoot={%|}
 \theHDTLrowi#*
 \theHDTLrowii#*
 \theHDTLrowiii#*
+\dtlforeachlevel#*
 \dtlshowdb{db%special}#*
 \dtlshowdbkeys{db%special}#*
 \dtlshowtype{db%special}{dbkey}#*

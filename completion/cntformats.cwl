@@ -12,6 +12,10 @@
 \NewCounterPattern[module]{counter}{pattern}#*
 \NewCounterPattern*{counter}{pattern}#*
 \NewCounterPattern*[module]{counter}{pattern}#*
+\RenewCounterPattern{counter}{pattern}#*
+\RenewCounterPattern[module]{counter}{pattern}#*
+\RenewCounterPattern*{counter}{pattern}#*
+\RenewCounterPattern*[module]{counter}{pattern}#*
 \ReadCounterFrom{counter}{internal cmd}#*
 \ReadCounterFrom[module]{counter}{internal cmd}#*
 \ReadCounterPattern{pattern}#*

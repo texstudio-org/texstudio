@@ -223,7 +223,9 @@ Renderer=%<renderer%>
 \UnicodeFontFile{arg1}{arg2}#*
 \UnicodeFontName{arg1}{arg2}#*
 \DeclareUnicodeAccent{cmd}{encoding}{char code}#*d
+\DeclareUnicodeCommand{command}{slot}#*d
 \DeclareUnicodeComposite{cmd}{letter}{definition}#*d
+\DeclareUnicodeSymbol{command}{definition}#*d
 \textquotedbl#n
 \guillemetleft#n
 \guillemotleft#*n

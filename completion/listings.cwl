@@ -417,6 +417,9 @@ podcomment#true,false
 
 \lstaspectfiles#*
 \lstlanguagefiles#*
+\lstloadaspects{aspects}#*
+\lststylefiles#*
+\theHlstlisting#S
 
 #ifOption:procnames
 #keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
@@ -447,4 +450,5 @@ lgrindef=%<language%>
 
 #ifOption:formats
 \lstdefineformat{name}{format}
+\lstformatfiles#*
 #endif

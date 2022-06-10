@@ -179,6 +179,7 @@ breaksymbolseprightnchars=%<int%>
 \DeleteFile{file}#*
 \DeleteFile[directory]{file}#*
 \ProvideDirectory{directory}#*
+\ifAppExists#*
 \TestAppExists{application}#*
 \MintedPygmentize#*
 \MintedPython#*

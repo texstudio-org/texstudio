@@ -123,6 +123,8 @@ aftersave={%<code%>}
 
 \VerbatimPygments{literal macro%cmd}{actual macro%cmd}#*
 
+FancyVerbHighlightColor#B
+
 \FVExtraDoSpecials#*
 \FVExtraReadOArgBeforeVArg{arg}#*
 \FVExtraReadOArgBeforeVArg[opt]{arg}#*
