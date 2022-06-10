@@ -308,6 +308,7 @@
 \newtheorem{envname}[numbered like]{caption}#N
 \newtheorem{envname}{caption}#N
 \newtheorem{envname}{caption}[within]#N
+\NoCaseChange{text}#*
 \nocite{keylist}#c
 \nocorr#*
 \nocorrlist{charlist}#*
