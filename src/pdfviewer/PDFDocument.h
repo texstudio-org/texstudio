@@ -178,6 +178,8 @@ public:
     Q_INVOKABLE void reloadPage(bool sync = true);
 	void updateStatusBar();
 	void setGridSize(int gx, int gy, bool setAsDefault = false);
+	void setPageOffset(int offset, bool setAsDefault = false, bool refresh = false);
+	void setPageOffsetClick(const QPoint &p);
 	Q_INVOKABLE int visiblePages() const;
 	Q_INVOKABLE int pseudoNumPages() const;
 	Q_INVOKABLE int realNumPages() const;
@@ -335,7 +337,7 @@ private:
 	int		usingTool;	// the tool actually being used in an ongoing mouse drag
 	bool		singlePageStep;
 
-	int gridx, gridy;
+	int gridx, gridy, pageOffset;
 
 	bool forceUpdate;
 

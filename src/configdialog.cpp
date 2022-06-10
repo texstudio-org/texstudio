@@ -394,6 +394,10 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
     // adapt icon size to dpi
     double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     double scale=dpi/96;
+	int systemdpi = qRound(QGuiApplication::primaryScreen()->physicalDotsPerInch()); // main screen dpi
+	if (systemdpi < 10 || dpi > 1000)
+		systemdpi = 96;
+	QString labelSystemdpi = tr("Screen Resolution (System: %1 dpi):").arg(systemdpi);
 
 	setModal(true);
 	ui.setupUi(this);
@@ -580,6 +584,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	ui.comboBoxPreviewMode->removeItem(l - 1);
 	// maybe add some possibility to disable some preview modes in poppler mode
 #endif
+	ui.labelScreenResolution->setText(labelSystemdpi);
 
 	// set-up GUI scaling
 	connect(ui.tbRevertIcon, SIGNAL(clicked()), this, SLOT(revertClicked()));

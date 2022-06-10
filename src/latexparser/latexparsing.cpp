@@ -240,8 +240,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             if (tk2.type == Token::openBrace && tk3.type == Token::word) {
                 QString env = line.mid(tk3.start, tk3.length);
                 if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing corresponds to open !
-                    verbatimMode = false;
-                    stack.pop();
+                    Token verbatimStart=stack.top();
+                    // second option, env in optionalCommandName
+                    if(verbatimStart.optionalCommandName.isEmpty() || verbatimStart.optionalCommandName==env){
+                        verbatimMode = false;
+                        stack.pop();
+                    }else{
+                        continue;
+                    }
                 } else
                     continue;
             } else
@@ -519,6 +525,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                                         tk3.dlh = dlh;
                                         tk3.level = level - 1;
                                         tk3.type = Token::verbatim;
+                                        tk3.optionalCommandName=env; // store verbatim env name (fix #2386, \end{diffVerbatim} was falsely used to close verbatim)
                                         stack.push(tk3);
                                     }
                                 } else { // only care for further arguments if not in verbatim mode (see minted)
@@ -556,7 +563,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     lexed.append(tk);
                 }
                 if (!commandStack.isEmpty() && commandStack.top().level == level) {
-                    CommandDescription &cd = commandStack.top();
+                    CommandDescription cd = commandStack.top();
                     if (cd.args <= 0 && cd.bracketArgs <= 0) {
                         // all args handled, stop handling this command
                         commandStack.pop();
@@ -566,6 +573,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             tk3.dlh = dlh;
                             tk3.level = level - 1;
                             tk3.type = Token::verbatim;
+                            QString env=cd.optionalCommandName.mid(7,cd.optionalCommandName.length()-8); // dirty solution, does not use tokens as it should
+                            tk3.optionalCommandName=env;
                             stack.push(tk3);
                         }
                     }

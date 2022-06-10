@@ -2886,6 +2886,7 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 		} else if (edView->editor->isContentModified() || edView->editor->isInConflict()) {
 			removeDiffMarkers();// clean document from diff markers first
 			edView->editor->save(); //only save modified documents
+            edView->document->markViewDirty();//force repaint of line markers (yellow -> green)
 
 			if (edView->editor->fileName().endsWith(".bib")) {
 				QString temp = edView->editor->fileName();
@@ -5838,7 +5839,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		pdfFile = master.completeBaseName() + ".pdf";
 	}
     if(!QFileInfo(pdfFile).isAbsolute() || !QFileInfo(pdfFile).isReadable()){
-        pdfFile = buildManager.findCompiledFile(pdfFile, master); // don't search if file name is given as absolutue path and exists
+        pdfFile = buildManager.findCompiledFile(pdfFile, master); // don't search if file name is given as absolute path and exists
     }
 	int ln = 0;
 	int col = 0;

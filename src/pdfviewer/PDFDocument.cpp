@@ -564,7 +564,7 @@ PDFWidget::PDFWidget(bool embedded)
 	, currentTool(kNone)
 	, usingTool(kNone)
 	, singlePageStep(true)
-	, gridx(1), gridy(1)
+	, gridx(1), gridy(1), pageOffset(0)
 	, forceUpdate(false)
 	, highlightPage(-1)
     , pdfdocument(nullptr)
@@ -804,9 +804,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			}
 
 			int curGrid = 0;
-			if (getPageOffset() && realPageIndex == 0) {
-				painter.drawRect(gridPageRect(0));
-				curGrid++;
+			if (realPageIndex == 0) {
+				for (; curGrid < getPageOffset(); curGrid++ ) {
+					painter.drawRect(gridPageRect(curGrid));
+				}
 			}
 			foreach (int pageNr, pages) {
 				QRect basicGrid = gridPageRect(curGrid++);
@@ -890,13 +891,14 @@ void PDFWidget::useDraggableTool(PDFDraggableTool* tool, const QMouseEvent *inEv
 // Mouse control for the various tools:
 // * magnifier
 //   - ctrl-click to sync
-//   - click to use magnifier
-//   - shift-click to zoom in
+//   - click to use magnifier (custom magnifier cursor)
+//   - shift-click to zoom in (custom plus sign cursor)
+//   - alt-click to zoom out (custom minus sign cursor)
 //   - shift-click and drag to zoom to selected area
-//   - alt-click to zoom out
 // * scroll (hand)
 //   - ctrl-click to sync
-//   - click and drag to scroll
+//   - shift-click to set pageOffset to gridColumn (ArrowCursor)
+//   - click and drag to scroll	(ClosedHandCursor)
 //   - double-click to use magnifier
 // * select area (crosshair)
 //   - ctrl-click to sync
@@ -945,8 +947,12 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	}
 
 	mouseDownModifiers = event->modifiers();
-	if (mouseDownModifiers & Qt::ControlModifier) {
+	if ((mouseDownModifiers & Qt::ControlModifier) && !(mouseDownModifiers & Qt::ShiftModifier)) {
 		// ctrl key - this is a sync click, don't handle the mouseDown here
+	} else if ((mouseDownModifiers & Qt::ControlModifier) && (mouseDownModifiers & Qt::ShiftModifier)) {
+		// ctrl + shift keys -> copy page coordinates in cm to clipboard
+	} else if ((mouseDownModifiers & Qt::ShiftModifier) && currentTool == kScroll) {
+		// shift key with scroll hand -> set pageOffset
 	} else if (currentTool != kPresentation) {
 		QPointF scaledPos;
 		int pageNr;
@@ -1071,6 +1077,7 @@ void PDFWidget::getPosFromClick(const QPoint &p){
 	QString tmp;
 	QTextStream(&tmp) << "" << pos.x() * ptToCm  << ", " << height- pos.y() * ptToCm;
 	clipboard->setText(tmp);
+	//qDebug() << "Position: " << qPrintable(tmp) << "\n";
 }
 
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -1118,6 +1125,12 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 				if (event->modifiers() & Qt::ControlModifier)
 					syncWindowClick(event->pos(), true);
 				break;
+			}
+			// Shift-click (in scroll mode) on page or grid to set pageOffset to gridColumn
+			if ((currentTool == kScroll) && (mouseDownModifiers & Qt::ShiftModifier)) {
+				if (event->modifiers() & Qt::ShiftModifier) {
+					setPageOffsetClick(event->pos());
+				}
 			}
 			// check whether to zoom
 			if (currentTool == kMagnifier) {
@@ -1534,12 +1547,16 @@ void PDFWidget::updateCursor()
 	if (usingTool != kNone)
 		return;
 
+	Qt::KeyboardModifiers mods = QApplication::keyboardModifiers();
 	switch (currentTool) {
-	case kScroll:
-		setCursor(Qt::OpenHandCursor);
-		break;
+	case kScroll: {
+		if ((mods & Qt::ShiftModifier) && !(mods & Qt::ControlModifier))
+			setCursor(Qt::ArrowCursor);
+		else
+			setCursor(Qt::OpenHandCursor);
+	}
+	break;
 	case kMagnifier: {
-		Qt::KeyboardModifiers mods = QApplication::keyboardModifiers();
 		if (mods & Qt::AltModifier)
 			setCursor(*zoomOutCursor);
 		else if (mods & Qt::ShiftModifier)
@@ -1664,9 +1681,10 @@ void PDFWidget::updateCursor(const QPoint &pos)
 void PDFWidget::adjustSize()
 {
 	if (pages.empty()) return;
-	QSize pageSize = (maxPageSizeFDpiAdjusted() * scaleFactor).toSize();
-	pageSize.rwidth() = pageSize.rwidth() * gridx + (gridx - 1) * GridBorder;
-	pageSize.rheight() = pageSize.rheight() * gridy + (gridy - 1) * GridBorder;
+	QSizeF pageSizeF = (maxPageSizeFDpiAdjusted() * scaleFactor);
+	QSize pageSize;
+	pageSize.rwidth() = qRound(pageSizeF.rwidth() * gridx + (gridx - 1) * GridBorder);
+	pageSize.rheight() = qRound(pageSizeF.rheight() * gridy + (gridy - 1) * GridBorder);
 	if (pageSize != size()) {
 		PDFScrollArea *scrollArea = getScrollArea();
 		if (!scrollArea) return;
@@ -1818,9 +1836,41 @@ PDFDocument *PDFWidget::getPDFDocument()
 	return doc;
 }
 
+void PDFWidget::setPageOffset(int offset, bool setAsDefault, bool refresh){
+	int lastPageOffset = pageOffset;
+	if (0 <= offset && offset < gridx)
+		pageOffset = offset;
+	else {
+		pageOffset = gridx - 1;
+		globalConfig->pageOffset = pageOffset;
+	}
+	if (!setAsDefault)
+		globalConfig->pageOffset = pageOffset;
+
+	if (!refresh)
+		return;
+	int delta = pageOffset - lastPageOffset;
+	if (delta != 0) {
+		PDFScrollArea	*scrollArea = getScrollArea();
+		if (!scrollArea->getContinuous())
+			scrollArea->goToPage(realPageIndex - delta);	// keep position
+		reloadPage();
+		emit scrollArea->resized();
+		scrollArea->updateScrollBars();
+	}
+}
+
+void PDFWidget::setPageOffsetClick(const QPoint &p){
+	int pi = gridPageIndex(p);
+	if (pi < 0 || singlePageStep) return;
+	int pageOffset = pi % gridx;
+	setPageOffset(pageOffset, false, true);
+}
+
 int PDFWidget::getPageOffset() const
 {
-	int pageOffset = (!singlePageStep) && (gridCols() == 2) ? 1 : 0;
+	if (singlePageStep)
+		return 0;
 	return pageOffset;
 }
 
@@ -1830,6 +1880,13 @@ void PDFWidget::setGridSize(int gx, int gy, bool setAsDefault)
 		return;
 	gridx = gx;
 	gridy = gy;
+	if (gridx == 1)
+		setPageOffset(0, true, true);
+	else if (gridx == 2 && gridy == 1)
+		setPageOffset(1, false, true);
+	else
+		setPageOffset(globalConfig->pageOffset, true, true);
+
 	if (setAsDefault)
 		return;
 	int pi = realPageIndex;
@@ -2070,15 +2127,17 @@ void PDFWidget::doPageDialog()
 
 int PDFWidget::normalizedPageIndex(int p)
 {
-	if (p > 0) return  p - (p + getPageOffset()) % pageStep();
-	else return p;
+	int nPI = p - (p + getPageOffset()) % pageStep();  // this gives numbers from sequence a_n := -pageOffset + n * pageStep. We have a_0 = -pageOffset <= 0. For n > 0 inequality a_n > 0 holds.
+	if (nPI < 0)
+		nPI = 0;	// let a_0 = 0
+	return nPI;
 }
 
 void PDFWidget::goToPageDirect(int p, bool sync)
 {
 	if (p < 0) p = 0;
 	if (p >= realNumPages()) p = realNumPages() - 1;
-    p = normalizedPageIndex(p);
+	p = normalizedPageIndex(p);
 	if (p != realPageIndex && !document.isNull()) { //the first condition is important: it prevents a recursive sync crash
 		if (p >= 0 && p < realNumPages()) {
 			realPageIndex = p;
@@ -2162,10 +2221,12 @@ void PDFWidget::fitWindow(bool checked)
 		PDFScrollArea	*scrollArea = getScrollArea();
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
-            qreal portHeight = scrollArea->viewport()->height() - GridBorder * (globalConfig->gridy - 1); // use globalConfig->gridy as gridy is automatically increased in continous mode to force rendering of surrounding pages
+            int gy=globalConfig->gridy;
+            if(pdfdocument->embeddedMode) gy=1;
+            qreal portHeight = scrollArea->viewport()->height() - GridBorder * (gy - 1); // use globalConfig->gridy as gridy is automatically increased in continous mode to force rendering of surrounding pages
 			QSizeF	pageSize = maxPageSizeFDpiAdjusted();
             qreal sfh = portWidth / pageSize.width() / gridx;
-            qreal sfv = portHeight / pageSize.height() / globalConfig->gridy;
+            qreal sfv = portHeight / pageSize.height() / gy;
 			scaleFactor = sfh < sfv ? sfh : sfv;
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
@@ -2401,10 +2462,6 @@ QRect PDFWidget::pageRect(int page) const
     int realSizeH =  qRound(dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().height());
 	int xOffset = (grect.width() - realSizeW) / 2;
 	int yOffset = (grect.height() - realSizeH) / 2;
-	if (gridx == 2 && getPageOffset() == 1) {
-		if (page & 1) xOffset *= 2;
-		else xOffset = 0;
-	}
 	return QRect(grect.left() + xOffset, grect.top() + yOffset, realSizeW, realSizeH);
 }
 
@@ -3004,6 +3061,8 @@ void PDFDocument::init(bool embedded)
 		conf->registerOption("Preview/GridX", &globalConfig->gridx, 1);
 		conf->registerOption("Preview/GridY", &globalConfig->gridy, 1);
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
+		conf->registerOption("Preview/PageOffset", &globalConfig->pageOffset, 0);
+		pdfWidget->setPageOffset(globalConfig->pageOffset, true);
         // set grid menu entry checked
         QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
         bool found=false;
@@ -3027,6 +3086,7 @@ void PDFDocument::init(bool embedded)
         conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
 	} else {
 		pdfWidget->setGridSize(1, 1, true);
+		pdfWidget->setPageOffset(0, true);
 		pdfWidget->setSinglePageStep(true);
 		scrollArea->setContinuous(true);
 	}
@@ -3461,6 +3521,21 @@ void PDFDocument::setGrid()
 			pdfWidget->setGridSize(x, y);
 			globalConfig->gridx = x;
 			globalConfig->gridy = y;
+		} else {
+			// set grid menu entry checked
+			QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
+			bool found=false;
+			for(QAction *a:actionGroupGrid->actions()){
+				if(a->property("grid").toString()==gs){
+					a->setChecked(true);
+					found=true;
+					break;
+				}
+			}
+			if(!found){
+				// if no other grid action fits, use custom
+				actionCustom->setChecked(true);
+			}
 		}
 	} else {
 		int p = gs.indexOf("x");

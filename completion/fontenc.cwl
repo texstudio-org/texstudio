@@ -1419,8 +1419,8 @@ X2
 
 #ifOption:T3
 \dh#n
-\ipabar#*
-\ipaclap#*
+\ipabar{symbol}{height}{width}{lkern}{rkern}#*
+\ipaclap{arg1}{arg2}#*
 \k{arg}#n
 \ng#n
 \textacutemacron{arg}#n
@@ -1640,6 +1640,22 @@ X2
 \textyogh#n
 \th#n
 \tipaencoding#*
+\upperaccent{slot}{char}#*
+\upperaccent[shift%l]{slot}{char}#*
+\Upperaccent{slot}{char}#*
+\Upperaccent[shift%l]{slot}{char}#*
+\loweraccent{slot}{char}#*
+\loweraccent[shift%l]{slot}{char}#*
+\Loweraccent{slot}{char}#*
+\Loweraccent[shift%l]{slot}{char}#*
+\tipaupperaccent{slot}{char}#*
+\tipaupperaccent[shift%l]{slot}{char}#*
+\tipaUpperaccent{slot}{char}#*
+\tipaUpperaccent[shift%l]{slot}{char}#*
+\tipaloweraccent{slot}{char}#*
+\tipaloweraccent[shift%l]{slot}{char}#*
+\tipaLoweraccent{slot}{char}#*
+\tipaLoweraccent[shift%l]{slot}{char}#*
 #endif
 
 #ifOption:T4

@@ -1,5 +1,7 @@
 # clrstrip package
-# Matthew Bertucci 8/18/2021
+# Matthew Bertucci 2022/06/08 for release 2021-08-28
+
+#include:expkv
 
 \colorstripSet{keyvals}
 
