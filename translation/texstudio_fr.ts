@@ -2794,7 +2794,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="400"/>
         <source>Screen Resolution (System: %1 dpi):</source>
-        <translation type="unfinished"/>
+        <translation>Résolution de l&apos;écran (système : %1 dpi) :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="479"/>
@@ -9433,7 +9433,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="941"/>
         <source>C&amp;ut Line</source>
-        <translation type="unfinished"/>
+        <translation>Ligne de coupe</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="943"/>
