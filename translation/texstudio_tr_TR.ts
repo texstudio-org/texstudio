@@ -2795,7 +2795,7 @@ ayarlamak istiyor musunuz?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="400"/>
         <source>Screen Resolution (System: %1 dpi):</source>
-        <translation type="unfinished"/>
+        <translation>Ekran çözünürlüğü (Sistem: %1 dpi):</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="479"/>
@@ -9434,7 +9434,7 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="941"/>
         <source>C&amp;ut Line</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Satırı kes</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="943"/>

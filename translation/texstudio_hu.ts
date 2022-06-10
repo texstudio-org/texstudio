@@ -2789,7 +2789,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="400"/>
         <source>Screen Resolution (System: %1 dpi):</source>
-        <translation type="unfinished"/>
+        <translation>Képernyőfelbontás (rendszer: %1 dpi):</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="479"/>
@@ -9418,7 +9418,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="941"/>
         <source>C&amp;ut Line</source>
-        <translation type="unfinished"/>
+        <translation>Sor k&amp;ivágása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="943"/>
