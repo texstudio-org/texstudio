@@ -1,6 +1,8 @@
 # polynom package
 # Matthew Bertucci 9/21/2021 for v0.19
 
+#include:keyval
+
 \polyset{options%keyvals}
 \polylongdiv{polynom1%formula}{polynom2%formula}
 \polylongdiv[options%keyvals]{polynom1%formula}{polynom2%formula}
@@ -27,7 +29,8 @@ resultrightrule#true,false
 resultbottomrule#true,false
 showbase=#false,top,middle,bottom
 showvar#true,false
-equalcolwidth#true,false
+showbasesep#true,false
+equalcolwidths#true,false
 arraycolsep=%<dimension%>
 arrayrowsep=%<dimension%>
 showmiddlerow#true,false

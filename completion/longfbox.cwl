@@ -1,6 +1,8 @@
 # longfbox package
-# Matthew Bertucci 9/21/2021 for v1.0
+# Matthew Bertucci 2021/09/21 for v1.0
 
+#include:options
+#include:longbox
 #include:pict2e
 #include:ellipse
 
@@ -9,11 +11,11 @@
 \begin{longfbox}
 \begin{longfbox}[options%keyvals]
 \end{longfbox}
-\newfboxstyle{name}{options%keyvals}
+\newfboxstyle{name}{options%keyvals}#s#%fboxstyle
 \fboxset{options%keyvals}
 
-#keyvals:\lfbox#c,\begin{longfbox}#c,\newfboxstyle,\fboxset#c
-border-style=
+#keyvals:\lfbox#c,\begin{longfbox}#c,\newfboxstyle#c,\fboxset#c
+border-style=#none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge
 border-top-style=#none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge
 border-right-style=#none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge
 border-bottom-style=#none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge
@@ -21,7 +23,7 @@ border-left-style=#none,hidden,solid,dotted,dashed,double,inset,outset,groove,ri
 border-break-style=
 border-break-top-style=#none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge
 border-break-bottom-style=#none,hidden,solid,dotted,dashed,double,inset,outset,groove,ridge
-border-width=
+border-width=##L
 border-top-width=##L
 border-right-width=##L
 border-bottom-width=##L
@@ -29,16 +31,16 @@ border-left-width=##L
 border-break-width=
 border-break-top-width=##L
 border-break-bottom-width=##L
-border-color=
+border-color=#%color
 border-top-color=#%color
 border-right-color=#%color
 border-bottom-color=#%color
 border-left-color=#%color
-border-break-color=
+border-break-color=#%color
 border-break-top-color=#%color
 border-break-bottom-color=#%color
-border-dark-mix=
-border-radius=
+border-dark-mix=%<color mix%>
+border-radius=##L
 border-top-left-radius=##L
 border-top-right-radius=##L
 border-bottom-left-radius=##L
@@ -53,12 +55,12 @@ background-clip=border-box,padding-box,content-box
 background-padding-color=#%color
 background-border-color=#%color
 background-content-color=#%color
-padding=
+padding=##L
 padding-top=##L
 padding-right=##L
 padding-bottom=##L
 padding-left=##L
-margin=
+margin=##L
 margin-top=##L
 margin-right=##L
 margin-bottom=##L
@@ -78,21 +80,21 @@ tight
 rounded
 dotted
 render=#default,plain,picture
-insert-before=
-inser-after=
-render-insert-before=
-render-insert-after=
-picture-insert-before=
-picture-insert-after=
-plain-side-insert-before=
-plain-side-insert-after=
-picture-side-insert-before=
-picture-side-insert-after=
+insert-before={%<code%>}
+inser-after={%<code%>}
+render-insert-before={%<code%>}
+render-insert-after={%<code%>}
+picture-insert-before={%<code%>}
+picture-insert-after={%<code%>}
+plain-side-insert-before={%<code%>}
+plain-side-insert-after={%<code%>}
+picture-side-insert-before={%<code%>}
+picture-side-insert-after={%<code%>}
 baseline-skip#true,false
 show-markers#true,false
 marker-color=#%color
 marker-width=##L
-eject=
+eject={%<code%>}
 debug#true,false
 verbose#true,false
 border-dash=
@@ -102,18 +104,22 @@ border-bottom-dash=##L
 border-left-dash=##L
 border-break-top-dash=##L
 border-break-bottom-dash=##L
-border-dashskip=
+border-dashskip=##L
 border-top-dashskip=##L
 border-right-dashskip=##L
 border-bottom-dashskip=##L
 border-left-dashskip=##L
 border-break-top-dashskip=##L
 border-break-bottom-dashskip=##L
-border-dotskip=
+border-dotskip=##L
 border-top-dotskip=##L
 border-right-dotskip=##L
 border-bottom-dotskip=##L
 border-left-dotskip=##L
 border-break-top-dotskip=##L
 border-break-bottom-dotskip=##L
+%fboxstyle
 #endkeyvals
+
+\optionlengthlimit{length}{min}{max}#*
+\optionradiuslimit{r1}{r2}{min}{max}#*

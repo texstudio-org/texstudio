@@ -1,6 +1,13 @@
 # fclfont package
-# Matthew Bertucci 7/29/2021
+# Matthew Bertucci 2021/07/29 for v1.2
 
+#include:newlfont
+#include:fontenc
+# loads T4 option of fontenc
+
+\ttseries#*
+
+# from T4 option of fontenc
 \m{letter}#n
 \M{letter}#n
 \B{letter}#n

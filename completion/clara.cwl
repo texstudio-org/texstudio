@@ -1,5 +1,5 @@
 # clara package
-# Matthew Bertucci 1/11/2022
+# Matthew Bertucci 2022/01/11
 
 #include:textcomp
 #include:mweights
@@ -7,7 +7,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/clara#c
-scale=%<factor%>
 scaled=%<factor%>
 lining
 oldstyle
@@ -17,10 +16,6 @@ bold
 regular
 #endkeyvals
 
-\textsc{text}
 \textsu{text}
 \textsuperior{text}#*
-\textin{text}
-\textinferior{text}#*
 \sufigures
-\infigures

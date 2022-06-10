@@ -7,3 +7,5 @@
 #include:xparse
 
 \cellprops{CSS properties}
+\cellpropsclass{class1 class2 ...}#*
+\cellpropsclass*{class1 class2 ...}#*

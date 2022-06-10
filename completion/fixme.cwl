@@ -87,11 +87,11 @@ pdfcsigmargin#true,false
 nopdfcsigmargin
 innerlayout={%<options%>}
 target=
-inlineface=
-marginface=
-envface=
-signatureface=
-targetface=
+inlineface=%<font commands%>
+marginface=%<font commands%>
+envface=%<font commands%>
+signatureface=%<font commands%>
+targetface=%<font commands%>
 silent#true,false
 nosilent
 english
@@ -106,7 +106,7 @@ croatian
 lang=#english,french,francais,spanish,italian,german,ngerman,danish,croatian
 langtrack#true,false
 defaultlang=#english,french,francais,spanish,italian,german,ngerman,danish,croatian
-author=
+author=%<name%>
 singleuser#true,false
 multiuser#true,false
 mode=#singleuser,multiuser
@@ -176,11 +176,11 @@ color
 colorsig
 #endkeyvals
 
-#keyvals:\usepackage/fixme#c,\fxsetup,\begin{anfxnote},\begin{anfxwarning},\begin{anfxerror},\begin{anfxfatal},\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
+#keyvals:\fxsetup,\begin{anfxnote},\begin{anfxwarning},\begin{anfxerror},\begin{anfxfatal},\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
 envlayout=#plain,signature,color,colorsig
 #endkeyvals
 
-#keyvals:\usepackage/fixme#c,\fxsetup,\fxnote*,\fxwarning*,\fxerror*,\fxfatal*,\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
+#keyvals:\fxsetup,\fxnote*,\fxwarning*,\fxerror*,\fxfatal*,\begin{anfxnote*},\begin{anfxwarning*},\begin{anfxerror*},\begin{anfxfatal*}
 targetlayout=#plain,changebar,color,colorcb
 #endkeyvals
 
@@ -214,7 +214,7 @@ color
 colorsig
 #endkeyvals
 
-#keyvals:\usepackage/fixme#c,\fxsetup
+#keyvals:\fxsetup
 theme=#signature,color,colorsig
 #endkeyvals
 
@@ -367,3 +367,15 @@ fatal
 \FXLogFatal{error text%text}#*
 \FXLogNote{note text%text}#*
 \FXLogWarning{warning text%text}#*
+
+\thefixmecount#*
+\thefxnotecount#*
+\thefxwarningcount#*
+\thefxerrorcount#*
+\thefxfatalcount#*
+
+fxnote#B
+fxwarning#B
+fxerror#B
+fxfatal#B
+fxtarget#B
