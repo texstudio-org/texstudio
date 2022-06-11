@@ -120,7 +120,7 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
         int end_row = list[0]->row();
         int start_col = list[0]->column();
         int end_col = list[0]->column();
-        for (QTableWidgetItem *item : list)
+        for(QTableWidgetItem *item : list)
         {
             if (item->row() < start_row)
             {
@@ -140,9 +140,9 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
             }
         }
 
-        for (int row=start_row; row <= end_row; ++row)
+        for(int row=start_row; row <= end_row; ++row)
         {
-            for (int col=start_col; col <= end_col; ++col)
+            for(int col=start_col; col <= end_col; ++col)
             {
                 QTableWidgetItem *item = ui.tableWidget->item(row, col);
                 copied_text += item->text();
@@ -182,7 +182,7 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
         int end_row = list[0]->row();
         int start_col = list[0]->column();
         int end_col = list[0]->column();
-        for (QTableWidgetItem *item : list)
+        for(QTableWidgetItem *item : list)
         {
             if (item->row() < start_row)
             {
@@ -202,9 +202,9 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
             }
         }
 
-        for (int row=start_row; row <= end_row; ++row)
+        for(int row=start_row; row <= end_row; ++row)
         {
-            for (int col=start_col; col <= end_col; ++col)
+            for(int col=start_col; col <= end_col; ++col)
             {
                 QTableWidgetItem *item = ui.tableWidget->item(row, col);
                 copied_text += item->text();
@@ -244,7 +244,7 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
 
         int cur_row = starting_row;
         int cur_col = starting_col;
-        for (QString row : rows)
+        for(const QString &row : rows)
         {
             if (cur_row >= ui.tableWidget->rowCount())
             {
@@ -253,7 +253,7 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
             }
 
             QList<QString> cols = row.split('\t');
-            for (QString col : cols)
+            for(const QString &col : cols)
             {
                 if (cur_col >= ui.tableWidget->columnCount())
                 {
@@ -287,7 +287,7 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Delete)
     {
         QList<QTableWidgetItem *> list = ui.tableWidget->selectedItems();
-        for (QTableWidgetItem* i : list)
+        for(QTableWidgetItem* i : list)
         {
             i->setText("");
         }
