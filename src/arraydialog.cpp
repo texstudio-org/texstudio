@@ -226,7 +226,7 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
     {
         QClipboard *clipboard = QGuiApplication::clipboard();
         QString pasted_text = clipboard->text();
-        QList<QString> rows = pasted_text.split('\n');
+        QList<QString> rows = pasted_text.split('\n', Qt::SkipEmptyParts);
 
         // Get indexes of currently selected cells.
         int starting_row = 0;
