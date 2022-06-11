@@ -52,6 +52,7 @@ private slots:
   void showRowSettings(int row);
   void showColRowSettings(int row,int column);
   void updateTableWidget();
+  void keyPressEvent(QKeyEvent *event);
 private:
   QStringList alignlist;
   QStringList alignlistLabels;

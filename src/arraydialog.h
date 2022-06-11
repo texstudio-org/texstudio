@@ -28,6 +28,7 @@ public:
 protected slots:
 	void newRows(int num);
 	void newColumns(int num);
+    void keyPressEvent(QKeyEvent *event);
 };
 
 #endif
