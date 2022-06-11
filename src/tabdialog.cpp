@@ -589,10 +589,6 @@ void TabDialog::keyPressEvent(QKeyEvent *event)
                     ui.spinBoxColumns->setValue(ui.spinBoxColumns->value() + 1);
                 }
 
-                // Adds new item if copied size is larger than table size.
-                QTableWidgetItem *new_item = new QTableWidgetItem();
-                ui.tableWidget->setItem(cur_row, cur_col, new_item);
-
                 QTableWidgetItem *item = ui.tableWidget->item(cur_row, cur_col);
                 if (item) // Checks if item is a null pointer (item doesn't exist)
                 {
@@ -601,8 +597,10 @@ void TabDialog::keyPressEvent(QKeyEvent *event)
                 }
                 else
                 {
+                    // Adds new item if copied size is larger than table size.
                     QTableWidgetItem *newItem = new QTableWidgetItem();
                     newItem->setText(col);
+                    ui.tableWidget->setItem(cur_row, cur_col, newItem);
                 }
             }
             ++cur_row;
