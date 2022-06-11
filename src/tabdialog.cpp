@@ -549,7 +549,12 @@ void TabDialog::keyPressEvent(QKeyEvent *event)
     {
         QClipboard *clipboard = QGuiApplication::clipboard();
         QString pasted_text = clipboard->text();
+
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
         QList<QString> rows = pasted_text.split('\n', Qt::SkipEmptyParts);
+#else
+        QList<QString> rows = pasted_text.split('\n', QString::SkipEmptyParts);
+#endif
 
         // Get indexes of currently selected cells.
         int starting_row = 0;
