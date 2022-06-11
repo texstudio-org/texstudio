@@ -55,6 +55,7 @@ PDFDock::~PDFDock()
 
 void PDFDock::documentLoaded()
 {
+	filled = false;
 	if (!isHidden()) {
 		fillInfo();
 		filled = true;
