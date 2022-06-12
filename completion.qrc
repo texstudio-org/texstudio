@@ -115,6 +115,7 @@
 <file>completion/antanilipsum.cwl</file>
 <file>completion/antpolt.cwl</file>
 <file>completion/anttor.cwl</file>
+<file>completion/aobs-tikz.cwl</file>
 <file>completion/apacite.cwl</file>
 <file>completion/appendix.cwl</file>
 <file>completion/appendixnumberbeamer.cwl</file>
@@ -855,6 +856,7 @@
 <file>completion/continue.cwl</file>
 <file>completion/contour.cwl</file>
 <file>completion/conv-xkv.cwl</file>
+<file>completion/cooking.cwl</file>
 <file>completion/cookingsymbols.cwl</file>
 <file>completion/cooking-units.cwl</file>
 <file>completion/coollist.cwl</file>
@@ -863,6 +865,7 @@
 <file>completion/cooltooltips.cwl</file>
 <file>completion/coop-writing.cwl</file>
 <file>completion/coordsys.cwl</file>
+<file>completion/coptic.cwl</file>
 <file>completion/copyrightbox.cwl</file>
 <file>completion/CormorantGaramond.cwl</file>
 <file>completion/correctmathalign.cwl</file>
@@ -1440,8 +1443,11 @@
 <file>completion/hcycle.cwl</file>
 <file>completion/helvet.cwl</file>
 <file>completion/hep-acronym.cwl</file>
+<file>completion/hep-bibliography.cwl</file>
 <file>completion/hep-float.cwl</file>
 <file>completion/hep-font.cwl</file>
+<file>completion/hep-math.cwl</file>
+<file>completion/hep-math-font.cwl</file>
 <file>completion/hepparticles.cwl</file>
 <file>completion/hep-text.cwl</file>
 <file>completion/hep-title.cwl</file>
@@ -1867,6 +1873,7 @@
 <file>completion/metalogox.cwl</file>
 <file>completion/metastr.cwl</file>
 <file>completion/methylen.cwl</file>
+<file>completion/metre.cwl</file>
 <file>completion/metrix.cwl</file>
 <file>completion/mfirstuc.cwl</file>
 <file>completion/mflogo.cwl</file>
@@ -1911,6 +1918,7 @@
 <file>completion/modular.cwl</file>
 <file>completion/modulus.cwl</file>
 <file>completion/montserrat.cwl</file>
+<file>completion/moodle.cwl</file>
 <file>completion/moredefs.cwl</file>
 <file>completion/moreenum.cwl</file>
 <file>completion/morefloats.cwl</file>
@@ -2274,6 +2282,7 @@
 <file>completion/prftree.cwl</file>
 <file>completion/principia.cwl</file>
 <file>completion/printlen.cwl</file>
+<file>completion/prnthyph.cwl</file>
 <file>completion/proba.cwl</file>
 <file>completion/probsoln.cwl</file>
 <file>completion/processkv.cwl</file>
@@ -2665,6 +2674,7 @@
 <file>completion/spelling.cwl</file>
 <file>completion/splitidx.cwl</file>
 <file>completion/spotcolor.cwl</file>
+<file>completion/spot.cwl</file>
 <file>completion/spreadtab.cwl</file>
 <file>completion/spverbatim.cwl</file>
 <file>completion/sqrcaps.cwl</file>
