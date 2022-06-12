@@ -1,10 +1,11 @@
 # fontenc package
-# Matthew Bertucci 3/8/2022
+# Matthew Bertucci 2022/06/10
 
 #keyvals:\usepackage/fontenc#c
 B1
 ECMSRB1
 ECMSRB2
+L7x
 LAE
 LCY
 LFE
@@ -174,6 +175,20 @@ X2
 \T{arg}#n
 \textquotedbl#n
 \U{arg}#n
+#endif
+
+#ifOption:L7x
+\guillemotleft#n
+\guillemotright#n
+\guilsinglleft#n
+\guilsinglright#n
+\k{arg}#n
+\quotedblbase#n
+\quotesinglbase#n
+\textlogicalnot#n
+\textquotedbl#n
+\textquotedblbase#n
+\textquotesinglbase#n
 #endif
 
 #ifOption:LAE
