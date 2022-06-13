@@ -2798,7 +2798,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="400"/>
         <source>Screen Resolution (System: %1 dpi):</source>
-        <translation type="unfinished"/>
+        <translation>Разрешение экрана (системное: %1 DPI)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="479"/>
@@ -9437,7 +9437,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="941"/>
         <source>C&amp;ut Line</source>
-        <translation type="unfinished"/>
+        <translation>В&amp;ырезать строку</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="943"/>
