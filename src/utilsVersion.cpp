@@ -12,7 +12,7 @@ int gitRevisionToInt(const char *)
 QList<int> Version::parseVersionNumber(const QString &versionNumber)
 {
 	QList<int> result;
-    QRegularExpression terminatingChars("[\\s-]");
+    QRegularExpression terminatingChars("[A-Za-z\\s-]");
 	int len = versionNumber.indexOf(terminatingChars);
 	QStringList parts = versionNumber.left(len).split('.');
 	if (parts.isEmpty())
@@ -32,7 +32,8 @@ QList<int> Version::parseVersionNumber(const QString &versionNumber)
 
 bool Version::versionNumberIsValid(const QString &versionNumber)
 {
-    return ( (parseVersionNumber(versionNumber).length() == 3)||(parseVersionNumber(versionNumber).length() == 4));
+	QList<int> parsedVersionNumber = parseVersionNumber(versionNumber);
+    return parsedVersionNumber.length() == 3;
 }
 
 
@@ -77,19 +78,20 @@ Version Version::current()
 	if (s.endsWith('+'))
 		s = s.left(s.length() - 1);
 	v.revision = s.toInt();
-    if(QString(TEXSTUDIO_GIT_REVISION).contains("RC")||QString(TEXSTUDIO_GIT_REVISION).contains("rc")){
-        v.type="release candidate";
+    if (QString(TEXSTUDIO_GIT_REVISION).contains("RC") || QString(TEXSTUDIO_GIT_REVISION).contains("rc")){
+        v.type="rc";
     }
-    if(QString(TEXSTUDIO_GIT_REVISION).contains("beta")){
-        v.type="beta";
+    if (QString(TEXSTUDIO_GIT_REVISION).contains("beta")){
+        v.type = "beta";
     }
-    if(v.type.isEmpty()){
-        if(v.revision<2){
-            v.type="stable";
-        }else{
-            v.type="development";
-        }
+    if (QString(TEXSTUDIO_GIT_REVISION).contains("alpha")){
+        v.type = "alpha";
     }
+    if (v.type.isEmpty()){
+		v.type = "stable";
+	} else {
+		v.type = "dev";
+	}
 #if defined(Q_OS_WIN)
 	v.platform =  "win";
 #elif defined(Q_OS_MAC)
@@ -97,7 +99,6 @@ Version Version::current()
 #elif defined(Q_OS_LINUX)
 	v.platform = "linux";
 #endif
-	// v.type  // TODO currently not stored
 	return v;
 }
 
@@ -110,15 +111,10 @@ bool Version::operator >(const Version &other) const
         bool revisionLarger = (revision > 0 && other.revision > 0 && revision > other.revision);
         return revisionLarger;
     }
-    int lvl=3;
-    if(type=="release candidate") lvl=2;
-    if(type=="beta") lvl=1;
-    if(type=="development") lvl=0;
-    int lvl_other=3;
-    if(other.type=="release candidate") lvl_other=2;
-    if(other.type=="beta") lvl_other=1;
-    if(other.type=="development") lvl_other=0;
-    return lvl_other==0 && lvl==3 ? false : lvl>lvl_other; // special treatment a.b-dev > a.b stable but a.b-dev < a.b-beta/rc
+	QStringList levelList = {"dev", "alpha", "beta", "rc", "stable"};
+    int lvl = levelList.indexOf(type);
+    int lvl_other = levelList.indexOf(other.type);
+    return lvl_other==0 && lvl==4 ? false : lvl>lvl_other; // special treatment a.b-dev > a.b stable but a.b-dev < a.b-beta/rc
 }
 
 bool Version::isEmpty() const
