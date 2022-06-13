@@ -1,5 +1,5 @@
 # xintexpr package
-# Matthew Bertucci 2022/05/26 for v1.4k
+# Matthew Bertucci 2022/06/12 for v1.4m
 
 #include:xintfrac
 #include:xinttools
@@ -38,9 +38,6 @@
 \xintiieval{expr}
 \xintfloateval{expr}
 \xintfloateval[digits]{expr}
-
-\xintFracToSci{%<A/B[n]%>}
-\xintFracToDecimal{%<A/B[n]%>}
 
 \xintthecoords
 \xintthespaceseparated
@@ -120,11 +117,6 @@
 \xintfloatexprPrintOne#S
 \xintboolexprPrintOne#S
 \xintexprEmptyItem#S
-\thexintexpr#S
-\thexintiexpr#S
-\thexintfloatexpr#S
-\thexintiiexpr#S
-\thexintboolexpr#S
 \xintSeqA#S
 \xintiiSeqA#S
 \xintSeqB#S
