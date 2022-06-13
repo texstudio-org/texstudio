@@ -159,8 +159,8 @@
 \end{dispListing*}
 \begin{absquote}
 \end{absquote}
-\tcbmakedocSubKey{name}{key path}
-\tcbmakedocSubKeys{name}{key path}
+\tcbmakedocSubKey{envname}{key path}#N
+\tcbmakedocSubKeys{envname}{key path}#N
 \refCom{name}
 \refCom*{name}
 \refEnv{name}
@@ -1837,7 +1837,7 @@ boxes={%<options%>}
 fontsize=##L
 #endkeyvals
 
-#keyvals:\tcbset
+#keyvals:\tcbset,\posterbox,\begin{posterboxenv}
 posterset/poster={%<poster options%>}
 posterset/coverage={%<options%>}
 posterset/no coverage
@@ -1868,7 +1868,7 @@ posterloc/yshift=##L
 #endkeyvals
 
 # ---------------------------------------
-# << Option Keys >> - Posters
+# << Option Keys >> - xparse
 # ---------------------------------------
 
 #keyvals:\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit

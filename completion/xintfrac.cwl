@@ -1,16 +1,18 @@
 # xintfrac package
-# Matthew Bertucci 2022/05/26 for v1.4k
+# Matthew Bertucci 2022/06/12 for v1.4m
 
 #include:xint
 
-\xintTeXfromSci{%<A/B[n]%>}#m
+\xintTeXFromSci{%<A/B[n]%>}#m
 \xintTeXFrac{%<A/B[n]%>}#m
 \xintTeXsignedFrac{%<A/B[n]%>}#m
 \xintTeXOver{%<A/B[n]%>}#m
+\xintTeXFromScifracmacro{num}{den}#*
 \xintTeXsignedOver{%<A/B[n]%>}#m
 \xintLen{%<A/B[n]%>}
 \xintNum{%<A/B[n]%>}
 \xintRaw{%<A/B[n]%>}
+\xintRawBraced{%<A/B[n]%>}
 \xintiLogTen{%<A/B[n]%>}
 \xintNumerator{%<A/B[n]%>}
 \xintDenominator{%<A/B[n]%>}
@@ -21,6 +23,8 @@
 \xintJrr{%<A/B[n]%>}
 \xintPRaw{%<A/B[n]%>}
 \xintSPRaw{%<A/B[n]%>}#*
+\xintFracToSci{%<A/B[n]%>}
+\xintFracToDecimal{%<A/B[n]%>}
 \xintDecToStringREZ{%<A/B[n]%>}
 \xintDecToString{%<A/B[n]%>}
 \xintTrunc{%<integer%>}{%<A/B[n]%>}
@@ -60,6 +64,7 @@
 \xintifInt{%<A/B[n]%>}{%<integer-code%>}{%<not-integer-code%>}
 \xintIsInt{%<A/B[n]%>}
 \xintSgn{%<A/B[n]%>}
+\xintSignBit{%<A/B[n]%>}
 \xintOpp{%<A/B[n]%>}
 \xintInv{%<A/B[n]%>}
 \xintAbs{%<A/B[n]%>}
@@ -94,6 +99,8 @@
 \xintSetDigits{expr}
 \xintFloat{%<A/B[n]%>}
 \xintFloat[%<digits%>]{%<A/B[n]%>}
+\xintFloatBraced{%<A/B[n]%>}
+\xintFloatBraced[%<digits%>]{%<A/B[n]%>}
 \xintFloatZero
 \xintFloatE{%<A/B[n]%>}
 \xintFloatE[%<digits%>]{%<A/B[n]%>}
@@ -192,6 +199,7 @@
 \xintifone#S
 \xintifodd#S
 \xintraw#S
+\xintrawbraced#S
 \xintilogten#S
 \xintpraw#S
 \xintspraw#S
@@ -248,6 +256,7 @@
 \xintopp#S
 \xintinv#S
 \xintsgn#S
+\xintsignbit#S
 \xintgcd#S
 \xintgcdof#S
 \xintlcm#S
@@ -255,6 +264,7 @@
 \XINTdigits#S
 \XINTguarddigits#S
 \xintfloat#S
+\xintfloatbraced#S
 \xintpfloatsciexp#S
 \xintfloatsignificand#S
 \XINTinfloat#S
@@ -294,3 +304,6 @@
 \xintfloatisint#S
 \xintfloatinttype#S
 \XINTinrandomfloatS#S
+
+# deprecated
+\xintTeXfromSci{%<A/B[n]%>}#Sm

@@ -651,8 +651,10 @@ X2
 #ifOption:LY1
 \DH#n
 \dh#n
-\guillemotleft#n
-\guillemotright#n
+\guillemetleft#n
+\guillemetright#n
+\guillemotleft#*n
+\guillemotright#*n
 \guilsinglleft#n
 \guilsinglright#n
 \k{arg}#n
@@ -761,8 +763,10 @@ X2
 \cyrz#n
 \CYRZH#n
 \cyrzh#n
-\guillemotleft#n
-\guillemotright#n
+\guillemetleft#n
+\guillemetright#n
+\guillemotleft#*n
+\guillemotright#*n
 \U{arg}#n
 #endif
 
