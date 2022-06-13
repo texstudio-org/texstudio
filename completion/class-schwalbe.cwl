@@ -1,5 +1,5 @@
 # schwalbe class
-# Matthew Bertucci 4/20/2022 for v2.7
+# Matthew Bertucci 2022/06/13 for v2.9
 
 #include:schwalbe
 #include:fontenc
@@ -14,7 +14,6 @@
 #include:url
 #include:paralist
 #include:afterpage
-#include:picinpar
 
 \Heft{volume}{issue}{year}{page}
 \begin{Editorial}{heading%text}
@@ -45,6 +44,9 @@
 \Loeser{short name}{name}
 \Loeser*{short name}{name}
 \ListeLoeserKuerzel
+\Loesung{nummer}{liste}{Lösung}
+\Loesung*{nummer}{liste}{Lösung}
+\showsol
 \begin{BuB}
 \end{BuB}
 \begin{turnierberichte}
@@ -79,6 +81,7 @@
 \figline
 \foto{Breite}{Hoehe}{Bildunterschrift}
 \mal
+\MeasureNewpage
 
 # not documented
 \Briefkasten#*
@@ -102,6 +105,9 @@
 \eEntscheid{arg}#*
 \editorial{arg}#*
 \turnier{arg1}#*
+\wK#*
+\Ruler#*
+\ShowRuler#*
 
 # from T1 option of fontenc
 \DH#n
