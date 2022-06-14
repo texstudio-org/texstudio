@@ -6,6 +6,7 @@
 #include <QMutex>
 
 UpdateChecker *UpdateChecker::m_Instance = nullptr;
+int comboBoxUpdateLevel;
 
 UpdateChecker::UpdateChecker() :
     QObject(nullptr), silent(true)
@@ -41,8 +42,11 @@ void UpdateChecker::autoCheck()
 
 }
 
-void UpdateChecker::check(bool silent)
+void UpdateChecker::check(bool silent, int currentComboBoxUpdateLevel)
 {
+	// catch value if possible, s. comment at start of checkForNewVersion
+	comboBoxUpdateLevel = currentComboBoxUpdateLevel;
+
 	this->silent = silent;
     networkManager = new QNetworkAccessManager();
     QNetworkRequest request = QNetworkRequest(QUrl("https://api.github.com/repos/texstudio-org/texstudio/git/refs/tags"));
@@ -132,6 +136,8 @@ void UpdateChecker::parseData(const QByteArray &data)
             tags<<zw;
         }
     }
+	bool rcFound = false;
+	bool devFound = false;
     for(int j=tags.length()-1;j>=0;j--){
         QString tag=tags.value(j);
         QRegExp rx("^((\\d+\\.)+(\\d+))([a-zA-Z]+)?(\\d*)?$");
@@ -139,14 +145,16 @@ void UpdateChecker::parseData(const QByteArray &data)
             QString ver=rx.cap(1);
             QString type=rx.cap(4);
             qDebug()<<ver<<type;
-            if(type.toLower()=="rc"){
+            if (!rcFound && type.toLower() == "rc"){
+                rcFound = true;
                 Version v;
                 v.versionNumber = ver;
                 v.type = "release candidate";
                 v.revision = rx.cap(5).toInt();
                 latestReleaseCandidateVersion = v;
             }
-            if(type.toLower()=="beta"){
+            if (!devFound && type.toLower() == "beta"){
+                devFound = true;
                 Version v;
                 v.versionNumber = ver;
                 v.type = "beta";
@@ -173,7 +181,14 @@ void UpdateChecker::checkForNewVersion()
 {
 	// updateLevel values from comboBoxUpdateLevel indices:
 	// 0: stable, 1: release candidate, 2: development
-	int updateLevel = ConfigManager::getInstance()->getOption("Update/UpdateLevel").toInt();
+	// config dialog (check button) passes correct current index from dialog, so user can check with different settings without closing dialog
+	// auto check uses -1, since we do not have the current gui value. in this case we can stay with config value.
+	int updateLevel;
+	if (comboBoxUpdateLevel > -1)		
+		updateLevel = comboBoxUpdateLevel;
+	else
+		updateLevel = ConfigManager::getInstance()->getOption("Update/UpdateLevel").toInt();
+
 	bool checkReleaseCandidate = updateLevel >= 1;
 	bool checkDevVersions = updateLevel >= 2;
 
@@ -252,6 +267,7 @@ void UpdateChecker::notify(QString message)
 	msgBox.setTextFormat(Qt::RichText);
 	msgBox.setText(message);
 	msgBox.setStandardButtons(QMessageBox::Ok);
+	msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
 	msgBox.exec();
 }
 
