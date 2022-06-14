@@ -574,7 +574,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 env.level = tk.level;
                 env.startingColumn=tk.start+1;
                 env.endingColumn=tk.start+tk.length-1;
-                activeEnv.push(env);
+                // avoid stacking same env (e.g. braces in braces, see #2411 )
+                Environment topEnv=activeEnv.top();
+                if(topEnv.name!=env.name)
+                    activeEnv.push(env);
             }
             newRanges.append(elem);
         }
