@@ -88,41 +88,6 @@ void UpdateChecker::onRequestCompleted()
 
 void UpdateChecker::parseData(const QByteArray &data)
 {
-    /*QDomDocument domDocument;
-	if (domDocument.setContent(data)) {
-		QDomElement root = domDocument.documentElement();
-		if (root.tagName() != "versions") {
-			if (!silent) UtilsUi::txsWarning(tr("Update check failed (invalid update file format)."));
-			return;
-		}
-
-		latestStableVersion = Version();
-		latestDevVersion = Version();
-		latestReleaseCandidateVersion = Version();
-		QDomNodeList nodes = root.elementsByTagName("version");
-		for (int i = 0; i < nodes.count(); i++) {
-			QDomElement elem = nodes.at(i).toElement();
-			Version v;
-			v.platform = elem.attribute("platform");
-			v.versionNumber = elem.attribute("number");
-			v.type = elem.attribute("type");
-			v.revision = elem.attribute("revision").toInt();
-#if defined(Q_OS_WIN)
-			if (v.platform != "win") continue;
-#elif defined(Q_OS_MAC)
-			if (v.platform != "mac") continue;
-#else
-			if (v.platform != "linux") continue;
-#endif
-			if (v.type == "stable") {
-				latestStableVersion = v;
-			} else if (v.type == "development") {
-				latestDevVersion = v;
-			} else if (v.type == "release candidate") {
-				latestReleaseCandidateVersion = v;
-			}
-		}
-    }*/
     // simple,dirty parsing of github api result (tags)
     QString result=QString(data);
     QStringList lines=result.split(",");
