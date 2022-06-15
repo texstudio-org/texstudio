@@ -35,15 +35,16 @@ public:
 	static bool versionNumberIsValid(const QString &versionNumber);
     static int parseGitRevisionNumber(const QString &revision);
 
-	Version() : revision(0) {}
-	Version(QString number, int rev = 0) : versionNumber(number), revision(rev) {}
-    Version(QString number, QString tp,int rev = 0) : versionNumber(number), type(tp), revision(rev) {}
+	Version() : revision(0), devcount(0) {}
+	Version(QString number, int rev = 0) : versionNumber(number), type(QString("stable")), revision(rev), devcount(0) {}
+    Version(QString number, QString tp, int rev = 0, int count = 0) : versionNumber(number), type(tp), revision(rev), devcount(count) {}
 	static Version current();
 
 	QString platform;       // "win" or "mac" or "linux"
 	QString versionNumber;  // "2.10.2"
-	QString type;           // "stable", "release candidate" or "development"
-    int revision;           // 5310, now changed to revision after tag as deliverd by "git describe"
+	QString type;           // "stable", "rc", "beta", "alpha", or "dev"
+    int revision;           // 5310, now changed to revision after tag as delivered by "git describe"
+	int devcount;           // devcount == 24 for dev version 4.3.0beta1-24-g5c925a387
 
 	bool operator > (const Version &other) const;
 

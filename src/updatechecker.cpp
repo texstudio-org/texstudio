@@ -6,7 +6,6 @@
 #include <QMutex>
 
 UpdateChecker *UpdateChecker::m_Instance = nullptr;
-int comboBoxUpdateLevel;
 
 UpdateChecker::UpdateChecker() :
     QObject(nullptr), silent(true)
@@ -42,7 +41,7 @@ void UpdateChecker::autoCheck()
 
 }
 
-void UpdateChecker::check(bool silent, int currentComboBoxUpdateLevel)
+void UpdateChecker::check(bool silent)
 {
 	// catch value if possible, s. comment at start of checkForNewVersion
 	if (currentComboBoxUpdateLevel == -1)
@@ -320,7 +319,6 @@ void UpdateChecker::notify(QString message)
 	msgBox.setTextFormat(Qt::RichText);
 	msgBox.setText(message);
 	msgBox.setStandardButtons(QMessageBox::Ok);
-	msgBox.setTextInteractionFlags(Qt::TextSelectableByKeyboard | Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
 	msgBox.exec();
 }
 

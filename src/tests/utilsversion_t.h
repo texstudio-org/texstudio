@@ -17,7 +17,8 @@ private slots:
 		QTest::addColumn<QString>("ver2");
 		QTest::addColumn<int>("expectedResult");
 
-		QTest::newRow("equal") << "2.3" << "2.3" << (int) Version::Same;
+		QTest::newRow("equal0") << "2" << "2.0.0" << (int) Version::Same;
+		QTest::newRow("equal1") << "2.3" << "2.3" << (int) Version::Same;
 		QTest::newRow("equal2") << "2.3.1" << "2.3.1" << (int) Version::Same;
 		QTest::newRow("equal3") << "2" << "2.0" << (int) Version::Same;
 		QTest::newRow("equal4") << "2.3" << "2.3.0" << (int) Version::Same;
@@ -26,7 +27,7 @@ private slots:
 		QTest::newRow("major1") << "3" << "2.4" << (int) Version::Higher;
 		QTest::newRow("major2") << "3.0" << "2.4" << (int) Version::Higher;
 		QTest::newRow("major3") << "3.1" << "2.4" << (int) Version::Higher;
-		QTest::newRow("major4") << "3.1" << "2.4" << (int) Version::Higher;
+		QTest::newRow("major4") << "3.2" << "2.4" << (int) Version::Higher;
 		QTest::newRow("major4") << "3.0" << "2.4.2" << (int) Version::Higher;
 		QTest::newRow("revision1") << "2.4.1" << "2.4" << (int) Version::Higher;
 		QTest::newRow("revision2") << "2.4.2" << "2.4.1" << (int) Version::Higher;
@@ -34,8 +35,8 @@ private slots:
 		QTest::newRow("revision4") << "2.4.1" << "2.4.2" << (int) Version::Lower;
 		QTest::newRow("invalid") << "2.4b" << "2.4" << (int) Version::Invalid;
 		QTest::newRow("twodigit") << "2.10.0" << "2.9.4" << (int) Version::Higher;
-		QTest::newRow("additionalText") << "2.10.0 Release Candidate" << "2.10.0" << (int) Version::Same;
-        QTest::newRow("additionalText2") << "2.10.0-RC" << "2.10.0" << (int) Version::Same;
+		QTest::newRow("additionalText") << "2.10.0 Release Candidate" << "2.10.0" << (int) Version::Invalid;
+        QTest::newRow("additionalText2") << "2.10.0-RC" << "2.10.0" << (int) Version::Invalid;
 	}
 
 	void compareStringVersion() {
@@ -53,8 +54,8 @@ private slots:
 
 		QTest::newRow("valid1") << "2.3" << true;
 		QTest::newRow("valid2") << "2.3.1" << true;
-		QTest::newRow("valid3") << "3.0.0 (Development)" << true;
-		QTest::newRow("valid4") << "3.0.0-RC" << true;
+		QTest::newRow("valid3") << "3.0.0 (Development)" << false;
+		QTest::newRow("valid4") << "3.0.0-RC" << false;
 		QTest::newRow("valid5") << "3.0.0b" << false;
 		QTest::newRow("valid6") << "" << false;
 	}

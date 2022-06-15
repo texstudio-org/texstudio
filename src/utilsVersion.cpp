@@ -3,6 +3,7 @@
 
 int gitRevisionToInt(const char *)
 {
+// ex: 4.3.0beta1-24-g5c925a387
     QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').value(1,"0");
 	if (s.endsWith('+'))
 		s = s.left(s.length() - 1);
@@ -12,24 +13,24 @@ int gitRevisionToInt(const char *)
 QList<int> Version::parseVersionNumber(const QString &versionNumber)
 {
 	QList<int> result;
-    QRegularExpression terminatingChars("[A-Za-z\\s-]");
-	int len = versionNumber.indexOf(terminatingChars);
-	QStringList parts = versionNumber.left(len).split('.');
+	QStringList parts = versionNumber.split('.');
 	if (parts.isEmpty())
 		return result;  // empty
+	QRegularExpression numberPart("^\\d+$");
 	foreach (const QString &v, parts) {
-		bool ok(true);
-		result << v.toInt(&ok);
-		if (!ok) {
+		if (numberPart.indexIn(v) == 0)
+			result << v.toInt();
+		else
 			return QList<int>();
 		}
 	}
-	for (int i=result.count(); i<=2; i++) {
+	for (int i=result.count(); i < 3; i++) {
 		result << 0;  // 1.0 is extended to 1.0.0
 	}
 	return result;
 }
 
+// accepts a or a.b or a.b.c where a, b, and c each a sequence of atleast 1 digits like 4711
 bool Version::versionNumberIsValid(const QString &versionNumber)
 {
 	QList<int> parsedVersionNumber = parseVersionNumber(versionNumber);
@@ -74,12 +75,9 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
 Version Version::current()
 {
 	Version v(TXSVERSION);
-    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').value(1,"0");
-	if (s.endsWith('+'))
-		s = s.left(s.length() - 1);
-	v.revision = s.toInt();
-    if (QString(TEXSTUDIO_GIT_REVISION).contains("RC") || QString(TEXSTUDIO_GIT_REVISION).contains("rc")){
-        v.type="rc";
+	v.revision = gitRevisionToInt(QString(TEXSTUDIO_GIT_REVISION));
+    if (QString(TEXSTUDIO_GIT_REVISION).toLower().contains("rc")){
+        v.type = "rc";
     }
     if (QString(TEXSTUDIO_GIT_REVISION).contains("beta")){
         v.type = "beta";
@@ -87,7 +85,7 @@ Version Version::current()
     if (QString(TEXSTUDIO_GIT_REVISION).contains("alpha")){
         v.type = "alpha";
     }
-    if (v.type.isEmpty()){
+    if (v.type.isEmpty() && v.revision < 2){
 		v.type = "stable";
 	} else {
 		v.type = "dev";
@@ -119,11 +117,14 @@ bool Version::operator >(const Version &other) const
 
 bool Version::isEmpty() const
 {
-	return versionNumber.isEmpty() && revision == 0;
+	return versionNumber.isEmpty() && type.isEmpty() && revision == 0;
 }
 
 bool Version::isValid() const
 {
-	return versionNumberIsValid(versionNumber);
+	return versionNumberIsValid(versionNumber)
+		&& ( type.toLower() == "stable" && ( revision == 0 || revision == 1 )
+				|| ( type.toLower() == "rc" || type.toLower() == "beta" || type.toLower() == "alpha" || type.toLower() == "dev"
+					) && revision > 0
+			);
 }
-

@@ -1154,7 +1154,7 @@ void ConfigDialog::importDictionary()
 
 void ConfigDialog::updateCheckNow()
 {
-	UpdateChecker::instance()->check(false, ui.comboBoxUpdateLevel->currentIndex());
+	UpdateChecker::instance()->check(false);
 }
 
 void ConfigDialog::refreshLastUpdateTime()
