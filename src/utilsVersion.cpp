@@ -1,6 +1,8 @@
 #include "utilsVersion.h"
 #include "mostQtHeaders.h"
 
+QStringList levelList = {"alpha", "beta", "rc", "stable"};
+
 int gitRevisionToInt(const char *)
 {
 // ex: 4.3.0beta1-24-g5c925a387
@@ -18,11 +20,10 @@ QList<int> Version::parseVersionNumber(const QString &versionNumber)
 		return result;  // empty
 	QRegularExpression numberPart("^\\d+$");
 	foreach (const QString &v, parts) {
-		if (numberPart.indexIn(v) == 0)
+		if (numberPart.match(v).hasMatch())
 			result << v.toInt();
 		else
 			return QList<int>();
-		}
 	}
 	for (int i=result.count(); i < 3; i++) {
 		result << 0;  // 1.0 is extended to 1.0.0
@@ -74,57 +75,69 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
 
 Version Version::current()
 {
-	Version v(TXSVERSION);
-	v.revision = gitRevisionToInt(QString(TEXSTUDIO_GIT_REVISION));
-    if (QString(TEXSTUDIO_GIT_REVISION).toLower().contains("rc")){
-        v.type = "rc";
-    }
-    if (QString(TEXSTUDIO_GIT_REVISION).contains("beta")){
-        v.type = "beta";
-    }
-    if (QString(TEXSTUDIO_GIT_REVISION).contains("alpha")){
-        v.type = "alpha";
-    }
-    if (v.type.isEmpty() && v.revision < 2){
-		v.type = "stable";
-	} else {
-		v.type = "dev";
-	}
+	QRegExp rx("^((\\d+\\.)+(\\d+))([a-zA-Z]+)?(\\d*)?(-(\\d+)-)?");
+	if (rx.indexIn(QString(TEXSTUDIO_GIT_REVISION)) == 0){
+		QString type = rx.cap(4).toLower();
+		int revision = rx.cap(5).toInt();
+		QString cap7 = rx.cap(7);
+		int commitsAfter;
+		if (cap7 == "")
+			commitsAfter = -1;
+		else
+			commitsAfter = cap7.toInt();
+		Version v( TXSVERSION, type, revision, commitsAfter);
 #if defined(Q_OS_WIN)
-	v.platform =  "win";
+		v.platform =  "win";
 #elif defined(Q_OS_MAC)
-	v.platform = "mac";
+		v.platform = "mac";
 #elif defined(Q_OS_LINUX)
-	v.platform = "linux";
+		v.platform = "linux";
 #endif
+		return v;
+	}
+	Version v;
 	return v;
+}
+
+QString Version::versionToString(const Version &v)
+{
+	QString s;
+	if (v.isEmpty())
+		return "";
+	else {
+		s = v.versionNumber;
+		if (!(v.type == "stable") || v.revision > 0) {
+			s += v.type + QString("%1").arg(v.revision);
+		}
+		if (v.commitsAfter > -1)
+			s += QString("-%1").arg(v.commitsAfter);
+	}
+	return s;
 }
 
 bool Version::operator >(const Version &other) const
 {
 	VersionCompareResult res = compareStringVersion(versionNumber, other.versionNumber);
-    if(res!=Same)
+    if (res != Same)
         return (res == Higher);
-    if(type==other.type){
-        bool revisionLarger = (revision > 0 && other.revision > 0 && revision > other.revision);
+    if (type == other.type){
+        bool revisionLarger = (revision > other.revision || revision == other.revision && commitsAfter > other.commitsAfter);
         return revisionLarger;
     }
-	QStringList levelList = {"dev", "alpha", "beta", "rc", "stable"};
     int lvl = levelList.indexOf(type);
     int lvl_other = levelList.indexOf(other.type);
-    return lvl_other==0 && lvl==4 ? false : lvl>lvl_other; // special treatment a.b-dev > a.b stable but a.b-dev < a.b-beta/rc
+    return lvl > lvl_other;
 }
 
 bool Version::isEmpty() const
 {
-	return versionNumber.isEmpty() && type.isEmpty() && revision == 0;
+	return versionNumber.isEmpty() && type.isEmpty() && revision == 0 && commitsAfter == 0;
 }
 
 bool Version::isValid() const
 {
 	return versionNumberIsValid(versionNumber)
-		&& ( type.toLower() == "stable" && ( revision == 0 || revision == 1 )
-				|| ( type.toLower() == "rc" || type.toLower() == "beta" || type.toLower() == "alpha" || type.toLower() == "dev"
-					) && revision > 0
-			);
+		&& levelList.indexOf(type.toLower()) > -1
+		&& revision >= 0
+		&& commitsAfter >= -1;
 }

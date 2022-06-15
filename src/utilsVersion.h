@@ -34,17 +34,17 @@ public:
 	static QList<int> parseVersionNumber(const QString &versionNumber);
 	static bool versionNumberIsValid(const QString &versionNumber);
     static int parseGitRevisionNumber(const QString &revision);
-
-	Version() : revision(0), devcount(0) {}
-	Version(QString number, int rev = 0) : versionNumber(number), type(QString("stable")), revision(rev), devcount(0) {}
-    Version(QString number, QString tp, int rev = 0, int count = 0) : versionNumber(number), type(tp), revision(rev), devcount(count) {}
+	static QString versionToString(const Version &v);
+	Version() : revision(0), commitsAfter(0) {}
+	Version(QString number, int rev = 0) : versionNumber(number), type(QString("stable")), revision(rev), commitsAfter(0) {}
+    Version(QString number, QString tp, int rev = 0, int count = -1) : versionNumber(number), type(tp), revision(rev), commitsAfter(count) {}
 	static Version current();
 
 	QString platform;       // "win" or "mac" or "linux"
 	QString versionNumber;  // "2.10.2"
-	QString type;           // "stable", "rc", "beta", "alpha", or "dev"
+	QString type;           // "stable", "rc", "beta", "alpha"
     int revision;           // 5310, now changed to revision after tag as delivered by "git describe"
-	int devcount;           // devcount == 24 for dev version 4.3.0beta1-24-g5c925a387
+	int commitsAfter;       // commitsAfter == 24 for dev version 4.3.0beta1-24-g5c925a387, commitsAfter = -1 for git (pre-) releases
 
 	bool operator > (const Version &other) const;
 
