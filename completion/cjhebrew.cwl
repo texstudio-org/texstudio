@@ -1,12 +1,16 @@
 # cjhebrew package
-# Matthew Bertucci 8/27/2021 for v0.2a
+# Matthew Bertucci 2021/08/27 for v0.2a
 
-\textcjheb{arg}#n
-\cjRL{arg}#n
-\<#*n
+#include:ifluatex
+#include:luabidi
+
+\<#*
 \begin{cjhebrew}#n
 \end{cjhebrew}#n
+\cjhebfamily#*n
+\cjLR{text%plain}#n
+\cjRL{text%plain}#n
 \dottedcircle
-\cjLR#*n
 \endofword#*n
+\textcjheb{text%plain}#n
 \zeronojoin#*n

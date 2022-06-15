@@ -2779,6 +2779,26 @@ SuppressWarning#true,false
 \glossaryname#*
 #endif
 
+### lithuanian.ldf v1.0 ###
+#ifOption:lithuanian
+\captionslithuanian
+\datelithuanian
+\extraslithuanian
+\noextraslithuanian
+\lithuanianhyphenmins#*
+\prefacename#*
+\bibname#*
+\chaptername#*
+\enclname#*
+\ccname#*
+\headtoname#*
+\pagename#*
+\seename#*
+\alsoname#*
+\proofname#*
+\glossaryname#*
+#endif
+
 ### macedonian.ldf v1.1 ###
 #ifOption:macedonian
 \captionsmacedonian

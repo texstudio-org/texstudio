@@ -6,6 +6,7 @@
 #include <QMutex>
 
 UpdateChecker *UpdateChecker::m_Instance = nullptr;
+int comboBoxUpdateLevel;
 
 UpdateChecker::UpdateChecker() :
     QObject(nullptr), silent(true)
@@ -41,13 +42,10 @@ void UpdateChecker::autoCheck()
 
 }
 
-void UpdateChecker::check(bool silent)
+void UpdateChecker::check(bool silent, int currentComboBoxUpdateLevel)
 {
 	// catch value if possible, s. comment at start of checkForNewVersion
-	if (currentComboBoxUpdateLevel == -1)
-		comboBoxUpdateLevel = -1;
-	else
-		comboBoxUpdateLevel = currentComboBoxUpdateLevel;
+	comboBoxUpdateLevel = currentComboBoxUpdateLevel;
 
 	this->silent = silent;
     networkManager = new QNetworkAccessManager();
@@ -90,41 +88,6 @@ void UpdateChecker::onRequestCompleted()
 
 void UpdateChecker::parseData(const QByteArray &data)
 {
-    /*QDomDocument domDocument;
-	if (domDocument.setContent(data)) {
-		QDomElement root = domDocument.documentElement();
-		if (root.tagName() != "versions") {
-			if (!silent) UtilsUi::txsWarning(tr("Update check failed (invalid update file format)."));
-			return;
-		}
-
-		latestStableVersion = Version();
-		latestDevVersion = Version();
-		latestReleaseCandidateVersion = Version();
-		QDomNodeList nodes = root.elementsByTagName("version");
-		for (int i = 0; i < nodes.count(); i++) {
-			QDomElement elem = nodes.at(i).toElement();
-			Version v;
-			v.platform = elem.attribute("platform");
-			v.versionNumber = elem.attribute("number");
-			v.type = elem.attribute("type");
-			v.revision = elem.attribute("revision").toInt();
-#if defined(Q_OS_WIN)
-			if (v.platform != "win") continue;
-#elif defined(Q_OS_MAC)
-			if (v.platform != "mac") continue;
-#else
-			if (v.platform != "linux") continue;
-#endif
-			if (v.type == "stable") {
-				latestStableVersion = v;
-			} else if (v.type == "development") {
-				latestDevVersion = v;
-			} else if (v.type == "release candidate") {
-				latestReleaseCandidateVersion = v;
-			}
-		}
-    }*/
     // simple,dirty parsing of github api result (tags)
     QString result=QString(data);
 //*************** T E S T ************** issue #2244
@@ -166,16 +129,16 @@ void UpdateChecker::parseData(const QByteArray &data)
             QString ver=rx.cap(1);
             QString type=rx.cap(4).toLower();
             qDebug()<<ver<<type;
-            if(!rcFound && type=="rc"){
-				rcFound = true;
+            if (!rcFound && type.toLower() == "rc"){
+                rcFound = true;
                 Version v;
                 v.versionNumber = ver;
                 v.type = type;
                 v.revision = rx.cap(5).toInt();
                 latestReleaseCandidateVersion = v;
             }
-            if(!devFound && (type=="beta" || type=="alpha")){
-				devFound = true;
+            if (!devFound && type.toLower() == "beta"){
+                devFound = true;
                 Version v;
                 v.versionNumber = ver;
                 v.type = type;
@@ -319,6 +282,7 @@ void UpdateChecker::notify(QString message)
 	msgBox.setTextFormat(Qt::RichText);
 	msgBox.setText(message);
 	msgBox.setStandardButtons(QMessageBox::Ok);
+	msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
 	msgBox.exec();
 }
 

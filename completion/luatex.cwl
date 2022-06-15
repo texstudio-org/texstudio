@@ -18,8 +18,8 @@
 \attributedef{cmd}#Sd
 
 # 2.4 LUA related primitives #
-\directlua{lua code}
-\latelua{lua code}
+\directlua{lua code%definition}
+\latelua{lua code%definition}
 \lateluafunction%<<number>%>#*
 \luaescapestring{TeX code}#*
 \luafunction%<<number>%>#*
