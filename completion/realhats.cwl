@@ -1,5 +1,5 @@
 # realhats package
-# Matthew Bertucci 8/22/2021 for v5.0
+# Matthew Bertucci 2022/06/14 for v6.0
 
 #include:amsmath
 #include:calc
@@ -22,6 +22,10 @@ fez
 cowboy
 crown
 dunce
+policeman
+scottish
+birthday
+mortarboard
 #endkeyvals
 
 \myhat#S
