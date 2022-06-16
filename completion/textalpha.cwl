@@ -61,6 +61,7 @@ keep-semicolon
 \textpentedeka#n
 \textpentehekaton#n
 \textpenteqilioi#n
+\textpentemurioi#n
 \textstigma#n
 \textvarstigma#n
 \textKoppa#n
