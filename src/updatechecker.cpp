@@ -120,15 +120,15 @@ void UpdateChecker::parseData(const QByteArray &data)
             tags<<zw;
         }
     }
-	bool rcFound = false;
-	bool devFound = false;
+    bool rcFound = false;
+    bool devFound = false;
     for(int j=tags.length()-1;j>=0;j--){
         QString tag=tags.value(j);
         QRegExp rx("^((\\d+\\.)+(\\d+))([a-zA-Z]+)?(\\d*)?$");
         if (rx.indexIn(tag)==0){
             QString ver = rx.cap(1);
             QString type = rx.cap(4).toLower();
-			int revision = rx.cap(5).toInt();
+            int revision = rx.cap(5).toInt();
             qDebug()<<ver<<type;
             if (!rcFound && type == "rc"){
                 rcFound = true;
@@ -169,13 +169,13 @@ void UpdateChecker::checkForNewVersion()
 	bool checkDevVersions = updateLevel >= 2;
 	Version currentVersion = Version::current();
 //*************** T E S T ************** issue #2244
-//	currentVersion.versionNumber = "3.1.2";
-//	currentVersion.type = "stable";
+//	currentVersion.versionNumber = "4.2.3";
+//	currentVersion.type = "alpha";
 //	currentVersion.revision = 1;
-//	currentVersion.commitsAfter = -1;
+//	currentVersion.commitsAfter = 7;
 //*************** T E S T **************
-    QString downloadAddress = "https://texstudio.org";
-    QString downloadAddressGit = "https://github.com/texstudio-org/texstudio/releases";
+	QString downloadAddress = "https://texstudio.org";
+	QString downloadAddressGit = "https://github.com/texstudio-org/texstudio/releases";
 
 	if (!currentVersion.isValid() && !latestReleaseCandidateVersion.isValid() && !latestDevVersion.isValid()) {
 		if (!silent) UtilsUi::txsWarning(tr("Update check failed (invalid update file format)."));
