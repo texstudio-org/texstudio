@@ -132,3 +132,12 @@ keep-semicolon
 \textrhosymbol#*
 \textThetasymbol#*
 \textepsilonsymbol#*
+
+#ifOption:normalize-symbols
+\textvarbeta
+\textvarkappa
+\textvarTheta
+\textvartheta
+\textvarpi
+\textvarrho
+#endif
