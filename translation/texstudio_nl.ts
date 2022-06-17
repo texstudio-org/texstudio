@@ -556,7 +556,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="400"/>
         <source>External Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Externe terminal</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="942"/>
@@ -596,7 +596,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/buildmanager.cpp" line="1488"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Populaire LaTeX-distributies voor Windows zijn %1 en %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1490"/>
@@ -848,7 +848,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="446"/>
         <source>Use system file dialogs</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik bestandsdialogen van het systeem</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="456"/>
@@ -941,7 +941,7 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
     <message>
         <location filename="../src/configdialog.ui" line="674"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: bestandsnaam zonder extensie; &lt;b&gt;@&lt;/b&gt;: lijnnummer; &lt;b&gt;?[selector][pathname parts]&lt;/b&gt;: geformatteerde bestandsnaam</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="684"/>
@@ -952,7 +952,8 @@ Pas uw configuratie aan en definieer opdracht reeksen alleen in &apos;Opties -&g
         <location filename="../src/configdialog.ui" line="700"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; en &lt;b&gt;?? &lt;/b&gt; wordt: %, @ or ?
+</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="778"/>
@@ -1127,22 +1128,22 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"/>
+        <translation>Sluit log-venster</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Sluit ingebedde weergave</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"/>
+        <translation>Sluit volledig scherm-modus</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1160"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Toon sneltoetsen in Tooltips</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1183"/>
@@ -1367,7 +1368,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
-        <translation type="unfinished"/>
+        <translation>Franse aanhalingstekens (babel): \og{} \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>
@@ -1387,12 +1388,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1833"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Poolse aanhalingstekens: ,, &apos;&apos;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1838"/>
         <source>Polish Quotes (unicode): „ ”</source>
-        <translation type="unfinished"/>
+        <translation>Poolse aanhalingstekens (unicode): „ ”</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1846"/>
@@ -1475,7 +1476,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1969"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder witruimte aan het regeleinde bij bewaren</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1615"/>
@@ -1700,12 +1701,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2326"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Dit heeft enkel effect als de breedte van het document beperkt is door zachte of harde regelomloop.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2329"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Centreer document in editor</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2460"/>
@@ -1741,7 +1742,7 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="2301"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Als je unicode-tekens gebruikt in de broncode, dan moet LaTeX nog steeds de tekens renderen. Omdat unicode niet standaard ondersteund wordt in LaTeX, moet je de juiste pakketten voor unicode-tekens mee opnemen in je document.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2305"/>
@@ -1781,7 +1782,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="1544"/>
         <source>Embedded PDF Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Ingebedde PDF werkbalk</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2241"/>
@@ -1791,7 +1792,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2495"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation type="unfinished"/>
+        <translation>Verticaal overscrollen (verder scrollen dan het einde van het bestand)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2505"/>
@@ -1816,7 +1817,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2556"/>
         <source>Regular expression for TODO comment: </source>
-        <translation type="unfinished"/>
+        <translation>Regular Expressions voor TODO opmerking:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2563"/>
@@ -1826,7 +1827,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2515"/>
         <source>No Color Background</source>
-        <translation type="unfinished"/>
+        <translation>Geen achtergrondkleur</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2520"/>
@@ -1861,12 +1862,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
         <source>Scroll to current cursor position</source>
-        <translation type="unfinished"/>
+        <translation>Scroll naar de huidige cursorpositie</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik kleur in globale inhoudsopgave:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2139,7 +2140,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3127"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Wazig</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3132"/>
@@ -2290,7 +2291,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3487"/>
         <source>LT Path:</source>
-        <translation type="unfinished"/>
+        <translation>LT pad:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3494"/>
@@ -2375,7 +2376,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3688"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation type="unfinished"/>
+        <translation>URL om met TaalTool te verbinden.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3779"/>
@@ -2410,7 +2411,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3816"/>
         <source>Preview with lualatex</source>
-        <translation type="unfinished"/>
+        <translation>Voorbeeldweergave met lualatex</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3824"/>
@@ -2563,7 +2564,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4227"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"/>
+        <translation>Cirkel zonder schaduw</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4190"/>
@@ -2908,7 +2909,7 @@ Wens je dit teken als sneltoets inschakelen?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="538"/>
         <source>SVN/GIT</source>
-        <translation type="unfinished"/>
+        <translation>SVN/GIT</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="576"/>
@@ -3955,7 +3956,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="203"/>
         <source>Load &amp;&amp; Save</source>
-        <translation type="unfinished"/>
+        <translation>Laden &amp;&amp; Bewaren</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="209"/>
@@ -4038,7 +4039,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="419"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>Sluit alle andere documenten</translation>
     </message>
 </context>
 <context>
@@ -4918,12 +4919,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="14"/>
         <source>Make Template</source>
-        <translation type="unfinished"/>
+        <translation>Maak sjabloon</translation>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="20"/>
         <source>Create a template from the current file.</source>
-        <translation type="unfinished"/>
+        <translation>Maak een sjabloon van het huidige document</translation>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="27"/>
@@ -4964,7 +4965,7 @@ The wizard does not support command </source>
         <location filename="../src/maketemplatedialog.cpp" line="46"/>
         <source>A template with the given name already exists.
 Do you want to overwrite it?</source>
-        <translation type="unfinished"/>
+        <translation>Er bestaat al een sjabloon met deze naam. Wil je dat overschrijven?</translation>
     </message>
 </context>
 <context>
@@ -5233,7 +5234,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2713"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bekijken</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2714"/>
@@ -5258,7 +5259,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2723"/>
         <source>User &amp;Manual...</source>
-        <translation type="unfinished"/>
+        <translation>Gebruiker &amp;Handleiding</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2726"/>
@@ -5273,7 +5274,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2728"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation type="unfinished"/>
+        <translation>Splits &amp;&amp; Samenvoegen...</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2729"/>
@@ -5288,7 +5289,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2732"/>
         <source>&amp;Configure TeXstudio</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Configureer TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2734"/>
@@ -5323,12 +5324,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2748"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vergroot</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2749"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Scrollen</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2751"/>
@@ -5368,12 +5369,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2760"/>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"/>
+        <translation>Zoom &amp;In</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2761"/>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"/>
+        <translation>Zoom &amp;Uit</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2762"/>
@@ -5398,12 +5399,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2769"/>
         <source>&amp;Continuous</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Continu</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2774"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"/>
+        <translation>Volledig &amp;Scherm</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2775"/>
@@ -5449,7 +5450,7 @@ Do you want to overwrite it?</source>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2804"/>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2806"/>
         <source>&amp;Close something</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sluit iets</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2809"/>
@@ -5464,12 +5465,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2811"/>
         <source>&amp;Side by Side</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Zij aan zij</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2813"/>
         <source>&amp;Go to Source</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ga naar bron</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2814"/>
@@ -5489,7 +5490,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2818"/>
         <source>Find &amp;again</source>
-        <translation type="unfinished"/>
+        <translation>Zoek &amp;opnieuw</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2820"/>
@@ -5834,12 +5835,12 @@ Voer paswoord in: </translation>
     <message>
         <location filename="../src/pdfsplittool.ui" line="14"/>
         <source>Split &amp; Merge</source>
-        <translation type="unfinished"/>
+        <translation>Splits &amp; voeg samen</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="40"/>
         <source>Split &amp;&amp; Merge</source>
-        <translation type="unfinished"/>
+        <translation>Splits &amp;&amp; Voeg samen</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.ui" line="47"/>
@@ -6095,7 +6096,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bekijken</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="199"/>
@@ -6120,7 +6121,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>Kni&amp;p</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
@@ -6138,30 +6139,30 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="585"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1448"/>
         <source>&amp;Indent</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Inspringen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1449"/>
         <source>&amp;Unindent</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Niet inspringen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Schakel &amp;opmerking</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
         <source>Co&amp;mment</source>
-        <translation type="unfinished"/>
+        <translation>Op&amp;merking</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
         <source>Unc&amp;omment</source>
-        <translation type="unfinished"/>
+        <translation>Geen &amp;opmerking</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
@@ -6357,7 +6358,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1338"/>
         <source>Print Source Code</source>
-        <translation type="unfinished"/>
+        <translation>Druk broncode af</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1471"/>
@@ -6654,7 +6655,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
         <source>Tab or Indent selection</source>
-        <translation type="unfinished"/>
+        <translation>Selectie tab of inspringen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4756"/>
@@ -6664,12 +6665,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
         <source>Indent selection</source>
-        <translation type="unfinished"/>
+        <translation>Selectie inspringen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4758"/>
         <source>Unindent selection</source>
-        <translation type="unfinished"/>
+        <translation>Selectie niet inspringen</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
@@ -7369,7 +7370,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="346"/>
         <source>Close search/replace panel</source>
-        <translation type="unfinished"/>
+        <translation>Sluit zoek/vervang paneel</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="347"/>
@@ -8063,7 +8064,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/spellerdialog.cpp" line="84"/>
         <source>Check spelling selection...</source>
-        <translation type="unfinished"/>
+        <translation>Selectie spelling controleren...</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="90"/>
@@ -8324,7 +8325,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="230"/>
         <source>environment not closed</source>
-        <translation type="unfinished"/>
+        <translation>omgeving niet gesloten</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="231"/>
@@ -8596,7 +8597,11 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"/>
+        <translation>Texstudio heeft gebruikerssjablonen gevonden op niet meer ondersteunde locaties.
+Vanaf nu worden gebruikerssjablonen bewaard op
+%1
+Moet TeXstudio de bestaande gebruikerssjablonen daar naartoe verplaatsen?
+Indien niet zullen ze niet beschikbaar zijn via het Maak sjabloon-dialoogvenster.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="79"/>
@@ -8605,7 +8610,11 @@ If not, they will not be available via the Make Template dialog.</source>
 to
 %2
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Sjablonen kopiëren van 
+%1
+naar
+%2
+mislukt.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="82"/>
@@ -8617,7 +8626,7 @@ failed.</source>
     <message>
         <location filename="../src/templatemanager.cpp" line="89"/>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"/>
+        <translation>Er zijn nog niet-verplaatste sjablonen. Moet TexStudio stoppen met ze te beheren?</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="138"/>
@@ -8632,7 +8641,7 @@ failed.</source>
     <message>
         <location filename="../src/templatemanager.cpp" line="142"/>
         <source>Basic template files shipped with TeXstudio.</source>
-        <translation type="unfinished"/>
+        <translation>Basissjabloon dat meekomt met TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="146"/>
@@ -8643,17 +8652,17 @@ failed.</source>
     <message>
         <location filename="../src/templatemanager.cpp" line="148"/>
         <source>User created template files</source>
-        <translation type="unfinished"/>
+        <translation>Sjablonen door de gebruiker gemaakt</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="201"/>
         <source>Select LaTeX Template</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer LaTeX sjabloon</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="219"/>
         <source>Select Table Template</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer tabelsjabloon</translation>
     </message>
     <message>
         <location filename="../src/templatemanager_p.cpp" line="53"/>
@@ -8707,12 +8716,12 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="220"/>
         <source>Edit Template</source>
-        <translation type="unfinished"/>
+        <translation>Bewerk sjabloon</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="221"/>
         <source>Edit Template Info</source>
-        <translation type="unfinished"/>
+        <translation>Bewerk sjablooninformatie</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="222"/>
@@ -8722,14 +8731,14 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="225"/>
         <source>Open Template Location</source>
-        <translation type="unfinished"/>
+        <translation>Open sjabloonlocatie</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="239"/>
         <location filename="../src/templateselector.cpp" line="250"/>
         <location filename="../src/templateselector.cpp" line="261"/>
         <source>This template cannot be edited.</source>
-        <translation type="unfinished"/>
+        <translation>Dit sjabloon kan niet bewerkt worden</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="266"/>
@@ -8739,7 +8748,7 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="266"/>
         <source>Are you sure to delete the following template?</source>
-        <translation type="unfinished"/>
+        <translation>Weet je zeker dat je volgend sjabloon wil verwijderen?</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="273"/>
@@ -9103,7 +9112,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="877"/>
         <source>&amp;Make Template...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Maak sjabloon...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="880"/>
@@ -9234,7 +9243,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="912"/>
         <source>Print Source Code...</source>
-        <translation type="unfinished"/>
+        <translation>Broncode afdrukken ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="915"/>
@@ -9279,7 +9288,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="929"/>
         <source>&amp;Selection</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Selectie</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="930"/>
@@ -9314,12 +9323,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="936"/>
         <source>Expand Selection to Word</source>
-        <translation type="unfinished"/>
+        <translation>Selectie uitbreiden naar woord</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="937"/>
         <source>Expand Selection to Line</source>
-        <translation type="unfinished"/>
+        <translation>Selectie uitbreiden naar lijn</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="939"/>
@@ -9400,7 +9409,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="962"/>
         <source>&amp;Searching</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Zoeken</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="963"/>
@@ -9583,7 +9592,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1061"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Schakel &amp;opmerking</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1062"/>
@@ -9598,7 +9607,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1064"/>
         <source>&amp;Indent</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Inspringen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1065"/>
@@ -9748,7 +9757,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1112"/>
         <source>Close latest open environment</source>
-        <translation type="unfinished"/>
+        <translation>Sluit laatste open omgeving</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1115"/>
@@ -9804,7 +9813,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1133"/>
         <location filename="../src/texstudio.cpp" line="1284"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bekijken</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1134"/>
@@ -10024,7 +10033,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1200"/>
         <source>Cut Column</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Knip kolom</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1201"/>
@@ -10226,7 +10235,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1305"/>
         <source>Close Element</source>
-        <translation type="unfinished"/>
+        <translation>Sluit element</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1308"/>
@@ -10309,7 +10318,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1341"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"/>
+        <translation>Volledig &amp;Scherm</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1348"/>
@@ -10540,12 +10549,12 @@ Otherwise there might be random errors and crashes.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="2414"/>
         <source>Could not write template data:</source>
-        <translation type="unfinished"/>
+        <translation>Kon sjabloongegevens niet bewaren:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2446"/>
         <source>Could not write template meta data:</source>
-        <translation type="unfinished"/>
+        <translation>Kon sjabloon metagegevens niet bewaren:</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2497"/>
@@ -10637,7 +10646,7 @@ this other file before you can overwrite it.</source>
         <location filename="../src/texstudio.cpp" line="3019"/>
         <location filename="../src/texstudio.cpp" line="3089"/>
         <source>Close without Saving</source>
-        <translation type="unfinished"/>
+        <translation>Sluit zonder bewaren</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3019"/>
@@ -10985,7 +10994,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="9197"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
-        <translation type="unfinished"/>
+        <translation>Opgelet: dialoog wordt automatisch gesloten als de tekst manueel bewerkt wordt!</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9498"/>
@@ -11268,7 +11277,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="11374"/>
         <source>Close document</source>
-        <translation type="unfinished"/>
+        <translation>Sluit document</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11375"/>
@@ -11283,7 +11292,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="11377"/>
         <source>Close all related documents</source>
-        <translation type="unfinished"/>
+        <translation>Sluit alle verwante documenten</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11379"/>
@@ -11458,7 +11467,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="33"/>
         <source>Search selection in the document</source>
-        <translation type="unfinished"/>
+        <translation>Zoek selectie in document</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="40"/>
@@ -11994,7 +12003,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="466"/>
         <source>Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Snelkoppeling</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="482"/>
