@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2022/06/03 for v0.28
+# Matthew Bertucci 2022/06/13 for v0.30
 
 #include:shellesc
 #include:xkeyval
@@ -55,7 +55,7 @@ biber#true,false
 xindex#true,false
 xindexOptions={%<xindex options%>}
 includegraphic#true,false
-output#true,false
+showoutput#true,false
 inline#true,false
 frame#true,false
 framesep=##L

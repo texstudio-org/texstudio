@@ -18,10 +18,10 @@
 \MPlly
 \MPurx
 \MPury
-\everymplib{MetaPost code}
-\everymplib[instance name]{MetaPost code}
-\everyendmplib{MetaPost code}
-\everyendmplib[instance name]{MetaPost code}
+\everymplib{MetaPost code%definition}
+\everymplib[instance name]{MetaPost code%definition}
+\everyendmplib{MetaPost code%definition}
+\everyendmplib[instance name]{MetaPost code%definition}
 \mpdim{dimen%l}
 \mpcolor{color}
 \mplibnumbersystem{type%keyvals}

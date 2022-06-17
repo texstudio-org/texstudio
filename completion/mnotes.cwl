@@ -1,14 +1,11 @@
 # mnotes package
-# Matthew Bertucci 12/12/2021 for v0.7
+# Matthew Bertucci 2022/06/13 for v0.9
 
 #include:kvoptions
+#include:soul
 #include:marginnote
 #include:tikz
 #include:ifoddpage
-
-#ifOpton:sidenotes
-#include:sidenotes
-#endif
 
 #keyvals:\usepackage/mnotes#c
 scale
@@ -20,11 +17,17 @@ sidenotes
 basic
 reverseconnect
 centre
-fontsize=##L
+fontsize=%<number%>
 #endkeyvals
+
+#ifOpton:sidenotes
+#include:sidenotes
+#endif
 
 \MNOTE{text%todo}#D
 \MNOTE[TikZ options]{text%todo}#D
+\Mnewauthor{name}{TikZ options}
+\Mnewauthor[initials]{name}{TikZ options}
 \HideMNOTES
 \ShowMNOTES
 \ReverseMNConnect

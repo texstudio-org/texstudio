@@ -61,6 +61,7 @@ keep-semicolon
 \textpentedeka#n
 \textpentehekaton#n
 \textpenteqilioi#n
+\textpentemurioi#n
 \textstigma#n
 \textvarstigma#n
 \textKoppa#n
@@ -131,3 +132,12 @@ keep-semicolon
 \textrhosymbol#*
 \textThetasymbol#*
 \textepsilonsymbol#*
+
+#ifOption:normalize-symbols
+\textvarbeta
+\textvarkappa
+\textvarTheta
+\textvartheta
+\textvarpi
+\textvarrho
+#endif
