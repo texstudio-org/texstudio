@@ -280,6 +280,14 @@
 \UseTextAccent{encoding}{cmd}{text}#*
 \UseTextSymbol{encoding}{cmd}#*
 
+# expl3 commands
+\ExplFileDate#S
+\ExplLoaderFileDate#S
+\ProvidesExplFile{name}{date}{version}{description}#*
+\ProvidesExplClass{name}{date}{version}{description}#*
+\ProvidesExplPackage{name}{date}{version}{description}#*
+\GetIdInfo $Id: %<SVN info field%> $ {%<description%>}#*
+
 # document metadata
 \DocumentMetadata{options%keyvals}#*
 #keyvals:\DocumentMetadata#c
