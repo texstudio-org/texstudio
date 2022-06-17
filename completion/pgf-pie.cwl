@@ -1,5 +1,5 @@
 # pgf-pie package
-# Matthew Bertucci 9/21/2021 for v0.6
+# Matthew Bertucci 2022/06/17 for v0.7
 
 #include:tikz
 #include:scalefnt
@@ -14,6 +14,7 @@ radius=%<number%>
 color=#%<color%>,{%<color1,color2,...%>}
 explode=%<number%>
 sum=#auto,%<number%>
+change direction#true,false
 before number={%<code%>}
 after number={%<code%>}
 hide number
