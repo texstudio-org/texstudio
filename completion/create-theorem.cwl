@@ -1,8 +1,7 @@
 # create-theorem package
-# Matthew Bertucci 2022-06-02 for release 2022-06-01
+# Matthew Bertucci 2022-06-17 for release 2022-06-15
 
 #include:l3keys2e
-#include:aliascnt
 #include:crefthe
 
 #keyvals:\usepackage/create-theorem#c
@@ -51,4 +50,5 @@ parent counter=%<counter%>
 shared counter=%<counter%>
 #endkeyvals
 
+\SetTheoremBinding{envname}{internal-envname}#*
 \CreateTheoremAddLanguage{language}#*
