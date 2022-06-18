@@ -1,5 +1,5 @@
 # minimart class
-# Matthew Bertucci 2022/04/28 for 2022/04/24 release
+# Matthew Bertucci 2022/06/18 for 2022/06/16 release
 
 #include:l3keys2e
 #include:silence
@@ -28,7 +28,8 @@ b5paper
 11pt
 12pt
 # options passed to minimalist package
-use boldface#true,false
+title in boldface#true,false
+title in scshape#true,false
 runin#true,false
 nothms#true,false
 nothmnum#true,false
