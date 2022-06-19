@@ -1,5 +1,5 @@
 # lua-widow-control package
-# Matthew Bertucci 3/9/2022 for v2.0.2
+# Matthew Bertucci 2022/06/19 for v2.2.0
 
 #include:luatex
 #include:l3keys2e
@@ -18,6 +18,7 @@ orphanpenalty=%<integer%>
 nobreak=#keep,split,warn
 max-cost=%<integer%>
 debug#true,false
+draft#true,false
 balanced
 #endkeyvals
 
