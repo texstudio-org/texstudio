@@ -1,5 +1,5 @@
 # functional package
-# Matthew Bertucci 2022/05/23 for v2022G
+# Matthew Bertucci 2022/06/19 for v2022H
 
 # Note on cwl: the package author Jianrui Lyu encourages use of spaces between
 # args which along with the need to have proper "\newcommand" completion
@@ -43,6 +43,10 @@ tracing#true,false
 \prgRunFourArgCode{arg1}{arg2}{arg3}{arg4}{code}
 
 ## Argument Using (Use) ##
+# Evaluating Functions
+\evalWhole{tokens}
+\evalNone{tokens}
+
 # Expanding Tokens
 \expName{csname}
 \expValue %<\variable%>
