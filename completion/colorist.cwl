@@ -9,7 +9,8 @@
 #keyvals:\usepackage/colorist#c
 draft#true,false
 fast#true,false
-use boldface#true,false
+title in boldface#true,false
+title in scshape#true,false
 runin
 nothms#true,false
 nothmnum#true,false
