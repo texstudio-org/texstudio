@@ -64,8 +64,12 @@ rawfloats
 \floatbox[preamble]{float type}{caption%text}[width][height]{object}#*
 \floatbox[preamble]{float type}{caption%text}[width][height][vert pos]{object}
 
-\FBwidth
-\FBheight
+\capbeside#*
+\nocapbeside#*
+\captop#*
+
+\FBwidth#L
+\FBheight#L
 
 \newfloatcommand{csname}{float type}
 \newfloatcommand{csname}{float type}[preamble]
@@ -185,37 +189,62 @@ relatedcapstyle=#yes,no
 \DeclareHtAdj{name}{code}#*
 \DeclareSCPos{name}{code}#*
 
+\CADJfalse#*
+\CADJtrue#*
+\capbot#*
+\capsubrowsettings#*
+\captionfootfont#*
+\CAPTOP#*
 \FBafil#*
 \FBbfil#*
+\FBbuildfalse#*
+\FBbuildtrue#*
 \FBcheight#*
 \FBfheight#*
 \FBfootnoterule#*
-\FBifCAPTOP#*
 \FBifcapbeside#*
+\FBifCAPTOP#*
 \FBifcaptop#*
 \FBiffloatrow#*
+\FBleftmargin#*
 \FBoheight#*
+\FBrightmargin#*
+\FCleftmargin#*
+\FCrightmargin#*
 \FCwidth#*
+\filFCOhsize#*
+\floatcapbesidesep#*
+\floatobjectset#*
+\floatrowsep#*
+\floatstyle{arg}#*
+\FPOScnt#*
 \FRcolorboxdp#*
 \FRcolorboxht#*
 \FRcolorboxwd#*
 \FRifFBOX#*
 \FRleftmargin#*
-\ProcessOptionsWithKV{arg}#*
-\capsubrowsettings#*
-\captionfootfont#*
-\floatcapbesidesep#*
-\floatobjectset#*
-\floatrowsep#*
-\floatstyle{arg}#*
 \frulemax#*
+\ifCADJ#*
+\ifFBbuild#*
+\ifOADJ#*
+\LTleft#*
+\LTright#*
 \mpfootnotemark#*
+\nofilFCOhsize#*
+\nofilFCOhsize#*
+\OADJfalse#*
+\OADJtrue#*
+\ProcessOptionsWithKV{arg}#*
 \refsteponlycounter#*
 \restylefloat#*
 \subfloatrowsep#*
+\sXhsize#*
+\sZhsize#*
 \theFBcnt#*
 \theFRobj#*
 \theFRsobj#*
+\useFCwidth#*
+\Zhsize#*
 
 # from fr-longtable.sty
 \FBifLTcapwidth#S
