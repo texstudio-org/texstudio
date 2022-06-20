@@ -573,6 +573,7 @@
 <file>completion/class-cnltx-doc.cwl</file>
 <file>completion/class-codedoc.cwl</file>
 <file>completion/class-combine.cwl</file>
+<file>completion/class-contracard.cwl</file>
 <file>completion/class-cours.cwl</file>
 <file>completion/class-cquthesis.cwl</file>
 <file>completion/class-csassignments.cwl</file>
@@ -860,6 +861,7 @@
 <file>completion/conteq.cwl</file>
 <file>completion/continue.cwl</file>
 <file>completion/contour.cwl</file>
+<file>completion/contracard.cwl</file>
 <file>completion/conv-xkv.cwl</file>
 <file>completion/cooking.cwl</file>
 <file>completion/cookingsymbols.cwl</file>
@@ -1790,6 +1792,7 @@
 <file>completion/mafr.cwl</file>
 <file>completion/magaz.cwl</file>
 <file>completion/magicnum.cwl</file>
+<file>completion/magicwatermark.cwl</file>
 <file>completion/Magra.cwl</file>
 <file>completion/mahjong.cwl</file>
 <file>completion/mailing.cwl</file>
@@ -1799,11 +1802,13 @@
 <file>completion/makebox.cwl</file>
 <file>completion/makecell.cwl</file>
 <file>completion/makecmds.cwl</file>
+<file>completion/makeglos.cwl</file>
 <file>completion/makeidx.cwl</file>
 <file>completion/makematch.cwl</file>
 <file>completion/makeplot.cwl</file>
 <file>completion/maker.cwl</file>
 <file>completion/makeshape.cwl</file>
+<file>completion/maltese.cwl</file>
 <file>completion/mandi.cwl</file>
 <file>completion/mandiexp.cwl</file>
 <file>completion/manfnt.cwl</file>
