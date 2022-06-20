@@ -1,7 +1,8 @@
 # projlib-datetime package
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/06/17 for 2022/06/15 release
 
 #include:l3keys2e
+#include:relsize
 
 #keyvals:\usepackage/projlib-datetime#c
 plain

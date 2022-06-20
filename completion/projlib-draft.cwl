@@ -1,5 +1,5 @@
 # projlib-draft package
-# Matthew Bertucci 2022/04/04 for 2022/04/06 release
+# Matthew Bertucci 2022/06/17 for 2022/06/15 release
 
 #include:l3keys2e
 #include:projlib-language
@@ -17,3 +17,5 @@ no report page
 \blindtext[number]
 \DNF
 \DNF<text>
+\DNF*
+\DNF*<text>

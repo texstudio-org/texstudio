@@ -1,7 +1,8 @@
 # minimalist-plain package
-# Matthew Bertucci 2022/04/06 for 2022/04/06 release
+# Matthew Bertucci 2022/06/18 for 2022/06/16 release
 
 #include:l3keys2e
+#include:relsize
 #include:anyfontsize
 #include:tikz
 # loads calc and shadings tikzlibraries

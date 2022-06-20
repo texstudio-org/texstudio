@@ -52,3 +52,4 @@ debug#true,false
 \tasksifmeasuringF{false}#*
 \tasklabel#*
 \thetask#*
+\theHtask#S

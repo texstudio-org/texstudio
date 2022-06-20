@@ -1046,3 +1046,7 @@ verifica:
 class-verifica
 latex-document
 tex
+contracard:
+class-contracard
+latex-document
+tex

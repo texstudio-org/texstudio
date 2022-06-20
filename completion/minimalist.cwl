@@ -1,5 +1,5 @@
 # minimalist package
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/06/18 for 2022/06/16 release
 
 #include:projlib-paper
 #include:projlib-language
@@ -8,7 +8,8 @@
 #keyvals:\usepackage/minimalist#c
 draft#true,false
 fast#true,false
-use boldface#true,false
+title in boldface#true,false
+title in scshape#true,false
 classical#true,false
 runin#true,false
 nothms#true,false

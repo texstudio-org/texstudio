@@ -1,5 +1,5 @@
 # univie-ling-expose class
-# Matthew Bertucci 2022/06/01 for v1.18
+# Matthew Bertucci 2022/06/20 for v1.19
 
 #include:xkeyval
 #include:class-scrartcl
@@ -9,6 +9,7 @@
 # loads T1 option of fontenc
 #include:mathptmx
 #include:uarial
+#include:sourcecodepro
 #include:url
 #include:geometry
 #include:setspace
@@ -36,6 +37,7 @@ draftmark=#true,false,firstpage
 microtype#true,false
 polyglossia#true,false
 fonts=#ps,otf,none
+fontenc={%<enc1,enc2,...%>}
 #endkeyvals
 
 #ifOption:apa
