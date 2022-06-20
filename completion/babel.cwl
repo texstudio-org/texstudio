@@ -1078,7 +1078,7 @@ autoload.options=
 ### frenchb.ldf v3.5m (and associated acadian.ldf) ###
 #ifOption:french
 \frenchsetup{options%keyvals}
-\frenchbsetup{options%keyvals}#*
+\frenchbsetup{options%keyvals}#S
 #keyvals:\frenchsetup,\frenchbsetup
 ShowOptions#true,false
 StandardLayout#true,false
@@ -1290,7 +1290,7 @@ SuppressWarning#true,false
 
 #ifOption:acadian
 \frenchsetup{options%keyvals}
-\frenchbsetup{options%keyvals}#*
+\frenchbsetup{options%keyvals}#S
 #keyvals:\frenchsetup,\frenchbsetup
 ShowOptions#true,false
 StandardLayout#true,false
