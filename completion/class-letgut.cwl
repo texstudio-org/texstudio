@@ -1,5 +1,5 @@
 # letgut class
-# Matthew Bertucci 3/31/2022 for v0.9.1
+# Matthew Bertucci 2022/06/20 for v0.9.2
 
 #include:luatex
 #include:l3keys2e
@@ -9,6 +9,7 @@
 #include:fancyhdr
 #include:geometry
 #include:graphicx
+#include:biolinum
 #include:array
 #include:etoc
 #include:enumitem
@@ -40,19 +41,16 @@
 #include:cleveref
 #include:letgut-banner
 #include:tcolorbox
-# loads listings, xparse, breakable, and skins tcolorbox libraries
+# loads listings, xparse, breakable, skins, and hooks tcolorbox libraries
 #include:shellesc
 #include:pdfcol
 #include:tikz
 
-#keyvals:\documentclass/letgut#c
-for-readers#true,false
-for-authors#true,false
-#endkeyvals
-
 \letgutsetup{options%keyvals}
 
-#keyvals:\documentclass/letgut#c,\letgutsetup
+#keyvals:\letgutsetup
+for-readers#true,false
+for-authors#true,false
 draft#true,false
 final#true,false
 screen#true,false
@@ -64,7 +62,10 @@ allcolorslinks=#%color
 membership-reminder#true,false
 editorial#true,false
 informations#true,false
+detailedtoc#true,false
 #endkeyvals
+
+\inputarticle{file}#i
 
 \title[short title%text]{text}
 \subtitle{text}
@@ -73,23 +74,23 @@ informations#true,false
 \person{données}
 
 \package{package%plain}
-\package[URL]{package%plain}
+\package[URL]{package%plain}#U
 \package*{package%plain}
 \package*{package%plain}[préfixe]
-\package*[URL]{package%plain}
-\package*[URL]{package%plain}[préfixe]
+\package*[URL]{package%plain}#U
+\package*[URL]{package%plain}[préfixe]#U
 \class{class%plain}
-\class[URL]{class%plain}
+\class[URL]{class%plain}#U
 \class*{class%plain}
 \class*{class%plain}[préfixe]
-\class*[URL]{class%plain}
-\class*[URL]{class%plain}[préfixe]
+\class*[URL]{class%plain}#U
+\class*[URL]{class%plain}[préfixe]#U
 \software{nom}
-\software[URL]{nom}
+\software[URL]{nom}#U
 \software*{nom}
 \software*{nom}[préfixe]
-\software*[URL]{nom}
-\software*[URL]{nom}[préfixe]
+\software*[URL]{nom}#U
+\software*[URL]{nom}[préfixe]#U
 \file{nom}
 \file*{nom}
 \file*{nom}[préfixe]
@@ -100,13 +101,21 @@ informations#true,false
 \gut
 \lettre
 \lettregut
-\Cahier
-\Cahiers
+\cahier
+\cahiers
+\Cahier#S
+\Cahiers#S
+\cahiergut
+\cahiersgut
 \letgut
 \letgutcls
 \knuth
 \lamport
+\tl
 \tugboat
+\linux
+\macos
+\windows
 
 \begin{ltx-code}
 \begin{ltx-code}[options%keyvals]
@@ -118,8 +127,15 @@ informations#true,false
 \begin{ltx-code-external-result}[options%keyvals]{fichier}
 \end{ltx-code-external-result}
 
+\syntaxhl{liste de dialectes}
+\syntaxhl[langage]{liste de dialectes}
+
+\terminal{stdin%definition}{stdout%definition}
+\terminal[prompt]{stdin%definition}{stdout%definition}
+\terminal[prompt][options%keyvals]{stdin%definition}{stdout%definition}
+
 # tcolorbox keys
-#keyvals:\begin{ltx-code},\begin{ltx-code-result},\begin{ltx-code-external-result}
+#keyvals:\begin{ltx-code},\begin{ltx-code-result},\begin{ltx-code-external-result},\terminal
 ### << always available keys >> ###
 title=%<text%>
 notitle
@@ -709,6 +725,101 @@ extras first and middle={%<options%>}
 extras title after break={%<options%>}
 no extras title after break
 
+### << hooks library keys >> ###
+before title app={%<code%>}
+before title pre={%<code%>}
+after title app={%<code%>}
+after title pre={%<code%>}
+before upper app={%<code%>}
+before upper pre={%<code%>}
+after upper app={%<code%>}
+after upper pre={%<code%>}
+before lower app={%<code%>}
+before lower pre={%<code%>}
+after lower app={%<code%>}
+after lower pre={%<code%>}
+before app={%<code%>}
+before pre={%<code%>}
+after app={%<code%>}
+after pre={%<code%>}
+overlay app={%<code%>}
+overlay pre={%<code%>}
+overlay unbroken app={%<code%>}
+overlay unbroken pre={%<code%>}
+overlay first app={%<code%>}
+overlay first pre={%<code%>}
+overlay middle app={%<code%>}
+overlay middle pre={%<code%>}
+overlay last app={%<code%>}
+overlay last pre={%<code%>}
+overlay broken app={%<code%>}
+overlay broken pre={%<code%>}
+overlay unbroken and first app={%<code%>}
+overlay unbroken and first pre={%<code%>}
+overlay middle and last app={%<code%>}
+overlay middle and last pre={%<code%>}
+overlay unbroken and last app={%<code%>}
+overlay unbroken and last pre={%<code%>}
+overlay first and middle app={%<code%>}
+overlay first and middle pre={%<code%>}
+watermark text app=%<text%>
+watermark text pre=%<text%>
+watermark text app on=%<part%> is %<text%>
+watermark text pre on=%<part%> is %<text%>
+watermark graphics app=%<file name%>
+watermark graphics pre=%<file name%>
+watermark graphics app on=%<part%> is %<file%>
+watermark graphics pre on=%<part%> is %<file%>
+watermark tikz app={%<code%>}
+watermark tikz pre={%<code%>}
+watermark tikz app on=%<part%> is %<code%>
+watermark tikz pre on=%<part%> is %<code%>
+underlay pre={%<code%>}
+underlay unbroken pre={%<code%>}
+underlay first pre={%<code%>}
+underlay middle pre={%<code%>}
+underlay last pre={%<code%>}
+underlay boxed title pre={%<code%>}
+underlay broken pre={%<code%>}
+underlay unbroken and first pre={%<code%>}
+underlay middle and last pre={%<code%>}
+underlay unbroken and last pre={%<code%>}
+underlay first and middle pre={%<code%>}
+finish pre={%<code%>}
+finish unbroken pre={%<code%>}
+finish first pre={%<code%>}
+finish middle pre={%<code%>}
+finish last pre={%<code%>}
+finish broken pre={%<code%>}
+finish unbroken and first pre={%<code%>}
+finish middle and last pre={%<code%>}
+finish unbroken and last pre={%<code%>}
+finish first and middle pre={%<code%>}
+frame code app={%<code%>}
+frame code pre={%<code%>}
+interior titled code app={%<code%>}
+interior titled code pre={%<code%>}
+interior code app={%<code%>}
+interior code pre={%<code%>}
+segmentation code app={%<code%>}
+segmentation code pre={%<code%>}
+title code app={%<code%>}
+title code pre={%<code%>}
+extras pre={%<options%>}
+extras unbroken pre={%<options%>}
+extras first pre={%<options%>}
+extras middle pre={%<options%>}
+extras last pre={%<options%>}
+extras broken pre={%<options%>}
+extras unbroken and first pre={%<options%>}
+extras middle and last pre={%<options%>}
+extras unbroken and last pre={%<options%>}
+extras first and middle pre={%<options%>}
+listing options app={%<options%>}
+listing options pre={%<options%>}
+minted options app={%<options%>}
+minted options pre={%<options%>}
+
 ### << xparse library keys >> ###
 verbatim
 
@@ -885,6 +996,12 @@ list-format={%<code%>}
 \alertbox{text}
 \alertbox[color]{text}
 
+letgut_pagecolor#B
+letgut_allcolors_links#B
+letgut_default_alert_box_color#B
+
+\letgutissn#*
+
 # acronyms
 \ctan#*
 \pdf#*
@@ -898,7 +1015,6 @@ list-format={%<code%>}
 \doi#*
 \issn#*
 \tug#*
-\tl#*
 \wcag#*
 \html#*
 \css#*
@@ -909,6 +1025,22 @@ list-format={%<code%>}
 \dvi#*
 \ipa#*
 \tipa#*
+\xml#*
+\apa#*
+\os#*
+\bsd#*
+\imap#*
+\smtp#*
+\rtf#*
+\wysiwyg#*
+\iso#*
+\off#*
+\csv#*
+\yaml#*
+\uca#*
+\nfss#*
+\ascii#*
+\tds#*
 \smai#*
 \ag#*
 \ca#*
@@ -921,6 +1053,9 @@ list-format={%<code%>}
 \cv#*
 \rgpd#*
 \ndlr#*
+\bts#*
+\apmep#*
+\pao#*
 
 # from table option of xcolor
 #include:colortbl
@@ -934,7 +1069,7 @@ list-format={%<code%>}
 
 # from french option of babel
 \frenchsetup{options%keyvals}
-\frenchbsetup{options%keyvals}#*
+\frenchbsetup{options%keyvals}#S
 #keyvals:\frenchsetup,\frenchbsetup
 ShowOptions#true,false
 StandardLayout#true,false
@@ -983,14 +1118,15 @@ SuppressWarning#true,false
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
 \boi
+\bname{text}
 \bsc{text}
 \CaptionSeparator#*
-\captionsfrench
+\captionsfrench#*
 \ccname#*
 \chaptername#*
 \circonflexe
 \dateacadian#*
-\datefrench
+\datefrench#*
 \DecimalMathComma
 \degre#*
 \degres
@@ -1002,7 +1138,7 @@ SuppressWarning#true,false
 \end{itemizeFB}
 \end{listFB}
 \end{listORI}#*
-\extrasfrench
+\extrasfrench#*
 \FBcolonspace
 \FBdatebox#*
 \FBdatespace#*
@@ -1111,7 +1247,7 @@ SuppressWarning#true,false
 \NoAutoSpaceBeforeFDP#*
 \NoAutoSpacing
 \NoEveryParQuote#*
-\noextrasfrench
+\noextrasfrench#*
 \nombre{arg}#*
 \nos
 \Nos
