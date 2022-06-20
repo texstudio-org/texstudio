@@ -88,54 +88,45 @@ void UpdateChecker::onRequestCompleted()
 
 void UpdateChecker::parseData(const QByteArray &data)
 {
-    // simple,dirty parsing of github api result (tags)
+    // parsing of github api result (tags)
     QString result=QString(data);
-    QStringList lines=result.split(",");
+	QStringList items = Version::parseGitData(result);
     QStringList tags;
-    foreach(const QString& line,lines){
-        int pos;
-        if((pos=line.indexOf("\"ref\""))>=0){
-            QString zw=line.mid(pos+6).simplified();
-            zw.remove("\"");
-            zw.remove("refs/tags/");
+    foreach(const QString& item, items){
+		int pos = item.indexOf("\"ref\":\"refs/tags/");	// "\"ref\":\"refs/tags/" has length 17
+        if(pos>=0){
+            QString zw = item.mid(pos+17, item.indexOf("\"", pos+17) - (pos+17));
+//			qDebug() << zw;
             tags<<zw;
         }
     }
-	bool rcFound = false;
-	bool devFound = false;
+    bool rcFound = false;
+    bool devFound = false;
     for(int j=tags.length()-1;j>=0;j--){
         QString tag=tags.value(j);
-        QRegExp rx("^((\\d+\\.)+(\\d+))([a-zA-Z]+)?(\\d*)?$");
-        if(rx.indexIn(tag)==0){
-            QString ver=rx.cap(1);
-            QString type=rx.cap(4);
-            qDebug()<<ver<<type;
+        QStringList parts = Version::stringVersion2Parts(tag);
+//		qDebug() << parts[0] << parts[1] << parts[2] << parts[3];
+		if (!parts.isEmpty()) {
+            QString ver = parts[0];
+            QString type = parts[1];
+            int revision = parts[2].toInt();
             if (!rcFound && type.toLower() == "rc"){
                 rcFound = true;
-                Version v;
-                v.versionNumber = ver;
-                v.type = "release candidate";
-                v.revision = rx.cap(5).toInt();
+                Version v( ver, type, revision);
                 latestReleaseCandidateVersion = v;
             }
-            if (!devFound && type.toLower() == "beta"){
+            if (!devFound && ( type.toLower() == "beta" || type.toLower() == "alpha" )){
                 devFound = true;
-                Version v;
-                v.versionNumber = ver;
-                v.type = "beta";
-                v.revision = rx.cap(5).toInt();
+                Version v( ver, type, revision);
                 latestDevVersion = v;
             }
-            if(type.isEmpty()){
-                Version v;
-                v.versionNumber = ver;
-                v.type = "stable";
-                v.revision = 0; // unused in stable
+            if (type.isEmpty() || type.toLower() == "stable"){
+                Version v( ver, "stable", revision);
                 latestStableVersion = v;
-                if(!latestDevVersion.isValid())
-                    latestDevVersion=v;
-                if(!latestReleaseCandidateVersion.isValid())
-                    latestReleaseCandidateVersion=v;
+                if (!latestDevVersion.isValid())
+                    latestDevVersion = v;
+                if (!latestReleaseCandidateVersion.isValid())
+                    latestReleaseCandidateVersion = v;
                 break; // all other versions are older, so abort after first release
             }
         }
@@ -145,7 +136,7 @@ void UpdateChecker::parseData(const QByteArray &data)
 void UpdateChecker::checkForNewVersion()
 {
 	// updateLevel values from comboBoxUpdateLevel indices:
-	// 0: stable, 1: release candidate, 2: development
+	// 0: stable, 1: release candidate, 2: development (alpha, beta)
 	// config dialog (check button) passes correct current index from dialog, so user can check with different settings without closing dialog
 	// auto check uses -1, since we do not have the current gui value. in this case we can stay with config value.
 	int updateLevel;
@@ -156,12 +147,11 @@ void UpdateChecker::checkForNewVersion()
 
 	bool checkReleaseCandidate = updateLevel >= 1;
 	bool checkDevVersions = updateLevel >= 2;
-
 	Version currentVersion = Version::current();
-    QString downloadAddress = "https://texstudio.org";
-    QString downloadAddressBeta = "https://github.com/texstudio-org/texstudio/releases";
+	QString downloadAddress = "https://texstudio.org";
+	QString downloadAddressGit = "https://github.com/texstudio-org/texstudio/releases";
 
-	if (!latestStableVersion.isValid()) {
+	if (!currentVersion.isValid() && !latestReleaseCandidateVersion.isValid() && !latestDevVersion.isValid()) {
 		if (!silent) UtilsUi::txsWarning(tr("Update check failed (invalid update file format)."));
 		return;
 	}
@@ -172,17 +162,18 @@ void UpdateChecker::checkForNewVersion()
 			}
 			if (latestReleaseCandidateVersion > currentVersion && latestReleaseCandidateVersion > latestStableVersion) {
 				notify(QString(tr(
-				                   "A new release candidate of TeXstudio is available.<br>"
-				                   "<table><tr><td>Current version:</td><td>%1 (%2)</td></tr>"
-				                   "<tr><td>Latest stable version:</td><td>%3 (%4)</td></tr>"
-                                   "<tr><td>Release candidate:</td><td>%5 (rc%6)</td></tr>"
-				                   "</table><br><br>"
-				                   "You can download it from the <a href='%7'>TeXstudio website</a>."
-				               )).arg(currentVersion.versionNumber).arg(currentVersion.revision)
-				       .arg(latestStableVersion.versionNumber).arg(latestStableVersion.revision)
-				       .arg(latestReleaseCandidateVersion.versionNumber).arg(latestReleaseCandidateVersion.revision)
-                       .arg(downloadAddressBeta)
-				      );
+								"A new release candidate of TeXstudio is available.<br>"
+								"<table><tr><td>Current version:</td><td>%1</td></tr>"
+								"<tr><td>Latest stable version: </td><td>%2</td></tr>"
+								"<tr><td>Release candidate:     </td><td>%3</td></tr>"
+								"</table><br><br>"
+								"You can download it from the <a href='%4'>TeXstudio website</a>."
+						))
+						.arg(Version::versionToString(currentVersion),
+							Version::versionToString(latestStableVersion),
+							Version::versionToString(latestReleaseCandidateVersion),
+							downloadAddressGit)
+				);
 				break;
 			}
 		}
@@ -190,33 +181,47 @@ void UpdateChecker::checkForNewVersion()
 			if (!latestDevVersion.isValid()) {
 				if (!silent) UtilsUi::txsWarning(tr("Update check for development version failed (invalid update file format)."));
 			}
-			if (latestDevVersion > currentVersion && latestDevVersion > latestStableVersion) {
+			if (latestDevVersion > currentVersion && (latestStableVersion.isEmpty() || latestDevVersion > latestStableVersion)) {
 				notify(QString(tr(
-				                   "A new development version of TeXstudio is available.<br>"
-				                   "<table><tr><td>Current version:</td><td>%1 (%2)</td></tr>"
-				                   "<tr><td>Latest stable version:</td><td>%3 (%4)</td></tr>"
-                                   "<tr><td>Latest development version:</td><td>%5 (beta%6)</td></tr>"
-				                   "</table><br><br>"
-				                   "You can download it from the <a href='%7'>TeXstudio website</a>."
-				               )).arg(currentVersion.versionNumber).arg(currentVersion.revision)
-				       .arg(latestStableVersion.versionNumber).arg(latestStableVersion.revision)
-				       .arg(latestDevVersion.versionNumber).arg(latestDevVersion.revision)
-                       .arg(downloadAddressBeta)
-				      );
+								"A new development version of TeXstudio is available.<br>"
+								"<table><tr><td>Current version:    </td><td>%1</td></tr>"
+								"<tr><td>Latest stable version:     </td><td>%2</td></tr>"
+								"<tr><td>Latest development version:</td><td>%3</td></tr>"
+								"</table><br><br>"
+								"You can download it from the <a href='%4'>TeXstudio website</a>."
+						))
+						.arg(Version::versionToString(currentVersion),
+							Version::versionToString(latestStableVersion),
+							Version::versionToString(latestDevVersion),
+							downloadAddressGit)
+				);
 				break;
 			}
 		}
-		if (latestStableVersion > currentVersion) {
-			notify(QString(tr(
-			                   "A new version of TeXstudio is available.<br>"
-			                   "<table><tr><td>Current version:</td><td>%1</td></tr>"
-			                   "<tr><td>Latest stable version:</td><td>%2</td></tr>"
-			                   "</table><br><br>"
-			                   "You can download it from the <a href='%3'>TeXstudio website</a>."
-                           )).arg(currentVersion.versionNumber,latestStableVersion.versionNumber,downloadAddress)
-			      );
+		if (!latestStableVersion.isEmpty()) {
+			if (!latestStableVersion.isValid()) {
+				if (!silent) UtilsUi::txsWarning(tr("Update check for stable version failed (invalid update file format)."));
+			}
+			if (latestStableVersion > currentVersion) {
+				notify(QString(tr(
+								"A new stable version of TeXstudio is available.<br>"
+								"<table><tr><td>Current version:</td><td>%1</td></tr>"
+								"<tr><td>Latest stable version:</td><td>%2</td></tr>"
+								"</table><br><br>"
+								"You can download it from the <a href='%3'>TeXstudio website</a>."
+						))
+						.arg(Version::versionToString(currentVersion),
+							Version::versionToString(latestStableVersion),
+							downloadAddressGit)
+				);
+			} else {
+				if (!silent) {
+					UtilsUi::txsInformation(tr("Your TeXstudio version %1 is up-to-date.").arg(Version::versionToString(currentVersion)));
+				}
+			}
+			break;
 		} else {
-			if (!silent) UtilsUi::txsInformation(tr("TeXstudio is up-to-date."));
+			if (!silent) UtilsUi::txsInformation(tr("TeXstudio has not yet reached a state you are looking for."));
 		}
 		break;
 	}

@@ -1,48 +1,75 @@
 #include "utilsVersion.h"
 #include "mostQtHeaders.h"
 
-int gitRevisionToInt(const char *)
-{
-    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').value(1,"0");
-	if (s.endsWith('+'))
-		s = s.left(s.length() - 1);
-	return s.toInt();
+QStringList levelList = {"alpha", "beta", "rc", "stable"};
+
+/* parse string from git into data items. It has the following form:
+ * [{...},{...},...,{...}]
+ * where each {...} represents one data item of one txs version. Ex. for ...:
+ * "ref":"refs/tags/1.8.1","node_id":"MDM6UmVmMTEyMzcwNzY1OnJlZnMvdGFncy8xLjguMQ==","url":"https://api.github.com/repos/texstudio-org/texstudio/git/refs/tags/1.8.1","object":{"sha":"ef685c7e85c6045c35e6c25580030ad6f548f5f0","type":"commit","url":"https://api.github.com/repos/texstudio-org/texstudio/git/commits/ef685c7e85c6045c35e6c25580030ad6f548f5f0"}
+ * we assume that none of the literal strings contains braces (i.e. "{" and "}")
+ */  
+QStringList Version::parseGitData(const QString &data) {
+	QStringList items;
+	QString item;
+	int level = 0;
+	int start = -1;
+	for(int idx=0; idx< data.length(); ++idx) {
+		QString chr = data.at(idx);
+		if (chr=="{") {
+			level += 1;
+			if (level==1)
+				start = idx;
+		}
+		if (chr=="}") {
+			level -= 1;
+			if (level==0) {
+				item = data.mid(start+1, idx-start-1); // without { and }
+//				qDebug() << item;
+				items << item;
+			}
+		}
+	}
+	return items;
+}
+
+QStringList Version::stringVersion2Parts(const QString &str) {
+	QRegExp rx("^((\\d+)(\\.\\d+)*)([a-zA-Z]+)?(\\d*)?(-(\\d+)-)?($|[^.])");	// version tag, ex: 4.3.0beta1, git revison, ex: 4.3.0beta1-24-g5c925a387
+
+	if (rx.indexIn(str) == 0) {
+		QString ver = rx.cap(1);
+		QString type = rx.cap(4);
+		QString revision = rx.cap(5);
+		QString commitAfter = rx.cap(7);
+		return QStringList({ver, type, revision, commitAfter});
+	}
+	return QStringList({});
 }
 
 QList<int> Version::parseVersionNumber(const QString &versionNumber)
 {
 	QList<int> result;
-    QRegularExpression terminatingChars("[\\s-]");
-	int len = versionNumber.indexOf(terminatingChars);
-	QStringList parts = versionNumber.left(len).split('.');
+	QStringList parts = versionNumber.split('.');
 	if (parts.isEmpty())
 		return result;  // empty
+	QRegularExpression numberPart("^\\d+$");
 	foreach (const QString &v, parts) {
-		bool ok(true);
-		result << v.toInt(&ok);
-		if (!ok) {
+		if (numberPart.match(v).hasMatch())
+			result << v.toInt();
+		else
 			return QList<int>();
-		}
 	}
-	for (int i=result.count(); i<=2; i++) {
+	for (int i=result.count(); i < 3; i++) {
 		result << 0;  // 1.0 is extended to 1.0.0
 	}
 	return result;
 }
 
+// accepts a or a.b or a.b.c where a, b, and c each a sequence of atleast 1 digits like 4711
 bool Version::versionNumberIsValid(const QString &versionNumber)
 {
-    return ( (parseVersionNumber(versionNumber).length() == 3)||(parseVersionNumber(versionNumber).length() == 4));
-}
-
-
-/*!
- * Return the revision number from a hg revision string, e.g. "1234:asassdasd" -> 1234.
- * Returns 0 if the input string is not a vailid hg revision string.
- */
-int Version::parseGitRevisionNumber(const QString &revision)
-{
-    return revision.split('-')[1].toInt();
+	QList<int> parsedVersionNumber = parseVersionNumber(versionNumber);
+	return parsedVersionNumber.length() == 3;
 }
 
 // compares two versions strings
@@ -70,64 +97,66 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
 	return Same;
 }
 
-Version Version::current()
+Version Version::current(const QString &versionString)
 {
-	Version v(TXSVERSION);
-    QString s = QString(TEXSTUDIO_GIT_REVISION).split('-').value(1,"0");
-	if (s.endsWith('+'))
-		s = s.left(s.length() - 1);
-	v.revision = s.toInt();
-    if(QString(TEXSTUDIO_GIT_REVISION).contains("RC")||QString(TEXSTUDIO_GIT_REVISION).contains("rc")){
-        v.type="release candidate";
-    }
-    if(QString(TEXSTUDIO_GIT_REVISION).contains("beta")){
-        v.type="beta";
-    }
-    if(v.type.isEmpty()){
-        if(v.revision<2){
-            v.type="stable";
-        }else{
-            v.type="development";
-        }
-    }
+	QStringList vp = stringVersion2Parts(versionString);
+	if (!vp.isEmpty()) {
+		QString type = vp[1];
+		int revision = vp[2].toInt();
+		int commitsAfter = vp[3].toInt();
+		Version v( TXSVERSION, type, revision, commitsAfter);
 #if defined(Q_OS_WIN)
-	v.platform =  "win";
+		v.platform =  "win";
 #elif defined(Q_OS_MAC)
-	v.platform = "mac";
+		v.platform = "mac";
 #elif defined(Q_OS_LINUX)
-	v.platform = "linux";
+		v.platform = "linux";
 #endif
-	// v.type  // TODO currently not stored
+		return v;
+	}
+	Version v;
 	return v;
+}
+
+QString Version::versionToString(const Version &v)
+{
+	QString s;
+	if (v.isEmpty())
+		return "";
+	else {
+		s = v.versionNumber;
+		if (!(v.type.toLower() == "stable") || v.revision > 0) {
+			s += v.type + QString("%1").arg(v.revision);
+		}
+		if (v.commitsAfter > 0)
+			s += QString("-%1").arg(v.commitsAfter);
+	}
+	return s;
 }
 
 bool Version::operator >(const Version &other) const
 {
 	VersionCompareResult res = compareStringVersion(versionNumber, other.versionNumber);
-    if(res!=Same)
+    if (res != Same)
         return (res == Higher);
-    if(type==other.type){
-        bool revisionLarger = (revision > 0 && other.revision > 0 && revision > other.revision);
+    if (type.toLower() == other.type.toLower()){
+        bool revisionLarger = (revision > other.revision) || (revision == other.revision && commitsAfter > other.commitsAfter);
         return revisionLarger;
     }
-    int lvl=3;
-    if(type=="release candidate") lvl=2;
-    if(type=="beta") lvl=1;
-    if(type=="development") lvl=0;
-    int lvl_other=3;
-    if(other.type=="release candidate") lvl_other=2;
-    if(other.type=="beta") lvl_other=1;
-    if(other.type=="development") lvl_other=0;
-    return lvl_other==0 && lvl==3 ? false : lvl>lvl_other; // special treatment a.b-dev > a.b stable but a.b-dev < a.b-beta/rc
+    int lvl = levelList.indexOf(type.toLower());
+    int lvl_other = levelList.indexOf(other.type.toLower());
+    return lvl > lvl_other;
 }
 
 bool Version::isEmpty() const
 {
-	return versionNumber.isEmpty() && revision == 0;
+	return versionNumber.isEmpty() && type.isEmpty() && revision == 0 && commitsAfter == 0;
 }
 
 bool Version::isValid() const
 {
-	return versionNumberIsValid(versionNumber);
+	return versionNumberIsValid(versionNumber)
+		&& levelList.indexOf(type.toLower()) > -1
+		&& revision >= 0
+		&& commitsAfter >= 0;
 }
-
