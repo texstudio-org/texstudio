@@ -1050,3 +1050,15 @@ contracard:
 class-contracard
 latex-document
 tex
+colorart:
+class-colorart
+latex-document
+tex
+colorbook:
+class-colorbook
+latex-document
+tex
+univie-ling-handout:
+class-univie-ling-handout
+latex-document
+tex
