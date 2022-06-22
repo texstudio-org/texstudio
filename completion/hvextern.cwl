@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2022/06/13 for v0.30
+# Matthew Bertucci 2022/06/21 for v0.31
 
 #include:shellesc
 #include:xkeyval
@@ -8,11 +8,17 @@
 #include:tikz
 #include:listings
 #include:ifplatform
+#include:iftex
 #include:ifoddpage
+#include:filemod
 #include:tcolorbox
 # loads skins and breakable tcolorbox libraries
 # from breakable tcolorbox library
 #include:pdfcol
+
+#keyvals:\usepackage/hvextern#c
+checkCode
+#endkeyvals
 
 \begin{externalDocument}{filename%definition}
 \begin{externalDocument}[options%keyvals]{filename%definition}
