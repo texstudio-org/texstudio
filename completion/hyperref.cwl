@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 18 May 2022 for v7.00p
+#modified Matthew Bertucci 21 June 2022 for v7.00s
 
 #include:iftex
 #include:keyval
@@ -200,6 +200,10 @@ page=%<number%>
 ismap#true,false
 nextactionraw=
 #endkeyvals
+
+\AddToDocumentProperties{property}{value}#*
+\AddToDocumentProperties[category]{property}{value}#*
+\GetDocumentProperties{property}#*
 
 \MakeLinkTarget{counter}
 \MakeLinkTarget[prefix]{counter}
