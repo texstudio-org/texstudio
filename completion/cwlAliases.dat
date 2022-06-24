@@ -1062,3 +1062,7 @@ univie-ling-handout:
 class-univie-ling-handout
 latex-document
 tex
+beamer-rl:
+class-beamer-rl
+latex-document
+tex
