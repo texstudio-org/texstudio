@@ -57,6 +57,7 @@ twoside
 \chapter{title}#L1
 \chaptermark{code}#*
 \chaptername
+\chapterrunhead{name}{number}{title}#*
 \citeform{text}#*
 \contentsnamefont#*
 \copyins#*
@@ -109,7 +110,7 @@ twoside
 \openbox
 \paragraphname#*
 \partmark{code}#*
-\partrunhead{arg1}{arg2}{arg3}#*
+\partrunhead{name}{number}{title}#*
 \popQED#*
 \printindex#*
 \proofname#*
@@ -120,6 +121,7 @@ twoside
 \rom{text}#*
 \secdef{arg1}{arg2}#*
 \sectionname#*
+\sectionrunhead{name}{number}{title}#*
 \see{text}{page number}#*
 \seealso{text}{page number}#*
 \seename#*
