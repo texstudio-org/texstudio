@@ -93,6 +93,7 @@
 <file>completion/altfont.cwl</file>
 <file>completion/altsubsup.cwl</file>
 <file>completion/altverse.cwl</file>
+<file>completion/amsaddr.cwl</file>
 <file>completion/amsbsy.cwl</file>
 <file>completion/amscd.cwl</file>
 <file>completion/amscdx.cwl</file>
@@ -100,6 +101,7 @@
 <file>completion/amsmath.cwl</file>
 <file>completion/ams-mdbch.cwl</file>
 <file>completion/amsopn.cwl</file>
+<file>completion/amsrefs.cwl</file>
 <file>completion/amssymb.cwl</file>
 <file>completion/amstext.cwl</file>
 <file>completion/amsthm.cwl</file>
@@ -553,6 +555,7 @@
 <file>completion/class-bankstatement.cwl</file>
 <file>completion/class-basque-book.cwl</file>
 <file>completion/class-beamer.cwl</file>
+<file>completion/class-beamer-rl.cwl</file>
 <file>completion/class-beamerswitch.cwl</file>
 <file>completion/class-beilstein.cwl</file>
 <file>completion/class-bfhbeamer.cwl</file>
@@ -1526,6 +1529,7 @@
 <file>completion/ifluatex.cwl</file>
 <file>completion/ifnextok.cwl</file>
 <file>completion/ifoddpage.cwl</file>
+<file>completion/ifoption.cwl</file>
 <file>completion/ifpdf.cwl</file>
 <file>completion/ifplatform.cwl</file>
 <file>completion/ifptex.cwl</file>
@@ -1856,6 +1860,7 @@
 <file>completion/mathptmx.cwl</file>
 <file>completion/mathpunctspace.cwl</file>
 <file>completion/mathrsfs.cwl</file>
+<file>completion/mathscinet.cwl</file>
 <file>completion/mathsemantics-abbreviations.cwl</file>
 <file>completion/mathsemantics-commons.cwl</file>
 <file>completion/mathsemantics.cwl</file>
@@ -1944,6 +1949,7 @@
 <file>completion/MnSymbol.cwl</file>
 <file>completion/moderncvcollection.cwl</file>
 <file>completion/moderncvcompatibility.cwl</file>
+<file>completion/moderntimeline.cwl</file>
 <file>completion/modiagram.cwl</file>
 <file>completion/modroman.cwl</file>
 <file>completion/modular.cwl</file>
@@ -2210,6 +2216,7 @@
 <file>completion/pgfornament.cwl</file>
 <file>completion/pgfornament-han.cwl</file>
 <file>completion/pgfpages.cwl</file>
+<file>completion/pgfpages-rl.cwl</file>
 <file>completion/pgfparser.cwl</file>
 <file>completion/pgf-pie.cwl</file>
 <file>completion/pgfplots.cwl</file>
@@ -2247,14 +2254,6 @@
 <file>completion/pinoutikz.cwl</file>
 <file>completion/pinyin.cwl</file>
 <file>completion/pixelart.cwl</file>
-<file>completion/PJLauthor.cwl</file>
-<file>completion/PJLdate.cwl</file>
-<file>completion/PJLdraft.cwl</file>
-<file>completion/PJLlang.cwl</file>
-<file>completion/PJLlogo.cwl</file>
-<file>completion/PJLmath.cwl</file>
-<file>completion/PJLpaper.cwl</file>
-<file>completion/PJLthm.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
@@ -2668,6 +2667,7 @@
 <file>completion/simplenodes.cwl</file>
 <file>completion/simpleoptics.cwl</file>
 <file>completion/simpler-wick.cwl</file>
+<file>completion/simples-matrices.cwl</file>
 <file>completion/simpsons.cwl</file>
 <file>completion/sitem.cwl</file>
 <file>completion/siunitx.cwl</file>
@@ -2846,6 +2846,7 @@
 <file>completion/textalpha.cwl</file>
 <file>completion/textarea.cwl</file>
 <file>completion/textcase.cwl</file>
+<file>completion/textcmds.cwl</file>
 <file>completion/textcomp.cwl</file>
 <file>completion/textfit.cwl</file>
 <file>completion/textfrac.cwl</file>
@@ -2953,6 +2954,7 @@
 <file>completion/tikz-truchet.cwl</file>
 <file>completion/tile-graphic.cwl</file>
 <file>completion/time.cwl</file>
+<file>completion/timing-diagrams.cwl</file>
 <file>completion/tinos.cwl</file>
 <file>completion/tipa.cwl</file>
 <file>completion/tipauni.cwl</file>
