@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2022/06/23 for v5.1.0
+# Matthew Bertucci updated 2022/06/26 for v5.1.1
 
 #include:environ
 #include:etoolbox
@@ -184,7 +184,6 @@
 ## loads options skins, breakable, theorems, and xparse
 #include:amsmath
 #include:tikz
-#include:xparse
 #include:pdfcol
 #endif
 
@@ -197,7 +196,6 @@
 #include:pdftexcmds
 #include:shellesc
 #include:tikz
-#include:xparse
 #include:pdfcol
 #endif
 
