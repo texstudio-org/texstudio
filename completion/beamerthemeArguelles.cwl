@@ -1,15 +1,13 @@
 # Arguelles beamertheme
-# Matthew Bertucci 3/7/2022 for v1.1.2
+# Matthew Bertucci 2022/06/23 for v1.2.2
 
-#include:tikz
-# loads calc tikzlibrary
-#include:microtype
-#include:fontawesome
 #include:Alegreya
 #include:AlegreyaSans
 #include:euler
-#include:makecell
-#include:cancel
+#include:microtype
+#include:fontawesome
+#include:tikz
+# loads calc tikzlibrary
 
 cultured#B
 sumi#B

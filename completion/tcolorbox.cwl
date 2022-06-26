@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 12/18/2021 for v5.0.0
+# Matthew Bertucci updated 2022/06/26 for v5.1.1
 
 #include:environ
 #include:etoolbox
@@ -184,7 +184,6 @@
 ## loads options skins, breakable, theorems, and xparse
 #include:amsmath
 #include:tikz
-#include:xparse
 #include:pdfcol
 #endif
 
@@ -197,7 +196,6 @@
 #include:pdftexcmds
 #include:shellesc
 #include:tikz
-#include:xparse
 #include:pdfcol
 #endif
 
@@ -431,12 +429,12 @@ library/all
 
 # << Skins >>
 \tcbsubskin{name}{base skin}{options%keyvals}
-\tcbheightspace
-\tcbtextwidth
-\tcbtextheight
+\tcbheightspace#L
+\tcbtextwidth#L
+\tcbtextheight#L
 \tcbsegmentstate
-\tcboxedtitlewidth
-\tcboxedtitleheight
+\tcboxedtitlewidth#L
+\tcboxedtitleheight#L
 \begin{tcbclipframe}
 \end{tcbclipframe}
 \begin{tcbinvclipframe}
@@ -451,6 +449,7 @@ library/all
 \tcbcontinuedraftmode#*
 \tcbline
 \tcbline*
+\tcboverlaplower#L
 
 tcbcolframe#B
 tcbcolback#B
@@ -590,14 +589,14 @@ fill image options={%<graphics options%>}
 \begin{tcbposter}
 \begin{tcbposter}[options%keyvals]
 \end{tcbposter}
-\tcbposterwidth
-\tcbposterheight
-\tcbpostercolspacing
-\tcbposterrowspacing
+\tcbposterwidth#L
+\tcbposterheight#L
+\tcbpostercolspacing#L
+\tcbposterrowspacing#L
 \tcbpostercolumns
 \tcbposterrows
-\tcbpostercolwidth
-\tcbposterrowheight
+\tcbpostercolwidth#L
+\tcbposterrowheight#L
 \tcbposterset{options%keyvals}
 \posterbox{placement}{box content%text}
 \posterbox[options%keyvals]{placement}{box content%text}
@@ -612,7 +611,7 @@ fill image options={%<graphics options%>}
 \newtcboxfit[init options]{cmd}[args][default]{options%keyvals}#d
 \renewtcboxfit{cmd}{options%keyvals}#d
 \renewtcboxfit[init options]{cmd}[args][default]{options%keyvals}#d
-\tcbfitdim
+\tcbfitdim#L
 \tcbfontsize{factor}
 \tcbfitsteps
 
@@ -980,6 +979,8 @@ float*
 float*=%<values%>
 nofloat
 every float={%<code%>}
+before float={%<code%>}
+after float={%<code%>}
 before={%<code%>}
 after={%<code%>}
 nobeforeafter
@@ -1082,6 +1083,21 @@ remake
 remake#true,false
 reset
 code={%<code%>}
+IfBlankTF={%<token list%>}{%<true%>}{%<false%>}
+IfBlankT={%<token list%>}{%<true%>}
+IfBlankF={%<token list%>}{%<false%>}
+IfEmptyTF={%<token list%>}{%<true%>}{%<false%>}
+IfEmptyT={%<token list%>}{%<true%>}
+IfEmptyF={%<token list%>}{%<false%>}
+IfNoValueTF={%<arg%>}{%<true%>}{%<false%>}
+IfNoValueT={%<arg%>}{%<true%>}
+IfNoValueF={%<arg%>}{%<false%>}
+IfValueTF={%<arg%>}{%<true%>}{%<false%>}
+IfValueT={%<arg%>}{%<true%>}
+IfValueF={%<arg%>}{%<false%>}
+IfBooleanTF={%<arg%>}{%<true%>}{%<false%>}
+IfBooleanT={%<arg%>}{%<true%>}
+IfBooleanF={%<arg%>}{%<false%>}
 void
 nirvana
 blend before title=#colon,dash,colon hang,dash hang
@@ -1337,6 +1353,7 @@ marker
 bicolor
 colbacklower=#%color
 opacitybacklower=%<fraction%>
+overlaplower=##L
 bicolor jigsaw
 tile
 beamer
@@ -1525,6 +1542,10 @@ before app={%<code%>}
 before pre={%<code%>}
 after app={%<code%>}
 after pre={%<code%>}
+before float app={%<code%>}
+before float pre={%<code%>}
+after float app={%<code%>}
+after float pre={%<code%>}
 overlay app={%<code%>}
 overlay pre={%<code%>}
 overlay unbroken app={%<code%>}
@@ -1868,22 +1889,6 @@ posterloc/yshift=##L
 #endkeyvals
 
 # ---------------------------------------
-# << Option Keys >> - xparse
-# ---------------------------------------
-
-#keyvals:\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit
-IfNoValueTF={%<arg%>}{%<true%>}{%<false%>}
-IfNoValueT={%<arg%>}{%<true%>}
-IfNoValueF={%<arg%>}{%<false%>}
-IfValueTF={%<arg%>}{%<true%>}{%<false%>}
-IfValueT={%<arg%>}{%<true%>}
-IfValueF={%<arg%>}{%<false%>}
-IfBooleanTF={%<arg%>}{%<true%>}{%<false%>}
-IfBooleanT={%<arg%>}{%<true%>}
-IfBooleanF={%<arg%>}{%<false%>}
-#endkeyvals
-
-# ---------------------------------------
 # << Option Keys >> - External
 # ---------------------------------------
 
@@ -2025,6 +2030,16 @@ index default settings/.style=
 index german settings/.style=
 index annotate#true,false
 index colorize#true,false
+index gather colors#true,false
+index gather commands#true,false
+index gather counters#true,false
+index gather environments#true,false
+index gather keys#true,false
+index gather lengths#true,false
+index gather paths#true,false
+index gather values#true,false
+index gather all
+index gather none
 color command=#%color
 color environment=#%color
 color key=#%color
@@ -2040,6 +2055,7 @@ color hyperlink=#%color
 english language
 doclang/color=%<text%>
 doclang/colors=%<text%>
+doclang/commands=%<text%>
 doclang/counter=%<text%>
 doclang/environment=%<text%>
 doclang/environments=%<text%>

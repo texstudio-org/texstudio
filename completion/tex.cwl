@@ -939,18 +939,18 @@
 
 \beginL#*
 \beginR#*
-\botmarks#*
-\detokenize#*
+\botmarks%<⟨15-bit number⟩%>#*
+\detokenize{arg}#*
 \endL#*
 \endR#*
 \eTeXrevision#*
 \eTeXversion#*
-\everyeof#*
-\firstmarks#*
-\fontcharht#*
-\fontcharwd#*
-\fontchardp#*
-\fontcharic#*
+\everyeof{arg}#*
+\firstmarks%<⟨15-bit number⟩%>#*
+\fontcharht%<⟨font⟩⟨8-bit number⟩%>#*
+\fontcharwd%<⟨font⟩⟨8-bit number⟩%>#*
+\fontchardp%<⟨font⟩⟨8-bit number⟩%>#*
+\fontcharic%<⟨font⟩⟨8-bit number⟩%>#*
 \currentgrouplevel#*
 \currentgrouptype#*
 \currentiflevel#*
@@ -961,7 +961,7 @@
 \interactionmode#*
 \lastlinefit#*
 \lastnodetype#*
-\marks#*
+\marks%<⟨15-bit number⟩%>{%<text%>}#*
 \middle
 \numexpr
 \parshapedimen#*
@@ -970,18 +970,18 @@
 \predisplaydirection#*
 \protected#*
 \readline%<number%> to %<control sequence%>#*
-\scantokens#*
+\scantokens{arg}#*
 \showgroups#*
-\showtokens#*
-\splitfirstmarks#*
-\splitbotmarks#*
+\showtokens{arg}#*
+\splitfirstmarks%<⟨15-bit number⟩%>#*
+\splitbotmarks%<⟨15-bit number⟩%>#*
 \TeXXeTstate#*
-\topmarks#*
+\topmarks%<⟨15-bit number⟩%>#*
 \tracingassigns#*
 \tracinggroups#*
 \tracingifs#*
 \tracingscantokens#*
-\unexpanded#*
+\unexpanded{arg}#*
 \unless#*
 \dimexpr#*
 \glueexpr#*
