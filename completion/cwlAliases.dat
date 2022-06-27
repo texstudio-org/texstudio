@@ -1066,3 +1066,15 @@ beamer-rl:
 class-beamer-rl
 latex-document
 tex
+acm-book:
+class-acm-book
+latex-document
+tex
+amsldoc:
+class-amsldoc
+latex-document
+tex
+invoice-class:
+class-invoice-class
+latex-document
+tex
