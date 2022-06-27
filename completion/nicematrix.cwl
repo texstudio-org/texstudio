@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2022/05/26 for v6.9
+# Matthew Bertucci 2022/06/26 for v6.10
 
 #include:amsmath
 #include:array
@@ -116,6 +116,8 @@ nullify-dots
 renew-dots
 xdots/color=#%color
 xdots/radius=##L
+xdots/shorten-start=##L
+xdots/shorten-end=##L
 xdots/shorten=##L
 xdots/inter=##L
 xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
@@ -273,6 +275,8 @@ auto-columns-width
 #keyvals:\Ldots,\Cdots,\Vdots,\Ddots,\Iddots,\line
 color=#%color
 radius=##L
+shorten-start=##L
+shorten-end=##L
 shorten=##L
 inter=##L
 line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
