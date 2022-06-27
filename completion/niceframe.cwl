@@ -3,10 +3,12 @@
 
 #include:calc
 
-\niceframe{contents}
-\niceframe[width]{contents}
-\curlyframe{contents}
-\curlyframe[width]{contents}
-\artdecoframe{contents}
-\artdecoframe[width]{contents}
-\generalframe{NW-char}{t-hor-leader}{NE-char}{l-vert-leader}{r-vert-leader}{SW-char}{b-hor-leader}{SE-char}{contents}#*
+\niceframe{contents%text}
+\niceframe[width]{contents%text}
+\curlyframe{contents%text}
+\curlyframe[width]{contents%text}
+\artdecoframe{contents%text}
+\artdecoframe[width]{contents%text}
+\generalframe{NW-char}{t-hor-leader}{NE-char}{l-vert-leader}{r-vert-leader}{SW-char}{b-hor-leader}{SE-char}{contents%text}#*
+\ding#S
+\thetimes#S
