@@ -1,5 +1,5 @@
 # simplivre class
-# Matthew Bertucci 2022/04/07 for 2022/04/03 release
+# Matthew Bertucci 2022/06/27 for 2022/06/16 release
 
 #include:class-book
 #include:l3keys2e
@@ -28,7 +28,8 @@ b5paper
 11pt
 12pt
 # options passed to minimalist package
-use boldface#true,false
+title in boldface#true,false
+title in scshape#true,false
 runin#true,false
 nothms#true,false
 nothmnum#true,false
