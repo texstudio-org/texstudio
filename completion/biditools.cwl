@@ -1,5 +1,5 @@
 # biditools package
-# Matthew Bertucci 2022/06/01 for v2.1
+# Matthew Bertucci 2022/06/27 for v2.2
 
 \AppendToTokenList#*
 \bidics{csname}#*
@@ -13,6 +13,7 @@
 \EmptyTokenList#*
 \endlooprepeat#*
 \eqnewif{\newconditional1%cmd}{\newconditional2%cmd}#d
+\noteqnewif{\newconditional1%cmd}{\newconditional2%cmd}#*d
 \forvariable{var}#*
 \fromvalue{integer}#*
 \GlobalSetatBoolean{at-boolean}{true|false}#*
