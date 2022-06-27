@@ -1,5 +1,5 @@
 # fgruler package
-# Matthew Bertucci 12/23/2021 for v1.3
+# Matthew Bertucci 2022/06/27 for v1.5
 
 #include:kvoptions
 #include:etoolbox
@@ -8,10 +8,12 @@
 #include:eso-pic
 
 \setfgruler{options%keyvals}
+\fgruler*{type}
+\fgruler*[options%keyvals]{type}
 
-#keyvals:\usepackage/fgruler#c,\setfgruler
+#keyvals:\usepackage/fgruler#c,\setfgruler,\fgruler*
 unit=#cm,in
-type=#upperleft,upperright,lowerleft,lowerright,upperleftT,upperrightT,lowerleftT,lowerrightT,none,user
+type=#upperleft,upperright,lowerleft,lowerright,upperleftT,upperrightT,lowerleftT,lowerrightT,alledges,alledges*,alledgesT,alledgesT*,none,user
 hshift=##L
 vshift=##L
 color=#%color
@@ -46,6 +48,8 @@ rightdown
 rightup
 leftdown
 leftup
+taperight
+tapeleft
 #endkeyvals
 
 \squareruler{type%keyvals}{width}{height}
@@ -72,7 +76,8 @@ leftup
 \fgrulercolorcm{color1}{color2}{color3}
 \fgrulercolorin{color1}{color2}{color3}{color4}{color5}
 \fgrulerreset
-\fgrulerdefusercm{code}
-\fgrulerdefuserin{code}
+\fgrulerdefuser{code}
+\fgrulerdefusercm{code}#*
+\fgrulerdefuserin{code}#*
 \fgrulertype{unit}{type}
 \thefgrulernum

@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 30.05.2022 for v3.17
+# Matthew Bertucci 27.06.2022 for v3.18
 
 #include:pdftexcmds
 #include:etoolbox
@@ -38,6 +38,7 @@ sortupper#true,false
 sortlocale=
 sortcites#true,false
 sortsets#true,false
+pluralothers#true,false
 maxnames=%<integer%>
 minnames=%<integer%>
 maxbibnames=%<integer%>
@@ -348,6 +349,8 @@ biblistfilter=
 \end{refcontext}
 \newrefcontext{name}
 \newrefcontext[options%keyvals]{name}
+\localrefcontext{name}
+\localrefcontext[options%keyvals]{name}
 \endrefcontext#*
 \assignrefcontextkeyws[options%keyvals]{keyword1,keyword2,...}#*
 \assignrefcontextkeyws*[options%keyvals]{keyword1,keyword2,...}#*
@@ -355,8 +358,9 @@ biblistfilter=
 \assignrefcontextcats*[options%keyvals]{category1,category2,...}#*
 \assignrefcontextentries[options%keyvals]{entrykey1,entrykey2,...}#*
 \assignrefcontextentries*[options%keyvals]{entrykey1,entrykey2,...}#*
+\GenRefcontextData{keyvals}#*
 
-#keyvals:\DeclareRefcontext,\begin{refcontext},\newrefcontext,\assignrefcontextkeyws,\assignrefcontextkeyws*,\assignrefcontextcats,\assignrefcontextcats*,\assignrefcontextentries,\assignrefcontextentries*
+#keyvals:\DeclareRefcontext,\begin{refcontext},\newrefcontext,\localrefcontext,\assignrefcontextkeyws,\assignrefcontextkeyws*,\assignrefcontextcats,\assignrefcontextcats*,\assignrefcontextentries,\assignrefcontextentries*,\GenRefcontextData
 sorting=%<name%>
 sortingnamekeytemplatename=%<name%>
 uniquenametemplatename=%<name%>
@@ -1571,8 +1575,10 @@ sortupper#true,false
 #endkeyvals
 \citecount#*
 \citeorder#*
+\intciteorder#*
 \DeclareSortingNamekeyTemplate{specification}#*
 \DeclareSortingNamekeyTemplate[name]{specification}#*
+\visibility{visibility scope}#*
 \keypart{part}#*
 \DeclareSortExclusion{entrytype list}{field list}#*
 \DeclareSortInclusion{entrytype list}{field list}#*
@@ -2024,6 +2030,7 @@ override#true,false
 \currentlist#*
 \currentname#*
 
+\AtBeginRefsection{code}#*
 \AtBeginBibliography{code}#*
 \AtBeginShorthands{code}#*
 \AtBeginBiblist{biblistname}{code}#*
