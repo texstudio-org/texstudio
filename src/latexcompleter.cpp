@@ -963,7 +963,7 @@ CompletionWord manipulateCompletionWord(CompletionWord cw,QString key,QString re
         ph.offset=index;
         ph.length=replacement.length();
         ph.id=-1;
-        ph.flags=0;
+        ph.flags=CodeSnippetPlaceHolder::AutoSelect;
         cw.placeHolders.last().append(ph);
     }
     return cw;
