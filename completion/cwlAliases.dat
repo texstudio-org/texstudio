@@ -1078,3 +1078,11 @@ invoice-class:
 class-invoice-class
 latex-document
 tex
+beaulivre:
+class-beaulivre
+latex-document
+tex
+lebhart:
+class-lebhart
+latex-document
+tex
