@@ -5,13 +5,15 @@
 #include:pdfescape
 #include:stringenc
 #include:intcalc
+#include:iftex
 #include:ifmtarg
 #include:etoolbox
 #include:ifthen
+#include:luacode
 #include:ifdraft
+#include:hyperref
 #include:totpages
 #include:ifluatex
-#include:hyperref
 
 #keyvals:\usepackage/hyperxmp#c
 verbose
