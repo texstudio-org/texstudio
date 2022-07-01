@@ -207,8 +207,8 @@ physrev
 \restorecolumngrid#*
 \revised[optional text%text]{date}
 \revised{date}
-\say{text}#*
-\saythe{text}#*
+\say{cmd}#*
+\saythe{count}#*
 \setfloatlink{URL}#U
 \squeezetable
 \startpage{startpage}
