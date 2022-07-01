@@ -894,11 +894,13 @@ void PDFWidget::useDraggableTool(PDFDraggableTool* tool, const QMouseEvent *inEv
 //   - click to use magnifier (custom magnifier cursor)
 //   - shift-click to zoom in (custom plus sign cursor)
 //   - alt-click to zoom out (custom minus sign cursor)
+//   - ctrl+shift-click to copy position to clipboard (CrossCursor)
 //   - shift-click and drag to zoom to selected area
 // * scroll (hand)
 //   - ctrl-click to sync
 //   - shift-click to set pageOffset to gridColumn (ArrowCursor)
 //   - click and drag to scroll	(ClosedHandCursor)
+//   - ctrl+shift-click to copy position to clipboard (CrossCursor)
 //   - double-click to use magnifier
 // * select area (crosshair)
 //   - ctrl-click to sync
@@ -1550,8 +1552,12 @@ void PDFWidget::updateCursor()
 	Qt::KeyboardModifiers mods = QApplication::keyboardModifiers();
 	switch (currentTool) {
 	case kScroll: {
-		if ((mods & Qt::ShiftModifier) && !(mods & Qt::ControlModifier))
-			setCursor(Qt::ArrowCursor);
+		if (mods & Qt::ShiftModifier) {
+			if (mods & Qt::ControlModifier)
+				setCursor(Qt::CrossCursor);
+			else
+				setCursor(Qt::ArrowCursor);
+		}
 		else
 			setCursor(Qt::OpenHandCursor);
 	}
@@ -1559,8 +1565,12 @@ void PDFWidget::updateCursor()
 	case kMagnifier: {
 		if (mods & Qt::AltModifier)
 			setCursor(*zoomOutCursor);
-		else if (mods & Qt::ShiftModifier)
-			setCursor(*zoomInCursor);
+		else if (mods & Qt::ShiftModifier) {
+			if (mods & Qt::ControlModifier)
+				setCursor(Qt::CrossCursor);
+			else
+				setCursor(*zoomInCursor);
+		}
 		else
 			setCursor(*magnifierCursor);
 	}
