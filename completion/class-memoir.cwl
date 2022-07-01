@@ -99,9 +99,9 @@ twoside
 \abstractrunin#*
 \abstracttextfont#*
 \addappheadtotoc#*
-\added{arg1}#*
+\added{arg}#*
 \addlinespace#*
-\addperiod{arg1}#*
+\addperiod{arg}#*
 \addtodef#*
 \addtoiargdef#*
 \addtonotes{text}#*
@@ -308,10 +308,10 @@ twoside
 \cftbookaftersnumb#*
 \cftbookbreak#*
 \cftbookdotsep#*
-\cftbookfillnum{arg1}#*
+\cftbookfillnum{arg}#*
 \cftbookfont#*
-\cftbookformatpnum{arg1}#*
-\cftbookformatpnumhook{arg1}#*
+\cftbookformatpnum{arg}#*
+\cftbookformatpnumhook{arg}#*
 \cftbookindent#*
 \cftbookleader#*
 \cftbookname#*
@@ -323,10 +323,10 @@ twoside
 \cftchapteraftersnumb#*
 \cftchapterbreak#*
 \cftchapterdotsep#*
-\cftchapterfillnum{arg1}#*
+\cftchapterfillnum{arg}#*
 \cftchapterfont#*
-\cftchapterformatpnum{arg1}#*
-\cftchapterformatpnumhook{arg1}#*
+\cftchapterformatpnum{arg}#*
+\cftchapterformatpnumhook{arg}#*
 \cftchapterindent
 \cftchapterleader#*
 \cftchaptername#*
@@ -340,6 +340,7 @@ twoside
 \cftfigureaftersnum#*
 \cftfigureaftersnumb#*
 \cftfiguredotsep#*
+\cftfigurefillnum{arg}#*
 \cftfigurefont#*
 \cftfigureformatpnum{number}#*
 \cftfigureformatpnumhook#*
@@ -360,6 +361,7 @@ twoside
 \cftparagraphaftersnum#*
 \cftparagraphaftersnumb#*
 \cftparagraphdotsep#*
+\cftparagraphfillnum{arg}#*
 \cftparagraphfont#*
 \cftparagraphformatpnum{number}#*
 \cftparagraphformatpnumhook#*
@@ -390,6 +392,7 @@ twoside
 \cftsectionaftersnum#*
 \cftsectionaftersnumb#*
 \cftsectiondotsep#*
+\cftsectionfillnum{arg}#*
 \cftsectionfont#*
 \cftsectionformatpnum{number}#*
 \cftsectionformatpnumhook#*
@@ -404,6 +407,7 @@ twoside
 \cftsubparagraphaftersnum#*
 \cftsubparagraphaftersnumb#*
 \cftsubparagraphdotsep#*
+\cftsubparagraphfillnum{arg}#*
 \cftsubparagraphfont#*
 \cftsubparagraphformatpnum{number}#*
 \cftsubparagraphformatpnumhook#*
@@ -417,6 +421,7 @@ twoside
 \cftsubsectionaftersnum#*
 \cftsubsectionaftersnumb#*
 \cftsubsectiondotsep#*
+\cftsubsectionfillnum{arg}#*
 \cftsubsectionfont#*
 \cftsubsectionformatpnum{number}#*
 \cftsubsectionformatpnumhook#*
@@ -430,6 +435,7 @@ twoside
 \cftsubsubsectionaftersnum#*
 \cftsubsubsectionaftersnumb#*
 \cftsubsubsectiondotsep#*
+\cftsubsubsectionfillnum{arg}#*
 \cftsubsubsectionfont#*
 \cftsubsubsectionformatpnum{number}#*
 \cftsubsubsectionformatpnumhook#*
@@ -443,6 +449,7 @@ twoside
 \cfttableaftersnum#*
 \cfttableaftersnumb#*
 \cfttabledotsep#*
+\cfttablefillnum{arg}#*
 \cfttablefont#*
 \cfttableformatpnum{number}#*
 \cfttableformatpnumhook#*
@@ -476,7 +483,7 @@ twoside
 \chapter{title}#L1
 \chapterheadstart#*
 \chaptermark#*
-\chaptermark{arg1}#*
+\chaptermark{arg}#*
 \chaptername#*
 \chapternamenum#*
 \chapternumberline{number}#*
@@ -598,7 +605,7 @@ right
 \defaultaddspace#*
 \defaultlists#*
 \defaultsecnum#*
-\deleted{arg1}#*
+\deleted{arg}#*
 \DeleteShortVerb{\%<character%>}#*
 \descriptionlabel{label%plain}#*
 \DisemulatePackage{package}#*
@@ -1412,7 +1419,7 @@ none
 \PoemTitlefont#*
 \poemtitlefont#*
 \PoemTitleheadstart#*
-\poemtitlemark{arg1}#*
+\poemtitlemark{arg}#*
 \PoemTitlenumfont#*
 \poemtitlepstyle#*
 \poemtitlestarmark{for head}#*

@@ -67,7 +67,7 @@ draft
 #ifOption:french
 # from french option of babel
 \frenchsetup{options%keyvals}
-\frenchbsetup{options%keyvals}#*
+\frenchbsetup{options%keyvals}#S
 #keyvals:\frenchsetup,\frenchbsetup
 ShowOptions#true,false
 StandardLayout#true,false
@@ -114,6 +114,7 @@ SuppressWarning#true,false
 \begin{itemizeFB}
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
+\bname{text}
 \boi
 \bsc{text}
 \CaptionSeparator#*

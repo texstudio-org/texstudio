@@ -1295,9 +1295,13 @@ CouleurM=#%color
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
 \rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
 \rowcolors*[commands]{row}{color}{color}#S
 \showrowcolors
 \hiderowcolors
@@ -1461,8 +1465,22 @@ Teal#B
 #include:listings
 #include:listingsutf8
 #include:shellesc
-#include:xparse
 #include:pdfcol
+
+# from tikzmark library v1.10
+\tikzmark{name}
+\tikzmark[drawing command]{name}
+\tikzmark{name}{coordinate}
+\pgfmark{name}
+\iftikzmark{name}{true}{false}
+\iftikzmarkexists{name}
+\iftikzmarkoncurrentpage{name}
+\iftikzmarkonpage{name}{page}
+\tikzmarknode{name}{contents}
+\tikzmarknode[options]{name}{contents}
+\subnode{name}{contents}
+\subnode[options]{name}{contents}
+\usetikzmarklibrary{library}#*
 
 # not documented
 \addtot#S

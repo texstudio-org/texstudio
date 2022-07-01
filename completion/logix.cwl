@@ -1,5 +1,5 @@
 # logix package
-# Matthew Bertucci 2022/05/26 for v1.12
+# Matthew Bertucci 2022/06/27 for v1.13
 
 #include:iftex
 #include:unicode-math
@@ -2807,6 +2807,11 @@
 \Kntz
 \Kntzero
 
+\KntNESpace#*
+\KntNFSpace#*
+\KntNNSpace#*
+\KntNQSpace#*
+
 ### Logic ###
 
 \begin{LogixDefn}
@@ -2938,10 +2943,29 @@
 \CDots
 \Choice
 \Choices
-\CircPlus
-\CircStar
+\CircAsterick
+\CircDivd
+\CircDivide
+\CircEq
+\CircGr
+\CircGre
+\CircInvNt
+\CircLs
+\CircLse
+\CircMinus
+\CircMinusPlus
+\CircNand
+\CircNd
+\CircNgt
+\CircNor
+\CircNt
+\CircOr
+\CircPls
+\CircPlusMinus
+\CircSm
 \CircTimes
 \Circumflex
+\CircXor
 \Cln
 \ClsEquv
 \ClsImpl
@@ -2980,6 +3004,7 @@
 \DeoNonCont
 \DeoPast
 \DeoPos
+\Divd
 \Divide
 \DMinus
 \Dnd
@@ -3029,6 +3054,7 @@
 \DTrpTurn
 \DTurnDWavy
 \DTurnWavy
+\End
 \Entail
 \EntailEquv
 \Eq
@@ -3053,6 +3079,7 @@
 \FncComp
 \FntSbset
 \ForAll
+\ForComp
 \ForkArrowLeft
 \ForkArrowRight
 \FrstOrd
@@ -3136,6 +3163,9 @@
 \LEntailEquv
 \LEquv
 \LFunc
+\LgCircPlus
+\LgCircStar
+\LgCircTimes
 \LImpl
 \LInEquv
 \LInImpl
@@ -3154,6 +3184,7 @@
 \LogPos
 \LoopArrowLeft
 \LoopArrowRight
+\LParFunc
 \Ls
 \Lse
 \LstFix
@@ -3366,6 +3397,7 @@
 \OutlineVerySmallCircle
 \OutlineVerySmallSquare
 \Owns
+\ParFunc
 \Past
 \Percnt
 \Perp
@@ -3449,8 +3481,12 @@
 \SInImpl
 \Sm
 \SMapTo
+\SmCircPlus
+\SmCircStar
+\SmCircTimes
 \SMtEquv
 \SMtImpl
+\SParFunc
 \StrctFntSbset
 \StrctSbmap
 \StrctSbnch
@@ -3525,6 +3561,7 @@
 \VMtEquv
 \VMtImpl
 \VoidBunch
+\VParFunc
 \VWkEntail
 \VWkEntailEquv
 \VWkEquv
@@ -3647,6 +3684,7 @@
 \XMtEquv
 \XMtImpl
 \Xor
+\XParFunc
 \XWkEntail
 \XWkEntailEquv
 \XWkEquv
@@ -4048,6 +4086,36 @@
 \OpnDblGrpJ
 \OpnDblGrpK
 \OpnDblGrpL
+
+\OpnDblCeil
+\OpnDblCeilS#m
+\OpnDblCeilA
+\OpnDblCeilB
+\OpnDblCeilC
+\OpnDblCeilD
+\OpnDblCeilE
+\OpnDblCeilF
+\OpnDblCeilG
+\OpnDblCeilH
+\OpnDblCeilI
+\OpnDblCeilJ
+\OpnDblCeilK
+\OpnDblCeilL
+
+\OpnDblFloor
+\OpnDblFloorS#m
+\OpnDblFloorA
+\OpnDblFloorB
+\OpnDblFloorC
+\OpnDblFloorD
+\OpnDblFloorE
+\OpnDblFloorF
+\OpnDblFloorG
+\OpnDblFloorH
+\OpnDblFloorI
+\OpnDblFloorJ
+\OpnDblFloorK
+\OpnDblFloorL
 
 \OpnDblParn
 \OpnDblParnS#m
@@ -4575,6 +4643,36 @@
 \ClsDblBracK
 \ClsDblBracL
 
+\ClsDblCeil
+\ClsDblCeilS#m
+\ClsDblCeilA
+\ClsDblCeilB
+\ClsDblCeilC
+\ClsDblCeilD
+\ClsDblCeilE
+\ClsDblCeilF
+\ClsDblCeilG
+\ClsDblCeilH
+\ClsDblCeilI
+\ClsDblCeilJ
+\ClsDblCeilK
+\ClsDblCeilL
+
+\ClsDblFloor
+\ClsDblFloorS#m
+\ClsDblFloorA
+\ClsDblFloorB
+\ClsDblFloorC
+\ClsDblFloorD
+\ClsDblFloorE
+\ClsDblFloorF
+\ClsDblFloorG
+\ClsDblFloorH
+\ClsDblFloorI
+\ClsDblFloorJ
+\ClsDblFloorK
+\ClsDblFloorL
+
 \ClsDblGrp
 \ClsDblGrpS#m
 \ClsDblGrpA
@@ -4833,6 +4931,10 @@
 \ClsDblBracExt#*
 \ClsDblBracMid#*
 \ClsDblBracTop#*
+\ClsDblCeilExt#*
+\ClsDblCeilTop#*
+\ClsDblFloorBtm#*
+\ClsDblFloorExt#*
 \ClsDblGrpBtm#*
 \ClsDblGrpExt#*
 \ClsDblGrpTop#*
@@ -4962,6 +5064,10 @@
 \OpnDblBracExt#*
 \OpnDblBracMid#*
 \OpnDblBracTop#*
+\OpnDblCeilExt#*
+\OpnDblCeilTop#*
+\OpnDblFloorBtm#*
+\OpnDblFloorExt#*
 \OpnDblGrpBtm#*
 \OpnDblGrpExt#*
 \OpnDblGrpTop#*

@@ -1,5 +1,5 @@
 # verifiche package
-# Matthew Bertucci 2022/05/20 for v5.0
+# Matthew Bertucci 2022/06/27 for v5.2
 
 #include:xparse
 #include:xkeyval 
@@ -247,6 +247,9 @@ i
 \iftesttype#S
 \testtypetrue#S
 \testtypefalse#S
+\ifshowinstructiondelimiter#S
+\showinstructiondelimitertrue#S
+\showinstructiondelimiterfalse#S
 \ifprintedheading#S
 \printedheadingtrue#S
 \printedheadingfalse#S

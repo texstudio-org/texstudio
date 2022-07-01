@@ -156,7 +156,7 @@ chapitre#B
 
 # from french option of babel
 \frenchsetup{options%keyvals}
-\frenchbsetup{options%keyvals}#*
+\frenchbsetup{options%keyvals}#S
 #keyvals:\frenchsetup,\frenchbsetup
 ShowOptions#true,false
 StandardLayout#true,false
@@ -205,14 +205,15 @@ SuppressWarning#true,false
 \begin{listFB}{symbol}
 \begin{listORI}{symbol}#*
 \boi
+\bname{text}
 \bsc{text}
 \CaptionSeparator#*
-\captionsfrench
+\captionsfrench#*
 \ccname#*
 \chaptername#*
 \circonflexe
 \dateacadian#*
-\datefrench
+\datefrench#*
 \DecimalMathComma
 \degre#*
 \degres
@@ -224,7 +225,7 @@ SuppressWarning#true,false
 \end{itemizeFB}
 \end{listFB}
 \end{listORI}#*
-\extrasfrench
+\extrasfrench#*
 \FBcolonspace
 \FBdatebox#*
 \FBdatespace#*
@@ -333,7 +334,7 @@ SuppressWarning#true,false
 \NoAutoSpaceBeforeFDP#*
 \NoAutoSpacing
 \NoEveryParQuote#*
-\noextrasfrench
+\noextrasfrench#*
 \nombre{arg}#*
 \nos
 \Nos

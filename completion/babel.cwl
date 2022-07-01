@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2022/06/07 for v3.76
+# tbraun 4.11.2008; Matthew Bertucci 2022/06/27 for v3.77
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -96,6 +96,8 @@ linebreaking=#kashida,elongated,unhyphenated
 mapfont=
 maparabic
 mapdigits
+calendar=%<calendar%>
+calendar=%<calendar%>.%<variant%>
 #endkeyvals
 
 \localenumeral{style}{number}
@@ -106,6 +108,7 @@ mapdigits
 #keyvals:\localedate
 calendar=%<calendar%>
 variant=%<variant%>
+convert
 #endkeyvals
 
 \babelcalendar{calendar}{year-macro%cmd}{month-macro%cmd}{day-macro%cmd}#d

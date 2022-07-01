@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/05/16 for v1.1.5
+# Matthew Bertucci 2022/06/29 for v1.1.6
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -234,6 +234,39 @@ racines=%<racines%>
 largeur=%<num%>
 hauteur=%<num%>
 cadre#true,false
+#endkeyvals
+
+\PLreglin{listeX}{listeY}
+\PLreglin[options%keyvals]{listeX}{listeY}
+
+#keyvals:\PLreglin
+nomcoeffa=%<nom%>
+nomcoeffb=%<nom%>
+nomcoeffr=%<nom%>
+nomcoeffrd=%<nom%>
+nomxmin=%<nom%>
+nomxmax=%<nom%>
+#endkeyvals
+
+\LX#*
+\LY#*
+\LNB#S
+\LXSomme#*
+\LYSomme#*
+\LXmoy#*
+\LYmoy#*
+\LXvar#*
+\LYvar#*
+\LXYvar#*
+
+\PLreglinpts{listeX}{listeY}
+\PLreglinpts[options%keyvals]{listeX}{listeY}
+
+#keyvals:\PLreglinpts
+couleur=#%color
+taille=##L
+Ox=%<num%>
+Oy=%<num%>
 #endkeyvals
 
 # from table option of xcolor
@@ -510,6 +543,16 @@ Teal#B
 \PLUbuntuMax#*
 \PLUbuntuMin#*
 \PLUbuntuWhite#*
+\RegLinCoeffa#S
+\RegLinCoeffb#S
+\RegLinCoeffr#S
+\RegLinCoeffrd#S
+\RegLinCoeffXmax#S
+\RegLinCoeffXmin#S
+\RegLinNuageCouleur#S
+\RegLinNuageOx#S
+\RegLinNuageOy#S
+\RegLinNuageTaille#S
 \schematdsaff*{arg1}{arg2}{arg3}{arg4}#*
 \schematdsaff{arg1}{arg2}{arg3}{arg4}#*
 \schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}#*
@@ -554,8 +597,10 @@ Teal#B
 \verbcenterpre#S
 \xa#S
 \xb#S
+\xliste#S
 \ya#S
 \yb#S
+\yliste#S
 
 PLlinux#B
 PLmgray#B

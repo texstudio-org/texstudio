@@ -144,7 +144,7 @@ preciseconstants#true,false
 
 \angularmomentum{magnitude}#m
 \angularmomentumvector{c1,c2,...}#m
-\angularmomentumvector{c1,c2,...}#m
+\vectorangularmomentum{c1,c2,...}#m
 
 \angularmomentumvalue{magnitude}#*m
 \angularmomentumbaseunits{magnitude}#*m
@@ -170,7 +170,7 @@ preciseconstants#true,false
 
 \angularvelocity{magnitude}#m
 \angularvelocityvector{c1,c2,...}#m
-\angularvelocityvector{c1,c2,...}#m
+\vectorangularvelocity{c1,c2,...}#m
 
 \angularvelocityvalue{magnitude}#*m
 \angularvelocitybaseunits{magnitude}#*m
@@ -196,7 +196,7 @@ preciseconstants#true,false
 
 \cmagneticfield{magnitude}#m
 \cmagneticfieldvector{c1,c2,...}#m
-\cmagneticfieldvector{c1,c2,...}#m
+\vectorcmagneticfield{c1,c2,...}#m
 
 \cmagneticfieldvalue{magnitude}#*m
 \cmagneticfieldbaseunits{magnitude}#*m
@@ -222,7 +222,7 @@ preciseconstants#true,false
 
 \currentdensity{magnitude}#m
 \currentdensityvector{c1,c2,...}#m
-\currentdensityvector{c1,c2,...}#m
+\vectorcurrentdensity{c1,c2,...}#m
 
 \currentdensityvalue{magnitude}#*m
 \currentdensitybaseunits{magnitude}#*m
@@ -248,7 +248,7 @@ preciseconstants#true,false
 
 \direction{magnitude}#m
 \directionvector{c1,c2,...}#m
-\directionvector{c1,c2,...}#m
+\vectordirection{c1,c2,...}#m
 
 \directionvalue{magnitude}#*m
 \directionbaseunits{magnitude}#*m
@@ -274,7 +274,7 @@ preciseconstants#true,false
 
 \displacement{magnitude}#m
 \displacementvector{c1,c2,...}#m
-\displacementvector{c1,c2,...}#m
+\vectordisplacement{c1,c2,...}#m
 
 \displacementvalue{magnitude}#*m
 \displacementbaseunits{magnitude}#*m
@@ -300,7 +300,7 @@ preciseconstants#true,false
 
 \electricdipolemoment{magnitude}#m
 \electricdipolemomentvector{c1,c2,...}#m
-\electricdipolemomentvector{c1,c2,...}#m
+\vectorelectricdipolemoment{c1,c2,...}#m
 
 \electricdipolemomentvalue{magnitude}#*m
 \electricdipolemomentbaseunits{magnitude}#*m
@@ -326,7 +326,7 @@ preciseconstants#true,false
 
 \electricfield{magnitude}#m
 \electricfieldvector{c1,c2,...}#m
-\electricfieldvector{c1,c2,...}#m
+\vectorelectricfield{c1,c2,...}#m
 
 \electricfieldvalue{magnitude}#*m
 \electricfieldbaseunits{magnitude}#*m
@@ -352,7 +352,7 @@ preciseconstants#true,false
 
 \energyflux{magnitude}#m
 \energyfluxvector{c1,c2,...}#m
-\energyfluxvector{c1,c2,...}#m
+\vectorenergyflux{c1,c2,...}#m
 
 \energyfluxvalue{magnitude}#*m
 \energyfluxbaseunits{magnitude}#*m
@@ -378,7 +378,7 @@ preciseconstants#true,false
 
 \force{magnitude}#m
 \forcevector{c1,c2,...}#m
-\forcevector{c1,c2,...}#m
+\vectorforce{c1,c2,...}#m
 
 \forcevalue{magnitude}#*m
 \forcebaseunits{magnitude}#*m
@@ -404,7 +404,7 @@ preciseconstants#true,false
 
 \gravitationalfield{magnitude}#m
 \gravitationalfieldvector{c1,c2,...}#m
-\gravitationalfieldvector{c1,c2,...}#m
+\vectorgravitationalfield{c1,c2,...}#m
 
 \gravitationalfieldvalue{magnitude}#*m
 \gravitationalfieldbaseunits{magnitude}#*m
@@ -430,7 +430,7 @@ preciseconstants#true,false
 
 \impulse{magnitude}#m
 \impulsevector{c1,c2,...}#m
-\impulsevector{c1,c2,...}#m
+\vectorimpulse{c1,c2,...}#m
 
 \impulsevalue{magnitude}#*m
 \impulsebaseunits{magnitude}#*m
@@ -456,7 +456,7 @@ preciseconstants#true,false
 
 \magneticdipolemoment{magnitude}#m
 \magneticdipolemomentvector{c1,c2,...}#m
-\magneticdipolemomentvector{c1,c2,...}#m
+\vectormagneticdipolemoment{c1,c2,...}#m
 
 \magneticdipolemomentvalue{magnitude}#*m
 \magneticdipolemomentbaseunits{magnitude}#*m
@@ -482,7 +482,7 @@ preciseconstants#true,false
 
 \magneticfield{magnitude}#m
 \magneticfieldvector{c1,c2,...}#m
-\magneticfieldvector{c1,c2,...}#m
+\vectormagneticfield{c1,c2,...}#m
 
 \magneticfieldvalue{magnitude}#*m
 \magneticfieldbaseunits{magnitude}#*m
@@ -508,7 +508,7 @@ preciseconstants#true,false
 
 \momentumflux{magnitude}#m
 \momentumfluxvector{c1,c2,...}#m
-\momentumfluxvector{c1,c2,...}#m
+\vectormomentumflux{c1,c2,...}#m
 
 \momentumfluxvalue{magnitude}#*m
 \momentumfluxbaseunits{magnitude}#*m
@@ -534,7 +534,7 @@ preciseconstants#true,false
 
 \poynting{magnitude}#m
 \poyntingvector{c1,c2,...}#m
-\poyntingvector{c1,c2,...}#m
+\vectorpoynting{c1,c2,...}#m
 
 \poyntingvalue{magnitude}#*m
 \poyntingbaseunits{magnitude}#*m
@@ -560,7 +560,7 @@ preciseconstants#true,false
 
 \torque{magnitude}#m
 \torquevector{c1,c2,...}#m
-\torquevector{c1,c2,...}#m
+\vectortorque{c1,c2,...}#m
 
 \torquevalue{magnitude}#*m
 \torquebaseunits{magnitude}#*m
@@ -586,7 +586,7 @@ preciseconstants#true,false
 
 \velocity{magnitude}#m
 \velocityvector{c1,c2,...}#m
-\velocityvector{c1,c2,...}#m
+\vectorvelocity{c1,c2,...}#m
 
 \velocityvalue{magnitude}#*m
 \velocitybaseunits{magnitude}#*m
@@ -612,7 +612,7 @@ preciseconstants#true,false
 
 \velocityc{magnitude}#m
 \velocitycvector{c1,c2,...}#m
-\velocitycvector{c1,c2,...}#m
+\vectorvelocityc{c1,c2,...}#m
 
 \velocitycvalue{magnitude}#*m
 \velocitycbaseunits{magnitude}#*m
@@ -638,7 +638,7 @@ preciseconstants#true,false
 
 \wavenumber{magnitude}#m
 \wavenumbervector{c1,c2,...}#m
-\wavenumbervector{c1,c2,...}#m
+\vectorwavenumber{c1,c2,...}#m
 
 \wavenumbervalue{magnitude}#*m
 \wavenumberbaseunits{magnitude}#*m

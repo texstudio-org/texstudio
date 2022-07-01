@@ -1,5 +1,5 @@
 # ut-thesis class
-# Matthew Bertucci 2022/06/05 for v3.1.5
+# Matthew Bertucci 2022/06/27 for v3.1.6
 
 #include:class-book
 #include:geometry
@@ -26,6 +26,7 @@ extrawidemargins
 \gradyear{year}
 \department{department%text}
 \department[pre text%text]{department%text}
+\copyrighttext{text}
 \begin{dedication}
 \end{dedication}
 \begin{acknowledgements}

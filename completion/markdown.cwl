@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 4/2/2022 for v2.15.0-0-g9296cf1
+# Matthew Bertucci 2022/07/01 for v2.15.3-0-g7c8e03d
 
 #include:keyval
 #include:xstring
@@ -14,6 +14,7 @@
 #include:gobble
 #include:url
 #include:etoolbox
+#include:lt3luabridge
 
 \begin{markdown}
 \end{markdown}
@@ -97,7 +98,6 @@ code={%<code%>}
 #endif
 
 \ifmarkdownLaTeXLoaded#*
-\ifmarkdownLaTeXPlain#*
 \markdownError{warning text%text}#*
 \markdownInfo{info text%text}#*
 \markdownInputPlainTeX{file}#*i
@@ -115,8 +115,6 @@ code={%<code%>}
 \markdownLaTeXMidRule#*
 \markdownLaTeXNatbibCitations{arg1}{arg2}{arg3}{arg4}{arg5}#*
 \markdownLaTeXNatbibTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}#*
-\markdownLaTeXPlainfalse#*
-\markdownLaTeXPlaintrue#*
 \markdownLaTeXReadAlignments{arg1}#*
 \markdownLaTeXRendererAbsoluteLink{arg1}{arg2}{arg3}{arg4}#*
 \markdownLaTeXRendererRelativeLink{arg1}#*
@@ -150,13 +148,11 @@ code={%<code%>}
 \markdownExecute{code}#*
 \markdownExecuteDirect{code}#*
 \markdownExecuteShellEscape#*
-\markdownFrozenCacheCounter#*
 \markdownIfOption{option}{true}{false}#*
 \markdownInputFileStream#*
 \markdownLastModified#*
 \markdownLuaExecute{code}#*
 \markdownLuaOptions#*
-\markdownMode#*
 \markdownOptionBlankBeforeBlockquote#*
 \markdownOptionBlankBeforeCodeFence#*
 \markdownOptionBlankBeforeHeading#*
@@ -169,7 +165,6 @@ code={%<code%>}
 \markdownOptionContentBlocksLanguageMap#*
 \markdownOptionDefinitionLists#*
 \markdownOptionEagerCache#*
-\markdownOptionErrorTempFileName#*
 \markdownOptionFencedCode#*
 \markdownOptionFinalizeCache#*
 \markdownOptionFootnotes#*
@@ -178,14 +173,12 @@ code={%<code%>}
 \markdownOptionHardLineBreaks#*
 \markdownOptionHashEnumerators#*
 \markdownOptionHeaderAttributes#*
-\markdownOptionHelperScriptFileName#*
 \markdownOptionHtml#*
 \markdownOptionHybrid#*
 \markdownOptionInlineFootnotes#*
 \markdownOptionInputTempFileName#*
 \markdownOptionJekyllData#*
 \markdownOptionOutputDir#*
-\markdownOptionOutputTempFileName#*
 \markdownOptionPipeTables#*
 \markdownOptionPreserveTabs#*
 \markdownOptionShiftHeadings#*
@@ -366,7 +359,3 @@ code={%<code%>}
 \markdownRendererUntickedBox#*
 \markdownRendererUntickedBoxPrototype#*
 \markdownVersion#*
-
-# deprecated
-\markdownLuaRegisterIBCallback{arg1}#S
-\markdownLuaUnregisterIBCallback{arg1}#S

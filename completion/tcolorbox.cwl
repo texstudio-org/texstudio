@@ -1623,9 +1623,6 @@ listing options app={%<options%>}
 listing options pre={%<options%>}
 minted options app={%<options%>}
 minted options pre={%<options%>}
-
-### << xparse library keys >> ###
-verbatim
 #endkeyvals
 
 ## tcbox special keys
@@ -1633,6 +1630,7 @@ verbatim
 tcbox raise=##L
 tcbox raise base
 on line
+verbatim
 tcbox width=#auto,auto limited,forced center,forced left,forced right,minimum center,minimum left,minimum right
 #endkeyvals
 

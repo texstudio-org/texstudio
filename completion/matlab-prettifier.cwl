@@ -5,6 +5,13 @@
 #include:xcolor
 #include:listings
 
+#keyvals:\usepackage/matlab-prettifier#c
+framed
+numbered
+draft
+final
+#endkeyvals
+
 #keyvals:\lstset,\lstinline,\begin{lstlisting},\lstinputlisting,\lstMakeShortInline
 style=Matlab-editor
 style=Matlab-bw
@@ -16,8 +23,8 @@ mlstringstyle=%<style%>
 mlcommentstyle=%<style%>
 mlsectiontitlestyle=%<style%>
 mlshowsectionrules#true,false
-mlsectionrulethickness=
-mlsectionrulethickness=#%color
+mlsectionrulethickness=%<number%>
+mlsectionrulecolor=#%color
 mlsyscomstyle=%<style%>
 mlsharedvars=%<list of variables%>
 mlmoresharedvars=%<list of variables%>
