@@ -97,6 +97,9 @@ abbreviations
 \glsxtrshowtargetinner{label}#*
 \glsxtrshowtargetouter{label}#*
 
+#ifOption:record
+#include:glossaries-extra-bib2gls
+#endif
 #ifOption:record=only
 #include:glossaries-extra-bib2gls
 #endif
