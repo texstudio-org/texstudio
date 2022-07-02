@@ -152,6 +152,7 @@
 <file>completion/ascmac.cwl</file>
 <file>completion/askinclude.cwl</file>
 <file>completion/askmaps.cwl</file>
+<file>completion/asmewide.cwl</file>
 <file>completion/assoccnt.cwl</file>
 <file>completion/association-matrix.cwl</file>
 <file>completion/assurelatexmode.cwl</file>
@@ -562,6 +563,7 @@
 <file>completion/class-beamer.cwl</file>
 <file>completion/class-beamer-rl.cwl</file>
 <file>completion/class-beamerswitch.cwl</file>
+<file>completion/class-beaulivre.cwl</file>
 <file>completion/class-beilstein.cwl</file>
 <file>completion/class-bfhbeamer.cwl</file>
 <file>completion/class-bfhpub.cwl</file>
@@ -666,6 +668,7 @@
 <file>completion/class-langscibook.cwl</file>
 <file>completion/class-leadsheet.cwl</file>
 <file>completion/class-leaflet.cwl</file>
+<file>completion/class-lebhart.cwl</file>
 <file>completion/class-letgut.cwl</file>
 <file>completion/class-letter.cwl</file>
 <file>completion/class-lettre.cwl</file>
@@ -1058,6 +1061,7 @@
 <file>completion/dutchcal.cwl</file>
 <file>completion/dvgloss.cwl</file>
 <file>completion/dvipscol.cwl</file>
+<file>completion/dvisirule.cwl</file>
 <file>completion/dynamicnumber.cwl</file>
 <file>completion/dynblocks.cwl</file>
 <file>completion/dynbrackets.cwl</file>
@@ -1207,6 +1211,7 @@
 <file>completion/extramarks.cwl</file>
 <file>completion/extsizes.cwl</file>
 <file>completion/faktor.cwl</file>
+<file>completion/familytree.cwl</file>
 <file>completion/fancybox.cwl</file>
 <file>completion/fancyhdr.cwl</file>
 <file>completion/fancylabel.cwl</file>
@@ -1347,6 +1352,7 @@
 <file>completion/frpseudocode.cwl</file>
 <file>completion/fullminipage.cwl</file>
 <file>completion/fullpage.cwl</file>
+<file>completion/fullpict.cwl</file>
 <file>completion/fullwidth.cwl</file>
 <file>completion/functional.cwl</file>
 <file>completion/fusering.cwl</file>
@@ -1359,6 +1365,7 @@
 <file>completion/gandhi.cwl</file>
 <file>completion/garamondlibre.cwl</file>
 <file>completion/garamondx.cwl</file>
+<file>completion/gastex.cwl</file>
 <file>completion/gates.cwl</file>
 <file>completion/gatherenum.cwl</file>
 <file>completion/gb4e.cwl</file>
@@ -1493,6 +1500,7 @@
 <file>completion/hf-tikz.cwl</file>
 <file>completion/hhline.cwl</file>
 <file>completion/hhtensor.cwl</file>
+<file>completion/hideanswer.cwl</file>
 <file>completion/hieroglf.cwl</file>
 <file>completion/highlightlatex.cwl</file>
 <file>completion/HindMadurai.cwl</file>
@@ -1765,6 +1773,7 @@
 <file>completion/lstbayes.cwl</file>
 <file>completion/lstdoc.cwl</file>
 <file>completion/lstfiracode.cwl</file>
+<file>completion/lt3luabridge.cwl</file>
 <file>completion/ltablex.cwl</file>
 <file>completion/ltj-base.cwl</file>
 <file>completion/ltj-latex.cwl</file>
@@ -1896,6 +1905,7 @@
 <file>completion/mcaption.cwl</file>
 <file>completion/mcexam.cwl</file>
 <file>completion/mciteplus.cwl</file>
+<file>completion/mcode.cwl</file>
 <file>completion/mdframed.cwl</file>
 <file>completion/mdputu.cwl</file>
 <file>completion/mdsymbol.cwl</file>
@@ -2003,6 +2013,7 @@
 <file>completion/multimedia.cwl</file>
 <file>completion/multind.cwl</file>
 <file>completion/multiobjective.cwl</file>
+<file>completion/multiple-choice.cwl</file>
 <file>completion/multiply.cwl</file>
 <file>completion/multirow.cwl</file>
 <file>completion/multitoc.cwl</file>
@@ -2199,6 +2210,7 @@
 <file>completion/pdfescape.cwl</file>
 <file>completion/pdfextra.cwl</file>
 <file>completion/pdflscape.cwl</file>
+<file>completion/pdfmanagement-testphase.cwl</file>
 <file>completion/pdfoverlay.cwl</file>
 <file>completion/pdfpagediff.cwl</file>
 <file>completion/pdfpages.cwl</file>
@@ -2836,6 +2848,7 @@
 <file>completion/tabvar.cwl</file>
 <file>completion/tagging.cwl</file>
 <file>completion/tagpair.cwl</file>
+<file>completion/tagpdf.cwl</file>
 <file>completion/tascmac.cwl</file>
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
