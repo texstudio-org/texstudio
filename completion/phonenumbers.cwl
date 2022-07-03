@@ -1,8 +1,7 @@
 # phonenumbers package
-# Matthew Bertucci 2022/05/15 for v2.4
+# Matthew Bertucci 2022/07/02 for v2.5
 
 #include:l3keys2e
-#include:ltxcmds
 
 \phonenumber{number}
 \phonenumber{number}[extension]
