@@ -33,7 +33,7 @@ public:
     QString name, abbrev,description,menu;
 	Type type;
 	QString trigger;
-	QRegExp triggerRegex;
+    QRegularExpression triggerRegex;
 	bool triggerLookBehind;
 
 	QStringList toStringList() const;

@@ -110,12 +110,13 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 		if (!m.isActiveForTrigger(Macro::ST_REGEX)) continue;
 		if (!m.isActiveForLanguage(language)) continue;
 		if (!(m.isActiveForFormat(line.getFormatAt(column)) || (column > 0 && m.isActiveForFormat(line.getFormatAt(column - 1))))) continue; //two checks, so it works at beginning and end of an environment
-		QRegExp &r = const_cast<QRegExp &>(m.triggerRegex); //a const qregexp doesn't exist
-		if (r.indexIn(prev) != -1) {
+        const QRegularExpression &r = m.triggerRegex; //a const qregexp doesn't exist
+        QRegularExpressionMatch match=r.match(prev);
+        if (match.hasMatch()) {
 			QDocumentCursor c = editor->cursor();
 			bool block = false;
-			int realMatchLen = r.matchedLength();
-			if (m.triggerLookBehind) realMatchLen -= r.cap(1).length();
+            int realMatchLen = match.capturedLength();
+            //if (m.triggerLookBehind) realMatchLen -= match.captured(1).length();
 			if (c.hasSelection() || realMatchLen > 1)
 				block = true;
 			if (block) editor->document()->beginMacro();
@@ -123,7 +124,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 				editor->cutBuffer = c.selectedText();
 				c.removeSelectedText();
 			}
-			if (m.triggerRegex.matchedLength() > 1) {
+            if (match.capturedLength() > 1) {
 				c.movePosition(realMatchLen - 1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				c.removeSelectedText();
                 editor->setCursor(c);
@@ -131,7 +132,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 
 			LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
 			REQUIRE_RET(view, true);
-			emit view->execMacro(m, MacroExecContext(Macro::ST_REGEX, r.capturedTexts()));
+            emit view->execMacro(m, MacroExecContext(Macro::ST_REGEX, match.capturedTexts()));
 			if (block) editor->document()->endMacro();
 			editor->cutBuffer.clear();
 			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
