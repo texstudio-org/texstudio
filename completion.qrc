@@ -610,6 +610,7 @@
 <file>completion/class-elpres.cwl</file>
 <file>completion/class-elsarticle.cwl</file>
 <file>completion/class-elteikthesis.cwl</file>
+<file>completion/class-emisa.cwl</file>
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
 <file>completion/class-exam-n.cwl</file>
@@ -643,7 +644,11 @@
 <file>completion/class-guitbeamer.cwl</file>
 <file>completion/class-gztarticle.cwl</file>
 <file>completion/class-harnon-cv.cwl</file>
+<file>completion/class-hecthese.cwl</file>
 <file>completion/class-hepthesis.cwl</file>
+<file>completion/class-hgbarticle.cwl</file>
+<file>completion/class-hgbreport.cwl</file>
+<file>completion/class-hgbthesis.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
@@ -695,6 +700,7 @@
 <file>completion/class-ltxguide.cwl</file>
 <file>completion/class-ltxguidex.cwl</file>
 <file>completion/class-matapli.cwl</file>
+<file>completion/class-mcmthesis.cwl</file>
 <file>completion/class-meetingmins.cwl</file>
 <file>completion/class-memoir.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
@@ -740,6 +746,7 @@
 <file>completion/class-resphilosophica.cwl</file>
 <file>completion/class-resumecls.cwl</file>
 <file>completion/class-revtex4-2.cwl</file>
+<file>completion/class-ryersonSGSThesis.cwl</file>
 <file>completion/class-sapthesis.cwl</file>
 <file>completion/class-schulma-ab.cwl</file>
 <file>completion/class-schulma-gutachten.cwl</file>
@@ -1498,6 +1505,13 @@
 <file>completion/hexboard.cwl</file>
 <file>completion/hexdump.cwl</file>
 <file>completion/hf-tikz.cwl</file>
+<file>completion/hgbabbrev.cwl</file>
+<file>completion/hgbalgo.cwl</file>
+<file>completion/hgbbib.cwl</file>
+<file>completion/hgb.cwl</file>
+<file>completion/hgbheadings.cwl</file>
+<file>completion/hgblistings.cwl</file>
+<file>completion/hgbmath.cwl</file>
 <file>completion/hhline.cwl</file>
 <file>completion/hhtensor.cwl</file>
 <file>completion/hideanswer.cwl</file>
@@ -1574,6 +1588,7 @@
 <file>completion/indextools.cwl</file>
 <file>completion/inlinedef.cwl</file>
 <file>completion/inline-images.cwl</file>
+<file>completion/inlinelabel.cwl</file>
 <file>completion/innerscript.cwl</file>
 <file>completion/inputenc.cwl</file>
 <file>completion/inputnormalization.cwl</file>
@@ -1781,8 +1796,11 @@
 <file>completion/ltx4yt.cwl</file>
 <file>completion/ltxdocext.cwl</file>
 <file>completion/ltxdockit.cwl</file>
+<file>completion/ltxfront.cwl</file>
+<file>completion/ltxgrid.cwl</file>
 <file>completion/ltxnew.cwl</file>
 <file>completion/ltxtable.cwl</file>
+<file>completion/ltxutil.cwl</file>
 <file>completion/luaaddplot.cwl</file>
 <file>completion/luabibentry.cwl</file>
 <file>completion/luabidi.cwl</file>
@@ -1854,6 +1872,7 @@
 <file>completion/maltese.cwl</file>
 <file>completion/mandi.cwl</file>
 <file>completion/mandiexp.cwl</file>
+<file>completion/mandistudent.cwl</file>
 <file>completion/manfnt.cwl</file>
 <file>completion/manuscript.cwl</file>
 <file>completion/manyfoot.cwl</file>
@@ -1938,6 +1957,7 @@
 <file>completion/metrix.cwl</file>
 <file>completion/mfirstuc.cwl</file>
 <file>completion/mflogo.cwl</file>
+<file>completion/mfpic4ode.cwl</file>
 <file>completion/mfpic.cwl</file>
 <file>completion/mftinc.cwl</file>
 <file>completion/mgltex.cwl</file>
