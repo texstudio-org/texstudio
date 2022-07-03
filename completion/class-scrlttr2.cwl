@@ -365,3 +365,11 @@ plain
 \firstfoot#S
 \nexthead#S
 \nextfoot#S
+
+## scrlttr2copy v0.3a (copy.lco) ##
+#ifOption:copy
+#include:xcolor
+#include:graphicx
+\LetterCopyMarker#*
+\copyname#*
+#endif
