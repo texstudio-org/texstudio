@@ -1,7 +1,6 @@
 # create-theorem package
-# Matthew Bertucci 2022-06-17 for release 2022-06-15
+# Matthew Bertucci 2022-07-02 for release 2022-07-01
 
-#include:l3keys2e
 #include:crefthe
 
 #keyvals:\usepackage/create-theorem#c
