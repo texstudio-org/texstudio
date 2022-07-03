@@ -113,6 +113,16 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
         const QRegularExpression &r = m.triggerRegex; //a const qregexp doesn't exist
         QRegularExpressionMatch match=r.match(prev);
         if (match.hasMatch()) {
+            // force last match which basically is right-most match, see #2448
+            while(true){
+                int offset=match.capturedStart()+1;
+                QRegularExpressionMatch test=r.match(prev,offset);
+                if(test.hasMatch()){
+                    match=test;
+                }else{
+                    break;
+                }
+            }
 			QDocumentCursor c = editor->cursor();
 			bool block = false;
             int realMatchLen = match.capturedLength();
