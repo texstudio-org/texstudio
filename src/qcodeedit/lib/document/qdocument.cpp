@@ -4606,7 +4606,12 @@ void QDocumentCursorHandle::setColumnNumber(int c, int m)
 	if ( !m_doc )
 		return;
 
-	QDocumentLine /*l1 = m_doc->line(m_begLine), */l2 = m_doc->line(m_endLine);
+    QDocumentLine l1 = m_doc->line(m_begLine), l2 = m_doc->line(m_endLine);
+
+    // make sure column is not in the middle of a composite character (two utf-16 characters low/hi surrogate, see QString)
+    if(l1.length()>c && l1.text().at(c).isLowSurrogate()){
+        ++c;
+    }
 
 	if ( m & QDocumentCursor::KeepAnchor )
 	{
