@@ -383,6 +383,19 @@ plain
 \nexthead#S
 \nextfoot#S
 
+## makelabels v1.0 (makelabels.lco) ##
+#ifOption:makelabels
+\makelabels
+\selectlabeltype{type%keyvals}
+\selectlabeltype[integer]{type%keyvals}
+#keyvals:\selectlabeltype#c
+avery_5162
+#endkeyvals
+\startlabels#*
+\mlabel{arg1}{arg2}#*
+\mlabeltype{integer}{type}#*
+#endif
+
 ## scrlttr2copy v0.3a (copy.lco) ##
 #ifOption:copy
 #include:xcolor
