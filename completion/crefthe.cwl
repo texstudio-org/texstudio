@@ -1,7 +1,6 @@
 # crefthe package
-# Matthew Bertucci 2/6/2022
+# Matthew Bertucci 2022/07/02 for release 2022/06/30
 
-#include:l3keys2e
 #include:cleveref
 #include:regexpatch
 
@@ -55,6 +54,7 @@ catalan
 \crefthename{type}[prep1]{singular}[prep2]{plural}
 \Crefthename{type}{singular}{plural}
 \Crefthename{type}[prep1]{singular}[prep2]{plural}
+\crefthepatchname{counters}
 
 #ifOption:overwrite
 \cref[prep]{labellist}#r

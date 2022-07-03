@@ -30,7 +30,6 @@ notebraces=%<two chars%>
 postheadspace=##L
 headformat=%<code%>
 headindent=##L
-qed=%<symbol%>
 #endkeyvals
 
 #keyvals:\declaretheoremstyle,\declaretheorem
@@ -56,6 +55,7 @@ Refname={%<singular-name,plural-name%>}
 shaded={%<shade options%>}
 thmbox=#L,M,S
 mdframed={%<mdframed options%>}
+qed=%<symbol%>
 #endkeyvals
 
 \thmcontinues{key}#*r

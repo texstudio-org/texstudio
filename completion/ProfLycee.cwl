@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/06/29 for v1.1.6
+# Matthew Bertucci 2022/07/02 for v1.1.7
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -15,6 +15,7 @@
 #include:xfp
 #include:xstring
 #include:xintexpr
+#include:xintbinhex
 #include:simplekv
 #include:listofitems
 #include:tabularray
@@ -269,6 +270,34 @@ Ox=%<num%>
 Oy=%<num%>
 #endkeyvals
 
+\PLconvdecbin{nombre}
+\PLconvdecbin[options%keyvals]{nombre}
+\PLconvdecbin*{nombre}
+\PLconvdecbin*[options%keyvals]{nombre}
+
+#keyvals:\PLconvdecbin,\PLconvdecbin*
+affbase#true,false
+#endkeyvals
+
+\PLconvbinhex{nombre}
+\PLconvbinhex[options%keyvals]{nombre}
+
+#keyvals:\PLconvbinhex
+affbase#true,false
+details#true,false
+trait=##L
+#endkeyvals
+
+\PLconvtodec{nombre}
+\PLconvtodec[options%keyvals]{nombre}
+
+#keyvals:\PLconvtodec
+basedep=%<2 ou 16%>
+affbase#true,false
+details#true,false
+zeros#true,false
+#endkeyvals
+
 # from table option of xcolor
 #include:colortbl
 \rowcolors{row}{odd-row-color}{even-row-color}
@@ -449,6 +478,7 @@ Teal#B
 
 # not documented
 \algomathttPL{text%plain}#*
+\basedepart#S
 \begin{pythont}#S
 \begin{tcpythontexcode}#*
 \begin{tcpythontexcode}[width]#*
@@ -472,22 +502,31 @@ Teal#B
 \CFpremcol#S
 \CFtaille#S
 \CFtailletitre#S
+\chbrut#S
 \CODPYlargeur#S
 \COEFF#S
 \COEFFA#S
 \COEFFB#S
+\cpt#S
 \CSPYlargeur#S
 \denominateur#S
 \end{pythont}#S
 \end{tcpythontexcode}#*
 \end{tcpythontexcodeno}#*
+\epcrochet#S
 \extractcoeff{liste}{numero}#*
 \fprimea#S
 \fprimeb#S
 \hookcenterpost#S
 \hookcenterpre#S
+\ifinal#S
+\iinit#S
 \indice#S
 \lcoeffs#S
+\nbblocs#S
+\nbchiffres#S
+\nbdepart#S
+\nbgrp#S
 \numerateur#S
 \PaveA#S
 \PaveB#S
@@ -525,6 +564,8 @@ Teal#B
 \PLcerclevaleurs#S
 \PLcerclevalsin#S
 \PLcommandeswin#*
+\PLconvblocbinhex{binary integer}#*
+\PLconvblocbinhex[rule thickness]{binary integer}#*
 \PLensopt#S
 \PLenssep#S
 \PLOSXGreen#*
@@ -539,10 +580,12 @@ Teal#B
 \PLRecuroffset#S
 \PLRecurposlab#S
 \PLRecuruno#S
+\PLstrzeros{nombre}#*
 \PLUbuntuClose#*
 \PLUbuntuMax#*
 \PLUbuntuMin#*
 \PLUbuntuWhite#*
+\puiss#S
 \RegLinCoeffa#S
 \RegLinCoeffb#S
 \RegLinCoeffr#S
@@ -553,6 +596,8 @@ Teal#B
 \RegLinNuageOx#S
 \RegLinNuageOy#S
 \RegLinNuageTaille#S
+\resbrut#S
+\resinter#S
 \schematdsaff*{arg1}{arg2}{arg3}{arg4}#*
 \schematdsaff{arg1}{arg2}{arg3}{arg4}#*
 \schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}#*

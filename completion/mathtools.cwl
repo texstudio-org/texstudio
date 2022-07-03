@@ -3,7 +3,7 @@
 # URL: http://www.ctan.org/pkg/mathtools
 # thatlittleboy/2018-05-07 edited
 # Edited by Rishi Advani (2020-12-06)
-# updated 2022-02-04 for v1.28
+# updated 2022-07-02 for v1.29
 
 #include:keyval
 #include:calc
@@ -16,6 +16,7 @@ fixamsmath
 donotfixamsmathbugs
 allowspaces
 disallowspaces
+legacycolonsymbols
 # options passed to amsmath
 intlimits
 nointlimits
@@ -58,6 +59,7 @@ prescript-arg-format=%<cmd%>
 shortvdotsadjustabove=##L
 shortvdotsadjustbelow=##L
 #endkeyvals
+
 \mathllap[mathstyle]{math}#*m
 \mathllap{math}#m
 \mathrlap[mathstyle]{math}#*m
@@ -67,6 +69,8 @@ shortvdotsadjustbelow=##L
 \mathclap{math}#m
 \clap{text}#m
 \mathmakebox[width][pos]{math}#m
+\mathmakebox[width]{math}#*m
+\mathmakebox{math}#m
 \cramped[mathstyle]{math}#*m
 \cramped{math}#m
 \crampedllap[mathstyle]{math}#*m
@@ -75,18 +79,19 @@ shortvdotsadjustbelow=##L
 \crampedrlap{math}#m
 \crampedclap[mathstyle]{math}#*m
 \crampedclap{math}#m
-\begin{crampedsubarray}#m
-\begin{crampedsubarray}{align}#m
+\begin{crampedsubarray}{col}#m
 \end{crampedsubarray}#m
 \crampedsubstack{arg}#m
-\smashoperator[pos%keyvals]{operator with limits}#*m
+
+\smashoperator[pos%keyvals]{operator with limits}#m
+\smashoperator{operator with limits}#m
 #keyvals:\smashoperator
 l
 r
 lr
 rl
 #endkeyvals
-\smashoperator{operator with limits}#m
+
 \adjustlimits{operator1}_{limit1}{operator2}_{limit2}#m
 \SwapAboveDisplaySkip#m
 \newtagform{name}[inner format]{left}{right}#n
@@ -95,25 +100,42 @@ rl
 \renewtagform{name}{left}{right}#n
 \usetagform{name}#n
 \refeq{label}#r
-\noeqref{label,label,...}#n
+\noeqref{labellist}#r
+\xleftrightarrow{sup}#m
 \xleftrightarrow[sub]{sup}#m
+\xLeftarrow{sup}#m
 \xLeftarrow[sub]{sup}#m
+\xhookleftarrow{sup}#m
 \xhookleftarrow[sub]{sup}#m
+\xmapsto{sup}#m
 \xmapsto[sub]{sup}#m
+\xRightarrow{sup}#m
 \xRightarrow[sub]{sup}#m
+\xLeftrightarrow{sup}#m
 \xLeftrightarrow[sub]{sup}#m
+\xhookrightarrow{sup}#m
 \xhookrightarrow[sub]{sup}#m
+\xrightharpoondown{sup}#m
 \xrightharpoondown[sub]{sup}#m
+\xleftharpoondown{sup}#m
 \xleftharpoondown[sub]{sup}#m
+\xrightleftharpoons{sup}#m
 \xrightleftharpoons[sub]{sup}#m
+\xrightharpoonup{sup}#m
 \xrightharpoonup[sub]{sup}#m
+\xleftharpoonup{sup}#m
 \xleftharpoonup[sub]{sup}#m
+\xleftrightharpoons{sup}#m
 \xleftrightharpoons[sub]{sup}#m
+\xlongrightarrow{sup}#m
 \xlongrightarrow[sub]{sup}#m
+\xlongleftarrow{sup}#m
 \xlongleftarrow[sub]{sup}#m
-\underbracket[rule thickness][bracket height]{arg}#*m
+\underbracket[rule thickness][bracket height]{arg}#m
+\underbracket[rule thickness]{arg}#*m
 \underbracket{arg}#m
-\overbracket[rule thickness][bracket height]{arg}#*m
+\overbracket[rule thickness][bracket height]{arg}#m
+\overbracket[rule thickness]{arg}#*m
 \overbracket{arg}#m
 \underbrace{arg}#m
 \overbrace{arg}#m
@@ -203,12 +225,14 @@ rl
 \DeclarePairedDelimiter{cmd}{left delim%formula}{right delim%formula}#nd
 \DeclarePairedDelimiterX{cmd}[args]{left delim%formula}{right delim%formula}{body%formula}#nd
 \DeclarePairedDelimiterXPP{cmd}[args]{pre code}{left delim%formula}{right delim%formula}{post code%formula}{body%formula}#nd
+
 \reDeclarePairedDelimiterInnerWrapper{macro name}{star option%keyvals}{code}#m
 #keyvals:\reDeclarePairedDelimiterInnerWrapper
 star
 nostarnonscaled
 nostarscaled
 #endkeyvals
+
 \lparen#m
 \rparen#m
 \vcentcolon#m
@@ -226,6 +250,14 @@ nostarscaled
 \Coloneq#m
 \Eqcolon#m
 \Colonsim#m
+\approxcolon#m
+\Approxcolon#m
+\simcolon#m
+\Simcolon#m
+\colondash#m
+\Colondash#m
+\dashcolon#m
+\Dashcolon#m
 \nuparrow#m
 \ndownarrow#m
 \bigtimes#m

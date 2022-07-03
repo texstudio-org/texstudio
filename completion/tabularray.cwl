@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 2022/06/02 for v2022B
+# Matthew Bertucci 2022/07/02 for v2022C
 
 #include:expl3
 #include:xparse
@@ -513,3 +513,5 @@ process=%<function%>
 \TblrOverlap#*
 \begin{tblrNoHyper}#S
 \end{tblrNoHyper}#S
+\pagebreak[number]#*
+\nopagebreak[number]#*

@@ -169,7 +169,7 @@ footnotes=#multiple,nomultiple
 \yourrefname#*
 
 # if visualize.lco is loaded with \LoadLetterOption or \LoadLetterOptions
-\showfields{field list}#*
+\showfields{field list%keyvals}#*
 #keyvals:\showfields
 test
 head
@@ -205,6 +205,23 @@ C6
 \showUScheck#*
 \showUScheck[instructions]#*
 \unitfactor#*
+
+# remove #*'s if visualize loaded with class option
+#ifOption:visualize
+#include:eso-pic
+\showfields{field list%keyvals}
+\setshowstyle{style%keyvals}
+\edgesize
+\showenvelope(width,height)(h-offset,v-offset)
+\showenvelope(width,height)(h-offset,v-offset)[instructions]
+\showISOenvelope{format%keyvals}
+\showISOenvelope{format%keyvals}[instructions]
+\showUScommercial{format%keyvals}
+\showUScommercial{format%keyvals}[instructions]
+\showUScheck
+\showUScheck[instructions]
+\unitfactor
+#endif
 
 #keyvals:\setkomavar#c,\setkomavar*#c,\usekomavar#c,\usekomavar*#c
 addresseeimage
@@ -365,3 +382,24 @@ plain
 \firstfoot#S
 \nexthead#S
 \nextfoot#S
+
+## makelabels v1.0 (makelabels.lco) ##
+#ifOption:makelabels
+\makelabels
+\selectlabeltype{type%keyvals}
+\selectlabeltype[integer]{type%keyvals}
+#keyvals:\selectlabeltype#c
+avery_5162
+#endkeyvals
+\startlabels#*
+\mlabel{arg1}{arg2}#*
+\mlabeltype{integer}{type}#*
+#endif
+
+## scrlttr2copy v0.3a (copy.lco) ##
+#ifOption:copy
+#include:xcolor
+#include:graphicx
+\LetterCopyMarker#*
+\copyname#*
+#endif

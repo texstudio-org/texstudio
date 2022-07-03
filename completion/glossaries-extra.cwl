@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 11/27/2021 for v1.48
+# Matthew Bertucci 2022/07/02 for v1.48
 
 #include:glossaries
 
@@ -92,11 +92,16 @@ abbreviations
 \glsshowtargetouter{label}
 \glsshowtargetfont#*
 \glsshowtargetinner{label}#*
+\glsshowtargetinnersymleft{label}#*
+\glsshowtargetinnersymright{label}#*
 \glsxtrshowtargetsymbolright#*
 \glsxtrshowtargetsymbolleft#*
 \glsxtrshowtargetinner{label}#*
 \glsxtrshowtargetouter{label}#*
 
+#ifOption:record
+#include:glossaries-extra-bib2gls
+#endif
 #ifOption:record=only
 #include:glossaries-extra-bib2gls
 #endif
@@ -213,6 +218,7 @@ sort=#word,letter,standard,use,def,nocase,case
 \glsxtrnewsymbol[options%keyvals]{label}{symbol}#l
 \printunsrtsymbols#*
 \printunsrtsymbols[options%keyvals]#*
+\glsxtrpostdescsymbol#*
 #endif
 #ifOption:numbers
 \printnumbers
@@ -221,6 +227,7 @@ sort=#word,letter,standard,use,def,nocase,case
 \glsxtrnewnumber[options%keyvals]{label}{number}#l
 \printunsrtnumbers#*
 \printunsrtnumbers[options%keyvals]#*
+\glsxtrpostdescnumber#*
 #endif
 #ifOption:index
 \newterm{term}
@@ -229,6 +236,7 @@ sort=#word,letter,standard,use,def,nocase,case
 \printindex[options%keyvals]
 \printunsrtindex#*
 \printunsrtindex[options%keyvals]#*
+\glsxtrpostdescindex#*
 #endif
 #ifOption:acronym
 \printacronyms
@@ -1811,12 +1819,16 @@ leveloffset=%<n or ++n%>
 \GLSaccessdescplural{label#*r
 \glsaccessshort{label}#*r
 \Glsaccessshort{label}#*r
+\GLSaccessshort{label}#*r
 \glsaccessshortpl{label}#*r
 \Glsaccessshortpl{label}#*r
+\GLSaccessshortpl{label}#*r
 \glsaccesslong{label}#*r
 \Glsaccesslong{label}#*r
+\GLSaccesslong{label}#*r
 \glsaccesslongpl{label}#*r
 \Glsaccesslongpl{label}#*r
+\GLSaccesslongpl{label}#*r
 
 ### 15 Multi-Lingual Support ###
 \GlsXtrNoGlsWarningHead{label}{file}#*r
@@ -1904,40 +1916,54 @@ theHvalue=%<<prefix><location>%>
 \GLSxtrtitleplural{label}#*r
 \Glsxtrtitleplural{label}#*r
 \glsxtrtitleplural{label}#*r
+\GLSxtrtitleshort{label}#*r
 \Glsxtrtitleshort{label}#*r
 \glsxtrtitleshort{label}#*r
+\GLSxtrtitleshortpl{label}#*r
 \Glsxtrtitleshortpl{label}#*r
 \glsxtrtitleshortpl{label}#*r
 \GLSxtrtitletext{label}#*r
 \Glsxtrtitletext{label}#*r
 \glsxtrtitletext{label}#*r
-\ifglsxtrinitwrglossbefore#*
+
+# not in main documentation
+\glsdoshowtarget#*
+\glslinkwrcontent{arg}#*
+\glstriggerrecordformat{arg}#*
+\glsxtraddpunctuationmark{arg}#*
+\glsxtrcounterprefix#*
+\glsxtrcurrentgrptitle#*
+\glsxtrdiscardperiod{arg1}{arg2}{arg3}#*
+\glsxtrdohyperlink#*
+\glsxtrdopostpunc{code}#*
+\glsxtrentryparentname{arg}#*
+\glsxtrhyperlink{arg1}{arg2}#*
+\glsxtrifinmark{true}{false}#*
+\glsxtrifperiod{true}{false}#*
 \glsxtrinitwrglossbeforefalse#*
 \glsxtrinitwrglossbeforetrue#*
-\glsxtrifinmark#*
 \glsxtrmarkhook#*
-\glsxtrrestoremarkhook#*
 \glsxtrmglswrite{arg}#*
-\glsxtrNoGlossaryWarning#*
+\glsxtrNoGlossaryWarning{arg}#*
+\glsxtrpostdescabbreviation#*
+\glsxtrpostdescacronym#*
+\glsxtrpostdescgeneral#*
+\glsxtrpostdescterm#*
+\glsxtrprotectlinks#*
+\glsxtrrestoremarkhook#*
+\glsxtrscfont{text}#*
+\glsxtrsetpunctuationmarks{arg}#*
 \glsxtrsetupfulldefs#*
-
-\glsdoshowtarget#S
-\glslinkwrcontent#S
-\glsxtrcounterprefix#S
-\glsxtrcurrentgrptitle#S
-\glsxtrdiscardperiod#S
-\glsxtrifperiod#S
-\glsxtrdohyperlink#S
-\glsxtrdopostpunc#S
-\glsxtrhyperlink#S
-\glsxtrprotectlinks#S
-\glsxtrscfont#S
-\glsxtrsmfont#S
-\glsxtrsupplocationurl#S
-\glsxtrundefaction#S
-\glsxtrundeftag#S
-\mglscurrentmainlist#S
-\mglscurrentmainoptions#S
-\RequireGlossariesExtraLang#S
-\ProvidesGlossariesExtraLang#S
-\thewrglossary#S
+\glsxtrsmfont{text}#*
+\glsxtrstarflywarn#*
+\glsxtrsupphypernumber{text}#*
+\glsxtrsupplocationurl#*
+\glsxtrundefaction{arg1}{arg2}#*
+\glsxtrundeftag#*
+\glsxtrunusedformat{arg}#*
+\ifglsxtrinitwrglossbefore#*
+\mglscurrentmainlist#*
+\mglscurrentmainoptions#*
+\ProvidesGlossariesExtraLang{lang}#*
+\RequireGlossariesExtraLang{lang}#*
+\thewrglossary#*
