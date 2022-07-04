@@ -30,8 +30,8 @@ defcolon
 
 \xvec{arg}
 \mat{letter%formula}
-\tder{}{}
-\tder[]{}{}
+\tder{func}{var}#m
+\tder[order]{func}{var}#m
 \oi{left%formula}{right%formula}
 \ci{left%formula}{right%formula}
 \rci{left%formula}{right%formula}
