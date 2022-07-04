@@ -1,5 +1,5 @@
 # luatexja-preset package
-# Matthew Bertucci 4/11/2022 for v20220311.0
+# Matthew Bertucci 2022/07/04 for v20220703.0
 
 #include:expl3
 #include:l3keys2e
@@ -36,6 +36,7 @@ sourcehan
 sourcehan-jp
 noto-otc
 noto-otf
+noto-jp
 haranoaji
 noembed
 ipa
