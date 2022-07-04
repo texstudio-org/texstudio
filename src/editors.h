@@ -35,6 +35,7 @@ public:
 	int tabGroupIndexFromEditor(LatexEditorView *edView) const;
 	void moveToTabGroup(LatexEditorView *edView, int groupIndex, int targetIndex);
     void moveAllToGroupZeroifEmpty();
+    bool getSplitVertical();
 
 signals:
 	void currentEditorChanged();
@@ -51,6 +52,7 @@ public slots:
 	void toggleReadOnlyFromAction();
 	bool activateNextEditor();
 	bool activatePreviousEditor();
+    void changeSplitOrientation();
 
 protected slots:
 	void setCurrentGroup(int index);
@@ -60,7 +62,6 @@ protected slots:
 	void moveToOtherTabGroup();
 	void moveAllToOtherTabGroup();
 	void moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int targetIndex);
-	void changeSplitOrientation();
 
 protected:
 	TxsTabWidget *tabWidgetFromEditor(LatexEditorView *edView) const;

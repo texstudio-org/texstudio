@@ -487,6 +487,11 @@ void Editors::moveAllToGroupZeroifEmpty()
     }
 }
 
+bool Editors::getSplitVertical()
+{
+    return splitter->orientation() == Qt::Vertical;
+}
+
 /*!
  * Move the editor to the given tabWidget at position targetIndex (if < 0, append).
  */

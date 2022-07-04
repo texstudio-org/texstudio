@@ -92,6 +92,8 @@ bool Session::load_v2(const QString &file)
     m_masterFile = QDir::cleanPath(dir.filePath(j_session.value("MasterFile").toString()));
     m_currentFile = QDir::cleanPath(dir.filePath(j_session.value("CurrentFile").toString()));
 
+    m_splitVertical = j_session.value("VerticalSplit").toBool();
+
     QJsonArray ja=j_session.value("Files").toArray();
     for (int i = 0; i < ja.size(); ++i) {
         QJsonObject jo=ja[i].toObject();
@@ -133,6 +135,7 @@ bool Session::save(const QString &fileName, bool relPaths) const
     j_session["FileVersion"]=1;
     j_session["MasterFile"]=fmtPath(dir, m_masterFile, relPaths);
     j_session["CurrentFile"]=fmtPath(dir, m_currentFile, relPaths);
+    j_session["VerticalSplit"]=m_splitVertical;
 
     QJsonArray ja;
     QJsonObject j_file;

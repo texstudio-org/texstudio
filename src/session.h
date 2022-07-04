@@ -46,6 +46,9 @@ public:
 	void setPDFEmbedded(bool b) { m_pdfEmbedded = b; }
 	bool PDFEmbedded() const { return m_pdfEmbedded; }
 
+    void setSplitVertical(bool setting) { m_splitVertical = setting; }
+    bool getSplitVertical() const { return m_splitVertical; }
+
     static QString fileExtension() { return QString("txss2"); }
 	static QString fmtPath(const QDir &dir, const QString &file, bool relPath=true);
 
@@ -61,6 +64,7 @@ private:
 
 	QString m_pdfFile;
 	bool m_pdfEmbedded;
+    bool m_splitVertical;
 };
 
 #endif // SESSION_H

@@ -3420,6 +3420,10 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
             missingFiles.append(f.fileName);
         }
     }
+    // set vertical split
+    if(s.getSplitVertical()){
+        editors->changeSplitOrientation();
+    }
     //qDebug()<<"loaded:"<<tm.elapsed();
     // update ref/labels in one go;
     QList<LatexDocument *> completedDocs;
@@ -3469,6 +3473,8 @@ Session Texstudio::getCurrentSession()
 	}
 	s.setMasterFile(documents.masterDocument ? documents.masterDocument->getFileName() : "");
 	s.setCurrentFile(currentEditorView() ? currentEditor()->fileName() : "");
+
+    s.setSplitVertical(editors->getSplitVertical());
 
 	s.setBookmarks(bookmarks->getBookmarks());
 #ifndef NO_POPPLER_PREVIEW
