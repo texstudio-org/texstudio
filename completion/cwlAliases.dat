@@ -1142,3 +1142,7 @@ unifith:
 class-unifith
 latex-document
 tex
+njustthesis:
+class-njustthesis
+latex-document
+tex
