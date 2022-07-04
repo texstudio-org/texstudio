@@ -517,6 +517,7 @@
 <file>completion/cherokee.cwl</file>
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
+<file>completion/chet.cwl</file>
 <file>completion/chickenize.cwl</file>
 <file>completion/china2e.cwl</file>
 <file>completion/chinesechess.cwl</file>
@@ -624,6 +625,7 @@
 <file>completion/class-fancyslides.cwl</file>
 <file>completion/class-fduthesis.cwl</file>
 <file>completion/class-fduthesis-en.cwl</file>
+<file>completion/class-fei.cwl</file>
 <file>completion/class-fiche.cwl</file>
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-FUpowerdot.cwl</file>
@@ -661,6 +663,7 @@
 <file>completion/class-image-gallery.cwl</file>
 <file>completion/class-imsart.cwl</file>
 <file>completion/class-invoice-class.cwl</file>
+<file>completion/class-iodhbwm.cwl</file>
 <file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-jacow.cwl</file>
@@ -719,7 +722,10 @@
 <file>completion/class-mynsfc.cwl</file>
 <file>completion/class-nanicolle.cwl</file>
 <file>completion/class-ncc.cwl</file>
+<file>completion/class-nddiss2e.cwl</file>
 <file>completion/class-newlfm.cwl</file>
+<file>completion/class-njustthesis.cwl</file>
+<file>completion/class-njuthesis.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
 <file>completion/class-novel.cwl</file>
 <file>completion/class-nwejmart.cwl</file>
@@ -730,6 +736,7 @@
 <file>completion/class-petiteannonce.cwl</file>
 <file>completion/class-phfextendedabstract.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
+<file>completion/class-pkuthss.cwl</file>
 <file>completion/class-powerdot.cwl</file>
 <file>completion/class-pressrelease.cwl</file>
 <file>completion/class-proc.cwl</file>
@@ -781,6 +788,7 @@
 <file>completion/class-svmult.cwl</file>
 <file>completion/class-talk.cwl</file>
 <file>completion/class-thesis-ekf.cwl</file>
+<file>completion/class-thuthesis.cwl</file>
 <file>completion/class-tikz-kalender.cwl</file>
 <file>completion/class-tikzposter.cwl</file>
 <file>completion/class-tkz-doc.cwl</file>
@@ -795,6 +803,7 @@
 <file>completion/class-ucdavisthesis.cwl</file>
 <file>completion/class-ulthese.cwl</file>
 <file>completion/class-unbtex.cwl</file>
+<file>completion/class-unifith.cwl</file>
 <file>completion/class-univie-ling-expose.cwl</file>
 <file>completion/class-univie-ling-handout.cwl</file>
 <file>completion/class-univie-ling-paper.cwl</file>
@@ -832,6 +841,7 @@
 <file>completion/cmtt.cwl</file>
 <file>completion/cmupint.cwl</file>
 <file>completion/cncolours.cwl</file>
+<file>completion/cnlogo.cwl</file>
 <file>completion/cnltx-base.cwl</file>
 <file>completion/cnltx.cwl</file>
 <file>completion/cnltx-example.cwl</file>
@@ -1121,6 +1131,7 @@
 <file>completion/emoji.cwl</file>
 <file>completion/emp.cwl</file>
 <file>completion/empheq.cwl</file>
+<file>completion/emptypage.cwl</file>
 <file>completion/endfloat.cwl</file>
 <file>completion/endiagram.cwl</file>
 <file>completion/endnotes.cwl</file>
@@ -1301,6 +1312,7 @@
 <file>completion/fnlineno.cwl</file>
 <file>completion/fnpct.cwl</file>
 <file>completion/fnpos.cwl</file>
+<file>completion/fnspe.cwl</file>
 <file>completion/fnumprint.cwl</file>
 <file>completion/foekfont.cwl</file>
 <file>completion/foliono.cwl</file>
@@ -1606,6 +1618,7 @@
 <file>completion/intopdf.cwl</file>
 <file>completion/inversepath.cwl</file>
 <file>completion/invoice2.cwl</file>
+<file>completion/iodhbwm-templates.cwl</file>
 <file>completion/ionumbers.cwl</file>
 <file>completion/ipa.cwl</file>
 <file>completion/ipaex-type1.cwl</file>
@@ -1695,6 +1708,7 @@
 <file>completion/latex-document.cwl</file>
 <file>completion/latex-l2tabu.cwl</file>
 <file>completion/lato.cwl</file>
+<file>completion/layaureo.cwl</file>
 <file>completion/layout.cwl</file>
 <file>completion/layouts.cwl</file>
 <file>completion/lccaps.cwl</file>
@@ -1914,6 +1928,7 @@
 <file>completion/mathspec.cwl</file>
 <file>completion/mathstone.cwl</file>
 <file>completion/mathstyle.cwl</file>
+<file>completion/mathswap.cwl</file>
 <file>completion/mathtime.cwl</file>
 <file>completion/mathtools.cwl</file>
 <file>completion/matlab-prettifier.cwl</file>
@@ -2110,6 +2125,7 @@
 <file>completion/nimbusserif.cwl</file>
 <file>completion/nimsticks.cwl</file>
 <file>completion/ninecolors.cwl</file>
+<file>completion/njuvisual.cwl</file>
 <file>completion/nl-interval.cwl</file>
 <file>completion/nmbib.cwl</file>
 <file>completion/nnext.cwl</file>
@@ -2570,6 +2586,7 @@
 <file>completion/repltext.cwl</file>
 <file>completion/rerunfilecheck.cwl</file>
 <file>completion/resizegather.cwl</file>
+<file>completion/rest-api.cwl</file>
 <file>completion/returntogrid.cwl</file>
 <file>completion/revquantum.cwl</file>
 <file>completion/revsymb4-2.cwl</file>
@@ -2869,6 +2886,7 @@
 <file>completion/tagging.cwl</file>
 <file>completion/tagpair.cwl</file>
 <file>completion/tagpdf.cwl</file>
+<file>completion/tameflts.cwl</file>
 <file>completion/tascmac.cwl</file>
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
