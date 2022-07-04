@@ -1,5 +1,5 @@
 # biblatex-chicago package
-# Matthew Bertucci 4/21/2022 for v3.16
+# Matthew Bertucci 2022/07/03 for v3.18
 
 #include:etoolbox
 #include:nameref
@@ -15,6 +15,8 @@ notes16
 authordate-trad16
 footmarkoff
 cmsbreakurl
+cmsnameparts
+cmsnameparts=%<nametemplate%>
 # options passed to biblatex package
 backend=#bibtex,bibtex8,biber
 style=%<file%>
@@ -52,7 +54,7 @@ notetype=#foot+end,footonly,endonly
 hyperref=#true,false,auto,manual
 backref#true,false
 backrefstyle=#none,three,two,two+,three+,all+
-backrefsetstyle=#=setonly,memonly,setormem,setandmem,memandset,setplusmem
+backrefsetstyle=#setonly,memonly,setormem,setandmem,memandset,setplusmem
 backreffloats#true,false
 indexing=#true,false,cite,bib
 loadfiles#true,false
@@ -101,7 +103,7 @@ minxrefs=%<integer%>
 bibtexcaseprotection#true,false
 isbn#true,false
 url#true,false
-doi#true,false
+doi=#true,false,only,onlynd
 eprint#true,false
 related#true,false
 subentry#true,false
@@ -196,6 +198,7 @@ blogurl#true,false
 journalabbrev#true,false
 seriesabbrev#true,false
 ordinalgb#true,false
+notitle#true,false
 urlnotes#true,false
 urlstamp#true,false
 numbermonth#true,false
@@ -214,6 +217,7 @@ nameaddonformat=%<format%>
 nameaddonsep=#space,none,colon,comma,period,semicolon
 ptitleaddon=#none,space,comma,period,colon,semicolon
 ctitleaddon=#none,space,comma,period,colon,semicolon
+jtitleaddon=#none,space,comma,period,colon,semicolon
 shorthandpunct=#none,space,comma,period,colon,semicolon,emdash,endash
 #endkeyvals
 
@@ -443,12 +447,18 @@ shorthandpunct=#none,space,comma,period,colon,semicolon,emdash,endash
 \cmswrap{text}#*
 \cmswrapf{text}#*
 \ctitleaddonpunct#*
+\docmslist{arg}#*
 \editordelim#*
 \encypunct#*
+\forcmslist{arg1}{arg2}#*
 \iffieldstart{true}{false}#*
 \journalpagespunct#*
+\jtitleaddonpunct#*
 \letterdatelong#*
 \mkbibcurdinal{arg}#*
+\mkbibethgiven{text}#*
+\mkbibethpap{text}#*
+\mkbibethpat{text}#*
 \mkibid{arg}#*
 \mkjuridprefix{arg}#*
 \multilangdelim#*
@@ -481,8 +491,8 @@ shorthandpunct=#none,space,comma,period,colon,semicolon,emdash,endash
 \forewordname#*
 \notesname#*
 \mkjuridordinal{arg}#*
-\mkbibseasondateshort{arg1}{arg2}#*
-\mkbibseasondatelong{arg1}{arg2}#*
+\mkbibyeardivisiondateshort{arg1}{arg2}#*
+\mkbibyeardivisiondatelong{arg1}{arg2}#*
 \cmsmkdecade{arg1}{arg2}#*
 \cmsmkcentury{arg}#*
 \mkcmscentury{arg}#*
@@ -497,6 +507,8 @@ avdate#true,false
 cmsdate=#off,both,on
 cmsorigdate#true,false
 hypertitle#true,false
+hypername#true,false
+hyperall#true,false
 cmslos#true,false
 #endkeyvals
 
@@ -554,8 +566,3 @@ headline#true,false
 \begrelateddelimmaintitle#*
 \begrelateddelimmaintitlenc#*
 #endif
-
-
-
-
-
