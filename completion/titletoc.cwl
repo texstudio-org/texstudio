@@ -1,6 +1,15 @@
 # titletoc package
 # muzimuzhi 22 Jun 2020 for titletoc v2.13
 
+#keyvals:\usepackage/titletoc#c
+dotinlabels
+nodotinlabels
+rigidseps
+rubberseps
+leftlabels
+rightlabels
+#endkeyvals
+
 \dottedcontents{section}{above-code}{label-width%l}{leader-width%l}
 \dottedcontents{section}[left%l]{above-code}{label-width%l}{leader-width%l}
 \titlecontents{section}{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}
@@ -42,3 +51,22 @@
 \printlist[name]{list}{prefix}{toc-code}
 \printlist{list}{prefix}[toc-depth]{toc-code}
 \printlist[name]{list}{prefix}[toc-depth]{toc-code}
+
+# titlesec commands also provided in titletoc.sty
+\titleline{horizontal material%text}
+\titleline[align%keyvals]{horizontal material%text}
+\titleline*{horizontal material%text}
+\titleline*[align%keyvals]{horizontal material%text}
+#keyvals:\titleline,\titleline*
+l
+c
+r
+#endkeyvals
+\titlerule
+\titlerule[height]
+\titlerule*{text}
+\titlerule*[width]{text}
+\filright
+\filleft
+\filcenter
+\fillast

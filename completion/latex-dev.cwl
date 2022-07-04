@@ -10,6 +10,7 @@
 \AddToHook{hook}{code}#*
 \AddToHook{hook}[label]{code}#*
 \AddToHookNext{hook}{code}#*
+\AddToNoCaseChangeList{command}#*
 \AfterEndEnvironment[label]{environment}{code}#*
 \AfterEndEnvironment{environment}{code}#*
 \ArgumentSpecification#*
