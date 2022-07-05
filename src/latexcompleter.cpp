@@ -914,7 +914,7 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords, const Q
 
 QString makeSortWord(const QString &normal)
 {
-	QString res = normal.toLower();
+    QString res = normal;
 	res.replace("{", "!"); //js: still using dirty hack, however order should be ' '{[* abcde...
 	res.replace("}", "!"); // needs to be replaced as well for sorting \bgein{abc*} after \bgein{abc}
 	res.replace("[", "\\"); //(first is a space->) !"# follow directly in the ascii table
