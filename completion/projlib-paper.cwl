@@ -1,7 +1,6 @@
 # projlib-paper package
-# Matthew Bertucci 2022/04/04 for 2022/03/28 release
+# Matthew Bertucci 2022/07/04 for 2022/07/03 release
 
-#include:l3keys2e
 #include:xcolor
 
 #keyvals:\usepackage/projlib-paper#c

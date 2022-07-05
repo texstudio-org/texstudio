@@ -1,7 +1,6 @@
 # projlib-font package
-# Matthew Bertucci 2022/06/17 for 2022/06/15 release
+# Matthew Bertucci 2022/07/04 for 2022/07/03 release
 
-#include:l3keys2e
 #include:anyfontsize
 #include:setspace
 #include:microtype

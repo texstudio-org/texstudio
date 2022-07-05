@@ -1,7 +1,6 @@
 # projlib-language package
-# Matthew Bertucci 2022/04/28 for 2022/04/24 release
+# Matthew Bertucci 2022/07/04 for 2022/07/03 release
 
-#include:l3keys2e
 #include:fontenc
 # loads T1 option of fontenc
 #include:babel

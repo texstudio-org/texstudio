@@ -18,7 +18,7 @@
 \renewrobustcmd*{cmd}{def}#d
 \renewrobustcmd*{cmd}[args]{def}#d
 \renewrobustcmd*{cmd}[args][default]{def}#d
-\newrobustcmd{cmd}{def}#d
+\providerobustcmd{cmd}{def}#d
 \providerobustcmd{cmd}[args]{def}#d
 \providerobustcmd{cmd}[args][default]{def}#d
 \providerobustcmd*{cmd}{def}#d
@@ -46,12 +46,12 @@
 \BeforeBeginEnvironment{environment}{code}
 
 ## author commands - macro definitions
-\csdef{csname}%<arguments%>{replacement text}
-\csgdef{csname}%<arguments%>{replacement text}
-\csedef{csname}%<arguments%>{replacement text}
-\csxdef{csname}%<arguments%>{replacement text}
-\protected@csedef{csname}%<arguments%>{replacement text}#*
-\protected@csxdef{csname}%<arguments%>{replacement text}#*
+\csdef{%<csname%>}%<arguments%>{%<replacement text%>}
+\csgdef{%<csname%>}%<arguments%>{%<replacement text%>}
+\csedef{%<csname%>}%<arguments%>{%<replacement text%>}
+\csxdef{%<csname%>}%<arguments%>{%<replacement text%>}
+\protected@csedef{%<csname%>}%<arguments%>{%<replacement text%>}#*
+\protected@csxdef{%<csname%>}%<arguments%>{%<replacement text%>}#*
 \cslet{csname}{command}
 \letcs{command}{csname}#d
 \csletcs{csname}{csname}
@@ -64,8 +64,8 @@
 \csshow{csname}
 
 ## author commands - arithmetic definitions
-\numdef{command}{integr expression}#d
-\numgdef{command}{integr expression}#d
+\numdef{command}{integer expression}#d
+\numgdef{command}{integer expression}#d
 \csnumdef{csname}{integer expression}
 \csnumgdef{csname}{integer expression}
 \dimdef{command}{dimen expression}#d
@@ -129,7 +129,7 @@
 \boolfalse{bool name}
 \setbool{bool name}{true|false}
 \ifbool{bool name}{true}{false}
-\notbool{bool name}{true}{false}
+\notbool{bool name}{not true}{not false}
 
 ## author commands - latex toggle flags
 \newtoggle{toggle name}
@@ -138,7 +138,7 @@
 \togglefalse{toggle name}
 \settoggle{toggle name}{true|false}
 \iftoggle{toggle name}{true}{false}
-\nottoggle{toggle name}
+\nottoggle{toggle name}{not true}{not false}
 
 ## author commands - macro tests
 \ifdef{control sequence}{true}{false}

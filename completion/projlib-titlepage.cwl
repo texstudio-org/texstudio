@@ -1,7 +1,6 @@
 # projlib-titlepage package
-# Matthew Bertucci 2022/04/23 for 2022/04/18 release
+# Matthew Bertucci 2022/04/23 for 2022/07/03 release
 
-#include:l3keys2e
 #include:projlib-paper
 #include:tikz
 # loads calc tikzlibrary
