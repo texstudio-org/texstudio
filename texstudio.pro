@@ -172,7 +172,7 @@ macx {
 }
 
 # ###############################
-unix:!macx {
+if(unix|win32):!macx {
     isEmpty( PREFIX ):PREFIX = /usr
     isEmpty( DATADIR ):DATADIR = $${PREFIX}/share
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
@@ -196,11 +196,14 @@ unix:!macx {
     }
     INSTALLS += applicationmenu
     INSTALLS += icon
+}
+
+unix:!macx {
     include(src/xkb/xkb.pri)
 }
 
-# ##########UNIX + MACX###############
-unix {
+# ##########UNIX + MACX or WINDOWS###############
+unix|win32 {
     UI_DIR = .ui
     MOC_DIR = .moc
     OBJECTS_DIR = .obj
