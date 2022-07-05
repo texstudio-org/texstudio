@@ -1,7 +1,6 @@
 # projlib-theorem package
-# Matthew Bertucci 2022/06/17 for 2022/06/15 release
+# Matthew Bertucci 2022/07/04 for 2022/07/03 release
 
-#include:l3keys2e
 #include:projlib-language
 #include:amsthm
 #include:create-theorem
@@ -173,6 +172,18 @@ no preset names#true,false
 \begin{theorem*}
 \begin{theorem*}[heading%text]
 \end{theorem*}
+\begin{definition-corollary}
+\begin{definition-corollary}[heading%text]
+\end{definition-corollary}
+\begin{definition-corollary*}
+\begin{definition-corollary*}[heading%text]
+\end{definition-corollary*}
+\begin{corollary-definition}
+\begin{corollary-definition}[heading%text]
+\end{corollary-definition}
+\begin{corollary-definition*}
+\begin{corollary-definition*}[heading%text]
+\end{corollary-definition*}
 \begin{definition-proposition}
 \begin{definition-proposition}[heading%text]
 \end{definition-proposition}
