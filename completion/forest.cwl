@@ -1,7 +1,9 @@
 # forest package
-# Matthew Bertucci 10/2/2021 for v2.1.5
+# Matthew Bertucci 2022/07/06 for v2.1.5
 
 #include:tikz
+# loads shapes, fit, and calc tikzlibraries
+# loads intersections pgflibrary
 #include:pgfopts
 #include:etoolbox
 #include:elocalloc
@@ -9,7 +11,24 @@
 #include:xparse
 #include:inlinedef
 
-\begin{forest}
+#keyvals:\usepackage/forest#c
+external
+linguistics
+#endkeyvals
+
+#ifOption:external
+\tikzexternalize
+\tikzexternalenable
+\tikzexternaldisable
+#endif
+
+#ifOption:linguistics
+\standardnodestrut#*
+\standardnodestrutbox#*
+\text{text}
+#endif
+
+\begin{forest}#\pictureHighlight
 \begin{forest}(config%keyvals)#*
 \end{forest}
 \Forest{tree}
@@ -38,12 +57,12 @@ compute xy stage/.style={%<specs%>}
 decision edge label/.style n args={%<args%>}{%<specs%>}
 decision tree/.style={%<specs%>}
 decision/.style={%<specs%>}
-declare boolean register=
-declare dimen register=
-declare dimen={%<dimen name%>}{%<value%>}
-declare keylist=
-declare toks register=
-declare toks=
+declare boolean register=%<register name%>
+declare dimen register=%<register name%>
+declare dimen={%<dimen name%>}{%<default value%>}
+declare keylist={%<option name%>}{%<default value%>}
+declare toks register=%<register name%>
+declare toks={%<option name%>}{%<default value%>}
 default preamble={%<specs%>}
 define long step/.append code={%<code%>}
 define long step={%<name%>}{%<options%>}{%<nodewalk%>}
@@ -123,13 +142,13 @@ xlist/.style={%<specs%>}
 
 #keyvals:\useforestlibrary,\useforestlibrary*
 external#true,false
-compat=
+compat={%<compat keylist%>}
 tikzcshack#true,false
 tikzinstallkeys#true,false
 debug=#nodewalks,dynamics,process
 #endkeyvals
 
-\forestcompat{arg}#*
+\forestcompat{compat keylist}#*
 
 \forestoption{option}
 \foresteoption{option}
@@ -138,7 +157,7 @@ debug=#nodewalks,dynamics,process
 
 \bracketset{bracket options%keyvals}
 
-#keyvals:\bracketset
+#keyvals:\bracketset#c
 opening bracket=%<character%>
 closing bracket=%<character%>
 action character=%<character%>
@@ -148,8 +167,126 @@ action character=%<character%>
 
 \forestStandardNode[node]{code}{calibration}{export}#*
 
-#ifOption:external
-\tikzexternalize
-\tikzexternalenable
-\tikzexternaldisable
-#endif
+# not documented
+\apptotoks{arg1}{arg2}#*
+\bracketEndParsingHook#*
+\bracketParse{arg1}{arg2}#*
+\eapptotoks{arg1}{arg2}#*
+\epretotoks{arg1}{arg2}#*
+\etotoks{arg1}{arg2}#*
+\ExpandIfF{arg1}{arg2}#*
+\ExpandIfT{arg1}{arg2}#*
+\ExpandIfTF{arg1}{arg2}{arg3}#*
+\expandnumberarg{arg1}{arg2}#*
+\expandthreenumberargs{arg1}{arg2}{arg3}{arg4}#*
+\expandtwonumberargs{arg1}{arg2}{arg3}#*
+\forestanchortotikzanchor{arg1}{arg2}#*
+\forestdebugdynamicsfalse#S
+\forestdebugdynamicstrue#S
+\forestdebugfalse#S
+\forestdebugnodewalksfalse#S
+\forestdebugnodewalkstrue#S
+\forestdebugprocessfalse#S
+\forestdebugprocesstrue#S
+\forestdebugtempfalse#S
+\forestdebugtemptrue#S
+\forestdebugtrue#S
+\forestdebugtypeouttree(arg)#*
+\forestdebugtypeouttree(arg)[opt]#*
+\forestdebugtypeouttreenodeinfo#*
+\forestdebugtypeouttrees#*
+\forestdebugtypeouttrees[opt]#*
+\forestdebugtypeouttreesprefix#*
+\forestdebugtypeouttreessuffix#*
+\forestloopbreak#*
+\forestloopBreak{arg}#*
+\forestloopcount#*
+\forestloopCount{arg}#*
+\forestmathadd{arg1}{arg2}#*
+\forestmathdivide{arg1}{arg2}#*
+\forestmatheq{arg1}{arg2}#*
+\forestmathfalse#*
+\forestmathgt{arg1}{arg2}#*
+\forestmathlt{arg1}{arg2}#*
+\forestmathmax#*
+\forestmathmin#*
+\forestmathmultiply{arg1}{arg2}#*
+\forestmathparse{arg}#*
+\forestmathresult#*
+\forestmathresulttype#*
+\forestmathsetcount{arg1}{arg2}#*
+\forestmathsetlength{arg1}{arg2}#*
+\forestmathsetlengthmacro{arg1}{arg2}#*
+\forestmathsetmacro{arg1}{arg2}#*
+\forestmathsettypefrom{arg}#*
+\forestmathtrue#*
+\forestmathtruncatemacro{arg1}{arg2}#*
+\forestmathzero#*
+\forestnovalue#*
+\forestoappto{arg1}{arg2}#*
+\forestOappto{arg1}{arg2}{arg3}#*
+\forestOeappto{arg1}{arg2}{arg3}#*
+\forestOepreto{arg1}{arg2}{arg3}#*
+\forestoeset{arg1}{arg2}#*
+\forestOeset{arg1}{arg2}{arg3}#*
+\forestoget{arg1}{arg2}#*
+\forestOget{arg1}{arg2}{arg3}#*
+\forestoifdefined{arg1}{arg2}{arg3}#*
+\forestOifdefined{arg1}{arg2}{arg3}{arg4}#*
+\forestoinit{arg}#*
+\forestolet{arg1}{arg2}#*
+\forestOlet{arg1}{arg2}{arg3}#*
+\forestoleto{arg1}{arg2}#*
+\forestOleto{arg1}{arg2}{arg3}#*
+\forestoletO{arg1}{arg2}{arg3}#*
+\forestOletO{arg1}{arg2}{arg3}{arg4}#*
+\forestom{arg}#*
+\forestOm{arg1}{arg2}#*
+\forestOpreto{arg1}{arg2}{arg3}#*
+\forestoset{arg1}{arg2}#*
+\forestOset{arg1}{arg2}{arg3}#*
+\forestov{arg}#*
+\forestOv{arg1}{arg2}#*
+\forestove{arg}#*
+\forestOve{arg1}{arg2}#*
+\forestrappto{arg1}{arg2}#*
+\forestreset{arg1}{arg2}#*
+\forestrget{arg1}{arg2}#*
+\forestrifdefined{arg1}{arg2}{arg3}#*
+\forestrlet{arg1}{arg2}#*
+\forestrm{arg1}#*
+\forestRNOget{arg1}{arg2}#*
+\forestrpreto{arg1}{arg2}#*
+\forestrset{arg1}{arg2}#*
+\forestrv{arg1}#*
+\forestrve{arg1}#*
+\foresttemp#S
+\foresttikzcshackfalse#S
+\foresttikzcshacktrue#S
+\gapptotoks{arg1}{arg2}#*
+\gpretotoks{arg1}{arg2}#*
+\ifforestdebug#S
+\ifforestdebugdynamics#S
+\ifforestdebugnodewalks#S
+\ifforestdebugprocess#S
+\ifforestdebugtemp#S
+\ifforesttikzcshack#S
+\InlineNoDef{arg}#*
+\lapptotoks{arg1}{arg2}#*
+\makehashother#*
+\NewInlineCommand[args]{cmd}{def}#*d
+\NewInlineCommand{cmd}{def}#*d
+\newloop{cmd}#*d
+\newsafeloop{name}#*
+\newsafeRKloop{name}#*
+\pretotoks{arg1}{arg2}#*
+\ProvidesForestLibrary{name}#*
+\ProvidesForestLibrary{name}[release info]#*
+\safeloop#*
+\safeloopn#*
+\saferepeat#*
+\safeRKloop#*
+\safeRKloopn#*
+\safeRKrepeat#*
+\xapptotoks{arg1}{arg2}#*
+\xpretotoks{arg1}{arg2}#*
