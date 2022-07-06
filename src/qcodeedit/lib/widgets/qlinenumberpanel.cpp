@@ -126,7 +126,7 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			0x2937
 	*/
 
-	QFont f(font());
+	QFont f(e->document()->font());
 	f.setWeight(QFont::Bold);
     const QFontMetricsF sfm(f);
     bool specialFontUsage=false;
@@ -175,6 +175,8 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	//qDebug("first = %i; last = %i", first, last);
 	//qDebug("beg pos : %i", posY);
 
+	f.setWeight(QFont::Normal);
+	p->setFont(f);
 	for ( ; ; ++n )
 	{
 		//qDebug("n = %i; pos = %i", n, posY);
@@ -200,7 +202,6 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 			draw = true;
 
 			p->save();
-			QFont f = p->font();
 			f.setWeight(QFont::Bold);
 
 			p->setFont(f);
