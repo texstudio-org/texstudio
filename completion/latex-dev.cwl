@@ -453,7 +453,7 @@ debug={%<options%>}
 \pdfadjustspacing#*
 \pdfannot#*
 \pdfappendkern#*
-\pdfcatalog#*
+\pdfcatalog{action spec}#*
 \pdfcolorstack#*
 \pdfcolorstackinit#*
 \pdfcompresslevel#*
@@ -468,9 +468,9 @@ debug={%<options%>}
 \pdfelapsedtime#*
 \pdfendlink#*
 \pdfendthread#*
-\pdfescapehex#*
-\pdfescapename#*
-\pdfescapestring#*
+\pdfescapehex{string}#*
+\pdfescapename{string}#*
+\pdfescapestring{string}#*
 \pdffakespace#*
 \pdffiledump#*
 \pdffilemoddate#*
@@ -484,7 +484,7 @@ debug={%<options%>}
 \pdfforcepagebox#*
 \pdfgamma#*
 \pdfgentounicode#*
-\pdfglyphtounicode#*
+\pdfglyphtounicode{glyphname}{codepoint}#*
 \pdfhorigin#*
 \pdfignoreddimen#*
 \pdfimageapplygamma#*
@@ -510,29 +510,29 @@ debug={%<options%>}
 \pdflastxpos#*
 \pdflastypos#*
 \pdflinkmargin#*
-\pdfliteral#*
+\pdfliteral{literal}#*
 \pdfmajorversion#*
 \pdfmapfile{file}#*
-\pdfmapline#*
+\pdfmapline{map spec}#*
 \pdfmatch#*
 \pdfmdfivesum#*
 \pdfminorversion#*
 \pdfmovechars#*
-\pdfnames#*
+\pdfnames{action spec}#*
 \pdfnobuiltintounicode#*
 \pdfnoligatures#*
 \pdfnormaldeviate#*
-\pdfobj#*
+\pdfobj{object type spec}#*
 \pdfobjcompresslevel#*
 \pdfomitcharset#*
 \pdfoutline#*
 \pdfoutput#*
-\pdfpageattr#*
+\pdfpageattr{attributes}#*
 \pdfpagebox#*
 \pdfpageheight#*
 \pdfpageref#*
-\pdfpageresources#*
-\pdfpagesattr#*
+\pdfpageresources{resources}#*
+\pdfpagesattr{attributes}#*
 \pdfpagewidth#*
 \pdfpkmode#*
 \pdfpkresolution#*
@@ -551,11 +551,11 @@ debug={%<options%>}
 \pdfrunninglinkon#*
 \pdfsave#*
 \pdfsavepos#*
-\pdfsetmatrix#*
+\pdfsetmatrix{matrix}#*
 \pdfsetrandomseed#*
 \pdfshellescape#*
 \pdfstartlink#*
-\pdfstrcmp#*
+\pdfstrcmp{string1}{string2}#*
 \pdfsuppressptexinfo#*
 \pdfsuppresswarningdupdest#*
 \pdfsuppresswarningdupmap#*
@@ -566,16 +566,16 @@ debug={%<options%>}
 \pdfthread#*
 \pdfthreadmargin#*
 \pdftracingfonts#*
-\pdftrailer#*
-\pdftrailerid#*
+\pdftrailer{text%plain}#*
+\pdftrailerid{text%plain}#*
 \pdftstartthread#*
-\pdfunescapehex#*
+\pdfunescapehex{string}#*
 \pdfuniformdeviate#*
 \pdfuniqueresname#*
 \pdfvorigin#*
 \pdfxform#*
 \pdfxformname#*
-\pdfximage#*
+\pdfximage{file}#*
 \pdfximagebbox#*
 \quitvmode#*
 \rightmarginkern#*
