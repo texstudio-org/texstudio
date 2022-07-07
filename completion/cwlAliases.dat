@@ -1162,3 +1162,11 @@ xduugthesis:
 class-xduugthesis
 latex-document
 tex
+factura:
+class-factura
+latex-document
+tex
+facture:
+class-facture
+latex-document
+tex

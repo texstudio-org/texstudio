@@ -11,5 +11,13 @@
 \indexex{content}
 \indexex[index option]{content}
 \indexitem{%<option%>>%<content%>}
-\indexitem(default){%<option%>>%<content%>}
+\indexitem(%<default%>){%<option%>>%<content%>}
 \indexset[index options]>{entry}
+\indexdefineshortkey{arg1}{arg2}#*
+\indexpagenumbernormal{arg1}{arg2}#*
+\indexpagenumberdefinition{arg1}{arg2}#*
+\indexpagenumberexample{arg1}{arg2}#*
+\hyperlinknocolor{target name}{link text%text}#*
+\pgfkeysglobaldef{arg1}{arg2}#*
+\pgfkeysgloballet{arg1}{arg2}#*
+\pgfkeysglobalsetvalue{arg1}{arg2}#*

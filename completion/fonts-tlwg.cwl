@@ -1,5 +1,5 @@
 # fonts-tlwg package
-# Matthew Bertucci 12/30/2021 for v1.1
+# Matthew Bertucci 2022/07/06 for v1.1
 
 #include:xkeyval
 
@@ -28,6 +28,9 @@ umpush
 waree
 #endkeyvals
 
+\thaitext
+\latintext
+
 \thairmdefault#*
 \thaisfdefault#*
 \thaittdefault#*
@@ -36,6 +39,3 @@ waree
 \englishttdefault#*
 \thaifamilydefault#*
 \englishfamilydefault#*
-
-\thaitext
-\latintext

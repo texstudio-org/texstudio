@@ -5,6 +5,7 @@
 B1
 ECMSRB1
 ECMSRB2
+IL2
 L7x
 LAE
 LCY
@@ -175,6 +176,13 @@ X2
 \T{arg}#n
 \textquotedbl#n
 \U{arg}#n
+#endif
+
+#ifOption:IL2
+\flqq
+\frqq
+\clqq
+\crqq
 #endif
 
 #ifOption:L7x
