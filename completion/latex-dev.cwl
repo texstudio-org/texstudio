@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2022/06/05 for June 2022 release
+# Matthew Bertucci 2022/07/06 for 2022/07/05 release
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
@@ -43,6 +43,7 @@
 \BeforeClearDocument{code}#*
 \BooleanFalse
 \BooleanTrue
+\CaseSwitch{normal%text}{upper%text}{lower%text}{title%text}#*
 \CheckCommand*{cmd}[args][default]{def}#*
 \CheckCommand*{cmd}[args]{def}#*
 \CheckCommand*{cmd}{def}#*
@@ -69,6 +70,7 @@
 \DebugMarksOn#*
 \DebugShipoutsOff#*
 \DebugShipoutsOn#*
+\DeclareCaseChangeEquivalent{cmd}{replacement text}#*d
 \DeclareCommandCopy{cmd}{def}#d
 \DeclareCurrentRelease{name}{date}#*
 \DeclareDefaultHookRule{label1}{relation}{label2}#*
