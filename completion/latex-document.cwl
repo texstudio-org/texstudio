@@ -3,7 +3,7 @@
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
-# Matthew Bertucci 2022/06/05 for June 2022 release
+# Matthew Bertucci 2022/07/06 for 2022/07/05 release
 #include:latex-dev
 #include:textcomp
 \abstractname#*
@@ -270,6 +270,7 @@
 \makelabel#*
 \MakeLowercase{text}#*
 \maketitle
+\MakeTitlecase{text}#*
 \MakeUppercase{text}#*
 \mapstochar#*m
 \marginpar[left]{right}#*
