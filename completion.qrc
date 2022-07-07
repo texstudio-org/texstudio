@@ -404,6 +404,7 @@
 <file>completion/BOONDOX-frak.cwl</file>
 <file>completion/BOONDOX-uprscr.cwl</file>
 <file>completion/bophook.cwl</file>
+<file>completion/boustr.cwl</file>
 <file>completion/boxedminipage.cwl</file>
 <file>completion/boxhandler.cwl</file>
 <file>completion/boxit.cwl</file>
@@ -623,6 +624,8 @@
 <file>completion/class-extletter.cwl</file>
 <file>completion/class-extproc.cwl</file>
 <file>completion/class-extreport.cwl</file>
+<file>completion/class-factura.cwl</file>
+<file>completion/class-facture.cwl</file>
 <file>completion/class-fancyhandout.cwl</file>
 <file>completion/class-fancyslides.cwl</file>
 <file>completion/class-fduthesis.cwl</file>
@@ -967,6 +970,7 @@
 <file>completion/cyber.cwl</file>
 <file>completion/cypriot.cwl</file>
 <file>completion/cyrillic.cwl</file>
+<file>completion/dad.cwl</file>
 <file>completion/dantelogo.cwl</file>
 <file>completion/dashbox.cwl</file>
 <file>completion/dashrule.cwl</file>
@@ -1329,6 +1333,7 @@
 <file>completion/fontbook.cwl</file>
 <file>completion/fontenc.cwl</file>
 <file>completion/fontmfizz.cwl</file>
+<file>completion/fonts-arundina.cwl</file>
 <file>completion/fontsetup.cwl</file>
 <file>completion/fontsize.cwl</file>
 <file>completion/fontsmpl.cwl</file>
@@ -1445,6 +1450,7 @@
 <file>completion/glossary-topic.cwl</file>
 <file>completion/glossary-tree.cwl</file>
 <file>completion/glosstex.cwl</file>
+<file>completion/gmiflink.cwl</file>
 <file>completion/gmp.cwl</file>
 <file>completion/gnuplottex.cwl</file>
 <file>completion/gobble-user.cwl</file>
@@ -1557,6 +1563,7 @@
 <file>completion/hvqrurl.cwl</file>
 <file>completion/hypbmsec.cwl</file>
 <file>completion/hypcap.cwl</file>
+<file>completion/hypdestopt.cwl</file>
 <file>completion/hypdoc.cwl</file>
 <file>completion/hypdvips.cwl</file>
 <file>completion/hyperbar.cwl</file>
@@ -1626,6 +1633,7 @@
 <file>completion/intopdf.cwl</file>
 <file>completion/inversepath.cwl</file>
 <file>completion/invoice2.cwl</file>
+<file>completion/invoice.cwl</file>
 <file>completion/iodhbwm-templates.cwl</file>
 <file>completion/ionumbers.cwl</file>
 <file>completion/ipa.cwl</file>
@@ -2077,11 +2085,13 @@
 <file>completion/MyriadPro.cwl</file>
 <file>completion/MyriadPro-FontDef.cwl</file>
 <file>completion/nabatean.cwl</file>
+<file>completion/na-border.cwl</file>
 <file>completion/nag.cwl</file>
 <file>completion/nahuatl.cwl</file>
 <file>completion/nameauth.cwl</file>
 <file>completion/namedef.cwl</file>
 <file>completion/nameref.cwl</file>
+<file>completion/na-position.cwl</file>
 <file>completion/natbib.cwl</file>
 <file>completion/natmove.cwl</file>
 <file>completion/navigator.cwl</file>
@@ -2911,8 +2921,10 @@
 <file>completion/tcolorbox.cwl</file>
 <file>completion/tdsfrmath.cwl</file>
 <file>completion/ted.cwl</file>
+<file>completion/telprint.cwl</file>
 <file>completion/templatetools.cwl</file>
 <file>completion/tempora.cwl</file>
+<file>completion/tengwarscript.cwl</file>
 <file>completion/tensind.cwl</file>
 <file>completion/tensor.cwl</file>
 <file>completion/termsim.cwl</file>
@@ -2958,6 +2970,7 @@
 <file>completion/tgschola.cwl</file>
 <file>completion/tgtermes.cwl</file>
 <file>completion/thaienum.cwl</file>
+<file>completion/thaispec.cwl</file>
 <file>completion/thalie.cwl</file>
 <file>completion/TheanoDidot.cwl</file>
 <file>completion/TheanoModern.cwl</file>
@@ -3082,6 +3095,7 @@
 <file>completion/todonotes.cwl</file>
 <file>completion/tokcycle.cwl</file>
 <file>completion/tokenizer.cwl</file>
+<file>completion/tolkienfonts.cwl</file>
 <file>completion/tone.cwl</file>
 <file>completion/tonevalue.cwl</file>
 <file>completion/toolbox.cwl</file>
@@ -3337,6 +3351,7 @@
 <file>completion/xymtex.cwl</file>
 <file>completion/xymtexpdf.cwl</file>
 <file>completion/xymtx-pdf.cwl</file>
+<file>completion/yagusylo.cwl</file>
 <file>completion/yamlvars.cwl</file>
 <file>completion/yathesis.cwl</file>
 <file>completion/yax.cwl</file>
