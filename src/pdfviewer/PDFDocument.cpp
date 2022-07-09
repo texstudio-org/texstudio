@@ -538,6 +538,7 @@ void PDFMovie::seekDialog()
 QCursor *PDFWidget::magnifierCursor = nullptr;
 QCursor *PDFWidget::zoomInCursor = nullptr;
 QCursor *PDFWidget::zoomOutCursor = nullptr;
+QCursor *PDFWidget::focusedHandCursor = nullptr;
 
 PDFWidget::PDFWidget(bool embedded)
 	: QLabel()
@@ -614,6 +615,7 @@ PDFWidget::PDFWidget(bool embedded)
 		magnifierCursor = new QCursor(QPixmap(getRealIconFile("magnifier")).scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation),10,10);
 		zoomInCursor = new QCursor(QPixmap(getRealIconFile("zoom-in")).scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 		zoomOutCursor = new QCursor(QPixmap(getRealIconFile("zoom-out")).scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+		focusedHandCursor = new QCursor(QPixmap(getRealIconFile("focusedhand")),8,13);
 	}
 
 	ctxZoomInAction = new QAction(tr("Zoom In"), this);
@@ -1559,7 +1561,7 @@ void PDFWidget::updateCursor()
 				setCursor(Qt::ArrowCursor);
 		}
 		else
-			setCursor(Qt::OpenHandCursor);
+			setCursor(*focusedHandCursor);
 	}
 	break;
 	case kMagnifier: {
