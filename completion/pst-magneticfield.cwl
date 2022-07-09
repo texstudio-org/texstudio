@@ -1,5 +1,5 @@
 # pst-magneticfield package
-# Matthew Bertucci 2/22/2022 for v1.16
+# Matthew Bertucci 2022/07/09 for v1.17
 
 #include:pstricks
 #include:pst-3d
@@ -46,6 +46,10 @@ showPoleLabels#true,false
 fontstyle=%<font commands%>
 magnetScale=%<factor%>
 #endkeyvals
+
+Red#B
+BrickRed#B
+Green#B
 
 \CalcIntermediaire#S
 \yA#S
