@@ -1,8 +1,14 @@
 # zref-vario package
-# Matthew Bertucci 2/10/2022 for v0.1.2-alpha
+# Matthew Bertucci 2022/07/11 for v0.1.5
 
 #include:varioref
 #include:zref-clever
+
+\zvsetup{options%keyvals}
+
+#keyvals:\zvsetup
+pageprop=%<property%>
+#endkeyvals
 
 \zvref{label}#r
 \zvref[options%keyvals]{label}#r
@@ -35,6 +41,7 @@
 \zreftextfaraway*[options%keyvals]{label}#*r
 
 #keyvals:\zvref,\zvref*,\zvpageref,\zvpageref*,\zvrefrange,\zvrefrange*,\zvpagerefrange,\zvpagerefrange*,\zfullref,\zfullref*,\zreftextfaraway,\zreftextfaraway*
+# standard keys
 ref=#default,page,thecounter,title
 page
 typeset=#ref,name,both
@@ -46,17 +53,18 @@ typesort={%<type list%>}
 notypesort
 comp#true,false
 nocomp
+endrange=#ref,stripprefix,pagecomp,pagecomp2
 range#true,false
+rangetopair#true,false
 cap#true,false
 nocap
-capfirst
+capfirst#true,false
 abbrev#true,false
 noabbrev
 noabbrevfirst
 S
 hyperref=#auto,true,false
 nameinlink=#true,false,single,tsingle
-preposinlink#true,false
 lang=%<language%>
 d=%<declension case%>
 nudge=#true,false,ifdraft,iffinal
@@ -64,28 +72,27 @@ nudgeif=#multitype,comptosing,gender,all
 nonudge
 sg
 g=
-font=%<cmds%>
-titleref
+font=%<font commands%>
 note=%<text%>
 check={%<checks%>}
 vcheck={%<checks%>}
 countertype={%<<counter>%> = %<<type> list%>}
 counterresetters={%<counter list%>}
 counterresetby={%<<counter=encl counter> list%>}
-currentcounter
-tpairsep=
-tlistsep=
-tlastsep=
-notesep=
-namesep=
-pairsep=
-listsep=
-lastsep=
-rangesep=
-preref=
-postref=
-namefont=
-reffont=
+currentcounter=%<counter%>
+# "general" keys
+tpairsep={%<separator%>}
+tlistsep={%<separator%>}
+tlastsep={%<separator%>}
+notesep={%<separator%>}
+namesep={%<separator%>}
+pairsep={%<separator%>}
+listsep={%<separator%>}
+lastsep={%<separator%>}
+rangesep={%<separator%>}
+refbounds={%<preref*,preref,postref,postref*%>}
+namefont=%<name%>
+reffont=%<name%>
 #endkeyvals
 
 #keyvals:\zvref,\zvref*,\zvpageref,\zvpageref*,\zvrefrange,\zvrefrange*,\zvpagerefrange,\zvpagerefrange*

@@ -1,5 +1,5 @@
 # qrbill package
-# Matthew Bertucci 12/10/2021 for v1.03
+# Matthew Bertucci 2022/07/10 for v1.04
 
 #include:iftex
 #include:l3keys2e
@@ -27,11 +27,14 @@ separate=#false,text,symbol
 
 \QRbill
 \QRbill[data setup%keyvals]
+\QRbill*
+\QRbill*[data setup%keyvals]
 \qrbillsetdata{data setup%keyvals}
+\qrbillsetdata*{data setup%keyvals}
 \SetupQrBill{data setup%keyvals}
 \qrbillsetup{data setup%keyvals}#*
 
-#keyvals:\QRbill,\SetupQrBill,\qrbillsetdata,\qrbillsetup
+#keyvals:\QRbill,\QRbill*,\SetupQrBill,\qrbillsetdata,\qrbillsetdata*,\qrbillsetup
 QRType=
 Version=
 CodingType=
@@ -81,6 +84,8 @@ vatdetails=
 importvat=
 conditions=
 #endkeyvals
+
+\QRbillParseDate{year}{month}{day}
 
 \insertcreditor
 \insertcurrency
