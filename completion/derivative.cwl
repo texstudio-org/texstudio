@@ -1,6 +1,7 @@
 # For derivative v1.1 (2021/06/03) by Simon Jensen.
 # URL: https://ctan.org/pkg/derivative?lang=en
 # Created by Brian Schubert (2021/08/03).
+# updated 2022/07/11 for v1.2
 
 #include:expl3
 #include:xparse
@@ -175,14 +176,16 @@ sep-eval-sp=%<<num>, <mspace>, or <delim>%>
 ### Derivative Switches (switch-)
 switch-*#true,false
 switch-/#true,false
+switch-sort#true,false
 
 ### Derivative Sort (sort-)
-sort-method={%<abs, number, sign, and/or symbol%>}
+sort-method={%<abs, lexical, number, sign, and/or symbol%>}
 sort-numerical=#auto,first,last,symbolic
 sort-abs-reverse#true,false
 sort-number-reverse#true,false
 sort-sign-reverse#true,false
 sort-symbol-reverse#true,false
+sort-lexical-reverse#true,false
 
 ### Derivative Miscellaneous
 fun#true,false
