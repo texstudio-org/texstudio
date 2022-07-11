@@ -440,6 +440,7 @@
 <file>completion/bxtoolbox.cwl</file>
 <file>completion/bxwareki.cwl</file>
 <file>completion/byo-twemojis.cwl</file>
+<file>completion/byrne.cwl</file>
 <file>completion/bytefield.cwl</file>
 <file>completion/cabin.cwl</file>
 <file>completion/caladea.cwl</file>
@@ -2396,6 +2397,7 @@
 <file>completion/powerdot-tuliplab.cwl</file>
 <file>completion/powerdot-tycja.cwl</file>
 <file>completion/powerdot-upen.cwl</file>
+<file>completion/precattl.cwl</file>
 <file>completion/prelim2e.cwl</file>
 <file>completion/prerex.cwl</file>
 <file>completion/pressrelease-symbols.cwl</file>
@@ -2612,6 +2614,7 @@
 <file>completion/reotex.cwl</file>
 <file>completion/repltext.cwl</file>
 <file>completion/rerunfilecheck.cwl</file>
+<file>completion/rescansync.cwl</file>
 <file>completion/resizegather.cwl</file>
 <file>completion/rest-api.cwl</file>
 <file>completion/returntogrid.cwl</file>
@@ -2660,6 +2663,7 @@
 <file>completion/sansmathfonts.cwl</file>
 <file>completion/sarabian.cwl</file>
 <file>completion/SASnRdisplay.cwl</file>
+<file>completion/saveenv.cwl</file>
 <file>completion/savesym.cwl</file>
 <file>completion/savetrees.cwl</file>
 <file>completion/sbl-paper.cwl</file>
