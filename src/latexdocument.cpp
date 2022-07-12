@@ -2764,7 +2764,9 @@ CodeSnippetList LatexDocument::additionalCommandsList()
 	return pck.completionWords;
 }
 
-bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool forceLabelUpdate, const bool delayUpdate, const bool dontPatch)
+// dontPatch unused variable - see deactivated code below
+//bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool forceLabelUpdate, const bool delayUpdate, const bool dontPatch)
+bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool forceLabelUpdate, const bool delayUpdate)
 {
 
 	QStringList files = mUsepackageList.values();
