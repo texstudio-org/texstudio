@@ -1232,9 +1232,15 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	bool updateLtxCommands = false;
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {
 		bool forceUpdate = !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
-		reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());
+
+
+        //
+        reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());
         // don't patch single lines if the whole text needs to be rechecked anyways
-        updateLtxCommands = updateCompletionFiles(forceUpdate, false, true, reRunSuggested);
+
+        // updateLtxCommands takes 3 arguments
+        // updateLtxCommands = updateCompletionFiles(forceUpdate, false, true, reRunSuggested);
+        updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
 	}
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
