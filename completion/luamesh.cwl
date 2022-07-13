@@ -1,5 +1,5 @@
 # luamesh package
-# Matthew Bertucci 2/9/2022 for v0.6
+# Matthew Bertucci 2022/07/13 for v0.7
 
 #include:xkeyval
 #include:xcolor
@@ -22,6 +22,7 @@ print=#none,points,dotpoints
 meshpoint=%<letter(s)%>
 tikz#true,false
 scale=##L
+thickness=##L
 #endkeyvals
 
 \drawPointsMesh{%<<list of points> or <file>%>}
@@ -60,6 +61,9 @@ step=#badtriangles,cavity,newtriangles
 newpoint=%<letter(s)%>
 tikz#true,false
 scale=##L
+thickness=##L
+thicknessNew=##L
+thicknessCircle=##L
 #endkeyvals
 
 \meshPolygon{%<<list of points> or <file>%>}
@@ -79,6 +83,8 @@ step=#polygon,grid,points,mesh
 tikz#true,false
 scale=##L
 gridpoints=#rect,perturb
+thickness=##L
+thicknessPolygon=##L
 #endkeyvals
 
 \luameshmpcolor
@@ -108,6 +114,8 @@ scale=##L
 delaunay=#none,show
 styleDelaunay=#none,dashed
 styleVoronoi=#none,dashed
+thickness=##L
+thicknessVoronoi=##L
 #endkeyvals
 
 \luameshmpcolorVoronoi
@@ -124,6 +132,7 @@ print=#none,points
 meshpoint=%<letter(s)%>
 tikz#true,false
 scale=##L
+thickness=##L
 #endkeyvals
 
 \gmshVoronoi{file}#i
@@ -143,11 +152,18 @@ scale=##L
 delaunay=#none,show
 styleDelaunay=#none,dashed
 styleVoronoi=#none,dashed
+thickness=##L
+thicknessVoronoi=##L
 #endkeyvals
 
 \CircumPoint#*
 \MeshPoint#*
 \NewPoint#*
+
+TeXCluaMeshTikZ#B
+TeXCluaMeshNewTikZ#B
+TeXCluaMeshBackTikZ#B
+TeXCluaMeshCircleTikZ#B
 
 \PackageName#S
 \filedate#S
