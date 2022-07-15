@@ -1,8 +1,9 @@
 # kpfonts-otf package
-# Matthew Bertucci 12/15/2021 for v0.42
+# Matthew Bertucci 2022/07/15 for v0.43
 
 #include:iftex
 #include:unicode-math
+#include:realscripts
 
 #keyvals:\usepackage/kpfonts-otf#c
 light
