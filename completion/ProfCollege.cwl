@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/07/11 for v0.99-r
+# Matthew Bertucci 2022/07/15 for v0.99-s
 
 #include:verbatim
 #include:mathtools
@@ -360,6 +360,7 @@ Echelle=##L
 Angle=%<degrees%>
 FigureSeule#true,false
 Isocele#true,false
+Rectangle#true,false
 #endkeyvals
 
 \ResultatAngle
@@ -878,6 +879,7 @@ Couleur=#%color
 Echelle=%<factor%>
 Impression#true,false
 Numerotation#true,false
+Naturel#true,false
 #endkeyvals
 
 ## La distributivité ##
@@ -2043,11 +2045,9 @@ Teal#B
 \NombrePremier{arg1}#S
 \NombrePremierExposant{arg1}#S
 \NombrePremierImpose{arg1}{arg2}{arg3}#S
-\NombrePremierImposeAll{arg1}{arg2}{arg3}#S
 \NombrePremierPotence{arg1}#S
 \NombrePremierVertical{arg1}#S
 \NombrePremierVerticalVide{arg1}#S
-\NombrePremierVide{arg}#S
 \NombreUnites#S
 \NomC#S
 \NomComp#S
@@ -2113,14 +2113,18 @@ Teal#B
 \PfCMPDessineModelBarre{arg1}{arg2}#S
 \PfCMPDessineModelBarreNonHomogene{arg1}{arg2}#S
 \PfCPremiereColonneDecimale#S
+\PfCPythaUnit#S
 \PfCQtroisk#S
 \PfCQuartileTrois#S
 \PfCQuartileUn#S
 \PfCQunk#S
+\PfCRappelImposeAll#S
 \PfCTabCouleur#S
 \PfCTableauIncline#S
 \PfCTableauUnite#S
 \PfCTBstrut#S
+\PfCThalesUnit#S
+\PfCTrigoUnit#S
 \PfCTstrut#S
 \pgcd#S
 \PGCD{arg1}{arg2}#S
@@ -2149,7 +2153,6 @@ Teal#B
 \QFNumeration#S
 \QFVide#S
 \quintal#*
-\rappeljour#S
 \ratiodomino#S
 \RayonCoin#S
 \Recapk#S
@@ -2258,8 +2261,8 @@ Teal#B
 \theNbProporD#S
 \theNbProporG#S
 \theNbRelie#S
-\thenexo#S
 \thePfCCompteLignes#S
+\thePfCnexo#S
 \theQuestionQCM#S
 \thesubxlop#S
 \theTitreQCM#S
