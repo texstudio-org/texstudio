@@ -1,5 +1,5 @@
 # msu-thesis class
-# Matthew Bertucci 2022/06/01 for v3.3
+# Matthew Bertucci 2022/07/15 for v3.4
 
 #include:class-memoir
 #include:etoolbox
@@ -114,6 +114,7 @@ twoside
 \fieldofstudy{field%text}
 \makebibliographypage
 \makecopyrightpage
+\makecopyrightpage*
 \makededicationpage
 \MakeLinkUppercase#S
 \maketitlepage
