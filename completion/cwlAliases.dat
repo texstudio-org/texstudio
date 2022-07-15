@@ -1170,3 +1170,7 @@ facture:
 class-facture
 latex-document
 tex
+buctcover:
+class-buctcover
+latex-document
+tex
