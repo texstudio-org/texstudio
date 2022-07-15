@@ -198,6 +198,8 @@
         <file>images-ng/classic/windowed-viewer.svgz</file>
         <file>images-ng/classic/zoom-in.svgz</file>
         <file>images-ng/classic/zoom-out.svgz</file>
+        <file>images-ng/classic/zoom-in-magnifier.svg</file>
+        <file>images-ng/classic/zoom-out-magnifier.svg</file>
         <file>images-ng/modern/close.svg</file>
         <file>images-ng/modern/dfrac.svg</file>
         <file>images-ng/modern/embedded-viewer.svg</file>
@@ -252,8 +254,6 @@
         <file>images-ng/classic/windowed-viewer_dm.svgz</file>
         <file>images-ng/classic/hide-toolbars_dm.svgz</file>
         <file>images-ng/toc.svg</file>
-        <file>images/zoom-in-magnifier.png</file>
-        <file>images/zoom-out-magnifier.png</file>
         <file>images/rc/branch_closed-on.png</file>
         <file>images/rc/branch_closed.png</file>
         <file>images/rc/branch_open-on.png</file>
