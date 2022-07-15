@@ -248,8 +248,10 @@ symbols
 \strictfi#m
 \strictif#m
 \strictiff#m
+\subsetneqq#m
 \succeqq#m
 \succneq#m
+\supsetneqq#m
 \thickapprox#m
 \thicksim#m
 \tieconcat#m
