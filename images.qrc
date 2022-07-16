@@ -221,6 +221,8 @@
         <file>images-ng/modern/windowed-viewer.svgz</file>
         <file>images-ng/modern/zoom-in.svgz</file>
         <file>images-ng/modern/zoom-out.svgz</file>
+        <file>images-ng/modern/zoom-in-magnifier.svg</file>
+        <file>images-ng/modern/zoom-out-magnifier.svg</file>
         <file>images-ng/math.svg</file>
         <file>images-ng/non-math.svg</file>
         <file>images-ng/comment.svg</file>
