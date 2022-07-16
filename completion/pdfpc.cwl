@@ -1,12 +1,14 @@
 # pdfpc package
-# Matthew Bertucci 2/8/2022 for v0.6.0
+# Matthew Bertucci 2022/07/15 for v0.7.0
 
 #include:kvoptions
 #include:xstring
 #include:iftex
 #include:hyperxmp
 
-#keyvals:\usepackage/pdfpc#c
+\pdfpcsetup{options%keyvals}
+
+#keyvals:\pdfpcsetup,\usepackage/pdfpc#c
 duration=
 starttime=
 endtime=

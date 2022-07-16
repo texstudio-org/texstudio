@@ -18,10 +18,15 @@ font=#rm,sf
 size=#footnote,normal,small,script
 shape=#up,it,sl
 ragged
+Ragged
 classic
 sepdiff=##L
 alerton
 #endkeyvals
+
+#ifOption:Ragged
+#include:ragged2e
+#endif
 
 \sidenote{content%text}
 \sidenote|%<float offset%>|<%<fixed offset%>>{%<content%>}

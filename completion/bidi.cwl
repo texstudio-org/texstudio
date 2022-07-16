@@ -1,6 +1,6 @@
 # bidi package
 # hadi_sfr (info@hadisafari.ir)
-# updated 3/14/2022 for v36.7
+# updated 2022/07/15 for v39.2
 
 #include:xetex
 #include:iftex
@@ -12,14 +12,19 @@
 
 #keyvals:\usepackage/bidi#c
 RTLdocument
+documentdirection=#righttoleft,lefttoright
+tabledirection=#righttoleft,lefttoright
+script=#latin,nonlatin
 rldocument
+footnoterule=#automatic,left,right,split,textwidth
+footnotedirection=#righttoleft,lefttoright
+debugfootnotedirection
 extrafootnotefeatures
+DetectColumn
+logo
+pdfinfo
+perpagefootnote
 #endkeyvals
-
-\bidiversion#*
-\bididate#*
-\TeXXeTOn#*
-\TeXXeTOf#*
 
 #ifOption:extrafootnotefeatures
 \normalfootnotes
@@ -37,7 +42,101 @@ extrafootnotefeatures
 \paragraphfootnotes
 \setLTRparagraphfootnotes
 \setRTLparagraphfootnotes
+# not documented
+\AddExtraParaSkip{arg}#*
+\extrafeetendmini#*
+\extrafeetendminihook#*
+\extrafeetins#*
+\extrafeetinshook#*
+\FeetAboveFloat#*
+\FeetAtBottom#*
+\FeetBelowFloat#*
+\FeetBelowRagged#*
+\footfootmark#*
+\footfudgefactor#*
+\footinsdim#*
+\footmarkstyle{text}#*
+\footmarkwidth#*
+\footscript{arg}#*
+\foottextfont#*
+\LTRfootfootmark#*
+\LTRfootmarkstyle{text}#*
+\LTRfootscript{arg}#*
+\LTRfoottextfont#*
+\multiplefootnotemarker#*
+\normalRTLparaLTRfootnotes#*
+\RTLfootfootmark#*
+\RTLfootmarkstyle{text}#*
+\RTLfootscript{arg}#*
+\RTLfoottextfont#*
+\setSingleSpace{number}#*
 #endif
+#ifOption:extrafootnotefeatures=on
+\normalfootnotes
+\twocolumnfootnotes
+\threecolumnfootnotes
+\fourcolumnfootnotes
+\fivecolumnfootnotes
+\sixcolumnfootnotes#*
+\sevencolumnfootnotes#*
+\eightcolumnfootnotes#*
+\ninecolumnfootnotes#*
+\tencolumnfootnotes#*
+\RTLcolumnfootnotes
+\LTRcolumnfootnotes
+\paragraphfootnotes
+\setLTRparagraphfootnotes
+\setRTLparagraphfootnotes
+# not documented
+\AddExtraParaSkip{arg}#*
+\extrafeetendmini#*
+\extrafeetendminihook#*
+\extrafeetins#*
+\extrafeetinshook#*
+\FeetAboveFloat#*
+\FeetAtBottom#*
+\FeetBelowFloat#*
+\FeetBelowRagged#*
+\footfootmark#*
+\footfudgefactor#*
+\footinsdim#*
+\footmarkstyle{text}#*
+\footmarkwidth#*
+\footscript{arg}#*
+\foottextfont#*
+\LTRfootfootmark#*
+\LTRfootmarkstyle{text}#*
+\LTRfootscript{arg}#*
+\LTRfoottextfont#*
+\multiplefootnotemarker#*
+\normalRTLparaLTRfootnotes#*
+\RTLfootfootmark#*
+\RTLfootmarkstyle{text}#*
+\RTLfootscript{arg}#*
+\RTLfoottextfont#*
+\setSingleSpace{number}#*
+#endif
+
+#ifOption:DetectColumn
+\DetectColumn{arg1}{arg2}
+\DetectColumn[opt]{arg1}{arg2}
+#endif
+#ifOption:DetectColumn=on
+\DetectColumn{arg1}{arg2}
+\DetectColumn[opt]{arg1}{arg2}
+#endif
+
+#ifOption:perpagefootnote
+#include:bidi-perpage
+#endif
+#ifOption:perpagefootnote=on
+#include:bidi-perpage
+#endif
+
+\bidiversion#*
+\bididate#*
+\TeXXeTOn#*
+\TeXXeTOff#*
 
 \setLTR
 \setLR
@@ -115,3 +214,26 @@ captiondirection=#textdirection,RTL,LTR
 # if multicol loaded
 \RTLmulticolcolumns#S
 \LTRmulticolcolumns#S
+
+## not documented
+# from bidi.sty
+\bracetext#*
+\DigitsDotDashInterCharToks#*
+\IfbidiPackageVersion{version}{true}{false}#*
+\IfbidiPackageVersionBefore{version}{true}{false}#*
+\IfbidiPackageVersionLater{version}{true}{false}#*
+\pdfencryptsetup{keyvals}#*
+\pLRE#*
+\pRLE#*
+\setlatin#*
+\setLTRtable#*
+\setnonlatin#*
+\setRTLtable#*
+
+# from latex-xetex-bidi.def
+\begin{LTR*}#*
+\end{LTR*}#*
+\begin{RTL*}#*
+\end{RTL*}#*
+\moreLRE#*
+\moreRLE#*

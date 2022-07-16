@@ -1,11 +1,12 @@
 # bidicode package
-# Matthew Bertucci 2022/06/01
+# Matthew Bertucci 2022/07/15
 
 #include:xcolor
 #include:showexpl
 
 hellgelb#B
 colKeys#B
+colCS#B
 colIdentifier#B
 colComments#B
 colString#B

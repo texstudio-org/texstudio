@@ -1,5 +1,5 @@
 # fixdif package
-# Matthew Bertucci 2022/05/29 for v1.0
+# Matthew Bertucci 2022/07/15 for v1.3
 
 #keyvals:\usepackage/fixdif#c
 rm
@@ -15,3 +15,5 @@ nopartial
 \newdif*{cmd}{def}#d
 \renewdif{cmd}{def}#d
 \renewdif*{cmd}{def}#d
+\mathdif{symbol}#m
+\mathdif*{symbol}#m
