@@ -1,21 +1,23 @@
 # eulerpx package
-# Matthew Bertucci 1/18/2022 for v1.3
+# Matthew Bertucci 2022/07/16 for v1.0
 
 #include:amsmath
+#include:xkeyval
 #include:newpxmath
 
 #keyvals:\usepackage/eulerpx#c
-sansmath
-utf8
+scale=%<factor%>
+nonpxmath
+noslant
 #endkeyvals
 
-\mathscr{text%plain}#m
 \mathfrak{text%plain}#m
+\varmathfrak{text%plain}#m
+\mathscr{text%plain}#m
+\varmathscr{text%plain}#m
 
-#ifOption:sansmath
-\oldrmfamily#*
-\oldsffamily#*
-#endif
+\varaleph#m
+\varsum#m
 
 \filedate#S
 \fileversion#S
