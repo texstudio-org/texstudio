@@ -1,6 +1,6 @@
 # xepersian 23.7
 # hadi_sfr (info@hadisafari.ir)
-# updated 4/9/2022 for v23.7
+# updated 2022/07/15 for v24.7
 
 # Equivalent Persian Commands, documentclasses and some other commands are not included
 
@@ -13,18 +13,166 @@
 defaultlatinfontfeatures={%<font features%>}
 extrafootnotefeatures
 Kashida
-quickindex
 quickindex-variant1
 quickindex-variant2
 localise
+mathdigits=#automatic,default,persian
+inlinemathdigits=#automatic,default,persian
+displaymathdigits=#automatic,default,persian
+RTLdocument
+documentdirection=#righttoleft,lefttoright
+tabledirection=#righttoleft,lefttoright
+script=#latin,nonlatin
+rldocument
+footnoterule=#automatic,left,right,split,textwidth
+footnotedirection=#righttoleft,lefttoright
+debugfootnotedirection
+abjadvariant=#one,two
+mathfontsizescale=%<factor%>
+fontsizescale=%<factor%>
+fontsize=##L
+latinfontsizescale=%<factor%>
+baselineskipscale=%<factor%>
+latinbaselineskipscale=%<factor%>
+logo
+pdfinfo
+computeautoilg
+DetectColumn
+debugtextdigitfont
+perpagefootnote
 #endkeyvals
+
+#ifOption:extrafootnotefeatures
+\normalfootnotes
+\twocolumnfootnotes
+\threecolumnfootnotes
+\fourcolumnfootnotes
+\fivecolumnfootnotes
+\sixcolumnfootnotes#*
+\sevencolumnfootnotes#*
+\eightcolumnfootnotes#*
+\ninecolumnfootnotes#*
+\tencolumnfootnotes#*
+\RTLcolumnfootnotes
+\LTRcolumnfootnotes
+\paragraphfootnotes
+\setLTRparagraphfootnotes
+\setRTLparagraphfootnotes
+# not documented
+\AddExtraParaSkip{arg}#*
+\extrafeetendmini#*
+\extrafeetendminihook#*
+\extrafeetins#*
+\extrafeetinshook#*
+\FeetAboveFloat#*
+\FeetAtBottom#*
+\FeetBelowFloat#*
+\FeetBelowRagged#*
+\footfootmark#*
+\footfudgefactor#*
+\footinsdim#*
+\footmarkstyle{text}#*
+\footmarkwidth#*
+\footscript{arg}#*
+\foottextfont#*
+\LTRfootfootmark#*
+\LTRfootmarkstyle{text}#*
+\LTRfootscript{arg}#*
+\LTRfoottextfont#*
+\multiplefootnotemarker#*
+\normalRTLparaLTRfootnotes#*
+\RTLfootfootmark#*
+\RTLfootmarkstyle{text}#*
+\RTLfootscript{arg}#*
+\RTLfoottextfont#*
+\setSingleSpace{number}#*
+#endif
+#ifOption:extrafootnotefeatures=on
+\normalfootnotes
+\twocolumnfootnotes
+\threecolumnfootnotes
+\fourcolumnfootnotes
+\fivecolumnfootnotes
+\sixcolumnfootnotes#*
+\sevencolumnfootnotes#*
+\eightcolumnfootnotes#*
+\ninecolumnfootnotes#*
+\tencolumnfootnotes#*
+\RTLcolumnfootnotes
+\LTRcolumnfootnotes
+\paragraphfootnotes
+\setLTRparagraphfootnotes
+\setRTLparagraphfootnotes
+# not documented
+\AddExtraParaSkip{arg}#*
+\extrafeetendmini#*
+\extrafeetendminihook#*
+\extrafeetins#*
+\extrafeetinshook#*
+\FeetAboveFloat#*
+\FeetAtBottom#*
+\FeetBelowFloat#*
+\FeetBelowRagged#*
+\footfootmark#*
+\footfudgefactor#*
+\footinsdim#*
+\footmarkstyle{text}#*
+\footmarkwidth#*
+\footscript{arg}#*
+\foottextfont#*
+\LTRfootfootmark#*
+\LTRfootmarkstyle{text}#*
+\LTRfootscript{arg}#*
+\LTRfoottextfont#*
+\multiplefootnotemarker#*
+\normalRTLparaLTRfootnotes#*
+\RTLfootfootmark#*
+\RTLfootmarkstyle{text}#*
+\RTLfootscript{arg}#*
+\RTLfoottextfont#*
+\setSingleSpace{number}#*
+#endif
+
+#ifOption:Kashida
+\KashidaOn
+\KashidaOff
+#endif
+#ifOption:Kashida=on
+\KashidaOn
+\KashidaOff
+#endif
+
+#ifOption:localise
+\eqcommand{command-name in Persian}{original LaTeX command-name}
+\eqenvironment{environment-name in Persian}{original LaTeX environment-name}
+\makezwnjletter#*
+\EqEnvironment{environment-name in Persian}{original LaTeX environment-name}#*
+#endif
+#ifOption:localise=on
+\eqcommand{command-name in Persian}{original LaTeX command-name}
+\eqenvironment{environment-name in Persian}{original LaTeX environment-name}
+\makezwnjletter#*
+\EqEnvironment{environment-name in Persian}{original LaTeX environment-name}#*
+#endif
+
+#ifOption:DetectColumn
+\DetectColumn{arg1}{arg2}
+\DetectColumn[opt]{arg1}{arg2}
+#endif
+#ifOption:DetectColumn=on
+\DetectColumn{arg1}{arg2}
+\DetectColumn[opt]{arg1}{arg2}
+#endif
+
+#ifOption:perpagefootnote
+#include:bidi-perpage
+#endif
+#ifOption:perpagefootnote=on
+#include:bidi-perpage
+#endif
 
 \xepersianversion#*
 \xepersiandate#*
-\KashidaOn#*
-\KashidaOff#*
-\eqcommand{command-name in Persian}{original LATEX command-name}
-\eqenvironment{environment-name in Persian}{original LATEX environment-name}
 \settextfont{font name}
 \settextfont[Options%keyvals]{font name}
 \settextdigitfont{font name}#*
@@ -71,8 +219,8 @@ localise
 \end{persian}
 \begin{latinitems}
 \end{latinitems}
-\begin{parsiitems}
-\end{parsiitems}
+\begin{persianitems}
+\end{persianitems}
 \lr{text}
 \rl{text}
 \latintoday
@@ -82,9 +230,16 @@ localise
 \prq
 \Latincite{keylist}#c
 \Latincite[add. text]{keylist}
+\harfi{counter}
 \harfinumeral{integer}
+\adadi{counter}
 \adadinumeral{integer}
+\tartibi{counter}
 \tartibinumeral{integer}
+\Abjad{counter}#*
+\Abjadnumeral{integer}#*
+\abjad{counter}#*
+\abjadnumeral{integer}#*
 \ifwritexviii
 \writexviiitrue#*
 \writexviiifalse#*
@@ -155,3 +310,41 @@ WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
 Renderer=%<renderer%>
 #endkeyvals
+
+# not documented
+\begin{latin*}#*
+\end{latin*}#*
+\begin{persian*}#*
+\end{persian*}#*
+\bibname#*
+\ccname#*
+\chaptername#*
+\datename#*
+\defpersianfont{cmd}#Sd
+\enclname#*
+\headtoname#*
+\IfxepersianPackageVersion{version}{true}{false}#*
+\IfxepersianPackageVersionBefore{version}{true}{false}#*
+\IfxepersianPackageVersionLater{version}{true}{false}#*
+\iranicdefault#*
+\LatinAlphs#*
+\latinfont#*
+\navardefault#*
+\originaltoday#S
+\pagename#*
+\PersianAlphs#*
+\persianfont#*
+\persiansfdefault#*
+\persianttdefault#*
+\pookdefault#*
+\proofname#*
+\redeflatinfont%<\CS%>[%<Options%>]{%<font name%>}#*
+\redeflatinfont{cmd}#Sd
+\redefpersianfont%<\CS%>[%<Options%>]{%<font name%>}#*
+\resetlatinfont#*
+\sayehdefault#*
+\setfontsize[opt]{arg}#*
+\setfontsize{arg}#*
+\setpersianfont#*
+\TextDigitFontOff#*
+\TextDigitFontOn#*

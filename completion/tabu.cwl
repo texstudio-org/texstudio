@@ -33,7 +33,7 @@ debugshow
 \tabucline{%<from%>-%<to%>}
 \tabucline[%<spec%>]{%<from%>-%<to%>}
 \savetabu{username}
-\preamble
+\preamble{username}
 \tabuphantomline
 \tabulinesep = %<dimen%>
 \extrarowdepth
