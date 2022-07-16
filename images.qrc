@@ -198,6 +198,8 @@
         <file>images-ng/classic/windowed-viewer.svgz</file>
         <file>images-ng/classic/zoom-in.svgz</file>
         <file>images-ng/classic/zoom-out.svgz</file>
+        <file>images-ng/classic/zoom-in-magnifier.svg</file>
+        <file>images-ng/classic/zoom-out-magnifier.svg</file>
         <file>images-ng/modern/close.svg</file>
         <file>images-ng/modern/dfrac.svg</file>
         <file>images-ng/modern/embedded-viewer.svg</file>
