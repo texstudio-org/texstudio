@@ -384,6 +384,7 @@
 <file>completion/bmpsize.cwl</file>
 <file>completion/bnumexpr.cwl</file>
 <file>completion/bodegraph.cwl</file>
+<file>completion/bodeplot.cwl</file>
 <file>completion/bohr.cwl</file>
 <file>completion/boisik.cwl</file>
 <file>completion/boites.cwl</file>
@@ -583,6 +584,7 @@
 <file>completion/class-bookshelf.cwl</file>
 <file>completion/class-brandeis-thesis.cwl</file>
 <file>completion/class-brief.cwl</file>
+<file>completion/class-buctcover.cwl</file>
 <file>completion/class-buctthesis.cwl</file>
 <file>completion/class-businesscard-qrcode.cwl</file>
 <file>completion/class-caesar_book.cwl</file>
@@ -1305,6 +1307,7 @@
 <file>completion/fixme.cwl</file>
 <file>completion/fjodor.cwl</file>
 <file>completion/flagderiv.cwl</file>
+<file>completion/flexipage.cwl</file>
 <file>completion/flexisym.cwl</file>
 <file>completion/flippdf.cwl</file>
 <file>completion/float.cwl</file>
@@ -3144,6 +3147,7 @@
 <file>completion/twoopt.cwl</file>
 <file>completion/twoup.cwl</file>
 <file>completion/tx-ds.cwl</file>
+<file>completion/txfontsb.cwl</file>
 <file>completion/txfonts.cwl</file>
 <file>completion/txgreeks.cwl</file>
 <file>completion/tx-of.cwl</file>
