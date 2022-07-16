@@ -348,6 +348,7 @@ private:
 	static QCursor	*magnifierCursor;
 	static QCursor	*zoomInCursor;
 	static QCursor	*zoomOutCursor;
+	static QCursor	*focusedHandCursor;
 
 	mutable QSizeF maxPageSize; //cache pageSize
 	mutable QRectF horizontalTextRange;
