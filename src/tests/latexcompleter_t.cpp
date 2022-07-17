@@ -304,7 +304,7 @@ void LatexCompleterTest::simple(){
 		edView->editor->insertText(preinsert);
 		QEQUAL(edView->editor->text(), preres);
 	}
-	edView->complete(0);
+    edView->complete(LatexCompleter::CF_DISABLE_MU_SORTING);
 	foreach (const QString& s, log){
 		char key = s.at(0).toLatin1();
 		QTest::keyClick(edView->editor, key);
@@ -465,7 +465,7 @@ void LatexCompleterTest::keyval(){
         QEQUAL(edView->editor->text(), preres);
     }
     edView->getCompleter()->setWorkPath(workingDir);
-    edView->complete(completerFlag);
+    edView->complete(completerFlag | 2048); // disable mu sorting for testing
     foreach (const QString& s, log){
         char key = s.at(0).toLatin1();
         if(key=='\n'){

@@ -48,7 +48,8 @@ public:
 						 CF_FORCE_KEYVAL = 128, ///< complete key/value pair
 						 CF_FORCE_SPECIALOPTION = 256,
                          CF_FORCE_LENGTH = 512, ///< complete a a length
-                         CF_FORCE_REFLIST = 1024}; ///< complete a reference list (more than one reference,separated by comma)
+                         CF_FORCE_REFLIST = 1024, ///< complete a reference list (more than one reference,separated by comma)
+                         CF_DISABLE_MU_SORTING = 2048};  ///< special mode to avoid most-used first sorting for easier testing
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag)
 
     LatexCompleter(const LatexParser &latexParser, QObject *p = nullptr); ///< constructor
@@ -130,6 +131,8 @@ private:
 	bool forcedLength;
 	bool startedFromTriggerKey;
 	QString workingDir;
+
+    bool disable_mu_sorting;
 
 	QPoint lastPos;
 	bibtexReader *bibReader;

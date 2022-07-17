@@ -15,7 +15,7 @@ class CompletionListModel : public QAbstractListModel
 	Q_OBJECT
 
 public:
-	CompletionListModel(QObject *parent = 0): QAbstractListModel(parent), mostUsedUpdated(false), mCanFetchMore(false), mLastMU(0), mLastType(CodeSnippet::none), mEnvMode(false), mWordCount(0), mCitCount(-1) {}
+    CompletionListModel(QObject *parent = 0): QAbstractListModel(parent), mostUsedUpdated(false), mCanFetchMore(false), mLastMU(0), mLastType(CodeSnippet::none), mEnvMode(false),m_disable_mostUsed_sorting(false), mWordCount(0), mCitCount(-1) {}
 
 	int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role)const;
@@ -38,6 +38,8 @@ public:
 	void setContextWords(const QSet<QString> &newwords, const QString &context);
 	void setKeyValWords(const QString &name, const QSet<QString> &newwords);
 
+    void setDisableMostUsedSorting(bool set);
+
 private:
 	friend class LatexCompleter; //TODO: make this unnecessary
     QList<CompletionWord> words;
@@ -58,6 +60,7 @@ private:
 	CompletionWord mLastWordInList;
 
 	bool mEnvMode;
+    bool m_disable_mostUsed_sorting;
 
 	int mWordCount, mCitCount;
 

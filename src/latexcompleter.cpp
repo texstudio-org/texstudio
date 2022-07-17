@@ -880,7 +880,12 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
 	}
     std::sort(newWordList.begin(), newWordList.end());
 
-	keyValLists.insert(name, newWordList);
+    keyValLists.insert(name, newWordList);
+}
+
+void CompletionListModel::setDisableMostUsedSorting(bool set)
+{
+    m_disable_mostUsed_sorting=set;
 }
 
 void CompletionListModel::setContextWords(const QSet<QString> &newwords, const QString &context)
@@ -1177,16 +1182,17 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                 }
                             }
                         } else {
-
-                            if(mostUsedPosition>=0){
-                                if(it->usageCount>mostUsedCW.usageCount){
-                                    mostUsedCW=*it;
-                                    mostUsedPosition=words.size(); // point to last valid element, will be filled below
-                                }
-                            }else{
-                                if(it->usageCount>0){ // don't bother with never used cw
-                                    mostUsedCW=*it;
-                                    mostUsedPosition=words.size();
+                            if(!m_disable_mostUsed_sorting){
+                                if(mostUsedPosition>=0){
+                                    if(it->usageCount>mostUsedCW.usageCount){
+                                        mostUsedCW=*it;
+                                        mostUsedPosition=words.size(); // point to last valid element, will be filled below
+                                    }
+                                }else{
+                                    if(it->usageCount>0){ // don't bother with never used cw
+                                        mostUsedCW=*it;
+                                        mostUsedPosition=words.size();
+                                    }
                                 }
                             }
                             words.append(*it);
@@ -1433,7 +1439,7 @@ LatexReference *LatexCompleter::latexReference = nullptr;
 LatexCompleterConfig *LatexCompleter::config = nullptr;
 
 LatexCompleter::LatexCompleter(const LatexParser &latexParser, QObject *p): QObject(p), latexParser(latexParser), maxWordLen(0), editorAutoCloseChars(false), forcedRef(false),
-	forcedGraphic(false), forcedCite(false), forcedPackage(false), forcedKeyval(false), forcedSpecialOption(false), forcedLength(false), startedFromTriggerKey(false)
+    forcedGraphic(false), forcedCite(false), forcedPackage(false), forcedKeyval(false), forcedSpecialOption(false), forcedLength(false), startedFromTriggerKey(false),disable_mu_sorting(false)
 {
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget *>(parent()))
@@ -1694,6 +1700,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 	forcedSpecialOption = flags & CF_FORCE_SPECIALOPTION;
 	forcedLength = flags & CF_FORCE_LENGTH;
 	startedFromTriggerKey = !(flags & CF_FORCE_VISIBLE_LIST);
+    disable_mu_sorting = flags & CF_DISABLE_MU_SORTING;
+    listModel->setDisableMostUsedSorting(disable_mu_sorting);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor, SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
 		if (newEditor) connect(newEditor, SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
