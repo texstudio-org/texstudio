@@ -452,13 +452,13 @@ bool LatexStyleParser::parseLineDecMathSym(QStringList &results, const QString &
 
 bool LatexStyleParser::parseLineRequire(QStringList &results, const QString &line)
 {
-	static QRegExp rxRequire("\\\\(RequirePackage|RequirePackageWithOptions)\\s*\\{(\\S+)\\}");
+    static QRegExp rxRequire("\\\\(RequirePackage|RequirePackageWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(\\S+)\\}");
 	rxRequire.setMinimal(true);
 
 	if (rxRequire.indexIn(line) == -1) {
 		return false;
 	}
-	QString arg = rxRequire.cap(2);
+    QString arg = rxRequire.cap(3);
 	foreach (QString elem, arg.split(',')) {
 		QString package = elem.remove(' ');
 		if (!package.isEmpty())
@@ -469,12 +469,12 @@ bool LatexStyleParser::parseLineRequire(QStringList &results, const QString &lin
 
 bool LatexStyleParser::parseLineRequireStart(QStringList &results, const QString &line, bool &inRequirePackage)
 {
-	static const QRegExp rxRequireStart("\\\\(RequirePackage|RequirePackageWithOptions)\\s*\\{(.+)");
+    static const QRegExp rxRequireStart("\\\\(RequirePackage|RequirePackageWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(.+)");
 
 	if (rxRequireStart.indexIn(line) == -1) {
 		return (false);
 	}
-	QString arg = rxRequireStart.cap(2);
+    QString arg = rxRequireStart.cap(3);
 	int requireEnd = arg.indexOf('}');
 	if (requireEnd >= 0) {
 		arg = arg.left(requireEnd);

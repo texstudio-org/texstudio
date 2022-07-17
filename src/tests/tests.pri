@@ -62,4 +62,7 @@
 		src/tests/structureview_t.h
 }
 
+SOURCES += \
+    $$PWD/latexstyleparser_t.cpp
+
 
