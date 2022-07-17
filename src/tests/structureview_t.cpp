@@ -9,9 +9,7 @@
 #include "qeditor.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
-StructureViewTest::StructureViewTest(LatexEditorView* editor,LatexDocument *doc, bool all): edView(editor),document(doc), all(all){
-    document->lp.possibleCommands["%structure1"].insert("\\chapter");
-}
+StructureViewTest::StructureViewTest(LatexEditorView* editor,LatexDocument *doc, bool all): edView(editor),document(doc), all(all){}
 
 void StructureViewTest::script_data(){
 	const QString trLabels = LatexDocument::tr("LABELS");
