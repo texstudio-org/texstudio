@@ -1174,3 +1174,7 @@ buctcover:
 class-buctcover
 latex-document
 tex
+jlreq:
+class-jlreq
+latex-document
+tex

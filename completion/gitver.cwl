@@ -1,11 +1,13 @@
 # gitver package
-# Matthew Bertucci 1/10/2022 for v1.3
+# Matthew Bertucci 2022/07/18 for v1.4
 
-#include:catchfile
-#include:datetime2
 #include:hyperref
-#include:ifluatex
+#include:catchfile
 #include:pdftexcmds
+#include:datetime2
+#include:ifthen
+#include:xparse
+#include:ifluatex
 #include:shellesc
 
 #keyvals:\usepackage/gitver#c
@@ -15,3 +17,6 @@ nopdfinfo
 
 \gitVer
 \versionBox
+
+\getenv{env-var}#*
+\getenv[cmd]{env-var}#*d

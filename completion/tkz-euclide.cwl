@@ -1,11 +1,12 @@
 # tkz-euclide package
-# Matthew Bertucci 3/8/2022 for v4.051b
+# Matthew Bertucci 2022/07/16 for v4.2c
 
 #include:tikz
-# loads angles, arrows, arrows.meta, calc, decorations, decorations.markings
+# loads angles, arrows, arrows.meta, backgrounds, calc, decorations, decorations.markings
 # decorations.pathreplacing, decorations.shapes, decorations.text, decorations.pathmorphing
-# intersections, plotmarks, quotes, and shapes.misc tikzlibraries
+# intersections, math, plotmarks, positioning, quotes, shapes.misc, and through tikzlibraries
 #include:xfp
+#include:xpatch
 
 ### II. Setting ###
 
@@ -72,6 +73,8 @@ show#true,false
 /tkzcompass/delta=%<number%>
 #endkeyvals
 
+\tkzDefMidArc(A,B,C)
+
 ## Special points relating to a triangle ##
 \tkzDefTriangleCenter(point1,point2,point3)
 \tkzDefTriangleCenter[options%keyvals](point1,point2,point3)
@@ -114,9 +117,10 @@ pos=%<number%>
 \tkzDefPointOnCircle[options%keyvals]
 
 #keyvals:\tkzDefPointOnCircle#c
-angle=%<degrees%>
-center=%<point%>
-radius=%<number%>
+through=center %<point1%> angle %<degrees%> point %<point2%>
+R=center %<point%> angle %<degrees%> radius %<radius%>
+through in rad=center %<point1%> angle %<radians%> point %<point2%>
+R in rad=center %<point%> angle %<radians%> radius %<radius%>
 #endkeyvals
 
 ## Definition of points by transformation : \tkzDefPointBy ##
@@ -165,6 +169,11 @@ orthogonal=through %<point%>
 parallel=through %<point%>
 bisector
 bisector out
+symmedian
+altitude
+euler
+tangent at=%<point%>
+tangent from=%<point%>
 K=%<number%>
 normed#true,false
 #endkeyvals
@@ -242,7 +251,7 @@ side
 \tkzDefCircle[options%keyvals](point1,point2)
 
 #keyvals:\tkzDefCircle#c
-through
+R
 diameter
 circum
 in
@@ -251,6 +260,8 @@ euler
 nine
 spieker
 apollonius
+orthogonal from=%<point%>
+orthogonal through=%<point1%> and %<point2%>
 K=%<number%>
 #endkeyvals
 
@@ -265,8 +276,6 @@ reflection=over %<point1%>--%<point2%>
 symmetry=center %<point%>
 projection=onto %<point1%>--%<point2%>
 rotation=center %<point%> angle %<degrees%>
-orthogonal from=%<point%>
-orthogonal through=%<point%>
 inversion=center %<point1%> through %<point2%>
 #endkeyvals
 
@@ -293,6 +302,7 @@ with nodes
 
 ## The angles ##
 \tkzGetAngle(csname)
+\tkzAngleResult
 \tkzFindAngle(point1,point2,point3)
 \tkzFindSlopeAngle(point1,point2)
 
@@ -547,6 +557,7 @@ R
 R with nodes
 angles
 delta=%<number%>
+reverse
 color=#%color
 %color
 solid
@@ -619,8 +630,10 @@ double distance=##L
 
 \tkzFillCircle(point1,point2)
 \tkzFillCircle[options%keyvals](point1,point2)
+\tkzFillCircles(pt1,pt2 pt3,pt4 ...)
+\tkzFillCircles[options%keyvals](pt1,pt2 pt3,pt4 ...)
 
-#keyvals:\tkzFillCircle#c
+#keyvals:\tkzFillCircle#c,\tkzFillCircles#c
 radius
 R
 color=#%color
@@ -701,8 +714,6 @@ out
 \tkzClipCircle[options%keyvals](point1,point2)
 
 #keyvals:\tkzClipCircle#c
-radius
-R
 out
 #endkeyvals
 
@@ -771,6 +782,11 @@ color=#%color
 %color
 line width=##L
 #endkeyvals
+
+\tkzPicAngle(A,O,B)
+\tkzPicAngle[TikZ options](A,O,B)
+\tkzPicRightAngle(A,O,B)
+\tkzPicRightAngle[TikZ options](A,O,B)
 
 ### VI. Labelling ###
 
@@ -1015,6 +1031,12 @@ cm#true,false
 \tkzcmtopt(number){csname}
 \tkzGetPointCoord(point){csname}
 \tkzSwapPoints(A,B)
+\tkzDotProduct(A,B,C)
+\tkzPowerCircle(A)(O,M)
+\tkzDefRadicalAxis(A,B)(C,D)
+\tkzIsLinear(A,B,C)
+\tkzIsOrtho(A,B,C)
+\tkzGetResult{csname}
 
 ### VIII. Working with style ###
 
@@ -1045,6 +1067,7 @@ shape=#circle,cross,cross out
 color=#%color
 line width=##L
 style=#solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed,dash dot,densely dash dot,loosely dash dot,dash dot dot,densely dash dot dot ,loosely dash dot dot
+add=%<num1%> and %<num2%>
 #endkeyvals
 
 #keyvals:\tkzSetUpLine#c
@@ -1061,23 +1084,12 @@ delta=%<number%>
 ## Own style ##
 \tkzSetUpStyle[TikZ options]{style name}
 \tkzLengthResult#*
-\tkzAngleResult#*
 
 ## miscellaneous
 \fileversion#S
 \filedate#S
-\tkzLengthResult#*
-\tkzAngleResult#*
 
 ## deprecated
-\tkzDrawSquare(point1,point2)#S
-\tkzDrawSquare[options](point1,point2)#S
-\tkzDrawGoldRectangle(point1,point2)#S
-\tkzDrawGoldRectangle[options](point1,point2)#S
-\tkzDrawGoldenRectangle(point1,point2)#S
-\tkzDrawGoldenRectangle[options](point1,point2)#S
-\tkzDrawRectangle(point1,point2)#S
-\tkzDrawRectangle[options](point1,point2)#S
 \tkzDrawBisector(point1,point2,point3)#S
 \tkzDefIntSimilitudeCenter(point1,num1)(point2,num2)#S
 \tkzDefExtSimilitudeCenter(point1,num1)(point2,num2)#S
@@ -1097,6 +1109,12 @@ delta=%<number%>
 # from tkz-euclide.sty
 \tkzRadius#*
 \tkzLength#*
+\iftkzLinear#*
+\tkzLineartrue#*
+\tkzLinearfalse#*
+\iftkzOrtho#*
+\tkzOrthotrue#*
+\tkzOrthofalse#*
 
 # from tkz-tools-eu-colors.tex
 \setupcolorkeys{options}#*
@@ -1119,6 +1137,8 @@ delta=%<number%>
 \ReplaceSubStrings{arg1}{arg2}{arg3}{arg4}#*
 \DisabledNumprint#*
 \EnabledNumprint#*
+\tkzMathResult#*
+\tkzHelpGrid#*
 
 # from tkz-tools-eu-text.tex
 \tkzText(x,y){text}
@@ -1191,8 +1211,7 @@ tickrt=##L
 \tkzClipOutPolyfalse#*
 
 # from tkz-obj-eu-draw-circles.tex
-\tkzDrawSemiCircleThrough(point1,point2)#*
-\tkzDrawSemiCircleDiameter(point1,point2)#*
+\tkzSetUpCircle[options]#*
 \iftkzClipOutCircle#*
 \tkzClipOutCircletrue#*
 \tkzClipOutCirclefalse#*
@@ -1251,6 +1270,12 @@ line width=##L
 \tkzDefTangentialTriangle[options](point1,point2,point3)(ref1,ref2)#*
 \tkzDefSymmedialTriangle[options](point1,point2,point3)(ref1,ref2)#*
 
+# from tkz-obj-eu-draw-points.tex
+\tkzPointShowCoord(point)#*
+\tkzPointShowCoord[options%keyvals](point)#*
+\tkzShowPointCoord(point)#*
+\tkzShowPointCoord[options%keyvals](point)#*
+
 # from tkz-obj-eu-draw-triangles.tex
 \tkzDrawTriangles(points)#*
 \tkzDrawTriangles[options](points)#*
@@ -1268,14 +1293,9 @@ line width=##L
 \tkzFeuerBachCircle(point1,point2,point3)#*
 \tkzDefEulerRadius(point1,point2,point3)#*
 \tkzDefApolloniusCircle(point1,point2)#*
-\tkzDefApolloniusRadius[options](point1,point2)#*
-\tkzDefApolloniusPoint[options](point1,point2)#*
-\tkzApolloniusCenter[options](point1,point2)#*
 \tkzDefOrthogonalCircle(point1,point2,point3)#*
 \tkzDefOrthoThroughCircle(point1,point2,point3,point4)#*
 \tkzDefSpiekerCircle(point1,point2,point3)#*
-\tkzDefInversionCircle(point1,point2,point3,point4)#*
-\tkzDefInversionNegativeCircle(point1,point2,point3,point4)#*
 
 # from tkz-obj-eu-sectors.tex
 \tkzDrawSectorRAngles[options](point1,point2)(point3)#*
@@ -1297,6 +1317,8 @@ line width=##L
 \tkzDefBisectorLine(point1,point2,point3)#*
 \tkzDefBisectorOutLine(point1,point2,point3)#*
 \tkzDefSymmedianLine(point1,point2,point3)#*
+\tkzDefAltitudeLine(point1,point2,point3)#*
+\tkzDefEulerLine(point1,point2,point3)#*
 \tkzTgtAt(point1)(point2)#*
 \tkzTgtFromP(point1,point2)(point3)#*
 \tkzTgtFromPR(point1,point2)(point3)#*
@@ -1305,13 +1327,8 @@ line width=##L
 \tkzRegPolygonCenter(point1,point2)#*
 \tkzRegPolygonSide(point1,point2)#*
 
-# # from tkz-obj-eu-points.tex
+# from tkz-obj-eu-points.tex
 \tkzRenamePoint(arg1){arg2}#*
-
-\tkzPointShowCoord(point)#*
-\tkzPointShowCoord[options%keyvals](point)#*
-\tkzShowPointCoord(point)#*
-\tkzShowPointCoord[options%keyvals](point)#*
 
 #keyvals:\tkzPointShowCoord#c,\tkzShowPointCoord#c
 xlabel=%<text%>

@@ -1,8 +1,8 @@
 # tkz-base package
-# Matthew Bertucci 1/6/2022 for v4.00b
+# Matthew Bertucci 1/6/2022 for v4.2c
 
 #include:tikz
-# loads angles, arrows, arrows.meta, calc, decorations, decorations.markings, decorations.pathreplacing
+# loads angles, arrows, arrows.meta, backgrounds, calc, decorations, decorations.markings, decorations.pathreplacing
 # decorations.shapes, decorations.text, decorations.pathmorphing, intersections, plotmarks, quotes
 # shapes.misc, positioning, shadows, patterns, and through tikzlibraries
 #include:numprint
@@ -347,6 +347,13 @@ line#true,false
 \ReplaceSubStrings{arg1}{arg2}{arg3}#*
 \DisabledNumprint#*
 \EnabledNumprint#*
+\tkzSwapPoints(A,B)
+\tkzPermute(A,B,C)
+\tkzDotProduct(A,B,C)
+\tkzGetResult{name}
+\tkzIsLinear(A,B,C)
+\tkzIsOrtho(A,B,C)
+\tkzHelpGrid#*
 
 # from tkz-tools-colors.tex
 \setupcolorkeys{color keys}#*
