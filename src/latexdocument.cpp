@@ -1233,13 +1233,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {
 		bool forceUpdate = !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
 
-
-        //
-        reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());
-        // don't patch single lines if the whole text needs to be rechecked anyways
-
-        // updateLtxCommands takes 3 arguments
-        // updateLtxCommands = updateCompletionFiles(forceUpdate, false, true, reRunSuggested);
+        reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());     
         updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
 	}
 	if (bibTeXFilesNeedsUpdate)
@@ -2770,8 +2764,6 @@ CodeSnippetList LatexDocument::additionalCommandsList()
 	return pck.completionWords;
 }
 
-// dontPatch unused variable - see deactivated code below
-//bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool forceLabelUpdate, const bool delayUpdate, const bool dontPatch)
 bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool forceLabelUpdate, const bool delayUpdate)
 {
 
@@ -2854,11 +2846,6 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 	}
 	if (needQNFAupdate)
 		parent->requestQNFAupdate();
-
-
-    /*if (!dontPatch && !newCmds.isEmpty()) {
-        patchLinesContaining(newCmds); // deactivate as it seems to lead to a race conditions/crash (#2109)
-    }*/
 
 	if (delayUpdate)
 		return update;

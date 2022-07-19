@@ -167,9 +167,7 @@ public:
 
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
-	Q_INVOKABLE QSet<QString> usedPackages();
-    // dontPatch unused variable - see deactivated code below
-    // bool updateCompletionFiles(const bool forceUpdate,const bool forceLabelUpdate = false,const bool delayUpdate = false, const bool dontPatch = false );
+    Q_INVOKABLE QSet<QString> usedPackages();
     bool updateCompletionFiles(const bool forceUpdate,const bool forceLabelUpdate = false,const bool delayUpdate = false);
     const QSet<QString> &getCWLFiles() const;
 
