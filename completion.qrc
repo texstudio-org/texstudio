@@ -156,6 +156,7 @@
 <file>completion/assoccnt.cwl</file>
 <file>completion/association-matrix.cwl</file>
 <file>completion/assurelatexmode.cwl</file>
+<file>completion/asternote.cwl</file>
 <file>completion/asyalign.cwl</file>
 <file>completion/asycolors.cwl</file>
 <file>completion/asyfig.cwl</file>
@@ -346,6 +347,7 @@
 <file>completion/bidicontour.cwl</file>
 <file>completion/bidi.cwl</file>
 <file>completion/bidihl.cwl</file>
+<file>completion/bidipagegrid.cwl</file>
 <file>completion/bidi-perpage.cwl</file>
 <file>completion/bidipoem.cwl</file>
 <file>completion/bidishadowtext.cwl</file>
@@ -425,6 +427,7 @@
 <file>completion/bussproofs-extra.cwl</file>
 <file>completion/bxbase.cwl</file>
 <file>completion/bxcalcux.cwl</file>
+<file>completion/bxcjkjatype.cwl</file>
 <file>completion/bxdvidriver.cwl</file>
 <file>completion/bxenclose.cwl</file>
 <file>completion/bxghost.cwl</file>
@@ -443,6 +446,7 @@
 <file>completion/byo-twemojis.cwl</file>
 <file>completion/byrne.cwl</file>
 <file>completion/bytefield.cwl</file>
+<file>completion/byzantinemusic.cwl</file>
 <file>completion/cabin.cwl</file>
 <file>completion/caladea.cwl</file>
 <file>completion/calcage.cwl</file>
@@ -676,6 +680,7 @@
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-jacow.cwl</file>
 <file>completion/class-jj_game.cwl</file>
+<file>completion/class-jlreq.cwl</file>
 <file>completion/class-jmlr.cwl</file>
 <file>completion/class-kaobook.cwl</file>
 <file>completion/class-kaohandt.cwl</file>
@@ -841,6 +846,7 @@
 <file>completion/clock.cwl</file>
 <file>completion/cloze.cwl</file>
 <file>completion/clrdblpg.cwl</file>
+<file>completion/clrscode3e.cwl</file>
 <file>completion/clrstrip.cwl</file>
 <file>completion/cmathbb.cwl</file>
 <file>completion/cmbright.cwl</file>
@@ -1122,6 +1128,7 @@
 <file>completion/eforms.cwl</file>
 <file>completion/egothic.cwl</file>
 <file>completion/egplot.cwl</file>
+<file>completion/egypto.cwl</file>
 <file>completion/Eichenla.cwl</file>
 <file>completion/EileenBl.cwl</file>
 <file>completion/Eileen.cwl</file>
@@ -1544,6 +1551,7 @@
 <file>completion/hhline.cwl</file>
 <file>completion/hhtensor.cwl</file>
 <file>completion/hideanswer.cwl</file>
+<file>completion/hiero.cwl</file>
 <file>completion/hieroglf.cwl</file>
 <file>completion/highlightlatex.cwl</file>
 <file>completion/HindMadurai.cwl</file>
@@ -1653,9 +1661,12 @@
 <file>completion/jamtimes.cwl</file>
 <file>completion/jigsaw.cwl</file>
 <file>completion/jkmath.cwl</file>
+<file>completion/jlreq-trimmarks.cwl</file>
 <file>completion/jmlrutils.cwl</file>
 <file>completion/jmsdelim.cwl</file>
 <file>completion/josefin.cwl</file>
+<file>completion/jpneduenumerate.cwl</file>
+<file>completion/jpnedumathsymbols.cwl</file>
 <file>completion/jslogo.cwl</file>
 <file>completion/jumplines.cwl</file>
 <file>completion/junicode.cwl</file>
@@ -2554,6 +2565,7 @@
 <file>completion/pxfonts.cwl</file>
 <file>completion/pxgreeks.cwl</file>
 <file>completion/pxpic.cwl</file>
+<file>completion/pxrubrica.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
 <file>completion/pxtx-frak.cwl</file>
 <file>completion/pygmentex.cwl</file>
@@ -3293,6 +3305,8 @@
 <file>completion/xeCJKfntef.cwl</file>
 <file>completion/xeCJK-listings.cwl</file>
 <file>completion/xecolor.cwl</file>
+<file>completion/xecyr.cwl</file>
+<file>completion/xecyrmongolian.cwl</file>
 <file>completion/xeindex.cwl</file>
 <file>completion/xellipsis.cwl</file>
 <file>completion/xepersian.cwl</file>
@@ -3408,6 +3422,7 @@
 <file>completion/zwpagelayout.cwl</file>
 <file>completion/zxbase.cwl</file>
 <file>completion/zx-calculus.cwl</file>
+<file>completion/zxjafbfont.cwl</file>
 <file>completion/zxjafont.cwl</file>
 <file>completion/zxjatype.cwl</file>
 <file>completion/cwlAliases.dat</file>
