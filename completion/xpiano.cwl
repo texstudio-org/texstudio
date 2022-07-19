@@ -15,13 +15,13 @@ color=#%color
 single#true,false
 ext#true,false
 size=##L
-height=
-ratio=
+height=%<number%>
+ratio=%<number%>
 numbers#true,false
-font=
+font=%<font commands%>
 numbercolor=#%color
-10=
-11=
+10=%<code%>
+11=%<code%>
 #endkeyvals
 
 pianodefault#B

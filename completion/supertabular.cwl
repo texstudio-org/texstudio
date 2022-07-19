@@ -28,3 +28,5 @@ debugshow
 \tabletail{text}
 \topcaption[short]{text}
 \topcaption{text}
+\sttraceon#*
+\sttraceoff#*
