@@ -1,5 +1,5 @@
 # scrlayer package
-# Matthew Bertucci 2022/05/18 for v3.36
+# Matthew Bertucci 2022/07/16 for v3.37
 
 #include:scrkbase
 #include:scrlfile
@@ -32,6 +32,7 @@ markcase=#lower,upper,used,ignoreuppercase,nouppercase,ignoreupper,noupper
 \leftfirstmark#*
 \leftbotmark#*
 \lefttopmark#*
+\headmark#*
 \pagemark#*
 \pnumfont{text}#*
 \partmarkformat#*

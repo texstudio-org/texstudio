@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2022/06/26 for v6.10
+# Matthew Bertucci 2022/07/17 for v6.11
 
 #include:amsmath
 #include:array
@@ -154,7 +154,9 @@ width=##L
 
 #keyvals:\begin{NiceMatrix},\begin{pNiceMatrix},\begin{bNiceMatrix},\begin{BNiceMatrix},\begin{vNiceMatrix},\begin{VNiceMatrix}
 l
+c
 r
+columns-type=#l,c,r
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions
@@ -164,6 +166,7 @@ notes/label-in-tabular=
 notes/label-in-list=
 notes/enumitem-keys={%<enumitem keys%>}
 notes/enumitem-keys-para={%<enumitem keys%>}
+matrix/columns-type=#l,c,r
 notes/code-before=%<code%>
 letter-for-dotted-lines=
 renew-matrix
@@ -362,6 +365,7 @@ color=#%color
 l
 r
 c
+columns-type=#l,c,r
 t
 b
 baseline=
