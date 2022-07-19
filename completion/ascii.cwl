@@ -4,6 +4,7 @@
 #include:xspace
 
 \textascii{char-codes}#n
+\asciifamily#*n
 \asciispace#n
 \asciiquotedbl#n
 \asciihash#n
@@ -20,6 +21,7 @@
 \asciirbrace#n
 \asciitilde#n
 \splitvert#n
+\isosplitvert#*n
 \NUL#n
 \SOH#n
 \STX#n
