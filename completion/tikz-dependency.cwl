@@ -407,7 +407,7 @@ pic text options={%<options%>}
 \groupedge[options%keyvals]{from-gid}{to-gid}{label}{height}
 \depstyle{style name}{options}#s#%depstyle
 
-#keyvals:\begin{dependency}#c,\begin{deptext}#c,\depkeys,\depedge,\deproot,\wordgroup,\groupedge
+#keyvals:\begin{dependency}#c,\begin{deptext}#c,\depkeys#c,\depedge#c,\deproot#c,\wordgroup#c,\groupedge#c
 edge unit distance=##L
 edge height=##L
 edge above#true,false
@@ -419,8 +419,8 @@ arc edge#true,false
 segmented edge#true,false
 arc angle=%<decimal%>
 text only label#true,false
-edge start offset x=##L
-edge end offset x=##L
+edge start x offset=##L
+edge end x offset=##L
 theme=#default,simple,night,brazil,grassy,iron,copper
 edge theme=#default,simple,night,brazil,grassy,iron,copper
 label theme=#default,simple,night,brazil,grassy,iron,copper
