@@ -4,7 +4,7 @@
 #include:filehook
 #include:pgfkeys
 
-\pgffilehook{keyvals}#*
+\pgffilehook{keyvals}
 
 #keyvals:\pgffilehook
 EveryFile
