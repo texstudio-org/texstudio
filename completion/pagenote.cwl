@@ -3,6 +3,11 @@
 
 #include:ifmtarg
 
+#keyvals:\usepackage/pagenote#c
+page
+continuous
+#endkeyvals
+
 \makepagenote
 \printnotes
 \printnotes*
