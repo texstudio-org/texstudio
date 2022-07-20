@@ -5,6 +5,11 @@
 #include:fancyhdr
 #include:graphicx
 #include:tikz
+# loads plotmarks, calc, shapes, positioning, and decorations.text tikzlibraries
+
+#keyvals:\usepackage/tikz-page#c
+textpos
+#endkeyvals
 
 #ifOption:textpos
 #include:textpos
