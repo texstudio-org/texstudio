@@ -4,7 +4,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/tx-ds#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 
