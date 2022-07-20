@@ -10,3 +10,5 @@
 \goaltable{title}{entries}
 \pdmntable{title}{hit policy}{inputs}{outputs}{output vals}{entries}
 \pdmnoutputtable{title}{hit policy}{output}{output val}{probabilities}
+\dmnfileversion#S
+\dmnfiledate#S
