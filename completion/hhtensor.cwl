@@ -4,6 +4,12 @@
 #include:ushort
 #include:amsmath
 
+#keyvals:\usepackage/hhtensor#c
+bold
+uline
+arrow
+#endkeyvals
+
 \matr{symbol}#m
 \tens{symbol}{step}#m
 \dcdot#m
