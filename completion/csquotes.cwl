@@ -318,6 +318,13 @@ swedish=#quotes,guillemets,guillemets*
 
 \DeclareAutoPunct{characters}#*
 
+\mktextelp#*
+\mktextelpins{text}#*
+\mktextinselp{text}#*
+\mktextins{text}#*
+\mktextmod{text}#*
+\mktextdel{text}#*
+
 \BlockquoteDisable{code}#*
 
 \DeclareQuoteGlyph{encoding}{position}#*
@@ -336,3 +343,14 @@ swedish=#quotes,guillemets,guillemets*
 
 \initoquote#*
 \initiquote#*
+
+# not documented
+\csqQQ{arg}#*
+\csqBQbeg{arg}#*
+\csqBQend{arg}#*
+\csqBQsep{arg}#*
+\csqBQ{arg}#*
+\initfrenchquotes#*
+\mkfrenchopenquote{text}#*
+\mkfrenchclosequote{text}#*
+\fixligatures#*
