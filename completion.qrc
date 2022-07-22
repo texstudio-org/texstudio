@@ -76,6 +76,8 @@
 <file>completion/allauncl.cwl</file>
 <file>completion/allcmin.cwl</file>
 <file>completion/allegoth.cwl</file>
+<file>completion/allhmin.cwl</file>
+<file>completion/allhuncl.cwl</file>
 <file>completion/allimaj.cwl</file>
 <file>completion/allimin.cwl</file>
 <file>completion/allpgoth.cwl</file>
@@ -426,6 +428,7 @@
 <file>completion/bussproofs.cwl</file>
 <file>completion/bussproofs-extra.cwl</file>
 <file>completion/bxbase.cwl</file>
+<file>completion/bxcalc.cwl</file>
 <file>completion/bxcalcux.cwl</file>
 <file>completion/bxcjkjatype.cwl</file>
 <file>completion/bxdvidriver.cwl</file>
@@ -679,9 +682,13 @@
 <file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-jacow.cwl</file>
+<file>completion/class-jarticle.cwl</file>
+<file>completion/class-jbook.cwl</file>
 <file>completion/class-jj_game.cwl</file>
 <file>completion/class-jlreq.cwl</file>
+<file>completion/class-jltxdoc.cwl</file>
 <file>completion/class-jmlr.cwl</file>
+<file>completion/class-jreport.cwl</file>
 <file>completion/class-kaobook.cwl</file>
 <file>completion/class-kaohandt.cwl</file>
 <file>completion/class-kdpcover.cwl</file>
@@ -801,6 +808,8 @@
 <file>completion/class-svmono.cwl</file>
 <file>completion/class-svmult.cwl</file>
 <file>completion/class-talk.cwl</file>
+<file>completion/class-tarticle.cwl</file>
+<file>completion/class-tbook.cwl</file>
 <file>completion/class-thesis-ekf.cwl</file>
 <file>completion/class-thuthesis.cwl</file>
 <file>completion/class-tikz-kalender.cwl</file>
@@ -808,6 +817,7 @@
 <file>completion/class-tkz-doc.cwl</file>
 <file>completion/class-tlc-article.cwl</file>
 <file>completion/class-toptesi.cwl</file>
+<file>completion/class-treport.cwl</file>
 <file>completion/class-tufte-book.cwl</file>
 <file>completion/class-tufte-handout.cwl</file>
 <file>completion/class-turabian-researchpaper.cwl</file>
@@ -815,6 +825,9 @@
 <file>completion/class-ucalgmthesis.cwl</file>
 <file>completion/class-ucbthesis.cwl</file>
 <file>completion/class-ucdavisthesis.cwl</file>
+<file>completion/class-ujarticle.cwl</file>
+<file>completion/class-ujbook.cwl</file>
+<file>completion/class-ujreport.cwl</file>
 <file>completion/class-ulthese.cwl</file>
 <file>completion/class-unbtex.cwl</file>
 <file>completion/class-unifith.cwl</file>
@@ -824,7 +837,10 @@
 <file>completion/class-univie-ling-thesis.cwl</file>
 <file>completion/class-univie-ling-wlg.cwl</file>
 <file>completion/class-upmethodology-document.cwl</file>
+<file>completion/class-utarticle.cwl</file>
+<file>completion/class-utbook.cwl</file>
 <file>completion/class-utexasthesis.cwl</file>
+<file>completion/class-utreport.cwl</file>
 <file>completion/class-ut-thesis.cwl</file>
 <file>completion/class-uuthesis2e.cwl</file>
 <file>completion/class-verifica.cwl</file>
@@ -1564,6 +1580,8 @@
 <file>completion/hpstatement.cwl</file>
 <file>completion/hrefhide.cwl</file>
 <file>completion/hulipsum.cwl</file>
+<file>completion/humanist.cwl</file>
+<file>completion/huncial.cwl</file>
 <file>completion/hvarabic.cwl</file>
 <file>completion/hvextern.cwl</file>
 <file>completion/hvfloat.cwl</file>
@@ -2245,6 +2263,7 @@
 <file>completion/overlays.cwl</file>
 <file>completion/overlock.cwl</file>
 <file>completion/overpic.cwl</file>
+<file>completion/pacioli.cwl</file>
 <file>completion/padcount.cwl</file>
 <file>completion/pagecolor.cwl</file>
 <file>completion/pagecont.cwl</file>
@@ -2314,6 +2333,7 @@
 <file>completion/pgfgantt.cwl</file>
 <file>completion/pgf-interference.cwl</file>
 <file>completion/pgfkeys.cwl</file>
+<file>completion/pgfmanual.cwl</file>
 <file>completion/pgfmath.cwl</file>
 <file>completion/pgfmath-xfp.cwl</file>
 <file>completion/pgfmolbio.cwl</file>
@@ -2366,12 +2386,14 @@
 <file>completion/plaintex.cwl</file>
 <file>completion/planets.cwl</file>
 <file>completion/plantuml.cwl</file>
+<file>completion/platex.cwl</file>
 <file>completion/Play.cwl</file>
 <file>completion/PlayfairDisplay.cwl</file>
 <file>completion/plex-mono.cwl</file>
 <file>completion/plex-otf.cwl</file>
 <file>completion/plex-sans.cwl</file>
 <file>completion/plex-serif.cwl</file>
+<file>completion/plext.cwl</file>
 <file>completion/plimsoll.cwl</file>
 <file>completion/plprefix.cwl</file>
 <file>completion/pmboxdraw.cwl</file>
@@ -2551,6 +2573,7 @@
 <file>completion/pst-vowel.cwl</file>
 <file>completion/pst-xkey.cwl</file>
 <file>completion/psvectorian.cwl</file>
+<file>completion/ptex.cwl</file>
 <file>completion/ptext.cwl</file>
 <file>completion/PTMono.cwl</file>
 <file>completion/ptolemaicastronomy.cwl</file>
@@ -3207,6 +3230,7 @@
 <file>completion/universalis.cwl</file>
 <file>completion/unravel.cwl</file>
 <file>completion/upgreek.cwl</file>
+<file>completion/uplatex.cwl</file>
 <file>completion/upmethodology-backpage.cwl</file>
 <file>completion/upmethodology-code.cwl</file>
 <file>completion/upmethodology-document.cwl</file>
@@ -3217,6 +3241,7 @@
 <file>completion/upmethodology-spec.cwl</file>
 <file>completion/upmethodology-task.cwl</file>
 <file>completion/upmethodology-version.cwl</file>
+<file>completion/uptex.cwl</file>
 <file>completion/uri.cwl</file>
 <file>completion/url.cwl</file>
 <file>completion/urwchancal.cwl</file>
@@ -3365,6 +3390,7 @@
 <file>completion/xspace.cwl</file>
 <file>completion/xstring.cwl</file>
 <file>completion/xtab.cwl</file>
+<file>completion/xt_capts.cwl</file>
 <file>completion/xtemplate.cwl</file>
 <file>completion/xucuri.cwl</file>
 <file>completion/xurl.cwl</file>
@@ -3384,6 +3410,7 @@
 <file>completion/ydoc-expl.cwl</file>
 <file>completion/yfonts.cwl</file>
 <file>completion/yhmath.cwl</file>
+<file>completion/youngtab.cwl</file>
 <file>completion/yquant.cwl</file>
 <file>completion/ytableau.cwl</file>
 <file>completion/zahl2string.cwl</file>
