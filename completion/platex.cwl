@@ -65,6 +65,7 @@
 \textgt{text}
 \fixcompositeaccent#*
 \nofixcompositeaccent#*
+\<#*
 \removejfmglue#*
 \iftombow#*
 \tombowfalse#*
