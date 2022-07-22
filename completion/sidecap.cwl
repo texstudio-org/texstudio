@@ -46,3 +46,8 @@ ragged
 
 \begin{wide}
 \end{wide}
+
+# not documented
+\sidecaptionsep#*
+\sidecaptionrelwidth#*
+\sidecaptionvpos{arg1}{arg2}#*

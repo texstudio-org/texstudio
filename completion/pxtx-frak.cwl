@@ -3,7 +3,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/pxtx-frak#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 

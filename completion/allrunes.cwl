@@ -2,6 +2,8 @@
 # tbraun, 28.08.2008
 # Matthew Bertucci 8/6/2021
 
+#include:ifthen
+
 \bar
 \cross
 \dot
@@ -127,3 +129,21 @@
 \hflip{rune}
 \vflip{rune}
 \turn{rune}
+
+# not documented
+\DeclareFontShapeWithSizes{encoding}{family}{series}{shape}{loading-info}#*
+\lfdefault#*
+\bldefault#*
+\mldefault#*
+\lldefault#*
+\stdefault#*
+\rodefault#*
+\cwdefault#*
+\rwdefault#*
+\DeclareRuneSeparators{encoding}#*
+\artdefault#*
+\arndefault#*
+\armdefault#*
+\arldefault#*
+\arcdefault#*
+\aradefault#*

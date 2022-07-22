@@ -3,6 +3,10 @@
 
 #include:kvoptions
 
+#keyvals:\usepackage/grundgesetze#c
+bguq
+#endkeyvals
+
 #ifOption:bguq
 #include:bguq
 #endif

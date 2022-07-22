@@ -1,16 +1,18 @@
 # logicpuzzle package
 # Matthew Bertucci 9/29/2021 for v2.5
 
+#include:xkeyval
 #include:ifthen
 #include:ragged2e
 #include:marginnote
 #include:tikz
+# loads decorations.pathmorphing, decorations.pathreplacing, calc, and shapes.geometric tikzlibraries
 
 \begin{logicpuzzle}
 \begin{logicpuzzle}[options%keyvals]
 \end{logicpuzzle}
 
-\puzzlesetup{options%keyvals}
+\logicpuzzlesetup{options%keyvals}
 
 \begin{puzzlebackground}
 \end{puzzlebackground}
@@ -69,7 +71,9 @@ V
 \ShipR
 \ShipB
 \ShipT
-\ship#S
+\Island
+\Water
+\ship{column}{row}{ship segment}#S
 \placewater{column}{row}
 \placeisland{column}{row}
 \shipH{number list}
@@ -354,7 +358,7 @@ V
 \tunnelsetup{options%keyvals}
 
 ### keyval options ###
-#keyvals:\begin{logicpuzzle},\puzzlesetup,\begin{ddsudoku},\ddsudokusetup,\begin{battleship},\battleshipsetup,\begin{bokkusu},\bokkususetup,\begin{bridges},\bridgessetup,\begin{chaossudoku},\chaossudokusetup,\begin{fourwinds},\fourwindssetup,\begin{hakyuu},\hakyuusetup,\begin{hitori},\hitorisetup,\begin{kakuro},\kakurosetup,\begin{kendoku},\kendokusetup,\begin{killersudoku},\killersudokusetup,\begin{laserbeam},\laserbeamsetup,\begin{magiclabyrinth},\magiclabyrinthsetup,\begin{magnets},\magnetssetup,\begin{masyu},\masyusetup,\begin{minesweeper},\minesweepersetup,\begin{nonogram},\nonogramsetup,\begin{numberlink},\numberlinksetup,\begin{resuko},\resukosetup,\begin{schatzsuche},\schatzsuchesetup,\begin{skyline},\skylinesetup,\begin{slitherlink},\slitherlinksetup,\begin{starbattle},\starbattlesetup,\begin{starsandarrows},\starsandarrowssetup,\begin{lpsudoku},\lpsudokusetup,\begin{sunandmoon},\sunandmoonsetup,\begin{tentsandtrees},\tentsandtreessetup,\begin{tunnel},\tunnelsetup
+#keyvals:\begin{logicpuzzle},\logicpuzzlesetup,\begin{ddsudoku},\ddsudokusetup,\begin{battleship},\battleshipsetup,\begin{bokkusu},\bokkususetup,\begin{bridges},\bridgessetup,\begin{chaossudoku},\chaossudokusetup,\begin{fourwinds},\fourwindssetup,\begin{hakyuu},\hakyuusetup,\begin{hitori},\hitorisetup,\begin{kakuro},\kakurosetup,\begin{kendoku},\kendokusetup,\begin{killersudoku},\killersudokusetup,\begin{laserbeam},\laserbeamsetup,\begin{magiclabyrinth},\magiclabyrinthsetup,\begin{magnets},\magnetssetup,\begin{masyu},\masyusetup,\begin{minesweeper},\minesweepersetup,\begin{nonogram},\nonogramsetup,\begin{numberlink},\numberlinksetup,\begin{resuko},\resukosetup,\begin{schatzsuche},\schatzsuchesetup,\begin{skyline},\skylinesetup,\begin{slitherlink},\slitherlinksetup,\begin{starbattle},\starbattlesetup,\begin{starsandarrows},\starsandarrowssetup,\begin{lpsudoku},\lpsudokusetup,\begin{sunandmoon},\sunandmoonsetup,\begin{tentsandtrees},\tentsandtreessetup,\begin{tunnel},\tunnelsetup
 rows=%<number%>
 columns=%<number%>
 width=##L
@@ -368,7 +372,7 @@ counterstyle=#none,left,right
 cvoffset=##L
 #endkeyvals
 
-#keyvals:\begin{logicpuzzle},\puzzlesetup,\begin{bokkusu},\bokkususetup,\begin{bridges},\bridgessetup,\begin{fourwinds},\fourwindssetup,\begin{kakuro},\kakurosetup,\begin{masyu},\masyusetup,\begin{nonogram},\nonogramsetup,\begin{numberlink},\numberlinksetup,\begin{resuko},\resukosetup
+#keyvals:\begin{logicpuzzle},\logicpuzzlesetup,\begin{bokkusu},\bokkususetup,\begin{bridges},\bridgessetup,\begin{fourwinds},\fourwindssetup,\begin{kakuro},\kakurosetup,\begin{masyu},\masyusetup,\begin{nonogram},\nonogramsetup,\begin{numberlink},\numberlinksetup,\begin{resuko},\resukosetup
 color=#%color
 #endkeyvals
 
@@ -395,3 +399,14 @@ helplines=
 #keyvals:\begin{skyline},\skylinesetup
 sudoku#true,false
 #endkeyvals
+
+# not documented
+\setTikZpreset{TikZ keys}#*
+\logicpuzzlecell{column}{row}{element}#S
+\bridgescell{column}{row}{element}#S
+\hitoricell{column}{row}{element}#S
+\kakurocell{column}{row}{element}#S
+\magnetscell{column}{row}{element}#S
+\minesweepercell{column}{row}{element}#S
+\schatzsuchecell{column}{row}{element}#S
+\sunandmooncell{column}{row}{element}#S

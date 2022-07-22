@@ -2,8 +2,10 @@
 # Matthew Bertucci 10/1/2021 for v2.2
 
 #include:etoolbox
+#include:xkeyval
 #include:trimspaces
 #include:xcolor
+# loads table option of xcolor
 #include:booktabs
 
 \NewKeyValTable{table name}{colspecs}
@@ -38,8 +40,8 @@
 \thekvtTypeRow
 \thekvtTotalRow
 
-\kvtlabel{counter}{label}
-\kvtlabel[options]{counter}{label}#*
+\kvtLabel{counter}{label}#l
+\kvtLabel[options]{counter}{label}#*l
 
 \kvtDeclareTableMacros{macro list}
 \kvtDeclareTableCounters{counter list}
@@ -58,10 +60,18 @@
 
 \kvtSet{options%keyvals}
 
+#keyvals:\kvtSet
+align=%<coltype%>
+default=%<content%>
+format=%<single-arg macro%>
+head=%<content%>
+hidden#true,false
+#endkeyvals
+
 #keyvals:\Row,\CollectRow,\AddKeyValRow,\kvtNewRowStyle,\kvtRenewRowStyle
 uncounted#true,false
 hidden#true,false
-align=
+align=%<coltype%>
 bg=#%color
 format=%<cmd%>
 format*=%<cmd%>
@@ -70,7 +80,31 @@ headlike#true,false
 above=##L
 below=##L
 around=##L
-style=
+style=%<list of style names%>
+expandonce#true,false
+expand#true,false
+#endkeyvals
+
+#keyvals:\kvtSet
+Row/uncounted#true,false
+Row/hidden#true,false
+Row/align=%<coltype%>
+Row/bg=#%color
+Row/format=%<cmd%>
+Row/format*=%<cmd%>
+Row/format!=%<cmd%>
+Row/headlike#true,false
+Row/above=##L
+Row/below=##L
+Row/around=##L
+Row/style=%<list of style names%>
+Row/expandonce#true,false
+Row/expand#true,false
+HeadCell/align=%<coltype%>
+HeadCell/head=%<text%>
+ColGroup/span=%<+ separated columns%>
+ColGroup/align=%<coltype%>
+ColGroup/format=%<single-arg macro%>
 #endkeyvals
 
 #keyvals:\begin{KeyValTable}
@@ -80,7 +114,6 @@ caption=%<text%>
 caption/lot=%<text%>
 caption/alt=%<text%>
 label=##l
-captionpos=#t,b
 #endkeyvals
 
 #keyvals:\NewKeyValTable,\begin{KeyValTable},\ShowCollectedTable,\ShowKeyValTableFile,\ShowKeyValTable,\kvtSet,\kvtNewTableStyle,\kvtRenewTableStyle
@@ -92,11 +125,40 @@ halign=#l,c,r
 showhead#true,false
 showrules#true,false
 norules#true,false
-headalign=
+headalign=%<coltype%>
 headbg=#%color
 headformat=%<cmd%>
 rowbg=#%color
 norowbg#true,false
 nobg#true,false
-style=
+style=%<list of style names%>
+captionpos=#t,b
 #endkeyvals
+
+# not in main documentation
+\metatblRegisterEnv{envname}{properties}#*
+\metatblRegistered{envname}{true}{false}#*
+\metatblIsLong{envname}{true}{false}#*
+\metatblIsTabu{envname}{true}{false}#*
+\metatblHasWidth{envname}{true}{false}#*
+\metatblHasCaption{envname}{true}{false}#*
+\metatblCanVAlign{envname}{true}{false}#*
+\metatblCanHAlign{envname}{true}{false}#*
+\metatblUsePackage{envnames}#*
+\metatblRequire{envnames}#*
+\metatblAtEnd{envname}{code}#*
+
+# from table option of xcolor
+#include:colortbl
+## double command as workaround for color args to be recognized properly as colors
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
+\rowcolors[commands]{row}{color}{color}#S
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
+\rowcolors*[commands]{row}{color}{color}#S
+\showrowcolors
+\hiderowcolors
+\rownum

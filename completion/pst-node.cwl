@@ -14,8 +14,8 @@
 \AplusB(A)(B){C}
 \ArrowNotch{node name}{node index}{direction}{notch}
 \AtoB(A)(B){C}
-\begin{psmatrix}
-\begin{psmatrix}[options%keyvals]
+\begin{psmatrix}#\array
+\begin{psmatrix}[options%keyvals]#\array
 \Circlenode*[options%keyvals]{name}{stuff}#*
 \Circlenode*{name}{stuff}#*
 \Circlenode[options%keyvals]{name}{stuff}#*

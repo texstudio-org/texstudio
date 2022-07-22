@@ -6,6 +6,11 @@
 #include:ifpdf
 #include:ifluatex
 
+#keyvals:\usepackage/pagecolor#c
+pagecolor=#%color
+nopagecolor
+#endkeyvals
+
 \thepagecolor
 \thepagecolornone
 \newpagecolor{color}

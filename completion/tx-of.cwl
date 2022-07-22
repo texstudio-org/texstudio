@@ -3,7 +3,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/tx-of#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 

@@ -1,7 +1,9 @@
 # productbox package
 # Matthew Bertucci 9/11/2021 for v1.1
 
+#include:keyval
 #include:tikz
+# loads calc and fadings tikzlibraries
 
 \begin{ProductBox}
 \begin{ProductBox}[options%keyvals]
@@ -9,7 +11,7 @@
 \ProductBoxSet{options%keyvals}
 
 #keyvals:\begin{ProductBox},\ProductBoxSet
-style=
+style=%<box style%>
 3D
 3d
 threeD
@@ -20,7 +22,7 @@ flareDiameter=##L
 fold
 earSize=##L
 foldLine=#%color
-foldOpacity=
+foldOpacity=%<factor%>
 front
 back
 left
@@ -28,8 +30,8 @@ right
 top
 bottom
 empty
-scale=
-view=
+scale=%<factor%>
+view=%<view number%>
 edgeColor=#%color
 faceSep=##L
 width=##L

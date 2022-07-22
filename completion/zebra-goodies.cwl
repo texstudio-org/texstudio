@@ -8,6 +8,12 @@
 #include:marginnote
 #include:manfnt
 
+#keyvals:\usepackage/zebra-goodies#c
+draft#true,false
+final
+microtype#true,false
+#endkeyvals
+
 \todo{text%todo}#D
 \todo[name]{text%todo}#D
 \note{text}

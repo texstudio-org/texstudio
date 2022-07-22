@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/imfellEnglish#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 #endkeyvals

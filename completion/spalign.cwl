@@ -1,6 +1,19 @@
 # spalign package
 # Matthew Bertucci 9/5/2021
 
+#include:kvoptions
+
+#keyvals:\usepackage/spalign#c
+delims=%<delims%>
+sysdelims=%<delims%>
+matdelimskip=%<space cmd%>
+vecdelimskip=%<space cmd%>
+sysdelimskip=%<space cmd%>
+systabspace=##L
+endofrow=%<character%>
+separator=%<character%>
+#endkeyvals
+
 \spalignarray{contents}#m
 \spalignarray[alignment%keyvals]{contents}#m
 \spalignarray*{contents}#m

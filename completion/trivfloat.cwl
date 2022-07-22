@@ -3,12 +3,15 @@
 
 #include:float
 
+#keyvals:\usepackage/trivfloat#c
+floatrow#true,false
+#endkeyvals
+
 #ifOption:floatrow
 #include:floatrow
 #endif
-
-#keyvals:\usepackage/trivfloat#c
-floatrow
-#endkeyvals
+#ifOption:floatrow=true
+#include:floatrow
+#endif
 
 \trivfloat{envname%envname}#N

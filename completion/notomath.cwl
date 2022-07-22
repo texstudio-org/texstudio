@@ -12,7 +12,6 @@
 
 #keyvals:\usepackage/notomath#c
 scaled=%<factor%>
-scale=%<factor%>
 sfdefault
 proportional
 pf

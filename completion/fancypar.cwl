@@ -1,6 +1,8 @@
 # fancypar package
 # Matthew Bertucci 9/21/2021 for v1.3
 
+#include:xkeyval
+#include:tikz
 #include:xcolor
 
 \fancyparsetup{keyvals}
@@ -34,7 +36,7 @@ textcolortwo=#%color
 \DashedPar[options%keyvals]{text}
 
 #keyvals:\DashedPar,\fancyparsetup
-dashsymbol=
+dashsymbol=%<symbol%>
 dashcolor=#%color
 separation=##L
 #endkeyvals
@@ -43,7 +45,7 @@ separation=##L
 \MarkedPar[options%keyvals]{text}
 
 #keyvals:\MarkedPar,\fancyparsetup
-mark=
+mark=%<symbol%>
 position=#left,right
 #endkeyvals
 
@@ -57,3 +59,31 @@ rulecolor=#%color
 \FancyPreFormat#*
 \FancyFormat#*
 \AddFancyFormat#*
+
+# not documented
+zcolori#B
+zcolorii#B
+lcolor#B
+scolor#B
+rcolor#B
+\thefancycount#*
+\FancyZColorOne#*
+\FancyZColorTwo#*
+\FancyZTextColorOne#*
+\FancyZTextColorTwo#*
+\FancyNlColor#*
+\FancyNilColor#*
+\FancyNilHeight#*
+\FancyNSColor#*
+\FancyNTextColor#*
+\FancyNTWidth#*
+\FancyMark#*
+\FancyUColor#*
+\FancyDSeparation#*
+\FancyDColor#*
+\FancyDSymbol#*
+\textindent#*
+\textindentright#*
+\FancyMarkPosition#*
+\linebox#S
+\leaderfill#*

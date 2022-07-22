@@ -3,7 +3,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/px-ds#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 

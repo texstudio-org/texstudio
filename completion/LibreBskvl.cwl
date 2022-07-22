@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/LibreBskvl#c
-scale=#%<factor%>,MatchLowercase
 scaled=#%<factor%>,MatchLowercase
 lining
 proportional

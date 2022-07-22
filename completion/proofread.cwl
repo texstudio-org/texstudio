@@ -5,6 +5,15 @@
 #include:setspace
 #include:soul
 #include:tikz
+# loads calc and decorations.pathmorphing tikzlibraries
+
+#keyvals:\usepackage/proofread#c
+onehalfspacing
+doublespacing
+corrected
+uncorrected
+frame
+#endkeyvals
 
 \skp
 \skp[number]

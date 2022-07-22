@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 4/10/2022 for v1.55a
+# Matthew Bertucci 2022/07/20 for v1.57
 
 #include:etoolbox
 #include:makecmds
@@ -602,9 +602,11 @@ attic#true,false
 \atticnum#*
 
 #keyvals:\setdefaultlanguage/hebrew#c,\setmainlanguage/hebrew#c,\setotherlanguage/hebrew#c,\textlang/hebrew#c,\texthebrew#c,\begin{lang}/hebrew#c,\begin{hebrew}#c,\selectlanguage/hebrew#c,\foreignlanguage/hebrew#c,\begin{otherlanguage}/hebrew#c,\begin{otherlanguage*}/hebrew#c,\resetdefaultlanguage/hebrew#c,\setlanguagealias/hebrew#c,\setlanguagealias*/hebrew#c,\pghyphenation/hebrew#c,\setlanghyphenmins/hebrew#c
+fullyear#true,false
 numerals=#hebrew,arabic
 calendar=#hebrew,gregorian
 marcheshvan#true,false
+transliteration=#academy,alt
 #endkeyvals
 
 \hebrewnumeral{text}#*

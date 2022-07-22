@@ -5,12 +5,23 @@
 #include:calc
 #include:xspace
 
+#keyvals:\usepackage/listofsymbols#c
+nomencl
+draft
+final
+Final
+pageno
+nopageno
+usexspace
+noxspace
+#endkeyvals
+
 #ifOption:nomencl
 #include:nomencl
 #endif
 
 \opensymdef
-\closeymdef
+\closesymdef
 \newsym{name}{output%formula}
 \newsym[description]{name}{output%formula}
 \newsub{name}{output%formula}
@@ -33,3 +44,4 @@
 \addsymline{sortkey}{symbol}{name}{description}{filehandle}#*
 \symheading#*
 \subheading#*
+\spaceaftersym#*

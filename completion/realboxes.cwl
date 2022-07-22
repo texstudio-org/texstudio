@@ -4,6 +4,16 @@
 #include:collectbox
 #include:adjcalc
 
+#keyvals:\usepackage/realboxes#c
+xcolor
+color
+graphics
+graphicx
+dashbox
+fancybox
+all
+#endkeyvals
+
 \Mbox{content%text}
 \Makebox{content%text}
 \Makebox[width]{content%text}
@@ -92,5 +102,37 @@ units=%<number%>
 #endif
 
 #ifOption:fancybox
+#include:fancybox
+#endif
+
+#ifOption:all
+#include:xcolor
+\Colorbox{color}{content%text}
+\Colorbox[color model]{color}{content%text}
+\Fcolorbox{fcolor}{bgcolor}{content%text}
+\Fcolorbox[fc model]{fcolor}[bg model]{bgcolor}{content%text}
+#include:graphicx
+\Rotatebox{angle}{content%text}
+\Rotatebox[options%keyvals}{angle}{content%text}
+#keyvals:\Rotatebox
+x=##L
+y=##L
+origin=
+units=%<number%>
+#endkeyvals
+\Scalebox{h-scale}{contents%text}
+\Scalebox{h-scale}[v-scale]{content%text}
+\Reflectbox{contents%text}
+\Resizebox{width}{height}{content%text}
+\Resizebox*{width}{totalheight}{content%text}
+#include:dashbox
+\Dbox{content%text}
+\Dashbox{content%text}
+\Dashbox[width]{content%text}
+\Dashbox[width][position]{content%text}
+\Lbox{content%text}
+\Lbox[layers]{content%text}
+\Dlbox{content%text}
+\Dlbox[layers]{content%text}
 #include:fancybox
 #endif

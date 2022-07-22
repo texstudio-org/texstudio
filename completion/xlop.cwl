@@ -15,15 +15,15 @@
 \opidiv{num1}{num2}
 \opidiv[options%keyvals]{num1}{num2}
 
-#keyvals:\opset#c,\opadd#c,\opmanyadd#c,\opsub#c,\opmul#c,\opdiv#c,\opidiv#c,\opgfsqrt#c
-afterperiodsymbol=
-equalsymbol=
-approxsymbol=
-decimalsepsymbol=
-addsymbol=
-subsymbol=
-mulsymbol=
-divsymbol=
+#keyvals:\opset#c,\opadd#c,\opmanyadd#c,\opsub#c,\opmul#c,\opdiv#c,\opidiv#c
+afterperiodsymbol=%<symbol%>
+equalsymbol=%<symbol%>
+approxsymbol=%<symbol%>
+decimalsepsymbol=%<symbol%>
+addsymbol=%<symbol%>
+subsymbol=%<symbol%>
+mulsymbol=%<symbol%>
+divsymbol=%<symbol%>
 voperation=#top,center,bottom
 voperator=#top,center,bottom
 deletezero#true,false
@@ -50,30 +50,30 @@ carrystyle.%<num%>=%<style cmds%>
 \opcolumnwidth#*
 \oplineheight#*
 
-#keyvals:\opadd#c
+#keyvals:\opadd#c,\opset#c
 carryadd#true,false
 lastcarry#true,false
 #endkeyvals
 
-#keyvals:\opmanyadd#c
+#keyvals:\opmanyadd#c,\opset#c
 vmanyoperator=#top,center,bottom,Top,Center,Bottom
 #endkeyvals
 
-#keyvals:\opsub#c
+#keyvals:\opsub#c,\opset#c
 carrysub#true,false
 lastcarry#true,false
 offsetcarry=
 behaviorsub=#silent,warning,error
 #endkeyvals
 
-#keyvals:\opmul#c
+#keyvals:\opmul#c,\opset#c
 displayshiftintermediary=#shift,all,none
 shiftintermediarysymbol=
 displayintermediary=#none,all,nonzero,None
 hfactor=#right,decimal
 #endkeyvals
 
-#keyvals:\opdiv#c,\opidiv#c
+#keyvals:\opdiv#c,\opidiv#c,\opset#c
 maxdivstep=%<integer%>
 safedivstep=%<integer%>
 period#true,false
@@ -91,7 +91,7 @@ strikedecimalsepsymbol=
 \opdiv*[options%keyvals]{num1}{num2}{quotient var}{remainder var}
 \opidiv*{num1}{num2}{quotient var}{remainder var}
 
-#keyvals:\opdiv*#c,\opexpr#c
+#keyvals:\opdiv*#c,\opexpr#c,\opset#c
 maxdivstep=%<integer%>
 safedivstep=%<integer%>
 period#true,false
@@ -120,11 +120,23 @@ period#true,false
 \opsetdecimaldigit{number}{index}{variable}
 \opcmp{num1}{num2}
 \ifopgt
+\opgttrue#S
+\opgtfalse#S
 \ifopge
+\opgetrue#S
+\opgefalse#S
 \ifople
+\opletrue#S
+\oplefalse#S
 \ifoplt
+\oplttrue#S
+\opltfalse#S
 \ifopeq
+\opeqtrue#S
+\opeqfalse#S
 \ifopneq
+\opneqtrue#S
+\opneqfalse#S
 
 \opgcd{num1}{num2}{variable}
 \opdivperiod{num1}{num2}{variable}
@@ -148,3 +160,9 @@ maxdivstep=%<integer%>
 \opexpr[options%keyvals]{expression}{variable}
 \opabs{number}{variable}
 \opneg{number}{variable}
+
+\fileversion#S
+\filedate#S
+\xlopLoaded#S
+\opAtCode#S
+\opHatCode#S
