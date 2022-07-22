@@ -92,7 +92,7 @@
 \dimen#*
 \dimendef#*
 \dimendef{cmd}#Sd
-\discretionary#*
+\discretionary{pre-break}{post-break}{no-break}#*
 \displayindent#*
 \displaylimits#*
 \displaystyle#*
