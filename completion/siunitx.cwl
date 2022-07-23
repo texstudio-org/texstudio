@@ -479,19 +479,53 @@ locale=#DE,UK,US,ZA,FR
 table-column-type=%<tokens%>
 #endkeyvals
 
-### The following options are deprecated but still functional
 ## (deprecated) Detecting Fonts ; section 5.2
 #keyvals:\sisetup
 detect-all
+detect-display-math#true,false
 detect-family#true,false
+detect-inline-family=#text,math
+detect-inline-weight=#text,math
 detect-mode#true,false
 detect-none
 detect-shape#true,false
 detect-weight#true,false
 #endkeyvals
 
+## (deprecated) Font settings ; section 5.3
+#keyvals:\sisetup,\ang,\DeclareSIUnit,\num,\numlist,\numrange,\SI,\si,\SIlist,\SIrange
+math-rm=
+math-sf=
+math-tt=
+text-rm=
+text-sf=
+text-tt=
+text-tt=
+#endkeyvals
+
+## (deprecated) Font settings ; section 5.3 ; with "number-"
+#keyvals:\sisetup,\ang,\DeclareSIUnit,\num,\numlist,\numrange,\SI,\SIlist,\SIrange
+number-math-rm=
+number-math-sf=
+number-math-tt=
+number-text-rm=
+number-text-sf=
+number-text-tt=
+#endkeyvals
+
+## (deprecated) Font settings ; section 5.3 ; with "unit-"
+#keyvals:\sisetup,\ang,\DeclareSIUnit,\SI,\si,\SIlist,\SIrange
+unit-math-rm=
+unit-math-sf=
+unit-math-tt=
+unit-text-rm=
+unit-text-sf=
+unit-text-tt=
+#endkeyvals
+
 ## (deprecated) Parsing numbers ; section 5.4
 #keyvals:\sisetup,\ang,\DeclareSIUnit,\num,\numlist,\numrange,\SI,\SIlist,\SIrange
+input-protect-tokens=
 input-symbols=
 #endkeyvals
 
@@ -499,9 +533,11 @@ input-symbols=
 #keyvals:\sisetup,\ang,\DeclareSIUnit,\num,\numlist,\numrange,\SI,\SIlist,\SIrange
 add-decimal-zero#true,false
 add-integer-zero#true,false
+explicit-sign=
 omit-uncertainty#true,false
 retain-unity-mantissa#true,false
 retain-zero-exponent#true,false
+round-integer-to-decimal#true,false
 scientific-notation=#true,false,fixed,engineering
 zero-decimal-to-integer#true,false
 #endkeyvals
@@ -509,11 +545,20 @@ zero-decimal-to-integer#true,false
 ## (deprecated) Printing numbers ; section 5.6
 #keyvals:\sisetup,\ang,\DeclareSIUnit,\num,\numlist,\numrange,\SI,\SIlist,\SIrange
 bracket-numbers#true,false
+close-bracket=
+copy-complex-root=
+copy-decimal-marker=
+open-bracket=
 #endkeyvals
 
 ## (deprecated) Multi-part numbers ; section 5.7
 #keyvals:\sisetup,\DeclareSIUnit,\num,\numlist,\SI,\SIlist
 fraction-function=
+input-product=
+input-quotient=
+output-product=
+output-quotient=
+quotient-mode=#symbol,fraction
 #endkeyvals
 
 ## (deprecated) Angles ; section 5.9
@@ -526,6 +571,8 @@ arc-separator=
 
 ## (deprecated) Using units ; section 5.12
 #keyvals:\sisetup,\DeclareSIUnit,\SI,\si,\SIlist,\SIrange
+literal-superscript-as-power#true,false
+power-font=#number,unit
 prefixes-as-symbols#true,false
 #endkeyvals
 
@@ -555,59 +602,27 @@ table-space-text-pre=
 table-space-text-post=
 table-sign-exponent#true,false
 table-sign-mantissa#true,false
+table-unit-alignment=#center,right,left
 #endkeyvals
 
-### The following options have been fully removed from the package
-## close-bracket=
-## copy-complex-root=
-## copy-decimal-marker=
-## detect-display-math#true,false
-## detect-inline-family=#text,math
-## detect-inline-weight=#text,math
-## explicit-sign=
-## input-product=
-## input-protect-tokens=
-## input-quotient=
-## literal-superscript-as-power#true,false
-## math-angstrom=
-## math-arcminute=
-## math-arcsecond=
-## math-celsius=
-## math-degree=
-## math-micro=
-## math-ohm=
-## math-rm
-## math-rm=
-## math-sf=
-## math-tt=
-## number-math-rm=
-## number-math-sf=
-## number-math-tt=
-## number-text-rm=
-## number-text-sf=
-## number-text-tt=
-## open-bracket=
-## output-product=
-## output-quotient=
-## power-font=#number,unit
-## quotient-mode=#symbol,fraction
-## redefine-symbols#true,false
-## round-integer-to-decimal#true,false
-## table-unit-alignment=#center,right,left
-## text-angstrom=
-## text-arcminute=
-## text-arcsecond=
-## text-celsius=
-## text-degree=
-## text-micro=
-## text-ohm=
-## text-rm=
-## text-sf=
-## text-tt=
-## text-tt=
-## unit-math-rm=
-## unit-math-sf=
-## unit-math-tt=
-## unit-text-rm=
-## unit-text-sf=
-## unit-text-tt=
+## (deprecated) Symbols ; section 5.15
+#keyvals:\sisetup,\DeclareSIUnit,\SI,\si,\SIlist,\SIrange
+math-angstrom=
+math-celsius=
+math-micro=
+math-ohm=
+text-angstrom=
+text-celsius=
+text-micro=
+text-ohm=
+#endkeyvals
+
+#keyvals:\sisetup,\ang,\DeclareSIUnit,\SI,\si,\SIlist,\SIrange
+math-arcminute=
+math-arcsecond=
+math-degree=
+redefine-symbols#true,false
+text-arcminute=
+text-arcsecond=
+text-degree=
+#endkeyvals
