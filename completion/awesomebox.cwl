@@ -5,6 +5,7 @@
 #include:fontawesome5
 #include:xcolor
 #include:xparse
+#include:ifthen
 
 \notebox{text}
 \tipbox{text}
@@ -35,3 +36,27 @@
 \aweboxvskip#*
 \aweboxsignraise#*
 \aweboxrulewidth#*
+\aweboxlinewidthvar#*
+\aweboxlinewidthref#*
+\awesomeboxadjustcontentwidth#*
+\awesomeboxrestorecontentwidth#*
+\aweboxdebug#*
+
+abnote#B
+abcaution#B
+abwarning#B
+abimportant#B
+abvrulecolor#B
+
+\abIconCheck#*
+\abIconInfoCircle#*
+\abIconFire#*
+\abIconExclamationCircle#*
+\abIconExclamationTriangle#*
+\abIconCogs#*
+\abIconThumbsUp#*
+\abIconThumbsDown#*
+\abIconCertificate#*
+\abIconLightBulb#*
+\abIconTwitter#*
+\abIconGithub#*
