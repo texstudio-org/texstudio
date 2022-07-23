@@ -37,3 +37,5 @@
 \textfrac{upper}{lower}#n
 \artemisiatextdagger#n
 \artemisiatextdaggerdbl#n
+\trademark#n
+\k{arg}#n
