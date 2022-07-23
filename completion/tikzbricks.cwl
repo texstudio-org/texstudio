@@ -1,13 +1,14 @@
 # tikzbricks package
-# Matthew Bertucci 8/12/2021
+# Matthew Bertucci 2022/07/22 for v0.4
 
 #include:tikz
 #include:tikz-3dplot
+#include:xkeyval
 
 \brick{length%plain}{width%plain}
 \brick[options%keyvals]{length%plain}{width%plain}
 
-#keyvals:\brick#c
+#keyvals:\brick#c,\usepackage/tikzbricks#c
 color=#%color
 frontcolor=#%color
 topcolor=#%color
