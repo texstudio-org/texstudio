@@ -219,7 +219,7 @@ void SyntaxCheckTest::checkkeyval_data(){
      QTest::newRow("2 key/value,error value")
              <<"\\SI[color=red,mode=texta]{test}"<<true;
      QTest::newRow("2 key/value,composite key")
-             <<"\\SI[mode=text,math-sf=test]{test}"<<false;
+             <<"\\SI[mode=text,number-mode=math]{test}"<<false;
      QTest::newRow("yathesis without options")
              <<"\\documentclass{yathesis}"<<false;
      QTest::newRow("yathesis with valid option")
