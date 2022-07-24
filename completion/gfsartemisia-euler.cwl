@@ -1,7 +1,7 @@
-# gfsartemisia package
+# gfsartemisia-euler package
 # Matthew Bertucci 8/20/2021 for v1.0
 
-#include:txfonts
+#include:euler
 
 \artemisiatextparagraph#n
 \artemisiatextparagraphalt#n
@@ -35,7 +35,7 @@
 \tabnums{text}#n
 \textparagraphalt#n
 \textfrac{upper}{lower}#n
-\artemisiatextdagger#n
-\artemisiatextdaggerdbl#n
+\artemisiaeulertextdagger#n
+\artemisiaeulertextdaggerdbl#n
 \trademark#n
 \k{arg}#n

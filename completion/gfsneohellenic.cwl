@@ -1,6 +1,10 @@
 # gfsneohellenic package
 # Matthew Bertucci 8/20/2021
 
+#keyvals:\usepackage/gfsneohellenic#c
+default
+#endkeyvals
+
 \textneohellenic{text%plain}#n
 \begin{neohellenic}#n
 \end{neohellenic}#n

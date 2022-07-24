@@ -1,8 +1,13 @@
 # gfsdidot package
 # Matthew Bertucci 8/20/2021
 
+#include:ifthen
 #include:pxfonts
 #include:textcomp
+
+#keyvals:\usepackage/gfsdidot#c
+noGFSDidotTS1
+#endkeyvals
 
 \scslshape#n
 \uishape#n
@@ -24,3 +29,8 @@
 \onethird#n
 \twothirds#n
 \lambdadbl#*n
+\guillemotleft#n
+\guillemotright#n
+\guilsinglleft#n
+\guilsinglright#n
+\k{arg}#n

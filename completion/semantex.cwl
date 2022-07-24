@@ -366,7 +366,7 @@ semtex file#true,false
 \SemantexRecordObject{command}
 \SemantexRecordSource{source%definition}
 
-\SemantexDelimiterSize%<〈delimiter〉%>
+\SemantexDelimiterSize%<⟨delimiter⟩%>
 
 \SemantexThis
 \SemantexSetKeys{keyvals}
