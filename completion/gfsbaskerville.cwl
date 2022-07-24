@@ -20,3 +20,5 @@
 \kai#n
 \pialt#n
 \dagger#n
+\gammaalt#n
+\oulig{arg}#S
