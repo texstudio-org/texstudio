@@ -128,3 +128,7 @@ nojslogo
 \西暦
 \西暦false#*
 \西暦true#*
+
+# deprecated
+\mc#S
+\gt#S
