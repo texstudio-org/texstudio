@@ -379,7 +379,7 @@ jobs:
 
   macosx:
     name: Mac OS X
-    if: false
+    if: true
     runs-on: macos-10.15
 
     steps:
@@ -397,8 +397,10 @@ jobs:
         # but prevents the homebrew install from succeeding
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
-        # install poppler with qt6
-        brew install poppler
+        brew install qt
+        wget https://github.com/sunderme/homebrew-poppler-build/releases/download/22.06.0v0/poppler-qt6--22.06.0.catalina.bottle.tar.gz
+        brew install ./poppler-qt6--22.06.0.catalina.bottle.tar.gz
+        
 
     - name: Configure
       run: /usr/local/opt/qt6/bin/qmake texstudio.pro CONFIG-=debug
