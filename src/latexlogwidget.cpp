@@ -28,7 +28,6 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 
 	errorTable = new QTableView(this);
 	int rowHeight = getOptimalRowHeight(errorTable);
-	errorTable->verticalHeader()->setDefaultSectionSize(rowHeight);
 	QFontMetrics fm(QApplication::font());
 	errorTable->setSelectionBehavior(QAbstractItemView::SelectRows);
 	errorTable->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -37,9 +36,11 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	errorTable->setColumnWidth(2, UtilsUi::getFmWidth(fm, "WarningW"));
 	errorTable->setColumnWidth(3, UtilsUi::getFmWidth(fm, "Line WWWWW"));
 	errorTable->setColumnWidth(4, 20 * UtilsUi::getFmWidth(fm, "w"));
+	errorTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+	errorTable->horizontalHeader()->setSectionsMovable(true);
     connect(errorTable, SIGNAL(clicked(const QModelIndex&)), this, SLOT(clickedOnLogModelIndex(const QModelIndex&)));
+    connect(errorTable->horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(resizeRows()));
 
-	errorTable->horizontalHeader()->setStretchLastSection(true);
 	errorTable->setMinimumHeight(5 * rowHeight);
 	errorTable->setFrameShape(QFrame::NoFrame);
 	errorTable->setSortingEnabled(true);
@@ -112,6 +113,10 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	log->setVisible(false);
 }
 
+void LatexLogWidget::resizeRows()
+{
+	this->errorTable->resizeRowsToContents();
+}
 
 bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiledFileName, QTextCodec* fallbackCodec)
 {
@@ -151,19 +156,8 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
 
 		logpresent = true;
 
-		// workaround to https://sourceforge.net/p/texstudio/feature-requests/622/
-		// There seems to be a bug in Qt (4.8.4) that resizeRowsToContents() does not work correctly if
-		// horizontalHeader()->setStretchLastSection(true) and the tableView has not yet been shown
-		// when iterating through the columns to determine the maximal height, everything is fine
-		// until the last column. There the calculated height is too large.
-		// As a workaround we will temporarily deactivate column stretching.
-		// Note: To reproduce, you can call the viewer via The ViewLog button. When showing the viewer
-		// by clicking the ViewTab, the widget is shown before loading (so there the bug did not appear.)
-		bool visible = errorTable->isVisible();
-		if (!visible) errorTable->horizontalHeader()->setStretchLastSection(false);
 		errorTable->resizeColumnsToContents();
-		errorTable->resizeRowsToContents();
-		if (!visible) errorTable->horizontalHeader()->setStretchLastSection(true);
+		errorTable->horizontalHeader()->setStretchLastSection(true);
 
 		selectLogEntry(0);
 		emit logLoaded();
