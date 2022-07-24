@@ -53,6 +53,7 @@
 <file>completion/aesupp.cwl</file>
 <file>completion/afterpackage.cwl</file>
 <file>completion/afterpage.cwl</file>
+<file>completion/ajmacros.cwl</file>
 <file>completion/akshar.cwl</file>
 <file>completion/Alegreya.cwl</file>
 <file>completion/AlegreyaSans.cwl</file>
@@ -307,6 +308,8 @@
 <file>completion/betababel.cwl</file>
 <file>completion/beton.cwl</file>
 <file>completion/beuron.cwl</file>
+<file>completion/bewerbung-cv.cwl</file>
+<file>completion/bewerbung.cwl</file>
 <file>completion/bez123.cwl</file>
 <file>completion/bezierplot.cwl</file>
 <file>completion/bfhcolors.cwl</file>
@@ -570,6 +573,7 @@
 <file>completion/class-aomart.cwl</file>
 <file>completion/class-apa7.cwl</file>
 <file>completion/class-arabic-book.cwl</file>
+<file>completion/class-argetabelle.cwl</file>
 <file>completion/class-artikel1.cwl</file>
 <file>completion/class-artikel2.cwl</file>
 <file>completion/class-artikel3.cwl</file>
@@ -584,6 +588,7 @@
 <file>completion/class-beamerswitch.cwl</file>
 <file>completion/class-beaulivre.cwl</file>
 <file>completion/class-beilstein.cwl</file>
+<file>completion/class-bewerbung.cwl</file>
 <file>completion/class-bfhbeamer.cwl</file>
 <file>completion/class-bfhpub.cwl</file>
 <file>completion/class-bfhsciposter.cwl</file>
@@ -964,6 +969,7 @@
 <file>completion/copyrightbox.cwl</file>
 <file>completion/CormorantGaramond.cwl</file>
 <file>completion/correctmathalign.cwl</file>
+<file>completion/corridx.cwl</file>
 <file>completion/coseoul.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
 <file>completion/counttexruns.cwl</file>
@@ -1466,6 +1472,7 @@
 <file>completion/getmap.cwl</file>
 <file>completion/gettitlestring.cwl</file>
 <file>completion/gfsartemisia.cwl</file>
+<file>completion/gfsartemisia-euler.cwl</file>
 <file>completion/gfsbaskerville.cwl</file>
 <file>completion/gfsbodoni.cwl</file>
 <file>completion/gfscomplutum.cwl</file>
@@ -1928,6 +1935,7 @@
 <file>completion/luatexbase.cwl</file>
 <file>completion/luatex.cwl</file>
 <file>completion/luatexja-adjust.cwl</file>
+<file>completion/luatexja-ajmacros.cwl</file>
 <file>completion/luatexja-compat.cwl</file>
 <file>completion/luatexja-core.cwl</file>
 <file>completion/luatexja.cwl</file>
@@ -2095,9 +2103,11 @@
 <file>completion/mi-solns.cwl</file>
 <file>completion/missaali.cwl</file>
 <file>completion/mkstmp_pro.cwl</file>
+<file>completion/mlcid.cwl</file>
 <file>completion/mleftright.cwl</file>
 <file>completion/mlist.cwl</file>
 <file>completion/mlmodern.cwl</file>
+<file>completion/mlutf.cwl</file>
 <file>completion/mnotes.cwl</file>
 <file>completion/MnSymbol.cwl</file>
 <file>completion/moderncvcollection.cwl</file>
@@ -2295,6 +2305,7 @@
 <file>completion/ordinalpt.cwl</file>
 <file>completion/orientation.cwl</file>
 <file>completion/Oswald.cwl</file>
+<file>completion/otf.cwl</file>
 <file>completion/otfontdef.cwl</file>
 <file>completion/othelloboard.cwl</file>
 <file>completion/ot-tableau.cwl</file>
@@ -2634,11 +2645,16 @@
 <file>completion/punk.cwl</file>
 <file>completion/puyotikz.cwl</file>
 <file>completion/pvscript.cwl</file>
+<file>completion/pxbabel.cwl</file>
+<file>completion/pxbase.cwl</file>
+<file>completion/pxchfon.cwl</file>
+<file>completion/pxcjkcat.cwl</file>
 <file>completion/px-ds.cwl</file>
 <file>completion/pxfonts.cwl</file>
 <file>completion/pxgreeks.cwl</file>
 <file>completion/pxjahyper.cwl</file>
 <file>completion/pxjahyper-enc.cwl</file>
+<file>completion/pxjodel.cwl</file>
 <file>completion/pxpic.cwl</file>
 <file>completion/pxrubrica.cwl</file>
 <file>completion/pxtx-cal.cwl</file>
@@ -3294,6 +3310,7 @@
 <file>completion/universalis.cwl</file>
 <file>completion/unravel.cwl</file>
 <file>completion/upgreek.cwl</file>
+<file>completion/upkcat.cwl</file>
 <file>completion/uplatex.cwl</file>
 <file>completion/upmethodology-backpage.cwl</file>
 <file>completion/upmethodology-code.cwl</file>
