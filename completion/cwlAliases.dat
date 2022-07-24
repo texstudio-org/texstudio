@@ -1238,3 +1238,11 @@ kiyou:
 class-kiyou
 latex-document
 tex
+argetabelle:
+class-argetabelle
+latex-document
+tex
+bewerbung:
+class-bewerbung
+latex-document
+tex
