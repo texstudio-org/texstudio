@@ -23,7 +23,6 @@ tabular#true,false
 tab#true,false
 proportional#true,false
 prop#true,false
-scale=%<factor%>
 scaled=%<factor%>
 familydefault#true,false
 opentype
