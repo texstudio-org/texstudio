@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/librebaskerville#c
-scale=#%<factor%>,MatchLowercase
 scaled=#%<factor%>,MatchLowercase
 type1
 #endkeyvals
