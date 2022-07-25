@@ -11,7 +11,6 @@
 
 #keyvals:\usepackage/GoSans#c
 scaled=%<factor%>
-scale=%<factor%>
 type1
 medium
 default
