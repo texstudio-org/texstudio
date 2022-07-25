@@ -15,3 +15,11 @@ cases
 \begin{subnumcases}{left side}#\array,math
 \end{subnumcases}
 \end{numcases}
+
+\begin{subequations}
+\end{subequations}
+\begin{subeqnarray}#\math,array
+\end{subeqnarray}
+
+\thesubequation#*
+\themainequation#*
