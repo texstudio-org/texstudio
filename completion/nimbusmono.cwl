@@ -7,7 +7,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/nimbusmono#c
-scale=%<factor%>
 scaled=%<factor%>
 bold
 semibold
