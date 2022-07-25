@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/bitter#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 #endkeyvals
