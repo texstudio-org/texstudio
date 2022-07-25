@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/atkinson#c
-scale=%<factor%>
 scaled=%<factor%>
 default
 sfdefault
