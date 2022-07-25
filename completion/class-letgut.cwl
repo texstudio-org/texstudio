@@ -1059,9 +1059,13 @@ letgut_default_alert_box_color#B
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
 \rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
 \rowcolors*[commands]{row}{color}{color}#S
 \showrowcolors
 \hiderowcolors
