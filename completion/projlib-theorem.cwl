@@ -1,5 +1,5 @@
 # projlib-theorem package
-# Matthew Bertucci 2022/07/04 for 2022/07/03 release
+# Matthew Bertucci 2022/07/04 for 2022/07/23 release
 
 #include:projlib-language
 #include:amsthm
@@ -209,17 +209,45 @@ no preset names#true,false
 \begin{theorem-definition*}[heading%text]
 \end{theorem-definition*}
 
-\begin{theorem-with-name}{arg}
-\begin{theorem-with-name}{arg}[opt]
+\begin{theorem-with-name}{name}
+\begin{theorem-with-name}{name}[heading%text]
 \end{theorem-with-name}
-\begin{theorem-with-name*}{arg}
-\begin{theorem-with-name*}{arg}[opt]
+\begin{theorem-with-name*}{name}
+\begin{theorem-with-name*}{name}[heading%text]
 \end{theorem-with-name*}
 
+\begin{proof}[heading%text]
 \begin{proof*}
 \begin{proof*}[heading%text]
 \end{proof*}
-\theproof#*
 
 \DisableTheoremNumbering{envname}
 \SwitchTheoremNumbering{envname}
+
+\theapplication#*
+\theassertion#*
+\theassumption#*
+\theaxiom#*
+\theclaim#*
+\theconclusion#*
+\theconjecture#*
+\theconstruction#*
+\theconvention#*
+\thecorollary#*
+\thedefinition#*
+\theexample#*
+\theexercise#*
+\thefact#*
+\thehypothesis#*
+\thelemma#*
+\thenotation#*
+\theobservation#*
+\thepostulate#*
+\theproblem#*
+\theproof#*
+\theproperty#*
+\theproposition#*
+\thequestion#*
+\therecall#*
+\theremark#*
+\thetheorem#*
