@@ -7,7 +7,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/caladea#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 
