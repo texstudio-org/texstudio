@@ -8,7 +8,6 @@
 
 #keyvals:\usepackage/lato#c
 scaled=%<factor%>
-scale=%<factor%>
 default
 defaultsans
 oldstyle
