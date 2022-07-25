@@ -6,7 +6,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/nimbusmononarrow#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 
