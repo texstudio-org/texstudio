@@ -6,7 +6,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/nimbusserif#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 
