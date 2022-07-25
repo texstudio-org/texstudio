@@ -9,7 +9,6 @@
 
 #keyvals:\usepackage/zi4#c
 scaled=%<factor%>
-scale=%<factor%>
 hyphenate
 mono
 nott
