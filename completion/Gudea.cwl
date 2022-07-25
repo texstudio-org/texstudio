@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/Gudea#c
-scale=%<factor%>
 scaled=%<factor%>
 lining
 tabular
