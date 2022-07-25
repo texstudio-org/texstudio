@@ -30,7 +30,6 @@ sft#true,false
 sfproportional#true,false
 sfp#true,false
 scaled=%<factor%>
-scale=%<factor%>
 defaultfeatures={%<fontspec features%>}
 #endkeyvals
 
