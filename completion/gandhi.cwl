@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/gandhi#c
-scale=%<factor%>
 scaled=%<factor%>
 sf
 rm
