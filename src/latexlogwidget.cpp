@@ -44,6 +44,11 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	errorTable->setMinimumHeight(5 * rowHeight);
 	errorTable->setFrameShape(QFrame::NoFrame);
 	errorTable->setSortingEnabled(true);
+	errorTable->sortByColumn(-1,Qt::AscendingOrder);
+#if QT_VERSION >= QT_VERSION_CHECK(6,1,0)
+    errorTable->horizontalHeader()->setSortIndicatorClearable(true);
+#endif
+
 
 	proxyModel = new QSortFilterProxyModel(this);
 	proxyModel->setSourceModel(logModel);
