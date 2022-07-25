@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/arimo#c
-scale=%<factor%>
 scaled=%<factor%>
 sfdefault
 type1
