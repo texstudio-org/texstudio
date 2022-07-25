@@ -9,7 +9,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/courierten#c
-scale=#%<factor%>,MatchLowercase
 scaled=#%<factor%>,MatchLowercase
 lining
 tabular
