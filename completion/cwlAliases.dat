@@ -1246,3 +1246,7 @@ bewerbung:
 class-bewerbung
 latex-document
 tex
+europasscv:
+class-europasscv
+latex-document
+tex
