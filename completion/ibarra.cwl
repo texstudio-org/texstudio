@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/ibarra#c
-scale=%<factor%>
 scaled=%<factor%>
 lining
 oldstyle
