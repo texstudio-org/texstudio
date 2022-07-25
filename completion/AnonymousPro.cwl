@@ -4,7 +4,6 @@
 #include:kvoptions
 
 #keyvals:\usepackage/AnonymousPro#c
-scale=%<factor%>
 scaled=%<factor%>
 ttdefault#true,false
 #endkeyvals
