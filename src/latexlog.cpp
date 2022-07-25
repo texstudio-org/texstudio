@@ -44,7 +44,7 @@ QVariant LatexLogModel::data(const QModelIndex &index, int role) const
 	case 2: {
 		int line = log.at(index.row()).oldline;
 		if (line > 0)
-			return tr("line") + QString(" %1").arg(line);
+			return line;
 		return QString();
 	}
 	case 3:
