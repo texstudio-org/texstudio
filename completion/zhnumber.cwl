@@ -1,10 +1,10 @@
 # zhnumber package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
+# edited for v3.0
 
 #include:expl3
 #include:xparse
-#include:l3keys2e
 
 \zhnumber{number}
 \zhnumber[options%keyvals]{number}
@@ -122,6 +122,8 @@ sun=
 #endkeyvals
 
 # not documented
+\zhnumClearWrapper#*
+\zhnumResetWrapper#*
 \zhnumberwithoptions{options}{number}#S
 \zhdigitswithoptions{options}{number}#S
 \zhnumwithoptions{options}{counter}#S
