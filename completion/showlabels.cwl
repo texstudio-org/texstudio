@@ -1,5 +1,5 @@
 # showlabels package
-# Matthew Bertucci 10/13/2021 for v1.9
+# Matthew Bertucci 2022/07/26 for v1.9.2
 
 #keyvals:\usepackage/showlabels#c
 outer
@@ -17,6 +17,7 @@ final
 \showlabels[format cmds]{cmd name}
 
 \showlabelsinline
+\showlabelsmarginal 
 
 \showlabelsfont#*
 \showlabelsetlabel{arg}#*
