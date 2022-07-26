@@ -543,6 +543,7 @@
 <file>completion/chmst-pdf.cwl</file>
 <file>completion/chngcntr.cwl</file>
 <file>completion/chordbars.cwl</file>
+<file>completion/churchslavonic.cwl</file>
 <file>completion/cinzel.cwl</file>
 <file>completion/circle.cwl</file>
 <file>completion/circledsteps.cwl</file>
@@ -638,6 +639,7 @@
 <file>completion/class-elsarticle.cwl</file>
 <file>completion/class-elteikthesis.cwl</file>
 <file>completion/class-emisa.cwl</file>
+<file>completion/class-europasscv.cwl</file>
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
 <file>completion/class-exam-n.cwl</file>
@@ -1004,6 +1006,9 @@
 <file>completion/ctable.cwl</file>
 <file>completion/ctablestack.cwl</file>
 <file>completion/ctex.cwl</file>
+<file>completion/cu-calendar.cwl</file>
+<file>completion/cu-kinovar.cwl</file>
+<file>completion/cu-num.cwl</file>
 <file>completion/currency.cwl</file>
 <file>completion/currfile-abspath.cwl</file>
 <file>completion/currfile.cwl</file>
@@ -1087,6 +1092,7 @@
 <file>completion/dlfltxbmisc.cwl</file>
 <file>completion/dline.cwl</file>
 <file>completion/dljslib.cwl</file>
+<file>completion/dmlb.cwl</file>
 <file>completion/dnaseq.cwl</file>
 <file>completion/doafter.cwl</file>
 <file>completion/docassembly.cwl</file>
@@ -1186,6 +1192,7 @@
 <file>completion/elpreswhitebluescheme.cwl</file>
 <file>completion/elpreswhiteredscheme.cwl</file>
 <file>completion/elpreswhitetealscheme.cwl</file>
+<file>completion/elzcards.cwl</file>
 <file>completion/Elzevier.cwl</file>
 <file>completion/emarks.cwl</file>
 <file>completion/embedall.cwl</file>
@@ -1261,6 +1268,7 @@
 <file>completion/eulerpx.cwl</file>
 <file>completion/eulervm.cwl</file>
 <file>completion/euroitc.cwl</file>
+<file>completion/europasscv-bibliography.cwl</file>
 <file>completion/eurosym.cwl</file>
 <file>completion/euscript.cwl</file>
 <file>completion/everyhook.cwl</file>
@@ -1341,6 +1349,7 @@
 <file>completion/fifo-stack.cwl</file>
 <file>completion/figchild.cwl</file>
 <file>completion/figlatex.cwl</file>
+<file>completion/figput.cwl</file>
 <file>completion/figsize.cwl</file>
 <file>completion/filecontentsdef.cwl</file>
 <file>completion/filehook.cwl</file>
@@ -1574,6 +1583,7 @@
 <file>completion/harveyballs.cwl</file>
 <file>completion/havannah.cwl</file>
 <file>completion/hcycle.cwl</file>
+<file>completion/helmholtz-ellis-ji-notation.cwl</file>
 <file>completion/helvet.cwl</file>
 <file>completion/hep-acronym.cwl</file>
 <file>completion/hep-bibliography.cwl</file>
@@ -2125,6 +2135,7 @@
 <file>completion/moresize.cwl</file>
 <file>completion/moreverb.cwl</file>
 <file>completion/morewrites.cwl</file>
+<file>completion/morisawa.cwl</file>
 <file>completion/MorrisIn.cwl</file>
 <file>completion/mparhack.cwl</file>
 <file>completion/mpgraphics.cwl</file>
@@ -2834,6 +2845,7 @@
 <file>completion/sepfootnotes.cwl</file>
 <file>completion/sepnum.cwl</file>
 <file>completion/seqsplit.cwl</file>
+<file>completion/serbian-lig.cwl</file>
 <file>completion/sesstime.cwl</file>
 <file>completion/setdeck.cwl</file>
 <file>completion/setdim.cwl</file>
@@ -3044,6 +3056,7 @@
 <file>completion/tengwarscript.cwl</file>
 <file>completion/tensind.cwl</file>
 <file>completion/tensor.cwl</file>
+<file>completion/termcal.cwl</file>
 <file>completion/termsim.cwl</file>
 <file>completion/testhyphens.cwl</file>
 <file>completion/testidx.cwl</file>
@@ -3114,6 +3127,7 @@
 <file>completion/thumb.cwl</file>
 <file>completion/thumbs.cwl</file>
 <file>completion/thumby.cwl</file>
+<file>completion/ticket.cwl</file>
 <file>completion/ticollege.cwl</file>
 <file>completion/tikz-3dplot.cwl</file>
 <file>completion/tikz-among-us.cwl</file>
@@ -3323,6 +3337,7 @@
 <file>completion/upmethodology-task.cwl</file>
 <file>completion/upmethodology-version.cwl</file>
 <file>completion/uptex.cwl</file>
+<file>completion/upzhkinsoku.cwl</file>
 <file>completion/uri.cwl</file>
 <file>completion/url.cwl</file>
 <file>completion/urwchancal.cwl</file>
