@@ -45,6 +45,7 @@ private slots:
 	void setWidgetVisibleFromAction(bool visible);
 	void setInfo(const QString &message);
 	void filterChanged(bool);
+	void resizeRows();
 
 private:
 	LatexLogModel *logModel;
