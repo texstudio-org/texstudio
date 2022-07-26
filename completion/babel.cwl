@@ -234,9 +234,54 @@ autoload.options=
 \DJ
 \umlauthigh#*
 \umlautlow#*
+\umlautelow#S
 \latinencoding#*
 \latintext
 \textlatin{text}
+
+# miscellaneous (not for standard use)
+\adddialect#S
+\addlanguage#S
+\AfterBabelCommands{code}#S
+\allowhyphens#S
+\BabelDated{arg}#S
+\BabelDatedd{arg}#S
+\BabelDateDot#S
+\BabelDateM{arg}#S
+\BabelDateMM{arg}#S
+\BabelDateMMMM{arg}#S
+\BabelDateSpace#S
+\BabelDatey{arg}#S
+\BabelDateyy{arg}#S
+\BabelDateyyyy{arg}#S
+\BabelLanguages#S
+\BabelLower{uccode}{lccode}#S
+\BabelLowerMM{uccode-from}{uccode-to}{step}{lccode}#S
+\BabelLowerMO{uccode-from}{uccode-to}{step}{lccode}#S
+\BabelModifiers#S
+\BabelNonASCII#S
+\BabelNonText#S
+\BabelString#S
+\BabelStringsDefault#S
+\BabelText{arg}#S
+\BCPdata{arg}#S
+\EndBabelCommands#S
+\IfBabelLayout{layout}{true}{false}#S
+\IfBabelSelectorTF{selectors}{true}{false}#S
+\LdfInit{language}{captionslanguage}#S
+\loadlocalcfg{file}#Si
+\localename#S
+\ProvidesLanguage{language}#S
+\ProvidesLanguage{language}[release info]#S
+\SetCase[map-list]{to-upper-code}{to-lower-code}#S
+\SetCase{toupper-code}{tolower-code}#S
+\SetHyphenMap{to-lower-macros}#S
+\SetString{macro-name}{string}#S
+\SetStringLoop{macro-name}{string-list}#S
+\StartBabelCommands*{language-list}{category}#S
+\StartBabelCommands*{language-list}{category}[selector]#S
+\StartBabelCommands{language-list}{category}#S
+\StartBabelCommands{language-list}{category}[selector]#S
 
 ### albanian.ldf v1.0d ###
 #ifOption:albanian
