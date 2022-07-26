@@ -1,5 +1,5 @@
 # ctxdoc class
-# Matthew Bertucci 2022-04-19 for release 2021-11-19
+# Matthew Bertucci 2022-07-26 for release 2022-06-07
 
 #include:expl3
 #include:class-l3doc
@@ -73,7 +73,9 @@ openbib
 \end{ctexexam}
 \ctexexamlabelref#*
 \thectexexam#*
-\ctexfixprevdepth#*
+\ctexsetverticalspacing#*
+\ctexfixverticalspacing#*
+\SideBySideExampleSet
 \exptarget
 \rexptarget
 \expstar
