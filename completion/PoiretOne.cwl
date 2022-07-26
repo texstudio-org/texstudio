@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/PoiretOne#c
-scale=%<factor%>
 scaled=%<factor%>
 default
 sfdefault

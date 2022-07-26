@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/classico#c
-scale=%<factor%>
 scaled=%<factor%>
 sfdefault
 type1

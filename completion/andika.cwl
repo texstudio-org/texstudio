@@ -9,7 +9,6 @@
 
 #keyvals:\usepackage/andika#c
 scaled=%<factor%>
-scale=%<factor%>
 default
 sfdefault
 type1

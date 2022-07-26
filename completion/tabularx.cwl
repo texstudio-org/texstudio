@@ -10,6 +10,7 @@ debugshow
 
 \arraybackslash#*
 \begin{tabularx}{width}{preamble}#\tabular
+\begin{tabularx}{width}[pos]{preamble}#\tabular
 \end{tabularx}
 \tabularxcolumn#*
 \tracingtabularx#*

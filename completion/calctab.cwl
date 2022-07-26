@@ -5,13 +5,12 @@
 #include:booktabs
 #include:eurosym
 #include:xcolor
+# loads table option of xcolor
 #include:numprint
 #include:xkeyval
 #include:ifthen
 #include:fltpoint
 #include:xstring
-# from table option of xcolor
-#include:colortbl
 
 \begin{calctab}
 \begin{calctab}[description%text]
@@ -46,3 +45,17 @@ from=%<row id%>
 until=%<row id%>
 %<row id%>
 #endkeyvals
+
+# from table option of xcolor
+#include:colortbl
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
+\rowcolors[commands]{row}{color}{color}#S
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
+\rowcolors*[commands]{row}{color}{color}#S
+\showrowcolors
+\hiderowcolors
+\rownum

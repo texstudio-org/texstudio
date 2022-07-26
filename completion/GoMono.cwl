@@ -10,7 +10,6 @@
 
 #keyvals:\usepackage/GoMono#c
 scaled=%<factor%>
-scale=%<factor%>
 type1
 nomap
 #endkeyvals

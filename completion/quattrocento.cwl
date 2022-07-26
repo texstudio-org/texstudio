@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/quattrocento#c
-scale=%<factor%>
 scaled=%<factor%>
 sf
 rm

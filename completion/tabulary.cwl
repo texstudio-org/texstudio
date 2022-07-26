@@ -7,3 +7,8 @@ debugshow
 
 \begin{tabulary}{width}{preamble}#\tabular
 \end{tabulary}
+
+\arraybackslash#*
+\tyformat#*
+\tymin#*
+\tymax#*

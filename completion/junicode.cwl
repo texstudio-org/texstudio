@@ -7,7 +7,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/junicode#c
-scale=%<factor%>
 scaled=%<factor%>
 lining
 oldstyle

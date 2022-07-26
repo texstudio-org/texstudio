@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/gillius2#c
-scale=%<factor%>
 scaled=%<factor%>
 default
 sfdefault

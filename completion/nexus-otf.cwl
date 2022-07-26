@@ -20,7 +20,6 @@ proportional#true,false
 pf#true,false
 ScaleRM=%<factor%>
 ScaleSF=%<factor%>
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 

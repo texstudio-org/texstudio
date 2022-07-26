@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/coelacanth#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 lining

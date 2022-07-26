@@ -6,7 +6,6 @@
 #include:fontenc
 
 #keyvals:\usepackage/libertinegc#c
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 

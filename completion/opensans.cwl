@@ -8,7 +8,6 @@
 
 #keyvals:\usepackage/opensans#c
 scaled=%<factor%>
-scale=%<factor%>
 default
 defaultsans
 lining

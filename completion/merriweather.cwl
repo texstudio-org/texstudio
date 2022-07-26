@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/merriweather#c
-scale=%<factor%>
 scaled=%<factor%>
 sf
 rm

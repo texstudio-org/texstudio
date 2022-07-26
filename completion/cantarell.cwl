@@ -8,7 +8,6 @@
 
 #keyvals:\usepackage/cantarell#c
 scaled=%<factor%>
-scale=%<factor%>
 default
 defaultsans
 lining

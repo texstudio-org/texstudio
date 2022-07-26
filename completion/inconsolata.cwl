@@ -9,7 +9,6 @@
 
 #keyvals:\usepackage/inconsolata#c
 scaled=%<factor%>
-scale=%<factor%>
 hyphenate
 mono
 nott

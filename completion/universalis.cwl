@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/universalis#c
-scale=%<factor%>
 scaled=%<factor%>
 sfdefault
 type1

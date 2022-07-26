@@ -9,7 +9,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/HindMadurai#c
-scale=#%<factor%>,MatchLowercase
 scaled=#%<factor%>,MatchLowercase
 lining
 tabular

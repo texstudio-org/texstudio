@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/marcellus#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 #endkeyvals

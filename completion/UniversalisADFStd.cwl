@@ -9,7 +9,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/UniversalisADFStd#c
-scale=%<factor%>
 scaled=%<factor%>
 lining
 proportional

@@ -7,7 +7,6 @@
 
 #keyvals:\usepackage/comfortaa#c
 scaled=%<factor%>
-scale=%<factor%>
 default
 defaultsans
 type1

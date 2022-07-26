@@ -7,7 +7,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/josefin#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 medium

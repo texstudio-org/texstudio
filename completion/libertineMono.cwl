@@ -13,8 +13,6 @@
 type1#true,false
 nofontspec#true,false
 ttscaled=%<factor%>
-ttscale=%<factor%>
-scale=%<factor%>
 scaled=%<factor%>
 #endkeyvals
 
