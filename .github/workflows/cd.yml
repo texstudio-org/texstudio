@@ -380,7 +380,7 @@ jobs:
   macosx:
     name: Mac OS X
     if: true
-    runs-on: macos-10.15
+    runs-on: macos-11
 
     steps:
     - name: Checkout
@@ -445,7 +445,7 @@ jobs:
   macosx-qt5:
     name: Mac OS X (Qt5)
     if: false
-    runs-on: macos-10.15
+    runs-on: macos-11
 
     steps:
     - name: Checkout
