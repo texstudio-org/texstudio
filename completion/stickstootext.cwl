@@ -9,7 +9,6 @@
 #include:xkeyval
 
 #keyvals:\usepackage/stickstootext#c
-scale=%<factor%>
 scaled=%<factor%>
 lining
 lf
