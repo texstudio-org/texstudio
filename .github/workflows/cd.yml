@@ -398,7 +398,7 @@ jobs:
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
         brew install qt
-        wget https://github.com/sunderme/homebrew-poppler-build/releases/download/22.06.0v0/poppler-qt6--22.06.0.catalina.bottle.tar.gz
+        wget https://github.com/sunderme/homebrew-poppler-build/releases/download/22.06.0v1/poppler-qt6--22.06.0.catalina.bottle.tar.gz
         brew install ./poppler-qt6--22.06.0.catalina.bottle.tar.gz
         
 
