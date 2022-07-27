@@ -634,7 +634,7 @@
 \newhelp#*
 \newhelp{cmd}{help text}#Sd
 \newif#*
-\newif{cmd}#dS
+\newif{definition}#S
 \newinsert#*
 \newinsert{cmd}#dS
 \newlanguage#*
