@@ -270,8 +270,6 @@ upint
 \ddotseq#m
 \DDownarrow#m
 \Ddownarrow#m
-\Ddownarrow#m
-\DDownarrow#m
 \diagdown#m
 \diagup#m
 \diameter#m
@@ -1305,8 +1303,6 @@ upint
 \urtriangle#m
 \UUparrow#m
 \Uuparrow#m
-\Uuparrow#m
-\UUparrow#m
 \varbarwedge#m
 \varcarriagereturn#m
 \varclubsuit#m
