@@ -111,6 +111,7 @@
 <file>completion/amstext.cwl</file>
 <file>completion/amsthm.cwl</file>
 <file>completion/amsxtra.cwl</file>
+<file>completion/analogclock.cwl</file>
 <file>completion/andika.cwl</file>
 <file>completion/animate.cwl</file>
 <file>completion/annee-scolaire.cwl</file>
@@ -438,6 +439,7 @@
 <file>completion/bxcalcux.cwl</file>
 <file>completion/bxcjkjatype.cwl</file>
 <file>completion/bxdvidriver.cwl</file>
+<file>completion/bxeepic.cwl</file>
 <file>completion/bxenclose.cwl</file>
 <file>completion/bxghost.cwl</file>
 <file>completion/bxghost-lib.cwl</file>
@@ -1726,6 +1728,7 @@
 <file>completion/jamtimes.cwl</file>
 <file>completion/jigsaw.cwl</file>
 <file>completion/jkmath.cwl</file>
+<file>completion/jlreq-deluxe.cwl</file>
 <file>completion/jlreq-trimmarks.cwl</file>
 <file>completion/jmlrutils.cwl</file>
 <file>completion/jmsdelim.cwl</file>
@@ -2748,6 +2751,8 @@
 <file>completion/roboto.cwl</file>
 <file>completion/roboto-mono.cwl</file>
 <file>completion/roboto-serif.cwl</file>
+<file>completion/robustglossary.cwl</file>
+<file>completion/robustindex.cwl</file>
 <file>completion/rojud.cwl</file>
 <file>completion/romanbar.cwl</file>
 <file>completion/romande.cwl</file>
@@ -3048,6 +3053,7 @@
 <file>completion/tascmac.cwl</file>
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
+<file>completion/tdclock.cwl</file>
 <file>completion/tdsfrmath.cwl</file>
 <file>completion/ted.cwl</file>
 <file>completion/telprint.cwl</file>
@@ -3069,6 +3075,7 @@
 <file>completion/texdate.cwl</file>
 <file>completion/texdepends.cwl</file>
 <file>completion/texdimens.cwl</file>
+<file>completion/texdraw.cwl</file>
 <file>completion/texlinks.cwl</file>
 <file>completion/tex-locale.cwl</file>
 <file>completion/texmate.cwl</file>
