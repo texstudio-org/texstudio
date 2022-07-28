@@ -1,11 +1,10 @@
 # xeCJK package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
-# updated 02 May 2022 for v3.8.8
+# updated 7 June 2022 for v3.9.0
 
 #include:xetex
 #include:expl3
-#include:l3keys2e
 #include:xtemplate
 #include:xparse
 #include:fontspec

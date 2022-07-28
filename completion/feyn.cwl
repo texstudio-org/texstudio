@@ -1,5 +1,10 @@
 # feyn package
-# Matthew Bertucci 11/3/2021 for v0.4.1
+# Matthew Bertucci 2022/07/26 for v0.4.3
+
+#keyvals:\usepackage/feyn#c
+globalbang
+noglobalbang
+#endkeyvals
 
 \feyn{chars}#m
 \Feyn{chars}#m

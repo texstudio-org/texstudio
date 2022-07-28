@@ -1,5 +1,5 @@
 # hvfloat package
-# Matthew Bertucci 4/3/2022 for v2.38
+# Matthew Bertucci 2022/07/26 for v2.40
 
 #include:caption
 #include:varwidth
@@ -14,6 +14,7 @@
 #include:ifoddpage
 #include:afterpage
 #include:stfloats
+#include:floatpag
 
 #keyvals:\usepackage/hvfloat#c
 fbox
@@ -144,6 +145,7 @@ decodearray={%<color array%>}
 \setPageObject#*
 \defhvstyle{name}{options}#S
 \hvFloatFileVersion#S
+\hvFloatFullWidth#*
 \hvObjectWidth#*
 \hvCapWidth#*
 \hvWideWidth#*

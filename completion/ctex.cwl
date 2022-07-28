@@ -1,11 +1,10 @@
 # ctex package
 # Darcy Hu <hot123tea123@gmail.com> 2016
 #modified zepinglee 30 Jan 2021
-# updated 13 Mar 2022 for v2.5.8
+# updated 26 June 2022 for v2.5.10
 
 #include:expl3
 #include:xparse
-#include:l3keys2e
 #include:zhnumber
 
 # package only keys

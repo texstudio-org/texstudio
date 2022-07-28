@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2022/05/16 for v1.3
+# Matthew Bertucci 2022/07/26 for v1.5
 
 #include:morewrites
 #include:tcolorbox
@@ -16,9 +16,6 @@
 #include:amsmath
 #include:tikz
 #include:pdfcol
-
-# from utf8x option of inputenc
-#include:ucs
 
 #keyvals:\usepackage/runcode#c
 run

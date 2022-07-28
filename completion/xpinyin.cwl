@@ -1,8 +1,7 @@
 # xpinyin package
-# Matthew Bertucci 12/30/2021 for v2.9
+# Matthew Bertucci 2022/07/26 for v3.1
 
 #include:xparse
-#include:l3keys2e
 #include:CJKutf8
 
 \begin{pinyinscope}
