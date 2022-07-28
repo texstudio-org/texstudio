@@ -1,5 +1,5 @@
 # rec-thy package
-# Matthew Bertucci 4/26/2022 for v3.8.1
+# Matthew Bertucci 2022/07/28 for v3.8.2
 
 #include:expl3
 #include:ltxcmds
@@ -85,7 +85,22 @@ rpairdelim=%<csname%>
 #endif
 
 \abs{arg}#m
+\Adegvar{arg}#*m
+\Aeq#*m
+\Aequiv#*m
+\Ageq#*m
+\Agneq#*m
+\Agtr#*m
+\Aleq#*m
+\Aless#*m
+\Alneq#*m
 \aut#m
+\Azero#*m
+\Azeroj#*m
+\Azerojj#*m
+\Azerojjj#*m
+\Azeron{arg}#*m
+\Azerosym#*m
 \baire#m
 \Baire#m
 \ball[sup]{arg1}{arg2}#m
@@ -450,6 +465,8 @@ rpairdelim=%<csname%>
 \module{letter}{sub%formula}
 \murec{var%formula}{condition%formula}
 \myhalign#S
+\nAgeq#*m
+\nAleq#*m
 \ncequiv#m
 \nconv#m
 \nconv[sub]#m
@@ -715,9 +732,11 @@ rpairdelim=%<csname%>
 \use{arg}#m
 \utilde{arg}#m
 \wck
+\wjump{arg}#*m
 \wstrs#m
 \xor#m
 \zeroj#m
 \zerojj#m
 \zerojjj#m
 \zeron{sup}#m
+\zerow{arg}#*m
