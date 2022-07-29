@@ -45,6 +45,7 @@
 <file>completion/aeb-minitoc.cwl</file>
 <file>completion/aeb_mlink.cwl</file>
 <file>completion/aeb_mobile.cwl</file>
+<file>completion/aeb_pro.cwl</file>
 <file>completion/aeb_tilebg.cwl</file>
 <file>completion/aebxmp.cwl</file>
 <file>completion/aecompl.cwl</file>
@@ -537,6 +538,7 @@
 <file>completion/chessboard.cwl</file>
 <file>completion/chessfss.cwl</file>
 <file>completion/chet.cwl</file>
+<file>completion/chhaya.cwl</file>
 <file>completion/chickenize.cwl</file>
 <file>completion/china2e.cwl</file>
 <file>completion/chinesechess.cwl</file>
@@ -2813,6 +2815,7 @@
 <file>completion/scrextend.cwl</file>
 <file>completion/scrfontsizes.cwl</file>
 <file>completion/scrhack.cwl</file>
+<file>completion/scripture.cwl</file>
 <file>completion/scrjura.cwl</file>
 <file>completion/scrkbase.cwl</file>
 <file>completion/scrlayer.cwl</file>
@@ -3038,6 +3041,7 @@
 <file>completion/tabstackengine.cwl</file>
 <file>completion/tabto.cwl</file>
 <file>completion/tabu.cwl</file>
+<file>completion/tabularborder.cwl</file>
 <file>completion/tabularcalc.cwl</file>
 <file>completion/tabularew.cwl</file>
 <file>completion/tabularht.cwl</file>
