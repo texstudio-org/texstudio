@@ -4,9 +4,9 @@
 #define TEXSTUDIO "TeXstudio"
 
 
-#define TXSVERSION "4.3.0"
+#define TXSVERSION "1.3.0"
 
-#define TXSVERSION_NUMERIC 0x040300
+#define TXSVERSION_NUMERIC 0x010300
 
 
 

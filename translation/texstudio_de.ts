@@ -11942,41 +11942,72 @@ included document in %1</source>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="164"/>
-        <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version: &lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:     &lt;/td&gt;&lt;td&gt;%3&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%4&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Eine neuer Release-Kandidat von TeXstudio ist verfügbar .&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Diese Version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte stabile Version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release-Kandidat:&lt;/td&gt;&lt;td&gt;%3&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die neue Version kann von der &lt;a href=&quot;%4&quot;&gt;TeXstudio Website&lt;/a&gt; runtergeladen werden.</translation>
+        <source>A new release candidate of TeXstudio is available.</source>
+        <translation>Ein neuer Release-Kanditat von TeXstudio ist verfügbar.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="185"/>
-        <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:    &lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:     &lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%3&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%4&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Eine neue Entwickler-Version von TeXstudio ist verfügbar. &lt;br&gt;&lt;table&gt;&lt;br&gt;&lt;td&gt;Diese Version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte stabile Version: %3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte Entwicklerversion:&lt;/td&gt;&lt;td&gt;%3&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die neue Version kann von der &lt;a href=&quot;%4&quot;&gt;TeXstudio-Website&lt;/a&gt; heruntergeladen werden.</translation>
+        <location filename="../src/updatechecker.cpp" line="165"/>
+        <location filename="../src/updatechecker.cpp" line="183"/>
+        <location filename="../src/updatechecker.cpp" line="201"/>
+        <source>Current version:</source>
+        <translation>Aktuelle Version:</translation>
     </message>
     <message>
+        <location filename="../src/updatechecker.cpp" line="166"/>
+        <location filename="../src/updatechecker.cpp" line="184"/>
+        <location filename="../src/updatechecker.cpp" line="202"/>
+        <source>Latest stable version:</source>
+        <translation>Stabile Version:</translation>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="167"/>
+        <source>Release candidate:</source>
+        <translation>Release-Kandidat:</translation>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="168"/>
+        <location filename="../src/updatechecker.cpp" line="186"/>
         <location filename="../src/updatechecker.cpp" line="203"/>
+        <source>You can download it from the %1 TeXstudio website</source>
+        <translation>Die neue Version kann von der %1 TeXstudio-Webseite geladen werden.</translation>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="197"/>
         <source>Update check for stable version failed (invalid update file format).</source>
         <translation>Die Überprüfung auf Updates für die stabile Version ist fehlgeschlagen (ungültiges Format der Update-Datei).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="206"/>
-        <source>A new stable version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Eine neue Version von TeXstudio ist verfügbar. &lt;br&gt;&lt;br&gt;Diese Version: %1&lt;br&gt;Neue stabile Version: %2&lt;br&gt;&lt;br&gt;Die neue Version kann von der &lt;a href=&apos;%3&apos;&gt;TeXstudio-Website&lt;/a&gt; heruntergeladen werden.</translation>
-    </message>
-    <message>
-        <location filename="../src/updatechecker.cpp" line="219"/>
+        <location filename="../src/updatechecker.cpp" line="210"/>
         <source>Your TeXstudio version %1 is up-to-date.</source>
         <translation>TeXstudio Version %1 ist aktuell.</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="224"/>
-        <source>TeXstudio has not yet reached a state you are looking for.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/updatechecker.cpp" line="182"/>
+        <location filename="../src/updatechecker.cpp" line="179"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation>Die Überprüfung auf Updates für die Entwicklerversion ist fehlgeschlagen (ungültiges Format der Update-Datei).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="236"/>
+        <location filename="../src/updatechecker.cpp" line="182"/>
+        <source>A new development version of TeXstudio is available.</source>
+        <translation>Eine neue Entwicklungsversion (beta) von TeXstudio ist verfügbar.</translation>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="185"/>
+        <source>Latest development version:</source>
+        <translation>Letzte Entwicklungsversion (beta):</translation>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="200"/>
+        <source>A new stable version of TeXstudio is available.</source>
+        <translation>Eine neue stabile Version von TeXstudio ist verfügbar.</translation>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="215"/>
+        <source>Failure to find current TeXstudio versions.</source>
+        <translation>Keine TeXstudioversionen gefunden.</translation>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="227"/>
         <source>TeXstudio Update</source>
         <translation>TeXstudio-Update</translation>
     </message>

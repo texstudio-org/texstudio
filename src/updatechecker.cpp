@@ -161,18 +161,15 @@ void UpdateChecker::checkForNewVersion()
 				if (!silent) UtilsUi::txsWarning(tr("Update check for release candidate failed (invalid update file format)."));
 			}
 			if (latestReleaseCandidateVersion > currentVersion && latestReleaseCandidateVersion > latestStableVersion) {
-				notify(QString(tr(
-								"A new release candidate of TeXstudio is available.<br>"
-								"<table><tr><td>Current version:</td><td>%1</td></tr>"
-								"<tr><td>Latest stable version: </td><td>%2</td></tr>"
-								"<tr><td>Release candidate:     </td><td>%3</td></tr>"
-								"</table><br><br>"
-								"You can download it from the <a href='%4'>TeXstudio website</a>."
-						))
+                notify(QString(tr("A new release candidate of TeXstudio is available.")+"<br><table><tr><td>"+
+                                tr("Current version:")+"</td><td>%1</td></tr>"+
+                                "<tr><td>"+tr("Latest stable version:")+"</td><td>%2</td></tr>"+
+                               "<tr><td>"+tr("Release candidate:")+"</td><td>%3</td></tr></table><br><br>"+
+                                tr("You can download it from the %1 TeXstudio website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
+                        )
 						.arg(Version::versionToString(currentVersion),
 							Version::versionToString(latestStableVersion),
-							Version::versionToString(latestReleaseCandidateVersion),
-							downloadAddressGit)
+                            Version::versionToString(latestReleaseCandidateVersion))
 				);
 				break;
 			}
@@ -182,18 +179,15 @@ void UpdateChecker::checkForNewVersion()
 				if (!silent) UtilsUi::txsWarning(tr("Update check for development version failed (invalid update file format)."));
 			}
 			if (latestDevVersion > currentVersion && (latestStableVersion.isEmpty() || latestDevVersion > latestStableVersion)) {
-				notify(QString(tr(
-								"A new development version of TeXstudio is available.<br>"
-								"<table><tr><td>Current version:    </td><td>%1</td></tr>"
-								"<tr><td>Latest stable version:     </td><td>%2</td></tr>"
-								"<tr><td>Latest development version:</td><td>%3</td></tr>"
-								"</table><br><br>"
-								"You can download it from the <a href='%4'>TeXstudio website</a>."
-						))
+                notify(QString(tr("A new development version of TeXstudio is available.")+"<br><table><tr><td>"+
+                                tr("Current version:")+"    </td><td>%1</td></tr>"+
+                                "<tr><td>"+tr("Latest stable version:")+"</td><td>%2</td></tr>"+
+                                "<tr><td>"+tr("Latest development version:")+"</td><td>%3</td></tr></table><br><br>"+
+                                tr("You can download it from the %1 TeXstudio website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
+                        )
 						.arg(Version::versionToString(currentVersion),
 							Version::versionToString(latestStableVersion),
-							Version::versionToString(latestDevVersion),
-							downloadAddressGit)
+                            Version::versionToString(latestDevVersion))
 				);
 				break;
 			}
@@ -203,16 +197,13 @@ void UpdateChecker::checkForNewVersion()
 				if (!silent) UtilsUi::txsWarning(tr("Update check for stable version failed (invalid update file format)."));
 			}
 			if (latestStableVersion > currentVersion) {
-				notify(QString(tr(
-								"A new stable version of TeXstudio is available.<br>"
-								"<table><tr><td>Current version:</td><td>%1</td></tr>"
-								"<tr><td>Latest stable version:</td><td>%2</td></tr>"
-								"</table><br><br>"
-								"You can download it from the <a href='%3'>TeXstudio website</a>."
-						))
+                notify(QString(tr("A new stable version of TeXstudio is available.")+"<br><table><tr><td>"+
+                                tr("Current version:")+"</td><td>%1</td></tr>"+
+                                "<tr><td>"+tr("Latest stable version:")+"</td><td>%2</td></tr></table><br><br>"+
+                                tr("You can download it from the %1 TeXstudio website").arg(QString("<a href='%1'>").arg(downloadAddressGit))+"</a>."
+                        )
 						.arg(Version::versionToString(currentVersion),
-							Version::versionToString(latestStableVersion),
-							downloadAddressGit)
+                            Version::versionToString(latestStableVersion))
 				);
 			} else {
 				if (!silent) {
@@ -221,7 +212,7 @@ void UpdateChecker::checkForNewVersion()
 			}
 			break;
 		} else {
-			if (!silent) UtilsUi::txsInformation(tr("TeXstudio has not yet reached a state you are looking for."));
+            if (!silent) UtilsUi::txsInformation(tr("Failure to find current TeXstudio versions."));
 		}
 		break;
 	}
