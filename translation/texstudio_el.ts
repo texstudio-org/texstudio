@@ -4457,52 +4457,52 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1461"/>
-        <location filename="../src/latexcompleter.cpp" line="1471"/>
+        <location filename="../src/latexcompleter.cpp" line="1467"/>
+        <location filename="../src/latexcompleter.cpp" line="1477"/>
         <source>typical</source>
         <translation>τυπικά</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1462"/>
-        <location filename="../src/latexcompleter.cpp" line="1472"/>
+        <location filename="../src/latexcompleter.cpp" line="1468"/>
+        <location filename="../src/latexcompleter.cpp" line="1478"/>
         <source>most used</source>
         <translation>Περισσότερο Χρησιμοποιημένα</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1463"/>
-        <location filename="../src/latexcompleter.cpp" line="1473"/>
+        <location filename="../src/latexcompleter.cpp" line="1469"/>
+        <location filename="../src/latexcompleter.cpp" line="1479"/>
         <source>fuzzy</source>
         <translation>fuzzy</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1464"/>
-        <location filename="../src/latexcompleter.cpp" line="1474"/>
+        <location filename="../src/latexcompleter.cpp" line="1470"/>
+        <location filename="../src/latexcompleter.cpp" line="1480"/>
         <source>all</source>
         <translation>όλα</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1465"/>
-        <location filename="../src/latexcompleter.cpp" line="1475"/>
+        <location filename="../src/latexcompleter.cpp" line="1471"/>
+        <location filename="../src/latexcompleter.cpp" line="1481"/>
         <source>press shift+space to change view</source>
         <translation>πατήστε shift+space για ν&apos; αλλάξετε την προβολή</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1675"/>
+        <location filename="../src/latexcompleter.cpp" line="1681"/>
         <source> (Usertag)</source>
         <translation>(Usertag)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2021"/>
+        <location filename="../src/latexcompleter.cpp" line="2029"/>
         <source>label missing!</source>
         <translation>έλλειψη ετικέτας!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2023"/>
+        <location filename="../src/latexcompleter.cpp" line="2031"/>
         <source>label defined multiple times!</source>
         <translation>ετικέτα που ορίζεται πολλές φορές!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2032"/>
+        <location filename="../src/latexcompleter.cpp" line="2040"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Όνομα Αρχείου: %1&lt;/b&gt;
@@ -4561,188 +4561,188 @@ The wizard does not support command </source>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="296"/>
+        <location filename="../src/latexeditorview.cpp" line="307"/>
         <source>Could not open url:</source>
         <translation>Αδυναμία ανοίγματος συνδέσμου url:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="428"/>
+        <location filename="../src/latexeditorview.cpp" line="439"/>
         <source>Spelling</source>
         <translation>Ορθογραφικός έλεγχος</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="442"/>
+        <location filename="../src/latexeditorview.cpp" line="453"/>
         <source>New BibTeX Entry %1</source>
         <translation>Νέα εγγραφή BibTeX %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="457"/>
+        <location filename="../src/latexeditorview.cpp" line="468"/>
         <source>Open %1</source>
         <translation>Άνοιγμα %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="464"/>
+        <location filename="../src/latexeditorview.cpp" line="475"/>
         <source>Open Bibliography</source>
         <translation>Άνοιγμα Βιβλιογραφίας</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="473"/>
-        <location filename="../src/latexeditorview.cpp" line="489"/>
-        <location filename="../src/latexeditorview.cpp" line="502"/>
+        <location filename="../src/latexeditorview.cpp" line="484"/>
+        <location filename="../src/latexeditorview.cpp" line="500"/>
+        <location filename="../src/latexeditorview.cpp" line="513"/>
         <source>Open package documentation</source>
         <translation>Άνοιγμα εγγράφων πακέτου</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="510"/>
+        <location filename="../src/latexeditorview.cpp" line="521"/>
         <source>Go to Definition</source>
         <translation>Πήγαινε στον Ορισμό</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="516"/>
+        <location filename="../src/latexeditorview.cpp" line="527"/>
         <source>Find Usages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="523"/>
+        <location filename="../src/latexeditorview.cpp" line="534"/>
         <source>Thesaurus...</source>
         <translation>Thesaurus...</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="550"/>
+        <location filename="../src/latexeditorview.cpp" line="561"/>
         <source>use yours</source>
         <translation>χρήση των δικών σας</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="554"/>
+        <location filename="../src/latexeditorview.cpp" line="565"/>
         <source>use other&apos;s</source>
         <translation>χρήξση διαφορετικών</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="570"/>
+        <location filename="../src/latexeditorview.cpp" line="581"/>
         <source>Go to PDF</source>
         <translation>Πήγαινε στο PDF</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="1123"/>
+        <location filename="../src/latexeditorview.cpp" line="1134"/>
         <source>untitled</source>
         <translation>untitled</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2273"/>
+        <location filename="../src/latexeditorview.cpp" line="2284"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2306"/>
+        <location filename="../src/latexeditorview.cpp" line="2317"/>
         <source>Add to Dictionary</source>
         <translation>Προσθήκη στο λεξικό</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2569"/>
+        <location filename="../src/latexeditorview.cpp" line="2580"/>
         <source>label missing!</source>
         <translation>έλλειψη ετικέτας!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2571"/>
-        <location filename="../src/latexeditorview.cpp" line="2589"/>
+        <location filename="../src/latexeditorview.cpp" line="2582"/>
+        <location filename="../src/latexeditorview.cpp" line="2600"/>
         <source>label defined multiple times!</source>
         <translation>ετικέτα που ορίζεται πολλές φορές!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2579"/>
-        <location filename="../src/latexeditorview.cpp" line="2651"/>
+        <location filename="../src/latexeditorview.cpp" line="2590"/>
+        <location filename="../src/latexeditorview.cpp" line="2662"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Όνομα Αρχείου: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2592"/>
+        <location filename="../src/latexeditorview.cpp" line="2603"/>
         <source>%n reference(s) to this label</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2597"/>
+        <location filename="../src/latexeditorview.cpp" line="2608"/>
         <source>Class</source>
         <translation>Κλάση</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2597"/>
+        <location filename="../src/latexeditorview.cpp" line="2608"/>
         <source>Package</source>
         <translation>Πακέτο</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2601"/>
+        <location filename="../src/latexeditorview.cpp" line="2612"/>
         <source>Beamer Theme</source>
         <translation>Θέμα Beamer</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2610"/>
+        <location filename="../src/latexeditorview.cpp" line="2621"/>
         <source>not found</source>
         <translation>δεν βρέθηκε</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2626"/>
+        <location filename="../src/latexeditorview.cpp" line="2637"/>
         <source>Citation correct (reading ...)</source>
         <translation>Παραπομπή σωστή (ανάγνωση ...)</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2632"/>
+        <location filename="../src/latexeditorview.cpp" line="2643"/>
         <source>Citation missing</source>
         <translation>Απουσία παραπομπής</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2635"/>
+        <location filename="../src/latexeditorview.cpp" line="2646"/>
         <source>Warning:</source>
         <translation>Προειδοποίηση:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2635"/>
+        <location filename="../src/latexeditorview.cpp" line="2646"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3056"/>
+        <location filename="../src/latexeditorview.cpp" line="3067"/>
         <source>Save Preview Image</source>
         <translation>Αποθήκευση Εικόνας Προεπισκόπησης</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3056"/>
+        <location filename="../src/latexeditorview.cpp" line="3067"/>
         <source>Images</source>
         <translation>Εικόνες</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3190"/>
+        <location filename="../src/latexeditorview.cpp" line="3201"/>
         <source>Remove Bookmark</source>
         <translation>Αφαίρεση σελιδοδείκτη</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3198"/>
+        <location filename="../src/latexeditorview.cpp" line="3209"/>
         <source>Unnamed Bookmark</source>
         <translation>Ανώνυμος σελιδοδείκτης</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3203"/>
+        <location filename="../src/latexeditorview.cpp" line="3214"/>
         <source>Bookmark</source>
         <translation>Σελιδοδείκτης</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3230"/>
+        <location filename="../src/latexeditorview.cpp" line="3241"/>
         <source>Collapse All</source>
         <translation>Σύμπτυξη Όλων</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3234"/>
+        <location filename="../src/latexeditorview.cpp" line="3245"/>
         <source>Collapse Level %1</source>
         <translation>Επίπεδο Σύμπτυξης</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3239"/>
+        <location filename="../src/latexeditorview.cpp" line="3250"/>
         <source>Expand All</source>
         <translation>Επέκταση Όλων</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3243"/>
+        <location filename="../src/latexeditorview.cpp" line="3254"/>
         <source>Expand Level %1</source>
         <translation>Επέκταση Επιπέδου %1</translation>
     </message>
@@ -4773,11 +4773,6 @@ The wizard does not support command </source>
         <translation>bad box</translation>
     </message>
     <message>
-        <location filename="../src/latexlog.cpp" line="47"/>
-        <source>line</source>
-        <translation>γραμμή</translation>
-    </message>
-    <message>
         <location filename="../src/latexlog.cpp" line="63"/>
         <source>File</source>
         <translation>Αρχείο</translation>
@@ -4801,63 +4796,63 @@ The wizard does not support command </source>
 <context>
     <name>LatexLogWidget</name>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="51"/>
+        <location filename="../src/latexlogwidget.cpp" line="57"/>
         <source>&amp;Copy</source>
         <translation>&amp;Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="54"/>
+        <location filename="../src/latexlogwidget.cpp" line="60"/>
         <source>&amp;Copy All</source>
         <translation>&amp;Αντιγραφή όλων</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="57"/>
+        <location filename="../src/latexlogwidget.cpp" line="63"/>
         <source>&amp;Copy All With Line Numbers</source>
         <translation>&amp;Αντιγραφή όλων με αριθμούς γραμμών</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="74"/>
+        <location filename="../src/latexlogwidget.cpp" line="80"/>
         <source>No log file available</source>
         <translation>Κανένα αρχείο log διαθέσιμο</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="89"/>
+        <location filename="../src/latexlogwidget.cpp" line="95"/>
         <source>Issues</source>
         <translation>Issues</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="92"/>
+        <location filename="../src/latexlogwidget.cpp" line="98"/>
         <source>Log File</source>
         <translation>Αρχείο Καταγραφής</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="95"/>
+        <location filename="../src/latexlogwidget.cpp" line="101"/>
         <source>Show Error</source>
         <translation>Εμφάνιση σφάλματος</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="99"/>
+        <location filename="../src/latexlogwidget.cpp" line="105"/>
         <source>Show Warning</source>
         <translation>Εμφάνιση προειδοποίσης</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="103"/>
+        <location filename="../src/latexlogwidget.cpp" line="109"/>
         <source>Show BadBox</source>
         <translation>Εμφάνιση BadBox</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="121"/>
+        <location filename="../src/latexlogwidget.cpp" line="131"/>
         <source>Log file not found.</source>
         <translation>Το αρχείο καταγραφής δεν βρέθηκε.</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="125"/>
-        <location filename="../src/latexlogwidget.cpp" line="173"/>
+        <location filename="../src/latexlogwidget.cpp" line="135"/>
+        <location filename="../src/latexlogwidget.cpp" line="172"/>
         <source>Log file not readable.</source>
         <translation>Το αρχείο log δεν μπορεί να διαβαστεί.</translation>
     </message>
     <message>
-        <location filename="../src/latexlogwidget.cpp" line="135"/>
+        <location filename="../src/latexlogwidget.cpp" line="145"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
         <translation>Το logfile είναι πολύ μεγάλο (%1 ΜΒ) είστε σίγουροι πως επιθυμείτε να το φορτώσετε;</translation>
     </message>
@@ -5141,37 +5136,37 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFBaseSearchDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="461"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="462"/>
         <source>Search</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="528"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="529"/>
         <source>Enables case sensitive search.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="539"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="540"/>
         <source>Text or pattern to search for</source>
         <translation>Κείμενο ή μοτίβο για αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="540"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="541"/>
         <source>Find next occurrence</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="541"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="542"/>
         <source>Find previous occurrence</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="543"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="544"/>
         <source> Find :</source>
         <translation>Αναζήτηση :</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="545"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="546"/>
         <source>Case</source>
         <translation>Περίπτωση</translation>
     </message>
@@ -5179,52 +5174,52 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFClockDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="951"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
         <source>Set Interval...</source>
         <translation>Ρύθμιση διαστήματος ...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
         <source>Set Page Count...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
         <source>Restart</source>
         <translation>Επανεκκίνιση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="968"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="969"/>
         <source>Clock</source>
         <translation>Ρολόι</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="990"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="991"/>
         <source>Start time</source>
         <translation>Χρόνος έναρξης</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="991"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="992"/>
         <source>New clock interval (in minutes)</source>
         <translation>Νέο χρονικό διάστημα ρολογιού (σε λεπτά)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1010"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1011"/>
         <source>Page count (negative subtracts)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1041"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1042"/>
         <source>wait</source>
         <translation>αναμονή</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1043"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1044"/>
         <source>%1 sec</source>
         <translation>%1 sec</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1045"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1046"/>
         <source>%1 min</source>
         <translation>%1 min</translation>
     </message>
@@ -5232,440 +5227,440 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2657"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2669"/>
         <source>Toolbar</source>
         <translation>Γραμμή εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2711"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2723"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2712"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2724"/>
         <source>&amp;Edit</source>
         <translation>&amp;Επεξεργασία</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2713"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2725"/>
         <source>&amp;View</source>
         <translation>&amp;Προβολή</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2714"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2726"/>
         <source>Grid</source>
         <translation>Πλέγμα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2715"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2727"/>
         <source>&amp;Window</source>
         <translation>&amp;Παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2716"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2728"/>
         <source>&amp;Configure</source>
         <translation>&amp;Διαμόρφωση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2717"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2729"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2723"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2735"/>
         <source>User &amp;Manual...</source>
         <translation>Εγχειρίδιο &amp; Χρήσης</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2726"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2738"/>
         <source>About</source>
         <translation>Σχετικά</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2727"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2739"/>
         <source>&amp;Open...</source>
         <translation>&amp;Άνοιγμα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2728"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2740"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation>Διαχωρισμός &amp;&amp; Συγχώνευση...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2729"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2741"/>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2731"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2743"/>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Τερματισμός TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2732"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2744"/>
         <source>&amp;Configure TeXstudio</source>
         <translation>&amp;Ρυθμίσεις TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2734"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2746"/>
         <source>Scrolling follows cursor</source>
         <translation>Η κύλιση ακολουθεί τον κέρσορα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2736"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2748"/>
         <source>Cursor follows scrolling</source>
         <translation>Ο κέρσορας ακολουθεί την κύλιση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2738"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2750"/>
         <source>Synchronize multiple views</source>
         <translation>Συγχρονισμός πολλαπλών προβολών</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2740"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2752"/>
         <source>Ignore for synchronization</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2743"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2755"/>
         <source>Invert Colors</source>
         <translation>Αντιστροφή χρωμάτων</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2745"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2757"/>
         <source>Grayscale</source>
         <translation>Κλίμακα του γκρι</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2748"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2760"/>
         <source>&amp;Magnify</source>
         <translation>&amp;Μεγεθυντικός φακός</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2749"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2761"/>
         <source>&amp;Scroll</source>
         <translation>&amp;Κύλιση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2751"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2763"/>
         <source>&amp;First Page</source>
         <translation>&amp;Πρώτη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2752"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2764"/>
         <source>Back</source>
         <translation>Πίσω</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2753"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2765"/>
         <source>&amp;Previous Page</source>
         <translation>Π&amp;ροηγούμενη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2754"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2766"/>
         <source>&amp;Next Page</source>
         <translation>&amp;Επόμενη σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2755"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
         <source>Forward</source>
         <translation>Εμπρός</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2756"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2768"/>
         <source>&amp;Last Page</source>
         <translation>&amp;Τελευταία σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2758"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2770"/>
         <source>&amp;Go to Page...</source>
         <translation>Πή&amp;γαινε στη σελίδα...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2760"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2772"/>
         <source>Zoom &amp;In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2761"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2773"/>
         <source>Zoom &amp;Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2762"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2774"/>
         <source>&amp;Actual Size</source>
         <translation>&amp;Ακριβές Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2763"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2775"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Προσαρμογή στο πλάτος</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2765"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2777"/>
         <source>Fit to &amp;Text Width</source>
         <translation>Προσαρμογή στο &amp;Πλάτος Κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2779"/>
         <source>Fit to &amp;Window</source>
         <translation>Προσαρμογή στο &amp;Παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2769"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2781"/>
         <source>&amp;Continuous</source>
         <translation>&amp;Συνεχής</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2774"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2786"/>
         <source>Full &amp;Screen</source>
         <translation>Πλήρης &amp;Οθόνη</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2775"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2787"/>
         <source>Presentation</source>
         <translation>Παρουσίαση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2776"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2788"/>
         <source>External Viewer</source>
         <translation>Εξωτερικός Προβολέας</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2777"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2789"/>
         <source>Enlarge Viewer</source>
         <translation>Μεγέθυνση Προβολέα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2778"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2790"/>
         <source>Shrink Viewer</source>
         <translation>Σμίκρυνση Προβολέα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2779"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2791"/>
         <source>Windowed/Embedded</source>
         <translation>Windowed/Embedded</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2780"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2792"/>
         <source>Auto-hide Toolbar</source>
         <translation>Αυτόματη απόκρυψη γραμμής εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2796"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2808"/>
         <source>Custom...</source>
         <translation>Προσαρμοσμένο...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2801"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2813"/>
         <source>Single Page Step</source>
         <translation>Βήμα μιας σελίδας</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2804"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2806"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2816"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2818"/>
         <source>&amp;Close something</source>
         <translation>&amp;Κλείσε κάτι</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2809"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2821"/>
         <source>Stac&amp;k</source>
         <translation>Σώ&amp;ρευση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2810"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2822"/>
         <source>&amp;Tile</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2811"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2823"/>
         <source>&amp;Side by Side</source>
         <translation>&amp; Δίπλα Δίπλα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2813"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2825"/>
         <source>&amp;Go to Source</source>
         <translation>&amp;Πήγαινε στην Πηγή</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2814"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2826"/>
         <source>Focus Editor</source>
         <translation>Εστίαση στον Επεξεργαστή κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2816"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2828"/>
         <source>New Window</source>
         <translation>Νέο παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2817"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2829"/>
         <source>&amp;Find</source>
         <translation>&amp;Εύρεση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2818"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2830"/>
         <source>Find &amp;again</source>
         <translation>Εύρεση &amp;ξανά</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2820"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2832"/>
         <source>Quick Build</source>
         <translation>Γρήγορη Δημιουργία</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2854"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2866"/>
         <source>Show</source>
         <translation>Εμφάνιση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2882"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2894"/>
         <source>Windowed Viewer</source>
         <translation>Προβολέας Παραθύρου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2885"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2897"/>
         <source>Embedded Viewer</source>
         <translation>Ενσωματωμένος Προβολέας</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2948"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2960"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>από</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2971"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2983"/>
         <source>Scale</source>
         <translation>Κλίμακα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2989"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3001"/>
         <source>Zoom Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2999"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3011"/>
         <source>Zoom</source>
         <translation>Αλλαγή κλίμακας</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3008"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3020"/>
         <source>Zoom In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3036"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3039"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3051"/>
         <source>Annotations</source>
         <translation>Επισημείωση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3177"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3189"/>
         <source>Page Down</source>
         <translation>Σελίδα Κάτω</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3181"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3193"/>
         <source>Page Up</source>
         <translation>Σελίδα Πάνω</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3371"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3383"/>
         <source>Retry</source>
         <translation>Προσπάθεια εκ Νέου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3374"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4529"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3386"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4540"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3377"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3389"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
 δεν δείχνει να είναι έγκυρο έγγραφο PDF. Το αρχείο είτε έχει φθαρεί ή είναι στη διαδικασία δημιουργίας. Προσπάθεια εκ νέου κάθε δύο δευτερόλαπτα.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3391"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3403"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>Αποτυχία εύρεσης του αρχείου &quot;%1&quot;; ίσως να έχει διαγραφεί.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3394"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3406"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Αποτυχία φόρτωσης του αρχείου&quot;%1&quot;; ίσως να μην είναι ένα έγκυρο έγγραφο PDF.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3397"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3409"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>Αποτυχία φόρτωσης του αρχείου &quot;%1&quot; λόγω κακής κατανομής. ίσως δεν είναι έγκυρο έγγραφο PDF.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3400"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3412"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>Αποτυχία φόρτωσης του αρχείου &quot;%1&quot; λόγω εξαίρεσης. ίσως δεν είναι έγκυρο έγγραφο PDF.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3403"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3415"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>Το PDF αρχείο &quot;%1&quot; είναι κλειδωμένο.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3405"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3417"/>
         <source>PDF password</source>
         <translation>Κωδικός PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3405"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3417"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>Το PDF αρχείο &quot;%1&quot; είναι κλειδωμένο.
 Μπορείτε τώρα να πληκτρολογήσετε τον κωδικό πρόσβασης:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3763"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3774"/>
         <source>Searching for</source>
         <translation>Αναζήτηση για</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3875"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3886"/>
         <source>No SyncTeX data available</source>
         <translation>Κανένα διαθέσιμο δεδομένο του SyncTeX</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3877"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3888"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3968"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3979"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4050"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4061"/>
         <source>Page %1 of %2</source>
         <translation>Σελίδα %1 από %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4051"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4062"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>Σελίδες %1 ως %2 από %3</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4076"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4087"/>
         <source>Open PDF</source>
         <translation>Άνοιγμα PDF</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4351"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4362"/>
         <source>Print</source>
         <translation>Εκτύπωση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4530"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4541"/>
         <source>Close Message</source>
         <translation>Κλείσιμο Μηνύματος</translation>
     </message>
@@ -5673,42 +5668,42 @@ You can now enter the password:</source>
 <context>
     <name>PDFFontsDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="408"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="408"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="408"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
         <source>Subset</source>
         <translation>Υποσύνολο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="408"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
         <source>File</source>
         <translation>Αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="426"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="427"/>
         <source>[none]</source>
         <translation>[none]</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="431"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
         <source>yes</source>
         <translation>ναι</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="431"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
         <source>no</source>
         <translation>όχι</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="433"/>
         <source>[embedded]</source>
         <translation>[embedded]</translation>
     </message>
@@ -5772,7 +5767,7 @@ You can now enter the password:</source>
 <context>
     <name>PDFOutlineDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="203"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="204"/>
         <source>No TOC</source>
         <translation>Κανένα TOC</translation>
     </message>
@@ -5793,22 +5788,22 @@ You can now enter the password:</source>
 <context>
     <name>PDFSearchDock</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="645"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="646"/>
         <source>Words</source>
         <translation>Λέξεις</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="646"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="647"/>
         <source>Only searches for whole words.</source>
         <translation>Μόνο αναζητήσεις για ολόκληρες λέξεις.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="653"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="654"/>
         <source>Sync</source>
         <translation>Συγχρονισμός</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="654"/>
+        <location filename="../src/pdfviewer/PDFDocks.cpp" line="655"/>
         <source>Synchronize editor when jumping to search results.</source>
         <translation type="unfinished"/>
     </message>
@@ -5882,67 +5877,67 @@ You can now enter the password:</source>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="619"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="621"/>
         <source>Zoom In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="621"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="623"/>
         <source>Zoom Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="624"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="626"/>
         <source>Actual Size</source>
         <translation>Ακριβές Μέγεθος</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="627"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="629"/>
         <source>Fit to Width</source>
         <translation>Προσαρμογή στο Πλάτος</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="630"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="632"/>
         <source>Fit to Window</source>
         <translation>Προσαρμογή στο Παράθυρο</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1233"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1237"/>
         <source>Opening external files is currently only supported for PDFs.</source>
         <translation>Το άνοιγμα εξωτερικών αρχείων προς το παρόν υποστηρίζεται μόνο για αρχεία PDF.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1252"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1256"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1252"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1256"/>
         <source>Could not open link:</source>
         <translation>Αδυναμία ανοίγματος του link:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1368"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1372"/>
         <source>Go to Source</source>
         <translation>Πήγαινε στην Πηγή</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2121"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2133"/>
         <source>Go to Page</source>
         <translation>Πήγαινε στη Σελίδα</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2122"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2134"/>
         <source>Page number:</source>
         <translation>Αριθμός σελίδας:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2512"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2524"/>
         <source>Calculating text width</source>
         <translation>Υπολογισμός πλάτους κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2512"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2524"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
@@ -8966,7 +8961,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="362"/>
-        <location filename="../src/texstudio.cpp" line="6099"/>
+        <location filename="../src/texstudio.cpp" line="6105"/>
         <source>Ready</source>
         <translation>Έτοιμο</translation>
     </message>
@@ -9007,8 +9002,8 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="439"/>
-        <location filename="../src/texstudio.cpp" line="9534"/>
-        <location filename="../src/texstudio.cpp" line="9541"/>
+        <location filename="../src/texstudio.cpp" line="9540"/>
+        <location filename="../src/texstudio.cpp" line="9547"/>
         <source>All files</source>
         <translation>Όλα τα αρχεία</translation>
     </message>
@@ -9263,7 +9258,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="908"/>
-        <location filename="../src/texstudio.cpp" line="9735"/>
+        <location filename="../src/texstudio.cpp" line="9741"/>
         <source>&amp;Close</source>
         <translation>&amp;Κλείσιμο</translation>
     </message>
@@ -9500,9 +9495,9 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="978"/>
-        <location filename="../src/texstudio.cpp" line="7539"/>
-        <location filename="../src/texstudio.cpp" line="7564"/>
-        <location filename="../src/texstudio.cpp" line="7584"/>
+        <location filename="../src/texstudio.cpp" line="7545"/>
+        <location filename="../src/texstudio.cpp" line="7570"/>
+        <location filename="../src/texstudio.cpp" line="7590"/>
         <source>Line</source>
         <translation>Γραμμή</translation>
     </message>
@@ -10451,7 +10446,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1532"/>
-        <location filename="../src/texstudio.cpp" line="5613"/>
+        <location filename="../src/texstudio.cpp" line="5619"/>
         <source>show more entries ...</source>
         <translation type="unfinished"/>
     </message>
@@ -10488,9 +10483,9 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1659"/>
         <location filename="../src/texstudio.cpp" line="1660"/>
-        <location filename="../src/texstudio.cpp" line="5643"/>
-        <location filename="../src/texstudio.cpp" line="5646"/>
-        <location filename="../src/texstudio.cpp" line="5647"/>
+        <location filename="../src/texstudio.cpp" line="5649"/>
+        <location filename="../src/texstudio.cpp" line="5652"/>
+        <location filename="../src/texstudio.cpp" line="5653"/>
         <source>Encoding</source>
         <translation>Κωδικοποίηση</translation>
     </message>
@@ -10543,15 +10538,15 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2135"/>
-        <location filename="../src/texstudio.cpp" line="3961"/>
-        <location filename="../src/texstudio.cpp" line="5696"/>
-        <location filename="../src/texstudio.cpp" line="5748"/>
-        <location filename="../src/texstudio.cpp" line="6297"/>
-        <location filename="../src/texstudio.cpp" line="6478"/>
-        <location filename="../src/texstudio.cpp" line="6480"/>
-        <location filename="../src/texstudio.cpp" line="6490"/>
-        <location filename="../src/texstudio.cpp" line="6492"/>
-        <location filename="../src/texstudio.cpp" line="10216"/>
+        <location filename="../src/texstudio.cpp" line="3967"/>
+        <location filename="../src/texstudio.cpp" line="5702"/>
+        <location filename="../src/texstudio.cpp" line="5754"/>
+        <location filename="../src/texstudio.cpp" line="6303"/>
+        <location filename="../src/texstudio.cpp" line="6484"/>
+        <location filename="../src/texstudio.cpp" line="6486"/>
+        <location filename="../src/texstudio.cpp" line="6496"/>
+        <location filename="../src/texstudio.cpp" line="6498"/>
+        <location filename="../src/texstudio.cpp" line="10222"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
@@ -10602,7 +10597,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2682"/>
-        <location filename="../src/texstudio.cpp" line="10046"/>
+        <location filename="../src/texstudio.cpp" line="10052"/>
         <source>Open Files</source>
         <translation>Ανοικτά αρχεία</translation>
     </message>
@@ -10638,7 +10633,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2918"/>
-        <location filename="../src/texstudio.cpp" line="11432"/>
+        <location filename="../src/texstudio.cpp" line="11438"/>
         <source>Copy</source>
         <translation>Αντιγραφή</translation>
     </message>
@@ -10720,182 +10715,182 @@ this other file before you can overwrite it.</source>
         <translation>Η αποθήκευση συνεδρίας απέτυχε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3451"/>
+        <location filename="../src/texstudio.cpp" line="3455"/>
         <source>The following files could not be loaded:</source>
         <translation>Τα κάτωθι αρχεία δεν μπόρεσαν να φορτωθούν:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3600"/>
+        <location filename="../src/texstudio.cpp" line="3606"/>
         <source>Image Formats (%1)</source>
         <translation>Τύποι Εικόνων (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3602"/>
+        <location filename="../src/texstudio.cpp" line="3608"/>
         <source>Save Image</source>
         <translation>Αποθήκευση Εικόνας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3607"/>
+        <location filename="../src/texstudio.cpp" line="3613"/>
         <source>Could not save the image file.</source>
         <translation>Δεν μπορούσε να γίνει αποθήκευση του αρχείου εικόνας.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3695"/>
+        <location filename="../src/texstudio.cpp" line="3701"/>
         <source>Ascending</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3695"/>
+        <location filename="../src/texstudio.cpp" line="3701"/>
         <source>Descending</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3695"/>
+        <location filename="../src/texstudio.cpp" line="3701"/>
         <source>No Sorting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3695"/>
+        <location filename="../src/texstudio.cpp" line="3701"/>
         <source>Random (Shuffle)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3701"/>
+        <location filename="../src/texstudio.cpp" line="3707"/>
         <source>Sorting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3702"/>
+        <location filename="../src/texstudio.cpp" line="3708"/>
         <source>Complete Lines</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3703"/>
+        <location filename="../src/texstudio.cpp" line="3709"/>
         <source>Case Sensitive</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3704"/>
+        <location filename="../src/texstudio.cpp" line="3710"/>
         <source>Remove Duplicates</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3928"/>
+        <location filename="../src/texstudio.cpp" line="3934"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3929"/>
+        <location filename="../src/texstudio.cpp" line="3935"/>
         <source>Smart scope selecting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3930"/>
+        <location filename="../src/texstudio.cpp" line="3936"/>
         <source>Join lines before wrapping</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3944"/>
-        <location filename="../src/texstudio.cpp" line="6192"/>
-        <location filename="../src/texstudio.cpp" line="6227"/>
+        <location filename="../src/texstudio.cpp" line="3950"/>
+        <location filename="../src/texstudio.cpp" line="6198"/>
+        <location filename="../src/texstudio.cpp" line="6233"/>
         <source>No document open</source>
         <translation>Κανένα έγγραφο δεν ανοίχθηκε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3950"/>
+        <location filename="../src/texstudio.cpp" line="3956"/>
         <source>No dictionary available.</source>
         <translation>Κανένα λεξικό διαθέσιμο.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3961"/>
+        <location filename="../src/texstudio.cpp" line="3967"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Δεν μπορεί να φορτωθεί η βάση δεδομένων του Thesaurus </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4364"/>
+        <location filename="../src/texstudio.cpp" line="4370"/>
         <source>Storing session failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4364"/>
+        <location filename="../src/texstudio.cpp" line="4370"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4459"/>
+        <location filename="../src/texstudio.cpp" line="4465"/>
         <source>Unable to write to settings file %1</source>
         <translation>Αδυναμία εγγραφής στο αρχείο ρυθμίσεων %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5317"/>
+        <location filename="../src/texstudio.cpp" line="5323"/>
         <source>Quick Start</source>
         <translation>Γρήγορη εκκίνηση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5339"/>
+        <location filename="../src/texstudio.cpp" line="5345"/>
         <source>Quick Beamer Presentation</source>
         <translation>Γρήγορη παρουσίαση Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5376"/>
+        <location filename="../src/texstudio.cpp" line="5382"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Τρέχον Αρχείο&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5408"/>
+        <location filename="../src/texstudio.cpp" line="5414"/>
         <source>Type: %1</source>
         <translation>Τύπος: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5450"/>
+        <location filename="../src/texstudio.cpp" line="5456"/>
         <source>Edit User &amp;Tags</source>
         <translation>Επεξεργασία Ετικετών &amp;Χρήστη</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5514"/>
+        <location filename="../src/texstudio.cpp" line="5520"/>
         <source>Labels:</source>
         <translation>Ετικέτες:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5600"/>
+        <location filename="../src/texstudio.cpp" line="5606"/>
         <source>show less entries ...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5641"/>
+        <location filename="../src/texstudio.cpp" line="5647"/>
         <source>Encoding Aliases: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5696"/>
+        <location filename="../src/texstudio.cpp" line="5702"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Δεν μπόρεσε να εντοπιστεί το όνομα του αρχείου.
 Πρέπει να αποθηκεύσετε ένα έγγραφο πριν το τρέξετε.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5703"/>
+        <location filename="../src/texstudio.cpp" line="5709"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Δεν μπορεί να εντοπιστεί το όνομα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5742"/>
+        <location filename="../src/texstudio.cpp" line="5748"/>
         <source>  Running this command: </source>
         <translation>Εκτέλεση αυτής της εντολής:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5748"/>
+        <location filename="../src/texstudio.cpp" line="5754"/>
         <source>could not start the command</source>
         <translation>δεν μπορούσε ν&apos; αρχίσει η εντολή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5872"/>
+        <location filename="../src/texstudio.cpp" line="5878"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5892"/>
+        <location filename="../src/texstudio.cpp" line="5898"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10906,227 +10901,227 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5898"/>
+        <location filename="../src/texstudio.cpp" line="5904"/>
         <source>(a) allow for this document</source>
         <translation>(a) να επιτρέπεται γι αυτό το έγγραφο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5899"/>
+        <location filename="../src/texstudio.cpp" line="5905"/>
         <source>(b) allow for all documents</source>
         <translation>(a) να επιτρέπεται για όλα τα έγγραφα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5900"/>
+        <location filename="../src/texstudio.cpp" line="5906"/>
         <source>(c) use the default command</source>
         <translation>(γ) χρήση της προεπιλεγμένης εντολής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5976"/>
+        <location filename="../src/texstudio.cpp" line="5982"/>
         <source>Unknown internal command: %1</source>
         <translation>Άγνωστη εσωτερική εντολή: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6011"/>
+        <location filename="../src/texstudio.cpp" line="6017"/>
         <source>%!TeX program used: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6014"/>
+        <location filename="../src/texstudio.cpp" line="6020"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6075"/>
+        <location filename="../src/texstudio.cpp" line="6081"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Δεν μπορείτε να τρέξετε το έγγραφο σε μια μη εγγράψιμη θέση</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6077"/>
+        <location filename="../src/texstudio.cpp" line="6083"/>
         <source>Could not start %1.</source>
         <translation>Δεν μπορούσε να ξεκινήσει %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6106"/>
+        <location filename="../src/texstudio.cpp" line="6112"/>
         <source>Error:</source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6182"/>
+        <location filename="../src/texstudio.cpp" line="6188"/>
         <source>No open project or tex file to clean.</source>
         <translation>Κανένα αρχείο project ή tex για εκκαθάριση.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6231"/>
+        <location filename="../src/texstudio.cpp" line="6237"/>
         <source>Text Analysis</source>
         <translation>Εξέταση Κειμένου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6255"/>
+        <location filename="../src/texstudio.cpp" line="6261"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6297"/>
+        <location filename="../src/texstudio.cpp" line="6303"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Το αρχείο πρέπει να αποθηκευτεί και να εκτελεστεί πριν να μπορέσετε να δείτε το αρχείο καταγραφής</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6478"/>
-        <location filename="../src/texstudio.cpp" line="6490"/>
+        <location filename="../src/texstudio.cpp" line="6484"/>
+        <location filename="../src/texstudio.cpp" line="6496"/>
         <source>File not found</source>
         <translation>Το αρχείο δεν βρέθηκε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6480"/>
-        <location filename="../src/texstudio.cpp" line="6492"/>
+        <location filename="../src/texstudio.cpp" line="6486"/>
+        <location filename="../src/texstudio.cpp" line="6498"/>
         <source>Could not open browser</source>
         <translation>Αδυναμία εκτέλεσης περιηγητή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7086"/>
+        <location filename="../src/texstudio.cpp" line="7092"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Πρέπει να αποθηκεύσετε το αρχείο πριν το ορίσετε ως βασικό έγγραφο.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7542"/>
+        <location filename="../src/texstudio.cpp" line="7548"/>
         <source>Label</source>
         <translation>Ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7544"/>
-        <location filename="../src/texstudio.cpp" line="7566"/>
+        <location filename="../src/texstudio.cpp" line="7550"/>
+        <location filename="../src/texstudio.cpp" line="7572"/>
         <source>Beyond end of document.</source>
         <translation>Πριν το τέλος του αρχείου.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7547"/>
-        <location filename="../src/texstudio.cpp" line="7568"/>
+        <location filename="../src/texstudio.cpp" line="7553"/>
+        <location filename="../src/texstudio.cpp" line="7574"/>
         <source>In Appendix.</source>
         <translation>Στο Παράρτημα.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7586"/>
+        <location filename="../src/texstudio.cpp" line="7592"/>
         <source>File not found.</source>
         <translation>Το αρχείο δεν βρέθηκε</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7601"/>
+        <location filename="../src/texstudio.cpp" line="7607"/>
         <source> (Line %1)</source>
         <translation> (Γραμμή %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8840"/>
+        <location filename="../src/texstudio.cpp" line="8846"/>
         <source>commit comment:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8843"/>
+        <location filename="../src/texstudio.cpp" line="8849"/>
         <source>check in whole directory ?</source>
         <translation>έλεγχος σε όλο το φάκελο ;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9197"/>
+        <location filename="../src/texstudio.cpp" line="9203"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9498"/>
+        <location filename="../src/texstudio.cpp" line="9504"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>Αδυναμία ανοίγματος του αρχείου &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9500"/>
+        <location filename="../src/texstudio.cpp" line="9506"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει.
 Θέλετε να το δημιουργήσετε;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9534"/>
+        <location filename="../src/texstudio.cpp" line="9540"/>
         <source>Save Profile</source>
         <translation>Αποθήκευση Προφίλ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9534"/>
-        <location filename="../src/texstudio.cpp" line="9541"/>
+        <location filename="../src/texstudio.cpp" line="9540"/>
+        <location filename="../src/texstudio.cpp" line="9547"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Προφίλ TXS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9541"/>
+        <location filename="../src/texstudio.cpp" line="9547"/>
         <source>Load Profile</source>
         <translation>Φόρτωση Προφίλ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9594"/>
+        <location filename="../src/texstudio.cpp" line="9600"/>
         <source>Failed to read profile file %1.</source>
         <translation>Αποτυχία ανάγνωσης του αρχείου προφίλ %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9717"/>
+        <location filename="../src/texstudio.cpp" line="9723"/>
         <source>Problem</source>
         <translation>Πρόβλημα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9717"/>
+        <location filename="../src/texstudio.cpp" line="9723"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9722"/>
+        <location filename="../src/texstudio.cpp" line="9728"/>
         <source>Find Word Repetitions</source>
         <translation>Αναζήτηση Επαναλαμβανόμενων Λέξεων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9731"/>
+        <location filename="../src/texstudio.cpp" line="9737"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Βρες τα Επόμενα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9733"/>
+        <location filename="../src/texstudio.cpp" line="9739"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;Βρες τα Προηγούμενα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9784"/>
+        <location filename="../src/texstudio.cpp" line="9790"/>
         <source>Reached beginning of text.</source>
         <translation>Αρχή του κειμένου.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9784"/>
+        <location filename="../src/texstudio.cpp" line="9790"/>
         <source>Reached end of text.</source>
         <translation>Τέλος του κειμένου.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10046"/>
-        <location filename="../src/texstudio.cpp" line="10256"/>
-        <location filename="../src/texstudio.cpp" line="10259"/>
+        <location filename="../src/texstudio.cpp" line="10052"/>
+        <location filename="../src/texstudio.cpp" line="10262"/>
+        <location filename="../src/texstudio.cpp" line="10265"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Αρχεία LaTeX (*.tex);;Όλα τα αρχεία (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10216"/>
+        <location filename="../src/texstudio.cpp" line="10222"/>
         <source>You do not have read permission to this file.</source>
         <translation>Δεν έχετε άδεια ανάγνωσης σ&apos; αυτό το αρχείο.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10256"/>
+        <location filename="../src/texstudio.cpp" line="10262"/>
         <source>Open Compare File</source>
         <translation>Άνοιγμα Αρχείου Σύγκρισης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10259"/>
+        <location filename="../src/texstudio.cpp" line="10265"/>
         <source>Open Base File</source>
         <translation>Άνοιγμα Αρχείου Βάσης</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10340"/>
+        <location filename="../src/texstudio.cpp" line="10346"/>
         <source>SVN Conflict!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10341"/>
+        <location filename="../src/texstudio.cpp" line="10347"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11134,14 +11129,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10438"/>
-        <location filename="../src/texstudio.cpp" line="10529"/>
+        <location filename="../src/texstudio.cpp" line="10444"/>
         <location filename="../src/texstudio.cpp" line="10535"/>
+        <location filename="../src/texstudio.cpp" line="10541"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio Emergency</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10442"/>
+        <location filename="../src/texstudio.cpp" line="10448"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11150,7 +11145,7 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10445"/>
+        <location filename="../src/texstudio.cpp" line="10451"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11159,19 +11154,19 @@ Please provide this file if you send a bug report.
 %2 Θέλετε να διατηρήσετε το TeXstudio σε λειτουργία; Αυτό μπορεί να προκαλέσει καταστροφή δεδομένων.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10446"/>
+        <location filename="../src/texstudio.cpp" line="10452"/>
         <source>Yes, try to recover</source>
         <translation>Ναι, προσπάθησε να το επαναφέρεις</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10447"/>
-        <location filename="../src/texstudio.cpp" line="10452"/>
-        <location filename="../src/texstudio.cpp" line="10531"/>
+        <location filename="../src/texstudio.cpp" line="10453"/>
+        <location filename="../src/texstudio.cpp" line="10458"/>
+        <location filename="../src/texstudio.cpp" line="10537"/>
         <source>No, kill the program</source>
         <translation>Όχι, τέλειωσε το πρόγραμμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10449"/>
+        <location filename="../src/texstudio.cpp" line="10455"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -11180,72 +11175,72 @@ Please provide this file if you send a bug report.
 %1 Θέλετε να διατηρήσετε το πρόγραμμα σε λειτουργία; Αυτό μπορεί να προκαλέσει καταστροφή δεδομένων.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10450"/>
+        <location filename="../src/texstudio.cpp" line="10456"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Ναι, σταμάτα το βρόχο και προσπάθησε να τον επαναφέρεις</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10451"/>
+        <location filename="../src/texstudio.cpp" line="10457"/>
         <source>Yes, continue the loop</source>
         <translation>Ναι, συνέχισε το βρόχο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10530"/>
+        <location filename="../src/texstudio.cpp" line="10536"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10531"/>
+        <location filename="../src/texstudio.cpp" line="10537"/>
         <source>Yes</source>
         <translation>Ναι</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10535"/>
+        <location filename="../src/texstudio.cpp" line="10541"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Πρόσπαθησα να πεθάνω, αλλά τίποτα δε συννέβη.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10567"/>
+        <location filename="../src/texstudio.cpp" line="10573"/>
         <source>System Report</source>
         <translation>Αρχείο Συστήματος</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10703"/>
+        <location filename="../src/texstudio.cpp" line="10709"/>
         <source>LT Report</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10729"/>
+        <location filename="../src/texstudio.cpp" line="10735"/>
         <source>process failed to start
 </source>
         <translation>η διαδικασία απέτυχε να ξεκινήσει
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10732"/>
+        <location filename="../src/texstudio.cpp" line="10738"/>
         <source>process crashed
 </source>
         <translation>Η διαδικασία κατέρρευσε
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10742"/>
+        <location filename="../src/texstudio.cpp" line="10748"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Ο έλεγχος σε πραγματικό χρόνο είναι ενεργοποιημένος.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10744"/>
+        <location filename="../src/texstudio.cpp" line="10750"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Έλεγχος σε πραγματικό χρόνο απενεργοποιημένος!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10747"/>
+        <location filename="../src/texstudio.cpp" line="10753"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -11254,7 +11249,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10749"/>
+        <location filename="../src/texstudio.cpp" line="10755"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -11263,7 +11258,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10752"/>
+        <location filename="../src/texstudio.cpp" line="10758"/>
         <source>Tries to start automatically.
 
 </source>
@@ -11272,7 +11267,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10754"/>
+        <location filename="../src/texstudio.cpp" line="10760"/>
         <source>Autostart disabled.
 
 </source>
@@ -11281,187 +11276,187 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10759"/>
+        <location filename="../src/texstudio.cpp" line="10765"/>
         <source>LT current status: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10762"/>
+        <location filename="../src/texstudio.cpp" line="10768"/>
         <source>working</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10765"/>
+        <location filename="../src/texstudio.cpp" line="10771"/>
         <source>error</source>
         <translation>σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10769"/>
+        <location filename="../src/texstudio.cpp" line="10775"/>
         <source>unknown</source>
         <translation>άγνωστο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10772"/>
+        <location filename="../src/texstudio.cpp" line="10778"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11078"/>
+        <location filename="../src/texstudio.cpp" line="11084"/>
         <source>Error when communicating with LT: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11168"/>
-        <location filename="../src/texstudio.cpp" line="11963"/>
+        <location filename="../src/texstudio.cpp" line="11174"/>
+        <location filename="../src/texstudio.cpp" line="11969"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11283"/>
-        <location filename="../src/texstudio.cpp" line="11291"/>
-        <location filename="../src/texstudio.cpp" line="11321"/>
+        <location filename="../src/texstudio.cpp" line="11289"/>
+        <location filename="../src/texstudio.cpp" line="11297"/>
+        <location filename="../src/texstudio.cpp" line="11327"/>
         <source>Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11374"/>
+        <location filename="../src/texstudio.cpp" line="11380"/>
         <source>Close document</source>
         <translation>Κλείσιμο αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11375"/>
+        <location filename="../src/texstudio.cpp" line="11381"/>
         <source>Set as explicit root document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11376"/>
+        <location filename="../src/texstudio.cpp" line="11382"/>
         <source>Open all related documents</source>
         <translation>Άνοιγμα όλων των σχετικών αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11377"/>
+        <location filename="../src/texstudio.cpp" line="11383"/>
         <source>Close all related documents</source>
         <translation>Κλείσιμο όλων των σχετικών αρχείων</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11379"/>
+        <location filename="../src/texstudio.cpp" line="11385"/>
         <source>Remove explicit root document role</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11381"/>
+        <location filename="../src/texstudio.cpp" line="11387"/>
         <source>Show all open documents in this tree</source>
         <translation>Εμφάνιση όλων των ανοιχτών αρχείων σ&apos; αυτό το δέντρο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11383"/>
+        <location filename="../src/texstudio.cpp" line="11389"/>
         <source>Show only current document in this tree</source>
         <translation>Εμφάνιση του τρέχοντος αρχείου σ&apos; αυτό το δέντρο</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11396"/>
+        <location filename="../src/texstudio.cpp" line="11402"/>
         <source>Copy filename</source>
         <translation>Αντιγραφή ονόματος αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11397"/>
+        <location filename="../src/texstudio.cpp" line="11403"/>
         <source>Copy file path</source>
         <translation>Αντιγραφή διαδρομής αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11404"/>
+        <location filename="../src/texstudio.cpp" line="11410"/>
         <source>Insert</source>
         <translation>Εισαγωγή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11405"/>
-        <location filename="../src/texstudio.cpp" line="11406"/>
+        <location filename="../src/texstudio.cpp" line="11411"/>
+        <location filename="../src/texstudio.cpp" line="11412"/>
         <source>Insert as %1</source>
         <translation>Εισαγωγή ως %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11408"/>
+        <location filename="../src/texstudio.cpp" line="11414"/>
         <source>Find Usages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11419"/>
+        <location filename="../src/texstudio.cpp" line="11425"/>
         <source>Insert Label</source>
         <translation>Προσθήκη Ετικέτας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11423"/>
+        <location filename="../src/texstudio.cpp" line="11429"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>Προσθήκη %1 στην Ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11427"/>
+        <location filename="../src/texstudio.cpp" line="11433"/>
         <source>Create Label</source>
         <translation>Δημιουργία Ετικέτας</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11431"/>
+        <location filename="../src/texstudio.cpp" line="11437"/>
         <source>Cut</source>
         <translation>Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11433"/>
+        <location filename="../src/texstudio.cpp" line="11439"/>
         <source>Paste Before</source>
         <translation>Επικόλληση πριν</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11434"/>
+        <location filename="../src/texstudio.cpp" line="11440"/>
         <source>Paste After</source>
         <translation>Επικόλληση μετά</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11436"/>
+        <location filename="../src/texstudio.cpp" line="11442"/>
         <source>Indent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11437"/>
+        <location filename="../src/texstudio.cpp" line="11443"/>
         <source>Unindent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11390"/>
-        <location filename="../src/texstudio.cpp" line="11440"/>
+        <location filename="../src/texstudio.cpp" line="11396"/>
+        <location filename="../src/texstudio.cpp" line="11446"/>
         <source>Expand Subitems</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11391"/>
-        <location filename="../src/texstudio.cpp" line="11441"/>
+        <location filename="../src/texstudio.cpp" line="11397"/>
+        <location filename="../src/texstudio.cpp" line="11447"/>
         <source>Collapse Subitems</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11449"/>
+        <location filename="../src/texstudio.cpp" line="11455"/>
         <source>Open Document</source>
         <translation>Άνοιγμα Αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11450"/>
-        <location filename="../src/texstudio.cpp" line="11457"/>
+        <location filename="../src/texstudio.cpp" line="11456"/>
+        <location filename="../src/texstudio.cpp" line="11463"/>
         <source>Go to Definition</source>
         <translation>Πήγαινε στον Ορισμό</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11947"/>
+        <location filename="../src/texstudio.cpp" line="11953"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHY</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11955"/>
+        <location filename="../src/texstudio.cpp" line="11961"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11971"/>
+        <location filename="../src/texstudio.cpp" line="11977"/>
         <source>LABELS</source>
         <translation>LABELS</translation>
     </message>
@@ -11860,55 +11855,65 @@ included document in %1</source>
 <context>
     <name>UpdateChecker</name>
     <message>
-        <location filename="../src/updatechecker.cpp" line="27"/>
+        <location filename="../src/updatechecker.cpp" line="28"/>
         <source>Never</source>
         <comment>last update</comment>
         <translation>Ποτέ</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="65"/>
+        <location filename="../src/updatechecker.cpp" line="69"/>
         <source>Update check failed with error:
 </source>
         <translation>Ο έλεγχος για την ενημέρωση της έκδοσης απέτυχε με σφάλμα:
 </translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="185"/>
+        <location filename="../src/updatechecker.cpp" line="155"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>Ο έλεγχος για την ενημέρωση της έκδοσης απέτυχε (μη έγκυρη μορφή αρχείου ενημέρωσης).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="191"/>
+        <location filename="../src/updatechecker.cpp" line="161"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="194"/>
-        <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (rc%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <location filename="../src/updatechecker.cpp" line="164"/>
+        <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version: &lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:     &lt;/td&gt;&lt;td&gt;%3&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%4&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="211"/>
+        <location filename="../src/updatechecker.cpp" line="185"/>
+        <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:    &lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:     &lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%3&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%4&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="203"/>
+        <source>Update check for stable version failed (invalid update file format).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="206"/>
+        <source>A new stable version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="219"/>
+        <source>Your TeXstudio version %1 is up-to-date.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="224"/>
+        <source>TeXstudio has not yet reached a state you are looking for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/updatechecker.cpp" line="182"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation>Ο έλεγχος για την ενημέρωση της έκδοσης υπό ανάπτυξη απέτυχε (μη έγκυρη μορφή αρχείου ενημέρωσης).</translation>
     </message>
     <message>
-        <location filename="../src/updatechecker.cpp" line="214"/>
-        <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (beta%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/updatechecker.cpp" line="230"/>
-        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Μια νέα έκδοση του TeXstudio είναι διαθέσιμη. &lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Τρέχουσα έκδοση:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Τελευταία σταθερή έκδοση:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Μπορείτε να κάνετε λήψη της έκδοσης από το &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../src/updatechecker.cpp" line="239"/>
-        <source>TeXstudio is up-to-date.</source>
-        <translation>Το TeXstudio είναι πλήρως αναβαθμισμένο</translation>
-    </message>
-    <message>
-        <location filename="../src/updatechecker.cpp" line="251"/>
+        <location filename="../src/updatechecker.cpp" line="236"/>
         <source>TeXstudio Update</source>
         <translation>Αναβάθμιση του TeXstudio</translation>
     </message>
