@@ -16,9 +16,14 @@
 \begin{psgraph}[options%keyvals](x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}
 \begin{psgraph}[options%keyvals]{arrows}(x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}
 \begin{psgraph}{arrows}(x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}
+\begin{psgraph*}(x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}#*\pictureHighlight
+\begin{psgraph*}[options%keyvals](x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}#*
+\begin{psgraph*}[options%keyvals]{arrows}(x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}#*
+\begin{psgraph*}{arrows}(x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}#*
 \dataplot[options%keyvals]{macro}
 \dataplot{macro}
 \end{psgraph}
+\end{psgraph*}#*
 \endpsgraph#*
 \fileplot[options%keyvals]{file}#i
 \fileplot{file}#i

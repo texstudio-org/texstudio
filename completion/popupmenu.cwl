@@ -29,7 +29,7 @@ return=%<string%>
 \popUpMenu(name)
 \puProcessMenu(name)
 
-\urlPath{path%URL}
+\urlPath{cmd}{path%URL}#d
 \Esc
 \cs{csname}
 

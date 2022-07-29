@@ -1,23 +1,24 @@
 # marathi package
-# Matthew Bertucci 2022/06/20 for v1.7
+# Matthew Bertucci 2022/07/28 for v1.7
 
 #include:iftex
 #include:setspace
 #include:pgfkeys
-#include:csquotes
 #include:fontspec
 #include:babel
+#include:csquotes
 
 \बदल{options%keyvals}
 
-#keyvals:\usepackage/marathi#c,\बदल#c
-अंतर=%<number%>
+#keyvals:\बदल#c,\usepackage/marathi#c
+अंतर
+अंतर=%<integer%>
 #endkeyvals
 
-\theक्र#*
-\अंतरबदल{number}
+\परिच्छेद
+\नमुना
 \टंक{font name}
 \दुसराटंक{cmd}{font name}#d
-\नमुना
-\परिच्छेद#*
+\अंतरबदल{integer}
 \मराठीअंतर#*
+\theक्र#*
