@@ -10,7 +10,7 @@
 \renewstyledcmd{cmd}{format name}[args]{definition}#d
 \providestyledcmd{cmd}{format name}{definition}#d
 \providestyledcmd{cmd}{format name}[args]{definition}#d
-\setGlobalStyle{cmd}{new format name}#*
+\setGlobalStyle{cmd}{new format name}
 \NewDocStyledCMD{cmd}{format name}{xargs}{definition}#d
 \RenewDocStyledCMD{cmd}{format name}{xargs}{definition}#d
 \ProvideDocStyledCMD{cmd}{format name}{xargs}{definition}#d
@@ -18,6 +18,7 @@
 \styEndGroup#*
 \styBeginStyle{format name}#*
 \styEndStyle#*
-\newGstyledcmd{cmd}[args]{definition}#*
-\NewGDocStyledCMD{cmd}{xargs}{definition}#*
+\newGstyledcmd{cmd}{definition}#*d
+\newGstyledcmd{cmd}[args]{definition}#*d
+\NewGDocStyledCMD{cmd}{xargs}{definition}#*d
 \setGroupStyle{group name}{new default style}#*
