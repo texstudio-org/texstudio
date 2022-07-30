@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2022/07/17 for v6.11
+# Matthew Bertucci 2022/07/29 for v6.12
 
 #include:amsmath
 #include:array
@@ -148,8 +148,14 @@ vlines-in-sub-matrix=%<letter%>
 colortbl-like
 #endkeyvals
 
-#keyvals:\begin{NiceTabular}
+#keyvals:\NiceMatrixOptions,\begin{NiceTabular}
 width=##L
+#endkeyvals
+
+#keyvals:\begin{NiceTabular},\begin{NiceTabular*},\begin{NiceTabularX}
+caption=%<text%>
+short-caption=%<text%>
+label=##l
 #endkeyvals
 
 #keyvals:\begin{NiceMatrix},\begin{pNiceMatrix},\begin{bNiceMatrix},\begin{BNiceMatrix},\begin{vNiceMatrix},\begin{VNiceMatrix}
@@ -171,6 +177,7 @@ notes/code-before=%<code%>
 letter-for-dotted-lines=
 renew-matrix
 exterior-arraycolsep
+caption-above
 #endkeyvals
 
 \Block{i-j}{content}#t
