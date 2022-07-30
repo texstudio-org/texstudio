@@ -270,53 +270,55 @@ method=#post,get
 \Reset{label}#/Form
 \Reset[parameters%keyvals]{label}#/Form
 #keyvals:\TextField,\CheckBox,\ChoiceMenu,\PushButton,\Submit,\Reset
-accesskey
+accesskey=%<key%>
 align=#0,1,2
-altname
+altname=%<altname%>
 backgroundcolor=#%color
 bordercolor=#%color
 bordersep=##L
+borderstyle=#S,B,D,I,U
 borderwidth=##L
-calculate
+calculate={%<JavaScript code%>}
+calculatesortkey=%<key%>
 charsize=##L
-checkboxsymbol
+checkboxsymbol=%<symbol%>
 checked#true,false
 color=#%color
 combo#true,false
-default
+default=%<default value%>
 disabled#true,false
-format
+format={%<JavaScript code%>}
 height=##L
 hidden#true,false
-keystroke
-mappingname
-maxlen
-menulength
+keystroke={%<JavaScript code%>}
+mappingname=%<name%>
+maxlen=%<number%>
+menulength=%<number%>
 multiline#true,false
-name
-onblur
-onchange
-onclick
-ondbclick
-onfocus
-onkeydown
-onkeypress
-onkeyup
-onmousedown
-onmousemove
-onmouseout
-onmouseover
-onmouseup
-onselect
+name=%<name%>
+onblur={%<JavaScript code%>}
+onchange={%<JavaScript code%>}
+onclick={%<JavaScript code%>}
+ondbclick={%<JavaScript code%>}
+onfocus={%<JavaScript code%>}
+onkeydown={%<JavaScript code%>}
+onkeypress={%<JavaScript code%>}
+onkeyup={%<JavaScript code%>}
+onmousedown={%<JavaScript code%>}
+onmousemove={%<JavaScript code%>}
+onmouseout={%<JavaScript code%>}
+onmouseover={%<JavaScript code%>}
+onmouseup={%<JavaScript code%>}
+onselect={%<JavaScript code%>}
 password#true,false
 popdown#true,false
 radio#true,false
-radiosymbol
+radiosymbol=%<symbol%>
 readonly#true,false
-rotation
-tabkey
-validate
-value
+rotation=%<multiple of 90%>
+tabkey=%<key%>
+validate={%<JavaScript code%>}
+value=%<init value%>
 width=##L
 #endkeyvals
 
