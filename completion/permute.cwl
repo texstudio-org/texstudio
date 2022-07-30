@@ -11,22 +11,25 @@
 \pmtv*[print order]{permutation}
 
 \pmttable{list of pmts}{list of pmts}
-\pmttable[print order]{list of pmts}{list of pmts}#*
+\pmttable[print order]{list of pmts}{list of pmts}
 \pmttable*{list of pmts}{list of pmts}
-\pmttable*[print order]{list of pmts}{list of pmts}#*
+\pmttable*[print order]{list of pmts}{list of pmts}
 \pmtvtable{list of pmts}{list of pmts}
-\pmtvtable[print order]{list of pmts}{list of pmts}#*
+\pmtvtable[print order]{list of pmts}{list of pmts}
 \pmtvtable*{list of pmts}{list of pmts}
-\pmtvtable*[print order]{list of pmts}{list of pmts}#*
+\pmtvtable*[print order]{list of pmts}{list of pmts}
 
-\pmtvshorttrue#*
-\pmtvshortfalse#*
+\pmtshorttrue#*
+\pmtshortfalse#*
 
 \pmtload{name}#*
 \pmtsave{name}#*
-\pmtid[opt_name]#*
-\pmtdo[opt_name]{permutation}#*
-\pmtcirc[opt_name]{permutation}#*
+\pmtid#*
+\pmtid[name]#*
+\pmtdo{permutation%formula}#*
+\pmtdo[name]{permutation%formula}#*
+\pmtcirc{permutation%formula}#*
+\pmtcirc[name]{permutation%formula}#*
 \pmtprint#*
 \pmtprint*#*
 \pmtprint[print order]#*
@@ -35,8 +38,10 @@
 \pmtvprint*#*
 \pmtvprint[print order]#*
 \pmtvprint*[print order]#*
-\pmtimageof[opt_name]{preimage}#*
-\pmtpreimageof[opt_name]{image}#*
+\pmtimageof{pre-image}#*
+\pmtimageof[name]{pre-image}#*
+\pmtpreimageof{image}#*
+\pmtpreimageof[name]{image}#*
 
 \pmtprintorder#*
 \pmtseparator#*
