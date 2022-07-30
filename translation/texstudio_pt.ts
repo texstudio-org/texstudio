@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -886,7 +884,7 @@ Por favor, altere a sua configuração e defina listas de comandos só em &quot;
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define o tipo de aviso de actualizações que recebe:
 - versões estáveis: escolha se a estabilidade é o mais importante para si.
@@ -1094,7 +1092,7 @@ As variáveis são escritas como: $MINHAVAR. Sensíveis a maiúsculas.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2640,8 +2638,8 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
         <location filename="../src/configdialog.ui" line="4359"/>
         <location filename="../src/configdialog.ui" line="4413"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>O motor de desenho usado pelo poppler da biblioteca PDF.
 &quot;Splash&quot; é a predefinição e adequa-se à maioria dos casos.
@@ -4414,7 +4412,7 @@ Tem a certeza que deseja desfazer as alterações?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferências de posição da figura
@@ -4532,7 +4530,7 @@ o assistente não suporta o comando </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="2040"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome de ficheiro: %1&lt;/b&gt;
 </translation>
@@ -4680,7 +4678,7 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2590"/>
         <location filename="../src/latexeditorview.cpp" line="2662"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome de ficheiro: %1&lt;/b&gt;
 </translation>
@@ -4688,10 +4686,7 @@ o assistente não suporta o comando </translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2603"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n referência a este rótulo</numerusform>
-            <numerusform>%n referências a este rótulo</numerusform>
-        </translation>
+        <translation><numerusform>%n referência a este rótulo</numerusform><numerusform>%n referências a este rótulo</numerusform><numerusform>%n referências a este rótulo</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2608"/>
@@ -6385,7 +6380,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1106"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>O ficheiro original no disco foi destruído durante a gravação.
 Encontrará uma cópia em
@@ -10935,7 +10930,7 @@ outro ficheiro antes de o poder sobrescrever.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5702"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Impossível detectar o nome do ficheiro.
 Tem de gravar um documento antes de o compilar.</translation>
@@ -11980,43 +11975,43 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="164"/>
         <source>A new release candidate of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um novo lançamento do TeXstudio está disponível.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="165"/>
         <location filename="../src/updatechecker.cpp" line="183"/>
         <location filename="../src/updatechecker.cpp" line="201"/>
         <source>Current version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão atual:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="166"/>
         <location filename="../src/updatechecker.cpp" line="184"/>
         <location filename="../src/updatechecker.cpp" line="202"/>
         <source>Latest stable version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Última versão estável:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="167"/>
         <source>Release candidate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lançamento:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="168"/>
         <location filename="../src/updatechecker.cpp" line="186"/>
         <location filename="../src/updatechecker.cpp" line="203"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation type="unfinished"></translation>
+        <translation>Você pode baixá-lo do site do TeXstudio %1</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="197"/>
         <source>Update check for stable version failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao buscar por atualizações de versão estável (atualização de formato de arquivo inválida).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="210"/>
         <source>Your TeXstudio version %1 is up-to-date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seu TeXstudio versão %1 está atualizado.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="179"/>
@@ -12026,22 +12021,22 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="182"/>
         <source>A new development version of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma nova versão de desenvolvimento do TeXstudio está disponível.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Latest development version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Última versão de desenvolvimento:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="200"/>
         <source>A new stable version of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma nova versão estável do TeXstudio está disponível.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="215"/>
         <source>Failure to find current TeXstudio versions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao buscar versões atuais do TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
