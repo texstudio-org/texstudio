@@ -131,7 +131,7 @@ pdfcreationdate=%<date%>
 pdfcreator=%<creator%>
 pdfdirection=#L2R,R2L
 pdfdisplaydoctitle#true,false
-pdfduplex
+pdfduplex=#Simplex,DuplexFlipShortEdge,DuplexFlipLongEdge
 pdfencoding=#pdfdoc,unicode,auto
 pdfescapeform#true,false
 pdffitwindow#true,false
@@ -150,12 +150,12 @@ pdfpageduration=
 pdfpagelabels#true,false
 pdfpagelayout=#SinglePage,OneColumn,TwoColumnLeft,TwoColumnRight,TwoPageLeft,TwoPageRight
 pdfpagemode=#FullScreen,UseNone,UseOutlines,UseOC,UseAttachments,UseThumbs
-pdfpagescrop=
+pdfpagescrop=%<n1 n2 n3 n4%>
 pdfpagetransition=#Split,Blinds,Box,Wipe,Dissolve,Glitter,R,Fly,Push,Cover,Uncover,Fade
 pdfpicktraybypdfsize#true,false
 pdfprintarea=#Mediabox,CropBox,BleedBox,TrimBox,ArtBox
 pdfprintclip=#Mediabox,CropBox,BleedBox,TrimBox,ArtBox
-pdfprintpagerange=
+pdfprintpagerange=%<n1 n2%>
 pdfprintscaling=#None,AppDefault
 pdfproducer=%<producer%>
 pdfremotestartview=#XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV
@@ -166,7 +166,7 @@ pdftex
 pdftitle=%<title%>
 pdftoolbar#true,false
 pdftrapped=#True,False,Unknown
-pdfusetitle
+pdfusetitle#true,false
 pdfversion=%<version%>
 pdfview=#XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV
 pdfviewarea=#Mediabox,CropBox,BleedBox,TrimBox,ArtBox
