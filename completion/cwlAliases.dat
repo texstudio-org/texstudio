@@ -1250,3 +1250,11 @@ europasscv:
 class-europasscv
 latex-document
 tex
+aalok:
+class-aalok
+latex-document
+tex
+exam-zh:
+class-exam-zh
+latex-document
+tex
