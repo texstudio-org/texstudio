@@ -6,8 +6,6 @@
 # loads most option of tcolorbox
 #include:varwidth
 
-\examsetup{options%keyvals}
-
 #keyvals:\examsetup,\ExamPrintAnswerSet
 select={%<键值列表%>}
 select/mark-symbol=%<symbol%>
