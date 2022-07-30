@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="hu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -887,7 +885,7 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Meghatározza, hogy milyen frissítési értesítéseket fog kapni:
 – Stabil kiadások: válassza ezt, ha a stabilitás a legfontosabb.
@@ -1094,7 +1092,7 @@ A változókat $MYVAR-ként kell megadni. Kis-nagybetű érzékeny.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2636,8 +2634,8 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
         <location filename="../src/configdialog.ui" line="4359"/>
         <location filename="../src/configdialog.ui" line="4413"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>A poppler PDF-könyvtár által használt renderelési háttérrendszer:
 A „Splash” az alapértelmezett, és a megfelelő a legtöbb helyzetben.
@@ -4406,7 +4404,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Paraméterek az ábrák elhelyezésére
@@ -4523,7 +4521,7 @@ A varázsló nem támogatja a parancsot</translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="2040"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
@@ -4671,7 +4669,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2590"/>
         <location filename="../src/latexeditorview.cpp" line="2662"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
@@ -4679,9 +4677,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2603"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n hivatkozás ehhez a címkéhez</numerusform>
-        </translation>
+        <translation><numerusform>%n hivatkozás ehhez a címkéhez</numerusform><numerusform>%n hivatkozás erre a címkére</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2608"/>
@@ -6369,7 +6365,7 @@ sikertelen.</translation>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1106"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Az eredeti fájl a lemezen megsemmisült a mentés művelet során.
 Itt talál egy másolatot:
@@ -10918,7 +10914,7 @@ El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5702"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
@@ -11962,43 +11958,43 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="164"/>
         <source>A new release candidate of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio új kiadás előtti verziója érhető el.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="165"/>
         <location filename="../src/updatechecker.cpp" line="183"/>
         <location filename="../src/updatechecker.cpp" line="201"/>
         <source>Current version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jelenlegi verzió:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="166"/>
         <location filename="../src/updatechecker.cpp" line="184"/>
         <location filename="../src/updatechecker.cpp" line="202"/>
         <source>Latest stable version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Legutóbbi stabil verzió:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="167"/>
         <source>Release candidate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiadás előtti verzió:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="168"/>
         <location filename="../src/updatechecker.cpp" line="186"/>
         <location filename="../src/updatechecker.cpp" line="203"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltheti a %1 TeXstudio weboldalról.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="197"/>
         <source>Update check for stable version failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation>A stabil verzió frissítésének ellenőrzése nem sikerült (érvénytelen frissítési fájlformátum).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="210"/>
         <source>Your TeXstudio version %1 is up-to-date.</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio %1 verziója naprakész.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="179"/>
@@ -12008,22 +12004,22 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="182"/>
         <source>A new development version of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio új fejlesztői verziója érhető el.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Latest development version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Legutóbbi fejlesztői verzió:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="200"/>
         <source>A new stable version of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>A TeXstudio új stabil verziója érhető el.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="215"/>
         <source>Failure to find current TeXstudio versions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült megtalálni a TeXstudio aktuális verzióit.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
