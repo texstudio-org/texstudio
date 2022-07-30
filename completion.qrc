@@ -418,6 +418,7 @@
 <file>completion/BOONDOX-uprscr.cwl</file>
 <file>completion/bophook.cwl</file>
 <file>completion/boustr.cwl</file>
+<file>completion/boxdims.cwl</file>
 <file>completion/boxedminipage.cwl</file>
 <file>completion/boxhandler.cwl</file>
 <file>completion/boxit.cwl</file>
@@ -566,6 +567,7 @@
 <file>completion/CJKvert.cwl</file>
 <file>completion/clara.cwl</file>
 <file>completion/class-a0poster.cwl</file>
+<file>completion/class-aalok.cwl</file>
 <file>completion/class-abntex2.cwl</file>
 <file>completion/class-achemso.cwl</file>
 <file>completion/class-acmart.cwl</file>
@@ -647,6 +649,7 @@
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
 <file>completion/class-exam-n.cwl</file>
+<file>completion/class-exam-zh.cwl</file>
 <file>completion/class-exesheet.cwl</file>
 <file>completion/class-extarticle.cwl</file>
 <file>completion/class-extbook.cwl</file>
@@ -1279,6 +1282,11 @@
 <file>completion/exaccent.cwl</file>
 <file>completion/example.cwl</file>
 <file>completion/exam-randomizechoices.cwl</file>
+<file>completion/exam-zh-chinese-english.cwl</file>
+<file>completion/exam-zh-choices.cwl</file>
+<file>completion/exam-zh-font.cwl</file>
+<file>completion/exam-zh-question.cwl</file>
+<file>completion/exam-zh-symbols.cwl</file>
 <file>completion/exceltex.cwl</file>
 <file>completion/excludeonly.cwl</file>
 <file>completion/exercisebank.cwl</file>
@@ -2249,6 +2257,7 @@
 <file>completion/njuvisual.cwl</file>
 <file>completion/nl-interval.cwl</file>
 <file>completion/nmbib.cwl</file>
+<file>completion/nndraw.cwl</file>
 <file>completion/nnext.cwl</file>
 <file>completion/nodetree.cwl</file>
 <file>completion/nodetree-embed.cwl</file>
