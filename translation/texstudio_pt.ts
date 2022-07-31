@@ -24,47 +24,47 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="27"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
-        <translation>TeXstudio contém código de Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) e SyncTeX (por Jerome Laurens).</translation>
+        <translation>O TeXstudio contém código de Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) e SyncTeX (por Jerome Laurens).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="28"/>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation>TeXstudio utiliza o visualizador de PDF de TeXworks.</translation>
+        <translation>O TeXstudio utiliza o visualizador de PDF de TeXworks.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="29"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation>TeXstudio utiliza a classe DSingleApplication (Autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licença: GPL).</translation>
+        <translation>O TeXstudio utiliza a classe DSingleApplication (autor: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licença: GPL).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="30"/>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation>TeXstudio utiliza TeXTablet (Licença MIT, Copyright (c) 2012 Steven Lovegrove).</translation>
+        <translation>O TeXstudio utiliza TeXTablet (licença MIT, Copyright (c) 2012 Steven Lovegrove).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="31"/>
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation>TeXstudio utiliza QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov e colaboradores).</translation>
+        <translation>O TeXstudio utiliza QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov e colaboradores).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation>TeXstudio utiliza To Title Case (Licença MIT, Copyright (c) 2008-2013 David Gouch).</translation>
+        <translation>O TeXstudio utiliza To Title Case (licença MIT, Copyright (c) 2008-2013 David Gouch).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
-        <translation>TeXstudio contém uma imagem por Alexander Klink.</translation>
+        <translation>O TeXstudio contém uma imagem por Alexander Klink.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="34"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation>TeXstudio utiliza ícones do pacote Crystal Project (LGPL) e o ícone do tema Oxygen (CC-BY-SA 3.0).</translation>
+        <translation>O TeXstudio utiliza ícones do pacote Crystal Project (LGPL) e o ícone do tema Oxygen (CC-BY-SA 3.0).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="35"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation>TeXstudio utiliza disposição de fluxo de exemplos Qt5.6.</translation>
+        <translation>O TeXstudio utiliza disposição de fluxo de exemplos Qt5.6.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="36"/>
@@ -79,12 +79,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="39"/>
         <source>Project home site:</source>
-        <translation>Site do projecto:</translation>
+        <translation>Página do projecto:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="40"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation>Este programa é-lhe licensiado sob os termos da GNU General Public License Versão 2 como publicada pela Free Software Foundation.</translation>
+        <translation>Este programa é licenciado sob os termos da GNU General Public License Versão 2 como publicada pela Free Software Foundation.</translation>
     </message>
 </context>
 <context>
@@ -11975,14 +11975,14 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="164"/>
         <source>A new release candidate of TeXstudio is available.</source>
-        <translation>Um novo lançamento do TeXstudio está disponível.</translation>
+        <translation>Está disponível uma nova versão do TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="165"/>
         <location filename="../src/updatechecker.cpp" line="183"/>
         <location filename="../src/updatechecker.cpp" line="201"/>
         <source>Current version:</source>
-        <translation>Versão atual:</translation>
+        <translation>Versão actual:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="166"/>
@@ -11994,24 +11994,24 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="167"/>
         <source>Release candidate:</source>
-        <translation>Lançamento:</translation>
+        <translation>Versão candidata:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="168"/>
         <location filename="../src/updatechecker.cpp" line="186"/>
         <location filename="../src/updatechecker.cpp" line="203"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation>Você pode baixá-lo do site do TeXstudio %1</translation>
+        <translation>Pode transferir na página do TeXstudio %1</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="197"/>
         <source>Update check for stable version failed (invalid update file format).</source>
-        <translation>Falha ao buscar por atualizações de versão estável (atualização de formato de arquivo inválida).</translation>
+        <translation>Falha ao procurar actualizações da versão estável (formato do ficheiro de actualizações inválido).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="210"/>
         <source>Your TeXstudio version %1 is up-to-date.</source>
-        <translation>Seu TeXstudio versão %1 está atualizado.</translation>
+        <translation>O TeXstudio versão %1 está actualizado.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="179"/>
@@ -12021,7 +12021,7 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="182"/>
         <source>A new development version of TeXstudio is available.</source>
-        <translation>Uma nova versão de desenvolvimento do TeXstudio está disponível.</translation>
+        <translation>Está disponível uma nova versão de desenvolvimento do TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="185"/>
@@ -12031,12 +12031,12 @@ documento incluído em %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="200"/>
         <source>A new stable version of TeXstudio is available.</source>
-        <translation>Uma nova versão estável do TeXstudio está disponível.</translation>
+        <translation>Está disponível uma nova versão estável do TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="215"/>
         <source>Failure to find current TeXstudio versions.</source>
-        <translation>Falha ao buscar versões atuais do TeXstudio.</translation>
+        <translation>Falha ao procurar versões actuais do TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
