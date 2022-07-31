@@ -1,8 +1,6 @@
 # markdown package
-# Matthew Bertucci 2022/07/01 for v2.15.3-0-g7c8e03d
+# Matthew Bertucci 2022/07/31 for v2.15.4-0-g4cbe4e3
 
-#include:keyval
-#include:xstring
 #include:expl3
 #include:ifthen
 #include:paralist
@@ -128,7 +126,7 @@ code={%<code%>}
 \markdownLaTeXTableEnd{arg1}#*
 \markdownLaTeXThemeLoad{package}{theme name}#*u
 \markdownLaTeXThemeName#*
-\markdownLaTeXThemePackageName
+\markdownLaTeXThemePackageName#*
 \markdownLaTeXTopRule#*
 \markdownLaTeXUlItem#*
 \markdownMakeOther#*
