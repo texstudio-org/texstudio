@@ -1258,3 +1258,7 @@ exam-zh:
 class-exam-zh
 latex-document
 tex
+stex:
+class-stex
+latex-document
+tex
