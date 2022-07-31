@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -887,7 +885,7 @@ Změňte, prosím, své nastavení a stanovte seznamy příkazů pouze ve Volby 
         <location filename="../src/configdialog.ui" line="513"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Určuje druh oznámení o aktualizaci, jejž budete přijímat:
 - Stálá vydání: Vyberte, pokud je pro vás stálost důležitá.
@@ -1094,7 +1092,7 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1379,7 +1377,7 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
     <message>
         <location filename="../src/configdialog.ui" line="1813"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Francouzské uvozovky (babel): \og \fg{}</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1818"/>
@@ -1861,7 +1859,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="../src/configdialog.ui" line="2511"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Celkový obsah používá k rozlišení různých souborů různé odstíny barvy pozadí. Barevné schéma lze změnit zde.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2573"/>
@@ -1871,7 +1869,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="../src/configdialog.ui" line="2590"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít barvu v celkovém obsahu:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2610"/>
@@ -2426,7 +2424,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3816"/>
         <source>Preview with lualatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled s lualatex</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3824"/>
@@ -2640,8 +2638,8 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
         <location filename="../src/configdialog.ui" line="4359"/>
         <location filename="../src/configdialog.ui" line="4413"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Vykreslovací jádro používané knihovnou PDF poppler.
 Stříknutí (Splash) je výchozí a ve většině případů vhodný.
@@ -2696,12 +2694,12 @@ Poznámka: Změna tohoto nastavení ovlivní jen následně otevřené dokumenty
     <message>
         <location filename="../src/configdialog.ui" line="4375"/>
         <source>Presentation Laser Pointer Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost laserového ukazovátka při vystoupení:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4450"/>
         <source>Presentation Laser Pointer Color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva laserového ukazovátka při vystoupení:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4500"/>
@@ -2796,7 +2794,7 @@ chcete nastavit?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="400"/>
         <source>Screen Resolution (System: %1 dpi):</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozlišení obrazovky (systém: %1 DPI):</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="479"/>
@@ -3153,17 +3151,17 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="25"/>
         <source>Math &amp;Equations</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rovnice</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Definitions</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Definice</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="29"/>
         <source>Math &amp;Stacking Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Skládání symbolů</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="33"/>
@@ -3623,42 +3621,42 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>env Corollary (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Důsledek (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>env Definition (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Definice (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>env Example (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Příklad (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>env Lemma (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Lemma (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>env Proof (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Důkaz (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>env Proposition (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Výrok (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>env Remark (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Poznámka (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>env Theorem (ntheorem)</source>
-        <translation type="unfinished"></translation>
+        <translation>env Věta (teorém) (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="136"/>
@@ -3713,12 +3711,12 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>\sideset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>\sideset (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>\prescript (mathtools)</source>
-        <translation type="unfinished"></translation>
+        <translation>\prescript (mathtools)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
@@ -3871,7 +3869,7 @@ hcete je odstranit?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1973"/>
         <source>Clear file list</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazat seznam souborů</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1974"/>
@@ -4306,12 +4304,12 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
     <message>
         <location filename="../src/insertgraphics.ui" line="287"/>
         <source>Caption for the image</source>
-        <translation type="unfinished"></translation>
+        <translation>Popisek k obrázku</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="340"/>
         <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
-        <translation type="unfinished"></translation>
+        <translation>Popisek, který se má zobrazit v seznamu obrázků (pokud se má lišit od dlouhého popisu).</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="294"/>
@@ -4413,7 +4411,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 [p] Page: On a page dedicated to figures
 [h] Here: At this position in the text
 [H] Here: Strictly at this position in the text (requires float package)
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: The first 4 placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Nastavení umístění obrázku
@@ -4530,7 +4528,7 @@ Průvodce nepodporuje příkaz </translation>
     </message>
     <message>
         <location filename="../src/latexcompleter.cpp" line="2040"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
@@ -4677,18 +4675,14 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2590"/>
         <location filename="../src/latexeditorview.cpp" line="2662"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2603"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n odkaz k tomuto štítku</numerusform>
-            <numerusform>%n odkazy k tomuto štítku</numerusform>
-            <numerusform>%n odkazů k tomuto štítku</numerusform>
-        </translation>
+        <translation><numerusform>%n odkaz k tomuto štítku</numerusform><numerusform>%n odkazy k tomuto štítku</numerusform><numerusform>%n odkazů k tomuto štítku</numerusform><numerusform>%n odkazů k tomuto štítku</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2608"/>
@@ -6382,7 +6376,7 @@ failed.</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1106"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Původní soubor na disku byl při ukládání zničen.
 Kopii najdete v
@@ -6942,7 +6936,7 @@ Poznámky:
     <message>
         <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>math-text</source>
-        <translation type="unfinished"></translation>
+        <translation>math-text</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
@@ -9434,7 +9428,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="941"/>
         <source>C&amp;ut Line</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vyjmout řádek</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="943"/>
@@ -10002,7 +9996,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1161"/>
         <source>&amp;Xindex</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Xindex</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1162"/>
@@ -10512,7 +10506,7 @@ se nepodařilo odstranit.</translation>
         <location filename="../src/texstudio.cpp" line="1532"/>
         <location filename="../src/texstudio.cpp" line="5619"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit další záznamy...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1540"/>
@@ -10881,12 +10875,12 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="4370"/>
         <source>Storing session failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložení sezení se nezdařilo</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4370"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložení informací o sezení do %1 se nezdařilo. Soubor existuje, ale nelze do něj zapisovat.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4465"/>
@@ -10926,7 +10920,7 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="5606"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit méně záznamů...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5647"/>
@@ -10935,7 +10929,7 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5702"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nelze zjistit název souboru.
 Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation>
@@ -11968,43 +11962,43 @@ zahrnut dokument v %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="164"/>
         <source>A new release candidate of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dostupná nová uchazečská verze na vydání nové verze TeXstudia.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="165"/>
         <location filename="../src/updatechecker.cpp" line="183"/>
         <location filename="../src/updatechecker.cpp" line="201"/>
         <source>Current version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nynější verze:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="166"/>
         <location filename="../src/updatechecker.cpp" line="184"/>
         <location filename="../src/updatechecker.cpp" line="202"/>
         <source>Latest stable version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslední stálá verze:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="167"/>
         <source>Release candidate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uchazeči na vydání:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="168"/>
         <location filename="../src/updatechecker.cpp" line="186"/>
         <location filename="../src/updatechecker.cpp" line="203"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation type="unfinished"></translation>
+        <translation>Můžete si ji stáhnout z internetové stránky TeXstudia %1.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="197"/>
         <source>Update check for stable version failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation>Získání aktualizace stálé verze selhalo (neplatný formát souboru s aktualizací).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="210"/>
         <source>Your TeXstudio version %1 is up-to-date.</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio ve verzi %1 je v nejnovější verzi.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="179"/>
@@ -12014,22 +12008,22 @@ zahrnut dokument v %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="182"/>
         <source>A new development version of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dostupná nová vývojářská verze TeXstudia.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Latest development version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Poslední vývojářské verze:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="200"/>
         <source>A new stable version of TeXstudio is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dostupná nová stálá verze TeXstudia.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="215"/>
         <source>Failure to find current TeXstudio versions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se najít nynější verze TeXstudia.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="227"/>
@@ -12289,7 +12283,7 @@ Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při sp
     <message>
         <location filename="../src/userquickdialog.ui" line="70"/>
         <source>Ordered list of commands:</source>
-        <translation type="unfinished"></translation>
+        <translation>Seřazený seznam příkazů:</translation>
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="80"/>
