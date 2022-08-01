@@ -1262,3 +1262,11 @@ stex:
 class-stex
 latex-document
 tex
+gtpart:
+class-gtpart
+latex-document
+tex
+hfutthesis:
+class-hfutthesis
+latex-document
+tex
