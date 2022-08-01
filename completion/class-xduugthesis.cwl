@@ -1,5 +1,5 @@
 # xduugthesis class
-# Matthew Bertucci 2022/07/04 for v2.10.3.0
+# Matthew Bertucci 2022/07/04 for v2.12.1.1
 
 #include:expl3
 #include:xparse
@@ -37,6 +37,10 @@ style/bib-backend=#bibtex,biblatex
 style/biblatex-option={%<biblatex宏包选项%>}
 style/symmetric-margin#true,false
 style/page-vertical-align=#分散对齐,顶部对齐
+style/file-search-path={%<路径%>}
+style/fix-input#true,false
+style/fix-include#true,false
+style/fix-includegraphics#true,false
 style/ref-add-space#true,false
 style/caption-label-sep={%<间距%>}
 style/table-small-font#true,false
