@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/05/20 for v0.0.1
+# Matthew Bertucci 2022/08/01 for v7.5.0
 
 #include:ifxetex
 #include:ifluatex
@@ -67,6 +67,7 @@ aiqfome
 airasia
 airbnb
 airbus
+airbyte
 aircall
 aircanada
 airchina
@@ -234,6 +235,7 @@ azurefunctions
 azurepipelines
 babel
 backbonedotjs
+backendless
 badgr
 badoo
 baidu
@@ -320,6 +322,7 @@ bukalapak
 bulma
 bunq
 burgerking
+burton
 buymeacoffee
 buzzfeed
 byjus
@@ -604,8 +607,10 @@ elasticcloud
 elasticsearch
 elasticstack
 electron
+electronbuilder
 element
 elementary
+elementor
 eleventy
 elixir
 eljueves
@@ -649,6 +654,7 @@ expo
 express
 expressvpn
 eyeem
+f1
 facebook
 facebookgaming
 facebooklive
@@ -1367,6 +1373,7 @@ nuget
 nuke
 numba
 numpy
+nunjucks
 nutanix
 nuxtdotjs
 nvidia
@@ -1416,6 +1423,7 @@ openstack
 openstreetmap
 opensuse
 opentelemetry
+openverse
 openvpn
 openwrt
 openzeppelin
@@ -1647,6 +1655,7 @@ ray
 razer
 razorpay
 react
+reacthookform
 reactivex
 reactos
 reactquery
@@ -2091,6 +2100,7 @@ unicode
 unilever
 unitedairlines
 unity
+unlicense
 unocss
 unraid
 unrealengine
@@ -2165,6 +2175,7 @@ wallabag
 walmart
 wappalyzer
 warnerbros
+wasmcloud
 wattpad
 waze
 wearos
@@ -2272,6 +2283,7 @@ zara
 zazzle
 zcash
 zdf
+zebratechnologies
 zelle
 zend
 zendesk
