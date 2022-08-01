@@ -1,5 +1,6 @@
 # colortbl package
 # neeraavi 26 Mar 2007
+# updated 2022/08/01 for v1.0f
 
 #include:array
 #include:color
@@ -47,3 +48,18 @@ usenames
 \rowcolor{color}
 \rowcolor[color model]{color}[left overhang][right overhang]
 \minrowclearance#*
+
+# NOTE: these commands were formerly in xcolor under "table" option; moved to colortbl.sty in v1.0f
+## double command as workaround for color args to be recognized properly as colors
+\rowcolors{row}{odd-row-color}{even-row-color}
+\rowcolors[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors{row}{color}{color}#S
+\rowcolors[commands]{row}{color}{color}#S
+\rowcolors*{row}{odd-row-color}{even-row-color}
+\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
+\rowcolors*{row}{color}{color}#S
+\rowcolors*[commands]{row}{color}{color}#S
+\showrowcolors
+\hiderowcolors
+\rownum
+\therownum
