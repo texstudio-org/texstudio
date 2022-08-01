@@ -1,5 +1,5 @@
 # xduugthesis class
-# Matthew Bertucci 2022/07/04 for v2.12.1.1
+# Matthew Bertucci 2022/08/01 for v2.12.1.1
 
 #include:expl3
 #include:xparse
