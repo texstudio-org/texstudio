@@ -1,6 +1,11 @@
 # pgf-umlcd package
 # Matthew Bertucci 4/7/2022 for v0.3dev
 
+#keyvals:\usepackage/pgf-umlcd#c
+school
+simplified
+#endkeyvals
+
 #include:tikz
 # loads arrows, shapes.multipart, backgrounds, and fit tikzlibraries
 
