@@ -1,23 +1,28 @@
 # buctcover class
-# Matthew Bertucci 2022/07/14 for release 2021/04/24
+# Matthew Bertucci 2022/07/14 for release 2022/06/21
 
 #include:ifxetex
 #include:kvoptions
 #include:class-ctexbook
 #include:xeCJK
 #include:geometry
+#include:xeCJKfntef
 #include:array
 #include:graphicx
 #include:calc
+#include:tikz
+#include:xifthen
 #include:hyperref
+#include:textpos
 
 #keyvals:\documentclass/buctcover#c
-type=#master,doctor
+type=#bachelor,master,doctor
 #endkeyvals
 
 \coversetup{options%keyvals}
 
 #keyvals:\coversetup
+class={%<class%>}
 studentid={%<id number%>}
 titleA={%<text%>}
 titleB={%<text%>}

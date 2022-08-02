@@ -1,5 +1,5 @@
 # buctthesis class
-# Matthew Bertucci 2022/07/04 for v1.2
+# Matthew Bertucci 2022/07/30 for v1.4
 
 #include:ifxetex
 #include:kvoptions
@@ -161,6 +161,9 @@ ekeywords={%<keyword1,keyword2,...%>}
 
 \begin{conclusion}
 \end{conclusion}
+
+\inlinecite{bibid}#c
+
 \begin{translation}
 \end{translation}
 \begin{acknowledgement}

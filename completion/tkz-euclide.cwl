@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 2022/07/16 for v4.2c
+# Matthew Bertucci 2022/07/30 for v4.22c
 
 #include:tikz
 # loads angles, arrows, arrows.meta, backgrounds, calc, decorations, decorations.markings
@@ -472,15 +472,7 @@ double distance=##L
 
 #keyvals:\tkzDrawCircle#c,\tkzDrawCircles#c
 through
-diameter
-radius
 R
-help lines
-circum
-in
-ex
-euler
-nine
 color=#%color
 %color
 fill=#%color
