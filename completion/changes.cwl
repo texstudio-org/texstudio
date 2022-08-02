@@ -64,6 +64,8 @@ title=%<title%>
 show=#all,added,deleted,replaced,highlight,comment
 #endkeyvals
 
+authorcolor#B
+
 \setaddedmarkup{definition}
 \setdeletedmarkup{definition}
 \sethighlightmarkup{definition}
@@ -77,3 +79,30 @@ show=#all,added,deleted,replaced,highlight,comment
 \setsummarytowidth{text}
 \setsocextension{ext}
 \setlocextension{ext}
+
+# not documented
+\dopsvlist#S
+\forpsvlist#S
+\IfIsInList{arg}{item1|item2|...}{true}{false}#*
+\IfIsColored{true}{false}#*
+\IfIsEmpty{arg}{true}{false}#*
+\IfIsAnonymous{arg}{true}{false}#*
+\IfIsAuthorEmptyAtPosition{arg}{position}{true}{false}#*
+\IfIsAuthorOutputEmpty{arg}{true}{false}#*
+\listofchangesname#*
+\summaryofchangesname#*
+\compactsummaryofchangesname#*
+\changesaddedname#*
+\changesdeletedname#*
+\changesreplacedname#*
+\changeshighlightname#*
+\changescommentname#*
+\changesauthorname#*
+\changesanonymousname#*
+\changesnochanges#*
+\changesnoloc#*
+\changesnosoc#*
+\theauthorcommentcount#S
+\Changestruncatewidth#S
+\ChangesListline{arg1}{arg2}{arg3}{arg4}#S
+\origcontentsline{arg1}{arg2}{arg3}{arg4}#S
