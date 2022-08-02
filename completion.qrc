@@ -602,6 +602,8 @@
 <file>completion/class-bfhthesis.cwl</file>
 <file>completion/class-biditufte-book.cwl</file>
 <file>completion/class-biditufte-handout.cwl</file>
+<file>completion/class-bitart.cwl</file>
+<file>completion/class-bitbook.cwl</file>
 <file>completion/class-bjfuthesis.cwl</file>
 <file>completion/class-boek3.cwl</file>
 <file>completion/class-boek.cwl</file>
@@ -680,12 +682,14 @@
 <file>completion/class-grant-onr.cwl</file>
 <file>completion/class-graphpaper.cwl</file>
 <file>completion/class-gridslides.cwl</file>
+<file>completion/class-gtpart.cwl</file>
 <file>completion/class-guitartabs.cwl</file>
 <file>completion/class-guitbeamer.cwl</file>
 <file>completion/class-gztarticle.cwl</file>
 <file>completion/class-harnon-cv.cwl</file>
 <file>completion/class-hecthese.cwl</file>
 <file>completion/class-hepthesis.cwl</file>
+<file>completion/class-hfutthesis.cwl</file>
 <file>completion/class-hgbarticle.cwl</file>
 <file>completion/class-hgbreport.cwl</file>
 <file>completion/class-hgbthesis.cwl</file>
@@ -778,6 +782,7 @@
 <file>completion/class-njuthesis.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
 <file>completion/class-novel.cwl</file>
+<file>completion/class-nwafuthesis.cwl</file>
 <file>completion/class-nwejmart.cwl</file>
 <file>completion/class-oblivoir.cwl</file>
 <file>completion/class-oup-authoring-template.cwl</file>
@@ -833,6 +838,7 @@
 <file>completion/class-sslides.cwl</file>
 <file>completion/class-stage.cwl</file>
 <file>completion/class-standalone.cwl</file>
+<file>completion/class-stex.cwl</file>
 <file>completion/class-suftesi.cwl</file>
 <file>completion/class-svmono.cwl</file>
 <file>completion/class-svmult.cwl</file>
@@ -1271,6 +1277,7 @@
 <file>completion/euflag.cwl</file>
 <file>completion/eufrak.cwl</file>
 <file>completion/eukdate.cwl</file>
+<file>completion/eukleides.cwl</file>
 <file>completion/euler.cwl</file>
 <file>completion/eulerpx.cwl</file>
 <file>completion/eulervm.cwl</file>
@@ -2198,6 +2205,7 @@
 <file>completion/nameref.cwl</file>
 <file>completion/na-position.cwl</file>
 <file>completion/natbib.cwl</file>
+<file>completion/nath.cwl</file>
 <file>completion/natmove.cwl</file>
 <file>completion/navigator.cwl</file>
 <file>completion/nbaseprt.cwl</file>
@@ -2221,6 +2229,7 @@
 <file>completion/nccthm.cwl</file>
 <file>completion/ncctitle.cwl</file>
 <file>completion/ncctitlepage.cwl</file>
+<file>completion/nchairx.cwl</file>
 <file>completion/needspace.cwl</file>
 <file>completion/newalg.cwl</file>
 <file>completion/newclude.cwl</file>
@@ -2460,6 +2469,7 @@
 <file>completion/pict2e.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/pigpen.cwl</file>
+<file>completion/pinlabel.cwl</file>
 <file>completion/pinoutikz.cwl</file>
 <file>completion/pinyin.cwl</file>
 <file>completion/pixelart.cwl</file>
@@ -2480,6 +2490,7 @@
 <file>completion/plext.cwl</file>
 <file>completion/plimsoll.cwl</file>
 <file>completion/plprefix.cwl</file>
+<file>completion/pmat.cwl</file>
 <file>completion/pmboxdraw.cwl</file>
 <file>completion/pmdb.cwl</file>
 <file>completion/pmhanguljamo.cwl</file>
@@ -2787,6 +2798,7 @@
 <file>completion/rulerbox.cwl</file>
 <file>completion/runcode.cwl</file>
 <file>completion/runic.cwl</file>
+<file>completion/rustex.cwl</file>
 <file>completion/rustic.cwl</file>
 <file>completion/rviewport.cwl</file>
 <file>completion/rvwrite.cwl</file>
@@ -2982,6 +2994,10 @@
 <file>completion/steinmetz.cwl</file>
 <file>completion/step.cwl</file>
 <file>completion/steroid.cwl</file>
+<file>completion/stex.cwl</file>
+<file>completion/stex-logo.cwl</file>
+<file>completion/stexthm.cwl</file>
+<file>completion/stex-tikzinput.cwl</file>
 <file>completion/stfloats.cwl</file>
 <file>completion/stickstootext.cwl</file>
 <file>completion/stix2.cwl</file>
@@ -3170,6 +3186,7 @@
 <file>completion/tikz-imagelabels.cwl</file>
 <file>completion/tikzinclude.cwl</file>
 <file>completion/tikz-inet.cwl</file>
+<file>completion/tikzinput.cwl</file>
 <file>completion/tikz-lake-fig.cwl</file>
 <file>completion/tikz-layers.cwl</file>
 <file>completion/tikzlings-addons.cwl</file>
@@ -3203,6 +3220,7 @@
 <file>completion/tikzorbital.cwl</file>
 <file>completion/tikzPackets.cwl</file>
 <file>completion/tikz-page.cwl</file>
+<file>completion/tikzpagenodes.cwl</file>
 <file>completion/tikz-palattice.cwl</file>
 <file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
