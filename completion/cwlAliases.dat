@@ -1270,3 +1270,15 @@ hfutthesis:
 class-hfutthesis
 latex-document
 tex
+bitart:
+class-bitart
+latex-document
+tex
+bitbook:
+class-bitbook
+latex-document
+tex
+nwafuthesis:
+class-nwafuthesis
+latex-document
+tex
