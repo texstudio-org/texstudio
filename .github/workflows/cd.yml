@@ -517,6 +517,14 @@ jobs:
       with:
         name: release
 
+    - name: Calculate hashes
+      run: |
+        echo --SHA1SUM-- > hashes.txt
+        sha1sum * | grep -v hashes.txt >> hashes.txt
+        echo >> hashes.txt
+        echo --SHA256SUM-- >> hashes.txt
+        sha256sum * | grep -v hashes.txt >> hashes.txt
+
     - name: Batch release
       uses: softprops/action-gh-release@v1
       with:
