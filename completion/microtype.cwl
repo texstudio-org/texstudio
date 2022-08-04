@@ -9,12 +9,12 @@
 \microtypesetup{options%keyvals}
 
 #keyvals:\microtypesetup,\usepackage/microtype#c
-protrusion=#true,false,compatibility,nocompatibility,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
-expansion=#true,false,compatibility,nocompatibility,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
+protrusion=#true,false,compatibility,nocompatibility,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont,%microtypeset
+expansion=#true,false,compatibility,nocompatibility,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont,%microtypeset
 activate=
-tracking=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
-kerning=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
-spacing=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont
+tracking=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont,%microtypeset
+kerning=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont,%microtypeset
+spacing=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont,%microtypeset
 factor=%<integer%>
 patch=#all,none,item,toc,footnote,eqnum
 nopatch=#all,none,item,toc,footnote,eqnum
@@ -36,10 +36,10 @@ DVIoutput#true,false
 config=%<file name%>
 #endkeyvals
 
-\DeclareMicrotypeSet{name}{fonts%keyvals}
-\DeclareMicrotypeSet[features]{name}{fonts%keyvals}
-\DeclareMicrotypeSet*{name}{fonts%keyvals}
-\DeclareMicrotypeSet*[features]{name}{fonts%keyvals}
+\DeclareMicrotypeSet{name}{fonts%keyvals}#s#%microtypeset
+\DeclareMicrotypeSet[features]{name}{fonts%keyvals}#s#%microtypeset
+\DeclareMicrotypeSet*{name}{fonts%keyvals}#s#%microtypeset
+\DeclareMicrotypeSet*[features]{name}{fonts%keyvals}#s#%microtypeset
 
 \UseMicrotypeSet{name}
 \UseMicrotypeSet[features]{name}

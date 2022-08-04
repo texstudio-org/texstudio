@@ -1,10 +1,12 @@
 # leadsheets package
-# Matthew Bertucci 12/22/2021 for v0.5c
+# Matthew Bertucci 2022/08/03 for v0.7
 
 #include:expl3
 #include:l3keys2e
 #include:translations
 #include:xparse
+
+# note: by default, all but musejazz libraries loaded
 
 ## I. About the Package ##
 #keyvals:\usepackage/leadsheets#c
@@ -16,6 +18,10 @@ musejazz
 songs
 external
 #endkeyvals
+
+#ifOption:musejazz
+#include:fontspec
+#endif
 
 \useleadsheetslibraries{list of libraries%keyvals}
 \useleadsheetslibrary{library%keyvals}
@@ -29,6 +35,9 @@ external
 #endkeyvals
 
 ## II. musicsymbols library ##
+#include:etoolbox
+#include:amsmath
+
 \musix#*
 \textmusix{text}#*
 \musicsymbol{symbol}#*
@@ -124,6 +133,37 @@ remember-chords#true,false
 transpose=%<number%>
 enharmonic=#sharp,flat
 transpose-capo#true,false
+verses-format={%<code%>}
+verses-label-format={%<code%>}
+verses-after-label={%<code%>}
+chords/format={%<code%>}
+chords/sharp={%<code%>}
+chords/flat={%<code%>}
+chords/double-sharp={%<code%>}
+chords/double-flat={%<code%>}
+chords/aug={%<code%>}
+chords/half-dim={%<code%>}
+chords/full-dim={%<code%>}
+chords/dim={%<code%>}
+chords/add={%<code%>}
+chords/sus={%<code%>}
+chords/major={%<code%>}
+chords/minor={%<code%>}
+chords/major-seven={%<code%>}
+chords/major-nine={%<code%>}
+chords/input-notation=#german,english
+chords/output-notation=#german,english
+chords/german-B={%<code%>}
+chords/german-H={%<code%>}
+verse/format={%<code%>}
+verse/label-format={%<code%>}
+verse/class={%<class name%>}
+verse/after-label={%<code%>}
+verse/name=%<name%>
+verse/template=%<template%>
+verse/numbered#true,false
+verse/named#true,false
+verse/recall-chords={%<env-class%>}
 #endkeyvals
 
 \capo
@@ -146,6 +186,9 @@ transpose-capo#true,false
 \begin{intro*}
 \begin{intro*}[options%keyvals]
 \end{intro*}
+\begin{outro}
+\begin{outro}[options%keyvals]
+\end{outro}
 \begin{interlude}
 \begin{interlude}[options%keyvals]
 \end{interlude}
@@ -162,12 +205,16 @@ transpose-capo#true,false
 \begin{solo*}[options%keyvals]
 \end{solo*}
 
-\newversetype{envname}
-\newversetype{envname}[options%keyvals]
-\newversetype*{envname}
-\newversetype*{envname}[options%keyvals]
+\newversetype{envname}#N
+\newversetype{envname}[options%keyvals]#N
+\newversetype*{envname}#N
+\newversetype*{envname}[options%keyvals]#N
+\provideversetype{envname}#*N
+\provideversetype{envname}[options%keyvals]#*N
+\provideversetype*{envname}#*N
+\provideversetype*{envname}[options%keyvals]#*N
 
-#keyvals:\begin{verse},\begin{verse*},\begin{chorus},\begin{chorus*},\begin{intro},\begin{intro*},\begin{interlude},\begin{bridge},\begin{info},\begin{solo},\begin{solo*},\newversetype,\newversetype*
+#keyvals:\begin{verse},\begin{verse*},\begin{chorus},\begin{chorus*},\begin{intro},\begin{intro*},\begin{outro},\begin{interlude},\begin{bridge},\begin{info},\begin{solo},\begin{solo*},\newversetype,\newversetype*,\provideversetype,\provideversetype*
 format={%<code%>}
 label-format={%<code%>}
 class={%<class name%>}
@@ -177,9 +224,6 @@ template=%<template%>
 numbered#true,false
 named#true,false
 recall-chords={%<env-class%>}
-verses-format={%<code%>}
-verses-label-format={%<code%>}
-verses-after-label={%<code%>}
 #endkeyvals
 
 #keyvals:\begin{verse}
@@ -203,6 +247,7 @@ type=%<type%>
 \ifanysongproperty{properties}{true}{false}#*
 \ifallsongproperties{properties}{true}{false}#*
 \ifsongpropertiesequal{property1}{property2}{true}{false}#*
+\ifsongpropertyequal{property1}{property2}{true}{false}#*
 \ifsongmeasuring{true}{false}#*
 \expandcode{code}#*
 \defineversetypetemplate{name}{begin code}{end code}#*
@@ -227,23 +272,29 @@ gobble-preamble#true,false
 #endkeyvals
 
 ## miscellaneous ##
-\leadsheetsdate#S
-\leadsheetsversion#S
-\leadsheetsinfo#S
-\LeadsheetsExplLibrary{library name}{info}#S
-\LeadsheetsLibrary{library name}{info}#S
-\leadsheetsiflibrary{arg1}#S
-\leadsheetsifpackageloaded{arg1}#S
-\LeadsheetSurvive#S
-\LeadsheetEndSurvive#S
-\recallchord#S
-\getorprintchord#S
-\segno#S
+\AddExternalClass{class}#S
+\AddExternalFile{file}{ext}#S
+\AddExternalPackage{package}#S
 \coda#S
-\halfdim#S
-\wholenote#S
-\halfnote#S
-\quarternote#S
+\defleadsheetstranslation{arg1}{arg2}{arg3}#S
 \eigthnote#S
+\genericbar{arg}#S
+\getorprintchord#S
+\halfdim#S
+\halfnote#S
+\LeadsheetEndSurvive#S
+\leadsheetsdate#S
+\LeadsheetsExplLibrary{library name}{info}#S
+\leadsheetsiflibrary{library}#S
+\leadsheetsifpackageloaded{package}#S
+\leadsheetsinfo#S
+\LeadsheetsLibrary{library name}{info}#S
+\leadsheetstranslate{arg}#S
+\LeadsheetSurvive#S
+\leadsheetsversion#S
+\musicdot#S
+\quarternote#S
+\recallchord#S
+\segno#S
 \sixteenthnote#S
-\musicdot #S
+\wholenote#S

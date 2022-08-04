@@ -1,15 +1,16 @@
 # bodeplot package
-# Matthew Bertucci 2022/07/14 for v1.0.8
+# Matthew Bertucci 2022/07/14 for v1.1.1
 
 #include:tikz
 #include:pdftexcmds
 #include:ifplatform
 #include:pgfplots
-#include:ifluatex
 
 #keyvals:\usepackage/bodeplot#c
 pgf
 declutter
+rad
+Hz
 #endkeyvals
 
 \BodeZPK{%<z/{zeros},p/{poles},k/{gain},d/{delay}%>}{%<min-freq%>}{%<max-freq%>}
