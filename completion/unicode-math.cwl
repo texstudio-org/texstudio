@@ -150,7 +150,6 @@ version=%<version name%>
 \greater#*
 \infty
 \ldotp#*
-\ldotp#*
 \leftarrow
 \less#*
 \lnot
