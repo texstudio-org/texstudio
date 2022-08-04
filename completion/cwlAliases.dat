@@ -1282,3 +1282,7 @@ nwafuthesis:
 class-nwafuthesis
 latex-document
 tex
+sagej:
+class-sagej
+latex-document
+tex
