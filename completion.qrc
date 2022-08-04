@@ -809,6 +809,7 @@
 <file>completion/class-resumecls.cwl</file>
 <file>completion/class-revtex4-2.cwl</file>
 <file>completion/class-ryersonSGSThesis.cwl</file>
+<file>completion/class-sagej.cwl</file>
 <file>completion/class-sapthesis.cwl</file>
 <file>completion/class-schulma-ab.cwl</file>
 <file>completion/class-schulma-gutachten.cwl</file>
@@ -1029,6 +1030,7 @@
 <file>completion/cursor.cwl</file>
 <file>completion/curve2e.cwl</file>
 <file>completion/curves.cwl</file>
+<file>completion/customdice.cwl</file>
 <file>completion/cuted.cwl</file>
 <file>completion/cutwin.cwl</file>
 <file>completion/cwpuzzle.cwl</file>
@@ -3231,6 +3233,7 @@
 <file>completion/tikz-timing.cwl</file>
 <file>completion/tikz-trackschematic.cwl</file>
 <file>completion/tikz-truchet.cwl</file>
+<file>completion/tikz-uml.cwl</file>
 <file>completion/tile-graphic.cwl</file>
 <file>completion/time.cwl</file>
 <file>completion/timing-diagrams.cwl</file>
