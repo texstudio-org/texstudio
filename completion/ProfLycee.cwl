@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/07/02 for v1.1.7
+# Matthew Bertucci 2022/08/02 for v1.1.8
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -296,6 +296,11 @@ basedep=%<2 ou 16%>
 affbase#true,false
 details#true,false
 zeros#true,false
+#endkeyvals
+
+#keyvals:\draw#c
+mainlevee
+mainlevee=%<segment-length%> et %<amplitude%>
 #endkeyvals
 
 # from table option of xcolor

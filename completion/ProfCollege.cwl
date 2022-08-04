@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/07/15 for v0.99-s
+# Matthew Bertucci 2022/08/03 for v0.99-t
 
 #include:verbatim
 #include:mathtools
@@ -190,6 +190,8 @@ Micro#true,false
 Nano#true,false
 Incline#true,false
 Couleurd=#%color
+Taille=%<nombre%>
+Largeur=##L
 #endkeyvals
 
 ## Questions - réponses à relier ##
@@ -261,6 +263,9 @@ Evaluation#true,false
 \CourseNombre[clés%keyvals]{file}#i
 
 #keyvals:\CourseNombre
+CoefQ=%<nombre%>
+CoefR=%<nombre%>
+CoefJ=%<nombre%>
 Dossier=%<dossier%>
 Liste={%<liste de répertoires%>}
 Maitre#true,false
@@ -269,6 +274,7 @@ NbQ=%<nombre%>
 Exercice#true,false
 Ordre#true,false
 Nom#true,false
+CAN#true,false
 #endkeyvals
 
 \ChoixAlea{a}{b}{cmd}#d
@@ -430,8 +436,10 @@ Remediation#true,false
 ## Le repérage ##
 \Reperage{Liste des éléments}
 \Reperage[clés%keyvals]{Liste des éléments}
+\ReperageMulti{Liste des éléments}#*
+\ReperageMulti[clés%keyvals]{Liste des éléments}#*
 
-#keyvals:\Reperage
+#keyvals:\Reperage,\ReperageMulti
 Unitex=%<nombre%>
 AffichageGrad#true,false
 AffichageNom#true,false
@@ -457,6 +465,9 @@ EchelleEspace=%<nombre%>
 Sphere#true,false
 AnglePhi=%<degrees%>
 EchelleEspace=%<nombre%>
+ValeurMin=%<nombre%>
+ValeurMax=%<nombre%>
+Etages=%<nombre%>
 #endkeyvals
 
 ## Pyramide de nombre ##
@@ -468,6 +479,7 @@ Etages=%<integer%>
 Largeur=##L
 Hauteur=##L
 Inverse#true,false
+Couleur=#%color
 #endkeyvals
 
 ## Programme de calcul ##
@@ -717,6 +729,7 @@ Lecture#true,false
 LectureFine#true,false
 AideLecture#true,false
 Tiret#true,false
+Depart=%<nombre%>
 Reponses#true,false
 DonneesSup#true,false
 ListeCouleursB={%<liste des coleurs%>}
@@ -1089,6 +1102,19 @@ LargeurT=##L
 Solution#true,false
 #endkeyvals
 
+## Billiards ##
+\Billiard{"mot"}
+\Billiard[clés%keyvals]{"mot"}
+
+#keyvals:\Billiard
+Longueur=##L
+Largeur=##L
+Solution#true,false
+Vrai#true,false
+Angle=%<degrees%>
+Depart=%<nombre%>
+#endkeyvals
+
 ## Labyrinthe ##
 \Labyrinthe{Contenu1/Couleur1,Contenu2/Couleur2,...}{P1/P2/...}
 \Labyrinthe[clés%keyvals]{Contenu1/Couleur1,Contenu2/Couleur2,...}{P1/P2/...}
@@ -1301,6 +1327,18 @@ Lieu=%<nom%>
 \ListeQuestions{e1/r1§e2/r2§...}
 \AffichageQuestions
 \AffichageTableau
+
+## Puissance Quatre ##
+\PQuatre{éléments du tableau}
+\PQuatre[clés%keyvals]{éléments du tableau}
+
+#keyvals:\PQuatre
+Relatif#true,false
+Puissance#true,false
+Autre#true,false
+Addition#true,false
+Couleur=#%color
+#endkeyvals
 
 ## Professeur principal ##
 \Radar{Liste des éléments du diagramme en radar}
@@ -1629,6 +1667,7 @@ Teal#B
 \cnpv#S
 \cnpv#S
 \cnpvv#S
+\CNReponse#S
 \cntcol#S
 \CNTheme{arg}#S
 \cntlin#S
@@ -1668,6 +1707,7 @@ Teal#B
 \DenomSimpaa#S
 \DessineMosaiqueComplet{arg1}#S
 \DessinePyramideNombre{arg1}#S
+\DessinePyramideNombreMul{arg}#S
 \dispogpfc{arg1}{arg2}{arg3}#S
 \DistriEchange{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \DivCom#S
@@ -1735,6 +1775,7 @@ Teal#B
 \ExtraitElements{arg}#S
 \ExtraitFruit{arg}#S
 \ExtraitNom{arg}#S
+\ExtraitObjets{arg}#S
 \ExtraitSommet{arg}#S
 \ExtraitSymboles{arg}#S
 \faa#S
@@ -1946,6 +1987,8 @@ Teal#B
 \MPArbreDessine{arg1}{arg2}#S
 \MPArbreProba{arg1}{arg2}{arg3}{arg4}#S
 \MPArbreVide{arg1}#S
+\MPBilliard{arg1}{arg2}{arg3}#S
+\MPBilliardSolution{arg1}{arg2}{arg3}#S
 \MPCalculatrice{arg1}{arg2}{arg3}#S
 \MPCinq{arg1}{arg2}{arg3}#S
 \MPCourbe{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -1999,6 +2042,7 @@ Teal#B
 \MPMillimetre{arg1}{arg2}{arg3}#S
 \MPNewDEMIGraduee{arg1}{arg2}#S
 \MPNewDROITEGraduee{arg1}{arg2}#S
+\MPNewDROITEGradueeMulti{arg1}{arg2}#S
 \MPPlacePoint{arg1}{arg2}#S
 \MPPlannew{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPPlanTrace{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2086,6 +2130,7 @@ Teal#B
 \NumeroReponse#S
 \NumSimp#S
 \NumSimpa#S
+\ObjetsMelanges#S
 \octet#*
 \OrdOrigine#S
 \PapierBottom#S
@@ -2107,11 +2152,20 @@ Teal#B
 \PfCCountCutUn#S
 \PfCDerniereColonne#S
 \PfCDerniereColonneEntiere#S
+\PfCdotover#S
 \PfCentoure{arg1}{arg2}#S
+\PfCfiledate#S
+\PfCfileversion#S
 \PfCfooStat#S
+\PfCfrac{arg1}{arg2}#S
 \PfCGraineAlea#S
+\PfCLargeurJury#S
+\PfCLargeurQuestion#S
+\PfCLargeurReponse#S
 \PfCMPDessineModelBarre{arg1}{arg2}#S
 \PfCMPDessineModelBarreNonHomogene{arg1}{arg2}#S
+\PfCPCfaa#S
+\PfCPCfoo#S
 \PfCPremiereColonneDecimale#S
 \PfCPythaUnit#S
 \PfCQtroisk#S
@@ -2134,6 +2188,11 @@ Teal#B
 \PotenceCases#S
 \ppcm#S
 \PPCM{arg1}{arg2}#S
+\PQuatreGrille{arg1}{arg2}#S
+\PQuatreListe#S
+\PQuatreListeH#S
+\PQuatreListes#S
+\PQuatreListeV#S
 \premier#S
 \premierdeux#S
 \PremierDiviseurVide{arg1}{arg2}#S
@@ -2242,6 +2301,7 @@ Teal#B
 \tabtoksEE{arg}#S
 \tabtoksEEa{arg}#S
 \tabtoksEEb{arg}#S
+\TailleFonte#S
 \Test#S
 \Testa#S
 \Testb#S
@@ -2295,6 +2355,8 @@ Teal#B
 \toklistepointproba{arg}#S
 \toklistepointq{arg}#S
 \toklistepointrepere{arg}#S
+\toklistePQuatreh#S
+\toklistePQuatrev#S
 \toklistePtsFn{arg}#S
 \toklisteptsgrad{arg}#S
 \toklisteradara{arg}#S
@@ -2353,10 +2415,13 @@ Teal#B
 \UpdatetoksHor#S
 \Updatetoksmath{arg1}#S
 \UpdatetoksMosaique{arg1}#S
+\UpdatetoksPQuatreh{arg}#S
+\UpdatetoksPQuatrev{arg}#S
 \Updatetoksproba{arg1}#S
 \Updatetoksprobaechelle{arg1}#S
 \updatetokspropor#S
 \UpdatetoksPyramide{arg1}#S
+\UpdatetoksPyramideMul{arg}#S
 \Updatetoksq{arg1}#S
 \Updatetoksrepere{arg1}#S
 \UpdatetoksTriomino{arg1}#S
