@@ -112,7 +112,7 @@
 \endlinechar#*
 \eqno{eqn num}#*m
 \errhelp#*
-\errmessage#*
+\errmessage{text}#*
 \errorcontextlines#*
 \errorstopmode#*
 \escapechar#*
@@ -135,6 +135,7 @@
 \fontdimen#*
 \fontname#*
 \futurelet#*
+\futurelet{cmd}#Sd
 \gdef#*
 \global#*
 \globaldefs#*
@@ -142,7 +143,7 @@
 \hangafter#*
 \hangindent#*
 \hbadness#*
-\hbox
+\hbox{text}
 \hfil
 \hfill
 \hfilneg#*
@@ -205,7 +206,7 @@
 \long#*
 \looseness#*
 \lower#*
-\lowercase#*
+\lowercase{text}#*
 \mag#*
 \mark{mark text}#*
 \mathaccent#*
@@ -213,7 +214,7 @@
 \mathchar#*
 \mathchardef#*
 \mathchardef{cmd}#Sd
-\mathchoice#*
+\mathchoice{math1}{math2}{math3}{math4}#*
 \mathclose#*
 \mathcode#*
 \mathinner#*
@@ -227,7 +228,7 @@
 \maxdepth#*
 \meaning#*
 \medmuskip#*
-\message#*
+\message{text}#*
 \mkern#*
 \month#*
 \moveleft#*
@@ -238,7 +239,7 @@
 \muskipdef#*
 \muskipdef{cmd}#Sd
 \newlinechar#*
-\noalign
+\noalign{material}
 \noboundary#*
 \noexpand#*
 \noindent
@@ -344,7 +345,7 @@
 \tracingstats#*
 \uccode#*
 \uchyph#*
-\underline{text}#
+\underline{text}
 \unhbox#*
 \unhcopy#*
 \unkern#*
@@ -352,12 +353,12 @@
 \unskip#*
 \unvbox#*
 \unvcopy#*
-\uppercase#*
-\vadjust#*
-\valign#*
+\uppercase{text}#*
+\vadjust{vertical mode material}#*
+\valign{%<⟨preamble⟩%> \cr %<⟨column⟩ \cr ... ⟨column⟩%> \cr}#*
 \vbadness#*
-\vbox
-\vcenter#*
+\vbox{text}
+\vcenter{vertical mode material}#*
 \vfil
 \vfill
 \vfilneg#*
@@ -368,7 +369,7 @@
 \vskip
 \vsplit#*
 \vss#*
-\vtop#*
+\vtop{vertical mode material}#*
 \wd#*
 \widowpenalty#*
 \write#*
@@ -436,7 +437,7 @@
 \bigvee#m
 \bigwedge#m
 \bmod#m
-\bordermatrix{%<line%> \cr %<line%> \cr}#*m
+\bordermatrix{%<line%> \cr %<... line%> \cr}#*m
 \bot#m
 \bowtie#m
 \brace#*m
@@ -485,7 +486,7 @@
 \diamond#m
 \diamondsuit#m
 \dim#m
-\displaylines#*
+\displaylines{%<line%> \cr %<... line%> \cr}#*
 \div#m
 \dot{a}#m
 \doteq#m
@@ -537,7 +538,7 @@
 \hphantom{text}
 \hrulefill#*
 \i#n
-\ialign{align text}#*
+\ialign{%<⟨preamble⟩%> \cr %<⟨row⟩ \cr ... ⟨row⟩%> \cr}#*
 \iff#m
 \Im#m
 \imath#m
@@ -587,6 +588,7 @@
 \ln#m
 \lnot#m
 \log#m
+\loggingall#*
 \longleftarrow#m
 \Longleftarrow#m
 \longleftrightarrow#m
@@ -602,7 +604,7 @@
 \mapsto#m
 \mathpalette{arg1}{arg2}#*m
 \mathstrut#*m
-\matrix{%<line%> \cr %<line%> \cr}#*m
+\matrix{%<line%> \cr %<... line%> \cr}#*m
 \max#m
 \maxdimen#*
 \medbreak#*
@@ -729,7 +731,6 @@
 \root#*m
 \rq#*n
 \S#n
-\sb#*m
 \sb{subscript}#*m
 \searrow#m
 \sec#m
@@ -751,7 +752,6 @@
 \smallskipamount#*
 \smash{text}
 \smile#m
-\sp#*m
 \sp{superscript}#*m
 \space
 \spadesuit#m
@@ -819,7 +819,7 @@
 \wedge#m
 \widehat{a}#m
 \widetilde{a}#m
-\wlog{token list}#*
+\wlog{token list%text}#*
 \wp#m
 \wr#m
 \xi#m
@@ -830,17 +830,33 @@
 ##
 ## PART 3. Miscellany, those missing in _impatient_
 ##
+\allocationnumber#*
+\braceld#*m
+\bracelu#*m
+\bracerd#*m
+\braceru#*m
+\centering
 \do#*
 \dospecials#*
-\centering
 \footins#*
 \footnoterule#*
+\hideskip#*
 \interdisplaylinepenalty#*
 \interfootnotelinepenalty#*
+\intop#*m
 \joinrel#*m
 \leavevmode#*
+\lhook#*m
+\mapstochar#*m
+\mathhexbox#*
+\ointop#*m
 \patterns{patterns}#*
+\relbar#*m
+\Relbar#*m
 \removelastskip#*
+\rhook#*m
+\rootbox#*
+\vdots
 
 
 ##
@@ -848,26 +864,26 @@
 ##
 
 # \bigxxx family
-\big(%|\big)#mM
-\big[%|\big]#mM
-\big|%|\big|#mM
-\Big(%|\Big)#mM
-\Big[%|\Big]#mM
-\Big|%|\Big|#mM
+\big(%<..%>\big)#mM
+\big[%<..%>\big]#mM
+\big|%<..%>\big|#mM
+\Big(%<..%>\Big)#mM
+\Big[%<..%>\Big]#mM
+\Big|%<..%>\Big|#mM
 
-\bigl(%|\bigr)#mM
-\bigl[%|\bigr]#mM
-\bigl\{%|\bigr\}#mM
-\Bigl(%|\Bigr)#mM
-\Bigl[%|\Bigr]#mM
-\Bigl\{%|\Bigr\}#mM
+\bigl(%<..%>\bigr)#mM
+\bigl[%<..%>\bigr]#mM
+\bigl\{%<..%>\bigr\}#mM
+\Bigl(%<..%>\Bigr)#mM
+\Bigl[%<..%>\Bigr]#mM
+\Bigl\{%<..%>\Bigr\}#mM
 
-\biggl(%|\biggr)#mM
-\biggl[%|\biggr]#mM
-\biggl\{%|\biggr\}#mM
-\Biggl(%|\Biggr)#mM
-\Biggl[%|\Biggr]#mM
-\Biggl\{%|\Biggr\}#mM
+\biggl(%<..%>\biggr)#mM
+\biggl[%<..%>\biggr]#mM
+\biggl\{%<..%>\biggr\}#mM
+\Biggl(%<..%>\Biggr)#mM
+\Biggl[%<..%>\Biggr]#mM
+\Biggl\{%<..%>\Biggr\}#mM
 
 # \ifxxx family
 \if%<..%>\fi#*
@@ -910,10 +926,10 @@
 
 # \left ... \right
 \left%<..%>\right#mM
-\left(%|\right)#mM
-\left[%|\right]#mM
-\left\{%|\right\}#mM
-\left|%|\right|#mM
+\left(%<..%>\right)#mM
+\left[%<..%>\right]#mM
+\left\{%<..%>\right\}#mM
+\left|%<..%>\right|#mM
 
 # math operators usually with super/sub-scripts
 \int_{min}^{max}#m
