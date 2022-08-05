@@ -609,7 +609,7 @@ debug={%<options%>}
 \ltfilehookversion#*
 \mathalpha#*
 \mathgroup#*
-\mathhexbox{number}{expr%formula}{expr%formula}#*
+\mathhexbox#*
 \mddefault#*
 \nobreakdashes#*
 \nobreakspace#*
