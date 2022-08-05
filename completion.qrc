@@ -2333,6 +2333,7 @@
 <file>completion/opcit.cwl</file>
 <file>completion/opensans.cwl</file>
 <file>completion/oplotsymbl.cwl</file>
+<file>completion/optex.cwl</file>
 <file>completion/optidef.cwl</file>
 <file>completion/optional.cwl</file>
 <file>completion/options.cwl</file>
