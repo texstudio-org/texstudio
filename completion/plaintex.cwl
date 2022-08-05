@@ -8,7 +8,7 @@
 \above#m
 \abovedisplayshortskip
 \abovedisplayskip
-\abovewithdelims %<⟨deliim1⟩ ⟨deliim2⟩ ⟨dimen⟩%>#m
+\abovewithdelims %<⟨delim1⟩ ⟨delim2⟩ ⟨dimen⟩%>#m
 \accent%<⟨charcode⟩%>
 \active
 \acute{a}#m
@@ -35,7 +35,7 @@
 \ast#m
 \asymp#m
 \atop#m
-\atopwithdelims %<⟨deliim1⟩ ⟨deliim2⟩%>#m
+\atopwithdelims %<⟨delim1⟩ ⟨delim2⟩%>#m
 \b{o}
 \backslash#m
 \badness
