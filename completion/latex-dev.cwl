@@ -527,6 +527,7 @@ debug={%<options%>}
 \pdfobj{object type spec}#*
 \pdfobjcompresslevel#*
 \pdfomitcharset#*
+\pdfomitinfodict#*
 \pdfoutline#*
 \pdfoutput#*
 \pdfpageattr{attributes}#*
@@ -556,7 +557,11 @@ debug={%<options%>}
 \pdfsetmatrix{matrix}#*
 \pdfsetrandomseed#*
 \pdfshellescape#*
+\pdfsnaprefpoint#*
+\pdfsnapy#*
+\pdfsnapycomp#*
 \pdfstartlink#*
+\pdfstartthread#*
 \pdfstrcmp{string1}{string2}#*
 \pdfsuppressptexinfo#*
 \pdfsuppresswarningdupdest#*
@@ -570,7 +575,6 @@ debug={%<options%>}
 \pdftracingfonts#*
 \pdftrailer{text%plain}#*
 \pdftrailerid{text%plain}#*
-\pdftstartthread#*
 \pdfunescapehex{string}#*
 \pdfuniformdeviate#*
 \pdfuniqueresname#*
@@ -609,7 +613,7 @@ debug={%<options%>}
 \ltfilehookversion#*
 \mathalpha#*
 \mathgroup#*
-\mathhexbox{number}{expr%formula}{expr%formula}#*
+\mathhexbox#*
 \mddefault#*
 \nobreakdashes#*
 \nobreakspace#*

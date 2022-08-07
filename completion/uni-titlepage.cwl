@@ -1,5 +1,5 @@
 # uni-titlepage package
-# Matthew Bertucci 3/24/2022 for v1.0
+# Matthew Bertucci 2022/08/06 for v1.1
 
 #include:scrbase
 #include:graphicx
@@ -111,6 +111,7 @@ referee={%<referee names%>}
 #keyvals:\TitlePageStyle/Markus-2,\TitlePageStyle/JT-Aufsaetze,\TitlePageStyle/JT-Geschichte,\TitlePageStyle/Spacer
 rulesep=##L
 rulewidth=##L
+rulecolor=#%color
 #endkeyvals
 
 #keyvals:\TitlePageStyle/UKoLa

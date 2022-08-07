@@ -99,16 +99,16 @@ config=%<file name%>
 #include:ragged2e
 #endif
 
-\caption[list entry]{heading%text}
+\caption[list entry%text]{heading%text}
 \caption{heading%text}
 \caption*{heading%text}
 
-\captionof{float type}[list entry]{heading%text}
+\captionof{float type}[list entry%text]{heading%text}
 \captionof{float type}{heading%text}
 \captionof*{float type}{heading%text}
 
-\captionlistentry[float type]{list entry}
-\captionlistentry{list entry}
+\captionlistentry[float type]{list entry%text}
+\captionlistentry{list entry%text}
 
 \ContinuedFloat
 \ContinuedFloat*

@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2022/08/02 for v1.07
+# Matthew Bertucci 2022/08/05 for v1.08
 
 #include:plaintex
 #include:luatex
@@ -83,7 +83,7 @@
 \eqlines{code}
 \eqstyle{code}
 \loadboldmath{[bold-font-file]} \to {[normal-font-file]}
-\addUmathfont{cmd}{[normal-font]}{features}{[bold-font]}{features}{factor}#Sd
+\addUmathfont{cmd}{[normal-font]}{features}{[bold-font]}{features}{factor}#d
 \resetmathchars %<\famname ⟨list of sequences⟩%> ;
 
 ## Typical elements of the document ##
@@ -93,31 +93,31 @@
 \chap %<⟨Chapter title⟩%>#L1
 \chap[%<label%>] %<⟨Chapter title⟩%>#L1
 \chap{title}#SL1
-\chap[label]{title}#Sl
+\chap[label%labeldef]{title}#S
 \sec %<⟨Section title⟩%>#L2
 \sec[%<label%>] %<⟨Section title⟩%>#L2
 \sec{title}#SL2
-\sec[label]{title}#Sl
+\sec[label%labeldef]{title}#S
 \secc %<⟨Subsection title⟩%>#L3
 \secc[%<label%>] %<⟨Subsection title⟩%>#L3
 \secc{title}#SL3
-\secc[label]{title}#Sl
+\secc[label%labeldef]{title}#S
 \nl
 \nonum
 \notoc
 \eqmark
-\eqmark[label]#l
+\eqmark[label%labeldef]
 \caption/t %<⟨table caption⟩%>
 \caption/t [%<label%>] %<⟨table caption⟩%>
 \caption/f %<⟨figure caption⟩%>
 \caption/f [%<label%>] %<⟨figure caption⟩%>
 \cskip
 \numberedpar %<⟨letter⟩%>{%<text%>}
-\label[label]#l
-\ref[label]#r
-\ref[label]{text}#r
-\pgref[label]#r
-\pgref[label]{text}#r
+\label[label%labeldef]
+\ref[label%ref]
+\ref[label%ref]{text}
+\pgref[label%ref]
+\pgref[label%ref]{text}
 \wlabel{text}
 \showlabels
 \hyperlinks %<⟨color-in⟩ ⟨color-out⟩%>
@@ -454,13 +454,11 @@
 \CS#*
 \csplain#*
 \defaultoptsize
-\docfile#*
 \doloadmath
 \dunhill#*
 \ea#*
 \ED#*
 \EDN#*
-\enddocument#*
 \endlayers
 \eqboxsize
 \everycaptionf={%<code%>}
@@ -495,7 +493,6 @@
 \localcolor
 \mathsboff
 \mathsbon
-\maxlines
 \mfontsrule
 \mnoteindent
 \mnoteskip
@@ -530,8 +527,6 @@
 \plaintexcatcodes
 \plaintexsetting#*
 \PP#*
-\printdoc %<⟨filename⟩%>#*
-\printdoctail %<⟨filename⟩%>#*
 \promile#S
 \pshow%<⟨num⟩%>
 \ptmunit
@@ -549,8 +544,6 @@
 \runningfnotes#S
 \sans#*
 \scantoeol
-\seccc %<⟨subsubsection title⟩%>#*
-\secccc#*
 \secl%<⟨number⟩%>
 \setff{font-feature}
 \setfontcolor#S
@@ -586,7 +579,6 @@
 \uslang#S
 \uv#S
 \visiblesp
-\vitt{file}#*i
 \voidbox#*
 \VOL#*
 \wideformat
@@ -595,8 +587,24 @@
 \Xrefversion{version}#*
 \YEAR#*
 
+# loaded by \load[doc]
+\bgverbcolor#S
+\docfile#S
+\enddocument#S
+\fnamecolor#S
+\lt#S
+\maxlines#S
+\mlinkcolor#S
+\printdoc %<⟨filename⟩%>#S
+\printdoctail %<⟨filename⟩%>#S
+\seccc %<⟨subsubsection title⟩%>#S
+\secccc#S
+\ulinkcolor#S
+\vitt{file}#Si
+
 # availability depends on font
 \Adventor#S
+\alter#S
 \angular#S
 \Baskervald#S
 \Baskerville#S
@@ -635,6 +643,7 @@
 \medium#S
 \Merriweather#S
 \mono#S
+\Montserrat#S
 \NewCM#S
 \nocaps#S
 \nocond#S
@@ -643,6 +652,7 @@
 \noswash#S
 \onum#S
 \osize#S
+\Overlock#S
 \Pagella#S
 \Poltawski#S
 \Roboto#S
@@ -652,6 +662,8 @@
 \serif#S
 \Sourcepro#S
 \stencil#S
+\Stix#S
+\StixTwo#S
 \swash#S
 \Technika#S
 \Termes#S
@@ -659,6 +671,8 @@
 \thin#S
 \ti#S
 \XCharter#S
+\Xits#S
+\xlight#S
 
 ## pdftex commands implemented in optex
 \ifpdfabsdim
@@ -695,7 +709,7 @@
 \pdfincludechars
 \pdfinclusioncopyfonts
 \pdfinclusionerrorlevel
-\pdfinfo
+\pdfinfo{info}
 \pdfinsertht
 \pdflastannot
 \pdflastlinedepth
