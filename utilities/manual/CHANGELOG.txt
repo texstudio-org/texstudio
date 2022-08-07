@@ -1,3 +1,7 @@
+TeXstudio 4.3.1
+-----------------
+- 
+
 TeXstudio 4.3.0
 -----------------
 - show most used command at first place in completer
