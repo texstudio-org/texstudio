@@ -1489,6 +1489,7 @@
 <file>completion/gatherenum.cwl</file>
 <file>completion/gb4e.cwl</file>
 <file>completion/gbt7714.cwl</file>
+<file>completion/gchords.cwl</file>
 <file>completion/gckanbun.cwl</file>
 <file>completion/genealogytree.cwl</file>
 <file>completion/gensymb.cwl</file>
@@ -1588,6 +1589,7 @@
 <file>completion/gtrlib.largetrees.cwl</file>
 <file>completion/Gudea.cwl</file>
 <file>completion/guitarchordschemes.cwl</file>
+<file>completion/guitar.cwl</file>
 <file>completion/guit.cwl</file>
 <file>completion/hackthefootline.cwl</file>
 <file>completion/halloweenmath.cwl</file>
@@ -2567,6 +2569,7 @@
 <file>completion/projlib-titlepage.cwl</file>
 <file>completion/proof.cwl</file>
 <file>completion/proofread.cwl</file>
+<file>completion/prooftrees.cwl</file>
 <file>completion/properties.cwl</file>
 <file>completion/protecteddef.cwl</file>
 <file>completion/protosem.cwl</file>
@@ -2576,6 +2579,7 @@
 <file>completion/psfrag.cwl</file>
 <file>completion/psfragx.cwl</file>
 <file>completion/psgo.cwl</file>
+<file>completion/pst-2dplot.cwl</file>
 <file>completion/pst-3d.cwl</file>
 <file>completion/pst-3dplot.cwl</file>
 <file>completion/pst-abspos.cwl</file>
@@ -2587,6 +2591,7 @@
 <file>completion/pst-bar.cwl</file>
 <file>completion/pst-bezier.cwl</file>
 <file>completion/pst-blur.cwl</file>
+<file>completion/pst-bspline.cwl</file>
 <file>completion/pst-calculate.cwl</file>
 <file>completion/pst-calendar.cwl</file>
 <file>completion/pst-char.cwl</file>
