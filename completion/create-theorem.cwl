@@ -2,6 +2,7 @@
 # Matthew Bertucci 2022-07-02 for release 2022-07-01
 
 #include:crefthe
+#include:amsfonts
 
 #keyvals:\usepackage/create-theorem#c
 name as context
@@ -49,5 +50,5 @@ parent counter=%<counter%>
 shared counter=%<counter%>
 #endkeyvals
 
-\SetTheoremBinding{envname}{internal-envname}#*
+\SetTheoremBinding{envname}{envname to bind with}
 \CreateTheoremAddLanguage{language}#*
