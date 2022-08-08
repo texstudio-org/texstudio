@@ -2189,6 +2189,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 						dlh->addOverlay(QFormatRange(tk.start, tk.length, referenceMultipleFormat));
 					} else dlh->addOverlay(QFormatRange(tk.start, tk.length, referencePresentFormat));
 					// look for corresponding reeferences and adapt format respectively
+                    document->updateRefsLabels(ref);
 					addedOverlayReference = true;
 				}
 				if (tk.type == Token::bibItem && config->inlineCitationChecking) {
