@@ -4,7 +4,7 @@
 
 [CI]: https://github.com/texstudio-org/texstudio/workflows/CI/badge.svg
 
-[Website]: http://www.texstudio.org
+[Website]: https://www.texstudio.org
 
 [Download]: https://www.texstudio.org/#download
 [Releases]: https://github.com/texstudio-org/texstudio/releases/
