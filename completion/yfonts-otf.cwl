@@ -1,11 +1,12 @@
-# oldgerm-otf package
-# Matthew Bertucci 2022/07/20 for v0.30
+# yfonts-otf package
+# Matthew Bertucci 2022/08/09 for v0.40
 
 #include:iftex
 #include:fontspec
 
 #keyvals:\usepackage/oldgerm-otf#c
 oldumlaut
+varumlaut
 gothvarlongs
 #endkeyvals
 
@@ -17,6 +18,8 @@ gothvarlongs
 \textswab{text}
 \etc
 \Jvar
+\longs
+\shorts
 
 \fileversion#S
 \filedate#S
