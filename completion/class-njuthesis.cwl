@@ -1,5 +1,5 @@
 # njuthesis class
-# Matthew Bertucci 2022/07/03 for v0.20.0
+# Matthew Bertucci 2022/08/10 for v1.0.0
 
 #include:xtemplate
 #include:l3keys2e
@@ -20,7 +20,6 @@
 #include:xeCJKfntef
 #include:lua-ul
 #include:tabularray
-#include:filehook
 #include:biblatex
 # loads style=gb7714-2015 option of biblatex
 #include:ntheorem
@@ -28,23 +27,31 @@
 #include:njuvisual
 
 #keyvals:\documentclass/njuthesis#c
-degree=#ug,mg,mf,phd
-type=#thesis,design
-nlcover#true,false
+type=#bachelor,master,doctor,postdoc
+degree=#academic,professional
+nl-cover#true,false
 decl-page#true,false
 oneside
 twoside
 draft#true,false
-blind
+anonymous#true,false
+biblatex#true,false
+cleveref#true,false
+ntheorem#true,false
+enumitem#true,false
+footmisc#true,false
+unicode-math#true,false
+minimal
 config={%<文件%>}
 cjk-font=#win,mac,fandol,founder,noto,source,none
 latin-font=#win,mac,gyre,none
+math-font=#asana,cambria,fira,garamond,lm,libertinus,stix,bonum,dejavu,pagella,schola,termes,xits,none
 #endkeyvals
 
-\njusetup{options%keyvals}
+\njusetup{设置项%keyvals}
+\njusetup[键路径]{设置项%keyvals}
 
 #keyvals:\njusetup#c
-info={%<keyvals%>}
 info/title={%<标题%>}
 info/title*={%<英文标题%>}
 info/keywords={%<关键词%>}
@@ -73,31 +80,43 @@ info/clc={%<中图分类号%>}
 info/secret-level={%<不涉密|秘密|机密|绝密%>}
 info/udc={%<udc%>}
 info/supervisor-contact={%<导师联系方式%>}
-style={%<keyvals%>}
-style/header/format={%<格式%>}
-style/footer/format={%<格式%>}
-style/header={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
-style/header*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
-style/footer={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
-style/footer*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
-style/footnote-style=#plain,pifont
-style/emblem-img={%<文件%>}
-style/name-img={%<文件%>}
-style/abstract-in-toc#true,false
-style/abstract-title=#strict,centered,natural
-style/toc-in-toc#true,false
-
-theorem={%<keyvals%>}
-theorem/predefine#true,false
+header/content={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
+header/content*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
+footer/content={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
+footer/content*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
+image/path={%<{路径1},{路径2},...%>}
+image/nju-emblem={%<文件%>}
+image/nju-name={%<文件%>}
+footnote/style=#plain,pifont
+math/style=#TeX,ISO,GB
+math/integral=#upright,slanted
+math/integral-limits#true,false
+math/less-than-or-equal=#slanted,horizontal
+math/math-ellipsis=#centered,lower
+math/partial=#upright,italic
+math/real-part=#roman,fraktur
+math/vector=#boldfont,arrow
+math/uppercase-greek=#upright,italic
 theorem/style=#plain,break,change,margin,empty
 theorem/header-font={%<头部字体格式%>}
 theorem/body-font={%<内部字体格式%>}
-theorem/qed-symbol=%<symbol%>
+theorem/qed-symbol=%<证毕符号%>
 theorem/counter=%<counter%>
-bib={%<keyvals%>}
+theorem/type={%<{环境名,类型标识}{头名称},...%>}
+theorem/define
+label-sep/figure=%<符号%>
+label-sep/table=%<符号%>
+label-sep/equation=%<符号%>
 bib/style=%<自定义样式%>
 bib/option={%<选项列表%>}
 bib/resource={%<文件%>}
+abstract/toc-entry#true,false
+abstract/title-style=#strict,centered,natural
+tableofcontents/dotline=#chapter,section
+tableofcontents/toc-entry#true,false
+listoffigures/toc-entry#true,false
+listoftables/toc-entry#true,false
+
 #endkeyvals
 
 \njuline{文字%text}
@@ -120,17 +139,41 @@ bib/resource={%<文件%>}
 \njuchapter{title}#L1
 \njupaperlist{bibid}#C
 \njupaperlist[标题]{bibid}#C
-\njusetname{名称}{内容}
-\njusetname{名称}[变体]{内容}
-\njusetname*{名称}{内容}
-\njusetname*{名称}[变体]{内容}
-\njusettext{名称}{内容}
-\njusettext{名称}[变体]{内容}
-\njusettext*{名称}{内容}
-\njusettext*{名称}[变体]{内容}
+\njusetname{名称}{内容%text}
+\njusetname{名称}[变体]{内容%text}
+\njusetname*{名称}{内容%text}
+\njusetname*{名称}[变体]{内容%text}
+\njusettext{名称}{内容%text}
+\njusettext{名称}[变体]{内容%text}
+\njusettext*{名称}{内容%text}
+\njusettext*{名称}[变体]{内容%text}
 \njusetlength{名称}{长度}
 \njusetlength*{名称}{长度}
 \njusetformat{名称}{样式}
+\bigger#*
+
+# requires theorem/define option of \njusetup
+\begin{axiom}
+\begin{axiom}[heading%text]
+\end{axiom}
+\begin{corollary}
+\begin{corollary}[heading%text]
+\end{corollary}
+\begin{definition}
+\begin{definition}[heading%text]
+\end{definition}
+\begin{example}
+\begin{example}[heading%text]
+\end{example}
+\begin{lemma}
+\begin{lemma}[heading%text]
+\end{lemma}
+\begin{proof}
+\begin{proof}[heading%text]
+\end{proof}
+\begin{theorem}
+\begin{theorem}[heading%text]
+\end{theorem}
 
 # from thmmarks option of ntheorem
 \theoremsymbol{symbol}
