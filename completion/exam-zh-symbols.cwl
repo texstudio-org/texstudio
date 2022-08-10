@@ -1,5 +1,5 @@
 # exam-zh-symbols package
-# Matthew Bertucci 2022/07/29 for v0.1.13
+# Matthew Bertucci 2022/08/10 for v0.1.15
 
 #include:expl3
 #include:tikz
@@ -42,6 +42,12 @@ symbols/nsubset-n-slant-length=##L
 symbols/nsubseteq-n-slant-length=##L
 symbols/nsubsetneqq-n-slant-length=##L
 #endkeyvals
+
+\eu#m
+\upe#m
+\iu#m
+\upi#m
+\uppi#m
 
 \paralleleq#m
 \subset*#m
