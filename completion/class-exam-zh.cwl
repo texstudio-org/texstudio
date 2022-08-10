@@ -16,8 +16,8 @@
 #include:varwidth
 #include:tikzpagenodes
 # loads decorations.markings and decorations.text tikzlibraries
-#include:exam-zh-font
 #include:exam-zh-question
+#include:exam-zh-font
 #include:exam-zh-choices
 #include:exam-zh-symbols
 #include:exam-zh-chinese-english
@@ -179,8 +179,6 @@ scoringbox/type=#onecolumn,twocolumn,none
 scoringbox/position=#left,right
 #endkeyvals
 
-\eu#m
-\iu#m
 \information{信息内容%text}
 \information[分隔符]{信息内容%text}
 \warning{警告%text}
