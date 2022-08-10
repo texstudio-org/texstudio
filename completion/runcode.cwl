@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2022/07/26 for v1.5
+# Matthew Bertucci 2022/08/10 for v1.6
 
 #include:morewrites
 #include:tcolorbox
@@ -21,6 +21,7 @@
 run
 cache
 nominted
+reducedspace
 nohup
 R
 julia
@@ -30,7 +31,7 @@ stopserver
 #endkeyvals
 
 \runExtCode{program}{source file}{output file}
-\runExtCode{program}{source file}{output file}[run or cache]
+\runExtCode{program}{source file}{output file}[run|cache]
 \runExtCode{program}{file}{output file}#Si
 
 \showCode{lang}{source file}
@@ -47,53 +48,57 @@ inline
 #endkeyvals
 
 \inln{program}{code%definition}
-\inln{program}{code%definition}[type%keyvals]
+\inln{program}{code%definition}[vbox|inline]
 
-\runJulia{program}{source file}{output file}
-\runJulia[server spec]{program}{source file}{output file}
-\runJulia{program}{file}{output file}#Si
-\runJulia[server spec]{program}{file}{output file}#Si
+\runJulia{source file}{output file}
+\runJulia{source file}{output file}[run|cache]
+\runJulia[server spec]{source file}{output file}
+\runJulia[server spec]{source file}{output file}[run|cache]
+\runJulia{file}{output file}#Si
+\runJulia[server spec]{file}{output file}#Si
 
 \inlnJulia{code%definition}
-\inlnJulia{code%definition}[type%keyvals]
+\inlnJulia{code%definition}[vbox|inline]
 \inlnJulia[server spec]{code%definition}
-\inlnJulia[server spec]{code%definition}[type%keyvals]
+\inlnJulia[server spec]{code%definition}[vbox|inline]
 
-\runMatlab{program}{source file}{output file}
-\runMatlab[server spec]{program}{source file}{output file}
-\runMatlab{program}{file}{output file}#Si
-\runMatlab[server spec]{program}{file}{output file}#Si
+\runMatlab{source file}{output file}
+\runMatlab{source file}{output file}[run|cache]
+\runMatlab[server spec]{source file}{output file}
+\runMatlab[server spec]{source file}{output file}[run|cache]
+\runMatlab{file}{output file}#Si
+\runMatlab[server spec]{file}{output file}#Si
 
 \inlnMatlab{code%definition}
-\inlnMatlab{code%definition}[type%keyvals]
+\inlnMatlab{code%definition}[vbox|inline]
 \inlnMatlab[server spec]{code%definition}
-\inlnMatlab[server spec]{code%definition}[type%keyvals]
+\inlnMatlab[server spec]{code%definition}[vbox|inline]
 
-\runR{program}{source file}{output file}
-\runR[server spec]{program}{source file}{output file}
-\runR{program}{file}{output file}#Si
-\runR[server spec]{program}{file}{output file}#Si
+\runR{source file}{output file}
+\runR{source file}{output file}[run|cache]
+\runR[server spec]{source file}{output file}
+\runR[server spec]{source file}{output file}[run|cache]
+\runR{file}{output file}#Si
+\runR[server spec]{file}{output file}#Si
 
 \inlnR{code%definition}
-\inlnR{code%definition}[type%keyvals]
+\inlnR{code%definition}[vbox|inline]
 \inlnR[server spec]{code%definition}
-\inlnR[server spec]{code%definition}[type%keyvals]
+\inlnR[server spec]{code%definition}[vbox|inline]
 
-\runPython{program}{source file}{output file}
-\runPython{program}{source file}{output file}[run or cache]
-\runPython{program}{file}{output file}#Si
+\runPython{source file}{output file}
+\runPython{source file}{output file}[run|cache]
+\runPython[server spec]{source file}{output file}
+\runPython[server spec]{source file}{output file}[run|cache]
+\runPython{file}{output file}#Si
+\runPython[server spec]{file}{output file}#Si
 
 \inlnPython{code%definition}
-\inlnPython{code%definition}[type%keyvals]
+\inlnPython{code%definition}[vbox|inline]
 \inlnPython[server spec]{code%definition}
-\inlnPython[server spec]{code%definition}[type%keyvals]
+\inlnPython[server spec]{code%definition}[vbox|inline]
 
 \runPythonBatch{code%definition}{output file}
-
-#keyvals:\inln,\inlnJulia,\inlnMatLab,\inlnR,\inlnPython
-vbox
-inline
-#endkeyvals
 
 \begin{codelisting}#*V
 \begin{codelisting}[number]#*V
@@ -112,6 +117,9 @@ bg#B
 \ifminted#*
 \mintedtrue#*
 \mintedfalse#*
+\ifreducedspace#*
+\reducedspacetrue#*
+\reducedspacefalse#*
 \ifnotnohup#*
 \notnohuptrue#*
 \notnohupfalse#*
