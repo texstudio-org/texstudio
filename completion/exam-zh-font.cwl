@@ -1,10 +1,11 @@
 # exam-zh-font package
-# Matthew Bertucci 2022/07/29 for v0.1.13
+# Matthew Bertucci 2022/08/10 for v0.1.15
 
 #include:expl3
 #include:xparse
 #include:unicode-math
 #include:filehook
+#include:etoolbox
 
 #keyvals:\examsetup,\ExamPrintAnswerSet
 font=#newcm,lm,times,termes,stix,xits,libertinus,none
