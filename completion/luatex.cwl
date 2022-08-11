@@ -104,6 +104,9 @@
 # 3.1 The merged engines #
 \pagebottomoffset#*
 \pagerightoffset#*
+\partokencontext#*
+\partokenname#*
+\showstream#*
 
 # 3.2 The backend primitives #
 \pdfextension %<command%>#*
