@@ -100,8 +100,10 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
 Version Version::current(const QString &versionString)
 {
 	QStringList vp = stringVersion2Parts(versionString);
+	qDebug() << "Version::current:" << versionString;
 	if (!vp.isEmpty()) {
 		QString type = vp[1];
+		if (type == "") type = "stable";
 		int revision = vp[2].toInt();
 		int commitsAfter = vp[3].toInt();
 		Version v( TXSVERSION, type, revision, commitsAfter);
@@ -136,6 +138,8 @@ QString Version::versionToString(const Version &v)
 
 bool Version::operator >(const Version &other) const
 {
+	qDebug() << "Version::operator left :" << versionToString(*this);
+	qDebug() << "Version::operator right:" << versionToString(other);
 	VersionCompareResult res = compareStringVersion(versionNumber, other.versionNumber);
     if (res != Same)
         return (res == Higher);
