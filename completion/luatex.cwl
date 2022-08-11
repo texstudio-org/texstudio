@@ -324,6 +324,7 @@
 \Umathinnerpunctspacing#*
 \Umathinnerinnerspacing#*
 \mathdisplayskipmode = %<<0,1,2,or 3>%>#*
+\matheqdirmode = %<<integer>%>#*
 \Umathnolimitsupfactor#*
 \Umathnolimitsubfactor#*
 \mathnolimitsmode = %<<mode>%>#*
