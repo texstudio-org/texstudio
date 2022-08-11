@@ -102,11 +102,12 @@ Version Version::current(const QString &versionString)
 	QStringList vp = stringVersion2Parts(versionString);
 	qDebug() << "Version::current:" << versionString;
 	if (!vp.isEmpty()) {
+		QString ver = vp[0];
 		QString type = vp[1];
 		if (type == "") type = "stable";
 		int revision = vp[2].toInt();
 		int commitsAfter = vp[3].toInt();
-		Version v( TXSVERSION, type, revision, commitsAfter);
+		Version v( ver, type, revision, commitsAfter);
 #if defined(Q_OS_WIN)
 		v.platform =  "win";
 #elif defined(Q_OS_MAC)
