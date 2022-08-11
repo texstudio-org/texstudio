@@ -451,6 +451,8 @@ debug={%<options%>}
 \leftmarginkern#*
 \letterspacefont#*
 \lpcode#*
+\partokencontext#*
+\partokenname#*
 \pdfadjustinterwordglue#*
 \pdfadjustspacing#*
 \pdfannot#*
@@ -587,6 +589,7 @@ debug={%<options%>}
 \rightmarginkern#*
 \rpcode#*
 \shbscode#*
+\showstream#*
 \stbscode#*
 \tagcode#*
 \tracingstacklevels#*
