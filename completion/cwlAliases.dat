@@ -1290,3 +1290,7 @@ BHCexam:
 class-BHCexam
 latex-document
 tex
+tudabeamer:
+class-tudabeamer
+latex-document
+tex
