@@ -1,5 +1,5 @@
 # unbtex class
-# Matthew Bertucci 2022/06/04 for v1.1.1
+# Matthew Bertucci 2022/08/12 for v1.1.2
 
 #include:class-abntex2
 #include:fontenc
@@ -124,9 +124,9 @@ twoside
 \begin{definition}
 \begin{definition}[heading%text]
 \end{definition}
-\begin{assuption}
-\begin{assuption}[heading%text]
-\end{assuption}
+\begin{assumption}
+\begin{assumption}[heading%text]
+\end{assumption}
 \begin{example}
 \begin{example}[heading%text]
 \end{example}
