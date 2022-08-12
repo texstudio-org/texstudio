@@ -237,8 +237,18 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 continue;
             Token tk2 = tl.at(i + 1);
             Token tk3 = tl.at(i + 2);
-            if (tk2.type == Token::openBrace && tk3.type == Token::word) {
-                QString env = line.mid(tk3.start, tk3.length);
+            // search for closing brace (#2528)
+            Token tk_closing;
+            bool closingFound=false;
+            for(int j=i+3;j<tl.length();++j){
+                tk_closing=tl.at(j);
+                if(tk_closing.type == Token::closeBrace){
+                    closingFound=true;
+                    break;
+                }
+            }
+            if (tk2.type == Token::openBrace && closingFound) {
+                QString env = line.mid(tk3.start, tk_closing.start-tk3.start);
                 if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing corresponds to open !
                     Token verbatimStart=stack.top();
                     // second option, env in optionalCommandName
