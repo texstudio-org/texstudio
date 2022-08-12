@@ -210,6 +210,7 @@ private slots:
 		QTest::newRow("valid2.6") << "3.0.1" << "alpha" << 0 << 0 << true;
 		QTest::newRow("valid2.7") << "3.0.1" << "alpha" << -1 << 0 << false;
 		QTest::newRow("valid2.8") << "3.0.1" << "alpha" << 1 << -2 << false;
+		QTest::newRow("valid2.9") << "2.3.1" << "" << 1 << 0 << false;
 	}
 
 	void isValid2() {
