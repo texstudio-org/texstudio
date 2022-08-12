@@ -25,7 +25,6 @@ QStringList Version::parseGitData(const QString &data) {
 			level -= 1;
 			if (level==0) {
 				item = data.mid(start+1, idx-start-1); // without { and }
-//				qDebug() << item;
 				items << item;
 			}
 		}
@@ -96,27 +95,39 @@ Version::VersionCompareResult Version::compareIntVersion(const QList<int> &v1, c
     }
 	return Same;
 }
-
-Version Version::current(const QString &versionString)
+/*!
+ * \brief return current version
+ * Version in utilsVersion.h takes precedence over git as git tag are not necessarily present or correct
+ * If version is identical, take commitsafter/revision from git
+ * \return
+ */
+Version Version::current()
 {
-	QStringList vp = stringVersion2Parts(versionString);
-	if (!vp.isEmpty()) {
-		QString ver = vp[0];
-		QString type = vp[1];
-		if (type == "") type = "stable";
-		int revision = vp[2].toInt();
-		int commitsAfter = vp[3].toInt();
-		Version v( ver, type, revision, commitsAfter);
+    Version v;
+    QStringList vp_base = stringVersion2Parts(TXSVERSION);
+    if (!vp_base.isEmpty()) {
+        v.versionNumber = vp_base[0];
+        v.type = vp_base[1];
+        if (v.type == "") v.type = "stable";
+        v.revision = vp_base[2].toInt();
+        v.commitsAfter = vp_base[3].toInt();
 #if defined(Q_OS_WIN)
-		v.platform =  "win";
+        v.platform =  "win";
 #elif defined(Q_OS_MAC)
-		v.platform = "mac";
+        v.platform = "mac";
 #elif defined(Q_OS_LINUX)
-		v.platform = "linux";
+        v.platform = "linux";
 #endif
-		return v;
+    }
+    QStringList vp = stringVersion2Parts(TEXSTUDIO_GIT_REVISION);
+	if (!vp.isEmpty()) {
+        if(!v.versionNumber.isEmpty()){
+            if(!vp[1].isEmpty()) v.type = vp[1];
+            v.revision = vp[2].toInt();
+            v.commitsAfter = vp[3].toInt();
+        }
 	}
-	Version v;
+
 	return v;
 }
 

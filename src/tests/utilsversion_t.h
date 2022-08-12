@@ -102,17 +102,6 @@ private slots:
 		QEQUAL(Version::stringVersion2Parts(version) == parts, valid);
 	}
 
-	void currentVersion_data() {
-		QTest::addColumn<bool>("valid");
-
-		QTest::newRow("currentVersion") << false;
-	}
-
-	void currentVersion() {
-		QFETCH(bool, valid);
-		QEQUAL(Version::current("4.3.0beta1-24-g5c925a387").Version::isEmpty(), valid);
-	}
-
 	void versionToString_data() {
 		QTest::addColumn<QString>("version");
 		QTest::addColumn<QString>("type");

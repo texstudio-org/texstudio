@@ -148,8 +148,6 @@ void UpdateChecker::checkForNewVersion()
 	bool checkReleaseCandidate = updateLevel >= 1;
 	bool checkDevVersions = updateLevel >= 2;
 	Version currentVersion = Version::current();
-	if (!currentVersion.isValid())
-		UtilsUi::txsWarning(tr("Current version number:%1 type:%2 revision:%3 not valid.").arg(currentVersion.versionNumber,currentVersion.type).arg(currentVersion.revision));
 	QString downloadAddress = "https://texstudio.org";
 	QString downloadAddressGit = "https://github.com/texstudio-org/texstudio/releases";
 

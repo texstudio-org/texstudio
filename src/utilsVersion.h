@@ -8,11 +8,6 @@
 
 #define TXSVERSION_NUMERIC 0x040301
 
-
-
-//#define IS_DEVELOPMENT_VERSION (TXSVERSION_NUMERIC & 0x000001)
-#define IS_DEVELOPMENT_VERSION 0 // odd numbers have not been used at all, git version gives a much clearer insight about the used version
-
 extern const char *TEXSTUDIO_GIT_REVISION;
 
 #ifdef QT_NO_DEBUG
@@ -37,7 +32,7 @@ public:
 	Version() : revision(0), commitsAfter(0) {}
 	Version(QString number, int rev = 0) : versionNumber(number), type(QString("stable")), revision(rev), commitsAfter(0) {}
     Version(QString number, QString tp, int rev = 0, int count = 0) : versionNumber(number), type(tp), revision(rev), commitsAfter(count) {}
-	static Version current(const QString &versionString = TEXSTUDIO_GIT_REVISION);
+    static Version current();
 
 	QString platform;       // "win" or "mac" or "linux"
 	QString versionNumber;  // "2.10.2"
