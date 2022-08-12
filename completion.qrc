@@ -548,6 +548,7 @@
 <file>completion/chmst-pdf.cwl</file>
 <file>completion/chngcntr.cwl</file>
 <file>completion/chordbars.cwl</file>
+<file>completion/chronosys.cwl</file>
 <file>completion/churchslavonic.cwl</file>
 <file>completion/cinzel.cwl</file>
 <file>completion/circle.cwl</file>
@@ -600,6 +601,7 @@
 <file>completion/class-bfhpub.cwl</file>
 <file>completion/class-bfhsciposter.cwl</file>
 <file>completion/class-bfhthesis.cwl</file>
+<file>completion/class-BHCexam.cwl</file>
 <file>completion/class-biditufte-book.cwl</file>
 <file>completion/class-biditufte-handout.cwl</file>
 <file>completion/class-bitart.cwl</file>
@@ -1096,6 +1098,7 @@
 <file>completion/diffcoeff.cwl</file>
 <file>completion/digicap-pro.cwl</file>
 <file>completion/digiconfigs.cwl</file>
+<file>completion/digsig.cwl</file>
 <file>completion/dijkstra.cwl</file>
 <file>completion/dimnum.cwl</file>
 <file>completion/dingbat.cwl</file>
@@ -1260,6 +1263,7 @@
 <file>completion/eq-save.cwl</file>
 <file>completion/erewhon.cwl</file>
 <file>completion/errata.cwl</file>
+<file>completion/esami.cwl</file>
 <file>completion/esindex.cwl</file>
 <file>completion/esint.cwl</file>
 <file>completion/esk.cwl</file>
@@ -2325,7 +2329,6 @@
 <file>completion/okuverb.cwl</file>
 <file>completion/old-arrows.cwl</file>
 <file>completion/oldgerm.cwl</file>
-<file>completion/oldgerm-otf.cwl</file>
 <file>completion/oldprsn.cwl</file>
 <file>completion/OldStandard.cwl</file>
 <file>completion/oldstyle.cwl</file>
@@ -2363,6 +2366,7 @@
 <file>completion/pagenote.cwl</file>
 <file>completion/pagerange.cwl</file>
 <file>completion/pagesel.cwl</file>
+<file>completion/pageslts.cwl</file>
 <file>completion/pandora.cwl</file>
 <file>completion/papermas.cwl</file>
 <file>completion/paracol.cwl</file>
@@ -3556,6 +3560,7 @@
 <file>completion/ydoc-doc.cwl</file>
 <file>completion/ydoc-expl.cwl</file>
 <file>completion/yfonts.cwl</file>
+<file>completion/yfonts-otf.cwl</file>
 <file>completion/yhmath.cwl</file>
 <file>completion/youngtab.cwl</file>
 <file>completion/yquant.cwl</file>
