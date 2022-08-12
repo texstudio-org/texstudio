@@ -11969,7 +11969,7 @@ included document in %1</source>
         <location filename="../src/updatechecker.cpp" line="186"/>
         <location filename="../src/updatechecker.cpp" line="203"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation>Die neue Version kann von der %1 TeXstudio-Webseite geladen werden.</translation>
+        <translation>Die neue Version kann von der %1 TeXstudio-Webseite geladen werden</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="197"/>
