@@ -1,7 +1,5 @@
 # pdfbase package
-# Matthew Bertucci 2022/06/26
-
-#include:l3keys2e
+# Matthew Bertucci 2022/08/12 for v0.55
 
 #keyvals:\usepackage/pdfbase#c
 xetex
