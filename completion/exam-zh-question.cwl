@@ -1,13 +1,13 @@
 # exam-zh-question package
-# Matthew Bertucci 2022/07/29 for v0.1.13
+# Matthew Bertucci 2022/08/10 for v0.1.15
 
 #include:expl3
 #include:xparse
 #include:amsthm
 #include:tcolorbox
 # loads most option of tcolorbox
-#include:zref-savepos
-#include:ulem
+#include:xeCJKfntef
+#include:linegoal
 # loads shapes.misc tikzlibrary
 
 #keyvals:\examsetup,\ExamPrintAnswerSet
@@ -35,8 +35,10 @@ fillin/no-answer-counter-index=%<integer%>
 fillin/no-answer-counter-label=%<label%>
 fillin/show-answer#true,false
 fillin/width=##L
+fillin/width-type=#fill,normal
 fillin/color=#%color
 fillin/text-color=#%color
+fillin/paren-type=#banjiao,quanjiao
 solution={%<键值列表%>}
 solution/show-solution#true,false
 solution/parbreak#true,false

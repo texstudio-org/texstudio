@@ -1,9 +1,12 @@
 # simplebnf package
-# Matthew Bertucci 2022/05/09 for v0.3.0
+# Matthew Bertucci 2022/08/11 for v0.3.1
 
 #include:expl3
 #include:xparse
 #include:mathtools
+
+\SimpleBNFDefEq#*
+\SimpleBNFDefOr#*
 
 \bnfexpr{text%plain}
 \bnfannot{text%plain}

@@ -1,5 +1,5 @@
 # create-theorem package
-# Matthew Bertucci 2022-07-02 for release 2022-07-01
+# Matthew Bertucci 2022/08/09 for release 2022/08/08
 
 #include:crefthe
 #include:amsfonts
@@ -51,4 +51,13 @@ shared counter=%<counter%>
 #endkeyvals
 
 \SetTheoremBinding{envname}{envname to bind with}
+
+\NameTheorems{language}{keyvals}
+
+#keyvals:\NameTheorems#c
+heading={%<envname%>=%<string%>}
+crefname={%<envname%>={%<singular%>}{%<plural%>}}
+Crefname={%<envname%>={%<singular%>}{%<plural%>}}
+#endkeyvals
+
 \CreateTheoremAddLanguage{language}#*

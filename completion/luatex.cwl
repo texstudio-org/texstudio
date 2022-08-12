@@ -103,7 +103,14 @@
 ## 3 Modifications ##
 # 3.1 The merged engines #
 \pagebottomoffset#*
+\pagetopoffset#*
 \pagerightoffset#*
+\pageleftoffset#*
+\partokencontext#*
+\partokenname#*
+\showstream#*
+\eTeXgluestretchorder#*
+\eTeXglueshrinkorder#*
 
 # 3.2 The backend primitives #
 \pdfextension %<command%>#*
@@ -146,6 +153,8 @@
 \pagedirection = %<<0 or 1>%>#*
 \bodydirection = %<<0 or 1>%>#*
 \mathdirection = %<<0 or 1>%>#*
+\boxdirection = %<<0 or 1>%>#*
+\linedirection = %<<0 or 1>%>#*
 
 ## 5 Languages, characters, fonts and glyphs ##
 # 5.2 Characters, glyphs and discretionaries #
@@ -321,6 +330,7 @@
 \Umathinnerpunctspacing#*
 \Umathinnerinnerspacing#*
 \mathdisplayskipmode = %<<0,1,2,or 3>%>#*
+\matheqdirmode = %<<integer>%>#*
 \Umathnolimitsupfactor#*
 \Umathnolimitsubfactor#*
 \mathnolimitsmode = %<<mode>%>#*
@@ -336,6 +346,7 @@
 # 7.6 Math constructs #
 \mathdelimitersmode = %<<mode>%>#*
 \Uhextensible#*
+\Uvextensible#*
 \Uskewed#*
 \Uskewedwithdelims#*
 \Udelimiter#*
@@ -372,7 +383,19 @@
 \localrightbox#*
 
 ## 10 The TeX related libraries ##
+\compoundhyphenmode#*
+\dviextension#*
+\dvifeedback#*
+\dvivariable#*
+\endlocalcontrol#*
+\eTeXminorversion#*
+\eTeXVersion#*
+\fixupboxesmode#*
 \luacopyinputnodes#*
+\mathrulesfam#*
+\mathrulesmode#*
+\mathrulethicknessmode#*
+\synctex#*
 
 ### from ltluatex.tex v1.1x ###
 \newattribute{attribute%cmd}#*d

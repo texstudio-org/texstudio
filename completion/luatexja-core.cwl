@@ -30,6 +30,7 @@
 \zh
 \disinhibitglue
 \inhibitglue
+\<#*
 \ltjfakeparbegin
 \ltjfakeboxbdd
 \insertxkanjiskip

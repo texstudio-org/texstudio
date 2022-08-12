@@ -2749,6 +2749,23 @@ nonodate#true,false
 \ifrelatedloop{true}{false}#*
 #endif
 
+### biblatex-caspervector v0.3.5 ###
+#ifOption:style=caspervector
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+utf8#true,false
+gbk#true,false
+cparen#true,false
+#endkeyvals
+#endif
+
+#ifOption:style=caspervector-ay
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+utf8#true,false
+gbk#true,false
+cparen#true,false
+#endkeyvals
+#endif
+
 ### biblatex-chem v1.1z ###
 #ifOption:style=chem-acs
 # from chem-acs.bbx

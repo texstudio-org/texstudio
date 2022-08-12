@@ -1,10 +1,10 @@
 # ProfLycee package
-# Matthew Bertucci 2022/08/02 for v1.1.8
+# Matthew Bertucci 2022/08/11 for v1.2
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
 #include:tikz
-# loads calc, decorations.pathreplacing, decorations.markings, arrows, and arrows.meta tikzlibraries
+# loads calc, decorations, decorations.pathreplacing, decorations.markings, arrows, and arrows.meta tikzlibraries
 #include:tkz-tab
 #include:mathtools
 #include:pgf
@@ -20,6 +20,7 @@
 #include:listofitems
 #include:tabularray
 #include:fontawesome5
+#include:csvsimple-l3
 #include:tcolorbox
 # tcolorbox loaded with most option and minted library loaded by default
 #include:ifluatex
@@ -29,7 +30,12 @@
 #keyvals:\usepackage/ProfLycee#c
 nominted
 build
+csvii
 #endkeyvals
+
+#ifOption:csvii
+#include:csvsimple-legacy
+#endif
 
 \splinetikz
 \splinetikz[options%keyvals]
@@ -303,6 +309,18 @@ mainlevee
 mainlevee=%<segment-length%> et %<amplitude%>
 #endkeyvals
 
+\PLpixelart{file}#i
+\PLpixelart[options%keyvals]{file}#i
+
+#keyvals:\PLpixelart
+codes=%<chaîne%>
+couleurs={%<couleur1,couleur2,...%>}
+symboles={%<symbol1,symbol2,...%>}
+correction#true,false
+symb#true,false
+style=%<font commands%>
+#endkeyvals
+
 # from table option of xcolor
 #include:colortbl
 \rowcolors{row}{odd-row-color}{even-row-color}
@@ -528,11 +546,17 @@ Teal#B
 \iinit#S
 \indice#S
 \lcoeffs#S
+\LCNA#S
+\LCPA#S
 \nbblocs#S
 \nbchiffres#S
 \nbdepart#S
 \nbgrp#S
 \numerateur#S
+\PATchiffres#S
+\PATcouleurs#S
+\PATlettres#S
+\PATtaille#S
 \PaveA#S
 \PaveB#S
 \PaveC#S
@@ -557,6 +581,10 @@ Teal#B
 \PFTetraPf#S
 \PFTetraSommets#S
 \PFTetraThick#S
+\pixchf#S
+\pixcnt#S
+\pixcol#S
+\pixpos#S
 \PLcercleangles#S
 \PLcerclecoleq#S
 \PLcercledecal#S

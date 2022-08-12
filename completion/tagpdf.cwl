@@ -1,9 +1,8 @@
 # tagpdf package
-# Matthew Bertucci 2022/06/29 for v0.95p
+# Matthew Bertucci 2022/08/08 for v0.96
 
 #include:pdfmanagement-testphase
 #include:l3ref-tmp
-#include:tagpdf-base
 #include:tagpdf-mc-code-generic
 #include:tagpdf-mc-code-lua
 
@@ -29,6 +28,7 @@ newattribute={%<name%>}{%<content%>}
 show-spaces#true,false
 paratagging#true,false
 paratagging-show#true,false
+paratag=%<string%>
 tabsorder=#row,column,structure,none
 tagunmarked#true,false
 uncompress
@@ -41,7 +41,7 @@ tag=%<tag%>
 artifact=#pagination,pagination/header,pagination/footer,layout,page,background,notype
 stash#true,false
 label=%<name%>
-alttext=%<text%>
+alt=%<text%>
 actualtext=%<text%>
 raw=%<PDF code%>
 #endkeyvals
@@ -58,7 +58,8 @@ raw=%<PDF code%>
 tag=%<tag%>
 stash#true,false
 label=%<name%>
-alttext=%<text%>
+parent=%<structure number%>
+alt=%<text%>
 actualtext=%<text%>
 attribute={%<attr1,attr2,...%>}
 attribute-class={%<attr1,attr2,...%>}

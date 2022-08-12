@@ -1286,3 +1286,7 @@ sagej:
 class-sagej
 latex-document
 tex
+BHCexam:
+class-BHCexam
+latex-document
+tex
