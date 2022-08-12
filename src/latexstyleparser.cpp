@@ -492,12 +492,12 @@ bool LatexStyleParser::parseLineRequireStart(QStringList &results, const QString
 
 bool LatexStyleParser::parseLineLoadClass(QStringList &results, const QString &line) const
 {
-	static const QRegExp rxLoadClass("\\\\(LoadClass|LoadClassWithOptions)\\s*\\{(\\w+)\\}");
+    static const QRegExp rxLoadClass("\\\\(LoadClass|LoadClassWithOptions)\\s*(\\[\\S*\\])?\\s*\\{(\\w+)\\}");
 
 	if (rxLoadClass.indexIn(line) == -1) {
 		return false;
 	}
-	QString arg = rxLoadClass.cap(2);
+    QString arg = rxLoadClass.cap(3);
 	if (!arg.isEmpty()) {
 		if (mPackageAliases.contains(arg))
 			foreach (QString elem, mPackageAliases.values(arg)) {
