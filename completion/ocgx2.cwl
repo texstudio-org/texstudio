@@ -1,7 +1,6 @@
 # ocgx2 package
-# Matthew Bertucci 2022/04/29 for v0.54
+# Matthew Bertucci 2022/08/12 for v0.55
 
-#include:l3keys2e
 #include:ocgbase
 
 #keyvals:\usepackage/ocgx2#c
@@ -10,13 +9,12 @@ viewocg=#always,never,ifvisible
 printocg=#always,never,ifvisible
 exportocg=#always,never,ifvisible
 showingui=#true,false,always,never,iffirstuse
-listintoolbar=#true,false,always,never,iffirstuse
 tikz#true,false
 ocgcolorlinks#true,false
 #endkeyvals
 
-\begin{ocg}{layer name}{layer id}{initial visibility}
-\begin{ocg}[options%keyvals]{layer name}{layer id}{initial visibility}
+\begin{ocg}{layer name}{ocg id}{initial visibility}
+\begin{ocg}[options%keyvals]{layer name}{ocg id}{initial visibility}
 \end{ocg}
 
 #keyvals:\begin{ocg}
@@ -25,43 +23,45 @@ printocg=#always,never,ifvisible
 exportocg=#always,never,ifvisible
 showingui=#true,false,always,never,iffirstuse
 listintoolbar=#true,false,always,never,iffirstuse
-radiobtngrp=
-radiobtngrps=
+radiobtngrps={%<group1,group2,...%>}
 #endkeyvals
 
-\begin{ocmd}{visibility}
-\begin{ocmd}[id]{visibility}
+\begin{ocmd}{visibility policy,visibility expression}
+\begin{ocmd}[id]{visibility policy,visibility expression}
 \end{ocmd}
 
-\toggleocgs{layerid1 layerid2 ...}{display}
-\toggleocgs[option%keyvals]{layerid1 layerid2 ...}{display}
-\showocgs{layerid1 layerid2 ...}{display}
-\showocgs[option%keyvals]{layerid1 layerid2 ...}{display}
-\hideocgs{layerid1 layerid2 ...}{display}
-\hideocgs[option%keyvals]{layerid1 layerid2 ...}{display}
-\setocgs{tlayerid1 ...}{slayerid1 ...}{hlayerid1 ...}{display}
-\setocgs[option%keyvals]{tlayerid1 ...}{slayerid1 ...}{hlayerid1 ...}{display}
+\AllOn{ocg1,ocg2,...}
+\AnyOn{ocg1,ocg2,...}
+\AnyOff{ocg1,ocg2,...}
+\AllOff{ocg1,ocg2,...}
+\Not{item}
+\And{item1,item2,...}
+\Or{item1,item2,...}
 
-#keyvals:\toggleocgs,\showocgs,\hideocgs,\setocgs
-triggerocg=#onareaenter,onareaexit,onmousedown,onmouseup,allactions
+\switchocg{ocg1,ocg2,...}{link text%text}
+\switchocg[trigger%keyvals]{ocg1,ocg2,...}{link text%text}
+\switchocg*{ocg1,ocg2,...}{link text%text}
+\switchocg*[trigger%keyvals]{ocg1,ocg2,...}{link text%text}
+\showocg{ocg1,ocg2,...}{link text%text}
+\showocg[trigger%keyvals]{ocg1,ocg2,...}{link text%text}
+\showocg*{ocg1,ocg2,...}{link text%text}
+\showocg*[trigger%keyvals]{ocg1,ocg2,...}{link text%text}
+\hideocg{ocg1,ocg2,...}{link text%text}
+\hideocg[trigger%keyvals]{ocg1,ocg2,...}{link text%text}
+\hideocg*{ocg1,ocg2,...}{link text%text}
+\hideocg*[trigger%keyvals]{ocg1,ocg2,...}{link text%text}
+\actionsocg{switchocg1,...}{showocg1,...}{hideocg1,...}{link text%text}
+\actionsocg[trigger%keyvals]{switchocg1,...}{showocg1,...}{hideocg1,...}{link text%text}
+\actionsocg*{switchocg1,...}{showocg1,...}{hideocg1,...}{link text%text}
+\actionsocg*[trigger%keyvals]{switchocg1,...}{showocg1,...}{hideocg1,...}{link text%text}
+
+#keyvals:\switchocg,\switchocg*,\showocg,\showocg*,\hideocg,\hideocg*,\actionsocg,\actionsocg*
+onmousenter
+onmouseexit
+onmousedown
+onmouseup
+onmouseall
 #endkeyvals
-
-\switchocg{ocg1 ocg2 ...}{display}
-\switchocg[trigger]{ocg1 ocg2 ...}{display}
-\switchocg*{ocg1 ocg2 ...}{display}
-\switchocg*[trigger]{ocg1 ocg2 ...}{display}
-\showocg{ocg1 ocg2 ...}{display}
-\showocg[trigger]{ocg1 ocg2 ...}{display}
-\showocg*{ocg1 ocg2 ...}{display}
-\showocg*[trigger]{ocg1 ocg2 ...}{display}
-\hideocg{ocg1 ocg2 ...}{display}
-\hideocg[trigger]{ocg1 ocg2 ...}{display}
-\hideocg*{ocg1 ocg2 ...}{display}
-\hideocg*[trigger]{ocg1 ocg2 ...}{display}
-\actionsocg{switchocg1 ...}{showocg1 ...}{hideocg1 ...}{display}
-\actionsocg[trigger]{switchocg1 ...}{showocg1 ...}{hideocg1 ...}{display}
-\actionsocg*{switchocg1 ...}{showocg1 ...}{hideocg1 ...}{display}
-\actionsocg*[trigger]{switchocg1 ...}{showocg1 ...}{hideocg1 ...}{display}
 
 \ocglinkprotect{text%plain}
 
@@ -95,3 +95,13 @@ switch ocg with mark on={%<ocg ref%>}{%<ocg list%>}
 switch ocg with mark off={%<ocg ref%>}{%<ocg list%>}
 #endkeyvals
 #endif
+
+# deprecated
+\toggleocgs{layerid1 layerid2 ...}{link text%text}#*
+\toggleocgs[option%keyvals]{layerid1 layerid2 ...}{link text%text}#*
+\showocgs{layerid1 layerid2 ...}{link text%text}#*
+\showocgs[option%keyvals]{layerid1 layerid2 ...}{link text%text}#*
+\hideocgs{layerid1 layerid2 ...}{link text%text}#*
+\hideocgs[option%keyvals]{layerid1 layerid2 ...}{link text%text}#*
+\setocgs{tlayerid1 ...}{slayerid1 ...}{hlayerid1 ...}{link text%text}#*
+\setocgs[option%keyvals]{tlayerid1 ...}{slayerid1 ...}{hlayerid1 ...}{link text%text}#*
