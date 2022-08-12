@@ -2,7 +2,7 @@
 # neeraavi 12 Apr 2007
 # muzimuzhi 15 Mar 2020, fancyvrb v3.5
 # muzimuzhi 25 Mar 2020
-# Matthew Bertucci 13 Mar 2022 for v4.2
+# Matthew Bertucci 12 Aug 2022 for v4.5
 
 #include:keyval
 
@@ -125,6 +125,8 @@ defineactive={%<code%>}
 defineactive*={%<code%>}
 reflabel=##l
 fileext=%<extension%>
+vspace=##L
+listparameters={%<code%>}
 #endkeyvals
 
 #keyvals:\begin{BVerbatim},\begin{BVerbatim*},\fvset,\DefineVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\BUseVerbatim,\BVerbatimInput
@@ -132,25 +134,31 @@ boxwidth=##L
 baseline=#b,c,t
 #endkeyvals
 
-\FancyVerbFormatLine#*
-\theFancyVerbLine#*
-\FancyVerbStartString#*
-\FancyVerbStopString#*
-\VerbatimEnvironment#*
-\FancyVerbCodes#*
-\FancyVerbVspace#*
-\FancyVerbStartNum#*
-\FancyVerbStopNum#*
-\FancyVerbGetLine#*
-\FancyVerbDefineActive#*
-\FancyVerbFormatCom#*
-\FancyVerbSpace#*
-\FancyVerbTabSize#*
-\FancyVerbTab#*
-\FancyVerbRuleColor#*
-\SaveMVerb#*
-\FancyVerbGetVerb#*
-\SaveGVerb#*
-\UseMVerb#*
-\pUseMVerb#*
 \FancyVerbAfterSave#*
+\FancyVerbCodes#*
+\FancyVerbDefineActive#*
+\FancyVerbFileExtension#*
+\FancyVerbFillColor#*
+\FancyVerbFormatCom#*
+\FancyVerbFormatLine#*
+\FancyVerbGetLine#*
+\FancyVerbGetVerb#*
+\FancyVerbHFuzz#*
+\FancyVerbRuleColor#*
+\FancyVerbSpace#*
+\FancyVerbStartNum#*
+\FancyVerbStartString#*
+\FancyVerbStopNum#*
+\FancyVerbStopString#*
+\FancyVerbTab#*
+\FancyVerbTabSize#*
+\FancyVerbVspace#*
+\filedate#S
+\fileversion#S
+\myFont#S
+\pUseMVerb#*
+\SaveGVerb#*
+\SaveMVerb#*
+\theFancyVerbLine#*
+\UseMVerb#*
+\VerbatimEnvironment#*
