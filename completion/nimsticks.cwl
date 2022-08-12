@@ -1,14 +1,16 @@
 # nimsticks package
-# Matthew Bertucci 9/30/2021 for v1.1
+# Matthew Bertucci 2022/08/12 for v1.2
 
-#include:
+#include:lcg
 #include:tikz
-#include:ifthen
+#include:etoolbox
 
 \drawnimstick
 \nimgame{number list}
-\nimgame[option%keyvals]{number list}
+\nimgame[inline]{%<number list%>}
 
-#keyvals:\nimgame
-inline
-#endkeyvals
+\topx#S
+\botx#S
+\listofgames#S
+\heap#S
+\heapindex#S
