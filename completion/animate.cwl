@@ -1,14 +1,13 @@
 # animate package
-# Matthew Bertucci 12/24/2021
+# Matthew Bertucci 2022/08/12 for v2022/08/04
 
-#include:xkeyval
 #include:ifthen
 #include:iftex
 #include:ifdraft
 #include:calc
+#include:pdfbase
 #include:graphics
 #include:zref-abspage
-#include:pdfbase
 #include:ocgbase
 
 #keyvals:\usepackage/animate#c
@@ -25,7 +24,7 @@ draft
 final
 controls
 controls=#all,true,on,none,false,off
-controlsaligned=
+controlsaligned=#left,left+%<<indent>%>,center,right,right+%<<indent>%>
 width=##L
 height=##L
 totalheight=##L
@@ -37,7 +36,7 @@ trim=%<left bottom right top%>
 clip
 hiresbb
 interpolate
-pagebox=
+pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
 buttonsize=##L
 buttonbg=#%color
 buttonfg=#%color
@@ -89,9 +88,9 @@ trim=%<left bottom right top%>
 clip
 hiresbb
 interpolate
-pagebox=
+pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
 controls=#all,true,on,none,false,off
-controlsaligned=
+controlsaligned=#left,left+%<<indent>%>,center,right,right+%<<indent>%>
 buttonsize=##L
 buttonbg=#%color
 buttonfg=#%color

@@ -27,6 +27,9 @@ casechanger=#auto,latex2e,expl3
 datamodel=%<model%>
 #endkeyvals
 
+\BiblatexManualHyperrefOn#*
+\BiblatexManualHyperrefOff#*
+
 ## 3.2 Global Customization ##
 \ExecuteBibliographyOptions{options%keyvals}
 \ExecuteBibliographyOptions[entrytype list]{options%keyvals}

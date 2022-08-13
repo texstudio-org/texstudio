@@ -1,7 +1,6 @@
 # xsavebox package
-# Matthew Bertucci 3/14/2022 for v0.17
+# Matthew Bertucci 2022/08/12 for v0.18
 
-#include:l3keys2e
 #include:pdfbase
 
 #keyvals:\usepackage/xsavebox#c

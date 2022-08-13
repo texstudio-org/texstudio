@@ -1,7 +1,6 @@
 # media9 package
-# Matthew Bertucci 12/28/2021 for v1.23
+# Matthew Bertucci 2022/08/12 for v1.25
 
-#include:l3keys2e
 #include:ocgbase
 #include:pdfbase
 

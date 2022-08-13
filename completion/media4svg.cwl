@@ -1,7 +1,7 @@
 # media4svg package
-# Matthew Bertucci 2/1/2022 for v0.6
+# Matthew Bertucci 2022/08/12 for v0.8
 
-#include:l3keys2e
+#include:pdfbase
 
 \includemedia{poster text%text}{imagefile}#g
 \includemedia[options%keyvals]{poster text%text}{imagefile}#g

@@ -1,5 +1,5 @@
 # easybase package
-# Matthew Bertucci 4/24/2022 for v1.66
+# Matthew Bertucci 2022/08/12 for v1.69
 
 #include:l3keys2e
 #include:etoolbox
@@ -219,14 +219,14 @@ hdrset/fnparskip=##L
 hdrset/fntext-pos=#normal,super
 hdrset/fnmark-num=#plain,pifont,pifont*,pisans,pisans*,short num
 hdrset/fntext-num=#plain,pifont,pifont*,pisans,pisans*,short num
-hdrset/fnmate-num=#plain,pifont,pifont*,pisans,pisans*,short num
-hdrset/fnmark-vmove=#fixed length,match
-hdrset/fnmark-hmove=#fixed length,match
-hdrset/fntext-vmove=#fixed length,match
-hdrset/fnmate-form=#format code,match
-hdrset/fncust-form=#format code,match
-hdrset/fnboth-form=#format code,match
-hdrset/fnpara-form=%<格式代码%>
+hdrset/fnmarktext-num=#plain,pifont,pifont*,pisans,pisans*,short num
+hdrset/fnmark-vmove=##L
+hdrset/fnmark-hmove=##L
+hdrset/fntext-vmove=##L
+hdrset/fnmarktext-form=%<format code%>
+hdrset/fncustom-format=%<format code%>
+hdrset/fnboth-format=%<format code%>
+hdrset/fnpara-format=%<格式代码%>
 hdrset/fntext-code={%<前代码,后代码%>}
 tocset={%<options%>}
 tocset/tocformat=%<条目格式%>
@@ -358,14 +358,14 @@ fnparskip=##L
 fntext-pos=#normal,super
 fnmark-num=#plain,pifont,pifont*,pisans,pisans*,short num
 fntext-num=#plain,pifont,pifont*,pisans,pisans*,short num
-fnmate-num=#plain,pifont,pifont*,pisans,pisans*,short num
-fnmark-vmove=#fixed length,match
-fnmark-hmove=#fixed length,match
-fntext-vmove=#fixed length,match
-fnmate-form=#format code,match
-fncust-form=#format code,match
-fnboth-form=#format code,match
-fnpara-form=%<格式代码%>
+fnmarktext-num=#plain,pifont,pifont*,pisans,pisans*,short num
+fnmark-vmove=##L
+fnmark-hmove=##L
+fntext-vmove=##L
+fnmarktext-format=%<format code%>
+fncustom-format=%<format code%>
+fnboth-format=%<format code%>
+fnpara-format=%<格式代码%>
 fntext-code={%<前代码,后代码%>}
 #endkeyvals
 
@@ -392,7 +392,7 @@ tocrule-every=%<引导线命令%>
 
 \DeclareThemeColor{name,frame color,emph color,verb color}
 \DeclareLinkColor{name,link color,url color,cite color}
-\addtosubfont
+\addtosubfont{字体类型}{字体命令}
 \printbibliography
 \printbibliography[options]
 \markdouble{双页标题标记}
@@ -408,9 +408,9 @@ tocrule-every=%<引导线命令%>
 \notminipage{普通页内容}{迷你页内容}
 \theupfootnote#*
 \thedownfootnote#*
-\Footnote{正文标记}{脚注文本}
-\Footnote[内容标记]{正文标记}{脚注文本}
-\Footnotetext{内容标记}{脚注文本}
+\Footnote{正文标记}{脚注文本%text}
+\Footnote[内容标记]{正文标记}{脚注文本%text}
+\Footnotetext{内容标记}{脚注文本%text}
 \Footnotemark{正文标记}
 \tocrule{引导点}
 \tocrule[引导点间距](放大因子){引导点}[页码格式]
