@@ -379,6 +379,7 @@
 <file>completion/biokey.cwl</file>
 <file>completion/biolinum.cwl</file>
 <file>completion/biolist.cwl</file>
+<file>completion/biotex.cwl</file>
 <file>completion/bitelist.cwl</file>
 <file>completion/bitpattern.cwl</file>
 <file>completion/bitset.cwl</file>
@@ -856,6 +857,7 @@
 <file>completion/class-tlc-article.cwl</file>
 <file>completion/class-toptesi.cwl</file>
 <file>completion/class-treport.cwl</file>
+<file>completion/class-tudabeamer.cwl</file>
 <file>completion/class-tufte-book.cwl</file>
 <file>completion/class-tufte-handout.cwl</file>
 <file>completion/class-turabian-researchpaper.cwl</file>
@@ -2155,6 +2157,7 @@
 <file>completion/modroman.cwl</file>
 <file>completion/modular.cwl</file>
 <file>completion/modulus.cwl</file>
+<file>completion/mol2chemfig.cwl</file>
 <file>completion/montserrat.cwl</file>
 <file>completion/moodle.cwl</file>
 <file>completion/moredefs.cwl</file>
@@ -3135,6 +3138,7 @@
 <file>completion/textfrac.cwl</file>
 <file>completion/textglos.cwl</file>
 <file>completion/textgreek.cwl</file>
+<file>completion/textopo.cwl</file>
 <file>completion/textpos.cwl</file>
 <file>completion/textualicomma.cwl</file>
 <file>completion/texvc.cwl</file>
