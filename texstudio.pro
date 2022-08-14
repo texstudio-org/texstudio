@@ -88,8 +88,8 @@ versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
 }
 
 !isEmpty(PHONON){
-    QT += phonon4qt5
-    LIBS += -lphonon4qt5
+    CONFIG += link_pkgconfig
+    PKGCONFIG += phonon4qt5
     DEFINES += PHONON
 }
 
