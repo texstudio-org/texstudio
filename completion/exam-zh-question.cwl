@@ -1,5 +1,5 @@
 # exam-zh-question package
-# Matthew Bertucci 2022/08/10 for v0.1.15
+# Matthew Bertucci 2022/08/14 for v0.1.17
 
 #include:expl3
 #include:xparse
@@ -22,6 +22,7 @@ question/index=%<integer%>
 question/label=%<label%>
 question/combine-fillin#true,false
 question/combine-fillin-args=%<\fillin 命令的参数%>
+question/hang#true,false
 question/label-align=#left,center,right
 paren={%<键值列表%>}
 paren/show-answer#true,false
@@ -76,6 +77,7 @@ index=%<integer%>
 label=%<label%>
 combine-fillin#true,false
 combine-fillin-args=%<\fillin 命令的参数%>
+hang#true,false
 label-align=#left,center,right
 #endkeyvals
 
