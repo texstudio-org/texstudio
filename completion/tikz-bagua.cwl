@@ -1,5 +1,5 @@
 # tikz-bagua package
-# Matthew Bertucci 4/14/2022 for v1.0
+# Matthew Bertucci 2022/08/14 for v1.01
 
 #include:tikz
 #include:xstring
@@ -9,6 +9,12 @@
 
 \taiji
 \taiji[scale]
+\taiji*
+\taiji*[scale]
+\xtaiji
+\xtaiji[scale]
+\xtaiji*
+\xtaiji*[scale]
 \drawliangyi{0 or 1}#*
 \drawliangyi[yshift]{0 or 1}#*
 \liangyi{0 or 1}

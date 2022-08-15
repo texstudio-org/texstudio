@@ -1,5 +1,5 @@
 # schulma-klausur class
-# Matthew Bertucci 2/16/2022 for v1.2
+# Matthew Bertucci 2022/08/14 for v1.3
 
 #include:etoolbox
 #include:schulma
@@ -98,12 +98,16 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 \end{Teilaufgaben}
 \Aufgabe
 \Aufgabe[Thema%text]#*
+\Aufgabe[Thema%text][Bearbeitungszeit]#*
 \Aufgabe(Punktzahl)#*
 \Aufgabe[Thema%text](Punktzahl)
+\Aufgabe[Thema%text][Bearbeitungszeit](Punktzahl)
 \Aufgabe*
 \Aufgabe*[Thema%text]#*
+\Aufgabe*[Thema%text][Bearbeitungszeit]#*
 \Aufgabe*(Punktzahl)#*
 \Aufgabe*[Thema%text](Punktzahl)
+\Aufgabe*[Thema%text][Bearbeitungszeit](Punktzahl)
 \begin{Lsg}
 \begin{Lsg}*
 \end{Lsg}
