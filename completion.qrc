@@ -606,7 +606,10 @@
 <file>completion/class-biditufte-book.cwl</file>
 <file>completion/class-biditufte-handout.cwl</file>
 <file>completion/class-bitart.cwl</file>
+<file>completion/class-bitbeamer.cwl</file>
 <file>completion/class-bitbook.cwl</file>
+<file>completion/class-bithesis.cwl</file>
+<file>completion/class-bitreport.cwl</file>
 <file>completion/class-bjfuthesis.cwl</file>
 <file>completion/class-boek3.cwl</file>
 <file>completion/class-boek.cwl</file>
@@ -830,6 +833,7 @@
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
+<file>completion/class-shtthesis.cwl</file>
 <file>completion/class-simplethesisdissertation.cwl</file>
 <file>completion/class-simplivre.cwl</file>
 <file>completion/class-skdoc.cwl</file>
@@ -858,6 +862,9 @@
 <file>completion/class-toptesi.cwl</file>
 <file>completion/class-treport.cwl</file>
 <file>completion/class-tudabeamer.cwl</file>
+<file>completion/class-tudscrartcl.cwl</file>
+<file>completion/class-tudscrbook.cwl</file>
+<file>completion/class-tudscrreprt.cwl</file>
 <file>completion/class-tufte-book.cwl</file>
 <file>completion/class-tufte-handout.cwl</file>
 <file>completion/class-turabian-researchpaper.cwl</file>
@@ -1623,6 +1630,7 @@
 <file>completion/hepparticles.cwl</file>
 <file>completion/hep-text.cwl</file>
 <file>completion/hep-title.cwl</file>
+<file>completion/hereapplies.cwl</file>
 <file>completion/he-she.cwl</file>
 <file>completion/hetarom.cwl</file>
 <file>completion/hetaromh.cwl</file>
@@ -3323,6 +3331,8 @@
 <file>completion/tudacolors.cwl</file>
 <file>completion/tudafonts.cwl</file>
 <file>completion/tudarules.cwl</file>
+<file>completion/tudscrbase.cwl</file>
+<file>completion/tudscrcolor.cwl</file>
 <file>completion/turabian-formatting.cwl</file>
 <file>completion/turnstile.cwl</file>
 <file>completion/turnthepage.cwl</file>
