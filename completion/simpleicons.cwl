@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/08/01 for v7.5.0
+# Matthew Bertucci 2022/08/01 for v7.6.0
 
 #include:ifxetex
 #include:ifluatex
@@ -471,6 +471,7 @@ createreactapp
 creativecommons
 credly
 crehana
+criticalrole
 crowdin
 crowdsource
 crunchbase
@@ -968,6 +969,7 @@ influxdb
 informatica
 infosys
 ingress
+inkdrop
 inkscape
 insomnia
 instacart
@@ -1299,6 +1301,7 @@ moscowmetro
 motorola
 mozilla
 msi
+msibusiness
 mta
 mtr
 mui
@@ -1385,6 +1388,7 @@ obsstudio
 ocaml
 octanerender
 octave
+octoprint
 octopusdeploy
 oculus
 odnoklassniki
@@ -2026,6 +2030,7 @@ tile
 timescale
 tinder
 tinyletter
+tistory
 tmobile
 tmux
 todoist
@@ -2143,6 +2148,7 @@ vim
 vimeo
 vimeolivestream
 virgin
+virginmedia
 virtualbox
 virustotal
 visa
@@ -2293,6 +2299,7 @@ zenodo
 zerodha
 zeromq
 zerply
+zettlr
 zhihu
 zig
 zigbee
@@ -2318,3 +2325,4 @@ zyte
 \SIseven#S
 \SIeight#S
 \SInine#S
+\SIten#S
