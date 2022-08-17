@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/08/11 for v1.2
+# Matthew Bertucci 2022/08/17 for v1.2.2
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -276,6 +276,118 @@ Ox=%<num%>
 Oy=%<num%>
 #endkeyvals
 
+#keyvals:\tikz#c,\begin{tikzpicture}#c,\tikzset#c
+Ox=%<num%>
+Oy=%<num%>
+xmin=%<num%>
+xmax=%<num%>
+ymin=%<num%>
+ymax=%<num%>
+xgrille=%<num%>
+xgrilles=%<num%>
+ygrille=%<num%>
+ygrilles=%<num%>
+xunit=%<num%>
+yunit=%<num%>
+#endkeyvals
+
+\PLgrilletikz
+\PLgrilletikz[options%keyvals]
+\PLgrilletikz[options%keyvals][options grille ppale]#*
+\PLgrilletikz[options%keyvals][options grille ppale][options grille second]
+
+#keyvals:\PLgrilletikz
+affp#true,false
+affs#true,false
+#endkeyvals
+
+\PLaxestikz
+\PLaxestikz[options%keyvals]
+
+#keyvals:\PLaxestikz
+epaisseur=##L
+police=%<font commands%>
+labelx=%<text%>
+labely=%<text%>
+afflabel=#x,y,xy
+poslabelx=%<TikZ pos%>
+poslabely=%<TikZ pos%>
+echellefleche=%<num%>
+typefleche=%<type%>
+#endkeyvals
+
+\PLaxextikz{valeurs}
+\PLaxextikz[options%keyvals]{valeurs}
+\PLaxeytikz{valeurs}
+\PLaxeytikz[options%keyvals]{valeurs}
+
+#keyvals:\PLaxextikz,\PLaxeytikz
+epaisseur=##L
+police=%<font commands%>
+posgrad=%<TikZ pos%>
+hautgrad=##L
+affgrad=#true,false
+afforigine=#true,false
+annee=#true,false
+#endkeyvals
+
+\PLfenetre
+\PLfenetresimple{liste abscisses}{liste ordonnées}
+\PLfenetresimple{liste abscisses}<options axe Oy>{liste ordonnées}
+\PLfenetresimple<options axe Ox>{liste abscisses}{liste ordonnées}
+\PLfenetresimple<options axe Ox>{liste abscisses}<options axe Oy>{liste ordonnées}
+
+\PLorigine
+\PLorigine[options%keyvals]
+
+#keyvals:\PLorigine
+police=%<font commands%>
+pos=%<TikZ pos%>
+decal=##L
+valeur=%<num%>
+#endkeyvals
+
+\PLnuagepts{listeX}{listeY}
+\PLnuagepts[options%keyvals]{listeX}{listeY}
+
+#keyvals:\PLnuagepts
+taille=##L
+couleur=#%color
+style=#o,x,+
+#endkeyvals
+
+\PLnuageptmoy
+\PLnuageptmoy[options%keyvals]
+
+#keyvals:\PLnuageptmoy
+police=%<font commands%>
+taille=##L
+couleur=#%color
+style=#o,x,+
+xg=%<num%>
+yg=%<num%>
+nom=%<text%>
+pos=%<TikZ pos%>
+decal=##L
+affnom=#true,false
+#endkeyvals
+
+\PLcourbe{formule}{domaine}
+\PLcourbe[TikZ clés]{formule}{domaine}
+
+\axexOx#*
+\axeyOy#*
+\xmin#*
+\xmax#*
+\ymin#*
+\ymax#*
+\xgrille#*
+\xgrilles#*
+\ygrille#*
+\ygrilles#*
+\xunit#*
+\yunit#*
+
 \PLconvdecbin{nombre}
 \PLconvdecbin[options%keyvals]{nombre}
 \PLconvdecbin*{nombre}
@@ -501,7 +613,34 @@ Teal#B
 
 # not documented
 \algomathttPL{text%plain}#*
+\axesafflabel#S
+\axesechellefleche#S
+\axesfont#S
+\axeslabelx#S
+\axeslabely#S
+\axesordecal#S
+\axesorfont#S
+\axesorpos#S
+\axesorval#S
+\axesposlabelx#S
+\axesposlabely#S
+\axestypefleche#S
+\axeswidth#S
+\axexfont#S
+\axexposlabel#S
+\axextickwidth#S
+\axextickwidthA#S
+\axextickwidthB#S
+\axexwidth#S
+\axeyfont#S
+\axeyposlabel#S
+\axeytickwidth#S
+\axeytickwidthA#S
+\axeytickwidthB#S
+\axeywidth#S
 \basedepart#S
+\begin{PLstats}#S
+\begin{PLstats}[opt]#S
 \begin{pythont}#S
 \begin{tcpythontexcode}#*
 \begin{tcpythontexcode}[width]#*
@@ -533,11 +672,13 @@ Teal#B
 \cpt#S
 \CSPYlargeur#S
 \denominateur#S
+\end{PLstats}#S
 \end{pythont}#S
 \end{tcpythontexcode}#*
 \end{tcpythontexcodeno}#*
 \epcrochet#S
 \extractcoeff{liste}{numero}#*
+\fctdecx#S
 \fprimea#S
 \fprimeb#S
 \hookcenterpost#S
@@ -545,9 +686,10 @@ Teal#B
 \ifinal#S
 \iinit#S
 \indice#S
-\lcoeffs#S
 \LCNA#S
+\lcoeffs#S
 \LCPA#S
+\listepointsaffiches#S
 \nbblocs#S
 \nbchiffres#S
 \nbdepart#S
@@ -597,10 +739,15 @@ Teal#B
 \PLcerclevaleurs#S
 \PLcerclevalsin#S
 \PLcommandeswin#*
-\PLconvblocbinhex{binary integer}#*
 \PLconvblocbinhex[rule thickness]{binary integer}#*
+\PLconvblocbinhex{binary integer}#*
+\PLDm#S
+\PLDM#S
+\PLdomaine#S
 \PLensopt#S
 \PLenssep#S
+\PLnuagepoints[opt]{arg}#S
+\PLnuagepoints{arg}#S
 \PLOSXGreen#*
 \PLOSXLG#*
 \PLOSXOrange#*
@@ -618,6 +765,22 @@ Teal#B
 \PLUbuntuMax#*
 \PLUbuntuMin#*
 \PLUbuntuWhite#*
+\ptmoycouleur#S
+\ptmoycouleurA#S
+\ptmoycouleurB#S
+\ptmoydecal#S
+\ptmoyfont#S
+\ptmoynom#S
+\ptmoypos#S
+\ptmoystyle#S
+\ptmoytaille#S
+\ptmoyx#S
+\ptmoyy#S
+\ptscouleur#S
+\ptscouleurA#S
+\ptscouleurB#S
+\ptsstyle#S
+\ptstaille#S
 \puiss#S
 \RegLinCoeffa#S
 \RegLinCoeffb#S
@@ -676,9 +839,11 @@ Teal#B
 \xa#S
 \xb#S
 \xliste#S
+\XPT#S
 \ya#S
 \yb#S
 \yliste#S
+\YPT#S
 
 PLlinux#B
 PLmgray#B
