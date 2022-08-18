@@ -13,7 +13,7 @@ color=#%color
 text=#black,white
 cmyk
 RGB
-department=#default,mecheng
+department=mecheng
 #endkeyvals
 
 TUDa-0d#B
