@@ -4183,17 +4183,23 @@ void Texstudio::readSettings(bool reread)
     config->beginGroup("texmaker");
 
     QRect screen = QGuiApplication::primaryScreen()->availableGeometry();
-    int w = config->value("Geometries/MainwindowWidth", screen.width() - 100).toInt();
+	// Save the screen dimensions, as the next call will overwrite the correct values
+    int screen_w = screen.width();
+	int screen_h = screen.height();
+	int screen_r = screen.right();
+	// Read window size from config
+	int w = config->value("Geometries/MainwindowWidth", screen.width() - 100).toInt();
     int h = config->value("Geometries/MainwindowHeight", screen.height() - 100).toInt() ;
     int x = config->value("Geometries/MainwindowX", screen.x() + 10).toInt();
     int y = config->value("Geometries/MainwindowY", screen.y() + 10).toInt() ;
     screen = UtilsUi::getAvailableGeometryAt(QPoint(x, y));
     if (!screen.contains(x, y)) {
         // top left is not on screen
+		//Problem: then the other coordinates are incorrect as well!! So we need to use width and height from above
         x = screen.x() + 10;
         y = screen.y() + 10;
-        if (x + w > screen.right()) w = screen.width() - 100;
-        if (y + h > screen.height()) h = screen.height() - 100;
+        if (x + w > screen_r) w = screen_w - 100;
+        if (y + h > screen_h) h = screen_h - 100;
     }
     resize(w, h);
     move(x, y);
