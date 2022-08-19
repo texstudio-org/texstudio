@@ -862,8 +862,15 @@
 <file>completion/class-toptesi.cwl</file>
 <file>completion/class-treport.cwl</file>
 <file>completion/class-tudabeamer.cwl</file>
+<file>completion/class-tudaexercise.cwl</file>
+<file>completion/class-tudaleaflet.cwl</file>
+<file>completion/class-tudaletter.cwl</file>
+<file>completion/class-tudaposter.cwl</file>
+<file>completion/class-tudapub.cwl</file>
+<file>completion/class-tudasciposter.cwl</file>
 <file>completion/class-tudscrartcl.cwl</file>
 <file>completion/class-tudscrbook.cwl</file>
+<file>completion/class-tudscrposter.cwl</file>
 <file>completion/class-tudscrreprt.cwl</file>
 <file>completion/class-tufte-book.cwl</file>
 <file>completion/class-tufte-handout.cwl</file>
@@ -2637,6 +2644,7 @@
 <file>completion/pst-hsb.cwl</file>
 <file>completion/pst-infixplot.cwl</file>
 <file>completion/pst-intersect.cwl</file>
+<file>completion/pst-jtree.cwl</file>
 <file>completion/pst-key.cwl</file>
 <file>completion/pst-knot.cwl</file>
 <file>completion/pst-labo.cwl</file>
@@ -3115,6 +3123,7 @@
 <file>completion/tensind.cwl</file>
 <file>completion/tensor.cwl</file>
 <file>completion/termcal.cwl</file>
+<file>completion/termlist.cwl</file>
 <file>completion/termsim.cwl</file>
 <file>completion/testhyphens.cwl</file>
 <file>completion/testidx.cwl</file>
@@ -3122,6 +3131,7 @@
 <file>completion/tetragonos.cwl</file>
 <file>completion/teubner.cwl</file>
 <file>completion/tex4ebook.cwl</file>
+<file>completion/tex4ht.cwl</file>
 <file>completion/texapi.cwl</file>
 <file>completion/tex.cwl</file>
 <file>completion/texdate.cwl</file>
@@ -3333,6 +3343,7 @@
 <file>completion/tudarules.cwl</file>
 <file>completion/tudscrbase.cwl</file>
 <file>completion/tudscrcolor.cwl</file>
+<file>completion/tudscrsupervisor.cwl</file>
 <file>completion/turabian-formatting.cwl</file>
 <file>completion/turnstile.cwl</file>
 <file>completion/turnthepage.cwl</file>
