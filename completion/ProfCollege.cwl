@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/08/03 for v0.99-t
+# Matthew Bertucci 2022/08/18 for v0.99-v
 
 #include:verbatim
 #include:mathtools
@@ -192,6 +192,8 @@ Incline#true,false
 Couleurd=#%color
 Taille=%<nombre%>
 Largeur=##L
+Nom=%<nom%>
+CodeAfter=%<code%>
 #endkeyvals
 
 ## Questions - réponses à relier ##
@@ -204,6 +206,7 @@ LargeurG=##L
 LargeurD=##L
 Ecart=##L
 Stretch=%<factor%>
+Couleur=#%color
 #endkeyvals
 
 ## Les questionnaires à choix multiples ##
@@ -451,6 +454,7 @@ ValeurOrigine=%<valeur%>
 ValeurUnitex=%<valeur%>
 Thermometre#true,false
 Mercure#true,false
+CouleurMercure=#%color
 Plan#true,false
 Unitey=%<nombre%>
 Pasy=%<nombre%>
@@ -732,6 +736,7 @@ Tiret#true,false
 Depart=%<nombre%>
 Reponses#true,false
 DonneesSup#true,false
+CouleurDefaut=#%color
 ListeCouleursB={%<liste des coleurs%>}
 Angle#true,false
 SemiAngle#true,false
@@ -777,6 +782,7 @@ Moyenne#true,false
 Precision=%<integer%>
 SET#true,false
 ValeurExacte#true,false
+ACompleter#true,false
 #endkeyvals
 
 \EffectifTotal
@@ -997,6 +1003,34 @@ Solution#true,false
 Largeur=##L
 #endkeyvals
 
+## Le Yohaku ##
+\Yohaku{a/b/c/d...,1/2/3/4...}
+\Yohaku[clés%keyvals]{a/b/c/d...,1/2/3/4...}
+
+#keyvals:\Yohaku
+Taille=%<nombre%>
+Largeur=##L
+Hauteur=##L
+Bordure#true,false
+CouleurResultat=#%color
+Multiplication#true,false
+Limite=%<nombre%>
+Pair#true,false
+Impair#true,false
+Premier#true,false
+Perso#true,false
+Case=%<integer%>
+Ligne=%<integer%>
+PasL=%<integer%>
+Colonne=%<integer%>
+PasC=%<integer%>
+Solution#true,false
+Addition
+CouleurZone=#%color
+#endkeyvals
+
+\PfCYHKpremier#*
+
 ## Bulles et cartes mentales ##
 \begin{Mind}#\pictureHighlight
 \end{Mind}
@@ -1092,6 +1126,25 @@ LogoEx=%<imagefile%>
 Texte=%<texte%>
 #endkeyvals
 
+## La « rose » des multiplications ##
+\RoseMul
+\RoseMul[clés%keyvals]
+
+#keyvals:\RoseMul
+FacteurMin=%<integer%>
+FacteurMax=%<integer%>
+Rayon=##L
+Petales=%<integer%>
+Solution#true,false
+Produits#true,false
+Aide#true,false
+Vide#true,false
+Polygone#true,false
+CaseVide#true,false
+ProduitVide#true,false
+Couleur=#%color
+#endkeyvals
+
 ## Le défi « Table » ##
 \DefiTable{contenu}
 \DefiTableTexte{liste}{phrase}
@@ -1102,11 +1155,11 @@ LargeurT=##L
 Solution#true,false
 #endkeyvals
 
-## Billiards ##
-\Billiard{"mot"}
-\Billiard[clés%keyvals]{"mot"}
+## Billards ##
+\Billard{"mot"}
+\Billard[clés%keyvals]{"mot"}
 
-#keyvals:\Billiard
+#keyvals:\Billard
 Longueur=##L
 Largeur=##L
 Solution#true,false
@@ -1137,6 +1190,7 @@ SensImpose#true,false
 \LabyNombre[clés%keyvals]
 
 #keyvals:\LabyNombre
+Nom=%<nom%>
 Multiple=%<integer%>
 Angle=%<degrees%>
 Echelle=%<factor%>
@@ -1191,6 +1245,20 @@ Solution#true,false
 
 \ColoriludeEnonce
 \ColoriludeListeCouleur{abbrev1 couleur1 abbrev2 couleur2...}
+
+## Pixel Art ##
+\PixelArt{file}#i
+\PixelArt[clés%keyvals]{file}#i
+
+#keyvals:\PixelArt
+Largeur=%<integer%>
+Hauteur=%<integer%>
+Unite=##L
+Lettres=%<lettres%>
+ListeCouleurs={%<color1,color2,...%>}
+Solution#true,false
+ListeNombres{%<nombre1,nombre2,...%>}
+#endkeyvals
 
 ## Qui suis je? ##
 \Quisuisje{c1§c2§...}{m o t à t r o u v e r}
@@ -1632,6 +1700,7 @@ Teal#B
 \buildgraphbarhor#S
 \buildgraphcq{arg1}#S
 \buildgraphq{arg1}#S
+\BuildPixelArt{arg1}{arg2}{arg3}{arg4}#S
 \buildreperenew#S
 \buildtabfonction#S
 \buildtabpropor#S
@@ -1683,7 +1752,6 @@ Teal#B
 \compteurcnt#S
 \CompteurECC#S
 \CompteurECCTotal#S
-\Conversion{arg1}#S
 \CouleurBarre#S
 \CouleurDomino#S
 \CouleurF#S
@@ -1708,6 +1776,7 @@ Teal#B
 \DessineMosaiqueComplet{arg1}#S
 \DessinePyramideNombre{arg1}#S
 \DessinePyramideNombreMul{arg}#S
+\DessineRoseMul#S
 \dispogpfc{arg1}{arg2}{arg3}#S
 \DistriEchange{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \DivCom#S
@@ -1828,6 +1897,7 @@ Teal#B
 \ListeAutoEn#S
 \ListeAutoQ#S
 \ListeAvantCouleurs#S
+\ListeAvantNombres#S
 \Listeb#S
 \ListeCalc#S
 \ListeCalculs#S
@@ -1914,6 +1984,7 @@ Teal#B
 \ListeNomsMul#S
 \ListeObjetsCAN#S
 \ListeObjetsSymbolesCAN#S
+\ListePANombre#S
 \ListePG#S
 \ListePointDroite#S
 \ListePointEspace#S
@@ -1987,8 +2058,8 @@ Teal#B
 \MPArbreDessine{arg1}{arg2}#S
 \MPArbreProba{arg1}{arg2}{arg3}{arg4}#S
 \MPArbreVide{arg1}#S
-\MPBilliard{arg1}{arg2}{arg3}#S
-\MPBilliardSolution{arg1}{arg2}{arg3}#S
+\MPBillard{arg1}{arg2}{arg3}#S
+\MPBillardSolution{arg1}{arg2}{arg3}#S
 \MPCalculatrice{arg1}{arg2}{arg3}#S
 \MPCinq{arg1}{arg2}{arg3}#S
 \MPCourbe{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2164,6 +2235,7 @@ Teal#B
 \PfCLargeurReponse#S
 \PfCMPDessineModelBarre{arg1}{arg2}#S
 \PfCMPDessineModelBarreNonHomogene{arg1}{arg2}#S
+\PfCNomLabyrinthe#S
 \PfCPCfaa#S
 \PfCPCfoo#S
 \PfCPremiereColonneDecimale#S
@@ -2174,12 +2246,24 @@ Teal#B
 \PfCQunk#S
 \PfCRappelImposeAll#S
 \PfCTabCouleur#S
+\PfCTableauDepart#S
 \PfCTableauIncline#S
 \PfCTableauUnite#S
 \PfCTBstrut#S
 \PfCThalesUnit#S
 \PfCTrigoUnit#S
 \PfCTstrut#S
+\PfCYHKimpair#S
+\PfCYHKlast#S
+\PfCYHKListe#S
+\PfCYHKListeFoo#S
+\PfCYHKListeNA#S
+\PfCYHKListeP#S
+\PfCYHKListeProduit#S
+\PfCYHKnombre#S
+\PfCYHKpair#S
+\PfCYHKTampon#S
+\PfCYohaku#S
 \pgcd#S
 \PGCD{arg1}{arg2}#S
 \pileb#S
@@ -2348,6 +2432,7 @@ Teal#B
 \toklistemodelbarresup#S
 \toklistenomhor{arg}#S
 \toklistenompointdemidroite{arg}#S
+\toklistePANombre#S
 \toklistepoint{arg}#S
 \toklistepointdemidroite{arg}#S
 \toklistepointdroite{arg}#S
@@ -2380,7 +2465,9 @@ Teal#B
 \TraceEchiquierColorilude#S
 \TraceGraphique{arg1}{arg2}#S
 \TraceLabyNombre{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\TraceLabyNombreold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\TraceSolutionold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceTriomino{arg1}#S
 \TraceTriominoHexa{arg1}#S
 \TrigoCalculs{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2415,10 +2502,12 @@ Teal#B
 \UpdatetoksHor#S
 \Updatetoksmath{arg1}#S
 \UpdatetoksMosaique{arg1}#S
+\UpdatetoksPANombre{arg}#S
 \UpdatetoksPQuatreh{arg}#S
 \UpdatetoksPQuatrev{arg}#S
 \Updatetoksproba{arg1}#S
 \Updatetoksprobaechelle{arg1}#S
+\Updatetoksprobapdf{arg}#S
 \updatetokspropor#S
 \UpdatetoksPyramide{arg1}#S
 \UpdatetoksPyramideMul{arg}#S
