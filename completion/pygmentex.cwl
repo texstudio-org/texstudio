@@ -1,15 +1,20 @@
 # pygmentex package
-# Matthew Bertucci 12/16/2021 for v0.2.0
+# Matthew Bertucci 2022/08/17 for v0.11
 
-#include:caption
-#include:color
-#include:efbox
 #include:fancyvrb
+#include:color
 #include:ifthen
+#include:caption
+#include:shellesc
 #include:pgfkeys
+#include:efbox
 #include:mdframed
 # mdframed loaded with framemethod=tikz
 #include:tikz
+
+#keyvals:\usepackage/pygmentex#c
+force
+#endkeyvals
 
 \begin{pygmented}#V
 \begin{pygmented}[options%keyvals]#V
@@ -40,6 +45,7 @@ label=##l
 texcomments#true,false
 mathescape#true,false
 escapeinside=%<two chars%>
+force#true,false
 #endkeyvals
 
 #keyvals:\pyginline#c,\setpygmented#c
