@@ -9476,30 +9476,18 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	if (!doc) return;
 	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
     QStringList curPaths;
-    if (documents.masterDocument){
-        curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
-    }
-    if (doc->getRootDocument()){
-        curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
-    }
-    curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
     if (defaultExt == "bib") {
         curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
     }
     bool loaded = false;
-    for (int i = 0; i < curPaths.count(); i++) {
-        const QString &curPath = ensureTrailingDirSeparator(curPaths.value(i));
-        if ((loaded = load(getAbsoluteFilePath(curPath + name, defaultExt))))
-            break;
-        if ((loaded = load(getAbsoluteFilePath(curPath + name, ""))))
-            break;
-        if ((loaded = load(getAbsoluteFilePath(name, defaultExt))))
-            break;
+    loaded = load(documents.getAbsoluteFilePath(name, defaultExt,curPaths));
+    if(!loaded){
+        loaded = load(documents.getAbsoluteFilePath(name, "",curPaths));
     }
 
 	if (!loaded) {
 		Q_ASSERT(curPaths.count() > 0);
-		QFileInfo fi(getAbsoluteFilePath(curPaths[0] + name, defaultExt));
+        QFileInfo fi(documents.getAbsoluteFilePath(name, defaultExt,curPaths));
 		if (fi.exists()) {
 			UtilsUi::txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
 		} else {
@@ -9511,7 +9499,6 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 				if (!fi.absoluteDir().exists())
 					fi.absoluteDir().mkpath(".");
 				fileNew(fi.absoluteFilePath());
-				qDebug() << doc->getFileName() << lineNr;
 				doc->patchStructure(lineNr, 1);
 			}
 		}
@@ -11452,7 +11439,7 @@ void Texstudio::customMenuStructure(const QPoint &pos){
     }
     if (contextEntry->type == StructureEntry::SE_INCLUDE) {
         QMenu menu;
-        menu.addAction(tr("Open Document"), this, SLOT(openExternalFileFromAction()))->setData(QVariant::fromValue(contextEntry));
+        menu.addAction(tr("Open Document"), this, SLOT(openExternalFileFromAction()))->setData(QVariant::fromValue(contextEntry->title));
         menu.addAction(tr("Go to Definition"), this, SLOT(gotoLineFromAction()))->setData(QVariant::fromValue(contextEntry));
 
         menu.exec(w->mapToGlobal(pos));
