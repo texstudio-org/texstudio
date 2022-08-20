@@ -144,6 +144,9 @@ dubins
 er
 external
 fadings
+fill.image
+fill.hexagon
+fill.rhombus
 fit
 fixedpointarithmetic
 folding
@@ -162,10 +165,15 @@ math
 matrix
 matrix.skeleton
 mindmap
+misc
 nef
 optics
 overlay-beamer-styles
+paths.arcto
+paths.ortho
+paths.timer
 patterns
+patterns.images
 patterns.meta
 penrose
 perspective
@@ -205,7 +213,9 @@ switching-architectures
 through
 tikzmark
 topaths
+topaths.arcthrough
 tqft
+transformations.mirror
 trees
 turtle
 views
