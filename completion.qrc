@@ -576,9 +576,11 @@
 <file>completion/class-acm-book.cwl</file>
 <file>completion/class-altacv.cwl</file>
 <file>completion/class-amsart.cwl</file>
+<file>completion/class-amsbkrev.cwl</file>
 <file>completion/class-amsbook.cwl</file>
 <file>completion/class-amsldoc.cwl</file>
 <file>completion/class-amsproc.cwl</file>
+<file>completion/class-amstext-l.cwl</file>
 <file>completion/class-aomart.cwl</file>
 <file>completion/class-apa7.cwl</file>
 <file>completion/class-arabic-book.cwl</file>
@@ -620,6 +622,7 @@
 <file>completion/class-brief.cwl</file>
 <file>completion/class-buctcover.cwl</file>
 <file>completion/class-buctthesis.cwl</file>
+<file>completion/class-bull-l.cwl</file>
 <file>completion/class-businesscard-qrcode.cwl</file>
 <file>completion/class-caesar_book.cwl</file>
 <file>completion/class-cas-dc.cwl</file>
@@ -644,6 +647,7 @@
 <file>completion/class-droit-fr.cwl</file>
 <file>completion/class-dtk.cwl</file>
 <file>completion/class-easybook.cwl</file>
+<file>completion/class-ecgd-l.cwl</file>
 <file>completion/class-einfart.cwl</file>
 <file>completion/class-ejpecp.cwl</file>
 <file>completion/class-elegantbook.cwl</file>
@@ -653,6 +657,7 @@
 <file>completion/class-elsarticle.cwl</file>
 <file>completion/class-elteikthesis.cwl</file>
 <file>completion/class-emisa.cwl</file>
+<file>completion/class-ert-l.cwl</file>
 <file>completion/class-europasscv.cwl</file>
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
@@ -672,6 +677,7 @@
 <file>completion/class-fduthesis-en.cwl</file>
 <file>completion/class-fei.cwl</file>
 <file>completion/class-fiche.cwl</file>
+<file>completion/class-fithesis4.cwl</file>
 <file>completion/class-flashcards.cwl</file>
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-FUpowerdot.cwl</file>
@@ -715,6 +721,8 @@
 <file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-jacow.cwl</file>
+<file>completion/class-jag-l.cwl</file>
+<file>completion/class-jams-l.cwl</file>
 <file>completion/class-jarticle.cwl</file>
 <file>completion/class-jbook.cwl</file>
 <file>completion/class-jj_game.cwl</file>
@@ -764,8 +772,10 @@
 <file>completion/class-ltxguidex.cwl</file>
 <file>completion/class-matapli.cwl</file>
 <file>completion/class-mcmthesis.cwl</file>
+<file>completion/class-mcom-l.cwl</file>
 <file>completion/class-meetingmins.cwl</file>
 <file>completion/class-memoir.cwl</file>
+<file>completion/class-memo-l.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
 <file>completion/class-metanorma.cwl</file>
 <file>completion/class-minimart.cwl</file>
@@ -774,6 +784,7 @@
 <file>completion/class-mnras.cwl</file>
 <file>completion/class-moderncv.cwl</file>
 <file>completion/class-modernposter.cwl</file>
+<file>completion/class-mosc-l.cwl</file>
 <file>completion/class-msu-thesis.cwl</file>
 <file>completion/class-mucproc.cwl</file>
 <file>completion/class-mwart.cwl</file>
@@ -801,9 +812,11 @@
 <file>completion/class-powerdot.cwl</file>
 <file>completion/class-pressrelease.cwl</file>
 <file>completion/class-proc.cwl</file>
+<file>completion/class-proc-l.cwl</file>
 <file>completion/class-protocol.cwl</file>
 <file>completion/class-prtec.cwl</file>
 <file>completion/class-pylatex.cwl</file>
+<file>completion/class-qam-l.cwl</file>
 <file>completion/class-qcm.cwl</file>
 <file>completion/class-quantumarticle.cwl</file>
 <file>completion/class-quantumview.cwl</file>
@@ -842,6 +855,7 @@
 <file>completion/class-smfart.cwl</file>
 <file>completion/class-smfbook.cwl</file>
 <file>completion/class-sn-jnl.cwl</file>
+<file>completion/class-spmj-l.cwl</file>
 <file>completion/class-sr-vorl.cwl</file>
 <file>completion/class-sslides.cwl</file>
 <file>completion/class-stage.cwl</file>
@@ -860,6 +874,8 @@
 <file>completion/class-tkz-doc.cwl</file>
 <file>completion/class-tlc-article.cwl</file>
 <file>completion/class-toptesi.cwl</file>
+<file>completion/class-tpms-l.cwl</file>
+<file>completion/class-tran-l.cwl</file>
 <file>completion/class-treport.cwl</file>
 <file>completion/class-tudabeamer.cwl</file>
 <file>completion/class-tudaexercise.cwl</file>
@@ -1349,6 +1365,7 @@
 <file>completion/fancylabel.cwl</file>
 <file>completion/fancynum.cwl</file>
 <file>completion/fancypar.cwl</file>
+<file>completion/fancyqr.cwl</file>
 <file>completion/fancyref.cwl</file>
 <file>completion/fancytabs.cwl</file>
 <file>completion/fancytooltips.cwl</file>
@@ -1840,6 +1857,7 @@
 <file>completion/langsci-affiliations.cwl</file>
 <file>completion/langsci-avm.cwl</file>
 <file>completion/langsci-bidi.cwl</file>
+<file>completion/langsci-gb4e.cwl</file>
 <file>completion/langsci-lgr.cwl</file>
 <file>completion/langsci-optional.cwl</file>
 <file>completion/langsci-subparts.cwl</file>
@@ -2482,6 +2500,7 @@
 <file>completion/phfquotetext.cwl</file>
 <file>completion/phfsvnwatermark.cwl</file>
 <file>completion/phfthm.cwl</file>
+<file>completion/philex.cwl</file>
 <file>completion/philokalia.cwl</file>
 <file>completion/phonenumbers.cwl</file>
 <file>completion/phonetic.cwl</file>
