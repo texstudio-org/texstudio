@@ -1,24 +1,25 @@
 # citation-style-language package
-# Matthew Bertucci 4/9/2022 for v0.1.0
+# Matthew Bertucci 2022/08/20 for v0.2.0
 
 #include:expl3
 #include:xparse
+#include:l3keys2e
 #include:filehook
 #include:url
 
 \cslsetup{options%keyvals}
 
-#keyvals:\cslsetup
+#keyvals:\cslsetup,\usepackage/citation-style-language#c
 style=#american-chemical-society,american-medical-association,american-political-science-association,american-sociological-association,apa,chicago-author-date,chicago-fullnote-bibliography,chicago-note-bibliography,elsevier-harvard,harvard-cite-them-right,ieee,modern-humanities-research-association,modern-language-association,nature,vancouver
 locale=%<language code%>
 bib-font=%<font commands%>
 bib-item-sep=%<<length> or <glue>%>
-bib-hang=
+bib-hang=##L
 hanging-indent#true,false
 prefix-separator=%<separator%>
 suffix-separator=%<separator%>
-line-spacing=
-entry-spacing=
+line-spacing=%<number%>
+entry-spacing=%<number%>
 #endkeyvals
 
 \addbibresource{bib file}

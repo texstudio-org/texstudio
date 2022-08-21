@@ -62,6 +62,7 @@ shapes.multipart
 shapes.symbols
 svg.path
 timelines
+transformations.mirror
 #endkeyvals
 
 \usepgfmodule{module names%keyvals}#*

@@ -1,5 +1,5 @@
 # preview package
-# Matthew Bertucci 10/31/2021 for v12.3
+# Matthew Bertucci 2022/08/20 for v13.1
 
 #include:luatex85
 
@@ -25,6 +25,11 @@ footnotes
 tracingall
 showbox
 #endkeyvals
+
+#ifOption:tightpage
+\PreviewBorder
+\PreviewBbAdjust
+#endif
 
 \begin{preview}
 \end{preview}
