@@ -9486,7 +9486,6 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
     }
 
 	if (!loaded) {
-		Q_ASSERT(curPaths.count() > 0);
         QFileInfo fi(documents.getAbsoluteFilePath(name, defaultExt,curPaths));
 		if (fi.exists()) {
 			UtilsUi::txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
@@ -12028,18 +12027,10 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
             parseStructLocally(elem,rootVector,todoList,labelList,magicList);
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
-            LatexDocument *doc=elem->document;
-            LatexDocument *rootDoc=doc->getRootDocument();
-            //QString fn=ensureTrailingDirSeparator(rootDoc->getFileInfo().absolutePath())+elem->title;
-            QFileInfo fi(rootDoc->getFileInfo().absolutePath(),elem->title);
-            doc=documents.findDocumentFromName(fi.absoluteFilePath());
-            if(!doc){
-                doc=documents.findDocumentFromName(fi.absoluteFilePath()+".tex");
-            }
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
             item->setText(0,elem->title);
-            if(!doc){
+            if(!elem->valid){
                 item->setForeground(0,Qt::red);
             }
             item->setIcon(0,QIcon(":/images/include.png"));
