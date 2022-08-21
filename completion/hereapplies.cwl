@@ -1,11 +1,12 @@
 # hereapplies package
-# Matthew Bertucci 2022/08/14 for v0.3.0
+# Matthew Bertucci 2022/08/21 for v0.5.0
 
 #include:hyperref
+#include:refcount
 
-\hereapplies{concept-name}
-\hereapplies[label]{concept-name}#l
-\hereapplies*{concept-name}
-\hereapplies*[label]{concept-name}#l
-\whereapplies{concept-name}
-\whereapplies*{concept-name}
+\hereapplies{identifiers}
+\hereapplies[label]{identifiers}#l
+\hereapplies*{identifiers}
+\hereapplies*[label]{identifiers}#l
+\whereapplies{identifier}
+\whereapplies*{identifier}
