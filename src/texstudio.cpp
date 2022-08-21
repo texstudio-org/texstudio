@@ -4188,7 +4188,7 @@ void Texstudio::readSettings(bool reread)
     int x = config->value("Geometries/MainwindowX", screen.x() + 10).toInt();
     int y = config->value("Geometries/MainwindowY", screen.y() + 10).toInt() ;
     screen = UtilsUi::getAvailableGeometryAt(QPoint(x, y));
-    if (!screen.contains(x, y)) {
+    if (screen.width()>100 && !screen.contains(x, y)) {
         // top left is not on screen
         x = screen.x() + 10;
         y = screen.y() + 10;
