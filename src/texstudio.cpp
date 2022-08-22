@@ -1713,7 +1713,6 @@ void Texstudio::updateCaption()
 	if (!currentEditorView()) documents.currentDocument = nullptr;
 	else {
 		documents.currentDocument = currentEditorView()->document;
-        //structureTreeView->setExpanded(documents.model->index(documents.currentDocument->baseStructure), true);
 	}
 	if (completer && completer->isVisible()) completer->close();
 	QString title;
@@ -1729,11 +1728,9 @@ void Texstudio::updateCaption()
 		newDocumentLineEnding();
 	}
 	setWindowTitle(title);
-	//updateStructure();
 	updateUndoRedoStatus();
 	cursorPositionChanged();
 	if (documents.singleMode()) {
-		//outputView->resetMessagesAndLog();
 		if (currentEditorView()) completerNeedsUpdate();
 	}
 	QString finame = getCurrentFileName();
