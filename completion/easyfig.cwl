@@ -15,8 +15,8 @@
 
 #keyvals:\Figure,\Figure*,\easyfigdefault,\easyfigdefault*
 # includegraphics keys
-alt=
-bb=
+alt={%<alt text%>}
+bb=%<llx lly urx ury%>
 bbllx=
 bblly=
 bburx=
@@ -25,25 +25,25 @@ natwidth=
 natheight=
 hiresbb#true,false
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
-viewport=
-trim=
-angle=
+viewport=%<llx lly urx ury%>
+trim=%<llx lly urx ury%>
+angle=%<degrees%>
 origin=
 width=##L
 height=##L
 totalheight=##L
 keepaspectratio#true,false
-scale=
+scale=%<factor%>
 clip#true,false
 draft#true,false
-type=
-ext=
-read=
+type=%<file type%>
+ext=%<file extension%>
+read=%<read-file extension%>
 command=
 quiet
-page=
+page=%<page number%>
 interpolate#true,false
-decodearray=
+decodearray={%<color array%>}
 # adjustbox keys
 Trim=
 Viewport=
