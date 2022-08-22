@@ -77,6 +77,7 @@ signal
 matrix
 googlescholar
 codeberg
+discord
 #endkeyvals
 \extrainfo{extra info%text}
 \listitemsymbol#*
@@ -105,6 +106,7 @@ codeberg
 \matrixsocialsymbol#*
 \signalsocialsymbol#*
 \codebergsocialsymbol#*
+\discordsocialsymbol#*
 \enclname#*
 \makefooter
 \moderncvstyle{style%keyvals}#n
@@ -211,7 +213,6 @@ tikz
 \cvcolumncell{arg}#*
 \bibindent#*
 \bibliographyhead{title}#L2
-\newblock#*
 \recipient{recipient}{recipient address}#n
 \opening{opening%text}#n
 \closing{closing%text}#n
@@ -295,10 +296,3 @@ tikz
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
