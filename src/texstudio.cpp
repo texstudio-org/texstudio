@@ -938,7 +938,7 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "lineoperations", tr("&Line Operations"));
     newManagedAction(submenu, "deleteLine", tr("Delete &Line"), SLOT(editDeleteLine()), Qt::CTRL | Qt::Key_K);
-    newManagedAction(submenu, "cutLine", tr("C&ut Line"), SLOT(editCutLine()), Qt::SHIFT | Qt::Key_Delete);
+    newManagedAction(submenu, "cutLine", tr("C&ut Line or Selection"), SLOT(editCutLine()), Qt::SHIFT | Qt::Key_Delete);
 #if QT_VERSION>=QT_VERSION_CHECK(6,0,0)
     newManagedAction(submenu, "deleteToEndOfLine", tr("Delete To &End Of Line"), SLOT(editDeleteToEndOfLine()), MAC_OR_DEFAULT(Qt::CTRL | Qt::Key_Delete,  Qt::AltModifier | Qt::Key_K));
 #else

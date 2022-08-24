@@ -805,6 +805,11 @@ void LatexEditorView::deleteLines(bool toStart, bool toEnd)
  */
 void LatexEditorView::cutLines()
 {
+    QDocumentCursor cur = editor->cursor();
+    if(cur.hasSelection()){
+        editor->cut();
+        return;
+    }
     QList<QDocumentCursor> cursors = editor->cursors();
     if (cursors.empty()) return;
     // sort cursors by start linenumber
