@@ -1337,6 +1337,7 @@ d
 \printdateextra#*
 \printlabeldate#*
 \printlabeldateextra#*
+\printlabeltime#*
 \printorigdate#*
 \printeventdate#*
 \printurldate#*
@@ -1610,6 +1611,7 @@ keyword=
 notkeyword=
 field=
 notfield=
+filter=
 #endkeyvals
 \filteror{type}{filters}#*
 
