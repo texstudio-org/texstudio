@@ -200,8 +200,8 @@ dataonly#true,false
 \getitemannotation[field][annotation name][item]#*
 \getpartannotation{part}#*
 \getpartannotation[field]{part}#*
-\getitemannotation[field][annotation name]{part}#*
-\getitemannotation[field][annotation name][item]{part}#*
+\getpartannotation[field][annotation name]{part}#*
+\getpartannotation[field][annotation name][item]{part}#*
 \getdateannotation{datetype}#*
 \getdateannotation[annotation name]{datetype}#*
 
