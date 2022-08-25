@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/08/01 for v7.6.0
+# Matthew Bertucci 2022/08/24 for v7.7.0
 
 #include:ifxetex
 #include:ifluatex
@@ -222,6 +222,7 @@ autodesk
 autohotkey
 automattic
 autoprefixer
+avajs
 avast
 awesomelists
 awesomewm
@@ -291,8 +292,10 @@ bmcsoftware
 bmw
 boehringeringelheim
 boeing
+bookalope
 bookbub
 bookmeter
+bookmyshow
 bookstack
 boost
 boots
@@ -656,6 +659,7 @@ express
 expressvpn
 eyeem
 f1
+f5
 facebook
 facebookgaming
 facebooklive
@@ -1067,6 +1071,7 @@ kentico
 keras
 keybase
 keycdn
+keystone
 kfc
 khanacademy
 khronosgroup
@@ -1158,6 +1163,7 @@ lionair
 liquibase
 lit
 litecoin
+litiengine
 livechat
 livejournal
 livewire
@@ -1292,6 +1298,7 @@ monero
 moneygram
 mongodb
 monkeytie
+monogames
 monoprix
 monster
 monzo
@@ -1696,6 +1703,7 @@ retroarch
 retropie
 revealdotjs
 reverbnation
+revoltdotchat
 revolut
 revue
 rewe
@@ -1966,6 +1974,7 @@ symphony
 sympy
 synology
 tableau
+tacobell
 tado
 tails
 tailwindcss
@@ -2046,6 +2055,7 @@ toyota
 tplink
 tqdm
 traefikmesh
+traefikproxy
 trainerroad
 trakt
 transferwise
