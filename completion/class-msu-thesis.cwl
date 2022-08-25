@@ -1,5 +1,5 @@
 # msu-thesis class
-# Matthew Bertucci 2022/07/15 for v3.4
+# Matthew Bertucci 2022/08/25 for v3.5
 
 #include:class-memoir
 #include:etoolbox
@@ -121,3 +121,4 @@ twoside
 \msuappendixnumformat#*
 \msucaptiondelim
 \publicabstractname#*
+\setabstractnamespace{factor}
