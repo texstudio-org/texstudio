@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2022/08/10 for v1.6
+# Matthew Bertucci 2022/08/24 for v1.7
 
 #include:morewrites
 #include:tcolorbox
@@ -108,6 +108,7 @@ inline
 \setvalue{cmd}{def}#*d
 \thecodeOutput#*
 \thecodelisting#*
+\generated#*
 \tempfile#S
 \tmpname#S
 bg#B
