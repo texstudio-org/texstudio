@@ -1,5 +1,5 @@
 # elegantbook class
-# Matthew Bertucci 2022/04/30 for v4.3
+# Matthew Bertucci 2022/08/25 for v4.4
 
 #include:kvoptions
 #include:etoolbox
@@ -13,6 +13,7 @@
 #include:iftex
 #include:newtxtext
 #include:helvet
+#include:fontspec
 #include:anyfontsize
 #include:xcolor
 # loads table option of xcolor
@@ -47,6 +48,8 @@
 #include:fancyhdr
 #include:listings
 #include:bm
+#include:calc
+#include:tocloft
 
 #keyvals:\documentclass/elegantbook#c
 lang=#en,cn,it,fr,nl,hu,de,es,mn,jp,pt
@@ -1347,12 +1350,20 @@ SuppressWarning#true,false
 #include:esint
 \prodop#*m
 \sumop#*m
+\oldencodingdefault#S
+\oldrmdefault#S
+\oldsfdefault#S
+\oldttdefault#S
 #endif
 #ifOption:newtx
 #include:newtxmath
 #include:esint
 \prodop#*m
 \sumop#*m
+\oldencodingdefault#S
+\oldrmdefault#S
+\oldsfdefault#S
+\oldttdefault#S
 #endif
 
 #ifOption:mode=simple
