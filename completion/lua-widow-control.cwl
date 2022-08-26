@@ -1,8 +1,7 @@
 # lua-widow-control package
-# Matthew Bertucci 2022/06/19 for v2.2.0
+# Matthew Bertucci 2022/08/24 for v2.2.2
 
 #include:luatex
-#include:l3keys2e
 #include:microtype
 
 \lwcsetup{options%keyvals}

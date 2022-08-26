@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/08/17 for v1.2.2
+# Matthew Bertucci 2022/08/25 for v1.2.3
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -19,6 +19,7 @@
 #include:simplekv
 #include:listofitems
 #include:tabularray
+#include:siunitx
 #include:fontawesome5
 #include:csvsimple-l3
 #include:tcolorbox
@@ -92,6 +93,17 @@ labeltitre
 hc=%<hauteur%>
 hr=%<hauteur%>
 #endkeyvals
+
+\begin{envcodepython}{tcolorbox options}#V
+\begin{envcodepython}[largeur]{tcolorbox options}#V
+\begin{envcodepython}*{tcolorbox options}#V
+\begin{envcodepython}*[largeur]{tcolorbox options}#V
+\end{envcodepython}
+
+\envcodepythonfichier{tcolorbox options}{file}#i
+\envcodepythonfichier[largeur]{tcolorbox options}{file}#i
+\envcodepythonfichier*{tcolorbox options}{file}#i
+\envcodepythonfichier*[largeur]{tcolorbox options}{file}#i
 
 \begin{envcodepythontex}#V
 \begin{envcodepythontex}[options%keyvals]#V
@@ -856,6 +868,9 @@ PLwinblue#B
 vertcapyt#B
 
 #keyvals:\tcbset,\begin{tcolorbox},\tcbsetforeverylayer,\tcbox,\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,\tcolorboxenvironment,\tcbsubtitle,\tcbsidebyside,\tcbsubskin,\tcbincludegraphics,\tcbincludepdf,\begin{tcbraster},\begin{tcbitemize},\tcbitem,\begin{tcboxedraster},\begin{tcboxeditemize},\begin{tcblisting},\tcbinputlisting,\newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,\newtcbtheorem,\renewtcbtheorem,\tcboxmath,\tcbhighmath,\usetcboxarray,\consumetcboxarray,\posterbox,\begin{posterboxenv},\tcboxfit,\newtcboxfit,\renewtcboxfit,\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit,\tcboxverb,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*},\tcbdocmarginnote
+stylepythonlst
+stylepythonlstnolineos
+stylepythonlstlineos
 stylepythontex
 stylepythonnolineos
 stylepythonlineos

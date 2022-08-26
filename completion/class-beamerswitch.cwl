@@ -1,5 +1,5 @@
 # beamerswitch class
-# Matthew Bertucci 2/12/2022 for v1.8
+# Matthew Bertucci 2022/08/24 for v1.9
 
 #include:xkeyval
 #include:xkvltxp
@@ -7,10 +7,12 @@
 #include:xstring
 #include:shellesc
 #include:iftex
+#include:expl3
 #include:xparse
 #include:class-beamer
 
 #keyvals:\documentclass/beamerswitch#c
+articleclass=%<class%>
 articleoptions={%<article class options%>}
 beameroptions={%<beamer class options%>}
 article
@@ -24,6 +26,17 @@ alsotrans
 also={%<modes%>}
 nohyperref
 #endkeyvals
+
+## cannot list all classes...
+#ifOption:articleclass=book
+#include:class-book
+#endif
+#ifOption:articleclass=report
+#include:class-report
+#endif
+#ifOption:articleclass=memoir
+#include:class-memoir
+#endif
 
 #ifOption:article
 #include:beamerarticle
