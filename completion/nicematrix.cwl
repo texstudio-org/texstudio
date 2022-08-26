@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2022/07/29 for v6.12
+# Matthew Bertucci 2022/08/25 for v6.13
 
 #include:amsmath
 #include:array
@@ -209,11 +209,24 @@ respect-arraystretch
 #endkeyvals
 
 \Hline#t
+\Hline[options%keyvals]#t
+
+#keyvals:\Hline
+command=%<csname%>
+ccommand=%<csname%>
+letter=%<letter%>
+multiplicity=%<integer%>
+color=#%color
+sep-color=#%color
+tikz={%<TikZ keys%>}
+total-width=##L
+dotted
+#endkeyvals
 
 \diagbox{lower}{upper}#t
 
 \hdottedline#t
-\hdashline#t
+\cdottedline{linespec}#t
 
 \CodeBefore#t
 \CodeBefore[options%keyvals]#t
@@ -352,6 +365,8 @@ color=#%color
 #endkeyvals
 
 \tabularnote{note%text}
+\begin{TabularNote}
+\end{TabularNote}
 \rotate
 \ShowCellNames#t
 
