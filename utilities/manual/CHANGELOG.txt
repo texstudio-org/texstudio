@@ -3,6 +3,7 @@ TeXstudio 4.3.1
 - fix loading files various times if relative path is used for \include (#2533)
 - fix custom verbatim highlighting (#2528)
 - fix label hihligthing (#2512)
+- fix version checking (#2527)
 
 TeXstudio 4.3.0
 -----------------

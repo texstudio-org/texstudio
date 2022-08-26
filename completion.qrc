@@ -156,6 +156,7 @@
 <file>completion/asciilist.cwl</file>
 <file>completion/ascmac.cwl</file>
 <file>completion/askinclude.cwl</file>
+<file>completion/askincv1.cwl</file>
 <file>completion/askmaps.cwl</file>
 <file>completion/asmewide.cwl</file>
 <file>completion/assoccnt.cwl</file>
@@ -333,6 +334,7 @@
 <file>completion/biblatex-ext-oasymb-tikz.cwl</file>
 <file>completion/biblatex-ext-tabular.cwl</file>
 <file>completion/biblatex-license.cwl</file>
+<file>completion/biblatex-ms.cwl</file>
 <file>completion/biblatex-multiple-dm.cwl</file>
 <file>completion/biblatex-readbbl.cwl</file>
 <file>completion/biblatex-shortfields.cwl</file>
@@ -720,6 +722,7 @@
 <file>completion/class-iodhbwm.cwl</file>
 <file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
+<file>completion/class-isov2.cwl</file>
 <file>completion/class-jacow.cwl</file>
 <file>completion/class-jag-l.cwl</file>
 <file>completion/class-jams-l.cwl</file>
@@ -741,6 +744,7 @@
 <file>completion/class-kiyou.cwl</file>
 <file>completion/class-komacv.cwl</file>
 <file>completion/class-l3doc.cwl</file>
+<file>completion/class-labbook.cwl</file>
 <file>completion/class-langscibook.cwl</file>
 <file>completion/class-leadsheet.cwl</file>
 <file>completion/class-leaflet.cwl</file>
@@ -770,6 +774,7 @@
 <file>completion/class-ltxdockit.cwl</file>
 <file>completion/class-ltxguide.cwl</file>
 <file>completion/class-ltxguidex.cwl</file>
+<file>completion/class-maabook.cwl</file>
 <file>completion/class-matapli.cwl</file>
 <file>completion/class-mcmthesis.cwl</file>
 <file>completion/class-mcom-l.cwl</file>
@@ -862,6 +867,7 @@
 <file>completion/class-standalone.cwl</file>
 <file>completion/class-stex.cwl</file>
 <file>completion/class-suftesi.cwl</file>
+<file>completion/class-surv-l.cwl</file>
 <file>completion/class-svmono.cwl</file>
 <file>completion/class-svmult.cwl</file>
 <file>completion/class-talk.cwl</file>
@@ -876,6 +882,7 @@
 <file>completion/class-toptesi.cwl</file>
 <file>completion/class-tpms-l.cwl</file>
 <file>completion/class-tran-l.cwl</file>
+<file>completion/class-trans2-l.cwl</file>
 <file>completion/class-treport.cwl</file>
 <file>completion/class-tudabeamer.cwl</file>
 <file>completion/class-tudaexercise.cwl</file>
@@ -898,6 +905,7 @@
 <file>completion/class-ujarticle.cwl</file>
 <file>completion/class-ujbook.cwl</file>
 <file>completion/class-ujreport.cwl</file>
+<file>completion/class-ulect-l.cwl</file>
 <file>completion/class-ulthese.cwl</file>
 <file>completion/class-unbtex.cwl</file>
 <file>completion/class-unifith.cwl</file>
@@ -963,6 +971,7 @@
 <file>completion/collcell.cwl</file>
 <file>completion/collectbox.cwl</file>
 <file>completion/collect.cwl</file>
+<file>completion/college-math-j.cwl</file>
 <file>completion/collref.cwl</file>
 <file>completion/colonequals.cwl</file>
 <file>completion/colophon.cwl</file>
@@ -2033,6 +2042,7 @@
 <file>completion/luximono.cwl</file>
 <file>completion/lwarp.cwl</file>
 <file>completion/lyluatex.cwl</file>
+<file>completion/maa-monthly.cwl</file>
 <file>completion/macrolist.cwl</file>
 <file>completion/macroswap.cwl</file>
 <file>completion/mafr.cwl</file>
@@ -3362,6 +3372,7 @@
 <file>completion/tudarules.cwl</file>
 <file>completion/tudscrbase.cwl</file>
 <file>completion/tudscrcolor.cwl</file>
+<file>completion/tudscrfonts.cwl</file>
 <file>completion/tudscrsupervisor.cwl</file>
 <file>completion/turabian-formatting.cwl</file>
 <file>completion/turnstile.cwl</file>
