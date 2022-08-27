@@ -2819,17 +2819,16 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 
 	QStringList categories;
     categories << "%ref" << "%label" << "%definition" << "%cite" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%url" << "%todo" << "%replace";
-	QStringList newCmds;
 	foreach (const QString elem, categories) {
 		QStringList cmds = ltxCommands.possibleCommands[elem].values();
 		foreach (const QString cmd, cmds) {
 			if (!latexParser.possibleCommands[elem].contains(cmd) || forceLabelUpdate) {
-				newCmds << cmd;
 				latexParser.possibleCommands[elem] << cmd;
 			}
 		}
 	}
 	bool needQNFAupdate = false;
+    QStringList cmdsToUpdate;
 	for (int i = 0; i < latexParser.MAX_STRUCTURE_LEVEL; i++) {
 		QString elem = QString("%structure%1").arg(i);
 		QStringList cmds = ltxCommands.possibleCommands[elem].values();
@@ -2837,22 +2836,26 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 			bool update = !latexParser.possibleCommands[elem].contains(cmd);
 			if (update) {
 				latexParser.possibleCommands[elem] << cmd;
+                cmdsToUpdate<<cmd;
 				//only update QNFA for added commands. When the default commands are not in ltxCommands.possibleCommands[elem], ltxCommands.possibleCommands[elem] and latexParser.possibleCommands[elem] will always differ and regenerate the QNFA needlessly after every key press
                 needQNFAupdate = true;
+                cmdsToUpdate<<cmd;
             }
-			if (update || forceLabelUpdate)
-				newCmds << cmd;
 		}
 	}
-	if (needQNFAupdate)
+    if (needQNFAupdate)
 		parent->requestQNFAupdate();
 
-	if (delayUpdate)
+    if (delayUpdate && cmdsToUpdate.isEmpty()) // force update here if structure commands are changed
 		return update;
 
 	if (update) {
 		updateLtxCommands(true);
 	}
+    if(!cmdsToUpdate.isEmpty()){
+        patchLinesContaining(cmdsToUpdate);
+    }
+
 	return false;
 }
 
