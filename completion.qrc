@@ -2012,6 +2012,7 @@
 <file>completion/luaotfload.cwl</file>
 <file>completion/luapackageloader.cwl</file>
 <file>completion/luaprogtable.cwl</file>
+<file>completion/luaquotes.cwl</file>
 <file>completion/luarandom.cwl</file>
 <file>completion/luasseq.cwl</file>
 <file>completion/luatexbase.cwl</file>
@@ -3103,6 +3104,7 @@
 <file>completion/svn-prov.cwl</file>
 <file>completion/svrsymbols.cwl</file>
 <file>completion/swfigure.cwl</file>
+<file>completion/swungdash.cwl</file>
 <file>completion/symbats3.cwl</file>
 <file>completion/symbolpalette.cwl</file>
 <file>completion/sympytex.cwl</file>
@@ -3287,6 +3289,7 @@
 <file>completion/tikz-palattice.cwl</file>
 <file>completion/tikzpeople.cwl</file>
 <file>completion/tikzpfeile.cwl</file>
+<file>completion/tikzpingus.cwl</file>
 <file>completion/tikz-qtree.cwl</file>
 <file>completion/tikzrput.cwl</file>
 <file>completion/tikzscale.cwl</file>
