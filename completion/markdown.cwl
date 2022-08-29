@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2022/07/31 for v2.15.4-0-g4cbe4e3
+# Matthew Bertucci 2022/08/29 for v2.16.0-5-g5bb83fb
 
 #include:expl3
 #include:ifthen
@@ -13,6 +13,13 @@
 #include:url
 #include:etoolbox
 #include:lt3luabridge
+
+#ifOption:strikeThrough
+#include:soulutf8
+#endif
+#ifOption:strikeThrough=true
+#include:soulutf8
+#endif
 
 \begin{markdown}
 \end{markdown}
@@ -48,6 +55,7 @@ contentBlocksLanguageMap=%<file name%>
 definitionLists#true,false
 eagerCache#true,false
 expectJekyllData#true,false
+fancyLists#true,false
 footnotes#true,false
 fencedCode#true,false
 jekyllData#true,false
@@ -64,7 +72,10 @@ smartEllipses#true,false
 shiftHeadings=%<shift amount%>
 slice=%<beginning and end of a slice%>
 startNumber#true,false
+strikeThrough#true,false
 stripIndent#true,false
+subscripts#true,false
+superscripts#true,false
 tableCaptions#true,false
 taskLists#true,false
 texComments#true,false
@@ -80,6 +91,7 @@ frozenCacheFileName=%<file name%>
 renderers={%<renderer options%>}
 rendererPrototypes={%<renderer prototype options%>}
 code={%<code%>}
+jekyllDataRenderers={%<keyvals%>}
 #endkeyvals
 
 #ifOption:theme=witiko/dot
@@ -247,6 +259,20 @@ code={%<code%>}
 \markdownRendererEllipsisPrototype#*
 \markdownRendererEmphasis#*
 \markdownRendererEmphasisPrototype{arg1}#*
+\markdownRendererFancyOlBegin#*
+\markdownRendererFancyOlBeginPrototype#*
+\markdownRendererFancyOlBeginTight#*
+\markdownRendererFancyOlBeginTightPrototype#*
+\markdownRendererFancyOlEnd#*
+\markdownRendererFancyOlEndPrototype#*
+\markdownRendererFancyOlEndTight#*
+\markdownRendererFancyOlEndTightPrototype#*
+\markdownRendererFancyOlItem#*
+\markdownRendererFancyOlItemEnd#*
+\markdownRendererFancyOlItemEndPrototype#*
+\markdownRendererFancyOlItemPrototype#*
+\markdownRendererFancyOlItemWithNumber#*
+\markdownRendererFancyOlItemWithNumberPrototype#*
 \markdownRendererFootnote#*
 \markdownRendererFootnotePrototype{arg1}#*
 \markdownRendererHalfTickedBox#*
@@ -330,8 +356,14 @@ code={%<code%>}
 \markdownRendererPipePrototype#*
 \markdownRendererRightBrace#*
 \markdownRendererRightBracePrototype#*
+\markdownRendererStrikeThrough#*
+\markdownRendererStrikeThroughPrototype#*
 \markdownRendererStrongEmphasis#*
 \markdownRendererStrongEmphasisPrototype{arg1}#*
+\markdownRendererSubscript#*
+\markdownRendererSubscriptPrototype#*
+\markdownRendererSuperscript#*
+\markdownRendererSuperscriptPrototype#*
 \markdownRendererTable#*
 \markdownRendererTablePrototype{arg1}{arg2}{arg3}#*
 \markdownRendererTextCite#*
