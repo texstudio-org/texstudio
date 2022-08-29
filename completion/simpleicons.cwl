@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/08/24 for v7.7.0
+# Matthew Bertucci 2022/08/29 for v7.8.0
 
 #include:ifxetex
 #include:ifluatex
@@ -491,6 +491,7 @@ curseforge
 cycling74
 cypress
 cytoscapedotjs
+d
 d3dotjs
 dacia
 daf
@@ -2326,13 +2327,14 @@ zwave
 zyte
 #endkeyvals
 
-\SI#S
-\SIone#S
-\SItwo#S
-\SIthree#S
-\SIfour#S
-\SIfive#S
-\SIseven#S
-\SIeight#S
-\SInine#S
-\SIten#S
+\simpleiconsmap#S
+\simpleiconsmapOne#S
+\simpleiconsmapTwo#S
+\simpleiconsmapThree#S
+\simpleiconsmapFour#S
+\simpleiconsmapFive#S
+\simpleiconsmapSix#S
+\simpleiconsmapSeven#S
+\simpleiconsmapEight#S
+\simpleiconsmapNine#S
+\simpleiconsmapZero#S
