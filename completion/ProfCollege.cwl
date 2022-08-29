@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/08/18 for v0.99-v
+# Matthew Bertucci 2022/08/28 for v0.99-w
 
 #include:verbatim
 #include:mathtools
@@ -309,6 +309,7 @@ Ancre={%<(x,y)%>}
 Angle=%<degrees%>
 Largeur=##L
 Couleur=#%color
+Echelle=##L
 Aire#true,false
 Volume#true,false
 Solide=#pave,cube,cylindre,prisme,cone,pyramide,boule
@@ -384,6 +385,7 @@ Segment#true,false
 Propor#true,false
 Perso#true,false
 Precision=%<integer%>
+IntroCalculs#true,false
 Unite=%<unité%>
 Entier#true,false
 Figure#true,false
@@ -453,6 +455,8 @@ DemiDroite#true,false
 ValeurOrigine=%<valeur%>
 ValeurUnitex=%<valeur%>
 Thermometre#true,false
+Kelvin#true,false
+Farenheit#true,false
 Mercure#true,false
 CouleurMercure=#%color
 Plan#true,false
@@ -484,6 +488,7 @@ Largeur=##L
 Hauteur=##L
 Inverse#true,false
 Couleur=#%color
+CouleurNombre=#%color
 #endkeyvals
 
 ## Programme de calcul ##
@@ -772,6 +777,7 @@ Relie#true,false
 RelieSegment#true,false
 Invisible#true,false
 CouleurPoint=#%color
+Marque=#dot,croix
 EffectifTotal#true,false
 Etendue#true,false
 Concret#true,false
@@ -1031,6 +1037,30 @@ CouleurZone=#%color
 
 \PfCYHKpremier#*
 
+## Le KenKen ##
+\KenKen{description du jeu}
+\KenKen[clés%keyvals]{description du jeu}
+
+#keyvals:\KenKen
+Taille=%<nombre%>
+Largeur=##L
+Nombre=%<nombre%>
+Solution#true,false
+#endkeyvals
+
+## Le Kakuro ##
+\Kakuro{description du jeu}
+\Kakuro[clés%keyvals]{description du jeu}
+
+#keyvals:\Kakuro
+Taille=%<nombre%>
+Largeur=##L
+CouleurCase=#%color
+ListeNombres={%<nombre1,nombre2,...%>}
+Solution#true,false
+CouleurSolution=#%color
+#endkeyvals
+
 ## Bulles et cartes mentales ##
 \begin{Mind}#\pictureHighlight
 \end{Mind}
@@ -1203,6 +1233,7 @@ XArrivee=%<integer%>
 YArrivee=%<integer%>
 Solution#true,false
 Murs#true,false
+CouleurChemin=#%color
 #endkeyvals
 
 ## Triominos ##
@@ -2463,7 +2494,8 @@ Teal#B
 \TraceDessinGradueSolution{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \TraceEchiquierColoreColorilude#S
 \TraceEchiquierColorilude#S
-\TraceGraphique{arg1}{arg2}#S
+\TraceGraphique{arg}#S
+\TraceGraphique[opt]{arg}#S
 \TraceLabyNombre{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceLabyNombreold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
@@ -2526,3 +2558,9 @@ Teal#B
 \yyy#S
 \zzpar#S
 \zzz#S
+\ListeCasesKK#S
+\ListeKakuroNombres#S
+\PfCTestBlack#S
+\ListeKakuroNombreslen#S
+\PfCKenKen#S
+\PfCKakuro#S
