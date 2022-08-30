@@ -519,7 +519,17 @@ void GrammarCheck::updateLTStatus(){
 QString GrammarCheck::languageFromHunspellToLanguageTool(QString language)
 {
 	language.replace('_', '-');
-	return languageMapping.value(language, language);
+    QString result=language;
+    if(languageMapping.contains(language)){
+        result=languageMapping.value(language, language);
+    }else{
+        // just deliver the first part of the language code if no mapping is known
+        int i=language.indexOf('-');
+        if(i>=0){
+            result=language.left(i);
+        }
+    }
+    return result;
 }
 
 /*!
