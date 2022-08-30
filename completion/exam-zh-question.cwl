@@ -1,5 +1,5 @@
 # exam-zh-question package
-# Matthew Bertucci 2022/08/14 for v0.1.17
+# Matthew Bertucci 2022/08/30 for v0.1.19
 
 #include:expl3
 #include:xparse
@@ -40,8 +40,10 @@ fillin/width-type=#fill,normal
 fillin/color=#%color
 fillin/text-color=#%color
 fillin/paren-type=#banjiao,quanjiao
+fillin/depth=##L
 solution={%<键值列表%>}
 solution/show-solution#true,false
+solution/show-answer#true,false
 solution/parbreak#true,false
 solution/show-qed#true,false
 solution/qedsymbol=%<symbol%>
@@ -105,8 +107,11 @@ no-answer-counter-index=%<integer%>
 no-answer-counter-label=%<label%>
 show-answer#true,false
 width=##L
+width-type=#fill,normal
 color=#%color
 text-color=#%color
+paren-type=#banjiao,quanjiao
+depth=##L
 #endkeyvals
 
 \AddFillinCounter{LaTeX command%cmd}{internal command%definition}#d
@@ -117,6 +122,7 @@ text-color=#%color
 
 #keyvals:\begin{solution}
 show-solution#true,false
+show-answer#true,false
 parbreak#true,false
 show-qed#true,false
 qedsymbol=%<symbol%>
