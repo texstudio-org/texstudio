@@ -2739,6 +2739,10 @@ bool LatexEditorView::closeElement()
 		searchReplacePanel->closeElement(config->closeSearchAndReplace);
 		return true;
 	}
+    if(editor->cursorMirrorCount()>0){
+        // collapse mirrors to main cursor
+        editor->clearCursorMirrors();
+    }
 	return false;
 }
 
