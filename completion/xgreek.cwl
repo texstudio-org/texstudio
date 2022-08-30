@@ -1,5 +1,5 @@
 # xgreek package
-# Matthew Bertucci 1/23/2022 for v3.0.1
+# Matthew Bertucci 2022/08/29 for v3.1.0
 
 #keyvals:\usepackage/xgreek#c
 monogreek
@@ -8,7 +8,12 @@ ancientgreek
 stigma
 noindentfirst
 nonumeralsign
+listings
 #endkeyvals
+
+#ifOption:listings
+#include:listings
+#endif
 
 \prefacename#*
 \bibname#*
