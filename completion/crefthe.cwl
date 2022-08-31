@@ -1,5 +1,5 @@
 # crefthe package
-# Matthew Bertucci 2022/07/02 for release 2022/06/30
+# Matthew Bertucci 2022/08/30 for release 2022/08/28
 
 #include:cleveref
 #include:regexpatch
@@ -49,6 +49,32 @@ catalan
 \Crefthe-[prep]{labellist}#*r
 \Crefthe+{labellist}#*r
 \Crefthe+[prep]{labellist}#*r
+
+\namecrefthe{labellist}#r
+\namecrefthe[prep]{labellist}#r
+\namecrefthe-{labellist}#*r
+\namecrefthe-[prep]{labellist}#*r
+\namecrefthe+{labellist}#*r
+\namecrefthe+[prep]{labellist}#*r
+\nameCrefthe{labellist}#r
+\nameCrefthe[prep]{labellist}#r
+\nameCrefthe-{labellist}#*r
+\nameCrefthe-[prep]{labellist}#*r
+\nameCrefthe+{labellist}#*r
+\nameCrefthe+[prep]{labellist}#*r
+\namecrefsthe{labellist}#r
+\namecrefsthe[prep]{labellist}#r
+\namecrefsthe-{labellist}#*r
+\namecrefsthe-[prep]{labellist}#*r
+\namecrefsthe+{labellist}#*r
+\namecrefsthe+[prep]{labellist}#*r
+\nameCrefsthe{labellist}#r
+\nameCrefsthe[prep]{labellist}#r
+\nameCrefsthe-{labellist}#*r
+\nameCrefsthe-[prep]{labellist}#*r
+\nameCrefsthe+{labellist}#*r
+\nameCrefsthe+[prep]{labellist}#*r
+
 \crefthemark{text}
 \crefthename{type}{singular}{plural}
 \crefthename{type}[prep1]{singular}[prep2]{plural}

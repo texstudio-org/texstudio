@@ -1,5 +1,5 @@
 # exam-zh-choices package
-# Matthew Bertucci 2022/07/29 for v0.1.13
+# Matthew Bertucci 2022/08/30 for v0.1.19
 
 #include:expl3
 #include:xparse
@@ -15,6 +15,9 @@ choices/label-align=#left,center,right
 choices/label-sep=##L
 choices/label-width=##L
 choices/max-columns=%<integer%>
+choices/top-sep=##L
+choices/bottom-sep=##L
+choices/linesep=##L
 #endkeyvals
 
 \begin{choices}
@@ -32,6 +35,9 @@ label-align=#left,center,right
 label-sep=##L
 label-width=##L
 max-columns=%<integer%>
+top-sep=##L
+bottom-sep=##L
+linesep=##L
 #endkeyvals
 
 \AddChoicesCounter{LaTeX command%cmd}{internal command%definition}#d

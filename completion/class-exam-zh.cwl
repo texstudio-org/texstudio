@@ -1,5 +1,5 @@
 # exam-zh class
-# Matthew Bertucci 2022/08/10 for v0.1.15
+# Matthew Bertucci 2022/08/30 for v0.1.19
 
 #include:expl3
 #include:filehook
@@ -21,6 +21,7 @@
 #include:exam-zh-choices
 #include:exam-zh-symbols
 #include:exam-zh-chinese-english
+#include:exam-zh-textfigure
 #include:hyperref
 #include:pifont
 
