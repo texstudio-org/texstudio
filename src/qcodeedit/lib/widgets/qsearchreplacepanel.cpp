@@ -115,7 +115,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cFind->setMinimumSize(QSize(120, 22));
     conf->registerOption("Search/Find History", &findHistory, QStringList());
     if(findHistory.size()>MAX_HISTORY_ENTRIES){
-        findHistory.resize(MAX_HISTORY_ENTRIES);
+        findHistory.remove(0,findHistory.size()-MAX_HISTORY_ENTRIES);
+        findHistory.squeeze();
     }
     conf->linkOptionToObject(&findHistory, cFind, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
     flowLayout->addWidget(cFind);
@@ -282,7 +283,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     //	cReplace->setMaximumSize(QSize(1200, 16777215));
     conf->registerOption("Search/Replace History", &replaceHistory, QStringList());
     if(replaceHistory.size()>MAX_HISTORY_ENTRIES){
-        replaceHistory.resize(MAX_HISTORY_ENTRIES);
+        replaceHistory.remove(0,replaceHistory.size()-MAX_HISTORY_ENTRIES);
+        replaceHistory.squeeze();
     }
     conf->linkOptionToObject(&replaceHistory, cReplace, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
     flowLayout2->addWidget(cReplace);
@@ -586,9 +588,9 @@ void QSearchReplacePanel::rememberLastSearch(QStringList& history, const QString
 	}
     if (!incremental){
         history.removeAll(str);
-        history.prepend(str);
+        history.append(str);
         if(history.size()>MAX_HISTORY_ENTRIES){
-            history.resize(MAX_HISTORY_ENTRIES);
+            history.remove(0,history.size()-MAX_HISTORY_ENTRIES);
         }
 		ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
 	}
