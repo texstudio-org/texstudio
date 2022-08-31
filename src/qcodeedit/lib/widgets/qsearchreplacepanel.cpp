@@ -64,6 +64,8 @@ bool cbHasFocus(const QComboBox* cb) {
 	return false;
 }
 
+const int MAX_HISTORY_ENTRIES = 100;
+
 QStringList findHistory, replaceHistory;
 
 /*!
@@ -112,6 +114,9 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cFind->setSizePolicy(sizePolicy4);
     cFind->setMinimumSize(QSize(120, 22));
     conf->registerOption("Search/Find History", &findHistory, QStringList());
+    if(findHistory.size()>MAX_HISTORY_ENTRIES){
+        findHistory.resize(MAX_HISTORY_ENTRIES);
+    }
     conf->linkOptionToObject(&findHistory, cFind, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
     flowLayout->addWidget(cFind);
 
@@ -276,6 +281,9 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cReplace->setMinimumSize(QSize(120, 22));
     //	cReplace->setMaximumSize(QSize(1200, 16777215));
     conf->registerOption("Search/Replace History", &replaceHistory, QStringList());
+    if(replaceHistory.size()>MAX_HISTORY_ENTRIES){
+        replaceHistory.resize(MAX_HISTORY_ENTRIES);
+    }
     conf->linkOptionToObject(&replaceHistory, cReplace, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
     flowLayout2->addWidget(cReplace);
 
@@ -576,8 +584,12 @@ void QSearchReplacePanel::rememberLastSearch(QStringList& history, const QString
 		ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
 		return;
 	}
-	if (!incremental && !history.contains(str)) {
-		history.append(str);
+    if (!incremental){
+        history.removeAll(str);
+        history.prepend(str);
+        if(history.size()>MAX_HISTORY_ENTRIES){
+            history.resize(MAX_HISTORY_ENTRIES);
+        }
 		ConfigManagerInterface::getInstance()->updateAllLinkedObjects(&history);
 	}
 }
