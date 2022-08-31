@@ -1341,6 +1341,7 @@
 <file>completion/exam-zh-font.cwl</file>
 <file>completion/exam-zh-question.cwl</file>
 <file>completion/exam-zh-symbols.cwl</file>
+<file>completion/exam-zh-textfigure.cwl</file>
 <file>completion/exceltex.cwl</file>
 <file>completion/excludeonly.cwl</file>
 <file>completion/exercisebank.cwl</file>
@@ -1863,6 +1864,7 @@
 <file>completion/ladder.cwl</file>
 <file>completion/lambdax.cwl</file>
 <file>completion/langcode.cwl</file>
+<file>completion/langnames.cwl</file>
 <file>completion/langsci-affiliations.cwl</file>
 <file>completion/langsci-avm.cwl</file>
 <file>completion/langsci-bidi.cwl</file>
@@ -2619,6 +2621,7 @@
 <file>completion/projlib-text.cwl</file>
 <file>completion/projlib-theorem.cwl</file>
 <file>completion/projlib-titlepage.cwl</file>
+<file>completion/proof-at-the-end.cwl</file>
 <file>completion/proof.cwl</file>
 <file>completion/proofread.cwl</file>
 <file>completion/prooftrees.cwl</file>
