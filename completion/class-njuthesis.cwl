@@ -184,12 +184,14 @@ listoftables/toc-entry#true,false
 \setendmarkfalse#S
 
 # from style=gb7714-2015 option of biblatex
+#ifOption:style=gb7714-2015
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from gb7714-2015.bbx
 citexref#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -223,6 +225,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
