@@ -59,14 +59,8 @@ fleqn
 openbib
 #endkeyvals
 
-
-
-
-
-
-
-
 # from style=gb7714-2015 option of biblatex
+#ifOption:style=gb7714-2015
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from gb7714-2015.bbx
 citexref#true,false
@@ -106,6 +100,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
