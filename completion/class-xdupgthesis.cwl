@@ -125,7 +125,6 @@ info/bio={%<作者简介路径%>}
 \SlashFont#*
 
 # from style=gb7714-2015 option of biblatex
-#ifOption:style=gb7714-2015
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from gb7714-2015.bbx
 citexref#true,false
