@@ -215,6 +215,7 @@ citexref#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -249,6 +250,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
