@@ -2742,6 +2742,7 @@ bool LatexEditorView::closeElement()
     if(editor->cursorMirrorCount()>0){
         // collapse mirrors to main cursor
         editor->clearCursorMirrors();
+        return true;
     }
 	return false;
 }
