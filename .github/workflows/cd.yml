@@ -129,6 +129,7 @@ jobs:
 
   build-linux-win:
     name: win build (mxe)
+    if: false
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -508,7 +509,7 @@ jobs:
     permissions:
       contents: write  # for softprops/action-gh-release to create GitHub release
     name: Release
-    needs: [build-win10, build-linux-win, build-linux-release, macosx] # macosx-qt5 is disabled
+    needs: [build-win10, build-linux-release, macosx] # build-linux-win,macosx-qt5 is disabled
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
