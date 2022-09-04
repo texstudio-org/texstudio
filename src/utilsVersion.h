@@ -4,9 +4,9 @@
 #define TEXSTUDIO "TeXstudio"
 
 
-#define TXSVERSION "4.3.2"
+#define TXSVERSION "4.4.0"
 
-#define TXSVERSION_NUMERIC 0x040302
+#define TXSVERSION_NUMERIC 0x040400
 
 extern const char *TEXSTUDIO_GIT_REVISION;
 
