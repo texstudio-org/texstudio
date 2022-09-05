@@ -303,6 +303,7 @@ colorprofiles={%<options%>}
 testphase=#phase-I,phase-II
 debug={%<options%>}
 #endkeyvals
+\IfDocumentMetadataTF{true code}{false code}#*
 
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
