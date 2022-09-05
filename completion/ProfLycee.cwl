@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/08/25 for v1.2.3
+# Matthew Bertucci 2022/09/04 for v1.2.5
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -400,6 +400,32 @@ affnom=#true,false
 \xunit#*
 \yunit#*
 
+\PLboitemoust[options%keyvals]
+
+#keyvals:\PLboitemoust
+parametres={%<Min/Q1/Med/Q3/Max%>}
+couleur=#%color
+elevation=%<nombre%>
+hauteur=%<nombre%>
+moyenne=%<nombre%>
+epaisseur=%<épaisseur%>
+remplir=#%color
+affmoyenne#true,false
+pointilles#true,false
+valeurs#true,false
+#endkeyvals
+
+\PLboitemoustaxe[options%keyvals]
+
+#keyvals:\PLboitemoustaxe
+min=%<nombre%>
+max=%<nombre%>
+elargir=%<pourcentage%>
+epaisseur=%<épaisseur%>
+valeurs={%<liste%>}
+affvaleurs#true,false
+#endkeyvals
+
 \PLconvdecbin{nombre}
 \PLconvdecbin[options%keyvals]{nombre}
 \PLconvdecbin*{nombre}
@@ -650,6 +676,27 @@ Teal#B
 \axeytickwidthA#S
 \axeytickwidthB#S
 \axeywidth#S
+\BaMAxeElarg#S
+\BaMAxeEpaisseur#S
+\BaMaxelargeur#S
+\BaMAxeMax#S
+\BaMAxeMin#S
+\BaMAxeValeurs#S
+\BaMaxexmax#S
+\BaMaxexmin#S
+\BaMCouleur#S
+\BaMElevation#S
+\BaMEpaisseur#S
+\BaMHauteur#S
+\BaMListe#S
+\BaMListeparams#S
+\BaMmax#S
+\BaMmed#S
+\BaMmin#S
+\BaMMoyenne#S
+\BaMqt#S
+\BaMqu#S
+\BaMRemplissage#S
 \basedepart#S
 \begin{PLstats}#S
 \begin{PLstats}[opt]#S

@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/08/28 for v0.99-w
+# Matthew Bertucci 2022/09/04 for v0.99-y
 
 #include:verbatim
 #include:mathtools
@@ -85,8 +85,10 @@ Couleur=#%color
 Seyes#true,false
 Millimetre#true,false
 Isometrique#true,false
+IsometriquePointe#true,false
 Triangle#true,false
 Grille=%<nombre%>
+GrillePointe=%<nombre%>
 PageEntiere#true,false
 ZoneTexte#true,false
 #endkeyvals
@@ -190,6 +192,8 @@ Micro#true,false
 Nano#true,false
 Incline#true,false
 Couleurd=#%color
+PuissancesSeules#true,false
+Colonne=%<integer%>
 Taille=%<nombre%>
 Largeur=##L
 Nom=%<nom%>
@@ -260,6 +264,7 @@ Evaluation#true,false
 #endkeyvals
 
 \BoiteFlash{contenu%text}
+\BoiteFlash[length]{contenu%text}
 
 ## Le calcul mental ##
 \CourseNombre{file}#i
@@ -1033,6 +1038,8 @@ PasC=%<integer%>
 Solution#true,false
 Addition
 CouleurZone=#%color
+Relatif#true,false
+Negatif#true,false
 #endkeyvals
 
 \PfCYHKpremier#*
@@ -1059,6 +1066,24 @@ CouleurCase=#%color
 ListeNombres={%<nombre1,nombre2,...%>}
 Solution#true,false
 CouleurSolution=#%color
+#endkeyvals
+
+## Le Shikaku ##
+\Shikaku{description du je}
+\Shikaku[clés%keyvals]{description du je}
+
+#keyvals:\Shikaku
+Taille=%<nombre%>
+Largeur=##L
+Solution#true,false
+Couleur=#%color
+CodeAfter={%<code%>}
+Creation#true,false
+TailleHor=%<nombre%>
+TailleVer=%<nombre%>
+TailleHorMax=%<nombre%>
+TailleVerMax=%<nombre%>
+Nom=%<nom%>
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -1161,6 +1186,7 @@ Texte=%<texte%>
 \RoseMul[clés%keyvals]
 
 #keyvals:\RoseMul
+Nom=%<nom%>
 FacteurMin=%<integer%>
 FacteurMax=%<integer%>
 Rayon=##L
@@ -1391,6 +1417,8 @@ ImageAv=%<imagefile%>
 BackgroundAr#true,false
 ImageAr=%<imagefile%>
 ThemeSol=%<texte%>
+Trivial#true,false
+Symboles={%<symbole1,symbole2,...%>}
 #endkeyvals
 
 \SolutionCarte{solution}{commentaires%text}
@@ -1703,6 +1731,8 @@ Teal#B
 \begin{MyboxJQ}{arg1}{arg2}#S
 \begin{MyboxSimpleAr}{arg}#S
 \begin{MyboxSimpleAv}{arg}#S
+\begin{MyboxTrivial}#S
+\begin{MyboxTrivial}[options]#S
 \begin{MyDominoLogo}#S
 \begin{MyDominoMini}#S
 \begin{QuestionBox}#*
@@ -1808,6 +1838,7 @@ Teal#B
 \DessinePyramideNombre{arg1}#S
 \DessinePyramideNombreMul{arg}#S
 \DessineRoseMul#S
+\DessineRoseMulSol#S
 \dispogpfc{arg1}{arg2}{arg3}#S
 \DistriEchange{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \DivCom#S
@@ -1842,6 +1873,7 @@ Teal#B
 \end{MyboxJQ}#S
 \end{MyboxSimpleAr}#S
 \end{MyboxSimpleAv}#S
+\end{MyboxTrivial}#S
 \end{MyDominoLogo}#S
 \end{MyDominoMini}#S
 \end{QuestionBox}#*
@@ -1936,6 +1968,8 @@ Teal#B
 \ListeCards#S
 \ListeCasesAVider#S
 \ListeCasesCroises#S
+\ListeCasesKK#S
+\ListeCasesSKK#S
 \ListeCNQuestions#S
 \ListeColonnesAVider#S
 \ListeColorilude#S
@@ -1982,6 +2016,8 @@ Teal#B
 \ListeInitiale#S
 \ListeInter#S
 \ListeInterlen#S
+\ListeKakuroNombres#S
+\ListeKakuroNombreslen#S
 \ListeLaby#S
 \ListeLabylen#S
 \ListeLabySol#S
@@ -2061,7 +2097,6 @@ Teal#B
 \longbarre#S
 \longbarredepth#S
 \longbarreheight#S
-\LongInter#S
 \LongListe#S
 \LongueSimplification{arg1}{arg2}#S
 \LongueurDecimale#S
@@ -2139,8 +2174,10 @@ Teal#B
 \MPFractionTriangle{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPFractionTriangleH{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPGrille{arg1}{arg2}{arg3}{arg4}#S
+\MPGrillePointe{arg1}{arg2}{arg3}{arg4}#S
 \MPHorloge{arg1}{arg2}{arg3}#S
 \MPIsometrique{arg1}{arg2}{arg3}#S
+\MPIsometriquePointe{arg1}{arg2}{arg3}#S
 \MPMillimetre{arg1}{arg2}{arg3}#S
 \MPNewDEMIGraduee{arg1}{arg2}#S
 \MPNewDROITEGraduee{arg1}{arg2}#S
@@ -2238,6 +2275,7 @@ Teal#B
 \PapierBottom#S
 \PapierCouleur#S
 \PapierGrille#S
+\PapierGrillePointe#S
 \PapierHauteur#S
 \PapierLargeur#S
 \PapierLeft#S
@@ -2246,6 +2284,7 @@ Teal#B
 \PartieEntiereFractionDeci#S
 \PasNumEE#S
 \PetitCote#S
+\PfCAutreMoitieCase#S
 \PfCBstrut#S
 \PfCchiffre{arg1}{arg2}#S
 \PfCCoefConversion#S
@@ -2258,15 +2297,23 @@ Teal#B
 \PfCentoure{arg1}{arg2}#S
 \PfCfiledate#S
 \PfCfileversion#S
+\PfCFooRelatifYohaku#S
 \PfCfooStat#S
 \PfCfrac{arg1}{arg2}#S
 \PfCGraineAlea#S
+\PfCKakuro#S
+\PfCKenKen#S
 \PfCLargeurJury#S
 \PfCLargeurQuestion#S
 \PfCLargeurReponse#S
+\PfCListeSymbolTrivial#S
+\PfCLongInter#S
+\PfCMoitieCase#S
 \PfCMPDessineModelBarre{arg1}{arg2}#S
 \PfCMPDessineModelBarreNonHomogene{arg1}{arg2}#S
 \PfCNomLabyrinthe#S
+\PfCNomRose#S
+\PfCNomShikaku#S
 \PfCPCfaa#S
 \PfCPCfoo#S
 \PfCPremiereColonneDecimale#S
@@ -2276,11 +2323,17 @@ Teal#B
 \PfCQuartileUn#S
 \PfCQunk#S
 \PfCRappelImposeAll#S
+\PfCShikakuh#S
+\PfCShikakuv#S
 \PfCTabCouleur#S
 \PfCTableauDepart#S
 \PfCTableauIncline#S
+\PfCTableauPuissances#S
 \PfCTableauUnite#S
+\PfCTableurLargeur#S
+\PfCTableurLargeurUn#S
 \PfCTBstrut#S
+\PfCTestBlack#S
 \PfCThalesUnit#S
 \PfCTrigoUnit#S
 \PfCTstrut#S
@@ -2291,10 +2344,13 @@ Teal#B
 \PfCYHKListeNA#S
 \PfCYHKListeP#S
 \PfCYHKListeProduit#S
+\PfCYHKnegatif#S
 \PfCYHKnombre#S
 \PfCYHKpair#S
 \PfCYHKTampon#S
 \PfCYohaku#S
+\PfCYohakuAlea#S
+\PfCYohakuInter#S
 \pgcd#S
 \PGCD{arg1}{arg2}#S
 \pileb#S
@@ -2392,6 +2448,8 @@ Teal#B
 \RKsmallsmile#*
 \RKsmile#*
 \RoundedBoxWidth#S
+\ShikakuCreation#S
+\ShikakuCreationSolution#S
 \SommeA#S
 \sommeangle#S
 \SommeB#S
@@ -2438,6 +2496,7 @@ Teal#B
 \theNbRelie#S
 \thePfCCompteLignes#S
 \thePfCnexo#S
+\thePfCShikakuNom#S
 \theQuestionQCM#S
 \thesubxlop#S
 \theTitreQCM#S
@@ -2484,7 +2543,6 @@ Teal#B
 \toklisteTriomino{arg}#S
 \totalangle#S
 \TotalECC#S
-\TotalInter#S
 \TotalLaby#S
 \TotalP#S
 \toto#S
@@ -2494,8 +2552,8 @@ Teal#B
 \TraceDessinGradueSolution{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \TraceEchiquierColoreColorilude#S
 \TraceEchiquierColorilude#S
-\TraceGraphique{arg}#S
 \TraceGraphique[opt]{arg}#S
+\TraceGraphique{arg}#S
 \TraceLabyNombre{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceLabyNombreold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
@@ -2558,9 +2616,3 @@ Teal#B
 \yyy#S
 \zzpar#S
 \zzz#S
-\ListeCasesKK#S
-\ListeKakuroNombres#S
-\PfCTestBlack#S
-\ListeKakuroNombreslen#S
-\PfCKenKen#S
-\PfCKakuro#S

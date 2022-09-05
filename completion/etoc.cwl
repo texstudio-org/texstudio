@@ -1,5 +1,5 @@
 # etoc package
-# Matthew Bertucci 11/8/2021 for v1.09e
+# Matthew Bertucci 2022/09/01 for v1.09f
 
 #include:multicol
 
@@ -10,6 +10,8 @@
  
 \invisibletableofcontents
 \invisiblelocaltableofcontents
+
+\etockeeporiginaltableofcontents#*
 
 ## II. Arbitrarily many TOCs, and local ones too ##
 \tableofcontents
@@ -24,11 +26,13 @@
 \etocsetnexttocdepth{level}
 
 \etocsettocdepth.toc{level}
+\etocimmediatesettocdepth.toc{level}
 
 \etocobeytoctocdepth
 \etocignoretoctocdepth
 
-\etocdepthtag.toc{level name}
+\etocdepthtag.toc{tag name}
+\etocimmediatedepthtag.toc{tag name}
 \etocsettagdepth{tag name}{level}
 
 \etocobeydepthtags
@@ -38,12 +42,22 @@
 \etoclocaldefs
 
 \etocchecksemptiness
+\etocdoesnotcheckemptiness
 \etocnotocifnotoc
 \etocifwasempty{yes}{no}
+\etocxifwasempty{yes}{no}
 
 \etoclocaltop
 
-\etoctoccontentsline{levle name}{name}
+\etoctoccontentsline{level name}{name}
+\etoctoccontentsline*{level name}{name}{bookmark level}
+
+## IV. Surprising uses of etoc ##
+\etocimmediatetoccontentsline{level name}{name}
+\etocimmediatetoccontentsline*{level name}{name}{bookmark level}
+
+\etocxifnumbered#*
+\etocxiffirst#*
 
 ## V. Commands for the toc line styles ##
 \etocsetstyle{level name}{start}{prefix}{contents}{finish}
@@ -174,6 +188,7 @@
 
 ## VIII. Tips ##
 \etocsetlocaltop.toc{level name}
+\etocimmediatesetlocaltop.toc{level name}
 
 ## XI. etoc and the outside world ##
 \etocmemoirstyle#*
@@ -189,3 +204,4 @@
 \etocmarkbothnouc{text}#*
 \etocmarkboth{text}#*
 \etoctableofcontents#*
+\etocoriginaltableofcontents#S

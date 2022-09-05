@@ -1438,3 +1438,11 @@ ulect-l:
 class-ulect-l
 latex-document
 tex
+iopart:
+class-iopart
+latex-document
+tex
+mugsthesis:
+class-mugsthesis
+latex-document
+tex

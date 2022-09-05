@@ -198,7 +198,7 @@ pdfremotestartview=#XYZ,Fit,FitH,FitV,FitR,FitB,FitBH,FitBV
 pdfnewwindow#true,false
 page=%<number%>
 ismap#true,false
-nextactionraw=
+nextactionraw={%<PDF code%>}
 #endkeyvals
 
 \AddToDocumentProperties{property}{value}#*

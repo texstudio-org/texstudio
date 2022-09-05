@@ -5754,6 +5754,7 @@ citexref#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false

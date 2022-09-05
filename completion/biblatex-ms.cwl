@@ -4087,7 +4087,7 @@ xindy#true,false
 \citefilmnoindex{bibid}#*C
 #endif
 
-### biblatex-gb7714-2015 v1.1i ###
+### biblatex-gb7714-2015 v1.1j ###
 #ifOption:style=gb7714-2015
 #keyvals:\usepackage/biblatex-ms#c,\ExecuteBibliographyOptions#c
 # from gb7714-2015.bbx
@@ -4095,6 +4095,7 @@ citexref#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -4128,6 +4129,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
@@ -4228,6 +4236,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -4260,6 +4269,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
@@ -4368,6 +4384,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -4399,6 +4416,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
@@ -4489,6 +4513,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -4516,6 +4541,13 @@ gbalign=#right,left,center,gb7714-2015,gb7714-2015ay
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
@@ -4600,6 +4632,7 @@ citexref#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -4646,6 +4679,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
@@ -4747,6 +4787,7 @@ citexref#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -4781,6 +4822,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
@@ -4888,6 +4936,7 @@ citexref#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -4921,6 +4970,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
@@ -5023,6 +5079,7 @@ erjpunctcn#true,false
 gbmedium#true,false
 gbannote#true,false
 gbfieldtype#true,false
+gbfootbibfmt#true,false
 gbfnperpage#true,false
 gbfootbib#true,false
 gbstyle#true,false
@@ -5070,6 +5127,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \testCJKfirst{field}#*
 \multivolparser{arg}#*
 \multinumberparser{arg}#*
+\BracketLift#*
+\gbleftparen#*
+\gbrightparen#*
+\gbleftbracket#*
+\gbrightbracket#*
+\execgbfootbibfmt#*
+\SlashFont#*
 \footbibmargin#*
 \footbiblabelsep#*
 \execgbfootbib#*
