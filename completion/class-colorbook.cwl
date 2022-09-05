@@ -1,7 +1,6 @@
 # colorbook class
-# Matthew Bertucci 2022/06/20 for release 2022/06/16
+# Matthew Bertucci 2022/09/05 for release 2022/09/03
 
-#include:l3keys2e
 #include:class-book
 #include:silence
 #include:geometry
