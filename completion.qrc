@@ -720,6 +720,7 @@
 <file>completion/class-imsart.cwl</file>
 <file>completion/class-invoice-class.cwl</file>
 <file>completion/class-iodhbwm.cwl</file>
+<file>completion/class-iopart.cwl</file>
 <file>completion/class-iscram.cwl</file>
 <file>completion/class-isodoc.cwl</file>
 <file>completion/class-isov2.cwl</file>
@@ -792,6 +793,7 @@
 <file>completion/class-mosc-l.cwl</file>
 <file>completion/class-msu-thesis.cwl</file>
 <file>completion/class-mucproc.cwl</file>
+<file>completion/class-mugsthesis.cwl</file>
 <file>completion/class-mwart.cwl</file>
 <file>completion/class-mwbk.cwl</file>
 <file>completion/class-mwrep.cwl</file>
@@ -1082,6 +1084,7 @@
 <file>completion/cyrillic.cwl</file>
 <file>completion/dad.cwl</file>
 <file>completion/dantelogo.cwl</file>
+<file>completion/darkmode.cwl</file>
 <file>completion/dashbox.cwl</file>
 <file>completion/dashrule.cwl</file>
 <file>completion/dashundergaps.cwl</file>
@@ -1783,6 +1786,7 @@
 <file>completion/invoice.cwl</file>
 <file>completion/iodhbwm-templates.cwl</file>
 <file>completion/ionumbers.cwl</file>
+<file>completion/iopams.cwl</file>
 <file>completion/ipa.cwl</file>
 <file>completion/ipaex-type1.cwl</file>
 <file>completion/isodate.cwl</file>
@@ -2700,6 +2704,7 @@
 <file>completion/pst-ovl.cwl</file>
 <file>completion/pst-pad.cwl</file>
 <file>completion/pst-pdf.cwl</file>
+<file>completion/pst-pdgr.cwl</file>
 <file>completion/pst-perspective.cwl</file>
 <file>completion/pst-platon.cwl</file>
 <file>completion/pst-plot.cwl</file>
@@ -3038,6 +3043,7 @@
 <file>completion/sqrcaps.cwl</file>
 <file>completion/srbtiks.cwl</file>
 <file>completion/srcltx.cwl</file>
+<file>completion/srdp-tables.cwl</file>
 <file>completion/sseq.cwl</file>
 <file>completion/stabular.cwl</file>
 <file>completion/stack.cwl</file>
