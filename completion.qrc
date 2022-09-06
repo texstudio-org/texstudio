@@ -770,6 +770,7 @@
 <file>completion/class-ltjtarticle.cwl</file>
 <file>completion/class-ltjtbook.cwl</file>
 <file>completion/class-ltjtreport.cwl</file>
+<file>completion/class-ltnews.cwl</file>
 <file>completion/class-ltugboat.cwl</file>
 <file>completion/class-ltxdoc.cwl</file>
 <file>completion/class-ltxdockit.cwl</file>
@@ -1123,6 +1124,8 @@
 <file>completion/delim.cwl</file>
 <file>completion/delimseasy.cwl</file>
 <file>completion/delimset.cwl</file>
+<file>completion/democodelisting.cwl</file>
+<file>completion/democodetools.cwl</file>
 <file>completion/derivative.cwl</file>
 <file>completion/desclist.cwl</file>
 <file>completion/dgruyter.cwl</file>
@@ -3084,6 +3087,7 @@
 <file>completion/studenthandouts.cwl</file>
 <file>completion/styledcmd.cwl</file>
 <file>completion/subcaption.cwl</file>
+<file>completion/subdepth.cwl</file>
 <file>completion/subdocs.cwl</file>
 <file>completion/subeqn.cwl</file>
 <file>completion/subfig.cwl</file>
