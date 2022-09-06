@@ -1,7 +1,6 @@
 # colorist-fancy package
-# Matthew Bertucci 2022/04/28 for release 2022/04/24
+# Matthew Bertucci 2022/09/05 for release 2022/09/03
 
-#include:l3keys2e
 #include:anyfontsize
 #include:tikz
 # loads calc and shadings tikzlibraries
@@ -44,8 +43,9 @@
 \ScanEnv*{arg1}{arg2}{arg3}#*
 \keywordname#*
 \partstring#*
-\qedsymbolOriginal#S
+\customqedsymbol#S
 \IndexDotfill#*
+\IndexLinebreak#*
 \IndexHeading{text}#*
 
 maintheme#B

@@ -1,11 +1,8 @@
 # fduthesis-en class
-# Matthew Bertucci 2022/06/05 for v0.7e
+# Matthew Bertucci 2022/09/05 for v0.8
 
-#include:expl3
-#include:xparse
 #include:xtemplate
 #include:l3keys2e
-#include:etoolbox
 #include:class-ctexbook
 #include:xeCJK
 #include:amsmath
@@ -40,7 +37,7 @@ style/font=#garamond,libertinus,lm,palatino,times,times*,none
 style/font-size=#-4,5
 style/footnote-style=#plain,libertinus,libertinus*,libertinus-sans,pifont,pifont*,pifont-sans,pifont-sans*,xits,xits-sans,xits-sans*
 style/hyperlink=#border,color,none
-style/hyperlink-color=#default,classic,elegant,fantasy,material,business,science,summer,autumn,graylevel,prl
+style/hyperlink-color=#default,classic,material,graylevel,prl
 style/bib-backend=#bibtex,biblatex
 style/bib-style=#author-year,numerical,%<other style%>
 style/cite-style=%<style%>
@@ -49,6 +46,7 @@ style/logo=%<imagefile%>
 style/logo-size=##L
 style/logo-size={%<width,height%>}
 style/auto-make-cover#true,false
+style/declaration-page=%<PDF file%>
 info={%<options%>}
 info/degree=#academic,professional
 info/title={%<title in Chinese%>}
@@ -67,6 +65,7 @@ info/instructors={%<member1,member2,...%>}
 info/keywords={%<keywords in Chinese%>}
 info/keywords*={%<keywords in English%>}
 info/clc={%<classification codes%>}
+info/jel={%<classification codes%>}
 theorem={%<options%>}
 theorem/style=#plain,margin,change,break,marginbreak,changebreak
 theorem/header-font=%<font commands%>

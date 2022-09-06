@@ -1,7 +1,6 @@
 # minimalist-plain package
-# Matthew Bertucci 2022/06/18 for 2022/06/16 release
+# Matthew Bertucci 2022/09/05 for 2022/09/03 release
 
-#include:l3keys2e
 #include:relsize
 #include:anyfontsize
 #include:tikz
@@ -44,8 +43,9 @@
 \LNturnsONfalse#*
 \LNturnsONtrue#*
 \partstring#*
-\qedsymbolOriginal#S
+\customqedsymbol#S
 \IndexDotfill#*
+\IndexLinebreak#*
 \IndexHeading{text}#*
 
 # from amsfashion option of projlib-author

@@ -1446,3 +1446,7 @@ mugsthesis:
 class-mugsthesis
 latex-document
 tex
+ltnews:
+class-ltnews
+latex-document
+tex

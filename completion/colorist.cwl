@@ -1,7 +1,6 @@
 # colorist package
-# Matthew Bertucci 2022/04/07 for release 2022/04/03
+# Matthew Bertucci 2022/09/05 for release 2022/09/03
 
-#include:l3keys2e
 #include:projlib-paper
 #include:projlib-language
 #include:colorist-fancy
