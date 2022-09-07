@@ -1,5 +1,5 @@
 # xgreek package
-# Matthew Bertucci 2022/08/29 for v3.1.0
+# Matthew Bertucci 2022/09/07 for v3.2.0
 
 #keyvals:\usepackage/xgreek#c
 monogreek
@@ -12,7 +12,7 @@ listings
 #endkeyvals
 
 #ifOption:listings
-#include:listings
+#include:xelistings
 #endif
 
 \prefacename#*
