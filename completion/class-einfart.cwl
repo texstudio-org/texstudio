@@ -1,7 +1,6 @@
 # einfart class
-# Matthew Bertucci 2022/04/06 for 2022/04/03 release
+# Matthew Bertucci 2022/09/08 for 2022/09/03 release
 
-#include:l3keys2e
 #include:silence
 #include:geometry
 #include:minimalist
