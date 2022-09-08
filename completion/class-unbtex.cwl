@@ -1,5 +1,5 @@
 # unbtex class
-# Matthew Bertucci 2022/08/12 for v1.1.2
+# Matthew Bertucci 2022/09/08 for v1.1.3
 
 #include:class-abntex2
 #include:fontenc
@@ -20,9 +20,7 @@
 #include:mathtools
 #include:mathrsfs
 #include:xcolor
-# loads dvipsnames option of xcolor
-#include:tabu
-#include:colortbl
+# loads dvipsnames and table options of xcolor
 #include:caption
 #include:algorithm
 #include:algpseudocode
@@ -317,3 +315,6 @@ WildStrawberry#B
 Yellow#B
 YellowGreen#B
 YellowOrange#B
+
+# from table option of xcolor
+#include:colortbl
