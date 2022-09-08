@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/08/29 for v7.8.0
+# Matthew Bertucci 2022/09/08 for v7.9.0
 
 #include:ifxetex
 #include:ifluatex
@@ -229,6 +229,7 @@ awesomewm
 awsamplify
 awsfargate
 awslambda
+axios
 azureartifacts
 azuredataexplorer
 azuredevops
@@ -567,6 +568,7 @@ docusign
 dogecoin
 dolby
 doordash
+dotenv
 dotnet
 douban
 doubanread
@@ -580,6 +582,7 @@ dropbox
 drupal
 dsautomobiles
 dtube
+ducati
 duckdb
 duckduckgo
 dungeonsanddragons
@@ -746,6 +749,7 @@ freelancer
 freenas
 frontendmentor
 fsecure
+fugacloud
 fujifilm
 fujitsu
 funimation
@@ -886,6 +890,7 @@ handshake
 handshakeprotocol
 happycow
 harbor
+harmonyos
 hashnode
 haskell
 hasura
@@ -1129,6 +1134,7 @@ leaderprice
 leaflet
 leanpub
 leetcode
+legacygames
 lemmy
 lenovo
 lens
@@ -1975,6 +1981,7 @@ symphony
 sympy
 synology
 tableau
+tablecheck
 tacobell
 tado
 tails
@@ -2185,6 +2192,7 @@ vuetify
 vulkan
 vultr
 w3c
+wacom
 wagtail
 wakatime
 walkman

@@ -1,5 +1,5 @@
 # teubner package
-# Matthew Bertucci 2/3/2022 for v5.4
+# Matthew Bertucci 2022/09/08 for v5.7
 
 #include:iftex
 #include:graphicx
@@ -58,6 +58,10 @@ GlyphNames
 \bcutbar#*
 \bd{letter}
 \begin{bracedmetrics}{length}
+\begin{GRD}
+\begin{GRD}[series]
+\begin{GRL}
+\begin{GRL}[series]
 \begin{Lipsiakostext}
 \begin{Versi}
 \begin{VERSI}
@@ -113,6 +117,8 @@ GlyphNames
 \ElemInd
 \ENcdq
 \end{bracedmetrics}
+\end{GRD}
+\end{GRL}
 \end{Lipsiakostext}
 \end{versi}
 \end{Versi}
@@ -203,6 +209,9 @@ GlyphNames
 \litnil#*
 \lladd{text}
 \LLadd{text}
+\LLadd{text}[right kerning]#*
+\LLadd[left kerning]{text}#*
+\LLadd[left kerning]{text}[right kerning]
 \lmqi
 \lmqs
 \longa

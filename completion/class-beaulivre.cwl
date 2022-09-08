@@ -1,7 +1,6 @@
 # beaulivre class
-# Matthew Bertucci 2022/06/27 for release 2022/06/16
+# Matthew Bertucci 2022/09/08 for 2022/09/03 release
 
-#include:l3keys2e
 #include:class-book
 #include:silence
 #include:geometry

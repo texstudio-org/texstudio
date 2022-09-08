@@ -1,5 +1,5 @@
 # l3doc class
-# Matthew Bertucci 11/26/2021
+# Matthew Bertucci 2022/09/06 for v2022/01/12
 
 #include:expl3
 #include:calc
@@ -79,15 +79,15 @@ openbib
 
 \cmd{macro%cmd}
 \cmd[options%keyvals]{macro%cmd}
-\cs{csname%plain}
-\cs[options%keyvals]{csname%plain}
-\tn{arg}
-\tn[options%keyvals]{arg}
+\cs{csname}
+\cs[options%keyvals]{csname}
+\tn{csname}
+\tn[options%keyvals]{csname}
 
 #keyvals:\cmd#c,\cs#c,\tn#c
-index=
-module=
+index=%<name%>
 no-index#true,false
+module=%<module%>
 replace#true,false
 #endkeyvals
 
@@ -110,15 +110,33 @@ replace#true,false
 \begin{implementation}
 \end{implementation}
 
-\begin{variable}{variable%cmd}
-\begin{variable}[options]{variable%cmd}
-\end{variable}
 \begin{function}{function%cmd}
-\begin{function}[options]{function%cmd}
+\begin{function}[type%keyvals]{function%cmd}
 \end{function}
-\begin{macro}{macro%cmd}
-\begin{macro}[options]{macro%cmd}
+
+#keyvals:\begin{function}#c
+EXP
+rEXP
+TF
+pTF
+noTF
+#endkeyvals
+
+\begin{variable}{variable%cmd}
+\begin{variable}[options%keyvals]{variable%cmd}
+\end{variable}
+\begin{macro}{macro1,macro2,...%cmd}
+\begin{macro}[options%keyvals]{macro1,macro2,...%cmd}
 \end{macro}
+
+#keyvals:\begin{variable}#c,\begin{macro}#c
+int
+TF
+pTF
+noTF
+verb
+#endkeyvals
+
 \begin{syntax}
 \end{syntax}
 \begin{texnote}
@@ -131,13 +149,13 @@ replace#true,false
 \CodedocExplainREXP
 \CodedocExplainTF
 
-\testfile{arg}#*
-\testfile*{arg}#*
+\testfile#*
+\testfile*#*
 \MacroLongFont#*
 
-\TestFiles{arg}
-\UnitTested{arg}
-\TestMissing{arg}
+\TestFiles{list of files}
+\UnitTested
+\TestMissing{explanation%text}
 
 \DescribeOption{option}
 \SpecialOptionIndex{option}
@@ -149,21 +167,21 @@ replace#true,false
 \begin{ddanger}
 \end{ddanger}
 
-\NB{arg1%text}{arg2%text}
-\begin{NOTE}{arg%text}#V
+\NB{tag%text}{comments%text}
+\begin{NOTE}{tag%text}#V
 \end{NOTE}
 
-\begin{TemplateInterfaceDescription}{template}
+\begin{TemplateInterfaceDescription}{template type name}
 \end{TemplateInterfaceDescription}
-\begin{TemplateDescription}{template}{object type}
+\begin{TemplateDescription}{template type name}{name}
 \end{TemplateDescription}
-\TemplateArgument{arg1}{arg2}
+\TemplateArgument{arg no}{meaning}
 \TemplateSemantics
-\TemplateKey{arg1}{arg2}{arg3}{arg4}
-\begin{InstanceDescription}{arg1}{arg2}{arg3}
-\begin{InstanceDescription}[opt]{arg1}{arg2}{arg3}
+\TemplateKey{key name}{type}{description%text}{default value}
+\begin{InstanceDescription}{template type name}{instance name}{template name}
+\begin{InstanceDescription}[text for key colwidth]{template type name}{instance name}{template name}
 \end{InstanceDescription}
-\InstanceKey{arg1}{arg2}
+\InstanceKey{key name}{value}
 \InstanceSemantics
 
 \DocInputAgain#*

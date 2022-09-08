@@ -302,6 +302,8 @@ float*
 float*=%<values%>
 nofloat
 every float={%<code%>}
+before float={%<code%>}
+after float={%<code%>}
 before={%<code%>}
 after={%<code%>}
 nobeforeafter
@@ -404,6 +406,21 @@ remake
 remake#true,false
 reset
 code={%<code%>}
+IfBlankTF={%<token list%>}{%<true%>}{%<false%>}
+IfBlankT={%<token list%>}{%<true%>}
+IfBlankF={%<token list%>}{%<false%>}
+IfEmptyTF={%<token list%>}{%<true%>}{%<false%>}
+IfEmptyT={%<token list%>}{%<true%>}
+IfEmptyF={%<token list%>}{%<false%>}
+IfNoValueTF={%<arg%>}{%<true%>}{%<false%>}
+IfNoValueT={%<arg%>}{%<true%>}
+IfNoValueF={%<arg%>}{%<false%>}
+IfValueTF={%<arg%>}{%<true%>}{%<false%>}
+IfValueT={%<arg%>}{%<true%>}
+IfValueF={%<arg%>}{%<false%>}
+IfBooleanTF={%<arg%>}{%<true%>}{%<false%>}
+IfBooleanT={%<arg%>}{%<true%>}
+IfBooleanF={%<arg%>}{%<false%>}
 void
 nirvana
 blend before title=#colon,dash,colon hang,dash hang
@@ -659,6 +676,7 @@ marker
 bicolor
 colbacklower=#%color
 opacitybacklower=%<fraction%>
+overlaplower=##L
 bicolor jigsaw
 tile
 beamer
@@ -742,6 +760,10 @@ before app={%<code%>}
 before pre={%<code%>}
 after app={%<code%>}
 after pre={%<code%>}
+before float app={%<code%>}
+before float pre={%<code%>}
+after float app={%<code%>}
+after float pre={%<code%>}
 overlay app={%<code%>}
 overlay pre={%<code%>}
 overlay unbroken app={%<code%>}
