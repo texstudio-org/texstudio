@@ -622,6 +622,7 @@
 <file>completion/class-bookshelf.cwl</file>
 <file>completion/class-brandeis-thesis.cwl</file>
 <file>completion/class-brief.cwl</file>
+<file>completion/class-br-lex.cwl</file>
 <file>completion/class-buctcover.cwl</file>
 <file>completion/class-buctthesis.cwl</file>
 <file>completion/class-bull-l.cwl</file>
@@ -701,6 +702,7 @@
 <file>completion/class-guitbeamer.cwl</file>
 <file>completion/class-gztarticle.cwl</file>
 <file>completion/class-harnon-cv.cwl</file>
+<file>completion/class-hausarbeit-jura.cwl</file>
 <file>completion/class-hecthese.cwl</file>
 <file>completion/class-hepthesis.cwl</file>
 <file>completion/class-hfutthesis.cwl</file>
@@ -738,6 +740,9 @@
 <file>completion/class-jsbook.cwl</file>
 <file>completion/class-jspf.cwl</file>
 <file>completion/class-jsreport.cwl</file>
+<file>completion/class-jurabook.cwl</file>
+<file>completion/class-juraovw.cwl</file>
+<file>completion/class-juraurtl.cwl</file>
 <file>completion/class-kaobook.cwl</file>
 <file>completion/class-kaohandt.cwl</file>
 <file>completion/class-kdpcover.cwl</file>
@@ -1818,6 +1823,7 @@
 <file>completion/jumplines.cwl</file>
 <file>completion/junicode.cwl</file>
 <file>completion/jupynotex.cwl</file>
+<file>completion/jurabase.cwl</file>
 <file>completion/jurabib.cwl</file>
 <file>completion/jvlisting.cwl</file>
 <file>completion/kalendarium.cwl</file>
@@ -1912,6 +1918,7 @@
 <file>completion/lettrine.cwl</file>
 <file>completion/lewisstruc.cwl</file>
 <file>completion/lexend.cwl</file>
+<file>completion/lexref.cwl</file>
 <file>completion/lhelp.cwl</file>
 <file>completion/libertine.cwl</file>
 <file>completion/libertinegc.cwl</file>
