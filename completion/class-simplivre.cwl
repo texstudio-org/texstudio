@@ -1,8 +1,7 @@
 # simplivre class
-# Matthew Bertucci 2022/06/27 for 2022/06/16 release
+# Matthew Bertucci 2022/09/08 for 2022/09/03 release
 
 #include:class-book
-#include:l3keys2e
 #include:silence
 #include:geometry
 #include:minimalist
