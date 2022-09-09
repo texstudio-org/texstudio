@@ -1,5 +1,5 @@
 # circuitikz package
-# updated 4/27/2022 for v1.5.1
+# updated 2022/09/09 for v1.5.4
 
 #include:tikz
 # loads calc, arrows.meta, bending, and fpu tikzlibraries
@@ -134,6 +134,7 @@ example
 \cshape#S
 \pgfcircdeclarecutespdt{name}{bar pos}{arrow code}#*
 \drawmeteringcircle#*
+\pgfcircdeclarejumper{name}{link arc height}#*
 
 # from pgfcirctripoles.tex
 \pgfcircdeclarelogicport{name}{number}{code}#*
@@ -201,6 +202,7 @@ example
 \textii#S
 \componentisboxed#S
 \pgfcircdeclarefourport{name}{code}#*
+\pgfcircdeclaredbipole{arg1}{arg2}{arg3}#*
 
 # from pgfcircmultipoles.tex
 \numpins#S
