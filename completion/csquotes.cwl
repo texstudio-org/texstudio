@@ -1,7 +1,7 @@
 # csquotes package, available from ctan
 # commands for csquotes users
 # dbitouze, 14.09.2013
-# Matthew Bertucci 04.11.2021 for v5.2l
+# Matthew Bertucci 2022/09/11 for v5.2m
 
 #include:etoolbox
 #include:keyval
@@ -43,14 +43,11 @@
 \blockquote{text}
 \blockquote[manual citation]{text}
 \blockquote[manual citation][punct]{text}#*
-\blockquote[manual citation][punct]{text}#*
 
 \foreignblockquote{language}{text}
 \foreignblockquote*{language}{text}#*
 \foreignblockquote{language}[manual citation]{text}
 \foreignblockquote*{language}[manual citation]{text}#*
-\foreignblockquote{language}[manual citation][punct]{text}#*
-\foreignblockquote*{language}[manual citation][punct]{text}#*
 \foreignblockquote{language}[manual citation][punct]{text}#*
 \foreignblockquote*{language}[manual citation][punct]{text}#*
 
@@ -60,15 +57,11 @@
 \hyphenblockquote*{language}[manual citation]{text}#*
 \hyphenblockquote{language}[manual citation][punct]{text}#*
 \hyphenblockquote*{language}[manual citation][punct]{text}#*
-\hyphenblockquote{language}[manual citation][punct]{text}#*
-\hyphenblockquote*{language}[manual citation][punct]{text}#*
 
 \hybridblockquote{language}{text}#*
 \hybridblockquote*{language}{text}#*
 \hybridblockquote{language}[manual citation]{text}#*
 \hybridblockquote*{language}[manual citation]{text}#*
-\hybridblockquote{language}[manual citation][punct]{text}#*
-\hybridblockquote*{language}[manual citation][punct]{text}#*
 \hybridblockquote{language}[manual citation][punct]{text}#*
 \hybridblockquote*{language}[manual citation][punct]{text}#*
 
@@ -283,14 +276,18 @@ german=#quotes,guillemets,swiss
 hungarian
 italian=#guillemets,quotes
 latin=#italianguillemets,germanquotes,germanguillemets,britishquotes,americanquotes
+japanese
 latvian
 norwegian=#guillemets,quotes
 polish=#guillemets,guillemets*
 portuguese=#portuguese,brazilian
 romanian
 serbian=#quotes,guillemets,german
+slovenian=#quotes,guillemets
 spanish=#spanish,mexican
 swedish=#quotes,guillemets,guillemets*
+turkish=#quotes,guillemets
+ukrainian
 #endkeyvals
 
 \DeclarePlainStyle{openoutermark}{closeoutermark}{openinnermark}{closeinnermark}#*
