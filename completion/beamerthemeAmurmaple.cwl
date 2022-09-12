@@ -1,5 +1,5 @@
 # Amurmaple beamertheme
-# Matthew Bertucci 2022/05/31 for v1.0
+# Matthew Bertucci 2022/09/12 for v1.1
 
 #include:multicol
 #include:xparse
@@ -10,7 +10,7 @@
 #include:tcolorbox
 # loads skins tcolorbox library
 #include:tikz
-# loads backgrounds, quotes, angles, automata, and arrows tikzlibraries
+# loads backgrounds, quotes, angles, automata, arrows, and calc tikzlibraries
 
 #keyvals:\usetheme/Amurmaple#c
 nogauge
@@ -18,6 +18,11 @@ nomail
 delaunay
 amurmapleblue
 amurmaplegreen
+sidebarwidth=##L
+sidebar
+leftframetitle
+rule
+rulecolor=#%color
 #endkeyvals
 
 \begin{information}
