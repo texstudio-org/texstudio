@@ -17,11 +17,17 @@
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
 	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
 	<li><a href="#SECTION02a">1.3 Configuring the build system</a></li>
+	<ul>
+		<li><a href="#SECTION02a1">1.3.1 Advanced configuration of the build system</a></li>
+		<li><a href="#SECTION02a2">1.3.2 Details of the execution environment</a></li>
+	</ul>
 	<li><a href="#SECTION030">1.4 Configuring some general issues</a></li>
-	<li><a href="#SECTION03">1.4.1 Configuring the spell checker</a></li>
-	<li><a href="#SECTION04">1.4.2 Configuring the thesaurus</a></li>
-	<li><a href="#SECTION041">1.4.3 Configuring the latex syntax checker</a></li>
-	<li><a href="#SECTION044">1.4.4 Configuring the grammar checker</a></li>
+	<ul>
+		<li><a href="#SECTION03">1.4.1 Configuring the spell checker</a></li>
+		<li><a href="#SECTION04">1.4.2 Configuring the thesaurus</a></li>
+		<li><a href="#SECTION041">1.4.3 Configuring the latex syntax checker</a></li>
+		<li><a href="#SECTION044">1.4.4 Configuring the grammar checker</a></li>
+	</ul>
 	<li><a href="#SECTION040">1.5 Configuring the autocompletion</a></li>
 	<li><a href="#SECTION05">1.6 Configuring shortcuts</a></li>
 	<li><a href="#SECTION06">1.7 Configuring the Latex/Math-Menu</a></li>
@@ -33,26 +39,39 @@
 	<ul>
 	<li><a href="#SECTION11">2.1 Usual commands</a></li>
 	<li><a href="#SECTION12">2.2 Creating a new document</a></li>
-	<li><a href="#SECTION12a">2.2.1 Setting the preamble of a TeX document</a></li>
-	<li><a href="#SECTION12b">2.2.2 Using Templates to start a new document</a></li>
+	<ul>
+		<li><a href="#SECTION12a">2.2.1 Setting the preamble of a TeX document</a></li>
+		<li><a href="#SECTION12b">2.2.2 Using Templates to start a new document</a></li>
+	</ul>
 	<li><a href="#SECTION13">2.3 Structure your document</a></li>
 	<li><a href="#SECTION14">2.4 Browsing your document</a></li>
-	<li><a href="#SECTION141">2.4.1 The Structure View</a></li>
-	<li><a href="#SECTION142">2.4.2 The TOC View</a></li>
-	<li><a href="#SECTION143">2.4.3 Using Bookmarks</a></li>
+	<ul>
+		<li><a href="#SECTION141">2.4.1 The Structure View</a></li>
+		<li><a href="#SECTION142">2.4.2 The TOC View</a></li>
+		<li><a href="#SECTION143">2.4.3 Using Bookmarks</a></li>
+	</ul>
 	<li><a href="#SECTION15">2.5 Formatting your text</a></li>
 	<li><a href="#SECTION16">2.6 Spacings</a></li>
 	<li><a href="#SECTION17">2.7 Inserting a list</a></li>
 	<li><a href="#SECTION18">2.8 Inserting a table</a></li>
-	<li><a href="#SECTION18a">2.8.1 Manipulating a table</a></li>
+	<ul>
+		<li><a href="#SECTION18a">2.8.1 Manipulating a table</a></li>
+	</ul>
 	<li><a href="#SECTION19">2.9 Inserting a "tabbing" environment</a></li>
 	<li><a href="#SECTION110">2.10 Inserting a picture</a></li>
-	<li><a href="#SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></li>
+	<ul>
+		<li><a href="#SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></li>
+	</ul>
 	<li><a href="#SECTION111">2.11 Cross References and notes</a></li>
 	<li><a href="#SECTION112">2.12 Inserting math formulae</a></li>
 	<li><a href="#SECTION113">2.13 Auto completion</a></li>
 	<li><a href="#SECTION114">2.14 Thesaurus</a></li>
 	<li><a href="#SECTION115">2.15 Special Commands</a></li>
+	<ul>
+		<li><a href="#SPECIALDELETING">2.15.1 Delete word/command/environment</a></li>
+		<li><a href="#SPECIALRENAMING">2.15.2 Rename environment</a></li>
+		<li><a href="#SPECIALCUTBUFFER">2.15.3 Cut Buffer</a></li>
+	</ul>
 	</ul>
 </li>
 <li><a href="#SECTION2">3. Compiling a document</a>
@@ -60,16 +79,30 @@
 	<li><a href="#SECTION22">3.1 Compiling</a></li>
 	<li><a href="#SECTION23">3.2 The log files</a></li>
 	<li><a href="#SECTION24">3.3 Internal pdf viewer</a></li>
+	<ul>
+		<li><a href="#SUBSECTION241">3.3.1 Modes and mouse actions</a></li>
+		<li><a href="#SUBSECTION242">3.3.2 Special features</a></li>
+	</ul>
 	</ul>
 </li>
 <li><a href="#SECTION3">4. Other features</a>
 	<ul>
 	<li><a href="#SECTION31">4.1 About documents separated in several files</a></li>
+	<ul>
+		<li><a href="#sec:rootdocument">4.1.1 Root Document</a></li>
+		<li><a href="#sec:LoadedDocuments">4.1.2 Loaded Documents</a></li>
+	</ul>
 	<li><a href="#SECTION32a">4.2 Syntax Check</a></li>
 	<li><a href="#SECTION32">4.3 Bibliography</a></li>
 	<li><a href="#SECTION33a">4.4 External Commands</a></li>
 	<li><a href="#SECTION33b">4.5 SVN Support</a></li>
 	<li><a href="#SECTION33">4.6 Personal macros</a></li>
+	<ul>
+		<li><a href="#sec_textmacros">4.6.1 Text macros</a></li>
+		<li><a href="#SECTION33c">4.6.2 Environment macros</a></li>
+		<li><a href="#JAVASCRIPT-MACROS">4.6.3 Script Macros</a></li>
+		<li><a href="#sectionTriggers">4.6.4 Triggers</a></li>
+	</ul>
 	<li><a href="#SECTION34">4.7 PSTricks support</a></li>
 	<li><a href="#SECTION35">4.8 MetaPost support</a></li>
 	<li><a href="#SECTION36">4.9 The "Convert to Html" command</a></li>
@@ -78,7 +111,17 @@
 	<li><a href="#TEXSTUDIO-CMD">4.12 Synopsis of the TeXstudio command</a></li>
 	<li><a href="#SHORTCUTS">4.13 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.14 Description of the cwl format</a></li>
+	<ul>
+		<li><a href="#CWLFORMAT">4.14.1 cwl file format</a></li>
+		<li><a href="#CWLCOMMANDFORMAT">4.14.2 Command format</a></li>
+		<li><a href="#CWLCLASSIFICATIONFORMAT">4.14.3 Classification format</a></li>
+		<li><a href="#CWLGUIDELINES">4.14.4 cwl guidelines</a></li>
+		<li><a href="#CWLFILEPLACEMENT">4.14.5 cwl file placement</a></li>
+	</ul>
 	<li><a href="#TABLETEMPLATE">4.15 Using table templates</a></li>
+	<ul>
+		<li><a href="#TABLETEMPLATECREATION">4.15.1 Creating table templates</a></li>
+	</ul>
   <li><a href="#MISC-FEATURES">4.16 Miscellaneous Features</a></li>
 	</ul>
 </li>
@@ -89,7 +132,7 @@
 	<li><a href="#LANGUAGEDEF">5.3 Writing your own language definitions</a></li>
 	</ul>
 </li>
-<li><a href="#CHANGELOG">Changelog</a></li>
+<li><a href="#CHANGELOG">6. Changelog</a></li>
 </ul>
 <hr>
 
@@ -535,17 +578,17 @@ The column to the right contains the list of suggested synonyms.
 A selected word from this list apears in the first line to the right as proposition for replacement of the text.
 This word can be changed manually. It is also used to do further investigations for words and their synonyms which "start with" or "contain" that word. With "lookup" it can be directly used to look for a synonym for that word.</p>
 <h2 id="SECTION115">2.15 Special Commands</h2>
-<h3>Delete word/command/environment</h3>
+<h2 id="SPECIALDELETING">2.15.1 Delete word/command/environment</h3>
 <p>With the shortcut Alt+Del, the word under the cursor is deleted.
 If it is a command, the command is deleted including opening and closing braces.
 E.g. "\textbf{text}" leave "text".
 If it is an environment, the enclosing begin/end are removed.</p>
-<h3>Rename environment</h3>
+<h2 id="SPECIALRENAMING">2.15.2 Rename environment</h3>
 <p>If you place the cursor on an environment name, after a moment a mirror-cursor is activated on the environment name which allows synchronous change of the environment name in the begin- and end-command.
 So if you want to change a "\begin{tabular}...\end{tabular}" construction to "\begin{tabularx}...\end{tabularx}", place the text cursor on "tabular", wait for a second and then, after the mirror-cursor appears, change "tabular" to "tabularx".</p>
-<h3>Cut Buffer</h3>
+<h2 id="SPECIALCUTBUFFER">2.15.3 Cut Buffer</h3>
 <p>If you select something and then start to type in a command and complete it, the selection is put in as first argument.
-E.g. you have a "text", select it and start typing "\textbf", command which is completed. The resulting text is "\textbf{text}"</p>
+E.g. you have a "text", select it and start typing "\textbf", command which is completed. The resulting text is "\textbf{text}".</p>
 <h1 id="SECTION2">3. Compiling a document</h1>
 <h2 id="SECTION22">3.1 Compiling</h2>
 <p>The easiest way to compile a document is to use the "Compile" command or the "Build&amp;View" command ("Compile" button - shortcut : F6). You can select the default command via the "Configure TeXstudio" dialog.<br>(You can also launch each command one by one in the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).</p>
@@ -1640,7 +1683,7 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 <li>Knowledge on the valid commands in the current document (depending on \usepackage statements)</li>
 <li>Semantic information that provide additional context in the editor; e.g. a \ref-like command will check for the existence of the referenced label</li>
 </ul>
-<h3>4.14.1 cwl file format</h3>
+<h3 id="CWLFORMAT">4.14.1 cwl file format</h3>
 <p>
 Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
 <p><code>&lt;command&gt;[#classification]</code><br></p>
@@ -1662,7 +1705,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
 </ul>
 <p>cwl files should be encoded as UTF-8.</p>
-<h3>4.14.2 Command format</h3>
+<h3 id="CWLCOMMANDFORMAT">4.14.2 Command format</h3>
 <p>In its simplest form the command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>). New lines can be included in a command by <code>%\</code>.</p>
 <h4>Argument Names</h4>
 <p>The argument names are visible in the completer window and after completion as placeholders in the editor. In general, you are free to name the arguments as you like. We encurage to provide meaningful names e.g. <code>\parbox[position]{width}{text}</code> instead of <code>\parbox[arg1]{arg2}{arg3}</code>.</p>
@@ -1701,7 +1744,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>formula</code> or ends with <code>%formula</code>: The argument is always treated as if in math-mode. See chemformula.cwl for an example.</li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
-<h3>4.14.3 Classification format</h3>
+<h3 id="CWLCLASSIFICATIONFORMAT">4.14.3 Classification format</h3>
 <p>The following classifications are known to TXS:</p>
 <table>
 <tr><th>Classifier</th><th>Meaning</th></tr>
@@ -1748,7 +1791,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 	<tr><td><code>\myplot{file}{customname%labeldef}</code></td><td>defines the second argument as label, but you are free to choose the name <code>customname</code> which will be used as a placeholder in the completer.</td></tr>
 	<tr><td><code>\myplot{file}{label1%labeldef}{label2%labeldef}</code></td><td>defines the second and third arguments as labels.</td></tr>
 </table>
-<h3>4.14.4 cwl guidelines</h3>
+<h3 id="CWLGUIDELINES">4.14.4 cwl guidelines</h3>
 <p>Though TeXstudio can automatically create cwls from packages, these autogenerated cwls do not contain meaningful argument names and no classification of commands. Therefore we ship hand-tuned cwls for many packages. We encourage users  to contribute new cwl files. These should have the following attributes:</p>
 <ul>
   <li><b>package-based:</b> Each cwl should correspond to a package. The exception are some cwls containing fundamental (La)TeX commands, but we've already written them so you should not have to bother. The cwl should be named like the package so that automatic loading works. If you <code>\usepackage{mypackage}</code> TeXstudio will load mypackage.cwl if available.</li>
@@ -1757,7 +1800,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><b>prioritized:</b> Some packages may specify very many commands. Mark the unusual ones by the *-classifier to prevent the completer from overcrowding with rarely used commands.</li>
 </ul>
 
-<h3>4.14.5 cwl file placement</h3>
+<h3 id="CWLFILEPLACEMENT">4.14.5 cwl file placement</h3>
 <p>cwl files can be provided from three locations. If present, the user provided cwl is taken, if not built-in versions are taken. As a last resort, txs automatically generates cwls from latex styles, though these only serve to provide syntax information. Context information for arguments are not available and no completion hints are given.</p>
 <ul>
 <li><b>%appdata%\texstudio\completion\user or .config/texstudio/completion/user</b> user generated cwls</li>
@@ -1795,7 +1838,7 @@ c&amp;d\\ \hline
 \end{tabular}
 </pre>
 <p>These templates give the opportunity to easily reformat tables after a predefined fashion, thus achieving a uniform table style in a document, even if the tables are entered in a very simple style.<p>
-<h3>4.15.1 Creating table templates</h3>
+<h3 id="TABLETEMPLATECREATION">4.15.1 Creating table templates</h3>
 
 <p>The templates can be defined by the user as well. They have to be place in the config directory (Linux: ~/.config/texstudio) and need to named after the scheme tabletemplate_<i>name</i>.js.</p>
 <p>Meta data is used to provide additional information for the template. It can be stored in a <code>metaData</code> object in the source code. The code <code>var metaData = {</code> has to start on the first line of the file. Currently only string values are accepted. It is possible to use html tags for formatting. Example:</p>
@@ -1955,7 +1998,7 @@ println("\\end{"+env+"}")
 <p>The results is the following highlighting:</p>
 <img src="format_example.png" border=1>
 
-<h1 id="CHANGELOG">Changelog</h1>
+<h1 id="CHANGELOG">6. Changelog</h1>
 
 <p>The changelog can be found in the <a href="https://github.com/texstudio-org/texstudio/blob/master/utilities/manual/CHANGELOG.txt">Github repository</a>.</p>
 
