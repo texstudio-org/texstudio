@@ -106,7 +106,11 @@
 	<li><a href="#SECTION34">4.7 PSTricks support</a></li>
 	<li><a href="#SECTION35">4.8 MetaPost support</a></li>
 	<li><a href="#SECTION36">4.9 The "Convert to Html" command</a></li>
-	<li><a href="#SECTION37">4.10 "Forward/Inverse search" with TeXstudio</a></li>
+	<li><a href="#SECTION37">4.10 Forward and Inverse searching</a></li>
+	<ul>
+		<li><a href="#FORWORDSEARCHINTERNAL">4.10.1 Internal pdf-viewer</a></li>
+		<li><a href="#FORWORDSEARCHEXTERNAL">4.10.2 General Set-up for external viewers</a></li>
+	</ul>
 	<li><a href="#TEXCOM">4.11 Advanced header usage</a></li>
 	<li><a href="#TEXSTUDIO-CMD">4.12 Synopsis of the TeXstudio command</a></li>
 	<li><a href="#SHORTCUTS">4.13 Keyboard shortcuts</a></li>
@@ -617,6 +621,7 @@ the Log File button. The Issues button offers a similar function for the table w
 or window-based (in a separate window). The former uses an area to the right of the editor, the latter uses its own
 window and gives the user more options. The viewer can be opened by clicking the <it>View</it> button or by pressing the
 F7 key.</p>
+<p>You may want to change otions in the config dialog (s. Internal PDF Viewer). For forward and inverse searching, scrolling follows cursor, and cursor follows scrolling see <i><a href="#SECTION37">4.10 Forward and Inverse searching</a></i>.</p>
 <h3 id="SUBSECTION241">3.3.1 Modes and mouse actions</h3>
 <p>You can choose main mode <i>Magnify</i> or <i>Scroll</i> from the toolbar. These offer following actions:</p>
 
@@ -626,7 +631,7 @@ F7 key.</p>
 			<li>left mouse button click opens magnifier showing enlarged part of the text</li>
 			<li>Shift + left mouse button click increase zoom level</li>
 			<li>Alt + left mouse button click decrease zoom level</li>
-			<li>Ctrl + left mouse button click jumps to the source (sync)</li>
+			<li>Ctrl + left mouse button click jumps to the source (inverse search)</li>
 			<li>Ctrl + Shift + left mouse button click copies coordinates to clipboard (s. <i><a href="#SUBSECTION242">Special features</a></i>)</li>
 		</ul>
 <li>Scroll</li>
@@ -634,12 +639,11 @@ F7 key.</p>
 			<li>left mouse button click grabs the document so you can scroll it around or follows a link</li>
 			<li>double left mouse button click opens magnifier</li>
 			<li>Shift + left mouse button click sets grid column for the first page (s. <i><a href="#SUBSECTION242">Special features</a></i>)</li>
-			<li>Ctrl + left mouse button click jumps to the source (sync)</li>
+			<li>Ctrl + left mouse button click jumps to the source (inverse search)</li>
 			<li>Ctrl + Shift + left mouse button click copies coordinates to clipboard (s. <i><a href="#SUBSECTION242">Special features</a></i>)</li>
 		</ul>
 </ul>
 
-<p>You may want to change otions in the config dialog (s. Internal PDF Viewer). For searching see <i><a href="#SECTION37">4.10 "Forward/Inverse search" with TeXstudio</a></i>.</p>
 <h3 id="SUBSECTION242">3.3.2 Special features</h3>
 <p>The viewer arranges the pages in a grid of columns and rows in which the pages are placed. Normally, the first page is
 placed on the left in the first row and the following pages fill the row and so on. This behavior may not be appropriate
@@ -1381,17 +1385,21 @@ Synopsis :<br>
 <p><IMG src="doc19.png" border="1" alt="doc19"></p>
 
 
-<h2 id="SECTION37">4.10 "Forward/Inverse search" with TeXstudio</h2>
-<h3>Integrated pdf-viewer</h3>
+<h2 id="SECTION37">4.10 Forward and Inverse searching</h2>
+<p>In this section you will not learn how to find a specific text, as you know it from other editors. Searching is different: If you see something in
+your pdf document that you want to change, then you need to figure out where to change your LaTeX document in the editor (inverse search).
+Or you want to figure out where your changed text will be displayed in the pdf (forward search). This is discussed in the following sections for
+different pdf-viewers.</p>
+<h3 id="FORWORDSEARCHINTERNAL">4.10.1 Internal pdf-viewer</h3>
 <p>
-TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
-Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned. Additionally you can CTRL+left click on a word in the text editor to jump to the pdf or use the context menu and select "Go To PDF".<br>
-Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
-Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor opposition in the editor.
+TeXstudio provides an internal pdf-viewer (s. <a href="#SECTION24">3.3 Internal pdf viewer</a>) which offers forward and inverse search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.</p>
+<p>Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned. Additionally you can use CTRL+left mouse button click on a word in the text editor to jump to the pdf or use the context menu and select "Go To PDF".</p>
+<p>Inverse search can be activated by clicking in the pdf with CTRL+left mouse button or by selecting "jump to source" in the context menu, which is activated with a right mouse button click.</p>
+<p>Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor opposition in the editor.
 Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
 </p>
 
-<h3>General Set-up for external viewers</h3>
+<h3 id="FORWORDSEARCHEXTERNAL">4.10.2 General Set-up for external viewers</h3>
 <p>
 Some (dvi) viewers can jump to (and visually highlight) a position in the DVI file that corresponds to a certain line number in the (La)TeX source file.<br>
 To enable this forward search, you can enter the command line of the corresponding viewer either as command line for an user tool in the User menu (User/User Commands/Edit...) or in the viewer command line in the config dialog  ("Options/Configure TeXstudio" -> "Commands").
@@ -1401,7 +1409,7 @@ On Windows, you can execute DDE commands by inserting a command of the form: <sp
 Below you can find a list of commands for some common viewers. Of course, you have to replace <i>(your program path)</i> with the path of the program on your computer, if you want to use a command.<br>
 </p>
 
-<h3>Sumatra</h3>
+<h4>Sumatra</h4>
 <p>
 Launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search "\"<i>(your TeXstudio path)</i>\" \"%%f\" -line %%l" "?am.pdf"</span><br><br>
 Jump to a line in a running Sumatra (Windows only): <span class="command">dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
@@ -1411,12 +1419,12 @@ Launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</
 A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Program Files/SumatraPDF/SumatraPDF.exe</span>
 </p>
 
-<h3>Foxit Reader</h3>
+<h4>Foxit Reader</h4>
 <p>
 Launch Foxit Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
 </p>
 
-<h3>Acrobat Reader</h3>
+<h4>Acrobat Reader</h4>
 <p>
 Launch Acrobat Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
 
@@ -1443,7 +1451,7 @@ Close the document in a running Adobe Reader (Windows only): <span class="comman
 Note: Since Adobe Reader blocks writing to PDFs which are open in the Reader, you have to close the PDF before recompiling. You can define a User Command for the above DDE-command and call it at the beginning of your build chain. This ensures that the file will be closed and thus is writable when compiling.
 </p>
 
-<h3>Yap (Yet Another Previewer)</h3>
+<h4>Yap (Yet Another Previewer)</h4>
 <p>
 Launch Yap from TeXstudio: <span class="command">"<i>(your Yap path)</i>" -1 -s @?c:m.tex %.dvi</span>
 <br><br>
@@ -1452,32 +1460,32 @@ Launch TeXstudio from Yap: <span class="command">"<i>(your TeXstudio path)</i>" 
 A possible value for <i>(your Yap path)</i> is <span class="command">C:\Program Files\MiKTeX 2.7\miktex\bin\yap.exe</span>
 </p>
 
-<h3>xdvi</h3>
+<h4>xdvi</h4>
 <p>
 Launch xdvi from TeXstudio: <span class="command">xdvi %.dvi  -sourceposition @:?c:m.tex</span><br><br>
 
 Launch xdvi from TeXstudio and enable inverse search: <span class="command">xdvi -editor "texstudio %f -line" %.dvi -sourceposition @:%.tex</span>
 </p>
 
-<h3>kdvi</h3>
+<h4>kdvi</h4>
 <p>
 Launch kdvi from TeXstudio: <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
 </p>
 
-<h3>Okular</h3>
+<h4>Okular</h4>
 <p>
 Launch okular from TeXstudio: <span class="command">okular --unique %.dvi#src:@?c:m.tex</span><br><br>
 Launch TeXstudio from Okular: <span class="command">texstudio %f -line %l</span>
 </p>
 
-<h3>Skim</h3>
+<h4>Skim</h4>
 <p>
 Launch Skim from TeXstudio: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
 Launch TeXstudio from skim: Command: <span class="command">/applications/texstudio.app/contents/macos/texstudio</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 </p>
 
-<h3>qpdfview</h3>
+<h4>qpdfview</h4>
 <p>
 Launch qpdfview from TeXstudio: <span class="command">qpdfview --unique ?am.pdf#src:?c:am.tex:@:0 2> /dev/null</span><br><br>
 Launch TeXstudio from qpdfview: <span class="command">texstudio "%1" -line %2</span>
