@@ -1,5 +1,5 @@
 # dtxdescribe package
-# Matthew Bertucci 2/3/2022 for v1.03
+# Matthew Bertucci 2022/09/16 for v1.05
 
 #include:makeidx
 #include:etoolbox
@@ -97,30 +97,33 @@
 \end{dtxexample}
 \dtxexamplecodename#*
 \dtxexampleresultname#*
+
 \begin{sourceverb}#V
 \begin{sourceverb}[options%keyvals]#V
 \end{sourceverb}
 \begin{fsourceverb}#V
 \begin{fsourceverb}[options%keyvals]#V
 \end{fsourceverb}
+
 #keyvals:\begin{sourceverb},\begin{fsourceverb}
 commentchar=%<single char%>
 gobble=%<integer%>
-formatcom=%<command%>
-fontfamily=
-fontsize=
-fontshape=
-fontseries=
+formatcom=%<commands%>
+formatcom*=%<commands%>
+fontfamily=%<family%>
+fontsize=%<size macro%>
+fontshape=%<shape%>
+fontseries=%<series%>
 frame=#none,leftline,topline,bottomline,lines,single
 framerule=##L
 framesep=##L
 rulecolor=%<color cmd%>
 fillcolor=%<color cmd%>
-label=
+label=%<label text%>
 labelposition=#none,topline,bottomline,all
 numbers=#none,left,right
 numbersep=##L
-firstnumber=#auto,last,integer
+firstnumber=%<auto|last|<integer>%>
 stepnumber=%<integer%>
 numberblanklines#true,false
 firstline=%<integer%>
@@ -129,17 +132,23 @@ showspaces#true,false
 showtabs#true,false
 obeytabs#true,false
 tabsize=%<integer%>
-baselinestretch=##L
+baselinestretch=%<factor%>
 commandchars=%<three chars%>
 xleftmargin=##L
 xrightmargin=##L
 resetmargins#true,false
 hfuzz=##L
 samepage#true,false
-codes=
-defineactive=
+codes={%<code%>}
+codes*={%<code%>}
+defineactive={%<code%>}
+defineactive*={%<code%>}
 reflabel=##l
+fileext=%<extension%>
+vspace=##L
+listparameters={%<code%>}
 #endkeyvals
+
 \begin{sourcedisplay}
 \end{sourcedisplay}
 \fquad
@@ -185,7 +194,7 @@ reflabel=##l
 \CSS
 \CSSthree
 \EPUB
-\tikz
+\TikZ
 \MathML
 \MathJax
 \CTAN
