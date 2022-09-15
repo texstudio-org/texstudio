@@ -1470,3 +1470,7 @@ juraurtl:
 class-juraurtl
 latex-document
 tex
+milog:
+class-milog
+latex-document
+tex
