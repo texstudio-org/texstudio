@@ -1,20 +1,29 @@
 # langnames package
-# Matthew Bertucci 2022/08/29 for v1.0
+# Matthew Bertucci 2022/09/16 for v2.0
 
-#include:xkeyval
+#include:expkv-opt
+#include:expkv-def
 
 #keyvals:\usepackage/langnames#c
 glottolog
 wals
 none
+native
 #endkeyvals
 
 \lname{ISO code%keyvals}
 \liso{ISO code%keyvals}
 \lfam{ISO code%keyvals}
+\langnative{ISO code%keyvals}
 \newlang{code}{name}{family}#s#%langnamescode
+\renewlang{dataset}{code}{name}{family}
+\newlangnative{dataset}{code}{name}
+\changetoglottolog
+\changetowals
+\changetonone
+\ssp#S
 
-#keyvals:\lname#c,\liso#c,\lfam#c
+#keyvals:\lname#c,\liso#c,\lfam#c,\langnative#c
 knw
 nmn
 alu
