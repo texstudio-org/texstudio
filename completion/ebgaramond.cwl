@@ -1,5 +1,5 @@
 # ebgaramond package
-# Matthew Bertucci 8/20/2021
+# Matthew Bertucci 2022/09/16 for v2022/09/10
 
 #include:ifxetex
 #include:ifluatex
@@ -10,7 +10,6 @@
 #include:mweights
 
 #keyvals:\usepackage/ebgaramond#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 lining
@@ -31,10 +30,6 @@ eb
 #endkeyvals
 
 \ebgaramond
-\ebgaramondOsF
-\ebgaramondLF
-\ebgaramondtabular
-\ebgaramondproportional
 \oldstylenums{text}
 \liningnums{text}
 \tabularnums{text}

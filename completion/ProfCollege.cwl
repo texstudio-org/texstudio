@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/09/04 for v0.99-y
+# Matthew Bertucci 2022/09/12 for v0.99-z
 
 #include:verbatim
 #include:mathtools
@@ -36,6 +36,7 @@
 #include:fmtcount
 #include:environ
 #include:longtable
+#include:printlen
 #include:ifoddpage
 
 #keyvals:\usepackage/ProfCollege#c
@@ -889,8 +890,8 @@ LabelC=%<nombre%>
 #keyvals:\begin{Tableur}
 Bandeau#true,false
 Colonnes=%<integer%>
-Largeur=%<nombre%>
-LargeurUn=%<nombre%>
+Largeur=##L
+LargeurUn=##L
 Formule=%<formule%>
 Cellule=%<cellule%>
 Ligne=%<integer%>
@@ -1069,8 +1070,8 @@ CouleurSolution=#%color
 #endkeyvals
 
 ## Le Shikaku ##
-\Shikaku{description du je}
-\Shikaku[clés%keyvals]{description du je}
+\Shikaku{description du jeu}
+\Shikaku[clés%keyvals]{description du jeu}
 
 #keyvals:\Shikaku
 Taille=%<nombre%>
@@ -1084,6 +1085,21 @@ TailleVer=%<nombre%>
 TailleHorMax=%<nombre%>
 TailleVerMax=%<nombre%>
 Nom=%<nom%>
+#endkeyvals
+
+## Calculs Croisés ##
+\CalculsCroises{description du jeu}
+\CalculsCroises[clés%keyvals]{description du jeu}
+
+#keyvals:\CalculsCroises
+Largeur=##L
+Couleur=#%color
+Solution#true,false
+Inverse#true,false
+Vide#true,false
+Creation#true,false
+Negatifs#true,false
+Graines#true,false
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -1208,7 +1224,9 @@ Couleur=#%color
 
 #keyvals:\DefiTableTexte
 LargeurT=##L
+Creation#true,false
 Solution#true,false
+Graine=%<nombre%>
 #endkeyvals
 
 ## Billards ##
@@ -1828,6 +1846,7 @@ Teal#B
 \DecalageLigne#S
 \DecompositionFracDeciComplete#S
 \DefinirListeFichiers#S
+\DefiTableNombreLettreduCode{arg}#S
 \demibarre#S
 \denominateur#S
 \DenominateurDiv#S
@@ -1965,6 +1984,7 @@ Teal#B
 \ListeCalc#S
 \ListeCalculs#S
 \ListeCalculslen#S
+\ListeCaracteresUniques#S
 \ListeCards#S
 \ListeCasesAVider#S
 \ListeCasesCroises#S
@@ -1989,7 +2009,14 @@ Teal#B
 \ListeDefiTablePhrase#S
 \ListeDefiTableTableau#S
 \ListeDefLigne#S
+\ListeDesCaracteresAUtiliser#S
+\ListeDesCaracteresFoo#S
 \ListeDesChiffres#S
+\ListeDesLettres#S
+\ListeDesLettresUniques#S
+\ListeDesLettresUniqueslen#S
+\ListeDesProduits#S
+\ListeDesProduitsFoo#S
 \ListeDesSSDossiersPerso#S
 \Listedesvaleursaplacersurlademidroite#S
 \ListeDiviseur{arg1}#S
@@ -2003,6 +2030,7 @@ Teal#B
 \ListeEtapes#S
 \ListeFichiers#S
 \ListeFichierslen#S
+\ListeFinaleDesCaracteres#S
 \ListeFlash#S
 \ListeFlashlen#S
 \ListeFonction#S
@@ -2087,6 +2115,7 @@ Teal#B
 \ListeSSDossiers#S
 \ListeTempo#S
 \ListeTotale#S
+\ListeTotaleDesCaracteres#S
 \ListeTraces#S
 \ListeTriominos#S
 \ListeValeur#S
@@ -2114,6 +2143,7 @@ Teal#B
 \med#S
 \meda#S
 \MelangeListe{arg1}{arg2}#S
+\MelangeListeNew{arg1}{arg2}#S
 \mois#*
 \MotifTexte#S
 \MotsCodesMaLettre#S
@@ -2286,6 +2316,8 @@ Teal#B
 \PetitCote#S
 \PfCAutreMoitieCase#S
 \PfCBstrut#S
+\PfCCalculsCroises#S
+\PfCCCFoo#S
 \PfCchiffre{arg1}{arg2}#S
 \PfCCoefConversion#S
 \PfCCompteurMelange#S
@@ -2297,6 +2329,8 @@ Teal#B
 \PfCentoure{arg1}{arg2}#S
 \PfCfiledate#S
 \PfCfileversion#S
+\PfCFooArrivee#S
+\PfCFooDepart#S
 \PfCFooRelatifYohaku#S
 \PfCfooStat#S
 \PfCfrac{arg1}{arg2}#S
@@ -2306,6 +2340,8 @@ Teal#B
 \PfCLargeurJury#S
 \PfCLargeurQuestion#S
 \PfCLargeurReponse#S
+\PfCListeCCNb#S
+\PfCListeCCOp#S
 \PfCListeSymbolTrivial#S
 \PfCLongInter#S
 \PfCMoitieCase#S
@@ -2334,7 +2370,9 @@ Teal#B
 \PfCTableurLargeurUn#S
 \PfCTBstrut#S
 \PfCTestBlack#S
+\PfCTestEtoile#S
 \PfCThalesUnit#S
+\PfCTotal#S
 \PfCTrigoUnit#S
 \PfCTstrut#S
 \PfCYHKimpair#S
@@ -2372,6 +2410,7 @@ Teal#B
 \PremierLong{arg1}#S
 \PremierMultipleVide{arg1}{arg2}#S
 \premierun#S
+\PtAlea#S
 \pupils#*
 \QCMPfC{arg1}{arg2}#S
 \QFDaily#S

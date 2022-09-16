@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/09/08 for v7.9.0
+# Matthew Bertucci 2022/09/16 for v7.10.0
 
 #include:ifxetex
 #include:ifluatex
@@ -324,6 +324,7 @@ bugsnag
 buildkite
 bukalapak
 bulma
+bun
 bunq
 burgerking
 burton
@@ -1354,6 +1355,7 @@ newbalance
 newjapanprowrestling
 newrelic
 newyorktimes
+nextbilliondotai
 nextcloud
 nextdoor
 nextdotjs
@@ -1433,6 +1435,7 @@ openjdk
 openlayers
 openmined
 opennebula
+openproject
 opensea
 opensearch
 opensourceinitiative
@@ -1638,6 +1641,7 @@ qi
 qiita
 qiskit
 qiwi
+qmk
 qt
 qualcomm
 qualtrics
@@ -2139,6 +2143,7 @@ uptobox
 upwork
 usps
 v
+v2ex
 v8
 vaadin
 vagrant
@@ -2201,6 +2206,7 @@ walmart
 wappalyzer
 warnerbros
 wasmcloud
+wasmer
 wattpad
 waze
 wearos
@@ -2241,6 +2247,7 @@ wikivoyage
 winamp
 windicss
 windows
+windows11
 windows95
 windowsterminal
 windowsxp
