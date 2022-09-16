@@ -790,6 +790,7 @@
 <file>completion/class-memo-l.cwl</file>
 <file>completion/class-mensa-tex.cwl</file>
 <file>completion/class-metanorma.cwl</file>
+<file>completion/class-milog.cwl</file>
 <file>completion/class-minimart.cwl</file>
 <file>completion/class-minimbook.cwl</file>
 <file>completion/class-mla.cwl</file>
@@ -3203,6 +3204,7 @@
 <file>completion/textcase.cwl</file>
 <file>completion/textcmds.cwl</file>
 <file>completion/textcomp.cwl</file>
+<file>completion/textcsc.cwl</file>
 <file>completion/textfit.cwl</file>
 <file>completion/textfrac.cwl</file>
 <file>completion/textglos.cwl</file>
