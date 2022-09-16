@@ -263,6 +263,7 @@
 <commandDefinition>
    <latexCommand>\DJ{}</latexCommand>
    <unicodeCommand>Đ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    <package>
       <name>fontenc</name>
       <arguments>T1</arguments>
@@ -274,6 +275,7 @@
 <commandDefinition>
    <latexCommand>\DH{}</latexCommand>
    <unicodeCommand>Ð</unicodeCommand>
+   <forcePNG>true</forcePNG>
    <package>
       <name>fontenc</name>
       <arguments>T1</arguments>
@@ -1140,6 +1142,7 @@
 <commandDefinition>
    <latexCommand>\SS{}</latexCommand>
    <unicodeCommand>SS</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->

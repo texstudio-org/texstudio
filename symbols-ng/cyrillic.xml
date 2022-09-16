@@ -575,6 +575,7 @@
 <commandDefinition>
    <latexCommand>\CYRYU</latexCommand>
    <unicodeCommand>Ю</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -610,6 +611,7 @@
 <commandDefinition>
    <latexCommand>\cyra</latexCommand>
    <unicodeCommand>а</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -644,6 +646,7 @@
 <commandDefinition>
    <latexCommand>\cyrv</latexCommand>
    <unicodeCommand>в</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -797,6 +800,7 @@
 <commandDefinition>
    <latexCommand>\cyrk</latexCommand>
    <unicodeCommand>к</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -848,6 +852,7 @@
 <commandDefinition>
    <latexCommand>\cyrn</latexCommand>
    <unicodeCommand>н</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -882,6 +887,7 @@
 <commandDefinition>
    <latexCommand>\cyrp</latexCommand>
    <unicodeCommand>п</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -984,6 +990,7 @@
 <commandDefinition>
    <latexCommand>\cyrh</latexCommand>
    <unicodeCommand>х</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1154,6 +1161,7 @@
 <commandDefinition>
    <latexCommand>\cyrya</latexCommand>
    <unicodeCommand>я</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1189,6 +1197,7 @@
 <commandDefinition>
    <latexCommand>\CYRABHCHDSC</latexCommand>
    <unicodeCommand>Ҿ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1556,6 +1565,7 @@
 <commandDefinition>
    <latexCommand>\CYRTSHE</latexCommand>
    <unicodeCommand>Ћ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1626,6 +1636,7 @@
 <commandDefinition>
    <latexCommand>\CYRGHK</latexCommand>
    <unicodeCommand>Ҕ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1806,6 +1817,7 @@
 <commandDefinition>
    <latexCommand>\CYRSEMISFTSN</latexCommand>
    <unicodeCommand>Ҍ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1845,6 +1857,7 @@
 <commandDefinition>
    <latexCommand>\CYRSCHWA</latexCommand>
    <unicodeCommand>Ә</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1916,6 +1929,7 @@
 <commandDefinition>
    <latexCommand>\CYRY</latexCommand>
    <unicodeCommand>Ү</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -1950,6 +1964,7 @@
 <commandDefinition>
    <latexCommand>\CYRAE</latexCommand>
    <unicodeCommand>Ӕ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -2021,6 +2036,7 @@
 <commandDefinition>
    <latexCommand>\cyrabhchdsc</latexCommand>
    <unicodeCommand>ҿ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -2132,6 +2148,7 @@
 <commandDefinition>
    <latexCommand>\cyrkdsc</latexCommand>
    <unicodeCommand>қ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -2278,6 +2295,7 @@
 <commandDefinition>
    <latexCommand>\cyrnhk</latexCommand>
    <unicodeCommand>ӈ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -2421,6 +2439,7 @@
 <commandDefinition>
    <latexCommand>\cyrushrt</latexCommand>
    <unicodeCommand>ў</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>
@@ -2585,6 +2604,7 @@
 <commandDefinition>
    <latexCommand>\cyrchldsc</latexCommand>
    <unicodeCommand>ӌ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    
    <package>
       <name>fontenc</name>

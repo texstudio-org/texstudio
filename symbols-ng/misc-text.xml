@@ -293,6 +293,7 @@
 <commandDefinition>
    <latexCommand>\textemdash</latexCommand>
    <unicodeCommand>—</unicodeCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
@@ -609,12 +610,14 @@
 <!-- arg  \oldstylenums{4}  -->
 <commandDefinition>
    <latexCommand>\oldstylenums{4}</latexCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
 <!-- arg  \oldstylenums{5}  -->
 <commandDefinition>
    <latexCommand>\oldstylenums{5}</latexCommand>
+   <forcePNG>true</forcePNG>
 </commandDefinition>
 
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
