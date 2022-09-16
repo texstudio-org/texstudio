@@ -2,12 +2,12 @@
 # provide the path to the gesym-ng binary as first argument
 
 #GESYMBNG=$1
-GESYMBNG="../symbols-ng"
+GESYMBNG="../gesymb-ng"
 BATIK="/home/sdm/Dokumente/Programmieren/texstudio/symbols-ng/batikConvert.sh"
 SYMBOLS_all="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons fontawesome5"
-#SYMBOLS="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons"
+SYMBOLS="arrows cyrillic delimiters greek misc-math misc-text operators relation special wasysym icons fontawesome5"
 #SYMBOLS="misc-math misc-text wasysym delimiters"
-SYMBOLS=""
+#SYMBOLS="greek"
 
 echo "Deleting old files..."
 
