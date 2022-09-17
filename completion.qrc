@@ -822,6 +822,7 @@
 <file>completion/class-petiteannonce.cwl</file>
 <file>completion/class-phfextendedabstract.cwl</file>
 <file>completion/class-philosophersimprint.cwl</file>
+<file>completion/class-photobook.cwl</file>
 <file>completion/class-pkuthss.cwl</file>
 <file>completion/class-powerdot.cwl</file>
 <file>completion/class-pressrelease.cwl</file>
@@ -2046,6 +2047,7 @@
 <file>completion/luatexja-zhfonts.cwl</file>
 <file>completion/luatexko.cwl</file>
 <file>completion/luatodonotes.cwl</file>
+<file>completion/luatruthtable.cwl</file>
 <file>completion/lua-typo.cwl</file>
 <file>completion/lua-ul.cwl</file>
 <file>completion/luavlna.cwl</file>
@@ -2400,6 +2402,7 @@
 <file>completion/onlyamsmath.cwl</file>
 <file>completion/opacity-pro.cwl</file>
 <file>completion/opcit.cwl</file>
+<file>completion/opencolor.cwl</file>
 <file>completion/opensans.cwl</file>
 <file>completion/oplotsymbl.cwl</file>
 <file>completion/optex.cwl</file>
@@ -2546,6 +2549,7 @@
 <file>completion/pinlabel.cwl</file>
 <file>completion/pinoutikz.cwl</file>
 <file>completion/pinyin.cwl</file>
+<file>completion/piton.cwl</file>
 <file>completion/pixelart.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/placeat.cwl</file>
@@ -2602,6 +2606,7 @@
 <file>completion/powerdot-tuliplab.cwl</file>
 <file>completion/powerdot-tycja.cwl</file>
 <file>completion/powerdot-upen.cwl</file>
+<file>completion/ppt-slides.cwl</file>
 <file>completion/precattl.cwl</file>
 <file>completion/prelim2e.cwl</file>
 <file>completion/prerex.cwl</file>
@@ -3530,6 +3535,7 @@
 <file>completion/watermark.cwl</file>
 <file>completion/web.cwl</file>
 <file>completion/weekday.cwl</file>
+<file>completion/wheelchart.cwl</file>
 <file>completion/widetable.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
 <file>completion/wiki.cwl</file>
