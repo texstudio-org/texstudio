@@ -1474,3 +1474,7 @@ milog:
 class-milog
 latex-document
 tex
+photobook:
+class-photobook
+latex-document
+tex

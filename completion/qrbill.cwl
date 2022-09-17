@@ -1,9 +1,10 @@
 # qrbill package
-# Matthew Bertucci 2022/07/10 for v1.04
+# Matthew Bertucci 2022/09/17 for v1.05
 
 #include:iftex
 #include:l3keys2e
 #include:fontspec
+#include:anyfontsize
 #include:scrbase
 #include:graphicx
 #include:numprint
@@ -12,14 +13,17 @@
 #keyvals:\usepackage/qrbill#c
 billinginfo#true,false
 creditorprefix=%<string%>
+data-to-string#true,false
 debtorprefix=%<string%>
 font=%<font name%>
-frame=#true,false,top,bottom
+frame=#true,false,top,bottom,none
 ibanseparator=%<token list%>
 icon=%<file name%>
 iconwidth=##L
 qrscheme=%<name%>
 referenceseparator=%<token list%>
+replace-tilde#true,false
+replace-umlauts#true,false
 sep-iban=%<integer%>
 sep-reference=%<integer%>
 separate=#false,text,symbol
@@ -87,10 +91,16 @@ conditions=
 
 \QRbillParseDate{year}{month}{day}
 
+\QRbillAddCustomReplacement{string}{replacement}
+
 \insertcreditor
 \insertcurrency
 \insertdebtor
 
+\SetStaticData{arg}#*
 \SetBillingInfoScheme{scheme data}#*
 \SetQrScheme{scheme data}#*
 \qrbillfont#*
+\qrblack#S
+\qrwhite#S
+\qrnewline#S
