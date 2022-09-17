@@ -623,25 +623,36 @@ window and gives the user more options. The viewer can be opened by clicking the
 F7 key.</p>
 <p>You may want to change otions in the config dialog (s. Internal PDF Viewer). For forward and inverse searching, scrolling follows cursor, and cursor follows scrolling see <i><a href="#SECTION37">4.10 Forward and Inverse searching</a></i>.</p>
 <h3 id="SUBSECTION241">3.3.1 Modes and mouse actions</h3>
-<p>You can choose main mode <i>Magnify</i> or <i>Scroll</i> from the toolbar. These offer following actions:</p>
+<p>You can choose main mode <i>Magnify</i> or <i>Scroll</i> from the toolbar. The mouse cursor used is a magnifier glass, or an open hand. These offer following actions:</p>
 
 <ul>
-<li>Magnify</li>
+<li>Magnify mode only</li>
 		<ul>
-			<li>left mouse button click opens magnifier showing enlarged part of the text</li>
-			<li>Shift + left mouse button click increase zoom level</li>
-			<li>Alt + left mouse button click decrease zoom level</li>
-			<li>Ctrl + left mouse button click jumps to the source (inverse search)</li>
-			<li>Ctrl + Shift + left mouse button click copies coordinates to clipboard (s. <i><a href="#SUBSECTION242">Special features</a></i>)</li>
+			<li>left mouse button click opens magnifier showing enlarged part of the text, or follows a link</li>
+			<li>Shift + left mouse button click increases zoom level</li>
+			<li>Alt + left mouse button click decreases zoom level</li>
 		</ul>
-<li>Scroll</li>
+<li>Scroll mode only</li>
 		<ul>
-			<li>left mouse button click grabs the document so you can scroll it around or follows a link</li>
-			<li>double left mouse button click opens magnifier</li>
-			<li>Shift + left mouse button click sets grid column for the first page (s. <i><a href="#SUBSECTION242">Special features</a></i>)</li>
-			<li>Ctrl + left mouse button click jumps to the source (inverse search)</li>
-			<li>Ctrl + Shift + left mouse button click copies coordinates to clipboard (s. <i><a href="#SUBSECTION242">Special features</a></i>)</li>
+			<li>left mouse button click grabs the document so you can scroll it around, or follows a link</li>
+			<li>double left mouse button click opens magnifier showing enlarged part of the text</li>
+			<li>Shift + left mouse button click sets grid page offset (s. <i><a href="#SUBSECTION242">3.3.2 Special features</a></i>)</li>
 		</ul>
+<li>Magnify and Scroll mode</li>
+		<ul>
+			<li>Ctrl + left mouse button click jumps to the source (inverse search)</li>
+			<li>Ctrl + Shift + left mouse button click copies coordinates to clipboard (s. <i><a href="#SUBSECTION242">3.3.2 Special features</a></i>)</li>
+		</ul>
+</ul>
+
+<p>Remarks:</p>
+<ul>
+    <li>All actions above are available for the embedded pdf viewer. Even so changing grid page offset is not applicable, since embedded pdf viewer always uses a grid with one column.</li>
+    <li>When you set option Presentation (menu View, or key F5), the windowed pdf viewer only uses left and right mouse button click to scroll pages forth and
+        back, and pressing the mouse wheel button changes the cursor into a red laser dot.</li>
+    <li>With option Full Screen set (menu View, or key Ctrl+Shift+F) the windowed pdf viewer's behaviour is that of Scroll Mode.</li>
+    <li>The mouse cursor hot spot of the magnifier glass lies in the center of the glass, that of the open hand is marked with a small cross outside the hand.
+        This may help improve accuracy of inverse search.</li>
 </ul>
 
 <h3 id="SUBSECTION242">3.3.2 Special features</h3>
@@ -670,12 +681,11 @@ right (i.e. an offset of 1 is set).</p>
 
 <h4>Copy page coordinates to the clipboard</h4>
 
-<p>You can also use the pdf viewer to get the (x,y) coordinates of a point by 
+<p>You can also use the pdf viewer to get the x and y coordinates of a point on a page by 
 performing Ctrl + Shift + left mouse button click (the mouse cursor changes to a
-cross) on a given page. By doing so, the 
-(x,y) coordinates of the mouse position (in centimeters) with respect to the bottom 
+cross) at that point. By doing so, the x and y coordinates of the mouse position (in centimeters) with respect to the bottom 
 left corner of the current page are copied into your clipboard.</p>
-<p>Example for x,y copied to clipboard: 10.16, 12.8372</p>
+<p>Example for x, y copied to clipboard: 10.16, 12.8372</p>
 <p>This becomes particularly useful when adjusting margins or working with TikZ.</p>
 <h1 id="SECTION3">4. Other features</h1>
 <h2 id="SECTION31">4.1 About documents separated in several files</h2>
