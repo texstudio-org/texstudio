@@ -207,7 +207,7 @@ User commands can either consist of a combination of known commands by selecting
 Alternatively a command can be directly selected through the file system.</p>
 <p><IMG src="doc21.png" border="1" alt="Configure user commands from known commands"></p>
 
-<h2 id="SECTION02a1">1.3.1 Advanced configuration of the build system</h2>
+<h3 id="SECTION02a1">1.3.1 Advanced configuration of the build system</h3>
 
 <p>If you enable the advanced options, you can configure the build system in more detail.
 
@@ -261,8 +261,8 @@ This also means that you can change every command as you want, ignoring its old 
 <p>
 Finally, there are also hidden options, which can only be changed by modifying the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
 </p>
-<h2 id="SECTION02a2">1.3.2 Details of the execution environment</h2>
-<h3>Environment Variables</h3>
+<h3 id="SECTION02a2">1.3.2 Details of the execution environment</h3>
+<h4>Environment Variables</h4>
 <p>The environment variables available within the execution are the same as the ones that are available in the context in which TeXstudio was started.
 In particular this is true for the PATH. On Linux/OS X the PATH may depend on the way you started TeXstudio. Programs started from the GUI may have a different PATH
 setting than programs started from a shell (because some variables may only defined in the context of a shell (e.g. via ~/.bashrc).
@@ -272,21 +272,21 @@ By default, TeXstudio parses environment variables in your commands. The syntax 
 Windows and <code>$MYVAR</code> on Linux and OS X. Windows environment variables are case-insensitive, whereas they are case-sensitive on Linux and OS X. Parsing of environment variables
 can be deactivated in the Build section of the options.
 </p>
-<h3>Working Directory</h3>
+<h4>Working Directory</h4>
 <p>
 The working directory is set to the path of root document.
 </p>
-<h3>Shell Functionality</h3>
+<h4>Shell Functionality</h4>
 <p>
 All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So most shell functionality does not work.
 </p>
-<h4>Output Redirection</h4>
+<h5>Output Redirection</h5>
 <p>TeXstudio provides limited output redirection capabilities. You can only output to the message panel (<code>&gt; txs:///messages</code>) or suppress output (<code>&gt; /dev/null</code>). The default setting depends on the command. The same targets are allowed for stderr: <code>2&gt; txs:///messages</code>, <code>2&gt; /dev/null</code>. Additionally, you can redirect to the same target as stdout by using <code>2&gt;&1</code>.</p>
 <p>A typical usecase would be to suppress all output of a command: <code>&gt;/dev/null 2&gt;&1</code></p>
 <p>Note: Instead of the Linux/Unix notation <code>&gt; /dev/null</code>, you may alternatively use the Windows notation <code>&gt; nul</code>. Because these commands are directly interpreted by TXS, both variants work on all operating systems.</p>
 
 
-<h4>Using other shell functionality</h4>
+<h5>Using other shell functionality</h5>
 <p>If you need shell functionality, you have to explicitly run a shell. You can either do this directly in the user command:</p>
 <pre>
 sh -c "/path/to/testscript foo > bar"
@@ -313,7 +313,7 @@ cmd /C "/path/to/testscript.bat foo > bar"
 <li>The language of the menus can be changed directly to ignore system settings.
 </ul>
 <p><IMG src="configure_general.png" border="1" alt="Configure General"></p>
-<h2 id="SECTION03">1.4.1 Configuring the spell checker</h2>
+<h3 id="SECTION03">1.4.1 Configuring the spell checker</h3>
 <p>
 TeXstudio offers an integrated spellchecker which can be used either via a dialog or directly while typing. All text outside of LaTeX commands is checked. Additionally, text in options of LaTeX commands is also checked. TeXstudio determines if an option contains natural text and thus should be spell checked by looking up its definition in the completion word lists. For more information on completion word lists see the section on <a href="#SECTION040">completion</a> and the <a href="#CWLDESCRIPTION">description of the cwl format</a>.</p>
 <p>The spell checker uses the Hunspell dictionary format, which is widely used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary consists of two files (<code>.dic</code> and <code>.aff</code>). French, British and German dictionaries are distributed with TeXstudio. You can add additional dictionaries yourself by placing them in the dictionary path. A particularly convenient way to get additional dictionaries is downloading a dictionary extension of <A href="http://extensions.openoffice.org/" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A> or <a href="https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any">LibreOffice</a> and importing them using the button <i>Import Dictionary</i> in the options.</p>
@@ -326,15 +326,15 @@ TeXstudio offers an integrated spellchecker which can be used either via a dialo
 <p>If the interactive spell checker is enabled (default), any incorrectly spelled word is underlined with a red wave. Right-click on the word to open a menu with a list of possible corrections. In this context menu you can also add the word to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.</p>
 <p>Since the internal structure of the dictionaries is complex (e.g. contains rules on how to generate a word with different inflections), it is not possible to simply add words to the dictionary. Instead if a word is missing in the dictionary, you can add it to an ignore list, so that the spell checker won't complain about it. The ignore list is normally saved in the same directory as the dictionary. It's a plain text file with the extension .ign. If this isn't possible (e.g. missing access rights) the list is stored in the user configuration directory.
 </p>
-<h2 id="SECTION04">1.4.2 Configuring the thesaurus</h2>
+<h3 id="SECTION04">1.4.2 Configuring the thesaurus</h3>
 <p>
 The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TeXstudio.<br>
 Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 </p>
-<h2 id="SECTION041">1.4.3 Configuring the latex syntax checker</h2>
+<h3 id="SECTION041">1.4.3 Configuring the latex syntax checker</h3>
 <p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
 Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br></p>
-<h2 id="SECTION044">1.4.4 Configuring the grammar checker</h2>
+<h3 id="SECTION044">1.4.4 Configuring the grammar checker</h3>
 <p>The grammar checker is based on the standard http API of <a href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate installation of LanguageTool and java.
 
 <p>Once LanguageTool is installed, you can try it by starting the LanguageTool standalone application, and start TeXstudio afterward.  LanguageTool then creates  a locally running server at the address http://localhost:8081/ and TeXstudio automatically connects to it at startup. When the connection is established, all typed paragraphs are send to LT and after a short delay the possible grammar errors are highlighted.
@@ -421,21 +421,21 @@ This is a more interactive approach than choosing SVN revisions directly via a m
 
 <p>There are two different ways to create a new document that are described in the following subsections:</p>
 
-<h2 id="SECTION12a">2.2.1 Setting the preamble of a TeX document</h2>
+<h3 id="SECTION12a">2.2.1 Setting the preamble of a TeX document</h3>
 <p>To define the preamble of your document, you can use the "Quick start" wizard ("Wizard" menu).</p>
 <p><IMG src="doc2.png" border="1" alt="Quick Start"></p>
 <p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All your settings are recorded.</p>
 <p>You can also type your own preamble model in the editor : with the "Copy/paste" or "Save As" commands, you can use it for a new document.</p>
-<h2 id="SECTION12b">2.2.2 Using Templates to start a new document</h2>
+<h3 id="SECTION12b">2.2.2 Using Templates to start a new document</h3>
 <p>For new documents, templates can be used by using the command "File/New from template".
 A dialogue gives a selection of templates.</p>
 <p><IMG src="template.png" border="1" alt="Templates"></p>
 <p>You can either create a new editor document from the template or create it as file(s) on disk and open these in the editor. The former option is not available for multi-file templates.</p>
-<p>New templates can be created by using the command "File/Make Template" on a opened document which you like to have has a template. Note that this dialog currently does not support the full capabilities of the template system. In particular you cannot supply a preview image or create a multi-file template with it. You'll have to do this manually (see the <a href="#SECTION12ba">template format</a>).</p>
+<p>New templates can be created by using the command "File/Make Template" on a opened document which you like to have has a template. Note that this dialog currently does not support the full capabilities of the template system. In particular you cannot supply a preview image or create a multi-file template with it. You'll have to do this manually (s. <a href="#SECTION12ba">The template format</a> below).</p>
 <p>User added templates can be edited or deleted by using the context menu in the template selection dialogue.
 Built-in templates can not be changed.</p>
 <p>User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
-<h3 id="SECTION12ba">2.2.2.1 The Template Format</h3>
+<h4 id="SECTION12ba">The Template Format</h4>
 <p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all .tex files in a zip archive. Optionally, meta data can be stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported in the meta data:</p>
 <pre>
 {
@@ -456,7 +456,7 @@ Built-in templates can not be changed.</p>
 
 <h2 id="SECTION14">2.4 Browsing your document</h2>
 
-<h2 id="SECTION141">2.4.1 The Structure View</h2>
+<h3 id="SECTION141">2.4.1 The Structure View</h3>
 
 <p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
 <p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
@@ -469,7 +469,7 @@ The structure view also offers a context menu which allows one to copy/cut all t
 Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
 </p>
 
-<h2 id="SECTION142">2.4.2 The TOC View</h2>
+<h3 id="SECTION142">2.4.2 The TOC View</h3>
 
 <p>The side panel on the left offers a TOC view (if not, s. <a href="#SECTION00">0. A first look at TeXstudio</a>). The TOC shows the structure of your whole document by means of section commands (part, section, subsection, …). A mouse over shows you, in which file the section
 actually is.
@@ -484,7 +484,7 @@ the TOC will open the file for you. Notice the different shades of color that in
 (s. option Use color in global TOC in advanced editor settings).
 </p>
 
-<h2 id="SECTION143">2.4.3 Using Bookmarks</h2>
+<h3 id="SECTION143">2.4.3 Using Bookmarks</h3>
 
 <p>For each file, three bookmarks can be used to speed up navigation : just click on a line number to add or remove a bookmark. When you have already defined three bookmarks, you must remove one of them to add a new bookmark. To jump to the line corresponding to a bookmark in the editor, just click on the buttons in the status bar.</p>
 <p><IMG src="doc20.png" border="1" alt="Bookmark"></p>
@@ -492,7 +492,7 @@ the TOC will open the file for you. Notice the different shades of color that in
 <p>You can quickly set the format of a part of your text with this tool bar :</p>
 <p><IMG src="doc6.png" border="1" alt="Format Toolbar"></p>
 <p><b>Additional option:</b> a selected text can be directly framed by certain environments. Example: while clicking on the button "Bold" after having selected the word "Hello" , you will obtain the code: \textbf{Hello}.<br>This option is available for all the environments indicated by "[selection]" in the "LaTeX" menu.</p>
-<h3>Capitalisation</h3>
+<h5>Capitalisation</h5>
 <p>The menu "Edit" -> "Text Operations" contains a few methods for changing the capitalization of selected text:</p>
 <ul>
 <li>To Lowercase</li>
@@ -501,7 +501,7 @@ the TOC will open the file for you. Notice the different shades of color that in
 <li>To Titlecase (smart)</li>
 </ul>
 <p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronymes which require a fixed capitalization (e.g. "TeXstudio").</p>
-<h3>Escaping reserved characters</h3>
+<h5>Escaping reserved characters</h5>
 <p>If you have text containing reserved TeX characters and want the text to appear literally in your document, you have to escape the reserved characters to prevent LaTeX from interpreting them. The following functions take care of that (Menu: Idefix)</p>
 <ul>
 <li>Paste to LaTeX: Takes the text from the clipboard and escapes reserved characters prior to pasting into the editor.</li>
@@ -516,7 +516,7 @@ the TOC will open the file for you. Notice the different shades of color that in
 <p>With the "Tabular" wizard ("Wizard" menu), the LaTeX code for a tabular environment can be quickly inserted :</p>
 <p><IMG src="doc7.png" border="1" alt="Tabular Wizard"></p>
 <p>You can set the main features of your table.<br>Note : this dialog allows you to type directly the code in the cells.<br>The corresponding LaTeX code is automatically inserted in the editor.</p>
-<h2 id="SECTION18a">2.8.1 Manipulating tables</h2>
+<h3 id="SECTION18a">2.8.1 Manipulating tables</h3>
 <p>TeXstudio provides some commands to ease handling of tables. The commands are located at LaTeX &rarr; Manipulate Table and in the Table toolbar. Please be aware that some unexpected results may arise, if the table constructing commands get too complex.
 Following commands are offered:</p>
 <ul>
@@ -536,7 +536,7 @@ Following commands are offered:</p>
 <h2 id="SECTION110">2.10 Inserting a picture</h2>
 <p>To insert a picture in your document, just use the "\includegraphics" command in the "LaTeX" menu. Then, click on the "browser" button in the dialog to select the graphic file.<br>Note : you can insert a "figure" LaTeX environment ("LaTeX - Environments" menu) before inserting the picture.</p>
 <p><IMG src="doc9.png" border="1" alt="Figure Environment"></p>
-<h2 id="SECTION110a">2.10.1 Inserting a picture using a "wizard"</h2>
+<h3 id="SECTION110a">2.10.1 Inserting a picture using a "wizard"</h3>
 <p>Properly inserting figures is a challenge for LaTeX beginners and still quite a bit of text to type for the expert. Therefore TeXstudio offers a wizard for handling graphics insertion code in your document. "Graphics options" defines the optional parameter of <code>\includegraphics[options]{file}</code>. While the most used width/height attributes can be easily set, alternatively you have full control with the user defined setting.<br>
 Place the graphic inside a <code>figure</code> environment if it does not have to be at an exact position in the text. Then LaTeX will determine an optimal position on the page.<br>
 By pressing the "Save as default" button the current settings (except file, caption and label) are stored and will hence be used as default when you open the wizard.<br>
@@ -1351,7 +1351,7 @@ ui.show();                                           //show dialog
 </ul>
 <p>More examples can be found in the <a href='https://github.com/texstudio-org/texstudio/wiki/Scripts'>Wiki</a>.
 <h3 id="sectionTriggers">4.6.4 Triggers</h3>
-<h4>4.6.4.1 Regular Expressions</h4>
+<h4>Regular Expressions</h4>
 <p>In its simplest form, the trigger is simply a text, which is replaced by the macro.
 E.g. trigger="eg" macro="example given", "eg" in "the leg" is replaced on pressing "g" by "example given"<br>
 As the trigger is a regular expression, more elaborate triggers can be created. TXS makes use of look-behind searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.</p>
@@ -1366,7 +1366,7 @@ triggerMatches[1] == 'a'
 </pre>
 <p>Note: Triggers are inactive while the completer is active. For example you cannot trigger on <code>\\sec</code> if the completer is open suggesting to complete <code>\section</code>.</p>
 
-<h4>4.6.4.2 Limitation of Scope</h4>
+<h4>Limitation of Scope</h4>
 <p>To the scope in which a macro will be active, you can prepend an expression of the pattern <code>(?[scope-type]:...)</code>.</p>
 <table>
 <tr><th>Scope Limiting Expression</th><th>Meaning</th></tr>
@@ -1380,7 +1380,7 @@ triggerMatches[1] == 'a'
 <code>(?language:latex)(?highlighted-as:comment,commentTodo)FIXME</code>. This trigger responds to typing "FIXME", but only in comments and todo-notes of latex documents.
 </p>
 
-<h4>4.6.4.3 Event Triggers</h4>
+<h4>Event Triggers</h4>
 <p>Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
 <table>
 <tr><th>Special Trigger</th><th>Executed on Event</th></tr>
@@ -1983,7 +1983,7 @@ println("\\end{"+env+"}")
 
 <p>Note: We expose the language specification to you as end-user to give you more flexibility in adapting TeXstudio to your needs. But you should take it as is, because we don't have the capacity to give support here. It's a powerful API, but neither polished nor fully featured. You might find some constructs in the shipped .qnfa files, which are not documented in the syntax format specification. Additionally, the regular-expression based formatting of QNFA is not sufficient to define all the highlighting we wanted for LaTeX. Therefore we have extra highlighting functionality directly implemented in the sourcecode for the "(La)TeX" language, e.g. the highlighting inside the parentheses of <code>\begin</code> and <code>\end</code>. You won't be able to modify this or add it to other languages.<p>
 
-<h3>Example</h3>
+<h5>Example</h5>
 <p>The following is a small example which specifies some highlighting of python code:<p>
 
 <p>python.qnfa</p>
