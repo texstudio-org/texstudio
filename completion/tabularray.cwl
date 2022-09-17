@@ -12,7 +12,7 @@
 \SetTblrOuter{options%keyvals}
 \SetTblrOuter[envname]{options%keyvals}
 
-#keyvals:\begin{tblr}#c,\SetTblrOuter#c
+#keyvals:\SetTblrOuter#c
 halign=#l,c,r
 valign=#t,m,b
 l
@@ -38,7 +38,7 @@ expand
 \SetTblrInner{options%keyvals}
 \SetTblrInner[envname]{options%keyvals}
 
-#keyvals:\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c
+#keyvals:\SetTblrInner#c,\begin{tblr}#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c,\begin{booktabs}#c,\begin{longtabs}#c,\begin{talltabs}#c
 colspec={%<col types%>}
 rowspec={%<row types%>}
 width=##L

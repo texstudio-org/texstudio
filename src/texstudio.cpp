@@ -4595,6 +4595,7 @@ void Texstudio::normalCompletion()
 		completer->setWorkPath("%color");
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION); //TODO: complete support for special opt
 		break;
+    case Token::colDef:
 	case Token::keyValArg:
 	case Token::keyVal_key:
 	case Token::keyVal_val: {
