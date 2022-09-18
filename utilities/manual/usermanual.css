@@ -37,6 +37,11 @@ h4 {
   margin-left: 1em;
 }
 
+h5 {
+  font-size: 100%;
+  margin-left: 1.6em;
+}
+
 p, table {margin-left: 2em;}
 
 .news li {
