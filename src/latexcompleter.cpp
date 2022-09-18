@@ -254,6 +254,9 @@ public:
 		// filter list for longest common characters
 		if (words.count() > 1) {
             QString myResult = words.at(1).word; // skip favorite
+            if(!my_curWord.startsWith("\\")){
+                myResult = words.at(0).word; // don't skip if no command
+            }
 			int curWordLength = my_curWord.length();
 			my_curWord = completer->listModel->getLastWord().word;
 
