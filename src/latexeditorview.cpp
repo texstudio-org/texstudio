@@ -1202,7 +1202,6 @@ void LatexEditorView::removeBookmark(QDocumentLineHandle *dlh, int bookmarkNumbe
 	int rmid = bookMarkId(bookmarkNumber);
 	if (hasBookmark(dlh, bookmarkNumber)) {
 		document->removeMark(dlh, rmid);
-        editor->removeMark(dlh,"bookmark");
 		emit bookmarkRemoved(dlh);
 	}
 }
@@ -1267,7 +1266,6 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 	int rmid = bookMarkId(bookmarkNumber);
 	if (line.hasMark(rmid)) {
 		line.removeMark(rmid);
-        editor->removeMark(line.handle(),"bookmark");
 		emit bookmarkRemoved(line.handle());
 		return false;
 	}
@@ -1275,7 +1273,6 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int ln = editor->document()->findNextMark(rmid);
 		if (ln >= 0) {
 			editor->document()->line(ln).removeMark(rmid);
-            editor->removeMark(editor->document()->line(ln).handle(),"bookmark");
 			emit bookmarkRemoved(editor->document()->line(ln).handle());
 		}
 	}
@@ -1283,12 +1280,10 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int rmid = bookMarkId(i);
 		if (line.hasMark(rmid)) {
 			line.removeMark(rmid);
-            editor->removeMark(line.handle(),"bookmark");
 			emit bookmarkRemoved(line.handle());
 		}
 	}
 	line.addMark(rmid);
-    editor->addMark(line.handle(),Qt::darkMagenta,"bookmark");
 	emit bookmarkAdded(line.handle(), bookmarkNumber);
 	return true;
 }
@@ -1869,7 +1864,6 @@ void LatexEditorView::lineMarkClicked(int line)
 	for (int i = -1; i < 10; i++)
 		if (l.hasMark(bookMarkId(i))) {
 			l.removeMark(bookMarkId(i));
-            editor->removeMark(l.handle(),"bookmark");
 			emit bookmarkRemoved(l.handle());
 			return;
 		}
@@ -1890,13 +1884,11 @@ void LatexEditorView::lineMarkClicked(int line)
 	for (int i = 1; i <= 10; i++) {
 		if (editor->document()->findNextMark(bookMarkId(i % 10)) < 0) {
 			l.addMark(bookMarkId(i % 10));
-            editor->addMark(l.handle(),Qt::darkMagenta,"bookmark");
 			emit bookmarkAdded(l.handle(), i);
 			return;
 		}
 	}
 	l.addMark(bookMarkId(-1));
-    editor->addMark(l.handle(),Qt::darkMagenta,"bookmark");
 	emit bookmarkAdded(l.handle(), -1);
 }
 

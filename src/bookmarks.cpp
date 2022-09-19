@@ -145,7 +145,9 @@ QList<Bookmark> Bookmarks::getBookmarks()
 
 void Bookmarks::bookmarkDeleted(QDocumentLineHandle *dlh)
 {
-	QString text = dlh->document()->getFileInfo().fileName();
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(dlh->document());
+    doc->getEditorView()->editor->removeMark(dlh,"bookmark");
+    QString text = doc->getFileInfo().fileName();
 	QList<QListWidgetItem *> lst = bookmarksWidget->findItems(text, Qt::MatchStartsWith);
 	foreach (QListWidgetItem *item, lst) {
 		//QString fn=item->data(FileName).toString();
@@ -157,12 +159,13 @@ void Bookmarks::bookmarkDeleted(QDocumentLineHandle *dlh)
 			return;
 		}
 	}
+
 }
 
 void Bookmarks::bookmarkAdded(QDocumentLineHandle *dlh, int nr)
 {
-	QDocument *doc = dlh->document();
-
+    LatexDocument *doc=dynamic_cast<LatexDocument*>(dlh->document());
+    doc->getEditorView()->editor->addMark(dlh,Qt::darkMagenta,"bookmark");
 	QString text = doc->getFileInfo().fileName();
 	text += "\n" + dlh->text().trimmed();
 	QListWidgetItem *item = new QListWidgetItem(text, bookmarksWidget);
