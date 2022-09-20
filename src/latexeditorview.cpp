@@ -1615,7 +1615,9 @@ bool LatexEditorView::containsBibTeXId(QString id)
 int LatexEditorView::bookMarkId(int bookmarkNumber)
 {
 	if (bookmarkNumber == -1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark
-	else return QLineMarksInfoCenter::instance()->markTypeId("bookmark" + QString::number(bookmarkNumber));
+    if(bookmarkNumber>9)
+        bookmarkNumber=0;
+    return QLineMarksInfoCenter::instance()->markTypeId("bookmark" + QString::number(bookmarkNumber));
 	//return document->bookMarkId(bookmarkNumber);
 }
 
