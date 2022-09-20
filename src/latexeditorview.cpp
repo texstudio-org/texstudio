@@ -3215,9 +3215,10 @@ void LatexEditorView::lineMarkContextMenuRequested(int lineNumber, QPoint global
 	act->setData(-1);
 	menu.addAction(act);
 
-	for (int i = 0; i < 10; i++) {
-		QAction *act = new QAction(getRealIconCached(QString("lbook%1").arg(i)), tr("Bookmark") + QString(" %1").arg(i), &menu);
-		act->setData(i);
+	for (int i = 1; i < 11; i++) {
+		int modi = i % 10;
+		QAction *act = new QAction(getRealIconCached(QString("lbook%1").arg(modi)), tr("Bookmark") + QString(" %1").arg(modi), &menu);
+		act->setData(modi);
 		menu.addAction(act);
 	}
 
