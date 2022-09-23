@@ -1,5 +1,5 @@
 # exam-zh class
-# Matthew Bertucci 2022/08/30 for v0.1.19
+# Matthew Bertucci 2022/09/19 for v0.1.20
 
 #include:expl3
 #include:filehook
@@ -85,6 +85,9 @@ style/student-version-suffix=%<suffix%>
 style/student-version-cleanaux#true,false
 page={%<键值列表%>}
 page/size=%<a3paper|a4paper%>
+page/show-head#true,false
+page/head-content=%<页眉格式%>
+page/show-foot#true,false
 page/foot-type=#common,separate
 page/foot-content=%<页脚格式%>
 page/show-columnline#true,false
@@ -185,8 +188,6 @@ scoringbox/position=#left,right
 \warning{警告%text}
 \secret
 \secret[格式命令]
-\goodluck
-\goodluck[祝福语%text]
 
 \begin{notice}
 \begin{notice}[键值列表 1%keyvals]

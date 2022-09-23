@@ -1,5 +1,5 @@
 # verifiche package
-# Matthew Bertucci 2022/06/27 for v5.2
+# Matthew Bertucci 2022/09/19 for v6.0
 
 #include:xparse
 #include:xkeyval 
@@ -24,6 +24,7 @@ noduration
 noasyear
 nocandidatename
 notesttype
+nosubtitle
 nonumbered
 noexercisept
 color=#%color
@@ -39,6 +40,8 @@ blue
 \duration{durata%text}
 \duration[preambolo%text]{durata%text}
 \durationfont{text}#*
+\subtitle{testo del sottotitolo%text}
+\subtitlefont{text}#*
 \printheading
 
 #keyvals:\pagestyle#c
@@ -185,6 +188,10 @@ linecolor=#%color
 \closedquestionitem#*
 \solutionlabel#*
 
+\begin{multitest}[n]
+\end{multitest}
+\themultitestcounter#*
+
 # from shortlabels option of enumitem
 #keyvals:\begin{enumerate}#c,\begin{itemize}#c,\begin{description}#c,\begin{enumerate*}#c,\begin{itemize*}#c,\begin{description*}#c,\begin{closedquestion},\begin{closedquestion*},\begin{crocette},\begin{crocette*}
 A
@@ -209,6 +216,7 @@ i
 \convertreftonum{arg}#*
 \diffstar#S
 \espoint#S
+\evenfoot#S
 \exercisemargin#*
 \exercisetitle#*
 \italiandictiornary#*
@@ -247,6 +255,9 @@ i
 \iftesttype#S
 \testtypetrue#S
 \testtypefalse#S
+\ifsubtitle#S
+\subtitletrue#S
+\subtitlefalse#S
 \ifshowinstructiondelimiter#S
 \showinstructiondelimitertrue#S
 \showinstructiondelimiterfalse#S

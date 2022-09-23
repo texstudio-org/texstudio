@@ -1,5 +1,5 @@
 # exam-zh-textfigure package
-# Matthew Bertucci 2022/08/30 for v0.1.19
+# Matthew Bertucci 2022/09/19 for v0.1.20
 
 #include:expl3
 #include:wrapstuff
@@ -40,6 +40,7 @@ textfigure/figure-width=##L
 textfigure/ratio=%<比例%>
 textfigure/text-ratio=%<比例%>
 textfigure/top=%<integer%>
+textfigure/parindent=##L
 #endkeyvals
 
 \begin{multifigures}
@@ -82,4 +83,5 @@ figure-width=##L
 ratio=%<比例%>
 text-ratio=%<比例%>
 top=%<integer%>
+parindent=##L
 #endkeyvals

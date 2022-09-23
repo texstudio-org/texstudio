@@ -343,7 +343,7 @@
 \pagestyle{pagestyle%keyvals}
 \paragraph*{title}#L5
 \paragraph[short title]{title}#L5
-\paragraphmark{code}
+\paragraphmark{code}#*
 \paragraph{title}#L5
 \parbox[position][height][inner-pos]{width}{text}
 \parbox[position][height]{width}{text}
@@ -413,16 +413,16 @@
 \subitem
 \subparagraph*{title}#L6
 \subparagraph[short title]{title}#L6
-\subparagraphmark{code}
+\subparagraphmark{code}#*
 \subparagraph{title}#L6
 \subsection{title}#L3
 \subsection*{title}#L3
 \subsection[short title]{title}#L3
-\subsectionmark{code}
+\subsectionmark{code}#*
 \subsubitem
 \subsubsection*{title}#L4
 \subsubsection[short title]{title}#L4
-\subsubsectionmark{code}
+\subsubsectionmark{code}#*
 \subsubsection{title}#L4
 \suppressfloats
 \suppressfloats[placement]
