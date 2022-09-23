@@ -14,25 +14,31 @@
 </li>
 <li><a href="#SECTION0">1. Configuring TeXstudio</a>
 	<ul>
-	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
+	<li><a href="#SECTION030">1.1 Configuring some general issues</a></li>
 	<li><a href="#SECTION02">1.2 Configuring the latex related commands</a></li>
 	<li><a href="#SECTION02a">1.3 Configuring the build system</a></li>
 	<ul>
 		<li><a href="#SECTION02a1">1.3.1 Advanced configuration of the build system</a></li>
 		<li><a href="#SECTION02a2">1.3.2 Details of the execution environment</a></li>
 	</ul>
-	<li><a href="#SECTION030">1.4 Configuring some general issues</a></li>
+	<li><a href="#SECTION05">1.4 Configuring shortcuts</a></li>
+	<li><a href="#SECTION06">1.5 Configuring the Tools, Latex, and Math Menu</a></li>
+	<li><a href="#SECTION07">1.6 Configuring the Custom Toolbar</a></li>
+	<li><a href="#SECTIONCONFIGGUISCALING">1.7 Configuring the GUI Scaling</a></li>
+	<li><a href="#SECTION01">1.8 Configuring the editor</a></li>
+	<li><a href="#SECTIONCONFIGADVEDITOR">1.9 Configuring the Adv. Editor</a></li>
+	<li><a href="#SECTIONCONFIGSYNTAXHIGHLIGHTING">1.10 Configuring the Syntax Highlighting</a></li>
+	<li><a href="#SECTION040">1.11 Configuring the autocompletion</a></li>
+	<li><a href="#SECTIONCONFIGLANGUAGECHECKING">1.12 Configuring the Language Checking</a></li>
 	<ul>
-		<li><a href="#SECTION03">1.4.1 Configuring the spell checker</a></li>
-		<li><a href="#SECTION04">1.4.2 Configuring the thesaurus</a></li>
-		<li><a href="#SECTION041">1.4.3 Configuring the latex syntax checker</a></li>
-		<li><a href="#SECTION044">1.4.4 Configuring the grammar checker</a></li>
+		<li><a href="#SECTION03">1.12.1 Configuring the spell checker</a></li>
+		<li><a href="#SECTION04">1.12.2 Configuring the thesaurus</a></li>
+		<li><a href="#SECTION041">1.12.3 Configuring the latex syntax checker</a></li>
+		<li><a href="#SECTION044">1.12.4 Configuring the grammar checker</a></li>
 	</ul>
-	<li><a href="#SECTION040">1.5 Configuring the autocompletion</a></li>
-	<li><a href="#SECTION05">1.6 Configuring shortcuts</a></li>
-	<li><a href="#SECTION06">1.7 Configuring the Latex/Math-Menu</a></li>
-	<li><a href="#SECTION07">1.8 Configuring the Custom Toolbar</a></li>
-	<li><a href="#SECTION08">1.9 Configuring SVN support</a></li>
+	<li><a href="#SECTIONCONFIGPREVIEW">1.13 Configuring Preview</a></li>
+	<li><a href="#SECTIONCONFIGPDFVIEWER">1.14 Configuring Internal PDF Viewer</a></li>
+	<li><a href="#SECTION08">1.15 Configuring SVN/GIT support</a></li>
 	</ul>
 </li>
 <li><a href="#SECTION1">2. Editing a TeX document</a>
@@ -161,18 +167,53 @@ s. option GUI scaling (needs advanced options) in the config dialog.
 </p>
 
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
-<p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advanced options" in the lower left corner.</p>
-<h2 id="SECTION01">1.1 Configuring the editor</h2>
-<p>
-You may change the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. <code>\usepackage[utf8]{inputenc}</code>, if you use utf-8).<br>
-TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the auto detection)
-</p>
+
+<p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences"
+under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show Advanced Options" in
+the lower left corner.</p>
+
+<p>All the options are divided into groups of options. There are more groups to choose from with "Show Advanced Options" set. Some groups offer the same options
+on both levels. The following table gives an overview:</p>
+
+<table>
+	<tr> <th>Group</th>  <th>Standard</th>  <th>Advanced</th> </tr>
+	<tr> <td> <a href="#SECTION030">General                                  </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTION02">Commands                                  </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTION02a">Build                                    </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTION05">Shortcuts                                 </a></td> <td> x </td>  <td> same </td> </tr>
+	<tr> <td> <a href="#SECTION06">Menus                                     </a></td> <td>   </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTION07">Toolbars                                  </a></td> <td>   </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTIONCONFIGGUISCALING">GUI Scaling                 </a></td> <td>   </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTION01">Editor                                    </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTIONCONFIGADVEDITOR">Adv.Editor                   </a></td> <td>   </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTIONCONFIGSYNTAXHIGHLIGHTING">Syntax Highlighting </a></td> <td> x </td>  <td> same </td> </tr>
+	<tr> <td> <a href="#SECTION040">Completion                               </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTIONCONFIGLANGUAGECHECKING">Language Checking     </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTIONCONFIGPREVIEW">Preview                        </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTIONCONFIGPDFVIEWER">Internal PDF Viewer          </a></td> <td> x </td>  <td> x    </td> </tr>
+	<tr> <td> <a href="#SECTION08">SVN/GIT                                   </a></td> <td> x </td>  <td> same </td> </tr>
+</table>
+
+<p>The following sections show screenshots of the configuration for these groups including advanced options. The advanced options are framed in blue. So you can
+easily recognize which options are not available in standard mode. All options are framed for groups that are only present in advanced mode.</p>
+
+<h2 id="SECTION030">1.1 Configuring some general issues</h2>
+
+<p>This panel allows the setting of some general aspects.</p>
 <ul>
-<li>"Folding" toggles the editors code-folding capability (hide sections of the text).
-<li>The selection box "Indentation mode" lets you select, whether indented lines are followed by lines of the same indentation after pressing Enter or letting TeXstudio do automatic indentation.
+	<li>The "style" and "color scheme" of TeXstudio can be selected. The modern variant is closer to texmaker 1.9.
+	<li>The symbol list can either appear "tabbed" (old behaviour, tabbed activated) or can have small symbol tabs besides the symbol lists which leaves more room for the symbols.
+	<li>Also the log viewer can appear tabbed which allows faster change between error table, log view and previewer ...
+	<li>The language of the menus can be changed directly to ignore system settings.
 </ul>
-<p><IMG src="configure_editor.png" border="1" alt="Configure Editor"></p>
+<!-- <p><IMG src="configure_general.png" border="1" alt="Configure General"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioGeneralAdvancedMarked.png" border="1" alt="Configure Editor">
+	<figcaption>General options</figcaption>
+</figure>
+
 <h2 id="SECTION02">1.2 Configuring the latex related commands</h2>
+
 <p>LaTeX comes with a number of command line tools to compile and manipulate LaTeX
 documents. The commands section defines there location and arguments.</p>
 <p>The default settings should work with the recent and standard LaTeX distributions,
@@ -193,15 +234,28 @@ context of the current document. They are expanded at runtime:
 <p>The section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.</p>
 <p>You can always restore the original settings using the revert button to the right.
 </p>
-<p><IMG src="configure_commands.png" border="1" alt="Configure Commands"></p>
+
+<!-- <p><IMG src="configure_commands.png" border="1" alt="Configure Commands"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioCommandsAdvancedMarked.png" border="1" alt="Configure Commands">
+	<figcaption>Commands options</figcaption>
+</figure>
+
 <h2 id="SECTION02a">1.3 Configuring the build system</h2>
+
 <p>TeXstudio provides general commands for translating latex.<br>
 The default settings use "pdflatex" and the internal pdf viewer. Other commands and viewer can be selected as well as a different bibliography translator.<br>
 The "embedded pdf viewer" does not open a new window for viewing the pdf document but presents it directly next to the text in the editor.<br>
 A useful alternative might be using the "latexmk" as compile command (if the command is installed on your system), as it handles dependencies with biblatex and index very well.<br>
 The advanced options allows finer customization which is in general not necessary.<br>
 </p>
-<p><IMG src="configure_build.png" border="1" alt="Configure Build System"></p>
+
+<!-- <p><IMG src="configure_build.png" border="1" alt="Configure Build System"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioBuildAdvancedMarked.png" border="1" alt="Configure Editor">
+	<figcaption>Build options</figcaption>
+</figure>
+
 <p>User commands can be defined here by "adding" them. Each user command has a name with a pattern <code>&lt;command id&gt;:&lt;display name&gt;</code>, e.g. <code>user0:User Command 0</code>. The command id has to be unique and must not contain spaces. In <a href="#SECTION02a1">advanced mode</a>, you can reference it using <code>txs:///"&lt;command id&gt;</code>. The display name will be shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
 User commands can either consist of a combination of known commands by selecting them from a list of available commands. This is triggered by clicking the spanner-symbol.<br>
 Alternatively a command can be directly selected through the file system.</p>
@@ -304,37 +358,149 @@ cmd /C "/path/to/testscript.bat foo > bar"
 /path/to/testscript $1 > $2
 </pre>
 
-<h2 id="SECTION030">1.4 Configuring some general issues</h2>
-<p>This panel allows the setting of some general aspects.</p>
-<ul>
-<li>The "style" and "color scheme" of TeXstudio can be selected. The modern variant is closer to texmaker 1.9.
-<li>The symbol list can either appear "tabbed" (old behaviour, tabbed activated) or can have small symbol tabs besides the symbol lists which leaves more room for the symbols.
-<li>Also the log viewer can appear tabbed which allows faster change between error table, log view and previewer ...
-<li>The language of the menus can be changed directly to ignore system settings.
-</ul>
-<p><IMG src="configure_general.png" border="1" alt="Configure General"></p>
-<h3 id="SECTION03">1.4.1 Configuring the spell checker</h3>
+<h2 id="SECTION05">1.4 Configuring shortcuts</h2>
+
 <p>
-TeXstudio offers an integrated spellchecker which can be used either via a dialog or directly while typing. All text outside of LaTeX commands is checked. Additionally, text in options of LaTeX commands is also checked. TeXstudio determines if an option contains natural text and thus should be spell checked by looking up its definition in the completion word lists. For more information on completion word lists see the section on <a href="#SECTION040">completion</a> and the <a href="#CWLDESCRIPTION">description of the cwl format</a>.</p>
+Shortcuts can be changed by double clicking on "Current Shortcut" or "Additional Shortcut". Then you can set up a new shortcut by one of the following ways (a tooltip will show this information):
+(1) Select from the drop down list, (2) hit the shortcut combination, or (3) type the string of the shortcut.
+A shortcut can be assigned a multiple keystroke combinations, for example <code>CTRL+M,CTRL+A</code> (either upper or lower case is allowed, but the comma is important).
+If a shortcut should be set to default value or removed completely, the items "&lt;default&gt;" or "&lt;none&gt;" at the top of the list can be selected respectively.
+</p>
+<p>
+A rough overview of the available (default) keyboard shortcuts can be found in <a href="#SHORTCUTS">Section 4.13</a>.
+</p>
+
+<!-- <p><IMG src="configure_shortcuts.png" border="1" alt="Configure Shortcuts"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioShortcutsAdvancedSame.png" border="1" alt="Configure Shortcuts">
+	<figcaption>Shortcuts options</figcaption>
+</figure>
+
+<h2 id="SECTION06">1.5 Configuring the Tools, Latex, and Math Menu (Advanced options only)</h2>
+
+<p>The Math/Latex-Menu can be adapted to user likings.
+For this menu items can be renamed and a new Latex-Code can be placed. The appropriate item can be be directly edited by doubleclicking on them.
+</p>
+
+<!-- <p><IMG src="configure_customizeMenu.png" border="1" alt="Customize Menu"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioMenusAdvancedOnly.png" border="1" alt="Customize Menus">
+	<figcaption>Menus customization</figcaption>
+</figure>
+
+<h2 id="SECTION07">1.6 Configuring the Custom Toolbar (Advanced options only)</h2>
+
+<p>One Custom Toolbar is present in TMX. This toolbar can be filled with actions from the Latex-, Math- and User-Menu.
+Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the custom toolbar list in the configure dialog.
+</p>
+
+<!-- <p><IMG src="configure_customToolbar.png" border="1" alt="Customize Toolbars"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioToolbarsAdvancedOnly.png" border="1" alt="Customize Toolbars">
+	<figcaption>Toolbars customization</figcaption>
+</figure>
+
+<h2 id="SECTIONCONFIGGUISCALING">1.7 Configuring the GUI Scaling (Advanced options only)</h2>
+
+<figure>
+	<IMG src="ConfigureTeXstudioGuiScalingAdvancedOnly.png" border="1" alt="Configure GUI Scaling">
+	<figcaption>GUI Scaling options</figcaption>
+</figure>
+
+<h2 id="SECTION01">1.8 Configuring the editor</h2>
+
+<p>
+You may change the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. <code>\usepackage[utf8]{inputenc}</code>, if you use utf-8).<br>
+TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a different encoding in your existing documents you have to specify it in the configuration dialog before opening them. (and then you also have to disable the auto detection)
+</p>
+<ul>
+	<li>"Folding" toggles the editors code-folding capability (hide sections of the text).
+	<li>The selection box "Indentation mode" lets you select, whether indented lines are followed by lines of the same indentation after pressing Enter or letting TeXstudio do automatic indentation.
+</ul>
+
+<!-- <p><IMG src="configure_editor.png" border="1" alt="Configure Editor"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioEditorAdvancedMarked.png" border="1" alt="Configure Editor">
+	<figcaption>Editor options</figcaption>
+</figure>
+
+<h2 id="SECTIONCONFIGADVEDITOR">1.9 Configuring the Adv. Editor (Advanced options only)</h2>
+
+<figure>
+	<IMG src="ConfigureTeXstudioAdvEditorAdvancedOnly.png" border="1" alt="Configure Adv. Editor">
+	<figcaption>Adv. Editor options</figcaption>
+</figure>
+
+<h2 id="SECTIONCONFIGSYNTAXHIGHLIGHTING">1.10 Configuring the Syntax Highlighting</h2>
+
+<figure>
+	<IMG src="ConfigureTeXstudioSyntaxHighlightingAdvancedSame.png" border="1" alt="Configure Syntax Highlighting">
+	<figcaption>Syntax Highlighting options</figcaption>
+</figure>
+
+<h2 id="SECTION040">1.11 Configuring the autocompletion</h2>
+
+<p>TeXstudio has taken up completion word lists from kile which extended the number of known commands for completion considerably.
+TeXstudio understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
+However TeXstudio allows one to select the additional word lists under
+"Configure TeXstudio" -> "Completion". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
+Concerning auto completion, TeXstudio allows one to adapt the behaviour to your liking.
+The following options are available:</p>
+<ul>
+	<li>Completion enabled: self explanatory
+	<li>Case sensitive: lets you complete e.g. \Large from \la ...
+	<li>in first character: ?
+	<li>Auto Complete Common Prefix: if only one item is in the list or all items in the completion list share common starting characters, the common characters are directly inserted, like pressing the key Tab.
+	<li>Complete selected text when non-word character is pressed: when in completion mode, pressing a non-word character like space, leads to accepting the selected word. This may speed up typing.
+	<li>Enable ToolTip-Help: show tool tips on selected latex commands in the completion list.
+	<li>Use Placeholders: if the completed commands have options which need to be filled out, placeholders are put at these positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
+</ul>
+<p>If your favorite package is not yet present for completion (and syntax checking), you can provide a list of your own by placing a file "packagename.cwl" in the <a href="https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions#where-are-the-settings-stored">config directory</a>. This directory is placed in ~/.config/texstudio under Linux and usually "c:\Documents and Settings/User/AppData/Roaming/texstudio" under Windows. Basically the file contains a list of valid commands. A description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
+</p>
+
+<!-- <p><IMG src="configure_completion.png" border="1" alt="Configure Completion"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioCompletionAdvancedMarked.png" border="1" alt="Configure Completion">
+	<figcaption>Completion options</figcaption>
+</figure>
+
+<h2 id="SECTIONCONFIGLANGUAGECHECKING">1.12 Configuring the Language Checking</h2>
+
+<h3 id="SECTION03">1.12.1 Configuring the spell checker</h3>
+
+<p>TeXstudio offers an integrated spellchecker which can be used either via a dialog or directly while typing. All text outside of LaTeX commands is checked. Additionally, text in options of LaTeX commands is also checked. TeXstudio determines if an option contains natural text and thus should be spell checked by looking up its definition in the completion word lists. For more information on completion word lists see the section on <a href="#SECTION040">completion</a> and the <a href="#CWLDESCRIPTION">description of the cwl format</a>.</p>
 <p>The spell checker uses the Hunspell dictionary format, which is widely used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary consists of two files (<code>.dic</code> and <code>.aff</code>). French, British and German dictionaries are distributed with TeXstudio. You can add additional dictionaries yourself by placing them in the dictionary path. A particularly convenient way to get additional dictionaries is downloading a dictionary extension of <A href="http://extensions.openoffice.org/" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A> or <a href="https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any">LibreOffice</a> and importing them using the button <i>Import Dictionary</i> in the options.</p>
 <p>You can specify one or more search paths for the dictionaries in the options. Multiple paths need to be separated by a semicolon. With the paths you can use the special strings <code>[txs-app-dir]</code> and <code>[txs-settings-dir]</code>. These are expanded to the path of the executable and the config file (<code>texstudio.ini</code>) respectively. This expansion is particularly useful if you use a portable version on a USB stick in which the actual location of the program may depend on the computer you are using.</p>
-<p><IMG src="spellcheck_options.png" border="1" alt="Spellcheck Options"></p>
+
+<!-- <p><IMG src="spellcheck_options.png" border="1" alt="Spellcheck Options"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioLanguageCheckingAdvancedMarked.png" border="1" alt="Configure Language Checking">
+	<figcaption>Language Checking options</figcaption>
+</figure>
+
 <p>To make life easy TeXstudio lets you choose a preferred language for the spell checker. However, if you frequently work with files in different languages you may want to override the default behavior. This can be done in two ways. First you can specify the language of the file via the language menu in the status line. This setting will be lost as soon as the file is closed. To permanently save the language of the file, TeXstudio supports a special "magic comment" <code>% !TeX spellcheck = de_DE</code>. If this comment is present in a file, its language is automatically set when the file is loaded.
+
 <p><IMG src="spellcheck_menu.png" border="1" alt="Spellcheck Menu"></p>
 
 <p>Please note: spell checking with Ctrl+Shift+F7 starts at the cursor position and not at the beginning of the document.</p>
 <p>If the interactive spell checker is enabled (default), any incorrectly spelled word is underlined with a red wave. Right-click on the word to open a menu with a list of possible corrections. In this context menu you can also add the word to the ignore list. If your dictionary is very large (> 5MB), opening the context menu and showing possible suggestions can take some seconds. If you don't need the suggestion, you can press shift while right clicking and don't have to wait.</p>
 <p>Since the internal structure of the dictionaries is complex (e.g. contains rules on how to generate a word with different inflections), it is not possible to simply add words to the dictionary. Instead if a word is missing in the dictionary, you can add it to an ignore list, so that the spell checker won't complain about it. The ignore list is normally saved in the same directory as the dictionary. It's a plain text file with the extension .ign. If this isn't possible (e.g. missing access rights) the list is stored in the user configuration directory.
 </p>
-<h3 id="SECTION04">1.4.2 Configuring the thesaurus</h3>
+
+<h3 id="SECTION04">1.12.2 Configuring the thesaurus</h3>
+
 <p>
 The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and US-English and German databases are distributed with TeXstudio.<br>
 Users can download others databases here : <A href="http://wiki.services.openoffice.org/wiki/Dictionaries" target="_blank">http://wiki.services.openoffice.org/wiki/Dictionaries</A><br>
 </p>
-<h3 id="SECTION041">1.4.3 Configuring the latex syntax checker</h3>
+
+<h3 id="SECTION041">1.12.3 Configuring the latex syntax checker</h3>
+
 <p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
 Furthermore the completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br></p>
-<h3 id="SECTION044">1.4.4 Configuring the grammar checker</h3>
+
+<h3 id="SECTION044">1.12.4 Configuring the grammar checker</h3>
+
 <p>The grammar checker is based on the standard http API of <a href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate installation of LanguageTool and java.
 
 <p>Once LanguageTool is installed, you can try it by starting the LanguageTool standalone application, and start TeXstudio afterward.  LanguageTool then creates  a locally running server at the address http://localhost:8081/ and TeXstudio automatically connects to it at startup. When the connection is established, all typed paragraphs are send to LT and after a short delay the possible grammar errors are highlighted.
@@ -345,50 +511,22 @@ Furthermore the completion list contains partially additional information to det
 
 <p>Independent from LanguageTool, TeXstudio also checks for repeated and bad (imprecise/slang) words. The repetition check looks several words behind and marks repetition of short words in the immediate vicinity and repetition of long words up to 10 words before. These distances and lengths can be changed in the advanced grammar config page.
 
+<h2 id="SECTIONCONFIGPREVIEW">1.13 Configuring Preview</h2>
 
-<h2 id="SECTION040">1.5 Configuring the autocompletion</h2>
-<p>
-TeXstudio has taken up completion word lists from kile which extended the number of known commands for completion considerably.
-TeXstudio understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
-However TeXstudio allows one to select the additional word lists under
-"Configure TeXstudio" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
-Concerning auto completion, TeXstudio allows one to adapt the behaviour to your liking.
-The following options are available:</p>
-<ul>
-<li>Completion enabled: self explanatory
-<li>Case sensitive: lets you complete e.g. \Large from \la ...
-<li>in first character: ?
-<li>Auto Complete Common Prefix: if only one item is in the list or all items in the completion list share common starting characters, the common characters are directly inserted, like pressing the key Tab.
-<li>Complete selected text when non-word character is pressed: when in completion mode, pressing a non-word character like space, leads to accepting the selected word. This may speed up typing.
-<li>Enable ToolTip-Help: show tool tips on selected latex commands in the completion list.
-<li>Use Placeholders: if the completed commands have options which need to be filled out, placeholders are put at these positions and they can be jumped to by using Ctrl+Right/Ctrl+Left.
-</ul>
-<p>If your favorite package is not yet present for completion (and syntax checking), you can provide a list of your own by placing a file "packagename.cwl" in the <a href="https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions#where-are-the-settings-stored">config directory</a>. This directory is placed in ~/.config/texstudio under Linux and usually "c:\Documents and Settings/User/AppData/Roaming/texstudio" under Windows. Basically the file contains a list of valid commands. A description of the exact format and an example are given in the <a href="#CWLDESCRIPTION">appendix</a>.
-</p>
+<figure>
+	<IMG src="ConfigureTeXstudioPreviewAdvancedMarked.png" border="1" alt="Configure Preview">
+	<figcaption>Preview options</figcaption>
+</figure>
 
-<p><IMG src="configure_completion.png" border="1" alt="Configure Completion"></p>
-<h2 id="SECTION05">1.6 Configuring shortcuts</h2>
-<p>
-Shortcuts can be changed by double clicking on "Current Shortcut" or "Additional Shortcut". Then you can set up a new shortcut by one of the following ways (a tooltip will show this information):
-(1) Select from the drop down list, (2) hit the shortcut combination, or (3) type the string of the shortcut.
-A shortcut can be assigned a multiple keystroke combinations, for example <code>CTRL+M,CTRL+A</code> (either upper or lower case is allowed, but the comma is important).
-If a shortcut should be set to default value or removed completely, the items "&lt;default&gt;" or "&lt;none&gt;" at the top of the list can be selected respectively.
-</p>
-<p>
-A rough overview of the available (default) keyboard shortcuts can be found in <a href="#SHORTCUTS">Section 4.13</a>.
-</p>
-<p><IMG src="configure_shortcuts.png" border="1" alt="Configure Shortcuts"></p>
-<h2 id="SECTION06">1.7 Configuring the Latex/Math-Menu (Advanced option)</h2>
-<p>The Math/Latex-Menu can be adapted to user likings.
-For this menu items can be renamed and a new Latex-Code can be placed. The appropriate item can be be directly edited by doubleclicking on them.
-</p>
-<p><IMG src="configure_customizeMenu.png" border="1" alt="Customize Menu"></p>
-<h2 id="SECTION07">1.8 Configuring the Custom Toolbar (Advanced option)</h2>
-<p>One Custom Toolbar is present in TMX. This toolbar can be filled with actions from the Latex-, Math- and User-Menu.
-Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the custom toolbar list in the configure dialog.
-</p>
-<p><IMG src="configure_customToolbar.png" border="1" alt="Customize Toolbars"></p>
-<h2 id="SECTION08">1.9 Configuring SVN support</h2>
+<h2 id="SECTIONCONFIGPDFVIEWER">1.14 Configuring Internal PDF Viewer</h2>
+
+<figure>
+	<IMG src="ConfigureTeXstudioInternalPdfViewerAdvancedMarked.png" border="1" alt="Configure Internal PDF Viewer">
+	<figcaption>Internal PDF Viewer options</figcaption>
+</figure>
+
+<h2 id="SECTION08">1.15 Configuring SVN/GIT support</h2>
+
 <p>To supports SVN (subversion) for document versioning. To make use of it, the SVN command line tools need to be installed.
 Linux and Mac OSX normally provide already SVN tools, for Windows, the installation of "SlikSVN" is recommended.
 </p>
@@ -411,10 +549,19 @@ With "User SVN revisions to undo before last save" TeXstudio will perform undo a
 Further undo commands allows one to back further to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing SVN revisions directly via a menu command, see <a href="#SECTION33b">section 4.5</a>.
 </p>
-<p><IMG src="configure_svn.png" border="1" alt="Configure SVN"></p>
+
+<!-- <p><IMG src="configure_svn.png" border="1" alt="Configure SVN"></p> -->
+<figure>
+	<IMG src="ConfigureTeXstudioSvnGitAdvancedSame.png" border="1" alt="Configure SVN/GIT">
+	<figcaption>SVN/GIT options</figcaption>
+</figure>
+
 <h1 id="SECTION1">2. Editing a TeX document</h1>
+
 <h2 id="SECTION11">2.1 Usual commands</h2>
+
 <p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
+
 <p><IMG src="doc1.png" border="1" alt="Standard commands"></p>
 
 <h2 id="SECTION12">2.2 Creating a new document</h2>
