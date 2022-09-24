@@ -1,14 +1,11 @@
 # blowup package
-# Matthew Bertucci 11/13/2021 for v1.0
+# Matthew Bertucci 2022/09/21 for v2.0.0
 
 #include:atbegshi
 #include:keyval
 #include:graphics
 #include:typearea
-#include:ifxetex
-#include:ifluatex
-#include:ifpdf
-#include:ifvtex
+#include:iftex
 
 \blowUp{keyvals}
 
@@ -21,7 +18,7 @@ pos=#left,right,inside,outside,top,bottom
 onepage#true,false
 #endkeyvals
 
-\tPaperWidth
-\tPaperHeight
-\oPaperWidth
-\oPaperWidth
+\tPaperWidth#*
+\tPaperHeight#*
+\oPaperWidth#*
+\oPaperWidth#*

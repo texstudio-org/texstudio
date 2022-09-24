@@ -486,11 +486,12 @@ the TOC will open the file for you. Notice the different shades of color that in
 
 <h3 id="SECTION143">2.4.3 Using Bookmarks</h3>
 
-<p>You can use bookmarks in the editor of Texstudio. This can help keep text lines in mind and speed up navigation between them. To the left of the editor's text
+<p>You can use bookmarks in the editor of TeXstudio. This can help keep text lines in mind and speed up navigation between them. To the left of the editor's text
 area is a bookmark column that displays the bookmark icons. Here you can open a context menu (s. image below) and select the bookmark you want to set for a text
 line. Each of the ten numbered bookmarks can be used only once (when you set it a second time in the same editor, then the first one is removed), while the
 unnamed bookmark can be used many times. Also you can remove bookmarks with the first entry in the menu. A faster way setting bookmarks is clicking with the
-left mouse button in the bookmark column and Texstudio will choose a bookmark or remove an existing one.</p>
+left mouse button in the bookmark column and TeXstudio will choose a bookmark or remove an existing one. The editor shows a thin, horizontal indicator line in
+the scroll bar for each bookmark.</p>
 
 <figure>
 	<IMG src="bookmark1.png" border="1" alt="Bookmarks in TeXstudio">
@@ -499,7 +500,7 @@ left mouse button in the bookmark column and Texstudio will choose a bookmark or
 
 <p>You may choose the Bookmarks view of the left side panel, which shows the text for each line with a bookmark of all editors. With the ease of a mouse click you
 can jump to the text line in the editor. A tooltip shows the surrounding context of the line (s. left image below). The lines are ordered in the order you created
-the bookmarks. A context menu allows you to change the order of lines or remove bookmarks (s. right image below).</p>
+the bookmarks. A context menu allows you to change the order of lines or remove bookmarks (s. right image below). Bookmark texts are not refreshed as you go on typing.</p>
 
 <table>
 	<tr>
@@ -1688,13 +1689,13 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Delete Line : Ctrl+K</li>
 	<li>Delete to End of Line : Alt+K</li>
 	<li>Find : Ctrl+F</li>
-	<li>Find next : F3 / Ctrl+G</li>
-	<li>Find prev : Shift+F3 / Ctrl+Shift+G</li>
+	<li>Find next : F3 / Ctrl+G</li>				<!-- Ctrl+G for Mac -->
+	<li>Find prev : Shift+F3 / Ctrl+Shift+G</li>	<!-- Ctrl+Shift+G for Mac -->
 	<li>Replace : Ctrl+R</li>
-	<li>Go to line : Ctrl+G</li>
+	<li>Go to line : Ctrl+G</li>					<!-- Ctrl+L for Mac -->
 	<li>Go to previous change : Ctrl+H</li>
 	<li>Go to to next change : Ctrl+Shift+H</li>
-	<li>Go to Bookmark 1..9 : Ctrl+1..9</li>		<!-- 04/26/2022 it is assumed that Ctrl+0 would make problems, s. #2275 -->
+	<li>Go to Bookmark 1..9 : Ctrl+1..9</li>		<!-- 04/26/2022 Ctrl+0 resets editor zoom level, s. #2275 and "View" menu below -->
 	<li>Toggle Bookmark 0..9 : Ctrl+Shift+0..9</li>
 	<li>Set Unnamed Bookmark : Ctrl+Shift+B</li>
 	<li>Next Marker : Ctrl+Down</li>
@@ -1778,6 +1779,7 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Close Something : Esc</li>
 	<li>Editor Zoom In : Ctrl++</li>
 	<li>Editor Zoom Out : Ctrl+-</li>
+	<li>Editor Reset Zoom : Ctrl+0</li>
 	<li>Fullscreeen Mode : F11</li>
 	</ul>
 </li>

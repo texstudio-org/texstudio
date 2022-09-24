@@ -1,8 +1,8 @@
 # kpfonts package
-# Matthew Bertucci 1/19/2022 for v3.33
+# Matthew Bertucci 2022/09/20 for v3.34
 
+#include:iftex
 #include:amsmath
-#include:textcomp
 
 #ifOption:easyscsl
 #include:ifthen

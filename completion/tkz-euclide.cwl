@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 2022/07/30 for v4.22c
+# Matthew Bertucci 2022/09/23 for v4.25c
 
 #include:tikz
 # loads angles, arrows, arrows.meta, backgrounds, calc, decorations, decorations.markings
@@ -36,6 +36,7 @@ shift=(%<angle%>:%<radius%>)
 \tkzGetPoints{ref1}{ref2}
 \tkzGetFirstPoint{ref1}
 \tkzGetSecondPoint{ref2}
+\tkzGetThirdPoint{ref3}#*
 \tkzGetLength{csname}
 
 ## Special Points ##
@@ -48,8 +49,6 @@ shift=(%<angle%>:%<radius%>)
 #keyvals:\tkzDefSimilitudeCenter#c
 ext
 int
-node
-R
 #endkeyvals
 
 \tkzDefHarmonic(A,B,C)
@@ -1267,10 +1266,6 @@ line width=##L
 \tkzPointShowCoord[options%keyvals](point)#*
 \tkzShowPointCoord(point)#*
 \tkzShowPointCoord[options%keyvals](point)#*
-
-# from tkz-obj-eu-draw-triangles.tex
-\tkzDrawTriangles(points)#*
-\tkzDrawTriangles[options](points)#*
 
 # from tkz-obj-eu-circles.tex
 \tkzDefCircleR(point1,point2)#*
