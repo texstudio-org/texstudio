@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/09/16 for v7.10.0
+# Matthew Bertucci 2022/09/24 for v7.11.0
 
 #include:ifxetex
 #include:ifluatex
@@ -250,6 +250,7 @@ bankofamerica
 barclays
 baremetrics
 basecamp
+bastyon
 bata
 bathasu
 battledotnet
@@ -499,6 +500,7 @@ dacia
 daf
 dailymotion
 daimler
+dapr
 darkreader
 dart
 darty
@@ -1558,6 +1560,7 @@ pluscodes
 pm2
 pnpm
 pocket
+pocketbase
 pocketcasts
 podcastaddict
 podman
@@ -1793,6 +1796,7 @@ scrumalliance
 scrutinizerci
 seagate
 seat
+securityscorecard
 sefaria
 sega
 selenium
@@ -1916,6 +1920,7 @@ squareenix
 squarespace
 ssrn
 stackbit
+stackblitz
 stackedit
 stackexchange
 stackoverflow
@@ -2139,6 +2144,7 @@ uplabs
 uploaded
 ups
 upstash
+uptimekuma
 uptobox
 upwork
 usps
@@ -2287,6 +2293,7 @@ xiaomi
 xilinx
 xing
 xmpp
+xo
 xrp
 xsplit
 xstate
