@@ -708,7 +708,7 @@ Note: the optional fields can be automatically deleted with the
 
 ![Bibliography Menu](doc16.png)
 
-## SVN Support {#SECTION33b}
+## SVN Support {#SVNSUPPORT}
 
 Apart from the supported SVN features already describes in section 1.8,
 TeXstudio supports two more commands.
@@ -835,7 +835,7 @@ on insertion.\
     asked for in a file dialog. The file filter is the standard
     Qt-Filefilterformat. For example \"Images (\*.png \*.xpm
     \*.jpg);;Text files (\*.txt);;XML files (\*.xml)\", see also
-    [Qt-Doc](http://doc.trolltech.com/4.6/qfiledialog.html#getOpenFileName)
+    [Qt-Doc](https://doc.qt.io/qt-6/qfiledialog.html)
 
 ### Environment macros {#SECTION33c}
 
@@ -851,10 +851,8 @@ character is not placed on insertion.
 ### Script Macros {#JAVASCRIPT-MACROS}
 
 Instead of using code snippets, you can also make use of scripting with
-QtScript. QtScript is an application scripting language based on
-[ECMAScript](http://doc.qt.io/qt-5/ecmascript.html). Since QtScript and
-JavaScript are both an implementation of ECMAScript, you\'ll pick up
-QtScript easily if you are familiar with JavaScript.
+QJS, an application scripting language based on
+[ECMAScript](https://doc.qt.io/qt-6/qtqml-javascript-functionlist.html). 
 
 Put \"%SCRIPT\" in the first line to declare a macro as a script. Here
 are the objects that provide the interface to the TeXstudio internals:
@@ -868,7 +866,7 @@ are the objects that provide the interface to the TeXstudio internals:
 -   \"app\" to access application wide things like the clipboard or the
     menus
 
-The following table gives an overview on the possible commands.
+The following table gives an overview on the provided commands.
 
 | Command | Description |
 | --- | --- |
@@ -1956,15 +1954,9 @@ in the internal storage, the document will be changed to the previous
 version in SVN history. Further undo commands allows one to back further
 to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing SVN revisions directly
-via a menu command, see [section 4.5](#SECTION33b).
+via a menu command, see [here](#SVNSUPPORT).
 
 ![Configure SVN](configure_svn.png)
-
-
-
-
-
-
 
 # Background information {#BackgroundInfo}
 
