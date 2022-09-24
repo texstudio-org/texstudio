@@ -1,5 +1,5 @@
 # pdfcol package
-# Matthew Bertucci 11/24/2021 for v1.6
+# Matthew Bertucci 2022/09/24 for v1.7
 
 #include:ltxcmds
 #include:infwarerr
@@ -7,8 +7,8 @@
 #include:color
 
 \ifpdfcolAvailable#*
-\pdfcolAvailabletrue#*
-\pdfcolAvailablefalse#*
+\pdfcolAvailabletrue#S
+\pdfcolAvailablefalse#S
 \pdfcolErrorNoStacks#*
 \pdfcolInitStack{name}#*
 \pdfcolIfStackExists{name}{then}{else}#*
