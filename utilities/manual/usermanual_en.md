@@ -8,14 +8,14 @@
 *  view **TODO**
 *  troubleshoot ? **TODO**
 
-# Editing a TeX document {#SECTION1}
+# Editing a TeX document
 
-## Creating a new document {#SECTION12}
+## Creating a new document
 
 There are two different ways to create a new document that are described
 in the following subsections:
 
-### Setting the preamble of a TeX document {#SECTION12a}
+### Setting the preamble of a TeX document
 
 To define the preamble of your document, you can use the \"Quick start\"
 wizard (\"Wizard\" menu).
@@ -47,7 +47,7 @@ on a opened document which you like to have has a template. Note that
 this dialog currently does not support the full capabilities of the
 template system. In particular you cannot supply a preview image or
 create a multi-file template with it. You\'ll have to do this manually
-(s. [The template format](#SECTION12ba) below).
+(s. [The template format](#the-document-template-format) below).
 
 User added templates can be edited or deleted by using the context menu
 in the template selection dialogue. Built-in templates can not be
@@ -56,30 +56,7 @@ changed.
 User templates are saved in the `/templates/user/` subdirectory of the
 config directory.
 
-#### The Template Format {#SECTION12ba}
-
-In its simplest form, a template is only a .tex file. Multi-file
-templates can be created by packaging all .tex files in a zip archive.
-Optionally, meta data can be stored in JSON format in a separate file
-with the same name, but extension \".json\" instead of \".tex\" or
-\".zip\". Currently the following entries are supported in the meta
-data:
-
-    {
-    "Name"        : "Book",
-    "Author"      : "TXS built-in",
-    "Date"        : "04.01.2013",
-    "Version"     : "1.1",
-    "Description" : "Default LaTeX class for books using separate files for each chapter.",
-    "License"     : "Public Domain",
-    "FilesToOpen" : "./TeX_files/chapter01.tex;main.tex"
-    }
-
-FilesToOpen only has an effect for mutli-file documents. You may add a
-preview image next to the template file. Again, it must have the same
-name, but extension \".png\".
-
-## Structure your document {#SECTION13}
+## Structure your document
 
 To define a new part in your document (part, section, subsection, \...)
 with TeXstudio, just use this combo box button in the format toolbar of
@@ -87,9 +64,9 @@ the main toolbar:
 
 ![Sectioning](doc3.png)
 
-## Browsing your document {#SECTION14}
+## Browsing your document
 
-### The Structure View {#SECTION141}
+### The Structure View
 
 The \"Structure View\" (left panel) lets you quickly reach any part of
 your document. All you need to do is to click on any item (label,
@@ -125,7 +102,7 @@ paste it before or after a section. Section can be indented/unindented
 which means that the hierarchy level is changed by one, i.e. \\section
 is changed to \\subsection, and all subsections are treated accordingly
 
-### The TOC View {#SECTION142}
+### The TOC View
 
 The side panel on the left offers a TOC view (if not, s. [0. A first
 look at TeXstudio](#SECTION00)). The TOC shows the structure of your
@@ -154,7 +131,7 @@ file1.tex is part of the section "Main text". You may like to choose a
 different color in the configuration dialog (s. option Use color in
 global TOC in advanced editor settings).
 
-### Using Bookmarks {#SECTION143}
+### Using Bookmarks
 
 You can use bookmarks in the editor of Texstudio. This can help keep
 text lines in mind and speed up navigation between them. To the left of
@@ -191,7 +168,7 @@ shortcut resets the zoom level of the editor). From the Edit/Go to menu
 you can choose entry Line to jump to a line with a given line number.
 You may want to use Previous mark or Next mark to find unnamed
 bookmarks. For the sake of completeness it should be said that bookmark
-is one of several types of markers (s. [The log files](#SECTION23)).
+is one of several types of markers (s. [The log files](#the-log-files)).
 You can toggle the bookmark of the line with the text cursor using the
 actions from the menu Edit/Toggle Bookmark, which can be seen in the
 following image on the right.
@@ -200,7 +177,7 @@ following image on the right.
 ![Edit/Go to](bookmark4.png) ![Edit/Goto Bookmark](bookmark5.png) ![Edit/Toggle Bookmark](bookmark6.png)
 
 
-## Formatting your text {#SECTION15}
+## Formatting your text
 
 You can quickly set the format of a part of your text with this tool bar
 :
@@ -245,18 +222,19 @@ For example: \"Less than 10% of computer users know the meaning of
 \$PATH.\" will be converted to \"Less than 10\\% of computer users know
 the meaning of \\\$PATH.\"
 
-## Spacings {#SECTION16}
+## Spacings
+**TODO** general description of inserting latex commands (menu, completer, tags)
 
 The usual \"spacing\" commands are available in the \"LaTeX\" and
 \"Math\" menus.
 
-## Inserting a list {#SECTION17}
+## Inserting a list
 
 The usual list environments code can be insert quickly via the
 \"LaTeX-List\" menu.\
 Note : the shortcut for the \\item command is Ctrl+Shift+I.
 
-## Inserting a table {#SECTION18}
+## Inserting a table
 
 With the \"Tabular\" wizard (\"Wizard\" menu), the LaTeX code for a
 tabular environment can be quickly inserted :
@@ -267,7 +245,7 @@ You can set the main features of your table.\
 Note : this dialog allows you to type directly the code in the cells.\
 The corresponding LaTeX code is automatically inserted in the editor.
 
-### Manipulating tables {#SECTION18a}
+### Manipulating tables
 
 TeXstudio provides some commands to ease handling of tables. The
 commands are located at LaTeX → Manipulate Table and in the Table
@@ -300,14 +278,14 @@ in new text, which will be added in every row.
 
 ![Block Selection](block_selection.png)
 
-## Inserting a \"tabbing\" environment {#SECTION19}
+## Inserting a \"tabbing\" environment
 
 To help you to insert a \"tabbing\" code, you can use the \"Tabbing\"
 wizard (\"Wizard\" menu) :
 
 ![Tabbing Wizard](doc8.png)
 
-## Inserting a picture {#SECTION110}
+## Inserting a picture
 
 To insert a picture in your document, just use the \"\\includegraphics\"
 command in the \"LaTeX\" menu. Then, click on the \"browser\" button in
@@ -317,7 +295,7 @@ Environments\" menu) before inserting the picture.
 
 ![Figure Environment](doc9.png)
 
-### Inserting a picture using a \"wizard\" {#SECTION110a}
+### Inserting a picture using a \"wizard\"
 
 Properly inserting figures is a challenge for LaTeX beginners and still
 quite a bit of text to type for the expert. Therefore TeXstudio offers a
@@ -341,7 +319,7 @@ settings.
 
 ![Figure Wizard](wizard_figure.png)
 
-## Cross References and notes {#SECTION111}
+## Cross References and notes
 
 This toolbox in the toolbar allows you to insert quickly the label,
 cite, ref, footnote\... code.\
@@ -353,7 +331,7 @@ Note : the labels used in your documents are displayed in the
 **Additional option:**for the \\ref command, a dialog box allows you to
 select directly the label.
 
-## Inserting math formula {#SECTION112}
+## Inserting math formula
 
 You can toggle in the \"in-line math\" environment with the \"f(x)\"
 button in the toolbar (shortcut : Ctrl+Alt+M) or with the \"Math\" menu.
@@ -377,7 +355,7 @@ completed.
 
 ![Array Wizard](doc13.png)
 
-## Auto Completion {#SECTION113}
+## Auto Completion
 
 Whenever you press \\ followed by a letter, a list of possible LaTeX
 tags is shown where you select the right one. If you type additional
@@ -419,7 +397,7 @@ below the command list.\
     \\**b**egin{**f**igure}
 -   All: list all known commands.
 
-## Thesaurus {#SECTION114}
+## Thesaurus
 
 TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases
 are used for this. By placing the cursor on a word and activating the
@@ -440,16 +418,16 @@ further investigations for words and their synonyms which \"start with\"
 or \"contain\" that word. With \"lookup\" it can be directly used to
 look for a synonym for that word.
 
-## Special Commands {#SECTION115}
+## Special Commands
 
-### Delete word/command/environment {#SPECIALDELETING}
+### Delete word/command/environment
 
 With the shortcut Alt+Del, the word under the cursor is deleted. If it
 is a command, the command is deleted including opening and closing
 braces. E.g. \"\\textbf{text}\" leave \"text\". If it is an environment,
 the enclosing begin/end are removed.
 
-### Rename environment {#SPECIALRENAMING}
+### Rename environment
 
 If you place the cursor on an environment name, after a moment a
 mirror-cursor is activated on the environment name which allows
@@ -460,16 +438,16 @@ end-command. So if you want to change a
 \"tabular\", wait for a second and then, after the mirror-cursor
 appears, change \"tabular\" to \"tabularx\".
 
-### Cut Buffer {#SPECIALCUTBUFFER}
+### Cut Buffer
 
 If you select something and then start to type in a command and complete
 it, the selection is put in as first argument. E.g. you have a \"text\",
 select it and start typing \"\\textbf\", command which is completed. The
 resulting text is \"\\textbf{text}\".
 
-# Compiling a document {#SECTION2}
+# Compiling a document
 
-## Compiling {#SECTION22}
+## Compiling
 
 The easiest way to compile a document is to use the \"Compile\" command
 or the \"Build&View\" command (\"Compile\" button - shortcut : F6). You
@@ -483,7 +461,7 @@ the ps and pdf files).
 
 **Warning:** all your files must have an extension.
 
-## The log files {#SECTION23}
+## The log files
 
 The log panel gives you insight to all the informations output to the
 log file by the command processing your LaTeX file. This panel can show
@@ -524,7 +502,7 @@ settings). The log file informations can be shown or hidden by clicking
 on the Log File button. The Issues button offers a similar function for
 the table with the messages.
 
-# Viewing a document (pdf) {#VIEWING}
+# Viewing a document (pdf)
 **TODO** internal/external 
 
 ## Internal pdf viewer {#SECTION24}
@@ -644,7 +622,7 @@ colors for further explanations:
 The main window is divided into three parts (blue): On the left we have
 a \"side panel\" (currently showing an empty Structure) that provides
 many different functions. On the lower right you see a *messages panel*.
-You can switch to the *[log panel](#SECTION23)*, the *preview panel*, or
+You can switch to the *[log panel](#the-log-files)*, the *preview panel*, or
 the *search results panel* there. The third area is left to the editor.
 You can have multiple editors open, which you select using tabs. You may
 increase the area for editors by turning off the side panel or the
@@ -832,7 +810,7 @@ on insertion.\
     \*.jpg);;Text files (\*.txt);;XML files (\*.xml)\", see also
     [Qt-Doc](https://doc.qt.io/qt-6/qfiledialog.html)
 
-### Environment macros {#SECTION33c}
+### Environment macros
 
 The text will be used as environment-name, thus \"%environment\" will be
 inserted as:\
@@ -843,7 +821,7 @@ inserted as:\
 Note: texstudio needs that the env-name starts with \"%\", though that
 character is not placed on insertion.
 
-### Script Macros {#JAVASCRIPT-MACROS}
+### Script Macros
 
 Instead of using code snippets, you can also make use of scripting with
 QJS, an application scripting language based on
@@ -1117,7 +1095,7 @@ can be used to execute the script when the corresponding event occurs:\
 
 Multiple of these special triggers can be combined by \| symbols.
 
-## The \"Convert to Html\" command {#SECTION36}
+## The \"Convert to Html\" command
 
 This command (from the \"Tools\" menu ) produces a set of html pages
 from a LaTeX source file with one image for each html page. Each page in
@@ -1240,7 +1218,7 @@ the following magic comments:
     This is equivalent to
     `% !TeX TXS-program:bibliography = txs:///biber`
 
-# Configuring TeXstudio {#SECTION0}
+# Configuring TeXstudio
 
 
 Before using TeXstudio, you should configure the editor and latex
@@ -1250,7 +1228,7 @@ two levels of detail. More advanced or less often used options are only
 visible if you toggle \"Show advanced options\" in the lower left
 corner.
 
-## Configuring the editor {#SECTION01}
+## Configuring the editor
 
 
 You may change the default encoding for new files (\"Configure
@@ -1515,7 +1493,7 @@ Launch qpdfview from TeXstudio: [qpdfview \--unique
 \
 Launch TeXstudio from qpdfview: [texstudio \"%1\" -line %2]{.command}
 
-## Configuring the build system {#SECTION02a}
+## Configuring the build system
 
 TeXstudio provides general commands for translating latex.\
 The default settings use \"pdflatex\" and the internal pdf viewer. Other
@@ -1638,7 +1616,7 @@ afterwards), rerunnable (repeat command call, if there are warnings),
 pdf generators (e.g. pdflatex), commands that prints to stdout (e.g.
 bibtex), and viewers (e.g. only open once).
 
-### Details of the execution environment {#SECTION02a2}
+### Details of the execution environment
 
 #### Environment Variables
 
@@ -1707,7 +1685,7 @@ and do the actual work inside the wrapper script:
 
 
 
-## Configuring some general issues {#SECTION030}
+## Configuring some general issues
 
 
 This panel allows the setting of some general aspects.
@@ -1724,7 +1702,7 @@ This panel allows the setting of some general aspects.
 
 ![Configure General](configure_general.png)
 
-### Configuring the spell checker {#SECTION03}
+### Configuring the spell checker
 
 TeXstudio offers an integrated spellchecker which can be used either via
 a dialog or directly while typing. All text outside of LaTeX commands is
@@ -1790,14 +1768,14 @@ saved in the same directory as the dictionary. It\'s a plain text file
 with the extension .ign. If this isn\'t possible (e.g. missing access
 rights) the list is stored in the user configuration directory.
 
-### Configuring the thesaurus {#SECTION04}
+### Configuring the thesaurus
 
 The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and
 US-English and German databases are distributed with TeXstudio.\
 Users can download others databases here :
 <http://wiki.services.openoffice.org/wiki/Dictionaries>\
 
-### Configuring the latex syntax checker {#SECTION041}
+### Configuring the latex syntax checker
 
 The latex syntax checker takes the list of possible completion commands
 to determine if a command is correct. Furthermore the completion list
@@ -1805,7 +1783,7 @@ contains partially additional information to determine in which context
 a command is valid, whether it is valid only in math-mode or only in
 tabular-mode.\
 
-### Configuring the grammar checker {#SECTION044}
+### Configuring the grammar checker
 
 The grammar checker is based on the standard http API of
 [LanguageTool](http://www.languagetool.org/), and requires a separate
@@ -1876,7 +1854,7 @@ description of the exact format and an example are given in the
 
 ![Configure Completion](configure_completion.png)
 
-## Configuring shortcuts {#SECTION05}
+## Configuring shortcuts
 
 Shortcuts can be changed by double clicking on \"Current Shortcut\" or
 \"Additional Shortcut\". Then you can set up a new shortcut by one of
@@ -1893,7 +1871,7 @@ found in [Section 4.13](#SHORTCUTS).
 
 ![Configure Shortcuts](configure_shortcuts.png)
 
-## Configuring the Latex/Math-Menu (Advanced option) {#SECTION06}
+## Configuring the Latex/Math-Menu (Advanced option)
 
 The Math/Latex-Menu can be adapted to user likings. For this menu items
 can be renamed and a new Latex-Code can be placed. The appropriate item
@@ -1911,7 +1889,7 @@ custom toolbar list in the configure dialog.
 
 ![Customize Toolbars](configure_customToolbar.png)
 
-## Configuring SVN support {#SECTION08}
+## Configuring SVN support
 
 To supports SVN (subversion) for document versioning. To make use of it,
 the SVN command line tools need to be installed. Linux and Mac OSX
@@ -1953,9 +1931,9 @@ via a menu command, see [here](#SVNSUPPORT).
 
 ![Configure SVN](configure_svn.png)
 
-# Background information {#BackgroundInfo}
+# Background information
 
-## About documents separated in several files {#SECTION31}
+## About documents separated in several files
 
 
 LaTeX documents may be spread over multiple files. TeXstudio
@@ -1963,7 +1941,7 @@ automatically understands parent/child relations of loaded documents.
 This includes the detection of the root document and knowledge on
 defined labels and commands.
 
-### Root Document {#sec:rootdocument}
+### Root Document
 
 The root document is the top-most file in a multi-file document. For a
 single-file document this is the file itself. By default, all calls to
@@ -1985,7 +1963,7 @@ completion in any open document.
 In earlier versions, the *explicit root document* was somewhat
 misleadingly called *master document*.
 
-### Loaded Documents {#sec:LoadedDocuments}
+### Loaded Documents
 
 Obviously, TeXstudio can only use information (defined commands, labels,
 document hirachy, etc.) that it is aware of. We use the information in
@@ -2004,7 +1982,7 @@ have the root document open. With this option enabled TeXstudio will
 always know about your complete document and act accordingly when
 performing highlighting or completion.
 
-## Overview of TeXstudio command-line options {#TEXSTUDIO-CMD}
+## Overview of TeXstudio command-line options
 
 `texstudio file [--config DIR] [--root] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy] [--no-session]`
 
@@ -2262,6 +2240,29 @@ arguments are not available and no completion hints are given.
 -   **built-in**
 -   **%appdata%\\texstudio\\completion\\autogenerated or
     .config/texstudio/completion/autogenerated** auto-generated cwls
+
+## The Document Template Format
+
+In its simplest form, a template is only a .tex file. Multi-file
+templates can be created by packaging all .tex files in a zip archive.
+Optionally, meta data can be stored in JSON format in a separate file
+with the same name, but extension \".json\" instead of \".tex\" or
+\".zip\". Currently the following entries are supported in the meta
+data:
+
+    {
+    "Name"        : "Book",
+    "Author"      : "TXS built-in",
+    "Date"        : "04.01.2013",
+    "Version"     : "1.1",
+    "Description" : "Default LaTeX class for books using separate files for each chapter.",
+    "License"     : "Public Domain",
+    "FilesToOpen" : "./TeX_files/chapter01.tex;main.tex"
+    }
+
+FilesToOpen only has an effect for mutli-file documents. You may add a
+preview image next to the template file. Again, it must have the same
+name, but extension \".png\".
 
 ## Creating table templates {#TABLETEMPLATECREATION}
 
