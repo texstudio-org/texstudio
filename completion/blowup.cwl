@@ -1,5 +1,5 @@
 # blowup package
-# Matthew Bertucci 2022/09/21 for v2.0.0
+# Matthew Bertucci 2022/09/24 for v2.1.0
 
 #include:atbegshi
 #include:keyval
@@ -12,6 +12,8 @@
 #keyvals:\blowUp
 target=%<paper size%>
 origin=%<paper size%>
+h-mirroring#true,false
+v-mirroring#true,false
 landscape#true,false
 noscale#true,false
 pos=#left,right,inside,outside,top,bottom
