@@ -532,6 +532,7 @@
 <file>completion/chemist.cwl</file>
 <file>completion/chemmacros.cwl</file>
 <file>completion/chemnum.cwl</file>
+<file>completion/chemobabel.cwl</file>
 <file>completion/chemplants.cwl</file>
 <file>completion/chemscheme.cwl</file>
 <file>completion/chemschemex.cwl</file>
@@ -1997,6 +1998,7 @@
 <file>completion/lstbayes.cwl</file>
 <file>completion/lstdoc.cwl</file>
 <file>completion/lstfiracode.cwl</file>
+<file>completion/lstlinebgrd.cwl</file>
 <file>completion/lt3luabridge.cwl</file>
 <file>completion/ltablex.cwl</file>
 <file>completion/ltj-base.cwl</file>
@@ -3034,6 +3036,7 @@
 <file>completion/software-biblatex.cwl</file>
 <file>completion/somedefs.cwl</file>
 <file>completion/songbook.cwl</file>
+<file>completion/songs.cwl</file>
 <file>completion/soul.cwl</file>
 <file>completion/soulpos.cwl</file>
 <file>completion/soulutf8.cwl</file>
