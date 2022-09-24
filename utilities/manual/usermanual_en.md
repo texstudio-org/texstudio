@@ -178,10 +178,7 @@ lines are ordered in the order you created the bookmarks. A context menu
 allows you to change the order of lines or remove bookmarks (s. right
 image below).
 
-+-----------------------------------+-----------------------------------+
-| ![Tooltip in view                 | ![Context menu in view            |
-| Bookmarks](bookmark2.png)         | Bookmarks](bookmark3.png)         |
-+-----------------------------------+-----------------------------------+
+![Tooltip in view Bookmarks](bookmark2.png)  ![Context menu in view Bookmarks](bookmark3.png)
 
 You probably noticed the three buttons (placed in the status line) on
 the lower right side of the TeXstudio window, which look like bookmarks
@@ -199,11 +196,9 @@ You can toggle the bookmark of the line with the text cursor using the
 actions from the menu Edit/Toggle Bookmark, which can be seen in the
 following image on the right.
 
-+-----------------------+-----------------------+-----------------------+
-| ![Edit/Go             | ![Edit/Goto           | ![Edit/Toggle         |
-| to](bookmark4.png)    | Bookmark](bookmark5.p | Bookmark](bookmark6.p |
-|                       | ng)                   | ng)                   |
-+-----------------------+-----------------------+-----------------------+
+
+![Edit/Go to](bookmark4.png) ![Edit/Goto Bookmark](bookmark5.png) ![Edit/Toggle Bookmark](bookmark6.png)
+
 
 ## Formatting your text {#SECTION15}
 
