@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2022/08/14 for v3.0.0
+# Matthew Bertucci 2022/09/24 for v3.0.1
 
 #include:expl3
 #include:l3keys2e
@@ -58,6 +58,7 @@ cover/underlineOffset=##L
 info={%<键值列表%>}
 info/title=%<字符串%>
 info/titleEn=%<字符串%>
+info/verticalTitle=%<字符串%>
 info/school=%<字符串%>
 info/schoolEn=%<字符串%>
 info/major=%<字符串%>
@@ -85,6 +86,7 @@ info/defenseDateEn=%<字符串%>
 info/classifiedLevel=%<字符串%>
 style={%<键值列表%>}
 style/head=%<字符串%>
+style/bibliographyIndent#true,false
 TOC={%<键值列表%>}
 TOC/abstract#true,false
 TOC/abstractEn#true,false
