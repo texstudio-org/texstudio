@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/09/04 for v1.2.5
+# Matthew Bertucci 2022/09/24 for v1.2.6
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -471,6 +471,31 @@ symb#true,false
 style=%<font commands%>
 #endkeyvals
 
+\PLsudomaths{liste}
+\PLsudomaths[options%keyvals]{liste}
+
+\begin{PLenvsudomaths}{grille}
+\begin{PLenvsudomaths}[options%keyvals]{grille}
+\end{PLenvsudomaths}
+
+#keyvals:\PLsudomaths,\begin{PLenvsudomaths}
+epaisseurg=##L
+epaisseur=##L
+unite=##L
+couleurcase=#%color
+couleurtexte=#%color
+nbcol=%<nombre%>
+nbsubcol=%<nombre%>
+nblig=%<nombre%>
+nbsublig=%<nombre%>
+police=%<font commands%>
+policeleg=%<font commands%>
+legendes#true,false
+listelegv=%<liste%>
+listelegh=%<liste%>
+decallegende=%<décalage%>
+#endkeyvals
+
 # from table option of xcolor
 #include:colortbl
 \rowcolors{row}{odd-row-color}{even-row-color}
@@ -745,6 +770,8 @@ Teal#B
 \ifinal#S
 \iinit#S
 \indice#S
+\larcolinter#S
+\larliginter#S
 \LCNA#S
 \lcoeffs#S
 \LCPA#S
@@ -819,6 +846,20 @@ Teal#B
 \PLRecuroffset#S
 \PLRecurposlab#S
 \PLRecuruno#S
+\PLSMcoulcase#S
+\PLSMcoultexte#S
+\PLSMdecalleg#S
+\PLSMepf#S
+\PLSMepg#S
+\PLSMfonte#S
+\PLSMfonteleg#S
+\PLSMlistelegh#S
+\PLSMlistelegv#S
+\PLSMnbcol#S
+\PLSMnblig#S
+\PLSMnbsubcol#S
+\PLSMnbsublig#S
+\PLSMunite#S
 \PLstrzeros{nombre}#*
 \PLUbuntuClose#*
 \PLUbuntuMax#*
@@ -857,6 +898,9 @@ Teal#B
 \schematdsaff{arg1}{arg2}{arg3}{arg4}#*
 \schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}#*
 \schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}[opt]#*
+\SMcase#S
+\SMcaseb#S
+\SPGrilleSudoMaths#S
 \SPLcoeffs#S
 \SPLcouleur#S
 \SPLcouleurpoints#S
