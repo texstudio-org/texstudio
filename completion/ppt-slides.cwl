@@ -1,5 +1,5 @@
 # ppt-slides package
-# Matthew Bertucci 2022/09/16 for v0.1.2
+# Matthew Bertucci 2022/09/24 for v0.1.5
 
 #include:pgfopts
 #include:xcolor
@@ -20,6 +20,7 @@
 template=9x6
 scheme=#light,dark,light-mono,dark-mono
 directory=%<directory%>
+nominutes
 #endkeyvals
 
 #ifOption:template
