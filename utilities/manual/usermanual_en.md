@@ -652,12 +652,13 @@ rearranged, moved somewhere in the window or even disconnected from the
 window at all. All toolbars are scalable, s. option GUI scaling (needs
 advanced options) in the config dialog.
 
-# Advanced features {#SECTION3}
+# Advanced features
 
-## User Fold Marker {#FOLDMARKER}
-**TODO** fill in
+## User Fold Marker
 
--   Mark an extra foldable range
+Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments `%BEGIN_FOLD` and `%END_FOLD`. 
+
+![Example for user fold marker](userfoldmarker.png)
 
 ## Syntax Check {#SECTION32a}
 
@@ -2157,50 +2158,50 @@ A %-suffix takes precedence over detection by name, i.e. an argument
 
 The following classifications are known to TXS:
 
-  Classifier        Meaning
-  ----------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \*                unusual command which is used for completion only in with the \"all\" tab. This marker may be followed by other classifications.
-  S                 do not show in completer at all. This marker may be followed by other classifications.
-  M                 do not use this as command description.
-  m                 valid only in math environment
-  t                 valid only in tabular environment (or similar)
-  T                 valid only in tabbing environment
-  n                 valid only in text environment (i.e. not math env)
-  r                 this command declares a reference like \"\\ref{key}\"
-  c                 this command declares a citation like \"\\cite{key}\"
-  C                 this command declares a complex citation like \"\\textcquote{bibid}{text}\". The key needs to be given as `bibid`
-  l                 this command declares a label like \"\\label{key}\"
-  d                 this command declares a definition command like \"\\newcommand{cmd}{def}\"
-  g                 this command declares an include graphics command like \"\\includegraphics{file}\"
-  i                 this command declares an include file command like \"\\include{file}\"
-  I                 this command declares an import file command like \"\\import{path}{file}\"
-  u                 this command declares an used package like \"\\usepackage{package}\"
-  b                 this command declares a bibliography like \"\\bibliography{bib}\"
-  U                 this command declares a url command like \"\\url{URL}, where URL is not checked\"
-  K                 this command declares a bracket-like command like \"\\big{\"
-  D                 this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix `%todo`. See todonotes.cwl for an example.
-  B                 this command declares a color (will be used for color completion only, no syntax checking)
-  s                 this command declares a special definition, the definition class is given after a \"\#\". The class name needs a preceding %. (e.g. %color), also see the examples below.
-  V                 this command declares a verbatim-like environment \"\\begin{Verbatim}\"
-  N                 this command declares a newtheorem-like command like \"\\newtheorem{envname}\"
-  L0 to L5          this command declares a structure command. The level is between L0 (`\part`-like) down to L5 (`\subparagraph`-like). Structure commands are highlighted in the code, can be folded and appear in the structure outline.
-  /env1,env2,\...   valid only in environment env1 or env2 etc.
-  \\env             environment alias, means that the environment is handled like the \"env\" environment. This is useful for env=math or tabular.
+| Classifier       | Meaning |
+| --- | ------ |
+|  \*              | unusual command which is used for completion only in with the \"all\" tab. This marker may be followed by other classifications. |
+|  S               | do not show in completer at all. This marker may be followed by other classifications. |
+|  M               | do not use this as command description. |
+|  m               | valid only in math environment |
+|  t               | valid only in tabular environment (or similar) |
+|  T               | valid only in tabbing environment |
+|  n               | valid only in text environment (i.e. not math env) |
+|  r               | this command declares a reference like \"\\ref{key}\" |
+|  c               | this command declares a citation like \"\\cite{key}\" |
+|  C               | this command declares a complex citation like \"\\textcquote{bibid}{text}\". The key needs to be given as `bibid` |
+|  l               | this command declares a label like \"\\label{key}\" |
+|  d               | this command declares a definition command like \"\\newcommand{cmd}{def}\" |
+|  g               | this command declares an include graphics command like \"\\includegraphics{file}\" |
+|  i               | this command declares an include file command like \"\\include{file}\" |
+|  I               | this command declares an import file command like \"\\import{path}{file}\" |
+|  u               | this command declares an used package like \"\\usepackage{package}\" |
+|  b               | this command declares a bibliography like \"\\bibliography{bib}\" |
+|  U               | this command declares a url command like \"\\url{URL}, where URL is not checked\" |
+|  K               | this command declares a bracket-like command like \"\\big{\" |
+|  D               | this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix `%todo`. See todonotes.cwl for an example. |
+|  B               | this command declares a color (will be used for color completion only, no syntax checking) |
+|  s               | this command declares a special definition, the definition class is given after a \"\#\". The class name needs a preceding %. (e.g. %color), also see the examples below. |
+|  V               | this command declares a verbatim-like environment \"\\begin{Verbatim}\" |
+|  N               | this command declares a newtheorem-like command like \"\\newtheorem{envname}\" |
+|  L0 to L5        | this command declares a structure command. The level is between L0 (`\part`-like) down to L5 (`\subparagraph`-like). Structure commands are highlighted in the code, can be folded and appear in the structure outline. |
+|  /env1,env2,\... | valid only in environment env1 or env2 etc. |
+|  \\env           | environment alias, means that the environment is handled like the \"env\" environment. This is useful for env=math or tabular. |
 
 Examples:\
 
-  Line                                                Explanation
-  --------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
-  `# test`                                            comment
-  `\typein{msg}#*`                                    unusual command which is only shown in completion \"all\"
-  `\sqrt{arg}#m`                                      only in math mode valid
-  `\pageref{key}#r`                                   declares a reference command which is used correctly for completion
-  `\vector(xslope,yslope){length}#*/picture`          unusual command which is valid only in the picture environment
-  `\begin{align}#\math`                               declares that the \"align\"-environment is handled like a math-env, concerning command validity and syntax highlighting!
-  `\definecolor{name}{model}{color-spec}#s#%color`    adds `name` to the special list `%color`
-  `\myplot{file}{label}{params}#l`                    defines the second argument as label. Note: the argument has to be named `label` for this to work.
-  `\myplot{file}{customname%labeldef}`                defines the second argument as label, but you are free to choose the name `customname` which will be used as a placeholder in the completer.
-  `\myplot{file}{label1%labeldef}{label2%labeldef}`   defines the second and third arguments as labels.
+|  Line                                              | Explanation |
+|  --------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------- |
+|  `# test`                                          | comment |
+|  `\typein{msg}#*`                                  | unusual command which is only shown in completion \"all\" |
+|  `\sqrt{arg}#m`                                    | only in math mode valid |
+|  `\pageref{key}#r`                                 | declares a reference command which is used correctly for completion |
+|  `\vector(xslope,yslope){length}#*/picture`        | unusual command which is valid only in the picture environment |
+|  `\begin{align}#\math`                             | declares that the \"align\"-environment is handled like a math-env, concerning command validity and syntax highlighting! |
+|  `\definecolor{name}{model}{color-spec}#s#%color`  | adds `name` to the special list `%color` |
+|  `\myplot{file}{label}{params}#l`                  | defines the second argument as label. Note: the argument has to be named `label` for this to work. |
+|  `\myplot{file}{customname%labeldef}`              | defines the second argument as label, but you are free to choose the name `customname` which will be used as a placeholder in the completer. |
+|  `\myplot{file}{label1%labeldef}{label2%labeldef}` | defines the second and third arguments as labels. |
 
 ### cwl guidelines {#CWLGUIDELINES}
 
@@ -2296,8 +2297,6 @@ variables are given:
     \"longtable\"
 -   tab the actual table. It is a list of lines, each line is a list of
     columns which contains the cell content as string
-
-\
 
 To see the principle of work, the source for the \"plain\_tabular\"
 template is given here.
