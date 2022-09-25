@@ -20,10 +20,10 @@ in the following subsections:
 To define the preamble of your document, you can use the \"Quick start\"
 wizard (\"Wizard\" menu).
 
-![Quick Start](doc2.png)
+![Quick Start](quickstartwizard.png)
 
 This dialog allows you to set the main features of your document (class,
-paper size, encoding\...).\
+paper size, encoding\...).
 Note : You can add other options by clicking the \"+\" buttons. All your
 settings are recorded.
 
@@ -31,7 +31,7 @@ You can also type your own preamble model in the editor : with the
 \"Copy/paste\" or \"Save As\" commands, you can use it for a new
 document.
 
-### Using Templates to start a new document {#SECTION12b}
+### Using Templates to start a new document
 
 For new documents, templates can be used by using the command \"File/New
 from template\". A dialogue gives a selection of templates.
@@ -75,11 +75,11 @@ area in the editor. The mechanism for jumping to a line does not anymore
 only consider line numbers but really remembers text lines. Thus adding
 and removing lines will not lead to jumps to wrong locations.
 
-A grey background shows the present cursor position in the text in the
+A light-blue background shows the present cursor position in the text in the
 structure view as well. A greenish background denotes sections which are
 in the appendix.
 
-![Appendix](doc5.png)
+![Structure View](structureview.png)
 
 The \"Structure View\" is automatically updated as you type. You can
 also use the \"Refresh Structure\" (menu \"Idefix\") command at any
@@ -104,8 +104,7 @@ is changed to \\subsection, and all subsections are treated accordingly
 
 ### The TOC View
 
-The side panel on the left offers a TOC view (if not, s. [0. A first
-look at TeXstudio](#SECTION00)). The TOC shows the structure of your
+The side panel on the left offers a TOC view. The TOC shows the structure of your
 whole document by means of section commands (part, section, subsection,
 ...). A mouse over shows you, in which file the section actually is.
 
