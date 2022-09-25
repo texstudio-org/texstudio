@@ -106,3 +106,35 @@ a:hover {
   -webkit-box-shadow: 0px 0px 0.5em 0.4em #FFF inset;
   box-shadow: 0px 0px 0.5em 0.4em #FFF inset;
 }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  padding: 2px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #f5f5f5;
+  border-right: 1px solid #eee;
+}
+  
+.sidebar a {
+padding: 1px;
+font-size: 12px;
+display: block;
+text-decoration: none;
+}
+
+.sidebar a:hover {
+cursor: pointer;
+opacity: .7;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  margin-left: 1em;
+  padding: 0;
+}
