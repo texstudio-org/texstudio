@@ -94,9 +94,9 @@ QString QuickDocumentDialog::getNewDocumentText()
 	QString tag = QString("\\documentclass[");
 	tag += ui.comboBoxSize->currentText() + QString(",");
 	tag += ui.comboBoxPaper->currentText();
-	QList<QListWidgetItem *> selectedItems = ui.listWidgetOptions->selectedItems();
-	for (int i = 0; i < selectedItems.size(); ++i) {
-		if (selectedItems.at(i)) opt += QString(",") + selectedItems.at(i)->text();
+    for (int i = 0; i < ui.listWidgetOptions->count(); ++i) {
+        QListWidgetItem *item=ui.listWidgetOptions->item(i);
+        if (item->checkState()==Qt::Checked) opt += QString(",") + item->text();
 	}
 	tag += opt + QString("]{");
 	tag += ui.comboBoxClass->currentText() + QString("}");
@@ -289,22 +289,19 @@ void QuickDocumentDialog::Init()
 	if (!otherBabelOptionsList.isEmpty()) ui.comboBoxBabel->addItems(otherBabelOptionsList);
 
 	ui.listWidgetOptions->clear();
-	ui.listWidgetOptions->addItem("landscape");
-	ui.listWidgetOptions->addItem("draft");
-	ui.listWidgetOptions->addItem("final");
-	ui.listWidgetOptions->addItem("oneside");
-	ui.listWidgetOptions->addItem("twoside");
-	ui.listWidgetOptions->addItem("openright");
-	ui.listWidgetOptions->addItem("openany");
-	ui.listWidgetOptions->addItem("onecolumn");
-	ui.listWidgetOptions->addItem("twocolumn");
-	ui.listWidgetOptions->addItem("titlepage");
-	ui.listWidgetOptions->addItem("notitlepage");
-	ui.listWidgetOptions->addItem("openbib");
-	ui.listWidgetOptions->addItem("leqno");
-	ui.listWidgetOptions->addItem("fleqn");
-	if (!otherOptionsList.isEmpty()) ui.listWidgetOptions->addItems(otherOptionsList);
-
+    QListWidgetItem *item;
+    QStringList options{"landscape","draft","final","oneside","twoside","openright","openany","onecolumn",
+                       "twocolumn","titlepage","notitlepage","openbib","leqno","fleqn"};
+    for(const QString& text:options){
+        item=new QListWidgetItem(text,ui.listWidgetOptions);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setCheckState(Qt::Unchecked);
+    }
+    for(const QString& text:otherOptionsList){
+        item=new QListWidgetItem(text,ui.listWidgetOptions);
+        item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
+        item->setCheckState(Qt::Unchecked);
+    }
 
 	configManagerInterface->linkOptionToDialogWidget(&document_class, ui.comboBoxClass);
 	configManagerInterface->linkOptionToDialogWidget(&typeface_size, ui.comboBoxSize);
@@ -438,8 +435,8 @@ void QuickDocumentDialog::geometryValuesChanged()
 	qreal marginTop = (ui.checkBoxGeometryMarginTop->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginTop->value(), ui.spinBoxGeometryMarginTop->suffix()) : -1);
 	qreal marginBottom = (ui.checkBoxGeometryMarginBottom->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginBottom->value(), ui.spinBoxGeometryMarginBottom->suffix()) : -1);
 
-    bool twoSide = ui.listWidgetOptions->findItems("twoside", Qt::MatchExactly).constFirst()->isSelected();
-    bool landscape = ui.listWidgetOptions->findItems("landscape", Qt::MatchExactly).constFirst()->isSelected();
+    bool twoSide = ui.listWidgetOptions->findItems("twoside", Qt::MatchExactly).constFirst()->checkState() == Qt::Checked;
+    bool landscape = ui.listWidgetOptions->findItems("landscape", Qt::MatchExactly).constFirst()->checkState() == Qt::Checked;
 
 	if (landscape) qSwap(physicalPaperWidth, physicalPaperHeight);
 
