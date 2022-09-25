@@ -60,20 +60,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLineEdit" name="lineEditMetaFilter">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="2">
+   <item row="2" column="0" colspan="3">
     <layout class="QHBoxLayout">
      <property name="spacing">
       <number>6</number>
@@ -138,7 +125,20 @@
      </item>
     </layout>
    </item>
-   <item row="0" column="1" rowspan="2">
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="lineEditMetaFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2" rowspan="2">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,7 +185,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>480</width>
+            <width>477</width>
             <height>552</height>
            </rect>
           </property>
@@ -2001,7 +2001,7 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-478</y>
+            <y>0</y>
             <width>670</width>
             <height>1379</height>
            </rect>
@@ -2955,6 +2955,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
        </property>
        <item>
         <widget class="QGroupBox" name="groupBox_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string>Completion</string>
          </property>
@@ -3163,46 +3169,89 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_12">
-         <property name="toolTip">
-          <string>TXS tries to automatically load completion files for packages if a
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="toolTip">
+            <string>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</string>
-         </property>
-         <property name="text">
-          <string>Permanently active completion files:</string>
-         </property>
-        </widget>
+           </property>
+           <property name="text">
+            <string>Permanently active completion files:</string>
+           </property>
+           <property name="advancedOption" stdset="0">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leCOmpletionFilter">
+           <property name="toolTip">
+            <string>Filter list below</string>
+           </property>
+           <property name="advancedOption" stdset="0">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QListWidget" name="completeListWidget">
-         <property name="toolTip">
-          <string>TXS tries to automatically load completion files for packages if a
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QListWidget" name="completeListWidget">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</string>
-         </property>
-         <property name="flow">
-          <enum>QListView::TopToBottom</enum>
-         </property>
-         <property name="isWrapping" stdset="0">
-          <bool>true</bool>
-         </property>
-         <property name="resizeMode">
-          <enum>QListView::Adjust</enum>
-         </property>
-         <property name="uniformItemSizes">
-          <bool>false</bool>
-         </property>
-         <property name="sortingEnabled">
-          <bool>true</bool>
-         </property>
-        </widget>
+           </property>
+           <property name="flow">
+            <enum>QListView::TopToBottom</enum>
+           </property>
+           <property name="isWrapping" stdset="0">
+            <bool>true</bool>
+           </property>
+           <property name="resizeMode">
+            <enum>QListView::Adjust</enum>
+           </property>
+           <property name="uniformItemSizes">
+            <bool>false</bool>
+           </property>
+           <property name="sortingEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="advancedOption" stdset="0">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -3233,7 +3282,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>680</width>
+            <width>405</width>
             <height>617</height>
            </rect>
           </property>
@@ -3759,8 +3808,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>680</width>
-            <height>617</height>
+            <width>292</width>
+            <height>228</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4026,8 +4075,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>680</width>
-            <height>617</height>
+            <width>409</width>
+            <height>488</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4680,6 +4729,22 @@ Note: Changing this setting will only affect documents that are opened afterward
      </widget>
     </widget>
    </item>
+   <item row="0" column="1">
+    <spacer name="vsCompletionList">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -4730,7 +4795,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>checkBoxHackDisableAccentWorkaround</tabstop>
   <tabstop>checkBoxHackAutoRendering</tabstop>
   <tabstop>spinBoxTabRelFontSize</tabstop>
-  <tabstop>completeListWidget</tabstop>
   <tabstop>checkBoxGrammarRepetitionCheck</tabstop>
   <tabstop>spinBoxGrammarRepetitionDistance</tabstop>
   <tabstop>spinBoxGrammarLongRangeRepetition</tabstop>
