@@ -502,6 +502,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 
 	connect(ui.spinBoxSize, SIGNAL(valueChanged(int)), fmConfig, SLOT(setBasePointSize(int)));
 
+    connect(ui.leCompletionFilter,&QLineEdit::textChanged,this,&ConfigDialog::filterCompletionList);
+
 	//fmConfig->setMaximumSize(490,300);
 	//fmConfig->setSizePolicy(QSizePolicy::Ignored,QSizePolicy::Ignored);
 	QBoxLayout *layout = new QBoxLayout(QBoxLayout::TopToBottom, ui.formatConfigBox);
@@ -1159,7 +1161,19 @@ void ConfigDialog::updateCheckNow()
 
 void ConfigDialog::refreshLastUpdateTime()
 {
-	ui.labelUpdateCheckDate->setText(UpdateChecker::lastCheckAsString());
+    ui.labelUpdateCheckDate->setText(UpdateChecker::lastCheckAsString());
+}
+
+void ConfigDialog::filterCompletionList(const QString &text)
+{
+    for(int i=0;i<ui.completeListWidget->count();++i){
+        QListWidgetItem *item=ui.completeListWidget->item(i);
+        bool visible=item->text().contains(text, Qt::CaseInsensitive);
+        if(text.isEmpty()){
+            visible=true;
+        }
+        item->setHidden(!visible);
+    }
 }
 
 void ConfigDialog::populateComboBoxFont(bool onlyMonospaced)

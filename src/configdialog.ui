@@ -3189,7 +3189,7 @@ them here.</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="leCOmpletionFilter">
+          <widget class="QLineEdit" name="leCompletionFilter">
            <property name="toolTip">
             <string>Filter list below</string>
            </property>

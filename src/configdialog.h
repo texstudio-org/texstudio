@@ -139,6 +139,8 @@ private slots:
 	void updateCheckNow();
 	void refreshLastUpdateTime();
 
+    void filterCompletionList(const QString &text);
+
 	void revertClicked();
 
 	void populateComboBoxFont(bool onlyMonospaced);
