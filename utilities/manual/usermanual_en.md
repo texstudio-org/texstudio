@@ -20,7 +20,7 @@ in the following subsections:
 To define the preamble of your document, you can use the \"Quick start\"
 wizard (\"Wizard\" menu).
 
-![Quick Start](quickstartwizard.png)
+![Quick Start](quickstartwizard.png){width=800}
 
 This dialog allows you to set the main features of your document (class,
 paper size, encoding\...).
@@ -79,7 +79,7 @@ A light-blue background shows the present cursor position in the text in the
 structure view as well. A greenish background denotes sections which are
 in the appendix.
 
-![Structure View](structureview.png)
+![Structure View](structureview.png){width=800}
 
 The \"Structure View\" is automatically updated as you type. You can
 also use the \"Refresh Structure\" (menu \"Idefix\") command at any
