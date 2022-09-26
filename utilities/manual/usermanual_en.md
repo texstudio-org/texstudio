@@ -1,11 +1,99 @@
 % TeXstudio : User manual
+<!--
+*  troubleshoot ? **TODO**
+* previewing inline ?
+how-to section for configuration:
+- wrapping
+- preview/tooltips
+-->
 # Getting started
 
-*  create first doc **TODO**
-*  fill in stuff **TODO**
-*  compile **TODO**
-*  view **TODO**
-*  troubleshoot ? **TODO**
+## Requirements
+TeXstudio is a specialised LaTeX-editor. It helps to type [LaTeX-documents](https://www.latex-project.org/about/) more comfortable by helping to find the right commands, supporting error analysis and providing an easy way to view the results.
+
+The actual latex system needs to be [installed separately](https://www.latex-project.org/get/) and is **not** provided by TeXstudio.
+
+Here we assume that TeXstudio and a LaTeX-system are already installed on your system.
+
+## Start TeXstudio
+<!--
+This needs to be refined
+-->
+Before we take a closer look at all the possibilities of TeXstudio,
+let\'s look at the application window first. After start of TeXstudio we
+see a lot of things. Some elements in the image are framed in different
+colors for further explanations:
+
+![TeXstudio Application Window](TeXstudio_App_Window.png)
+
+The main window is divided into three parts (blue): On the left we have
+a \"side panel\" (currently showing an empty Structure) that provides
+many different functions. On the lower right you see a *messages panel*.
+You can switch to the [log panel](#the-log-files), the *preview panel*, or
+the *search results panel* there. The third area is left to the editor.
+You can have multiple editors open, which you select using tabs. You may
+increase the area for editors by turning off the side panel or the
+messages panel. This can be done easily via the two icons in the lower
+left corner (marked orange). They are in the status bar, which can be
+hidden (s. menu View/Show).
+
+## Create a first document
+LaTeX needs some configuartion code in the document. The [Quick Start Wizard](#setting-the-preamble-of-a-tex-document) offers an easy way to set up an typical document.
+
+Select `Wizards/Quick Start...` and confirm the dialog with `OK`.
+This will lead to this basic document:
+```
+    \documentclass[10pt,a4paper]{article}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{graphicx}
+    \begin{document}
+        
+    \end{document}
+```
+
+We will not go over the content of the document in detail, that is for the LaTeX-tutorial, as our focus is the editor.
+
+The file needs to be saved on the computer to be useful.
+So next we click the save button (or use `CTRL+S`) and save it with a sensible name like "getting_started.tex".
+
+## Fill in content
+### Insert a section
+We can select `\section` from the section button in order to insert the section command and add a title text.
+
+![section button](section_button.png)
+
+<!--
+label/ref
+navigation (structure)
+insert commands
+completer
+syntax check
+-->
+
+## Compile 
+Compiling a document means translating it from the LaTeX source code into a pdf file.
+This can be performed by clicking on the compile button or using the key `F6`.
+
+![compile a document](compile.png)
+
+This calls the actual LaTeX-system (pdflatex by default) to compile the document on the disk.
+The `Message Pane` shows results from that run and will jump to the [log-view](#the-log-files) in case of errors.
+
+## View your pdf document
+Now we like to see the results. For this, click the view button or press `F7`.
+
+![View a pdf of a document](viewbutton.png)
+
+The pdf document is presented right of the text within TeXstudio.
+You can scroll and zoom to examine the result. 
+`CTRL+left click` on text or images within the pdf will jump to the corresponding source code.
+
+Pressing `F7` or clicking the view button actually scrolls the pdf to same position in the document where the cursor is in the source document, see [here for details](#forward-and-inverse-searching).
+
+
 
 # Editing a TeX document
 
@@ -606,48 +694,6 @@ Example for x, y copied to clipboard: 10.16, 12.8372
 This becomes particularly useful when adjusting margins or working with
 TikZ.
 
-# A first look at TeXstudio
-**TODO** this will move into getting started
-
-Before we take a closer look at all the possibilities of TeXstudio,
-let\'s look at the application window first. After start of TeXstudio we
-see a lot of things. Some elements in the image are framed in different
-colors for further explanations:
-
-![TeXstudio Application Window](TeXstudio_App_Window.png)
-
-The main window is divided into three parts (blue): On the left we have
-a \"side panel\" (currently showing an empty Structure) that provides
-many different functions. On the lower right you see a *messages panel*.
-You can switch to the [log panel](#the-log-files), the *preview panel*, or
-the *search results panel* there. The third area is left to the editor.
-You can have multiple editors open, which you select using tabs. You may
-increase the area for editors by turning off the side panel or the
-messages panel. This can be done easily via the two icons in the lower
-left corner (marked orange). They are in the status bar, which can be
-hidden (s. menu View/Show).
-
-The information presented in the side bar depends on the icon you select
-from the vertical toolbar on the left side of the panel. These icons can
-be understood as vertically aligned tabs. A click with the right mouse
-button allows you to select which icons are presented:
-
-![Side Panel Menu](Side_Panel_Menu.png)
-
-TeXstudio offers a lot of toolbars (marked red), many of which are
-arranged in a row above the side panel and the editor area (called the
-main toolbar, the vertical toolbars are called secondary toolbars). One
-vertical aligend toolbar (the central one, s. image below) resides to
-the left of the editor area. You can choose which ones to show with a
-click of the right mouse button on any of them:
-
-![Side Panel Menu](Tool_Bar_Menu.png)
-
-The custom toolbar will be discussed in [Configuring the Custom Toolbar](#configuring-the-custom-toolbar-advanced-option). The toolbars in the main toolbar can be
-rearranged, moved somewhere in the window or even disconnected from the
-window at all. All toolbars are scalable, s. option GUI scaling (needs
-advanced options) in the config dialog.
-
 # Advanced features
 
 ## User Fold Marker
@@ -1216,12 +1262,37 @@ the following magic comments:
 # Configuring TeXstudio
 
 
-Before using TeXstudio, you should configure the editor and latex
-related commands via the \"Configure TeXstudio\" command in the
+TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see [here](#adapting-the-main-gui), others are available with the \"Configure TeXstudio\" command in the
 \"Options\" menu (\"Preferences\" under Mac OS X). Note that there are
 two levels of detail. More advanced or less often used options are only
 visible if you toggle \"Show advanced options\" in the lower left
 corner.
+
+## Adapting the main GUI
+<!--
+needs to be simplified and more precise
+TOC ?
+-->
+The information presented in the side bar depends on the icon you select
+from the vertical toolbar on the left side of the panel. These icons can
+be understood as vertically aligned tabs. A click with the right mouse
+button allows you to select which icons are presented:
+
+![Side Panel Menu](Side_Panel_Menu.png)
+
+TeXstudio offers a lot of toolbars (marked red), many of which are
+arranged in a row above the side panel and the editor area (called the
+main toolbar, the vertical toolbars are called secondary toolbars). One
+vertical aligend toolbar (the central one, s. image below) resides to
+the left of the editor area. You can choose which ones to show with a
+click of the right mouse button on any of them:
+
+![Side Panel Menu](Tool_Bar_Menu.png)
+
+The custom toolbar will be discussed in [Configuring the Custom Toolbar](#configuring-the-custom-toolbar-advanced-option). The toolbars in the main toolbar can be
+rearranged, moved somewhere in the window or even disconnected from the
+window at all. All toolbars are scalable, s. option GUI scaling (needs
+advanced options) in the config dialog.
 
 ## Configuring the editor
 
