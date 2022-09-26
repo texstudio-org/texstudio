@@ -1,5 +1,4 @@
-% TeXstudio : User manual {#top align="center"}
-
+% TeXstudio : User manual
 # Getting started
 
 *  create first doc **TODO**
@@ -222,7 +221,9 @@ For example: \"Less than 10% of computer users know the meaning of
 the meaning of \\\$PATH.\"
 
 ## Spacings
+<!---
 **TODO** general description of inserting latex commands (menu, completer, tags)
+--->
 
 The usual \"spacing\" commands are available in the \"LaTeX\" and
 \"Math\" menus.
@@ -502,9 +503,10 @@ on the Log File button. The Issues button offers a similar function for
 the table with the messages.
 
 # Viewing a document (pdf)
+<!--
 **TODO** internal/external 
-
-## Internal pdf viewer {#SECTION24}
+-->
+## Internal pdf viewer
 
 TeXstudio has an internal (built-in) pdf viewer that lets you view your
 pdf documents. The viewer can be embedded or window-based (in a separate
@@ -514,10 +516,9 @@ opened by clicking the View button or by pressing the F7 key.
 
 You may want to change otions in the config dialog (s. Internal PDF
 Viewer). For forward and inverse searching, scrolling follows cursor,
-and cursor follows scrolling see *[Forward and Inverse
-searching](#SECTION37)*.
+and cursor follows scrolling see [Forward and Inverse searching](#forward-and-inverse-searching).
 
-### Modes and mouse actions {#SUBSECTION241}
+### Modes and mouse actions
 
 You can choose main mode *Magnify* or *Scroll* from the toolbar. The
 mouse cursor used is a magnifier glass, or an open hand. These offer
@@ -536,14 +537,13 @@ Scroll mode only
     around, or follows a link
 -   double left mouse button click opens magnifier showing enlarged part
     of the text
--   Shift + left mouse button click sets grid page offset (s. *[3.3.2
-    Special features](#SUBSECTION242)*)
+-   Shift + left mouse button click sets grid page offset (s. [Special features](#changing-the-grid-page-offset))
 
 Magnify and Scroll mode
 
 -   Ctrl + left mouse button click jumps to the source (inverse search)
 -   Ctrl + Shift + left mouse button click copies coordinates to
-    clipboard (s. *[Special features](#SUBSECTION242)*)
+    clipboard (s. [Special features](#copy-page-coordinates-to-the-clipboard))
 
 Remarks:
 
@@ -560,7 +560,7 @@ Remarks:
     of the glass, that of the open hand is marked with a small cross
     outside the hand. This may help improve accuracy of inverse search.
 
-### Special features {#SUBSECTION242}
+### Special features
 
 #### Changing the grid page offset
 
@@ -569,8 +569,7 @@ columns and rows (s. menu View/Grid) in which the pages are placed. The
 first page may be placed on the left in the first row (i.e. a grid page
 offset of 0) and the following pages fill the row and so on:
 
-![grid 4x2 (4 columns, 2 rows), first page in first column of first
-row](grid4x2_book_col1.png)
+![grid 4x2 (4 columns, 2 rows), first page in first column of first row](grid4x2_book_col1.png)
 
 A grid page offset of 0 may not be suitable in all cases. For example,
 if you are working on a book, since books have odd pages on the right.
@@ -579,8 +578,7 @@ positioned in the second or forth column (i.e. a grid page offset of 1
 or 3). Thus each grid row starts with an even (left) page and ends with
 an odd (right) page (if appropriate):
 
-![grid 4x2, first page in second column, the space on the left side
-remains empty](grid4x2_book_col2.png)
+![grid 4x2, first page in second column, the space on the left side remains empty](grid4x2_book_col2.png)
 
 To meet this requirement, you can manually change the offset for the
 first page in any grid. To do this, use Shift + left mouse button click
@@ -608,7 +606,7 @@ Example for x, y copied to clipboard: 10.16, 12.8372
 This becomes particularly useful when adjusting margins or working with
 TikZ.
 
-# A first look at TeXstudio {#SECTION00}
+# A first look at TeXstudio
 **TODO** this will move into getting started
 
 Before we take a closer look at all the possibilities of TeXstudio,
@@ -621,7 +619,7 @@ colors for further explanations:
 The main window is divided into three parts (blue): On the left we have
 a \"side panel\" (currently showing an empty Structure) that provides
 many different functions. On the lower right you see a *messages panel*.
-You can switch to the *[log panel](#the-log-files)*, the *preview panel*, or
+You can switch to the [log panel](#the-log-files), the *preview panel*, or
 the *search results panel* there. The third area is left to the editor.
 You can have multiple editors open, which you select using tabs. You may
 increase the area for editors by turning off the side panel or the
@@ -645,8 +643,7 @@ click of the right mouse button on any of them:
 
 ![Side Panel Menu](Tool_Bar_Menu.png)
 
-The custom toolbar will be discussed in [Configuring the Custom
-Toolbar](#SECTION07). The toolbars in the main toolbar can be
+The custom toolbar will be discussed in [Configuring the Custom Toolbar](#configuring-the-custom-toolbar-advanced-option). The toolbars in the main toolbar can be
 rearranged, moved somewhere in the window or even disconnected from the
 window at all. All toolbars are scalable, s. option GUI scaling (needs
 advanced options) in the config dialog.
@@ -659,7 +656,7 @@ Normally every structure command marks a start of foldable range, and every envi
 
 ![Example for user fold marker](userfoldmarker.png)
 
-## Syntax Check {#SECTION32a}
+## Syntax Check
 
 The latex syntax checker takes the list of possible completion commands
 to determine if a command is correct. The completion list contains
@@ -671,7 +668,7 @@ detail. The number of columns is analyzed and checked in the subsequent
 rows. If more or less columns are given in a row, a warning maker is
 shown.\
 
-## Bibliography {#SECTION32}
+## Bibliography
 
 For the \"bib\" files , the \"Bibliography\" menu enables you to
 directly insert the entries corresponding to the standard types of
@@ -681,9 +678,9 @@ Note: the optional fields can be automatically deleted with the
 
 ![Bibliography Menu](doc16.png)
 
-## SVN Support {#SVNSUPPORT}
+## SVN Support
 
-Apart from the supported SVN features already describes in section 1.8,
+Apart from the supported SVN features already describes in [section](#configuring-svn-support) ,
 TeXstudio supports two more commands.
 
 \"File/Checkin\" performs an explicit save and check in, with a input
@@ -700,7 +697,7 @@ closed and the present text will be your new most recent version though
 yet unsaved.
 
 
-## Using table templates {#TABLETEMPLATE}
+## Using table templates
 
 
 Texstudio offers the possibility to reformat an existing latex table
@@ -735,9 +732,9 @@ These templates give the opportunity to easily reformat tables after a
 predefined fashion, thus achieving a uniform table style in a document,
 even if the tables are entered in a very simple style.
 
-The definition of new templates is described [here](#TABLETEMPLATECREATION).
+The definition of new templates is described [here](#creating-table-templates).
 
-## Personal macros {#SECTION33}
+## Personal macros
 
 TeXstudio allows you to insert your own macros. These macros are defined
 with the \"Macros - Edit Macros\" menu. Macros can consist of simple
@@ -750,7 +747,7 @@ that the pseudo-command needs to start with a backslash (\"\\\").\
 \"Trigger\" is a regular expression which triggers the inclusion of the
 macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
-[below](#sectionTriggers) for more details).\
+[below](#triggers) for more details).\
 Some macros can be directly downloaded from an internet repository. The
 dialog is started with the button \"Browse\". For easier data exchange,
 macros can be im- and exported to a file. If you want to add a macro of
@@ -768,7 +765,7 @@ testing.\
 
 ![doc17](doc17.png)
 
-### Text macros {#sec_textmacros}
+### Text macros
 
 Apart from normal text, some special codes are recognized and replaced
 on insertion.\
@@ -848,7 +845,7 @@ The following table gives an overview on the provided commands.
 | debug(str) | prints str to stdout |
 | writeFile(name, value) | Writes value to file name (requires write privileges) |
 | readFile(name) | Reads the entire file name (requires read privileges) |
-| system(cmd, workingDirectory=\"\") | Calls an external command **cmd**, which includes the program name and its arguments.<br>**cmd** may undergo command-line expansion as follows:<br>If **cmd** contains the string **txs:///** or if it does **not** contain any pipe (\|) characters, then **cmd** undergoes standard command-line expansion like any other [external command](#SECTION33a). When expanding any tokens the current file is assumed to be the empty string, so any tokens that use the current file (e.g. **%** or **?**) will expand to the empty string too.<br>If **cmd** does not contain the string **txs:///** and it contains at least one pipe character, then it is executed without any string expansion or replacement.<br>If **workingDirectory** is not set, the working directory will be inherited from the TeXstudio executable. This command returns a ProcessX object which has the following methods: <br>-   waitForFinished: Wait until the process is finished<br>-   readAllStandardOutputStr: Returns the stdout<br>-   readAllStandardErrorStr: Returns the stderr<br>-   exitCode: The exit code<br>-   exitStatus: The qt exit status<br>-   terminate or kill: Stops the process<br>If the script does is not granted permission to run the external command, then **system()** returns **null**.<br><br>Examples<br><br>List all the files in the Subversion repository /usr/local/svnrepository<br>The command contains the string **txs:///**, so it undergoes the expansion as an [external command](#SECTION33a).<br>%SCRIPT<br>cmd = system("txs:///svn ls /usr/local/svnrepository")<br>  cmd.waitForFinished()<br>output = cmd.readAllStandardOutputStr()<br>alert (output)<br><br>Download the web page from **http://www.my-website.com??arg1=abc&arg2=def** and save it as the local file **/home/john/page.html**.<br>The command does not contain any pipe characters (\|), so it undergoes the expansion as an [external command](#SECTION33a). Note that we have doubled the character **?** in the URL, otherwise it would be expanded to current file which in our case would be the empty string.<br><br>%SCRIPT<br>cmd = system ("wget -O /home/john/page.html http://www.my-website.com??arg1=abc&arg2=def")<br>cmd.waitForFinished() |
+| system(cmd, workingDirectory=\"\") | Calls an external command **cmd**, which includes the program name and its arguments.<br>**cmd** may undergo command-line expansion as follows:<br>If **cmd** contains the string **txs:///** or if it does **not** contain any pipe (\|) characters, then **cmd** undergoes standard command-line expansion like any other [external command](#command-syntax-in-detail). When expanding any tokens the current file is assumed to be the empty string, so any tokens that use the current file (e.g. **%** or **?**) will expand to the empty string too.<br>If **cmd** does not contain the string **txs:///** and it contains at least one pipe character, then it is executed without any string expansion or replacement.<br>If **workingDirectory** is not set, the working directory will be inherited from the TeXstudio executable. This command returns a ProcessX object which has the following methods: <br>-   waitForFinished: Wait until the process is finished<br>-   readAllStandardOutputStr: Returns the stdout<br>-   readAllStandardErrorStr: Returns the stderr<br>-   exitCode: The exit code<br>-   exitStatus: The qt exit status<br>-   terminate or kill: Stops the process<br>If the script does is not granted permission to run the external command, then **system()** returns **null**.<br><br>Examples<br><br>List all the files in the Subversion repository /usr/local/svnrepository<br>The command contains the string **txs:///**, so it undergoes the expansion as an [external command](#command-syntax-in-detail).<br>%SCRIPT<br>cmd = system("txs:///svn ls /usr/local/svnrepository")<br>  cmd.waitForFinished()<br>output = cmd.readAllStandardOutputStr()<br>alert (output)<br><br>Download the web page from **http://www.my-website.com??arg1=abc&arg2=def** and save it as the local file **/home/john/page.html**.<br>The command does not contain any pipe characters (\|), so it undergoes the expansion as an [external command](#command-syntax-in-detail). Note that we have doubled the character **?** in the URL, otherwise it would be expanded to current file which in our case would be the empty string.<br><br>%SCRIPT<br>cmd = system ("wget -O /home/john/page.html http://www.my-website.com??arg1=abc&arg2=def")<br>cmd.waitForFinished() |
 | ~~setGlobal(name, value)~~ | Unsuppoted since txs 4.x. Sets a temporary, global variable |
 | ~~getGlobal(name)~~ | Unsuppoted since txs 4.x. Reads a global variable |
 | ~~hasGlobal(name)~~ | Unsuppoted since txs 4.x. Checks for the existence of a global variable |
@@ -858,14 +855,14 @@ The following table gives an overview on the provided commands.
 | hasReadPrivileges() | Checks if the script has read privileges |
 | hasWritePrivileges() | Checks if the script has write privileges |
 | registerAsBackgroundScript(\[id\]) | Allows the script to run in the background (necessary iff the script should handle events/signals) |
-| triggerMatches | Matches of the regular trigger expression, if the script was called by an editor [trigger](#sectionTriggers). |
-| triggerId | Numeric id of the trigger, if the script was called by an event [trigger](#sectionTriggers). |
+| triggerMatches | Matches of the regular trigger expression, if the script was called by an editor [trigger](#triggers). |
+| triggerId | Numeric id of the trigger, if the script was called by an event [trigger](#triggers). |
 | ~~include(script)~~ | Unsuppoted since txs 4.x. Includes another script. Can be a filename or the name of a macro. |
 | pdfs | List of all open, internal pdf viewers . |
 | editor.search(searchFor, \[options\], \[scope\], \[callback\]) | Searches something in the editor.<br>-   searchFor is the text which is searched. It can be either a string (e.g. \"..\") or a regexp (e.g. /\[.\]{2}/). <br>-   options is a string and a combination of \"i\", \"g\", \"w\" to specify a case-*i*nsensitive search, a *g*lobal search (continue after the first match) or a whole-*w*ord-only search.<br>-   scope is a cursor constraining the search scope (see editor.document().cursor).<br>-   callback is a function which is called for every match. A cursor describing the position of the match is passed as first argument.<br>All arguments except searchFor are optional, and the order may be changed (which may not be future compatible). The function returns the number of found matches.|
 | editor.replace(searchFor, \[options\], \[scope\], \[replaceWith\]) | This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith. |
 | editor.replaceSelectedText(newText, \[options\]) | This function replaces the current selections with newText or inserts newText, if nothing is selected. If newText is a function, it will be called with the selected text and corresponding cursor, and the return value will be the newText. It is recommended to use this function for all text replacements/insertions, since it is the easiest way to handle multiple cursors/block selections correctly.<br>Options is an object that can have the following properties:<br>-   `{"noEmpty": true}` only replaces; does not insert anything if the selection is empty<br>-   `{"onlyEmpty": true}` only inserts at the cursor position; does not change non empty selected text<br>-   `{"append": true}` appends newText to the current selection, does not remove the old text<br>-   `{"prepend": true}` prepends newText to the current selection, does not remove the old text<br>-   `{"macro": true}` Treats newText as normal macro text, e.g. inserting %\< %\> placeholders<br><br>Examples:<br>`editor.replaceSelectedText("world", {"append": true} )` Appends \"world\" to the current selections.<br>`editor.replaceSelectedText(function(s){return s.toUpperCase();})` Converts the current selection to uppercase. |
-| editor.insertSnippet(text); | Inserts a text snippet into the editor. For a list of extended features and syntax see [Text Macros](#sec_textmacros). |
+| editor.insertSnippet(text); | Inserts a text snippet into the editor. For a list of extended features and syntax see [Text Macros](#text-macros). |
 | editor.undo(); | undo last command in editor |
 | editor.redo(); | redo last command in editor |
 | editor.cut(); | cut selection to clipboard |
@@ -1023,7 +1020,7 @@ Some examples:
 More examples can be found in the
 [Wiki](https://github.com/texstudio-org/texstudio/wiki/Scripts).
 
-### Triggers {#sectionTriggers}
+### Triggers
 
 #### Regular Expressions
 
@@ -1086,7 +1083,7 @@ can be used to execute the script when the corresponding event occurs:\
 |  ?new-file   | A new file is created |
 |  ?new-from-template | A new file is created from a template |
 |  ?load-file  | A file is loaded |
-|  ?load-this-file | The file containing the macro is loaded (only makes sense, if the script is defined as [magic comment](#TEXCOM)) |
+|  ?load-this-file | The file containing the macro is loaded (only makes sense, if the script is defined as [magic comment](#advanced-header-usage)) |
 |  ?save-file      | A file is saved |
 |  ?close-file     | A file is closed |
 |  ?master-changed | A document is un/defined as master document |
@@ -1119,7 +1116,7 @@ to html\" tool.
 
 ![doc19](doc19.png)
 
-## Forward and Inverse searching {#SECTION37}
+## Forward and Inverse searching
 
 In this section you will not learn how to find a specific text, as you
 know it from other editors. Searching is different: If you see something
@@ -1131,8 +1128,7 @@ for different pdf-viewers.
 
 ### Internal pdf-viewer {#FORWORDSEARCHINTERNAL}
 
-TeXstudio provides an internal pdf-viewer (s. [Internal pdf
-viewer](#SECTION24)) which offers forward and inverse search. Make sure
+TeXstudio provides an internal pdf-viewer (s. [Internal pdf viewer](#internal-pdf-viewer)) which offers forward and inverse search. Make sure
 that synctex is activated in the pdflatex command (option -synctex=1
 needs to be added), though TeXstudio will ask you if it can correct the
 command itself if it is not set correctly.
@@ -1155,11 +1151,10 @@ position.
 
 
 
-## Advanced header usage {#TEXCOM}
+## Advanced header usage
 
 So called \"magic comments\" are a way to adapt the options of the
-editor on a per-document level. The concept was [originally introduced
-in TeXshop](http://www.texdev.net/2011/03/24/texworks-magic-comments/)
+editor on a per-document level. The concept was [originally introduced in TeXshop](http://www.texdev.net/2011/03/24/texworks-magic-comments/)
 and has been adopted in a number of editors since. TeXstudio supports
 the following magic comments:
 
@@ -1196,7 +1191,7 @@ the following magic comments:
     command specified to the left by the one on the right. In the
     example, we tell TXS to use the biber command (`txs:///biber`) for
     the general \"Bibliography command (txs:///bibliography). See also
-    the [description of the build system](#SECTION02a1).
+    the [description of the build system](#advanced-configuration-of-the-build-system).
 
 -   ` % !TeX TXS-SCRIPT = foobar  % //Trigger = ?load-this-file  % app.load("/tmp/test/test.tex");  % app.load("/tmp/test/a.tex");  % TXS-SCRIPT-END`
 
@@ -1249,7 +1244,7 @@ to disable the auto detection)
 
 ![Configure Editor](configure_editor.png)
 
-## Configuring the latex related commands {#SECTION02}
+## Configuring the latex related commands
 
 LaTeX comes with a number of command line tools to compile and
 manipulate LaTeX documents. The commands section defines there location
@@ -1274,7 +1269,7 @@ runtime:
 |  `[txs-app-dir]`                    | Location of the TeXstudio executable (useful for portable settings) |
 |  `[txs-settings-dir]`               | Location of the settings file (texstudio.ini) |
 
-The section [Forward/Inverse search](#SECTION37) gives some example
+The section [Forward/Inverse search](#forward-and-inverse-searching) gives some example
 commands for common viewers.
 
 You can always restore the original settings using the revert button to
@@ -1282,7 +1277,7 @@ the right.
 
 ![Configure Commands](configure_commands.png)
 
-### Command syntax in detail {#SECTION33a}
+### Command syntax in detail
 
 Before an external command is executed the command line undergoes
 expansion where the following tokens are recognized and replaced by
@@ -1355,7 +1350,7 @@ Examples:
     file (e.g. /some/directory/mydocument.pdf).
 -   ?\*.aux expands once for each .aux file in the current directory.
 
-### Set-up for external viewers {#FORWORDSEARCHEXTERNAL}
+### Set-up for external viewers
 
 Some viewers can jump to (and visually highlight) a position in
 the DVI/PDF file that corresponds to a certain line number in the (La)TeX
@@ -1368,7 +1363,7 @@ the viewer is launched, the **@**-placeholder will be replaced by the
 current line number and **?c:ame** by the complete absolute filename of
 the current file. If your PDF file is not in the same directory as your
 .tex file you can use the **?p{pdf}:ame** placeholder. For details see
-[External Commands](#SECTION33a).\
+[External Commands](#command-syntax-in-detail).\
 \
 On Windows, you can execute DDE commands by inserting a command of the
 form: [dde:///service/control/\[commands\...\]]{.command} or (since
@@ -1512,7 +1507,7 @@ necessary.\
 User commands can be defined here by \"adding\" them. Each user command
 has a name with a pattern `<command id>:<display name>`, e.g.
 `user0:User Command 0`. The command id has to be unique and must not
-contain spaces. In [advanced mode](#SECTION02a1), you can reference it
+contain spaces. In [advanced mode](#advanced-configuration-of-the-build-system), you can reference it
 using `txs:///"<command id>`. The display name will be shown in the
 tools menu. The user commands can be activated either by short cut
 (alt+shift+F%n) or by the tools menu (Tools/User).\
@@ -1524,7 +1519,7 @@ system.
 
 ![Configure user commands from known commands](doc21.png)
 
-### Advanced configuration of the build system {#SECTION02a1}
+### Advanced configuration of the build system
 
 If you enable the advanced options, you can configure the build system
 in more detail.
@@ -1591,7 +1586,7 @@ The internal pdf viewer also accepts the following options
 |  \--(no-)auto-close                 |  Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)|
 |  \--(no-)focus                      |  Determines whether the viewer should be focused (default: focus iff windowed)|
 |  \--(no-)foreground                 |  Determines whether the viewer should be brought to front (default: foreground)|
-|  filename                           |  Determines the file to open. Like in other commands, [file patterns](#SECTION02) are supported. If this parameter is not provided, TXS uses `"?am.pdf"`, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in `Options -> Build -> Build Options -> Additional Search Paths -> PDF Files` |
+|  filename                           |  Determines the file to open. Like in other commands, [file patterns](#configuring-the-latex-related-commands) are supported. If this parameter is not provided, TXS uses `"?am.pdf"`, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in `Options -> Build -> Build Options -> Additional Search Paths -> PDF Files` |
   
 
 It is also possible to modify the arguments of called subcommands with
@@ -1710,8 +1705,7 @@ checked. Additionally, text in options of LaTeX commands is also
 checked. TeXstudio determines if an option contains natural text and
 thus should be spell checked by looking up its definition in the
 completion word lists. For more information on completion word lists see
-the section on [completion](#SECTION040) and the [description of the cwl
-format](#CWLDESCRIPTION).
+the section on [completion](#configuring-the-autocompletion) and the [description of the cwl format](#description-of-the-cwl-format).
 
 The spell checker uses the Hunspell dictionary format, which is widely
 used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary
@@ -1814,7 +1808,7 @@ behind and marks repetition of short words in the immediate vicinity and
 repetition of long words up to 10 words before. These distances and
 lengths can be changed in the advanced grammar config page.
 
-## Configuring the autocompletion {#SECTION040}
+## Configuring the autocompletion
 
 TeXstudio has taken up completion word lists from kile which extended
 the number of known commands for completion considerably. TeXstudio
@@ -1844,13 +1838,12 @@ to your liking. The following options are available:
 
 If your favorite package is not yet present for completion (and syntax
 checking), you can provide a list of your own by placing a file
-\"packagename.cwl\" in the [config
-directory](https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions#where-are-the-settings-stored).
+\"packagename.cwl\" in the [config directory](https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions#where-are-the-settings-stored).
 This directory is placed in \~/.config/texstudio under Linux and usually
 \"c:\\Documents and Settings/User/AppData/Roaming/texstudio\" under
 Windows. Basically the file contains a list of valid commands. A
 description of the exact format and an example are given in the
-[appendix](#CWLDESCRIPTION).
+[appendix](#description-of-the-cwl-format).
 
 ![Configure Completion](configure_completion.png)
 
@@ -1866,9 +1859,6 @@ lower case is allowed, but the comma is important). If a shortcut should
 be set to default value or removed completely, the items \"\<default\>\"
 or \"\<none\>\" at the top of the list can be selected respectively.
 
-A rough overview of the available (default) keyboard shortcuts can be
-found in [Section 4.13](#SHORTCUTS).
-
 ![Configure Shortcuts](configure_shortcuts.png)
 
 ## Configuring the Latex/Math-Menu (Advanced option)
@@ -1879,7 +1869,7 @@ can be be directly edited by doubleclicking on them.
 
 ![Customize Menu](configure_customizeMenu.png)
 
-## Configuring the Custom Toolbar (Advanced option) {#SECTION07}
+## Configuring the Custom Toolbar (Advanced option)
 
 One Custom Toolbar is present in TMX. This toolbar can be filled with
 actions from the Latex-, Math- and User-Menu. Since many of those item
@@ -1927,7 +1917,7 @@ in the internal storage, the document will be changed to the previous
 version in SVN history. Further undo commands allows one to back further
 to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing SVN revisions directly
-via a menu command, see [here](#SVNSUPPORT).
+via a menu command, see [here](#svn-support).
 
 ![Configure SVN](configure_svn.png)
 
@@ -2013,7 +2003,7 @@ Note: The most common tests are run automatically, if there were changes
 to the executable (i.e. TXS has been compiled since the last run).
 Furthermore all tests are run once a week.
 
-## Description of the cwl format {#CWLDESCRIPTION}
+## Description of the cwl format
 
 cwl stands for completion word list and is a file format originally used
 in Kile to define the commands listed in the completer. TeXstudio uses
@@ -2028,7 +2018,7 @@ following purposes:
     e.g. a \\ref-like command will check for the existence of the
     referenced label
 
-### cwl file format {#CWLFORMAT}
+### cwl file format
 
 Each line of a cwl file defines a command. Comment lines are possible
 and start with `#`. The command syntax is
@@ -2073,7 +2063,7 @@ position in a LaTeX document. The char `#` cannot be used inside a
 
 cwl files should be encoded as UTF-8.
 
-### Command format {#CWLCOMMANDFORMAT}
+### Command format
 
 In its simplest form the command is just a valid LaTeX expression as you
 find it in the documentation, e.g. `\section{title}`. By default, every
@@ -2153,7 +2143,7 @@ There are a few argument names that have special meaning:
 A %-suffix takes precedence over detection by name, i.e. an argument
 `file%text` will be treated as text not as file.
 
-### Classification format {#CWLCLASSIFICATIONFORMAT}
+### Classification format
 
 The following classifications are known to TXS:
 
@@ -2202,7 +2192,7 @@ Examples:\
 |  `\myplot{file}{customname%labeldef}`              | defines the second argument as label, but you are free to choose the name `customname` which will be used as a placeholder in the completer. |
 |  `\myplot{file}{label1%labeldef}{label2%labeldef}` | defines the second and third arguments as labels. |
 
-### cwl guidelines {#CWLGUIDELINES}
+### cwl guidelines
 
 Though TeXstudio can automatically create cwls from packages, these
 autogenerated cwls do not contain meaningful argument names and no
@@ -2227,7 +2217,7 @@ have the following attributes:
     the unusual ones by the \*-classifier to prevent the completer from
     overcrowding with rarely used commands.
 
-### cwl file placement {#CWLFILEPLACEMENT}
+### cwl file placement
 
 cwl files can be provided from three locations. If present, the user
 provided cwl is taken, if not built-in versions are taken. As a last
@@ -2264,7 +2254,7 @@ FilesToOpen only has an effect for mutli-file documents. You may add a
 preview image next to the template file. Again, it must have the same
 name, but extension \".png\".
 
-## Creating table templates {#TABLETEMPLATECREATION}
+## Creating table templates
 
 The templates can be defined by the user as well. They have to be place
 in the config directory (Linux: \~/.config/texstudio) and need to named
@@ -2354,10 +2344,9 @@ elaborate table (fullyframed\_firstBold):
 
 
 
-## Style Sheets {#STYLESHEETS}
+## Style Sheets
 
-Qt supports modifying the appearance of an application using [style
-sheets](http://doc.qt.io/qt-5/stylesheet-syntax.html). You may use this
+Qt supports modifying the appearance of an application using [style sheets](http://doc.qt.io/qt-5/stylesheet-syntax.html). You may use this
 to adapt the GUI of the main window by placing a file `stylesheet.qss`
 into the settings directory. The file is read at program startup.
 
@@ -2366,7 +2355,7 @@ configuring the GUI, in particular the style color scheme and other
 options. Therefore we do not guarantee a consistent behavior when using
 style sheets
 
-## Writing your own language definitions {#LANGUAGEDEF}
+## Writing your own language definitions
 
 TeXstudio uses QCodeEdit as editor component. It specifies languages in
 a special xml format named QNFA. This includes highlighting, parentheses
@@ -2383,10 +2372,8 @@ specified in
 [defaultFormats.qxf](https://github.com/texstudio-org/texstudio/tree/master/utilities/qxs)
 or provide your own .qxf file along with the .qnfa file.
 
-You should read the [syntax format
-specification](http://texstudio.sourceforge.net/manual/qce/QNFA.html)
-and have a look at the [formats shipped with
-TeXstudio](https://github.com/texstudio-org/texstudio/tree/master/utilities/qxs).
+You should read the [syntax format specification](http://texstudio.sourceforge.net/manual/qce/QNFA.html)
+and have a look at the [formats shipped with TeXstudio](https://github.com/texstudio-org/texstudio/tree/master/utilities/qxs).
 
 Note: We expose the language specification to you as end-user to give
 you more flexibility in adapting TeXstudio to your needs. But you should
