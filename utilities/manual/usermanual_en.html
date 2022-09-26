@@ -159,13 +159,13 @@ This needs to be refined
 -->
 <p>Before we take a closer look at all the possibilities of TeXstudio, let's look at the application window first. After start of TeXstudio we see a lot of things. Some elements in the image are framed in different colors for further explanations:</p>
 <figure>
-<img src="txs_new.png" alt="TeXstudio Application Window" /><figcaption>TeXstudio Application Window</figcaption>
+<img src="txs_new.png" alt="TeXstudio Application Window" style="width:100.0%" /><figcaption>TeXstudio Application Window</figcaption>
 </figure>
 <p>The main window is divided into three parts (blue): On the left we have a "side panel" (currently showing an empty Structure) that provides many different functions. On the lower right you see a <em>messages panel</em>. You can switch to the <a href="#the-log-files">log panel</a>, the <em>preview panel</em>, or the <em>search results panel</em> there. The third area is left to the editor. You can have multiple editors open, which you select using tabs. You may increase the area for editors by turning off the side panel or the messages panel. This can be done easily via the two icons in the lower left corner (marked orange). They are in the status bar, which can be hidden (s. menu View/Show).</p>
 <h2 id="create-a-first-document"><span class="header-section-number">1.3</span> Create a first document</h2>
 <p>LaTeX needs some configuartion code in the document. The <a href="#setting-the-preamble-of-a-tex-document">Quick Start Wizard</a> offers an easy way to set up an typical document.</p>
 <figure>
-<img src="txs_wizard.png" alt="Quick start wizard" /><figcaption>Quick start wizard</figcaption>
+<img src="txs_wizard.png" alt="Quick start wizard" style="width:100.0%" /><figcaption>Quick start wizard</figcaption>
 </figure>
 <p>Select <code>Wizards/Quick Start...</code> and confirm the dialog with <code>OK</code>. This will lead to this basic document:</p>
 <pre><code>    \documentclass[10pt,a4paper]{article}
@@ -183,28 +183,28 @@ This needs to be refined
 <h3 id="insert-a-section"><span class="header-section-number">1.4.1</span> Insert a section</h3>
 <p>We can select <code>\section</code> from the section button in order to insert the section command and add a title text.</p>
 <figure>
-<img src="txs_section.png" alt="section button" /><figcaption>section button</figcaption>
+<img src="txs_section.png" alt="section button" style="width:100.0%" /><figcaption>section button</figcaption>
 </figure>
 <h3 id="insert-an-equation-environment"><span class="header-section-number">1.4.2</span> Insert an equation environment</h3>
 <p>We can insert an equation environment via the menu <code>Math/Math equations/env equation</code> or by pressing <code>CTRL+SHIFT+N</code></p>
 <figure>
-<img src="txs_equation.png" alt="Insert equation" /><figcaption>Insert equation</figcaption>
+<img src="txs_equation.png" alt="Insert equation" style="width:100.0%" /><figcaption>Insert equation</figcaption>
 </figure>
 <h3 id="insert-symbols"><span class="header-section-number">1.4.3</span> Insert symbols</h3>
 <p>LaTeX offers a huge number of mathematical and other symbols. An convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.</p>
 <figure>
-<img src="txs_symbol.png" alt="symbol pane" /><figcaption>symbol pane</figcaption>
+<img src="txs_symbol.png" alt="symbol pane" style="width:100.0%" /><figcaption>symbol pane</figcaption>
 </figure>
 <h2 id="compile"><span class="header-section-number">1.5</span> Compile</h2>
 <p>Compiling a document means translating it from the LaTeX source code into a pdf file. This can be performed by clicking on the compile button or using the key <code>F6</code>.</p>
 <figure>
-<img src="txs_compile.png" alt="compile a document" /><figcaption>compile a document</figcaption>
+<img src="txs_compile.png" alt="compile a document" style="width:100.0%" /><figcaption>compile a document</figcaption>
 </figure>
 <p>This calls the actual LaTeX-system (pdflatex by default) to compile the document on the disk. The <code>Message Pane</code> shows results from that run and will jump to the <a href="#the-log-files">log-view</a> in case of errors.</p>
 <h2 id="view-your-pdf-document"><span class="header-section-number">1.6</span> View your pdf document</h2>
 <p>Now we like to see the results. For this, click the view button or press <code>F7</code>.</p>
 <figure>
-<img src="txs_view.png" alt="View a pdf of a document" /><figcaption>View a pdf of a document</figcaption>
+<img src="txs_view.png" alt="View a pdf of a document" style="width:100.0%" /><figcaption>View a pdf of a document</figcaption>
 </figure>
 <p>The pdf document is presented right of the text within TeXstudio. You can scroll and zoom to examine the result. <code>CTRL+left click</code> on text or images within the pdf will jump to the corresponding source code.</p>
 <p>Pressing <code>F7</code> or clicking the view button actually scrolls the pdf to same position in the document where the cursor is in the source document, see <a href="#forward-and-inverse-searching">here for details</a>.</p>

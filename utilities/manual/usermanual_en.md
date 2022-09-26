@@ -24,7 +24,7 @@ let\'s look at the application window first. After start of TeXstudio we
 see a lot of things. Some elements in the image are framed in different
 colors for further explanations:
 
-![TeXstudio Application Window](txs_new.png)
+![TeXstudio Application Window](txs_new.png){width=100%}
 
 The main window is divided into three parts (blue): On the left we have
 a \"side panel\" (currently showing an empty Structure) that provides
@@ -40,7 +40,7 @@ hidden (s. menu View/Show).
 ## Create a first document
 LaTeX needs some configuartion code in the document. The [Quick Start Wizard](#setting-the-preamble-of-a-tex-document) offers an easy way to set up an typical document.
 
-![Quick start wizard](txs_wizard.png)
+![Quick start wizard](txs_wizard.png){width=100%}
 
 Select `Wizards/Quick Start...` and confirm the dialog with `OK`.
 This will lead to this basic document:
@@ -65,23 +65,23 @@ So next we click the save button (or use `CTRL+S`) and save it with a sensible n
 ### Insert a section
 We can select `\section` from the section button in order to insert the section command and add a title text.
 
-![section button](txs_section.png)
+![section button](txs_section.png){width=100%}
 
 ### Insert an equation environment
 We can insert an equation environment via the menu `Math/Math equations/env equation` or by pressing `CTRL+SHIFT+N`
 
-![Insert equation](txs_equation.png)
+![Insert equation](txs_equation.png){width=100%}
 
 ### Insert symbols
 LaTeX offers a huge number of mathematical and other symbols. An convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.
 
-![symbol pane](txs_symbol.png)
+![symbol pane](txs_symbol.png){width=100%}
 
 ## Compile 
 Compiling a document means translating it from the LaTeX source code into a pdf file.
 This can be performed by clicking on the compile button or using the key `F6`.
 
-![compile a document](txs_compile.png)
+![compile a document](txs_compile.png){width=100%}
 
 This calls the actual LaTeX-system (pdflatex by default) to compile the document on the disk.
 The `Message Pane` shows results from that run and will jump to the [log-view](#the-log-files) in case of errors.
@@ -89,7 +89,7 @@ The `Message Pane` shows results from that run and will jump to the [log-view](#
 ## View your pdf document
 Now we like to see the results. For this, click the view button or press `F7`.
 
-![View a pdf of a document](txs_view.png)
+![View a pdf of a document](txs_view.png){width=100%}
 
 The pdf document is presented right of the text within TeXstudio.
 You can scroll and zoom to examine the result. 
