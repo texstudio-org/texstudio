@@ -1478,3 +1478,7 @@ photobook:
 class-photobook
 latex-document
 tex
+wgexport:
+class-wgexport
+latex-document
+tex
