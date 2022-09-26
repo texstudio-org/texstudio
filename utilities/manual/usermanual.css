@@ -6,8 +6,8 @@ body {
   font: normal 80% 'trebuchet ms', arial, sans-serif;
   background: #ffffff;
   color: black;
-  margin-left: 15%;
-  margin-right: 10%;
+  margin-left: 350px;
+  margin-right: 0%;
   font-size: 16px;
 }
 
@@ -113,9 +113,9 @@ a:hover {
   bottom: 0;
   left: 0;
   z-index: 1000;
-  display: block;
+  display: auto;
   padding: 2px;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   background-color: #f5f5f5;
   border-right: 1px solid #eee;
