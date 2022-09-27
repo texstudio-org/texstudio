@@ -54,10 +54,12 @@ Texstudio offers the possibility to reformat an existing latex table
 after a table template.\
 For example, you have entered following table into txs:
 
-    \begin{tabular}{ll}
-    a&b\\
-    c&d\\
-    \end{tabular}
+```latex
+\begin{tabular}{ll}
+a&b\\
+c&d\\
+\end{tabular}
+```
 
 Place the cursor inside the table and select the menu \"Latex/Manipulate
 Tables/Remodel Table Using Template\".\
@@ -72,17 +74,83 @@ A number of templates are predefined by txs:
 
 By selecting the first entry, the table is reformated to:
 
-    \begin{tabular}{|l|l|}
-    \hline
-    \textbf{a}&\textbf{b}\\ \hline
-    c&d\\ \hline
-    \end{tabular}
+```latex
+\begin{tabular}{|l|l|}
+\hline
+\textbf{a}&\textbf{b}\\ \hline
+c&d\\ \hline
+\end{tabular}
+```
 
 These templates give the opportunity to easily reformat tables after a
 predefined fashion, thus achieving a uniform table style in a document,
 even if the tables are entered in a very simple style.
 
 The definition of new templates is described [here](background.md#creating-table-templates).
+
+## Advanced header usage
+
+So called \"magic comments\" are a way to adapt the options of the
+editor on a per-document level. The concept was [originally introduced in TeXshop](http://www.texdev.net/2011/03/24/texworks-magic-comments/)
+and has been adopted in a number of editors since. TeXstudio supports
+the following magic comments:
+
+`% !TeX spellcheck = de_DE` 
+:   Defines the language used for spell checking of the document. This
+    overrides the global spellchecking settings. Nevertheless, an
+    appropriate dictionary has to be installed.\
+    If no spellchecking is desired, set value to \"*none*\".
+
+`% !TeX encoding = utf8`
+: Defines the character encoding of a document.
+
+`% !TeX root = filename` 
+:   Defines the root document for this file (i.e. the file which will be
+    passed to the LaTeX compiler when building). This setting override
+    the automatic root detection in TeXstudio. In turn, it\'s
+    overridden, if an *explicit root document* is set at
+    `Options -> Root Document`.
+
+`% !TeX program = pdflatex`
+:   Defines the compiler to be used for the document. To be precise, it
+    overrides the default compiler (command `txs:///compile`) which is
+    used in the actions \"Build & View\" as well as \"Compile\". Valid
+    options are \"latex\",\"pdflatex\",\"xelatex\",\"lualatex\" and
+    \"user*n*\" (e.g. user0 as user defined command 0)
+
+`% !TeX TXS-program:bibliography = txs:///biber`
+:   This is a TeXstudio-specific setting. It overrides the build-system
+    command specified to the left by the one on the right. In the
+    example, we tell TXS to use the biber command (`txs:///biber`) for
+    the general \"Bibliography command (txs:///bibliography). See also
+    the [description of the build system](configuration.md#advanced-configuration-of-the-build-system).
+
+`% !TeX TXS-SCRIPT = name`
+:   This defines a temporary script macro .
+
+    Example:
+    ```
+    % !TeX TXS-SCRIPT = foobar
+    % //Trigger = ?load-this-file
+    % app.load("/tmp/test/test.tex");
+    % app.load("/tmp/test/a.tex");
+    % TXS-SCRIPT-END
+    ```
+    This defines a temporary script macro which is executed, when the
+    file is loaded, and which in turns loads the two files in /tmp/test.
+
+    The macros defined via TXS-SCRIPT are active in all files of a
+    document (e.g. included files). You cannot run them manually. They
+    are run via the trigger (regular expression or special trigger, see
+    section on triggers). The macro is just read once, when the file is
+    opened. Changes during an edit session will only take effect when
+    you reopen the file.
+
+`% !BIB program = biber`
+:   The special `% !BIB program` command is understood for compatibility
+    with TeXShop and TeXWorks (also in the variant `% !BIB TS-program`).
+    This is equivalent to
+    `% !TeX TXS-program:bibliography = txs:///biber`
 
 ## Personal macros
 
@@ -459,114 +527,18 @@ The command also produces an index page corresponding to the table of
 contents you would obtain with LaTeX. Each item of the index page
 includes a link to the corresponding html page.
 
-You can create links in the html pages by using the \\ttwplink{}{}
-command in the tex file.\
-Synopsis :\
-\\ttwplink{http://www.mylink.com}{my text} (external link)\
-\\ttwplink{page3.html}{my text} (internal link)\
-\\ttwplink{name\_of\_a\_label}{my text} (internal link)\
-**Warning :** You can\'t use this command with the hyperref package (and
+You can create links in the html pages by using the `\\ttwplink{}{}` command in the tex file.
+Synopsis :
+\\ttwplink{http://www.mylink.com}{my text} (external link)
+\\ttwplink{page3.html}{my text} (internal link)
+\\ttwplink{name\_of\_a\_label}{my text} (internal link)
+```{warning}
+You can\'t use this command with the hyperref package (and
 some others packages). This command can only be used with the \"Convert
 to html\" tool.
+```
 
 ![doc18](images/doc18.png)
 
 ![doc19](images/doc19.png)
-
-## Forward and Inverse searching
-
-In this section you will not learn how to find a specific text, as you
-know it from other editors. Searching is different: If you see something
-in your pdf document that you want to change, then you need to figure
-out where to change your LaTeX document in the editor (inverse search).
-Or you want to figure out where your changed text will be displayed in
-the pdf (forward search). This is discussed in the following sections
-for different pdf-viewers.
-
-### Internal pdf-viewer {#FORWORDSEARCHINTERNAL}
-
-TeXstudio provides an internal pdf-viewer (s. [Internal pdf viewer](viewing.md#internal-pdf-viewer)) which offers forward and inverse search. Make sure
-that synctex is activated in the pdflatex command (option -synctex=1
-needs to be added), though TeXstudio will ask you if it can correct the
-command itself if it is not set correctly.
-
-Forward search is automatically done every time the pdf-viewer is
-opened. TeXstudio will jump to the position where your cursor is
-currently positioned. Additionally you can use CTRL+left mouse button
-click on a word in the text editor to jump to the pdf or use the context
-menu and select \"Go To PDF\".
-
-Inverse search can be activated by clicking in the pdf with CTRL+left
-mouse button or by selecting \"jump to source\" in the context menu,
-which is activated with a right mouse button click.
-
-Furthermore it is possible to enable \"Scrolling follows Cursor\" in
-pdf-viewer/configure. This will keep the pdf-viewer position synchronous
-to your cursor opposition in the editor. Likewise \"Cursor follows
-Scrolling\" keeps the editor position synchronous to pdf-viewer
-position.
-
-
-
-## Advanced header usage
-
-So called \"magic comments\" are a way to adapt the options of the
-editor on a per-document level. The concept was [originally introduced in TeXshop](http://www.texdev.net/2011/03/24/texworks-magic-comments/)
-and has been adopted in a number of editors since. TeXstudio supports
-the following magic comments:
-
--   `% !TeX spellcheck = de_DE`
-
-    Defines the language used for spell checking of the document. This
-    overrides the global spellchecking settings. Nevertheless, an
-    appropriate dictionary has to be installed.\
-    If no spellchecking is desired, set value to \"*none*\".
-
--   `% !TeX encoding = utf8`
-
-    Defines the character encoding of a document.
-
--   `% !TeX root = filename`
-
-    Defines the root document for this file (i.e. the file which will be
-    passed to the LaTeX compiler when building). This setting override
-    the automatic root detection in TeXstudio. In turn, it\'s
-    overridden, if an *explicit root document* is set at
-    `Options -> Root Document`.
-
--   `% !TeX program = pdflatex`
-
-    Defines the compiler to be used for the document. To be precise, it
-    overrides the default compiler (command `txs:///compile`) which is
-    used in the actions \"Build & View\" as well as \"Compile\". Valid
-    options are \"latex\",\"pdflatex\",\"xelatex\",\"lualatex\" and
-    \"user*n*\" (e.g. user0 as user defined command 0)
-
--   `% !TeX TXS-program:bibliography = txs:///biber`
-
-    This is a TeXstudio-specific setting. It overrides the build-system
-    command specified to the left by the one on the right. In the
-    example, we tell TXS to use the biber command (`txs:///biber`) for
-    the general \"Bibliography command (txs:///bibliography). See also
-    the [description of the build system](configuration.md#advanced-configuration-of-the-build-system).
-
--   ` % !TeX TXS-SCRIPT = foobar  % //Trigger = ?load-this-file  % app.load("/tmp/test/test.tex");  % app.load("/tmp/test/a.tex");  % TXS-SCRIPT-END`
-
-    This defines a temporary script macro which is executed, when the
-    file is loaded, and which in turns loads the two files in /tmp/test.
-    .
-
-    The macros defined via TXS-SCRIPT are active in all files of a
-    document (e.g. included files). You cannot run them manually. They
-    are run via the trigger (regular expression or special trigger, see
-    section on triggers). The macro is just read once, when the file is
-    opened. Changes during an edit session will only take effect when
-    you reopen the file.
-
--   `% !BIB program = biber`
-
-    The special `% !BIB program` command is understood for compatibility
-    with TeXShop and TeXWorks (also in the variant `% !BIB TS-program`).
-    This is equivalent to
-    `% !TeX TXS-program:bibliography = txs:///biber`
 

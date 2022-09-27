@@ -79,9 +79,6 @@ runtime:
 |  `[txs-app-dir]`                    | Location of the TeXstudio executable (useful for portable settings) |
 |  `[txs-settings-dir]`               | Location of the settings file (texstudio.ini) |
 
-The section [Forward/Inverse search](advanced.md#forward-and-inverse-searching) gives some example
-commands for common viewers.
-
 You can always restore the original settings using the revert button to
 the right.
 

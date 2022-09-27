@@ -38,7 +38,8 @@ source_suffix = {
 myst_heading_anchors = 4
 myst_enable_extensions = [
      "colon_fence",
-    "strikethrough",
+     "deflist",
+     "strikethrough",
 ]
 
 # The name of the Pygments (syntax highlighting) style to use.

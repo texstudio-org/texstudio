@@ -75,7 +75,7 @@ The pdf document is presented right of the text within TeXstudio.
 You can scroll and zoom to examine the result. 
 `CTRL+left click` on text or images within the pdf will jump to the corresponding source code.
 
-Pressing `F7` or clicking the view button actually scrolls the pdf to same position in the document where the cursor is in the source document, see [here for details](advanced.md#forward-and-inverse-searching).
+Pressing `F7` or clicking the view button actually scrolls the pdf to same position in the document where the cursor is in the source document, see [here for details](viewing.md#forward-and-inverse-searching).
 
 <!--
 label/ref

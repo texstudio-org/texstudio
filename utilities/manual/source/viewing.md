@@ -10,9 +10,39 @@ window). The former uses an area to the right of the editor, the latter
 uses its own window and gives the user more options. The viewer can be
 opened by clicking the View button or by pressing the F7 key.
 
+### Forward and Inverse searching
+
+In this section you will not learn how to find a specific text, as you
+know it from other editors. Searching is different: If you see something
+in your pdf document that you want to change, then you need to figure
+out where to change your LaTeX document in the editor (inverse search).
+Or you want to figure out where your changed text will be displayed in
+the pdf (forward search). 
+
+:::{note}
+Make sure that synctex is activated in the pdflatex command (option -synctex=1
+needs to be added), though TeXstudio will ask you if it can correct the
+command itself if it is not set correctly.
+:::
+
+Forward search is automatically done every time the pdf-viewer is
+opened. TeXstudio will jump to the position where your cursor is
+currently positioned. Additionally you can use CTRL+left mouse button
+click on a word in the text editor to jump to the pdf or use the context
+menu and select \"Go To PDF\".
+
+Inverse search can be activated by clicking in the pdf with CTRL+left
+mouse button or by selecting \"jump to source\" in the context menu,
+which is activated with a right mouse button click.
+
+Furthermore it is possible to enable \"Scrolling follows Cursor\" in
+pdf-viewer/configure. This will keep the pdf-viewer position synchronous
+to your cursor opposition in the editor. Likewise \"Cursor follows
+Scrolling\" keeps the editor position synchronous to pdf-viewer
+position.
+
 You may want to change otions in the config dialog (s. Internal PDF
-Viewer). For forward and inverse searching, scrolling follows cursor,
-and cursor follows scrolling see [Forward and Inverse searching](advanced.md#forward-and-inverse-searching).
+Viewer).
 
 ### Modes and mouse actions
 
