@@ -11,23 +11,11 @@ Here we assume that TeXstudio and a LaTeX-system are already installed on your s
 <!--
 This needs to be refined
 -->
-Before we take a closer look at all the possibilities of TeXstudio,
-let\'s look at the application window first. After start of TeXstudio we
-see a lot of things. Some elements in the image are framed in different
-colors for further explanations:
+![TeXstudio Application Window](images/txs_overview.png)
 
-![TeXstudio Application Window](images/txs_new.png)
-
-The main window is divided into three parts (blue): On the left we have
-a \"side panel\" (currently showing an empty Structure) that provides
-many different functions. On the lower right you see a *messages panel*.
-You can switch to the [log panel](compiling.md#the-log-files), the *preview panel*, or
-the *search results panel* there. The third area is left to the editor.
-You can have multiple editors open, which you select using tabs. You may
-increase the area for editors by turning off the side panel or the
-messages panel. This can be done easily via the two icons in the lower
-left corner (marked orange). They are in the status bar, which can be
-hidden (s. menu View/Show).
+On the left we have the *side panel* which is currently showing an empty structure view.
+On the lower right you see the *messages panel* which can be switched to the [*log panel*](compiling.md#the-log-files), the *preview panel*, or the *search results panel*. The toolbar allows easy access to some often needed functions, three of them are marked as we will use them soon.
+The central toolbar offers access to some common latex commands as we will see.
 
 ## Create a first document
 LaTeX needs some configuartion code in the document. The [Quick Start Wizard](editing.md#setting-the-preamble-of-a-tex-document) offers an easy way to set up an typical document.
