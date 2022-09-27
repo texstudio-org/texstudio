@@ -55,7 +55,7 @@ We can insert an equation environment via the menu `Math/Math equations/env equa
 ### Insert symbols
 LaTeX offers a huge number of mathematical and other symbols. An convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.
 
-![symbol pane](images/txs_symbol.png){width=100%}
+![symbol pane](images/txs_symbol.png)
 
 ## Compile 
 Compiling a document means translating it from the LaTeX source code into a pdf file.
