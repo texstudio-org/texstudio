@@ -1,0 +1,730 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Editing a TeX document" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="editing.html" />
+  
+<meta property="og:description" content="Creating a new document: There are two different ways to create a new document that are described in the following subsections: Setting the preamble of a TeX document: To define the preamble of you..." />
+  <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Compiling a document" href="compiling.html" /><link rel="prev" title="Getting started" href="getting_started.html" />
+
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><meta name="generator" content="sphinx-5.2.1, furo 2022.09.15"/>
+        <title>Editing a TeX document - TeXstudio 4.3.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     Site still under construction! 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">TeXstudio 4.3.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TeXstudio 4.3.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Editing a TeX document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling a document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewing.html">Viewing a document (pdf)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring TeXstudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background information</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="section" id="editing-a-tex-document">
+<h1>Editing a TeX document<a class="headerlink" href="#editing-a-tex-document" title="Permalink to this heading">#</a></h1>
+<div class="section" id="creating-a-new-document">
+<h2>Creating a new document<a class="headerlink" href="#creating-a-new-document" title="Permalink to this heading">#</a></h2>
+<p>There are two different ways to create a new document that are described
+in the following subsections:</p>
+<div class="section" id="setting-the-preamble-of-a-tex-document">
+<h3>Setting the preamble of a TeX document<a class="headerlink" href="#setting-the-preamble-of-a-tex-document" title="Permalink to this heading">#</a></h3>
+<p>To define the preamble of your document, you can use the “Quick start”
+wizard (“Wizard” menu).</p>
+<p><img alt="Quick Start" src="_images/quickstartwizard.png" /></p>
+<p>This dialog allows you to set the main features of your document (class,
+paper size, encoding…).
+Note : You can add other options by clicking the “+” buttons. All your
+settings are recorded.</p>
+<p>You can also type your own preamble model in the editor : with the
+“Copy/paste” or “Save As” commands, you can use it for a new
+document.</p>
+</div>
+<div class="section" id="using-templates-to-start-a-new-document">
+<h3>Using Templates to start a new document<a class="headerlink" href="#using-templates-to-start-a-new-document" title="Permalink to this heading">#</a></h3>
+<p>For new documents, templates can be used by using the command “File/New
+from template”. A dialogue gives a selection of templates.</p>
+<p><img alt="Templates" src="_images/template.png" /></p>
+<p>You can either create a new editor document from the template or create
+it as file(s) on disk and open these in the editor. The former option is
+not available for multi-file templates.</p>
+<p>New templates can be created by using the command “File/Make Template”
+on a opened document which you like to have has a template. Note that
+this dialog currently does not support the full capabilities of the
+template system. In particular you cannot supply a preview image or
+create a multi-file template with it. You’ll have to do this manually
+(s. <a class="reference internal" href="background.html#the-document-template-format"><span class="std std-doc">The template format</span></a> below).</p>
+<p>User added templates can be edited or deleted by using the context menu
+in the template selection dialogue. Built-in templates can not be
+changed.</p>
+<p>User templates are saved in the <code class="docutils literal notranslate"><span class="pre">/templates/user/</span></code> subdirectory of the
+config directory.</p>
+</div>
+</div>
+<div class="section" id="structure-your-document">
+<h2>Structure your document<a class="headerlink" href="#structure-your-document" title="Permalink to this heading">#</a></h2>
+<p>To define a new part in your document (part, section, subsection, …)
+with TeXstudio, just use this combo box button in the format toolbar of
+the main toolbar:</p>
+<p><img alt="Sectioning" src="_images/doc3.png" /></p>
+</div>
+<div class="section" id="browsing-your-document">
+<h2>Browsing your document<a class="headerlink" href="#browsing-your-document" title="Permalink to this heading">#</a></h2>
+<div class="section" id="the-structure-view">
+<h3>The Structure View<a class="headerlink" href="#the-structure-view" title="Permalink to this heading">#</a></h3>
+<p>The “Structure View” (left panel) lets you quickly reach any part of
+your document. All you need to do is to click on any item (label,
+section…) and you will be taken to the beginning of the corresponding
+area in the editor. The mechanism for jumping to a line does not anymore
+only consider line numbers but really remembers text lines. Thus adding
+and removing lines will not lead to jumps to wrong locations.</p>
+<p>A light-blue background shows the present cursor position in the text in the
+structure view as well. A greenish background denotes sections which are
+in the appendix.</p>
+<p><img alt="Structure View" src="_images/structureview.png" /></p>
+<p>The “Structure View” is automatically updated as you type. You can
+also use the “Refresh Structure” (menu “Idefix”) command at any
+moment.</p>
+<p>The structure view shows labels, sections, includes and beamer blocks
+and todos.</p>
+<p>There are two kind of todos that will be listed a) todos from a
+todo-like command, e.g. \todo{} from the package todonotes. b)
+todo-comments: This is a comment with a “% TODO” or “%todo”. You can
+adapt the regular expression for other comments to be marked as
+todo-comment in <em>options/advanced editor/Regular Expression for TODO
+comment</em>, e.g “%\s?[A-Z][A-Z_-]+” for any comment starting
+with at least two capital letter only comment.</p>
+<p>The structure view also offers a context menu which allows one to
+copy/cut all text which belongs to a section (including subsection) and
+paste it before or after a section. Section can be indented/unindented
+which means that the hierarchy level is changed by one, i.e. \section
+is changed to \subsection, and all subsections are treated accordingly</p>
+</div>
+<div class="section" id="the-toc-view">
+<h3>The TOC View<a class="headerlink" href="#the-toc-view" title="Permalink to this heading">#</a></h3>
+<p>The side panel on the left offers a TOC view. The TOC shows the structure of your
+whole document by means of section commands (part, section, subsection,
+…). A mouse over shows you, in which file the section actually is.</p>
+<p><img alt="TOC View" src="_images/TOC_standard.png" /></p>
+<p>The image shows this: A root file named document.tex that includes the
+file named file1.tex. The root file contains the section „Main text”,
+while file1.tex contains the subsection „External”. By placing the mouse
+pointer over this subsection in the TOC view, you find the file name
+file1.tex in the mouse over. This works even if the file is not open
+(but the document must be loaded by TeXstudio, s. Automatically load
+included files in editor settings). In this case a mouse click on the
+subsection in the TOC will open the file for you. Notice the different
+shades of color that indicate the sections are in different files. It
+can happen, that an included file doesn’t contain any sections. Then the
+file name itself appears in the TOC (without file extension):</p>
+<p><img alt="TOC View with file" src="_images/TOC_file.png" /></p>
+<p>The mouse over now would show the name of the file that includes
+file1.tex (namely document.tex). The indentation shows that the text of
+file1.tex is part of the section “Main text”. You may like to choose a
+different color in the configuration dialog (s. option Use color in
+global TOC in advanced editor settings).</p>
+</div>
+<div class="section" id="using-bookmarks">
+<h3>Using Bookmarks<a class="headerlink" href="#using-bookmarks" title="Permalink to this heading">#</a></h3>
+<p>You can use bookmarks in the editor of Texstudio. This can help keep
+text lines in mind and speed up navigation between them. To the left of
+the editor’s text area is a bookmark column that displays the bookmark
+icons. Here you can open a context menu (s. image below) and select the
+bookmark you want to set for a text line. Each of the ten numbered
+bookmarks can be used only once (when you set it a second time in the
+same editor, then the first one is removed), while the unnamed bookmark
+can be used many times. Also you can remove bookmarks with the first
+entry in the menu. A faster way setting bookmarks is clicking with the
+left mouse button in the bookmark column and Texstudio will choose a
+bookmark or remove an existing one.</p>
+<p><img alt="Bookmarks in TeXstudio" src="_images/bookmark1.png" /></p>
+<p>You may choose the Bookmarks view of the left side panel, which shows
+the text for each line with a bookmark of all editors. With the ease of
+a mouse click you can jump to the text line in the editor. A tooltip
+shows the surrounding context of the line (s. left image below). The
+lines are ordered in the order you created the bookmarks. A context menu
+allows you to change the order of lines or remove bookmarks (s. right
+image below).</p>
+<p><img alt="Tooltip in view Bookmarks" src="_images/bookmark2.png" />  <img alt="Context menu in view Bookmarks" src="_images/bookmark3.png" /></p>
+<p>You probably noticed the three buttons (placed in the status line) on
+the lower right side of the TeXstudio window, which look like bookmarks
+1, 2, and 3 (s. image Bookmarks above). With a click you can jump to the
+corresponding bookmark in the current editor. In fact this is a subset
+of the actions you can find in the menu Edit/Goto Bookmark shown in the
+following image in the middle. This menu also shows you the shortcuts
+you can use (you may miss Ctrl+0 at the end of the list, but this
+shortcut resets the zoom level of the editor). From the Edit/Go to menu
+you can choose entry Line to jump to a line with a given line number.
+You may want to use Previous mark or Next mark to find unnamed
+bookmarks. For the sake of completeness it should be said that bookmark
+is one of several types of markers (s. <a class="reference internal" href="compiling.html#the-log-files"><span class="std std-doc">The log files</span></a>).
+You can toggle the bookmark of the line with the text cursor using the
+actions from the menu Edit/Toggle Bookmark, which can be seen in the
+following image on the right.</p>
+<p><img alt="Edit/Go to" src="_images/bookmark4.png" /> <img alt="Edit/Goto Bookmark" src="_images/bookmark5.png" /> <img alt="Edit/Toggle Bookmark" src="_images/bookmark6.png" /></p>
+</div>
+</div>
+<div class="section" id="formatting-your-text">
+<h2>Formatting your text<a class="headerlink" href="#formatting-your-text" title="Permalink to this heading">#</a></h2>
+<p>You can quickly set the format of a part of your text with this tool bar
+:</p>
+<p><img alt="Format Toolbar" src="_images/doc6.png" /></p>
+<p><strong>Additional option:</strong> a selected text can be directly framed by certain
+environments. Example: while clicking on the button “Bold” after
+having selected the word “Hello” , you will obtain the code:
+\textbf{Hello}.<br />
+This option is available for all the environments indicated by
+“[selection]” in the “LaTeX” menu.</p>
+<div class="section" id="capitalisation">
+<h3>Capitalisation<a class="headerlink" href="#capitalisation" title="Permalink to this heading">#</a></h3>
+<p>The menu “Edit” -&gt; “Text Operations” contains a few methods for
+changing the capitalization of selected text:</p>
+<ul class="simple">
+<li><p>To Lowercase</p></li>
+<li><p>To Uppercase</p></li>
+<li><p>To Titlecase (strict)</p></li>
+<li><p>To Titlecase (smart)</p></li>
+</ul>
+<p>Both variants of “To Titlecase” leave small words like a, the, of etc.
+in lowercase. Additionally, “To Titlecase (smart)” does not convert
+any words containing capital letters, assuming they are acronymes which
+require a fixed capitalization (e.g. “TeXstudio”).</p>
+</div>
+<div class="section" id="escaping-reserved-characters">
+<h3>Escaping reserved characters<a class="headerlink" href="#escaping-reserved-characters" title="Permalink to this heading">#</a></h3>
+<p>If you have text containing reserved TeX characters and want the text to
+appear literally in your document, you have to escape the reserved
+characters to prevent LaTeX from interpreting them. The following
+functions take care of that (Menu: Idefix)</p>
+<ul class="simple">
+<li><p>Paste to LaTeX: Takes the text from the clipboard and escapes
+reserved characters prior to pasting into the editor.</p></li>
+<li><p>Convert to LaTeX: Escapes the reserved characters in the current
+selection.</p></li>
+</ul>
+<p>For example: “Less than 10% of computer users know the meaning of
+$PATH.” will be converted to “Less than 10\% of computer users know
+the meaning of \$PATH.”</p>
+</div>
+</div>
+<div class="section" id="spacings">
+<h2>Spacings<a class="headerlink" href="#spacings" title="Permalink to this heading">#</a></h2>
+<!---
+**TODO** general description of inserting latex commands (menu, completer, tags)
+--->
+<p>The usual “spacing” commands are available in the “LaTeX” and
+“Math” menus.</p>
+</div>
+<div class="section" id="inserting-a-list">
+<h2>Inserting a list<a class="headerlink" href="#inserting-a-list" title="Permalink to this heading">#</a></h2>
+<p>The usual list environments code can be insert quickly via the
+“LaTeX-List” menu.<br />
+Note : the shortcut for the \item command is Ctrl+Shift+I.</p>
+</div>
+<div class="section" id="inserting-a-table">
+<h2>Inserting a table<a class="headerlink" href="#inserting-a-table" title="Permalink to this heading">#</a></h2>
+<p>With the “Tabular” wizard (“Wizard” menu), the LaTeX code for a
+tabular environment can be quickly inserted :</p>
+<p><img alt="Tabular Wizard" src="_images/doc7.png" /></p>
+<p>You can set the main features of your table.<br />
+Note : this dialog allows you to type directly the code in the cells.<br />
+The corresponding LaTeX code is automatically inserted in the editor.</p>
+<div class="section" id="manipulating-tables">
+<h3>Manipulating tables<a class="headerlink" href="#manipulating-tables" title="Permalink to this heading">#</a></h3>
+<p>TeXstudio provides some commands to ease handling of tables. The
+commands are located at LaTeX → Manipulate Table and in the Table
+toolbar. Please be aware that some unexpected results may arise, if the
+table constructing commands get too complex. Following commands are
+offered:</p>
+<ul class="simple">
+<li><p>Add Row after the current row</p></li>
+<li><p>Remove Row: removes the table row in which the cursor</p></li>
+<li><p>Add Column: add a column in the complete table after current cursor
+position. If the cursor is positioned at start of line,first column,
+the column is added as new first column.</p></li>
+<li><p>Remove Column: remove current column</p></li>
+<li><p>Add/Remove \hline: add/remove \hline in all rows following the
+current row. If already a command \hline is present, no second
+command is placed.</p></li>
+<li><p>Align Columns: Aligns the column separators (ampersand) by
+introducing whitespace. The text in the cells is aligned according
+to the specification in the table header. This helps reading the
+table source.</p></li>
+<li><p>Remodel the table after a template. This allows one to force uniform
+table set-up in a document. Some templates are predefined, more can
+be added though it needs some programming in java script. This
+command is only present in the menu (math/tables)</p></li>
+</ul>
+<p>TeXstudio also allows block cursors. Press &lt;Ctrl&gt;+&lt;Alt&gt;+&lt;Shift&gt;
+and drag the cursor with the mouse. The block cursor works like a set of
+normal cursors. You can copy and paste text as usual. Also you can type
+in new text, which will be added in every row.</p>
+<p><img alt="Block Selection" src="_images/block_selection.png" /></p>
+</div>
+</div>
+<div class="section" id="inserting-a-tabbing-environment">
+<h2>Inserting a “tabbing” environment<a class="headerlink" href="#inserting-a-tabbing-environment" title="Permalink to this heading">#</a></h2>
+<p>To help you to insert a “tabbing” code, you can use the “Tabbing”
+wizard (“Wizard” menu) :</p>
+<p><img alt="Tabbing Wizard" src="_images/doc8.png" /></p>
+</div>
+<div class="section" id="inserting-a-picture">
+<h2>Inserting a picture<a class="headerlink" href="#inserting-a-picture" title="Permalink to this heading">#</a></h2>
+<p>To insert a picture in your document, just use the “\includegraphics”
+command in the “LaTeX” menu. Then, click on the “browser” button in
+the dialog to select the graphic file.<br />
+Note : you can insert a “figure” LaTeX environment (“LaTeX -
+Environments” menu) before inserting the picture.</p>
+<p><img alt="Figure Environment" src="_images/doc9.png" /></p>
+<div class="section" id="inserting-a-picture-using-a-wizard">
+<h3>Inserting a picture using a “wizard”<a class="headerlink" href="#inserting-a-picture-using-a-wizard" title="Permalink to this heading">#</a></h3>
+<p>Properly inserting figures is a challenge for LaTeX beginners and still
+quite a bit of text to type for the expert. Therefore TeXstudio offers a
+wizard for handling graphics insertion code in your document. “Graphics
+options” defines the optional parameter of
+<code class="docutils literal notranslate"><span class="pre">\includegraphics[options]{file}</span></code>. While the most used width/height
+attributes can be easily set, alternatively you have full control with
+the user defined setting.<br />
+Place the graphic inside a <code class="docutils literal notranslate"><span class="pre">figure</span></code> environment if it does not have to
+be at an exact position in the text. Then LaTeX will determine an
+optimal position on the page.<br />
+By pressing the “Save as default” button the current settings (except
+file, caption and label) are stored and will hence be used as default
+when you open the wizard.<br />
+The wizard also comes into play when you drag drop an image file to your
+document or use copy in explorer and paste in TeXstudio. Together with
+the adjustable default parameters this makes insertion of new pictures
+very fast. Furthermore, if you start the wizard while the cursor is on
+picture code, the wizard is used to manipulate the existing picture
+settings.</p>
+<p><img alt="Figure Wizard" src="_images/wizard_figure.png" /></p>
+</div>
+</div>
+<div class="section" id="cross-references-and-notes">
+<h2>Cross References and notes<a class="headerlink" href="#cross-references-and-notes" title="Permalink to this heading">#</a></h2>
+<p>This toolbox in the toolbar allows you to insert quickly the label,
+cite, ref, footnote… code.<br />
+Note : the labels used in your documents are displayed in the
+“Structure View”.</p>
+<p><img alt="Structure View Labels" src="_images/doc10.png" /></p>
+<p>**Additional option:**for the \ref command, a dialog box allows you to
+select directly the label.</p>
+</div>
+<div class="section" id="inserting-math-formula">
+<h2>Inserting math formula<a class="headerlink" href="#inserting-math-formula" title="Permalink to this heading">#</a></h2>
+<p>You can toggle in the “in-line math” environment with the “f(x)”
+button in the toolbar (shortcut : Ctrl+Alt+M) or with the “Math” menu.
+The shortcut for the “display math” environment is : Alt+Shift+M.<br />
+The “Math” toolbar allows you to insert the most currents mathematical
+forms (frac, sqrt…) like the \left and \right tags.</p>
+<p><img alt="Math Toolbar" src="_images/doc11.png" /></p>
+<p>With the “symbols panels” in the structure view, you can insert the
+code of 400 mathematical symbols.</p>
+<p><img alt="Math Symbols Panel" src="_images/doc12.png" /></p>
+<p>You can also define the format of your mathematical text via the
+“Math” menu.<br />
+For the “array” environments, a wizard (like the “Tabular” wizard)
+is available in the “Wizard” menu. With this wizard, you can select
+the environment : array, matrix, pmatrix…. The cells can be directly
+completed.</p>
+<p><img alt="Array Wizard" src="_images/doc13.png" /></p>
+</div>
+<div class="section" id="auto-completion">
+<h2>Auto Completion<a class="headerlink" href="#auto-completion" title="Permalink to this heading">#</a></h2>
+<p>Whenever you press \ followed by a letter, a list of possible LaTeX
+tags is shown where you select the right one. If you type additional
+letters, the list is filtered, so that only the tags starting with the
+already written text are shown. If the list contains words which all
+start with the same letter combination, you can press Tab to complete
+all common letters. If only one element is present in the list, Tab
+selects this one to do the completion, like Enter. This behaviour is
+similar to tab completion in bash shells. You can also press Ctrl+Space
+to open this list whenever you want.<br />
+If a tag has different options, a short descriptive text is inserted
+into your text, telling you the meaning of each option. You can press
+Ctrl+Left, Ctrl+Right to select all positions.<br />
+Furthermore normal text can be completed by starting to type a word and
+pressing Ctrl+Space. All appropriate words in the current document are
+used as possible suggestions.<br />
+If an environment is to be inserted, typing in the beginning of the
+environment name and pressing Ctrl+Alt+Space gives suggestions for
+adequate environments which are inserted completely with
+\begin{env}..\end{env}.<br />
+And finally, user tags can be assigned an abbreviation which can also be
+used with completion. Just type in the start of the abbreviation and
+start the completion with Ctrl+Space. The abbreviation should show up in
+the completion list, especially marked with “abbreviation (template)”.<br />
+If you change a command by completing a new command, only the command
+name is substituted. The same is true for environments, where the
+environment is changed in the \begin- and \end-command.<br />
+<br />
+The completer has several operation modes which are shown in the tabs
+below the command list.\</p>
+<ul class="simple">
+<li><p>Typical: list only typical commands and filter out rather unusual
+commands.</p></li>
+<li><p>Most used: list only commands which have already been used in the
+completer by the user. Is empty if txs has not been used before.</p></li>
+<li><p>Fuzzy: search the command in a fuzzy way. The command needs to
+contain all given letters in the same order though with a arbitrary
+of letters between them. E.g. \bf lists, among others,
+\<strong>b</strong>egin{<strong>f</strong>igure}</p></li>
+<li><p>All: list all known commands.</p></li>
+</ul>
+</div>
+<div class="section" id="thesaurus">
+<h2>Thesaurus<a class="headerlink" href="#thesaurus" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases
+are used for this. By placing the cursor on a word and activating the
+thesaurus (Ctrl+Shift+F8 or Edit/Thesaurus), it tries to find synonyms
+for this word. Please be patient if you start the thesaurus at first
+time since loading the database just occurs then and can take a few
+moments.</p>
+<p><img alt="Thesaurus" src="_images/thesaurus.png" /></p>
+<p>The first line to the left contains the word, for which a synonym is
+searched for. The list below gives a list of word classes. The can be
+chosen to reduce the number of suggestions. The column to the right
+contains the list of suggested synonyms. A selected word from this list
+apears in the first line to the right as proposition for replacement of
+the text. This word can be changed manually. It is also used to do
+further investigations for words and their synonyms which “start with”
+or “contain” that word. With “lookup” it can be directly used to
+look for a synonym for that word.</p>
+</div>
+<div class="section" id="special-commands">
+<h2>Special Commands<a class="headerlink" href="#special-commands" title="Permalink to this heading">#</a></h2>
+<div class="section" id="delete-word-command-environment">
+<h3>Delete word/command/environment<a class="headerlink" href="#delete-word-command-environment" title="Permalink to this heading">#</a></h3>
+<p>With the shortcut Alt+Del, the word under the cursor is deleted. If it
+is a command, the command is deleted including opening and closing
+braces. E.g. “\textbf{text}” leave “text”. If it is an environment,
+the enclosing begin/end are removed.</p>
+</div>
+<div class="section" id="rename-environment">
+<h3>Rename environment<a class="headerlink" href="#rename-environment" title="Permalink to this heading">#</a></h3>
+<p>If you place the cursor on an environment name, after a moment a
+mirror-cursor is activated on the environment name which allows
+synchronous change of the environment name in the begin- and
+end-command. So if you want to change a
+“\begin{tabular}…\end{tabular}” construction to
+“\begin{tabularx}…\end{tabularx}”, place the text cursor on
+“tabular”, wait for a second and then, after the mirror-cursor
+appears, change “tabular” to “tabularx”.</p>
+</div>
+<div class="section" id="cut-buffer">
+<h3>Cut Buffer<a class="headerlink" href="#cut-buffer" title="Permalink to this heading">#</a></h3>
+<p>If you select something and then start to type in a command and complete
+it, the selection is put in as first argument. E.g. you have a “text”,
+select it and start typing “\textbf”, command which is completed. The
+resulting text is “\textbf{text}”.</p>
+</div>
+</div>
+</div>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="compiling.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Compiling a document</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="getting_started.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Getting started</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, TeXstudio Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Editing a TeX document</a><ul>
+<li><a class="reference internal" href="#creating-a-new-document">Creating a new document</a><ul>
+<li><a class="reference internal" href="#setting-the-preamble-of-a-tex-document">Setting the preamble of a TeX document</a></li>
+<li><a class="reference internal" href="#using-templates-to-start-a-new-document">Using Templates to start a new document</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#structure-your-document">Structure your document</a></li>
+<li><a class="reference internal" href="#browsing-your-document">Browsing your document</a><ul>
+<li><a class="reference internal" href="#the-structure-view">The Structure View</a></li>
+<li><a class="reference internal" href="#the-toc-view">The TOC View</a></li>
+<li><a class="reference internal" href="#using-bookmarks">Using Bookmarks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#formatting-your-text">Formatting your text</a><ul>
+<li><a class="reference internal" href="#capitalisation">Capitalisation</a></li>
+<li><a class="reference internal" href="#escaping-reserved-characters">Escaping reserved characters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#spacings">Spacings</a></li>
+<li><a class="reference internal" href="#inserting-a-list">Inserting a list</a></li>
+<li><a class="reference internal" href="#inserting-a-table">Inserting a table</a><ul>
+<li><a class="reference internal" href="#manipulating-tables">Manipulating tables</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inserting-a-tabbing-environment">Inserting a “tabbing” environment</a></li>
+<li><a class="reference internal" href="#inserting-a-picture">Inserting a picture</a><ul>
+<li><a class="reference internal" href="#inserting-a-picture-using-a-wizard">Inserting a picture using a “wizard”</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cross-references-and-notes">Cross References and notes</a></li>
+<li><a class="reference internal" href="#inserting-math-formula">Inserting math formula</a></li>
+<li><a class="reference internal" href="#auto-completion">Auto Completion</a></li>
+<li><a class="reference internal" href="#thesaurus">Thesaurus</a></li>
+<li><a class="reference internal" href="#special-commands">Special Commands</a><ul>
+<li><a class="reference internal" href="#delete-word-command-environment">Delete word/command/environment</a></li>
+<li><a class="reference internal" href="#rename-environment">Rename environment</a></li>
+<li><a class="reference internal" href="#cut-buffer">Cut Buffer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    </body>
+</html>

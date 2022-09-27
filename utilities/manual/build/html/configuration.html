@@ -1,0 +1,1108 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Configuring TeXstudio" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="configuration.html" />
+  
+<meta property="og:description" content="TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see here, others are available with the “Configure TeXstudio” command in the “Options” me..." />
+  <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Background information" href="background.html" /><link rel="prev" title="Advanced features" href="advanced.html" />
+
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><meta name="generator" content="sphinx-5.2.1, furo 2022.09.15"/>
+        <title>Configuring TeXstudio - TeXstudio 4.3.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     Site still under construction! 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">TeXstudio 4.3.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TeXstudio 4.3.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing.html">Editing a TeX document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling a document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewing.html">Viewing a document (pdf)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Configuring TeXstudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background information</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="section" id="configuring-texstudio">
+<h1>Configuring TeXstudio<a class="headerlink" href="#configuring-texstudio" title="Permalink to this heading">#</a></h1>
+<p>TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see <a class="reference internal" href="#adapting-the-main-gui"><span class="std std-doc">here</span></a>, others are available with the “Configure TeXstudio” command in the
+“Options” menu (“Preferences” under Mac OS X). Note that there are
+two levels of detail. More advanced or less often used options are only
+visible if you toggle “Show advanced options” in the lower left
+corner.</p>
+<div class="section" id="adapting-the-main-gui">
+<h2>Adapting the main GUI<a class="headerlink" href="#adapting-the-main-gui" title="Permalink to this heading">#</a></h2>
+<!--
+needs to be simplified and more precise
+TOC ?
+-->
+<p>The information presented in the side bar depends on the icon you select
+from the vertical toolbar on the left side of the panel. These icons can
+be understood as vertically aligned tabs. A click with the right mouse
+button allows you to select which icons are presented:</p>
+<p><img alt="Side Panel Menu" src="_images/Side_Panel_Menu.png" /></p>
+<p>TeXstudio offers a lot of toolbars (marked red), many of which are
+arranged in a row above the side panel and the editor area (called the
+main toolbar, the vertical toolbars are called secondary toolbars). One
+vertical aligend toolbar (the central one, s. image below) resides to
+the left of the editor area. You can choose which ones to show with a
+click of the right mouse button on any of them:</p>
+<p><img alt="Side Panel Menu" src="_images/Tool_Bar_Menu.png" /></p>
+<p>The custom toolbar will be discussed in <a class="reference internal" href="#configuring-the-custom-toolbar-advanced-option"><span class="std std-doc">Configuring the Custom Toolbar</span></a>. The toolbars in the main toolbar can be
+rearranged, moved somewhere in the window or even disconnected from the
+window at all. All toolbars are scalable, s. option GUI scaling (needs
+advanced options) in the config dialog.</p>
+</div>
+<div class="section" id="configuring-the-editor">
+<h2>Configuring the editor<a class="headerlink" href="#configuring-the-editor" title="Permalink to this heading">#</a></h2>
+<p>You may change the default encoding for new files (“Configure
+TeXstudio” -&gt; “Editor” -&gt; “Editor Font Encoding”) if you don’t
+want utf8 as encoding. Don’t forget to set the same encoding in the
+preamble of your documents. (e.g. <code class="docutils literal notranslate"><span class="pre">\usepackage[utf8]{inputenc}</span></code>, if you
+use utf-8).<br />
+TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use
+a different encoding in your existing documents you have to specify it
+in the configuration dialog before opening them. (and then you also have
+to disable the auto detection)</p>
+<ul class="simple">
+<li><p>“Folding” toggles the editors code-folding capability (hide
+sections of the text).</p></li>
+<li><p>The selection box “Indentation mode” lets you select, whether
+indented lines are followed by lines of the same indentation after
+pressing Enter or letting TeXstudio do automatic indentation.</p></li>
+</ul>
+<p><img alt="Configure Editor" src="_images/configure_editor.png" /></p>
+</div>
+<div class="section" id="configuring-the-latex-related-commands">
+<h2>Configuring the latex related commands<a class="headerlink" href="#configuring-the-latex-related-commands" title="Permalink to this heading">#</a></h2>
+<p>LaTeX comes with a number of command line tools to compile and
+manipulate LaTeX documents. The commands section defines there location
+and arguments.</p>
+<p>The default settings should work with the recent and standard LaTeX
+distributions, but you could have to modify them (“Configure
+TeXstudio” -&gt; “Commands”). To change a command, just click on the
+button at the end of the corresponding line and select the command in
+the file browser : TeXstudio will automatically adapt the syntax of the
+command.</p>
+<p>You can use a number of special characters / character sequences to
+address the context of the current document. They are expanded at
+runtime:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Special Character</p></th>
+<th class="head"><p>Expands to</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p>filename of the root document for of current document without extension</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&#64;</span></code></p></td>
+<td><p>current line number</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">?</span></code> followed by further characters</p></td>
+<td><p>See the instruction at the bottom of the configuration dialog.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">[txs-app-dir]</span></code></p></td>
+<td><p>Location of the TeXstudio executable (useful for portable settings)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[txs-settings-dir]</span></code></p></td>
+<td><p>Location of the settings file (texstudio.ini)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The section <a class="reference internal" href="advanced.html#forward-and-inverse-searching"><span class="std std-doc">Forward/Inverse search</span></a> gives some example
+commands for common viewers.</p>
+<p>You can always restore the original settings using the revert button to
+the right.</p>
+<p><img alt="Configure Commands" src="_images/configure_commands.png" /></p>
+<div class="section" id="command-syntax-in-detail">
+<h3>Command syntax in detail<a class="headerlink" href="#command-syntax-in-detail" title="Permalink to this heading">#</a></h3>
+<p>Before an external command is executed the command line undergoes
+expansion where the following tokens are recognized and replaced by
+TeXstudio:</p>
+<ul class="simple">
+<li><p><strong>%</strong> is replaced by the absolute pathname of the root (master)
+document up to but excluding the file extension.</p></li>
+<li><p><strong>%%</strong> is replaced by the % symbol.</p></li>
+<li><p><strong>&#64;</strong> is replaced by the current line number at the moment when the
+corresponding external command was run.</p></li>
+<li><p><strong>&#64;&#64;</strong> is replaced by the &#64; symbol.</p></li>
+<li><p><strong>?[selector][pathname parts][terminating char]</strong> is replaced
+by a formatted filename where:</p>
+<ul>
+<li><p><strong>[selector]</strong> selects the pathname that is used by
+<strong>[pathname parts]</strong>. It can be one of the following:</p>
+<ul>
+<li><p><strong>No selector</strong> used at all. In this case the root (master)
+document is selected.</p></li>
+<li><p><strong>c:</strong> selects the current document which can be different
+from the root document. Note that the trailing colon is a
+part of the selector.</p></li>
+<li><p><strong>p{ext}:</strong> searches for a file with same basename as the
+root document and extension <strong>ext</strong>. The search is done in
+the dictory containing the root (master) document and in the
+additional PDF search paths. If a matching file is found
+then it selected for further processing by [pathname
+parts]. If no matching file is found then TeXstudio selects
+a default pathname which is the master file with its
+extension replaced by <strong>ext</strong>. Note that the trailing colon
+is a part of the selector.</p></li>
+</ul>
+</li>
+<li><p><strong>[pathname parts]</strong> selects which parts of the selected
+pathname are placed in the expanded command line. It can be one
+or more of the following characters:</p>
+<ul>
+<li><p><strong>a</strong> expands to the absolute path of the selected pathname.
+This absolute path is up to but excluding the filename of
+the selected pathname.</p></li>
+<li><p><strong>r</strong> expands to the relative path of the selected pathname.
+This relative path is up to but excluding the filename of
+the selected pathname.</p></li>
+<li><p><strong>m</strong> expands to the complete basename of the selected
+pathname. The complete basename is the filename part up to
+but excluding the last dot in the filename.</p></li>
+<li><p><strong>e</strong> expands to the extension of the selected pathname.</p></li>
+</ul>
+</li>
+<li><p><strong>[terminating char]</strong> specifies the prefix and/or suffix
+characters that enclose the expanded <strong>[pathname parts]</strong>. It
+can be one of the following:</p>
+<ul>
+<li><p><strong>)</strong> Do not add characters before or after the expanded
+<strong>[pathname parts]</strong>. Used to mark the end of the
+expansion token.</p></li>
+<li><p><strong>“</strong> to enclose the expanded <strong>[pathname parts]</strong> in
+double quotes.</p></li>
+<li><p><strong>.</strong> to add a dot after the expanded <strong>[pathname
+parts]</strong>.</p></li>
+<li><p><strong>(space)</strong> to add a space after the expanded <strong>[pathname
+parts]</strong>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>?*.ext</strong> causes the external command to be expanded once for each
+.ext file.</p></li>
+<li><p><strong>??</strong> is replaced by the ? symbol.</p></li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><strong>?ame”</strong> expands to the absolute pathname of the root document
+enclosed in double-quotes (e.g. /some/directory/mydocument.tex).</p></li>
+<li><p><strong>?e)</strong> expands to the extension of the root document without
+leading dot (e.g. tex).</p></li>
+<li><p><strong>?m</strong> expands to the double-quoted complete basename of the root
+document (identical to <strong>%</strong>).</p></li>
+<li><p><strong>?me</strong> expands to the filename of the root document (e.g.
+example.tex).</p></li>
+<li><p><strong>?p{pdf}:ame</strong> expands to the absolute pathname of the output PDF
+file (e.g. /some/directory/mydocument.pdf).</p></li>
+<li><p>?*.aux expands once for each .aux file in the current directory.</p></li>
+</ul>
+</div>
+<div class="section" id="set-up-for-external-viewers">
+<h3>Set-up for external viewers<a class="headerlink" href="#set-up-for-external-viewers" title="Permalink to this heading">#</a></h3>
+<p>Some viewers can jump to (and visually highlight) a position in
+the DVI/PDF file that corresponds to a certain line number in the (La)TeX
+source file.
+To enable this forward search, you can enter the command line of the
+corresponding viewer either as command line for an user tool in the User
+menu (User/User Commands/Edit…) or in the viewer command line in the
+config dialog (“Options/Configure TeXstudio” -&gt; “Commands”). When
+the viewer is launched, the <strong>&#64;</strong>-placeholder will be replaced by the
+current line number and <strong>?c:ame</strong> by the complete absolute filename of
+the current file. If your PDF file is not in the same directory as your
+.tex file you can use the <strong>?p{pdf}:ame</strong> placeholder. For details see
+<a class="reference internal" href="#command-syntax-in-detail"><span class="std std-doc">External Commands</span></a>.<br />
+<br />
+On Windows, you can execute DDE commands by inserting a command of the
+form: [dde:///service/control/[commands…]]{.command} or (since
+TeXstudio 1.9.9) also
+[dde:///programpath:service/control/[commands…]]{.command} to start
+the program if necessary.<br />
+<br />
+Below you can find a list of commands for some common viewers. Of
+course, you have to replace <em>(your program path)</em> with the path of the
+program on your computer, if you want to use a command.\</p>
+<div class="section" id="sumatra">
+<h4>Sumatra<a class="headerlink" href="#sumatra" title="Permalink to this heading">#</a></h4>
+<p>Launch Sumatra from TeXstudio and configure Sumatra for inverse search:
+[“<em>(your sumatra path)</em>” -reuse-instance -inverse-search “&quot;<em>(your
+TeXstudio path)</em>&quot; &quot;%%f&quot; -line %%l” “?am.pdf”]{.command}<br />
+<br />
+Jump to a line in a running Sumatra (Windows only):
+[dde:///SUMATRA/control/[ForwardSearch(“?am.pdf”,”?c:am.tex”,&#64;,0,0,1)]]{.command}<br />
+<br />
+Launch Sumatra if it is not running and jump to a line in it (Windows
+only): [dde:///<em>(your sumatra
+path)</em>:SUMATRA/control/[ForwardSearch(“?am.pdf”,”?c:am.tex”,&#64;,0,0,1)]]{.command}<br />
+<br />
+Launch TeXstudio from Sumatra: [“<em>(your TeXstudio path)</em>” “%f” -line</p>
+<p><br />
+A possible value for <em>(your Sumatra path)</em> is [C:/Program
+Files/SumatraPDF/SumatraPDF.exe]{.command}</p>
+</div>
+<div class="section" id="foxit-reader">
+<h4>Foxit Reader<a class="headerlink" href="#foxit-reader" title="Permalink to this heading">#</a></h4>
+<p>Launch Foxit Reader from TeXstudio: [“<em>(your Reader path)”</em>
+“?am.pdf”]{.command}<br />
+\</p>
+</div>
+<div class="section" id="acrobat-reader">
+<h4>Acrobat Reader<a class="headerlink" href="#acrobat-reader" title="Permalink to this heading">#</a></h4>
+<p>Launch Acrobat Reader from TeXstudio: [“<em>(your Reader path)”</em>
+“?am.pdf”]{.command}<br />
+<br />
+Naviation and closing are achieved via DDE commands. Since version 10 of
+the adobe products the DDE service name contains a letter for the
+Product and the version number.</p>
+<p>Product            Service name</p>
+<hr class="docutils" />
+<p>Adobe Reader 9     acroview
+Adobe Acrobat 9    acroview
+Adobe Reader 10    acroviewR10
+Adobe Acrobat 10   acroviewA10
+Adobe Reader 11    acroviewR11
+Adobe Acrobat 11   acroviewA11
+Adobe Reader DC    acroviewR15
+Adobe Acrobat DC   acroviewA15</p>
+<p>The following example is for Adobe Reader DC:<br />
+Jump to a position in a running Adobe Reader (Windows only):
+[dde:///acroviewR15/control/[DocOpen(“?am.pdf”)][FileOpen(“?am.pdf”)][DocGotoNameDest(“?am.pdf”,”jump-position”)]]{.command}
+        <em>jump-position can be defined with the hyperref package</em><br />
+If you have the problem that Adobe Reader does not open, you have to add
+the program path like this: [ dde:///”C:\Program Files
+(x86)\Adobe\Acrobat Reader
+DC\Reader\AcroRd32.exe”:acroviewR15/control/[DocOpen(“?am.pdf”)][FileOpen(“?am.pdf”)][DocGotoNameDest(“?am.pdf”,”jump-position”)]]{.command}<br />
+<br />
+Close the document in a running Adobe Reader (Windows only):
+[dde:///acroviewR15/control/[DocOpen(“?am.pdf”)][FileOpen(“?am.pdf”)][DocClose(“?am.pdf”)]]{.command}<br />
+<br />
+Note: Since Adobe Reader blocks writing to PDFs which are open in the
+Reader, you have to close the PDF before recompiling. You can define a
+User Command for the above DDE-command and call it at the beginning of
+your build chain. This ensures that the file will be closed and thus is
+writable when compiling.</p>
+</div>
+<div class="section" id="yap-yet-another-previewer">
+<h4>Yap (Yet Another Previewer)<a class="headerlink" href="#yap-yet-another-previewer" title="Permalink to this heading">#</a></h4>
+<p>Launch Yap from TeXstudio: [“<em>(your Yap path)</em>” -1 -s &#64;?c:m.tex</p>
+<p><br />
+Launch TeXstudio from Yap: [“<em>(your TeXstudio path)</em>” “%f” -line %l
+]{.command}<br />
+<br />
+A possible value for <em>(your Yap path)</em> is [C:\Program Files\MiKTeX
+2.7\miktex\bin\yap.exe]{.command}</p>
+</div>
+<div class="section" id="xdvi">
+<h4>xdvi<a class="headerlink" href="#xdvi" title="Permalink to this heading">#</a></h4>
+<p>Launch xdvi from TeXstudio: [xdvi %.dvi -sourceposition
+&#64;:?c:m.tex]{.command}<br />
+<br />
+Launch xdvi from TeXstudio and enable inverse search: [xdvi -editor
+“texstudio %f -line” %.dvi -sourceposition &#64;:%.tex]{.command}</p>
+</div>
+<div class="section" id="kdvi">
+<h4>kdvi<a class="headerlink" href="#kdvi" title="Permalink to this heading">#</a></h4>
+<p>Launch kdvi from TeXstudio: [kdvi “file:%.dvi#src:&#64;
+?c:m.tex”]{.command}</p>
+</div>
+<div class="section" id="okular">
+<h4>Okular<a class="headerlink" href="#okular" title="Permalink to this heading">#</a></h4>
+<p>Launch okular from TeXstudio: [okular –unique</p>
+<p><br />
+Launch TeXstudio from Okular: [texstudio %f -line %l]{.command}</p>
+</div>
+<div class="section" id="skim">
+<h4>Skim<a class="headerlink" href="#skim" title="Permalink to this heading">#</a></h4>
+<p>Launch Skim from TeXstudio: [(your Skim
+path)/Contents/SharedSupport/displayline &#64; ?am.pdf ?c:ame]{.command}<br />
+<br />
+Launch TeXstudio from skim: Command:
+[/applications/texstudio.app/contents/macos/texstudio]{.command} with
+arguments: [“%file” -line %line ]{.command}<br />
+<br />
+A possible value for <em>(your Skim path)</em> is
+[/Applications/Skim.app]{.command}</p>
+</div>
+<div class="section" id="qpdfview">
+<h4>qpdfview<a class="headerlink" href="#qpdfview" title="Permalink to this heading">#</a></h4>
+<p>Launch qpdfview from TeXstudio: [qpdfview –unique
+?am.pdf#src:?c:am.tex:&#64;:0 2&gt; /dev/null]{.command}<br />
+<br />
+Launch TeXstudio from qpdfview: [texstudio “%1” -line %2]{.command}</p>
+</div>
+</div>
+</div>
+<div class="section" id="configuring-the-build-system">
+<h2>Configuring the build system<a class="headerlink" href="#configuring-the-build-system" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio provides general commands for translating latex.<br />
+The default settings use “pdflatex” and the internal pdf viewer. Other
+commands and viewer can be selected as well as a different bibliography
+translator.<br />
+The “embedded pdf viewer” does not open a new window for viewing the
+pdf document but presents it directly next to the text in the editor.<br />
+A useful alternative might be using the “latexmk” as compile command
+(if the command is installed on your system), as it handles dependencies
+with biblatex and index very well.<br />
+The advanced options allows finer customization which is in general not
+necessary.\</p>
+<p><img alt="Configure Build System" src="_images/configure_build.png" /></p>
+<p>User commands can be defined here by “adding” them. Each user command
+has a name with a pattern <code class="docutils literal notranslate"><span class="pre">&lt;command</span> <span class="pre">id&gt;:&lt;display</span> <span class="pre">name&gt;</span></code>, e.g.
+<code class="docutils literal notranslate"><span class="pre">user0:User</span> <span class="pre">Command</span> <span class="pre">0</span></code>. The command id has to be unique and must not
+contain spaces. In <a class="reference internal" href="#advanced-configuration-of-the-build-system"><span class="std std-doc">advanced mode</span></a>, you can reference it
+using <code class="docutils literal notranslate"><span class="pre">txs:///&quot;&lt;command</span> <span class="pre">id&gt;</span></code>. The display name will be shown in the
+tools menu. The user commands can be activated either by short cut
+(alt+shift+F%n) or by the tools menu (Tools/User).<br />
+User commands can either consist of a combination of known commands by
+selecting them from a list of available commands. This is triggered by
+clicking the spanner-symbol.<br />
+Alternatively a command can be directly selected through the file
+system.</p>
+<p><img alt="Configure user commands from known commands" src="_images/doc21.png" /></p>
+<div class="section" id="advanced-configuration-of-the-build-system">
+<h3>Advanced configuration of the build system<a class="headerlink" href="#advanced-configuration-of-the-build-system" title="Permalink to this heading">#</a></h3>
+<p>If you enable the advanced options, you can configure the build system
+in more detail.</p>
+<p>Every txs-command is a list of external programs/latex-commands and
+other txs-commands to call. An external program can be called with its
+usual command line, while a txs-command with id “foobar” is called by
+txs:///foobar.<br />
+The commands in the list are separated by |, which is just a separator
+(i.e. it will <em>not</em> pass the stdout from one program to the stdin of the
+next).</p>
+<p>Note: Use command lists only for the meta and user commands listed at
+<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Build</span></code>. Do not use then at <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Commands</span></code>. The latter
+should just be single commands (i.e. do not use | there). While it’s
+currently working in some cases, generally we do not guarantee this
+behavior. It can have surprising side effects such abortion of
+compilation in some cases. Also, the use of | at <code class="docutils literal notranslate"><span class="pre">Commands</span></code> may be
+prohibited completely without further notice in the future.</p>
+<p>Each of these txs-command has a unique id, which is shown as tooltip of
+the displayed name for “normal” commands and in the edit box for user
+commands. Some important commands are usual: txs:///quick (Build &amp; View,
+the old quickbuild), txs:///compile (Default compiler), txs:///view
+(Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex),
+txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External
+pdf viewer).</p>
+<p>For example, in a typical build configuration you might call
+txs:///quick by pressing F1, which calls txs:///compile, which first
+calls txs:///pdflatex that calls the actual pdflatey, and then calls
+txs:///view, which calls txs:///view-pdf, which calls
+txs:///view-pdf-internal, which displays the pdf.</p>
+<p>There is no difference between commands defined as command on the
+command config page, commands defined as build on the build config page,
+or commands defined as user commands. They are just separated in the GUI
+to simplify the interface.<br />
+This also means that you can change every command as you want, ignoring
+its old definition (you could even change its id, when editing the ini
+file.).</p>
+<p>There are however three always defined internal commands, which can only
+be called and not modified:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>command</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>txs:///internal-pdf-viewer</p></td>
+<td><p>Opens the internal viewer for the current document</p></td>
+</tr>
+<tr class="row-odd"><td><p>txs:///view-log</p></td>
+<td><p>Views the log file for the current document</p></td>
+</tr>
+<tr class="row-even"><td><p>txs:///conditionally-recompile-bibliography</p></td>
+<td><p>Checks if the bib files have been modified, and calls txs:///recompile-bibliography, iff that is the case</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The internal pdf viewer also accepts the following options
+(txs:///internal-pdf-viewer) to modify its behaviour:<br />
+\</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>–embedded</p></td>
+<td><p>Opens the viewer embedded</p></td>
+</tr>
+<tr class="row-odd"><td><p>–windowed</p></td>
+<td><p>Opens the viewer windowed (default if no option is given)</p></td>
+</tr>
+<tr class="row-even"><td><p>–close-(all|windowed|embedded)</p></td>
+<td><p>Close all open viewers, or just viewers of a specific kind</p></td>
+</tr>
+<tr class="row-odd"><td><p>–preserve-existing</p></td>
+<td><p>Does not change any existing viewers (i.e. always opens a new one)</p></td>
+</tr>
+<tr class="row-even"><td><p>–preserve-(embedded|windowed)</p></td>
+<td><p>Does not change any existing embedded/windowed viewers</p></td>
+</tr>
+<tr class="row-odd"><td><p>–preserve-duplicates</p></td>
+<td><p>Only opens the pdf in the first opened viewer</p></td>
+</tr>
+<tr class="row-even"><td><p>–(no-)auto-close</p></td>
+<td><p>Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</p></td>
+</tr>
+<tr class="row-odd"><td><p>–(no-)focus</p></td>
+<td><p>Determines whether the viewer should be focused (default: focus iff windowed)</p></td>
+</tr>
+<tr class="row-even"><td><p>–(no-)foreground</p></td>
+<td><p>Determines whether the viewer should be brought to front (default: foreground)</p></td>
+</tr>
+<tr class="row-odd"><td><p>filename</p></td>
+<td><p>Determines the file to open. Like in other commands, <a class="reference internal" href="#configuring-the-latex-related-commands"><span class="std std-doc">file patterns</span></a> are supported. If this parameter is not provided, TXS uses <code class="docutils literal notranslate"><span class="pre">&quot;?am.pdf&quot;</span></code>, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Build</span> <span class="pre">-&gt;</span> <span class="pre">Build</span> <span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Additional</span> <span class="pre">Search</span> <span class="pre">Paths</span> <span class="pre">-&gt;</span> <span class="pre">PDF</span> <span class="pre">Files</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>It is also possible to modify the arguments of called subcommands with
+argument modifiers or by adding a new argument . These modifiers are
+passed through called lists, so it will always change the arguments of
+the finally called program, even if the directly called subcommand is
+just a wrapper around another command:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>command</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>txs:///foobar –xyz</p></td>
+<td><p>This will add the xyz option</p></td>
+</tr>
+<tr class="row-odd"><td><p>txs:///foobar[–xyz=123]</p></td>
+<td><p>This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar)</p></td>
+</tr>
+<tr class="row-even"><td><p>txs:///foobar{–xyz=123}</p></td>
+<td><p>This will remove –xyz=123 from the foobar command line, ignoring xyz options with other values</p></td>
+</tr>
+<tr class="row-odd"><td><p>txs:///foobar{–xyz}</p></td>
+<td><p>This will remove any –xyz option from the foobar command line, regardless of its value</p></td>
+</tr>
+<tr class="row-even"><td><p>txs:///foobar{}</p></td>
+<td><p>This will remove all options from the foobar command line, leaving only the name of the executable</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Finally, there are also hidden options, which can only be changed by
+modifying the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable,
+Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list
+of commands that are treated as latex compiler (e.g. show the log
+afterwards), rerunnable (repeat command call, if there are warnings),
+pdf generators (e.g. pdflatex), commands that prints to stdout (e.g.
+bibtex), and viewers (e.g. only open once).</p>
+</div>
+<div class="section" id="details-of-the-execution-environment">
+<h3>Details of the execution environment<a class="headerlink" href="#details-of-the-execution-environment" title="Permalink to this heading">#</a></h3>
+<div class="section" id="environment-variables">
+<h4>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading">#</a></h4>
+<p>The environment variables available within the execution are the same as
+the ones that are available in the context in which TeXstudio was
+started. In particular this is true for the PATH. On Linux/OS X the PATH
+may depend on the way you started TeXstudio. Programs started from the
+GUI may have a different PATH setting than programs started from a shell
+(because some variables may only defined in the context of a shell (e.g.
+via ~/.bashrc).</p>
+<p>By default, TeXstudio parses environment variables in your commands. The
+syntax is adapted to the according operating system. A variable MYVAR
+would be written as <code class="docutils literal notranslate"><span class="pre">%MYVAR%</span></code> on Windows and <code class="docutils literal notranslate"><span class="pre">$MYVAR</span></code> on Linux and OS X.
+Windows environment variables are case-insensitive, whereas they are
+case-sensitive on Linux and OS X. Parsing of environment variables can
+be deactivated in the Build section of the options.</p>
+</div>
+<div class="section" id="working-directory">
+<h4>Working Directory<a class="headerlink" href="#working-directory" title="Permalink to this heading">#</a></h4>
+<p>The working directory is set to the path of root document.</p>
+</div>
+<div class="section" id="shell-functionality">
+<h4>Shell Functionality<a class="headerlink" href="#shell-functionality" title="Permalink to this heading">#</a></h4>
+<p>All commands specified in the configuration (i.e. Commands and User
+Commands) are executed directly. There is no shell involved. So most
+shell functionality does not work.</p>
+<div class="section" id="output-redirection">
+<h5>Output Redirection<a class="headerlink" href="#output-redirection" title="Permalink to this heading">#</a></h5>
+<p>TeXstudio provides limited output redirection capabilities. You can only
+output to the message panel (<code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">txs:///messages</span></code>) or suppress output
+(<code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">/dev/null</span></code>). The default setting depends on the command. The same
+targets are allowed for stderr: <code class="docutils literal notranslate"><span class="pre">2&gt;</span> <span class="pre">txs:///messages</span></code>, <code class="docutils literal notranslate"><span class="pre">2&gt;</span> <span class="pre">/dev/null</span></code>.
+Additionally, you can redirect to the same target as stdout by using
+<code class="docutils literal notranslate"><span class="pre">2&gt;&amp;1</span></code>.</p>
+<p>A typical usecase would be to suppress all output of a command:
+<code class="docutils literal notranslate"><span class="pre">&gt;/dev/null</span> <span class="pre">2&gt;&amp;1</span></code></p>
+<p>Note: Instead of the Linux/Unix notation <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">/dev/null</span></code>, you may
+alternatively use the Windows notation <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">nul</span></code>. Because these commands
+are directly interpreted by TXS, both variants work on all operating
+systems.</p>
+</div>
+<div class="section" id="using-other-shell-functionality">
+<h5>Using other shell functionality<a class="headerlink" href="#using-other-shell-functionality" title="Permalink to this heading">#</a></h5>
+<p>If you need shell functionality, you have to explicitly run a shell. You
+can either do this directly in the user command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sh -c &quot;/path/to/testscript foo &gt; bar&quot;Configuring
+</pre></div>
+</div>
+<p>or on Windows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cmd /C &quot;/path/to/testscript.bat foo &gt; bar&quot;
+</pre></div>
+</div>
+<p>Alternatively, you can call a wrapper script in the user command</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/path/to/wrapperscript foo bar
+</pre></div>
+</div>
+<p>and do the actual work inside the wrapper script:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/bin/sh
+# I am wrapperscript
+/path/to/testscript $1 &gt; $2
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="configuring-some-general-issues">
+<h2>Configuring some general issues<a class="headerlink" href="#configuring-some-general-issues" title="Permalink to this heading">#</a></h2>
+<p>This panel allows the setting of some general aspects.</p>
+<ul class="simple">
+<li><p>The “style” and “color scheme” of TeXstudio can be selected. The
+modern variant is closer to texmaker 1.9.</p></li>
+<li><p>The symbol list can either appear “tabbed” (old behaviour, tabbed
+activated) or can have small symbol tabs besides the symbol lists
+which leaves more room for the symbols.</p></li>
+<li><p>Also the log viewer can appear tabbed which allows faster change
+between error table, log view and previewer …</p></li>
+<li><p>The language of the menus can be changed directly to ignore system
+settings.</p></li>
+</ul>
+<p><img alt="Configure General" src="_images/configure_general.png" /></p>
+<div class="section" id="configuring-the-spell-checker">
+<h3>Configuring the spell checker<a class="headerlink" href="#configuring-the-spell-checker" title="Permalink to this heading">#</a></h3>
+<p>TeXstudio offers an integrated spellchecker which can be used either via
+a dialog or directly while typing. All text outside of LaTeX commands is
+checked. Additionally, text in options of LaTeX commands is also
+checked. TeXstudio determines if an option contains natural text and
+thus should be spell checked by looking up its definition in the
+completion word lists. For more information on completion word lists see
+the section on <a class="reference internal" href="#configuring-the-autocompletion"><span class="std std-doc">completion</span></a> and the <a class="reference internal" href="background.html#description-of-the-cwl-format"><span class="std std-doc">description of the cwl format</span></a>.</p>
+<p>The spell checker uses the Hunspell dictionary format, which is widely
+used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary
+consists of two files (<code class="docutils literal notranslate"><span class="pre">.dic</span></code> and <code class="docutils literal notranslate"><span class="pre">.aff</span></code>). French, British and German
+dictionaries are distributed with TeXstudio. You can add additional
+dictionaries yourself by placing them in the dictionary path. A
+particularly convenient way to get additional dictionaries is
+downloading a dictionary extension of
+<a class="reference external" href="http://extensions.openoffice.org/">http://wiki.services.openoffice.org/wiki/Dictionaries</a>
+or
+<a class="reference external" href="https://extensions.libreoffice.org/extensions?getCategories=Dictionary&amp;getCompatibility=any">LibreOffice</a>
+and importing them using the button <em>Import Dictionary</em> in the options.</p>
+<p>You can specify one or more search paths for the dictionaries in the
+options. Multiple paths need to be separated by a semicolon. With the
+paths you can use the special strings <code class="docutils literal notranslate"><span class="pre">[txs-app-dir]</span></code> and
+<code class="docutils literal notranslate"><span class="pre">[txs-settings-dir]</span></code>. These are expanded to the path of the executable
+and the config file (<code class="docutils literal notranslate"><span class="pre">texstudio.ini</span></code>) respectively. This expansion is
+particularly useful if you use a portable version on a USB stick in
+which the actual location of the program may depend on the computer you
+are using.</p>
+<p><img alt="Spellcheck Options" src="_images/spellcheck_options.png" /></p>
+<p>To make life easy TeXstudio lets you choose a preferred language for the
+spell checker. However, if you frequently work with files in different
+languages you may want to override the default behavior. This can be
+done in two ways. First you can specify the language of the file via the
+language menu in the status line. This setting will be lost as soon as
+the file is closed. To permanently save the language of the file,
+TeXstudio supports a special “magic comment”
+<code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">spellcheck</span> <span class="pre">=</span> <span class="pre">de_DE</span></code>. If this comment is present in a file, its
+language is automatically set when the file is loaded.</p>
+<p><img alt="Spellcheck Menu" src="_images/spellcheck_menu.png" /></p>
+<p>Please note: spell checking with Ctrl+Shift+F7 starts at the cursor
+position and not at the beginning of the document.</p>
+<p>If the interactive spell checker is enabled (default), any incorrectly
+spelled word is underlined with a red wave. Right-click on the word to
+open a menu with a list of possible corrections. In this context menu
+you can also add the word to the ignore list. If your dictionary is very
+large (&gt; 5MB), opening the context menu and showing possible
+suggestions can take some seconds. If you don’t need the suggestion,
+you can press shift while right clicking and don’t have to wait.</p>
+<p>Since the internal structure of the dictionaries is complex (e.g.
+contains rules on how to generate a word with different inflections), it
+is not possible to simply add words to the dictionary. Instead if a word
+is missing in the dictionary, you can add it to an ignore list, so that
+the spell checker won’t complain about it. The ignore list is normally
+saved in the same directory as the dictionary. It’s a plain text file
+with the extension .ign. If this isn’t possible (e.g. missing access
+rights) the list is stored in the user configuration directory.</p>
+</div>
+<div class="section" id="configuring-the-thesaurus">
+<h3>Configuring the thesaurus<a class="headerlink" href="#configuring-the-thesaurus" title="Permalink to this heading">#</a></h3>
+<p>The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and
+US-English and German databases are distributed with TeXstudio.<br />
+Users can download others databases here :
+<a class="reference external" href="http://wiki.services.openoffice.org/wiki/Dictionaries">http://wiki.services.openoffice.org/wiki/Dictionaries</a>\</p>
+</div>
+<div class="section" id="configuring-the-latex-syntax-checker">
+<h3>Configuring the latex syntax checker<a class="headerlink" href="#configuring-the-latex-syntax-checker" title="Permalink to this heading">#</a></h3>
+<p>The latex syntax checker takes the list of possible completion commands
+to determine if a command is correct. Furthermore the completion list
+contains partially additional information to determine in which context
+a command is valid, whether it is valid only in math-mode or only in
+tabular-mode.\</p>
+</div>
+<div class="section" id="configuring-the-grammar-checker">
+<h3>Configuring the grammar checker<a class="headerlink" href="#configuring-the-grammar-checker" title="Permalink to this heading">#</a></h3>
+<p>The grammar checker is based on the standard http API of
+<a class="reference external" href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate
+installation of LanguageTool and java.</p>
+<p>Once LanguageTool is installed, you can try it by starting the
+LanguageTool standalone application, and start TeXstudio afterward.
+LanguageTool then creates a locally running server at the address
+http://localhost:8081/ and TeXstudio automatically connects to it at
+startup. When the connection is established, all typed paragraphs are
+send to LT and after a short delay the possible grammar errors are
+highlighted.</p>
+<p>To automatically start LanguageTool with TeXstudio, you need to enter
+the path to LT jar in the grammar page of the config dialog. If the java
+executable is not in the default PATH, you also need to set the path to
+it there.</p>
+<p>In the advanced config mode, you can also mark certain LT rules as
+“special” whose matches will then be highlighted in a
+different/customizable way. This can be useful to do a stylistic
+analysis, e.g. by creating a own rule in LT highlighting all verbs or
+all adverbs.</p>
+<p>Independent from LanguageTool, TeXstudio also checks for repeated and
+bad (imprecise/slang) words. The repetition check looks several words
+behind and marks repetition of short words in the immediate vicinity and
+repetition of long words up to 10 words before. These distances and
+lengths can be changed in the advanced grammar config page.</p>
+</div>
+</div>
+<div class="section" id="configuring-the-autocompletion">
+<h2>Configuring the autocompletion<a class="headerlink" href="#configuring-the-autocompletion" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio has taken up completion word lists from kile which extended
+the number of known commands for completion considerably. TeXstudio
+understands the use of \documentclass and \usepackage in order to
+select valid lists of commands for completion as well as syntax
+checking. However TeXstudio allows one to select the additional word
+lists under “Configure TeXstudio” -&gt; “Editor” -&gt; “”. The names
+of the word lists corresponds to the package for which they are made.
+The list latex.cwl contains the standard latex commands.<br />
+Concerning auto completion, TeXstudio allows one to adapt the behaviour
+to your liking. The following options are available:</p>
+<ul class="simple">
+<li><p>Completion enabled: self explanatory</p></li>
+<li><p>Case sensitive: lets you complete e.g. \Large from \la …</p></li>
+<li><p>in first character: ?</p></li>
+<li><p>Auto Complete Common Prefix: if only one item is in the list or all
+items in the completion list share common starting characters, the
+common characters are directly inserted, like pressing the key Tab.</p></li>
+<li><p>Complete selected text when non-word character is pressed: when in
+completion mode, pressing a non-word character like space, leads to
+accepting the selected word. This may speed up typing.</p></li>
+<li><p>Enable ToolTip-Help: show tool tips on selected latex commands in
+the completion list.</p></li>
+<li><p>Use Placeholders: if the completed commands have options which need
+to be filled out, placeholders are put at these positions and they
+can be jumped to by using Ctrl+Right/Ctrl+Left.</p></li>
+</ul>
+<p>If your favorite package is not yet present for completion (and syntax
+checking), you can provide a list of your own by placing a file
+“packagename.cwl” in the <a class="reference external" href="https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions#where-are-the-settings-stored">config directory</a>.
+This directory is placed in ~/.config/texstudio under Linux and usually
+“c:\Documents and Settings/User/AppData/Roaming/texstudio” under
+Windows. Basically the file contains a list of valid commands. A
+description of the exact format and an example are given in the
+<a class="reference internal" href="background.html#description-of-the-cwl-format"><span class="std std-doc">appendix</span></a>.</p>
+<p><img alt="Configure Completion" src="_images/configure_completion.png" /></p>
+</div>
+<div class="section" id="configuring-shortcuts">
+<h2>Configuring shortcuts<a class="headerlink" href="#configuring-shortcuts" title="Permalink to this heading">#</a></h2>
+<p>Shortcuts can be changed by double clicking on “Current Shortcut” or
+“Additional Shortcut”. Then you can set up a new shortcut by one of
+the following ways (a tooltip will show this information): (1) Select
+from the drop down list, (2) hit the shortcut combination, or (3) type
+the string of the shortcut. A shortcut can be assigned a multiple
+keystroke combinations, for example <code class="docutils literal notranslate"><span class="pre">CTRL+M,CTRL+A</span></code> (either upper or
+lower case is allowed, but the comma is important). If a shortcut should
+be set to default value or removed completely, the items “&lt;default&gt;”
+or “&lt;none&gt;” at the top of the list can be selected respectively.</p>
+<p><img alt="Configure Shortcuts" src="_images/configure_shortcuts.png" /></p>
+</div>
+<div class="section" id="configuring-the-latex-math-menu-advanced-option">
+<h2>Configuring the Latex/Math-Menu (Advanced option)<a class="headerlink" href="#configuring-the-latex-math-menu-advanced-option" title="Permalink to this heading">#</a></h2>
+<p>The Math/Latex-Menu can be adapted to user likings. For this menu items
+can be renamed and a new Latex-Code can be placed. The appropriate item
+can be be directly edited by doubleclicking on them.</p>
+<p><img alt="Customize Menu" src="_images/configure_customizeMenu.png" /></p>
+</div>
+<div class="section" id="configuring-the-custom-toolbar-advanced-option">
+<h2>Configuring the Custom Toolbar (Advanced option)<a class="headerlink" href="#configuring-the-custom-toolbar-advanced-option" title="Permalink to this heading">#</a></h2>
+<p>One Custom Toolbar is present in TMX. This toolbar can be filled with
+actions from the Latex-, Math- and User-Menu. Since many of those item
+don’t have icons, user icons can be loaded as well. This is achieved by
+applying “load other icon” from the context menu on a item in the
+custom toolbar list in the configure dialog.</p>
+<p><img alt="Customize Toolbars" src="_images/configure_customToolbar.png" /></p>
+</div>
+<div class="section" id="configuring-svn-support">
+<h2>Configuring SVN support<a class="headerlink" href="#configuring-svn-support" title="Permalink to this heading">#</a></h2>
+<p>To supports SVN (subversion) for document versioning. To make use of it,
+the SVN command line tools need to be installed. Linux and Mac OSX
+normally provide already SVN tools, for Windows, the installation of
+“SlikSVN” is recommended.</p>
+<p>The complete path to the command “svn” and “svnadmin” need to be
+adjusted in the aprioriate field of the Commands page in the options. On
+the SVN page you can can choose the degree of automation (see below)
+WSVN, see below.</p>
+<p>Note: You cannot checkout a repository via TeXstudio. Just use the
+normal tools for this (either SVN checkout on the command line or the
+GUI of your choice). Once you have a working copy, TeXstudio can operate
+on it.</p>
+<p>“Automatically check in after save” allows TeXstudio to perform an SVN
+check in after every save of a document, thus providing a very complete
+history of the creation of a document. Since text documents are rather
+small compared to disk spaces, size of the SVN database should not be a
+problem. In addition newly saved files (save as) are automatically added
+to SVN control,provided that the directory is already under SVN control.
+If that is not the case, TeXstudio searches in “SVN Directory Search
+Depth” directory above the current diorectory for a SVN controlled
+directory to which the subdirectories and the TeX-Document will be
+added. If no appropriate directory is found, a repository is
+automatically generated in a directory called “./repo” and the
+document is added. Thus the user does not need to look up the necessary
+commands to set up a repository. This functionality is only activated
+when “Auto checkin in” is enabled !</p>
+<p>With “User SVN revisions to undo before last save” TeXstudio will
+perform undo as usually, but if there are no further undoable commands
+in the internal storage, the document will be changed to the previous
+version in SVN history. Further undo commands allows one to back further
+to older revisions, whereas a redo goes forward to more recent versions.
+This is a more interactive approach than choosing SVN revisions directly
+via a menu command, see <a class="reference internal" href="advanced.html#svn-support"><span class="std std-doc">here</span></a>.</p>
+<p><img alt="Configure SVN" src="_images/configure_svn.png" /></p>
+</div>
+</div>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="background.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Background information</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="advanced.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Advanced features</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, TeXstudio Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Configuring TeXstudio</a><ul>
+<li><a class="reference internal" href="#adapting-the-main-gui">Adapting the main GUI</a></li>
+<li><a class="reference internal" href="#configuring-the-editor">Configuring the editor</a></li>
+<li><a class="reference internal" href="#configuring-the-latex-related-commands">Configuring the latex related commands</a><ul>
+<li><a class="reference internal" href="#command-syntax-in-detail">Command syntax in detail</a></li>
+<li><a class="reference internal" href="#set-up-for-external-viewers">Set-up for external viewers</a><ul>
+<li><a class="reference internal" href="#sumatra">Sumatra</a></li>
+<li><a class="reference internal" href="#foxit-reader">Foxit Reader</a></li>
+<li><a class="reference internal" href="#acrobat-reader">Acrobat Reader</a></li>
+<li><a class="reference internal" href="#yap-yet-another-previewer">Yap (Yet Another Previewer)</a></li>
+<li><a class="reference internal" href="#xdvi">xdvi</a></li>
+<li><a class="reference internal" href="#kdvi">kdvi</a></li>
+<li><a class="reference internal" href="#okular">Okular</a></li>
+<li><a class="reference internal" href="#skim">Skim</a></li>
+<li><a class="reference internal" href="#qpdfview">qpdfview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuring-the-build-system">Configuring the build system</a><ul>
+<li><a class="reference internal" href="#advanced-configuration-of-the-build-system">Advanced configuration of the build system</a></li>
+<li><a class="reference internal" href="#details-of-the-execution-environment">Details of the execution environment</a><ul>
+<li><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+<li><a class="reference internal" href="#working-directory">Working Directory</a></li>
+<li><a class="reference internal" href="#shell-functionality">Shell Functionality</a><ul>
+<li><a class="reference internal" href="#output-redirection">Output Redirection</a></li>
+<li><a class="reference internal" href="#using-other-shell-functionality">Using other shell functionality</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuring-some-general-issues">Configuring some general issues</a><ul>
+<li><a class="reference internal" href="#configuring-the-spell-checker">Configuring the spell checker</a></li>
+<li><a class="reference internal" href="#configuring-the-thesaurus">Configuring the thesaurus</a></li>
+<li><a class="reference internal" href="#configuring-the-latex-syntax-checker">Configuring the latex syntax checker</a></li>
+<li><a class="reference internal" href="#configuring-the-grammar-checker">Configuring the grammar checker</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuring-the-autocompletion">Configuring the autocompletion</a></li>
+<li><a class="reference internal" href="#configuring-shortcuts">Configuring shortcuts</a></li>
+<li><a class="reference internal" href="#configuring-the-latex-math-menu-advanced-option">Configuring the Latex/Math-Menu (Advanced option)</a></li>
+<li><a class="reference internal" href="#configuring-the-custom-toolbar-advanced-option">Configuring the Custom Toolbar (Advanced option)</a></li>
+<li><a class="reference internal" href="#configuring-svn-support">Configuring SVN support</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    </body>
+</html>
