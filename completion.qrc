@@ -11,6 +11,7 @@
 <file>completion/abntex2cite.cwl</file>
 <file>completion/aboensis.cwl</file>
 <file>completion/abraces.cwl</file>
+<file>completion/abspos.cwl</file>
 <file>completion/abstract.cwl</file>
 <file>completion/academicons.cwl</file>
 <file>completion/accanthis.cwl</file>
@@ -934,6 +935,7 @@
 <file>completion/class-uuthesis2e.cwl</file>
 <file>completion/class-verifica.cwl</file>
 <file>completion/class-webquiz.cwl</file>
+<file>completion/class-wgexport.cwl</file>
 <file>completion/class-willowtreebook.cwl</file>
 <file>completion/class-xdupgthesis.cwl</file>
 <file>completion/class-xduugthesis.cwl</file>
@@ -990,6 +992,7 @@
 <file>completion/colordoc.cwl</file>
 <file>completion/colordvi.cwl</file>
 <file>completion/color-edits.cwl</file>
+<file>completion/colorframed.cwl</file>
 <file>completion/colorinfo.cwl</file>
 <file>completion/colorist.cwl</file>
 <file>completion/colorist-fancy.cwl</file>
@@ -3532,6 +3535,7 @@
 <file>completion/vtable.cwl</file>
 <file>completion/vwcol.cwl</file>
 <file>completion/wallpaper.cwl</file>
+<file>completion/wargame.cwl</file>
 <file>completion/warning.cwl</file>
 <file>completion/warpcol.cwl</file>
 <file>completion/wasysym.cwl</file>
