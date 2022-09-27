@@ -45,12 +45,12 @@ So next we click the save button (or use `CTRL+S`) and save it with a sensible n
 ### Insert a section
 We can select `\section` from the section button in order to insert the section command and add a title text.
 
-![section button](images/txs_section.png){width=100%}
+![section button](images/txs_section.png)
 
 ### Insert an equation environment
 We can insert an equation environment via the menu `Math/Math equations/env equation` or by pressing `CTRL+SHIFT+N`
 
-![Insert equation](images/txs_equation.png){width=100%}
+![Insert equation](images/txs_equation.png)
 
 ### Insert symbols
 LaTeX offers a huge number of mathematical and other symbols. An convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.
