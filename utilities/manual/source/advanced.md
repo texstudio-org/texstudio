@@ -328,41 +328,48 @@ Some examples:
 
 -   Copy current file name to clipboard:
 
-        %SCRIPT
-        app.clipboard = editor.fileName();
+    ```javascript
+    %SCRIPT
+    app.clipboard = editor.fileName();
+    ```
 
 -   Execution of editor text:
 
-        %SCRIPT
-        eval(editor.text());
+    ```javascript
+    %SCRIPT
+    eval(editor.text());
+    ```
 
 -   Show all properties of an object:
+    ```javascript
+    %SCRIPT
+    function write_properties(obj) {
+        app.fileNew();
+        newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
+        newEditor.setText(Object.getOwnPropertyNames(obj).join("\n"));   //print the properties
+    }
 
-        %SCRIPT
-        function write_properties(obj) {
-            app.fileNew();
-            newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
-            newEditor.setText(Object.getOwnPropertyNames(obj).join("\n"));   //print the properties
-        }
-
-        obj = editor;                                                        //object to show (e.g. the current editor)
-        write_properties(obj)
+    obj = editor;                                                        //object to show (e.g. the current editor)
+    write_properties(obj)
+    ```
 
 -   Additional action in the edit menu
-
-        %SCRIPT
-        var menu = app.getManagedMenu("main/edit");                   //get edit menu
-        var act = app.newManagedAction(menu, "script", "scripttest"); //add action
-        act.triggered.connect(function(){alert("called");});          //register simple handler
-        registerAsBackgroundScript("test");                           //keep handler valid
+    ```javascript
+    %SCRIPT
+    var menu = app.getManagedMenu("main/edit");                   //get edit menu
+    var act = app.newManagedAction(menu, "script", "scripttest"); //add action
+    act.triggered.connect(function(){alert("called");});          //register simple handler
+    registerAsBackgroundScript("test");                           //keep handler valid
+    ```
 
 -   Asynchronous dialog:
-
-        %SCRIPT
-        var ui = createUI(" ... path to your ui file ...");  //load dialog
-        ui.accepted.connect(function(){alert("x");})         //react to dialog closing
-        registerAsBackgroundScript("abc");                   //keep function valid
-        ui.show();                                           //show dialog
+    ```javascript
+    %SCRIPT
+    var ui = createUI(" ... path to your ui file ...");  //load dialog
+    ui.accepted.connect(function(){alert("x");})         //react to dialog closing
+    registerAsBackgroundScript("abc");                   //keep function valid
+    ui.show();                                           //show dialog
+    ```
 
     The dialog is described in an ui file which can be created with the
     Qt Designer.

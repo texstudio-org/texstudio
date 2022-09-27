@@ -803,45 +803,45 @@ menus</p></li>
 <p>Some examples:</p>
 <ul>
 <li><p>Copy current file name to clipboard:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%SCRIPT
-app.clipboard = editor.fileName();
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">clipboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">editor</span><span class="p">.</span><span class="nx">fileName</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p>Execution of editor text:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%SCRIPT
-eval(editor.text());
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="nb">eval</span><span class="p">(</span><span class="nx">editor</span><span class="p">.</span><span class="nx">text</span><span class="p">());</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p>Show all properties of an object:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%SCRIPT
-function write_properties(obj) {
-    app.fileNew();
-    newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
-    newEditor.setText(Object.getOwnPropertyNames(obj).join(&quot;\n&quot;));   //print the properties
-}
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">write_properties</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">app</span><span class="p">.</span><span class="nx">fileNew</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="nx">newEditor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">documentManager</span><span class="p">.</span><span class="nx">currentDocument</span><span class="p">.</span><span class="nx">editorView</span><span class="p">.</span><span class="nx">editor</span><span class="p">;</span><span class="w">   </span><span class="c1">//access the newly created document</span><span class="w"></span>
+<span class="w">    </span><span class="nx">newEditor</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">));</span><span class="w">   </span><span class="c1">//print the properties</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-obj = editor;                                                        //object to show (e.g. the current editor)
-write_properties(obj)
+<span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">editor</span><span class="p">;</span><span class="w">                                                        </span><span class="c1">//object to show (e.g. the current editor)</span><span class="w"></span>
+<span class="nx">write_properties</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p>Additional action in the edit menu</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%SCRIPT
-var menu = app.getManagedMenu(&quot;main/edit&quot;);                   //get edit menu
-var act = app.newManagedAction(menu, &quot;script&quot;, &quot;scripttest&quot;); //add action
-act.triggered.connect(function(){alert(&quot;called&quot;);});          //register simple handler
-registerAsBackgroundScript(&quot;test&quot;);                           //keep handler valid
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">menu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">getManagedMenu</span><span class="p">(</span><span class="s2">&quot;main/edit&quot;</span><span class="p">);</span><span class="w">                   </span><span class="c1">//get edit menu</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">act</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">newManagedAction</span><span class="p">(</span><span class="nx">menu</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;script&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scripttest&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">//add action</span><span class="w"></span>
+<span class="nx">act</span><span class="p">.</span><span class="nx">triggered</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;called&quot;</span><span class="p">);});</span><span class="w">          </span><span class="c1">//register simple handler</span><span class="w"></span>
+<span class="nx">registerAsBackgroundScript</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">);</span><span class="w">                           </span><span class="c1">//keep handler valid</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p>Asynchronous dialog:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%SCRIPT
-var ui = createUI(&quot; ... path to your ui file ...&quot;);  //load dialog
-ui.accepted.connect(function(){alert(&quot;x&quot;);})         //react to dialog closing
-registerAsBackgroundScript(&quot;abc&quot;);                   //keep function valid
-ui.show();                                           //show dialog
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createUI</span><span class="p">(</span><span class="s2">&quot; ... path to your ui file ...&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">//load dialog</span><span class="w"></span>
+<span class="nx">ui</span><span class="p">.</span><span class="nx">accepted</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">);})</span><span class="w">         </span><span class="c1">//react to dialog closing</span><span class="w"></span>
+<span class="nx">registerAsBackgroundScript</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">);</span><span class="w">                   </span><span class="c1">//keep function valid</span><span class="w"></span>
+<span class="nx">ui</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span><span class="w">                                           </span><span class="c1">//show dialog</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The dialog is described in an ui file which can be created with the
