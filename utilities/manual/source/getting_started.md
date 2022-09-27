@@ -1,0 +1,99 @@
+# Getting started
+
+## Requirements
+TeXstudio is a specialised LaTeX-editor. It helps to type [LaTeX-documents](https://www.latex-project.org/about/) more comfortable by helping to find the right commands, supporting error analysis and providing an easy way to view the results.
+
+The actual latex system needs to be [installed separately](https://www.latex-project.org/get/) and is **not** provided by TeXstudio.
+
+Here we assume that TeXstudio and a LaTeX-system are already installed on your system.
+
+## Start TeXstudio
+<!--
+This needs to be refined
+-->
+Before we take a closer look at all the possibilities of TeXstudio,
+let\'s look at the application window first. After start of TeXstudio we
+see a lot of things. Some elements in the image are framed in different
+colors for further explanations:
+
+![TeXstudio Application Window](images/txs_new.png)
+
+The main window is divided into three parts (blue): On the left we have
+a \"side panel\" (currently showing an empty Structure) that provides
+many different functions. On the lower right you see a *messages panel*.
+You can switch to the [log panel](compiling.md#the-log-files), the *preview panel*, or
+the *search results panel* there. The third area is left to the editor.
+You can have multiple editors open, which you select using tabs. You may
+increase the area for editors by turning off the side panel or the
+messages panel. This can be done easily via the two icons in the lower
+left corner (marked orange). They are in the status bar, which can be
+hidden (s. menu View/Show).
+
+## Create a first document
+LaTeX needs some configuartion code in the document. The [Quick Start Wizard](editing.md#setting-the-preamble-of-a-tex-document) offers an easy way to set up an typical document.
+
+![Quick start wizard](images/txs_wizard.png)
+
+Select `Wizards/Quick Start...` and confirm the dialog with `OK`.
+This will lead to this basic document:
+```
+    \documentclass[10pt,a4paper]{article}
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{graphicx}
+    \begin{document}
+        
+    \end{document}
+```
+
+We will not go over the content of the document in detail, that is for the LaTeX-tutorial, as our focus is the editor.
+
+The file needs to be saved on the computer to be useful.
+So next we click the save button (or use `CTRL+S`) and save it with a sensible name like "getting_started.tex".
+
+## Fill in content
+### Insert a section
+We can select `\section` from the section button in order to insert the section command and add a title text.
+
+![section button](images/txs_section.png){width=100%}
+
+### Insert an equation environment
+We can insert an equation environment via the menu `Math/Math equations/env equation` or by pressing `CTRL+SHIFT+N`
+
+![Insert equation](images/txs_equation.png){width=100%}
+
+### Insert symbols
+LaTeX offers a huge number of mathematical and other symbols. An convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.
+
+![symbol pane](images/txs_symbol.png){width=100%}
+
+## Compile 
+Compiling a document means translating it from the LaTeX source code into a pdf file.
+This can be performed by clicking on the compile button or using the key `F6`.
+
+![compile a document](images/txs_compile.png)
+
+This calls the actual LaTeX-system (pdflatex by default) to compile the document on the disk.
+The `Message Pane` shows results from that run and will jump to the [log-view](compiling.md#the-log-files) in case of errors.
+
+## View your pdf document
+Now we like to see the results. For this, click the view button or press `F7`.
+
+![View a pdf of a document](images/txs_view.png)
+
+The pdf document is presented right of the text within TeXstudio.
+You can scroll and zoom to examine the result. 
+`CTRL+left click` on text or images within the pdf will jump to the corresponding source code.
+
+Pressing `F7` or clicking the view button actually scrolls the pdf to same position in the document where the cursor is in the source document, see [here for details](advanced.md#forward-and-inverse-searching).
+
+<!--
+label/ref
+navigation (structure)
+insert commands
+completer
+syntax check
+-->
+
