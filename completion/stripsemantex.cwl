@@ -1,5 +1,5 @@
 # stripsemantex package
-# Matthew Bertucci 2022/07/21 for v0.513
+# Matthew Bertucci 2022/09/24 for v0.520
 
 #include:luatex
 #include:xparse
@@ -7,10 +7,10 @@
 \StripSemantex{file}
 \StripSemantexStripComments{file}
 
-\SemantexID{id}#S
+\RegisterID{id}#S
 \BeginOutput#S
 \BeginSource#S
-\DeclareClass{arg}#S
-\DeclareObject{arg}#S
+\RegisterClass{arg}#S
+\RegisterObject{arg}#S
 \EndOutput#S
 \EndSource#S

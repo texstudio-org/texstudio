@@ -1,5 +1,5 @@
 # semantex package
-# Matthew Bertucci 2022/07/21 for v0.513
+# Matthew Bertucci 2022/09/24 for v0.520
 
 #include:xparse
 #include:l3keys2e
@@ -8,14 +8,22 @@
 
 \NewVariableClass{\Class%cmd}#d
 \NewVariableClass{\Class%cmd}[options]#d
+\DeclareVariableClass{\Class%cmd}#d
+\DeclareVariableClass{\Class%cmd}[options]#d
 \NewSymbolClass{\Class%cmd}#d
 \NewSymbolClass{\Class%cmd}[options]#d
+\DeclareSymbolClass{\Class%cmd}#d
+\DeclareSymbolClass{\Class%cmd}[options]#d
 \NewSimpleClass{\Class%cmd}#d
 \NewSimpleClass{\Class%cmd}[options]#d
+\DeclareSimpleClass{\Class%cmd}#d
+\DeclareSimpleClass{\Class%cmd}[options]#d
 \SemantexBaseObject#*
 
 \NewObject{\Class}{\object%cmd}{symbol%formula}#d
 \NewObject{\Class}{\object%cmd}{symbol%formula}[options]#d
+\DeclareObject{\Class}{\object%cmd}{symbol%formula}#d
+\DeclareObject{\Class}{\object%cmd}{symbol%formula}[options]#d
 
 \SetupClass{\Class}{keyvals}
 \SetupObject{\object}{keyvals}
@@ -107,7 +115,6 @@ parse
 parse code
 math class=%<command%>
 default=%<value%>
-degree default=%<value%>
 *
 **
 slot
@@ -430,12 +437,6 @@ semtex file#true,false
 \SemantexERRORArgKeyValueNotFound{key%plain}{value}
 \SemantexExpNot{value}
 
-# deprecated
-\NewCohomologyClass{\Class%cmd}#Sd
-\NewCohomologyClass{\Class%cmd}[options]#Sd
-\NewDelimiterClass{\Class%cmd}#Sd
-\NewDelimiterClass{\Class%cmd}[options]#Sd
-
 # not documented
 \RecordSemantexDelimiterSize#S
 \SemantexDelimiterSizeNoRecord#S
@@ -448,4 +449,4 @@ semtex file#true,false
 \SemantexVersion#S
 \SemantexAddToRecordedSource#S
 \SemantexRecordOutput#S
-\SemantexIDcommand{id}#S
+\SemantexID{id}#S

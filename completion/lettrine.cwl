@@ -1,13 +1,17 @@
 # lettrine package
-# Matthew Bertucci 8/30/2021 for v2.23
+# Matthew Bertucci 2022/09/26 for v2.30
 
-#include:keyval
+#include:xkeyval
 #include:minifp
+
+#keyvals:\usepackage/lettrine#c
+optionsfile=%<filename%>
+#endkeyvals
 
 \lettrine{letter}{text%plain}
 \lettrine[options%keyvals]{letter}{text%plain}
 
-#keyvals:\lettrine
+#keyvals:\lettrine,\usepackage/lettrine#c
 lines=%<integer%>
 depth=%<integer%>
 lhang=%<decimal%>
@@ -16,11 +20,14 @@ lraise=%<decimal%>
 findent=##L
 nindent=##L
 slope=##L
-ante=%<text%>
 image#true,false
 grid#true,false
 novskip=##L
 realheight#true,false
+#endkeyvals
+
+#keyvals:\lettrine
+ante=%<text%>
 refstring
 #endkeyvals
 
@@ -48,9 +55,6 @@ refstring
 \LettrineRealHeightfalse#*
 \LettrineRealHeighttrue#*
 \LettrineSecondString#*
-\ifLettrineSelfRef#*
-\LettrineSelfReftrue#*
-\LettrineSelfReffalse#*
 \LettrineTestString#*
 \LettrineTextFont#*
 \LettrineWidth#*

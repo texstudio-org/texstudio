@@ -10,20 +10,13 @@
 #include:mweights
 
 #keyvals:\usepackage/CormorantGaramond#c
-scale=%<factor%>
 scaled=%<factor%>
 type1
 lining
-nf
-lf
 oldstyle
-osf
 tabular
-t
 proportional
-p
 semibold
-sb
 medium
 light
 #endkeyvals
@@ -36,4 +29,3 @@ light
 \infigures
 \textsu{text}
 \textinf{text}
-\cormorantgaramond#*
