@@ -266,8 +266,8 @@ The following table gives an overview on the provided commands.
 | \[documentManager.\]documents | Array of all open documents |
 | documentManager.findDocument(fileName) | Returns the open document with a certain file name |
 | documentManager.singleMode() | Returns true if there is no explicit master document |
-| ~~documentManager.getMasterDocumentForDoc(document)~~ | *Deprecated:* Use getRootDocumentForDoc(document) instead |
-| documentManager.getRootDocumentForDoc(document) | Returns the open document (possibly indirectly) including the given document |
+| ~~documentManager.~~ ~~getMasterDocumentForDoc(document)~~ | *Deprecated:* Use getRootDocumentForDoc(document) instead |
+| documentManager. getRootDocumentForDoc(document) | Returns the open document (possibly indirectly) including the given document |
 | documentManager.findFileFromBibId(id) | Returns the file name of the bib file containing an entry with the given id |
 | new QDocumentCursor(editor.document(),line, \[column = 0\], \[lineTo = -1\], \[columnTo = length of lineTo\]) | Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not. |
 | cursor.atEnd() | returns whether the cursor is at the end of the document |

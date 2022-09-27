@@ -36,6 +36,10 @@ source_suffix = {
     '.md': 'markdown',
 }
 myst_heading_anchors = 4
+myst_enable_extensions = [
+     "colon_fence",
+    "strikethrough",
+]
 
 # The name of the Pygments (syntax highlighting) style to use.
 # pygments_style = 'monokai'

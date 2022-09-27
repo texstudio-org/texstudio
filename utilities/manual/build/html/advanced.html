@@ -419,13 +419,13 @@ menus</p></li>
 <tr class="row-odd"><td><p>system(cmd, workingDirectory=””)</p></td>
 <td><p>Calls an external command <strong>cmd</strong>, which includes the program name and its arguments.<br><strong>cmd</strong> may undergo command-line expansion as follows:<br>If <strong>cmd</strong> contains the string <strong>txs:///</strong> or if it does <strong>not</strong> contain any pipe (|) characters, then <strong>cmd</strong> undergoes standard command-line expansion like any other <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-doc">external command</span></a>. When expanding any tokens the current file is assumed to be the empty string, so any tokens that use the current file (e.g. <strong>%</strong> or <strong>?</strong>) will expand to the empty string too.<br>If <strong>cmd</strong> does not contain the string <strong>txs:///</strong> and it contains at least one pipe character, then it is executed without any string expansion or replacement.<br>If <strong>workingDirectory</strong> is not set, the working directory will be inherited from the TeXstudio executable. This command returns a ProcessX object which has the following methods: <br>-   waitForFinished: Wait until the process is finished<br>-   readAllStandardOutputStr: Returns the stdout<br>-   readAllStandardErrorStr: Returns the stderr<br>-   exitCode: The exit code<br>-   exitStatus: The qt exit status<br>-   terminate or kill: Stops the process<br>If the script does is not granted permission to run the external command, then <strong>system()</strong> returns <strong>null</strong>.<br><br>Examples<br><br>List all the files in the Subversion repository /usr/local/svnrepository<br>The command contains the string <strong>txs:///</strong>, so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-doc">external command</span></a>.<br>%SCRIPT<br>cmd = system(“txs:///svn ls /usr/local/svnrepository”)<br>  cmd.waitForFinished()<br>output = cmd.readAllStandardOutputStr()<br>alert (output)<br><br>Download the web page from <strong>http://www.my-website.com??arg1=abc&amp;arg2=def</strong> and save it as the local file <strong>/home/john/page.html</strong>.<br>The command does not contain any pipe characters (|), so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-doc">external command</span></a>. Note that we have doubled the character <strong>?</strong> in the URL, otherwise it would be expanded to current file which in our case would be the empty string.<br><br>%SCRIPT<br>cmd = system (“wget -O /home/john/page.html http://www.my-website.com??arg1=abc&amp;arg2=def”)<br>cmd.waitForFinished()</p></td>
 </tr>
-<tr class="row-even"><td><p>~~setGlobal(name, value)~~</p></td>
+<tr class="row-even"><td><p><s>setGlobal(name, value)</s></p></td>
 <td><p>Unsuppoted since txs 4.x. Sets a temporary, global variable</p></td>
 </tr>
-<tr class="row-odd"><td><p>~~getGlobal(name)~~</p></td>
+<tr class="row-odd"><td><p><s>getGlobal(name)</s></p></td>
 <td><p>Unsuppoted since txs 4.x. Reads a global variable</p></td>
 </tr>
-<tr class="row-even"><td><p>~~hasGlobal(name)~~</p></td>
+<tr class="row-even"><td><p><s>hasGlobal(name)</s></p></td>
 <td><p>Unsuppoted since txs 4.x. Checks for the existence of a global variable</p></td>
 </tr>
 <tr class="row-odd"><td><p>setPersistent(name, value)</p></td>
@@ -452,7 +452,7 @@ menus</p></li>
 <tr class="row-even"><td><p>triggerId</p></td>
 <td><p>Numeric id of the trigger, if the script was called by an event <a class="reference internal" href="#triggers"><span class="std std-doc">trigger</span></a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p>~~include(script)~~</p></td>
+<tr class="row-odd"><td><p><s>include(script)</s></p></td>
 <td><p>Unsuppoted since txs 4.x. Includes another script. Can be a filename or the name of a macro.</p></td>
 </tr>
 <tr class="row-even"><td><p>pdfs</p></td>
@@ -560,7 +560,7 @@ menus</p></li>
 <tr class="row-even"><td><p>editor.document().visualLineCount()</p></td>
 <td><p>Returns the number of visual lines (counting wrapped lines)</p></td>
 </tr>
-<tr class="row-odd"><td><p>~~editor.document().cursor(line, [column = 0], [lineTo = -1],[columnTo = length of lineTo])~~</p></td>
+<tr class="row-odd"><td><p><s>editor.document().cursor(line, [column = 0], [lineTo = -1],[columnTo = length of lineTo])</s></p></td>
 <td><p>Unsupported in txs 4.x. Use new QDocumentCursor(…) instead, see section cursor.</p></td>
 </tr>
 <tr class="row-even"><td><p>editor.document().text([removeTrailing = false], [preserveIndent = true])</p></td>
@@ -572,7 +572,7 @@ menus</p></li>
 <tr class="row-even"><td><p>editor.document().lineEndingString()</p></td>
 <td><p>Returns a string containing the ending of a line (\n or \n\r)</p></td>
 </tr>
-<tr class="row-odd"><td><p>~~editor.document().getLineTokens(lineNr)~~</p></td>
+<tr class="row-odd"><td><p><s>editor.document().getLineTokens(lineNr)</s></p></td>
 <td><p>Unsupported in txs 4.x.</p></td>
 </tr>
 <tr class="row-even"><td><p>editor.document().canUndo()</p></td>
@@ -596,7 +596,7 @@ menus</p></li>
 <tr class="row-even"><td><p>editor.document().getMasterDocument();</p></td>
 <td><p>Returns the open document which directly includes this document</p></td>
 </tr>
-<tr class="row-odd"><td><p>~~editor.document().getTopMasterDocument();~~</p></td>
+<tr class="row-odd"><td><p><s>editor.document().getTopMasterDocument();</s></p></td>
 <td><p><em>Deprecated:</em> Use getRootDocument() instead</p></td>
 </tr>
 <tr class="row-even"><td><p>editor.document().getRootDocument();</p></td>
@@ -629,10 +629,10 @@ menus</p></li>
 <tr class="row-odd"><td><p>documentManager.singleMode()</p></td>
 <td><p>Returns true if there is no explicit master document</p></td>
 </tr>
-<tr class="row-even"><td><p>~~documentManager.getMasterDocumentForDoc(document)~~</p></td>
+<tr class="row-even"><td><p><s>documentManager.</s> <s>getMasterDocumentForDoc(document)</s></p></td>
 <td><p><em>Deprecated:</em> Use getRootDocumentForDoc(document) instead</p></td>
 </tr>
-<tr class="row-odd"><td><p>documentManager.getRootDocumentForDoc(document)</p></td>
+<tr class="row-odd"><td><p>documentManager. getRootDocumentForDoc(document)</p></td>
 <td><p>Returns the open document (possibly indirectly) including the given document</p></td>
 </tr>
 <tr class="row-even"><td><p>documentManager.findFileFromBibId(id)</p></td>
@@ -782,8 +782,8 @@ menus</p></li>
 <tr class="row-even"><td><p>dialog.show()</p></td>
 <td><p>Displays the dialog asynchronously.</p></td>
 </tr>
-<tr class="row-odd"><td><p>~~UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])~~</p></td>
-<td><p>Not working in txs 4.0.0. ~~Short form: Creates a new dialog, adds all variables of the array and call exec on it.~~</p></td>
+<tr class="row-odd"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
+<td><p>Not working in txs 4.0.0. <s>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</s></p></td>
 </tr>
 <tr class="row-even"><td><p>fileChooser.exec()</p></td>
 <td><p>show dialog and wait until it is closed again</p></td>
