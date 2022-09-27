@@ -10,7 +10,7 @@
 [Releases]: https://github.com/texstudio-org/texstudio/releases/
 [News]: https://www.texstudio.org/#news
 [Contribute]: https://github.com/texstudio-org/texstudio/wiki/Contribute
-[User Manual]: https://htmlpreview.github.io/?https://github.com/texstudio-org/texstudio/master/utilities/manual/usermanual_en.html
+[User Manual]: https://texstudio-org.github.io/getting_started.html
 [Dev Builds]: https://github.com/texstudio-org/texstudio/actions/workflows/cd.yml
 
 
