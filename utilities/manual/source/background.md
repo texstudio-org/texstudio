@@ -1,7 +1,9 @@
 # Background information
-
+<!--
+ini file / reset to default
+profile 
+-->
 ## About documents separated in several files
-
 
 LaTeX documents may be spread over multiple files. TeXstudio
 automatically understands parent/child relations of loaded documents.

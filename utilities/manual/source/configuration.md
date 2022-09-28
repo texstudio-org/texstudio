@@ -1,6 +1,5 @@
 # Configuring TeXstudio
 
-
 TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see [here](#adapting-the-main-gui), others are available with the \"Configure TeXstudio\" command in the
 \"Options\" menu (\"Preferences\" under Mac OS X). Note that there are
 two levels of detail. More advanced or less often used options are only
@@ -8,30 +7,38 @@ visible if you toggle \"Show advanced options\" in the lower left
 corner.
 
 ## Adapting the main GUI
-<!--
-needs to be simplified and more precise
-TOC ?
--->
-The information presented in the side bar depends on the icon you select
-from the vertical toolbar on the left side of the panel. These icons can
-be understood as vertically aligned tabs. A click with the right mouse
-button allows you to select which icons are presented:
+The side panel and the log panel may be hidden with a control on the lower-left edge of the main window.
 
-![Side Panel Menu](images/Side_Panel_Menu.png)
+![Hide panes](images/hide_panes.png)
 
-TeXstudio offers a lot of toolbars (marked red), many of which are
-arranged in a row above the side panel and the editor area (called the
-main toolbar, the vertical toolbars are called secondary toolbars). One
-vertical aligend toolbar (the central one, s. image below) resides to
-the left of the editor area. You can choose which ones to show with a
-click of the right mouse button on any of them:
+The toolbars can be hidden by a right click on an empty space in the toolbar area.
 
-![Side Panel Menu](images/Tool_Bar_Menu.png)
+![Toolbar Visibility Menu](images/Tool_Bar_Menu.png)
 
-The custom toolbar will be discussed in [Configuring the Custom Toolbar](#configuring-the-custom-toolbar-advanced-option). The toolbars in the main toolbar can be
-rearranged, moved somewhere in the window or even disconnected from the
-window at all. All toolbars are scalable, s. option GUI scaling (needs
-advanced options) in the config dialog.
+They can be moved by dragging the handler on the left-hand side.
+
+![Moving Toolbars](images/Tool_Bar_Move.png)
+
+## Configuring some general aspects
+
+
+This panel allows the setting of some general aspects.
+
+-   The \"style\" and \"color scheme\" of TeXstudio can be selected. The
+    modern variant is closer to texmaker, "Orion Dark" and "Adwaita Dark" provide a dark mode.
+-   The language of the menus can be changed directly to ignore system settings.
+
+![Configure General](images/configure_general.png)
+
+The advanced options allow:
+
+-   Limit the number of recent files
+-   The use of system dialog instead of the qt dialog
+-   show always the structure of the "master" document if one is set
+-   automatically restore the previous session
+-   and to store session paths relatively which allows easier moving of files/projects
+
+![Configure General Advanced](images/configure_general_adv.png)
 
 ## Configuring the editor
 
@@ -51,8 +58,69 @@ to disable the auto detection)
 -   The selection box \"Indentation mode\" lets you select, whether
     indented lines are followed by lines of the same indentation after
     pressing Enter or letting TeXstudio do automatic indentation.
+-   Double quotes can be automatically replaced by language specific ones when typing `"`
+-   The editor can show line numbers left of the text if desired.
+-   The shown inline checking results can be selected with some granularity.
 
 ![Configure Editor](images/configure_editor.png)
+
+The advanced options allow among others:
+
+Automatically load all included files of a LaTeX document
+:   This load all child document and scans them. This is necessary to provide a complete set of available references, bibid and possibly used packages if they are defined in a child document
+
+Scan LaTeX distribution for installed packages
+:   This scan allows txs to determine if the given packages are valid and also to provide proposal for package name completion
+
+
+![Configure Editor advanced](images/configure_editor_adv.png)
+
+## Configuring the advanced editor settings (Advanced option)
+The advanced editor option allow fine control over many different aspects.
+The overview here is incomplete and concentrates on commonly used changes.
+
+Show image tooltip on images in files
+:   when hovering over an image filename (e.g. in a \includegraphis command), a tooltip with the graphics content is shown
+
+Show help as tooltip on text in editor
+:   when hovering over a LaTeX command in the editor, txs can show a tooltip on that command if it is described in some latex command reference.
+
+Line Wrapping
+:   This allows to change the line wrapping mechanism. By default all lines are wrapped at the window edge.
+    They can also be wrapped after a defined number of characters which is not always the same horizontal width if the characters are not monospaced.
+    Or hard line wrapping after a number of characters can be selected. This inserts a new line when the number of characters exceeds a defined values. This insertion is done when saving a document and only for changed lines.
+
+Auto save all files
+:   txs allows to automatically save all files every few minutes
+
+![Configure Editor advanced](images/configure_advancedEditor.png)
+
+The section for the structure panel offers:
+
+Reference command in context menu
+:   use this command when inserting a reference with command from a context menu
+
+Regular expression for TODO comment
+:   define what comment is considered as TODO comment (which are highlighted and collected specifically )
+
+Use color in global TOC
+:   The global TOC can use colored background to distinguish between different included files. Different color schemes and no color are possible.
+
+
+![Configure Editor advanced: structure panel](images/conf_structurepanel.png)
+
+The table autoformating affects the [manipulate table tools](editing.md#manipulating-tables).
+
+Special commands
+:   Are special commands which do not add cell content and need to handled specially, e.g. `\hline` at the end of a row.
+
+Special commands position
+:   where to place them when reformating a table.
+
+One line per cell
+:   when reformating a table, just put each cell in an individual line
+
+![Configure Editor advanced: table autoformating](images/conf_tableautoformating.png)
 
 ## Configuring the latex related commands
 
@@ -500,22 +568,13 @@ and do the actual work inside the wrapper script:
 
 
 
-## Configuring some general issues
 
 
-This panel allows the setting of some general aspects.
+## Configuring the language set-up
+TexStudio supports language checking for spell-checking and grammar checking.
+Further more a thesaurus is offered for selected languages.
 
--   The \"style\" and \"color scheme\" of TeXstudio can be selected. The
-    modern variant is closer to texmaker 1.9.
--   The symbol list can either appear \"tabbed\" (old behaviour, tabbed
-    activated) or can have small symbol tabs besides the symbol lists
-    which leaves more room for the symbols.
--   Also the log viewer can appear tabbed which allows faster change
-    between error table, log view and previewer \...
--   The language of the menus can be changed directly to ignore system
-    settings.
-
-![Configure General](images/configure_general.png)
+![Configure Language](images/configure_language.png)
 
 ### Configuring the spell checker
 
@@ -530,14 +589,17 @@ the section on [completion](#configuring-the-autocompletion) and the [descriptio
 The spell checker uses the Hunspell dictionary format, which is widely
 used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary
 consists of two files (`.dic` and `.aff`). French, British and German
-dictionaries are distributed with TeXstudio. You can add additional
-dictionaries yourself by placing them in the dictionary path. A
+dictionaries are distributed with TeXstudio, on windows a large number is languages is provided. You can add additional dictionaries yourself by placing them in the dictionary path. A
 particularly convenient way to get additional dictionaries is
 downloading a dictionary extension of
 [http://wiki.services.openoffice.org/wiki/Dictionaries](http://extensions.openoffice.org/)
 or
 [LibreOffice](https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any)
 and importing them using the button *Import Dictionary* in the options.
+```{note}
+Linux distributions usually over a wide range of hunspell dictionaries as well which can be used.
+The actual dictionaries are ususally storde under `/usr/share/hunspell`
+```
 
 You can specify one or more search paths for the dictionaries in the
 options. Multiple paths need to be separated by a semicolon. With the
@@ -561,7 +623,7 @@ TeXstudio supports a special \"magic comment\"
 language is automatically set when the file is loaded.
 
 ![Spellcheck Menu](images/spellcheck_menu.png)
-
+% TODO: move to editing
 Please note: spell checking with `Ctrl+Shift+F7` starts at the cursor
 position and not at the beginning of the document.
 
@@ -590,24 +652,20 @@ US-English and German databases are distributed with TeXstudio.
 Users can download others databases here :
 <http://wiki.services.openoffice.org/wiki/Dictionaries>
 
-### Configuring the latex syntax checker
+The active thesaurus needs to be directly selected here. It does not synchronize with the selected spelling language.
 
-The latex syntax checker takes the list of possible completion commands
-to determine if a command is correct. Furthermore the completion list
-contains partially additional information to determine in which context
-a command is valid, whether it is valid only in math-mode or only in
-tabular-mode.
+![Thesaurus selection](images/conf_thesaurus.png)
 
 ### Configuring the grammar checker
 
 The grammar checker is based on the standard http API of
 [LanguageTool](http://www.languagetool.org/), and requires a separate
-installation of LanguageTool and java.
+[installation of LanguageTool](https://dev.languagetool.org/http-server) and java.
 
 Once LanguageTool is installed, you can try it by starting the
 LanguageTool standalone application, and start TeXstudio afterward.
 LanguageTool then creates a locally running server at the address
-http://localhost:8081/ and TeXstudio automatically connects to it at
+`http://localhost:8081/` and TeXstudio automatically connects to it at
 startup. When the connection is established, all typed paragraphs are
 send to LT and after a short delay the possible grammar errors are
 highlighted.
@@ -617,46 +675,42 @@ the path to LT jar in the grammar page of the config dialog. If the java
 executable is not in the default PATH, you also need to set the path to
 it there.
 
+![LT settings](images/conf_LT.png)
+
 In the advanced config mode, you can also mark certain LT rules as
 \"special\" whose matches will then be highlighted in a
 different/customizable way. This can be useful to do a stylistic
 analysis, e.g. by creating a own rule in LT highlighting all verbs or
 all adverbs.
 
+![advanced LT rules](images/conf_LT_adv.png)
+
 Independent from LanguageTool, TeXstudio also checks for repeated and
-bad (imprecise/slang) words. The repetition check looks several words
-behind and marks repetition of short words in the immediate vicinity and
-repetition of long words up to 10 words before. These distances and
+bad (imprecise/slang) words. For this it needs a list of those words which need to be provided in the "Wodlist Directory" with the name "*language_code*.badWords"
+
+The repetition check looks several words behind and marks repetition of short words in the immediate vicinity and repetition of long words up to 10 words before. These distances and
 lengths can be changed in the advanced grammar config page.
+
+![Internal grammar check](images/conf_grammar_internal.png)
 
 ## Configuring the autocompletion
 
 TeXstudio has taken up completion word lists from kile which extended
 the number of known commands for completion considerably. TeXstudio
-understands the use of \\documentclass and \\usepackage in order to
+understands the use of `\documentclass` and `\usepackage` in order to
 select valid lists of commands for completion as well as syntax
-checking. However TeXstudio allows one to select the additional word
-lists under \"Configure TeXstudio\" -\> \"Editor\" -\> \"\". The names
-of the word lists corresponds to the package for which they are made.
-The list latex.cwl contains the standard latex commands.
+checking. 
 
 Concerning auto completion, TeXstudio allows one to adapt the behaviour
 to your liking. The following options are available:
 
--   Completion enabled: self explanatory
--   Case sensitive: lets you complete e.g. \\Large from \\la \...
--   in first character: ?
--   Auto Complete Common Prefix: if only one item is in the list or all
-    items in the completion list share common starting characters, the
-    common characters are directly inserted, like pressing the key Tab.
--   Complete selected text when non-word character is pressed: when in
-    completion mode, pressing a non-word character like space, leads to
-    accepting the selected word. This may speed up typing.
+-   Automatically start completer ...: the completer is automatically invoked when \\*letter* is typed.
+-   Auto replace Latex-Commands: when completing a command on a command, i.e. there are letters behind the cursor, these letters are removed and replaced by the new command completely.
 -   Enable ToolTip-Help: show tool tips on selected latex commands in
     the completion list.
--   Use Placeholders: if the completed commands have options which need
-    to be filled out, placeholders are put at these positions and they
-    can be jumped to by using `Ctrl+Right`/`Ctrl+Left`.
+-   Enable ToolTip-Preview: show tool tips with a preview of the completion, e.g. images in case of filenames, the surrounding text in case of references, etc.
+-   Auto insert Math... : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatcally adds $ before and after that command.
+
 
 If your favorite package is not yet present for completion (and syntax
 checking), you can provide a list of your own by placing a file
@@ -669,6 +723,35 @@ description of the exact format and an example are given in the
 
 ![Configure Completion](images/configure_completion.png)
 
+The advanced mode offers some additional options:
+
+-   Auto Complete Common Prefix: if only one item is in the list or all
+    items in the completion list share common starting characters, the
+    common characters are directly inserted, like pressing the key Tab.
+-   Complete selected text when non-word character is pressed: when in
+    completion mode, pressing a non-word character like space, leads to
+    accepting the selected word. This may speed up typing.
+-   Arguments as placeholders: if the completed commands have options which need
+    to be filled out, placeholders are put at these positions and they
+    can be jumped to by using `Ctrl+Right`/`Ctrl+Left`.
+-   Insert Arguments: Insert the typical argumen names like *num* & *den* in case of `\frac{num}{den}`
+
+Usually the autodection mechanism works reliably. In rare cases, you may want to force the use of predetermined completion lists.
+
+TeXstudio allows to select the additional word
+lists under \"Configure TeXstudio\" -\> \"Completion\" in *advanced mode*. The names
+of the word lists corresponds to the package for which they are made.
+The list latex.cwl contains the standard latex commands. Classes are provided as class-*name*, though some classes put in the same file, thus the name is a composition of those class-names.
+
+As the number of provided files has become quite large, a filter box has been added to filter available files for easier selection.
+
+![Configure Completion advanced](images/configure_completion_adv.png)
+
+## Configuring GUI scaling
+When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel indepedently. The changes is perofrmed immediately to that the result can be observed directly.
+
+![GUI scaling](images/configure_guiscaling.png)
+
 ## Configuring shortcuts
 
 Shortcuts can be changed by double clicking on \"Current Shortcut\" or
@@ -680,6 +763,11 @@ keystroke combinations, for example `CTRL+M,CTRL+A` (either upper or
 lower case is allowed, but the comma is important). If a shortcut should
 be set to default value or removed completely, the items \"\<default\>\"
 or \"\<none\>\" at the top of the list can be selected respectively.
+
+Additional some function of the `ESC` key can be set. It can close the log-view, the embedded pdf viewer or leave the fullscreen mode.
+
+Show Shortcuts in Tooltips
+:  Show shortcuts in tooltips on toolbar actions or not.
 
 ![Configure Shortcuts](images/configure_shortcuts.png)
 
@@ -701,31 +789,25 @@ custom toolbar list in the configure dialog.
 
 ![Customize Toolbars](images/configure_customToolbar.png)
 
-## Configuring SVN support
+## Configuring SVN/GIT support
 
-To supports SVN (subversion) for document versioning. To make use of it,
-the SVN command line tools need to be installed. Linux and Mac OSX
-normally provide already SVN tools, for Windows, the installation of
-\"SlikSVN\" is recommended.
+TexStudio supports some simple actions for subversion/git. Here svn or git can be selected.
 
-The complete path to the command \"svn\" and \"svnadmin\" need to be
-adjusted in the aprioriate field of the Commands page in the options. On
-the SVN page you can can choose the degree of automation (see below)
-WSVN, see below.
-
+<!--
 Note: You cannot checkout a repository via TeXstudio. Just use the
 normal tools for this (either SVN checkout on the command line or the
 GUI of your choice). Once you have a working copy, TeXstudio can operate
 on it.
+-->
 
 \"Automatically check in after save\" allows TeXstudio to perform an SVN
 check in after every save of a document, thus providing a very complete
 history of the creation of a document. Since text documents are rather
-small compared to disk spaces, size of the SVN database should not be a
+small compared to disk spaces, size of the SVN/GIT database should not be a
 problem. In addition newly saved files (save as) are automatically added
-to SVN control,provided that the directory is already under SVN control.
+to SVN/GIT control,provided that the directory is already under SVN/GIT control.
 If that is not the case, TeXstudio searches in \"SVN Directory Search
-Depth\" directory above the current diorectory for a SVN controlled
+Depth\" directory above the current diorectory for a SVN/GIT controlled
 directory to which the subdirectories and the TeX-Document will be
 added. If no appropriate directory is found, a repository is
 automatically generated in a directory called \"./repo\" and the
@@ -736,7 +818,7 @@ when \"Auto checkin in\" is enabled !
 With \"User SVN revisions to undo before last save\" TeXstudio will
 perform undo as usually, but if there are no further undoable commands
 in the internal storage, the document will be changed to the previous
-version in SVN history. Further undo commands allows one to back further
+version in SVN/GIT history. Further undo commands allows one to back further
 to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing SVN revisions directly
 via a menu command, see [here](advanced.md#svn-support).

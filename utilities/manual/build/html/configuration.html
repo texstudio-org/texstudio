@@ -241,6 +241,25 @@ rearranged, moved somewhere in the window or even disconnected from the
 window at all. All toolbars are scalable, s. option GUI scaling (needs
 advanced options) in the config dialog.</p>
 </div>
+<div class="section" id="configuring-some-general-aspects">
+<h2>Configuring some general aspects<a class="headerlink" href="#configuring-some-general-aspects" title="Permalink to this heading">#</a></h2>
+<p>This panel allows the setting of some general aspects.</p>
+<ul class="simple">
+<li><p>The “style” and “color scheme” of TeXstudio can be selected. The
+modern variant is closer to texmaker, “Orion Dark” and “Adwaita Dark” provide a dark mode.</p></li>
+<li><p>The language of the menus can be changed directly to ignore system settings.</p></li>
+</ul>
+<p><img alt="Configure General" src="_images/configure_general.png" /></p>
+<p>The advanced options allow:</p>
+<ul class="simple">
+<li><p>Limit the number of recent files</p></li>
+<li><p>The use of system dialog instead of the qt dialog</p></li>
+<li><p>show always the structure of the “master” document if one is set</p></li>
+<li><p>automatically restore the previous session</p></li>
+<li><p>and to store session paths relatively which allows easier moving of files/projects</p></li>
+</ul>
+<p><img alt="Configure General Advanced" src="_images/configure_general_adv.png" /></p>
+</div>
 <div class="section" id="configuring-the-editor">
 <h2>Configuring the editor<a class="headerlink" href="#configuring-the-editor" title="Permalink to this heading">#</a></h2>
 <p>You may change the default encoding for new files (“Configure
@@ -258,8 +277,55 @@ sections of the text).</p></li>
 <li><p>The selection box “Indentation mode” lets you select, whether
 indented lines are followed by lines of the same indentation after
 pressing Enter or letting TeXstudio do automatic indentation.</p></li>
+<li><p>Double quotes can be automatically replaced by language specific ones when typing <code class="docutils literal notranslate"><span class="pre">&quot;</span></code></p></li>
+<li><p>The editor can show line numbers left of the text if desired.</p></li>
+<li><p>The shown inline checking results can be selected with some granularity.</p></li>
 </ul>
 <p><img alt="Configure Editor" src="_images/configure_editor.png" /></p>
+<p>The advanced options allow among others:</p>
+<dl class="simple myst">
+<dt>Automatically load all included files of a LaTeX document</dt><dd><p>This load all child document and scans them. This is necessary to provide a complete set of available references, bibid and possibly used packages if they are defined in a child document</p>
+</dd>
+<dt>Scan LaTeX distribution for installed packages</dt><dd><p>This scan allows txs to determine if the given packages are valid and also to provide proposal for package name completion</p>
+</dd>
+</dl>
+<p><img alt="Configure Editor advanced" src="_images/configure_editor_adv.png" /></p>
+</div>
+<div class="section" id="configuring-the-advanced-editor-settings-advanced-option">
+<h2>Configuring the advanced editor settings (Advanced option)<a class="headerlink" href="#configuring-the-advanced-editor-settings-advanced-option" title="Permalink to this heading">#</a></h2>
+<p>The advanced editor option allow fine control over many different aspects.
+The overview here is incomplete and concentrates on commonly used changes.</p>
+<dl class="simple myst">
+<dt>Show image tooltip on images in files</dt><dd><p>when hovering over an image filename (e.g. in a \includegraphis command), a tooltip with the graphics content is shown</p>
+</dd>
+<dt>Show help as tooltip on text in editor</dt><dd><p>when hovering over a LaTeX command in the editor, txs can show a tooltip on that command if it is described in some latex command reference.</p>
+</dd>
+<dt>Line Wrapping</dt><dd><p>This allows to change the line wrapping mechanism. By default all lines are wrapped at the window edge.
+They can also be wrapped after a defined number of characters which is not always the same horizontal width if the characters are not monospaced.
+Or hard line wrapping after a number of characters can be selected. This inserts a new line when the number of characters exceeds a defined values. This insertion is done when saving a document and only for changed lines.</p>
+</dd>
+<dt>Auto save all files</dt><dd><p>txs allows to automatically save all files every few minutes</p>
+</dd>
+</dl>
+<p><img alt="Configure Editor advanced" src="_images/configure_advancedEditor.png" /></p>
+<p>The section for the structure panel offers:</p>
+<dl class="simple myst">
+<dt>Reference command in context menu</dt><dd><p>use this command when inserting a reference with command from a context menu</p>
+</dd>
+<dt>Regular expression for TODO comment</dt><dd><p>define what comment is considered as TODO comment (which are highlighted and collected specifically )</p>
+</dd>
+</dl>
+<p><img alt="Configure Editor advanced: structure panel" src="_images/conf_structurepanel.png" /></p>
+<p>The table autoformating affects the <a class="reference internal" href="editing.html#manipulating-tables"><span class="std std-doc">manipulate table tools</span></a>.</p>
+<dl class="simple myst">
+<dt>Special commands</dt><dd><p>Are special commands which do not add cell content and need to handled specially, e.g. <code class="docutils literal notranslate"><span class="pre">\hline</span></code> at the end of a row.</p>
+</dd>
+<dt>Special commands position</dt><dd><p>where to place them when reformating a table.</p>
+</dd>
+<dt>One line per cell</dt><dd><p>when reformating a table, just put each cell in an individual line</p>
+</dd>
+</dl>
+<p><img alt="Configure Editor advanced: table autoformating" src="_images/conf_tableautoformating.png" /></p>
 </div>
 <div class="section" id="configuring-the-latex-related-commands">
 <h2>Configuring the latex related commands<a class="headerlink" href="#configuring-the-latex-related-commands" title="Permalink to this heading">#</a></h2>
@@ -802,21 +868,11 @@ can either do this directly in the user command:</p>
 </div>
 </div>
 </div>
-<div class="section" id="configuring-some-general-issues">
-<h2>Configuring some general issues<a class="headerlink" href="#configuring-some-general-issues" title="Permalink to this heading">#</a></h2>
-<p>This panel allows the setting of some general aspects.</p>
-<ul class="simple">
-<li><p>The “style” and “color scheme” of TeXstudio can be selected. The
-modern variant is closer to texmaker 1.9.</p></li>
-<li><p>The symbol list can either appear “tabbed” (old behaviour, tabbed
-activated) or can have small symbol tabs besides the symbol lists
-which leaves more room for the symbols.</p></li>
-<li><p>Also the log viewer can appear tabbed which allows faster change
-between error table, log view and previewer …</p></li>
-<li><p>The language of the menus can be changed directly to ignore system
-settings.</p></li>
-</ul>
-<p><img alt="Configure General" src="_images/configure_general.png" /></p>
+<div class="section" id="configuring-the-language-set-up">
+<h2>Configuring the language set-up<a class="headerlink" href="#configuring-the-language-set-up" title="Permalink to this heading">#</a></h2>
+<p>TexStudio supports language checking for spell-checking and grammar checking.
+Further more a thesaurus is offered for selected languages.</p>
+<p><img alt="Configure Language" src="_images/configure_language.png" /></p>
 <div class="section" id="configuring-the-spell-checker">
 <h3>Configuring the spell checker<a class="headerlink" href="#configuring-the-spell-checker" title="Permalink to this heading">#</a></h3>
 <p>TeXstudio offers an integrated spellchecker which can be used either via
@@ -829,14 +885,18 @@ the section on <a class="reference internal" href="#configuring-the-autocompleti
 <p>The spell checker uses the Hunspell dictionary format, which is widely
 used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary
 consists of two files (<code class="docutils literal notranslate"><span class="pre">.dic</span></code> and <code class="docutils literal notranslate"><span class="pre">.aff</span></code>). French, British and German
-dictionaries are distributed with TeXstudio. You can add additional
-dictionaries yourself by placing them in the dictionary path. A
+dictionaries are distributed with TeXstudio, on windows a large number is languages is provided. You can add additional dictionaries yourself by placing them in the dictionary path. A
 particularly convenient way to get additional dictionaries is
 downloading a dictionary extension of
 <a class="reference external" href="http://extensions.openoffice.org/">http://wiki.services.openoffice.org/wiki/Dictionaries</a>
 or
 <a class="reference external" href="https://extensions.libreoffice.org/extensions?getCategories=Dictionary&amp;getCompatibility=any">LibreOffice</a>
 and importing them using the button <em>Import Dictionary</em> in the options.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Linux distributions usually over a wide range of hunspell dictionaries as well which can be used.
+The actual dictionaries are ususally storde under <code class="docutils literal notranslate"><span class="pre">/usr/share/hunspell</span></code></p>
+</div>
 <p>You can specify one or more search paths for the dictionaries in the
 options. Multiple paths need to be separated by a semicolon. With the
 paths you can use the special strings <code class="docutils literal notranslate"><span class="pre">[txs-app-dir]</span></code> and
@@ -880,24 +940,18 @@ rights) the list is stored in the user configuration directory.</p>
 US-English and German databases are distributed with TeXstudio.</p>
 <p>Users can download others databases here :
 <a class="reference external" href="http://wiki.services.openoffice.org/wiki/Dictionaries">http://wiki.services.openoffice.org/wiki/Dictionaries</a></p>
-</div>
-<div class="section" id="configuring-the-latex-syntax-checker">
-<h3>Configuring the latex syntax checker<a class="headerlink" href="#configuring-the-latex-syntax-checker" title="Permalink to this heading">#</a></h3>
-<p>The latex syntax checker takes the list of possible completion commands
-to determine if a command is correct. Furthermore the completion list
-contains partially additional information to determine in which context
-a command is valid, whether it is valid only in math-mode or only in
-tabular-mode.</p>
+<p>The active thesaurus needs to be directly selected here. It does not synchronize with the selected spelling language.</p>
+<p><img alt="Thesaurus selection" src="_images/conf_thesaurus.png" /></p>
 </div>
 <div class="section" id="configuring-the-grammar-checker">
 <h3>Configuring the grammar checker<a class="headerlink" href="#configuring-the-grammar-checker" title="Permalink to this heading">#</a></h3>
 <p>The grammar checker is based on the standard http API of
 <a class="reference external" href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate
-installation of LanguageTool and java.</p>
+<a class="reference external" href="https://dev.languagetool.org/http-server">installation of LanguageTool</a> and java.</p>
 <p>Once LanguageTool is installed, you can try it by starting the
 LanguageTool standalone application, and start TeXstudio afterward.
 LanguageTool then creates a locally running server at the address
-http://localhost:8081/ and TeXstudio automatically connects to it at
+<code class="docutils literal notranslate"><span class="pre">http://localhost:8081/</span></code> and TeXstudio automatically connects to it at
 startup. When the connection is established, all typed paragraphs are
 send to LT and after a short delay the possible grammar errors are
 highlighted.</p>
@@ -905,45 +959,36 @@ highlighted.</p>
 the path to LT jar in the grammar page of the config dialog. If the java
 executable is not in the default PATH, you also need to set the path to
 it there.</p>
+<p><img alt="LT settings" src="_images/conf_LT.png" /></p>
 <p>In the advanced config mode, you can also mark certain LT rules as
 “special” whose matches will then be highlighted in a
 different/customizable way. This can be useful to do a stylistic
 analysis, e.g. by creating a own rule in LT highlighting all verbs or
 all adverbs.</p>
+<p><img alt="advanced LT rules" src="_images/conf_LT_adv.png" /></p>
 <p>Independent from LanguageTool, TeXstudio also checks for repeated and
-bad (imprecise/slang) words. The repetition check looks several words
-behind and marks repetition of short words in the immediate vicinity and
-repetition of long words up to 10 words before. These distances and
+bad (imprecise/slang) words. For this it needs a list of those words which need to be provided in the “Wodlist Directory” with the name “<em>language_code</em>.badWords”</p>
+<p>The repetition check looks several words behind and marks repetition of short words in the immediate vicinity and repetition of long words up to 10 words before. These distances and
 lengths can be changed in the advanced grammar config page.</p>
+<p><img alt="Internal grammar check" src="_images/conf_grammar_internal.png" /></p>
 </div>
 </div>
 <div class="section" id="configuring-the-autocompletion">
 <h2>Configuring the autocompletion<a class="headerlink" href="#configuring-the-autocompletion" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio has taken up completion word lists from kile which extended
 the number of known commands for completion considerably. TeXstudio
-understands the use of \documentclass and \usepackage in order to
+understands the use of <code class="docutils literal notranslate"><span class="pre">\documentclass</span></code> and <code class="docutils literal notranslate"><span class="pre">\usepackage</span></code> in order to
 select valid lists of commands for completion as well as syntax
-checking. However TeXstudio allows one to select the additional word
-lists under “Configure TeXstudio” -&gt; “Editor” -&gt; “”. The names
-of the word lists corresponds to the package for which they are made.
-The list latex.cwl contains the standard latex commands.</p>
+checking.</p>
 <p>Concerning auto completion, TeXstudio allows one to adapt the behaviour
 to your liking. The following options are available:</p>
 <ul class="simple">
-<li><p>Completion enabled: self explanatory</p></li>
-<li><p>Case sensitive: lets you complete e.g. \Large from \la …</p></li>
-<li><p>in first character: ?</p></li>
-<li><p>Auto Complete Common Prefix: if only one item is in the list or all
-items in the completion list share common starting characters, the
-common characters are directly inserted, like pressing the key Tab.</p></li>
-<li><p>Complete selected text when non-word character is pressed: when in
-completion mode, pressing a non-word character like space, leads to
-accepting the selected word. This may speed up typing.</p></li>
+<li><p>Automatically start completer …: the completer is automatically invoked when \<em>letter</em> is typed.</p></li>
+<li><p>Auto replace Latex-Commands: when completing a command on a command, i.e. there are letters behind the cursor, these letters are removed and replaced by the new command completely.</p></li>
 <li><p>Enable ToolTip-Help: show tool tips on selected latex commands in
 the completion list.</p></li>
-<li><p>Use Placeholders: if the completed commands have options which need
-to be filled out, placeholders are put at these positions and they
-can be jumped to by using <code class="docutils literal notranslate"><span class="pre">Ctrl+Right</span></code>/<code class="docutils literal notranslate"><span class="pre">Ctrl+Left</span></code>.</p></li>
+<li><p>Enable ToolTip-Preview: show tool tips with a preview of the completion, e.g. images in case of filenames, the surrounding text in case of references, etc.</p></li>
+<li><p>Auto insert Math… : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatcally adds $ before and after that command.</p></li>
 </ul>
 <p>If your favorite package is not yet present for completion (and syntax
 checking), you can provide a list of your own by placing a file
@@ -954,6 +999,31 @@ Windows. Basically the file contains a list of valid commands. A
 description of the exact format and an example are given in the
 <a class="reference internal" href="background.html#description-of-the-cwl-format"><span class="std std-doc">appendix</span></a>.</p>
 <p><img alt="Configure Completion" src="_images/configure_completion.png" /></p>
+<p>The advanced mode offers some additional options:</p>
+<ul class="simple">
+<li><p>Auto Complete Common Prefix: if only one item is in the list or all
+items in the completion list share common starting characters, the
+common characters are directly inserted, like pressing the key Tab.</p></li>
+<li><p>Complete selected text when non-word character is pressed: when in
+completion mode, pressing a non-word character like space, leads to
+accepting the selected word. This may speed up typing.</p></li>
+<li><p>Arguments as placeholders: if the completed commands have options which need
+to be filled out, placeholders are put at these positions and they
+can be jumped to by using <code class="docutils literal notranslate"><span class="pre">Ctrl+Right</span></code>/<code class="docutils literal notranslate"><span class="pre">Ctrl+Left</span></code>.</p></li>
+<li><p>Insert Arguments: Insert the typical argumen names like <em>num</em> &amp; <em>den</em> in case of <code class="docutils literal notranslate"><span class="pre">\frac{num}{den}</span></code></p></li>
+</ul>
+<p>Usually the autodection mechanism works reliably. In rare cases, you may want to force the use of predetermined completion lists.</p>
+<p>TeXstudio allows to select the additional word
+lists under “Configure TeXstudio” -&gt; “Completion” in <em>advanced mode</em>. The names
+of the word lists corresponds to the package for which they are made.
+The list latex.cwl contains the standard latex commands. Classes are provided as class-<em>name</em>, though some classes put in the same file, thus the name is a composition of those class-names.</p>
+<p>As the number of provided files has become quite large, a filter box has been added to filter available files for easier selection.</p>
+<p><img alt="Configure Completion advanced" src="_images/configure_completion_adv.png" /></p>
+</div>
+<div class="section" id="configuring-gui-scaling">
+<h2>Configuring GUI scaling<a class="headerlink" href="#configuring-gui-scaling" title="Permalink to this heading">#</a></h2>
+<p>When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel indepedently. The changes is perofrmed immediately to that the result can be observed directly.</p>
+<p><img alt="GUI scaling" src="_images/configure_guiscaling.png" /></p>
 </div>
 <div class="section" id="configuring-shortcuts">
 <h2>Configuring shortcuts<a class="headerlink" href="#configuring-shortcuts" title="Permalink to this heading">#</a></h2>
@@ -966,6 +1036,11 @@ keystroke combinations, for example <code class="docutils literal notranslate"><
 lower case is allowed, but the comma is important). If a shortcut should
 be set to default value or removed completely, the items “&lt;default&gt;”
 or “&lt;none&gt;” at the top of the list can be selected respectively.</p>
+<p>Additional some function of the <code class="docutils literal notranslate"><span class="pre">ESC</span></code> key can be set. It can close the log-view, the embedded pdf viewer or leave the fullscreen mode.</p>
+<dl class="simple myst">
+<dt>Show Shortcuts in Tooltips</dt><dd><p>Show shortcuts in tooltips on toolbar actions or not.</p>
+</dd>
+</dl>
 <p><img alt="Configure Shortcuts" src="_images/configure_shortcuts.png" /></p>
 </div>
 <div class="section" id="configuring-the-latex-math-menu-advanced-option">
@@ -984,28 +1059,23 @@ applying “load other icon” from the context menu on a item in the
 custom toolbar list in the configure dialog.</p>
 <p><img alt="Customize Toolbars" src="_images/configure_customToolbar.png" /></p>
 </div>
-<div class="section" id="configuring-svn-support">
-<h2>Configuring SVN support<a class="headerlink" href="#configuring-svn-support" title="Permalink to this heading">#</a></h2>
-<p>To supports SVN (subversion) for document versioning. To make use of it,
-the SVN command line tools need to be installed. Linux and Mac OSX
-normally provide already SVN tools, for Windows, the installation of
-“SlikSVN” is recommended.</p>
-<p>The complete path to the command “svn” and “svnadmin” need to be
-adjusted in the aprioriate field of the Commands page in the options. On
-the SVN page you can can choose the degree of automation (see below)
-WSVN, see below.</p>
-<p>Note: You cannot checkout a repository via TeXstudio. Just use the
+<div class="section" id="configuring-svn-git-support">
+<h2>Configuring SVN/GIT support<a class="headerlink" href="#configuring-svn-git-support" title="Permalink to this heading">#</a></h2>
+<p>TexStudio supports some simple actions for subversion/git. Here svn or git can be selected.</p>
+<!--
+Note: You cannot checkout a repository via TeXstudio. Just use the
 normal tools for this (either SVN checkout on the command line or the
 GUI of your choice). Once you have a working copy, TeXstudio can operate
-on it.</p>
+on it.
+-->
 <p>“Automatically check in after save” allows TeXstudio to perform an SVN
 check in after every save of a document, thus providing a very complete
 history of the creation of a document. Since text documents are rather
-small compared to disk spaces, size of the SVN database should not be a
+small compared to disk spaces, size of the SVN/GIT database should not be a
 problem. In addition newly saved files (save as) are automatically added
-to SVN control,provided that the directory is already under SVN control.
+to SVN/GIT control,provided that the directory is already under SVN/GIT control.
 If that is not the case, TeXstudio searches in “SVN Directory Search
-Depth” directory above the current diorectory for a SVN controlled
+Depth” directory above the current diorectory for a SVN/GIT controlled
 directory to which the subdirectories and the TeX-Document will be
 added. If no appropriate directory is found, a repository is
 automatically generated in a directory called “./repo” and the
@@ -1015,7 +1085,7 @@ when “Auto checkin in” is enabled !</p>
 <p>With “User SVN revisions to undo before last save” TeXstudio will
 perform undo as usually, but if there are no further undoable commands
 in the internal storage, the document will be changed to the previous
-version in SVN history. Further undo commands allows one to back further
+version in SVN/GIT history. Further undo commands allows one to back further
 to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing SVN revisions directly
 via a menu command, see <a class="reference internal" href="advanced.html#svn-support"><span class="std std-doc">here</span></a>.</p>
@@ -1082,7 +1152,9 @@ via a menu command, see <a class="reference internal" href="advanced.html#svn-su
             <ul>
 <li><a class="reference internal" href="#">Configuring TeXstudio</a><ul>
 <li><a class="reference internal" href="#adapting-the-main-gui">Adapting the main GUI</a></li>
+<li><a class="reference internal" href="#configuring-some-general-aspects">Configuring some general aspects</a></li>
 <li><a class="reference internal" href="#configuring-the-editor">Configuring the editor</a></li>
+<li><a class="reference internal" href="#configuring-the-advanced-editor-settings-advanced-option">Configuring the advanced editor settings (Advanced option)</a></li>
 <li><a class="reference internal" href="#configuring-the-latex-related-commands">Configuring the latex related commands</a><ul>
 <li><a class="reference internal" href="#command-syntax-in-detail">Command syntax in detail</a></li>
 <li><a class="reference internal" href="#set-up-for-external-viewers">Set-up for external viewers</a><ul>
@@ -1113,18 +1185,18 @@ via a menu command, see <a class="reference internal" href="advanced.html#svn-su
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configuring-some-general-issues">Configuring some general issues</a><ul>
+<li><a class="reference internal" href="#configuring-the-language-set-up">Configuring the language set-up</a><ul>
 <li><a class="reference internal" href="#configuring-the-spell-checker">Configuring the spell checker</a></li>
 <li><a class="reference internal" href="#configuring-the-thesaurus">Configuring the thesaurus</a></li>
-<li><a class="reference internal" href="#configuring-the-latex-syntax-checker">Configuring the latex syntax checker</a></li>
 <li><a class="reference internal" href="#configuring-the-grammar-checker">Configuring the grammar checker</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#configuring-the-autocompletion">Configuring the autocompletion</a></li>
+<li><a class="reference internal" href="#configuring-gui-scaling">Configuring GUI scaling</a></li>
 <li><a class="reference internal" href="#configuring-shortcuts">Configuring shortcuts</a></li>
 <li><a class="reference internal" href="#configuring-the-latex-math-menu-advanced-option">Configuring the Latex/Math-Menu (Advanced option)</a></li>
 <li><a class="reference internal" href="#configuring-the-custom-toolbar-advanced-option">Configuring the Custom Toolbar (Advanced option)</a></li>
-<li><a class="reference internal" href="#configuring-svn-support">Configuring SVN support</a></li>
+<li><a class="reference internal" href="#configuring-svn-git-support">Configuring SVN/GIT support</a></li>
 </ul>
 </li>
 </ul>
