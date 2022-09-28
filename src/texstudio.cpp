@@ -6489,7 +6489,7 @@ void Texstudio::latexHelp()
  */
 void Texstudio::userManualHelp()
 {
-	QString latexHelp = findResourceFile("usermanual_en.html");
+    QString latexHelp = findResourceFile("getting_started.html");
 	if (latexHelp == "")
 		QMessageBox::warning(this, tr("Error"), tr("File not found"));
 	else if (!QDesktopServices::openUrl("file:///" + latexHelp))
