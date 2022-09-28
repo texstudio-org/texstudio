@@ -330,7 +330,7 @@ unix {
         utilities/manual/CHANGELOG.txt
     manual.files = \
         utilities/manual/build/html/*.html
-        utilities/manual/build/html/*.js
+        utilities/manual/build/html/searchindex.js
    manualImages.files = \
         utilities/manual/build/html/_images/*.png
    manualSphinx.files = \
