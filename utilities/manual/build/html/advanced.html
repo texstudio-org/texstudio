@@ -1,0 +1,1144 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Advanced features" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="advanced.html" />
+  
+<meta property="og:description" content="User Fold Marker: Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting..." />
+  <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
+
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><meta name="generator" content="sphinx-5.2.1, furo 2022.09.15"/>
+        <title>Advanced features - TeXstudio 4.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     Site still under construction! 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">TeXstudio 4.4.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TeXstudio 4.4.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing.html">Editing a TeX document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling a document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewing.html">Viewing a document (pdf)</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Advanced features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring TeXstudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background information</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="section" id="advanced-features">
+<h1>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this heading">#</a></h1>
+<div class="section" id="user-fold-marker">
+<h2>User Fold Marker<a class="headerlink" href="#user-fold-marker" title="Permalink to this heading">#</a></h2>
+<p>Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments <code class="docutils literal notranslate"><span class="pre">%BEGIN_FOLD</span></code> and <code class="docutils literal notranslate"><span class="pre">%END_FOLD</span></code>.</p>
+<p><img alt="Example for user fold marker" src="_images/userfoldmarker.png" /></p>
+</div>
+<div class="section" id="syntax-check">
+<h2>Syntax Check<a class="headerlink" href="#syntax-check" title="Permalink to this heading">#</a></h2>
+<p>The latex syntax checker takes the list of possible completion commands
+to determine if a command is correct. The completion list contains
+partially additional information to determine in which context a command
+is valid, whether it is valid only in math-mode or only in
+tabular-mode.<br />
+Furthermore the correctness of tabulars is checked in a little more
+detail. The number of columns is analyzed and checked in the subsequent
+rows. If more or less columns are given in a row, a warning maker is
+shown.\</p>
+</div>
+<div class="section" id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">#</a></h2>
+<p>For the “bib” files , the “Bibliography” menu enables you to
+directly insert the entries corresponding to the standard types of
+document.<br />
+Note: the optional fields can be automatically deleted with the
+“Clean” command of the “Bibliography” menu.</p>
+<p><img alt="Bibliography Menu" src="_images/doc16.png" /></p>
+</div>
+<div class="section" id="svn-support">
+<h2>SVN Support<a class="headerlink" href="#svn-support" title="Permalink to this heading">#</a></h2>
+<p>Apart from the supported SVN features already describes in <a class="reference internal" href="configuration.html#configuring-svn-support"><span class="std std-doc">section</span></a> ,
+TeXstudio supports two more commands.</p>
+<p>“File/Checkin” performs an explicit save and check in, with a input
+dialog which asks for an checkin in message which is stored in the SVN
+history.</p>
+<p>“File/Show old Revisions” pops up a dialog, which shows all available
+revisions. A selection of an older revision leads to instantaneous
+change of the current document to that older revision. You can select
+and copy old parts to transfer them to the most recent version of your
+document, by copying the parts and then going back to most recent
+version. If you start editing that document directly, the dialog is
+closed and the present text will be your new most recent version though
+yet unsaved.</p>
+</div>
+<div class="section" id="using-table-templates">
+<h2>Using table templates<a class="headerlink" href="#using-table-templates" title="Permalink to this heading">#</a></h2>
+<p>Texstudio offers the possibility to reformat an existing latex table
+after a table template.<br />
+For example, you have entered following table into txs:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>ll<span class="nb">}</span>
+a<span class="nb">&amp;</span>b<span class="k">\\</span>
+c<span class="nb">&amp;</span>d<span class="k">\\</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</pre></div>
+</div>
+<p>Place the cursor inside the table and select the menu “Latex/Manipulate
+Tables/Remodel Table Using Template”.<br />
+Now you can select a template which defines the formatting of the table.
+A number of templates are predefined by txs:</p>
+<ul class="simple">
+<li><p>fullyframed_firstBold</p></li>
+<li><p>fullyframed_longtable</p></li>
+<li><p>plain_tabular</p></li>
+<li><p>plain_tabularx</p></li>
+<li><p>rowcolors_tabular</p></li>
+</ul>
+<p>By selecting the first entry, the table is reformated to:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|l|l|<span class="nb">}</span>
+<span class="k">\hline</span>
+<span class="k">\textbf</span><span class="nb">{</span>a<span class="nb">}&amp;</span><span class="k">\textbf</span><span class="nb">{</span>b<span class="nb">}</span><span class="k">\\</span> <span class="k">\hline</span>
+c<span class="nb">&amp;</span>d<span class="k">\\</span> <span class="k">\hline</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</pre></div>
+</div>
+<p>These templates give the opportunity to easily reformat tables after a
+predefined fashion, thus achieving a uniform table style in a document,
+even if the tables are entered in a very simple style.</p>
+<p>The definition of new templates is described <a class="reference internal" href="background.html#creating-table-templates"><span class="std std-doc">here</span></a>.</p>
+</div>
+<div class="section" id="advanced-header-usage">
+<h2>Advanced header usage<a class="headerlink" href="#advanced-header-usage" title="Permalink to this heading">#</a></h2>
+<p>So called “magic comments” are a way to adapt the options of the
+editor on a per-document level. The concept was <a class="reference external" href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a>
+and has been adopted in a number of editors since. TeXstudio supports
+the following magic comments:</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">spellcheck</span> <span class="pre">=</span> <span class="pre">de_DE</span></code></dt><dd><p>Defines the language used for spell checking of the document. This
+overrides the global spellchecking settings. Nevertheless, an
+appropriate dictionary has to be installed.<br />
+If no spellchecking is desired, set value to “<em>none</em>”.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">encoding</span> <span class="pre">=</span> <span class="pre">utf8</span></code></dt><dd><p>Defines the character encoding of a document.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">root</span> <span class="pre">=</span> <span class="pre">filename</span></code></dt><dd><p>Defines the root document for this file (i.e. the file which will be
+passed to the LaTeX compiler when building). This setting override
+the automatic root detection in TeXstudio. In turn, it’s
+overridden, if an <em>explicit root document</em> is set at
+<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Root</span> <span class="pre">Document</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">program</span> <span class="pre">=</span> <span class="pre">pdflatex</span></code></dt><dd><p>Defines the compiler to be used for the document. To be precise, it
+overrides the default compiler (command <code class="docutils literal notranslate"><span class="pre">txs:///compile</span></code>) which is
+used in the actions “Build &amp; View” as well as “Compile”. Valid
+options are “latex”,”pdflatex”,”xelatex”,”lualatex” and
+“user<em>n</em>” (e.g. user0 as user defined command 0)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-program:bibliography</span> <span class="pre">=</span> <span class="pre">txs:///biber</span></code></dt><dd><p>This is a TeXstudio-specific setting. It overrides the build-system
+command specified to the left by the one on the right. In the
+example, we tell TXS to use the biber command (<code class="docutils literal notranslate"><span class="pre">txs:///biber</span></code>) for
+the general “Bibliography command (txs:///bibliography). See also
+the <a class="reference internal" href="configuration.html#advanced-configuration-of-the-build-system"><span class="std std-doc">description of the build system</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-SCRIPT</span> <span class="pre">=</span> <span class="pre">name</span></code></dt><dd><p>This defines a temporary script macro .</p>
+<p>Example:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% !TeX TXS-SCRIPT = foobar</span>
+<span class="c">% //Trigger = ?load-this-file</span>
+<span class="c">% app.load(&quot;/tmp/test/test.tex&quot;);</span>
+<span class="c">% app.load(&quot;/tmp/test/a.tex&quot;);</span>
+<span class="c">% TXS-SCRIPT-END</span>
+</pre></div>
+</div>
+<p>This defines a temporary script macro which is executed, when the
+file is loaded, and which in turns loads the two files in /tmp/test.</p>
+<p>The macros defined via TXS-SCRIPT are active in all files of a
+document (e.g. included files). You cannot run them manually. They
+are run via the trigger (regular expression or special trigger, see
+section on triggers). The macro is just read once, when the file is
+opened. Changes during an edit session will only take effect when
+you reopen the file.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!BIB</span> <span class="pre">program</span> <span class="pre">=</span> <span class="pre">biber</span></code></dt><dd><p>The special <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!BIB</span> <span class="pre">program</span></code> command is understood for compatibility
+with TeXShop and TeXWorks (also in the variant <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!BIB</span> <span class="pre">TS-program</span></code>).
+This is equivalent to
+<code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-program:bibliography</span> <span class="pre">=</span> <span class="pre">txs:///biber</span></code></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="personal-macros">
+<h2>Personal macros<a class="headerlink" href="#personal-macros" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio allows you to insert your own macros. These macros are defined
+with the “Macros - Edit Macros” menu. Macros can consist of simple
+text which is directly placed into txs. It can also be an
+“environment” which are automatically extended by begin/end or it can
+be a java script. The needed functionality can be selected by checkbox.<br />
+The “abbreviation” is a pseudo-command for the latex completer. If the
+pseudo-command is completed, the macro will be inserted instead. Note
+that the pseudo-command needs to start with a backslash (“&quot;).<br />
+“Trigger” is a regular expression which triggers the inclusion of the
+macro: When the last written characters match this expression, they are
+removed and the macro is inserted/executed. (see
+<a class="reference internal" href="#triggers"><span class="std std-doc">below</span></a> for more details).<br />
+Some macros can be directly downloaded from an internet repository. The
+dialog is started with the button “Browse”. For easier data exchange,
+macros can be im- and exported to a file. If you want to add a macro of
+your own to that repository, you can hand it in as a feature request on
+<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues">Github</a>.<br />
+Each macro can be assigned a fixed shortcut in the “Shortcut” box.<br />
+The list of macros on the left-hand side represents the macro ordering
+in the macro-menu. It is rearranged with the
+“up”/”down”/”add”/”remove” buttons or with drag and drop.
+Folders can be added to sort a larger number of macros sensibly. To move
+macros into/from folders, only drag and drop works.<br />
+The “run script” button directly executes a script in the editor for
+testing.<br />
+\</p>
+<p><img alt="doc17" src="_images/doc17.png" /></p>
+<div class="section" id="text-macros">
+<h3>Text macros<a class="headerlink" href="#text-macros" title="Permalink to this heading">#</a></h3>
+<p>Apart from normal text, some special codes are recognized and replaced
+on insertion.\</p>
+<ul>
+<li><p>If you write %| somewhere the cursor will be placed at that place
+in the inserted text. (A second %| will select everything between
+them).</p></li>
+<li><p>Write %&lt;something%&gt; to mark it as placeholder which is highlighted
+in the text and can be selected by Ctrl+Left/Right.<br />
+Additional properties of the placeholder can be set after a %:, e.g.</p>
+<p>are:</p>
+<ul class="simple">
+<li><p>select: The placeholder will be selected (similar to %|)</p></li>
+<li><p>multiline: The placeholder is used for multiline text. If a
+macro insertion replaces an existing text, the replaced text is
+again inserted into a placeholder in the macro. If the original
+text spans more than one line, it will be inserted into a
+placeholder with the multiline property. Otherwise in a
+placeholder with the select-property.</p></li>
+<li><p>persistent: The placeholder is not automatically removed, when
+its text is changed in the editor</p></li>
+<li><p>mirror: The placeholder is a mirror of another placeholder in
+the macro and thus will always have the same content as the
+original placeholder. You should set an id, so it knows which
+placeholders are connected</p></li>
+<li><p>id:123: The id of the placeholder</p></li>
+<li><p>columnShift:-12: The placeholder is not placed where the %&lt;
+markers are, but some columns to the left of it</p></li>
+<li><p>translatable: The text of the placeholder should be added to
+translations (only applicable to macros that are known during
+the compilation of texstudio).</p></li>
+<li><p>cutInsert: The text of the placeholder is replaced by cut buffer
+(selected text when the snippet is inserted). This code is only
+necessary if not the first placeholder is intended to take the
+cut buffer, e.g. generate env (ctrl+e).</p></li>
+</ul>
+</li>
+<li><p>The option %(<em>filefilter</em>%) will be replaced by a filename which is
+asked for in a file dialog. The file filter is the standard
+Qt-Filefilterformat. For example “Images (*.png *.xpm
+*.jpg);;Text files (*.txt);;XML files (*.xml)”, see also
+<a class="reference external" href="https://doc.qt.io/qt-6/qfiledialog.html">Qt-Doc</a></p></li>
+</ul>
+</div>
+<div class="section" id="environment-macros">
+<h3>Environment macros<a class="headerlink" href="#environment-macros" title="Permalink to this heading">#</a></h3>
+<p>The text will be used as environment-name, thus “%environment” will be
+inserted as:<br />
+\begin{environment }<br />
+<br />
+\end{environment }<br />
+<br />
+Note: texstudio needs that the env-name starts with “%”, though that
+character is not placed on insertion.</p>
+</div>
+<div class="section" id="script-macros">
+<h3>Script Macros<a class="headerlink" href="#script-macros" title="Permalink to this heading">#</a></h3>
+<p>Instead of using code snippets, you can also make use of scripting with
+QJS, an application scripting language based on
+<a class="reference external" href="https://doc.qt.io/qt-6/qtqml-javascript-functionlist.html">ECMAScript</a>.</p>
+<p>Put “%SCRIPT” in the first line to declare a macro as a script. Here
+are the objects that provide the interface to the TeXstudio internals:</p>
+<ul class="simple">
+<li><p>“editor” allows some top level operations like
+searching/save/load. in the current document</p></li>
+<li><p>“cursor” gives access to cursor operations like moving, inserting
+and deleting texts.</p></li>
+<li><p>“fileChooser” gives access to the filechooser dialog, a very
+simple file selection dialog</p></li>
+<li><p>“app” to access application wide things like the clipboard or the
+menus</p></li>
+</ul>
+<p>The following table gives an overview on the provided commands.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>alert(str), information(str), warning(str) or critical(str)</p></td>
+<td><p>shows str in a messagebox with a certain icon</p></td>
+</tr>
+<tr class="row-odd"><td><p>confirm(str) or confirmWarning(str)</p></td>
+<td><p>shows str as a yes/no question in a messagebox</p></td>
+</tr>
+<tr class="row-even"><td><p>debug(str)</p></td>
+<td><p>prints str to stdout</p></td>
+</tr>
+<tr class="row-odd"><td><p>writeFile(name, value)</p></td>
+<td><p>Writes value to file name (requires write privileges)</p></td>
+</tr>
+<tr class="row-even"><td><p>readFile(name)</p></td>
+<td><p>Reads the entire file name (requires read privileges)</p></td>
+</tr>
+<tr class="row-odd"><td><p>system(cmd, workingDirectory=””)</p></td>
+<td><p>Calls an external command <strong>cmd</strong>, which includes the program name and its arguments.<br><strong>cmd</strong> may undergo command-line expansion as follows:<br>If <strong>cmd</strong> contains the string <strong>txs:///</strong> or if it does <strong>not</strong> contain any pipe (|) characters, then <strong>cmd</strong> undergoes standard command-line expansion like any other <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-doc">external command</span></a>. When expanding any tokens the current file is assumed to be the empty string, so any tokens that use the current file (e.g. <strong>%</strong> or <strong>?</strong>) will expand to the empty string too.<br>If <strong>cmd</strong> does not contain the string <strong>txs:///</strong> and it contains at least one pipe character, then it is executed without any string expansion or replacement.<br>If <strong>workingDirectory</strong> is not set, the working directory will be inherited from the TeXstudio executable. This command returns a ProcessX object which has the following methods: <br>-   waitForFinished: Wait until the process is finished<br>-   readAllStandardOutputStr: Returns the stdout<br>-   readAllStandardErrorStr: Returns the stderr<br>-   exitCode: The exit code<br>-   exitStatus: The qt exit status<br>-   terminate or kill: Stops the process<br>If the script does is not granted permission to run the external command, then <strong>system()</strong> returns <strong>null</strong>.<br><br>Examples<br><br>List all the files in the Subversion repository /usr/local/svnrepository<br>The command contains the string <strong>txs:///</strong>, so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-doc">external command</span></a>.<br>%SCRIPT<br>cmd = system(“txs:///svn ls /usr/local/svnrepository”)<br>  cmd.waitForFinished()<br>output = cmd.readAllStandardOutputStr()<br>alert (output)<br><br>Download the web page from <strong>http://www.my-website.com??arg1=abc&amp;arg2=def</strong> and save it as the local file <strong>/home/john/page.html</strong>.<br>The command does not contain any pipe characters (|), so it undergoes the expansion as an <a class="reference internal" href="configuration.html#command-syntax-in-detail"><span class="std std-doc">external command</span></a>. Note that we have doubled the character <strong>?</strong> in the URL, otherwise it would be expanded to current file which in our case would be the empty string.<br><br>%SCRIPT<br>cmd = system (“wget -O /home/john/page.html http://www.my-website.com??arg1=abc&amp;arg2=def”)<br>cmd.waitForFinished()</p></td>
+</tr>
+<tr class="row-even"><td><p><s>setGlobal(name, value)</s></p></td>
+<td><p>Unsuppoted since txs 4.x. Sets a temporary, global variable</p></td>
+</tr>
+<tr class="row-odd"><td><p><s>getGlobal(name)</s></p></td>
+<td><p>Unsuppoted since txs 4.x. Reads a global variable</p></td>
+</tr>
+<tr class="row-even"><td><p><s>hasGlobal(name)</s></p></td>
+<td><p>Unsuppoted since txs 4.x. Checks for the existence of a global variable</p></td>
+</tr>
+<tr class="row-odd"><td><p>setPersistent(name, value)</p></td>
+<td><p>Sets a global configuration variable. (can change the values of the ini file, requires write privileges)</p></td>
+</tr>
+<tr class="row-even"><td><p>getPersistent(name)</p></td>
+<td><p>Reads a global configuration variable. (can read all values of the ini file, requires read privileges)</p></td>
+</tr>
+<tr class="row-odd"><td><p>hasPersistent(name)</p></td>
+<td><p>Checks if a global configuration variable exists. (requires read privileges)</p></td>
+</tr>
+<tr class="row-even"><td><p>hasReadPrivileges()</p></td>
+<td><p>Checks if the script has read privileges</p></td>
+</tr>
+<tr class="row-odd"><td><p>hasWritePrivileges()</p></td>
+<td><p>Checks if the script has write privileges</p></td>
+</tr>
+<tr class="row-even"><td><p>registerAsBackgroundScript([id])</p></td>
+<td><p>Allows the script to run in the background (necessary iff the script should handle events/signals)</p></td>
+</tr>
+<tr class="row-odd"><td><p>triggerMatches</p></td>
+<td><p>Matches of the regular trigger expression, if the script was called by an editor <a class="reference internal" href="#triggers"><span class="std std-doc">trigger</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>triggerId</p></td>
+<td><p>Numeric id of the trigger, if the script was called by an event <a class="reference internal" href="#triggers"><span class="std std-doc">trigger</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><s>include(script)</s></p></td>
+<td><p>Unsuppoted since txs 4.x. Includes another script. Can be a filename or the name of a macro.</p></td>
+</tr>
+<tr class="row-even"><td><p>pdfs</p></td>
+<td><p>List of all open, internal pdf viewers .</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.search(searchFor, [options], [scope], [callback])</p></td>
+<td><p>Searches something in the editor.<br>-   searchFor is the text which is searched. It can be either a string (e.g. “..”) or a regexp (e.g. /[.]{2}/). <br>-   options is a string and a combination of “i”, “g”, “w” to specify a case-<em>i</em>nsensitive search, a <em>g</em>lobal search (continue after the first match) or a whole-<em>w</em>ord-only search.<br>-   scope is a cursor constraining the search scope (see editor.document().cursor).<br>-   callback is a function which is called for every match. A cursor describing the position of the match is passed as first argument.<br>All arguments except searchFor are optional, and the order may be changed (which may not be future compatible). The function returns the number of found matches.</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.replace(searchFor, [options], [scope], [replaceWith])</p></td>
+<td><p>This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith.</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.replaceSelectedText(newText, [options])</p></td>
+<td><p>This function replaces the current selections with newText or inserts newText, if nothing is selected. If newText is a function, it will be called with the selected text and corresponding cursor, and the return value will be the newText. It is recommended to use this function for all text replacements/insertions, since it is the easiest way to handle multiple cursors/block selections correctly.<br>Options is an object that can have the following properties:<br>-   <code class="docutils literal notranslate"><span class="pre">{&quot;noEmpty&quot;:</span> <span class="pre">true}</span></code> only replaces; does not insert anything if the selection is empty<br>-   <code class="docutils literal notranslate"><span class="pre">{&quot;onlyEmpty&quot;:</span> <span class="pre">true}</span></code> only inserts at the cursor position; does not change non empty selected text<br>-   <code class="docutils literal notranslate"><span class="pre">{&quot;append&quot;:</span> <span class="pre">true}</span></code> appends newText to the current selection, does not remove the old text<br>-   <code class="docutils literal notranslate"><span class="pre">{&quot;prepend&quot;:</span> <span class="pre">true}</span></code> prepends newText to the current selection, does not remove the old text<br>-   <code class="docutils literal notranslate"><span class="pre">{&quot;macro&quot;:</span> <span class="pre">true}</span></code> Treats newText as normal macro text, e.g. inserting %&lt; %&gt; placeholders<br><br>Examples:<br><code class="docutils literal notranslate"><span class="pre">editor.replaceSelectedText(&quot;world&quot;,</span> <span class="pre">{&quot;append&quot;:</span> <span class="pre">true}</span> <span class="pre">)</span></code> Appends “world” to the current selections.<br><code class="docutils literal notranslate"><span class="pre">editor.replaceSelectedText(function(s){return</span> <span class="pre">s.toUpperCase();})</span></code> Converts the current selection to uppercase.</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.insertSnippet(text);</p></td>
+<td><p>Inserts a text snippet into the editor. For a list of extended features and syntax see <a class="reference internal" href="#text-macros"><span class="std std-doc">Text Macros</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.undo();</p></td>
+<td><p>undo last command in editor</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.redo();</p></td>
+<td><p>redo last command in editor</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.cut();</p></td>
+<td><p>cut selection to clipboard</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.copy();</p></td>
+<td><p>copy selection to clipboard</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.paste();</p></td>
+<td><p>paste clipboard contents</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.selectAll();</p></td>
+<td><p>select all</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.selectNothing();</p></td>
+<td><p>select nothing (clear selections)</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.cutBuffer</p></td>
+<td><p>If a macro was triggered by a key press and there was a selection previous to the key press, the content of the selection is stored in the cutBuffer. The selection and its content is removed before the macro is entered.</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.find();</p></td>
+<td><p>activate “find panel”</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.find(QString text, bool highlight, bool regex, bool word=false,bool caseSensitive=false);</p></td>
+<td><p>activate “find panel” with predefined values</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.find(QString text, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection);</p></td>
+<td><p>activate “find panel” with predefined values</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.findNext();</p></td>
+<td><p>find next</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.replacePanel();</p></td>
+<td><p>replace (if find panel open and something is selected)</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.gotoLine();</p></td>
+<td><p>activate “goto line panel”</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.indentSelection();</p></td>
+<td><p>indent selection</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.unindentSelection();</p></td>
+<td><p>unindent selection</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.commentSelection();</p></td>
+<td><p>comment selection</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.uncommentSelection();</p></td>
+<td><p>uncomment selection</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.clearPlaceHolders();</p></td>
+<td><p>clear place holders</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.nextPlaceHolder();</p></td>
+<td><p>jump to next place holder</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.previousPlaceHolder()</p></td>
+<td><p>jump to previous place holder</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.setPlaceHolder(int i, bool selectCursors=true);</p></td>
+<td><p>set Placeholder</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.setFileName(f);</p></td>
+<td><p>set filename to <em>f</em></p></td>
+</tr>
+<tr class="row-even"><td><p>editor.write(str)</p></td>
+<td><p>inserts str at the current cursors position (if there are cursor mirrors, str will be inserted by all of them)</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.insertText(str)</p></td>
+<td><p>inserts str at the current cursor position (cursor mirrors are ignored,so it is preferable to use replaceSelectedText or write instead)</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.setText(<em>text</em>)</p></td>
+<td><p>replace the whole text of the current document by <em>text</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.text()</p></td>
+<td><p>return the text of the complete document</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.text(int line)</p></td>
+<td><p>return text of <em>line</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.document().lineCount()</p></td>
+<td><p>Returns the number of lines</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().visualLineCount()</p></td>
+<td><p>Returns the number of visual lines (counting wrapped lines)</p></td>
+</tr>
+<tr class="row-odd"><td><p><s>editor.document().cursor(line, [column = 0], [lineTo = -1],[columnTo = length of lineTo])</s></p></td>
+<td><p>Unsupported in txs 4.x. Use new QDocumentCursor(…) instead, see section cursor.</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().text([removeTrailing = false], [preserveIndent = true])</p></td>
+<td><p>Returns the complete text of the document</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.document().textLines()</p></td>
+<td><p>Returns an array of all text lines</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().lineEndingString()</p></td>
+<td><p>Returns a string containing the ending of a line (\n or \n\r)</p></td>
+</tr>
+<tr class="row-odd"><td><p><s>editor.document().getLineTokens(lineNr)</s></p></td>
+<td><p>Unsupported in txs 4.x.</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().canUndo()</p></td>
+<td><p>Returns true if undo is possible</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.document().canRedo()</p></td>
+<td><p>Returns true if redo is possible</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().expand(lineNr)</p></td>
+<td><p>Unfold the line in editor</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.document().collapse(lineNr)</p></td>
+<td><p>Fold the line in editor</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().expandParents(lineNr)</p></td>
+<td><p>Expand all parents of the line until it is visible</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.document().foldBlockAt(bool unFold, lineNr);</p></td>
+<td><p>Collapses or expands the first block before lineNr</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().getMasterDocument();</p></td>
+<td><p>Returns the open document which directly includes this document</p></td>
+</tr>
+<tr class="row-odd"><td><p><s>editor.document().getTopMasterDocument();</s></p></td>
+<td><p><em>Deprecated:</em> Use getRootDocument() instead</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().getRootDocument();</p></td>
+<td><p>Returns the open document which indireclty includes this document and is not itself included by any other document</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.document().getMagicComment(name);</p></td>
+<td><p>Returns the content of a magic comment, if it exists</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().updateMagicComment(name, value, [create = false]);</p></td>
+<td><p>Changes a magic comment</p></td>
+</tr>
+<tr class="row-odd"><td><p>editor.document().labelItems/refItems/bibItems</p></td>
+<td><p>Returns the ids of all labels/references or included bibliography files.</p></td>
+</tr>
+<tr class="row-even"><td><p>editor.document().getLastEnvName(lineNr)</p></td>
+<td><p>Returns the name of the current environment (at the end of the line).</p></td>
+</tr>
+<tr class="row-odd"><td><p>documentManager.currentDocument</p></td>
+<td><p>Current document (usually the same as editor.document(), unless the script is running in background mode)</p></td>
+</tr>
+<tr class="row-even"><td><p>documents.masterDocument</p></td>
+<td><p>Master document if defined</p></td>
+</tr>
+<tr class="row-odd"><td><p>[documentManager.]documents</p></td>
+<td><p>Array of all open documents</p></td>
+</tr>
+<tr class="row-even"><td><p>documentManager.findDocument(fileName)</p></td>
+<td><p>Returns the open document with a certain file name</p></td>
+</tr>
+<tr class="row-odd"><td><p>documentManager.singleMode()</p></td>
+<td><p>Returns true if there is no explicit master document</p></td>
+</tr>
+<tr class="row-even"><td><p><s>documentManager.</s> <s>getMasterDocumentForDoc(document)</s></p></td>
+<td><p><em>Deprecated:</em> Use getRootDocumentForDoc(document) instead</p></td>
+</tr>
+<tr class="row-odd"><td><p>documentManager. getRootDocumentForDoc(document)</p></td>
+<td><p>Returns the open document (possibly indirectly) including the given document</p></td>
+</tr>
+<tr class="row-even"><td><p>documentManager.findFileFromBibId(id)</p></td>
+<td><p>Returns the file name of the bib file containing an entry with the given id</p></td>
+</tr>
+<tr class="row-odd"><td><p>new QDocumentCursor(editor.document(),line, [column = 0], [lineTo = -1], [columnTo = length of lineTo])</p></td>
+<td><p>Returns a cursor object. If lineTo is given the cursor has a selection from line:column to lineTo:columnTo, otherwise not.</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.atEnd()</p></td>
+<td><p>returns whether the cursor is at the end of the document</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.atStart()</p></td>
+<td><p>returns whether the cursor is at the start of the document</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.atBlockEnd()</p></td>
+<td><p>returns whether the cursor is at the end of a block</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.atBlockStart()</p></td>
+<td><p>returns whether the cursor is at the start of a block</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.atLineEnd()</p></td>
+<td><p>returns whether the cursor is at the end of a line</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.atLineStart()</p></td>
+<td><p>returns whether the cursor is at the start of a line</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.hasSelection()</p></td>
+<td><p>return whether the cursor has a selection</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.lineNumber()</p></td>
+<td><p>returns the line number of the cursor</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.columnNumber()</p></td>
+<td><p>returns the column of the cursor</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.anchorLineNumber()</p></td>
+<td><p>returns the line number of the anchor.</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.anchorColumnNumber()</p></td>
+<td><p>returns the column of the anchor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.shift(int offset)</p></td>
+<td><p>Shift cursor position (text column) by a number of columns (characters)</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.setPosition(int pos, MoveMode m = MoveAnchor)</p></td>
+<td><p>set the cursor position after pos-characters counted from document start (very slow)</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.movePosition(int offset, MoveOperation op = NextCharacter, MoveMode m = MoveAnchor);</p></td>
+<td><p>move cursor <em>offset</em> times. MoveOperations may be: <br>-   cursorEnums.NoMove<br>-   cursorEnums.Up<br>-   cursorEnums.Down<br>-   cursorEnums.Left<br>-   cursorEnums.PreviousCharacter = Left<br>-   cursorEnums.Right<br>-   cursorEnums.NextCharacter = Right<br>-   cursorEnums.Start<br>-   cursorEnums.StartOfLine<br>-   cursorEnums.StartOfBlock = StartOfLine<br>-   cursorEnums.StartOfWord<br>-   cursorEnums.StartOfWordOrCommand<br>-   cursorEnums.PreviousBlock<br>-   cursorEnums.PreviousLine = PreviousBlock<br>-   cursorEnums.PreviousWord<br>-   cursorEnums.WordLeft<br>-   cursorEnums.WordRight<br>-   cursorEnums.End<br>-   cursorEnums.EndOfLine<br>-   cursorEnums.EndOfBlock = EndOfLine<br>-   cursorEnums.EndOfWord<br>-   cursorEnums.EndOfWordOrCommand<br>-   cursorEnums.NextWord<br>-   cursorEnums.NextBlock<br>-   cursorEnums.NextLine = NextBlock<br><br>Options for MoveMode are:<br><br>-   cursorEnums.MoveAnchor<br>-   cursorEnums.KeepAnchor<br>-   cursorEnums.ThroughWrap</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.moveTo(int line, int column);</p></td>
+<td><p>move cursor to <em>line</em> and <em>column</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.eraseLine();</p></td>
+<td><p>remove current line</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.insertLine(bool keepAnchor = false);</p></td>
+<td><p>insert empty line</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.insertText(text, bool keepAnchor = false)</p></td>
+<td><p>insert <em>text</em> text at cursor (this function will ignore indentations and mirrors, see editor.write and editor.insertText)</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.selectedText()</p></td>
+<td><p>return the selected text</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.clearSelection();</p></td>
+<td><p>clears selection</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.removeSelectedText();</p></td>
+<td><p>removes selected text</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.replaceSelectedText(text);</p></td>
+<td><p>replace selected text with <em>text</em></p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.deleteChar();</p></td>
+<td><p>removes char right to the cursor</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.deletePreviousChar();</p></td>
+<td><p>removes char left to the cursor</p></td>
+</tr>
+<tr class="row-even"><td><p>cursor.beginEditBlock();</p></td>
+<td><p>begins a new edit block. All cursor operations encapsulated in an edit block are undone/redone at once.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cursor.endEditBlock();</p></td>
+<td><p>ends an edit block</p></td>
+</tr>
+<tr class="row-even"><td><p>app.getVersion()</p></td>
+<td><p>Current version (0xMMmm00)</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.clipboard</p></td>
+<td><p>Property to read/write to the clipboard</p></td>
+</tr>
+<tr class="row-even"><td><p>app.getCurrentFileName()</p></td>
+<td><p>File name of currently edited file</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.getAbsoluteFilePath(rel, ext = “”)</p></td>
+<td><p>Converts a relative filename to an absolute one</p></td>
+</tr>
+<tr class="row-even"><td><p>app.load(file)</p></td>
+<td><p>Loads an file</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.fileOpen/Save/Close/…/editUndo/…/QuickBuild/…</p></td>
+<td><p>All menu commands (i.e. all slots in the texmaker.h file). You can view a list of all currently existing slots on the “menu” page of the config dialog.</p></td>
+</tr>
+<tr class="row-even"><td><p>app.completerIsVisible()</p></td>
+<td><p>check if completer is visible.</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.newManagedMenu([parent menu,] id, caption)</p></td>
+<td><p>Creates a new menu and returns it</p></td>
+</tr>
+<tr class="row-even"><td><p>app.getManagedMenu(id)</p></td>
+<td><p>Returns a <a class="reference external" href="https://doc.qt.io/qt-6/qmenu.html">QMenu</a> with a certain id</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.newManagedAction(menu, id, caption)</p></td>
+<td><p>Creates a new action and returns it<br><br>-   menu: Parent menu<br>-   id: Id of the new action (the final, unique id will be <em>menu id/action id</em>)<br>-   caption: Visible text<br><br>You can use action.triggered.connect(function(){ … }); to link a function to the returned action (for details see the <a class="reference external" href="https://doc.qt.io/qt-6/signalsandslots.html">qt signal/slot</a> documentation).</p></td>
+</tr>
+<tr class="row-even"><td><p>app.getManagedAction([id])</p></td>
+<td><p>Returns an <a class="reference external" href="https://doc.qt.io/qt-6/qaction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/…/menuN/action, with usually one menu, e.g. “main/edit/undo”, see texmaker.cpp)</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.createUI(file, [parent])</p></td>
+<td><p>Loads a certain ui file and creates a QWidget* from it</p></td>
+</tr>
+<tr class="row-even"><td><p>app.createUIFromString(string, [parent])</p></td>
+<td><p>Creates a QWidget* described in the string</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.slowOperationStarted()/slowOperationEnded()</p></td>
+<td><p>Notify txs about the start/end of a slow operation to temporary disable the endless loop detection.</p></td>
+</tr>
+<tr class="row-even"><td><p>app.simulateKeyPress(shortcut)</p></td>
+<td><p>Trigger a KeyPress event for the given shortcut, e.g. <code class="docutils literal notranslate"><span class="pre">app.simulateKeyPress(&quot;Shift+Up&quot;)</span></code>. <em>Note</em>: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text.</p></td>
+</tr>
+<tr class="row-odd"><td><p>new UniversalInputDialog()</p></td>
+<td><p>Creates a new dialog</p></td>
+</tr>
+<tr class="row-even"><td><p>dialog.add(defaultValue, [description, [id]])</p></td>
+<td><p>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</p></td>
+</tr>
+<tr class="row-odd"><td><p>dialog.get(nr/id)</p></td>
+<td><p>Returns the current value of the nr-th added variable or the variable with a certain id.</p></td>
+</tr>
+<tr class="row-even"><td><p>dialog.getAll()</p></td>
+<td><p>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</p></td>
+</tr>
+<tr class="row-odd"><td><p>dialog.exec()</p></td>
+<td><p>Displays the dialog. Returns 1 if the user accepted the dialog, 0 if it was canceled.</p></td>
+</tr>
+<tr class="row-even"><td><p>dialog.show()</p></td>
+<td><p>Displays the dialog asynchronously.</p></td>
+</tr>
+<tr class="row-odd"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
+<td><p>Not working in txs 4.0.0. <s>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</s></p></td>
+</tr>
+<tr class="row-even"><td><p>fileChooser.exec()</p></td>
+<td><p>show dialog and wait until it is closed again</p></td>
+</tr>
+<tr class="row-odd"><td><p>fileChooser.setDir(dir)</p></td>
+<td><p>set directory in the dialog to <em>dir</em></p></td>
+</tr>
+<tr class="row-even"><td><p>fileChooser.setFilter(filter)</p></td>
+<td><p>set file filter to <em>filter</em>, using the QT-format, see above</p></td>
+</tr>
+<tr class="row-odd"><td><p>fileChooser.fileName()</p></td>
+<td><p>return selected filename (after exec)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Some examples:</p>
+<ul>
+<li><p>Copy current file name to clipboard:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">clipboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">editor</span><span class="p">.</span><span class="nx">fileName</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Execution of editor text:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="nb">eval</span><span class="p">(</span><span class="nx">editor</span><span class="p">.</span><span class="nx">text</span><span class="p">());</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Show all properties of an object:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">write_properties</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">app</span><span class="p">.</span><span class="nx">fileNew</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="nx">newEditor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">documentManager</span><span class="p">.</span><span class="nx">currentDocument</span><span class="p">.</span><span class="nx">editorView</span><span class="p">.</span><span class="nx">editor</span><span class="p">;</span><span class="w">   </span><span class="c1">//access the newly created document</span><span class="w"></span>
+<span class="w">    </span><span class="nx">newEditor</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">));</span><span class="w">   </span><span class="c1">//print the properties</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="nx">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">editor</span><span class="p">;</span><span class="w">                                                        </span><span class="c1">//object to show (e.g. the current editor)</span><span class="w"></span>
+<span class="nx">write_properties</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Additional action in the edit menu</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">menu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">getManagedMenu</span><span class="p">(</span><span class="s2">&quot;main/edit&quot;</span><span class="p">);</span><span class="w">                   </span><span class="c1">//get edit menu</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">act</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">app</span><span class="p">.</span><span class="nx">newManagedAction</span><span class="p">(</span><span class="nx">menu</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;script&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;scripttest&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">//add action</span><span class="w"></span>
+<span class="nx">act</span><span class="p">.</span><span class="nx">triggered</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;called&quot;</span><span class="p">);});</span><span class="w">          </span><span class="c1">//register simple handler</span><span class="w"></span>
+<span class="nx">registerAsBackgroundScript</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">);</span><span class="w">                           </span><span class="c1">//keep handler valid</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Asynchronous dialog:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">ui</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createUI</span><span class="p">(</span><span class="s2">&quot; ... path to your ui file ...&quot;</span><span class="p">);</span><span class="w">  </span><span class="c1">//load dialog</span><span class="w"></span>
+<span class="nx">ui</span><span class="p">.</span><span class="nx">accepted</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">);})</span><span class="w">         </span><span class="c1">//react to dialog closing</span><span class="w"></span>
+<span class="nx">registerAsBackgroundScript</span><span class="p">(</span><span class="s2">&quot;abc&quot;</span><span class="p">);</span><span class="w">                   </span><span class="c1">//keep function valid</span><span class="w"></span>
+<span class="nx">ui</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span><span class="w">                                           </span><span class="c1">//show dialog</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The dialog is described in an ui file which can be created with the
+Qt Designer.</p>
+</li>
+</ul>
+<p>More examples can be found in the
+<a class="reference external" href="https://github.com/texstudio-org/texstudio/wiki/Scripts">Wiki</a>.</p>
+</div>
+<div class="section" id="triggers">
+<h3>Triggers<a class="headerlink" href="#triggers" title="Permalink to this heading">#</a></h3>
+<div class="section" id="regular-expressions">
+<h4>Regular Expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this heading">#</a></h4>
+<p>In its simplest form, the trigger is simply a text, which is replaced by
+the macro. E.g. trigger=”eg” macro=”example given”, “eg” in “the
+leg” is replaced on pressing “g” by “example given”<br />
+As the trigger is a regular expression, more elaborate triggers can be
+created. TXS makes use of look-behind searching: “(?&lt;=\s)%” is used
+to replace a “%” if the previous character is a space. More help on
+regular expressions can be found on the internet.</p>
+<p>You can access the matched expression in the script via the global
+variable <code class="docutils literal notranslate"><span class="pre">triggerMatches</span></code>. <code class="docutils literal notranslate"><span class="pre">triggerMatches</span></code> is an array. It’s zero-th
+component is the match to the complete regexp. The following elements
+are matches to groups (if groups are defined).</p>
+<p>Example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Trigger: #([a-z])
+Typed text: #a
+
+triggerMatches[0] == &#39;#a&#39;
+triggerMatches[1] == &#39;a&#39;
+</pre></div>
+</div>
+<p>Note: Triggers are inactive while the completer is active. For example
+you cannot trigger on <code class="docutils literal notranslate"><span class="pre">\\sec</span></code> if the completer is open suggesting to
+complete <code class="docutils literal notranslate"><span class="pre">\section</span></code>.</p>
+</div>
+<div class="section" id="limitation-of-scope">
+<h4>Limitation of Scope<a class="headerlink" href="#limitation-of-scope" title="Permalink to this heading">#</a></h4>
+<p>To the scope in which a macro will be active, you can prepend an
+expression of the pattern <code class="docutils literal notranslate"><span class="pre">(?[scope-type]:...)</span></code>.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Scope Limiting Expression</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(?language:...)</span></code></p></td>
+<td><p>The macro is only active if the highlighting of the document matches the given language.<br> Example: <code class="docutils literal notranslate"><span class="pre">(?language:latex)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">(?highlighted-as:...)</span></code></p></td>
+<td><p>Restrict the macro to certain highlighted environments. The possible values correspond to the list on the syntax highlighting config page.<br>Example: <code class="docutils literal notranslate"><span class="pre">(?highlighted-as:numbers,math-delimiter,math-keyword)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(?not-highlighted-as:...)</span></code></p></td>
+<td><p>Similar to <code class="docutils literal notranslate"><span class="pre">(?highlighted-as:...)</span></code>, but the macro is deactivated in the given environments.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You may combine <code class="docutils literal notranslate"><span class="pre">(?language:...)</span></code> and <code class="docutils literal notranslate"><span class="pre">(?highlighted-as:...)</span></code>
+expressions. However, combing <code class="docutils literal notranslate"><span class="pre">(?highlighted-as:...)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">(?not-highlighted-as:...)</span></code> does not make sense logically and has
+undefined behavior.</p>
+<p>Note that you still need the regular expression of the trigger itself.
+Here’s a full complex example:
+<code class="docutils literal notranslate"><span class="pre">(?language:latex)(?highlighted-as:comment,commentTodo)FIXME</span></code>. This
+trigger responds to typing “FIXME”, but only in comments and
+todo-notes of latex documents.</p>
+</div>
+<div class="section" id="event-triggers">
+<h4>Event Triggers<a class="headerlink" href="#event-triggers" title="Permalink to this heading">#</a></h4>
+<p>Additionally the following special trigger terms (without parentheses)
+can be used to execute the script when the corresponding event occurs:<br />
+\</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Special Trigger</p></th>
+<th class="head"><p>Executed on Event</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>?txs-start</p></td>
+<td><p>TeXstudio is started.</p></td>
+</tr>
+<tr class="row-odd"><td><p>?new-file</p></td>
+<td><p>A new file is created</p></td>
+</tr>
+<tr class="row-even"><td><p>?new-from-template</p></td>
+<td><p>A new file is created from a template</p></td>
+</tr>
+<tr class="row-odd"><td><p>?load-file</p></td>
+<td><p>A file is loaded</p></td>
+</tr>
+<tr class="row-even"><td><p>?load-this-file</p></td>
+<td><p>The file containing the macro is loaded (only makes sense, if the script is defined as <a class="reference internal" href="#advanced-header-usage"><span class="std std-doc">magic comment</span></a>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>?save-file</p></td>
+<td><p>A file is saved</p></td>
+</tr>
+<tr class="row-even"><td><p>?close-file</p></td>
+<td><p>A file is closed</p></td>
+</tr>
+<tr class="row-odd"><td><p>?master-changed</p></td>
+<td><p>A document is un/defined as master document</p></td>
+</tr>
+<tr class="row-even"><td><p>?after-typeset</p></td>
+<td><p>A latex-like command has ended</p></td>
+</tr>
+<tr class="row-odd"><td><p>?after-command-run</p></td>
+<td><p>A command run has ended (e.g. a compile command that calls latex twice and opens the viewer, will trigger this event once, but after-typeset twice)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Multiple of these special triggers can be combined by | symbols.</p>
+</div>
+</div>
+</div>
+<div class="section" id="the-convert-to-html-command">
+<h2>The “Convert to Html” command<a class="headerlink" href="#the-convert-to-html-command" title="Permalink to this heading">#</a></h2>
+<p>This command (from the “Tools” menu ) produces a set of html pages
+from a LaTeX source file with one image for each html page. Each page in
+the slide presentation corresponds to one of the postscript pages you
+would obtain running LaTeX.<br />
+The command also produces an index page corresponding to the table of
+contents you would obtain with LaTeX. Each item of the index page
+includes a link to the corresponding html page.</p>
+<p>You can create links in the html pages by using the <code class="docutils literal notranslate"><span class="pre">\\ttwplink{}{}</span></code> command in the tex file.
+Synopsis :
+\ttwplink{http://www.mylink.com}{my text} (external link)
+\ttwplink{page3.html}{my text} (internal link)
+\ttwplink{name_of_a_label}{my text} (internal link)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can’t use this command with the hyperref package (and
+some others packages). This command can only be used with the “Convert
+to html” tool.</p>
+</div>
+<p><img alt="doc18" src="_images/doc18.png" /></p>
+<p><img alt="doc19" src="_images/doc19.png" /></p>
+</div>
+</div>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="configuration.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Configuring TeXstudio</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="viewing.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Viewing a document (pdf)</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, TeXstudio Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Advanced features</a><ul>
+<li><a class="reference internal" href="#user-fold-marker">User Fold Marker</a></li>
+<li><a class="reference internal" href="#syntax-check">Syntax Check</a></li>
+<li><a class="reference internal" href="#bibliography">Bibliography</a></li>
+<li><a class="reference internal" href="#svn-support">SVN Support</a></li>
+<li><a class="reference internal" href="#using-table-templates">Using table templates</a></li>
+<li><a class="reference internal" href="#advanced-header-usage">Advanced header usage</a></li>
+<li><a class="reference internal" href="#personal-macros">Personal macros</a><ul>
+<li><a class="reference internal" href="#text-macros">Text macros</a></li>
+<li><a class="reference internal" href="#environment-macros">Environment macros</a></li>
+<li><a class="reference internal" href="#script-macros">Script Macros</a></li>
+<li><a class="reference internal" href="#triggers">Triggers</a><ul>
+<li><a class="reference internal" href="#regular-expressions">Regular Expressions</a></li>
+<li><a class="reference internal" href="#limitation-of-scope">Limitation of Scope</a></li>
+<li><a class="reference internal" href="#event-triggers">Event Triggers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-convert-to-html-command">The “Convert to Html” command</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    </body>
+</html>

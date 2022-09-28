@@ -2778,8 +2778,11 @@ void ConfigManager::loadTranslations(QString locale)
     if (txsTranslationFile.isEmpty()) {
         txsTranslationFile = findResourceFile("translation/texstudio_" + locale + ".qm");
     }
-	appTranslator->load(txsTranslationFile);
-	basicTranslator->load(findResourceFile("qt_" + locale + ".qm"));
+    bool result0=appTranslator->load(txsTranslationFile);
+    bool result1=basicTranslator->load(findResourceFile("qt_" + locale + ".qm"));
+    if(!result0 || !result1 ){
+        qDebug()<<"loading translations failed !";
+    }
 }
 /*!
  * \brief set txs InterfaceStyle

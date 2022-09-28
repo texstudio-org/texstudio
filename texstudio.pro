@@ -166,6 +166,9 @@ macx {
     QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.15
     target.path = /Applications
     manual.path = Contents/Resources/
+    manualImages.path = Contents/Resources/_images
+    manualStatic.path = Contents/Resources/
+    manualSphinx.path = Contents/Resources/_sphinx_design_static
     utilities.path = Contents/Resources/
     QMAKE_BUNDLE_DATA += utilities manual
     ICON = texstudio.icns
@@ -180,6 +183,9 @@ unix:!macx {
     target.path = $${PREFIX}/bin
     utilities.path = $${DATADIR}/texstudio
     manual.path = $${DATADIR}/texstudio
+    manualImages.path = $${DATADIR}/texstudio/_images
+    manualStatic.path = $${DATADIR}/texstudio
+    manualSphinx.path = $${DATADIR}/texstudio/_sphinx_design_static
     utilities.files = utilities/texstudio16x16.png \
         utilities/texstudio22x22.png \
         utilities/texstudio32x32.png \
@@ -323,47 +329,20 @@ unix {
         utilities/COPYING \
         utilities/manual/CHANGELOG.txt
     manual.files = \
-        utilities/manual/usermanual_en.html \
-        utilities/manual/usermanual.css \
-        utilities/manual/doc1.png \
-        utilities/manual/doc10.png \
-        utilities/manual/doc11.png \
-        utilities/manual/doc12.png \
-        utilities/manual/doc13.png \
-        utilities/manual/doc14.png \
-        utilities/manual/doc15.png \
-        utilities/manual/doc16.png \
-        utilities/manual/doc17.png \
-        utilities/manual/doc18.png \
-        utilities/manual/doc19.png \
-        utilities/manual/doc2.png \
-        utilities/manual/doc20.png \
-        utilities/manual/doc21.png \
-        utilities/manual/doc3.png \
-        utilities/manual/doc5.png \
-        utilities/manual/doc6.png \
-        utilities/manual/doc7.png \
-        utilities/manual/doc8.png \
-        utilities/manual/doc9.png \
-        utilities/manual/configure_completion.png \
-        utilities/manual/configure_commands.png \
-        utilities/manual/configure_customizeMenu.png \
-        utilities/manual/configure_customToolbar.png \
-        utilities/manual/configure_editor.png \
-        utilities/manual/configure_general.png \
-        utilities/manual/configure_shortcuts.png \
-        utilities/manual/configure_svn.png \
-        utilities/manual/configure_build.png \
-        utilities/manual/compile_toolbar.png \
-        utilities/manual/template.png \
-        utilities/manual/thesaurus.png \
-        utilities/manual/wizard_figure.png \
-        utilities/manual/block_selection.png \
-        utilities/manual/spellcheck_menu.png \
-        utilities/manual/spellcheck_options.png \
-        utilities/manual/format_example.png
+        utilities/manual/build/html/*.html
+        utilities/manual/build/html/*.js
+   manualImages.files = \
+        utilities/manual/build/html/_images/*.png
+   manualSphinx.files = \
+        utilities/manual/build/html/_sphinx_design_static/*
+   manualStatic.files = \
+        utilities/manual/build/html/_static
+
     INSTALLS += target \
         manual \
+        manualImages \
+        manualStatic \
+        manualSphinx \
         utilities
 }
 isEmpty(USE_SYSTEM_HUNSPELL){

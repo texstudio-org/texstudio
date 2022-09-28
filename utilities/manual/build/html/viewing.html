@@ -1,0 +1,429 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Viewing a document (pdf)" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="viewing.html" />
+  
+<meta property="og:description" content="Internal pdf viewer: TeXstudio has an internal (built-in) pdf viewer that lets you view your pdf documents. The viewer can be embedded or window-based (in a separate window). The former uses an are..." />
+  <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Advanced features" href="advanced.html" /><link rel="prev" title="Compiling a document" href="compiling.html" />
+
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><meta name="generator" content="sphinx-5.2.1, furo 2022.09.15"/>
+        <title>Viewing a document (pdf) - TeXstudio 4.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     Site still under construction! 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">TeXstudio 4.4.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TeXstudio 4.4.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing.html">Editing a TeX document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling a document</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Viewing a document (pdf)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring TeXstudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background information</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="section" id="viewing-a-document-pdf">
+<h1>Viewing a document (pdf)<a class="headerlink" href="#viewing-a-document-pdf" title="Permalink to this heading">#</a></h1>
+<!--
+**TODO** internal/external 
+-->
+<div class="section" id="internal-pdf-viewer">
+<h2>Internal pdf viewer<a class="headerlink" href="#internal-pdf-viewer" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio has an internal (built-in) pdf viewer that lets you view your
+pdf documents. The viewer can be embedded or window-based (in a separate
+window). The former uses an area to the right of the editor, the latter
+uses its own window and gives the user more options. The viewer can be
+opened by clicking the View button or by pressing the F7 key.</p>
+<div class="section" id="forward-and-inverse-searching">
+<h3>Forward and Inverse searching<a class="headerlink" href="#forward-and-inverse-searching" title="Permalink to this heading">#</a></h3>
+<p>In this section you will not learn how to find a specific text, as you
+know it from other editors. Searching is different: If you see something
+in your pdf document that you want to change, then you need to figure
+out where to change your LaTeX document in the editor (inverse search).
+Or you want to figure out where your changed text will be displayed in
+the pdf (forward search).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure that synctex is activated in the pdflatex command (option -synctex=1
+needs to be added), though TeXstudio will ask you if it can correct the
+command itself if it is not set correctly.</p>
+</div>
+<p>Forward search is automatically done every time the pdf-viewer is
+opened. TeXstudio will jump to the position where your cursor is
+currently positioned. Additionally you can use CTRL+left mouse button
+click on a word in the text editor to jump to the pdf or use the context
+menu and select “Go To PDF”.</p>
+<p>Inverse search can be activated by clicking in the pdf with CTRL+left
+mouse button or by selecting “jump to source” in the context menu,
+which is activated with a right mouse button click.</p>
+<p>Furthermore it is possible to enable “Scrolling follows Cursor” in
+pdf-viewer/configure. This will keep the pdf-viewer position synchronous
+to your cursor opposition in the editor. Likewise “Cursor follows
+Scrolling” keeps the editor position synchronous to pdf-viewer
+position.</p>
+<p>You may want to change otions in the config dialog (s. Internal PDF
+Viewer).</p>
+</div>
+<div class="section" id="modes-and-mouse-actions">
+<h3>Modes and mouse actions<a class="headerlink" href="#modes-and-mouse-actions" title="Permalink to this heading">#</a></h3>
+<p>You can choose main mode <em>Magnify</em> or <em>Scroll</em> from the toolbar. The
+mouse cursor used is a magnifier glass, or an open hand. These offer
+following actions:</p>
+<p>Magnify mode only</p>
+<ul class="simple">
+<li><p>left mouse button click opens magnifier showing enlarged part of the
+text, or follows a link</p></li>
+<li><p>Shift + left mouse button click increases zoom level</p></li>
+<li><p>Alt + left mouse button click decreases zoom level</p></li>
+</ul>
+<p>Scroll mode only</p>
+<ul class="simple">
+<li><p>left mouse button click grabs the document so you can scroll it
+around, or follows a link</p></li>
+<li><p>double left mouse button click opens magnifier showing enlarged part
+of the text</p></li>
+<li><p>Shift + left mouse button click sets grid page offset (s. <a class="reference internal" href="#changing-the-grid-page-offset"><span class="std std-doc">Special features</span></a>)</p></li>
+</ul>
+<p>Magnify and Scroll mode</p>
+<ul class="simple">
+<li><p>Ctrl + left mouse button click jumps to the source (inverse search)</p></li>
+<li><p>Ctrl + Shift + left mouse button click copies coordinates to
+clipboard (s. <a class="reference internal" href="#copy-page-coordinates-to-the-clipboard"><span class="std std-doc">Special features</span></a>)</p></li>
+</ul>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p>All actions above are available for the embedded pdf viewer. Even so
+changing grid page offset is not applicable, since embedded pdf
+viewer always uses a grid with one column.</p></li>
+<li><p>When you set option Presentation (menu View, or key F5), the
+windowed pdf viewer only uses left and right mouse button click to
+scroll pages forth and back, and pressing the mouse wheel button
+changes the cursor into a red laser dot.</p></li>
+<li><p>With option Full Screen set (menu View, or key Ctrl+Shift+F) the
+windowed pdf viewer’s behaviour is that of Scroll Mode.</p></li>
+<li><p>The mouse cursor hot spot of the magnifier glass lies in the center
+of the glass, that of the open hand is marked with a small cross
+outside the hand. This may help improve accuracy of inverse search.</p></li>
+</ul>
+</div>
+<div class="section" id="special-features">
+<h3>Special features<a class="headerlink" href="#special-features" title="Permalink to this heading">#</a></h3>
+<div class="section" id="changing-the-grid-page-offset">
+<h4>Changing the grid page offset<a class="headerlink" href="#changing-the-grid-page-offset" title="Permalink to this heading">#</a></h4>
+<p>The windowed pdf viewer arranges the pages in a customizable grid of
+columns and rows (s. menu View/Grid) in which the pages are placed. The
+first page may be placed on the left in the first row (i.e. a grid page
+offset of 0) and the following pages fill the row and so on:</p>
+<p><img alt="grid 4x2 (4 columns, 2 rows), first page in first column of first row" src="_images/grid4x2_book_col1.png" /></p>
+<p>A grid page offset of 0 may not be suitable in all cases. For example,
+if you are working on a book, since books have odd pages on the right.
+The first page of the document shown in the previous image should be
+positioned in the second or forth column (i.e. a grid page offset of 1
+or 3). Thus each grid row starts with an even (left) page and ends with
+an odd (right) page (if appropriate):</p>
+<p><img alt="grid 4x2, first page in second column, the space on the left side remains empty" src="_images/grid4x2_book_col2.png" /></p>
+<p>To meet this requirement, you can manually change the offset for the
+first page in any grid. To do this, use Shift + left mouse button click
+on any place of the grid while in Scroll mode. The first page will be
+moved to the place that is in the first row and in the same column as
+the place you selected with the mouse. You may frequently use grid 2x1
+with 2 columns to view books. In this case, for the sake of simplicity,
+the first page is automatically shifted to the right (i.e. an offset of
+1 is set).</p>
+<p>Hint: When option Single Page Step (menu View/Grid) is set, a manually
+set grid page offset gets ignored.</p>
+</div>
+<div class="section" id="copy-page-coordinates-to-the-clipboard">
+<h4>Copy page coordinates to the clipboard<a class="headerlink" href="#copy-page-coordinates-to-the-clipboard" title="Permalink to this heading">#</a></h4>
+<p>You can also use the pdf viewer to get the x and y coordinates of a
+point on a page by performing Ctrl + Shift + left mouse button click
+(the mouse cursor changes to a cross) at that point. By doing so, the x
+and y coordinates of the mouse position (in centimeters) with respect to
+the bottom left corner of the current page are copied into your
+clipboard.</p>
+<p>Example for x, y copied to clipboard: 10.16, 12.8372</p>
+<p>This becomes particularly useful when adjusting margins or working with
+TikZ.</p>
+</div>
+</div>
+</div>
+</div>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="advanced.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Advanced features</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="compiling.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Compiling a document</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, TeXstudio Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Viewing a document (pdf)</a><ul>
+<li><a class="reference internal" href="#internal-pdf-viewer">Internal pdf viewer</a><ul>
+<li><a class="reference internal" href="#forward-and-inverse-searching">Forward and Inverse searching</a></li>
+<li><a class="reference internal" href="#modes-and-mouse-actions">Modes and mouse actions</a></li>
+<li><a class="reference internal" href="#special-features">Special features</a><ul>
+<li><a class="reference internal" href="#changing-the-grid-page-offset">Changing the grid page offset</a></li>
+<li><a class="reference internal" href="#copy-page-coordinates-to-the-clipboard">Copy page coordinates to the clipboard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    </body>
+</html>
