@@ -183,7 +183,7 @@ File utilities\COPYING
 File utilities\latex2e.html
 File utilities\latex2e.css
 File utilities\license.txt
-File utilities\manual\*
+File /r utilities\manual\build\html\*
 
 SetOutPath $INSTDIR\share\poppler
 File /r utilities\poppler-data\*
