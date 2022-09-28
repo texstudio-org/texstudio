@@ -30,7 +30,7 @@ Note: the optional fields can be automatically deleted with the
 
 ## SVN Support
 
-Apart from the supported SVN features already describes in [section](configuration.md#configuring-svn-support) ,
+Apart from the supported SVN features already describes in [section](configuration.md#configuring-svngit-support) ,
 TeXstudio supports two more commands.
 
 \"File/Checkin\" performs an explicit save and check in, with a input
