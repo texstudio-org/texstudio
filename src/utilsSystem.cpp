@@ -196,6 +196,7 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 #endif
 #ifdef Q_OS_MAC
 	searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/"; //macx
+    searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/html/"; //macx
 #endif
 	searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
 	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new

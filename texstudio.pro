@@ -166,11 +166,13 @@ macx {
     QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.15
     target.path = /Applications
     manual.path = Contents/Resources
+    manualOSX.path = Contents/Resources
+    manualOSX.files = utilities/manual/build/html
     manualImages.path = Contents/Resources/_images
     manualStatic.path = Contents/Resources
     manualSphinx.path = Contents/Resources/_sphinx_design_static
     utilities.path = Contents/Resources/
-    QMAKE_BUNDLE_DATA += utilities manual
+    QMAKE_BUNDLE_DATA += utilities manualOSX
     ICON = texstudio.icns
     QMAKE_INFO_PLIST = Info.plist
 }
