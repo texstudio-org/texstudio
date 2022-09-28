@@ -1,6 +1,7 @@
 # Viewing a document (pdf)
 <!--
 **TODO** internal/external 
+how to switch to windowed/external
 -->
 ## Internal pdf viewer
 
@@ -8,7 +9,9 @@ TeXstudio has an internal (built-in) pdf viewer that lets you view your
 pdf documents. The viewer can be embedded or window-based (in a separate
 window). The former uses an area to the right of the editor, the latter
 uses its own window and gives the user more options. The viewer can be
-opened by clicking the View button or by pressing the F7 key.
+opened by clicking the View button or by pressing the `F7` key.
+
+![View button](images/viewbutton.png)
 
 ### Forward and Inverse searching
 
@@ -19,11 +22,11 @@ out where to change your LaTeX document in the editor (inverse search).
 Or you want to figure out where your changed text will be displayed in
 the pdf (forward search). 
 
-:::{note}
+```{note}
 Make sure that synctex is activated in the pdflatex command (option -synctex=1
 needs to be added), though TeXstudio will ask you if it can correct the
 command itself if it is not set correctly.
-:::
+```
 
 Forward search is automatically done every time the pdf-viewer is
 opened. TeXstudio will jump to the position where your cursor is
@@ -41,14 +44,14 @@ to your cursor opposition in the editor. Likewise \"Cursor follows
 Scrolling\" keeps the editor position synchronous to pdf-viewer
 position.
 
-You may want to change otions in the config dialog (s. Internal PDF
-Viewer).
-
 ### Modes and mouse actions
 
 You can choose main mode *Magnify* or *Scroll* from the toolbar. The
-mouse cursor used is a magnifier glass, or an open hand. These offer
-following actions:
+mouse cursor used is a magnifier glass, or an open hand. 
+
+![Mouse mode](images/tb_pdf_magnifyPan.png)
+
+These offer following actions:
 
 Magnify mode only
 
@@ -71,11 +74,7 @@ Magnify and Scroll mode
 -   Ctrl + Shift + left mouse button click copies coordinates to
     clipboard (s. [Special features](#copy-page-coordinates-to-the-clipboard))
 
-Remarks:
-
--   All actions above are available for the embedded pdf viewer. Even so
-    changing grid page offset is not applicable, since embedded pdf
-    viewer always uses a grid with one column.
+```{note}
 -   When you set option Presentation (menu View, or key F5), the
     windowed pdf viewer only uses left and right mouse button click to
     scroll pages forth and back, and pressing the mouse wheel button
@@ -85,10 +84,9 @@ Remarks:
 -   The mouse cursor hot spot of the magnifier glass lies in the center
     of the glass, that of the open hand is marked with a small cross
     outside the hand. This may help improve accuracy of inverse search.
+```
 
-### Special features
-
-#### Changing the grid page offset
+### Changing the grid page offset
 
 The windowed pdf viewer arranges the pages in a customizable grid of
 columns and rows (s. menu View/Grid) in which the pages are placed. The
@@ -115,10 +113,12 @@ with 2 columns to view books. In this case, for the sake of simplicity,
 the first page is automatically shifted to the right (i.e. an offset of
 1 is set).
 
-Hint: When option Single Page Step (menu View/Grid) is set, a manually
+```{hint}
+When option Single Page Step (menu View/Grid) is set, a manually
 set grid page offset gets ignored.
+```
 
-#### Copy page coordinates to the clipboard
+### Copy page coordinates to the clipboard
 
 You can also use the pdf viewer to get the x and y coordinates of a
 point on a page by performing Ctrl + Shift + left mouse button click

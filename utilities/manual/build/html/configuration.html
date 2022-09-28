@@ -403,140 +403,179 @@ the viewer is launched, the <strong>&#64;</strong>-placeholder will be replaced 
 current line number and <strong>?c:ame</strong> by the complete absolute filename of
 the current file. If your PDF file is not in the same directory as your
 .tex file you can use the <strong>?p{pdf}:ame</strong> placeholder. For details see
-<a class="reference internal" href="#command-syntax-in-detail"><span class="std std-doc">External Commands</span></a>.<br />
-<br />
-On Windows, you can execute DDE commands by inserting a command of the
-form: [dde:///service/control/[commands…]]{.command} or (since
-TeXstudio 1.9.9) also
-[dde:///programpath:service/control/[commands…]]{.command} to start
-the program if necessary.<br />
-<br />
-Below you can find a list of commands for some common viewers. Of
+<a class="reference internal" href="#command-syntax-in-detail"><span class="std std-doc">External Commands</span></a>.</p>
+<p>On Windows, you can execute DDE commands by inserting a command of the
+form: <code class="docutils literal notranslate"><span class="pre">dde:///service/control/[commands...]</span></code> or
+<code class="docutils literal notranslate"><span class="pre">dde:///programpath:service/control/[commands...]</span></code> to start
+the program if necessary.</p>
+<p>Below you can find a list of commands for some common viewers. Of
 course, you have to replace <em>(your program path)</em> with the path of the
-program on your computer, if you want to use a command.\</p>
+program on your computer, if you want to use a command.</p>
 <div class="section" id="sumatra">
 <h4>Sumatra<a class="headerlink" href="#sumatra" title="Permalink to this heading">#</a></h4>
-<p>Launch Sumatra from TeXstudio and configure Sumatra for inverse search:
-[“<em>(your sumatra path)</em>” -reuse-instance -inverse-search “&quot;<em>(your
-TeXstudio path)</em>&quot; &quot;%%f&quot; -line %%l” “?am.pdf”]{.command}<br />
-<br />
-Jump to a line in a running Sumatra (Windows only):
-[dde:///SUMATRA/control/[ForwardSearch(“?am.pdf”,”?c:am.tex”,&#64;,0,0,1)]]{.command}<br />
-<br />
-Launch Sumatra if it is not running and jump to a line in it (Windows
-only): [dde:///<em>(your sumatra
-path)</em>:SUMATRA/control/[ForwardSearch(“?am.pdf”,”?c:am.tex”,&#64;,0,0,1)]]{.command}<br />
-<br />
-Launch TeXstudio from Sumatra: [“<em>(your TeXstudio path)</em>” “%f” -line</p>
-<p><br />
-A possible value for <em>(your Sumatra path)</em> is [C:/Program
-Files/SumatraPDF/SumatraPDF.exe]{.command}</p>
+<dl class="simple myst">
+<dt>Launch Sumatra from TeXstudio and configure Sumatra for inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">sumatra</span> <span class="pre">path)&quot;</span> <span class="pre">-reuse-instance</span> <span class="pre">-inverse-search</span> <span class="pre">&quot;\&quot;*(your</span> <span class="pre">TeXstudio</span> <span class="pre">path)*\&quot;</span> <span class="pre">\&quot;%%f\&quot;</span> <span class="pre">-line</span> <span class="pre">%%l&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
+</dd>
+<dt>Jump to a line in a running Sumatra (Windows only):</dt><dd><p><code class="docutils literal notranslate"><span class="pre">dde:///SUMATRA/control/[ForwardSearch(&quot;?am.pdf&quot;,&quot;?c:am.tex&quot;,&#64;,0,0,1)]</span></code></p>
+</dd>
+<dt>Launch Sumatra if it is not running and jump to a line in it (Windows only)</dt><dd><p><code class="docutils literal notranslate"><span class="pre">dde:///(your</span> <span class="pre">sumatra</span> <span class="pre">path):SUMATRA/control/[ForwardSearch(&quot;?am.pdf&quot;,&quot;?c:am.tex&quot;,&#64;,0,0,1)]</span></code></p>
+</dd>
+<dt>Launch TeXstudio from Sumatra</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">TeXstudio</span> <span class="pre">path)&quot;</span> <span class="pre">&quot;%f&quot;</span> <span class="pre">-line</span> <span class="pre">%l</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A possible value for <em>(your Sumatra path)</em> is <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\SumatraPDF\SumatraPDF.exe</span></code></p>
+</div>
 </div>
 <div class="section" id="foxit-reader">
 <h4>Foxit Reader<a class="headerlink" href="#foxit-reader" title="Permalink to this heading">#</a></h4>
-<p>Launch Foxit Reader from TeXstudio: [“<em>(your Reader path)”</em>
-“?am.pdf”]{.command}<br />
-\</p>
+<dl class="simple myst">
+<dt>Launch Foxit Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Reader</span> <span class="pre">path)&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="acrobat-reader">
 <h4>Acrobat Reader<a class="headerlink" href="#acrobat-reader" title="Permalink to this heading">#</a></h4>
-<p>Launch Acrobat Reader from TeXstudio: [“<em>(your Reader path)”</em>
-“?am.pdf”]{.command}<br />
-<br />
-Naviation and closing are achieved via DDE commands. Since version 10 of
+<dl class="simple myst">
+<dt>Launch Acrobat Reader from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;*(your</span> <span class="pre">Reader</span> <span class="pre">path)*&quot;</span> <span class="pre">&quot;?am.pdf&quot;</span></code></p>
+</dd>
+</dl>
+<p>Naviation and closing are achieved via DDE commands. Since version 10 of
 the adobe products the DDE service name contains a letter for the
 Product and the version number.</p>
-<p>Product            Service name</p>
-<hr class="docutils" />
-<p>Adobe Reader 9     acroview
-Adobe Acrobat 9    acroview
-Adobe Reader 10    acroviewR10
-Adobe Acrobat 10   acroviewA10
-Adobe Reader 11    acroviewR11
-Adobe Acrobat 11   acroviewA11
-Adobe Reader DC    acroviewR15
-Adobe Acrobat DC   acroviewA15</p>
-<p>The following example is for Adobe Reader DC:<br />
-Jump to a position in a running Adobe Reader (Windows only):
-[dde:///acroviewR15/control/[DocOpen(“?am.pdf”)][FileOpen(“?am.pdf”)][DocGotoNameDest(“?am.pdf”,”jump-position”)]]{.command}
-        <em>jump-position can be defined with the hyperref package</em><br />
-If you have the problem that Adobe Reader does not open, you have to add
-the program path like this: [ dde:///”C:\Program Files
-(x86)\Adobe\Acrobat Reader
-DC\Reader\AcroRd32.exe”:acroviewR15/control/[DocOpen(“?am.pdf”)][FileOpen(“?am.pdf”)][DocGotoNameDest(“?am.pdf”,”jump-position”)]]{.command}<br />
-<br />
-Close the document in a running Adobe Reader (Windows only):
-[dde:///acroviewR15/control/[DocOpen(“?am.pdf”)][FileOpen(“?am.pdf”)][DocClose(“?am.pdf”)]]{.command}<br />
-<br />
-Note: Since Adobe Reader blocks writing to PDFs which are open in the
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Product</p></th>
+<th class="head"><p>Service name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Adobe Reader 9</p></td>
+<td><p>acroview</p></td>
+</tr>
+<tr class="row-odd"><td><p>Adobe Acrobat 9</p></td>
+<td><p>acroview</p></td>
+</tr>
+<tr class="row-even"><td><p>Adobe Reader 10</p></td>
+<td><p>acroviewR10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Adobe Acrobat 10</p></td>
+<td><p>acroviewA10</p></td>
+</tr>
+<tr class="row-even"><td><p>Adobe Reader 11</p></td>
+<td><p>acroviewR11</p></td>
+</tr>
+<tr class="row-odd"><td><p>Adobe Acrobat 11</p></td>
+<td><p>acroviewA11</p></td>
+</tr>
+<tr class="row-even"><td><p>Adobe Reader DC</p></td>
+<td><p>acroviewR15</p></td>
+</tr>
+<tr class="row-odd"><td><p>Adobe Acrobat DC</p></td>
+<td><p>acroviewA15</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The following example is for Adobe Reader DC:</p>
+<dl class="simple myst">
+<dt>Jump to a position in a running Adobe Reader (Windows only)</dt><dd><p><code class="docutils literal notranslate"><span class="pre">dde:///acroviewR15/control/\[DocOpen(\&quot;?am.pdf\&quot;)\]\[FileOpen(\&quot;?am.pdf\&quot;)\]\[DocGotoNameDest(\&quot;?am.pdf\&quot;,\&quot;jump-position\&quot;)\]</span></code>
+  <em>jump-position can be defined with the hyperref package</em></p>
+</dd>
+</dl>
+<p>If you have the problem that Adobe Reader does not open, you have to add
+the program path like this: <code class="docutils literal notranslate"><span class="pre">dde:///&quot;C:\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\Adobe\Acrobat</span> <span class="pre">Reader</span> <span class="pre">DC\Reader\AcroRd32.exe&quot;:acroviewR15/control/[DocOpen(&quot;?am.pdf&quot;)][FileOpen(&quot;?am.pdf&quot;)][DocGotoNameDest(&quot;?am.pdf&quot;,&quot;jump-position&quot;)]</span></code></p>
+<dl class="simple myst">
+<dt>Close the document in a running Adobe Reader (Windows only)</dt><dd><p><code class="docutils literal notranslate"><span class="pre">dde:///acroviewR15/control/[DocOpen(&quot;?am.pdf&quot;)][FileOpen(&quot;?am.pdf&quot;)][DocClose(&quot;?am.pdf&quot;)]</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since Adobe Reader blocks writing to PDFs which are open in the
 Reader, you have to close the PDF before recompiling. You can define a
 User Command for the above DDE-command and call it at the beginning of
 your build chain. This ensures that the file will be closed and thus is
 writable when compiling.</p>
 </div>
+</div>
 <div class="section" id="yap-yet-another-previewer">
 <h4>Yap (Yet Another Previewer)<a class="headerlink" href="#yap-yet-another-previewer" title="Permalink to this heading">#</a></h4>
-<p>Launch Yap from TeXstudio: [“<em>(your Yap path)</em>” -1 -s &#64;?c:m.tex</p>
-<p><br />
-Launch TeXstudio from Yap: [“<em>(your TeXstudio path)</em>” “%f” -line %l
-]{.command}<br />
-<br />
-A possible value for <em>(your Yap path)</em> is [C:\Program Files\MiKTeX
-2.7\miktex\bin\yap.exe]{.command}</p>
+<dl class="simple myst">
+<dt>Launch Yap from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">Yap</span> <span class="pre">path)&quot;</span> <span class="pre">-1</span> <span class="pre">-s</span> <span class="pre">&#64;?c:m.tex</span> <span class="pre">%.dvi</span></code></p>
+</dd>
+<dt>Launch TeXstudio from Yap</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&quot;(your</span> <span class="pre">TeXstudio</span> <span class="pre">path)&quot;</span> <span class="pre">&quot;%f&quot;</span> <span class="pre">-line</span> <span class="pre">%l</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A possible value for <em>(your Yap path)</em> is <code class="docutils literal notranslate"><span class="pre">C:\\Program</span> <span class="pre">Files\\MiKTeX</span> <span class="pre">2.7\\miktex\\bin\\yap.exe</span></code></p>
+</div>
 </div>
 <div class="section" id="xdvi">
 <h4>xdvi<a class="headerlink" href="#xdvi" title="Permalink to this heading">#</a></h4>
-<p>Launch xdvi from TeXstudio: [xdvi %.dvi -sourceposition
-&#64;:?c:m.tex]{.command}<br />
-<br />
-Launch xdvi from TeXstudio and enable inverse search: [xdvi -editor
-“texstudio %f -line” %.dvi -sourceposition &#64;:%.tex]{.command}</p>
+<dl class="simple myst">
+<dt>Launch xdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xdvi</span> <span class="pre">%.dvi</span> <span class="pre">-sourceposition</span> <span class="pre">&#64;:?c:m.tex</span></code></p>
+</dd>
+<dt>Launch xdvi from TeXstudio and enable inverse search</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xdvi</span> <span class="pre">-editor</span> <span class="pre">&quot;texstudio</span> <span class="pre">%f</span> <span class="pre">-line\&quot;</span> <span class="pre">%.dvi</span> <span class="pre">-sourceposition</span> <span class="pre">&#64;:%.tex</span></code></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="kdvi">
 <h4>kdvi<a class="headerlink" href="#kdvi" title="Permalink to this heading">#</a></h4>
-<p>Launch kdvi from TeXstudio: [kdvi “file:%.dvi#src:&#64;
-?c:m.tex”]{.command}</p>
+<dl class="simple myst">
+<dt>Launch kdvi from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">kdvi</span> <span class="pre">&quot;file:%.dvi#src:&#64;</span> <span class="pre">?c:m.tex&quot;</span></code></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="okular">
 <h4>Okular<a class="headerlink" href="#okular" title="Permalink to this heading">#</a></h4>
-<p>Launch okular from TeXstudio: [okular –unique</p>
-<p><br />
-Launch TeXstudio from Okular: [texstudio %f -line %l]{.command}</p>
+<dl class="simple myst">
+<dt>Launch okular from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">okular</span> <span class="pre">--unique</span> <span class="pre">%.dvi#src:&#64;</span> <span class="pre">?c:m.tex</span></code></p>
+</dd>
+<dt>Launch TeXstudio from Okular</dt><dd><p><code class="docutils literal notranslate"><span class="pre">texstudio</span> <span class="pre">%f</span> <span class="pre">-line</span> <span class="pre">%l</span></code></p>
+</dd>
+</dl>
 </div>
 <div class="section" id="skim">
 <h4>Skim<a class="headerlink" href="#skim" title="Permalink to this heading">#</a></h4>
-<p>Launch Skim from TeXstudio: [(your Skim
-path)/Contents/SharedSupport/displayline &#64; ?am.pdf ?c:ame]{.command}<br />
-<br />
-Launch TeXstudio from skim: Command:
-[/applications/texstudio.app/contents/macos/texstudio]{.command} with
-arguments: [“%file” -line %line ]{.command}<br />
-<br />
-A possible value for <em>(your Skim path)</em> is
-[/Applications/Skim.app]{.command}</p>
+<dl class="simple myst">
+<dt>Launch Skim from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">(your</span> <span class="pre">Skim</span> <span class="pre">path)/Contents/SharedSupport/displayline</span> <span class="pre">&#64;</span> <span class="pre">?am.pdf</span> <span class="pre">?c:ame</span></code></p>
+</dd>
+<dt>Launch TeXstudio from skim</dt><dd><p>Command <code class="docutils literal notranslate"><span class="pre">/applications/texstudio.app/contents/macos/texstudio</span></code>
+with arguments: <code class="docutils literal notranslate"><span class="pre">&quot;%file&quot;</span> <span class="pre">-line</span> <span class="pre">%line</span></code></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A possible value for <em>(your Skim path)</em> is <code class="docutils literal notranslate"><span class="pre">/Applications/Skim.app</span></code></p>
+</div>
 </div>
 <div class="section" id="qpdfview">
 <h4>qpdfview<a class="headerlink" href="#qpdfview" title="Permalink to this heading">#</a></h4>
-<p>Launch qpdfview from TeXstudio: [qpdfview –unique
-?am.pdf#src:?c:am.tex:&#64;:0 2&gt; /dev/null]{.command}<br />
-<br />
-Launch TeXstudio from qpdfview: [texstudio “%1” -line %2]{.command}</p>
+<dl class="simple myst">
+<dt>Launch qpdfview from TeXstudio</dt><dd><p><code class="docutils literal notranslate"><span class="pre">qpdfview</span> <span class="pre">--unique</span> <span class="pre">?am.pdf#src:?c:am.tex:&#64;:0</span> <span class="pre">2&gt;</span> <span class="pre">/dev/null</span></code></p>
+</dd>
+<dt>Launch TeXstudio from qpdfview</dt><dd><p><code class="docutils literal notranslate"><span class="pre">texstudio</span> <span class="pre">&quot;%1&quot;</span> <span class="pre">-line</span> <span class="pre">%2</span></code></p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="section" id="configuring-the-build-system">
 <h2>Configuring the build system<a class="headerlink" href="#configuring-the-build-system" title="Permalink to this heading">#</a></h2>
-<p>TeXstudio provides general commands for translating latex.<br />
-The default settings use “pdflatex” and the internal pdf viewer. Other
+<p>TeXstudio provides general commands for translating latex.</p>
+<p>The default settings use “pdflatex” and the internal pdf viewer. Other
 commands and viewer can be selected as well as a different bibliography
-translator.<br />
-The “embedded pdf viewer” does not open a new window for viewing the
-pdf document but presents it directly next to the text in the editor.<br />
-A useful alternative might be using the “latexmk” as compile command
+translator.</p>
+<p>The “embedded pdf viewer” does not open a new window for viewing the
+pdf document but presents it directly next to the text in the editor.</p>
+<p>A useful alternative might be using the “latexmk” as compile command
 (if the command is installed on your system), as it handles dependencies
-with biblatex and index very well.<br />
-The advanced options allows finer customization which is in general not
-necessary.\</p>
+with biblatex and index very well.</p>
+<p>The advanced options allows finer customization which is in general not
+necessary.</p>
 <p><img alt="Configure Build System" src="_images/configure_build.png" /></p>
 <p>User commands can be defined here by “adding” them. Each user command
 has a name with a pattern <code class="docutils literal notranslate"><span class="pre">&lt;command</span> <span class="pre">id&gt;:&lt;display</span> <span class="pre">name&gt;</span></code>, e.g.
@@ -544,11 +583,11 @@ has a name with a pattern <code class="docutils literal notranslate"><span class
 contain spaces. In <a class="reference internal" href="#advanced-configuration-of-the-build-system"><span class="std std-doc">advanced mode</span></a>, you can reference it
 using <code class="docutils literal notranslate"><span class="pre">txs:///&quot;&lt;command</span> <span class="pre">id&gt;</span></code>. The display name will be shown in the
 tools menu. The user commands can be activated either by short cut
-(alt+shift+F%n) or by the tools menu (Tools/User).<br />
-User commands can either consist of a combination of known commands by
+(<code class="docutils literal notranslate"><span class="pre">alt+shift+F%n</span></code>) or by the tools menu (Tools/User).</p>
+<p>User commands can either consist of a combination of known commands by
 selecting them from a list of available commands. This is triggered by
-clicking the spanner-symbol.<br />
-Alternatively a command can be directly selected through the file
+clicking the spanner-symbol.</p>
+<p>Alternatively a command can be directly selected through the file
 system.</p>
 <p><img alt="Configure user commands from known commands" src="_images/doc21.png" /></p>
 <div class="section" id="advanced-configuration-of-the-build-system">
@@ -558,34 +597,37 @@ in more detail.</p>
 <p>Every txs-command is a list of external programs/latex-commands and
 other txs-commands to call. An external program can be called with its
 usual command line, while a txs-command with id “foobar” is called by
-txs:///foobar.<br />
-The commands in the list are separated by |, which is just a separator
-(i.e. it will <em>not</em> pass the stdout from one program to the stdin of the
+<code class="docutils literal notranslate"><span class="pre">txs:///foobar</span></code>.</p>
+<p>The commands in the list are separated by <code class="docutils literal notranslate"><span class="pre">|</span></code>, which is just a separator
+(i.e. it will <strong>not</strong> pass the stdout from one program to the stdin of the
 next).</p>
-<p>Note: Use command lists only for the meta and user commands listed at
-<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Build</span></code>. Do not use then at <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Commands</span></code>. The latter
-should just be single commands (i.e. do not use | there). While it’s
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use command lists only for the meta and user commands listed at
+<em>Options -&gt; Build</em>. Do not use then at <em>Options -&gt; Commands</em>. The latter
+should just be single commands (i.e. do not use <code class="docutils literal notranslate"><span class="pre">|</span></code> there). While it’s
 currently working in some cases, generally we do not guarantee this
 behavior. It can have surprising side effects such abortion of
-compilation in some cases. Also, the use of | at <code class="docutils literal notranslate"><span class="pre">Commands</span></code> may be
+compilation in some cases. Also, the use of <code class="docutils literal notranslate"><span class="pre">|</span></code> in <em>Commands</em> may be
 prohibited completely without further notice in the future.</p>
+</div>
 <p>Each of these txs-command has a unique id, which is shown as tooltip of
 the displayed name for “normal” commands and in the edit box for user
-commands. Some important commands are usual: txs:///quick (Build &amp; View,
-the old quickbuild), txs:///compile (Default compiler), txs:///view
-(Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex),
-txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External
+commands. Some important commands are usual: <code class="docutils literal notranslate"><span class="pre">txs:///quick</span></code> (Build &amp; View,
+the old quickbuild), <code class="docutils literal notranslate"><span class="pre">txs:///compile</span></code> (Default compiler), <code class="docutils literal notranslate"><span class="pre">txs:///view</span></code>
+(Default viewer), <code class="docutils literal notranslate"><span class="pre">txs:///latex</span></code> (latex), <code class="docutils literal notranslate"><span class="pre">txs:///pdflatex</span></code> (pdflatex),
+<code class="docutils literal notranslate"><span class="pre">txs:///view-pdf</span></code> (Default Pdf Viewer), <code class="docutils literal notranslate"><span class="pre">txs:///view-pdf-external</span></code> (External
 pdf viewer).</p>
 <p>For example, in a typical build configuration you might call
-txs:///quick by pressing F1, which calls txs:///compile, which first
-calls txs:///pdflatex that calls the actual pdflatey, and then calls
-txs:///view, which calls txs:///view-pdf, which calls
-txs:///view-pdf-internal, which displays the pdf.</p>
+<code class="docutils literal notranslate"><span class="pre">txs:///quick</span></code> by pressing F1, which calls <code class="docutils literal notranslate"><span class="pre">txs:///compile</span></code>, which first
+calls <code class="docutils literal notranslate"><span class="pre">txs:///pdflatex</span></code> that calls the actual pdflatex, and then calls
+<code class="docutils literal notranslate"><span class="pre">txs:///view</span></code>, which calls <code class="docutils literal notranslate"><span class="pre">txs:///view-pdf</span></code>, which calls
+<code class="docutils literal notranslate"><span class="pre">txs:///view-pdf-internal</span></code>, which displays the pdf.</p>
 <p>There is no difference between commands defined as command on the
 command config page, commands defined as build on the build config page,
 or commands defined as user commands. They are just separated in the GUI
-to simplify the interface.<br />
-This also means that you can change every command as you want, ignoring
+to simplify the interface.</p>
+<p>This also means that you can change every command as you want, ignoring
 its old definition (you could even change its id, when editing the ini
 file.).</p>
 <p>There are however three always defined internal commands, which can only
@@ -598,14 +640,14 @@ be called and not modified:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>txs:///internal-pdf-viewer</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///internal-pdf-viewer</span></code></p></td>
 <td><p>Opens the internal viewer for the current document</p></td>
 </tr>
-<tr class="row-odd"><td><p>txs:///view-log</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///view-log</span></code></p></td>
 <td><p>Views the log file for the current document</p></td>
 </tr>
-<tr class="row-even"><td><p>txs:///conditionally-recompile-bibliography</p></td>
-<td><p>Checks if the bib files have been modified, and calls txs:///recompile-bibliography, iff that is the case</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///conditionally-recompile-bibliography</span></code></p></td>
+<td><p>Checks if the bib files have been modified, and calls <code class="docutils literal notranslate"><span class="pre">txs:///recompile-bibliography</span></code>, if that is the case</p></td>
 </tr>
 </tbody>
 </table>
@@ -621,34 +663,34 @@ be called and not modified:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>–embedded</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--embedded</span></code></p></td>
 <td><p>Opens the viewer embedded</p></td>
 </tr>
-<tr class="row-odd"><td><p>–windowed</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--windowed</span></code></p></td>
 <td><p>Opens the viewer windowed (default if no option is given)</p></td>
 </tr>
-<tr class="row-even"><td><p>–close-(all|windowed|embedded)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--close-(all|windowed|embedded)</span></code></p></td>
 <td><p>Close all open viewers, or just viewers of a specific kind</p></td>
 </tr>
-<tr class="row-odd"><td><p>–preserve-existing</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--preserve-existing</span></code></p></td>
 <td><p>Does not change any existing viewers (i.e. always opens a new one)</p></td>
 </tr>
-<tr class="row-even"><td><p>–preserve-(embedded|windowed)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--preserve-(embedded|windowed)</span></code></p></td>
 <td><p>Does not change any existing embedded/windowed viewers</p></td>
 </tr>
-<tr class="row-odd"><td><p>–preserve-duplicates</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--preserve-duplicates</span></code></p></td>
 <td><p>Only opens the pdf in the first opened viewer</p></td>
 </tr>
-<tr class="row-even"><td><p>–(no-)auto-close</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--(no-)auto-close</span></code></p></td>
 <td><p>Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</p></td>
 </tr>
-<tr class="row-odd"><td><p>–(no-)focus</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--(no-)focus</span></code></p></td>
 <td><p>Determines whether the viewer should be focused (default: focus iff windowed)</p></td>
 </tr>
-<tr class="row-even"><td><p>–(no-)foreground</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--(no-)foreground</span></code></p></td>
 <td><p>Determines whether the viewer should be brought to front (default: foreground)</p></td>
 </tr>
-<tr class="row-odd"><td><p>filename</p></td>
+<tr class="row-odd"><td><p><em>filename</em></p></td>
 <td><p>Determines the file to open. Like in other commands, <a class="reference internal" href="#configuring-the-latex-related-commands"><span class="std std-doc">file patterns</span></a> are supported. If this parameter is not provided, TXS uses <code class="docutils literal notranslate"><span class="pre">&quot;?am.pdf&quot;</span></code>, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Build</span> <span class="pre">-&gt;</span> <span class="pre">Build</span> <span class="pre">Options</span> <span class="pre">-&gt;</span> <span class="pre">Additional</span> <span class="pre">Search</span> <span class="pre">Paths</span> <span class="pre">-&gt;</span> <span class="pre">PDF</span> <span class="pre">Files</span></code></p></td>
 </tr>
 </tbody>
@@ -667,19 +709,19 @@ just a wrapper around another command:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>txs:///foobar –xyz</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar</span> <span class="pre">--xyz</span></code></p></td>
 <td><p>This will add the xyz option</p></td>
 </tr>
-<tr class="row-odd"><td><p>txs:///foobar[–xyz=123]</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar[--xyz=123]</span></code></p></td>
 <td><p>This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar)</p></td>
 </tr>
-<tr class="row-even"><td><p>txs:///foobar{–xyz=123}</p></td>
-<td><p>This will remove –xyz=123 from the foobar command line, ignoring xyz options with other values</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar{--xyz=123}</span></code></p></td>
+<td><p>This will remove <code class="docutils literal notranslate"><span class="pre">--xyz=123</span></code> from the foobar command line, ignoring xyz options with other values</p></td>
 </tr>
-<tr class="row-odd"><td><p>txs:///foobar{–xyz}</p></td>
-<td><p>This will remove any –xyz option from the foobar command line, regardless of its value</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar{--xyz}</span></code></p></td>
+<td><p>This will remove any <code class="docutils literal notranslate"><span class="pre">--xyz</span></code> option from the foobar command line, regardless of its value</p></td>
 </tr>
-<tr class="row-even"><td><p>txs:///foobar{}</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar{}</span></code></p></td>
 <td><p>This will remove all options from the foobar command line, leaving only the name of the executable</p></td>
 </tr>
 </tbody>
@@ -703,7 +745,7 @@ started. In particular this is true for the PATH. On Linux/OS X the PATH
 may depend on the way you started TeXstudio. Programs started from the
 GUI may have a different PATH setting than programs started from a shell
 (because some variables may only defined in the context of a shell (e.g.
-via ~/.bashrc).</p>
+via <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>).</p>
 <p>By default, TeXstudio parses environment variables in your commands. The
 syntax is adapted to the according operating system. A variable MYVAR
 would be written as <code class="docutils literal notranslate"><span class="pre">%MYVAR%</span></code> on Windows and <code class="docutils literal notranslate"><span class="pre">$MYVAR</span></code> on Linux and OS X.
@@ -814,7 +856,7 @@ TeXstudio supports a special “magic comment”
 <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">spellcheck</span> <span class="pre">=</span> <span class="pre">de_DE</span></code>. If this comment is present in a file, its
 language is automatically set when the file is loaded.</p>
 <p><img alt="Spellcheck Menu" src="_images/spellcheck_menu.png" /></p>
-<p>Please note: spell checking with Ctrl+Shift+F7 starts at the cursor
+<p>Please note: spell checking with <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+F7</span></code> starts at the cursor
 position and not at the beginning of the document.</p>
 <p>If the interactive spell checker is enabled (default), any incorrectly
 spelled word is underlined with a red wave. Right-click on the word to
@@ -835,9 +877,9 @@ rights) the list is stored in the user configuration directory.</p>
 <div class="section" id="configuring-the-thesaurus">
 <h3>Configuring the thesaurus<a class="headerlink" href="#configuring-the-thesaurus" title="Permalink to this heading">#</a></h3>
 <p>The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and
-US-English and German databases are distributed with TeXstudio.<br />
-Users can download others databases here :
-<a class="reference external" href="http://wiki.services.openoffice.org/wiki/Dictionaries">http://wiki.services.openoffice.org/wiki/Dictionaries</a>\</p>
+US-English and German databases are distributed with TeXstudio.</p>
+<p>Users can download others databases here :
+<a class="reference external" href="http://wiki.services.openoffice.org/wiki/Dictionaries">http://wiki.services.openoffice.org/wiki/Dictionaries</a></p>
 </div>
 <div class="section" id="configuring-the-latex-syntax-checker">
 <h3>Configuring the latex syntax checker<a class="headerlink" href="#configuring-the-latex-syntax-checker" title="Permalink to this heading">#</a></h3>
@@ -845,7 +887,7 @@ Users can download others databases here :
 to determine if a command is correct. Furthermore the completion list
 contains partially additional information to determine in which context
 a command is valid, whether it is valid only in math-mode or only in
-tabular-mode.\</p>
+tabular-mode.</p>
 </div>
 <div class="section" id="configuring-the-grammar-checker">
 <h3>Configuring the grammar checker<a class="headerlink" href="#configuring-the-grammar-checker" title="Permalink to this heading">#</a></h3>
@@ -884,8 +926,8 @@ select valid lists of commands for completion as well as syntax
 checking. However TeXstudio allows one to select the additional word
 lists under “Configure TeXstudio” -&gt; “Editor” -&gt; “”. The names
 of the word lists corresponds to the package for which they are made.
-The list latex.cwl contains the standard latex commands.<br />
-Concerning auto completion, TeXstudio allows one to adapt the behaviour
+The list latex.cwl contains the standard latex commands.</p>
+<p>Concerning auto completion, TeXstudio allows one to adapt the behaviour
 to your liking. The following options are available:</p>
 <ul class="simple">
 <li><p>Completion enabled: self explanatory</p></li>
@@ -901,7 +943,7 @@ accepting the selected word. This may speed up typing.</p></li>
 the completion list.</p></li>
 <li><p>Use Placeholders: if the completed commands have options which need
 to be filled out, placeholders are put at these positions and they
-can be jumped to by using Ctrl+Right/Ctrl+Left.</p></li>
+can be jumped to by using <code class="docutils literal notranslate"><span class="pre">Ctrl+Right</span></code>/<code class="docutils literal notranslate"><span class="pre">Ctrl+Left</span></code>.</p></li>
 </ul>
 <p>If your favorite package is not yet present for completion (and syntax
 checking), you can provide a list of your own by placing a file

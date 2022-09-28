@@ -215,6 +215,7 @@
 <h1>Viewing a document (pdf)<a class="headerlink" href="#viewing-a-document-pdf" title="Permalink to this heading">#</a></h1>
 <!--
 **TODO** internal/external 
+how to switch to windowed/external
 -->
 <div class="section" id="internal-pdf-viewer">
 <h2>Internal pdf viewer<a class="headerlink" href="#internal-pdf-viewer" title="Permalink to this heading">#</a></h2>
@@ -222,7 +223,8 @@
 pdf documents. The viewer can be embedded or window-based (in a separate
 window). The former uses an area to the right of the editor, the latter
 uses its own window and gives the user more options. The viewer can be
-opened by clicking the View button or by pressing the F7 key.</p>
+opened by clicking the View button or by pressing the <code class="docutils literal notranslate"><span class="pre">F7</span></code> key.</p>
+<p><img alt="View button" src="_images/viewbutton.png" /></p>
 <div class="section" id="forward-and-inverse-searching">
 <h3>Forward and Inverse searching<a class="headerlink" href="#forward-and-inverse-searching" title="Permalink to this heading">#</a></h3>
 <p>In this section you will not learn how to find a specific text, as you
@@ -250,14 +252,13 @@ pdf-viewer/configure. This will keep the pdf-viewer position synchronous
 to your cursor opposition in the editor. Likewise “Cursor follows
 Scrolling” keeps the editor position synchronous to pdf-viewer
 position.</p>
-<p>You may want to change otions in the config dialog (s. Internal PDF
-Viewer).</p>
 </div>
 <div class="section" id="modes-and-mouse-actions">
 <h3>Modes and mouse actions<a class="headerlink" href="#modes-and-mouse-actions" title="Permalink to this heading">#</a></h3>
 <p>You can choose main mode <em>Magnify</em> or <em>Scroll</em> from the toolbar. The
-mouse cursor used is a magnifier glass, or an open hand. These offer
-following actions:</p>
+mouse cursor used is a magnifier glass, or an open hand.</p>
+<p><img alt="Mouse mode" src="_images/tb_pdf_magnifyPan.png" /></p>
+<p>These offer following actions:</p>
 <p>Magnify mode only</p>
 <ul class="simple">
 <li><p>left mouse button click opens magnifier showing enlarged part of the
@@ -279,11 +280,9 @@ of the text</p></li>
 <li><p>Ctrl + Shift + left mouse button click copies coordinates to
 clipboard (s. <a class="reference internal" href="#copy-page-coordinates-to-the-clipboard"><span class="std std-doc">Special features</span></a>)</p></li>
 </ul>
-<p>Remarks:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>All actions above are available for the embedded pdf viewer. Even so
-changing grid page offset is not applicable, since embedded pdf
-viewer always uses a grid with one column.</p></li>
 <li><p>When you set option Presentation (menu View, or key F5), the
 windowed pdf viewer only uses left and right mouse button click to
 scroll pages forth and back, and pressing the mouse wheel button
@@ -295,10 +294,9 @@ of the glass, that of the open hand is marked with a small cross
 outside the hand. This may help improve accuracy of inverse search.</p></li>
 </ul>
 </div>
-<div class="section" id="special-features">
-<h3>Special features<a class="headerlink" href="#special-features" title="Permalink to this heading">#</a></h3>
+</div>
 <div class="section" id="changing-the-grid-page-offset">
-<h4>Changing the grid page offset<a class="headerlink" href="#changing-the-grid-page-offset" title="Permalink to this heading">#</a></h4>
+<h3>Changing the grid page offset<a class="headerlink" href="#changing-the-grid-page-offset" title="Permalink to this heading">#</a></h3>
 <p>The windowed pdf viewer arranges the pages in a customizable grid of
 columns and rows (s. menu View/Grid) in which the pages are placed. The
 first page may be placed on the left in the first row (i.e. a grid page
@@ -319,11 +317,14 @@ the place you selected with the mouse. You may frequently use grid 2x1
 with 2 columns to view books. In this case, for the sake of simplicity,
 the first page is automatically shifted to the right (i.e. an offset of
 1 is set).</p>
-<p>Hint: When option Single Page Step (menu View/Grid) is set, a manually
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>When option Single Page Step (menu View/Grid) is set, a manually
 set grid page offset gets ignored.</p>
 </div>
+</div>
 <div class="section" id="copy-page-coordinates-to-the-clipboard">
-<h4>Copy page coordinates to the clipboard<a class="headerlink" href="#copy-page-coordinates-to-the-clipboard" title="Permalink to this heading">#</a></h4>
+<h3>Copy page coordinates to the clipboard<a class="headerlink" href="#copy-page-coordinates-to-the-clipboard" title="Permalink to this heading">#</a></h3>
 <p>You can also use the pdf viewer to get the x and y coordinates of a
 point on a page by performing Ctrl + Shift + left mouse button click
 (the mouse cursor changes to a cross) at that point. By doing so, the x
@@ -333,7 +334,6 @@ clipboard.</p>
 <p>Example for x, y copied to clipboard: 10.16, 12.8372</p>
 <p>This becomes particularly useful when adjusting margins or working with
 TikZ.</p>
-</div>
 </div>
 </div>
 </div>
@@ -399,11 +399,8 @@ TikZ.</p>
 <li><a class="reference internal" href="#internal-pdf-viewer">Internal pdf viewer</a><ul>
 <li><a class="reference internal" href="#forward-and-inverse-searching">Forward and Inverse searching</a></li>
 <li><a class="reference internal" href="#modes-and-mouse-actions">Modes and mouse actions</a></li>
-<li><a class="reference internal" href="#special-features">Special features</a><ul>
 <li><a class="reference internal" href="#changing-the-grid-page-offset">Changing the grid page offset</a></li>
 <li><a class="reference internal" href="#copy-page-coordinates-to-the-clipboard">Copy page coordinates to the clipboard</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>

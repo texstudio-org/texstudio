@@ -170,144 +170,151 @@ the viewer is launched, the **@**-placeholder will be replaced by the
 current line number and **?c:ame** by the complete absolute filename of
 the current file. If your PDF file is not in the same directory as your
 .tex file you can use the **?p{pdf}:ame** placeholder. For details see
-[External Commands](#command-syntax-in-detail).\
-\
+[External Commands](#command-syntax-in-detail).
+
 On Windows, you can execute DDE commands by inserting a command of the
-form: [dde:///service/control/\[commands\...\]]{.command} or (since
-TeXstudio 1.9.9) also
-[dde:///programpath:service/control/\[commands\...\]]{.command} to start
-the program if necessary.\
-\
+form: `dde:///service/control/[commands...]` or
+`dde:///programpath:service/control/[commands...]` to start
+the program if necessary.
+
 Below you can find a list of commands for some common viewers. Of
 course, you have to replace *(your program path)* with the path of the
-program on your computer, if you want to use a command.\
+program on your computer, if you want to use a command.
 
 #### Sumatra
 
-Launch Sumatra from TeXstudio and configure Sumatra for inverse search:
-[\"*(your sumatra path)*\" -reuse-instance -inverse-search \"\\\"*(your
-TeXstudio path)*\\\" \\\"%%f\\\" -line %%l\" \"?am.pdf\"]{.command}\
-\
+Launch Sumatra from TeXstudio and configure Sumatra for inverse search
+: `"(your sumatra path)" -reuse-instance -inverse-search "\"*(your TeXstudio path)*\" \"%%f\" -line %%l" "?am.pdf"`
+
 Jump to a line in a running Sumatra (Windows only):
-[dde:///SUMATRA/control/\[ForwardSearch(\"?am.pdf\",\"?c:am.tex\",@,0,0,1)\]]{.command}\
-\
-Launch Sumatra if it is not running and jump to a line in it (Windows
-only): [dde:///*(your sumatra
-path)*:SUMATRA/control/\[ForwardSearch(\"?am.pdf\",\"?c:am.tex\",@,0,0,1)\]]{.command}\
-\
-Launch TeXstudio from Sumatra: [\"*(your TeXstudio path)*\" \"%f\" -line
-%l ]{.command}\
-\
-A possible value for *(your Sumatra path)* is [C:/Program
-Files/SumatraPDF/SumatraPDF.exe]{.command}
+: `dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]`
+
+Launch Sumatra if it is not running and jump to a line in it (Windows only)
+: `dde:///(your sumatra path):SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]`
+
+Launch TeXstudio from Sumatra
+: `"(your TeXstudio path)" "%f" -line %l`
+
+```{note}
+A possible value for *(your Sumatra path)* is `C:\Program Files\SumatraPDF\SumatraPDF.exe`
+```
 
 #### Foxit Reader
 
-Launch Foxit Reader from TeXstudio: [\"*(your Reader path)\"*
-\"?am.pdf\"]{.command}\
-\
+Launch Foxit Reader from TeXstudio
+: `"(your Reader path)" "?am.pdf"`
 
 #### Acrobat Reader
 
-Launch Acrobat Reader from TeXstudio: [\"*(your Reader path)\"*
-\"?am.pdf\"]{.command}\
-\
+Launch Acrobat Reader from TeXstudio
+: `"*(your Reader path)*" "?am.pdf"`
+
 Naviation and closing are achieved via DDE commands. Since version 10 of
 the adobe products the DDE service name contains a letter for the
 Product and the version number.
 
-  Product            Service name
-  ------------------ --------------
-  Adobe Reader 9     acroview
-  Adobe Acrobat 9    acroview
-  Adobe Reader 10    acroviewR10
-  Adobe Acrobat 10   acroviewA10
-  Adobe Reader 11    acroviewR11
-  Adobe Acrobat 11   acroviewA11
-  Adobe Reader DC    acroviewR15
-  Adobe Acrobat DC   acroviewA15
+| Product           | Service name |
+| --- | --- |
+| Adobe Reader 9    | acroview |
+| Adobe Acrobat 9   | acroview |
+| Adobe Reader 10   | acroviewR10 |
+| Adobe Acrobat 10  | acroviewA10 |
+| Adobe Reader 11   | acroviewR11 |
+| Adobe Acrobat 11  | acroviewA11 |
+| Adobe Reader DC   | acroviewR15 |
+| Adobe Acrobat DC  | acroviewA15 |
 
-The following example is for Adobe Reader DC:\
-Jump to a position in a running Adobe Reader (Windows only):
-[dde:///acroviewR15/control/\[DocOpen(\"?am.pdf\")\]\[FileOpen(\"?am.pdf\")\]\[DocGotoNameDest(\"?am.pdf\",\"jump-position\")\]]{.command}
-        *jump-position can be defined with the hyperref package*\
+The following example is for Adobe Reader DC:
+
+Jump to a position in a running Adobe Reader (Windows only)
+: `dde:///acroviewR15/control/\[DocOpen(\"?am.pdf\")\]\[FileOpen(\"?am.pdf\")\]\[DocGotoNameDest(\"?am.pdf\",\"jump-position\")\]`
+  *jump-position can be defined with the hyperref package*
+
 If you have the problem that Adobe Reader does not open, you have to add
-the program path like this: [ dde:///\"C:\\Program Files
-(x86)\\Adobe\\Acrobat Reader
-DC\\Reader\\AcroRd32.exe\":acroviewR15/control/\[DocOpen(\"?am.pdf\")\]\[FileOpen(\"?am.pdf\")\]\[DocGotoNameDest(\"?am.pdf\",\"jump-position\")\]]{.command}\
-\
-Close the document in a running Adobe Reader (Windows only):
-[dde:///acroviewR15/control/\[DocOpen(\"?am.pdf\")\]\[FileOpen(\"?am.pdf\")\]\[DocClose(\"?am.pdf\")\]]{.command}\
-\
-Note: Since Adobe Reader blocks writing to PDFs which are open in the
+the program path like this: `dde:///"C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe":acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]`
+
+Close the document in a running Adobe Reader (Windows only)
+: `dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]`
+
+```{note}
+Since Adobe Reader blocks writing to PDFs which are open in the
 Reader, you have to close the PDF before recompiling. You can define a
 User Command for the above DDE-command and call it at the beginning of
 your build chain. This ensures that the file will be closed and thus is
 writable when compiling.
+```
 
 #### Yap (Yet Another Previewer)
 
-Launch Yap from TeXstudio: [\"*(your Yap path)*\" -1 -s @?c:m.tex
-%.dvi]{.command}\
-\
-Launch TeXstudio from Yap: [\"*(your TeXstudio path)*\" \"%f\" -line %l
-]{.command}\
-\
-A possible value for *(your Yap path)* is [C:\\Program Files\\MiKTeX
-2.7\\miktex\\bin\\yap.exe]{.command}
+Launch Yap from TeXstudio
+: `"(your Yap path)" -1 -s @?c:m.tex %.dvi`
+
+Launch TeXstudio from Yap
+: `"(your TeXstudio path)" "%f" -line %l`
+
+```{note}
+A possible value for *(your Yap path)* is `C:\\Program Files\\MiKTeX 2.7\\miktex\\bin\\yap.exe`
+```
 
 #### xdvi
 
-Launch xdvi from TeXstudio: [xdvi %.dvi -sourceposition
-@:?c:m.tex]{.command}\
-\
-Launch xdvi from TeXstudio and enable inverse search: [xdvi -editor
-\"texstudio %f -line\" %.dvi -sourceposition @:%.tex]{.command}
+Launch xdvi from TeXstudio
+: `xdvi %.dvi -sourceposition @:?c:m.tex`
+
+Launch xdvi from TeXstudio and enable inverse search
+: `xdvi -editor "texstudio %f -line\" %.dvi -sourceposition @:%.tex`
 
 #### kdvi
 
-Launch kdvi from TeXstudio: [kdvi \"file:%.dvi\#src:@
-?c:m.tex\"]{.command}
+Launch kdvi from TeXstudio
+: `kdvi "file:%.dvi#src:@ ?c:m.tex"`
 
 #### Okular
 
-Launch okular from TeXstudio: [okular \--unique
-%.dvi\#src:@?c:m.tex]{.command}\
-\
-Launch TeXstudio from Okular: [texstudio %f -line %l]{.command}
+Launch okular from TeXstudio
+: `okular --unique %.dvi#src:@ ?c:m.tex`
+
+Launch TeXstudio from Okular
+: `texstudio %f -line %l`
 
 #### Skim
 
-Launch Skim from TeXstudio: [(your Skim
-path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame]{.command}\
-\
-Launch TeXstudio from skim: Command:
-[/applications/texstudio.app/contents/macos/texstudio]{.command} with
-arguments: [\"%file\" -line %line ]{.command}\
-\
-A possible value for *(your Skim path)* is
-[/Applications/Skim.app]{.command}
+Launch Skim from TeXstudio
+: `(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame`
+
+Launch TeXstudio from skim
+: Command `/applications/texstudio.app/contents/macos/texstudio`
+  with arguments: `"%file" -line %line`
+
+```{note}
+A possible value for *(your Skim path)* is `/Applications/Skim.app`
+```
 
 #### qpdfview
 
-Launch qpdfview from TeXstudio: [qpdfview \--unique
-?am.pdf\#src:?c:am.tex:@:0 2\> /dev/null]{.command}\
-\
-Launch TeXstudio from qpdfview: [texstudio \"%1\" -line %2]{.command}
+Launch qpdfview from TeXstudio
+: `qpdfview --unique ?am.pdf#src:?c:am.tex:@:0 2> /dev/null`
+
+Launch TeXstudio from qpdfview
+: `texstudio "%1" -line %2`
 
 ## Configuring the build system
 
-TeXstudio provides general commands for translating latex.\
+TeXstudio provides general commands for translating latex.
+
 The default settings use \"pdflatex\" and the internal pdf viewer. Other
 commands and viewer can be selected as well as a different bibliography
-translator.\
+translator.
+
 The \"embedded pdf viewer\" does not open a new window for viewing the
-pdf document but presents it directly next to the text in the editor.\
+pdf document but presents it directly next to the text in the editor.
+
 A useful alternative might be using the \"latexmk\" as compile command
 (if the command is installed on your system), as it handles dependencies
-with biblatex and index very well.\
+with biblatex and index very well.
+
 The advanced options allows finer customization which is in general not
-necessary.\
+necessary.
 
 ![Configure Build System](images/configure_build.png)
 
@@ -317,10 +324,12 @@ has a name with a pattern `<command id>:<display name>`, e.g.
 contain spaces. In [advanced mode](#advanced-configuration-of-the-build-system), you can reference it
 using `txs:///"<command id>`. The display name will be shown in the
 tools menu. The user commands can be activated either by short cut
-(alt+shift+F%n) or by the tools menu (Tools/User).\
+(`alt+shift+F%n`) or by the tools menu (Tools/User).
+
 User commands can either consist of a combination of known commands by
 selecting them from a list of available commands. This is triggered by
-clicking the spanner-symbol.\
+clicking the spanner-symbol.
+
 Alternatively a command can be directly selected through the file
 system.
 
@@ -334,37 +343,41 @@ in more detail.
 Every txs-command is a list of external programs/latex-commands and
 other txs-commands to call. An external program can be called with its
 usual command line, while a txs-command with id \"foobar\" is called by
-txs:///foobar.\
-The commands in the list are separated by \|, which is just a separator
-(i.e. it will *not* pass the stdout from one program to the stdin of the
+`txs:///foobar`.
+
+The commands in the list are separated by `|`, which is just a separator
+(i.e. it will **not** pass the stdout from one program to the stdin of the
 next).
 
-Note: Use command lists only for the meta and user commands listed at
-`Options -> Build`. Do not use then at `Options -> Commands`. The latter
-should just be single commands (i.e. do not use \| there). While it\'s
+```{note}
+Use command lists only for the meta and user commands listed at
+*Options -> Build*. Do not use then at *Options -> Commands*. The latter
+should just be single commands (i.e. do not use `|` there). While it\'s
 currently working in some cases, generally we do not guarantee this
 behavior. It can have surprising side effects such abortion of
-compilation in some cases. Also, the use of \| at `Commands` may be
+compilation in some cases. Also, the use of `|` in *Commands* may be
 prohibited completely without further notice in the future.
+```
 
 Each of these txs-command has a unique id, which is shown as tooltip of
 the displayed name for \"normal\" commands and in the edit box for user
-commands. Some important commands are usual: txs:///quick (Build & View,
-the old quickbuild), txs:///compile (Default compiler), txs:///view
-(Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex),
-txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External
+commands. Some important commands are usual: `txs:///quick` (Build & View,
+the old quickbuild), `txs:///compile` (Default compiler), `txs:///view`
+(Default viewer), `txs:///latex` (latex), `txs:///pdflatex` (pdflatex),
+`txs:///view-pdf` (Default Pdf Viewer), `txs:///view-pdf-external` (External
 pdf viewer).
 
 For example, in a typical build configuration you might call
-txs:///quick by pressing F1, which calls txs:///compile, which first
-calls txs:///pdflatex that calls the actual pdflatey, and then calls
-txs:///view, which calls txs:///view-pdf, which calls
-txs:///view-pdf-internal, which displays the pdf.
+`txs:///quick` by pressing F1, which calls `txs:///compile`, which first
+calls `txs:///pdflatex` that calls the actual pdflatex, and then calls
+`txs:///view`, which calls `txs:///view-pdf`, which calls
+`txs:///view-pdf-internal`, which displays the pdf.
 
 There is no difference between commands defined as command on the
 command config page, commands defined as build on the build config page,
 or commands defined as user commands. They are just separated in the GUI
-to simplify the interface.\
+to simplify the interface.
+
 This also means that you can change every command as you want, ignoring
 its old definition (you could even change its id, when editing the ini
 file.).
@@ -374,9 +387,9 @@ be called and not modified:
 
 | command | description |
 | --- | --- |
-|  txs:///internal-pdf-viewer                  |  Opens the internal viewer for the current document |
-|  txs:///view-log                             |  Views the log file for the current document |
-|  txs:///conditionally-recompile-bibliography |  Checks if the bib files have been modified, and calls txs:///recompile-bibliography, iff that is the case |
+|  `txs:///internal-pdf-viewer`                  |  Opens the internal viewer for the current document |
+|  `txs:///view-log`                             |  Views the log file for the current document |
+|  `txs:///conditionally-recompile-bibliography` |  Checks if the bib files have been modified, and calls `txs:///recompile-bibliography`, if that is the case |
 
 The internal pdf viewer also accepts the following options
 (txs:///internal-pdf-viewer) to modify its behaviour:\
@@ -384,16 +397,16 @@ The internal pdf viewer also accepts the following options
 
 | option | description |
 | --- | --- |
-|  \--embedded                        |  Opens the viewer embedded|
-|  \--windowed                        |  Opens the viewer windowed (default if no option is given)|
-|  \--close-(all\|windowed\|embedded) |  Close all open viewers, or just viewers of a specific kind|
-|  \--preserve-existing               |  Does not change any existing viewers (i.e. always opens a new one)|
-|  \--preserve-(embedded\|windowed)   |  Does not change any existing embedded/windowed viewers|
-|  \--preserve-duplicates             |  Only opens the pdf in the first opened viewer|
-|  \--(no-)auto-close                 |  Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)|
-|  \--(no-)focus                      |  Determines whether the viewer should be focused (default: focus iff windowed)|
-|  \--(no-)foreground                 |  Determines whether the viewer should be brought to front (default: foreground)|
-|  filename                           |  Determines the file to open. Like in other commands, [file patterns](#configuring-the-latex-related-commands) are supported. If this parameter is not provided, TXS uses `"?am.pdf"`, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in `Options -> Build -> Build Options -> Additional Search Paths -> PDF Files` |
+|  `--embedded`                        |  Opens the viewer embedded|
+|  `--windowed`                        |  Opens the viewer windowed (default if no option is given)|
+|  `--close-(all\|windowed\|embedded)` |  Close all open viewers, or just viewers of a specific kind|
+|  `--preserve-existing`               |  Does not change any existing viewers (i.e. always opens a new one)|
+|  `--preserve-(embedded\|windowed)`   |  Does not change any existing embedded/windowed viewers|
+|  `--preserve-duplicates`             |  Only opens the pdf in the first opened viewer|
+|  `--(no-)auto-close`                 |  Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)|
+|  `--(no-)focus`                      |  Determines whether the viewer should be focused (default: focus iff windowed)|
+|  `--(no-)foreground`                 |  Determines whether the viewer should be brought to front (default: foreground)|
+|  *filename*                           |  Determines the file to open. Like in other commands, [file patterns](#configuring-the-latex-related-commands) are supported. If this parameter is not provided, TXS uses `"?am.pdf"`, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in `Options -> Build -> Build Options -> Additional Search Paths -> PDF Files` |
   
 
 It is also possible to modify the arguments of called subcommands with
@@ -404,11 +417,11 @@ just a wrapper around another command:
 
 | command | description |
 | --- | --- |
-| txs:///foobar \--xyz        | This will add the xyz option |
-| txs:///foobar\[\--xyz=123\] | This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar) |
-| txs:///foobar{\--xyz=123}   | This will remove \--xyz=123 from the foobar command line, ignoring xyz options with other values |
-| txs:///foobar{\--xyz}       | This will remove any \--xyz option from the foobar command line, regardless of its value |
-| txs:///foobar{}             | This will remove all options from the foobar command line, leaving only the name of the executable |
+| `txs:///foobar --xyz`        | This will add the xyz option |
+| `txs:///foobar[--xyz=123]` | This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar) |
+| `txs:///foobar{--xyz=123}`   | This will remove `--xyz=123` from the foobar command line, ignoring xyz options with other values |
+| `txs:///foobar{--xyz}`       | This will remove any `--xyz` option from the foobar command line, regardless of its value |
+| `txs:///foobar{}`             | This will remove all options from the foobar command line, leaving only the name of the executable |
 
 Finally, there are also hidden options, which can only be changed by
 modifying the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable,
@@ -428,7 +441,7 @@ started. In particular this is true for the PATH. On Linux/OS X the PATH
 may depend on the way you started TeXstudio. Programs started from the
 GUI may have a different PATH setting than programs started from a shell
 (because some variables may only defined in the context of a shell (e.g.
-via \~/.bashrc).
+via `~/.bashrc`).
 
 By default, TeXstudio parses environment variables in your commands. The
 syntax is adapted to the according operating system. A variable MYVAR
@@ -549,7 +562,7 @@ language is automatically set when the file is loaded.
 
 ![Spellcheck Menu](images/spellcheck_menu.png)
 
-Please note: spell checking with Ctrl+Shift+F7 starts at the cursor
+Please note: spell checking with `Ctrl+Shift+F7` starts at the cursor
 position and not at the beginning of the document.
 
 If the interactive spell checker is enabled (default), any incorrectly
@@ -572,9 +585,10 @@ rights) the list is stored in the user configuration directory.
 ### Configuring the thesaurus
 
 The thesaurus uses OpenOffice.org 2.x databases. Only GPL French and
-US-English and German databases are distributed with TeXstudio.\
+US-English and German databases are distributed with TeXstudio.
+
 Users can download others databases here :
-<http://wiki.services.openoffice.org/wiki/Dictionaries>\
+<http://wiki.services.openoffice.org/wiki/Dictionaries>
 
 ### Configuring the latex syntax checker
 
@@ -582,7 +596,7 @@ The latex syntax checker takes the list of possible completion commands
 to determine if a command is correct. Furthermore the completion list
 contains partially additional information to determine in which context
 a command is valid, whether it is valid only in math-mode or only in
-tabular-mode.\
+tabular-mode.
 
 ### Configuring the grammar checker
 
@@ -624,7 +638,8 @@ select valid lists of commands for completion as well as syntax
 checking. However TeXstudio allows one to select the additional word
 lists under \"Configure TeXstudio\" -\> \"Editor\" -\> \"\". The names
 of the word lists corresponds to the package for which they are made.
-The list latex.cwl contains the standard latex commands.\
+The list latex.cwl contains the standard latex commands.
+
 Concerning auto completion, TeXstudio allows one to adapt the behaviour
 to your liking. The following options are available:
 
@@ -641,7 +656,7 @@ to your liking. The following options are available:
     the completion list.
 -   Use Placeholders: if the completed commands have options which need
     to be filled out, placeholders are put at these positions and they
-    can be jumped to by using Ctrl+Right/Ctrl+Left.
+    can be jumped to by using `Ctrl+Right`/`Ctrl+Left`.
 
 If your favorite package is not yet present for completion (and syntax
 checking), you can provide a list of your own by placing a file
