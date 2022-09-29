@@ -710,7 +710,7 @@ to your liking. The following options are available:
     the completion list.
 -   Enable ToolTip-Preview: show tool tips with a preview of the completion, e.g. images in case of filenames, the surrounding text in case of references, etc.
 -   Auto insert Math... : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatcally adds $ before and after that command.
-
+-   Preferred command set: selects the tab of the completer when opening it anew, see [section](editing.md#auto-completion). 
 
 If your favorite package is not yet present for completion (and syntax
 checking), you can provide a list of your own by placing a file
