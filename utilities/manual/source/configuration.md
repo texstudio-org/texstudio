@@ -623,18 +623,6 @@ TeXstudio supports a special \"magic comment\"
 language is automatically set when the file is loaded.
 
 ![Spellcheck Menu](images/spellcheck_menu.png)
-% TODO: move to editing
-Please note: spell checking with `Ctrl+Shift+F7` starts at the cursor
-position and not at the beginning of the document.
-
-If the interactive spell checker is enabled (default), any incorrectly
-spelled word is underlined with a red wave. Right-click on the word to
-open a menu with a list of possible corrections. In this context menu
-you can also add the word to the ignore list. If your dictionary is very
-large (\> 5MB), opening the context menu and showing possible
-suggestions can take some seconds. If you don\'t need the suggestion,
-you can press shift while right clicking and don\'t have to wait.
-
 Since the internal structure of the dictionaries is complex (e.g.
 contains rules on how to generate a word with different inflections), it
 is not possible to simply add words to the dictionary. Instead if a word
@@ -746,6 +734,18 @@ The list latex.cwl contains the standard latex commands. Classes are provided as
 As the number of provided files has become quite large, a filter box has been added to filter available files for easier selection.
 
 ![Configure Completion advanced](images/configure_completion_adv.png)
+
+## Configuring Highlight Colors
+TexStudio allows the adaptation of editor syntax highlight colors for personal taste.
+Color, font modification, as well as font family and size can be set.
+
+The priority setting determines which highlight is shown if more than one is active.
+A higher number means higher priority.
+
+```{caution}
+Changing font family or size may lead to distorted text output in the editor and is discouraged.
+```
+![Highlight Colors](images/configure_syntaxhighlighting.png)
 
 ## Configuring GUI scaling
 When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel indepedently. The changes is perofrmed immediately to that the result can be observed directly.

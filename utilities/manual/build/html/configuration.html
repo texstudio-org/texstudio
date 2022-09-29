@@ -16,6 +16,7 @@
         <title>Configuring TeXstudio - TeXstudio 4.4.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -903,17 +904,8 @@ the file is closed. To permanently save the language of the file,
 TeXstudio supports a special “magic comment”
 <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">spellcheck</span> <span class="pre">=</span> <span class="pre">de_DE</span></code>. If this comment is present in a file, its
 language is automatically set when the file is loaded.</p>
-<p><img alt="Spellcheck Menu" src="_images/spellcheck_menu.png" /></p>
-<p>Please note: spell checking with <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+F7</span></code> starts at the cursor
-position and not at the beginning of the document.</p>
-<p>If the interactive spell checker is enabled (default), any incorrectly
-spelled word is underlined with a red wave. Right-click on the word to
-open a menu with a list of possible corrections. In this context menu
-you can also add the word to the ignore list. If your dictionary is very
-large (&gt; 5MB), opening the context menu and showing possible
-suggestions can take some seconds. If you don’t need the suggestion,
-you can press shift while right clicking and don’t have to wait.</p>
-<p>Since the internal structure of the dictionaries is complex (e.g.
+<p><img alt="Spellcheck Menu" src="_images/spellcheck_menu.png" />
+Since the internal structure of the dictionaries is complex (e.g.
 contains rules on how to generate a word with different inflections), it
 is not possible to simply add words to the dictionary. Instead if a word
 is missing in the dictionary, you can add it to an ignore list, so that
@@ -977,6 +969,7 @@ to your liking. The following options are available:</p>
 the completion list.</p></li>
 <li><p>Enable ToolTip-Preview: show tool tips with a preview of the completion, e.g. images in case of filenames, the surrounding text in case of references, etc.</p></li>
 <li><p>Auto insert Math… : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatcally adds $ before and after that command.</p></li>
+<li><p>Preferred command set: selects the tab of the completer when opening it anew, see <a class="reference internal" href="editing.html#auto-completion"><span class="std std-doc">section</span></a>.</p></li>
 </ul>
 <p>If your favorite package is not yet present for completion (and syntax
 checking), you can provide a list of your own by placing a file
@@ -1007,6 +1000,18 @@ of the word lists corresponds to the package for which they are made.
 The list latex.cwl contains the standard latex commands. Classes are provided as class-<em>name</em>, though some classes put in the same file, thus the name is a composition of those class-names.</p>
 <p>As the number of provided files has become quite large, a filter box has been added to filter available files for easier selection.</p>
 <p><img alt="Configure Completion advanced" src="_images/configure_completion_adv.png" /></p>
+</div>
+<div class="section" id="configuring-highlight-colors">
+<h2>Configuring Highlight Colors<a class="headerlink" href="#configuring-highlight-colors" title="Permalink to this heading">#</a></h2>
+<p>TexStudio allows the adaptation of editor syntax highlight colors for personal taste.
+Color, font modification, as well as font family and size can be set.</p>
+<p>The priority setting determines which highlight is shown if more than one is active.
+A higher number means higher priority.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Changing font family or size may lead to distorted text output in the editor and is discouraged.</p>
+</div>
+<p><img alt="Highlight Colors" src="_images/configure_syntaxhighlighting.png" /></p>
 </div>
 <div class="section" id="configuring-gui-scaling">
 <h2>Configuring GUI scaling<a class="headerlink" href="#configuring-gui-scaling" title="Permalink to this heading">#</a></h2>
@@ -1180,6 +1185,7 @@ via a menu command, see <a class="reference internal" href="advanced.html#svn-su
 </ul>
 </li>
 <li><a class="reference internal" href="#configuring-the-autocompletion">Configuring the autocompletion</a></li>
+<li><a class="reference internal" href="#configuring-highlight-colors">Configuring Highlight Colors</a></li>
 <li><a class="reference internal" href="#configuring-gui-scaling">Configuring GUI scaling</a></li>
 <li><a class="reference internal" href="#configuring-shortcuts">Configuring shortcuts</a></li>
 <li><a class="reference internal" href="#configuring-the-latex-math-menu-advanced-option">Configuring the Latex/Math-Menu (Advanced option)</a></li>
@@ -1203,6 +1209,7 @@ via a menu command, see <a class="reference internal" href="advanced.html#svn-su
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
+    <script src="_static/tabs.js"></script>
     <script src="_static/design-tabs.js"></script>
     </body>
 </html>

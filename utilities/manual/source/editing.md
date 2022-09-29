@@ -54,6 +54,7 @@ the main toolbar:
 
 ![Sectioning](images/doc3.png)
 
+
 ## Browsing your document
 
 ### The Structure View
@@ -118,7 +119,7 @@ The mouse over now would show the name of the file that includes
 file1.tex (namely document.tex). The indentation shows that the text of
 file1.tex is part of the section "Main text". You may like to choose a
 different color in the configuration dialog (s. option Use color in
-global TOC in advanced editor settings).
+global TOC in [advanced editor settings](configuration.md#configuring-the-advanced-editor-settings-advanced-option)).
 
 ### Using Bookmarks
 
@@ -211,19 +212,13 @@ For example: \"Less than 10% of computer users know the meaning of
 \$PATH.\" will be converted to \"Less than 10\\% of computer users know
 the meaning of \\\$PATH.\"
 
-## Spacings
-<!---
-**TODO** general description of inserting latex commands (menu, completer, tags)
---->
-
-The usual \"spacing\" commands are available in the \"LaTeX\" and
-\"Math\" menus.
-
 ## Inserting a list
 
 The usual list environments code can be insert quickly via the
-\"LaTeX-List\" menu.\
-Note : the shortcut for the \\item command is Ctrl+Shift+I.
+\"LaTeX-List\" menu.
+```{note}
+The shortcut for the \\item command is `Ctrl+Shift+I`.
+```
 
 ## Inserting a table
 
@@ -232,8 +227,8 @@ tabular environment can be quickly inserted :
 
 ![Tabular Wizard](images/doc7.png)
 
-You can set the main features of your table.\
-Note : this dialog allows you to type directly the code in the cells.\
+You can set the main features of your table.
+Note : this dialog allows you to type directly the code in the cells.
 The corresponding LaTeX code is automatically inserted in the editor.
 
 ### Manipulating tables
@@ -250,8 +245,8 @@ offered:
     position. If the cursor is positioned at start of line,first column,
     the column is added as new first column.
 -   Remove Column: remove current column
--   Add/Remove \\hline: add/remove \\hline in all rows following the
-    current row. If already a command \\hline is present, no second
+-   Add/Remove \\hline: add/remove `\hline` in all rows following the
+    current row. If already a command `\hline` is present, no second
     command is placed.
 -   Align Columns: Aligns the column separators (ampersand) by
     introducing whitespace. The text in the cells is aligned according
@@ -348,51 +343,177 @@ completed.
 
 ## Auto Completion
 
-Whenever you press \\ followed by a letter, a list of possible LaTeX
-tags is shown where you select the right one. If you type additional
+### Command completion
+
+Whenever you press `\` followed by a letter, a list of possible LaTeX
+tags is shown. If you type additional
 letters, the list is filtered, so that only the tags starting with the
 already written text are shown. If the list contains words which all
-start with the same letter combination, you can press Tab to complete
-all common letters. If only one element is present in the list, Tab
-selects this one to do the completion, like Enter. This behaviour is
-similar to tab completion in bash shells. You can also press Ctrl+Space
-to open this list whenever you want.\
+start with the same letter combination, you can press `Tab` to complete
+all common letters. If only one element is present in the list, `Tab`
+selects this one to do the completion, like `Enter`. This behaviour is
+similar to tab completion in bash shells. You can also press `Ctrl+Space`
+to open this completer whenever you want.
+
+![open completer](images/completer.png)
+
 If a tag has different options, a short descriptive text is inserted
 into your text, telling you the meaning of each option. You can press
-Ctrl+Left, Ctrl+Right to select all positions.\
-Furthermore normal text can be completed by starting to type a word and
-pressing Ctrl+Space. All appropriate words in the current document are
-used as possible suggestions.\
-If an environment is to be inserted, typing in the beginning of the
-environment name and pressing Ctrl+Alt+Space gives suggestions for
-adequate environments which are inserted completely with
-\\begin{env}..\\end{env}.\
-And finally, user tags can be assigned an abbreviation which can also be
-used with completion. Just type in the start of the abbreviation and
-start the completion with Ctrl+Space. The abbreviation should show up in
-the completion list, especially marked with "abbreviation (template)".\
+`Ctrl+Left`, `Ctrl+Right` to select all positions.
+
 If you change a command by completing a new command, only the command
 name is substituted. The same is true for environments, where the
-environment is changed in the \\begin- and \\end-command.\
-\
+environment is changed in the `\begin`- and `\end`-command.
+
 The completer has several operation modes which are shown in the tabs
-below the command list.\
+below the command list.
 
 -   Typical: list only typical commands and filter out rather unusual
     commands.
 -   Most used: list only commands which have already been used in the
-    completer by the user. Is empty if txs has not been used before.
+    completer by the user. This Is empty if txs has not been used before.
 -   Fuzzy: search the command in a fuzzy way. The command needs to
     contain all given letters in the same order though with a arbitrary
-    of letters between them. E.g. \\bf lists, among others,
+    of letters between them. E.g. `\bf` lists, among others,
     \\**b**egin{**f**igure}
 -   All: list all known commands.
 
+### Text completion
+Furthermore normal text can be completed by starting to type a word and
+pressing `Ctrl+Space`. All appropriate words in the current document are
+used as possible suggestions.
+
+![text completion](images/completer_text.png)
+
+### Environment completion
+If an environment is to be inserted, typing in the beginning of the
+environment name and pressing `Ctrl+Alt+Space` gives suggestions for
+adequate environments which are inserted completely with
+`\\begin{env}..\\end{env}`.
+
+```{tab} Entering env-name
+![env completing before](images/completer_env_before.png)
+```
+
+```{tab} Completing env-name
+![env completing after pressing keys](images/completer_env.png)
+```
+### Reference/BibID completion
+When entering reference commands, the completer offers those commands prefilled with potential references.
+
+If a reference is changed or the command offers to enter several references, the completer can suggest  available references.
+
+It works the same for *bibIDs*
+
+```{tab} Reference command completion
+![completing reference command](images/completer_ref.png)
+```
+
+```{tab} Reference completion
+![completing references](images/completer_reference.png)
+```
+
+
+
+### KeyVal completion
+TexStudio knows the possible keys and values for a number of commands.
+The completer opens automatically when entering keys or pressing `,` to start the next key.
+It also treats length specifially to offer only these when appropriate.
+
+```{tab} Complete key
+![KeyVal completion](images/completer_keys.png)
+```
+
+```{tab} Complete length value
+![KeyVal completion](images/completer_length.png)
+```
+
+### Filename completion
+TexStudio can also complete filenames, mainly for `\include`- and `\includegraphics`-commands.
+
+If the completer selection is on an image file, that image is previewed as a tooltip.
+
+```{tab} File name completion
+![completing filename](images/completer_filename.png)
+```
+
+```{tab} File name completion with preview
+![completing filename preview](images/completer_filename_preview.png)
+```
+
+
+### User tags completion
+And finally, user tags can be assigned an abbreviation which can also be
+used with completion. Just type in the start of the abbreviation and
+start the completion with `Ctrl+Space`. The abbreviation should show up in
+the completion list, especially marked with "abbreviation (Usertag)".
+They can be defined in the [personal macros](advanced.md#personal-macros).
+The abbreviation may start with a backslash (`\`) allowing autostart of the completer.
+
+```{tab} Abbreviation
+![completing user tag](images/completer_usertag_text.png)
+```
+
+```{tab} Abbreviation starting with backslash
+![completing user tag with backslash](images/completer_usertag.png)
+```
+
+
+## Spell check
+TexStudio checks the spelling as you type.
+Right-click on the word to
+open a menu with a list of possible corrections. In this context menu
+you can also add the word to the ignore list. 
+
+![Spelling error](images/spelling_error.png)
+```{note}
+If your dictionary is very
+large (\> 5MB), opening the context menu and showing possible
+suggestions can take some seconds. If you don\'t need the suggestion,
+you can press shift while right clicking and don\'t have to wait.
+```
+The active language is shown at the bottom of the main window.
+You can directly select a different language by clicking on the language code, see [also](configuration.md#configuring-the-spell-checker).
+
+![active language](images/active_language.png)
+```{note}
+More languages may be available in the configuation dialog, as txs filters the available language here to a predefined set plus all previously used languages.
+```
+The spell checking dialog, which can be open from the menu *tools/check spelling..* or with `CTRL+:`,
+allows searching for these underlined spelling mistakes starting from the current cursor position.
+
+Scrolls and selects the next misspelled word and offers suggestions to correct it. You may choose one of the suggestions, type something on your own in the `replace with field` or choose to ignore it.
+`Adding` means to permanently add the found word as correct in the spell checker. The `Show User Words` button allows to check that list and also to remove mistakenly added words.
+
+![Spell checking dialog](images/speller_dialog.png)
+## Syntax check
+TexStudio tries to determine if a command is correct by an internal list of valid commands.
+It also tries to understand command context to some degree, so to see that math commands outside a math environment are not correct.
+
+![Syntax error](images/syntax_error.png)
+
+A tool tip on the error marking states the reason, why txs thinks that there is an error.
+
+The supported error types are:
+
+-   Unrecognized commands
+-   Commands outside the proper environment, especially math-commands
+-   Missing `\begin`/`\end` commands
+-   Unrecognized key/value in some key/value options, e.g. `\includegraphics[*keyval option*]...`
+-   Mismatch in defined/realized column number in tabular-like environments
+
+![Syntax error with tool tip](images/syntax_error_tooltip.png)
+
+```{caution}
+LaTeX commands and especially LaTeX syntax are too complex to successfully check them completely.
+Marked errors are probably real errors except in special environemts, but that does **not** guarantee an errror free document.
+However the syntax marking may help to find issue significantly, especially in tabular environemnts.
+```
 ## Thesaurus
 
 TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases
 are used for this. By placing the cursor on a word and activating the
-thesaurus (Ctrl+Shift+F8 or Edit/Thesaurus), it tries to find synonyms
+thesaurus (`Ctrl+Shift+F8` or Edit/Thesaurus), it tries to find synonyms
 for this word. Please be patient if you start the thesaurus at first
 time since loading the database just occurs then and can take a few
 moments.
@@ -409,14 +530,16 @@ further investigations for words and their synonyms which \"start with\"
 or \"contain\" that word. With \"lookup\" it can be directly used to
 look for a synonym for that word.
 
+The thesaurus can be selected in the [configuration](configuration.md#configuring-the-thesaurus).
+
 ## Special Commands
 
 ### Delete word/command/environment
 
 With the shortcut Alt+Del, the word under the cursor is deleted. If it
 is a command, the command is deleted including opening and closing
-braces. E.g. \"\\textbf{text}\" leave \"text\". If it is an environment,
-the enclosing begin/end are removed.
+braces. E.g. `\textbf{text}` leave `text`. If it is an environment,
+the enclosing `\begin`/`\end` are removed.
 
 ### Rename environment
 
@@ -424,14 +547,14 @@ If you place the cursor on an environment name, after a moment a
 mirror-cursor is activated on the environment name which allows
 synchronous change of the environment name in the begin- and
 end-command. So if you want to change a
-\"\\begin{tabular}\...\\end{tabular}\" construction to
-\"\\begin{tabularx}\...\\end{tabularx}\", place the text cursor on
-\"tabular\", wait for a second and then, after the mirror-cursor
-appears, change \"tabular\" to \"tabularx\".
+`\begin{tabular}...\end{tabular}` construction to
+`\begin{tabularx}...\end{tabularx}`, place the text cursor on
+`tabular`, wait for a second and then, after the mirror-cursor
+appears, change `tabular` to `tabularx`.
 
 ### Cut Buffer
 
 If you select something and then start to type in a command and complete
-it, the selection is put in as first argument. E.g. you have a \"text\",
-select it and start typing \"\\textbf\", command which is completed. The
-resulting text is \"\\textbf{text}\".
+it, the selection is put in as first argument. E.g. you have a `text`,
+select it and start typing `\textbf`, command which is completed. The
+resulting text is `\textbf{text}`.

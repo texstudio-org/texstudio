@@ -6,18 +6,6 @@ Normally every structure command marks a start of foldable range, and every envi
 
 ![Example for user fold marker](images/userfoldmarker.png)
 
-## Syntax Check
-
-The latex syntax checker takes the list of possible completion commands
-to determine if a command is correct. The completion list contains
-partially additional information to determine in which context a command
-is valid, whether it is valid only in math-mode or only in
-tabular-mode.\
-Furthermore the correctness of tabulars is checked in a little more
-detail. The number of columns is analyzed and checked in the subsequent
-rows. If more or less columns are given in a row, a warning maker is
-shown.\
-
 ## Bibliography
 
 For the \"bib\" files , the \"Bibliography\" menu enables you to

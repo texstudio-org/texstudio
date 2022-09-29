@@ -16,6 +16,7 @@
         <title>Advanced features - TeXstudio 4.4.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -217,18 +218,6 @@
 <h2>User Fold Marker<a class="headerlink" href="#user-fold-marker" title="Permalink to this heading">#</a></h2>
 <p>Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments <code class="docutils literal notranslate"><span class="pre">%BEGIN_FOLD</span></code> and <code class="docutils literal notranslate"><span class="pre">%END_FOLD</span></code>.</p>
 <p><img alt="Example for user fold marker" src="_images/userfoldmarker.png" /></p>
-</div>
-<div class="section" id="syntax-check">
-<h2>Syntax Check<a class="headerlink" href="#syntax-check" title="Permalink to this heading">#</a></h2>
-<p>The latex syntax checker takes the list of possible completion commands
-to determine if a command is correct. The completion list contains
-partially additional information to determine in which context a command
-is valid, whether it is valid only in math-mode or only in
-tabular-mode.<br />
-Furthermore the correctness of tabulars is checked in a little more
-detail. The number of columns is analyzed and checked in the subsequent
-rows. If more or less columns are given in a row, a warning maker is
-shown.\</p>
 </div>
 <div class="section" id="bibliography">
 <h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">#</a></h2>
@@ -1103,7 +1092,6 @@ to html” tool.</p>
             <ul>
 <li><a class="reference internal" href="#">Advanced features</a><ul>
 <li><a class="reference internal" href="#user-fold-marker">User Fold Marker</a></li>
-<li><a class="reference internal" href="#syntax-check">Syntax Check</a></li>
 <li><a class="reference internal" href="#bibliography">Bibliography</a></li>
 <li><a class="reference internal" href="#svn-support">SVN Support</a></li>
 <li><a class="reference internal" href="#using-table-templates">Using table templates</a></li>
@@ -1139,6 +1127,7 @@ to html” tool.</p>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
+    <script src="_static/tabs.js"></script>
     <script src="_static/design-tabs.js"></script>
     </body>
 </html>

@@ -16,6 +16,7 @@
         <title>Editing a TeX document - TeXstudio 4.4.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
@@ -312,7 +313,7 @@ file name itself appears in the TOC (without file extension):</p>
 file1.tex (namely document.tex). The indentation shows that the text of
 file1.tex is part of the section “Main text”. You may like to choose a
 different color in the configuration dialog (s. option Use color in
-global TOC in advanced editor settings).</p>
+global TOC in <a class="reference internal" href="configuration.html#configuring-the-advanced-editor-settings-advanced-option"><span class="std std-doc">advanced editor settings</span></a>).</p>
 </div>
 <div class="section" id="using-bookmarks">
 <h3>Using Bookmarks<a class="headerlink" href="#using-bookmarks" title="Permalink to this heading">#</a></h3>
@@ -397,19 +398,14 @@ $PATH.” will be converted to “Less than 10\% of computer users know
 the meaning of \$PATH.”</p>
 </div>
 </div>
-<div class="section" id="spacings">
-<h2>Spacings<a class="headerlink" href="#spacings" title="Permalink to this heading">#</a></h2>
-<!---
-**TODO** general description of inserting latex commands (menu, completer, tags)
---->
-<p>The usual “spacing” commands are available in the “LaTeX” and
-“Math” menus.</p>
-</div>
 <div class="section" id="inserting-a-list">
 <h2>Inserting a list<a class="headerlink" href="#inserting-a-list" title="Permalink to this heading">#</a></h2>
 <p>The usual list environments code can be insert quickly via the
-“LaTeX-List” menu.<br />
-Note : the shortcut for the \item command is Ctrl+Shift+I.</p>
+“LaTeX-List” menu.\</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The shortcut for the \item command is Ctrl+Shift+I.</p>
+</div>
 </div>
 <div class="section" id="inserting-a-table">
 <h2>Inserting a table<a class="headerlink" href="#inserting-a-table" title="Permalink to this heading">#</a></h2>
@@ -521,52 +517,173 @@ completed.</p>
 </div>
 <div class="section" id="auto-completion">
 <h2>Auto Completion<a class="headerlink" href="#auto-completion" title="Permalink to this heading">#</a></h2>
-<p>Whenever you press \ followed by a letter, a list of possible LaTeX
-tags is shown where you select the right one. If you type additional
+<div class="section" id="command-completion">
+<h3>Command completion<a class="headerlink" href="#command-completion" title="Permalink to this heading">#</a></h3>
+<p>Whenever you press <code class="docutils literal notranslate"><span class="pre">\</span></code> followed by a letter, a list of possible LaTeX
+tags is shown. If you type additional
 letters, the list is filtered, so that only the tags starting with the
 already written text are shown. If the list contains words which all
-start with the same letter combination, you can press Tab to complete
-all common letters. If only one element is present in the list, Tab
-selects this one to do the completion, like Enter. This behaviour is
-similar to tab completion in bash shells. You can also press Ctrl+Space
-to open this list whenever you want.<br />
-If a tag has different options, a short descriptive text is inserted
+start with the same letter combination, you can press <code class="docutils literal notranslate"><span class="pre">Tab</span></code> to complete
+all common letters. If only one element is present in the list, <code class="docutils literal notranslate"><span class="pre">Tab</span></code>
+selects this one to do the completion, like <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. This behaviour is
+similar to tab completion in bash shells. You can also press <code class="docutils literal notranslate"><span class="pre">Ctrl+Space</span></code>
+to open this completer whenever you want.</p>
+<p><img alt="open completer" src="_images/completer.png" /></p>
+<p>If a tag has different options, a short descriptive text is inserted
 into your text, telling you the meaning of each option. You can press
-Ctrl+Left, Ctrl+Right to select all positions.<br />
-Furthermore normal text can be completed by starting to type a word and
-pressing Ctrl+Space. All appropriate words in the current document are
-used as possible suggestions.<br />
-If an environment is to be inserted, typing in the beginning of the
-environment name and pressing Ctrl+Alt+Space gives suggestions for
-adequate environments which are inserted completely with
-\begin{env}..\end{env}.<br />
-And finally, user tags can be assigned an abbreviation which can also be
-used with completion. Just type in the start of the abbreviation and
-start the completion with Ctrl+Space. The abbreviation should show up in
-the completion list, especially marked with “abbreviation (template)”.<br />
-If you change a command by completing a new command, only the command
+<code class="docutils literal notranslate"><span class="pre">Ctrl+Left</span></code>, <code class="docutils literal notranslate"><span class="pre">Ctrl+Right</span></code> to select all positions.</p>
+<p>If you change a command by completing a new command, only the command
 name is substituted. The same is true for environments, where the
-environment is changed in the \begin- and \end-command.<br />
-<br />
-The completer has several operation modes which are shown in the tabs
-below the command list.\</p>
+environment is changed in the <code class="docutils literal notranslate"><span class="pre">\begin</span></code>- and <code class="docutils literal notranslate"><span class="pre">\end</span></code>-command.</p>
+<p>The completer has several operation modes which are shown in the tabs
+below the command list.</p>
 <ul class="simple">
 <li><p>Typical: list only typical commands and filter out rather unusual
 commands.</p></li>
 <li><p>Most used: list only commands which have already been used in the
-completer by the user. Is empty if txs has not been used before.</p></li>
+completer by the user. This Is empty if txs has not been used before.</p></li>
 <li><p>Fuzzy: search the command in a fuzzy way. The command needs to
 contain all given letters in the same order though with a arbitrary
-of letters between them. E.g. \bf lists, among others,
+of letters between them. E.g. <code class="docutils literal notranslate"><span class="pre">\bf</span></code> lists, among others,
 \<strong>b</strong>egin{<strong>f</strong>igure}</p></li>
 <li><p>All: list all known commands.</p></li>
 </ul>
+</div>
+<div class="section" id="text-completion">
+<h3>Text completion<a class="headerlink" href="#text-completion" title="Permalink to this heading">#</a></h3>
+<p>Furthermore normal text can be completed by starting to type a word and
+pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+Space</span></code>. All appropriate words in the current document are
+used as possible suggestions.</p>
+<p><img alt="text completion" src="_images/completer_text.png" /></p>
+</div>
+<div class="section" id="environment-completion">
+<h3>Environment completion<a class="headerlink" href="#environment-completion" title="Permalink to this heading">#</a></h3>
+<p>If an environment is to be inserted, typing in the beginning of the
+environment name and pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+Alt+Space</span></code> gives suggestions for
+adequate environments which are inserted completely with
+<code class="docutils literal notranslate"><span class="pre">\\begin{env}..\\end{env}</span></code>.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Entering env-name</label><div class="tab-content docutils">
+<p><img alt="env completing before" src="_images/completer_env_before.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Completing env-name</label><div class="tab-content docutils">
+<p><img alt="env completing after pressing keys" src="_images/completer_env.png" /></p>
+</div>
+</div>
+</div>
+<div class="section" id="reference-bibid-completion">
+<h3>Reference/BibID completion<a class="headerlink" href="#reference-bibid-completion" title="Permalink to this heading">#</a></h3>
+<p>When entering reference commands, the completer offers those commands prefilled with potential references.</p>
+<p>If a reference is changed or the command offers to enter several references, the completer can suggest  available references.</p>
+<p>It works the same for <em>bibIDs</em></p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Reference command completion</label><div class="tab-content docutils">
+<p><img alt="completing reference command" src="_images/completer_ref.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Reference completion</label><div class="tab-content docutils">
+<p><img alt="completing references" src="_images/completer_reference.png" /></p>
+</div>
+</div>
+</div>
+<div class="section" id="keyval-completion">
+<h3>KeyVal completion<a class="headerlink" href="#keyval-completion" title="Permalink to this heading">#</a></h3>
+<p>TexStudio knows the possible keys and values for a number of commands.
+The completer opens automatically when entering keys or pressing <code class="docutils literal notranslate"><span class="pre">,</span></code> to start the next key.
+It also treats length specifially to offer only these when appropriate.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Complete key</label><div class="tab-content docutils">
+<p><img alt="KeyVal completion" src="_images/completer_keys.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">Complete length value</label><div class="tab-content docutils">
+<p><img alt="KeyVal completion" src="_images/completer_length.png" /></p>
+</div>
+</div>
+</div>
+<div class="section" id="filename-completion">
+<h3>Filename completion<a class="headerlink" href="#filename-completion" title="Permalink to this heading">#</a></h3>
+<p>TexStudio can also complete filenames, mainly for <code class="docutils literal notranslate"><span class="pre">\include</span></code>- and <code class="docutils literal notranslate"><span class="pre">\includegraphics</span></code>-commands.</p>
+<p>If the completer selection is on an image file, that image is previewed as a tooltip.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">File name completion</label><div class="tab-content docutils">
+<p><img alt="completing filename" src="_images/completer_filename.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">File name completion with preview</label><div class="tab-content docutils">
+<p><img alt="completing filename preview" src="_images/completer_filename_preview.png" /></p>
+</div>
+</div>
+</div>
+<div class="section" id="user-tags-completion">
+<h3>User tags completion<a class="headerlink" href="#user-tags-completion" title="Permalink to this heading">#</a></h3>
+<p>And finally, user tags can be assigned an abbreviation which can also be
+used with completion. Just type in the start of the abbreviation and
+start the completion with <code class="docutils literal notranslate"><span class="pre">Ctrl+Space</span></code>. The abbreviation should show up in
+the completion list, especially marked with “abbreviation (Usertag)”.
+They can be defined in the <a class="reference internal" href="advanced.html#personal-macros"><span class="std std-doc">personal macros</span></a>.
+The abbreviation may start with a backslash (<code class="docutils literal notranslate"><span class="pre">\</span></code>) allowing autostart of the completer.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">Abbreviation</label><div class="tab-content docutils">
+<p><img alt="completing user tag" src="_images/completer_usertag_text.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">Abbreviation starting with backslash</label><div class="tab-content docutils">
+<p><img alt="completing user tag with backslash" src="_images/completer_usertag.png" /></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="spell-check">
+<h2>Spell check<a class="headerlink" href="#spell-check" title="Permalink to this heading">#</a></h2>
+<p>TexStudio checks the spelling as you type.
+Right-click on the word to
+open a menu with a list of possible corrections. In this context menu
+you can also add the word to the ignore list.</p>
+<p><img alt="Spelling error" src="_images/spelling_error.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your dictionary is very
+large (&gt; 5MB), opening the context menu and showing possible
+suggestions can take some seconds. If you don’t need the suggestion,
+you can press shift while right clicking and don’t have to wait.</p>
+</div>
+<p>The active language is shown at the bottom of the main window.
+You can directly select a different language by clicking on the language code, see <a class="reference internal" href="configuration.html#configuring-the-spell-checker"><span class="std std-doc">also</span></a>.</p>
+<p><img alt="active language" src="_images/active_language.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More languages may be available in the configuation dialog, as txs filters the available language here to a predefined set plus all previously used languages.</p>
+</div>
+<p>The spell checking dialog, which can be open from the menu <em>tools/check spelling..</em> or with <code class="docutils literal notranslate"><span class="pre">CTRL+:</span></code>,
+allows searching for these underlined spelling mistakes starting from the current cursor position.</p>
+<p>Scrolls and selects the next misspelled word and offers suggestions to correct it. You may choose one of the suggestions, type something on your own in the <code class="docutils literal notranslate"><span class="pre">replace</span> <span class="pre">with</span> <span class="pre">field</span></code> or choose to ignore it.
+<code class="docutils literal notranslate"><span class="pre">Adding</span></code> means to permanently add the found word as correct in the spell checker. The <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">User</span> <span class="pre">Words</span></code> button allows to check that list and also to remove mistakenly added words.</p>
+<p><img alt="Spell checking dialog" src="_images/speller_dialog.png" /></p>
+</div>
+<div class="section" id="syntax-check">
+<h2>Syntax check<a class="headerlink" href="#syntax-check" title="Permalink to this heading">#</a></h2>
+<p>TexStudio tries to determine if a command is correct by an internal list of valid commands.
+It also tries to understand command context to some degree, so to see that math commands outside a math environment are not correct.</p>
+<p><img alt="Syntax error" src="_images/syntax_error.png" /></p>
+<p>A tool tip on the error marking states the reason, why txs thinks that there is an error.</p>
+<p>The supported error types are:</p>
+<ul class="simple">
+<li><p>Unrecognized commands</p></li>
+<li><p>Commands outside the proper environment, especially math-commands</p></li>
+<li><p>Missing <code class="docutils literal notranslate"><span class="pre">\begin</span></code>/<code class="docutils literal notranslate"><span class="pre">\end</span></code> commands</p></li>
+<li><p>Unrecognized key/value in some key/value options, e.g. <code class="docutils literal notranslate"><span class="pre">\includegraphics[*keyval</span> <span class="pre">option*]...</span></code></p></li>
+<li><p>Mismatch in defined/realized column number in tabular-like environments</p></li>
+</ul>
+<p><img alt="Syntax error with tool tip" src="_images/syntax_error_tooltip.png" /></p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>LaTeX commands and especially LaTeX syntax are too complex to successfully check them completely.
+Marked errors are probably real errors except in special environemts, but that does <strong>not</strong> guarantee an errror free document.
+However the syntax marking may help to find issue significantly, especially in tabular environemnts.</p>
+</div>
 </div>
 <div class="section" id="thesaurus">
 <h2>Thesaurus<a class="headerlink" href="#thesaurus" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio has integrated a simple thesaurus. OpenOffice 2.x databases
 are used for this. By placing the cursor on a word and activating the
-thesaurus (Ctrl+Shift+F8 or Edit/Thesaurus), it tries to find synonyms
+thesaurus (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+F8</span></code> or Edit/Thesaurus), it tries to find synonyms
 for this word. Please be patient if you start the thesaurus at first
 time since loading the database just occurs then and can take a few
 moments.</p>
@@ -580,6 +697,7 @@ the text. This word can be changed manually. It is also used to do
 further investigations for words and their synonyms which “start with”
 or “contain” that word. With “lookup” it can be directly used to
 look for a synonym for that word.</p>
+<p>The thesaurus can be selected in the <a class="reference internal" href="configuration.html#configuring-the-thesaurus"><span class="std std-doc">configuration</span></a>.</p>
 </div>
 <div class="section" id="special-commands">
 <h2>Special Commands<a class="headerlink" href="#special-commands" title="Permalink to this heading">#</a></h2>
@@ -587,8 +705,8 @@ look for a synonym for that word.</p>
 <h3>Delete word/command/environment<a class="headerlink" href="#delete-word-command-environment" title="Permalink to this heading">#</a></h3>
 <p>With the shortcut Alt+Del, the word under the cursor is deleted. If it
 is a command, the command is deleted including opening and closing
-braces. E.g. “\textbf{text}” leave “text”. If it is an environment,
-the enclosing begin/end are removed.</p>
+braces. E.g. <code class="docutils literal notranslate"><span class="pre">\textbf{text}</span></code> leave <code class="docutils literal notranslate"><span class="pre">text</span></code>. If it is an environment,
+the enclosing <code class="docutils literal notranslate"><span class="pre">\begin</span></code>/<code class="docutils literal notranslate"><span class="pre">\end</span></code> are removed.</p>
 </div>
 <div class="section" id="rename-environment">
 <h3>Rename environment<a class="headerlink" href="#rename-environment" title="Permalink to this heading">#</a></h3>
@@ -596,17 +714,17 @@ the enclosing begin/end are removed.</p>
 mirror-cursor is activated on the environment name which allows
 synchronous change of the environment name in the begin- and
 end-command. So if you want to change a
-“\begin{tabular}…\end{tabular}” construction to
-“\begin{tabularx}…\end{tabularx}”, place the text cursor on
-“tabular”, wait for a second and then, after the mirror-cursor
-appears, change “tabular” to “tabularx”.</p>
+<code class="docutils literal notranslate"><span class="pre">\begin{tabular}...\end{tabular}</span></code> construction to
+<code class="docutils literal notranslate"><span class="pre">\begin{tabularx}...\end{tabularx}</span></code>, place the text cursor on
+<code class="docutils literal notranslate"><span class="pre">tabular</span></code>, wait for a second and then, after the mirror-cursor
+appears, change <code class="docutils literal notranslate"><span class="pre">tabular</span></code> to <code class="docutils literal notranslate"><span class="pre">tabularx</span></code>.</p>
 </div>
 <div class="section" id="cut-buffer">
 <h3>Cut Buffer<a class="headerlink" href="#cut-buffer" title="Permalink to this heading">#</a></h3>
 <p>If you select something and then start to type in a command and complete
-it, the selection is put in as first argument. E.g. you have a “text”,
-select it and start typing “\textbf”, command which is completed. The
-resulting text is “\textbf{text}”.</p>
+it, the selection is put in as first argument. E.g. you have a <code class="docutils literal notranslate"><span class="pre">text</span></code>,
+select it and start typing <code class="docutils literal notranslate"><span class="pre">\textbf</span></code>, command which is completed. The
+resulting text is <code class="docutils literal notranslate"><span class="pre">\textbf{text}</span></code>.</p>
 </div>
 </div>
 </div>
@@ -686,7 +804,6 @@ resulting text is “\textbf{text}”.</p>
 <li><a class="reference internal" href="#escaping-reserved-characters">Escaping reserved characters</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#spacings">Spacings</a></li>
 <li><a class="reference internal" href="#inserting-a-list">Inserting a list</a></li>
 <li><a class="reference internal" href="#inserting-a-table">Inserting a table</a><ul>
 <li><a class="reference internal" href="#manipulating-tables">Manipulating tables</a></li>
@@ -699,7 +816,18 @@ resulting text is “\textbf{text}”.</p>
 </li>
 <li><a class="reference internal" href="#cross-references-and-notes">Cross References and notes</a></li>
 <li><a class="reference internal" href="#inserting-math-formula">Inserting math formula</a></li>
-<li><a class="reference internal" href="#auto-completion">Auto Completion</a></li>
+<li><a class="reference internal" href="#auto-completion">Auto Completion</a><ul>
+<li><a class="reference internal" href="#command-completion">Command completion</a></li>
+<li><a class="reference internal" href="#text-completion">Text completion</a></li>
+<li><a class="reference internal" href="#environment-completion">Environment completion</a></li>
+<li><a class="reference internal" href="#reference-bibid-completion">Reference/BibID completion</a></li>
+<li><a class="reference internal" href="#keyval-completion">KeyVal completion</a></li>
+<li><a class="reference internal" href="#filename-completion">Filename completion</a></li>
+<li><a class="reference internal" href="#user-tags-completion">User tags completion</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#spell-check">Spell check</a></li>
+<li><a class="reference internal" href="#syntax-check">Syntax check</a></li>
 <li><a class="reference internal" href="#thesaurus">Thesaurus</a></li>
 <li><a class="reference internal" href="#special-commands">Special Commands</a><ul>
 <li><a class="reference internal" href="#delete-word-command-environment">Delete word/command/environment</a></li>
@@ -725,6 +853,7 @@ resulting text is “\textbf{text}”.</p>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/scripts/furo.js"></script>
+    <script src="_static/tabs.js"></script>
     <script src="_static/design-tabs.js"></script>
     </body>
 </html>

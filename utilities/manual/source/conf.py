@@ -20,6 +20,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'sphinx.ext.extlinks',
+    'sphinx_inline_tabs',
     'sphinx_design',
     'sphinxext.opengraph',
 ]
