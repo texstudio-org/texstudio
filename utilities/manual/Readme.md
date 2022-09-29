@@ -15,6 +15,7 @@ pip3 install myst_parser
 pip3 install sphinx_comments
 pip3 install sphinx_design
 pip3 install sphinxext.opengraph
+pip3 install sphinx-inline-tabs
 pip3 install furo
 ```
 
