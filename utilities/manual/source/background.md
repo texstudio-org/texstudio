@@ -102,7 +102,7 @@ following purposes:
 Each line of a cwl file defines a command. Comment lines are possible
 and start with `#`. The command syntax is
 
-`<command>[#classification]`\
+`<command>[#classification]`
 
 If no classification is given, the command is considered valid at any
 position in a LaTeX document. The char `#` cannot be used inside a
@@ -127,7 +127,7 @@ position in a LaTeX document. The char `#` cannot be used inside a
     syntax checking\
     If \#\#L is added to a key, a length is expected as argument.\
     If \#\#l is added to a key, the argument is defining a label. (see
-    listings.cwl)\
+    listings.cwl)
 -   `#endkeyvals` (at start of line): end definition of keyvals, see
     graphicx.cwl in source code
 -   `#ifOption:<option>` (at start of line): the following block is only
@@ -256,7 +256,7 @@ The following classifications are known to TXS:
 |  /env1,env2,\... | valid only in environment env1 or env2 etc. |
 |  \\env           | environment alias, means that the environment is handled like the \"env\" environment. This is useful for env=math or tabular. |
 
-Examples:\
+Examples:
 
 |  Line                                              | Explanation |
 |  --------------------------------------------------| ---------------------------------------------------------------------------------------------------------------------------------------------- |

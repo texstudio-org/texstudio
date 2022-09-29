@@ -10,7 +10,8 @@ Normally every structure command marks a start of foldable range, and every envi
 
 For the \"bib\" files , the \"Bibliography\" menu enables you to
 directly insert the entries corresponding to the standard types of
-document.\
+document.
+
 Note: the optional fields can be automatically deleted with the
 \"Clean\" command of the \"Bibliography\" menu.
 
@@ -39,7 +40,8 @@ yet unsaved.
 
 
 Texstudio offers the possibility to reformat an existing latex table
-after a table template.\
+after a table template.
+
 For example, you have entered following table into txs:
 
 ```latex
@@ -50,7 +52,8 @@ c&d\\
 ```
 
 Place the cursor inside the table and select the menu \"Latex/Manipulate
-Tables/Remodel Table Using Template\".\
+Tables/Remodel Table Using Template\".
+
 Now you can select a template which defines the formatting of the table.
 A number of templates are predefined by txs:
 
@@ -86,7 +89,8 @@ the following magic comments:
 `% !TeX spellcheck = de_DE` 
 :   Defines the language used for spell checking of the document. This
     overrides the global spellchecking settings. Nevertheless, an
-    appropriate dictionary has to be installed.\
+    appropriate dictionary has to be installed.
+
     If no spellchecking is desired, set value to \"*none*\".
 
 `% !TeX encoding = utf8`
@@ -146,41 +150,43 @@ TeXstudio allows you to insert your own macros. These macros are defined
 with the \"Macros - Edit Macros\" menu. Macros can consist of simple
 text which is directly placed into txs. It can also be an
 \"environment\" which are automatically extended by begin/end or it can
-be a java script. The needed functionality can be selected by checkbox.\
+be a java script. The needed functionality can be selected by checkbox.
+
 The \"abbreviation\" is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
-that the pseudo-command needs to start with a backslash (\"\\\").\
+that the pseudo-command needs to start with a backslash (\"\\\").
+
 \"Trigger\" is a regular expression which triggers the inclusion of the
 macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
-[below](#triggers) for more details).\
+[below](#triggers) for more details).
+
 Some macros can be directly downloaded from an internet repository. The
 dialog is started with the button \"Browse\". For easier data exchange,
 macros can be im- and exported to a file. If you want to add a macro of
 your own to that repository, you can hand it in as a feature request on
-[Github](https://github.com/texstudio-org/texstudio/issues).\
-Each macro can be assigned a fixed shortcut in the \"Shortcut\" box.\
+[Github](https://github.com/texstudio-org/texstudio/issues).
+Each macro can be assigned a fixed shortcut in the \"Shortcut\" box.
 The list of macros on the left-hand side represents the macro ordering
 in the macro-menu. It is rearranged with the
 \"up\"/\"down\"/\"add\"/\"remove\" buttons or with drag and drop.
 Folders can be added to sort a larger number of macros sensibly. To move
-macros into/from folders, only drag and drop works.\
+macros into/from folders, only drag and drop works.
 The \"run script\" button directly executes a script in the editor for
-testing.\
-\
+testing.
 
 ![doc17](images/doc17.png)
 
 ### Text macros
 
 Apart from normal text, some special codes are recognized and replaced
-on insertion.\
+on insertion.
 
 -   If you write %\| somewhere the cursor will be placed at that place
     in the inserted text. (A second %\| will select everything between
     them).
 -   Write %\<something%\> to mark it as placeholder which is highlighted
-    in the text and can be selected by Ctrl+Left/Right.\
+    in the text and can be selected by `Ctrl+Left/Right`.
     Additional properties of the placeholder can be set after a %:, e.g.
     %\<something%:persistent,id:123,mirror%\>. The available properties
     are:
@@ -216,13 +222,18 @@ on insertion.\
 ### Environment macros
 
 The text will be used as environment-name, thus \"%environment\" will be
-inserted as:\
-\\begin{environment }\
-\
-\\end{environment }\
-\
-Note: texstudio needs that the env-name starts with \"%\", though that
+inserted as:
+
+```latex
+\\begin{environment }
+
+\\end{environment }
+```
+
+```{note}
+TexStudio needs that the env-name starts with \"%\", though that
 character is not placed on insertion.
+```
 
 ### Script Macros
 
@@ -439,7 +450,8 @@ More examples can be found in the
 
 In its simplest form, the trigger is simply a text, which is replaced by
 the macro. E.g. trigger=\"eg\" macro=\"example given\", \"eg\" in \"the
-leg\" is replaced on pressing \"g\" by \"example given\"\
+leg\" is replaced on pressing \"g\" by \"example given\"
+
 As the trigger is a regular expression, more elaborate triggers can be
 created. TXS makes use of look-behind searching: \"(?\<=\\s)%\" is used
 to replace a \"%\" if the previous character is a space. More help on
@@ -487,8 +499,7 @@ todo-notes of latex documents.
 #### Event Triggers
 
 Additionally the following special trigger terms (without parentheses)
-can be used to execute the script when the corresponding event occurs:\
-\
+can be used to execute the script when the corresponding event occurs:
 
 | Special Trigger | Executed on Event |
 |  --- | --- |
@@ -510,16 +521,22 @@ Multiple of these special triggers can be combined by \| symbols.
 This command (from the \"Tools\" menu ) produces a set of html pages
 from a LaTeX source file with one image for each html page. Each page in
 the slide presentation corresponds to one of the postscript pages you
-would obtain running LaTeX.\
+would obtain running LaTeX.
+
 The command also produces an index page corresponding to the table of
 contents you would obtain with LaTeX. Each item of the index page
 includes a link to the corresponding html page.
 
 You can create links in the html pages by using the `\\ttwplink{}{}` command in the tex file.
-Synopsis :
-\\ttwplink{http://www.mylink.com}{my text} (external link)
-\\ttwplink{page3.html}{my text} (internal link)
-\\ttwplink{name\_of\_a\_label}{my text} (internal link)
+
+Synopsis:
+
+```latex
+\ttwplink{http://www.mylink.com}{my text} (external link)
+\ttwplink{page3.html}{my text} (internal link)
+\ttwplink{name_of_a_label}{my text} (internal link)
+```
+
 ```{warning}
 You can\'t use this command with the hyperref package (and
 some others packages). This command can only be used with the \"Convert

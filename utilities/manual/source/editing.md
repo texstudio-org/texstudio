@@ -177,7 +177,7 @@ You can quickly set the format of a part of your text with this tool bar
 **Additional option:** a selected text can be directly framed by certain
 environments. Example: while clicking on the button \"Bold\" after
 having selected the word \"Hello\" , you will obtain the code:
-\\textbf{Hello}.\
+`\textbf{Hello}`.
 This option is available for all the environments indicated by
 \"\[selection\]\" in the \"LaTeX\" menu.
 
@@ -275,7 +275,8 @@ wizard (\"Wizard\" menu) :
 
 To insert a picture in your document, just use the \"\\includegraphics\"
 command in the \"LaTeX\" menu. Then, click on the \"browser\" button in
-the dialog to select the graphic file.\
+the dialog to select the graphic file.
+
 Note : you can insert a \"figure\" LaTeX environment (\"LaTeX -
 Environments\" menu) before inserting the picture.
 
@@ -289,13 +290,16 @@ wizard for handling graphics insertion code in your document. \"Graphics
 options\" defines the optional parameter of
 `\includegraphics[options]{file}`. While the most used width/height
 attributes can be easily set, alternatively you have full control with
-the user defined setting.\
+the user defined setting.
+
 Place the graphic inside a `figure` environment if it does not have to
 be at an exact position in the text. Then LaTeX will determine an
-optimal position on the page.\
+optimal position on the page.
+
 By pressing the \"Save as default\" button the current settings (except
 file, caption and label) are stored and will hence be used as default
-when you open the wizard.\
+when you open the wizard.
+
 The wizard also comes into play when you drag drop an image file to your
 document or use copy in explorer and paste in TeXstudio. Together with
 the adjustable default parameters this makes insertion of new pictures
@@ -308,9 +312,12 @@ settings.
 ## Cross References and notes
 
 This toolbox in the toolbar allows you to insert quickly the label,
-cite, ref, footnote\... code.\
-Note : the labels used in your documents are displayed in the
+cite, ref, footnote\... code.
+
+```{note}
+The labels used in your documents are displayed in the
 \"Structure View\".
+```
 
 ![Structure View Labels](images/doc10.png)
 
@@ -321,7 +328,8 @@ select directly the label.
 
 You can toggle in the \"in-line math\" environment with the \"f(x)\"
 button in the toolbar (shortcut : Ctrl+Alt+M) or with the \"Math\" menu.
-The shortcut for the \"display math\" environment is : Alt+Shift+M.\
+The shortcut for the \"display math\" environment is : Alt+Shift+M.
+
 The \"Math\" toolbar allows you to insert the most currents mathematical
 forms (frac, sqrt\...) like the \\left and \\right tags.
 
@@ -333,7 +341,8 @@ code of 400 mathematical symbols.
 ![Math Symbols Panel](images/doc12.png)
 
 You can also define the format of your mathematical text via the
-\"Math\" menu.\
+\"Math\" menu.
+
 For the \"array\" environments, a wizard (like the \"Tabular\" wizard)
 is available in the \"Wizard\" menu. With this wizard, you can select
 the environment : array, matrix, pmatrix\.... The cells can be directly

@@ -47,7 +47,8 @@ You may change the default encoding for new files (\"Configure
 TeXstudio\" -\> \"Editor\" -\> \"Editor Font Encoding\") if you don\'t
 want utf8 as encoding. Don\'t forget to set the same encoding in the
 preamble of your documents. (e.g. `\usepackage[utf8]{inputenc}`, if you
-use utf-8).\
+use utf-8).
+
 TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use
 a different encoding in your existing documents you have to specify it
 in the configuration dialog before opening them. (and then you also have
@@ -460,8 +461,7 @@ be called and not modified:
 |  `txs:///conditionally-recompile-bibliography` |  Checks if the bib files have been modified, and calls `txs:///recompile-bibliography`, if that is the case |
 
 The internal pdf viewer also accepts the following options
-(txs:///internal-pdf-viewer) to modify its behaviour:\
-\
+(txs:///internal-pdf-viewer) to modify its behaviour:
 
 | option | description |
 | --- | --- |
@@ -623,6 +623,7 @@ TeXstudio supports a special \"magic comment\"
 language is automatically set when the file is loaded.
 
 ![Spellcheck Menu](images/spellcheck_menu.png)
+
 Since the internal structure of the dictionaries is complex (e.g.
 contains rules on how to generate a word with different inflections), it
 is not possible to simply add words to the dictionary. Instead if a word
