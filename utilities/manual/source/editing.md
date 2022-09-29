@@ -621,5 +621,13 @@ select it and start typing `\textbf`, command which is completed. The
 resulting text is `\textbf{text}`.
 
 ### Block cursor
-% TODO fill with content
-% ctrl+shift+alt  & ctrl+alt
+TeXstudio supports block cursors (or multiple cursors).
+Cursors can be added by `Ctrl+Alt`+left click.
+The cursors can jointly add and remove text and select charcters.
+Pressing `esc` or clicking into the text ends the block cursor mode. 
+
+![block cursor](images/blockCursor.png)
+
+By clicking `Ctrl+Shift+Alt`+left click a block from the current cursor to the mouse position is selected.
+
+![block cursor with selection](images/blockCursor_selection.png)

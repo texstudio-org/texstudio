@@ -472,6 +472,10 @@ can be used to execute the script when the corresponding event occurs:
 
 Multiple of these special triggers can be combined by \| symbols.
 
+## Save/Load Profile
+
+## Sessions
+
 ## The \"Convert to Html\" command
 
 This command (from the \"Tools\" menu ) produces a set of html pages

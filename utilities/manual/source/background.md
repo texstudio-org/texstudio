@@ -41,9 +41,8 @@ a not-loaded files, TeXstudio does not know about it and will mark it as
 missing in references. To remedy this, you can just open the
 corresponding file as well.
 
-More recent versions of TeXstudio have an advanced option
-`Editor -> Automatically load included files`. It\'s disabled by default
-for performance reasons with older systems. When you enable this option,
+TeXstudio has an advanced option
+`Editor -> Automatically load included files`.
 TeXstudio will automatically load and parse all files of
 multi-file-documents as soon as one of the files is opened. You may have
 to set the magic comment `% !TeX root = root-filename` if you do not
@@ -318,16 +317,17 @@ Optionally, meta data can be stored in JSON format in a separate file
 with the same name, but extension \".json\" instead of \".tex\" or
 \".zip\". Currently the following entries are supported in the meta
 data:
-
-    {
-    "Name"        : "Book",
-    "Author"      : "TXS built-in",
-    "Date"        : "04.01.2013",
-    "Version"     : "1.1",
-    "Description" : "Default LaTeX class for books using separate files for each chapter.",
-    "License"     : "Public Domain",
-    "FilesToOpen" : "./TeX_files/chapter01.tex;main.tex"
-    }
+```javascript
+{
+"Name"        : "Book",
+"Author"      : "TXS built-in",
+"Date"        : "04.01.2013",
+"Version"     : "1.1",
+"Description" : "Default LaTeX class for books using separate files for each chapter.",
+"License"     : "Public Domain",
+"FilesToOpen" : "./TeX_files/chapter01.tex;main.tex"
+}
+```
 
 FilesToOpen only has an effect for mutli-file documents. You may add a
 preview image next to the template file. Again, it must have the same
@@ -345,13 +345,15 @@ can be stored in a `metaData` object in the source code. The code
 only string values are accepted. It is possible to use html tags for
 formatting. Example:
 
-    var metaData = {
-    "Name"       : "Colored rows",
-    "Description" : "Formats the table using alternate colors for rows. <br> <code>\usepackage[table]{xcolor}</code> is necessary.",
-    "Author"      : "Jan Sundermeyer",
-    "Date"        : "4.9.2011",
-    "Version"     : "1.0"
-    }
+```javascript
+var metaData = {
+"Name"       : "Colored rows",
+"Description" : "Formats the table using alternate colors for rows. <br> <code>\usepackage[table]{xcolor}</code> is necessary.",
+"Author"      : "Jan Sundermeyer",
+"Date"        : "4.9.2011",
+"Version"     : "1.0"
+}
+```
 
 The template itself is a javascript (see above) with some prefined
 variables which contain the whole table. The new table is just placed as
@@ -360,7 +362,7 @@ variables are given:
 
 -   def the simplified table definition without any formatting (i.e. ll
     instead of \|l\|l\|)
--   defSplit the table definition split by column (array=l,l,p{2cm})
+-   defSplit the table definition split by column (`array=l,l,p{2cm}`)
 -   env the actual environment name of the old table like \"tabular\" or
     \"longtable\"
 -   tab the actual table. It is a list of lines, each line is a list of
@@ -369,59 +371,61 @@ variables are given:
 To see the principle of work, the source for the \"plain\_tabular\"
 template is given here.
 
-    function print(str){ //define this function to make source more readable
-    cursor.insertText(str)
+```javascript
+function print(str){ //define this function to make source more readable
+cursor.insertText(str)
+}
+function println(str){ //define this function to make source more readable
+cursor.insertText(str+"\n")
+}
+var arDef=def.split("") // split the table definition (ll -> 'l' 'l')
+println("\\begin{tabular}{"+arDef.join("")+"}") //print table env
+for(var i=0;i<tab.length;i++){  // loop through all rows of the table
+    var line=tab[i];  // line is a list of all columns of row[i]
+    for(var j=0;j<line.length;j++){ // loop through all columns of a row
+        print(line[j]) // print cell
+        if(j<line.length-1) // if not last columns
+            print("&") // print &
     }
-    function println(str){ //define this function to make source more readable
-    cursor.insertText(str+"\n")
-    }
-    var arDef=def.split("") // split the table definition (ll -> 'l' 'l')
-    println("\\begin{tabular}{"+arDef.join("")+"}") //print table env
-    for(var i=0;i<tab.length;i++){  // loop through all rows of the table
-        var line=tab[i];  // line is a list of all columns of row[i]
-        for(var j=0;j<line.length;j++){ // loop through all columns of a row
-            print(line[j]) // print cell
-            if(j<line.length-1) // if not last columns
-                print("&") // print &
-        }
-        println("\\\\") // close row with \\, note that js demands for backslashes in the string
-    }
-    println("\\end{tabular}") // close environment
+    println("\\\\") // close row with \\, note that js demands for backslashes in the string
+}
+println("\\end{tabular}") // close environment
+```
 
 As can be seen in the example, the table has to be rebuilt completely,
 thus allowing new formatting. A second example gives a slightly more
 elaborate table (fullyframed\_firstBold):
 
-    function print(str){
-    cursor.insertText(str)
+```javascript
+function print(str){
+cursor.insertText(str)
+}
+function println(str){
+cursor.insertText(str+"\n")
+}
+if(env=="tabularx"){
+    println("\\begin{tabularx}{\\linewidth}{|"+defSplit.join("|")+"|}")
+}else{
+    println("\\begin{"+env+"}{|"+defSplit.join("|")+"|}")
+}
+println("\\hline")
+for(var i=0;i<tab.length;i++){
+    var line=tab[i];
+    for(var j=0;j<line.length;j++){
+                var col=line[j];
+                var mt=col.match(/^\\textbf/);
+                if(i==0 && !mt)
+                    print("\\textbf{")
+        print(line[j])
+                if(i==0 && !mt)
+                    print("}")
+        if(j<line.length-1)
+            print("&")
     }
-    function println(str){
-    cursor.insertText(str+"\n")
-    }
-    if(env=="tabularx"){
-      println("\\begin{tabularx}{\\linewidth}{|"+defSplit.join("|")+"|}")
-    }else{
-        println("\\begin{"+env+"}{|"+defSplit.join("|")+"|}")
-    }
-    println("\\hline")
-    for(var i=0;i<tab.length;i++){
-        var line=tab[i];
-        for(var j=0;j<line.length;j++){
-                    var col=line[j];
-                    var mt=col.match(/^\\textbf/);
-                    if(i==0 && !mt)
-                      print("\\textbf{")
-            print(line[j])
-                    if(i==0 && !mt)
-                      print("}")
-            if(j<line.length-1)
-                print("&")
-        }
-        println("\\\\ \\hline")
-    }
-    println("\\end{"+env+"}")
-
-
+    println("\\\\ \\hline")
+}
+println("\\end{"+env+"}")
+```
 
 ## Style Sheets
 
