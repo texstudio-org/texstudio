@@ -1,16 +1,17 @@
 # chemfig package
-# Matthew Bertucci 10/14/2021 for v1.6b
+# Matthew Bertucci 2022/09/28 for v1.6c
 
 #include:simplekv
 #include:tikz
+# loads arrows.meta tikzlibrary
 
 \chemfig{code%definition}
 \chemfig[options%keyvals]{code%definition}
 \setchemfig{options%keyvals}
 
 #keyvals:\chemfig,\setchemfig
-chemfig style=
-atom style=
+chemfig style={%<TikZ keys%>}
+atom style={%<TikZ keys%>}
 bond join#true,false
 fixed length#true,false
 cram rectangle#true,false
@@ -21,18 +22,18 @@ atom sep=##L
 bond offset=##L
 double bond sep=##L
 angle increment=%<degrees%>
-node style=
-bond style=
+node style={%<TikZ keys%>}
+bond style={%<TikZ keys%>}
 cycle radius coeff=
 stack sep=##L
 show cntcycle#true,false
 autoreset cntcycle#true,false
-compound style=
-compound sep=
+compound style={%<TikZ keys%>}
+compound sep=##L
 arrow offset=##L
 arrow angle=%<degrees%>
-arrow coeff=
-arrow style=
+arrow coeff=%<decimal%>
+arrow style={%<TikZ keys%>}
 arrow double sep=##L
 arrow double coeff=
 arrow double harpoon#true,false
@@ -41,6 +42,9 @@ arrow head=
 + sep left=##L
 + sep right=##L
 + vshift=##L
+gchemname#true,false
+schemestart code=%<code%>
+schemestop code=%<code%>
 #endkeyvals
 
 #keyvals:\setchemfig
@@ -78,11 +82,11 @@ shortcuts#true,false
 lewisautorot#true,false
 .radius=##L
 :sep=##L
-.style=
+.style={%<TikZ keys%>}
 "length=##L
 "width=##L
-"style=
-|style=
+"style={%<TikZ keys%>}
+|style={%<TikZ keys%>}
 #endkeyvals
 
 \resetcharge

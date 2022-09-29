@@ -1482,3 +1482,7 @@ wgexport:
 class-wgexport
 latex-document
 tex
+udes-genie-these:
+class-udes-genie-these
+latex-document
+tex

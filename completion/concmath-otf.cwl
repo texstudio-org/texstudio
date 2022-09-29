@@ -1,5 +1,5 @@
 # concmath-otf package
-# Matthew Bertucci 4/23/2022 for v0.21
+# Matthew Bertucci 2022/09/28 for v0.22
 
 #include:iftex
 #include:unicode-math
@@ -49,7 +49,6 @@ Style=#leqslant,smaller,subsetneq,upint
 \mdblklozenge#m
 \mdwhtlozenge#m
 \mithbar#*m
-\mupvarzero#*m
 \ngeqq#m
 \ngeqslant#m
 \nleqq#m
