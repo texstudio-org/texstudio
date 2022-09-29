@@ -9,7 +9,7 @@
   
 <meta property="og:url" content="advanced.html" />
   
-<meta property="og:description" content="User Fold Marker: Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting..." />
+<meta property="og:description" content="Sessions: TeXstudio uses “Sessions” to store and restore the set-up of open documents. Session are stored as.txss2 files. By default, the session is stored when exiting from TeXstudio and restored ..." />
   <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><meta name="generator" content="sphinx-5.2.1, furo 2022.09.15"/>
@@ -214,6 +214,13 @@
         <article role="main">
           <div class="section" id="advanced-features">
 <h1>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this heading">#</a></h1>
+<div class="section" id="sessions">
+<h2>Sessions<a class="headerlink" href="#sessions" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio uses “Sessions” to store and restore the set-up of open documents.
+Session are stored as <em>.txss2</em> files.
+By default, the session is stored when exiting from TeXstudio and restored at start-up.</p>
+<p><img alt="Session menu" src="_images/menu_session.png" /></p>
+</div>
 <div class="section" id="user-fold-marker">
 <h2>User Fold Marker<a class="headerlink" href="#user-fold-marker" title="Permalink to this heading">#</a></h2>
 <p>Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments <code class="docutils literal notranslate"><span class="pre">%BEGIN_FOLD</span></code> and <code class="docutils literal notranslate"><span class="pre">%END_FOLD</span></code>.</p>
@@ -224,18 +231,33 @@
 <p>For the “bib” files , the “Bibliography” menu enables you to
 directly insert the entries corresponding to the standard types of
 document.</p>
-<p>Note: the optional fields can be automatically deleted with the
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The optional fields can be automatically deleted with the
 “Clean” command of the “Bibliography” menu.</p>
-<p><img alt="Bibliography Menu" src="_images/doc16.png" /></p>
 </div>
-<div class="section" id="svn-support">
-<h2>SVN Support<a class="headerlink" href="#svn-support" title="Permalink to this heading">#</a></h2>
-<p>Apart from the supported SVN features already describes in <a class="reference internal" href="configuration.html#configuring-svn-git-support"><span class="std std-doc">section</span></a> ,
-TeXstudio supports two more commands.</p>
-<p>“File/Checkin” performs an explicit save and check in, with a input
-dialog which asks for an checkin in message which is stored in the SVN
+<p><img alt="Bibliography Menu" src="_images/doc16.png" /></p>
+<p>Specialized bibliography programs like <a class="reference external" href="https://github.com/JabRef/jabref">JabRef</a> allow a more comfortable management of bibliography references. It can also be set up to insert <em>bibIDs</em> directly into TeXstudio.</p>
+</div>
+<div class="section" id="git-svn-support">
+<h2>GIT/SVN Support<a class="headerlink" href="#git-svn-support" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio provides some basic support for version control management with git or subversion (svn).</p>
+<p>Once <a class="reference internal" href="configuration.html#configuring-svn-git-support"><span class="std std-doc">set up</span></a>, saving the document will also generate a check-in.
+This is only the case with explicit saves via “File/Save” (or the shortcut <code class="docutils literal notranslate"><span class="pre">CTRL+S</span></code>), saving via a compile run is not checked in. This allows tweaking the document around compilation runs without overflowing the version management.</p>
+<p>Newly saved documents are automatically added to an exsiting repository, if no repository exist, a new one will be generated at the directory level of the document.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You cannot checkout/clone a repository via TeXstudio. Just use the
+normal tools for this. Once you have a working copy, TeXstudio can operate
+on it.</p>
+</div>
+<p><img alt="Menu SVN/GIT" src="_images/menu_svn.png" /></p>
+<dl class="simple myst">
+<dt>“File/Checkin”</dt><dd><p>Performs an explicit save and check in, with a input
+dialog which asks for an checkin in message which is stored in the SVN/GIT
 history.</p>
-<p>“File/Show old Revisions” pops up a dialog, which shows all available
+</dd>
+<dt>“File/Show old Revisions”</dt><dd><p>Pops up a dialog, which shows all available
 revisions. A selection of an older revision leads to instantaneous
 change of the current document to that older revision. You can select
 and copy old parts to transfer them to the most recent version of your
@@ -243,6 +265,12 @@ document, by copying the parts and then going back to most recent
 version. If you start editing that document directly, the dialog is
 closed and the present text will be your new most recent version though
 yet unsaved.</p>
+</dd>
+<dt>Lock PDF/Checkin PDF</dt><dd><p>allows to check in resulting pdf documents into the repository. SVN may lock the pdf from being changed by anyone else.</p>
+</dd>
+<dt>Show difference …</dt><dd><p>shows diffs of two or three files in the editor. Changes are highlighted.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="advanced-header-usage">
 <h2>Advanced header usage<a class="headerlink" href="#advanced-header-usage" title="Permalink to this heading">#</a></h2>
@@ -977,9 +1005,25 @@ can be used to execute the script when the corresponding event occurs:</p>
 </div>
 <div class="section" id="save-load-profile">
 <h2>Save/Load Profile<a class="headerlink" href="#save-load-profile" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio offers the possibility to save/load profile files (.txsprofile).
+Profile files are complete configuration files, containing <em>all</em> configuration settings.
+To use it meaningfully for exchanging profiles or settings, the .txsprofile file, which is a text file, should be stripped down to the necessary settings.
+In case of syntax highlighting, this affects the formats section.</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>[formats]
+data<span class="k">\align</span>-ampersand<span class="k">\bold</span>=true
+data<span class="k">\align</span>-ampersand<span class="k">\fontFamily</span>=
+data<span class="k">\align</span>-ampersand<span class="k">\foreground</span>=#0055ff
+data<span class="k">\align</span>-ampersand<span class="k">\italic</span>=false
+data<span class="k">\align</span>-ampersand<span class="k">\overline</span>=false
+...
+</pre></div>
 </div>
-<div class="section" id="sessions">
-<h2>Sessions<a class="headerlink" href="#sessions" title="Permalink to this heading">#</a></h2>
+<p>In case of other settings, the setting name is usually similar to the configuration settings name, so guessing should work. The section header for the setting like <code class="docutils literal notranslate"><span class="pre">[formats]</span></code> or <code class="docutils literal notranslate"><span class="pre">[texmaker]</span></code> needs to be present before the actual setting.</p>
+<p>Example:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>[texmaker]
+Tools<span class="k">\Commands\latex</span>=&quot;latex -src -interaction=nonstopmode <span class="c">%.tex&quot;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="the-convert-to-html-command">
 <h2>The “Convert to Html” command<a class="headerlink" href="#the-convert-to-html-command" title="Permalink to this heading">#</a></h2>
@@ -1066,9 +1110,10 @@ to html” tool.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Advanced features</a><ul>
+<li><a class="reference internal" href="#sessions">Sessions</a></li>
 <li><a class="reference internal" href="#user-fold-marker">User Fold Marker</a></li>
 <li><a class="reference internal" href="#bibliography">Bibliography</a></li>
-<li><a class="reference internal" href="#svn-support">SVN Support</a></li>
+<li><a class="reference internal" href="#git-svn-support">GIT/SVN Support</a></li>
 <li><a class="reference internal" href="#advanced-header-usage">Advanced header usage</a></li>
 <li><a class="reference internal" href="#personal-macros">Personal macros</a><ul>
 <li><a class="reference internal" href="#text-macros">Text macros</a></li>
@@ -1083,7 +1128,6 @@ to html” tool.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#save-load-profile">Save/Load Profile</a></li>
-<li><a class="reference internal" href="#sessions">Sessions</a></li>
 <li><a class="reference internal" href="#the-convert-to-html-command">The “Convert to Html” command</a></li>
 </ul>
 </li>

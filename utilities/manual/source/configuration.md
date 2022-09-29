@@ -749,7 +749,7 @@ Changing font family or size may lead to distorted text output in the editor and
 ![Highlight Colors](images/configure_syntaxhighlighting.png)
 
 ## Configuring GUI scaling
-When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel indepedently. The changes is perofrmed immediately to that the result can be observed directly.
+When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel indepedently. The change is performed immediately so that the result can be observed directly.
 
 ![GUI scaling](images/configure_guiscaling.png)
 
@@ -794,13 +794,6 @@ custom toolbar list in the configure dialog.
 
 TexStudio supports some simple actions for subversion/git. Here svn or git can be selected.
 
-<!--
-Note: You cannot checkout a repository via TeXstudio. Just use the
-normal tools for this (either SVN checkout on the command line or the
-GUI of your choice). Once you have a working copy, TeXstudio can operate
-on it.
--->
-
 \"Automatically check in after save\" allows TeXstudio to perform an SVN
 check in after every save of a document, thus providing a very complete
 history of the creation of a document. Since text documents are rather
@@ -822,6 +815,6 @@ in the internal storage, the document will be changed to the previous
 version in SVN/GIT history. Further undo commands allows one to back further
 to older revisions, whereas a redo goes forward to more recent versions.
 This is a more interactive approach than choosing SVN revisions directly
-via a menu command, see [here](advanced.md#svn-support).
+via a menu command, see [here](advanced.md#gitsvn-support).
 
 ![Configure SVN](images/configure_svn.png)

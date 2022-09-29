@@ -1,5 +1,13 @@
 # Advanced features
 
+## Sessions
+
+TeXstudio uses "Sessions" to store and restore the set-up of open documents.
+Session are stored as *.txss2* files.
+By default, the session is stored when exiting from TeXstudio and restored at start-up.
+
+![Session menu](images/menu_session.png)
+
 ## User Fold Marker
 
 Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments `%BEGIN_FOLD` and `%END_FOLD`. 
@@ -12,28 +20,52 @@ For the \"bib\" files , the \"Bibliography\" menu enables you to
 directly insert the entries corresponding to the standard types of
 document.
 
-Note: the optional fields can be automatically deleted with the
+```{note}
+The optional fields can be automatically deleted with the
 \"Clean\" command of the \"Bibliography\" menu.
+```
 
 ![Bibliography Menu](images/doc16.png)
 
-## SVN Support
+Specialized bibliography programs like [JabRef](https://github.com/JabRef/jabref) allow a more comfortable management of bibliography references. It can also be set up to insert *bibIDs* directly into TeXstudio.
 
-Apart from the supported SVN features already describes in [section](configuration.md#configuring-svngit-support) ,
-TeXstudio supports two more commands.
+## GIT/SVN Support
 
-\"File/Checkin\" performs an explicit save and check in, with a input
-dialog which asks for an checkin in message which is stored in the SVN
-history.
+TeXstudio provides some basic support for version control management with git or subversion (svn).
 
-\"File/Show old Revisions\" pops up a dialog, which shows all available
-revisions. A selection of an older revision leads to instantaneous
-change of the current document to that older revision. You can select
-and copy old parts to transfer them to the most recent version of your
-document, by copying the parts and then going back to most recent
-version. If you start editing that document directly, the dialog is
-closed and the present text will be your new most recent version though
-yet unsaved.
+Once [set up](configuration.md#configuring-svngit-support), saving the document will also generate a check-in.
+This is only the case with explicit saves via "File/Save" (or the shortcut `CTRL+S`), saving via a compile run is not checked in. This allows tweaking the document around compilation runs without overflowing the version management.
+
+Newly saved documents are automatically added to an exsiting repository, if no repository exist, a new one will be generated at the directory level of the document.
+
+```{note}
+You cannot checkout/clone a repository via TeXstudio. Just use the
+normal tools for this. Once you have a working copy, TeXstudio can operate
+on it.
+```
+
+![Menu SVN/GIT](images/menu_svn.png)
+
+\"File/Checkin\" 
+:   Performs an explicit save and check in, with a input
+    dialog which asks for an checkin in message which is stored in the SVN/GIT
+    history.
+
+\"File/Show old Revisions\"
+:   Pops up a dialog, which shows all available
+    revisions. A selection of an older revision leads to instantaneous
+    change of the current document to that older revision. You can select
+    and copy old parts to transfer them to the most recent version of your
+    document, by copying the parts and then going back to most recent
+    version. If you start editing that document directly, the dialog is
+    closed and the present text will be your new most recent version though
+    yet unsaved.
+
+Lock PDF/Checkin PDF
+:   allows to check in resulting pdf documents into the repository. SVN may lock the pdf from being changed by anyone else.
+
+Show difference ...
+:   shows diffs of two or three files in the editor. Changes are highlighted.
 
 ## Advanced header usage
 
@@ -474,7 +506,28 @@ Multiple of these special triggers can be combined by \| symbols.
 
 ## Save/Load Profile
 
-## Sessions
+TeXstudio offers the possibility to save/load profile files (.txsprofile).
+Profile files are complete configuration files, containing *all* configuration settings.
+To use it meaningfully for exchanging profiles or settings, the .txsprofile file, which is a text file, should be stripped down to the necessary settings.
+In case of syntax highlighting, this affects the formats section.
+```
+[formats]
+data\align-ampersand\bold=true
+data\align-ampersand\fontFamily=
+data\align-ampersand\foreground=#0055ff
+data\align-ampersand\italic=false
+data\align-ampersand\overline=false
+...
+```
+
+In case of other settings, the setting name is usually similar to the configuration settings name, so guessing should work. The section header for the setting like `[formats]` or `[texmaker]` needs to be present before the actual setting.
+
+Example:
+
+```
+[texmaker]
+Tools\Commands\latex="latex -src -interaction=nonstopmode %.tex"
+```
 
 ## The \"Convert to Html\" command
 
