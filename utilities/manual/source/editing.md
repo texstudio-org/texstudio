@@ -427,7 +427,7 @@ name is substituted. The same is true for environments, where the
 environment is changed in the `\begin`- and `\end`-command.
 
 The completer has several operation modes which are shown in the tabs
-below the command list.
+below the command list. You can switch to the next mode by pressing `Shift+Space`.
 
 -   Typical: list only typical commands and filter out rather unusual
     commands.
