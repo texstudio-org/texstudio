@@ -35,50 +35,6 @@ version. If you start editing that document directly, the dialog is
 closed and the present text will be your new most recent version though
 yet unsaved.
 
-
-## Using table templates
-
-
-Texstudio offers the possibility to reformat an existing latex table
-after a table template.
-
-For example, you have entered following table into txs:
-
-```latex
-\begin{tabular}{ll}
-a&b\\
-c&d\\
-\end{tabular}
-```
-
-Place the cursor inside the table and select the menu \"Latex/Manipulate
-Tables/Remodel Table Using Template\".
-
-Now you can select a template which defines the formatting of the table.
-A number of templates are predefined by txs:
-
--   fullyframed\_firstBold
--   fullyframed\_longtable
--   plain\_tabular
--   plain\_tabularx
--   rowcolors\_tabular
-
-By selecting the first entry, the table is reformated to:
-
-```latex
-\begin{tabular}{|l|l|}
-\hline
-\textbf{a}&\textbf{b}\\ \hline
-c&d\\ \hline
-\end{tabular}
-```
-
-These templates give the opportunity to easily reformat tables after a
-predefined fashion, thus achieving a uniform table style in a document,
-even if the tables are entered in a very simple style.
-
-The definition of new templates is described [here](background.md#creating-table-templates).
-
 ## Advanced header usage
 
 So called \"magic comments\" are a way to adapt the options of the
@@ -231,7 +187,7 @@ inserted as:
 ```
 
 ```{note}
-TexStudio needs that the env-name starts with \"%\", though that
+TeXstudio needs that the env-name starts with \"%\", though that
 character is not placed on insertion.
 ```
 

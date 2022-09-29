@@ -169,17 +169,19 @@ following image on the right.
 
 ## Formatting your text
 
-You can quickly set the format of a part of your text with this tool bar
-:
+You can quickly set the format of a part of your text with the format part of the central toolbar.
+More options are available in the "LaTeX" menu. Commonly used formating commands like `\textbf` are also available as shortcurs, here `CTRL+B`.
 
-![Format Toolbar](images/doc6.png)
+![Format Toolbar](images/tb_central_format.png)
 
-**Additional option:** a selected text can be directly framed by certain
-environments. Example: while clicking on the button \"Bold\" after
+```{note}
+A selected text can be directly framed by certain
+environments. Example: while clicking on the button \"Bold\" or pressing `CTRL+B` after
 having selected the word \"Hello\" , you will obtain the code:
 `\textbf{Hello}`.
 This option is available for all the environments indicated by
 \"\[selection\]\" in the \"LaTeX\" menu.
+```
 
 ### Capitalisation
 
@@ -201,7 +203,7 @@ require a fixed capitalization (e.g. \"TeXstudio\").
 If you have text containing reserved TeX characters and want the text to
 appear literally in your document, you have to escape the reserved
 characters to prevent LaTeX from interpreting them. The following
-functions take care of that (Menu: Idefix)
+functions take care of that (Menu: Idefix or context menu on the editor)
 
 -   Paste to LaTeX: Takes the text from the clipboard and escapes
     reserved characters prior to pasting into the editor.
@@ -215,7 +217,7 @@ the meaning of \\\$PATH.\"
 ## Inserting a list
 
 The usual list environments code can be insert quickly via the
-\"LaTeX-List\" menu.
+\"LaTeX-List\" menu. ALternatively you can use the [environment completion](#environment-completion).
 ```{note}
 The shortcut for the \\item command is `Ctrl+Shift+I`.
 ```
@@ -223,13 +225,13 @@ The shortcut for the \\item command is `Ctrl+Shift+I`.
 ## Inserting a table
 
 With the \"Tabular\" wizard (\"Wizard\" menu), the LaTeX code for a
-tabular environment can be quickly inserted :
+tabular environment can be quickly generated.
 
-![Tabular Wizard](images/doc7.png)
+The cells can be filled manually. Copy and paste from a spreadsheet program works as well.
+The wizard allows some tabular manipulation for border, cell merge and column alignment.
+Once the code is generated, it can not be changed again with the wizard.
 
-You can set the main features of your table.
-Note : this dialog allows you to type directly the code in the cells.
-The corresponding LaTeX code is automatically inserted in the editor.
+![Tabular Wizard](images/wizard_tabular.png)
 
 ### Manipulating tables
 
@@ -239,62 +241,104 @@ toolbar. Please be aware that some unexpected results may arise, if the
 table constructing commands get too complex. Following commands are
 offered:
 
--   Add Row after the current row
--   Remove Row: removes the table row in which the cursor
--   Add Column: add a column in the complete table after current cursor
-    position. If the cursor is positioned at start of line,first column,
-    the column is added as new first column.
--   Remove Column: remove current column
+| Function | Description |
+| --- | ------ |
+| ![](images/table_addRow.png) | Add Row after the current row  |
+| ![](images/table_remRow.png) |  removes the table row in which the cursor |
+| ![](images/table_addCol.png) | add a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column. |
+| ![](images/table_pasteCol.png) | paste a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column. |
+| ![](images/table_remCol.png) | remove current column |
+| ![](images/table_cutCol.png) | remove current column and store in clipboard. Use with *paste column* |
+| ![](images/table_alignCol.png) | Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source. |
+
+The following functions are only accessible via the "Latex/Table Manipulation" menu.
+
 -   Add/Remove \\hline: add/remove `\hline` in all rows following the
     current row. If already a command `\hline` is present, no second
     command is placed.
--   Align Columns: Aligns the column separators (ampersand) by
-    introducing whitespace. The text in the cells is aligned according
-    to the specification in the table header. This helps reading the
-    table source.
--   Remodel the table after a template. This allows one to force uniform
-    table set-up in a document. Some templates are predefined, more can
-    be added though it needs some programming in java script. This
-    command is only present in the menu (math/tables)
+-   Remodel the table after a template,see [below](#using-table-templates). 
 
-TeXstudio also allows block cursors. Press \<Ctrl\>+\<Alt\>+\<Shift\>
-and drag the cursor with the mouse. The block cursor works like a set of
+TeXstudio also allows block cursors. Press `Ctrl+Alt`
+and drag the cursor with the mouse. The [block cursor](#block-cursor) works like a set of
 normal cursors. You can copy and paste text as usual. Also you can type
 in new text, which will be added in every row.
+Pressing `esc` or clicking somewhere into the text leaves this mode.
 
 ![Block Selection](images/block_selection.png)
 
-## Inserting a \"tabbing\" environment
+### Using table templates
 
-To help you to insert a \"tabbing\" code, you can use the \"Tabbing\"
+Texstudio offers the possibility to reformat an existing latex table
+after a table template.
+
+For example, you have entered following table into txs:
+
+```latex
+\begin{tabular}{ll}
+a&b\\
+c&d\\
+\end{tabular}
+```
+
+Place the cursor inside the table and select the menu \"Latex/Manipulate
+Tables/Remodel Table Using Template\".
+
+Now you can select a template which defines the formatting of the table.
+A number of templates are predefined by txs:
+
+-   fullyframed\_firstBold
+-   fullyframed\_longtable
+-   plain\_tabular
+-   plain\_tabularx
+-   rowcolors\_tabular
+
+By selecting the first entry, the table is reformated to:
+
+```latex
+\begin{tabular}{|l|l|}
+\hline
+\textbf{a}&\textbf{b}\\ \hline
+c&d\\ \hline
+\end{tabular}
+```
+
+These templates give the opportunity to easily reformat tables after a
+predefined fashion, thus achieving a uniform table style in a document,
+even if the tables are entered in a very simple style.
+
+The definition of new templates is described [here](background.md#creating-table-templates).
+
+## Inserting a "tabbing" environment
+
+To help you to insert a "tabbing" code, you can use the "Tabbing"
 wizard (\"Wizard\" menu) :
 
-![Tabbing Wizard](images/doc8.png)
+![Tabbing Wizard](images/wizard_tabbing.png)
 
 ## Inserting a picture
+TeXstudio offers various ways to insert picture into the LaTeX code.
 
-To insert a picture in your document, just use the \"\\includegraphics\"
-command in the \"LaTeX\" menu. Then, click on the \"browser\" button in
+### Inserting picture via menu
+
+To insert a picture in your document, just use the 
+command in the "LaTeX/include/\\includegraphics{file}" menu. Then, click on the \"browser\" button in
 the dialog to select the graphic file.
 
-Note : you can insert a \"figure\" LaTeX environment (\"LaTeX -
+![Figure Environment](images/insertImage_menu.png)
+
+```{note}
+You can insert a \"figure\" LaTeX environment (\"LaTeX -
 Environments\" menu) before inserting the picture.
-
-![Figure Environment](images/doc9.png)
-
+```
 ### Inserting a picture using a \"wizard\"
 
-Properly inserting figures is a challenge for LaTeX beginners and still
-quite a bit of text to type for the expert. Therefore TeXstudio offers a
-wizard for handling graphics insertion code in your document. \"Graphics
+TeXstudio offers a wizard for handling graphics insertion code in your document. \"Graphics
 options\" defines the optional parameter of
 `\includegraphics[options]{file}`. While the most used width/height
 attributes can be easily set, alternatively you have full control with
 the user defined setting.
 
-Place the graphic inside a `figure` environment if it does not have to
-be at an exact position in the text. Then LaTeX will determine an
-optimal position on the page.
+The code is placed inside a `figure` environment with the given postion suggestions.
 
 By pressing the \"Save as default\" button the current settings (except
 file, caption and label) are stored and will hence be used as default
@@ -314,41 +358,49 @@ settings.
 This toolbox in the toolbar allows you to insert quickly the label,
 cite, ref, footnote\... code.
 
-```{note}
-The labels used in your documents are displayed in the
-\"Structure View\".
-```
+![Structure View Labels](images/tb_reference.png)
 
-![Structure View Labels](images/doc10.png)
+Selecting "reference" open a dialog which let's you select an reference and inserts the complete code.
+All other commands will be inserted with empty arguments.
 
-**Additional option:**for the \\ref command, a dialog box allows you to
-select directly the label.
+![Inserting reference](images/insert_ref.png)
+
+The labels used in your documents are displayed in the "Structure View".
+A right click on a label there allows you to insert it as reference or with a reference command at the current cursor position.
+
+![Inserting reference from structure view](images/insert_ref_fromStructure.png)
+
+Another option is to use the [auto completer](#referencebibid-completion).
 
 ## Inserting math formula
 
-You can toggle in the \"in-line math\" environment with the \"f(x)\"
-button in the toolbar (shortcut : Ctrl+Alt+M) or with the \"Math\" menu.
-The shortcut for the \"display math\" environment is : Alt+Shift+M.
+You can toggle \"in-line math\" environment with the \"\$..\$\"
+button in the toolbar (`Ctrl+Shift+M`) or with the \"Math\" menu.
+The shortcut for the \"display math\" environment is `Alt+Shift+M`.
 
-The \"Math\" toolbar allows you to insert the most currents mathematical
-forms (frac, sqrt\...) like the \\left and \\right tags.
+The math part of the \"Central\" toolbar allows you to insert the most current mathematical
+forms (frac, sqrt\...) , the "Math" toolbar allows entering delimiter tags like \\left and \\right.
 
-![Math Toolbar](images/doc11.png)
+![Math part of Central Toolbar](images/tb_central_math.png)  ![Math DElimiter Toolbar](images/tb_math.png)
 
-With the \"symbols panels\" in the structure view, you can insert the
-code of 400 mathematical symbols.
+The \"symbols panel\" in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
+The list can be sorted by categories like "all","greek","operators", etc.
+You can also directly search for parts of the command.
+A right click on the symbol allows to declare it as favorite, insert the command or if available, insert the unicode character into the text.
+TeXstudio keeps track which symbols have been used here, so the most used will be listed as well.
 
-![Math Symbols Panel](images/doc12.png)
+![Symbol Panel](images/symbol_panel.png)
 
 You can also define the format of your mathematical text via the
 \"Math\" menu.
 
 For the \"array\" environments, a wizard (like the \"Tabular\" wizard)
 is available in the \"Wizard\" menu. With this wizard, you can select
-the environment : array, matrix, pmatrix\.... The cells can be directly
-completed.
+the environment : array, matrix, pmatrix\.... 
 
-![Array Wizard](images/doc13.png)
+The cells can be edited directly.
+
+![Array Wizard](images/wizard_array.png)
 
 ## Auto Completion
 
@@ -425,7 +477,7 @@ It works the same for *bibIDs*
 
 
 ### KeyVal completion
-TexStudio knows the possible keys and values for a number of commands.
+TeXstudio knows the possible keys and values for a number of commands.
 The completer opens automatically when entering keys or pressing `,` to start the next key.
 It also treats length specifially to offer only these when appropriate.
 
@@ -438,7 +490,7 @@ It also treats length specifially to offer only these when appropriate.
 ```
 
 ### Filename completion
-TexStudio can also complete filenames, mainly for `\include`- and `\includegraphics`-commands.
+TeXstudio can also complete filenames, mainly for `\include`- and `\includegraphics`-commands.
 
 If the completer selection is on an image file, that image is previewed as a tooltip.
 
@@ -469,7 +521,7 @@ The abbreviation may start with a backslash (`\`) allowing autostart of the comp
 
 
 ## Spell check
-TexStudio checks the spelling as you type.
+TeXstudio checks the spelling as you type.
 Right-click on the word to
 open a menu with a list of possible corrections. In this context menu
 you can also add the word to the ignore list. 
@@ -496,7 +548,7 @@ Scrolls and selects the next misspelled word and offers suggestions to correct i
 
 ![Spell checking dialog](images/speller_dialog.png)
 ## Syntax check
-TexStudio tries to determine if a command is correct by an internal list of valid commands.
+TeXstudio tries to determine if a command is correct by an internal list of valid commands.
 It also tries to understand command context to some degree, so to see that math commands outside a math environment are not correct.
 
 ![Syntax error](images/syntax_error.png)
@@ -567,3 +619,7 @@ If you select something and then start to type in a command and complete
 it, the selection is put in as first argument. E.g. you have a `text`,
 select it and start typing `\textbf`, command which is completed. The
 resulting text is `\textbf{text}`.
+
+### Block cursor
+% TODO fill with content
+% ctrl+shift+alt  & ctrl+alt

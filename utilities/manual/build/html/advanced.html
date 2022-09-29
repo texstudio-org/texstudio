@@ -223,8 +223,8 @@
 <h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">#</a></h2>
 <p>For the “bib” files , the “Bibliography” menu enables you to
 directly insert the entries corresponding to the standard types of
-document.<br />
-Note: the optional fields can be automatically deleted with the
+document.</p>
+<p>Note: the optional fields can be automatically deleted with the
 “Clean” command of the “Bibliography” menu.</p>
 <p><img alt="Bibliography Menu" src="_images/doc16.png" /></p>
 </div>
@@ -244,41 +244,6 @@ version. If you start editing that document directly, the dialog is
 closed and the present text will be your new most recent version though
 yet unsaved.</p>
 </div>
-<div class="section" id="using-table-templates">
-<h2>Using table templates<a class="headerlink" href="#using-table-templates" title="Permalink to this heading">#</a></h2>
-<p>Texstudio offers the possibility to reformat an existing latex table
-after a table template.<br />
-For example, you have entered following table into txs:</p>
-<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>ll<span class="nb">}</span>
-a<span class="nb">&amp;</span>b<span class="k">\\</span>
-c<span class="nb">&amp;</span>d<span class="k">\\</span>
-<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
-</pre></div>
-</div>
-<p>Place the cursor inside the table and select the menu “Latex/Manipulate
-Tables/Remodel Table Using Template”.<br />
-Now you can select a template which defines the formatting of the table.
-A number of templates are predefined by txs:</p>
-<ul class="simple">
-<li><p>fullyframed_firstBold</p></li>
-<li><p>fullyframed_longtable</p></li>
-<li><p>plain_tabular</p></li>
-<li><p>plain_tabularx</p></li>
-<li><p>rowcolors_tabular</p></li>
-</ul>
-<p>By selecting the first entry, the table is reformated to:</p>
-<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|l|l|<span class="nb">}</span>
-<span class="k">\hline</span>
-<span class="k">\textbf</span><span class="nb">{</span>a<span class="nb">}&amp;</span><span class="k">\textbf</span><span class="nb">{</span>b<span class="nb">}</span><span class="k">\\</span> <span class="k">\hline</span>
-c<span class="nb">&amp;</span>d<span class="k">\\</span> <span class="k">\hline</span>
-<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
-</pre></div>
-</div>
-<p>These templates give the opportunity to easily reformat tables after a
-predefined fashion, thus achieving a uniform table style in a document,
-even if the tables are entered in a very simple style.</p>
-<p>The definition of new templates is described <a class="reference internal" href="background.html#creating-table-templates"><span class="std std-doc">here</span></a>.</p>
-</div>
 <div class="section" id="advanced-header-usage">
 <h2>Advanced header usage<a class="headerlink" href="#advanced-header-usage" title="Permalink to this heading">#</a></h2>
 <p>So called “magic comments” are a way to adapt the options of the
@@ -288,8 +253,8 @@ the following magic comments:</p>
 <dl class="simple myst">
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">spellcheck</span> <span class="pre">=</span> <span class="pre">de_DE</span></code></dt><dd><p>Defines the language used for spell checking of the document. This
 overrides the global spellchecking settings. Nevertheless, an
-appropriate dictionary has to be installed.<br />
-If no spellchecking is desired, set value to “<em>none</em>”.</p>
+appropriate dictionary has to be installed.</p>
+<p>If no spellchecking is desired, set value to “<em>none</em>”.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">encoding</span> <span class="pre">=</span> <span class="pre">utf8</span></code></dt><dd><p>Defines the character encoding of a document.</p>
 </dd>
@@ -342,39 +307,38 @@ This is equivalent to
 with the “Macros - Edit Macros” menu. Macros can consist of simple
 text which is directly placed into txs. It can also be an
 “environment” which are automatically extended by begin/end or it can
-be a java script. The needed functionality can be selected by checkbox.<br />
-The “abbreviation” is a pseudo-command for the latex completer. If the
+be a java script. The needed functionality can be selected by checkbox.</p>
+<p>The “abbreviation” is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
-that the pseudo-command needs to start with a backslash (“&quot;).<br />
-“Trigger” is a regular expression which triggers the inclusion of the
+that the pseudo-command needs to start with a backslash (“&quot;).</p>
+<p>“Trigger” is a regular expression which triggers the inclusion of the
 macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
-<a class="reference internal" href="#triggers"><span class="std std-doc">below</span></a> for more details).<br />
-Some macros can be directly downloaded from an internet repository. The
+<a class="reference internal" href="#triggers"><span class="std std-doc">below</span></a> for more details).</p>
+<p>Some macros can be directly downloaded from an internet repository. The
 dialog is started with the button “Browse”. For easier data exchange,
 macros can be im- and exported to a file. If you want to add a macro of
 your own to that repository, you can hand it in as a feature request on
-<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues">Github</a>.<br />
-Each macro can be assigned a fixed shortcut in the “Shortcut” box.<br />
+<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues">Github</a>.
+Each macro can be assigned a fixed shortcut in the “Shortcut” box.
 The list of macros on the left-hand side represents the macro ordering
 in the macro-menu. It is rearranged with the
 “up”/”down”/”add”/”remove” buttons or with drag and drop.
 Folders can be added to sort a larger number of macros sensibly. To move
-macros into/from folders, only drag and drop works.<br />
+macros into/from folders, only drag and drop works.
 The “run script” button directly executes a script in the editor for
-testing.<br />
-\</p>
+testing.</p>
 <p><img alt="doc17" src="_images/doc17.png" /></p>
 <div class="section" id="text-macros">
 <h3>Text macros<a class="headerlink" href="#text-macros" title="Permalink to this heading">#</a></h3>
 <p>Apart from normal text, some special codes are recognized and replaced
-on insertion.\</p>
+on insertion.</p>
 <ul>
 <li><p>If you write %| somewhere the cursor will be placed at that place
 in the inserted text. (A second %| will select everything between
 them).</p></li>
 <li><p>Write %&lt;something%&gt; to mark it as placeholder which is highlighted
-in the text and can be selected by Ctrl+Left/Right.<br />
+in the text and can be selected by <code class="docutils literal notranslate"><span class="pre">Ctrl+Left/Right</span></code>.
 Additional properties of the placeholder can be set after a %:, e.g.</p>
 <p>are:</p>
 <ul class="simple">
@@ -413,13 +377,17 @@ Qt-Filefilterformat. For example “Images (*.png *.xpm
 <div class="section" id="environment-macros">
 <h3>Environment macros<a class="headerlink" href="#environment-macros" title="Permalink to this heading">#</a></h3>
 <p>The text will be used as environment-name, thus “%environment” will be
-inserted as:<br />
-\begin{environment }<br />
-<br />
-\end{environment }<br />
-<br />
-Note: texstudio needs that the env-name starts with “%”, though that
+inserted as:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\\</span>begin<span class="nb">{</span>environment <span class="nb">}</span>
+
+<span class="k">\\</span>end<span class="nb">{</span>environment <span class="nb">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>TeXstudio needs that the env-name starts with “%”, though that
 character is not placed on insertion.</p>
+</div>
 </div>
 <div class="section" id="script-macros">
 <h3>Script Macros<a class="headerlink" href="#script-macros" title="Permalink to this heading">#</a></h3>
@@ -903,8 +871,8 @@ Qt Designer.</p>
 <h4>Regular Expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this heading">#</a></h4>
 <p>In its simplest form, the trigger is simply a text, which is replaced by
 the macro. E.g. trigger=”eg” macro=”example given”, “eg” in “the
-leg” is replaced on pressing “g” by “example given”<br />
-As the trigger is a regular expression, more elaborate triggers can be
+leg” is replaced on pressing “g” by “example given”</p>
+<p>As the trigger is a regular expression, more elaborate triggers can be
 created. TXS makes use of look-behind searching: “(?&lt;=\s)%” is used
 to replace a “%” if the previous character is a space. More help on
 regular expressions can be found on the internet.</p>
@@ -961,8 +929,7 @@ todo-notes of latex documents.</p>
 <div class="section" id="event-triggers">
 <h4>Event Triggers<a class="headerlink" href="#event-triggers" title="Permalink to this heading">#</a></h4>
 <p>Additionally the following special trigger terms (without parentheses)
-can be used to execute the script when the corresponding event occurs:<br />
-\</p>
+can be used to execute the script when the corresponding event occurs:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="colwidths-auto docutils align-default">
 <thead>
@@ -1013,15 +980,17 @@ can be used to execute the script when the corresponding event occurs:<br />
 <p>This command (from the “Tools” menu ) produces a set of html pages
 from a LaTeX source file with one image for each html page. Each page in
 the slide presentation corresponds to one of the postscript pages you
-would obtain running LaTeX.<br />
-The command also produces an index page corresponding to the table of
+would obtain running LaTeX.</p>
+<p>The command also produces an index page corresponding to the table of
 contents you would obtain with LaTeX. Each item of the index page
 includes a link to the corresponding html page.</p>
-<p>You can create links in the html pages by using the <code class="docutils literal notranslate"><span class="pre">\\ttwplink{}{}</span></code> command in the tex file.
-Synopsis :
-\ttwplink{http://www.mylink.com}{my text} (external link)
-\ttwplink{page3.html}{my text} (internal link)
-\ttwplink{name_of_a_label}{my text} (internal link)</p>
+<p>You can create links in the html pages by using the <code class="docutils literal notranslate"><span class="pre">\\ttwplink{}{}</span></code> command in the tex file.</p>
+<p>Synopsis:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\ttwplink</span><span class="nb">{</span>http://www.mylink.com<span class="nb">}{</span>my text<span class="nb">}</span> (external link)
+<span class="k">\ttwplink</span><span class="nb">{</span>page3.html<span class="nb">}{</span>my text<span class="nb">}</span> (internal link)
+<span class="k">\ttwplink</span><span class="nb">{</span>name<span class="nb">_</span>of<span class="nb">_</span>a<span class="nb">_</span>label<span class="nb">}{</span>my text<span class="nb">}</span> (internal link)
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You can’t use this command with the hyperref package (and
@@ -1094,7 +1063,6 @@ to html” tool.</p>
 <li><a class="reference internal" href="#user-fold-marker">User Fold Marker</a></li>
 <li><a class="reference internal" href="#bibliography">Bibliography</a></li>
 <li><a class="reference internal" href="#svn-support">SVN Support</a></li>
-<li><a class="reference internal" href="#using-table-templates">Using table templates</a></li>
 <li><a class="reference internal" href="#advanced-header-usage">Advanced header usage</a></li>
 <li><a class="reference internal" href="#personal-macros">Personal macros</a><ul>
 <li><a class="reference internal" href="#text-macros">Text macros</a></li>

@@ -357,15 +357,18 @@ following image on the right.</p>
 </div>
 <div class="section" id="formatting-your-text">
 <h2>Formatting your text<a class="headerlink" href="#formatting-your-text" title="Permalink to this heading">#</a></h2>
-<p>You can quickly set the format of a part of your text with this tool bar
-:</p>
-<p><img alt="Format Toolbar" src="_images/doc6.png" /></p>
-<p><strong>Additional option:</strong> a selected text can be directly framed by certain
-environments. Example: while clicking on the button “Bold” after
+<p>You can quickly set the format of a part of your text with the format part of the central toolbar.
+More options are available in the “LaTeX” menu. Commonly used formating commands like <code class="docutils literal notranslate"><span class="pre">\textbf</span></code> are also available as shortcurs, here <code class="docutils literal notranslate"><span class="pre">CTRL+B</span></code>.</p>
+<p><img alt="Format Toolbar" src="_images/tb_central_format.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A selected text can be directly framed by certain
+environments. Example: while clicking on the button “Bold” or pressing <code class="docutils literal notranslate"><span class="pre">CTRL+B</span></code> after
 having selected the word “Hello” , you will obtain the code:
-\textbf{Hello}.<br />
+<code class="docutils literal notranslate"><span class="pre">\textbf{Hello}</span></code>.
 This option is available for all the environments indicated by
 “[selection]” in the “LaTeX” menu.</p>
+</div>
 <div class="section" id="capitalisation">
 <h3>Capitalisation<a class="headerlink" href="#capitalisation" title="Permalink to this heading">#</a></h3>
 <p>The menu “Edit” -&gt; “Text Operations” contains a few methods for
@@ -386,7 +389,7 @@ require a fixed capitalization (e.g. “TeXstudio”).</p>
 <p>If you have text containing reserved TeX characters and want the text to
 appear literally in your document, you have to escape the reserved
 characters to prevent LaTeX from interpreting them. The following
-functions take care of that (Menu: Idefix)</p>
+functions take care of that (Menu: Idefix or context menu on the editor)</p>
 <ul class="simple">
 <li><p>Paste to LaTeX: Takes the text from the clipboard and escapes
 reserved characters prior to pasting into the editor.</p></li>
@@ -401,20 +404,20 @@ the meaning of \$PATH.”</p>
 <div class="section" id="inserting-a-list">
 <h2>Inserting a list<a class="headerlink" href="#inserting-a-list" title="Permalink to this heading">#</a></h2>
 <p>The usual list environments code can be insert quickly via the
-“LaTeX-List” menu.\</p>
+“LaTeX-List” menu. ALternatively you can use the <a class="reference internal" href="#environment-completion"><span class="std std-doc">environment completion</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The shortcut for the \item command is Ctrl+Shift+I.</p>
+<p>The shortcut for the \item command is <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+I</span></code>.</p>
 </div>
 </div>
 <div class="section" id="inserting-a-table">
 <h2>Inserting a table<a class="headerlink" href="#inserting-a-table" title="Permalink to this heading">#</a></h2>
 <p>With the “Tabular” wizard (“Wizard” menu), the LaTeX code for a
-tabular environment can be quickly inserted :</p>
-<p><img alt="Tabular Wizard" src="_images/doc7.png" /></p>
-<p>You can set the main features of your table.<br />
-Note : this dialog allows you to type directly the code in the cells.<br />
-The corresponding LaTeX code is automatically inserted in the editor.</p>
+tabular environment can be quickly generated.</p>
+<p>The cells can be filled manually. Copy and paste from a spreadsheet program works as well.
+The wizard allows some tabular manipulation for border, cell merge and column alignment.
+Once the code is generated, it can not be changed again with the wizard.</p>
+<p><img alt="Tabular Wizard" src="_images/wizard_tabular.png" /></p>
 <div class="section" id="manipulating-tables">
 <h3>Manipulating tables<a class="headerlink" href="#manipulating-tables" title="Permalink to this heading">#</a></h3>
 <p>TeXstudio provides some commands to ease handling of tables. The
@@ -422,62 +425,121 @@ commands are located at LaTeX → Manipulate Table and in the Table
 toolbar. Please be aware that some unexpected results may arise, if the
 table constructing commands get too complex. Following commands are
 offered:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="" src="_images/table_addRow.png" /></p></td>
+<td><p>Add Row after the current row</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/table_remRow.png" /></p></td>
+<td><p>removes the table row in which the cursor</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/table_addCol.png" /></p></td>
+<td><p>add a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column.</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/table_pasteCol.png" /></p></td>
+<td><p>paste a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column.</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/table_remCol.png" /></p></td>
+<td><p>remove current column</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/table_cutCol.png" /></p></td>
+<td><p>remove current column and store in clipboard. Use with <em>paste column</em></p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/table_alignCol.png" /></p></td>
+<td><p>Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The following functions are only accessible via the “Latex/Table Manipulation” menu.</p>
 <ul class="simple">
-<li><p>Add Row after the current row</p></li>
-<li><p>Remove Row: removes the table row in which the cursor</p></li>
-<li><p>Add Column: add a column in the complete table after current cursor
-position. If the cursor is positioned at start of line,first column,
-the column is added as new first column.</p></li>
-<li><p>Remove Column: remove current column</p></li>
-<li><p>Add/Remove \hline: add/remove \hline in all rows following the
-current row. If already a command \hline is present, no second
+<li><p>Add/Remove \hline: add/remove <code class="docutils literal notranslate"><span class="pre">\hline</span></code> in all rows following the
+current row. If already a command <code class="docutils literal notranslate"><span class="pre">\hline</span></code> is present, no second
 command is placed.</p></li>
-<li><p>Align Columns: Aligns the column separators (ampersand) by
-introducing whitespace. The text in the cells is aligned according
-to the specification in the table header. This helps reading the
-table source.</p></li>
-<li><p>Remodel the table after a template. This allows one to force uniform
-table set-up in a document. Some templates are predefined, more can
-be added though it needs some programming in java script. This
-command is only present in the menu (math/tables)</p></li>
+<li><p>Remodel the table after a template,see <a class="reference internal" href="#using-table-templates"><span class="std std-doc">below</span></a>.</p></li>
 </ul>
-<p>TeXstudio also allows block cursors. Press &lt;Ctrl&gt;+&lt;Alt&gt;+&lt;Shift&gt;
-and drag the cursor with the mouse. The block cursor works like a set of
+<p>TeXstudio also allows block cursors. Press <code class="docutils literal notranslate"><span class="pre">Ctrl+Alt</span></code>
+and drag the cursor with the mouse. The <a class="reference internal" href="#block-cursor"><span class="std std-doc">block cursor</span></a> works like a set of
 normal cursors. You can copy and paste text as usual. Also you can type
-in new text, which will be added in every row.</p>
+in new text, which will be added in every row.
+Pressing <code class="docutils literal notranslate"><span class="pre">esc</span></code> or clicking somewhere into the text leaves this mode.</p>
 <p><img alt="Block Selection" src="_images/block_selection.png" /></p>
+</div>
+<div class="section" id="using-table-templates">
+<h3>Using table templates<a class="headerlink" href="#using-table-templates" title="Permalink to this heading">#</a></h3>
+<p>Texstudio offers the possibility to reformat an existing latex table
+after a table template.</p>
+<p>For example, you have entered following table into txs:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>ll<span class="nb">}</span>
+a<span class="nb">&amp;</span>b<span class="k">\\</span>
+c<span class="nb">&amp;</span>d<span class="k">\\</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</pre></div>
+</div>
+<p>Place the cursor inside the table and select the menu “Latex/Manipulate
+Tables/Remodel Table Using Template”.</p>
+<p>Now you can select a template which defines the formatting of the table.
+A number of templates are predefined by txs:</p>
+<ul class="simple">
+<li><p>fullyframed_firstBold</p></li>
+<li><p>fullyframed_longtable</p></li>
+<li><p>plain_tabular</p></li>
+<li><p>plain_tabularx</p></li>
+<li><p>rowcolors_tabular</p></li>
+</ul>
+<p>By selecting the first entry, the table is reformated to:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>tabular<span class="nb">}{</span>|l|l|<span class="nb">}</span>
+<span class="k">\hline</span>
+<span class="k">\textbf</span><span class="nb">{</span>a<span class="nb">}&amp;</span><span class="k">\textbf</span><span class="nb">{</span>b<span class="nb">}</span><span class="k">\\</span> <span class="k">\hline</span>
+c<span class="nb">&amp;</span>d<span class="k">\\</span> <span class="k">\hline</span>
+<span class="k">\end</span><span class="nb">{</span>tabular<span class="nb">}</span>
+</pre></div>
+</div>
+<p>These templates give the opportunity to easily reformat tables after a
+predefined fashion, thus achieving a uniform table style in a document,
+even if the tables are entered in a very simple style.</p>
+<p>The definition of new templates is described <a class="reference internal" href="background.html#creating-table-templates"><span class="std std-doc">here</span></a>.</p>
 </div>
 </div>
 <div class="section" id="inserting-a-tabbing-environment">
 <h2>Inserting a “tabbing” environment<a class="headerlink" href="#inserting-a-tabbing-environment" title="Permalink to this heading">#</a></h2>
 <p>To help you to insert a “tabbing” code, you can use the “Tabbing”
 wizard (“Wizard” menu) :</p>
-<p><img alt="Tabbing Wizard" src="_images/doc8.png" /></p>
+<p><img alt="Tabbing Wizard" src="_images/wizard_tabbing.png" /></p>
 </div>
 <div class="section" id="inserting-a-picture">
 <h2>Inserting a picture<a class="headerlink" href="#inserting-a-picture" title="Permalink to this heading">#</a></h2>
-<p>To insert a picture in your document, just use the “\includegraphics”
-command in the “LaTeX” menu. Then, click on the “browser” button in
-the dialog to select the graphic file.<br />
-Note : you can insert a “figure” LaTeX environment (“LaTeX -
+<p>TeXstudio offers various ways to insert picture into the LaTeX code.</p>
+<div class="section" id="inserting-picture-via-menu">
+<h3>Inserting picture via menu<a class="headerlink" href="#inserting-picture-via-menu" title="Permalink to this heading">#</a></h3>
+<p>To insert a picture in your document, just use the
+command in the “LaTeX/include/\includegraphics{file}” menu. Then, click on the “browser” button in
+the dialog to select the graphic file.</p>
+<p><img alt="Figure Environment" src="_images/insertImage_menu.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can insert a “figure” LaTeX environment (“LaTeX -
 Environments” menu) before inserting the picture.</p>
-<p><img alt="Figure Environment" src="_images/doc9.png" /></p>
+</div>
+</div>
 <div class="section" id="inserting-a-picture-using-a-wizard">
 <h3>Inserting a picture using a “wizard”<a class="headerlink" href="#inserting-a-picture-using-a-wizard" title="Permalink to this heading">#</a></h3>
-<p>Properly inserting figures is a challenge for LaTeX beginners and still
-quite a bit of text to type for the expert. Therefore TeXstudio offers a
-wizard for handling graphics insertion code in your document. “Graphics
+<p>TeXstudio offers a wizard for handling graphics insertion code in your document. “Graphics
 options” defines the optional parameter of
 <code class="docutils literal notranslate"><span class="pre">\includegraphics[options]{file}</span></code>. While the most used width/height
 attributes can be easily set, alternatively you have full control with
-the user defined setting.<br />
-Place the graphic inside a <code class="docutils literal notranslate"><span class="pre">figure</span></code> environment if it does not have to
-be at an exact position in the text. Then LaTeX will determine an
-optimal position on the page.<br />
-By pressing the “Save as default” button the current settings (except
+the user defined setting.</p>
+<p>The code is placed inside a <code class="docutils literal notranslate"><span class="pre">figure</span></code> environment with the given postion suggestions.</p>
+<p>By pressing the “Save as default” button the current settings (except
 file, caption and label) are stored and will hence be used as default
-when you open the wizard.<br />
-The wizard also comes into play when you drag drop an image file to your
+when you open the wizard.</p>
+<p>The wizard also comes into play when you drag drop an image file to your
 document or use copy in explorer and paste in TeXstudio. Together with
 the adjustable default parameters this makes insertion of new pictures
 very fast. Furthermore, if you start the wizard while the cursor is on
@@ -489,31 +551,37 @@ settings.</p>
 <div class="section" id="cross-references-and-notes">
 <h2>Cross References and notes<a class="headerlink" href="#cross-references-and-notes" title="Permalink to this heading">#</a></h2>
 <p>This toolbox in the toolbar allows you to insert quickly the label,
-cite, ref, footnote… code.<br />
-Note : the labels used in your documents are displayed in the
-“Structure View”.</p>
-<p><img alt="Structure View Labels" src="_images/doc10.png" /></p>
-<p>**Additional option:**for the \ref command, a dialog box allows you to
-select directly the label.</p>
+cite, ref, footnote… code.</p>
+<p><img alt="Structure View Labels" src="_images/tb_reference.png" /></p>
+<p>Selecting “reference” open a dialog which let’s you select an reference and inserts the complete code.
+All other commands will be inserted with empty arguments.</p>
+<p><img alt="Inserting reference" src="_images/insert_ref.png" /></p>
+<p>The labels used in your documents are displayed in the “Structure View”.
+A right click on a label there allows you to insert it as reference or with a reference command at the current cursor position.</p>
+<p><img alt="Inserting reference from structure view" src="_images/insert_ref_fromStructure.png" /></p>
+<p>Another option is to use the <a class="reference internal" href="#reference-bibid-completion"><span class="std std-doc">auto completer</span></a>.</p>
 </div>
 <div class="section" id="inserting-math-formula">
 <h2>Inserting math formula<a class="headerlink" href="#inserting-math-formula" title="Permalink to this heading">#</a></h2>
-<p>You can toggle in the “in-line math” environment with the “f(x)”
-button in the toolbar (shortcut : Ctrl+Alt+M) or with the “Math” menu.
-The shortcut for the “display math” environment is : Alt+Shift+M.<br />
-The “Math” toolbar allows you to insert the most currents mathematical
-forms (frac, sqrt…) like the \left and \right tags.</p>
-<p><img alt="Math Toolbar" src="_images/doc11.png" /></p>
-<p>With the “symbols panels” in the structure view, you can insert the
-code of 400 mathematical symbols.</p>
-<p><img alt="Math Symbols Panel" src="_images/doc12.png" /></p>
+<p>You can toggle “in-line math” environment with the “$..$”
+button in the toolbar (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+M</span></code>) or with the “Math” menu.
+The shortcut for the “display math” environment is <code class="docutils literal notranslate"><span class="pre">Alt+Shift+M</span></code>.</p>
+<p>The math part of the “Central” toolbar allows you to insert the most current mathematical
+forms (frac, sqrt…) , the “Math” toolbar allows entering delimiter tags like \left and \right.</p>
+<p><img alt="Math part of Central Toolbar" src="_images/tb_central_math.png" />  <img alt="Math DElimiter Toolbar" src="_images/tb_math.png" /></p>
+<p>The “symbols panel” in the side panel offers the insertion of hundreds of mathematical symbols and special characters.
+The list can be sorted by categories like “all”,”greek”,”operators”, etc.
+You can also directly search for parts of the command.
+A right click on the symbol allows to declare it as favorite, insert the command or if available, insert the unicode character into the text.
+TeXstudio keeps track which symbols have been used here, so the most used will be listed as well.</p>
+<p><img alt="Symbol Panel" src="_images/symbol_panel.png" /></p>
 <p>You can also define the format of your mathematical text via the
-“Math” menu.<br />
-For the “array” environments, a wizard (like the “Tabular” wizard)
+“Math” menu.</p>
+<p>For the “array” environments, a wizard (like the “Tabular” wizard)
 is available in the “Wizard” menu. With this wizard, you can select
-the environment : array, matrix, pmatrix…. The cells can be directly
-completed.</p>
-<p><img alt="Array Wizard" src="_images/doc13.png" /></p>
+the environment : array, matrix, pmatrix….</p>
+<p>The cells can be edited directly.</p>
+<p><img alt="Array Wizard" src="_images/wizard_array.png" /></p>
 </div>
 <div class="section" id="auto-completion">
 <h2>Auto Completion<a class="headerlink" href="#auto-completion" title="Permalink to this heading">#</a></h2>
@@ -587,7 +655,7 @@ adequate environments which are inserted completely with
 </div>
 <div class="section" id="keyval-completion">
 <h3>KeyVal completion<a class="headerlink" href="#keyval-completion" title="Permalink to this heading">#</a></h3>
-<p>TexStudio knows the possible keys and values for a number of commands.
+<p>TeXstudio knows the possible keys and values for a number of commands.
 The completer opens automatically when entering keys or pressing <code class="docutils literal notranslate"><span class="pre">,</span></code> to start the next key.
 It also treats length specifially to offer only these when appropriate.</p>
 <div class="tab-set docutils">
@@ -601,7 +669,7 @@ It also treats length specifially to offer only these when appropriate.</p>
 </div>
 <div class="section" id="filename-completion">
 <h3>Filename completion<a class="headerlink" href="#filename-completion" title="Permalink to this heading">#</a></h3>
-<p>TexStudio can also complete filenames, mainly for <code class="docutils literal notranslate"><span class="pre">\include</span></code>- and <code class="docutils literal notranslate"><span class="pre">\includegraphics</span></code>-commands.</p>
+<p>TeXstudio can also complete filenames, mainly for <code class="docutils literal notranslate"><span class="pre">\include</span></code>- and <code class="docutils literal notranslate"><span class="pre">\includegraphics</span></code>-commands.</p>
 <p>If the completer selection is on an image file, that image is previewed as a tooltip.</p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">File name completion</label><div class="tab-content docutils">
@@ -632,7 +700,7 @@ The abbreviation may start with a backslash (<code class="docutils literal notra
 </div>
 <div class="section" id="spell-check">
 <h2>Spell check<a class="headerlink" href="#spell-check" title="Permalink to this heading">#</a></h2>
-<p>TexStudio checks the spelling as you type.
+<p>TeXstudio checks the spelling as you type.
 Right-click on the word to
 open a menu with a list of possible corrections. In this context menu
 you can also add the word to the ignore list.</p>
@@ -659,7 +727,7 @@ allows searching for these underlined spelling mistakes starting from the curren
 </div>
 <div class="section" id="syntax-check">
 <h2>Syntax check<a class="headerlink" href="#syntax-check" title="Permalink to this heading">#</a></h2>
-<p>TexStudio tries to determine if a command is correct by an internal list of valid commands.
+<p>TeXstudio tries to determine if a command is correct by an internal list of valid commands.
 It also tries to understand command context to some degree, so to see that math commands outside a math environment are not correct.</p>
 <p><img alt="Syntax error" src="_images/syntax_error.png" /></p>
 <p>A tool tip on the error marking states the reason, why txs thinks that there is an error.</p>
@@ -725,6 +793,9 @@ appears, change <code class="docutils literal notranslate"><span class="pre">tab
 it, the selection is put in as first argument. E.g. you have a <code class="docutils literal notranslate"><span class="pre">text</span></code>,
 select it and start typing <code class="docutils literal notranslate"><span class="pre">\textbf</span></code>, command which is completed. The
 resulting text is <code class="docutils literal notranslate"><span class="pre">\textbf{text}</span></code>.</p>
+</div>
+<div class="section" id="block-cursor">
+<h3>Block cursor<a class="headerlink" href="#block-cursor" title="Permalink to this heading">#</a></h3>
 </div>
 </div>
 </div>
@@ -807,10 +878,12 @@ resulting text is <code class="docutils literal notranslate"><span class="pre">\
 <li><a class="reference internal" href="#inserting-a-list">Inserting a list</a></li>
 <li><a class="reference internal" href="#inserting-a-table">Inserting a table</a><ul>
 <li><a class="reference internal" href="#manipulating-tables">Manipulating tables</a></li>
+<li><a class="reference internal" href="#using-table-templates">Using table templates</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#inserting-a-tabbing-environment">Inserting a “tabbing” environment</a></li>
 <li><a class="reference internal" href="#inserting-a-picture">Inserting a picture</a><ul>
+<li><a class="reference internal" href="#inserting-picture-via-menu">Inserting picture via menu</a></li>
 <li><a class="reference internal" href="#inserting-a-picture-using-a-wizard">Inserting a picture using a “wizard”</a></li>
 </ul>
 </li>
@@ -833,6 +906,7 @@ resulting text is <code class="docutils literal notranslate"><span class="pre">\
 <li><a class="reference internal" href="#delete-word-command-environment">Delete word/command/environment</a></li>
 <li><a class="reference internal" href="#rename-environment">Rename environment</a></li>
 <li><a class="reference internal" href="#cut-buffer">Cut Buffer</a></li>
+<li><a class="reference internal" href="#block-cursor">Block cursor</a></li>
 </ul>
 </li>
 </ul>
