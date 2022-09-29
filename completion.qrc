@@ -553,6 +553,7 @@
 <file>completion/chmst-pdf.cwl</file>
 <file>completion/chngcntr.cwl</file>
 <file>completion/chordbars.cwl</file>
+<file>completion/chordbox.cwl</file>
 <file>completion/chronosys.cwl</file>
 <file>completion/churchslavonic.cwl</file>
 <file>completion/cinzel.cwl</file>
@@ -914,6 +915,7 @@
 <file>completion/class-ucalgmthesis.cwl</file>
 <file>completion/class-ucbthesis.cwl</file>
 <file>completion/class-ucdavisthesis.cwl</file>
+<file>completion/class-udes-genie-these.cwl</file>
 <file>completion/class-ujarticle.cwl</file>
 <file>completion/class-ujbook.cwl</file>
 <file>completion/class-ujreport.cwl</file>
@@ -1161,6 +1163,7 @@
 <file>completion/dimnum.cwl</file>
 <file>completion/dingbat.cwl</file>
 <file>completion/dirtree.cwl</file>
+<file>completion/dirtytalk.cwl</file>
 <file>completion/ditaa.cwl</file>
 <file>completion/dlfltxbcodetips.cwl</file>
 <file>completion/dlfltxbmarkupbookkeys.cwl</file>
@@ -1819,6 +1822,7 @@
 <file>completion/jlreq-trimmarks.cwl</file>
 <file>completion/jmlrutils.cwl</file>
 <file>completion/jmsdelim.cwl</file>
+<file>completion/jobname-suffix.cwl</file>
 <file>completion/josefin.cwl</file>
 <file>completion/jpneduenumerate.cwl</file>
 <file>completion/jpnedumathsymbols.cwl</file>
@@ -2310,6 +2314,8 @@
 <file>completion/ncctitlepage.cwl</file>
 <file>completion/nchairx.cwl</file>
 <file>completion/needspace.cwl</file>
+<file>completion/neo-euler.cwl</file>
+<file>completion/nestquot.cwl</file>
 <file>completion/newalg.cwl</file>
 <file>completion/newclude.cwl</file>
 <file>completion/newcomputermodern.cwl</file>
@@ -2403,6 +2409,7 @@
 <file>completion/oldprsn.cwl</file>
 <file>completion/OldStandard.cwl</file>
 <file>completion/oldstyle.cwl</file>
+<file>completion/onedash.cwl</file>
 <file>completion/onedown.cwl</file>
 <file>completion/onlyamsmath.cwl</file>
 <file>completion/opacity-pro.cwl</file>
@@ -2804,6 +2811,7 @@
 <file>completion/quattrocento.cwl</file>
 <file>completion/quiz2socrative.cwl</file>
 <file>completion/quotchap.cwl</file>
+<file>completion/quoted.cwl</file>
 <file>completion/quoting.cwl</file>
 <file>completion/quran-bn.cwl</file>
 <file>completion/quran.cwl</file>
