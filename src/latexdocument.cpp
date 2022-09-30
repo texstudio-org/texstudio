@@ -2253,6 +2253,10 @@ StructureEntry *LatexDocument::splitStructure(StructureEntry *base, int lineNr)
     int i;
     for(i=base->children.count()-1;i>=0;--i){
         StructureEntry *element=base->children.at(i);
+        if(element->type!=StructureEntry::SE_SECTION && element->type!=StructureEntry::SE_INCLUDE){
+            // non-sections are always "before", except include
+            break;
+        }
         int ln=element->getRealLineNumber();
         if(ln>=lineNr){
             continue;
