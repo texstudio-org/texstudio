@@ -675,7 +675,7 @@ all adverbs.
 ![advanced LT rules](images/conf_LT_adv.png)
 
 Independent from LanguageTool, TeXstudio also checks for repeated and
-bad (imprecise/slang) words. For this it needs a list of those words which need to be provided in the "Wodlist Directory" with the name "*language_code*.badWords"
+bad (imprecise/slang) words. For this it needs a list of those words which need to be provided in the "Wordlist Directory" with the name "*language_code*.badWords"
 
 The repetition check looks several words behind and marks repetition of short words in the immediate vicinity and repetition of long words up to 10 words before. These distances and
 lengths can be changed in the advanced grammar config page.
