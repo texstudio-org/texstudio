@@ -440,8 +440,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		recheckLabels = false;
 	}
 
-	emit toBeChanged();
-
 	bool completerNeedsUpdate = false;
 	bool bibTeXFilesNeedsUpdate = false;
 	bool bibItemsChanged = false;

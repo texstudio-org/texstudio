@@ -294,7 +294,6 @@ signals:
 	void structureLost(LatexDocument *document);
 	void updateCompleter();
 	void updateBibTeXFiles();
-	void toBeChanged();
 	void importPackage(QString name);
 	void spellingDictChanged(const QString &name);
 	void encodingChanged();
