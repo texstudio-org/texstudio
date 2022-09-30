@@ -28,7 +28,8 @@
 		src/tests/usermacro_t.cpp \
 		src/tests/testmanager.cpp \
                 src/tests/git_t.cpp \
-		src/tests/testutil.cpp
+                src/tests/testutil.cpp \
+                src/tests/latexdocument_t.cpp
 	HEADERS += \
 		src/tests/execprogram_t.h \
 		src/tests/qsearchreplacepanel_t.h \
@@ -59,7 +60,8 @@
 		src/tests/testutil.h \
 		src/tests/usermacro_t.h \
                 src/tests/git_t.h \
-		src/tests/structureview_t.h
+                src/tests/structureview_t.h \
+                src/tests/latexdocument_t.h
 }
 
 SOURCES += \

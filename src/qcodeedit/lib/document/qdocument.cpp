@@ -671,11 +671,15 @@ void QDocument::setText(const QString& s, bool allowUndo)
 
 	m_impl->m_deleting = true;
 
-
+    if(!m_impl->m_lines.isEmpty()){
+        QDocumentLineHandle *h= m_impl->m_lines.at(0);
+        emit linesRemoved(h,0,m_impl->m_lines.size());
+    }
     for(int i=0;i<m_impl->m_lines.size();++i){
         QDocumentLineHandle *h= m_impl->m_lines.at(i);
         emit lineDeleted(h,i);
     }
+
 
     foreach ( QDocumentLineHandle *h, m_impl->m_lines )
 	{
@@ -7903,6 +7907,7 @@ void QDocumentPrivate::removeLines(int after, int n)
 	for(int i=after;i<after+n;i++){
 		emit m_doc->lineRemoved(m_lines[i]);
 	}
+    emit m_doc->linesRemoved(m_lines[after],after,n);
 	m_lines.remove(after, n);
 
 	emit m_doc->lineCountChanged(m_lines.count());

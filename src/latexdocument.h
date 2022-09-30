@@ -95,6 +95,7 @@ public:
 	friend class LatexStructureMerger;
 	friend class LatexStructureMergerMerge;
 	friend class ScriptEngineTest;
+    friend class LatexDocumentTest;
 
 private:
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle *, ReferencePair> &list);
@@ -250,6 +251,9 @@ private:
 
 	int findStructureParentPos(const QList<StructureEntry *> &children, QList<StructureEntry *> &removedElements, int linenr, int count);
 
+    StructureEntry* splitStructure(StructureEntry *base,int lineNr);
+    void appendStructure(StructureEntry *base,StructureEntry *addition);
+
 	bool IsInTree (StructureEntry *se);
 	void updateElementWithSignal(StructureEntry *se){ emit updateElement(se); }
 	void removeElementWithSignal(StructureEntry *se);
@@ -276,7 +280,7 @@ public:
 public slots:
 	void updateStructure();
 	bool patchStructure(int linenr, int count, bool recheck = false);
-    void patchStructureRemoval(QDocumentLineHandle *dlh,int hint=-1);
+    void patchStructureRemoval(QDocumentLineHandle *dlh,int hint=-1,int count=1);
 	void initClearStructure();
 	void updateLtxCommands(bool updateAll = false);
 	void setLtxCommands(const LatexParser &cmds);

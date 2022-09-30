@@ -275,92 +275,104 @@ void LatexDocument::updateStructure()
 
 /*! Removes a deleted line from the structure view
 */
-void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint)
+void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int count)
 {
 	if (!baseStructure) return;
 	bool completerNeedsUpdate = false;
 	bool bibTeXFilesNeedsUpdate = false;
 	bool updateSyntaxCheck = false;
-	if (mLabelItem.contains(dlh)) {
-		QList<ReferencePair> labels = mLabelItem.values(dlh);
-		completerNeedsUpdate = true;
-		mLabelItem.remove(dlh);
-		foreach (const ReferencePair &rp, labels)
-			updateRefsLabels(rp.name);
-	}
-	mRefItem.remove(dlh);
-	if (mMentionedBibTeXFiles.remove(dlh))
-		bibTeXFilesNeedsUpdate = true;
-	if (mBibItem.contains(dlh)) {
-		mBibItem.remove(dlh);
-		bibTeXFilesNeedsUpdate = true;
-	}
+    QStringList removedUsepackages;
 
-	QList<UserCommandPair> commands = mUserCommandList.values(dlh);
-	foreach (UserCommandPair elem, commands) {
-		QString word = elem.snippet.word;
-		if(word.length()==1){
-		    for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
-			if(i.left(1)==word){
-			    ltxCommands.possibleCommands["%columntypes"].remove(i);
-			    break;
-			}
-		    }
-		}else{
-		    int i = word.indexOf("{");
-		    if (i >= 0) word = word.left(i);
-		    ltxCommands.possibleCommands["user"].remove(word);
-		}
-		updateSyntaxCheck = true;
-	}
-	mUserCommandList.remove(dlh);
+    for(int i=0;i<count;++i){
+        if (mLabelItem.contains(dlh)) {
+            QList<ReferencePair> labels = mLabelItem.values(dlh);
+            completerNeedsUpdate = true;
+            mLabelItem.remove(dlh);
+            foreach (const ReferencePair &rp, labels)
+                updateRefsLabels(rp.name);
+        }
+        mRefItem.remove(dlh);
+        if (mMentionedBibTeXFiles.remove(dlh))
+            bibTeXFilesNeedsUpdate = true;
+        if (mBibItem.contains(dlh)) {
+            mBibItem.remove(dlh);
+            bibTeXFilesNeedsUpdate = true;
+        }
 
-	QStringList removeIncludes = mIncludedFilesList.values(dlh);
-	if (mIncludedFilesList.remove(dlh) > 0) {
-		parent->removeDocs(removeIncludes);
-		parent->updateMasterSlaveRelations(this);
-	}
+        QList<UserCommandPair> commands = mUserCommandList.values(dlh);
+        foreach (UserCommandPair elem, commands) {
+            QString word = elem.snippet.word;
+            if(word.length()==1){
+                for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
+                    if(i.left(1)==word){
+                        ltxCommands.possibleCommands["%columntypes"].remove(i);
+                        break;
+                    }
+                }
+            }else{
+                int i = word.indexOf("{");
+                if (i >= 0) word = word.left(i);
+                ltxCommands.possibleCommands["user"].remove(word);
+            }
+            updateSyntaxCheck = true;
+        }
+        mUserCommandList.remove(dlh);
 
-	QStringList removedUsepackages;
-	removedUsepackages << mUsepackageList.values(dlh);
-	mUsepackageList.remove(dlh);
+        QStringList removeIncludes = mIncludedFilesList.values(dlh);
+        if (mIncludedFilesList.remove(dlh) > 0) {
+            parent->removeDocs(removeIncludes);
+            parent->updateMasterSlaveRelations(this);
+        }
 
-	if (dlh == mAppendixLine) {
-		updateContext(mAppendixLine, nullptr, StructureEntry::InAppendix);
-		mAppendixLine = nullptr;
-	}
 
-    int linenr = indexOf(dlh,hint);
-	if (linenr == -1) linenr = lines();
+        removedUsepackages << mUsepackageList.values(dlh);
+        mUsepackageList.remove(dlh);
 
-	// check if line contains bookmark
-    if (edView) {
-        int id=edView->hasBookmark(dlh);
-        if (id>-2) {
-            emit bookmarkRemoved(dlh);
-            edView->removeBookmark(dlh, id);
+        if (dlh == mAppendixLine) {
+            updateContext(mAppendixLine, nullptr, StructureEntry::InAppendix);
+            mAppendixLine = nullptr;
+        }
+
+        int linenr = indexOf(dlh,hint);
+        if (linenr == -1) linenr = lines();
+
+        // check if line contains bookmark
+        if (edView) {
+            int id=edView->hasBookmark(dlh);
+            if (id>-2) {
+                emit bookmarkRemoved(dlh);
+                edView->removeBookmark(dlh, id);
+            }
+        }
+
+        QList<StructureEntry *> categories = QList<StructureEntry *>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
+        foreach (StructureEntry *sec, categories) {
+            int l = 0;
+            QMutableListIterator<StructureEntry *> iter(sec->children);
+            while (iter.hasNext()) {
+                StructureEntry *se = iter.next();
+                if (dlh == se->getLineHandle()) {
+                    iter.remove();
+                    delete se;
+                } else l++;
+            }
+        }
+        if(i+1<count){
+            // not at last element yet
+            dlh=line(linenr+1).handle();
         }
     }
 
-    QList<StructureEntry *> categories = QList<StructureEntry *>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
-	foreach (StructureEntry *sec, categories) {
-		int l = 0;
-		QMutableListIterator<StructureEntry *> iter(sec->children);
-		while (iter.hasNext()) {
-			StructureEntry *se = iter.next();
-			if (dlh == se->getLineHandle()) {
-				emit removeElement(se, l);
-				iter.remove();
-				emit removeElementFinished();
-				delete se;
-			} else l++;
-		}
-	}
-
+    /*
 	QList<StructureEntry *> tmp;
     if(!baseStructure->children.isEmpty()){ // merge is not the fastest, even when there is nothing to merge
-        LatexStructureMergerMerge(this, LatexParser::getInstance().structureDepth(), linenr, 1)(tmp);
-    }
+        LatexStructureMergerMerge(this, LatexParser::getInstance().structureDepth(), hint, 1)(tmp);
+    }*/
+    // cut from structure
+    StructureEntry *seSplit=splitStructure(baseStructure,hint+count);
+    StructureEntry *seRemove=splitStructure(baseStructure,hint);
+    delete seRemove;
+    appendStructure(baseStructure,seSplit);
 
 	// rehighlight current cursor position
 	StructureEntry *newSection = nullptr;
@@ -380,9 +392,9 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint)
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 
-	if (!removedUsepackages.isEmpty() || updateSyntaxCheck) {
+    if (!removedUsepackages.isEmpty() || updateSyntaxCheck) {
 		updateCompletionFiles(updateSyntaxCheck);
-	}
+    }
 
 }
 
@@ -2225,7 +2237,105 @@ int LatexDocument::findStructureParentPos(const QList<StructureEntry *> &childre
 		}
 		++parentPos;
 	}
-	return parentPos;
+    return parentPos;
+}
+
+/*!
+ * \brief split the tree structure at lineNr
+ * Base structure children are removed if they are among the split off elements
+ * \param root element of structure to split
+ * \param lineNr
+ * \return structure after lineNr referenced to new root element
+ */
+StructureEntry *LatexDocument::splitStructure(StructureEntry *base, int lineNr)
+{
+    StructureEntry *result=nullptr;
+    if(base->children.isEmpty()){
+        // no children to check
+        return nullptr;
+    }
+    // find last element before lineNr
+    int i;
+    for(i=base->children.count()-1;i>=0;--i){
+        StructureEntry *element=base->children.at(i);
+        int ln=element->getRealLineNumber();
+        if(ln>=lineNr){
+            continue;
+        }
+        break;
+    }
+    if(i<0){
+        // all elements after lineNr
+        result=base->children.takeFirst();
+        for(int k=0;k<base->children.count();++k){
+            result->add(base->children.at(k));
+        }
+        base->children.clear();
+        result->parent=nullptr;
+        return result;
+    }
+    if(i==base->children.count()-1){
+        // all elements before lineNr
+        result=splitStructure(base->children.last(),lineNr);
+        return result;
+    }
+    // split found
+    result=splitStructure(base->children.at(i),lineNr);
+    // resort elements after split
+    int offset=1;
+    if(!result){
+        result=base->children.at(i+1);
+        offset=2;
+    }
+    result->parent=nullptr;
+    for(int k=i+offset;k<base->children.count();++k){
+        result->add(base->children.at(k));
+    }
+    base->children.remove(i+1,base->children.count()-i-1);
+
+    return result;
+}
+/*!
+ * \brief add second structure to first one
+ * Assumes that all elements are after all elements of the first structure
+ * \param base
+ * \param addition
+ */
+void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *addition)
+{
+    if(!addition) return;
+    // get last element on different levels
+    QVector<StructureEntry *> parent_level(lp.structureDepth()+1);
+    parent_level.fill(base);
+    StructureEntry *se=base;
+    for(int i=0;i<lp.structureDepth();++i){
+        if(se->children.isEmpty()){
+            break; // no further level to go down
+        }
+        se=se->children.last();
+        for(int j=se->level;j<lp.structureDepth();++j){
+            parent_level[j+1]=se;
+        }
+    }
+    int level=addition->level;
+    parent_level[level]->add(addition);
+    /* check that level are not distorted as first element was too high a level
+    *  e.g. \subsection
+    *       \section
+    */
+    for(int i=0;i<addition->children.count();++i){
+        se=addition->children.at(i);
+        if(se->type != StructureEntry::SE_SECTION){
+            continue; // don't touch non-section for now
+        }
+        if(se->level<=level){
+            // move element to appropriate parent level
+            level=se->level;
+            parent_level[se->level]->add(se);
+            addition->children.takeAt(i);
+            --i;
+        }
+    }
 }
 
 void LatexStructureMergerMerge::mergeStructure(StructureEntry *se)

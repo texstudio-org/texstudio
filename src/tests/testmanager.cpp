@@ -28,6 +28,7 @@
 #include "usermacro_t.h"
 #include "latexoutputfilter_t.h"
 #include "git_t.h"
+#include "latexdocument_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+.?");
@@ -88,6 +89,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
             << new QSearchReplacePanelTest(codeedit,level==TL_ALL)
             << new QEditorTest(editor,level==TL_ALL)
             << new LatexEditorViewTest(edView)
+            << new LatexDocumentTest(edView)
             << new LatexCompleterTest(edView)
             << new LatexStyleParserTest(level==TL_ALL)
             << new ScriptEngineTest(edView,level==TL_ALL)
