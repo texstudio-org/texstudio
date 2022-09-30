@@ -47,7 +47,7 @@ void LatexDocumentTest::splitStructure(){
     for(int i=0;i<m_doc->baseStructure->children.count();++i){
         if(m_doc->baseStructure->children.at(i)->type == StructureEntry::SE_OVERVIEW) continue;
         delete m_doc->baseStructure->children.at(i);
-        m_doc->baseStructure->children.remove(i);
+        m_doc->baseStructure->children.removeAt(i);
         --i;
     }
 
