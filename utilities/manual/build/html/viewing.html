@@ -337,6 +337,45 @@ clipboard.</p>
 TikZ.</p>
 </div>
 </div>
+<div class="section" id="preview">
+<h2>Preview<a class="headerlink" href="#preview" title="Permalink to this heading">#</a></h2>
+<p>When optimizing small structures visually like tables or formulas, various compilation runs may be necessary to reach a final state. Compiling a large document may take longer, so that is inconvenient for these tasks.</p>
+<p>TeXstudio offers a preview for this circumstance.
+The preview can either be inline, i.e. right below the previewed text, as tooltip, in the preview pane or in the embedded pdf viewer.
+The selection is done in the <a class="reference internal" href="configuration.html#configuring-preview"><span class="std std-doc">configuration</span></a>.</p>
+<div class="section" id="inline-preview">
+<h3>Inline Preview<a class="headerlink" href="#inline-preview" title="Permalink to this heading">#</a></h3>
+<p>The inline preview is started with selecting the interesting text and then pressing <code class="docutils literal notranslate"><span class="pre">Alt+p</span></code> or using the context menu on the selection. An inline preview can be closed with context menu (right-click) on the preview.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Preview context menu</label><div class="tab-content docutils">
+<p><img alt="Preview context menu" src="_images/preview_context.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Resulting inline preview</label><div class="tab-content docutils">
+<p><img alt="Inline preview" src="_images/preview_inline.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--0-input--3" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--3">Context menu on inline preview</label><div class="tab-content docutils">
+<p><img alt="Context on Inline preview" src="_images/preview_inline_context.png" /></p>
+</div>
+</div>
+</div>
+<div class="section" id="tooltip-preview">
+<h3>Tooltip preview<a class="headerlink" href="#tooltip-preview" title="Permalink to this heading">#</a></h3>
+<p>A tooltip is created when hovering over the delimiters like <code class="docutils literal notranslate"><span class="pre">$</span></code> of a formula.
+It takes a moment until the preview can be presented as it is compiled when the preview is started.</p>
+<p>The preview is also available for colors and images.</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">preview math</label><div class="tab-content docutils">
+<p><img alt="preview math" src="_images/preview_tooltip.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">preview color</label><div class="tab-content docutils">
+<p><img alt="preview color" src="_images/preview_color.png" /></p>
+</div>
+<input class="tab-input" id="tab-set--1-input--3" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--3">preview image</label><div class="tab-content docutils">
+<p><img alt="preview image" src="_images/preview_image.png" /></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 
         </article>
@@ -402,6 +441,11 @@ TikZ.</p>
 <li><a class="reference internal" href="#modes-and-mouse-actions">Modes and mouse actions</a></li>
 <li><a class="reference internal" href="#changing-the-grid-page-offset">Changing the grid page offset</a></li>
 <li><a class="reference internal" href="#copy-page-coordinates-to-the-clipboard">Copy page coordinates to the clipboard</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#preview">Preview</a><ul>
+<li><a class="reference internal" href="#inline-preview">Inline Preview</a></li>
+<li><a class="reference internal" href="#tooltip-preview">Tooltip preview</a></li>
 </ul>
 </li>
 </ul>

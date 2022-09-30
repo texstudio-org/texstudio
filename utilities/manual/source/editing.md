@@ -170,7 +170,7 @@ following image on the right.
 ## Formatting your text
 
 You can quickly set the format of a part of your text with the format part of the central toolbar.
-More options are available in the "LaTeX" menu. Commonly used formating commands like `\textbf` are also available as shortcurs, here `CTRL+B`.
+More options are available in the "LaTeX" menu. Commonly used formating commands like `\textbf` are also available as shortcuts, here `CTRL+B`.
 
 ![Format Toolbar](images/tb_central_format.png)
 
@@ -623,11 +623,12 @@ resulting text is `\textbf{text}`.
 ### Block cursor
 TeXstudio supports block cursors (or multiple cursors).
 Cursors can be added by `Ctrl+Alt`+left click.
-The cursors can jointly add and remove text and select charcters.
+ALternatively pressing `Ctrl+alt+Up/down` also add block cursors.
+The cursors can jointly move, add and remove text and select charcters.
 Pressing `esc` or clicking into the text ends the block cursor mode. 
 
 ![block cursor](images/blockCursor.png)
 
-By clicking `Ctrl+Shift+Alt`+left click a block from the current cursor to the mouse position is selected.
+By clicking `Ctrl+Shift`+left click a block from the current cursor to the mouse position is selected.
 
 ![block cursor with selection](images/blockCursor_selection.png)

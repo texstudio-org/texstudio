@@ -132,3 +132,43 @@ Example for x, y copied to clipboard: 10.16, 12.8372
 This becomes particularly useful when adjusting margins or working with
 TikZ.
 
+## Preview
+When optimizing small structures visually like tables or formulas, various compilation runs may be necessary to reach a final state. Compiling a large document may take longer, so that is inconvenient for these tasks.
+
+TeXstudio offers a preview for this circumstance.
+The preview can either be inline, i.e. right below the previewed text, as tooltip, in the preview pane or in the embedded pdf viewer.
+The selection is done in the [configuration](configuration.md#configuring-preview).
+
+### Inline Preview
+
+The inline preview is started with selecting the interesting text and then pressing `Alt+p` or using the context menu on the selection. An inline preview can be closed with context menu (right-click) on the preview.
+
+```{tab} Preview context menu
+![Preview context menu](images/preview_context.png)
+```
+
+```{tab} Resulting inline preview
+![Inline preview](images/preview_inline.png)
+```
+
+```{tab} Context menu on inline preview
+![Context on Inline preview](images/preview_inline_context.png)
+```
+
+### Tooltip preview
+A tooltip is created when hovering over the delimiters like `$` of a formula.
+It takes a moment until the preview can be presented as it is compiled when the preview is started.
+
+The preview is also available for colors and images.
+
+```{tab} preview math
+![preview math](images/preview_tooltip.png)
+```
+
+```{tab} preview color
+![preview color](images/preview_color.png)
+```
+
+```{tab} preview image
+![preview image](images/preview_image.png)
+```

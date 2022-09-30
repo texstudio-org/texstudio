@@ -736,6 +736,15 @@ As the number of provided files has become quite large, a filter box has been ad
 
 ![Configure Completion advanced](images/configure_completion_adv.png)
 
+## Configuring Preview
+
+The [preview](viewing.md#preview) allows to compile a small part of the text to compile and show the result.
+By default `pdflatex` is used and the result is shown `inline`.
+If an inline preview is performed, the preview is automatically updated if the orginal text is changed.
+Tooltips on formulas/math also show a preview of said formula.
+
+![Preview](images/configure_preview.png)
+
 ## Configuring Highlight Colors
 TexStudio allows the adaptation of editor syntax highlight colors for personal taste.
 Color, font modification, as well as font family and size can be set.
