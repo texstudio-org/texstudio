@@ -268,8 +268,6 @@ void LatexDocument::updateStructure()
 	initClearStructure();
 
 	patchStructure(0, -1);
-
-	emit structureLost(this);
 }
 
 /*! Removes a deleted line from the structure view

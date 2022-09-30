@@ -291,7 +291,6 @@ signals:
 	void hasBeenIncluded(const LatexDocument &newMasterDocument);
     void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
     void setHighlightedEntry(StructureEntry *highlight);
-	void structureLost(LatexDocument *document);
 	void updateCompleter();
 	void updateBibTeXFiles();
 	void importPackage(QString name);
