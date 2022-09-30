@@ -44,7 +44,6 @@ void LatexDocumentTest::splitStructure(){
     QEQUAL(isSplitCoded, splitCoded);
 
     delete split;
-    int i=0;
     for(int i=0;i<m_doc->baseStructure->children.count();++i){
         if(m_doc->baseStructure->children.at(i)->type == StructureEntry::SE_OVERVIEW) continue;
         delete m_doc->baseStructure->children.at(i);
