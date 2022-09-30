@@ -363,11 +363,6 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
         }
     }
 
-    /*
-	QList<StructureEntry *> tmp;
-    if(!baseStructure->children.isEmpty()){ // merge is not the fastest, even when there is nothing to merge
-        LatexStructureMergerMerge(this, LatexParser::getInstance().structureDepth(), hint, 1)(tmp);
-    }*/
     // cut from structure
     StructureEntry *seSplit=splitStructure(baseStructure,hint+count);
     StructureEntry *seRemove=splitStructure(baseStructure,hint);
