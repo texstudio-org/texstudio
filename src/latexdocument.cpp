@@ -95,7 +95,6 @@ void LatexDocument::setEditorView(LatexEditorView *edView)
 	this->edView = edView;
 	if (baseStructure) {
 		baseStructure->title = fileName;
-		emit updateElement(baseStructure);
 	}
 }
 
@@ -247,7 +246,7 @@ void LatexDocument::initClearStructure()
 	StructureEntry *categories[CATCOUNT] = {magicCommentList, labelList, todoList, bibTeXList, blockList};
 	for (int i = 0; i < CATCOUNT; i++)
 		if (categories[i]->parent == baseStructure) {
-			removeElementWithSignal(categories[i]);
+            removeElement(categories[i]);
 			foreach (StructureEntry *se, categories[i]->children)
 				delete se;
 			categories[i]->children.clear();
@@ -255,7 +254,7 @@ void LatexDocument::initClearStructure()
 
 	for (int i = 0; i < baseStructure->children.length(); i++) {
 		StructureEntry *temp = baseStructure->children[i];
-		removeElementWithSignal(temp);
+        removeElement(temp);
 		delete temp;
 	}
 
@@ -604,7 +603,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
 				newTodo->title = text.mid(1).trimmed();
 				newTodo->setLine(line(i).handle(), i);
-				insertElementWithSignal(todoList, posTodo++, newTodo);
+                insertElement(todoList, posTodo++, newTodo);
                 // save comment type into cookie
                 commentStart.second=Token::todoComment;
                 dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
@@ -717,7 +716,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
 				newLabel->title = elem.name;
 				newLabel->setLine(line(i).handle(), i);
-				insertElementWithSignal(labelList, posLabel++, newLabel);
+                insertElement(labelList, posLabel++, newLabel);
 			}
 			//// newtheorem ////
 			if (tk.type == Token::newTheorem && tk.length > 0) {
@@ -748,7 +747,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
 				newTodo->title = tk.getInnerText();
 				newTodo->setLine(line(i).handle(), i);
-				insertElementWithSignal(todoList, posTodo++, newTodo);
+                insertElement(todoList, posTodo++, newTodo);
 			}
 
 			// work on general commands
@@ -1039,7 +1038,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					StructureEntry *newFile = new StructureEntry(this, StructureEntry::SE_BIBTEX);
 					newFile->title = bibFile;
 					newFile->setLine(line(i).handle(), i);
-					insertElementWithSignal(bibTeXList, posBibTeX++, newFile);
+                    insertElement(bibTeXList, posBibTeX++, newFile);
 				}
 				continue;
 			}
@@ -1050,7 +1049,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				StructureEntry *newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
                 newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,i);
 				newBlock->setLine(line(i).handle(), i);
-				insertElementWithSignal(blockList, posBlock++, newBlock);
+                insertElement(blockList, posBlock++, newBlock);
 				continue;
 			}
 
@@ -1184,23 +1183,23 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	}//for each line handle
 	StructureEntry *se;
 	foreach (se, removedTodo) {
-		removeElementWithSignal(se);
+        removeElement(se);
 		delete se;
 	}
 	foreach (se, removedBibTeX) {
-		removeElementWithSignal(se);
+        removeElement(se);
 		delete se;
 	}
 	foreach (se, removedBlock) {
-		removeElementWithSignal(se);
+        removeElement(se);
 		delete se;
 	}
 	foreach (se, removedLabels) {
-		removeElementWithSignal(se);
+        removeElement(se);
 		delete se;
 	}
 	foreach (se, removedMagicComments) {
-		removeElementWithSignal(se);
+        removeElement(se);
 		delete se;
 	}
 	StructureEntry *newSection = nullptr;
@@ -1214,8 +1213,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
     for (int i = categories.size() - 1; i >= 0; i--) {
         StructureEntry *cat = categories[i];
         if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
-        if (cat->children.isEmpty()) removeElementWithSignal(cat);
-        else insertElementWithSignal(baseStructure, 0, cat);
+        if (cat->children.isEmpty()) removeElement(cat);
+        else insertElement(baseStructure, 0, cat);
     }
 
     //update appendix change
@@ -2379,7 +2378,6 @@ void LatexStructureMergerMerge::mergeStructure(StructureEntry *se)
 				*se = *next;
 				next->children.clear();
 				delete next;
-				document->updateElementWithSignal(se);
 				moveToAppropiatePositionWithSignal(se);
 				//	qDebug()<<"a"<<se->children.size() << ":"<<se->title<<" von "<<linenr<<count;
 				mergeChildren(se);
@@ -2395,7 +2393,7 @@ void LatexStructureMergerMerge::mergeStructure(StructureEntry *se)
 				int oldrow = se->getRealParentRow();
 				for (int i = se->children.size() - 1; i >= 0; i--)
 					document->moveElementWithSignal(se->children[i], se->parent, oldrow);
-				document->removeElementWithSignal(se);
+                document->removeElement(se);
 				delete se;
 				for (int i = 1; i < parent_level.size(); i++)
 					if (parent_level[i] == se)
@@ -2417,7 +2415,7 @@ void LatexStructureMergerMerge::mergeStructure(StructureEntry *se)
 	//insert unprocessed elements of flatStructure at the end of the structure
 	if (se->type == StructureEntry::SE_DOCUMENT_ROOT && !flatStructure->isEmpty()) {
 		foreach (StructureEntry *s, *flatStructure) {
-			document->addElementWithSignal(parent_level[s->level], s);
+            document->addElement(parent_level[s->level], s);
 			updateParentVector(s);
 		}
 		flatStructure->clear();
@@ -2430,66 +2428,34 @@ void LatexStructureMergerMerge::mergeChildren(StructureEntry *se, int start){
 		mergeStructure(oldChildren[i]);
 }
 
-bool LatexDocument::IsInTree (StructureEntry *se)
+void LatexDocument::removeElement(StructureEntry *se)
 {
-	Q_ASSERT(se);
-	while (se) {
-		if (se->type == StructureEntry::SE_DOCUMENT_ROOT) {
-			return true;
-		}
-		se = se->parent;
-	}
-	return false;
-}
-
-void LatexDocument::removeElementWithSignal(StructureEntry *se)
-{
-	int sendSignal = IsInTree(se);
 	int parentRow = se->getRealParentRow();
 	REQUIRE(parentRow >= 0);
-	if (sendSignal) {
-		emit removeElement(se, parentRow);
-	}
+
 	se->parent->children.removeAt(parentRow);
 	se->parent = nullptr;
-	if (sendSignal) {
-		emit removeElementFinished();
-	}
 }
 
-void LatexDocument::addElementWithSignal(StructureEntry *parent, StructureEntry *se)
+void LatexDocument::addElement(StructureEntry *parent, StructureEntry *se)
 {
-	int sendSignal = IsInTree(parent);
-	if (sendSignal) {
-		emit addElement(parent, parent->children.size());
-	}
 	parent->children.append(se);
 	se->parent = parent;
-	if (sendSignal) {
-		emit addElementFinished();
-	}
 }
 
-void LatexDocument::insertElementWithSignal(StructureEntry *parent, int pos, StructureEntry *se)
+void LatexDocument::insertElement(StructureEntry *parent, int pos, StructureEntry *se)
 {
-	int sendSignal = IsInTree(parent);
-	if (sendSignal) {
-		emit addElement(parent, pos);
-	}
     if(pos>parent->children.size()){
         pos=parent->children.size();
     }
 	parent->children.insert(pos, se);
 	se->parent = parent;
-	if (sendSignal) {
-		emit addElementFinished();
-	}
 }
 
 void LatexDocument::moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos)
 {
-	removeElementWithSignal(se);
-	insertElementWithSignal(parent, pos, se);
+    removeElement(se);
+    insertElement(parent, pos, se);
 }
 
 void LatexStructureMerger::updateParentVector(StructureEntry *se)
@@ -2557,7 +2523,7 @@ void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se
 	if (se->parent) {
 		if (newPos != oldPos)
 			document->moveElementWithSignal(se, newParent, newPos);
-	} else document->insertElementWithSignal(newParent, newPos, se);
+    } else document->insertElement(newParent, newPos, se);
 
 	updateParentVector(se);
 	return;
@@ -2595,7 +2561,7 @@ void LatexDocument::addMagicComment(const QString &text, int lineNr, int posMagi
 	parseMagicComment(name, val, newMagicComment);
 	newMagicComment->title = text;
 	newMagicComment->setLine(dlh, lineNr);
-	insertElementWithSignal(magicCommentList, posMagicComment, newMagicComment);
+    insertElement(magicCommentList, posMagicComment, newMagicComment);
 }
 
 /*!
@@ -2673,7 +2639,6 @@ void LatexDocument::setContextForLines(StructureEntry *se, int startLine, int en
 		if (elem->type == StructureEntry::SE_SECTION && elem->getRealLineNumber() > startLine) {
 			if (!first && i > 0) setContextForLines(se->children[i - 1], startLine, endLine, context, state);
 			elem->setContext(context, state);
-			emit updateElement(elem);
 			setContextForLines(se->children[i], startLine, endLine, context, state);
 			first = true;
 		}

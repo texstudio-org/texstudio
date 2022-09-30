@@ -254,11 +254,9 @@ private:
     StructureEntry* splitStructure(StructureEntry *base,int lineNr);
     void appendStructure(StructureEntry *base,StructureEntry *addition);
 
-	bool IsInTree (StructureEntry *se);
-	void updateElementWithSignal(StructureEntry *se){ emit updateElement(se); }
-	void removeElementWithSignal(StructureEntry *se);
-	void addElementWithSignal(StructureEntry *parent, StructureEntry *se);
-	void insertElementWithSignal(StructureEntry *parent, int pos, StructureEntry *se);
+	void removeElement(StructureEntry *se);
+	void addElement(StructureEntry *parent, StructureEntry *se);
+	void insertElement(StructureEntry *parent, int pos, StructureEntry *se);
 	void moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos);
 
 	void addMagicComment(const QString &text, int lineNr, int posMagicComment);
@@ -298,7 +296,6 @@ signals:
 	void removeElementFinished();
 	void addElement(StructureEntry *se, int row);
 	void addElementFinished();
-	void updateElement(StructureEntry *se);
 	void updateCompleter();
 	void updateBibTeXFiles();
 	void toBeChanged();
