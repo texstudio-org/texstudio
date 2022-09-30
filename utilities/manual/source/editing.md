@@ -179,8 +179,6 @@ A selected text can be directly framed by certain
 environments. Example: while clicking on the button \"Bold\" or pressing `CTRL+B` after
 having selected the word \"Hello\" , you will obtain the code:
 `\textbf{Hello}`.
-This option is available for all the environments indicated by
-\"\[selection\]\" in the \"LaTeX\" menu.
 ```
 
 ### Capitalisation
