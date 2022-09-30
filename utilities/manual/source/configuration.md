@@ -589,7 +589,7 @@ the section on [completion](#configuring-the-autocompletion) and the [descriptio
 The spell checker uses the Hunspell dictionary format, which is widely
 used, e.g. in OpenOffice, LibreOffice and Firefox. Each dictionary
 consists of two files (`.dic` and `.aff`). French, British and German
-dictionaries are distributed with TeXstudio, on windows a large number is languages is provided. You can add additional dictionaries yourself by placing them in the dictionary path. A
+dictionaries are distributed with TeXstudio, on windows a large number of languages is provided. You can add additional dictionaries yourself by placing them in the dictionary path. A
 particularly convenient way to get additional dictionaries is
 downloading a dictionary extension of
 [http://wiki.services.openoffice.org/wiki/Dictionaries](http://extensions.openoffice.org/)
@@ -597,8 +597,8 @@ or
 [LibreOffice](https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any)
 and importing them using the button *Import Dictionary* in the options.
 ```{note}
-Linux distributions usually over a wide range of hunspell dictionaries as well which can be used.
-The actual dictionaries are ususally storde under `/usr/share/hunspell`
+Linux distributions usually offer a wide range of hunspell dictionaries which can be used.
+The actual dictionaries are ususally stored under `/usr/share/hunspell`
 ```
 
 You can specify one or more search paths for the dictionaries in the
