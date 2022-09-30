@@ -476,7 +476,9 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 #endif
 
 
-    ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>","<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
+    ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2")
+            .arg("<a href=\"https://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>",
+                 "<a href=\"https://extensions.libreoffice.org/?Tag%5B0%5D=50&q=&Tags%5B%5D=50\">LibreOffice</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 	//pagequick
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
