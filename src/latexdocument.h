@@ -288,9 +288,7 @@ public slots:
     void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint=-1);
 
 signals:
-	void hasBeenIncluded(const LatexDocument &newMasterDocument);
     void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
-    void setHighlightedEntry(StructureEntry *highlight);
 	void updateCompleter();
 	void updateBibTeXFiles();
 	void importPackage(QString name);

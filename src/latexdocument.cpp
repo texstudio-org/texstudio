@@ -376,7 +376,6 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
 	}
 
 	emit structureUpdated(this, newSection);
-	//emit setHighlightedEntry(newSection);
 
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
