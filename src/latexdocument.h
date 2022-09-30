@@ -292,10 +292,6 @@ signals:
     void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
     void setHighlightedEntry(StructureEntry *highlight);
 	void structureLost(LatexDocument *document);
-	void removeElement(StructureEntry *se, int row);
-	void removeElementFinished();
-	void addElement(StructureEntry *se, int row);
-	void addElementFinished();
 	void updateCompleter();
 	void updateBibTeXFiles();
 	void toBeChanged();
