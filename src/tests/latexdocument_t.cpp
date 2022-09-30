@@ -22,6 +22,9 @@ void LatexDocumentTest::splitStructure_data(){
     QTest::newRow("split, same hier") << "\\section{Hallo}\n\\section{Hallo}\n"<<0<< "0>2" << "2" ;
     QTest::newRow("split, in hier") << "\\section{Hallo}\n\\subsection{Hallo}\n"<<0<< "0>2" << "3" ;
     QTest::newRow("split, in second level") << "\\section{Hallo}\n\\subsection{Hallo}\n\\subsection{Hallo}\n\\section{Hallo}\n"<<1<< "0>2>>3" << "3>2" ;
+    QTest::newRow("split with labels") << "\\section{Hallo}\n\\label{Hallo}\n\\section{Hallo}\n"<<1<< "0>O>>L>2" << "2" ;
+    QTest::newRow("split with 2 labels") << "\\section{Hallo}\n\\label{Hallo}\n\\section{Hallo}\n\\label{Hallo}\n"<<1<< "0>O>>L>>L>2" << "2" ;
+    QTest::newRow("split with todo") << "\\section{Hallo}\n%TODO {Hallo}\n\\section{Hallo}\n"<<1<< "0>O>>T>2" << "2" ;
 }
 void LatexDocumentTest::splitStructure(){
 	QFETCH(QString, text);
@@ -41,8 +44,13 @@ void LatexDocumentTest::splitStructure(){
     QEQUAL(isSplitCoded, splitCoded);
 
     delete split;
-    qDeleteAll(m_doc->baseStructure->children);
-    m_doc->baseStructure->children.clear();
+    int i=0;
+    for(int i=0;i<m_doc->baseStructure->children.count();++i){
+        if(m_doc->baseStructure->children.at(i)->type == StructureEntry::SE_OVERVIEW) continue;
+        delete m_doc->baseStructure->children.at(i);
+        m_doc->baseStructure->children.remove(i);
+        --i;
+    }
 
 
 }
@@ -98,6 +106,15 @@ QString LatexDocumentTest::unrollStructure(StructureEntry *baseStructure){
         QString line=QString("%1").arg(se->level);
         if(se->type == StructureEntry::SE_INCLUDE){
             line="i";
+        }
+        if(se->type == StructureEntry::SE_OVERVIEW){
+            line="O";
+        }
+        if(se->type == StructureEntry::SE_LABEL){
+            line="L";
+        }
+        if(se->type == StructureEntry::SE_TODO){
+            line="T";
         }
         StructureEntry *l=se;
         int i=0;
