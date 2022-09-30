@@ -40,6 +40,8 @@ void LatexDocumentTest::splitStructure(){
 
     QEQUAL(isSplitCoded, splitCoded);
 
+    delete split;
+    qDeleteAll(m_doc->baseStructure->children);
     m_doc->baseStructure->children.clear();
 
 
@@ -83,6 +85,7 @@ void LatexDocumentTest::appendStructure()
 
     QEQUAL(isCoded, targetCoded);
 
+    qDeleteAll(m_doc->baseStructure->children);
     m_doc->baseStructure->children.clear();
 
 }
