@@ -63,7 +63,6 @@ html_theme = 'furo'
 #
 html_theme_options = {
     "navigation_with_keys": True,
-    "announcement": "Site still under construction!",
 }
 
 # html_static_path = ['_static']
