@@ -592,9 +592,9 @@ consists of two files (`.dic` and `.aff`). French, British and German
 dictionaries are distributed with TeXstudio, on windows a large number of languages is provided. You can add additional dictionaries yourself by placing them in the dictionary path. A
 particularly convenient way to get additional dictionaries is
 downloading a dictionary extension of
-[http://wiki.services.openoffice.org/wiki/Dictionaries](http://extensions.openoffice.org/)
+[OpenOffice](https://extensions.openoffice.org/de/search?f%5B0%5D=field_project_tags%3A157)
 or
-[LibreOffice](https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any)
+[LibreOffice](https://extensions.libreoffice.org/?Tag%5B0%5D=50&q=&Tags%5B%5D=50)
 and importing them using the button *Import Dictionary* in the options.
 ```{note}
 Linux distributions usually offer a wide range of hunspell dictionaries which can be used.
@@ -803,7 +803,7 @@ custom toolbar list in the configure dialog.
 
 TexStudio supports some simple actions for subversion/git. Here svn or git can be selected.
 
-\"Automatically check in after save\" allows TeXstudio to perform an SVN
+\"Automatically check in after save\" allows TeXstudio to perform a SVN
 check in after every save of a document, thus providing a very complete
 history of the creation of a document. Since text documents are rather
 small compared to disk spaces, size of the SVN/GIT database should not be a
