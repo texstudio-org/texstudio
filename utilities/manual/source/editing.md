@@ -256,7 +256,7 @@ The following functions are only accessible via the "Latex/Table Manipulation" m
     command is placed.
 -   Remodel the table after a template,see [below](#using-table-templates). 
 
-TeXstudio also allows block cursors. Press `Ctrl+Alt`
+TeXstudio also allows block cursors. Press `Ctrl+Shift`
 and drag the cursor with the mouse. The [block cursor](#block-cursor) works like a set of
 normal cursors. You can copy and paste text as usual. Also you can type
 in new text, which will be added in every row.
