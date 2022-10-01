@@ -250,7 +250,7 @@ on it.</p>
 <p><img alt="Menu SVN/GIT" src="_images/menu_svn.png" /></p>
 <dl class="simple myst">
 <dt>“File/Checkin”</dt><dd><p>Performs an explicit save and check in, with a input
-dialog which asks for an checkin in message which is stored in the SVN/GIT
+dialog which asks for a checkin in message which is stored in the SVN/GIT
 history.</p>
 </dd>
 <dt>“File/Show old Revisions”</dt><dd><p>Pops up a dialog, which shows all available
@@ -770,7 +770,7 @@ menus</p></li>
 <td><p>Converts a relative filename to an absolute one</p></td>
 </tr>
 <tr class="row-even"><td><p>app.load(file)</p></td>
-<td><p>Loads an file</p></td>
+<td><p>Loads a file</p></td>
 </tr>
 <tr class="row-odd"><td><p>app.fileOpen/Save/Close/…/editUndo/…/QuickBuild/…</p></td>
 <td><p>All menu commands (i.e. all slots in the texmaker.h file). You can view a list of all currently existing slots on the “menu” page of the config dialog.</p></td>
@@ -788,7 +788,7 @@ menus</p></li>
 <td><p>Creates a new action and returns it<br><br>-   menu: Parent menu<br>-   id: Id of the new action (the final, unique id will be <em>menu id/action id</em>)<br>-   caption: Visible text<br><br>You can use action.triggered.connect(function(){ … }); to link a function to the returned action (for details see the <a class="reference external" href="https://doc.qt.io/qt-6/signalsandslots.html">qt signal/slot</a> documentation).</p></td>
 </tr>
 <tr class="row-even"><td><p>app.getManagedAction([id])</p></td>
-<td><p>Returns an <a class="reference external" href="https://doc.qt.io/qt-6/qaction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/…/menuN/action, with usually one menu, e.g. “main/edit/undo”, see texmaker.cpp)</p></td>
+<td><p>Returns a <a class="reference external" href="https://doc.qt.io/qt-6/qaction.html">QAction</a> with a certain id (all ids have the form main/menu1/menu2/…/menuN/action, with usually one menu, e.g. “main/edit/undo”, see texmaker.cpp)</p></td>
 </tr>
 <tr class="row-odd"><td><p>app.createUI(file, [parent])</p></td>
 <td><p>Loads a certain ui file and creates a QWidget* from it</p></td>

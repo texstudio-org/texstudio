@@ -18,7 +18,7 @@ On the lower right you see the *messages panel* which can be switched to the [*l
 The central toolbar offers access to some common latex commands as we will see.
 
 ## Create a first document
-LaTeX needs some configuartion code in the document. The [Quick Start Wizard](editing.md#setting-the-preamble-of-a-tex-document) offers an easy way to set up an typical document.
+LaTeX needs some configuartion code in the document. The [Quick Start Wizard](editing.md#setting-the-preamble-of-a-tex-document) offers an easy way to set up a typical document.
 
 ![Quick start wizard](images/txs_wizard.png)
 
@@ -53,7 +53,7 @@ We can insert an equation environment via the menu `Math/Math equations/env equa
 ![Insert equation](images/txs_equation.png)
 
 ### Insert symbols
-LaTeX offers a huge number of mathematical and other symbols. An convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.
+LaTeX offers a huge number of mathematical and other symbols. A convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.
 
 ![symbol pane](images/txs_symbol.png)
 

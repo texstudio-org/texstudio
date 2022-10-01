@@ -358,7 +358,7 @@ cite, ref, footnote\... code.
 
 ![Structure View Labels](images/tb_reference.png)
 
-Selecting "reference" open a dialog which let's you select an reference and inserts the complete code.
+Selecting "reference" open a dialog which let's you select a reference and inserts the complete code.
 All other commands will be inserted with empty arguments.
 
 ![Inserting reference](images/insert_ref.png)
