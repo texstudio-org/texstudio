@@ -803,7 +803,7 @@ custom toolbar list in the configure dialog.
 
 TexStudio supports some simple actions for subversion/git. Here svn or git can be selected.
 
-\"Automatically check in after save\" allows TeXstudio to perform an SVN
+\"Automatically check in after save\" allows TeXstudio to perform a SVN
 check in after every save of a document, thus providing a very complete
 history of the creation of a document. Since text documents are rather
 small compared to disk spaces, size of the SVN/GIT database should not be a
