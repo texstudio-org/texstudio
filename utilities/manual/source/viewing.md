@@ -80,7 +80,7 @@ Magnify and Scroll mode
     scroll pages forth and back, and pressing the mouse wheel button
     changes the cursor into a red laser dot.
 -   With option Full Screen set (menu View, or key Ctrl+Shift+F) the
-    windowed pdf viewer\'s behaviour is that of Scroll Mode.
+    windowed pdf viewer\'s behavior is that of Scroll Mode.
 -   The mouse cursor hot spot of the magnifier glass lies in the center
     of the glass, that of the open hand is marked with a small cross
     outside the hand. This may help improve accuracy of inverse search.

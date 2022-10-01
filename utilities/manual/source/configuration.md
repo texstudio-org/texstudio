@@ -110,7 +110,7 @@ Use color in global TOC
 
 ![Configure Editor advanced: structure panel](images/conf_structurepanel.png)
 
-The table autoformating affects the [manipulate table tools](editing.md#manipulating-tables).
+The table autoformatting affects the [manipulate table tools](editing.md#manipulating-tables).
 
 Special commands
 :   Are special commands which do not add cell content and need to handled specially, e.g. `\hline` at the end of a row.
@@ -121,7 +121,7 @@ Special commands position
 One line per cell
 :   when reformating a table, just put each cell in an individual line
 
-![Configure Editor advanced: table autoformating](images/conf_tableautoformating.png)
+![Configure Editor advanced: table autoformatting](images/conf_tableautoformating.png)
 
 ## Configuring the latex related commands
 
@@ -461,7 +461,7 @@ be called and not modified:
 |  `txs:///conditionally-recompile-bibliography` |  Checks if the bib files have been modified, and calls `txs:///recompile-bibliography`, if that is the case |
 
 The internal pdf viewer also accepts the following options
-(txs:///internal-pdf-viewer) to modify its behaviour:
+(txs:///internal-pdf-viewer) to modify its behavior:
 
 | option | description |
 | --- | --- |
@@ -495,7 +495,7 @@ Finally, there are also hidden options, which can only be changed by
 modifying the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable,
 Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list
 of commands that are treated as latex compiler (e.g. show the log
-afterwards), rerunnable (repeat command call, if there are warnings),
+afterwards), re-runnable (repeat command call, if there are warnings),
 pdf generators (e.g. pdflatex), commands that prints to stdout (e.g.
 bibtex), and viewers (e.g. only open once).
 
@@ -537,7 +537,7 @@ targets are allowed for stderr: `2> txs:///messages`, `2> /dev/null`.
 Additionally, you can redirect to the same target as stdout by using
 `2>&1`.
 
-A typical usecase would be to suppress all output of a command:
+A typical use-case would be to suppress all output of a command:
 `>/dev/null 2>&1`
 
 Note: Instead of the Linux/Unix notation `> /dev/null`, you may
@@ -598,7 +598,7 @@ or
 and importing them using the button *Import Dictionary* in the options.
 ```{note}
 Linux distributions usually offer a wide range of hunspell dictionaries which can be used.
-The actual dictionaries are ususally stored under `/usr/share/hunspell`
+The actual dictionaries are usually stored under `/usr/share/hunspell`
 ```
 
 You can specify one or more search paths for the dictionaries in the
@@ -690,7 +690,7 @@ understands the use of `\documentclass` and `\usepackage` in order to
 select valid lists of commands for completion as well as syntax
 checking. 
 
-Concerning auto completion, TeXstudio allows one to adapt the behaviour
+Concerning auto completion, TeXstudio allows one to adapt the behavior
 to your liking. The following options are available:
 
 -   Automatically start completer ...: the completer is automatically invoked when \\*letter* is typed.
@@ -698,7 +698,7 @@ to your liking. The following options are available:
 -   Enable ToolTip-Help: show tool tips on selected latex commands in
     the completion list.
 -   Enable ToolTip-Preview: show tool tips with a preview of the completion, e.g. images in case of filenames, the surrounding text in case of references, etc.
--   Auto insert Math... : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatcally adds $ before and after that command.
+-   Auto insert Math... : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatically adds $ before and after that command.
 -   Preferred command set: selects the tab of the completer when opening it anew, see [section](editing.md#auto-completion). 
 
 If your favorite package is not yet present for completion (and syntax
@@ -723,9 +723,9 @@ The advanced mode offers some additional options:
 -   Arguments as placeholders: if the completed commands have options which need
     to be filled out, placeholders are put at these positions and they
     can be jumped to by using `Ctrl+Right`/`Ctrl+Left`.
--   Insert Arguments: Insert the typical argumen names like *num* & *den* in case of `\frac{num}{den}`
+-   Insert Arguments: Insert the typical argument names like *num* & *den* in case of `\frac{num}{den}`
 
-Usually the autodection mechanism works reliably. In rare cases, you may want to force the use of predetermined completion lists.
+Usually the auto-detection mechanism works reliably. In rare cases, you may want to force the use of predetermined completion lists.
 
 TeXstudio allows to select the additional word
 lists under \"Configure TeXstudio\" -\> \"Completion\" in *advanced mode*. The names
@@ -740,7 +740,7 @@ As the number of provided files has become quite large, a filter box has been ad
 
 The [preview](viewing.md#preview) allows to compile a small part of the text to compile and show the result.
 By default `pdflatex` is used and the result is shown `inline`.
-If an inline preview is performed, the preview is automatically updated if the orginal text is changed.
+If an inline preview is performed, the preview is automatically updated if the original text is changed.
 Tooltips on formulas/math also show a preview of said formula.
 
 ![Preview](images/configure_preview.png)
@@ -758,7 +758,7 @@ Changing font family or size may lead to distorted text output in the editor and
 ![Highlight Colors](images/configure_syntaxhighlighting.png)
 
 ## Configuring GUI scaling
-When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel indepedently. The change is performed immediately so that the result can be observed directly.
+When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel independently. The change is performed immediately so that the result can be observed directly.
 
 ![GUI scaling](images/configure_guiscaling.png)
 
@@ -774,7 +774,7 @@ lower case is allowed, but the comma is important). If a shortcut should
 be set to default value or removed completely, the items \"\<default\>\"
 or \"\<none\>\" at the top of the list can be selected respectively.
 
-Additional some function of the `ESC` key can be set. It can close the log-view, the embedded pdf viewer or leave the fullscreen mode.
+Additional some function of the `ESC` key can be set. It can close the log-view, the embedded pdf viewer or leave the full-screen mode.
 
 Show Shortcuts in Tooltips
 :  Show shortcuts in tooltips on toolbar actions or not.
@@ -785,7 +785,7 @@ Show Shortcuts in Tooltips
 
 The Math/Latex-Menu can be adapted to user likings. For this menu items
 can be renamed and a new Latex-Code can be placed. The appropriate item
-can be be directly edited by doubleclicking on them.
+can be be directly edited by double-clicking on them.
 
 ![Customize Menu](images/configure_customizeMenu.png)
 
@@ -810,7 +810,7 @@ small compared to disk spaces, size of the SVN/GIT database should not be a
 problem. In addition newly saved files (save as) are automatically added
 to SVN/GIT control,provided that the directory is already under SVN/GIT control.
 If that is not the case, TeXstudio searches in \"SVN Directory Search
-Depth\" directory above the current diorectory for a SVN/GIT controlled
+Depth\" directory above the current directory for a SVN/GIT controlled
 directory to which the subdirectories and the TeX-Document will be
 added. If no appropriate directory is found, a repository is
 automatically generated in a directory called \"./repo\" and the

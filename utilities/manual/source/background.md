@@ -26,7 +26,7 @@ This setting takes absolute precedence. All the commands of the
 \"Tools\" menu will be called on this document (to be more precise, the
 build system will expand the placeholder `%` to the root document), no
 matter which document is active in the editor. Additionally, labels and
-usercommands which are defined in any open document, can be used for
+user-commands which are defined in any open document, can be used for
 completion in any open document.
 
 In earlier versions, the *explicit root document* was somewhat
@@ -35,7 +35,7 @@ misleadingly called *master document*.
 ### Loaded Documents
 
 Obviously, TeXstudio can only use information (defined commands, labels,
-document hirachy, etc.) that it is aware of. We use the information in
+document hierarchy, etc.) that it is aware of. We use the information in
 all opened files, but if a label in a multi-file document is defined in
 a not-loaded files, TeXstudio does not know about it and will mark it as
 missing in references. To remedy this, you can just open the
@@ -62,14 +62,14 @@ performing highlighting or completion.
 | `--root`          |  defines the document as *explicit root document* (formerly called *master document*). |
 | `--master`        | *deprecated*:use `--root` instead. |
 | `--line xx[:cc]`  | position the cursor at line LINE and column COL, e.g. \"\--line 2:5\" will jump to column 5 in line 2. |
-| `--insert-cite citation` | pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \\mycite{key} or just the key. In the latter case, it is expanded to \\cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted. |
+| `--insert-cite citation` | pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \\mycite{key} or just the key. In the latter case, it is expanded to \\cite{key}. Also comma separated key-lists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted. |
 | `--start-always`   | start a new instance, even if TXS is already running. This allows using of multiple instances. |
 | `--pdf-viewer-only`| run as a standalone pdf viewer without an editor |
 | `--page`           | display a certain page in the pdf viewer |
 | `--no-session`     | do not load/save the session at startup/close |
 
 
-Additional options only available in debug versions of texstudio:
+Additional options only available in debug versions of TeXstudio:
 
 | option | description |
 | ----------------- | ------------------------------------- |
@@ -155,7 +155,7 @@ can be included in a command by `%\`.
 
 The argument names are visible in the completer window and after
 completion as placeholders in the editor. In general, you are free to
-name the arguments as you like. We encurage to provide meaningful names
+name the arguments as you like. We encourage to provide meaningful names
 e.g. `\parbox[position]{width}{text}` instead of
 `\parbox[arg1]{arg2}{arg3}`.
 
@@ -285,7 +285,7 @@ have the following attributes:
     works. If you `\usepackage{mypackage}` TeXstudio will load
     mypackage.cwl if available.
 -   **complete:** The cwl should contain all commands in the package. If
-    you use a non-specified command in the editor, the syntaxchecker
+    you use a non-specified command in the editor, the syntax-checker
     will mark it as unknown.
 -   **specific:** The commands should be classified if possible. This
     allows TeXstudio to give additional context to the command (e.g.
@@ -329,7 +329,7 @@ data:
 }
 ```
 
-FilesToOpen only has an effect for mutli-file documents. You may add a
+FilesToOpen only has an effect for multi-file documents. You may add a
 preview image next to the template file. Again, it must have the same
 name, but extension \".png\".
 
@@ -355,7 +355,7 @@ var metaData = {
 }
 ```
 
-The template itself is a javascript (see above) with some prefined
+The template itself is a javascript (see above) with some predefined
 variables which contain the whole table. The new table is just placed as
 replacement of the old one, using information from that variables. 3
 variables are given:

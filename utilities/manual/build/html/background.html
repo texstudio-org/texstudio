@@ -234,7 +234,7 @@ This setting takes absolute precedence. All the commands of the
 “Tools” menu will be called on this document (to be more precise, the
 build system will expand the placeholder <code class="docutils literal notranslate"><span class="pre">%</span></code> to the root document), no
 matter which document is active in the editor. Additionally, labels and
-usercommands which are defined in any open document, can be used for
+user-commands which are defined in any open document, can be used for
 completion in any open document.</p>
 <p>In earlier versions, the <em>explicit root document</em> was somewhat
 misleadingly called <em>master document</em>.</p>
@@ -242,7 +242,7 @@ misleadingly called <em>master document</em>.</p>
 <div class="section" id="loaded-documents">
 <h3>Loaded Documents<a class="headerlink" href="#loaded-documents" title="Permalink to this heading">#</a></h3>
 <p>Obviously, TeXstudio can only use information (defined commands, labels,
-document hirachy, etc.) that it is aware of. We use the information in
+document hierarchy, etc.) that it is aware of. We use the information in
 all opened files, but if a label in a multi-file document is defined in
 a not-loaded files, TeXstudio does not know about it and will mark it as
 missing in references. To remedy this, you can just open the
@@ -287,7 +287,7 @@ performing highlighting or completion.</p>
 <td><p>position the cursor at line LINE and column COL, e.g. “–line 2:5” will jump to column 5 in line 2.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--insert-cite</span> <span class="pre">citation</span></code></p></td>
-<td><p>pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</p></td>
+<td><p>pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated key-lists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--start-always</span></code></p></td>
 <td><p>start a new instance, even if TXS is already running. This allows using of multiple instances.</p></td>
@@ -304,7 +304,7 @@ performing highlighting or completion.</p>
 </tbody>
 </table>
 </div>
-<p>Additional options only available in debug versions of texstudio:</p>
+<p>Additional options only available in debug versions of TeXstudio:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="colwidths-auto docutils align-default">
 <thead>
@@ -400,7 +400,7 @@ can be included in a command by <code class="docutils literal notranslate"><span
 <h4>Argument Names<a class="headerlink" href="#argument-names" title="Permalink to this heading">#</a></h4>
 <p>The argument names are visible in the completer window and after
 completion as placeholders in the editor. In general, you are free to
-name the arguments as you like. We encurage to provide meaningful names
+name the arguments as you like. We encourage to provide meaningful names
 e.g. <code class="docutils literal notranslate"><span class="pre">\parbox[position]{width}{text}</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">\parbox[arg1]{arg2}{arg3}</span></code>.</p>
 <p>There are a few argument names that have special meaning:</p>
@@ -619,7 +619,7 @@ cwl should be named like the package so that automatic loading
 works. If you <code class="docutils literal notranslate"><span class="pre">\usepackage{mypackage}</span></code> TeXstudio will load
 mypackage.cwl if available.</p></li>
 <li><p><strong>complete:</strong> The cwl should contain all commands in the package. If
-you use a non-specified command in the editor, the syntaxchecker
+you use a non-specified command in the editor, the syntax-checker
 will mark it as unknown.</p></li>
 <li><p><strong>specific:</strong> The commands should be classified if possible. This
 allows TeXstudio to give additional context to the command (e.g.
@@ -665,7 +665,7 @@ data:</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>FilesToOpen only has an effect for mutli-file documents. You may add a
+<p>FilesToOpen only has an effect for multi-file documents. You may add a
 preview image next to the template file. Again, it must have the same
 name, but extension “.png”.</p>
 </div>
@@ -688,7 +688,7 @@ formatting. Example:</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The template itself is a javascript (see above) with some prefined
+<p>The template itself is a javascript (see above) with some predefined
 variables which contain the whole table. The new table is just placed as
 replacement of the old one, using information from that variables. 3
 variables are given:</p>

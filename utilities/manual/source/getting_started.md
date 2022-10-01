@@ -1,7 +1,7 @@
 # Getting started
 
 ## Requirements
-TeXstudio is a specialised LaTeX-editor. It helps to type [LaTeX-documents](https://www.latex-project.org/about/) more comfortable by helping to find the right commands, supporting error analysis and providing an easy way to view the results.
+TeXstudio is a specialized LaTeX-editor. It helps to type [LaTeX-documents](https://www.latex-project.org/about/) more comfortable by helping to find the right commands, supporting error analysis and providing an easy way to view the results.
 
 The actual latex system needs to be [installed separately](https://www.latex-project.org/get/) and is **not** provided by TeXstudio.
 
@@ -24,7 +24,7 @@ LaTeX needs some configuartion code in the document. The [Quick Start Wizard](ed
 
 Select `Wizards/Quick Start...` and confirm the dialog with `OK`.
 This will lead to this basic document:
-```
+```latex
     \documentclass[10pt,a4paper]{article}
     \usepackage[utf8]{inputenc}
     \usepackage[T1]{fontenc}
@@ -53,7 +53,7 @@ We can insert an equation environment via the menu `Math/Math equations/env equa
 ![Insert equation](images/txs_equation.png)
 
 ### Insert symbols
-LaTeX offers a huge number of mathematical and other symbols. A convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favourites and the most used symbols are collected as well to allow faster navigation.
+LaTeX offers a huge number of mathematical and other symbols. A convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favorites and the most used symbols are collected as well to allow faster navigation.
 
 ![symbol pane](images/txs_symbol.png)
 

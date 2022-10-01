@@ -123,7 +123,7 @@ global TOC in [advanced editor settings](configuration.md#configuring-the-advanc
 
 ### Using Bookmarks
 
-You can use bookmarks in the editor of Texstudio. This can help keep
+You can use bookmarks in the editor of TeXstudio. This can help keep
 text lines in mind and speed up navigation between them. To the left of
 the editor\'s text area is a bookmark column that displays the bookmark
 icons. Here you can open a context menu (s. image below) and select the
@@ -132,7 +132,7 @@ bookmarks can be used only once (when you set it a second time in the
 same editor, then the first one is removed), while the unnamed bookmark
 can be used many times. Also you can remove bookmarks with the first
 entry in the menu. A faster way setting bookmarks is clicking with the
-left mouse button in the bookmark column and Texstudio will choose a
+left mouse button in the bookmark column and TeXstudio will choose a
 bookmark or remove an existing one.
 
 ![Bookmarks in TeXstudio](images/bookmark1.png)
@@ -170,7 +170,7 @@ following image on the right.
 ## Formatting your text
 
 You can quickly set the format of a part of your text with the format part of the central toolbar.
-More options are available in the "LaTeX" menu. Commonly used formating commands like `\textbf` are also available as shortcuts, here `CTRL+B`.
+More options are available in the "LaTeX" menu. Commonly used formatting commands like `\textbf` are also available as shortcuts, here `CTRL+B`.
 
 ![Format Toolbar](images/tb_central_format.png)
 
@@ -193,7 +193,7 @@ changing the capitalization of selected text:
 
 Both variants of \"To Titlecase\" leave small words like a, the, of etc.
 in lowercase. Additionally, \"To Titlecase (smart)\" does not convert
-any words containing capital letters, assuming they are acronymes which
+any words containing capital letters, assuming they are acronyms which
 require a fixed capitalization (e.g. \"TeXstudio\").
 
 ### Escaping reserved characters
@@ -266,7 +266,7 @@ Pressing `esc` or clicking somewhere into the text leaves this mode.
 
 ### Using table templates
 
-Texstudio offers the possibility to reformat an existing latex table
+TeXstudio offers the possibility to reformat an existing latex table
 after a table template.
 
 For example, you have entered following table into txs:
@@ -336,7 +336,7 @@ options\" defines the optional parameter of
 attributes can be easily set, alternatively you have full control with
 the user defined setting.
 
-The code is placed inside a `figure` environment with the given postion suggestions.
+The code is placed inside a `figure` environment with the given position suggestions.
 
 By pressing the \"Save as default\" button the current settings (except
 file, caption and label) are stored and will hence be used as default
@@ -410,7 +410,7 @@ letters, the list is filtered, so that only the tags starting with the
 already written text are shown. If the list contains words which all
 start with the same letter combination, you can press `Tab` to complete
 all common letters. If only one element is present in the list, `Tab`
-selects this one to do the completion, like `Enter`. This behaviour is
+selects this one to do the completion, like `Enter`. This behavior is
 similar to tab completion in bash shells. You can also press `Ctrl+Space`
 to open this completer whenever you want.
 
@@ -477,7 +477,7 @@ It works the same for *bibIDs*
 ### KeyVal completion
 TeXstudio knows the possible keys and values for a number of commands.
 The completer opens automatically when entering keys or pressing `,` to start the next key.
-It also treats length specifially to offer only these when appropriate.
+It also treats length specifically to offer only these when appropriate.
 
 ```{tab} Complete key
 ![KeyVal completion](images/completer_keys.png)
@@ -536,7 +536,7 @@ You can directly select a different language by clicking on the language code, s
 
 ![active language](images/active_language.png)
 ```{note}
-More languages may be available in the configuation dialog, as txs filters the available language here to a predefined set plus all previously used languages.
+More languages may be available in the configuration dialog, as txs filters the available language here to a predefined set plus all previously used languages.
 ```
 The spell checking dialog, which can be open from the menu *tools/check spelling..* or with `CTRL+:`,
 allows searching for these underlined spelling mistakes starting from the current cursor position.
@@ -565,8 +565,8 @@ The supported error types are:
 
 ```{caution}
 LaTeX commands and especially LaTeX syntax are too complex to successfully check them completely.
-Marked errors are probably real errors except in special environemts, but that does **not** guarantee an errror free document.
-However the syntax marking may help to find issue significantly, especially in tabular environemnts.
+Marked errors are probably real errors except in special environments, but that does **not** guarantee an error free document.
+However the syntax marking may help to find issue significantly, especially in tabular environments.
 ```
 ## Thesaurus
 
@@ -622,7 +622,7 @@ resulting text is `\textbf{text}`.
 TeXstudio supports block cursors (or multiple cursors).
 Cursors can be added by `Ctrl+Alt`+left click.
 ALternatively pressing `Ctrl+alt+Up/down` also add block cursors.
-The cursors can jointly move, add and remove text and select charcters.
+The cursors can jointly move, add and remove text and select characters.
 Pressing `esc` or clicking into the text ends the block cursor mode. 
 
 ![block cursor](images/blockCursor.png)

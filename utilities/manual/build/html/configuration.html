@@ -301,7 +301,7 @@ Or hard line wrapping after a number of characters can be selected. This inserts
 </dd>
 </dl>
 <p><img alt="Configure Editor advanced: structure panel" src="_images/conf_structurepanel.png" /></p>
-<p>The table autoformating affects the <a class="reference internal" href="editing.html#manipulating-tables"><span class="std std-doc">manipulate table tools</span></a>.</p>
+<p>The table autoformatting affects the <a class="reference internal" href="editing.html#manipulating-tables"><span class="std std-doc">manipulate table tools</span></a>.</p>
 <dl class="simple myst">
 <dt>Special commands</dt><dd><p>Are special commands which do not add cell content and need to handled specially, e.g. <code class="docutils literal notranslate"><span class="pre">\hline</span></code> at the end of a row.</p>
 </dd>
@@ -310,7 +310,7 @@ Or hard line wrapping after a number of characters can be selected. This inserts
 <dt>One line per cell</dt><dd><p>when reformating a table, just put each cell in an individual line</p>
 </dd>
 </dl>
-<p><img alt="Configure Editor advanced: table autoformating" src="_images/conf_tableautoformating.png" /></p>
+<p><img alt="Configure Editor advanced: table autoformatting" src="_images/conf_tableautoformating.png" /></p>
 </div>
 <div class="section" id="configuring-the-latex-related-commands">
 <h2>Configuring the latex related commands<a class="headerlink" href="#configuring-the-latex-related-commands" title="Permalink to this heading">#</a></h2>
@@ -704,7 +704,7 @@ be called and not modified:</p>
 </table>
 </div>
 <p>The internal pdf viewer also accepts the following options
-(txs:///internal-pdf-viewer) to modify its behaviour:</p>
+(txs:///internal-pdf-viewer) to modify its behavior:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="colwidths-auto docutils align-default">
 <thead>
@@ -781,7 +781,7 @@ just a wrapper around another command:</p>
 modifying the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable,
 Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list
 of commands that are treated as latex compiler (e.g. show the log
-afterwards), rerunnable (repeat command call, if there are warnings),
+afterwards), re-runnable (repeat command call, if there are warnings),
 pdf generators (e.g. pdflatex), commands that prints to stdout (e.g.
 bibtex), and viewers (e.g. only open once).</p>
 </div>
@@ -820,7 +820,7 @@ output to the message panel (<code class="docutils literal notranslate"><span cl
 targets are allowed for stderr: <code class="docutils literal notranslate"><span class="pre">2&gt;</span> <span class="pre">txs:///messages</span></code>, <code class="docutils literal notranslate"><span class="pre">2&gt;</span> <span class="pre">/dev/null</span></code>.
 Additionally, you can redirect to the same target as stdout by using
 <code class="docutils literal notranslate"><span class="pre">2&gt;&amp;1</span></code>.</p>
-<p>A typical usecase would be to suppress all output of a command:
+<p>A typical use-case would be to suppress all output of a command:
 <code class="docutils literal notranslate"><span class="pre">&gt;/dev/null</span> <span class="pre">2&gt;&amp;1</span></code></p>
 <p>Note: Instead of the Linux/Unix notation <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">/dev/null</span></code>, you may
 alternatively use the Windows notation <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">nul</span></code>. Because these commands
@@ -874,12 +874,12 @@ particularly convenient way to get additional dictionaries is
 downloading a dictionary extension of
 <a class="reference external" href="https://extensions.openoffice.org/de/search?f%5B0%5D=field_project_tags%3A157">OpenOffice</a>
 or
-<a class="reference external" href="https://extensions.libreoffice.org/?Tag%5B0%5D=50&q=&Tags%5B%5D=50">LibreOffice</a>
+<a class="reference external" href="https://extensions.libreoffice.org/?Tag%5B0%5D=50&amp;q=&amp;Tags%5B%5D=50">LibreOffice</a>
 and importing them using the button <em>Import Dictionary</em> in the options.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Linux distributions usually offer a wide range of hunspell dictionaries which can be used.
-The actual dictionaries are ususally stored under <code class="docutils literal notranslate"><span class="pre">/usr/share/hunspell</span></code></p>
+The actual dictionaries are usually stored under <code class="docutils literal notranslate"><span class="pre">/usr/share/hunspell</span></code></p>
 </div>
 <p>You can specify one or more search paths for the dictionaries in the
 options. Multiple paths need to be separated by a semicolon. With the
@@ -955,7 +955,7 @@ the number of known commands for completion considerably. TeXstudio
 understands the use of <code class="docutils literal notranslate"><span class="pre">\documentclass</span></code> and <code class="docutils literal notranslate"><span class="pre">\usepackage</span></code> in order to
 select valid lists of commands for completion as well as syntax
 checking.</p>
-<p>Concerning auto completion, TeXstudio allows one to adapt the behaviour
+<p>Concerning auto completion, TeXstudio allows one to adapt the behavior
 to your liking. The following options are available:</p>
 <ul class="simple">
 <li><p>Automatically start completer …: the completer is automatically invoked when \<em>letter</em> is typed.</p></li>
@@ -963,7 +963,7 @@ to your liking. The following options are available:</p>
 <li><p>Enable ToolTip-Help: show tool tips on selected latex commands in
 the completion list.</p></li>
 <li><p>Enable ToolTip-Preview: show tool tips with a preview of the completion, e.g. images in case of filenames, the surrounding text in case of references, etc.</p></li>
-<li><p>Auto insert Math… : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatcally adds $ before and after that command.</p></li>
+<li><p>Auto insert Math… : when inserting a math-symbol (e.g. a greek symbol) outside a math environment, txs automatically adds $ before and after that command.</p></li>
 <li><p>Preferred command set: selects the tab of the completer when opening it anew, see <a class="reference internal" href="editing.html#auto-completion"><span class="std std-doc">section</span></a>.</p></li>
 </ul>
 <p>If your favorite package is not yet present for completion (and syntax
@@ -986,9 +986,9 @@ accepting the selected word. This may speed up typing.</p></li>
 <li><p>Arguments as placeholders: if the completed commands have options which need
 to be filled out, placeholders are put at these positions and they
 can be jumped to by using <code class="docutils literal notranslate"><span class="pre">Ctrl+Right</span></code>/<code class="docutils literal notranslate"><span class="pre">Ctrl+Left</span></code>.</p></li>
-<li><p>Insert Arguments: Insert the typical argumen names like <em>num</em> &amp; <em>den</em> in case of <code class="docutils literal notranslate"><span class="pre">\frac{num}{den}</span></code></p></li>
+<li><p>Insert Arguments: Insert the typical argument names like <em>num</em> &amp; <em>den</em> in case of <code class="docutils literal notranslate"><span class="pre">\frac{num}{den}</span></code></p></li>
 </ul>
-<p>Usually the autodection mechanism works reliably. In rare cases, you may want to force the use of predetermined completion lists.</p>
+<p>Usually the auto-detection mechanism works reliably. In rare cases, you may want to force the use of predetermined completion lists.</p>
 <p>TeXstudio allows to select the additional word
 lists under “Configure TeXstudio” -&gt; “Completion” in <em>advanced mode</em>. The names
 of the word lists corresponds to the package for which they are made.
@@ -1000,7 +1000,7 @@ The list latex.cwl contains the standard latex commands. Classes are provided as
 <h2>Configuring Preview<a class="headerlink" href="#configuring-preview" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference internal" href="viewing.html#preview"><span class="std std-doc">preview</span></a> allows to compile a small part of the text to compile and show the result.
 By default <code class="docutils literal notranslate"><span class="pre">pdflatex</span></code> is used and the result is shown <code class="docutils literal notranslate"><span class="pre">inline</span></code>.
-If an inline preview is performed, the preview is automatically updated if the orginal text is changed.
+If an inline preview is performed, the preview is automatically updated if the original text is changed.
 Tooltips on formulas/math also show a preview of said formula.</p>
 <p><img alt="Preview" src="_images/configure_preview.png" /></p>
 </div>
@@ -1018,7 +1018,7 @@ A higher number means higher priority.</p>
 </div>
 <div class="section" id="configuring-gui-scaling">
 <h2>Configuring GUI scaling<a class="headerlink" href="#configuring-gui-scaling" title="Permalink to this heading">#</a></h2>
-<p>When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel indepedently. The change is performed immediately so that the result can be observed directly.</p>
+<p>When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel independently. The change is performed immediately so that the result can be observed directly.</p>
 <p><img alt="GUI scaling" src="_images/configure_guiscaling.png" /></p>
 </div>
 <div class="section" id="configuring-shortcuts">
@@ -1032,7 +1032,7 @@ keystroke combinations, for example <code class="docutils literal notranslate"><
 lower case is allowed, but the comma is important). If a shortcut should
 be set to default value or removed completely, the items “&lt;default&gt;”
 or “&lt;none&gt;” at the top of the list can be selected respectively.</p>
-<p>Additional some function of the <code class="docutils literal notranslate"><span class="pre">ESC</span></code> key can be set. It can close the log-view, the embedded pdf viewer or leave the fullscreen mode.</p>
+<p>Additional some function of the <code class="docutils literal notranslate"><span class="pre">ESC</span></code> key can be set. It can close the log-view, the embedded pdf viewer or leave the full-screen mode.</p>
 <dl class="simple myst">
 <dt>Show Shortcuts in Tooltips</dt><dd><p>Show shortcuts in tooltips on toolbar actions or not.</p>
 </dd>
@@ -1043,7 +1043,7 @@ or “&lt;none&gt;” at the top of the list can be selected respectively.</p>
 <h2>Configuring the Latex/Math-Menu (Advanced option)<a class="headerlink" href="#configuring-the-latex-math-menu-advanced-option" title="Permalink to this heading">#</a></h2>
 <p>The Math/Latex-Menu can be adapted to user likings. For this menu items
 can be renamed and a new Latex-Code can be placed. The appropriate item
-can be be directly edited by doubleclicking on them.</p>
+can be be directly edited by double-clicking on them.</p>
 <p><img alt="Customize Menu" src="_images/configure_customizeMenu.png" /></p>
 </div>
 <div class="section" id="configuring-the-custom-toolbar-advanced-option">
@@ -1065,7 +1065,7 @@ small compared to disk spaces, size of the SVN/GIT database should not be a
 problem. In addition newly saved files (save as) are automatically added
 to SVN/GIT control,provided that the directory is already under SVN/GIT control.
 If that is not the case, TeXstudio searches in “SVN Directory Search
-Depth” directory above the current diorectory for a SVN/GIT controlled
+Depth” directory above the current directory for a SVN/GIT controlled
 directory to which the subdirectories and the TeX-Document will be
 added. If no appropriate directory is found, a repository is
 automatically generated in a directory called “./repo” and the
