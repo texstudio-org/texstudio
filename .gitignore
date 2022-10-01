@@ -11,7 +11,7 @@ translation/.tx/
 hg_revision.cpp
 src/git_revision.cpp
 cov-int/
-
+.qtc_clangd
 # ignore macOS compiling result
 git_revision.o
 texstudio.app/
