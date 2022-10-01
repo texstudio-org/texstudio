@@ -11,7 +11,7 @@ The side panel and the log panel may be hidden with a control on the lower-left 
 
 ![Hide panes](images/hide_panes.png)
 
-The toolbars can be hidden by a right click on an empty space in the toolbar area.
+The toolbars can be hidden by a right click anywhere on the toolbar area.
 
 ![Toolbar Visibility Menu](images/Tool_Bar_Menu.png)
 
