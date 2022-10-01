@@ -669,7 +669,7 @@ it there.
 In the advanced config mode, you can also mark certain LT rules as
 \"special\" whose matches will then be highlighted in a
 different/customizable way. This can be useful to do a stylistic
-analysis, e.g. by creating a own rule in LT highlighting all verbs or
+analysis, e.g. by creating an own rule in LT highlighting all verbs or
 all adverbs.
 
 ![advanced LT rules](images/conf_LT_adv.png)
@@ -794,7 +794,7 @@ can be be directly edited by doubleclicking on them.
 One Custom Toolbar is present in TMX. This toolbar can be filled with
 actions from the Latex-, Math- and User-Menu. Since many of those item
 don\'t have icons, user icons can be loaded as well. This is achieved by
-applying \"load other icon\" from the context menu on a item in the
+applying \"load other icon\" from the context menu on an item in the
 custom toolbar list in the configure dialog.
 
 ![Customize Toolbars](images/configure_customToolbar.png)

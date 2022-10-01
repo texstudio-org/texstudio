@@ -33,7 +33,7 @@ it as file(s) on disk and open these in the editor. The former option is
 not available for multi-file templates.
 
 New templates can be created by using the command \"File/Make Template\"
-on a opened document which you like to have has a template. Note that
+on an opened document which you like to have has a template. Note that
 this dialog currently does not support the full capabilities of the
 template system. In particular you cannot supply a preview image or
 create a multi-file template with it. You\'ll have to do this manually
@@ -432,7 +432,7 @@ below the command list. You can switch to the next mode by pressing `Shift+Space
 -   Most used: list only commands which have already been used in the
     completer by the user. This Is empty if txs has not been used before.
 -   Fuzzy: search the command in a fuzzy way. The command needs to
-    contain all given letters in the same order though with a arbitrary
+    contain all given letters in the same order though with an arbitrary
     of letters between them. E.g. `\bf` lists, among others,
     \\**b**egin{**f**igure}
 -   All: list all known commands.

@@ -47,7 +47,7 @@ on it.
 ![Menu SVN/GIT](images/menu_svn.png)
 
 \"File/Checkin\" 
-:   Performs an explicit save and check in, with a input
+:   Performs an explicit save and check in, with an input
     dialog which asks for an checkin in message which is stored in the SVN/GIT
     history.
 
