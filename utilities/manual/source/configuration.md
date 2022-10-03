@@ -788,7 +788,7 @@ Editor/Basic Key Mapping allows only changing of the "current shortcut". "Additi
 ## Configuring the Menu (Advanced option)
 
 The Tools/Math/Latex-Menu can be adapted to user likings by default. For this menu items
-can be renamed and a new Latex-Code, or in case of the tools menu, new tool commands can be placed. The appropriate item can be be directly edited by double-clicking on them.
+can be renamed and a new Latex-Code, or in case of the tools menu, new tool commands can be placed. The appropriate item can be directly edited by double-clicking on them.
 
 ![Customize Menu](images/configure_customizeMenu.png)
 
@@ -799,7 +799,7 @@ Changes to the Slots are discouraged unless you really know what you are doing. 
 
 ## Configuring the Toolbar (Advanced option)
 
-TeXstudio can adapt all toolbars with actions from the menus. A "user tool bar" is empty by default and may be used as desired.
+TeXstudio can adapt all toolbars with actions from the menus. A "user toolbar" is empty by default and may be used as desired.
 Since many of those item don\'t have icons, user icons can be loaded as well. This is achieved by
 applying \"load other icon\" from the context menu on an item in the
 custom toolbar list in the configure dialog.
