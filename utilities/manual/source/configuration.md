@@ -68,7 +68,7 @@ to disable the auto detection)
 The advanced options allow among others:
 
 Automatically load all included files of a LaTeX document
-:   This load all child document and scans them. This is necessary to provide a complete set of available references, bibid and possibly used packages if they are defined in a child document
+:   This load all child document and scans them. This is necessary to provide a complete set of available references, bibID and possibly used packages if they are defined in a child document
 
 Scan LaTeX distribution for installed packages
 :   This scan allows txs to determine if the given packages are valid and also to provide proposal for package name completion
@@ -81,7 +81,7 @@ The advanced editor option allow fine control over many different aspects.
 The overview here is incomplete and concentrates on commonly used changes.
 
 Show image tooltip on images in files
-:   when hovering over an image filename (e.g. in a \includegraphis command), a tooltip with the graphics content is shown
+:   when hovering over an image filename (e.g. in a \includegraphics command), a tooltip with the graphics content is shown
 
 Show help as tooltip on text in editor
 :   when hovering over a LaTeX command in the editor, txs can show a tooltip on that command if it is described in some latex command reference.
@@ -176,7 +176,7 @@ TeXstudio:
             part of the selector.
         -   **p{ext}:** searches for a file with same basename as the
             root document and extension **ext**. The search is done in
-            the dictory containing the root (master) document and in the
+            the directory containing the root (master) document and in the
             additional PDF search paths. If a matching file is found
             then it selected for further processing by \[pathname
             parts\]. If no matching file is found then TeXstudio selects
@@ -278,7 +278,7 @@ Launch Foxit Reader from TeXstudio
 Launch Acrobat Reader from TeXstudio
 : `"*(your Reader path)*" "?am.pdf"`
 
-Naviation and closing are achieved via DDE commands. Since version 10 of
+Navigation and closing are achieved via DDE commands. Since version 10 of
 the adobe products the DDE service name contains a letter for the
 Product and the version number.
 
@@ -684,7 +684,7 @@ lengths can be changed in the advanced grammar config page.
 
 ## Configuring the autocompletion
 
-TeXstudio has taken up completion word lists from kile which extended
+TeXstudio has taken up completion word lists from Kile which extended
 the number of known commands for completion considerably. TeXstudio
 understands the use of `\documentclass` and `\usepackage` in order to
 select valid lists of commands for completion as well as syntax
@@ -781,19 +781,26 @@ Show Shortcuts in Tooltips
 
 ![Configure Shortcuts](images/configure_shortcuts.png)
 
-## Configuring the Latex/Math-Menu (Advanced option)
+```{note}
+Editor/Basic Key Mapping allows only changing of the "current shortcut". "Additional shortcut" is not supported in this context.
+```
 
-The Math/Latex-Menu can be adapted to user likings. For this menu items
-can be renamed and a new Latex-Code can be placed. The appropriate item
-can be be directly edited by double-clicking on them.
+## Configuring the Menu (Advanced option)
+
+The Tools/Math/Latex-Menu can be adapted to user likings by default. For this menu items
+can be renamed and a new Latex-Code, or in case of the tools menu, new tool commands can be placed. The appropriate item can be be directly edited by double-clicking on them.
 
 ![Customize Menu](images/configure_customizeMenu.png)
 
-## Configuring the Custom Toolbar (Advanced option)
+The "show all" check box allows to see the complete menu structure of the main window of TeXstudio.
+```{warning}
+Changes to the Slots are discouraged unless you really know what you are doing. No support for changes here is given.
+```
 
-One Custom Toolbar is present in TMX. This toolbar can be filled with
-actions from the Latex-, Math- and User-Menu. Since many of those item
-don\'t have icons, user icons can be loaded as well. This is achieved by
+## Configuring the Toolbar (Advanced option)
+
+TeXstudio can adapt all toolbars with actions from the menus. A "user tool bar" is empty by default and may be used as desired.
+Since many of those item don\'t have icons, user icons can be loaded as well. This is achieved by
 applying \"load other icon\" from the context menu on an item in the
 custom toolbar list in the configure dialog.
 
