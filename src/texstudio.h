@@ -269,7 +269,7 @@ protected slots:
 	void fileMakeTemplate();
 	void fileOpen();
 	void fileRestoreSession(bool showProgress = true, bool warnMissing = true);
-	void fileSave(const bool saveSilently = false);
+    void fileSave(const bool saveSilently = false,QEditor *editor=nullptr);
 	void fileSaveAll();
     void fileSaveAllFromTimer();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);

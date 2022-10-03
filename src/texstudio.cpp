@@ -2725,24 +2725,30 @@ void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
 }
 /*!
  * \brief save current editor content
+ * Optionally a different editor may be used
+ * Necessary for hidden docuements
  *
  * \param saveSilently
  */
-void Texstudio::fileSave(const bool saveSilently)
+void Texstudio::fileSave(const bool saveSilently, QEditor *editor)
 {
-	if (!currentEditor())
+    if(!editor){
+        // fallback to current editor
+        editor=currentEditor();
+    }
+    if (!editor)
 		return;
 
-    if (currentEditor()->fileName() == "" || !QFileInfo::exists(currentEditor()->fileName())) {
+    if (editor->fileName() == "" || !QFileInfo::exists(editor->fileName())) {
 		removeDiffMarkers();// clean document from diff markers first
-		fileSaveAs(currentEditor()->fileName(), saveSilently);
+        fileSaveAs(editor->fileName(), saveSilently);
 	} else {
 		removeDiffMarkers();// clean document from diff markers first
-		currentEditor()->save();
-		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
+        editor->save();
+        editor->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
 		int checkIn = (configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) ? 2 : 1;
-		emit infoFileSaved(currentEditor()->fileName(), checkIn);
+        emit infoFileSaved(editor->fileName(), checkIn);
 	}
 	updateCaption();
 }
@@ -3008,28 +3014,23 @@ void Texstudio::fileClose()
 	bookmarks->updateBookmarks(currentEditorView());
 	QFileInfo fi = currentEditorView()->document->getFileInfo();
 
-repeatAfterFileSavingFailed:
-	if (currentEditorView()->editor->isContentModified()) {
-		switch (QMessageBox::warning(this, TEXSTUDIO,
-		                             tr("The document \"%1\" contains unsaved work. "
-		                                "Do you want to save it before closing?").arg(currentEditorView()->displayName()),
-		                             tr("Save and Close"), tr("Close without Saving"), tr("Cancel"),
-		                             0,
-		                             2)) {
-		case 0:
-			fileSave();
-			if (currentEditorView()->editor->isContentModified())
-				goto repeatAfterFileSavingFailed;
-			documents.deleteDocument(currentEditorView()->document);
-			break;
-		case 1:
-			documents.deleteDocument(currentEditorView()->document);
-			break;
-		case 2:
-		default:
-			return;
-		}
-	} else documents.deleteDocument(currentEditorView()->document);
+    // check if this is last document
+    LatexDocument *doc=currentEditorView()->getDocument();
+    auto lst=doc->getListOfDocs();
+    int cnt_hidden=0;
+    int cnt_open=lst.count();
+    for(auto *d:lst){
+        if(d->isHidden()) ++cnt_hidden;
+    }
+    if( (cnt_open-cnt_hidden) > 1){
+        //not closing last document
+        //no need to save all hidden documents
+        lst={doc};
+    }
+
+    saveFilesForClosing(lst);
+
+    documents.deleteDocument(currentEditorView()->document);
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
     updateTOCs();
 
@@ -3087,8 +3088,8 @@ repeatAfterFileSavingFailed:
 			                             0,
 			                             2)) {
 			case 0:
-				fileSave();
-				if (currentEditorView()->editor->isContentModified())
+                fileSave(false,edView->editor);
+                if (currentEditorView() && currentEditorView()->editor->isContentModified())
 					goto repeatAfterFileSavingFailed;
 				break;
 			case 1:
@@ -3487,6 +3488,7 @@ Session Texstudio::getCurrentSession()
 
 void Texstudio::MarkCurrentFileAsRecent()
 {
+    if(!currentEditorView()) return;
 	configManager.addRecentFile(getCurrentFileName(), documents.masterDocument == currentEditorView()->document);
 }
 
@@ -7438,7 +7440,7 @@ void Texstudio::aboutToDeleteDocument(LatexDocument *doc)
 	editors->removeEditor(doc->getEditorView());
 	for (int i = configManager.completerConfig->userMacros.size() - 1; i >= 0; i--)
 		if (configManager.completerConfig->userMacros[i].document == doc)
-			configManager.completerConfig->userMacros.removeAt(i);
+            configManager.completerConfig->userMacros.removeAt(i);
 }
 
 //*********************************
