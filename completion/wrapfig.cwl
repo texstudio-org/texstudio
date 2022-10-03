@@ -10,3 +10,4 @@
 \begin{wrapfloat}{floatname}{position}{width}#*
 \end{wrapfloat}#*
 \wrapoverhang#*
+\WFclear#*

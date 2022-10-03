@@ -1486,3 +1486,7 @@ udes-genie-these:
 class-udes-genie-these
 latex-document
 tex
+se2thesis:
+class-se2thesis
+latex-document
+tex
