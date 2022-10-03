@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2022/08/29 for v2.16.0-5-g5bb83fb
+# Matthew Bertucci 2022/10/02 for v2.17.0-0-g6428569
 
 #include:expl3
 #include:ifthen
@@ -54,6 +54,7 @@ codeSpans#true,false
 contentBlocksLanguageMap=%<file name%>
 definitionLists#true,false
 eagerCache#true,false
+extensions=%<file names%>
 expectJekyllData#true,false
 fancyLists#true,false
 footnotes#true,false

@@ -1,5 +1,5 @@
 # showkeys package
-# Matthew Bertucci 11/19/2021 for v3.11
+# Matthew Bertucci 2022/10/02 for v3.18
 
 #keyvals:\usepackage/showkeys#c
 notref
@@ -11,6 +11,8 @@ draft
 
 #ifOption:color
 #include:color
+refkey#B
+labelkey#B
 #endif
 
 \showkeyslabelformat{text}#*
