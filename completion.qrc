@@ -719,6 +719,7 @@
 <file>completion/class-idcc.cwl</file>
 <file>completion/class-IEEEconf.cwl</file>
 <file>completion/class-IEEEtran.cwl</file>
+<file>completion/classif2.cwl</file>
 <file>completion/class-ijdc-v14.cwl</file>
 <file>completion/class-ijdc-v9.cwl</file>
 <file>completion/class-image-gallery.cwl</file>
@@ -864,6 +865,7 @@
 <file>completion/class-scrlttr2.cwl</file>
 <file>completion/class-scrreprt.cwl</file>
 <file>completion/class-sdapsclassic.cwl</file>
+<file>completion/class-se2thesis.cwl</file>
 <file>completion/class-shtthesis.cwl</file>
 <file>completion/class-simplethesisdissertation.cwl</file>
 <file>completion/class-simplivre.cwl</file>
@@ -1252,6 +1254,7 @@
 <file>completion/ednmath0.cwl</file>
 <file>completion/ednotes.cwl</file>
 <file>completion/edtable.cwl</file>
+<file>completion/eemeir.cwl</file>
 <file>completion/eepic.cwl</file>
 <file>completion/efbox.cwl</file>
 <file>completion/eforms.cwl</file>
@@ -2504,6 +2507,7 @@
 <file>completion/pfarrei.cwl</file>
 <file>completion/pfdicons.cwl</file>
 <file>completion/pgfcalendar.cwl</file>
+<file>completion/pgfcalendar-ext.cwl</file>
 <file>completion/pgfcore.cwl</file>
 <file>completion/pgf.cwl</file>
 <file>completion/pgf-filehook.cwl</file>
@@ -2952,6 +2956,8 @@
 <file>completion/sdapsarray.cwl</file>
 <file>completion/sdapsbase.cwl</file>
 <file>completion/sdapslayout.cwl</file>
+<file>completion/se2colors.cwl</file>
+<file>completion/se2fonts.cwl</file>
 <file>completion/secdot.cwl</file>
 <file>completion/secnum.cwl</file>
 <file>completion/secsty.cwl</file>
@@ -3576,6 +3582,7 @@
 <file>completion/xcolor-material.cwl</file>
 <file>completion/xcolor-solarized.cwl</file>
 <file>completion/xcomment.cwl</file>
+<file>completion/xcookybooky.cwl</file>
 <file>completion/xcpdftips.cwl</file>
 <file>completion/xdufont.cwl</file>
 <file>completion/xeCJK.cwl</file>
