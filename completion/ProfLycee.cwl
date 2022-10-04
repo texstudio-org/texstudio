@@ -1,10 +1,11 @@
 # ProfLycee package
-# Matthew Bertucci 2022/09/24 for v1.2.6
+# Matthew Bertucci 2022/10/03 for v1.2.9
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
 #include:tikz
-# loads calc, decorations, decorations.pathreplacing, decorations.markings, arrows, and arrows.meta tikzlibraries
+# loads calc, decorations, decorations.pathreplacing, decorations.markings, arrows,
+# arrows.meta, babel, shapes.geometric, and decorations.pathmorphing tikzlibraries
 #include:tkz-tab
 #include:mathtools
 #include:pgf
@@ -184,6 +185,38 @@ epaisseur=%<épaisseur%>
 aff#true,false
 plein#true,false
 #endkeyvals
+
+\calcPbinomP{n}{p}{k}
+\calcPbinomC{n}{p}{a}{b}
+\calcPpoissP{l}{k}
+\calcPpoissC{l}{a}{b}
+\calcPnormC{m}{s}{a}{b}
+\calcPexpoC{l}{a}{b}
+
+\numPbinomP{n}{p}{k}
+\numPbinomP[prec]{n}{p}{k}
+\numPbinomP*{n}{p}{k}
+\numPbinomP*[prec]{n}{p}{k}
+\numPbinomC{n}{p}{a}{b}
+\numPbinomC[prec]{n}{p}{a}{b}
+\numPbinomC*{n}{p}{a}{b}
+\numPbinomC*[prec]{n}{p}{a}{b}
+\numPpoissP{l}{k}
+\numPpoissP[prec]{l}{k}
+\numPpoissP*{l}{k}
+\numPpoissP*[prec]{l}{k}
+\numPpoissC{l}{a}{b}
+\numPpoissC[prec]{l}{a}{b}
+\numPpoissC*{l}{a}{b}
+\numPpoissC*[prec]{l}{a}{b}
+\numPnormC{m}{s}{a}{b}
+\numPnormC[prec]{m}{s}{a}{b}
+\numPnormC*{m}{s}{a}{b}
+\numPnormC*[prec]{m}{s}{a}{b}
+\numPexpoC{l}{a}{b}
+\numPexpoC[prec]{l}{a}{b}
+\numPexpoC*{l}{a}{b}
+\numPexpoC*[prec]{l}{a}{b}
 
 \convertfraction{fraction expr}
 \convertfraction[d ou t]{fraction expr}
@@ -730,6 +763,8 @@ Teal#B
 \begin{tcpythontexcode}[width]#*
 \begin{tcpythontexcodeno}#*
 \begin{tcpythontexcodeno}[width]#*
+\BorneInf#S
+\BorneSup#S
 \calculargument#S
 \CFchap#S
 \CFcoulcmd#S
