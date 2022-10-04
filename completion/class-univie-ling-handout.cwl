@@ -1,7 +1,6 @@
 # univie-ling-handout class
-# Matthew Bertucci 2022/06/20 for v1.19
+# Matthew Bertucci 2022/10/03 for v1.2.0
 
-#include:xkeyval
 #include:class-scrartcl
 #include:geometry
 #include:graphicx
@@ -10,14 +9,14 @@
 #include:sourceserifpro
 #include:sourcesanspro
 #include:sourcecodepro
-#include:translations
+#include:translator
 #include:caption
 #include:ragged2e
+#include:babel
 #include:biblatex
 # loads style=univie-ling option of biblatex
 #include:array
 #include:ifthen
-#include:babel
 #include:microtype
 #include:csquotes
 #include:url
@@ -333,11 +332,7 @@ apamaxprtauth=%<number%>
 \beforesubtitle#*
 \beforetitle#*
 \beforetitling#*
-\cdgerman#*
 \eventline#*
-\filedate#S
-\filename#S
-\fileversion#S
 \headeroffset#*
 \heventtitlesep#*
 \lsoffset#*
@@ -346,65 +341,6 @@ apamaxprtauth=%<number%>
 \umbruch#*
 \umbruch[vspace%l]#*
 \urlprefix#*
-
-\ifbiblatex#S
-\biblatextrue#S
-\biblatexfalse#S
-\ifapa#S
-\apatrue#S
-\apafalse#S
-\ifcaptionp#S
-\captionptrue#S
-\captionpfalse#S
-\ifdraftmark#S
-\draftmarktrue#S
-\draftmarkfalse#S
-\ifdraftmarkfp#S
-\draftmarkfptrue#S
-\draftmarkfpfalse#S
-\ifrefsp#S
-\refsptrue#S
-\refspfalse#S
-\ifcovington#S
-\covingtontrue#S
-\covingtonfalse#S
-\ifmicrotype#S
-\microtypetrue#S
-\microtypefalse#S
-\ifpolyglossia#S
-\polyglossiatrue#S
-\polyglossiafalse#S
-\ifpsfonts#S
-\psfontstrue#S
-\psfontsfalse#S
-\ifotffonts#S
-\otffontstrue#S
-\otffontsfalse#S
-\ifnofonts#S
-\nofontstrue#S
-\nofontsfalse#S
-\iflandscape
-\ifnopplogo#S
-\nopplogotrue#S
-\nopplogofalse#S
-\ifswaphead#S
-\swapheadtrue#S
-\swapheadfalse#S
-\iflastpage#S
-\lastpagetrue#S
-\lastpagefalse#S
-\ifpageonfirst#S
-\pageonfirsttrue#S
-\pageonfirstfalse#S
-\ifbreakevent#S
-\breakeventtrue#S
-\breakeventfalse#S
-\ifwidestitle#S
-\widestitletrue#S
-\widestitlefalse#S
-\ifnoevent#S
-\noeventtrue#S
-\noeventfalse#S
 
 # from T1 option of fontenc
 \DH#n
