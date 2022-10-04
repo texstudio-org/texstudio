@@ -1,10 +1,10 @@
 # univie-ling-thesis class
-# Matthew Bertucci 2022/06/20 for v1.19
+# Matthew Bertucci 2022/10/03 for v2.0
 
 #include:xkeyval
 #include:class-scrreprt
 #include:array
-#include:translations
+#include:translator
 #include:fontenc
 # loads T1 option of fontenc
 #include:mathpazo
@@ -306,52 +306,6 @@ diss
 \maxfn#*
 \origtableofcontents#S
 \urlprefix#*
-
-\ifbiblatex#S
-\biblatextrue#S
-\biblatexfalse#S
-\ifapa#S
-\apatrue#S
-\apafalse#S
-\ifcaptionp#S
-\captionptrue#S
-\captionpfalse#S
-\ifdraftmark#S
-\draftmarktrue#S
-\draftmarkfalse#S
-\ifdraftmarkfp#S
-\draftmarkfptrue#S
-\draftmarkfpfalse#S
-\ifrefsp#S
-\refsptrue#S
-\refspfalse#S
-\ifcovington#S
-\covingtontrue#S
-\covingtonfalse#S
-\ifmicrotype#S
-\microtypetrue#S
-\microtypefalse#S
-\ifmultiauthors#S
-\multiauthorstrue#S
-\multiauthorsfalse#S
-\ifpolyglossia#S
-\polyglossiatrue#S
-\polyglossiafalse#S
-\ifpsfonts#S
-\psfontstrue#S
-\psfontsfalse#S
-\ifotffonts#S
-\otffontstrue#S
-\otffontsfalse#S
-\ifnofonts#S
-\nofontstrue#S
-\nofontsfalse#S
-\iffdegree#S
-\fdegreetrue#S
-\fdegreefalse#S
-\ifpdfa#S
-\pdfatrue#S
-\pdfafalse#S
 
 # from T1 option of fontenc
 \DH#n
