@@ -378,7 +378,7 @@ Here all the references may be changed by changing "Replace by" and clicking "Re
 ![Find reference usage](images/findUsage.png)
 
 ```{note}
-If references in hidden documents are changed, they will be changed automatically when a compilation run is started. Otherwise you will be asked if you want to save when closing TeXstudio or closing all files which belong to that document.
+If references in hidden documents are changed, they will be saved automatically when a compilation run is started. Otherwise you will be asked if you want to save when closing TeXstudio or closing all files which belong to that document.
 ``` 
 
 
