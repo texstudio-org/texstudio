@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2022/10/01 for v3.80
+# tbraun 4.11.2008; Matthew Bertucci 2022/10/05 for v3.81
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -154,15 +154,15 @@ captions=%<language tag%>
 hyphenrules=%<language list%>
 main
 script=%<script name%>
-language=
+language=%<language name%>
 alph=%<counter%>
 Alph=%<counter%>
-onchar=#ids,fonts
+onchar=#ids,fonts,letters
 intraspace=%<base shrink stretch%>
 intrapenalty=%<penalty%>
 transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,kashida.plain,transliteration.gajica
-justification=#kashida,elongated,unhyphenated
-linebreaking=#kashida,elongated,unhyphenated
+justification=#kashida,elongated,unhyphenated,padding
+linebreaking=#kashida,elongated,unhyphenated,padding
 mapfont=
 maparabic
 mapdigits
