@@ -1,5 +1,5 @@
 # upmethodology-fmt package
-# Matthew Bertucci 2022/04/21 for release 2022/02/10
+# Matthew Bertucci 2022/10/05 for release 2022/10/04
 
 #include:upmethodology-p-common
 #include:graphicx
@@ -251,6 +251,8 @@ emphboxbackgroundc#B
 \begin{titleemphbox3}{title%text}
 \begin{titleemphbox3}[width]{title%text}
 \end{titleemphbox3}
+\overridedescriptionenvironment#*
+\restoredescriptionenvironment#*
 
 #keyvals:\mfigure,\mfigure*,\msubfigure,\mfigurewtex,\mfigurewtex*
 alt={%<alt text%>}
