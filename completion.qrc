@@ -189,6 +189,7 @@
 <file>completion/autobreak.cwl</file>
 <file>completion/autofancyhdr.cwl</file>
 <file>completion/autolist.cwl</file>
+<file>completion/automultiplechoice.cwl</file>
 <file>completion/autonum.cwl</file>
 <file>completion/autopdf.cwl</file>
 <file>completion/auto-pst-pdf.cwl</file>
@@ -955,6 +956,7 @@
 <file>completion/clicks.cwl</file>
 <file>completion/clipboard.cwl</file>
 <file>completion/clock.cwl</file>
+<file>completion/clojure-pamphlet.cwl</file>
 <file>completion/cloze.cwl</file>
 <file>completion/clrdblpg.cwl</file>
 <file>completion/clrscode3e.cwl</file>
@@ -1036,6 +1038,7 @@
 <file>completion/cooking.cwl</file>
 <file>completion/cookingsymbols.cwl</file>
 <file>completion/cooking-units.cwl</file>
+<file>completion/coolfn.cwl</file>
 <file>completion/coollist.cwl</file>
 <file>completion/coolstr.cwl</file>
 <file>completion/coolthms.cwl</file>
@@ -2276,6 +2279,8 @@
 <file>completion/musical.cwl</file>
 <file>completion/musicography.cwl</file>
 <file>completion/musikui.cwl</file>
+<file>completion/musixfll.cwl</file>
+<file>completion/musixtex.cwl</file>
 <file>completion/mVersion.cwl</file>
 <file>completion/mwe.cwl</file>
 <file>completion/mxedruli.cwl</file>
