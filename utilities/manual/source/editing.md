@@ -643,7 +643,7 @@ The extended search allows searching on all files of a document.
 The search word is updated when pressing "+" again on the search panel. "Update search" search with the given search word again through all specified files.
 The drop down menu allows to search within a "Project",i.e. all files containing to one document, "All doc", i.e. all open documents in TeXstudio or a single "Current Document".
 
-With in the search results, a double-click jumps to the found word. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
+In the list of search results, a double-click on a match jumps to the location in the file. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
 
 ![extended search pane](images/extendedSearch.png)
 
