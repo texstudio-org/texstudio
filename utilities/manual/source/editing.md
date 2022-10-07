@@ -607,7 +607,7 @@ The thesaurus can be selected in the [configuration](configuration.md#configurin
 As any editor, TeXstudio offers to search (and replace) text within an open file.
 
 ### Searching text
-The search is performed in a search panel below the actual text, activated either with `Ctrl+F` or edit/searching/find. Options can chosen by enabling/disabling the option next to the search text box.
+The search is performed in a search panel below the actual text, activated either with `Ctrl+F` or edit/searching/find. Options can be chosen by enabling/disabling the option next to the search text box.
 
 | Icon | function |
 | --   | -------- |
