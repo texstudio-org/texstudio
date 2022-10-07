@@ -1,5 +1,5 @@
 # thuthesis class
-# Matthew Bertucci 2022/07/03 for v7.3.0
+# Matthew Bertucci 2022/10/07 for v7.3.1
 
 #include:iftex
 #include:kvdefinekeys
@@ -137,6 +137,7 @@ spine-font={%<font commands%>}
 spine-title={%<书脊的标题%>}
 spine-author={%<书脊的作者姓名%>}
 include-spine#true,false
+appendix-figure-in-lof#true,false
 # not in main documentation
 main-language=#chinese,english
 language=#chinese,english
