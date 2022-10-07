@@ -766,12 +766,104 @@ moments.</p>
 searched for. The list below gives a list of word classes. The can be
 chosen to reduce the number of suggestions. The column to the right
 contains the list of suggested synonyms. A selected word from this list
-apears in the first line to the right as proposition for replacement of
+appears in the first line to the right as proposition for replacement of
 the text. This word can be changed manually. It is also used to do
 further investigations for words and their synonyms which “start with”
 or “contain” that word. With “lookup” it can be directly used to
 look for a synonym for that word.</p>
 <p>The thesaurus can be selected in the <a class="reference internal" href="configuration.html#configuring-the-thesaurus"><span class="std std-doc">configuration</span></a>.</p>
+</section>
+<section id="searching-in-the-document">
+<h2>Searching in the document<a class="headerlink" href="#searching-in-the-document" title="Permalink to this heading">#</a></h2>
+<p>As any editor, TeXstudio offers to search (and replace) text within an open file.</p>
+<section id="searching-text">
+<h3>Searching text<a class="headerlink" href="#searching-text" title="Permalink to this heading">#</a></h3>
+<p>The search is performed in a search panel below the actual text, activated either with <code class="docutils literal notranslate"><span class="pre">Ctrl+F</span></code> or edit/searching/find. Options can chosen by enabling/disabling the option next to the search text box.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Icon</p></th>
+<th class="head"><p>function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="" src="_images/down.png" /></p></td>
+<td><p>find next</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/up.png" /></p></td>
+<td><p>find previous</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/count.svg" /></p></td>
+<td><p>count matches</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/case.svg" /></p></td>
+<td><p>select case sensitivity (activated, case sensitive)</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/word.svg" /></p></td>
+<td><p>find only complete words</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/regex.svg" /></p></td>
+<td><p>use regular expression, see below</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/highlight.svg" /></p></td>
+<td><p>highlight all matches</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/cursor.svg" /></p></td>
+<td><p>start search from cursor/start of document</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/selection.svg" /></p></td>
+<td><p>limit search on previous selected text</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/all.svg" /></p></td>
+<td><p>filter search results like ‘all’,’math”,’non-math’,etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/extend.svg" /></p></td>
+<td><p>extended search, see <a class="reference internal" href="#extended-search"><span class="std std-doc">here</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Regular expression follows perl regex syntax, see also <a class="reference external" href="http://perldoc.perl.org/perlre.html">Perl’s regular expression documentation</a> and <a class="reference external" href="http://perldoc.perl.org/perlretut.html">Perl’s regular expression tutorial</a>.</p>
+</section>
+<section id="replacing-text">
+<h3>Replacing text<a class="headerlink" href="#replacing-text" title="Permalink to this heading">#</a></h3>
+<p>The search-panel extends to offer a replacement when pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+R</span></code> or edit/Searching/replace.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Icon</p></th>
+<th class="head"><p>function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="" src="_images/replacedown.svg" /></p></td>
+<td><p>replace and find next</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/replaceup.svg" /></p></td>
+<td><p>replace and find previous</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/replaceall.svg" /></p></td>
+<td><p>replace all remaining matches</p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="" src="_images/prompt.svg" /></p></td>
+<td><p>ask every time before replacing</p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="" src="_images/escape.svg" /></p></td>
+<td><p>use escaped number to insert found groups, see perl regex above</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="search panel" src="_images/searchpanel.png" /></p>
+</section>
+<section id="extended-search">
+<h3>Extended search<a class="headerlink" href="#extended-search" title="Permalink to this heading">#</a></h3>
+<p>The extended search allows searching on all files of a document.
+The search word is updated when pressing “+” again on the search panel. “Update search” search with the given search word again through all specified files.
+The drop down menu allows to search within a “Project”,i.e. all files containing to one document, “All doc”, i.e. all open documents in TeXstudio or a single “Current Document”.</p>
+<p>With in the search results, a double-click jumps to the found word. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing “Replace all”.</p>
+<p><img alt="extended search pane" src="_images/extendedSearch.png" /></p>
+</section>
 </section>
 <section id="special-commands">
 <h2>Special Commands<a class="headerlink" href="#special-commands" title="Permalink to this heading">#</a></h2>
@@ -919,6 +1011,12 @@ Pressing <code class="docutils literal notranslate"><span class="pre">esc</span>
 <li><a class="reference internal" href="#spell-check">Spell check</a></li>
 <li><a class="reference internal" href="#syntax-check">Syntax check</a></li>
 <li><a class="reference internal" href="#thesaurus">Thesaurus</a></li>
+<li><a class="reference internal" href="#searching-in-the-document">Searching in the document</a><ul>
+<li><a class="reference internal" href="#searching-text">Searching text</a></li>
+<li><a class="reference internal" href="#replacing-text">Replacing text</a></li>
+<li><a class="reference internal" href="#extended-search">Extended search</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#special-commands">Special Commands</a><ul>
 <li><a class="reference internal" href="#delete-word-command-environment">Delete word/command/environment</a></li>
 <li><a class="reference internal" href="#rename-environment">Rename environment</a></li>

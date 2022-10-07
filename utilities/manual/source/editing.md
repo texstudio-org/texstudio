@@ -595,13 +595,57 @@ The first line to the left contains the word, for which a synonym is
 searched for. The list below gives a list of word classes. The can be
 chosen to reduce the number of suggestions. The column to the right
 contains the list of suggested synonyms. A selected word from this list
-apears in the first line to the right as proposition for replacement of
+appears in the first line to the right as proposition for replacement of
 the text. This word can be changed manually. It is also used to do
 further investigations for words and their synonyms which \"start with\"
 or \"contain\" that word. With \"lookup\" it can be directly used to
 look for a synonym for that word.
 
 The thesaurus can be selected in the [configuration](configuration.md#configuring-the-thesaurus).
+
+## Searching in the document
+As any editor, TeXstudio offers to search (and replace) text within an open file.
+
+### Searching text
+The search is performed in a search panel below the actual text, activated either with `Ctrl+F` or edit/searching/find. Options can chosen by enabling/disabling the option next to the search text box.
+
+| Icon | function |
+| --   | -------- |
+| ![](../../../images/qcodeedit/down.png) | find next |
+| ![](../../../images/qcodeedit/up.png)   | find previous |
+| ![](../../../images-ng/count.svg)   | count matches |
+| ![](../../../images-ng/case.svg) | select case sensitivity (activated, case sensitive) |
+| ![](../../../images-ng/word.svg)   | find only complete words |
+| ![](../../../images-ng/regex.svg)   | use regular expression, see below |
+| ![](../../../images-ng/highlight.svg)   | highlight all matches |
+| ![](../../../images-ng/cursor.svg)   | start search from cursor/start of document |
+| ![](../../../images-ng/selection.svg)   | limit search on previous selected text |
+| ![](../../../images-ng/all.svg)   | filter search results like 'all','math",'non-math',etc. |
+| ![](../../../images-ng/extend.svg)   | extended search, see [here](#extended-search) |
+
+Regular expression follows perl regex syntax, see also [Perl's regular expression documentation](http://perldoc.perl.org/perlre.html) and [Perl's regular expression tutorial](http://perldoc.perl.org/perlretut.html).
+
+### Replacing text
+The search-panel extends to offer a replacement when pressing `Ctrl+R` or edit/Searching/replace.
+
+| Icon | function |
+| --   | -------- |
+| ![](../../../images-ng/replacedown.svg) | replace and find next |
+| ![](../../../images-ng/replaceup.svg)   | replace and find previous |
+| ![](../../../images-ng/replaceall.svg)   | replace all remaining matches |
+| ![](../../../images-ng/prompt.svg) | ask every time before replacing |
+| ![](../../../images-ng/escape.svg)   | use escaped number to insert found groups, see perl regex above |
+
+![search panel](images/searchpanel.png)
+
+### Extended search
+The extended search allows searching on all files of a document.
+The search word is updated when pressing "+" again on the search panel. "Update search" search with the given search word again through all specified files.
+The drop down menu allows to search within a "Project",i.e. all files containing to one document, "All doc", i.e. all open documents in TeXstudio or a single "Current Document".
+
+With in the search results, a double-click jumps to the found word. The matches can be selected/deselected to limit the results which are replaced by the replacement text by pressing "Replace all".
+
+![extended search pane](images/extendedSearch.png)
 
 ## Special Commands
 
