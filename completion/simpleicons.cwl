@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/09/24 for v7.11.0
+# Matthew Bertucci 2022/10/07 for v7.12.0
 
 #include:ifxetex
 #include:ifluatex
@@ -60,6 +60,7 @@ affinitydesigner
 affinityphoto
 affinitypublisher
 aframe
+agora
 aib
 aidungeon
 aiohttp
@@ -83,6 +84,7 @@ aldisud
 alfaromeo
 alfred
 algolia
+algorand
 alibabacloud
 alibabadotcom
 aliexpress
@@ -169,6 +171,7 @@ appian
 apple
 applearcade
 applemusic
+applenews
 applepay
 applepodcasts
 appletv
@@ -443,6 +446,7 @@ coinbase
 coinmarketcap
 commerzbank
 commitlint
+commodore
 commonworkflowlanguage
 composer
 comsol
@@ -516,6 +520,7 @@ datadotai
 datagrip
 dataiku
 datastax
+dataverse
 dataversioncontrol
 datocms
 datto
@@ -833,6 +838,7 @@ googleearth
 googlefit
 googlefonts
 googlehangouts
+googlehome
 googlekeep
 googlelens
 googlemaps
@@ -1353,6 +1359,7 @@ netflix
 netlify
 nette
 netto
+neutralinojs
 newbalance
 newjapanprowrestling
 newrelic
@@ -1581,6 +1588,8 @@ postmates
 powerapps
 powerautomate
 powerbi
+powerfx
+powerpages
 powers
 powershell
 powervirtualagents
@@ -1802,6 +1811,7 @@ sega
 selenium
 sellfy
 semanticrelease
+semanticscholar
 semanticuireact
 semanticweb
 semaphoreci
@@ -1814,6 +1824,7 @@ sepa
 sequelize
 serverfault
 serverless
+sessionize
 sfml
 shadow
 shanghaimetro

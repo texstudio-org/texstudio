@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2022/10/02 for v2.17.0-0-g6428569
+# Matthew Bertucci 2022/10/04 for v2.17.1-0-g8ca83f5
 
 #include:expl3
 #include:ifthen
@@ -42,6 +42,8 @@ inputTempFileName=%<file name%>
 outputTempFileName=%<file name%>
 errorTempFileName=%<file name%>
 cacheDir=%<directory%>
+contentBlocksLanguageMap=%<file name%>
+debugExtensionsFileName=%<file name%>
 outputDir=%<directory%>
 blankBeforeBlockquote#true,false
 blankBeforeCodeFence#true,false
@@ -50,8 +52,8 @@ breakableBlockquotes#true,false
 citations#true,false
 citationNbsps#true,false
 contentBlocks#true,false
+debugExtensions#true,false
 codeSpans#true,false
-contentBlocksLanguageMap=%<file name%>
 definitionLists#true,false
 eagerCache#true,false
 extensions=%<file names%>

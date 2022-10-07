@@ -1,8 +1,13 @@
 # membranecomputing package
-# Matthew Bertucci 10/5/2021 for v0.2
+# Matthew Bertucci 2022/10/07 for v0.2.1
 
 #include:ifthen
 #include:xstring
+
+#keyvals:\usepackage/membranecomputing#c
+blackboard
+traditional
+#endkeyvals
 
 ### Basic notations ###
 \wa
@@ -25,16 +30,22 @@
 
 ### Languages and computability theory ###
 \REG
+\mcREG#S
 \LIN
+\mcLIN#S
 \CF
 \CS
 \RE
+\mcRE#S
 \compSet{arg%formula}
 
 ### Families of membrane systems ###
 \AM{arg%formula}
 \AM[sup%formula]{arg%formula}
+\mcAM{arg%formula}#S
+\mcAM[sup%formula]{arg%formula}#S
 \AMO{arg%formula}
+\mcTC[optarg%formula]{arg%formula}#S
 \TC[optarg%formula]{arg%formula}
 \TDC{arg%formula}
 \TSC{arg%formula}
@@ -63,6 +74,7 @@
 ### P systems ###
 \psystem{memb struc}{parameters%keyvals}{sub%formula}{degree}
 \psystem[input option]{memb struc}{parameters%keyvals}{sub%formula}{degree}
+
 #keyvals:\psystem
 transition
 activemembranes
@@ -71,11 +83,15 @@ spiking
 kernel
 colony
 #endkeyvals
+
+\psystemT
+\rpsystemT
 \psystemAM
 \rpsystemAM
 \psystemSA
 \rpsystemSA
 \SNpsystem
+\rSNpsystem
 \kpsystem
 \rkpsystem
 \pcolony

@@ -1,5 +1,5 @@
 # letgut class
-# Matthew Bertucci 2022/06/20 for v0.9.2
+# Matthew Bertucci 2022/10/04 for v0.9.4
 
 #include:luatex
 #include:l3keys2e
@@ -96,11 +96,11 @@ detailedtoc#true,false
 \file*{nom}[préfixe]
 \foreignloc{locution}
 \latinloc{locution}
+\Ucode{point de code}
+\Ucode[nom%text]{point de code}
 
 \gutenberg
 \gut
-\lettre
-\lettregut
 \cahier
 \cahiers
 \Cahier#S
@@ -116,6 +116,18 @@ detailedtoc#true,false
 \linux
 \macos
 \windows
+
+\lettrenumber
+\lettrenumber[entier relatif signé]
+\lettrenumber*
+\lettrenumber*[entier relatif signé]
+
+\lettre
+\lettre[opt]
+\lettre*[opt]
+\lettregut
+\lettregut[opt]
+\lettregut*[opt]
 
 \begin{ltx-code}
 \begin{ltx-code}[options%keyvals]
@@ -1081,17 +1093,6 @@ letgut_default_alert_box_color#B
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors{row}{odd-row-color}{even-row-color}
-\rowcolors[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors{row}{color}{color}#S
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*{row}{odd-row-color}{even-row-color}
-\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors*{row}{color}{color}#S
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from french option of babel
 \frenchsetup{options%keyvals}

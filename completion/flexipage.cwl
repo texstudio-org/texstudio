@@ -1,5 +1,5 @@
 # flexipage package
-# Matthew Bertucci 2022/07/13 for v1.00
+# Matthew Bertucci 2022/10/07 for v1.01
 
 #include:xparse
 #include:l3keys2e
@@ -29,6 +29,7 @@ NoFixMargin
 headsep=##L
 headheight=##L
 footskip=##L
+extrafirstfoot=##L
 fancyhdrOff
 a4paper
 a5paper

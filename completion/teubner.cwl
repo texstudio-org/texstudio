@@ -1,5 +1,5 @@
 # teubner package
-# Matthew Bertucci 2022/09/08 for v5.7
+# Matthew Bertucci 2022/10/07 for v5.7.3
 
 #include:iftex
 #include:graphicx
@@ -212,6 +212,7 @@ GlyphNames
 \LLadd{text}[right kerning]#*
 \LLadd[left kerning]{text}#*
 \LLadd[left kerning]{text}[right kerning]
+\LLaddKern{len1}{len2}#*
 \lmqi
 \lmqs
 \longa
@@ -301,6 +302,7 @@ GlyphNames
 \textdigamma
 \textli{text}
 \textLipsias{text}
+\textmtr{text}#*
 \textoverline{text}
 \textrs{text}
 \textui{text}

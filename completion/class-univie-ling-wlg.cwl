@@ -1,7 +1,6 @@
 # univie-ling-wlg class
-# Matthew Bertucci 2022/06/01 for v1.18
+# Matthew Bertucci 2022/10/03 for v.2.0
 
-#include:xkeyval
 #include:class-scrartcl
 #include:cochineal
 #include:url
@@ -107,25 +106,3 @@ author=%<name%>
 title=%<text%>
 subtitle=%<text%>
 #endkeyvals
-
-\ifbiblatex#S
-\biblatextrue#S
-\biblatexfalse#S
-\ifcovington#S
-\covingtontrue#S
-\covingtonfalse#S
-\ifexpert#S
-\experttrue#S
-\expertfalse#S
-\iftitlepage#S
-\titlepagetrue#S
-\titlepagefalse#S
-\ifspecialprint#S
-\specialprinttrue#S
-\specialprintfalse#S
-\iftitlepageneeded#S
-\titlepageneededtrue#S
-\titlepageneededfalse#S
-\ifstartpageset#S
-\startpagesettrue#S
-\startpagesetfalse#S
