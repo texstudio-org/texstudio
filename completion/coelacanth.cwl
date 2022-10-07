@@ -1,5 +1,5 @@
 # coelacanth package
-# Matthew Bertucci 1/11/2022
+# Matthew Bertucci 2022/10/07 for v2022/09/29
 
 #include:ifxetex
 #include:ifluatex
@@ -27,7 +27,6 @@ sb
 h
 #endkeyvals
 
-\coelacanth
 \oldstylenums{text}
 \liningnums{text}
 \tabularnums{text}
