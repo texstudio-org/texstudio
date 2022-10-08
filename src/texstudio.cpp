@@ -341,6 +341,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	setMenuBar(new DblClickMenuBar());
 	setupMenus();
+#ifndef QT_NO_DEBUG
+    checkForShortcutDuplicate();
+#endif
 	TitledPanelPage *logPage = outputView->pageFromId(outputView->LOG_PAGE);
 	if (logPage) {
 		logPage->addToolbarAction(getManagedAction("main/tools/logmarkers"));
@@ -12045,6 +12048,24 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
         }
     }
 }
+#ifndef QT_NO_DEBUG
+/*!
+ * \brief check all currently defined shortcuts for main window for duplicates
+ */
+void Texstudio::checkForShortcutDuplicate()
+{
+    QHash<QString, QKeySequence>  ms=configManager.managedMenuShortcuts;
+    QMultiMap<QString,QString> shortcuts;
+    for(const QString &elem:ms.keys()){
+        if(ms.value(elem).toString().isEmpty()) continue; // no shortcut
+        if(shortcuts.contains(ms.value(elem).toString())){
+            // duplicate found
+            qDebug()<<ms.value(elem).toString()<<elem<<" "<<shortcuts.values(ms.value(elem).toString());
+        }
+        shortcuts.insert(ms.value(elem).toString(),elem);
+    }
+}
+#endif
 
 void Texstudio::openAllRelatedDocuments()
 {
