@@ -110,7 +110,7 @@
   <menu id="fontstyles" text="Font St&amp;yles">
     <insert id="emph" text="Emphasis - \emph" insert="\emph{%|}" icon="font_emph48" shortcut="Ctrl+Shift+E"/>
     <insert id="textit" text="Italics - \textit" insert="\textit{%|}" icon="font_textit48" shortcut="Ctrl+I"/>
-    <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" icon="font_textsl48" shortcut="Ctrl+Shift+S"/>
+    <insert id="textsl" text="Slanted - \textsl" insert="\textsl{%|}" icon="font_textsl48" />
     <insert id="textbf" text="Boldface - \textbf" insert="\textbf{%|}" icon="font_textbf48" shortcut="Ctrl+B"/>
     <insert id="texttt" text="Typewriter - \texttt" insert="\texttt{%|}" icon="font_texttt48" shortcut="Ctrl+Shift+T"/>
     <insert id="textsc" text="Small Caps - \textsc" insert="\textsc{%|}" icon="font_textsc48" shortcut="Ctrl+Shift+C"/>
