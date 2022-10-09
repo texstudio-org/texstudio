@@ -1626,8 +1626,10 @@ void LatexEditorView::setLineMarkToolTip(const QString &tooltip)
 	lineMarkPanel->setToolTipForTouchedMark(tooltip);
 }
 
-int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat, LatexEditorView::structureFormat, LatexEditorView::todoFormat, LatexEditorView::packageMissingFormat, LatexEditorView::packagePresentFormat, LatexEditorView::packageUndefinedFormat,
-    LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
+int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat,
+    LatexEditorView::citationPresentFormat, LatexEditorView::structureFormat, LatexEditorView::todoFormat, LatexEditorView::packageMissingFormat, LatexEditorView::packagePresentFormat, LatexEditorView::packageUndefinedFormat,
+    LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format,
+    LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
     LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::commentFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat, LatexEditorView::math_KeywordFormat,
     LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat,
     LatexEditorView::asymptoteBlockFormat;

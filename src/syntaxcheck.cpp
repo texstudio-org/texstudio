@@ -575,7 +575,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			QString word = line.mid(tk.start, tk.length);
 			QStringList forbiddenSymbols;
 			forbiddenSymbols<<"^"<<"_";
-            if(forbiddenSymbols.contains(word) && !containsEnv(*ltxCommands, "math", activeEnv) && tk.subtype!=Token::formula){
+            if(forbiddenSymbols.contains(word) && !checkMathEnvActive(*ltxCommands, activeEnv) && tk.subtype!=Token::formula){
 				Error elem;
 				elem.range = QPair<int, int>(tk.start, tk.length);
 				elem.type = ERR_MathCommandOutsideMath;
@@ -823,7 +823,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                                     }
                                 }
                             }
-                            elem.range = QPair<int, int>(start, end);
+                            elem.range = QPair<int, int>(start, end-start);
                             elem.type = ERR_highlight;
                             elem.format=mFormatList.value(key);
                             newRanges.append(elem);
