@@ -313,5 +313,60 @@ void SyntaxCheckTest::checkArguments(){
     edView->getConfig()->realtimeChecking = realtimeChecking;
 }
 
+void SyntaxCheckTest::checkMathHighlight_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<QList<int>>("start");
+    QTest::addColumn<QList<int>>("length");
+    QTest::addColumn<QList<int>>("textStart");
+    QTest::addColumn<QList<int>>("textLength");
+
+     QTest::newRow("simple")
+             <<"text"<<QList<int>{}<<QList<int>{}<<QList<int>{}<<QList<int>{};
+     QTest::newRow("simple math")
+             <<"$abc$"<<QList<int>{1}<<QList<int>{3}<<QList<int>{}<<QList<int>{};
+     QTest::newRow("math env")
+             <<"\\begin{displaymath}abc\\end{displaymath}"<<QList<int>{19}<<QList<int>{3}<<QList<int>{}<<QList<int>{};
+     QTest::newRow("nested text in math")
+             <<"$abc \\textbf{text} abc$"<<QList<int>{1}<<QList<int>{21}<<QList<int>{13}<<QList<int>{4};
+     QTest::newRow("nested math in text")
+             <<"\\textbf{text $abc$}"<<QList<int>{14}<<QList<int>{3}<<QList<int>{}<<QList<int>{};
+}
+
+void SyntaxCheckTest::checkMathHighlight(){
+    QFETCH(QString, text);
+    QFETCH(QList<int>, start);
+    QFETCH(QList<int>, length);
+    QFETCH(QList<int>, textStart);
+    QFETCH(QList<int>, textLength);
+
+    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+    bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+    edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
+
+    edView->editor->setText(text, false);
+    LatexDocument *doc=edView->getDocument();
+    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+
+    for(int i=0;i<doc->lineCount();++i){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::numbersFormat);
+        QList<QFormatRange> mathText=dlh->getOverlays(doc->getFormatId("math-text"));
+        QEQUAL(formats.length(),start.length());
+        QEQUAL(mathText.length(),textStart.length());
+        for(int k=0;k<formats.length();++k){
+            QEQUAL(formats[k].offset,start.value(k));
+            QEQUAL(formats[k].length,length.value(k));
+        }
+        for(int k=0;k<mathText.length();++k){
+            QEQUAL(mathText[k].offset,textStart.value(k));
+            QEQUAL(mathText[k].length,textLength.value(k));
+        }
+    }
+
+    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+    edView->getConfig()->realtimeChecking = realtimeChecking;
+}
+
 #endif
 
