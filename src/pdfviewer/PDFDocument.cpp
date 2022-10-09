@@ -632,6 +632,9 @@ PDFWidget::PDFWidget(bool embedded)
 	action = new QAction(tr("Fit to Window"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(fitWindow()));
 	addAction(action);
+	action = new QAction(tr("Fit to Text Width"), this);
+	connect(action, SIGNAL(triggered()), this, SLOT(fitTextWidth()));
+	addAction(action);
 
 	Qt::ShortcutContext context = embedded ? Qt::WidgetWithChildrenShortcut : Qt::WindowShortcut;
     shortcutUp = new QShortcut(QKeySequence("Up"), this, SLOT(upOrPrev()), nullptr, context);
@@ -2691,8 +2694,8 @@ void PDFDocument::setupToolBar(){
     toolBar->addSeparator();
     toolBar->addAction(actionActual_Size);
     toolBar->addAction(actionFit_to_Width);
-    toolBar->addAction(actionFit_to_Text_Width);
     toolBar->addAction(actionFit_to_Window);
+    toolBar->addAction(actionFit_to_Text_Width);
     toolBar->addSeparator();
 	toolBar->addAction(actionAutoHideToolbars);
     toolBar->addAction(actionEnlargeViewer);
@@ -2774,10 +2777,10 @@ void PDFDocument::setupMenus(bool embedded)
     actionActual_Size=configManager->newManagedAction(menuroot,menuView, "actualSize", tr("&Actual Size"), pdfWidget, SLOT(fixedScale()), QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_1),"zoom-original");
     actionFit_to_Width=configManager->newManagedAction(menuroot,menuView, "fitToWidth", tr("Fit to Wi&dth"), this, "", QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_2),"zoom-fit-width");
     actionFit_to_Width->setCheckable(true);
-    actionFit_to_Text_Width=configManager->newManagedAction(menuroot,menuView, "fitToTextWidth", tr("Fit to &Text Width"), this, "", QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_4),"zoom-fit-text-width");
-    actionFit_to_Text_Width->setCheckable(true);
     actionFit_to_Window=configManager->newManagedAction(menuroot,menuView, "fitToWindow", tr("Fit to &Window"), this, "", QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_3),"zoom-fit-best");
     actionFit_to_Window->setCheckable(true);
+    actionFit_to_Text_Width=configManager->newManagedAction(menuroot,menuView, "fitToTextWidth", tr("Fit to &Text Width"), this, "", QList<QKeySequence>()<< QKeySequence(Qt::ControlModifier | Qt::Key_4),"zoom-fit-text-width");
+    actionFit_to_Text_Width->setCheckable(true);
     actionContinuous=configManager->newManagedAction(menuroot,menuView, "continuous", tr("&Continuous"), this, "", QList<QKeySequence>());
     actionContinuous->setCheckable(true);
     actionContinuous->setChecked(true);
