@@ -330,6 +330,10 @@ void SyntaxCheckTest::checkMathHighlight_data(){
              <<"$abc \\textbf{text} abc$"<<QList<int>{1}<<QList<int>{21}<<QList<int>{13}<<QList<int>{4};
      QTest::newRow("nested math in text")
              <<"\\textbf{text $abc$}"<<QList<int>{14}<<QList<int>{3}<<QList<int>{}<<QList<int>{};
+     QTest::newRow("nested text in math in text")
+             <<"\\textbf{text $\\textbf{text}abc$}"<<QList<int>{14}<<QList<int>{16}<<QList<int>{22}<<QList<int>{4};
+     QTest::newRow("nested math in text in math in text")
+             <<"\\textbf{text $\\textbf{text $abc$}abc$}"<<QList<int>{14,28}<<QList<int>{22,3}<<QList<int>{22}<<QList<int>{4};
 }
 
 void SyntaxCheckTest::checkMathHighlight(){
