@@ -106,6 +106,7 @@ public:
 	void waitForQueueProcess(void);
 #endif
 	static int containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id = -1);
+    static bool checkMathEnvActive(const LatexParser &parser, const StackEnvironment &envs);
 	int topEnv(const QString &name, const StackEnvironment &envs, const int id = -1);
 	bool checkCommand(const QString &cmd, const StackEnvironment &envs);
 	static bool equalEnvStack(StackEnvironment env1, StackEnvironment env2);

@@ -378,7 +378,36 @@ int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, con
 			}
 		}
 	}
-	return 0;
+    return 0;
+}
+/*!
+ * \brief check if math env is active
+ *
+ * Similar to containsEnv, but determines if math is active as it can be disabled by a virtual text env
+ * e.g. $abc \textbf{text}$
+ * \param parser reference to LatexParser. It is used to access environment aliases, e.g. equation is also a math environment
+ * \param envs stack of environements
+ * \return math is active (true) or not (false)
+ */
+bool SyntaxCheck::checkMathEnvActive(const LatexParser &parser, const StackEnvironment &envs)
+{
+    for (int i = envs.size() - 1; i > -1; --i) {
+        Environment env = envs.at(i);
+        if (env.name == "math") {
+                return true;
+        }
+        if (env.name == "text") {
+                return false;
+        }
+        if (parser.environmentAliases.contains(env.name)) {
+            QStringList altEnvs = parser.environmentAliases.values(env.name);
+            foreach (const QString &altEnv, altEnvs) {
+                if (altEnv == "math")
+                    return true;
+            }
+        }
+    }
+    return false;
 }
 
 /*!
@@ -581,6 +610,25 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             }
             newRanges.append(elem);
         }
+        // force text != math when text command is used, i.e. \textbf in math env, see #2603
+        if(tk.subtype==Token::text){
+            if(tk.type==Token::braces){
+                // add to active env
+                // invalidates math env as active
+                Environment env;
+                env.name = "text";
+                env.id = 1; // to be changed
+                env.dlh = dlh;
+                env.ticket = ticket;
+                env.level = tk.level;
+                env.startingColumn=tk.start+1;
+                env.endingColumn=tk.start+tk.length-1;
+                // avoid stacking same env (e.g. braces in braces, see #2411 )
+                Environment topEnv=activeEnv.top();
+                if(topEnv.name!=env.name)
+                    activeEnv.push(env);
+            }
+        }
         // spell checking
         if (speller->inlineSpellChecking && tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::shorttitle || tk.subtype == Token::todo || tk.subtype == Token::none)  && speller) {
             int tkLength=tk.length;
@@ -609,7 +657,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-            if (speller->hideNonTextSpellingErrors && (containsEnv(*ltxCommands, "math", activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv)) && tk.subtype!=Token::text){
+            if (speller->hideNonTextSpellingErrors && (checkMathEnvActive(*ltxCommands, activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv)) ){
                 word.clear();
                 tk.ignoreSpelling=true;
             }else{
