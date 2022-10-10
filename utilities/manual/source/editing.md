@@ -373,7 +373,7 @@ Another option is to use the [auto completer](#referencebibid-completion).
 ### Finding reference use
 The context menu on labels in the structure view (see above) offers to "find usage".
 This searches in all source files of the document (see [root file](background.md#about-documents-separated-in-several-files)) and finds the occurrence of that particular reference.
-Here all the references may be changed by changing "Replace by" and clicking "Replace All". If some references should not be changed, they can be deselected in the pane below.
+Here all the references may be changed by changing "Replace by" and clicking "Replace All".
 
 ![Find reference usage](images/findUsage.png)
 
