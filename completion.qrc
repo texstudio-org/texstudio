@@ -380,6 +380,7 @@
 <file>completion/bilingualpages.cwl</file>
 <file>completion/binarytree.cwl</file>
 <file>completion/biochemistry-colors.cwl</file>
+<file>completion/biocon.cwl</file>
 <file>completion/biokey.cwl</file>
 <file>completion/biolinum.cwl</file>
 <file>completion/biolist.cwl</file>
@@ -1593,6 +1594,7 @@
 <file>completion/gitfile-info.cwl</file>
 <file>completion/gitinfo2.cwl</file>
 <file>completion/gitlog.cwl</file>
+<file>completion/gitstatus.cwl</file>
 <file>completion/gitver.cwl</file>
 <file>completion/globalvals.cwl</file>
 <file>completion/glosmathtools.cwl</file>
@@ -2565,6 +2567,7 @@
 <file>completion/picinpar.cwl</file>
 <file>completion/picins.cwl</file>
 <file>completion/pict2e.cwl</file>
+<file>completion/picture.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/pigpen.cwl</file>
 <file>completion/pinlabel.cwl</file>
@@ -3227,6 +3230,7 @@
 <file>completion/texnames.cwl</file>
 <file>completion/texnegar.cwl</file>
 <file>completion/texosquery.cwl</file>
+<file>completion/texshade.cwl</file>
 <file>completion/texsort.cwl</file>
 <file>completion/texsurgery.cwl</file>
 <file>completion/textalpha.cwl</file>
@@ -3565,7 +3569,7 @@
 <file>completion/widetable.cwl</file>
 <file>completion/widows-and-orphans.cwl</file>
 <file>completion/wiki.cwl</file>
-<file>completion/Wiley-AuthoringTemplate.cwl</file>
+<file>completion/wiley-authoringtemplate.cwl</file>
 <file>completion/withargs.cwl</file>
 <file>completion/witharrows.cwl</file>
 <file>completion/wordlike.cwl</file>
@@ -3687,6 +3691,7 @@
 <file>completion/zhnumber.cwl</file>
 <file>completion/zhspacing.cwl</file>
 <file>completion/zi4.cwl</file>
+<file>completion/ziffer.cwl</file>
 <file>completion/zitie.cwl</file>
 <file>completion/zlmtt.cwl</file>
 <file>completion/zref-abspage.cwl</file>
