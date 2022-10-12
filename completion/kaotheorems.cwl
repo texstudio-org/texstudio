@@ -1,11 +1,10 @@
 # kaotheorems package
-# Matthew Bertucci 2022/05/26 for v0.9.8
+# Matthew Bertucci 2022/10/11 for v0.9.8
 
 #include:kvoptions
 #include:amsmath
 #include:amsthm
 #include:thmtools
-#include:mdframed
 
 #keyvals:\usepackage/kaotheorems#c
 framed
@@ -22,10 +21,26 @@ exercisebackground=#%color
 #endkeyvals
 
 #ifOption:framed
+#include:tcolorbox
+# loads most option of tcolorbox
+#include:incgraph
+#include:listings
+#include:listingsutf8
+#include:pdftexcmds
+#include:shellesc
 #include:tikz
+#include:pdfcol
 #endif
 #ifOption:framed=true
+#include:tcolorbox
+# loads most option of tcolorbox
+#include:incgraph
+#include:listings
+#include:listingsutf8
+#include:pdftexcmds
+#include:shellesc
 #include:tikz
+#include:pdfcol
 #endif
 
 #keyvals:\theoremstyle#c
