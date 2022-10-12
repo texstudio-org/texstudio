@@ -1,10 +1,11 @@
 # exam-n class
-# Matthew Bertucci 4/21/2022 for v1.1.4
+# Matthew Bertucci 2022/10/11 for v1.4.0
 
 #include:babel
 # loads english option of babel
 #include:amsmath
-#include:color
+#include:siunitx
+#include:xcolor
 #include:ifpdf
 #include:fancyhdr
 
@@ -17,6 +18,10 @@ cmfonts
 mathptm
 mathtime
 mtpro2
+stix2
+uprightpi
+siunitx
+nosiunitx
 serif
 sansserif
 showsolutions
@@ -97,8 +102,21 @@ A1
 \TH#n
 #endif
 
+#ifOption:stix2
+#include:stix2
+#endif
+
+#ifOption:uprightpi
+\italicpi#m
+#endif
+
 #ifOption:sansserif
 #include:helvet
+#endif
+
+#ifOption:noperquestionmarks
+\begin{question}
+\begin{question}[question number]
 #endif
 
 \ifbigfont#*
@@ -107,10 +125,6 @@ A1
 \begin{question}{marks}
 \begin{question}[question number]{marks}
 \end{question}
-#ifOption:noperquestionmarks
-\begin{question}
-\begin{question}[question number]
-#endif
 \QuestionNumberChecksOff
 \begin{solution}
 \end{solution}
@@ -158,8 +172,6 @@ A1
 \Partial*[ord]{arg}{var}#m
 \Partial
 \e#m
-\au
-\lambdabar#m
 \units{units%formula}
 \constantssheet{content%text}#*
 \OverrideFormatting{formatting commands}
@@ -167,6 +179,12 @@ A1
 \FormatPartNumber#*
 \StylePartNumber#*
 \FormatQuestionNumber#*
+\iffussydescription#*
+\fussydescriptiontrue#S
+\fussydescriptionfalse#S
+\defaultpartmarkscategory{category}#*
+\RequiredMetadata{field}{description}{help-text}
+\CheckExamMetadata
 
 # not documented
 \CheckTotalQuestions#*
