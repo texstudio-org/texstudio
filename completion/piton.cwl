@@ -1,8 +1,9 @@
 # piton package
-# Matthew Bertucci 2022/09/16 for v0.6
+# Matthew Bertucci 2022/10/08 for v0.7
 
 #include:l3keys2e
 #include:luatexbase
+#include:luacode
 
 #keyvals:\usepackage/piton#c
 escape-inside=%<two-chars%>
@@ -20,6 +21,9 @@ gobble=%<integer%>
 auto-gobble
 line-numbers
 all-line-numbers
+resume
+splittable
+background-color=#%color
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}

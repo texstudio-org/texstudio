@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2022/08/25 for v6.13
+# Matthew Bertucci 2022/10/08 for v6.13b
 
 #include:amsmath
 #include:array
@@ -12,6 +12,7 @@ renew-dots#true,false
 renew-matrix#true,false
 footnote#true,false
 footnotehyper#true,false
+no-test-for-array#true,false
 #endkeyvals
 
 #ifOption:footnote

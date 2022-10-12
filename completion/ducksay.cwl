@@ -1,5 +1,5 @@
 # ducksay package
-# Matthew Bertucci 9/21/2021 for v2.5a
+# Matthew Bertucci 2022/10/10 for v2.6
 
 #include:xparse
 #include:l3keys2e
@@ -107,6 +107,7 @@ squirrel
 cow
 tux
 head-in
+platypus
 pig
 frog
 snowman
@@ -115,6 +116,7 @@ dragon
 sodomized
 hedgehog
 kangaroo
+small-horse
 dog
 sheep
 rabbit

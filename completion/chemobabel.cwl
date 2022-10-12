@@ -1,5 +1,5 @@
 # chemobabel package
-# Matthew Bertucci 2022/09/20 for v0.9j
+# Matthew Bertucci 2022/10/10 for v0.9k
 
 #include:verbatim
 #include:graphicx
@@ -16,10 +16,14 @@ nocrop
 
 \chemobabel{imagefile}{obabel options}#g
 \chemobabel[options%keyvals]{imagefile}{obabel options}#g
+\chemobabel*{imagefile}#g
+\chemobabel*[options%keyvals]{imagefile}#g
 \smilesobabel{SMILES notation%definition}{obabel options}
 \smilesobabel[options%keyvals]{SMILES notation%definition}{obabel options}
+\smilesobabel*{SMILES notation%definition}
+\smilesobabel*[options%keyvals]{SMILES notation%definition}
 
-#keyvals:\chemobabel,\smilesobabel
+#keyvals:\chemobabel,\chemobabel*,\smilesobabel,\smilesobabel*
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>
 bbllx=
@@ -51,6 +55,4 @@ interpolate#true,false
 decodearray={%<color array%>}
 #endkeyvals
 
-# not documented
 \chemobabelimgdir#*
-\ChemFigFile#S

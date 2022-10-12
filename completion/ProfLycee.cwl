@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/10/03 for v1.2.9
+# Matthew Bertucci 2022/10/09 for v1.3.1
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -487,6 +487,17 @@ details#true,false
 zeros#true,false
 #endkeyvals
 
+\PLconvDepuisDec{nombre en base 10}{base d'arrivée}
+\PLconvDepuisDec[options%keyvals]{nombre en base 10}{base d'arrivée}
+
+#keyvals:\PLconvDepuisDec
+couleur=#%color
+decalh=##L
+decalv=##L
+noeud=%<préfixe%>
+rect#true,false
+#endkeyvals
+
 #keyvals:\draw#c
 mainlevee
 mainlevee=%<segment-length%> et %<amplitude%>
@@ -501,6 +512,7 @@ couleurs={%<couleur1,couleur2,...%>}
 symboles={%<symbol1,symbol2,...%>}
 correction#true,false
 symb#true,false
+bordcases#true,false
 style=%<font commands%>
 #endkeyvals
 
@@ -788,6 +800,7 @@ Teal#B
 \COEFF#S
 \COEFFA#S
 \COEFFB#S
+\convertbasedixtobase{arg1}{arg2}#*
 \cpt#S
 \CSPYlargeur#S
 \denominateur#S
@@ -862,11 +875,16 @@ Teal#B
 \PLcommandeswin#*
 \PLconvblocbinhex[rule thickness]{binary integer}#*
 \PLconvblocbinhex{binary integer}#*
+\PLConvCouleur#S
+\PLConvDecalH#S
+\PLConvDecalV#S
+\PLConvNoeud#S
 \PLDm#S
 \PLDM#S
 \PLdomaine#S
 \PLensopt#S
 \PLenssep#S
+\PLnoeud{arg1}{arg2}#*
 \PLnuagepoints[opt]{arg}#S
 \PLnuagepoints{arg}#S
 \PLOSXGreen#*
@@ -972,6 +990,13 @@ Teal#B
 \TGTXL#S
 \TGTXR#S
 \theCFnum#S
+\ValA#S
+\ValB#S
+\ValMU#S
+\ValQ#S
+\ValR#S
+\ValRes#S
+\ValTMP#S
 \verbcenterpost#S
 \verbcenterpre#S
 \xa#S

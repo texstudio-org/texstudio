@@ -1,7 +1,7 @@
 # pdfpages package
 # mario 09/06/2007, Tim Hoffmann 25/02/2017
 # muzimuzhi 29 Apr 2020, pdfpages v0.5q
-# Matthew Bertucci 27 Sep 2021 for v0.5t
+# Matthew Bertucci 11 Oct 2022 for v0.5w
 # URL: http://tug.ctan.org/tex-archive/macros/latex/contrib/pdfpages/
 
 #include:eso-pic
@@ -33,6 +33,8 @@ pages={%<page range%>}
 nup=%<xnup%>x%<ynup%>
 landscape#true,false
 delta=%<delx%> %<dely%>
+deltax=%<delx%>
+deltay=%<dely%>
 offset=%<offx%> %<offy%>
 frame#true,false
 column#true,false
@@ -44,6 +46,7 @@ turn#true,false
 noautoscale#true,false
 fitpaper#true,false
 reflect#true,false
+reflect*#true,false
 signature=%<size%>
 signature*=%<size%>
 booklet#true,false

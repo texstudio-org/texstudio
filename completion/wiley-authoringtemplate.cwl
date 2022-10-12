@@ -1,20 +1,21 @@
-# Wiley-AuthoringTemplate package
-# Matthew Bertucci 2022/06/06 for v3.0
+# wiley-authoringtemplate package
+# Matthew Bertucci 2022/10/11 for v3.0
 
 #include:lipsum
 #include:ulem
 #include:alltt
 #include:rotating
-#include:pstricks
+#include:boites
+#include:boites_exemples
 #include:wrapfig
+#include:epstopdf
 #include:setspace
 #include:ifthen
 #include:amsmath
 #include:color
+#include:xcolor
 #include:float
 #include:graphicx
-#include:boites
-#include:boites_exemples
 #include:enumerate
 #include:latexsym
 #include:mathtools
@@ -183,8 +184,6 @@ epigraph
 \end{FeaBox}#*
 \begin{QE}#*
 \end{QE}#*
-\begin{absgroup}#*
-\end{absgroup}#*
 \begin{biography}#*
 \end{biography}#*
 \begin{epigraph}#*
