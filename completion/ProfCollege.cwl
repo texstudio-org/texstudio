@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/09/12 for v0.99-z
+# Matthew Bertucci 2022/10/14 for v0.99-z-a
 
 #include:verbatim
 #include:mathtools
@@ -43,70 +43,7 @@
 nonshellescape
 #endkeyvals
 
-\Tables{nombre}
-\Tables[clés%keyvals]{nombre}
-
-## Les tables de multiplication et d’addition ##
-#keyvals:\Tables
-Couleur=#%color
-Debut=%<nombre%>
-Fin=%<nombre%>
-Seul#true,false
-Addition#true,false
-#endkeyvals
-
-## Opérations posées ##
-\Addition{n1}{n2}
-\Addition[clés%keyvals]{n1}{n2}
-\Soustraction{n1}{n2}
-\Soustraction[clés%keyvals]{n1}{n2}
-\Multiplication{n1}{n2}
-\Multiplication[clés%keyvals]{n1}{n2}
-\Division{n1}{n2}
-\Division[clés%keyvals]{n1}{n2}
-\DivisionD{n1}{n2}
-\DivisionD[clés%keyvals]{n1}{n2}
-
-#keyvals:\Addition,\Soustraction,\Multiplication,\Division,\DivisionD
-CouleurCadre=#%color
-CouleurFond=#%color
-CouleurVirgule=#%color
-Solution#true,false
-CouleurSolution=#%color
-#endkeyvals
-
-## Différents types de papiers ##
-\Papiers
-\Papiers[clés%keyvals]
-
-#keyvals:\Papiers
-Largeur=%<integer%>
-Hauteur=%<integer%>
-Couleur=#%color
-Seyes#true,false
-Millimetre#true,false
-Isometrique#true,false
-IsometriquePointe#true,false
-Triangle#true,false
-Grille=%<nombre%>
-GrillePointe=%<nombre%>
-PageEntiere#true,false
-ZoneTexte#true,false
-#endkeyvals
-
-## Représenter graphiquement un nombre entier ##
-\RepresenterEntier{nombre}
-\RepresenterEntier[clés%keyvals]{nombre}
-
-#keyvals:\RepresenterEntier
-Echelle=%<factor%>
-ListeCouleurs={%<color1,color2,...%>}
-Impression#true,false
-Compact#true,false
-Unite#true,false
-#endkeyvals
-
-## L’écriture de grandeurs ##
+## L'écriture de grandeurs ##
 \Lg{nombre}
 \Lg[unité]{nombre}
 \Aire{nombre}
@@ -132,6 +69,18 @@ Unite#true,false
 \Temp{nombre}
 \Temp[unité]{nombre}
 
+## Représenter graphiquement un nombre entier ##
+\RepresenterEntier{nombre}
+\RepresenterEntier[clés%keyvals]{nombre}
+
+#keyvals:\RepresenterEntier
+Echelle=%<factor%>
+ListeCouleurs={%<color1,color2,...%>}
+Impression#true,false
+Compact#true,false
+Unite#true,false
+#endkeyvals
+
 ## Écrire les nombres en lettres ##
 \Ecriture{nombre}
 \Ecriture[clés%keyvals]{nombre}
@@ -153,6 +102,37 @@ Longueur=##L
 Fleches#true,false
 Ecart=##L
 Sup#true,false
+#endkeyvals
+
+## Les tables de multiplication et d'addition ##
+\Tables{nombre}
+\Tables[clés%keyvals]{nombre}
+
+#keyvals:\Tables
+Couleur=#%color
+Debut=%<nombre%>
+Fin=%<nombre%>
+Seul#true,false
+Addition#true,false
+#endkeyvals
+
+## Différents types de papiers ##
+\Papiers
+\Papiers[clés%keyvals]
+
+#keyvals:\Papiers
+Largeur=%<integer%>
+Hauteur=%<integer%>
+Couleur=#%color
+Seyes#true,false
+Millimetre#true,false
+Isometrique#true,false
+IsometriquePointe#true,false
+Triangle#true,false
+Grille=%<nombre%>
+GrillePointe=%<nombre%>
+PageEntiere#true,false
+ZoneTexte#true,false
 #endkeyvals
 
 ## Les tableaux de conversion et tableaux de numération ##
@@ -267,6 +247,27 @@ Evaluation#true,false
 \BoiteFlash{contenu%text}
 \BoiteFlash[length]{contenu%text}
 
+## Rapido ##
+\Rapido{q1/r1§q2/r2§...%text}
+\Rapido[clés%keyvals]{q1/r1§q2/r2§...%text}
+
+#keyvals:\Rapido
+Largeur=##L
+Numero=%<numero%>
+#endkeyvals
+
+\BoiteRapido{texte%text}
+
+## Mentalo ##
+\Mentalo{o1,o2,...}
+\Mentalo[clés%keyvals]{o1,o2,...}
+
+#keyvals:\Mentalo
+Questions=%<nombre%>
+ValeurMin=%<nombre%>
+ValeurMax=%<nombre%>
+#endkeyvals
+
 ## Le calcul mental ##
 \CourseNombre{file}#i
 \CourseNombre[clés%keyvals]{file}#i
@@ -293,32 +294,33 @@ CAN#true,false
 \MathAlea[clés%keyvals]{file}#*i
 \CourseNombreTotalQuestions{nombre}#*
 
-## Rapido ##
-\Rapido{q1/r1§q2/r2§...%text}
-\Rapido[clés%keyvals]{q1/r1§q2/r2§...%text}
+## Une aide à l’autonomie ##
+\Autonomie{q1/r1§q2/r2§...§q8/r8%text}{Q1/I1§Q2/I2§...§Q8/I8%text}
+\Autonomie[clés%keyvals]{q1/r1§q2/r2§...§q8/r8%text}{Q1/I1§Q2/I2§...§Q8/I8%text}
 
-#keyvals:\Rapido
-Largeur=##L
-Numero=%<numero%>
+#keyvals:\Autonomie
+AfficheMarge#true,false
+TitreAtoi=%<texte%>
+TexteCorrection=%<texte%>
 #endkeyvals
 
-\BoiteRapido{texte%text}
+## Fiche de mémorisation active ##
+\FicheMemo{l1/q1/r1§l2/q2/r2§...%text}{L1/Q1/R1§L2/Q2/I2§...%text}
+\FicheMemo[clés%keyvals]{l1/q1/r1§l2/q2/r2§...%text}{L1/Q1/R1§L2/Q2/I2§...%text}
 
-## Les formules de périmètre, d’aire, de volume ##
-\Formule
-\Formule[clés%keyvals]
-
-#keyvals:\Formule
-Perimetre#true,false
-Surface=#polygone,triangle,parallelogramme,losange,rectangle,carre,cercle,disque,sphere
-Ancre={%<(x,y)%>}
-Angle=%<degrees%>
+#keyvals:\FicheMemo
+TexteReponses=%<texte%>
+TexteQuestions=%<texte%>
+Solution#true,false
 Largeur=##L
-Couleur=#%color
-Echelle=##L
-Aire#true,false
-Volume#true,false
-Solide=#pave,cube,cylindre,prisme,cone,pyramide,boule
+#endkeyvals
+
+## « Bon de sortie » ##
+\BonSortie{énoncé1%text}{énoncé2%text}{énoncé3%text}{énoncé4%text}
+\BonSortie[clés%keyvals]{énoncé1%text}{énoncé2%text}{énoncé3%text}{énoncé4%text}
+
+#keyvals:\BonSortie
+MemeEnonce#true,false
 #endkeyvals
 
 ## La géométrie ##
@@ -331,106 +333,6 @@ CoinBG={%<(x,y)%>}
 CoinHD={%<(x,y)%>}
 TypeTrace="%<type%>"
 #endkeyvals
-
-## Le théorème de Pythagore ##
-\Pythagore{Nom du triangle}{a}{b}{c}
-\Pythagore[clés%keyvals]{Nom du triangle}{a}{b}{c}
-
-#keyvals:\Pythagore
-Soustraction#true,false
-Egalite#true,false
-Exact#true,false
-Entier#true,false
-Racine#true,false
-Precision=%<integer%>
-Unite=%<unité%>
-Reciproque#true,false
-ReciColonnes#true,false
-Faible#true,false
-Figure#true,false
-Angle=%<degrees%>
-Echelle=##L
-FigureSeule#true,false
-EnchaineA#true,false
-EnchaineB#true,false
-EnchaineC#true,false
-ValeurA=%<valeur%>
-ValeurB=%<valeur%>
-ValeurC=%<valeur%>
-AvantRacine#true,false
-Perso#true,false
-AllPerso#true,false
-#endkeyvals
-
-\ResultatPytha
-
-## La somme des angles d’un triangle ##
-\SommeAngles{Nom du triangle}{a}{b}
-\SommeAngles[clés%keyvals]{Nom du triangle}{a}{b}
-
-#keyvals:\SommeAngles
-Detail#true,false
-Perso#true,false
-Figure#true,false
-Echelle=##L
-Angle=%<degrees%>
-FigureSeule#true,false
-Isocele#true,false
-Rectangle#true,false
-#endkeyvals
-
-\ResultatAngle
-
-## Le théorème de Thalès ##
-\Thales{Nom des points considérés}{a}{b}{c}{d}{e}{f}
-\Thales[clés%keyvals]{Nom des points considérés}{a}{b}{c}{d}{e}{f}
-
-#keyvals:\Thales
-Droites#true,false
-Segment#true,false
-Propor#true,false
-Perso#true,false
-Precision=%<integer%>
-IntroCalculs#true,false
-Unite=%<unité%>
-Entier#true,false
-Figure#true,false
-Echelle=##L
-Angle=%<degrees%>
-FigureSeule#true,false
-Figurecroisee#true,false
-FigurecroiseeSeule#true,false
-ChoixCalcul=#0,1,2,3
-Redaction#true,false
-Remediation#true,false
-Reciproque#true,false
-Produit#true,false
-Simplification#true,false
-#endkeyvals
-
-\ResultatThalesx
-\ResultatThalesy
-\ResultatThalesz
-
-## La trigonométrie ##
-\Trigo{Nom du triangle}{a}{b}{c}
-\Trigo[clés%keyvals]{Nom du triangle}{a}{b}{c}
-
-#keyvals:\Trigo
-Cosinus#true,false
-Propor#true,false
-Precision=%<integer%>
-Unite=%<unité%>
-Sinus#true,false
-Tangente#true,false
-Perso#true,false
-Figure#true,false
-Angle=%<degrees%>
-Echelle=##L
-FigureSeule#true,false
-#endkeyvals
-
-\ResultatTrigo
 
 ## Les positions relatives de deux droites ##
 \ProprieteDroites{a%formula}{b%formula}{c%formula}
@@ -482,6 +384,177 @@ EchelleEspace=%<nombre%>
 ValeurMin=%<nombre%>
 ValeurMax=%<nombre%>
 Etages=%<nombre%>
+#endkeyvals
+
+## La somme des angles d’un triangle ##
+\SommeAngles{Nom du triangle}{a}{b}
+\SommeAngles[clés%keyvals]{Nom du triangle}{a}{b}
+
+#keyvals:\SommeAngles
+Detail#true,false
+Perso#true,false
+Figure#true,false
+Echelle=##L
+Angle=%<degrees%>
+FigureSeule#true,false
+Isocele#true,false
+Rectangle#true,false
+#endkeyvals
+
+\ResultatAngle
+
+## Le théorème de Pythagore ##
+\Pythagore{Nom du triangle}{a}{b}{c}
+\Pythagore[clés%keyvals]{Nom du triangle}{a}{b}{c}
+
+#keyvals:\Pythagore
+Soustraction#true,false
+Egalite#true,false
+Exact#true,false
+Entier#true,false
+Racine#true,false
+Precision=%<integer%>
+Unite=%<unité%>
+Reciproque#true,false
+ReciColonnes#true,false
+Faible#true,false
+Figure#true,false
+Angle=%<degrees%>
+Echelle=##L
+FigureSeule#true,false
+EnchaineA#true,false
+EnchaineB#true,false
+EnchaineC#true,false
+ValeurA=%<valeur%>
+ValeurB=%<valeur%>
+ValeurC=%<valeur%>
+AvantRacine#true,false
+SansMots#true,false
+Perso#true,false
+AllPerso#true,false
+#endkeyvals
+
+\ResultatPytha
+
+## Le théorème de Thalès ##
+\Thales{Nom des points considérés}{a}{b}{c}{d}{e}{f}
+\Thales[clés%keyvals]{Nom des points considérés}{a}{b}{c}{d}{e}{f}
+
+#keyvals:\Thales
+Droites#true,false
+Segment#true,false
+Propor#true,false
+Perso#true,false
+Precision=%<integer%>
+IntroCalculs#true,false
+Unite=%<unité%>
+Entier#true,false
+Figure#true,false
+Echelle=##L
+Angle=%<degrees%>
+CouleurNum=#%color
+CouleurDen=#%color
+FigureSeule#true,false
+Figurecroisee#true,false
+FigurecroiseeSeule#true,false
+ChoixCalcul=#0,1,2,3
+Redaction#true,false
+Remediation#true,false
+Reciproque#true,false
+Produit#true,false
+Simplification#true,false
+#endkeyvals
+
+\ResultatThalesx
+\ResultatThalesy
+\ResultatThalesz
+
+## La trigonométrie ##
+\Trigo{Nom du triangle}{a}{b}{c}
+\Trigo[clés%keyvals]{Nom du triangle}{a}{b}{c}
+
+#keyvals:\Trigo
+Cosinus#true,false
+Propor#true,false
+Precision=%<integer%>
+Unite=%<unité%>
+Sinus#true,false
+Tangente#true,false
+Perso#true,false
+Figure#true,false
+Angle=%<degrees%>
+Echelle=##L
+FigureSeule#true,false
+#endkeyvals
+
+\ResultatTrigo
+
+## Cartographie ##
+\Cartographie{longitude}{latitude}
+\Cartographie[clés%keyvals]{longitude}{latitude}
+
+#keyvals:\Cartographie
+Arborescence="%<path%>"
+Carte#true,false
+Fleuves#true,false
+Capitales#true,false
+CouleurFond=#%color
+Impression#true,false
+Echelle=%<nombre%>
+EchelleCarte=%<nombre%>
+AfficheEchelle#true,false
+Largeur=%<nombre%>
+Hauteur=%<nombre%>
+All#true,false
+Europe#true,false
+Asie#true,false
+Amsud#true,false
+Amnord#true,false
+Amcentre#true,false
+Afrique#true,false
+Caraibes#true,false
+Pays="%<pays%>"
+Villes="%<.dat file%>"
+Projection#true,false
+TypeProjection="%<type%>"
+CouleurPays=#%color
+#endkeyvals
+
+## Les formules de périmètre, d’aire, de volume ##
+\Formule
+\Formule[clés%keyvals]
+
+#keyvals:\Formule
+Perimetre#true,false
+Surface=#polygone,triangle,parallelogramme,losange,rectangle,carre,cercle,disque,sphere
+Ancre={%<(x,y)%>}
+Angle=%<degrees%>
+Largeur=##L
+Couleur=#%color
+Echelle=##L
+Aire#true,false
+Volume#true,false
+Solide=#pave,cube,cylindre,prisme,cone,pyramide,boule
+#endkeyvals
+
+## Opérations posées ##
+\Addition{n1}{n2}
+\Addition[clés%keyvals]{n1}{n2}
+\Soustraction{n1}{n2}
+\Soustraction[clés%keyvals]{n1}{n2}
+\Multiplication{n1}{n2}
+\Multiplication[clés%keyvals]{n1}{n2}
+\Division{n1}{n2}
+\Division[clés%keyvals]{n1}{n2}
+\DivisionD{n1}{n2}
+\DivisionD[clés%keyvals]{n1}{n2}
+
+#keyvals:\Addition,\Soustraction,\Multiplication,\Division,\DivisionD
+CouleurCadre=#%color
+CouleurFond=#%color
+CouleurVirgule=#%color
+Solution#true,false
+CouleurSolution=#%color
 #endkeyvals
 
 ## Pyramide de nombre ##
@@ -542,6 +615,15 @@ Impression#true,false
 ArbreDessineVide#true,false
 Diviseurs#true,false
 DiviseursT#true,false
+#endkeyvals
+
+## Des engrenages ##
+\Engrenages{m1/z1,m2/z2,...}
+\Engrenages[clés%keyvals]{m1/z1,m2/z2,...}
+
+#keyvals:\Engrenages
+Unite=##L
+Couleur=#%color
 #endkeyvals
 
 ## La représentation graphique de fractions ##
@@ -671,37 +753,6 @@ Largeur=##L
 Stretch=%<factor%>
 CouleurTab=#%color
 Nom#true,false
-#endkeyvals
-
-## Cartographie ##
-\Cartographie{longitude}{latitude}
-\Cartographie[clés%keyvals]{longitude}{latitude}
-
-#keyvals:\Cartographie
-Arborescence="%<path%>"
-Carte#true,false
-Fleuves#true,false
-Capitales#true,false
-CouleurFond=#%color
-Impression#true,false
-Echelle=%<nombre%>
-EchelleCarte=%<nombre%>
-AfficheEchelle#true,false
-Largeur=%<nombre%>
-Hauteur=%<nombre%>
-All#true,false
-Europe#true,false
-Asie#true,false
-Amsud#true,false
-Amnord#true,false
-Amcentre#true,false
-Afrique#true,false
-Caraibes#true,false
-Pays="%<pays%>"
-Villes="%<.dat file%>"
-Projection#true,false
-TypeProjection="%<type%>"
-CouleurPays=#%color
 #endkeyvals
 
 ## Les statistiques ##
@@ -882,37 +933,6 @@ NomCourbe=%<nom%>
 LabelC=%<nombre%>
 #endkeyvals
 
-## Le tableur ##
-\begin{Tableur}#\tabular
-\begin{Tableur}[clés%keyvals]#\tabular
-\end{Tableur}
-
-#keyvals:\begin{Tableur}
-Bandeau#true,false
-Colonnes=%<integer%>
-Largeur=##L
-LargeurUn=##L
-Formule=%<formule%>
-Cellule=%<cellule%>
-Ligne=%<integer%>
-PasL=%<integer%>
-Colonne=%<integer%>
-PasC=%<integer%>
-Couleur=#%color
-#endkeyvals
-
-## Les briques Scratch ##
-\begin{Scratch}
-\begin{Scratch}[clés%keyvals]
-\end{Scratch}
-
-#keyvals:\begin{Scratch}
-Echelle=%<factor%>
-Impression#true,false
-Numerotation#true,false
-Naturel#true,false
-#endkeyvals
-
 ## La distributivité ##
 \Distri{a}{b}{c}{d}
 \Distri[clés%keyvals]{a}{b}{c}{d}
@@ -994,142 +1014,7 @@ Exact#true,false
 \leftcomment{A-8}{B-8}{A-8}{\dots}
 \rightcomment{E-8}{F-8}{E-8}{\dots}
 
-## Une aide à l’autonomie ##
-\Autonomie{q1/r1§q2/r2§...§q8/r8%text}{Q1/I1§Q2/I2§...§Q8/I8%text}
-\Autonomie[clés%keyvals]{q1/r1§q2/r2§...§q8/r8%text}{Q1/I1§Q2/I2§...§Q8/I8%text}
-
-#keyvals:\Autonomie
-AfficheMarge#true,false
-TitreAtoi=%<texte%>
-TexteCorrection=%<texte%>
-#endkeyvals
-
-## Fiche de mémorisation active ##
-\FicheMemo{l1/q1/r1§l2/q2/r2§...%text}{L1/Q1/R1§L2/Q2/I2§...%text}
-\FicheMemo[clés%keyvals]{l1/q1/r1§l2/q2/r2§...%text}{L1/Q1/R1§L2/Q2/I2§...%text}
-
-#keyvals:\FicheMemo
-TexteReponses=%<texte%>
-TexteQuestions=%<texte%>
-Solution#true,false
-Largeur=##L
-#endkeyvals
-
-## Le Yohaku ##
-\Yohaku{a/b/c/d...,1/2/3/4...}
-\Yohaku[clés%keyvals]{a/b/c/d...,1/2/3/4...}
-
-#keyvals:\Yohaku
-Taille=%<nombre%>
-Largeur=##L
-Hauteur=##L
-Bordure#true,false
-CouleurResultat=#%color
-Multiplication#true,false
-Limite=%<nombre%>
-Pair#true,false
-Impair#true,false
-Premier#true,false
-Perso#true,false
-Case=%<integer%>
-Ligne=%<integer%>
-PasL=%<integer%>
-Colonne=%<integer%>
-PasC=%<integer%>
-Solution#true,false
-Addition
-CouleurZone=#%color
-Relatif#true,false
-Negatif#true,false
-#endkeyvals
-
-\PfCYHKpremier#*
-
-## Le KenKen ##
-\KenKen{description du jeu}
-\KenKen[clés%keyvals]{description du jeu}
-
-#keyvals:\KenKen
-Taille=%<nombre%>
-Largeur=##L
-Nombre=%<nombre%>
-Solution#true,false
-#endkeyvals
-
-## Le Kakuro ##
-\Kakuro{description du jeu}
-\Kakuro[clés%keyvals]{description du jeu}
-
-#keyvals:\Kakuro
-Taille=%<nombre%>
-Largeur=##L
-CouleurCase=#%color
-ListeNombres={%<nombre1,nombre2,...%>}
-Solution#true,false
-CouleurSolution=#%color
-#endkeyvals
-
-## Le Shikaku ##
-\Shikaku{description du jeu}
-\Shikaku[clés%keyvals]{description du jeu}
-
-#keyvals:\Shikaku
-Taille=%<nombre%>
-Largeur=##L
-Solution#true,false
-Couleur=#%color
-CodeAfter={%<code%>}
-Creation#true,false
-TailleHor=%<nombre%>
-TailleVer=%<nombre%>
-TailleHorMax=%<nombre%>
-TailleVerMax=%<nombre%>
-Nom=%<nom%>
-#endkeyvals
-
-## Calculs Croisés ##
-\CalculsCroises{description du jeu}
-\CalculsCroises[clés%keyvals]{description du jeu}
-
-#keyvals:\CalculsCroises
-Largeur=##L
-Couleur=#%color
-Solution#true,false
-Inverse#true,false
-Vide#true,false
-Creation#true,false
-Negatifs#true,false
-Graines#true,false
-#endkeyvals
-
-## Bulles et cartes mentales ##
-\begin{Mind}#\pictureHighlight
-\end{Mind}
-
-\begin{Bulle}
-\begin{Bulle}[clés%keyvals]
-\end{Bulle}
-
-#keyvals:\begin{Bulle}
-Nom=%<nom%>
-Largeur=##L
-Pointilles#true,false
-CTrace=#%color
-Epaisseur=##L
-Rayon=%<nombre%>
-CFond=#%color
-Ancre={%<x,y%>}
-#endkeyvals
-
-## « Bon de sortie » ##
-\BonSortie{énoncé1%text}{énoncé2%text}{énoncé3%text}{énoncé4%text}
-\BonSortie[clés%keyvals]{énoncé1%text}{énoncé2%text}{énoncé3%text}{énoncé4%text}
-
-#keyvals:\BonSortie
-MemeEnonce#true,false
-#endkeyvals
-
-## 44 Calculatrice ##
+## Calculatrice ##
 \Calculatrice{val1/val2/...}
 \Calculatrice[clés%keyvals]{val1/val2/...}
 
@@ -1138,63 +1023,46 @@ Ecran#true,false
 NbLignes=%<integer%>
 #endkeyvals
 
-## Des réseaux sociaux? ##
-\begin{Twitter}
-\begin{Twitter}[clés%keyvals]
-\end{Twitter}
+## Le tableur ##
+\begin{Tableur}#\tabular
+\begin{Tableur}[clés%keyvals]#\tabular
+\end{Tableur}
 
-#keyvals:\begin{Twitter}
+#keyvals:\begin{Tableur}
+Bandeau#true,false
+Colonnes=%<integer%>
 Largeur=##L
-Auteur=%<auteur%>
-Date=%<date%>
-Url=%<URL%>
-Logo=%<imagefile%>
-EchelleLogo=%<factor%>
-Publie#true,false
+LargeurUn=##L
+Formule=%<formule%>
+Cellule=%<cellule%>
+Ligne=%<integer%>
+PasL=%<integer%>
+Colonne=%<integer%>
+PasC=%<integer%>
+Couleur=#%color
 #endkeyvals
 
-\begin{Facebook}
-\begin{Facebook}[clés%keyvals]
-\end{Facebook}
+## Le codage RLE
+\CodageRLE{liste}
+\CodageRLE[clés%keyvals]{liste}
 
-#keyvals:\begin{Facebook}
-Largeur=##L
-Auteur=%<auteur%>
-Date=%<date%>
-Logo=%<imagefile%>
-EchelleLogo=%<factor%>
-Publie#true,false
-Heure=%<heure%>
+#keyvals:\CodageRLE
+Enonce#true,false
+Solution#true,false
+Unite=##L
+Taille=%<nombre%>
 #endkeyvals
 
-\begin{Snapchat}
-\begin{Snapchat}[clés%keyvals]
-\end{Snapchat}
+## Les briques Scratch ##
+\begin{Scratch}
+\begin{Scratch}[clés%keyvals]
+\end{Scratch}
 
-#keyvals:\begin{Snapchat}
-Largeur=##L
-Auteur=%<auteur%>
-Date=%<date%>
-Logo=%<imagefile%>
-EchelleLogo=%<factor%>
-Temps=%<temps%>
-Texte=%<texte%>
-#endkeyvals
-
-\begin{Instagram}
-\begin{Instagram}[clés%keyvals]
-\end{Instagram}
-
-#keyvals:\begin{Instagram}
-Largeur=##L
-Auteur=%<auteur%>
-Date=%<date%>
-Logo=%<imagefile%>
-EchelleLogo=%<factor%>
-Temps=%<temps%>
-Expediteur=%<expéditeur%>
-LogoEx=%<imagefile%>
-Texte=%<texte%>
+#keyvals:\begin{Scratch}
+Echelle=%<factor%>
+Impression#true,false
+Numerotation#true,false
+Naturel#true,false
 #endkeyvals
 
 ## La « rose » des multiplications ##
@@ -1259,7 +1127,7 @@ Passages#true,false
 SensImpose#true,false
 #endkeyvals
 
-## 48 Labyrinthe de nombres ##
+## Labyrinthe de nombres ##
 \LabyNombre
 \LabyNombre[clés%keyvals]
 
@@ -1276,8 +1144,11 @@ YDepart=%<integer%>
 XArrivee=%<integer%>
 YArrivee=%<integer%>
 Solution#true,false
-Murs#true,false
 CouleurChemin=#%color
+Murs#true,false
+EntreeSortie#true,false
+Entree="%<trouve%>"
+Sortie="%<trouve%>"
 #endkeyvals
 
 ## Triominos ##
@@ -1485,6 +1356,197 @@ Addition#true,false
 Couleur=#%color
 #endkeyvals
 
+## Le Yohaku ##
+\Yohaku{a/b/c/d...,1/2/3/4...}
+\Yohaku[clés%keyvals]{a/b/c/d...,1/2/3/4...}
+
+#keyvals:\Yohaku
+Taille=%<nombre%>
+Largeur=##L
+Hauteur=##L
+Bordure#true,false
+CouleurResultat=#%color
+Multiplication#true,false
+Limite=%<nombre%>
+Pair#true,false
+Impair#true,false
+Premier#true,false
+Perso#true,false
+Case=%<integer%>
+Ligne=%<integer%>
+PasL=%<integer%>
+Colonne=%<integer%>
+PasC=%<integer%>
+Solution#true,false
+Addition
+CouleurZone=#%color
+Relatif#true,false
+Negatif#true,false
+#endkeyvals
+
+\PfCYHKpremier#*
+
+## Le KenKen ##
+\KenKen{description du jeu}
+\KenKen[clés%keyvals]{description du jeu}
+
+#keyvals:\KenKen
+Taille=%<nombre%>
+Largeur=##L
+Nombre=%<nombre%>
+Solution#true,false
+#endkeyvals
+
+## Le Kakuro ##
+\Kakuro{description du jeu}
+\Kakuro[clés%keyvals]{description du jeu}
+
+#keyvals:\Kakuro
+TLargeur=%<nombre%>
+THauteur=%<nombre%>
+Taille=%<nombre%>
+Largeur=##L
+CouleurCase=#%color
+ListeNombres={%<nombre1,nombre2,...%>}
+Solution#true,false
+CouleurSolution=#%color
+#endkeyvals
+
+## Le Shikaku ##
+\Shikaku{description du jeu}
+\Shikaku[clés%keyvals]{description du jeu}
+
+#keyvals:\Shikaku
+Taille=%<nombre%>
+Largeur=##L
+Solution#true,false
+Couleur=#%color
+CodeAfter={%<code%>}
+Creation#true,false
+TailleHor=%<nombre%>
+TailleVer=%<nombre%>
+TailleHorMax=%<nombre%>
+TailleVerMax=%<nombre%>
+Nom=%<nom%>
+#endkeyvals
+
+## Calculs Croisés ##
+\CalculsCroises{description du jeu}
+\CalculsCroises[clés%keyvals]{description du jeu}
+
+#keyvals:\CalculsCroises
+Largeur=##L
+Couleur=#%color
+Solution#true,false
+ListeNombres={%<liste%>}
+Inverse#true,false
+Vide#true,false
+Creation#true,false
+Negatifs#true,false
+Graines#true,false
+#endkeyvals
+
+## Nombre astral ##
+\NombreAstral
+\NombreAstral[clés%keyvals]
+
+#keyvals:\NombreAstral
+Echelle=%<échelle%>
+Solution#true,false
+Graine=%<integer%>
+#endkeyvals
+
+## Le compte est bon ##
+\CompteBon
+\CompteBon[clés%keyvals]
+
+#keyvals:\CompteBon
+NombreCalculs=%<nombre%>
+Solution#true,false
+Graine=%<integer%>
+Relatifs#true,false
+Original#true,false
+Plaques=%<nombre%>
+#endkeyvals
+
+## Bulles et cartes mentales ##
+\begin{Mind}#\pictureHighlight
+\end{Mind}
+
+\begin{Bulle}
+\begin{Bulle}[clés%keyvals]
+\end{Bulle}
+
+#keyvals:\begin{Bulle}
+Nom=%<nom%>
+Largeur=##L
+Pointilles#true,false
+CTrace=#%color
+Epaisseur=##L
+Rayon=%<nombre%>
+CFond=#%color
+Ancre={%<x,y%>}
+#endkeyvals
+
+## Des réseaux sociaux? ##
+\begin{Twitter}
+\begin{Twitter}[clés%keyvals]
+\end{Twitter}
+
+#keyvals:\begin{Twitter}
+Largeur=##L
+Auteur=%<auteur%>
+Date=%<date%>
+Url=%<URL%>
+Logo=%<imagefile%>
+EchelleLogo=%<factor%>
+Publie#true,false
+#endkeyvals
+
+\begin{Facebook}
+\begin{Facebook}[clés%keyvals]
+\end{Facebook}
+
+#keyvals:\begin{Facebook}
+Largeur=##L
+Auteur=%<auteur%>
+Date=%<date%>
+Logo=%<imagefile%>
+EchelleLogo=%<factor%>
+Publie#true,false
+Heure=%<heure%>
+#endkeyvals
+
+\begin{Snapchat}
+\begin{Snapchat}[clés%keyvals]
+\end{Snapchat}
+
+#keyvals:\begin{Snapchat}
+Largeur=##L
+Auteur=%<auteur%>
+Date=%<date%>
+Logo=%<imagefile%>
+EchelleLogo=%<factor%>
+Temps=%<temps%>
+Texte=%<texte%>
+#endkeyvals
+
+\begin{Instagram}
+\begin{Instagram}[clés%keyvals]
+\end{Instagram}
+
+#keyvals:\begin{Instagram}
+Largeur=##L
+Auteur=%<auteur%>
+Date=%<date%>
+Logo=%<imagefile%>
+EchelleLogo=%<factor%>
+Temps=%<temps%>
+Expediteur=%<expéditeur%>
+LogoEx=%<imagefile%>
+Texte=%<texte%>
+#endkeyvals
+
 ## Professeur principal ##
 \Radar{Liste des éléments du diagramme en radar}
 \Radar[clés%keyvals]{Liste des éléments du diagramme en radar}
@@ -1527,17 +1589,6 @@ CouleurM=#%color
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors{row}{odd-row-color}{even-row-color}
-\rowcolors[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors{row}{color}{color}#S
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*{row}{odd-row-color}{even-row-color}
-\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors*{row}{color}{color}#S
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from svgnames option of xcolor
 AliceBlue#B
@@ -1743,8 +1794,8 @@ Teal#B
 \are#*
 \barre#S
 \barrewidth#S
-\begin{CadreNombre}#*
-\begin{calc}#*
+\begin{CadreNombre}#S
+\begin{calc}#S
 \begin{Mybox}{arg1}{arg2}{arg3}#S
 \begin{MyboxJQ}{arg1}{arg2}#S
 \begin{MyboxSimpleAr}{arg}#S
@@ -1753,12 +1804,12 @@ Teal#B
 \begin{MyboxTrivial}[options]#S
 \begin{MyDominoLogo}#S
 \begin{MyDominoMini}#S
-\begin{QuestionBox}#*
-\begin{QuestionReponse}#*
-\begin{RapidoBox}#*
-\begin{Sortie}#*
-\begin{Trame}#*
-\begin{TrameDomino}#*
+\begin{QuestionBox}#S
+\begin{QuestionReponse}#S
+\begin{RapidoBox}#S
+\begin{Sortie}#S
+\begin{Trame}#S
+\begin{TrameDomino}#S
 \bla#S
 \bnp#S
 \bnpdc#S
@@ -1774,13 +1825,16 @@ Teal#B
 \buildarbreproba#S
 \builddemidroitenew#S
 \buildechelleproba#S
+\BuildEngrenages{arg}#S
 \buildespace#S
 \buildgraph{arg1}#S
 \buildgraphbarhor#S
 \buildgraphcq{arg1}#S
 \buildgraphq{arg1}#S
+\BuildNombreAstral{arg}{arg}#S
 \BuildPixelArt{arg1}{arg2}{arg3}{arg4}#S
 \buildreperenew#S
+\BuildRLE{arg}#S
 \buildtabfonction#S
 \buildtabpropor#S
 \Buildtabpropor#S
@@ -1886,8 +1940,8 @@ Teal#B
 \ElementsMelanges#S
 \emoticon[TikZ keys]{draw code}#*
 \emoticon{draw code}#*
-\end{CadreNombre}#*
-\end{calc}#*
+\end{CadreNombre}#S
+\end{calc}#S
 \end{Mybox}#S
 \end{MyboxJQ}#S
 \end{MyboxSimpleAr}#S
@@ -1895,12 +1949,12 @@ Teal#B
 \end{MyboxTrivial}#S
 \end{MyDominoLogo}#S
 \end{MyDominoMini}#S
-\end{QuestionBox}#*
-\end{QuestionReponse}#*
-\end{RapidoBox}#*
-\end{Sortie}#*
-\end{Trame}#*
-\end{TrameDomino}#*
+\end{QuestionBox}#S
+\end{QuestionReponse}#S
+\end{RapidoBox}#S
+\end{Sortie}#S
+\end{Trame}#S
+\end{TrameDomino}#S
 \EpaisseurLigne#S
 \Eqalign{arg1}#S
 \EquaBase{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -1968,7 +2022,7 @@ Teal#B
 \LabySlop#S
 \largeurcards#S
 \largeurcarte#S
-\LargeurQCM
+\LargeurQCM#S
 \largeurtitre#S
 \leftcomment{arg1}{arg2}{arg3}{arg4}#*
 \Leftcomment{arg1}{arg2}{arg3}{arg4}#S
@@ -2080,6 +2134,7 @@ Teal#B
 \ListeObjetsCAN#S
 \ListeObjetsSymbolesCAN#S
 \ListePANombre#S
+\ListePfCEngrenages#S
 \ListePG#S
 \ListePointDroite#S
 \ListePointEspace#S
@@ -2137,8 +2192,6 @@ Teal#B
 \LongueurPartieEntiere#S
 \margeh#S
 \margev#S
-\mathcolor[model]{color}{arg}#*m
-\mathcolor{color}{arg}#*m
 \mathunderline{color}{arg}#S
 \med#S
 \meda#S
@@ -2186,6 +2239,7 @@ Teal#B
 \MPFigurePrisme#S
 \MPFigurePyramide#S
 \MPFigurePytha{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPFigurePythaSansMots{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \MPFigureReciPytha{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPFigureRectangle#S
 \MPFigureSommeAngle{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2317,9 +2371,31 @@ Teal#B
 \PfCAutreMoitieCase#S
 \PfCBstrut#S
 \PfCCalculsCroises#S
+\PfCCBAffiche#S
+\PfCCBAlea#S
+\PfCCBDecompositionEtapes#S
+\PfCCBListeCartes#S
+\PfCCBListeEntiers#S
+\PfCCBListeEntiersChoisis#S
+\PfCCBListeFinaleCartes#S
+\PfCCBListeMultiples#S
+\PfCCBListeMultiplesChoisis#S
+\PfCCBListeRappels#S
+\PfCCBListeTirage#S
+\PfCCBListeTirageAffiche#S
+\PfCCBListeTirageIntermediaire#S
+\PfCCBListeToutesCartes#S
+\PfCCBNbPlaqueEntiers#S
+\PfCCBNbPlaqueMultiples#S
+\PfCCBResultat#S
+\PfCCBResultatFinal#S
+\PfCCBTest#S
 \PfCCCFoo#S
+\PfCCCfoo#S
 \PfCchiffre{arg1}{arg2}#S
 \PfCCoefConversion#S
+\PfCCompteBonOriginal#S
+\PfCCompteBonOriginal[opt]#S
 \PfCCompteurMelange#S
 \PfCCountCutDeux#S
 \PfCCountCutUn#S
@@ -2340,16 +2416,33 @@ Teal#B
 \PfCLargeurJury#S
 \PfCLargeurQuestion#S
 \PfCLargeurReponse#S
+\PfCListeATrier#S
+\PfCListeCCAide#S
+\PfCListeCCAidelen#S
 \PfCListeCCNb#S
 \PfCListeCCOp#S
+\PfCListeCmdTortue#S
+\PfCListeRLE#S
 \PfCListeSymbolTrivial#S
 \PfCLongInter#S
+\PfCMentaloDeuxiemeTerme#S
+\PfCMentaloEtages#S
+\PfCMentaloListeOperations#S
+\PfCMentaloListeOperationslen#S
+\PfCMentaloPremierTerme#S
 \PfCMoitieCase#S
 \PfCMPDessineModelBarre{arg1}{arg2}#S
 \PfCMPDessineModelBarreNonHomogene{arg1}{arg2}#S
+\PfCNACible#S
+\PfCNAListeAEffacer#S
+\PfCNAListeMelange#S
+\PfCNAListeNombres#S
+\PfCNAListeNombresBase#S
+\PfCNbRep#S
 \PfCNomLabyrinthe#S
 \PfCNomRose#S
 \PfCNomShikaku#S
+\PfCNum{arg}#S
 \PfCPCfaa#S
 \PfCPCfoo#S
 \PfCPremiereColonneDecimale#S
@@ -2536,6 +2629,7 @@ Teal#B
 \thePfCCompteLignes#S
 \thePfCnexo#S
 \thePfCShikakuNom#S
+\thePfCTortue#S
 \theQuestionQCM#S
 \thesubxlop#S
 \theTitreQCM#S
@@ -2559,6 +2653,8 @@ Teal#B
 \toklistelegende#S
 \toklistemodelbarreinf#S
 \toklistemodelbarresup#S
+\toklisteNAMelange#S
+\toklisteNANombres#S
 \toklistenomhor{arg}#S
 \toklistenompointdemidroite{arg}#S
 \toklistePANombre#S
@@ -2578,8 +2674,16 @@ Teal#B
 \toklisteradarc{arg}#S
 \toklisteratio{arg}#S
 \toklisteremplissage{arg}#S
+\toklisterle#S
 \toklistetracesgrad{arg}#S
 \toklisteTriomino{arg}#S
+\tokPfCCBRappels#S
+\tokPfCEngrenages#S
+\Tortue[opt]{arg}#S
+\Tortue{arg}#S
+\TortueCreationFichier[opt]{arg}#S
+\TortueCreationFichier{arg}#S
+\TortueDessinFinal#S
 \totalangle#S
 \TotalECC#S
 \TotalLaby#S
@@ -2589,11 +2693,15 @@ Teal#B
 \TraceDessinGradueMul{arg1}#S
 \TraceDessinGradueMulSolution{arg1}{arg2}{arg3}#S
 \TraceDessinGradueSolution{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\TraceDoubleSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceEchiquierColoreColorilude#S
 \TraceEchiquierColorilude#S
 \TraceGraphique[opt]{arg}#S
 \TraceGraphique{arg}#S
+\TraceLabyMathAlea{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\TraceLabyMathAleaSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceLabyNombre{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\TraceLabyNombreDouble{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceLabyNombreold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceSolutionold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
@@ -2624,13 +2732,17 @@ Teal#B
 \UpdateRemplissage{arg1}#S
 \Updatetoks{arg1}#S
 \updatetoks{arg1}#S
+\UpdatetoksCB{arg}#S
 \Updatetoksdemidroite{arg1}#S
 \Updatetoksdroite{arg1}#S
+\UpdatetoksEngrenages#S
 \Updatetoksespace{arg1}#S
 \UpdatetoksFrise#S
 \UpdatetoksHor#S
 \Updatetoksmath{arg1}#S
 \UpdatetoksMosaique{arg1}#S
+\UpdatetoksNAMelange{arg}#S
+\UpdatetoksNANombres{arg}#S
 \UpdatetoksPANombre{arg}#S
 \UpdatetoksPQuatreh{arg}#S
 \UpdatetoksPQuatrev{arg}#S
@@ -2642,6 +2754,7 @@ Teal#B
 \UpdatetoksPyramideMul{arg}#S
 \Updatetoksq{arg1}#S
 \Updatetoksrepere{arg1}#S
+\UpdatetoksRLE{arg}#S
 \UpdatetoksTriomino{arg1}#S
 \UpdateTraces{arg1}#S
 \valabsdeno#S
