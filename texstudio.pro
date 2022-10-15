@@ -366,10 +366,8 @@ isEmpty(USE_SYSTEM_QUAZIP) {
 } else {
     versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
         message(System quazip6)
-        isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip1-qt6
-        isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip6
-        INCLUDEPATH += $${QUAZIP_INCLUDE}
-        LIBS += $${QUAZIP_LIB}
+        CONFIG += link_pkgconfig
+        PKGCONFIG += quazip1-qt6
     }
     !versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
             message(System quazip5)
