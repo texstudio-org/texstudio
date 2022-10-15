@@ -12,7 +12,7 @@
 
 #define Q__POSITION__ QString(__FILE__ ": %1").arg(__LINE__)
 
-Q_DECLARE_METATYPE(QList<int>);
+//Q_DECLARE_METATYPE(QList<int>);
 
 namespace QTest{
 class MessageBoxCloser:public QObject{
