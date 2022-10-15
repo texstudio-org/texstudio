@@ -2,7 +2,8 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
 <meta property="og:title" content="Advanced features" />
   
 <meta property="og:type" content="website" />
@@ -208,21 +209,21 @@
           </label>
         </div>
         <article role="main">
-          <div class="section" id="advanced-features">
+          <section id="advanced-features">
 <h1>Advanced features<a class="headerlink" href="#advanced-features" title="Permalink to this heading">#</a></h1>
-<div class="section" id="sessions">
+<section id="sessions">
 <h2>Sessions<a class="headerlink" href="#sessions" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio uses “Sessions” to store and restore the set-up of open documents.
 Session are stored as <em>.txss2</em> files.
 By default, the session is stored when exiting from TeXstudio and restored at start-up.</p>
 <p><img alt="Session menu" src="_images/menu_session.png" /></p>
-</div>
-<div class="section" id="user-fold-marker">
+</section>
+<section id="user-fold-marker">
 <h2>User Fold Marker<a class="headerlink" href="#user-fold-marker" title="Permalink to this heading">#</a></h2>
 <p>Normally every structure command marks a start of foldable range, and every environment or TeX group constructs a foldable range. You can mark an extra foldable range by inserting special comments <code class="docutils literal notranslate"><span class="pre">%BEGIN_FOLD</span></code> and <code class="docutils literal notranslate"><span class="pre">%END_FOLD</span></code>.</p>
 <p><img alt="Example for user fold marker" src="_images/userfoldmarker.png" /></p>
-</div>
-<div class="section" id="bibliography">
+</section>
+<section id="bibliography">
 <h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this heading">#</a></h2>
 <p>For the “bib” files , the “Bibliography” menu enables you to
 directly insert the entries corresponding to the standard types of
@@ -234,8 +235,8 @@ document.</p>
 </div>
 <p><img alt="Bibliography Menu" src="_images/doc16.png" /></p>
 <p>Specialized bibliography programs like <a class="reference external" href="https://github.com/JabRef/jabref">JabRef</a> allow a more comfortable management of bibliography references. It can also be set up to insert <em>bibIDs</em> directly into TeXstudio.</p>
-</div>
-<div class="section" id="git-svn-support">
+</section>
+<section id="git-svn-support">
 <h2>GIT/SVN Support<a class="headerlink" href="#git-svn-support" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio provides some basic support for version control management with git or subversion (svn).</p>
 <p>Once <a class="reference internal" href="configuration.html#configuring-svn-git-support"><span class="std std-doc">set up</span></a>, saving the document will also generate a check-in.
@@ -267,8 +268,8 @@ yet unsaved.</p>
 <dt>Show difference …</dt><dd><p>shows diffs of two or three files in the editor. Changes are highlighted.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="advanced-header-usage">
+</section>
+<section id="advanced-header-usage">
 <h2>Advanced header usage<a class="headerlink" href="#advanced-header-usage" title="Permalink to this heading">#</a></h2>
 <p>So called “magic comments” are a way to adapt the options of the
 editor on a per-document level. The concept was <a class="reference external" href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a>
@@ -324,8 +325,8 @@ This is equivalent to
 <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-program:bibliography</span> <span class="pre">=</span> <span class="pre">txs:///biber</span></code></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="personal-macros">
+</section>
+<section id="personal-macros">
 <h2>Personal macros<a class="headerlink" href="#personal-macros" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio allows you to insert your own macros. These macros are defined
 with the “Macros - Edit Macros” menu. Macros can consist of simple
@@ -334,7 +335,7 @@ text which is directly placed into txs. It can also be an
 be a java script. The needed functionality can be selected by checkbox.</p>
 <p>The “abbreviation” is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
-that the pseudo-command needs to start with a backslash (“&quot;).</p>
+that the pseudo-command needs to start with a backslash (”&quot;).</p>
 <p>“Trigger” is a regular expression which triggers the inclusion of the
 macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
@@ -353,7 +354,7 @@ macros into/from folders, only drag and drop works.
 The “run script” button directly executes a script in the editor for
 testing.</p>
 <p><img alt="doc17" src="_images/doc17.png" /></p>
-<div class="section" id="text-macros">
+<section id="text-macros">
 <h3>Text macros<a class="headerlink" href="#text-macros" title="Permalink to this heading">#</a></h3>
 <p>Apart from normal text, some special codes are recognized and replaced
 on insertion.</p>
@@ -397,8 +398,8 @@ Qt-Filefilterformat. For example “Images (*.png *.xpm
 *.jpg);;Text files (*.txt);;XML files (*.xml)”, see also
 <a class="reference external" href="https://doc.qt.io/qt-6/qfiledialog.html">Qt-Doc</a></p></li>
 </ul>
-</div>
-<div class="section" id="environment-macros">
+</section>
+<section id="environment-macros">
 <h3>Environment macros<a class="headerlink" href="#environment-macros" title="Permalink to this heading">#</a></h3>
 <p>The text will be used as environment-name, thus “%environment” will be
 inserted as:</p>
@@ -412,8 +413,8 @@ inserted as:</p>
 <p>TeXstudio needs that the env-name starts with “%”, though that
 character is not placed on insertion.</p>
 </div>
-</div>
-<div class="section" id="script-macros">
+</section>
+<section id="script-macros">
 <h3>Script Macros<a class="headerlink" href="#script-macros" title="Permalink to this heading">#</a></h3>
 <p>Instead of using code snippets, you can also make use of scripting with
 QJS, an application scripting language based on
@@ -432,7 +433,7 @@ menus</p></li>
 </ul>
 <p>The following table gives an overview on the provided commands.</p>
 <div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Command</p></th>
 <th class="head"><p>Description</p></th>
@@ -888,10 +889,10 @@ Qt Designer.</p>
 </ul>
 <p>More examples can be found in the
 <a class="reference external" href="https://github.com/texstudio-org/texstudio/wiki/Scripts">Wiki</a>.</p>
-</div>
-<div class="section" id="triggers">
+</section>
+<section id="triggers">
 <h3>Triggers<a class="headerlink" href="#triggers" title="Permalink to this heading">#</a></h3>
-<div class="section" id="regular-expressions">
+<section id="regular-expressions">
 <h4>Regular Expressions<a class="headerlink" href="#regular-expressions" title="Permalink to this heading">#</a></h4>
 <p>In its simplest form, the trigger is simply a text, which is replaced by
 the macro. E.g. trigger=”eg” macro=”example given”, “eg” in “the
@@ -915,13 +916,13 @@ triggerMatches[1] == &#39;a&#39;
 <p>Note: Triggers are inactive while the completer is active. For example
 you cannot trigger on <code class="docutils literal notranslate"><span class="pre">\\sec</span></code> if the completer is open suggesting to
 complete <code class="docutils literal notranslate"><span class="pre">\section</span></code>.</p>
-</div>
-<div class="section" id="limitation-of-scope">
+</section>
+<section id="limitation-of-scope">
 <h4>Limitation of Scope<a class="headerlink" href="#limitation-of-scope" title="Permalink to this heading">#</a></h4>
 <p>To the scope in which a macro will be active, you can prepend an
 expression of the pattern <code class="docutils literal notranslate"><span class="pre">(?[scope-type]:...)</span></code>.</p>
 <div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Scope Limiting Expression</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -949,13 +950,13 @@ Here’s a full complex example:
 <code class="docutils literal notranslate"><span class="pre">(?language:latex)(?highlighted-as:comment,commentTodo)FIXME</span></code>. This
 trigger responds to typing “FIXME”, but only in comments and
 todo-notes of latex documents.</p>
-</div>
-<div class="section" id="event-triggers">
+</section>
+<section id="event-triggers">
 <h4>Event Triggers<a class="headerlink" href="#event-triggers" title="Permalink to this heading">#</a></h4>
 <p>Additionally the following special trigger terms (without parentheses)
 can be used to execute the script when the corresponding event occurs:</p>
 <div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Special Trigger</p></th>
 <th class="head"><p>Executed on Event</p></th>
@@ -996,10 +997,10 @@ can be used to execute the script when the corresponding event occurs:</p>
 </table>
 </div>
 <p>Multiple of these special triggers can be combined by | symbols.</p>
-</div>
-</div>
-</div>
-<div class="section" id="save-load-profile">
+</section>
+</section>
+</section>
+<section id="save-load-profile">
 <h2>Save/Load Profile<a class="headerlink" href="#save-load-profile" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio offers the possibility to save/load profile files (.txsprofile).
 Profile files are complete configuration files, containing <em>all</em> configuration settings.
@@ -1020,8 +1021,8 @@ data<span class="k">\align</span>-ampersand<span class="k">\overline</span>=fals
 Tools<span class="k">\Commands\latex</span>=&quot;latex -src -interaction=nonstopmode <span class="c">%.tex&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-convert-to-html-command">
+</section>
+<section id="the-convert-to-html-command">
 <h2>The “Convert to Html” command<a class="headerlink" href="#the-convert-to-html-command" title="Permalink to this heading">#</a></h2>
 <p>This command (from the “Tools” menu ) produces a set of html pages
 from a LaTeX source file with one image for each html page. Each page in
@@ -1045,8 +1046,8 @@ to html” tool.</p>
 </div>
 <p><img alt="doc18" src="_images/doc18.png" /></p>
 <p><img alt="doc19" src="_images/doc19.png" /></p>
-</div>
-</div>
+</section>
+</section>
 
         </article>
       </div>

@@ -391,7 +391,7 @@ User commands can be defined here by \"adding\" them. Each user command
 has a name with a pattern `<command id>:<display name>`, e.g.
 `user0:User Command 0`. The command id has to be unique and must not
 contain spaces. In [advanced mode](#advanced-configuration-of-the-build-system), you can reference it
-using `txs:///"<command id>`. The display name will be shown in the
+using `txs:///<command id>`. The display name will be shown in the
 tools menu. The user commands can be activated either by short cut
 (`alt+shift+F%n`) or by the tools menu (Tools/User).
 
@@ -420,7 +420,7 @@ next).
 
 ```{note}
 Use command lists only for the meta and user commands listed at
-*Options -> Build*. Do not use then at *Options -> Commands*. The latter
+*Options -> Build*. Do not use them at *Options -> Commands*. The latter
 should just be single commands (i.e. do not use `|` there). While it\'s
 currently working in some cases, generally we do not guarantee this
 behavior. It can have surprising side effects such abortion of

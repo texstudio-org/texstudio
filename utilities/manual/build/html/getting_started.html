@@ -2,7 +2,8 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
 <meta property="og:title" content="Getting started" />
   
 <meta property="og:type" content="website" />
@@ -208,15 +209,15 @@
           </label>
         </div>
         <article role="main">
-          <div class="section" id="getting-started">
+          <section id="getting-started">
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h1>
-<div class="section" id="requirements">
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio is a specialized LaTeX-editor. It helps to type <a class="reference external" href="https://www.latex-project.org/about/">LaTeX-documents</a> more comfortable by helping to find the right commands, supporting error analysis and providing an easy way to view the results.</p>
 <p>The actual latex system needs to be <a class="reference external" href="https://www.latex-project.org/get/">installed separately</a> and is <strong>not</strong> provided by TeXstudio.</p>
 <p>Here we assume that TeXstudio and a LaTeX-system are already installed on your system.</p>
-</div>
-<div class="section" id="start-texstudio">
+</section>
+<section id="start-texstudio">
 <h2>Start TeXstudio<a class="headerlink" href="#start-texstudio" title="Permalink to this heading">#</a></h2>
 <!--
 This needs to be refined
@@ -225,8 +226,8 @@ This needs to be refined
 <p>On the left we have the <em>side panel</em> which is currently showing an empty structure view.
 On the lower right you see the <em>messages panel</em> which can be switched to the <a class="reference internal" href="compiling.html#the-log-files"><span class="std std-doc"><em>log panel</em></span></a>, the <em>preview panel</em>, or the <em>search results panel</em>. The toolbar allows easy access to some often needed functions, three of them are marked as we will use them soon.
 The central toolbar offers access to some common latex commands as we will see.</p>
-</div>
-<div class="section" id="create-a-first-document">
+</section>
+<section id="create-a-first-document">
 <h2>Create a first document<a class="headerlink" href="#create-a-first-document" title="Permalink to this heading">#</a></h2>
 <p>LaTeX needs some configuartion code in the document. The <a class="reference internal" href="editing.html#setting-the-preamble-of-a-tex-document"><span class="std std-doc">Quick Start Wizard</span></a> offers an easy way to set up a typical document.</p>
 <p><img alt="Quick start wizard" src="_images/txs_wizard.png" /></p>
@@ -246,34 +247,34 @@ This will lead to this basic document:</p>
 <p>We will not go over the content of the document in detail, that is for the LaTeX-tutorial, as our focus is the editor.</p>
 <p>The file needs to be saved on the computer to be useful.
 So next we click the save button (or use <code class="docutils literal notranslate"><span class="pre">CTRL+S</span></code>) and save it with a sensible name like “getting_started.tex”.</p>
-</div>
-<div class="section" id="fill-in-content">
+</section>
+<section id="fill-in-content">
 <h2>Fill in content<a class="headerlink" href="#fill-in-content" title="Permalink to this heading">#</a></h2>
-<div class="section" id="insert-a-section">
+<section id="insert-a-section">
 <h3>Insert a section<a class="headerlink" href="#insert-a-section" title="Permalink to this heading">#</a></h3>
 <p>We can select <code class="docutils literal notranslate"><span class="pre">\section</span></code> from the section button in order to insert the section command and add a title text.</p>
 <p><img alt="section button" src="_images/txs_section.png" /></p>
-</div>
-<div class="section" id="insert-an-equation-environment">
+</section>
+<section id="insert-an-equation-environment">
 <h3>Insert an equation environment<a class="headerlink" href="#insert-an-equation-environment" title="Permalink to this heading">#</a></h3>
 <p>We can insert an equation environment via the menu <code class="docutils literal notranslate"><span class="pre">Math/Math</span> <span class="pre">equations/env</span> <span class="pre">equation</span></code> or by pressing <code class="docutils literal notranslate"><span class="pre">CTRL+SHIFT+N</span></code></p>
 <p><img alt="Insert equation" src="_images/txs_equation.png" /></p>
-</div>
-<div class="section" id="insert-symbols">
+</section>
+<section id="insert-symbols">
 <h3>Insert symbols<a class="headerlink" href="#insert-symbols" title="Permalink to this heading">#</a></h3>
 <p>LaTeX offers a huge number of mathematical and other symbols. A convenient way of selecting the right one is using the symbol pane on the left side. Symbols can be declared as favorites and the most used symbols are collected as well to allow faster navigation.</p>
 <p><img alt="symbol pane" src="_images/txs_symbol.png" /></p>
-</div>
-</div>
-<div class="section" id="compile">
+</section>
+</section>
+<section id="compile">
 <h2>Compile<a class="headerlink" href="#compile" title="Permalink to this heading">#</a></h2>
 <p>Compiling a document means translating it from the LaTeX source code into a pdf file.
 This can be performed by clicking on the compile button or using the key <code class="docutils literal notranslate"><span class="pre">F6</span></code>.</p>
 <p><img alt="compile a document" src="_images/txs_compile.png" /></p>
 <p>This calls the actual LaTeX-system (pdflatex by default) to compile the document on the disk.
 The <code class="docutils literal notranslate"><span class="pre">Message</span> <span class="pre">Pane</span></code> shows results from that run and will jump to the <a class="reference internal" href="compiling.html#the-log-files"><span class="std std-doc">log-view</span></a> in case of errors.</p>
-</div>
-<div class="section" id="view-your-pdf-document">
+</section>
+<section id="view-your-pdf-document">
 <h2>View your pdf document<a class="headerlink" href="#view-your-pdf-document" title="Permalink to this heading">#</a></h2>
 <p>Now we like to see the results. For this, click the view button or press <code class="docutils literal notranslate"><span class="pre">F7</span></code>.</p>
 <p><img alt="View a pdf of a document" src="_images/txs_view.png" /></p>
@@ -288,8 +289,8 @@ insert commands
 completer
 syntax check
 -->
-</div>
-</div>
+</section>
+</section>
 
         </article>
       </div>

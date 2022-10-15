@@ -2,7 +2,8 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
 <meta property="og:title" content="Background information" />
   
 <meta property="og:type" content="website" />
@@ -208,19 +209,19 @@
           </label>
         </div>
         <article role="main">
-          <div class="section" id="background-information">
+          <section id="background-information">
 <h1>Background information<a class="headerlink" href="#background-information" title="Permalink to this heading">#</a></h1>
 <!--
 ini file / reset to default
 profile 
 -->
-<div class="section" id="about-documents-separated-in-several-files">
+<section id="about-documents-separated-in-several-files">
 <h2>About documents separated in several files<a class="headerlink" href="#about-documents-separated-in-several-files" title="Permalink to this heading">#</a></h2>
 <p>LaTeX documents may be spread over multiple files. TeXstudio
 automatically understands parent/child relations of loaded documents.
 This includes the detection of the root document and knowledge on
 defined labels and commands.</p>
-<div class="section" id="root-document">
+<section id="root-document">
 <h3>Root Document<a class="headerlink" href="#root-document" title="Permalink to this heading">#</a></h3>
 <p>The root document is the top-most file in a multi-file document. For a
 single-file document this is the file itself. By default, all calls to
@@ -238,8 +239,8 @@ user-commands which are defined in any open document, can be used for
 completion in any open document.</p>
 <p>In earlier versions, the <em>explicit root document</em> was somewhat
 misleadingly called <em>master document</em>.</p>
-</div>
-<div class="section" id="loaded-documents">
+</section>
+<section id="loaded-documents">
 <h3>Loaded Documents<a class="headerlink" href="#loaded-documents" title="Permalink to this heading">#</a></h3>
 <p>Obviously, TeXstudio can only use information (defined commands, labels,
 document hierarchy, etc.) that it is aware of. We use the information in
@@ -255,13 +256,13 @@ to set the magic comment <code class="docutils literal notranslate"><span class=
 have the root document open. With this option enabled TeXstudio will
 always know about your complete document and act accordingly when
 performing highlighting or completion.</p>
-</div>
-</div>
-<div class="section" id="overview-of-texstudio-command-line-options">
+</section>
+</section>
+<section id="overview-of-texstudio-command-line-options">
 <h2>Overview of TeXstudio command-line options<a class="headerlink" href="#overview-of-texstudio-command-line-options" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">texstudio</span> <span class="pre">file</span> <span class="pre">[--config</span> <span class="pre">DIR]</span> <span class="pre">[--root]</span> <span class="pre">[--line</span> <span class="pre">xx[:cc]]</span> <span class="pre">[--insert-cite</span> <span class="pre">citation]</span> <span class="pre">[--start-always]</span> <span class="pre">[--pdf-viewer-only]</span> <span class="pre">[--page</span> <span class="pre">yy]</span> <span class="pre">[--no-session]</span></code></p>
 <div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>option</p></th>
 <th class="head"><p>description</p></th>
@@ -306,7 +307,7 @@ performing highlighting or completion.</p>
 </div>
 <p>Additional options only available in debug versions of TeXstudio:</p>
 <div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>option</p></th>
 <th class="head"><p>description</p></th>
@@ -328,8 +329,8 @@ performing highlighting or completion.</p>
 <p>Note: The most common tests are run automatically, if there were changes
 to the executable (i.e. TXS has been compiled since the last run).
 Furthermore all tests are run once a week.</p>
-</div>
-<div class="section" id="description-of-the-cwl-format">
+</section>
+<section id="description-of-the-cwl-format">
 <h2>Description of the cwl format<a class="headerlink" href="#description-of-the-cwl-format" title="Permalink to this heading">#</a></h2>
 <p>cwl stands for completion word list and is a file format originally used
 in Kile to define the commands listed in the completer. TeXstudio uses
@@ -344,7 +345,7 @@ on \usepackage statements)</p></li>
 e.g. a \ref-like command will check for the existence of the
 referenced label</p></li>
 </ul>
-<div class="section" id="cwl-file-format">
+<section id="cwl-file-format">
 <h3>cwl file format<a class="headerlink" href="#cwl-file-format" title="Permalink to this heading">#</a></h3>
 <p>Each line of a cwl file defines a command. Comment lines are possible
 and start with <code class="docutils literal notranslate"><span class="pre">#</span></code>. The command syntax is</p>
@@ -386,8 +387,8 @@ ignored.</p></li>
 classification</p></li>
 </ul>
 <p>cwl files should be encoded as UTF-8.</p>
-</div>
-<div class="section" id="command-format">
+</section>
+<section id="command-format">
 <h3>Command format<a class="headerlink" href="#command-format" title="Permalink to this heading">#</a></h3>
 <p>In its simplest form the command is just a valid LaTeX expression as you
 find it in the documentation, e.g. <code class="docutils literal notranslate"><span class="pre">\section{title}</span></code>. By default, every
@@ -396,7 +397,7 @@ define a stop position for the cursor by <code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">\left(%|\right)</span></code>) or use <code class="docutils literal notranslate"><span class="pre">%&lt;</span> <span class="pre">%&gt;</span></code> to mark only part of an option as
 placeholder (Example: <code class="docutils literal notranslate"><span class="pre">\includegraphics[scale=%&lt;1%&gt;]{file}</span></code>). New lines
 can be included in a command by <code class="docutils literal notranslate"><span class="pre">%\</span></code>.</p>
-<div class="section" id="argument-names">
+<section id="argument-names">
 <h4>Argument Names<a class="headerlink" href="#argument-names" title="Permalink to this heading">#</a></h4>
 <p>The argument names are visible in the completer window and after
 completion as placeholders in the editor. In general, you are free to
@@ -464,13 +465,13 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument
 <code class="docutils literal notranslate"><span class="pre">file%text</span></code> will be treated as text not as file.</p>
-</div>
-</div>
-<div class="section" id="classification-format">
+</section>
+</section>
+<section id="classification-format">
 <h3>Classification format<a class="headerlink" href="#classification-format" title="Permalink to this heading">#</a></h3>
 <p>The following classifications are known to TXS:</p>
 <div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Classifier</p></th>
 <th class="head"><p>Meaning</p></th>
@@ -532,7 +533,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 <td><p>this command declares a url command like “\url{URL}, where URL is not checked”</p></td>
 </tr>
 <tr class="row-even"><td><p>K</p></td>
-<td><p>this command declares a bracket-like command like “\big{“</p></td>
+<td><p>this command declares a bracket-like command like “\big{”</p></td>
 </tr>
 <tr class="row-odd"><td><p>D</p></td>
 <td><p>this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix <code class="docutils literal notranslate"><span class="pre">%todo</span></code>. See todonotes.cwl for an example.</p></td>
@@ -563,7 +564,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 </div>
 <p>Examples:</p>
 <div class="table-wrapper colwidths-auto docutils container">
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Line</p></th>
 <th class="head"><p>Explanation</p></th>
@@ -603,8 +604,8 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 </tbody>
 </table>
 </div>
-</div>
-<div class="section" id="cwl-guidelines">
+</section>
+<section id="cwl-guidelines">
 <h3>cwl guidelines<a class="headerlink" href="#cwl-guidelines" title="Permalink to this heading">#</a></h3>
 <p>Though TeXstudio can automatically create cwls from packages, these
 autogenerated cwls do not contain meaningful argument names and no
@@ -629,8 +630,8 @@ check references and citations.</p></li>
 the unusual ones by the *-classifier to prevent the completer from
 overcrowding with rarely used commands.</p></li>
 </ul>
-</div>
-<div class="section" id="cwl-file-placement">
+</section>
+<section id="cwl-file-placement">
 <h3>cwl file placement<a class="headerlink" href="#cwl-file-placement" title="Permalink to this heading">#</a></h3>
 <p>cwl files can be provided from three locations. If present, the user
 provided cwl is taken, if not built-in versions are taken. As a last
@@ -644,9 +645,9 @@ arguments are not available and no completion hints are given.</p>
 <li><p><strong>%appdata%\texstudio\completion\autogenerated or
 .config/texstudio/completion/autogenerated</strong> auto-generated cwls</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="the-document-template-format">
+</section>
+</section>
+<section id="the-document-template-format">
 <h2>The Document Template Format<a class="headerlink" href="#the-document-template-format" title="Permalink to this heading">#</a></h2>
 <p>In its simplest form, a template is only a .tex file. Multi-file
 templates can be created by packaging all .tex files in a zip archive.
@@ -668,8 +669,8 @@ data:</p>
 <p>FilesToOpen only has an effect for multi-file documents. You may add a
 preview image next to the template file. Again, it must have the same
 name, but extension “.png”.</p>
-</div>
-<div class="section" id="creating-table-templates">
+</section>
+<section id="creating-table-templates">
 <h2>Creating table templates<a class="headerlink" href="#creating-table-templates" title="Permalink to this heading">#</a></h2>
 <p>The templates can be defined by the user as well. They have to be place
 in the config directory (Linux: ~/.config/texstudio) and need to named
@@ -756,8 +757,8 @@ elaborate table (fullyframed_firstBold):</p>
 <span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\end{&quot;</span><span class="o">+</span><span class="nx">env</span><span class="o">+</span><span class="s2">&quot;}&quot;</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="style-sheets">
+</section>
+<section id="style-sheets">
 <h2>Style Sheets<a class="headerlink" href="#style-sheets" title="Permalink to this heading">#</a></h2>
 <p>Qt supports modifying the appearance of an application using <a class="reference external" href="http://doc.qt.io/qt-5/stylesheet-syntax.html">style sheets</a>. You may use this
 to adapt the GUI of the main window by placing a file <code class="docutils literal notranslate"><span class="pre">stylesheet.qss</span></code>
@@ -766,8 +767,8 @@ into the settings directory. The file is read at program startup.</p>
 configuring the GUI, in particular the style color scheme and other
 options. Therefore we do not guarantee a consistent behavior when using
 style sheets</p>
-</div>
-<div class="section" id="writing-your-own-language-definitions">
+</section>
+<section id="writing-your-own-language-definitions">
 <h2>Writing your own language definitions<a class="headerlink" href="#writing-your-own-language-definitions" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio uses QCodeEdit as editor component. It specifies languages in
 a special xml format named QNFA. This includes highlighting, parentheses
@@ -796,7 +797,7 @@ highlighting functionality directly implemented in the sourcecode for
 the “(La)TeX” language, e.g. the highlighting inside the parentheses
 of <code class="docutils literal notranslate"><span class="pre">\begin</span></code> and <code class="docutils literal notranslate"><span class="pre">\end</span></code>. You won’t be able to modify this or add it to
 other languages.</p>
-<div class="section" id="example">
+<section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
 <p>The following is a small example which specifies some highlighting of
 python code:</p>
@@ -847,9 +848,9 @@ python code:</p>
 </div>
 <p>The results is the following highlighting:</p>
 <p><img alt="" src="_images/format_example.png" /></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
         </article>
       </div>
