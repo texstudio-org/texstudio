@@ -1,7 +1,8 @@
 # pst-fractal package
-# Matthew Bertucci 2/27/2022 for v0.11a
+# Matthew Bertucci 2022/10/14 for v0.12
 
 #include:pstricks
+#include:pst-func
 #include:pstricks-add
 #include:pst-xkey
 
@@ -12,6 +13,10 @@
 \psSier[options%keyvals]
 \psSier[options%keyvals](x0,y0)(x1,y1)(x2,y2)
 \psSier[options%keyvals](x0,y0){base}{recursion}
+\psSierCarpet
+\psSierCarpet(x,y)
+\psSierCarpet[options%keyvals]
+\psSierCarpet[options%keyvals](x,y)
 \psfractal
 \psfractal[options%keyvals]
 \psfractal(x0,y0)(x1,y1)
@@ -62,6 +67,6 @@
 \psHugo[options%keyvals]
 \psHugo(x,y)
 \psHugo[options%keyvals](x,y)
-\psdotcolor#*
-\pscolorF#*
+\psdotcolor#S
+\pscolorF#S
 \PSTfractalLoaded#S
