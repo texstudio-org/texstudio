@@ -10,35 +10,32 @@ set(HUNSPELL_HEADER_FILES
     atypes.hxx
     baseaffix.hxx
     csutil.hxx
-    dictmgr.hxx
+    filemgr.hxx
     hashmgr.hxx
     htypes.hxx
     hunspell.hxx
     hunspell.h
-    langnum.hxx
-    license.hunspell
-    phonet.hxx
-    suggestmgr.hxx
-    license.myspell
-    filemgr.hxx
+    hunvisapi.h
     hunzip.hxx
-    w_char.hxx
+    langnum.hxx
+    phonet.hxx
     replist.hxx
+    suggestmgr.hxx
+    utf_info.hxx
+    w_char.hxx
 )
 
 set(HUNSPELL_SOURCE_FILES
     affentry.cxx
     affixmgr.cxx
     csutil.cxx
-    dictmgr.cxx
+    filemgr.cxx
     hashmgr.cxx
     hunspell.cxx
+    hunzip.cxx
     phonet.cxx
     replist.cxx
     suggestmgr.cxx
-    #utf_info.cxx
-    filemgr.cxx
-    hunzip.cxx
 )
 
 add_library(hunspell STATIC ${HUNSPELL_HEADER_FILES} ${HUNSPELL_SOURCE_FILES})
