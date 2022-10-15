@@ -243,6 +243,7 @@ QString quoteSpaces(const QString &s)
 
 
 int modernStyle;
+int iconTheme;
 bool darkMode;
 bool useSystemTheme;
 
@@ -262,21 +263,28 @@ QString getRealIconFile(const QString &icon)
         suffixList=QStringList{"_dm",""};
     QStringList iconNames = QStringList();
     for(const QString& suffix : suffixList){
+
         iconNames
                 << ":/images-ng/" + icon + suffix + ".svg"
                 << ":/images-ng/" + icon + suffix + ".svgz" ;
-        if (modernStyle) {
-            iconNames << ":/images-ng/modern/" + icon + suffix + ".svg"
-                      << ":/images-ng/modern/" + icon + suffix + ".svgz"
-                      << ":/modern/images/modern/" + icon + suffix + ".png";
-        } else {
-            iconNames << ":/images-ng/classic/" + icon + suffix + ".svg"
-                      << ":/images-ng/classic/" + icon + suffix + ".svgz"
-                      << ":/classic/images/classic/" + icon + suffix + ".png";
-        }
-        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".svg" ;//voruebergehend
-        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".png"; //voruebergehend
-        iconNames << ":/images/" + icon + ".png";
+
+        QString prefix = "";
+
+		if (iconTheme == 0) { // colibre
+			prefix = "colibre";
+		} else if (iconTheme == 1) { // modern
+			prefix = "modern";
+		} else if (iconTheme == 2) { // classic
+			prefix = "classic";
+		}
+
+		iconNames << ":/images-ng/" + prefix + "/" + icon + suffix + ".svg"
+					<< ":/images-ng/" + prefix + "/" + icon + suffix + ".svgz"
+					<< ":/modern/images/" + prefix + "/" + icon + suffix + ".png";
+
+        iconNames << ":/symbols-ng/icons/" + prefix + "/" + icon + suffix + ".svg" ;//voruebergehend
+        iconNames << ":/symbols-ng/icons/" + prefix + "/" + icon + suffix + ".png"; //voruebergehend
+        iconNames << ":/images/" + prefix + "/" + icon + ".png";
     }
 
 	foreach (const QString &name, iconNames) {
