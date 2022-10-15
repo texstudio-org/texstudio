@@ -294,5 +294,54 @@ if(WIN32)
 	target_link_libraries(texstudio PUBLIC Shlwapi)
 endif()
 
+## installation
 
+install(TARGETS texstudio DESTINATION bin)
 
+if(UNIX AND NOT APPLE)
+	install(FILES utilities/texstudio.desktop DESTINATION share/applications)
+	install(FILES utilities/texstudio.svg DESTINATION share/icons/hicolor/scalable/apps)
+	if(NOT ${NO_APPDATA}) 
+		install(FILES utilities/texstudio.metainfo.xml DESTINATION share/metainfo)
+	endif()
+endif()
+
+if(UNIX)
+	install(DIRECTORY translation/
+		DESTINATION share/texstudio
+		FILES_MATCHING
+		PATTERN *.qm
+	)
+	install(DIRECTORY templates/
+		DESTINATION share/texstudio
+		FILES_MATCHING
+		PATTERN *
+	)
+	install(DIRECTORY utilities/dictionaries/
+		DESTINATION share/texstudio
+		FILES_MATCHING
+		PATTERN *
+	)
+	install(DIRECTORY utilities/manual/build/html/
+		DESTINATION share/texstudio
+		FILES_MATCHING
+		PATTERN *.html
+	)
+	install(DIRECTORY utilities/manual/build/html/_images
+		DESTINATION share/texstudio
+		FILES_MATCHING
+		PATTERN *.png
+	)
+	install(DIRECTORY utilities/manual/build/html/_sphinx_design_static
+		DESTINATION share/texstudio
+	)
+	install(DIRECTORY utilities/manual/build/html/_static
+		DESTINATION share/texstudio
+	)
+	install(FILES utilities/manual/build/html/searchindex.js DESTINATION share/texstudio)
+	install(FILES utilities/latex2e.html DESTINATION share/texstudio)
+	install(FILES utilities/latex2e.css DESTINATION share/texstudio)
+	install(FILES utilities/AUTHORS DESTINATION share/texstudio)
+	install(FILES utilities/COPYING DESTINATION share/texstudio)
+	install(FILES utilities/manual/CHANGELOG.txt DESTINATION share/texstudio)
+endif()
