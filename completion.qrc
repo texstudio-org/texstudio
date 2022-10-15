@@ -927,6 +927,7 @@
 <file>completion/class-ulthese.cwl</file>
 <file>completion/class-unbtex.cwl</file>
 <file>completion/class-unifith.cwl</file>
+<file>completion/class-unigrazpub.cwl</file>
 <file>completion/class-univie-ling-expose.cwl</file>
 <file>completion/class-univie-ling-handout.cwl</file>
 <file>completion/class-univie-ling-paper.cwl</file>
@@ -1693,6 +1694,7 @@
 <file>completion/hep-text.cwl</file>
 <file>completion/hep-title.cwl</file>
 <file>completion/hereapplies.cwl</file>
+<file>completion/heros-otf.cwl</file>
 <file>completion/he-she.cwl</file>
 <file>completion/hetarom.cwl</file>
 <file>completion/hetaromh.cwl</file>
@@ -1914,6 +1916,7 @@
 <file>completion/latex-dev.cwl</file>
 <file>completion/latex-document.cwl</file>
 <file>completion/latex-l2tabu.cwl</file>
+<file>completion/latexsym.cwl</file>
 <file>completion/lato.cwl</file>
 <file>completion/layaureo.cwl</file>
 <file>completion/layout.cwl</file>
@@ -2282,6 +2285,7 @@
 <file>completion/musicography.cwl</file>
 <file>completion/musikui.cwl</file>
 <file>completion/musixfll.cwl</file>
+<file>completion/musixguit.cwl</file>
 <file>completion/musixtex.cwl</file>
 <file>completion/mVersion.cwl</file>
 <file>completion/mwe.cwl</file>
@@ -2452,6 +2456,7 @@
 <file>completion/pagecolor.cwl</file>
 <file>completion/pagecont.cwl</file>
 <file>completion/pagegrid.cwl</file>
+<file>completion/pagella-otf.cwl</file>
 <file>completion/pagenote.cwl</file>
 <file>completion/pagerange.cwl</file>
 <file>completion/pagesel.cwl</file>
@@ -2533,6 +2538,7 @@
 <file>completion/pgfpages.cwl</file>
 <file>completion/pgfpages-rl.cwl</file>
 <file>completion/pgfparser.cwl</file>
+<file>completion/pgf-PeriodicTable.cwl</file>
 <file>completion/pgf-pie.cwl</file>
 <file>completion/pgfplots.cwl</file>
 <file>completion/pgfplotstable.cwl</file>
@@ -3535,6 +3541,7 @@
 <file>completion/verbatim.cwl</file>
 <file>completion/verbdef.cwl</file>
 <file>completion/verbments.cwl</file>
+<file>completion/verdana.cwl</file>
 <file>completion/verifiche.cwl</file>
 <file>completion/verse.cwl</file>
 <file>completion/version.cwl</file>
