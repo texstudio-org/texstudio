@@ -65,7 +65,9 @@ class SymbolWidget;
 class StructureTreeView;
 
 //Q_DECLARE_METATYPE(QSet<QString>)
-//Q_DECLARE_METATYPE(std::set<QString>)
+#if QT_VERSION_MAJOR<6
+Q_DECLARE_METATYPE(std::set<QString>)
+#endif
 
 class Texstudio : public QMainWindow
 {
