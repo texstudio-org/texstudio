@@ -364,11 +364,20 @@ include(src/symbolpanel/symbolpanel.pri)
 isEmpty(USE_SYSTEM_QUAZIP) {
     include(src/quazip/quazip/quazip.pri)
 } else {
-        message(System quazip5)
-        isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
-        isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
+    !versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
+        message(System quazip6)
+        isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip1-qt6
+        isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip6
         INCLUDEPATH += $${QUAZIP_INCLUDE}
         LIBS += $${QUAZIP_LIB}
+    }
+    versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
+            message(System quazip5)
+            isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip5
+            isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip5
+            INCLUDEPATH += $${QUAZIP_INCLUDE}
+            LIBS += $${QUAZIP_LIB}
+    }
 }
 
 include(src/pdfviewer/pdfviewer.pri)
