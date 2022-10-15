@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/10/09 for v1.3.1
+# Matthew Bertucci 2022/10/14 for v1.3.3
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -217,6 +217,25 @@ plein#true,false
 \numPexpoC[prec]{l}{a}{b}
 \numPexpoC*{l}{a}{b}
 \numPexpoC*[prec]{l}{a}{b}
+
+\PLarbre{donnees}
+\PLarbre[options%keyvals]{donnees}
+\begin{PLenvarbre}{donnees}
+\begin{PLenvarbre}[options%keyvals]{donnees}
+\end{PLenvarbre}
+
+#keyvals:\PLarbre,\begin{PLenvarbre}
+unite=##L
+espniv=%<nombre%>
+espfeuille=%<nombre%>
+type=#2x2,2x3,3x2,3x3
+police=%<font commands%>
+policeprobas=%<font commands%>
+inclineprobas#true,false
+fleche#true,false
+styletrait={%<TikZ keys%>}
+eptrait=%<épaisseur%>
+#endkeyvals
 
 \convertfraction{fraction expr}
 \convertfraction[d ou t]{fraction expr}
@@ -474,7 +493,6 @@ affbase#true,false
 #keyvals:\PLconvbinhex
 affbase#true,false
 details#true,false
-trait=##L
 #endkeyvals
 
 \PLconvtodec{nombre}
@@ -496,6 +514,7 @@ decalh=##L
 decalv=##L
 noeud=%<préfixe%>
 rect#true,false
+couleurres#true,false
 #endkeyvals
 
 #keyvals:\draw#c
@@ -543,17 +562,6 @@ decallegende=%<décalage%>
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors{row}{odd-row-color}{even-row-color}
-\rowcolors[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors{row}{color}{color}#S
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*{row}{odd-row-color}{even-row-color}
-\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors*{row}{color}{color}#S
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from svgnames option of xcolor
 AliceBlue#B
@@ -796,11 +804,13 @@ Teal#B
 \CFtaille#S
 \CFtailletitre#S
 \chbrut#S
+\chiffre#S
 \CODPYlargeur#S
 \COEFF#S
 \COEFFA#S
 \COEFFB#S
 \convertbasedixtobase{arg1}{arg2}#*
+\convertbasetobasedix{arg1}{arg2}#*
 \cpt#S
 \CSPYlargeur#S
 \denominateur#S
@@ -808,7 +818,6 @@ Teal#B
 \end{pythont}#S
 \end{tcpythontexcode}#*
 \end{tcpythontexcodeno}#*
-\epcrochet#S
 \extractcoeff{liste}{numero}#*
 \fctdecx#S
 \fprimea#S
@@ -827,6 +836,7 @@ Teal#B
 \nbblocs#S
 \nbchiffres#S
 \nbdepart#S
+\NBdepart#S
 \nbgrp#S
 \numerateur#S
 \PATchiffres#S
@@ -861,6 +871,15 @@ Teal#B
 \pixcnt#S
 \pixcol#S
 \pixpos#S
+\PLAPeptrait#S
+\PLAPespfeuille#S
+\PLAPespniv#S
+\PLAPfont#S
+\PLAPfontproba#S
+\PLAPtype#S
+\PLAPtypetrait#S
+\PLAPunite#S
+\PLARBREDONNES#S
 \PLcercleangles#S
 \PLcerclecoleq#S
 \PLcercledecal#S
@@ -873,12 +892,12 @@ Teal#B
 \PLcerclevaleurs#S
 \PLcerclevalsin#S
 \PLcommandeswin#*
-\PLconvblocbinhex[rule thickness]{binary integer}#*
-\PLconvblocbinhex{binary integer}#*
 \PLConvCouleur#S
 \PLConvDecalH#S
 \PLConvDecalV#S
 \PLConvNoeud#S
+\PLconvversdix[opt]{arg1}{arg2}#*
+\PLconvversdix{arg1}{arg2}#*
 \PLDm#S
 \PLDM#S
 \PLdomaine#S
