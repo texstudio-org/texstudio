@@ -1,0 +1,21 @@
+set(INC_DIRECTORIES
+	${INC_DIRECTORIES}
+	${CMAKE_CURRENT_SOURCE_DIR}
+	PARENT_SCOPE
+)
+
+set(HEADER_FILES ${HEADER_FILES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/proxymodels.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/symbollistmodel.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/symbollistview.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/symbolwidget.h
+	PARENT_SCOPE
+)
+
+set(SOURCE_FILES ${SOURCE_FILES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/proxymodels.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/symbollistmodel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/symbollistview.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/symbolwidget.cpp
+    PARENT_SCOPE
+)
