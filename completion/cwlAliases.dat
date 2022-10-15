@@ -1490,3 +1490,7 @@ se2thesis:
 class-se2thesis
 latex-document
 tex
+unigrazpub:
+class-unigrazpub
+latex-document
+tex
