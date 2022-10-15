@@ -24,10 +24,12 @@ if(MSVC)
 	add_compile_options(/wd4267 /wd4244)
 endif()
 
-# find_package(Qt5 COMPONENTS Core Network Xml Svg Script PrintSupport Concurrent Widgets UiTools REQUIRED)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network Xml Concurrent Widgets UiTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS PrintSupport Svg Qml REQUIRED)
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core5Compat REQUIRED)
+endif()
 
 message(STATUS "building for Qt ${QT_VERSION_MAJOR}")
 
@@ -234,8 +236,11 @@ target_link_libraries(texstudio PRIVATE
 	Qt${QT_VERSION_MAJOR}::Qml 
 	Qt${QT_VERSION_MAJOR}::Concurrent 
 	Qt${QT_VERSION_MAJOR}::UiTools
+	
 )
-
+if(${QT_VERSION_MAJOR}>5)
+	target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
+endif()
 # debughelper -> pthread
 if(${TEXSTUDIO_ENABLE_CRASH_HANDLER})
 	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
