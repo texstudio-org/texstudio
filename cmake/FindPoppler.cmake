@@ -132,7 +132,7 @@ if(NOT Poppler_VERSION)
         unset(_poppler_version_header_contents)
     endif()
 endif()
-
+if (CMAKE_VERSION VERSION_LESS "3.17")
 find_package_handle_standard_args(Poppler
     FOUND_VAR
         Poppler_FOUND
@@ -142,6 +142,18 @@ find_package_handle_standard_args(Poppler
         Poppler_VERSION
     HANDLE_COMPONENTS
 )
+else()
+find_package_handle_standard_args(Poppler
+    FOUND_VAR
+        Poppler_FOUND
+    REQUIRED_VARS
+        Poppler_LIBRARIES
+    VERSION_VAR
+        Poppler_VERSION
+    HANDLE_COMPONENTS
+    NAME_MISMATCHED
+)
+endif()
 
 include(FeatureSummary)
 set_package_properties(Poppler PROPERTIES
