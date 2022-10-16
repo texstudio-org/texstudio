@@ -143,9 +143,6 @@ if(${QUAZIP_IS_STATIC})
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DQUAZIP_STATIC)
 endif()
 
-# pdfviewer
-add_subdirectory(src/pdfviewer)
-
 # Options
 if(NOT MSVC)
 	option(TEXSTUDIO_ENABLE_CRASH_HANDLER "Enable/Disable internal crash handler" ON)
@@ -226,6 +223,15 @@ else()
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_TESTS)
 endif()
 
+# poppler
+
+find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR})
+if(NOT POPPLER_FOUND)
+	message(STATUS "Internal pdf previewer disabled as you wish.")
+	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_POPPLER_PREVIEW)
+endif()
+add_subdirectory(src/pdfviewer)
+
 # Build texstudio application
 add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES})
 target_link_libraries(texstudio PRIVATE
@@ -279,15 +285,12 @@ if(UNIX AND NOT APPLE)
 	target_link_libraries(texstudio PUBLIC ${X11_LIBRARIES})
 endif()
 
-find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR})
+
 if(Poppler_FOUND)
 	message(STATUS "${Poppler_DEFINITIONS}")
 	target_include_directories(texstudio PUBLIC ${Poppler_INCLUDE_DIRS})
 	target_link_libraries(texstudio PUBLIC ${Poppler_LIBRARIES})
 	target_compile_options(texstudio PUBLIC ${Poppler_DEFINITIONS})
-else()
-	target_compile_options(texstudio PUBLIC -DNO_POPPLER_PREVIEW)
-	message(STATUS "Internal pdf previewer disabled as you wish.")
 endif()
 if(${TEXSTUDIO_ENABLE_TESTS})
 	target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::Test)
