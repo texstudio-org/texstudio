@@ -279,7 +279,7 @@ if(UNIX AND NOT APPLE)
 	target_link_libraries(texstudio PUBLIC ${X11_LIBRARIES})
 endif()
 
-find_package(Poppler REQUIRED COMPONENTS Qt${QT_VERSION_MAJOR})
+find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR})
 if(Poppler_FOUND)
 	message(STATUS "${Poppler_DEFINITIONS}")
 	target_include_directories(texstudio PUBLIC ${Poppler_INCLUDE_DIRS})
