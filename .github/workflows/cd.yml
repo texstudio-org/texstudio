@@ -535,6 +535,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
     - name: Delete temp artifact
-      uses: GeekyEggo/delete-artifact@v1.0.0
+      uses: GeekyEggo/delete-artifact@v2.0.0
       with:
         name: release
