@@ -80,7 +80,7 @@ jobs:
         with:
           msystem: UCRT64
           update: true
-          install: git make mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-qt6-declarative mingw-w64-ucrt-x86_64-qt6-svg mingw-w64-ucrt-x86_64-qt6-5compat  mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 mingw-w64-ucrt-x86_64-nsis zip unzip
+          install: git make cmake mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-qt6-declarative mingw-w64-ucrt-x86_64-qt6-svg mingw-w64-ucrt-x86_64-qt6-5compat  mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 mingw-w64-ucrt-x86_64-nsis zip unzip
 
       - name: Fetch tag annotations
         run: git fetch --tags --force
@@ -91,7 +91,8 @@ jobs:
           . ./git_revision.sh
           sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
           sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
-          qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+          # qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+          cmake .. -Wno-dev
       - name: Build
         run: make -j 2
       - name: Package
@@ -341,7 +342,7 @@ jobs:
       run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtdeclarative5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev libpoppler-cpp-dev pkg-config zlib1g-dev 
 
     - name: Configure
-      run: qmake texstudio.pro CONFIG-=debug
+      run: cmake .. -Wno-dev
 
     - name: Build
       run: make -j 2
