@@ -119,7 +119,7 @@ add_subdirectory(src/latexparser)
 add_subdirectory(src/symbolpanel)
 
 # QuaZIP
-find_package(QuaZip-Qt${QT_VERSION_MAJOR})
+find_package(QuaZip-Qt${QT_VERSION_MAJOR} QUIET)
 if(QuaZip-Qt${QT_VERSION_MAJOR}_FOUND)
 	message(STATUS "quazip 1.x found")
 	
@@ -232,7 +232,7 @@ endif()
 
 # poppler
 
-find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR})
+find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR} Cpp)
 if(NOT POPPLER_FOUND)
 	message(STATUS "Internal pdf previewer disabled as you wish.")
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_POPPLER_PREVIEW)
@@ -299,6 +299,7 @@ endif()
 
 if(Poppler_FOUND)
 	message(STATUS "${Poppler_DEFINITIONS}")
+	message(STATUS "inc: ${Poppler_INCLUDE_DIRS}")
 	target_include_directories(texstudio PUBLIC ${Poppler_INCLUDE_DIRS})
 	target_link_libraries(texstudio PUBLIC ${Poppler_LIBRARIES})
 	target_compile_options(texstudio PUBLIC ${Poppler_DEFINITIONS})
