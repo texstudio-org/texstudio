@@ -1,5 +1,5 @@
 # glossary-inline package
-# Matthew Bertucci 11/7/2021 for v4.49
+# Matthew Bertucci 2022/10/17 for v4.50
 
 \glsinlineseparator#*
 \glsinlinesubseparator#*
@@ -10,6 +10,6 @@
 \glsinlineemptydescformat{symbol}{number list}
 \glsinlinedescformat{description}{symbol}{number list}
 \glsinlinesubdescformat{description}{symbol}{number list}
-
+\glsinlineifhaschildren{label}{true}{false}#*r
 \glsinlinedopostchild#*
 \glsinlinepostchild#*
