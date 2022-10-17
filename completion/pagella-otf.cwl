@@ -1,5 +1,5 @@
 # pagella-otf package
-# Matthew Bertucci 2022/10/13 for v0.01
+# Matthew Bertucci 2022/10/13 for v0.02
 
 #include:iftex
 #include:xkeyval
@@ -14,6 +14,7 @@ tabular
 math=%<font features%>
 ScaleRM=%<factor%>
 defaultfeatures={%<font features%>}
+libertinus
 #endkeyvals
 
 \pagellaOsF
