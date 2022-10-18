@@ -1,0 +1,551 @@
+name: CD
+on:
+  - push
+  - pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  build-win:
+    name: win build (msys2)
+    if: false
+    # if: github.event_name == 'push'
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git make mingw-w64-x86_64-toolchain mingw-w64-x86_64-qt6-base mingw-w64-x86_64-qt6-declarative mingw-w64-x86_64-qt6-svg mingw-w64-x86_64-qt6-5compat  mingw-w64-x86_64-qt6-tools mingw-w64-x86_64-poppler-qt6 mingw-w64-x86_64-nsis zip unzip
+
+      - name: Fetch tag annotations
+        run: git fetch --tags --force
+
+      - name: Configure
+        run: |
+          . ./.github/scripts/get-version.sh
+          . ./git_revision.sh
+          sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+          sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
+          qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+      - name: Build
+        run: make -j 2
+      - name: Package
+        id: package
+        run: |
+          . ./.github/scripts/get-version.sh
+          ./.github/scripts/package_msys.sh
+          echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+          echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+          echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+
+      - name: Upload zip to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with:
+          name: texstudio-win-qt6-zip
+          path: ./package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+          
+      - name: Upload to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with:
+          name: texstudio-win-qt6-exe
+          path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
+
+      - name: Upload release file(s)
+        uses: actions/upload-artifact@v3
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: release
+          path: |
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
+
+  build-win10:
+    name: win10 build (msys2)
+    if: github.event_name == 'push'
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: git make cmake mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-qt6-base mingw-w64-ucrt-x86_64-qt6-declarative mingw-w64-ucrt-x86_64-qt6-svg mingw-w64-ucrt-x86_64-qt6-5compat  mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 mingw-w64-ucrt-x86_64-nsis mingw-w64-ucrt-x86_64-quazip-qt6 mingw-w64-ucrt-x86_64-hunspell zip unzip
+
+      - name: Fetch tag annotations
+        run: git fetch --tags --force
+
+      - name: Configure
+        run: |
+          . ./git_revision.sh
+          mkdir build
+          cd build
+          . ../.github/scripts/get-version.sh
+          sed -i ../win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+          sed -i ../win.rc -e "s/git[\]0/$VERSION_NAME/"
+          # qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+          cmake .. -Wno-dev
+      - name: Build
+        run: make -j 2
+      - name: Package
+        id: package
+        run: |
+          ce build
+          . ../.github/scripts/get-version.sh
+          . ../.github/scripts/package_msys.sh
+          echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+          echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+          echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+
+      - name: Upload zip to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with:
+          name: texstudio-win-qt6-zip
+          path: ./package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+          
+      - name: Upload to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with:
+          name: texstudio-win-qt6-exe
+          path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
+
+      - name: Upload release file(s)
+        uses: actions/upload-artifact@v3
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: release
+          path: |
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
+
+
+  build-linux-win:
+    name: win build (mxe)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
+    - name: Add mxe.cc repo
+      run: |
+        sudo apt-key adv \
+        --keyserver keyserver.ubuntu.com \
+        --recv-keys 86B72ED9 
+        sudo add-apt-repository \
+          "deb [arch=amd64] https://pkg.mxe.cc/repos/apt `lsb_release -sc` main" 
+      
+    - name: Updates
+      run: sudo apt-get update
+
+    - name: Dependencies
+      run: |
+        sudo apt-get install mxe-x86-64-w64-mingw32.shared-cairo \
+             mxe-x86-64-w64-mingw32.shared-curl \
+             mxe-x86-64-w64-mingw32.shared-freetype \
+             mxe-x86-64-w64-mingw32.shared-glib \
+             mxe-x86-64-w64-mingw32.shared-jpeg \
+             mxe-x86-64-w64-mingw32.shared-lcms \
+             mxe-x86-64-w64-mingw32.shared-libpng \
+             mxe-x86-64-w64-mingw32.shared-libwebp \
+             mxe-x86-64-w64-mingw32.shared-openjpeg \
+             mxe-x86-64-w64-mingw32.shared-poppler \
+             mxe-x86-64-w64-mingw32.shared-qtbase \
+             mxe-x86-64-w64-mingw32.shared-qtdeclarative \
+             mxe-x86-64-w64-mingw32.shared-qttools \
+             mxe-x86-64-w64-mingw32.shared-tiff \
+             mxe-x86-64-w64-mingw32.shared-zlib \
+             mxe-x86-64-w64-mingw32.static-nsis
+
+    - name: Configure
+      run: |
+        MXEDIR="/usr/lib/mxe"
+        MXETARGET="x86_64-w64-mingw32.shared"
+        PATH=$PATH:${MXEDIR}/usr/bin
+        . ./.github/scripts/get-version.sh
+        sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+        sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
+        $MXEDIR/usr/bin/${MXETARGET}-qmake-qt5 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+
+    - name: Build
+      run: |
+        MXEDIR="/usr/lib/mxe"
+        MXETARGET="x86_64-w64-mingw32.shared"
+        PATH=$PATH:${MXEDIR}/usr/bin
+        make -j 2
+      
+    - name: Package
+      id: package
+      run: |
+        MXEDIR="/usr/lib/mxe"
+        MXETARGET="x86_64-w64-mingw32.shared"
+        PATH=$PATH:${MXEDIR}/usr/bin
+        . ./.github/scripts/get-version.sh
+        .github/scripts/package_win.sh
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+        
+    - name: Upload zip to GitHub Artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: texstudio-win-zip
+        path: ./package-zip/texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.zip
+        
+    - name: Upload to GitHub Artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: texstudio-win-exe
+        path: texstudio-win-${{ steps.package.outputs.VERSION_NAME }}.exe
+
+    - name: Upload release file(s)
+      uses: actions/upload-artifact@v3
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        name: release
+        path: |
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt5.exe
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt5.zip
+
+  build-linux-win-qt6:
+    name: win build (mxe qt6)
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
+    - name: Add mxe.cc repo
+      run: |
+        sudo apt-key adv \
+        --keyserver keyserver.ubuntu.com \
+        --recv-keys 86B72ED9 
+        sudo add-apt-repository \
+          "deb [arch=amd64] https://pkg.mxe.cc/repos/apt `lsb_release -sc` main" 
+      
+    - name: Updates
+      run: sudo apt-get update
+
+    - name: Dependencies
+      run: |
+        sudo apt-get install mxe-x86-64-w64-mingw32.shared-cairo \
+             mxe-x86-64-w64-mingw32.shared-curl \
+             mxe-x86-64-w64-mingw32.shared-freetype \
+             mxe-x86-64-w64-mingw32.shared-glib \
+             mxe-x86-64-w64-mingw32.shared-jpeg \
+             mxe-x86-64-w64-mingw32.shared-lcms \
+             mxe-x86-64-w64-mingw32.shared-libpng \
+             mxe-x86-64-w64-mingw32.shared-libwebp \
+             mxe-x86-64-w64-mingw32.shared-openjpeg \
+             mxe-x86-64-w64-mingw32.shared-poppler \
+             mxe-x86-64-w64-mingw32.shared-qt6-qtbase \
+             mxe-x86-64-w64-mingw32.shared-qt6-qtdeclarative \
+             mxe-x86-64-w64-mingw32.shared-qt6-qttools \
+             mxe-x86-64-w64-mingw32.shared-qt6-qt5compat \
+             mxe-x86-64-w64-mingw32.shared-tiff \
+             mxe-x86-64-w64-mingw32.shared-zlib \
+             mxe-x86-64-w64-mingw32.static-nsis
+
+    - name: Configure
+      run: |
+        MXEDIR="/usr/lib/mxe"
+        MXETARGET="x86_64-w64-mingw32.shared"
+        PATH=$PATH:${MXEDIR}/usr/bin
+        . ./.github/scripts/get-version.sh
+        sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+        sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
+        $MXEDIR/usr/bin/${MXETARGET}-qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
+
+    - name: Build
+      run: |
+        MXEDIR="/usr/lib/mxe"
+        MXETARGET="x86_64-w64-mingw32.shared"
+        PATH=$PATH:${MXEDIR}/usr/bin
+        make -j 2
+      
+    - name: Package
+      id: package
+      run: |
+        MXEDIR="/usr/lib/mxe"
+        MXETARGET="x86_64-w64-mingw32.shared"
+        PATH=$PATH:${MXEDIR}/usr/bin
+        . ./.github/scripts/get-version.sh
+        .github/scripts/package_win.sh
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+        
+    - name: Upload zip to GitHub Artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: texstudio-win-zip
+        path: ./package-zip/texstudio-win-mxe-${{ steps.package.outputs.VERSION_NAME }}.zip
+        
+    - name: Upload to GitHub Artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: texstudio-win-exe
+        path: texstudio-win-mxe-${{ steps.package.outputs.VERSION_NAME }}.exe
+
+    - name: Upload release file(s)
+      uses: actions/upload-artifact@v3
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        name: release
+        path: |
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
+          texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
+
+
+###################################
+
+  build-linux-release:
+    name: linux appimage
+    if: github.event_name == 'push'
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
+    - name: Updates
+      run: sudo apt-get update
+
+    - name: Dependencies
+      run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtdeclarative5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev libpoppler-cpp-dev pkg-config zlib1g-dev libquazip5-dev 
+
+    - name: Configure
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=appdir/usr .. -Wno-dev
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --target install -- -j 2
+      
+    - name: Package
+      id: package
+      run: |
+        cd build
+        POPPLERDATA_VERSION="0.4.8"
+        POPPLERDATA_SUBDIR="poppler-data-${POPPLERDATA_VERSION}"
+        POPPLERDATA_FILE="poppler-data-${POPPLERDATA_VERSION}.tar.gz"
+        POPPLERDATA_URL="https://poppler.freedesktop.org/${POPPLERDATA_FILE}"
+        POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf72872"
+        . ../.github/scripts/package_linux.sh
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=VERSION::${VERSION}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"        
+        
+    - name: Upload to Github Artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: texstudio-linux
+        path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
+
+    - name: Upload release file(s)
+      uses: actions/upload-artifact@v3
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        name: release
+        path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-x86_64.AppImage
+
+
+############################
+
+  macosx:
+    name: Mac OS X
+    if: true
+    runs-on: macos-11
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
+    - name: Install Dependencies
+      run: |
+        # /usr/local/bin/2to3 is symlinked to the native python2 installation
+        # but prevents the homebrew install from succeeding
+        rm -f /usr/local/bin/2to3
+        brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
+        brew install qt
+        brew install quazip
+        brew install hunspell
+        wget https://github.com/sunderme/homebrew-poppler-build/releases/download/22.10.0/poppler-qt6--22.10.0.big_sur.bottle.tar.gz
+        brew install ./poppler-qt6--22.10.0.big_sur.bottle.tar.gz
+        
+
+    - name: Configure
+      run: /usr/local/opt/qt6/bin/qmake texstudio.pro CONFIG-=debug
+
+    - name: Build
+      run: make -j 2
+
+    - name: Workarounds
+      run: |
+        python2 ./.github/scripts/fixRpath.py /usr/local/opt/qt/lib
+        mkdir -p texstudio.app/Contents/PlugIns/imageformats
+        cp /usr/local/opt/qt/share/qt/plugins/imageformats/libqsvg.dylib texstudio.app/Contents/PlugIns/imageformats
+        mkdir -p texstudio.app/Contents/Frameworks
+        cp /usr/local/lib/libbrotlicommon.1.dylib texstudio.app/Contents/Frameworks
+
+    - name: Package
+      id: package
+      run: |
+        /usr/local/opt/qt6/bin/macdeployqt texstudio.app -dmg
+        . ./.github/scripts/get-version.sh
+        cp texstudio.dmg texstudio-${GIT_VERSION}-osx.dmg
+        mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+        
+    - name: Upload to Github artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: texstudio-osx
+        path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
+
+    - name: Upload release file(s)
+      uses: actions/upload-artifact@v3
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        name: release
+        path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
+
+
+  macosx-qt5:
+    name: Mac OS X (Qt5)
+    if: false
+    runs-on: macos-11
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      run: git fetch --tags --force
+
+    - name: Install Dependencies
+      run: |
+        # /usr/local/bin/2to3 is symlinked to the native python2 installation
+        # but prevents the homebrew install from succeeding
+        rm -f /usr/local/bin/2to3
+        brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
+        # install poppler with qt6
+        brew install poppler-qt5
+
+    - name: Configure
+      run: |
+        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/lib/pkgconfig"
+        /usr/local/opt/qt5/bin/qmake texstudio.pro CONFIG-=debug
+
+    - name: Build
+      run: |
+        export PKG_CONFIG_PATH="/usr/local/opt/poppler-qt5/lib/pkgconfig"
+        make -j 2
+
+    - name: Workarounds
+      if: false
+      run: |
+        python2 ./.github/scripts/fixRpath.py /usr/local/opt/qt/lib
+        mkdir -p texstudio.app/Contents/PlugIns/imageformats
+        cp /usr/local/opt/qt/share/qt/plugins/imageformats/libqsvg.dylib texstudio.app/Contents/PlugIns/imageformats
+        mkdir -p texstudio.app/Contents/Frameworks
+        cp /usr/local/lib/libbrotlicommon.1.dylib texstudio.app/Contents/Frameworks
+
+    - name: Package
+      id: package
+      run: |
+        /usr/local/opt/qt5/bin/macdeployqt texstudio.app -dmg
+        . ./.github/scripts/get-version.sh
+        cp texstudio.dmg texstudio-${GIT_VERSION}-osx-qt5.dmg
+        mv texstudio.dmg texstudio-osx-qt5-${VERSION_NAME}.dmg
+        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
+        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
+        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+        
+    - name: Upload to Github artifacts
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v3
+      with:
+        name: texstudio-osx-qt5
+        path: texstudio-osx-qt5-${{ steps.package.outputs.VERSION_NAME }}.dmg
+
+
+
+  release:
+    permissions:
+      contents: write  # for softprops/action-gh-release to create GitHub release
+    name: Release
+    needs: [build-win10, build-linux-release, macosx] # build-linux-win,macosx-qt5 is disabled
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+    - name: Download temp artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: release
+
+    - name: Calculate hashes
+      run: |
+        echo --SHA1SUM-- > hashes.txt
+        sha1sum * | grep -v hashes.txt >> hashes.txt
+        echo >> hashes.txt
+        echo --SHA256SUM-- >> hashes.txt
+        sha256sum * | grep -v hashes.txt >> hashes.txt
+
+    - name: Batch release
+      uses: softprops/action-gh-release@v1
+      with:
+        prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+        files: ./*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+
+    - name: Delete temp artifact
+      uses: GeekyEggo/delete-artifact@v2.0.0
+      with:
+        name: release
