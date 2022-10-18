@@ -3,7 +3,7 @@
 # Exit on errors
 set -e
 
-. .github/scripts/get-version.sh
+. ../.github/scripts/get-version.sh
 
 echo "Running linuxdeployqt"
 
