@@ -1,14 +1,14 @@
 # GNU extensions for sed are not supported; on Linux, --posix mimics this behaviour
-TXS_VERSION=$(sed -ne 's/^#define TXSVERSION "\(.*\)".*$/\1/p' src/utilsVersion.h)
+TXS_VERSION=$(sed -ne 's/^#define TXSVERSION "\(.*\)".*$/\1/p' ../src/utilsVersion.h)
 echo "TXS_VERSION = ${TXS_VERSION}"
 
-GIT_HASH=$(git --git-dir=".git" show --no-patch --pretty="%h")
+GIT_HASH=$(git show --no-patch --pretty="%h")
 echo "GIT_HASH = ${GIT_HASH}"
 
-GIT_DATE=$(git --git-dir=".git" show --no-patch --pretty="%ci")
+GIT_DATE=$(git show --no-patch --pretty="%ci")
 echo "GIT_DATE = ${GIT_DATE}"
 
-GIT_VERSION=$(git --git-dir=".git" describe --tags --abbrev=0 --always)
+GIT_VERSION=$(git describe --tags --abbrev=0 --always)
 echo "GIT_VERSION = ${GIT_VERSION}"
 
 DATE_HASH=$(date -u +"%Y%m%d%H%M")
