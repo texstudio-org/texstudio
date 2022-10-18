@@ -27,6 +27,10 @@ if(MSVC)
 	add_compile_options(/wd4267 /wd4244)
 endif()
 
+if(WIN32)
+	add_compile_options(-fpermissive)
+endif()
+
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network Xml Concurrent Widgets UiTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS PrintSupport Svg Qml REQUIRED)
