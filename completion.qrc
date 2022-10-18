@@ -38,6 +38,7 @@
 <file>completion/adjmulticol.cwl</file>
 <file>completion/adjustbox.cwl</file>
 <file>completion/adobecaslon.cwl</file>
+<file>completion/adrlist.cwl</file>
 <file>completion/adtrees.cwl</file>
 <file>completion/advdate.cwl</file>
 <file>completion/aeb-comment.cwl</file>
@@ -409,6 +410,7 @@
 <file>completion/boites_exemples.cwl</file>
 <file>completion/bold-extra.cwl</file>
 <file>completion/boldline.cwl</file>
+<file>completion/boldtensors.cwl</file>
 <file>completion/bondcolor.cwl</file>
 <file>completion/bondgraph.cwl</file>
 <file>completion/bondgraphs.cwl</file>
@@ -1186,6 +1188,7 @@
 <file>completion/doclicense.cwl</file>
 <file>completion/docmfp.cwl</file>
 <file>completion/docmute.cwl</file>
+<file>completion/docshots.cwl</file>
 <file>completion/doctools.cwl</file>
 <file>completion/dogma.cwl</file>
 <file>completion/doi.cwl</file>
@@ -1725,6 +1728,7 @@
 <file>completion/holtxdoc.cwl</file>
 <file>completion/hpstatement.cwl</file>
 <file>completion/hrefhide.cwl</file>
+<file>completion/huaz.cwl</file>
 <file>completion/hulipsum.cwl</file>
 <file>completion/humanist.cwl</file>
 <file>completion/huncial.cwl</file>
@@ -3214,6 +3218,7 @@
 <file>completion/tensind.cwl</file>
 <file>completion/tensor.cwl</file>
 <file>completion/termcal.cwl</file>
+<file>completion/termes-otf.cwl</file>
 <file>completion/termlist.cwl</file>
 <file>completion/termsim.cwl</file>
 <file>completion/testhyphens.cwl</file>
