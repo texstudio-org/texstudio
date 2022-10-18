@@ -87,19 +87,22 @@ jobs:
 
       - name: Configure
         run: |
-          . ./.github/scripts/get-version.sh
-          . ./git_revision.sh
-          sed -i win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
-          sed -i win.rc -e "s/git[\]0/$VERSION_NAME/"
+          mkdir build
+          cd build
+          . ../.github/scripts/get-version.sh
+          . ../git_revision.sh
+          sed -i ../win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+          sed -i ../win.rc -e "s/git[\]0/$VERSION_NAME/"
           # qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
-          cmake . -Wno-dev
+          cmake .. -Wno-dev
       - name: Build
         run: make -j 2
       - name: Package
         id: package
         run: |
-          . ./.github/scripts/get-version.sh
-          ./.github/scripts/package_msys.sh
+          ce build
+          . ../.github/scripts/get-version.sh
+          . ../.github/scripts/package_msys.sh
           echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
           echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
           echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
