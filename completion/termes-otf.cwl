@@ -1,12 +1,12 @@
-# pagella-otf package
-# Matthew Bertucci 2022/10/13 for v0.02
+# termes-otf package
+# Matthew Bertucci 2022/10/16 for v0.01
 
 #include:iftex
 #include:xkeyval
 #include:textcomp
 #include:unicode-math
 
-#keyvals:\usepackage/pagella-otf#c
+#keyvals:\usepackage/termes-otf#c
 lining
 oldstyle
 proportional
@@ -14,11 +14,10 @@ tabular
 math=%<font features%>
 ScaleRM=%<factor%>
 defaultfeatures={%<font features%>}
-libertinus
 #endkeyvals
 
-\pagellaOsF
-\pagellaTLF
+\termesOsF
+\termesTLF
 \Lctosc{text}
 \LCtoSC+
 \LCtoSC-
@@ -53,7 +52,7 @@ libertinus
 \Lfrac{text}#*
 \LFRAC+#*
 \LFRAC-#*
-\pagella#S
+\termes#S
 \sufigures#*
 \textsup{text}#*
 \textinit{text}#S

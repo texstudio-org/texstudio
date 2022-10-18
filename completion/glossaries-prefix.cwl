@@ -1,12 +1,76 @@
 # glossaries-prefix package
-# Matthew Bertucci 11/7/2021 for v4.49
+# Matthew Bertucci 2022/10/17 for v4.50
 
 #include:glossaries
+
+#keyvals:\usepackage/glossaries-prefix#c
+nowarn
+nolangwarn
+noredefwarn
+debug=#false,true,showtargets,showaccsupp
+savewrites#true,false
+translate=#true,false,babel
+notranslate
+hyperfirst#true,false
+writeglslabels
+writeglslabelnames
+toc#true,false
+numberline#true,false
+section=%<section unit%>
+ucmark#true,false
+numberedsection=#false,nolabel,autolabel
+savenumberlist#true,false
+entrycounter#true,false
+counterwithin=%<counter%>
+subentrycounter#true,false
+style=
+nolong
+nosuper
+nolist
+notree
+nostyles
+nonumberlist
+seeautonumberlist
+counter=%<counter%>
+nopostdot#true,false
+nogroupskip#true,false
+seenoindex=#error,warn,ignore
+esclocations#true,false
+indexonlyfirst#true,false
+sanitizesort#true,false
+sort=#none,clear,def,use,standard
+order=#word,letter
+makeindex
+xindy
+xindygloss
+xindynoglsnumbers
+automake=#false,delayed,immediate,makegloss,lite
+automakegloss
+automakeglosslite
+disablemakegloss
+restoremakegloss
+nohypertypes={%<list%>}
+nomain
+symbols
+numbers
+index
+noglossaryindex
+acronym#true,false
+acronyms
+acronymlists={%<value%>}
+shortcuts
+mfirstuc=#expanded,unexpanded
+kernelglossredefs=#false,true,nowarn
+languages=%<language%>
+#endkeyvals
 
 ## need same options as glossaries
 #ifOption:debug=showtargets
 \glsshowtarget{target name}
+\glsshowtargetinner{target name}
+\glsshowtargetfonttext{text}
 \glsshowtargetouter{label}
+\glsshowtargetsymbol#*
 \glsshowtargetfont#*
 #endif
 #ifOption:debug=showaccsupp

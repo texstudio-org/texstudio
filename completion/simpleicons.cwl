@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/10/07 for v7.12.0
+# Matthew Bertucci 2022/10/16 for v7.15.0
 
 #include:ifxetex
 #include:ifluatex
@@ -34,6 +34,7 @@ adblockplus
 addthis
 adguard
 adidas
+adminer
 adobe
 adobeacrobatreader
 adobeaftereffects
@@ -107,6 +108,7 @@ amazonec2
 amazonecs
 amazoneks
 amazonfiretv
+amazongames
 amazonlumberyard
 amazonpay
 amazonprime
@@ -239,6 +241,7 @@ azuredevops
 azurefunctions
 azurepipelines
 babel
+backblaze
 backbonedotjs
 backendless
 badgr
@@ -272,6 +275,7 @@ bigbluebutton
 bigcartel
 bigcommerce
 bilibili
+billboard
 binance
 biolink
 bit
@@ -339,7 +343,9 @@ byte
 bytedance
 c
 cachet
+cafepress
 caffeine
+cairographics
 cairometro
 cakephp
 campaignmonitor
@@ -477,6 +483,7 @@ cpanel
 cplusplus
 craftcms
 cratedb
+crayon
 createreactapp
 creativecommons
 credly
@@ -624,6 +631,7 @@ elasticsearch
 elasticstack
 electron
 electronbuilder
+electronfiddle
 element
 elementary
 elementor
@@ -681,6 +689,8 @@ falcon
 fampay
 fandango
 fandom
+fanfou
+fantom
 farfetch
 fastapi
 fastify
@@ -709,6 +719,7 @@ fing
 firebase
 firefox
 firefoxbrowser
+fireship
 first
 fitbit
 fite
@@ -767,6 +778,7 @@ futurelearn
 g2
 g2a
 gameandwatch
+gamedeveloper
 gamejolt
 garmin
 gatling
@@ -869,6 +881,7 @@ graphql
 grav
 gravatar
 graylog
+greenhouse
 greensock
 griddotai
 gridsome
@@ -910,6 +923,7 @@ hbo
 hcl
 headlessui
 headspace
+hedera
 hellofresh
 hellyhansen
 helm
@@ -933,6 +947,7 @@ homebrew
 homebridge
 homify
 honda
+honey
 hootsuite
 hoppscotch
 hotelsdotcom
@@ -996,9 +1011,11 @@ instagram
 instapaper
 instatus
 instructables
+instructure
 integromat
 intel
 intellijidea
+interactiondesignfoundation
 interactjs
 intercom
 intermarche
@@ -1056,6 +1073,7 @@ jsfiddle
 json
 jsonwebtokens
 jss
+juke
 julia
 junipernetworks
 junit5
@@ -1205,6 +1223,7 @@ lydia
 lyft
 maas
 macos
+macpaw
 macys
 magasinsu
 magento
@@ -1507,10 +1526,12 @@ pegasusairlines
 pelican
 peloton
 penny
+penpot
 pepsi
 percy
 perforce
 perl
+persistent
 personio
 petsathome
 peugeot
@@ -1600,6 +1621,7 @@ premierleague
 prestashop
 presto
 prettier
+prevention
 prezi
 prime
 primevideo
@@ -1640,6 +1662,7 @@ pyg
 pypi
 pypy
 pyscaffold
+pysyft
 pytest
 python
 pytorch
@@ -1709,6 +1732,7 @@ redux
 reduxsaga
 redwoodjs
 reebok
+relay
 relianceindustrieslimited
 remix
 renault
@@ -1721,6 +1745,7 @@ republicofgamers
 rescript
 rescuetime
 researchgate
+resharper
 resurrectionremixos
 retroarch
 retropie
@@ -1756,6 +1781,7 @@ rossmann
 rotaryinternational
 rottentomatoes
 roundcube
+rsocket
 rss
 rstudio
 rte
@@ -1825,6 +1851,7 @@ sequelize
 serverfault
 serverless
 sessionize
+setapp
 sfml
 shadow
 shanghaimetro
@@ -1835,6 +1862,7 @@ shelly
 shenzhenmetro
 shieldsdotio
 shikimori
+shopee
 shopify
 shopware
 shotcut
@@ -1843,6 +1871,7 @@ showtime
 shutterstock
 siemens
 signal
+similarweb
 simkl
 simpleanalytics
 simpleicons
@@ -1885,6 +1914,7 @@ solid
 solidity
 sololearn
 solus
+sonar
 sonarcloud
 sonarlint
 sonarqube
@@ -1983,6 +2013,7 @@ sumologic
 supabase
 supermicro
 superuser
+surrealdb
 surveymonkey
 suse
 suzuki
@@ -2004,10 +2035,13 @@ tableau
 tablecheck
 tacobell
 tado
+taichigraphics
+taichilang
 tails
 tailwindcss
 talend
 talenthouse
+tamiya
 tampermonkey
 taobao
 tapas
@@ -2061,6 +2095,7 @@ thymeleaf
 ticketmaster
 tidal
 tide
+tidyverse
 tietoevry
 tiktok
 tile
@@ -2196,6 +2231,7 @@ visualstudio
 visualstudiocode
 vite
 vitess
+vitest
 vivaldi
 vivino
 vk
@@ -2208,6 +2244,7 @@ vonage
 vowpalwabbit
 vox
 vsco
+vscodium
 vtex
 vuedotjs
 vuetify
@@ -2222,6 +2259,7 @@ wallabag
 walmart
 wappalyzer
 warnerbros
+warp
 wasmcloud
 wasmer
 wattpad

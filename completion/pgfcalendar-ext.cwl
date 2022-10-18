@@ -1,5 +1,5 @@
 # pgfcalendar-ext package
-# Matthew Bertucci 2022/10/02 for v0.3
+# Matthew Bertucci 2022/10/16 for v0.4
 
 #include:pgfcalendar
 
@@ -26,6 +26,10 @@ leap year
 leap year=%<year%>
 and={%<tests%>}
 not={%<tests%>}
+week of month=%<num%>
+week of month'=%<num%>
+calendar week of month=%<num%>
+calendar week of month'=%<num%>
 yesterday={%<tests%>}
 week=%<num%>
 #endkeyvals
