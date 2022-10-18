@@ -342,21 +342,26 @@ jobs:
       run: sudo apt-get install qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtdeclarative5-dev qttools5-dev libqt5svg5-dev libpoppler-qt5-dev libpoppler-cpp-dev pkg-config zlib1g-dev libquazip5-dev 
 
     - name: Configure
-      run: cmake . -Wno-dev
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_INSTALL_PREFIX=appdir/usr .. -Wno-dev
 
     - name: Build
-      run: make -j 2
+      run: |
+        cd build
+        cmake --build . --target install
       
     - name: Package
       id: package
       run: |
+        cd build
         POPPLERDATA_VERSION="0.4.8"
         POPPLERDATA_SUBDIR="poppler-data-${POPPLERDATA_VERSION}"
         POPPLERDATA_FILE="poppler-data-${POPPLERDATA_VERSION}.tar.gz"
         POPPLERDATA_URL="https://poppler.freedesktop.org/${POPPLERDATA_FILE}"
         POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf72872"
-        . ./.github/scripts/get-version.sh
-        . ./.github/scripts/package_linux.sh
+        . ../.github/scripts/package_linux.sh
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=VERSION::${VERSION}"
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
