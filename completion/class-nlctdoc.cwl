@@ -1,5 +1,5 @@
 # nlctdoc class
-# Matthew Bertucci 10/31/2021 for v1.07
+# Matthew Bertucci 2022/10/16 for v1.08
 
 #include:ifpdf
 #include:ifxetex
@@ -22,6 +22,7 @@ report
 a5paper
 normalmp
 inlinetitle
+widecs
 wbprompt
 #endkeyvals
 
@@ -34,14 +35,14 @@ wbprompt
 #endif
 
 \ifnlctdocinlinetitle#*
-\nlctdocinlinetitletrue#*
-\nlctdocinlinetitlefalse#*
+\nlctdocinlinetitletrue#S
+\nlctdocinlinetitlefalse#S
 \ifwidecs#*
-\widecstrue#*
-\widecsfalse#*
+\widecstrue#S
+\widecsfalse#S
 \ifwbprompt#*
-\wbprompttrue#*
-\wbpromptfalse#*
+\wbprompttrue#S
+\wbpromptfalse#S
 
 \letterheading{text}
 \nlctdocmarginfmt

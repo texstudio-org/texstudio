@@ -1,16 +1,15 @@
 # frenchmath package
-# Matthew Bertucci 1/12/2021 for v1.5
+# Matthew Bertucci 2022/10/17 for v1.6
 
 #include:ifthen
 #include:mathrsfs
 #include:amssymb
 #include:amsopn
 #include:xspace
-#include:icomma
+#include:ncccomma
 
 #keyvals:\usepackage/frenchmath#c
 capsit
-capsup
 #endkeyvals
 
 \curs{text%plain}
@@ -38,4 +37,4 @@ capsup
 \Vect#m
 \ch#m
 \sh#m
-\tgh#m
+\th
