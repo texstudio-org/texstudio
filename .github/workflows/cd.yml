@@ -36,7 +36,9 @@ jobs:
           # qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
           cmake .. -Wno-dev
       - name: Build
-        run: make -j 2
+        run: |
+          cd build
+          cmake --build . -- -j 2
       - name: Package
         id: package
         run: |
