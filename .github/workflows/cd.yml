@@ -350,7 +350,7 @@ jobs:
     - name: Build
       run: |
         cd build
-        cmake --build . --target install
+        cmake --build . --target install -- -j 2
       
     - name: Package
       id: package
