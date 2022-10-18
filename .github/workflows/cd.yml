@@ -157,6 +157,7 @@ jobs:
         rm -f /usr/local/bin/2to3
         brew update > brew_update.log || { echo "::error::Updating homebrew failed"; cat brew_update.log; exit 1; }
         brew install qt
+        brew install cmake
         brew install quazip
         brew install hunspell
         wget https://github.com/sunderme/homebrew-poppler-build/releases/download/22.10.0/poppler-qt6--22.10.0.big_sur.bottle.tar.gz
@@ -164,13 +165,18 @@ jobs:
         
 
     - name: Configure
-      run: /usr/local/opt/qt6/bin/qmake texstudio.pro CONFIG-=debug
+      run: |
+        mkdir build
+        cd build
+        cmake ..
 
     - name: Build
-      run: make -j 2
+      run: |
+        cmake --build . -j 2
 
     - name: Workarounds
       run: |
+        cd build
         python2 ./.github/scripts/fixRpath.py /usr/local/opt/qt/lib
         mkdir -p texstudio.app/Contents/PlugIns/imageformats
         cp /usr/local/opt/qt/share/qt/plugins/imageformats/libqsvg.dylib texstudio.app/Contents/PlugIns/imageformats
@@ -180,10 +186,11 @@ jobs:
     - name: Package
       id: package
       run: |
+        cd build
         /usr/local/opt/qt6/bin/macdeployqt texstudio.app -dmg
-        . ./.github/scripts/get-version.sh
-        cp texstudio.dmg texstudio-${GIT_VERSION}-osx.dmg
-        mv texstudio.dmg texstudio-osx-${VERSION_NAME}.dmg
+        . ../.github/scripts/get-version.sh
+        cp texstudio.dmg ../texstudio-${GIT_VERSION}-osx.dmg
+        mv texstudio.dmg ../texstudio-osx-${VERSION_NAME}.dmg
         echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
         echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
         echo "::set-output name=GIT_VERSION::${GIT_VERSION}"

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Exit on errors
-set -e
+#set -e
 
 echo "package build into zip for win"
 # workaround for botched qt6 installation
