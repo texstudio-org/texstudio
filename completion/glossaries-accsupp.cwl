@@ -1,13 +1,77 @@
 # glossaries-accsupp package
-# Matthew Bertucci 11/7/2021 for v4.49
+# Matthew Bertucci 2022/10/17 for v4.50
 
 #include:glossaries
 #include:accsupp
 
+#keyvals:\usepackage/glossaries-accsupp#c
+nowarn
+nolangwarn
+noredefwarn
+debug=#false,true,showtargets,showaccsupp
+savewrites#true,false
+translate=#true,false,babel
+notranslate
+hyperfirst#true,false
+writeglslabels
+writeglslabelnames
+toc#true,false
+numberline#true,false
+section=%<section unit%>
+ucmark#true,false
+numberedsection=#false,nolabel,autolabel
+savenumberlist#true,false
+entrycounter#true,false
+counterwithin=%<counter%>
+subentrycounter#true,false
+style=
+nolong
+nosuper
+nolist
+notree
+nostyles
+nonumberlist
+seeautonumberlist
+counter=%<counter%>
+nopostdot#true,false
+nogroupskip#true,false
+seenoindex=#error,warn,ignore
+esclocations#true,false
+indexonlyfirst#true,false
+sanitizesort#true,false
+sort=#none,clear,def,use,standard
+order=#word,letter
+makeindex
+xindy
+xindygloss
+xindynoglsnumbers
+automake=#false,delayed,immediate,makegloss,lite
+automakegloss
+automakeglosslite
+disablemakegloss
+restoremakegloss
+nohypertypes={%<list%>}
+nomain
+symbols
+numbers
+index
+noglossaryindex
+acronym#true,false
+acronyms
+acronymlists={%<value%>}
+shortcuts
+mfirstuc=#expanded,unexpanded
+kernelglossredefs=#false,true,nowarn
+languages=%<language%>
+#endkeyvals
+
 ## need same options as glossaries
 #ifOption:debug=showtargets
 \glsshowtarget{target name}
+\glsshowtargetinner{target name}
+\glsshowtargetfonttext{text}
 \glsshowtargetouter{label}
+\glsshowtargetsymbol#*
 \glsshowtargetfont#*
 #endif
 #ifOption:debug=showaccsupp
@@ -282,7 +346,7 @@ pluralaccess=
 firstpluralaccess=
 symbolaccess=
 symbolpluralaccess=
-symbolpluralaccess=
+descriptionaccess=
 descriptionpluralaccess=
 longaccess=
 shortaccess=
@@ -350,16 +414,16 @@ user6access=
 
 \accsuppglossaryentryfield{label}{name}{description}{symbol}{page-list}#*r
 \accsuppglossarysubentryfield{level}{label}{name}{description}{symbol}{page-list}#*r
-\showglonameaccess{label}#*r
-\showglotextaccess{label}#*r
-\showglopluralaccess{label}#*r
-\showglofirstaccess{label}#*r
-\showglofirstaccess{label}#*r
-\showglosymbolaccess{label}#*r
-\showglosymbolpluralaccess{label}#*r
-\showglodescaccess{label}#*r
-\showglodescpluralaccess{label}#*r
-\showgloshortaccess{label}#*r
-\showgloshortpluralaccess{label}#*r
-\showglolongaccess{label}#*r
-\showglolongpluralaccess{label}#*r
+\showglonameaccess{label}#Sr
+\showglotextaccess{label}#Sr
+\showglopluralaccess{label}#Sr
+\showglofirstaccess{label}#Sr
+\showglofirstaccess{label}#Sr
+\showglosymbolaccess{label}#Sr
+\showglosymbolpluralaccess{label}#Sr
+\showglodescaccess{label}#Sr
+\showglodescpluralaccess{label}#Sr
+\showgloshortaccess{label}#Sr
+\showgloshortpluralaccess{label}#Sr
+\showglolongaccess{label}#Sr
+\showglolongpluralaccess{label}#Sr
