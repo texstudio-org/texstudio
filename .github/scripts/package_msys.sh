@@ -1,10 +1,8 @@
 #!/usr/bin/env sh
 
 # Exit on errors
-set -e
+#set -e
 
-. .github/scripts/get-version.sh
- 
 echo "package build into zip for win"
 # workaround for botched qt6 installation
 if [-f /mingw64/bin/qmake-qt6.exe ]; then 
@@ -29,23 +27,23 @@ ldd texstudio.exe
 cd ..
 echo "copy directories"
 mkdir -p ./package-zip/translations
-cp -r ./translation/* ./package-zip/translations
-cp -r ./templates package-zip
-cp -r ./utilities/manual package-zip/help
-cp ./utilities/latex2e.css package-zip/help
-cp ./utilities/latex2e.html package-zip/help
-cp -r ./utilities/dictionaries package-zip/dictionaries
-cp -r ./utilities/TexTablet package-zip/TexTablet
+cp -r ../translation/* ./package-zip/translations
+cp -r ../templates package-zip
+cp -r ../utilities/manual package-zip/help
+cp ../utilities/latex2e.css package-zip/help
+cp ../utilities/latex2e.html package-zip/help
+cp -r ../utilities/dictionaries package-zip/dictionaries
+cp -r ../utilities/TexTablet package-zip/TexTablet
 mkdir -p package-zip/share
 cp -r package-zip/tls .
-cp -r ./travis-ci/mxe/fonts package-zip/share/fonts
+cp -r ../travis-ci/mxe/fonts package-zip/share/fonts
 # poppler data
 cd package-zip
 cp -r $MSYSTEM_PREFIX/share/poppler share
 cd ..
 echo "make installer"
-cp ./utilities/texstudio-msys.nsi .
-cp ./utilities/FileAssociation.nsh .
+cp ../utilities/texstudio-msys.nsi .
+cp ../utilities/FileAssociation.nsh .
 makensis texstudio-msys.nsi
 # zip package
 cd package-zip
@@ -56,6 +54,6 @@ cd ..
 sha256sum ./texstudio_installer.exe
 sha256sum ./texstudio.exe
 sha256sum ./package-zip/texstudio-win-qt6-${VERSION_NAME}.zip
-cp ./package-zip/texstudio-win-qt6-${VERSION_NAME}.zip ./texstudio-${GIT_VERSION}-win-portable-qt6.zip
-cp ./texstudio_installer.exe ./texstudio-${GIT_VERSION}-win-qt6.exe
-cp ./texstudio_installer.exe ./texstudio-win-qt6-${VERSION_NAME}.exe
+cp ./package-zip/texstudio-win-qt6-${VERSION_NAME}.zip ../texstudio-${GIT_VERSION}-win-portable-qt6.zip
+cp ./texstudio_installer.exe ../texstudio-${GIT_VERSION}-win-qt6.exe
+cp ./texstudio_installer.exe ../texstudio-win-qt6-${VERSION_NAME}.exe

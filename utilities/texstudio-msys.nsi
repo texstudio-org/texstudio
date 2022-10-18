@@ -166,41 +166,41 @@ File package-zip\styles\*
 
 SetOutPath $INSTDIR\translations
 
-File translation\*.qm
+File ..\translation\*.qm
 
 SetOutPath $INSTDIR\templates
 
-File templates\*
+File ..\templates\*
 
 SetOutPath $INSTDIR\tls
 
-File tls\qopensslbackend.dll
+File ..\tls\qopensslbackend.dll
 
 SetOutPath $INSTDIR\help
 
-File utilities\AUTHORS
-File utilities\COPYING
-File utilities\latex2e.html
-File utilities\latex2e.css
-File utilities\license.txt
-File /r utilities\manual\build\html\*
+File ..\utilities\AUTHORS
+File ..\utilities\COPYING
+File ..\utilities\latex2e.html
+File ..\utilities\latex2e.css
+File ..\utilities\license.txt
+File /r ..\utilities\manual\build\html\*
 
 SetOutPath $INSTDIR\share\poppler
-File /r utilities\poppler-data\*
+File /r ..\utilities\poppler-data\*
 
 SetOutPath $INSTDIR\share\fonts
-File /r travis-ci\mxe\fonts\*
+File /r ..\travis-ci\mxe\fonts\*
 
 SetOutPath $INSTDIR\TexTablet
-File utilities\TexTablet\*
+File ..\utilities\TexTablet\*
 
 SetOutPath $INSTDIR\dictionaries
-File utilities\dictionaries\*.dic
-File utilities\dictionaries\*.aff
-File utilities\dictionaries\*.badWords
-File utilities\dictionaries\*.stopWords
-File utilities\dictionaries\*.stopWords.level2
-File utilities\dictionaries\th_*_v2.dat
+File ..\utilities\dictionaries\*.dic
+File ..\utilities\dictionaries\*.aff
+File ..\utilities\dictionaries\*.badWords
+File ..\utilities\dictionaries\*.stopWords
+File ..\utilities\dictionaries\*.stopWords.level2
+File ..\utilities\dictionaries\th_*_v2.dat
 
 # Store installation folder
 WriteRegStr HKCU "Software\${APPNAME}" "" $INSTDIR

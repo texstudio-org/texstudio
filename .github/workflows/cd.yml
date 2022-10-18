@@ -42,7 +42,7 @@ jobs:
       - name: Package
         id: package
         run: |
-          ce build
+          cd build
           . ../.github/scripts/get-version.sh
           . ../.github/scripts/package_msys.sh
           echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
