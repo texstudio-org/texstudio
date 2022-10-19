@@ -24,7 +24,7 @@ ldd texstudio.exe | awk '{print $3}'
 echo "test2"
 ldd texstudio.exe | awk '{print $3}'| grep ucrt64
 echo "test3"
-ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
+#ldd texstudio.exe | awk '{print $3}'| grep ming | xargs -I{} cp -u {} .
 ldd texstudio.exe | awk '{print $3}'| grep ucrt64 | xargs -I{} cp -u {} .
 # force ssl/crypto copy
 ldd texstudio.exe | awk '{print $3}'| grep libcrypto | xargs -I{} cp -u {} .
