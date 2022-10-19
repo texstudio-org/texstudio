@@ -1,5 +1,5 @@
 # glossary-longextra package
-# Matthew Bertucci 11/27/2021 for v1.48
+# Matthew Bertucci 2022/10/19 for v1.49
 
 #include:glossary-longbooktabs
 
@@ -10,6 +10,7 @@
 \glslongextraHeaderFmt{text}#*
 \glslongextraNameAlign#*
 \glslongextraSymbolAlign#*
+\glslongextraSymbolNameAlign#*
 \glslongextraLocationAlign#*
 \glslongextraDescAlign#*
 \glslongextraSetDescWidth#*
@@ -17,17 +18,28 @@
 \glslongextraUpdateWidest{text}#*
 \glslongextraUpdateWidestChild{level}{text}#*
 \glslongextraSymSetDescWidth#*
+\glslongextraSymNoNameSetDescWidth#*
 \glslongextraLocSetDescWidth#*
 \glslongextraSymLocSetDescWidth#*
+\glslongextraShortNoNameSetDescWidth#*
 \glslongextraNameFmt{label}#*
 \glslongextraDescFmt{label}#*
 \glslongextraSymbolFmt{label}#*
+\glslongextraSymbolTargetFmt{label}#*
+\glslongextraSymbolOrName{label}#*
 \glslongextraLocationFmt{label}{locations}#*
+\glslongextraShortTargetFmt{label}#*
+\glslongextraLongFmt{label}#*
 \glslongextraSubNameFmt{level}{label}#*
 \glslongextraSubDescFmt{level}{label}#*
 \glslongextraSubSymbolFmt{level}{label}#*
+\glslongextraSubSymbolTargetFmt{level}{label}#*
+\glslongextraSubSymbolOrName{level}{label}#*
+\glslongextraSubShortTargetFmt{level}{label}#*
+\glslongextraSubLongFmt{level}{label}#*
 \glslongextraSubLocationFmt{level}{label}{locations}#*
 \glslongextraGroupHeading{n}{label}#*
+\glslongextraSubGroupHeading{n}{prev-group-level}{group-level}{parent-label}{group-label}#*
 \glslongextraNameDescHeader#*
 \glslongextraNameDescTabularHeader#*
 \glslongextraNameDescTabularFooter#*
@@ -52,6 +64,20 @@
 \glslongextraNameSymDescLocationHeader#*
 \glslongextraNameSymDescLocationTabularHeader#*
 \glslongextraNameSymDescLocationTabularFooter#*
+\glslongextraSymDescHeader#*
+\glslongextraSymDescTabularHeader#*
+\glslongextraSymDescTabularFooter#*
+\glslongextraDescSymHeader#*
+\glslongextraDescSymTabularHeader#*
+\glslongextraDescSymTabularFooter#*
+\glslongextraShortLongHeader#*
+\glslongextraShortHeader#*
+\glslongextraLongHeader#*
+\glslongextraShortLongTabularHeader#*
+\glslongextraShortLongTabularFooter#*
+\glslongextraLongShortHeader#*
+\glslongextraLongShortTabularHeader#*
+\glslongextraLongShortTabularFooter#*
 \glslongextraSymDescNameHeader#*
 \glslongextraSymDescNameTabularHeader#*
 \glslongextraSymDescNameTabularFooter#*
