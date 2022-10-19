@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2022/05/30 for v1.85
+# Matthew Bertucci 2022/10/18 for v1.87
 
 #include:xkeyval
 #include:xstring
@@ -32,7 +32,7 @@
 #include:fancyhdr
 
 #keyvals:\documentclass/acmart#c
-format=#manuscript,acmsmall,acmlarge,acmtog,sigconf,sigplan,acmengage
+format=#manuscript,acmsmall,acmlarge,acmtog,sigconf,sigplan,acmengage,acmcp
 manuscript#true,false
 acmsmall#true,false
 acmlarge#true,false
@@ -51,6 +51,7 @@ acmthm#true,false
 balance#true,false
 pbalance#true,false
 urlbreakonhyphens#true,false
+8pt
 9pt
 10pt
 11pt
@@ -117,6 +118,16 @@ twoside
 #include:balance
 #endif
 
+#ifOption:format=acmcp
+#include:framed
+#endif
+#ifOption:acmcp
+#include:framed
+#endif
+#ifOption:acmcp=true
+#include:framed
+#endif
+
 #ifOption:pbalance
 #include:pbalance
 #endif
@@ -127,6 +138,7 @@ twoside
 \acmJournal{short name%keyvals}
 
 #keyvals:\acmJournal#c
+ACMJCSS
 CIE
 CSUR
 DLT
@@ -136,6 +148,7 @@ FAC
 HEALTH
 IMWUT
 JACM
+JATS
 JDIQ
 JEA
 JERIC
@@ -181,6 +194,7 @@ TOMS
 TOPC
 TOPLAS
 TOPS
+TORS
 TOS
 TOSEM
 TOSN
@@ -285,6 +299,20 @@ authorsperrow=%<number%>
 \received{date}
 \received[stage]{date}
 \setengagemetadata{name}{value}
+
+\acmArticleType{type%keyvals}
+
+#keyvals:\acmArticleType
+Research
+Review
+Discussion
+Invited
+Position
+#endkeyvals
+
+\acmCodeLink{link%URL}#U
+\acmDataLink{link%URL}#U
+
 \Description{description%text}
 \Description[short description%text]{description%text}
 
