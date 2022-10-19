@@ -371,10 +371,44 @@ library/all
 \newtcolorbox[init options]{envname}[args][default]{options%keyvals}#N
 \renewtcolorbox{envname}{options%keyvals}
 \renewtcolorbox[init options]{envname}[args][default]{options%keyvals}
+\DeclareTColorBox{envname}{xargs}{options%keyvals}#N
+\DeclareTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
+\NewTColorBox{envname}{xargs}{options%keyvals}#N
+\NewTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
+\RenewTColorBox{envname}{xargs}{options%keyvals}#N
+\RenewTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
+\ProvideTColorBox{envname}{xargs}{options%keyvals}#N
+\ProvideTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
+\DeclareTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
+\DeclareTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\NewTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
+\NewTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\RenewTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
+\RenewTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\ProvideTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
+\ProvideTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
 \newtcbox{cmd}{options%keyvals}#d
 \newtcbox[init options]{cmd}[args][default]{options%keyvals}#d
 \renewtcbox{cmd}{options%keyvals}#d
 \renewtcbox[init options]{cmd}[args][default]{options%keyvals}#d
+\DeclareTCBox{cmd}{xargs}{options%keyvals}#d
+\DeclareTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
+\NewTCBox{cmd}{xargs}{options%keyvals}#d
+\NewTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
+\RenewTCBox{cmd}{xargs}{options%keyvals}#d
+\RenewTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
+\ProvideTCBox{cmd}{xargs}{options%keyvals}#d
+\ProvideTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
+\DeclareTotalTCBox{cmd}{xargs}{options%keyvals}{content}#d
+\DeclareTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\NewTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}#d
+\NewTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
+\RenewTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}#d
+\RenewTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
+\ProvideTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}#d
+\ProvideTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
+\tcboxverb{verbatim box content%definition}
+\tcboxverb[options%keyvals]{verbatim box content%definition}
 \tcolorboxenvironment{envname}{options%keyvals}
 
 # << Title >>
@@ -406,9 +440,9 @@ library/all
 \tcblistof[section macro]{name}{title}
 \tcblistof[section macro]{name}[short title]{title}
 
-# << Advanced settings from xparse library
-\tcbsidebyside{left-handed content}{right-handed content}#*
-\tcbsidebyside[options%keyvals]{left-handed content}{right-handed content}#*
+# << Advanced settings
+\tcbsidebyside{left-handed content%text}{right-handed content%text}
+\tcbsidebyside[options%keyvals]{left-handed content%text}{right-handed content%text}
 
 # << Saving and loading of verbatim texts
 \begin{tcbverbatimwrite}{%<file%>}
@@ -536,10 +570,26 @@ fill image options={%<graphics options%>}
 \newtcblisting[init options]{envname}[args][default]{options%keyvals}#N
 \renewtcblisting{envname}{options%keyvals}#N
 \renewtcblisting[init options]{envname}[args][default]{options%keyvals}#N
+\DeclareTCBListing{envname}{xargs}{options%keyvals}#N
+\DeclareTCBListing[init options]{envname}{xargs}{options%keyvals}#*N
+\NewTCBListing{envname}{xargs}{options%keyvals}#N
+\NewTCBListing[init options]{envname}{xargs}{options%keyvals}#*N
+\RenewTCBListing{envname}{xargs}{options%keyvals}#N
+\RenewTCBListing[init options]{envname}{xargs}{options%keyvals}#*N
+\ProvideTCBListing{envname}{xargs}{options%keyvals}#N
+\ProvideTCBListing[init options]{envname}{xargs}{options%keyvals}#*N
 \newtcbinputlisting{cmd}{options%keyvals}#d
 \newtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}#d
 \renewtcbinputlisting{cmd}{options%keyvals}#d
 \renewtcbinputlisting[init options]{cmd}[args][default]{options%keyvals}#d
+\DeclareTCBInputListing{cmd}{xargs}{options%keyvals}#d
+\DeclareTCBInputListing[init options]{cmd}{xargs}{options%keyvals}#*d
+\NewTCBInputListing{cmd}{xargs}{options%keyvals}#d
+\NewTCBInputListing[init options]{cmd}{xargs}{options%keyvals}#*d
+\RenewTCBInputListing{cmd}{xargs}{options%keyvals}#d
+\RenewTCBInputListing[init options]{cmd}{xargs}{options%keyvals}#*d
+\ProvideTCBInputListing{cmd}{xargs}{options%keyvals}#d
+\ProvideTCBInputListing[init options]{cmd}{xargs}{options%keyvals}#*d
 
 # << Theorems >>
 \newtcbtheorem{envname}{display name}{options%keyvals}{prefix}#N
@@ -611,77 +661,25 @@ fill image options={%<graphics options%>}
 \newtcboxfit[init options]{cmd}[args][default]{options%keyvals}#d
 \renewtcboxfit{cmd}{options%keyvals}#d
 \renewtcboxfit[init options]{cmd}[args][default]{options%keyvals}#d
+\DeclareTCBoxFit{cmd}{xargs}{options%keyvals}#d
+\DeclareTCBoxFit[init options]{cmd}{xargs}{options%keyvals}#*d
+\NewTCBoxFit{cmd}{xargs}{options%keyvals}#d
+\NewTCBoxFit[init options]{cmd}{xargs}{options%keyvals}#*d
+\RenewTCBoxFit{cmd}{xargs}{options%keyvals}#d
+\RenewTCBoxFit[init options]{cmd}{xargs}{options%keyvals}#*d
+\ProvideTCBoxFit{cmd}{xargs}{options%keyvals}#d
+\ProvideTCBoxFit[init options]{cmd}{xargs}{options%keyvals}#*d
+\DeclareTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}#d
+\DeclareTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
+\NewTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}
+\NewTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}#*
+\RenewTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}#d
+\RenewTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
+\ProvideTotalTCBoxFit{cmd}{xargs}{options%keyvals}{content%text}#d
+\ProvideTotalTCBoxFit[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
 \tcbfitdim#L
 \tcbfontsize{factor}
 \tcbfitsteps
-
-# << xparse >>
-\DeclareTColorBox{envname}{specification}{options%keyvals}#N
-\DeclareTColorBox[init options]{envname}{specification}{options%keyvals}#*N
-\NewTColorBox{envname}{specification}{options%keyvals}#N
-\NewTColorBox[init options]{envname}{specification}{options%keyvals}#*N
-\RenewTColorBox{envname}{specification}{options%keyvals}#N
-\RenewTColorBox[init options]{envname}{specification}{options%keyvals}#*N
-\ProvideTColorBox{envname}{specification}{options%keyvals}#N
-\ProvideTColorBox[init options]{envname}{specification}{options%keyvals}#*N
-\DeclareTotalTColorBox{cmd}{specification}{options%keyvals}{content}#d
-\DeclareTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*d
-\NewTotalTColorBox{cmd}{specification}{options%keyvals}{content}#d
-\NewTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*d
-\RenewTotalTColorBox{cmd}{specification}{options%keyvals}{content}#d
-\RenewTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*d
-\ProvideTotalTColorBox{cmd}{specification}{options%keyvals}{content}#d
-\ProvideTotalTColorBox[init options]{cmd}{specification}{options%keyvals}{content}#*d
-\DeclareTCBox{cmd}{specification}{options%keyvals}#d
-\DeclareTCBox[init options]{cmd}{specification}{options%keyvals}#*d
-\NewTCBox{cmd}{specification}{options%keyvals}#d
-\NewTCBox[init options]{cmd}{specification}{options%keyvals}#*d
-\RenewTCBox{cmd}{specification}{options%keyvals}#d
-\RenewTCBox[init options]{cmd}{specification}{options%keyvals}#*d
-\ProvideTCBox{cmd}{specification}{options%keyvals}#d
-\ProvideTCBox[init options]{cmd}{specification}{options%keyvals}#*d
-\DeclareTotalTCBox{cmd}{specification}{options%keyvals}{content}#d
-\DeclareTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content}#*d
-\NewTotalTCBox{cmd}{specification}{options%keyvals}{content%text}#d
-\NewTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
-\RenewTotalTCBox{cmd}{specification}{options%keyvals}{content%text}#d
-\RenewTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
-\ProvideTotalTCBox{cmd}{specification}{options%keyvals}{content%text}#d
-\ProvideTotalTCBox[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
-\tcboxverb{verbatim box content%definition}
-\tcboxverb[options%keyvals]{verbatim box content%definition}
-\DeclareTCBListing{envname}{specification}{options%keyvals}#N
-\DeclareTCBListing[init options]{envname}{specification}{options%keyvals}#*N
-\NewTCBListing{envname}{specification}{options%keyvals}#N
-\NewTCBListing[init options]{envname}{specification}{options%keyvals}#*N
-\RenewTCBListing{envname}{specification}{options%keyvals}#N
-\RenewTCBListing[init options]{envname}{specification}{options%keyvals}#*N
-\ProvideTCBListing{envname}{specification}{options%keyvals}#N
-\ProvideTCBListing[init options]{envname}{specification}{options%keyvals}#*N
-\DeclareTCBInputListing{cmd}{specification}{options%keyvals}#d
-\DeclareTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*d
-\NewTCBInputListing{cmd}{specification}{options%keyvals}#d
-\NewTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*d
-\RenewTCBInputListing{cmd}{specification}{options%keyvals}#d
-\RenewTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*d
-\ProvideTCBInputListing{cmd}{specification}{options%keyvals}#d
-\ProvideTCBInputListing[init options]{cmd}{specification}{options%keyvals}#*d
-\DeclareTCBoxFit{cmd}{specification}{options%keyvals}#d
-\DeclareTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*d
-\NewTCBoxFit{cmd}{specification}{options%keyvals}#d
-\NewTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*d
-\RenewTCBoxFit{cmd}{specification}{options%keyvals}#d
-\RenewTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*d
-\ProvideTCBoxFit{cmd}{specification}{options%keyvals}#d
-\ProvideTCBoxFit[init options]{cmd}{specification}{options%keyvals}#*d
-\DeclareTotalTCBoxFit{cmd}{specification}{options%keyvals}{content%text}#d
-\DeclareTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
-\NewTotalTCBoxFit{cmd}{specification}{options%keyvals}{content%text}
-\NewTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content%text}#*
-\RenewTotalTCBoxFit{cmd}{specification}{options%keyvals}{content%text}#d
-\RenewTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
-\ProvideTotalTCBoxFit{cmd}{specification}{options%keyvals}{content%text}#d
-\ProvideTotalTCBoxFit[init options]{cmd}{specification}{options%keyvals}{content%text}#*d
 
 # << External >>
 \tcbEXTERNALIZE#*
