@@ -52,7 +52,7 @@ savenumberlist#true,false
 entrycounter#true,false
 counterwithin=%<counter%>
 subentrycounter#true,false
-style=
+style=%<style-name%>
 nolong
 nosuper
 nolist
@@ -178,8 +178,8 @@ languages=%<language%>
 \printnumbers[options%keyvals]
 #endif
 #ifOption:index
-\newterm{term}
-\newterm[options%keyvals]{term}
+\newterm{label}#l
+\newterm[options%keyvals]{label}#l
 \printindex
 \printindex[options%keyvals]
 #endif
@@ -223,7 +223,7 @@ savenumberlist#true,false
 entrycounter#true,false
 counterwithin=%<counter%>
 subentrycounter#true,false
-style=
+style=%<style-name%>
 nonumberlist
 seeautonumberlist
 counter=%<counter%>
@@ -268,26 +268,27 @@ kernelglossredefs=#false,true,nowarn
 \longprovideglossaryentry{label}{keyvals}{long description}#l
 
 #keyvals:\newglossaryentry#c,\longnewglossaryentry#c,\provideglossaryentry#c,\longprovideglossaryentry#c,\newacronym#c,\newterm#c
-name=
-description=
-parent=
-descriptionplural=
-text=
-first=
-plural=
-firstplural=
-symbol=
-symbolplural=
-sort=
-type=
-user1=
-user2=
-user3=
-user4=
-user5=
-user6=
+name=%<text%>
+description=%<text%>
+parent=%<parent-label%>
+descriptionplural=%<text%>
+text=%<text%>
+first=%<text%>
+plural=%<text%>
+firstplural=%<text%>
+symbol=%<symbol%>
+symbolplural=%<symbol%>
+sort=%<entry%>
+type=%<glossary-label%>
+user1=%<text%>
+user2=%<text%>
+user3=%<text%>
+user4=%<text%>
+user5=%<text%>
+user6=%<text%>
 nonumberlist#true,false
-see=
+see={%<xr-list%>}
+see={[%<tag%>]%<xr-list%>}
 #endkeyvals
 
 \nopostdesc
@@ -297,8 +298,9 @@ see=
 \glspluralsuffix#*
 
 ## 4.3 Additional Keys ##
-\glsaddkey{key%plain}{default}{nolink cs}{nolink ucfirst cs}{link cs}{link ucfirst cs}{link allcaps cs}#*
-\glsaddstoragekey{key%plain}{default}{nolink cs}#*
+\glsaddkey{key%plain}{default}{nolink cs%cmd}{nolink ucfirst cs%cmd}{link cs%cmd}{link ucfirst cs%cmd}{link allcaps cs%cmd}#*d
+\glsaddkey*{key%plain}{default}{nolink cs%cmd}{nolink ucfirst cs%cmd}{link cs%cmd}{link ucfirst cs%cmd}{link allcaps cs%cmd}#*d
+\glsaddstoragekey{key%plain}{default}{nolink cs%cmd}#*d
 
 ## 4.4 Expansion ##
 \glssetexpandfield{field}#*
@@ -1054,7 +1056,7 @@ local#true,false
 \glshyperlink[link text]{label}#r
 
 \glsentrynumberlist{label}#*r
-\glsdisplaynumberlist{label}#*r
+\glsdisplaynumberlist{label}#r
 \glsnumlistsep#*
 \glsnumlistlastsep#*
 \glsnoidxdisplayloclisthandler{location}#*
@@ -1064,10 +1066,10 @@ local#true,false
 \newacronym[options%keyvals]{label}{abbrv}{long}#l
 
 #keyvals:\newacronym#c
-long=
-longplural=
-short=
-shortplural=
+long=%<text%>
+longplural=%<text%>
+short=%<text%>
+shortplural=%<text%>
 #endkeyvals
 
 \glsacrpluralsuffix#*
@@ -1680,10 +1682,10 @@ footnote-sm-desc
 \printglossary[options%keyvals]
 
 #keyvals:\printnoidxglossary#c,\printglossary#c,\printsymbols#c,\printnumbers#c,\printindex#c,\printacronyms#c
-type=
-title=
-toctitle=
-style=
+type=%<glossary-label%>
+title=%<text%>
+toctitle=%<text%>
+style=%<style-name%>
 numberedsection=#false,nolabel,autolabel
 nonumberlist#true,false
 nogroupskip#true,false
@@ -1710,14 +1712,14 @@ sort=#word,letter,standard,use,def,nocase,case
 \glscurrententrylabel#*
 
 ## 9 Defining New Glossaries ##
-\newglossary{name}{in-ext}{out-ext}{title%plain}
-\newglossary[log-ext]{name}{in-ext}{out-ext}{title%plain}
-\newglossary[log-ext]{name}{in-ext}{out-ext}{title%plain}[counter]#*
-\newglossary*{name}{title%plain}#*
-\newglossary*{name}{title%plain}[counter]#*
+\newglossary{name}{in-ext}{out-ext}{title%text}
+\newglossary[log-ext]{name}{in-ext}{out-ext}{title%text}
+\newglossary[log-ext]{name}{in-ext}{out-ext}{title%text}[counter]#*
+\newglossary*{name}{title%text}#*
+\newglossary*{name}{title%text}[counter]#*
 \addglossarytocaptions{language}#*
-\altnewglossary{name}{tag}{title%plain}#*
-\altnewglossary*{name}{tag}{title%plain}[counter]#*
+\altnewglossary{name}{tag}{title%text}#*
+\altnewglossary*{name}{tag}{title%text}[counter]#*
 \newignoredglossary{name}#*
 \ifignoredglossary{name}{true}{false}#*
 
@@ -1732,7 +1734,7 @@ counter=%<counter%>
 local#true,false
 #endkeyvals
 #keyvals:\glsaddall#c
-types=
+types={%<glossary-list%>}
 #endkeyvals
 \glsaddallunused
 \glsaddallunused[list]
@@ -1760,7 +1762,7 @@ types=
 \glslocationcstoencap{encap-csname}{location-csname}#*
 \glsnoidxloclist{list cmd}#*
 \glsnoidxloclisthandler{location}#*
-\glsnumberlistloop{label}{handler cs}{xr handler cs}#*
+\glsnumberlistloop{label}{handler cs}{xr handler cs}#r
 \glsnoidxdisplayloc{prefix}{counter}{format}{location}#*
 \glsnoidxnumberlistloophandler{location item}#*
 \GlsSetWriteIstHook{code}#*
