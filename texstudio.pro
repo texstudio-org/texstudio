@@ -44,7 +44,7 @@ defineTest(versionGreaterOrEqual) {
 	}
 	return(true)
 }
-
+message(Building via qmake (.pro) deprecated. Please use cmake instead.)
 ####################
 # Start of main code
 ####################
