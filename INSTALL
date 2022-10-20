@@ -1,23 +1,16 @@
 
 To compile and install TeXstudio, write:
-qmake texstudio.pro
-make
-make install
-
+mkdir build
+cmake ..
+cmake --build . --target install
 
 On Unix and MacOSX you can also use:
 sudo sh BUILD.sh
 
 (you only need to use sudo if you want to install it system-wide)
 
-
-
 Requirements : 
-* Qt tool kit (www.trolltech.com) (4.4.3 recommended)
+* Qt tool kit (qt.io) (6.2+ recommended)
 * Poppler for the internal pdf preview 
-  (can be disabled with the BUILD.sh script, or by passing NO_POPPLER_PREVIEW=true to qmake)
-* Phonon to view videos in the pdf preview 
-  (only needed if PHONON=true is passed to qmake, or it is enabled with BUILD.sh)
-* Ghostscript for the LaTeX to html conversion command.
+  (is automatically disabled if poppler is not found)
 
-If poppler/phonon are in non standard directories, you may need to pass the INCLUDEPATH=<your path> LIBS=<your path> options to qmake/BUILD.sh
