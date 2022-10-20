@@ -174,7 +174,7 @@ File ..\templates\*
 
 SetOutPath $INSTDIR\tls
 
-File ..\tls\qopensslbackend.dll
+File .\tls\qopensslbackend.dll
 
 SetOutPath $INSTDIR\help
 
