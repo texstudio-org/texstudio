@@ -17,10 +17,14 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(cmake/project_version.cmake)
 
 find_package(GitInfo)
-git_wc_info(${PROJECT_SOURCE_DIR} VARPREFIX)
-add_definitions(-DTEXSTUDIO_VERSION="${VARPREFIX_WC_LATEST_TAG_LONG}")
-
-message(STATUS "The current git hash is ${VARPREFIX_WC_REVISION_HASH}")
+if(GIT_FOUND)
+	git_wc_info(${PROJECT_SOURCE_DIR} VARPREFIX)
+	add_definitions(-DTEXSTUDIO_VERSION="${VARPREFIX_WC_LATEST_TAG_LONG}")
+	message(STATUS "The current git hash is ${VARPREFIX_WC_REVISION_HASH}")
+else()
+	add_definitions(-DTEXSTUDIO_VERSION="N/A")
+	message(STATUS "No git present.")
+endif()
 
 if(MSVC)
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -DUNICODE)
