@@ -50,5 +50,6 @@ else()
 endif()
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core5Compat REQUIRED)
+	target_link_libraries(quazip PUBLIC Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Core5Compat)
 endif()
-target_link_libraries(quazip PUBLIC Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Core5Compat)
+
