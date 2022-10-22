@@ -666,6 +666,9 @@ end-command. So if you want to change a
 `\begin{tabularx}...\end{tabularx}`, place the text cursor on
 `tabular`, wait for a second and then, after the mirror-cursor
 appears, change `tabular` to `tabularx`.
+```{note}
+You can also double-click on the environment name to activate the mirror-cursor.
+```
 
 ### Cut Buffer
 
