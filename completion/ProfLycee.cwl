@@ -39,6 +39,7 @@ csvii
 #include:csvsimple-legacy
 #endif
 
+## L’outil « splinetikz » ##
 \splinetikz
 \splinetikz[options%keyvals]
 
@@ -53,6 +54,7 @@ style={%<TikZ clés%>}
 affpoints#true,false
 #endkeyvals
 
+## L’outil « tangentetikz » ##
 \tangentetikz
 \tangentetikz[options%keyvals]
 
@@ -66,6 +68,24 @@ style={%<TikZ clés%>}
 point=%<num%>
 #endkeyvals
 
+## Suites récurrentes et « toile » ##
+\recurrPL[options%keyvals]
+\recurrPL[options%keyvals][options du tracé]
+\recurrPL[options%keyvals][options du tracé][option supplémentaire des termes]
+
+#keyvals:\recurrPL
+fct=%<fonction%>
+nom=%<nom%>
+no=%<l’indice initial%>
+uno=%<la valeur du terme initial%>
+nb=%<nombre%>
+poslabel=%<pos%>
+decallabel=##L
+taillelabel=%<fontsize cmd%>
+afftermes#true,false
+#endkeyvals
+
+## L’outil « Calcul Formel » ##
 \paramCF
 \paramCF[options%keyvals]
 
@@ -95,6 +115,7 @@ hc=%<hauteur%>
 hr=%<hauteur%>
 #endkeyvals
 
+## Code Python « simple » ##
 \begin{envcodepython}{tcolorbox options}#V
 \begin{envcodepython}[largeur]{tcolorbox options}#V
 \begin{envcodepython}*{tcolorbox options}#V
@@ -122,6 +143,7 @@ lignes#true,false
 \begin{envcodepythonminted}*[largeur%l][tcolorbox options]#V
 \end{envcodepythonminted}
 
+## Code & Console Python, version Pythontex ou Minted ##
 \begin{envconsolepythontex}#V
 \begin{envconsolepythontex}[options%keyvals]#V
 \end{envconsolepythontex}
@@ -132,12 +154,14 @@ centre#true,false
 label#true,false
 #endkeyvals
 
+## Pseudo-Code ##
 \begin{envpseudocode}
 \begin{envpseudocode}[largeur%l][tcolorbox options]
 \begin{envpseudocode}*
 \begin{envpseudocode}*[largeur%l][tcolorbox options]
 \end{envpseudocode}
 
+## Terminal Windows/UNiX/OSX ##
 \begin{PLtermwin}{titre=%<texte%>}#V
 \begin{PLtermwin}[%<largeur%>]{titre=%<texte%>}[%<tcolorbox options%>]#V
 \end{PLtermwin}
@@ -150,11 +174,13 @@ label#true,false
 \begin{PLtermosx}[%<largeur%>]{titre=%<texte%>}[%<tcolorbox options%>]#V
 \end{PLtermosx}
 
+## Cartouche Capytale ##
 \liencapytale{code}
 \liencapytale[prefix]{code}
 \liencapytale*{code}
 \liencapytale*[prefix]{code}
 
+## Pavé droit « simple » ##
 \pavePL
 \pavePL[options%keyvals]
 
@@ -171,6 +197,7 @@ plein#true,false
 cube#true,false
 #endkeyvals
 
+## Tétraèdre « simple » ##
 \tetraPL
 \tetraPL[options%keyvals]
 
@@ -186,123 +213,7 @@ aff#true,false
 plein#true,false
 #endkeyvals
 
-\calcPbinomP{n}{p}{k}
-\calcPbinomC{n}{p}{a}{b}
-\calcPpoissP{l}{k}
-\calcPpoissC{l}{a}{b}
-\calcPgeomP{p}{k}
-\calcPgeomC{l}{a}{b}
-\calcPhypergeomP{N}{n}{m}{k}
-\calcPhypergeomC{N}{n}{m}{a}{b}
-\calcPnormC{m}{s}{a}{b}
-\calcPexpoC{l}{a}{b}
-
-\numPbinomP{n}{p}{k}
-\numPbinomP[prec]{n}{p}{k}
-\numPbinomP*{n}{p}{k}
-\numPbinomP*[prec]{n}{p}{k}
-\numPbinomC{n}{p}{a}{b}
-\numPbinomC[prec]{n}{p}{a}{b}
-\numPbinomC*{n}{p}{a}{b}
-\numPbinomC*[prec]{n}{p}{a}{b}
-\numPpoissP{l}{k}
-\numPpoissP[prec]{l}{k}
-\numPpoissP*{l}{k}
-\numPpoissP*[prec]{l}{k}
-\numPpoissC{l}{a}{b}
-\numPpoissC[prec]{l}{a}{b}
-\numPpoissC*{l}{a}{b}
-\numPpoissC*[prec]{l}{a}{b}
-\numPgeomP{p}{k}
-\numPgeomP[prec]{p}{k}
-\numPgeomP*{p}{k}
-\numPgeomP*[prec]{p}{k}
-\numPgeomC{l}{a}{b}
-\numPgeomC[prec]{l}{a}{b}
-\numPgeomC*{l}{a}{b}
-\numPgeomC*[prec]{l}{a}{b}
-\numPhypergeomP{N}{n}{m}{k}
-\numPhypergeomP[prec]{N}{n}{m}{k}
-\numPhypergeomP*{N}{n}{m}{k}
-\numPhypergeomP*[prec]{N}{n}{m}{k}
-\numPhypergeomC{N}{n}{m}{a}{b}
-\numPhypergeomC[prec]{N}{n}{m}{a}{b}
-\numPhypergeomC*{N}{n}{m}{a}{b}
-\numPhypergeomC*[prec]{N}{n}{m}{a}{b}
-\numPnormC{m}{s}{a}{b}
-\numPnormC[prec]{m}{s}{a}{b}
-\numPnormC*{m}{s}{a}{b}
-\numPnormC*[prec]{m}{s}{a}{b}
-\numPexpoC{l}{a}{b}
-\numPexpoC[prec]{l}{a}{b}
-\numPexpoC*{l}{a}{b}
-\numPexpoC*[prec]{l}{a}{b}
-
-\PLarbre{donnees}
-\PLarbre[options%keyvals]{donnees}
-\begin{PLenvarbre}{donnees}
-\begin{PLenvarbre}[options%keyvals]{donnees}
-\end{PLenvarbre}
-
-#keyvals:\PLarbre,\begin{PLenvarbre}
-unite=##L
-espniv=%<nombre%>
-espfeuille=%<nombre%>
-type=#2x2,2x3,3x2,3x3
-police=%<font commands%>
-policeprobas=%<font commands%>
-inclineprobas#true,false
-fleche#true,false
-styletrait={%<TikZ keys%>}
-eptrait=%<épaisseur%>
-#endkeyvals
-
-\LoiNormaleGraphe{m}{s}{a}{b}
-\LoiNormaleGraphe<TikZ options>{m}{s}{a}{b}
-\LoiNormaleGraphe[options%keyvals]{m}{s}{a}{b}
-\LoiNormaleGraphe[options%keyvals]<TikZ options>{m}{s}{a}{b}
-\LoiExpoGraphe{l}{a}{b}
-\LoiExpoGraphe<TikZ options>{l}{a}{b}
-\LoiExpoGraphe[options%keyvals]{l}{a}{b}
-\LoiExpoGraphe[options%keyvals]<TikZ options>{l}{a}{b}
-
-#keyvals:\LoiNormaleGraphe,\LoiExpoGraphe
-CouleurAire=#%color
-CouleurCourbe=#%color
-Largeur=%<nombre%>
-Hauteur=%<nombre%>
-AfficheM#true,false
-AfficheCadre#true,false
-#endkeyvals
-
-\convertfraction{fraction expr}
-\convertfraction[d ou t]{fraction expr}
-
-\ensPL{a1/a2/...}
-\ensPL[options%keyvals]{a1/a2/...}
-
-#keyvals:\ensPL
-sep={%<separator%>}
-option={%<code%>}
-mathpunct#true,false
-#endkeyvals
-
-\recurrPL[options%keyvals]
-\recurrPL[options%keyvals][options du tracé]
-\recurrPL[options%keyvals][options du tracé][option supplémentaire des termes]
-
-#keyvals:\recurrPL
-fct=%<fonction%>
-nom=%<nom%>
-no=%<l’indice initial%>
-uno=%<la valeur du terme initial%>
-nb=%<nombre%>
-poslabel=%<pos%>
-decallabel=##L
-taillelabel=%<fontsize cmd%>
-afftermes#true,false
-#endkeyvals
-
+## Cercle trigo ##
 \cercletrigoPL
 \cercletrigoPL[options%keyvals]
 
@@ -326,25 +237,7 @@ sin=%<degrees%>
 couleursol=#%color
 #endkeyvals
 
-\aidesignePL
-\aidesignePL[options%keyvals]
-
-\aidesignetkztabPL{numligne}
-\aidesignetkztabPL{numligne}[echelle]
-\aidesignetkztabPL{numligne}[echelle][décalage horizontal]
-\aidesignetkztabPL[options%keyvals]{numligne}
-\aidesignetkztabPL[options%keyvals]{numligne}[echelle]
-\aidesignetkztabPL[options%keyvals]{numligne}[echelle][décalage horizontal]
-
-#keyvals:\aidesignePL,\aidesignetkztabPL
-code=
-couleur=#%color
-racines=%<racines%>
-largeur=%<num%>
-hauteur=%<num%>
-cadre#true,false
-#endkeyvals
-
+## Paramètres d’une régression linéaire par la méthode des moindres carrés ##
 \PLreglin{listeX}{listeY}
 \PLreglin[options%keyvals]{listeX}{listeY}
 
@@ -378,6 +271,7 @@ Ox=%<num%>
 Oy=%<num%>
 #endkeyvals
 
+## Statistiques à deux variables ##
 #keyvals:\tikz#c,\begin{tikzpicture}#c,\tikzset#c
 Ox=%<num%>
 Oy=%<num%>
@@ -439,8 +333,8 @@ annee=#true,false
 \PLfenetresimple<options axe Ox>{liste abscisses}{liste ordonnées}
 \PLfenetresimple<options axe Ox>{liste abscisses}<options axe Oy>{liste ordonnées}
 
-\PLorigine
-\PLorigine[options%keyvals]
+\PLorigine#*
+\PLorigine[options%keyvals]#*
 
 #keyvals:\PLorigine
 police=%<font commands%>
@@ -490,6 +384,7 @@ affnom=#true,false
 \xunit#*
 \yunit#*
 
+## Boîtes à moustaches ##
 \PLboitemoust[options%keyvals]
 
 #keyvals:\PLboitemoust
@@ -516,6 +411,99 @@ valeurs={%<liste%>}
 affvaleurs#true,false
 #endkeyvals
 
+## Calculs de probabilités ##
+\calcPbinomP{n}{p}{k}
+\calcPbinomC{n}{p}{a}{b}
+\calcPpoissP{l}{k}
+\calcPpoissC{l}{a}{b}
+\calcPgeomP{p}{k}
+\calcPgeomC{l}{a}{b}
+\calcPhypergeomP{N}{n}{m}{k}
+\calcPhypergeomC{N}{n}{m}{a}{b}
+\calcPnormC{m}{s}{a}{b}
+\calcPexpoC{l}{a}{b}
+
+\numPbinomP{n}{p}{k}
+\numPbinomP[prec]{n}{p}{k}
+\numPbinomP*{n}{p}{k}
+\numPbinomP*[prec]{n}{p}{k}
+\numPbinomC{n}{p}{a}{b}
+\numPbinomC[prec]{n}{p}{a}{b}
+\numPbinomC*{n}{p}{a}{b}
+\numPbinomC*[prec]{n}{p}{a}{b}
+\numPpoissP{l}{k}
+\numPpoissP[prec]{l}{k}
+\numPpoissP*{l}{k}
+\numPpoissP*[prec]{l}{k}
+\numPpoissC{l}{a}{b}
+\numPpoissC[prec]{l}{a}{b}
+\numPpoissC*{l}{a}{b}
+\numPpoissC*[prec]{l}{a}{b}
+\numPgeomP{p}{k}
+\numPgeomP[prec]{p}{k}
+\numPgeomP*{p}{k}
+\numPgeomP*[prec]{p}{k}
+\numPgeomC{l}{a}{b}
+\numPgeomC[prec]{l}{a}{b}
+\numPgeomC*{l}{a}{b}
+\numPgeomC*[prec]{l}{a}{b}
+\numPhypergeomP{N}{n}{m}{k}
+\numPhypergeomP[prec]{N}{n}{m}{k}
+\numPhypergeomP*{N}{n}{m}{k}
+\numPhypergeomP*[prec]{N}{n}{m}{k}
+\numPhypergeomC{N}{n}{m}{a}{b}
+\numPhypergeomC[prec]{N}{n}{m}{a}{b}
+\numPhypergeomC*{N}{n}{m}{a}{b}
+\numPhypergeomC*[prec]{N}{n}{m}{a}{b}
+\numPnormC{m}{s}{a}{b}
+\numPnormC[prec]{m}{s}{a}{b}
+\numPnormC*{m}{s}{a}{b}
+\numPnormC*[prec]{m}{s}{a}{b}
+\numPexpoC{l}{a}{b}
+\numPexpoC[prec]{l}{a}{b}
+\numPexpoC*{l}{a}{b}
+\numPexpoC*[prec]{l}{a}{b}
+
+## Arbres de probabilités « classiques » ##
+\PLarbre{donnees}
+\PLarbre[options%keyvals]{donnees}
+\begin{PLenvarbre}{donnees}
+\begin{PLenvarbre}[options%keyvals]{donnees}
+\end{PLenvarbre}
+
+#keyvals:\PLarbre,\begin{PLenvarbre}
+unite=##L
+espniv=%<nombre%>
+espfeuille=%<nombre%>
+type=#2x2,2x3,3x2,3x3
+police=%<font commands%>
+policeprobas=%<font commands%>
+inclineprobas#true,false
+fleche#true,false
+styletrait={%<TikZ keys%>}
+eptrait=%<épaisseur%>
+#endkeyvals
+
+## Petits schémas pour des probabilités continues ##
+\LoiNormaleGraphe{m}{s}{a}{b}
+\LoiNormaleGraphe<TikZ options>{m}{s}{a}{b}
+\LoiNormaleGraphe[options%keyvals]{m}{s}{a}{b}
+\LoiNormaleGraphe[options%keyvals]<TikZ options>{m}{s}{a}{b}
+\LoiExpoGraphe{l}{a}{b}
+\LoiExpoGraphe<TikZ options>{l}{a}{b}
+\LoiExpoGraphe[options%keyvals]{l}{a}{b}
+\LoiExpoGraphe[options%keyvals]<TikZ options>{l}{a}{b}
+
+#keyvals:\LoiNormaleGraphe,\LoiExpoGraphe
+CouleurAire=#%color
+CouleurCourbe=#%color
+Largeur=%<nombre%>
+Hauteur=%<nombre%>
+AfficheM#true,false
+AfficheCadre#true,false
+#endkeyvals
+
+## Conversions binaire/hexadécimal/décimal ##
 \PLconvdecbin{nombre}
 \PLconvdecbin[options%keyvals]{nombre}
 \PLconvdecbin*{nombre}
@@ -543,6 +531,7 @@ details#true,false
 zeros#true,false
 #endkeyvals
 
+## Conversion « présentée » d’un nombre en décimal ##
 \PLconvDepuisDec{nombre en base 10}{base d'arrivée}
 \PLconvDepuisDec[options%keyvals]{nombre en base 10}{base d'arrivée}
 
@@ -555,11 +544,69 @@ rect#true,false
 couleurres#true,false
 #endkeyvals
 
+## Algorithme d’Euclide pour le PGCD ##
+\PresentationPGCD{a}{b}
+\PresentationPGCD[options%keyvals]{a}{b}
+
+#keyvals:\PresentationPGCD
+Couleur=#%color
+DecalRect=##L
+Rectangle#true,false
+Noeud=%<nom du nœud%>
+CouleurResultat#true,false
+AfficheConclusion#true,false
+AfficheDelimiteurs#true,false
+#endkeyvals
+
+## Fractions, ensembles ##
+\convertfraction{fraction expr}
+\convertfraction[d ou t]{fraction expr}
+
+\ensPL{a1/a2/...}
+\ensPL[options%keyvals]{a1/a2/...}
+
+#keyvals:\ensPL
+sep={%<separator%>}
+option={%<code%>}
+mathpunct#true,false
+#endkeyvals
+
+## Petits schémas pour le signe d’une fonction affine ou d’un trinôme ##
+\aidesignePL
+\aidesignePL[options%keyvals]
+
+\aidesignetkztabPL{numligne}
+\aidesignetkztabPL{numligne}[echelle]
+\aidesignetkztabPL{numligne}[echelle][décalage horizontal]
+\aidesignetkztabPL[options%keyvals]{numligne}
+\aidesignetkztabPL[options%keyvals]{numligne}[echelle]
+\aidesignetkztabPL[options%keyvals]{numligne}[echelle][décalage horizontal]
+
+#keyvals:\aidesignePL,\aidesignetkztabPL
+code=
+couleur=#%color
+racines=%<racines%>
+largeur=%<num%>
+hauteur=%<num%>
+cadre#true,false
+#endkeyvals
+
+## Style « main levée » en TikZ ##
 #keyvals:\draw#c
 mainlevee
 mainlevee=%<segment-length%> et %<amplitude%>
 #endkeyvals
 
+## Écriture d’un trinôme, trinôme aléatoire ##
+\EcritureTrinome{a}{b}{c}
+\EcritureTrinome[options%keyvals]{a}{b}{c}
+
+#keyvals:\EcritureTrinome
+Alea#true,false
+Anegatif#true,false
+#endkeyvals
+
+## PixelART via un fichier csv, en TikZ ##
 \PLpixelart{file}#i
 \PLpixelart[options%keyvals]{file}#i
 
@@ -573,6 +620,7 @@ bordcases#true,false
 style=%<font commands%>
 #endkeyvals
 
+## SudoMaths, en TikZ ##
 \PLsudomaths{liste}
 \PLsudomaths[options%keyvals]{liste}
 
@@ -766,6 +814,7 @@ Teal#B
 #include:minted
 
 # not documented
+\AleaSigneA#S
 \algomathttPL{text%plain}#*
 \axesafflabel#S
 \axesechellefleche#S
@@ -846,7 +895,9 @@ Teal#B
 \CODPYlargeur#S
 \COEFF#S
 \COEFFA#S
+\Coeffa#S
 \COEFFB#S
+\Coeffc#S
 \convertbasedixtobase{arg1}{arg2}#*
 \convertbasetobasedix{arg1}{arg2}#*
 \cpt#S
@@ -862,6 +913,10 @@ Teal#B
 \fctdecx#S
 \fprimea#S
 \fprimeb#S
+\GRPHPROBcoulcbe#S
+\GRPHPROBcoulsurf#S
+\GRPHPROBhauteur#S
+\GRPHPROBlarg#S
 \hookcenterpost#S
 \hookcenterpre#S
 \ifinal#S
@@ -951,6 +1006,10 @@ Teal#B
 \PLOSXLG#*
 \PLOSXOrange#*
 \PLOSXRed#*
+\PLpgcd#S
+\PLPGCDCouleur#S
+\PLPGCDDecal#S
+\PLPGCDNoeud#S
 \PLRecurfct#S
 \PLRecurlabelsize#S
 \PLRecurnb#S
@@ -1007,6 +1066,7 @@ Teal#B
 \RegLinNuageTaille#S
 \resbrut#S
 \resinter#S
+\respgcd#S
 \schematdsaff*{arg1}{arg2}{arg3}{arg4}#*
 \schematdsaff{arg1}{arg2}{arg3}{arg4}#*
 \schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}#*
@@ -1050,12 +1110,20 @@ Teal#B
 \TGTXL#S
 \TGTXR#S
 \theCFnum#S
+\TriPartieA#S
+\TriPartieB#S
+\TriPartieC#S
+\TriSigneA#S
 \UNITEX#S
 \UNITEY#S
 \ValA#S
+\ValA#S
+\ValB#S
 \ValB#S
 \ValMU#S
 \ValQ#S
+\ValQ#S
+\ValR#S
 \ValR#S
 \ValRes#S
 \ValTMP#S
