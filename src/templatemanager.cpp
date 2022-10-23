@@ -147,7 +147,7 @@ AbstractTemplateResource *TemplateManager::createResourceFromXMLNode(const QDomE
 		path = userTemplateDir();
 		description = tr("User created template files");
 		isEditable = true;
-		icon = QIcon(":/images-ng/user.svgz");
+		icon = getRealIcon("user");
 	}
 
 	if (QFileInfo(path).isDir()) {
@@ -220,7 +220,7 @@ bool TemplateManager::tableTemplateDialogExec()
 	dialog.hideFolderSelection();
 	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
-	LocalTableTemplateResource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images-ng/user.svgz"));
+	LocalTableTemplateResource userTemplates(configBaseDir, tr("User"), this, getRealIcon("user"));
 	LocalTableTemplateResource builtinTemplates(builtinTemplateDir(), "Builtin", this, QIcon(":/images/appicon.png"));
 	dialog.addResource(&userTemplates);
 	dialog.addResource(&builtinTemplates);
