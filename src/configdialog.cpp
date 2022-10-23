@@ -646,7 +646,7 @@ void ConfigDialog::revertClicked()
 	QToolButton *bt = qobject_cast<QToolButton *>(sender());
 	if (bt) {
 		if (bt->objectName() == "tbRevertIcon") {
-			ui.horizontalSliderIcon->setValue(22);
+			ui.horizontalSliderIcon->setValue(24);
 		}
 		if (bt->objectName() == "tbRevertCentralIcon") {
 			ui.horizontalSliderCentraIcon->setValue(16);
@@ -1249,4 +1249,3 @@ bool ConfigDialog::askRiddle()
 	return false;
 	*/
 }
-

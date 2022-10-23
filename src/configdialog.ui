@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -924,8 +924,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>225</width>
-                   <height>100</height>
+                   <width>241</width>
+                   <height>106</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -1491,8 +1491,11 @@ Then you can select a new shortcut by one of the following ways:
             <property name="maximum">
              <number>128</number>
             </property>
+            <property name="value">
+             <number>24</number>
+            </property>
             <property name="sliderPosition">
-             <number>22</number>
+             <number>24</number>
             </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -2029,7 +2032,7 @@ Then you can select a new shortcut by one of the following ways:
             <x>0</x>
             <y>0</y>
             <width>786</width>
-            <height>1894</height>
+            <height>1898</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3309,7 +3312,7 @@ them here.</string>
             <x>0</x>
             <y>0</y>
             <width>600</width>
-            <height>894</height>
+            <height>908</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
