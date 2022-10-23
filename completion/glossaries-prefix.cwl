@@ -326,7 +326,7 @@ kernelglossredefs=#false,true,nowarn
 \GlsAddXdyAlphabet{name}{definition}#*
 #endif
 
-#keyvals:\newglossaryentry#c,\longnewglossaryentry#c,\provideglossaryentry#c,\longprovideglossaryentry#c,\newacronym#c,\newterm#c
+#keyvals:\newglossaryentry#c,\longnewglossaryentry#c,\provideglossaryentry#c,\longprovideglossaryentry#c,\newacronym#c,\newterm#c,\longnewglossaryentry*#c,\newentry#c,\newabbr#c,\newsym#c,\newnum#c,\glsxtrnewsymbol#c,\glsxtrnewnumber#c,\newabbreviation#c
 prefix=%<text%>
 prefixplural=%<text%>
 prefixfirst=%<text%>
