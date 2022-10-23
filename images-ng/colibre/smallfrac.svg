@@ -5,7 +5,7 @@
    width="24"
    version="1.1"
    id="svg22"
-   sodipodi:docname="lc_dfrac.svg"
+   sodipodi:docname="lc_smallfrac.svg"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="true"
      inkscape:zoom="23.291667"
-     inkscape:cx="7.0626117"
+     inkscape:cx="4.4221824"
      inkscape:cy="8.4579605"
      inkscape:window-width="1920"
      inkscape:window-height="1031"
@@ -64,6 +64,6 @@
      id="path756" />
   <path
      style="fill:none;stroke:#1e8bcd;stroke-width:1;stroke-linecap:round;stroke-linejoin:round"
-     d="M 19.5,10.5 H 4.5666665"
+     d="M 14.838739,10.5 H 8.3181655"
      id="path758" />
 </svg>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="lc_bookmark0.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     showguides="true"
+     inkscape:zoom="46.583333"
+     inkscape:cx="10.583184"
+     inkscape:cy="12.772809"
+     inkscape:window-width="1920"
+     inkscape:window-height="1031"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6">
+    <inkscape:grid
+       type="xygrid"
+       id="grid239"
+       spacingx="0.5"
+       spacingy="0.5"
+       empspacing="2" />
+    <sodipodi:guide
+       position="12,24"
+       orientation="1,0"
+       id="guide304"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="22,22"
+       orientation="0,-1"
+       id="guide4681"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <path
+     style="fill:#ff9198;fill-opacity:1;stroke:#d42314;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 5.5,2.5 h 13 v 19 l -6.5,-6 -6.5,6 z"
+     id="path306"
+     sodipodi:nodetypes="cccccc" />
+  <g
+     id="g1152"
+     transform="translate(15.347314,-1.2713098)"
+     style="fill:#1e8bcd">
+    <text
+       xml:space="preserve"
+       style="font-size:15.4043px;font-family:Cousine;-inkscape-font-specification:Cousine;text-align:center;text-anchor:middle;fill:#1e8bcd;stroke-width:1;stroke-linecap:round;stroke-linejoin:round"
+       x="-3.3397925"
+       y="15.395329"
+       id="text1094"><tspan
+         sodipodi:role="line"
+         id="tspan1092"
+         x="-3.3397925"
+         y="15.395329"
+         style="fill:#1e8bcd;stroke-width:1">0</tspan></text>
+  </g>
+</svg>

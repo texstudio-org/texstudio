@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg24"
+   sodipodi:docname="lc_item.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs28" />
+  <sodipodi:namedview
+     id="namedview26"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="23.291667"
+     inkscape:cx="9.3166369"
+     inkscape:cy="12.021467"
+     inkscape:window-width="1920"
+     inkscape:window-height="1031"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg24" />
+  <rect
+     height="1"
+     ry="0.5"
+     width="14.999998"
+     x="-22"
+     y="2"
+     id="rect2"
+     transform="scale(-1,1)"
+     style="fill:#797774" />
+  <rect
+     height="1"
+     ry="0.39213601"
+     width="15.000005"
+     x="-22"
+     y="10"
+     id="rect4"
+     transform="scale(-1,1)"
+     style="fill:#1e8bcd" />
+  <rect
+     height="1"
+     ry="0.436441"
+     width="15.000001"
+     x="-22"
+     y="18"
+     id="rect6"
+     transform="scale(-1,1)"
+     style="fill:#797774" />
+  <rect
+     height="1"
+     ry="0.5"
+     width="8.999999"
+     x="-16"
+     y="21"
+     id="rect8"
+     transform="scale(-1,1)"
+     style="fill:#797774" />
+  <rect
+     height="1"
+     ry="0.5"
+     width="8.999999"
+     x="-16"
+     y="13"
+     id="rect10"
+     transform="scale(-1,1)"
+     style="fill:#1e8bcd" />
+  <rect
+     height="1"
+     ry="0.5"
+     width="9.0000019"
+     x="-16"
+     y="5"
+     id="rect12"
+     transform="scale(-1,1)"
+     style="fill:#797774" />
+  <circle
+     cx="3.5"
+     cy="3.5"
+     r="1.5"
+     id="circle16"
+     style="fill:#3a3a38" />
+  <circle
+     cx="3.5"
+     cy="11.5"
+     r="1.5"
+     id="circle18"
+     style="fill:#1e8bcd" />
+  <circle
+     cx="3.5"
+     cy="19.5"
+     r="1.5"
+     id="circle20"
+     style="fill:#3a3a38" />
+</svg>
