@@ -1,5 +1,5 @@
 # glossary-bookindex package
-# Matthew Bertucci 11/27/2021 for v1.48
+# Matthew Bertucci 2022/10/19 for v1.49
 
 #include:multicol
 #include:glossary-tree
@@ -31,3 +31,11 @@
 \glsxtrbookindexbookmarkprefix#*
 \glsxtrbookindexgroupskip#*
 \glsxtrbookindexthepage#*
+\glsxtrbookindexpregroupskip{skip}#*
+\glsxtrbookindexformatsubheader{prev-level}{level}{parent-label}{group-label}{title%text}#*
+
+# not documented
+\glsxtrbookindexpostgroupskip#S
+\glsxtrbookindexpresubgroupskip{arg1}{arg2}{arg3}#S
+\glsxtrbookindexpostsubgroupskip{arg1}{arg2}#S
+\glsxtrbookindexsubbookmark{arg1}{arg2}{arg3}#S

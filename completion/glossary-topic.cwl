@@ -1,5 +1,5 @@
 # glossary-topic package
-# Matthew Bertucci 11/27/2021 for v1.48
+# Matthew Bertucci 2022/10/19 for v1.49
 
 #include:multicol
 
@@ -9,8 +9,9 @@
 \glstopicSubIndent#*
 \glstopicSubItemParIndent#*
 \glstopicInit#*
-\glstopicGroupHeading{group label}#*
-\glstopicItem{label}{location list}#*r
+\glstopicGroupHeading{group-label}#*
+\glstopicSubGroupHeading{prev-group-level}{group-level}{parent-entry}{group-label}#*
+\glstopicItem{label}{location-list}#*r
 \glstopicPreSkip#*
 \glstopicMarker{label}#*r
 \glstopicTitle{label}#*r
@@ -18,7 +19,7 @@
 \glstopicMidSkip#*
 \glstopicDesc{label}#*r
 \glstopicPostSkip#*
-\glstopicLoc{label}{location list}#*r
+\glstopicLoc{label}{location-list}#*r
 \glstopicAssignSubIndent{level}#*
 \glstopicAssignWidest#*
 \glstopicSubItem{level}{label}{location}#*r

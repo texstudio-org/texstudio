@@ -29,8 +29,11 @@ grabfirst
 
 ## Title-Case ##
 \capitalisewords{text}
+\capitalisewords*{text}
 \xcapitalisewords{text}
+\xcapitalisewords*{text}
 \ecapitalisewords{text}
+\ecapitalisewords*{text}
 \MFUwordbreak{puncutation}
 \MFUcapword{text}
 \ifMFUhyphen#*

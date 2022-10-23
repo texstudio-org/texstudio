@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/10/14 for v1.3.3
+# Matthew Bertucci 2022/10/18 for v1.3.5
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -190,6 +190,10 @@ plein#true,false
 \calcPbinomC{n}{p}{a}{b}
 \calcPpoissP{l}{k}
 \calcPpoissC{l}{a}{b}
+\calcPgeomP{p}{k}
+\calcPgeomC{l}{a}{b}
+\calcPhypergeomP{N}{n}{m}{k}
+\calcPhypergeomC{N}{n}{m}{a}{b}
 \calcPnormC{m}{s}{a}{b}
 \calcPexpoC{l}{a}{b}
 
@@ -209,6 +213,22 @@ plein#true,false
 \numPpoissC[prec]{l}{a}{b}
 \numPpoissC*{l}{a}{b}
 \numPpoissC*[prec]{l}{a}{b}
+\numPgeomP{p}{k}
+\numPgeomP[prec]{p}{k}
+\numPgeomP*{p}{k}
+\numPgeomP*[prec]{p}{k}
+\numPgeomC{l}{a}{b}
+\numPgeomC[prec]{l}{a}{b}
+\numPgeomC*{l}{a}{b}
+\numPgeomC*[prec]{l}{a}{b}
+\numPhypergeomP{N}{n}{m}{k}
+\numPhypergeomP[prec]{N}{n}{m}{k}
+\numPhypergeomP*{N}{n}{m}{k}
+\numPhypergeomP*[prec]{N}{n}{m}{k}
+\numPhypergeomC{N}{n}{m}{a}{b}
+\numPhypergeomC[prec]{N}{n}{m}{a}{b}
+\numPhypergeomC*{N}{n}{m}{a}{b}
+\numPhypergeomC*[prec]{N}{n}{m}{a}{b}
 \numPnormC{m}{s}{a}{b}
 \numPnormC[prec]{m}{s}{a}{b}
 \numPnormC*{m}{s}{a}{b}
@@ -235,6 +255,24 @@ inclineprobas#true,false
 fleche#true,false
 styletrait={%<TikZ keys%>}
 eptrait=%<épaisseur%>
+#endkeyvals
+
+\LoiNormaleGraphe{m}{s}{a}{b}
+\LoiNormaleGraphe<TikZ options>{m}{s}{a}{b}
+\LoiNormaleGraphe[options%keyvals]{m}{s}{a}{b}
+\LoiNormaleGraphe[options%keyvals]<TikZ options>{m}{s}{a}{b}
+\LoiExpoGraphe{l}{a}{b}
+\LoiExpoGraphe<TikZ options>{l}{a}{b}
+\LoiExpoGraphe[options%keyvals]{l}{a}{b}
+\LoiExpoGraphe[options%keyvals]<TikZ options>{l}{a}{b}
+
+#keyvals:\LoiNormaleGraphe,\LoiExpoGraphe
+CouleurAire=#%color
+CouleurCourbe=#%color
+Largeur=%<nombre%>
+Hauteur=%<nombre%>
+AfficheM#true,false
+AfficheCadre#true,false
 #endkeyvals
 
 \convertfraction{fraction expr}
@@ -814,6 +852,8 @@ Teal#B
 \cpt#S
 \CSPYlargeur#S
 \denominateur#S
+\densexpo{arg}#S
+\densnorm{arg}#S
 \end{PLstats}#S
 \end{pythont}#S
 \end{tcpythontexcode}#*
@@ -833,6 +873,7 @@ Teal#B
 \lcoeffs#S
 \LCPA#S
 \listepointsaffiches#S
+\MOYENNE#S
 \nbblocs#S
 \nbchiffres#S
 \nbdepart#S
@@ -1009,6 +1050,8 @@ Teal#B
 \TGTXL#S
 \TGTXR#S
 \theCFnum#S
+\UNITEX#S
+\UNITEY#S
 \ValA#S
 \ValB#S
 \ValMU#S

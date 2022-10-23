@@ -1,5 +1,5 @@
 # ucharclasses package
-# Matthew Bertucci 3/7/2022 for v2.5.0
+# Matthew Bertucci 2022/10/22 for v2.6.0
 
 #include:xetex
 #include:ifxetex
@@ -18,6 +18,7 @@ AncientSymbols
 Arabic
 ArabicExtendedA
 ArabicExtendedB
+ArabicExtendedC
 ArabicMathematicalAlphabeticSymbols
 ArabicPresentationFormsA
 ArabicPresentationFormsB
@@ -65,6 +66,7 @@ CJKUnifiedIdeographsExtensionD
 CJKUnifiedIdeographsExtensionE
 CJKUnifiedIdeographsExtensionF
 CJKUnifiedIdeographsExtensionG
+CJKUnifiedIdeographsExtensionH
 CombiningDiacriticalMarks
 CombiningDiacriticalMarksExtended
 CombiningDiacriticalMarksForSymbols
@@ -84,10 +86,12 @@ Cyrillic
 CyrillicExtendedA
 CyrillicExtendedB
 CyrillicExtendedC
+CyrillicExtendedD
 CyrillicSupplement
 Deseret
 Devanagari
 DevanagariExtended
+DevanagariExtendedA
 Dingbats
 DivesAkuru
 Dogra
@@ -143,6 +147,7 @@ InscriptionalParthian
 IPAExtensions
 Javanese
 Kaithi
+KaktovikNumerals
 KanaExtendedA
 KanaExtendedB
 KanaSupplement
@@ -151,6 +156,7 @@ KangxiRadicals
 Kannada
 Katakana
 KatakanaPhoneticExtensions
+Kawi
 KayahLi
 Kharoshthi
 KhitanSmallScript
@@ -213,6 +219,7 @@ Myanmar
 MyanmarExtendedA
 MyanmarExtendedB
 Nabataean
+NagMundari
 Nandinagari
 Newa
 NewTaiLue
@@ -398,6 +405,7 @@ Yi
 \setTransitionsForArabic{enter-code}{exit-code}#*
 \setTransitionsForArabicExtendedA{enter-code}{exit-code}#*
 \setTransitionsForArabicExtendedB{enter-code}{exit-code}#*
+\setTransitionsForArabicExtendedC{enter-code}{exit-code}#*
 \setTransitionsForArabicMathematicalAlphabeticSymbols{enter-code}{exit-code}#*
 \setTransitionsForArabicPresentationFormsA{enter-code}{exit-code}#*
 \setTransitionsForArabicPresentationFormsB{enter-code}{exit-code}#*
@@ -445,6 +453,7 @@ Yi
 \setTransitionsForCJKUnifiedIdeographsExtensionE{enter-code}{exit-code}#*
 \setTransitionsForCJKUnifiedIdeographsExtensionF{enter-code}{exit-code}#*
 \setTransitionsForCJKUnifiedIdeographsExtensionG{enter-code}{exit-code}#*
+\setTransitionsForCJKUnifiedIdeographsExtensionH{enter-code}{exit-code}#*
 \setTransitionsForCombiningDiacriticalMarks{enter-code}{exit-code}#*
 \setTransitionsForCombiningDiacriticalMarksExtended{enter-code}{exit-code}#*
 \setTransitionsForCombiningDiacriticalMarksForSymbols{enter-code}{exit-code}#*
@@ -464,10 +473,12 @@ Yi
 \setTransitionsForCyrillicExtendedA{enter-code}{exit-code}#*
 \setTransitionsForCyrillicExtendedB{enter-code}{exit-code}#*
 \setTransitionsForCyrillicExtendedC{enter-code}{exit-code}#*
+\setTransitionsForCyrillicExtendedD{enter-code}{exit-code}#*
 \setTransitionsForCyrillicSupplement{enter-code}{exit-code}#*
 \setTransitionsForDeseret{enter-code}{exit-code}#*
 \setTransitionsForDevanagari{enter-code}{exit-code}#*
 \setTransitionsForDevanagariExtended{enter-code}{exit-code}#*
+\setTransitionsForDevanagariExtendedA{enter-code}{exit-code}#*
 \setTransitionsForDingbats{enter-code}{exit-code}#*
 \setTransitionsForDivesAkuru{enter-code}{exit-code}#*
 \setTransitionsForDogra{enter-code}{exit-code}#*
@@ -523,6 +534,7 @@ Yi
 \setTransitionsForIPAExtensions{enter-code}{exit-code}#*
 \setTransitionsForJavanese{enter-code}{exit-code}#*
 \setTransitionsForKaithi{enter-code}{exit-code}#*
+\setTransitionsForKaktovikNumerals{enter-code}{exit-code}#*
 \setTransitionsForKanaExtendedA{enter-code}{exit-code}#*
 \setTransitionsForKanaExtendedB{enter-code}{exit-code}#*
 \setTransitionsForKanaSupplement{enter-code}{exit-code}#*
@@ -531,6 +543,7 @@ Yi
 \setTransitionsForKannada{enter-code}{exit-code}#*
 \setTransitionsForKatakana{enter-code}{exit-code}#*
 \setTransitionsForKatakanaPhoneticExtensions{enter-code}{exit-code}#*
+\setTransitionsForKawi{enter-code}{exit-code}#*
 \setTransitionsForKayahLi{enter-code}{exit-code}#*
 \setTransitionsForKharoshthi{enter-code}{exit-code}#*
 \setTransitionsForKhitanSmallScript{enter-code}{exit-code}#*
@@ -593,6 +606,7 @@ Yi
 \setTransitionsForMyanmarExtendedA{enter-code}{exit-code}#*
 \setTransitionsForMyanmarExtendedB{enter-code}{exit-code}#*
 \setTransitionsForNabataean{enter-code}{exit-code}#*
+\setTransitionsForNagMundari{enter-code}{exit-code}#*
 \setTransitionsForNandinagari{enter-code}{exit-code}#*
 \setTransitionsForNewa{enter-code}{exit-code}#*
 \setTransitionsForNewTaiLue{enter-code}{exit-code}#*
