@@ -1047,6 +1047,7 @@
 <file>completion/coolstr.cwl</file>
 <file>completion/coolthms.cwl</file>
 <file>completion/cooltooltips.cwl</file>
+<file>completion/CooperHewitt.cwl</file>
 <file>completion/coop-writing.cwl</file>
 <file>completion/coordsys.cwl</file>
 <file>completion/coptic.cwl</file>
@@ -1618,6 +1619,7 @@
 <file>completion/glossary-longragged.cwl</file>
 <file>completion/glossary-mcols.cwl</file>
 <file>completion/glossary-super.cwl</file>
+<file>completion/glossary-table.cwl</file>
 <file>completion/glossary-topic.cwl</file>
 <file>completion/glossary-tree.cwl</file>
 <file>completion/glosstex.cwl</file>
@@ -2367,6 +2369,7 @@
 <file>completion/nimsticks.cwl</file>
 <file>completion/ninecolors.cwl</file>
 <file>completion/njuvisual.cwl</file>
+<file>completion/nlctuserguide.cwl</file>
 <file>completion/nl-interval.cwl</file>
 <file>completion/nmbib.cwl</file>
 <file>completion/nndraw.cwl</file>
@@ -2939,6 +2942,7 @@
 <file>completion/scanpages.cwl</file>
 <file>completion/schedule.cwl</file>
 <file>completion/schemata.cwl</file>
+<file>completion/schola-otf.cwl</file>
 <file>completion/scholax.cwl</file>
 <file>completion/schooldocs.cwl</file>
 <file>completion/schulma.cwl</file>
