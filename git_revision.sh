@@ -11,9 +11,8 @@ version=$(git describe --tags --always)
 # case e.g. when compiling from the tar ball.
 if [ -n "$version" ]; then
     echo "create git_revision.cpp"
-    echo "const char * TEXSTUDIO_GIT_REVISION = \"$version\";" > src/git_revision.cpp
+    echo "const char * TEXSTUDIO_GIT_REVISION = \"$version\";" > git_revision.cpp
 else
     echo "empty git revision"
-    echo "const char * TEXSTUDIO_GIT_REVISION = \"N/A\";" > src/git_revision.cpp
+    echo "const char * TEXSTUDIO_GIT_REVISION = \"N/A\";" > git_revision.cpp
 fi
-# $QMAKE_CXX -c "$PRO_DIR/src/git_revision.cpp" -o "$BUILD_DIR/git_revision.o"

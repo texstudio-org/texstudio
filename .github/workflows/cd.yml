@@ -34,7 +34,6 @@ jobs:
 
       - name: Configure
         run: |
-          . ./git_revision.sh
           mkdir build
           cd build
           . ../.github/scripts/get-version.sh
@@ -42,6 +41,8 @@ jobs:
           sed -i ../win.rc -e "s/git[\]0/$VERSION_NAME/"
           # qmake-qt6 texstudio.pro CONFIG-=debug MXE=1 BUILD_ADWAITA=1 STRIP=1
           cmake .. -Wno-dev
+          # work-around strange git behaviour on msys2
+          . ../git_revision.sh
       - name: Build
         run: |
           cd build
