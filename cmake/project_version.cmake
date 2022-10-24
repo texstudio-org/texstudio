@@ -30,17 +30,18 @@ if (GIT_CMD)
             WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             OUTPUT_VARIABLE GIT_TOPLEVEL
             ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+            message("executing at ${GIT_TOPLEVEL}")
 endif()
 if (GIT_CMD AND NOT "${GIT_TOPLEVEL}" STREQUAL "")
     execute_process(COMMAND ${GIT_CMD} rev-parse --short HEAD
-            WORKING_DIRECTORY ${GIT_TOPLEVEL}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             OUTPUT_VARIABLE GIT_SHA1
             OUTPUT_STRIP_TRAILING_WHITESPACE)
-    execute_process(COMMAND ${GIT_CMD} describe --match "*[0-9].[0-9]*" HEAD
-            WORKING_DIRECTORY ${GIT_TOPLEVEL}
+    execute_process(COMMAND ${GIT_CMD} describe HEAD
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             OUTPUT_VARIABLE GIT_DESCRIBE
             ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-
+    message(STATUS "git describe: ${GIT_DESCRIBE}")
     if (GIT_DESCRIBE)
 		set(TEXSTUDIO_GIT_REVISION ${GIT_DESCRIBE})
         string(REGEX REPLACE "v?([0-9.]+).*" "\\1" GIT_VERSION ${GIT_DESCRIBE})
