@@ -53,9 +53,9 @@ jobs:
           cd build
           . ../.github/scripts/get-version.sh
           . ../.github/scripts/package_msys.sh
-          echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
-          echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
-          echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+          echo "VERSION_NAME=${VERSION_NAME}">> $GITHUB_OUTPUT
+          echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
+          echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
@@ -122,10 +122,10 @@ jobs:
         POPPLERDATA_URL="https://poppler.freedesktop.org/${POPPLERDATA_FILE}"
         POPPLERDATA_SHA256="1096a18161f263cccdc6d8a2eb5548c41ff8fcf9a3609243f1b6296abdf72872"
         . ../.github/scripts/package_linux.sh
-        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
-        echo "::set-output name=VERSION::${VERSION}"
-        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
-        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"        
+        echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
+        echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+        echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
+        echo "GIT_VERSION=${GIT_VERSION}" >> $GITHUB_OUTPUT
         
     - name: Upload to Github Artifacts
       if: github.event_name == 'push'
@@ -200,9 +200,9 @@ jobs:
         . ../.github/scripts/get-version.sh
         cp texstudio.dmg ../texstudio-${GIT_VERSION}-osx.dmg
         mv texstudio.dmg ../texstudio-osx-${VERSION_NAME}.dmg
-        echo "::set-output name=VERSION_NAME::${VERSION_NAME}"
-        echo "::set-output name=TXS_VERSION::${TXS_VERSION}"
-        echo "::set-output name=GIT_VERSION::${GIT_VERSION}"
+        echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
+        echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
+        echo "GIT_VERSION=${GIT_VERSION}" >> $GITHUB_OUTPUT
         
     - name: Upload to Github artifacts
       if: github.event_name == 'push'
