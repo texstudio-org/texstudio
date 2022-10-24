@@ -4,6 +4,7 @@ TeXstudio 4.4.0
 - faster removing of multiple lines
 - end multi cursor mode with esc
 - **no** win/qt5 build
+- switch to CMAKE build system (qmake deprecated)
 - hide/filter configuration completer list
 - bug fixes
 
