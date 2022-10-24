@@ -23,7 +23,7 @@ else()
 	add_definitions(-DTEXSTUDIO_VERSION="N/A")
 	message(STATUS "No git present.")
     unset(GIT_FOUND)
-	set(VARPREFIX_WC_LATEST_TAG_LONG "0.0.0+0+0"
+	set(VARPREFIX_WC_LATEST_TAG_LONG "0.0.0+0+0")
 endif()
 include(cmake/project_version.cmake)
 
