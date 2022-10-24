@@ -23,43 +23,19 @@ function(version_split version major minor patch extra)
     endif(version_valid)
 endfunction(version_split)
 
-find_program(GIT_CMD git)
-mark_as_advanced(GIT_CMD)
-if (GIT_CMD)
-    execute_process(COMMAND ${GIT_CMD} rev-parse --show-toplevel
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            OUTPUT_VARIABLE GIT_TOPLEVEL
-            ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-            message("executing at ${GIT_TOPLEVEL}")
-endif()
-if (GIT_CMD AND NOT "${GIT_TOPLEVEL}" STREQUAL "")
-    execute_process(COMMAND ${GIT_CMD} rev-parse --short HEAD
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            OUTPUT_VARIABLE GIT_SHA1
-            OUTPUT_STRIP_TRAILING_WHITESPACE)
-    execute_process(COMMAND ${GIT_CMD} describe HEAD
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            OUTPUT_VARIABLE GIT_DESCRIBE
-            ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-    message(STATUS "git describe: ${GIT_DESCRIBE}")
-    if (GIT_DESCRIBE)
-		set(TEXSTUDIO_GIT_REVISION ${GIT_DESCRIBE})
-        string(REGEX REPLACE "v?([0-9.]+).*" "\\1" GIT_VERSION ${GIT_DESCRIBE})
-        message(STATUS "GIT_VERSION: " ${GIT_VERSION})
-        if (GIT_DESCRIBE MATCHES ".*-g.*")
-            string(REGEX REPLACE "v?([0-9]*.[0-9.]*).*-([0-9]*)-([a-g0-9]*)" "\\1+\\2+\\3" GIT_FULL_VERSION ${GIT_DESCRIBE})
-        else()
-            set(GIT_FULL_VERSION ${GIT_VERSION})
-        endif()
-    else ()
-        set(GIT_VERSION "0.0.0")
-        execute_process(COMMAND ${GIT_CMD} rev-list --count HEAD
-                WORKING_DIRECTORY ${GIT_TOPLEVEL}
-                OUTPUT_VARIABLE GIT_COMMIT_COUNT
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-        set(GIT_FULL_VERSION 0.0.0+${GIT_COMMIT_COUNT}+g${GIT_SHA1})
-		set(TEXSTUDIO_GIT_REVISION ${GIT_FULL_VERSION})
-    endif ()
+if (GIT_FOUND)
+    set(TEXSTUDIO_GIT_REVISION ${VARPREFIX_WC_LATEST_TAG_LONG})
+    string(REGEX REPLACE "v?([0-9.]+).*" "\\1" GIT_VERSION ${VARPREFIX_WC_LATEST_TAG_LONG})
+    message(STATUS "GIT_VERSION: " ${GIT_VERSION})
+    if (GIT_DESCRIBE MATCHES ".*-g.*")
+        string(REGEX REPLACE "v?([0-9]*.[0-9.]*).*-([0-9]*)-([a-g0-9]*)" "\\1+\\2+\\3" GIT_FULL_VERSION ${GIT_DESCRIBE})
+    else()
+        set(GIT_FULL_VERSION ${GIT_VERSION})
+    endif()
+else ()
+    set(GIT_VERSION "0.0.0")
+    set(GIT_FULL_VERSION 0.0.0++)
+    set(TEXSTUDIO_GIT_REVISION ${GIT_FULL_VERSION})
 endif ()
 
 if (NOT PROJECT_VERSION)
