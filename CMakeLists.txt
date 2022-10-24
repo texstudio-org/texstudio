@@ -22,7 +22,8 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 else()
 	add_definitions(-DTEXSTUDIO_VERSION="N/A")
 	message(STATUS "No git present.")
-        unset(GIT_FOUND)
+    unset(GIT_FOUND)
+	set(VARPREFIX_WC_LATEST_TAG_LONG "0.0.0+0+0"
 endif()
 include(cmake/project_version.cmake)
 
