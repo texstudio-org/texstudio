@@ -11994,7 +11994,7 @@ included document in %1</source>
     <message>
         <location filename="../src/updatechecker.cpp" line="185"/>
         <source>Latest development version:</source>
-        <translation>Letzte Entwicklungsversion (beta):</translation>
+        <translation>Letzte Entwicklungsversion:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="200"/>
