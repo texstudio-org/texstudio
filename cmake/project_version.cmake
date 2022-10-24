@@ -23,7 +23,7 @@ function(version_split version major minor patch extra)
     endif(version_valid)
 endfunction(version_split)
 
-if (GIT_FOUND)
+if (GIT_FOUND AND NOT "${VARPREFIX_WC_LATEST_TAG_LONG}" STREQUAL "")
     set(TEXSTUDIO_GIT_REVISION ${VARPREFIX_WC_LATEST_TAG_LONG})
     string(REGEX REPLACE "v?([0-9.]+).*" "\\1" GIT_VERSION ${VARPREFIX_WC_LATEST_TAG_LONG})
     message(STATUS "GIT_VERSION: " ${GIT_VERSION})
