@@ -88,6 +88,7 @@ local#true,false
 \glsrenewcommand{cmd}[args]{definition}#*d
 \glsrenewcommand{cmd}[args][default]{definition}#*d
 \GlsXtrIndexCounterLink{text}{label}#*
+\GlsXtrDualBackLink{text}{label}#*r
 \GlsXtrDualField#*
 \glsxtrSetWidest{type}{level}{text}#*
 \glsxtrSetWidestFallback{max depth}{list}#*
@@ -238,7 +239,12 @@ local#true,false
 \glsxtractualanchor#*
 \glsxtrsetactualanchor{counter}#*
 \glsxtrtitlednamereflink{format}{location}{title%text}{file}#*
+\glsxtrequationlocfmt{location}{title%text}#*
 \glsxtrwrglossarylocfmt{location}{title%text}#*
+\glsxtraddlabelprefix{prefix}#*
+\glsxtrprependlabelprefix{prefix}#*
+\glsxtrclearlabelprefixes#*
+\glsxtrifinlabelprefixlist{prefix}{true}{false}#*
 \ifGlsXtrPrefixLabelFallbackLast#*
 \GlsXtrPrefixLabelFallbackLasttrue#*
 \GlsXtrPrefixLabelFallbackLastfalse#*
