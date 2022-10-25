@@ -128,6 +128,13 @@ add_subdirectory(src/latexparser)
 # symbolpanel
 add_subdirectory(src/symbolpanel)
 
+#qtermwidget
+find_package(QTermWidget5 QUIET)
+if(QTermWidget5_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
+   message(STATUS "Using QTermWidget5")
+   set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DINTERNAL_TERMINAL)
+endif()
+
 # QuaZIP
 find_package(QuaZip-Qt${QT_VERSION_MAJOR} QUIET)
 if(QuaZip-Qt${QT_VERSION_MAJOR}_FOUND)
@@ -264,7 +271,7 @@ target_link_libraries(texstudio PRIVATE
 	Qt${QT_VERSION_MAJOR}::UiTools
 	
 )
-if(${QT_VERSION_MAJOR}>5)
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 	target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
 endif()
 
@@ -312,6 +319,12 @@ if(UNIX AND NOT APPLE)
 	find_package(X11 REQUIRED)
 	target_include_directories(texstudio PUBLIC ${X11_INCLUDE_DIRS})
 	target_link_libraries(texstudio PUBLIC ${X11_LIBRARIES})
+endif()
+
+#qtermwidget
+find_package(QTermWidget5 QUIET)
+if(QTermWidget5_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
+   target_link_libraries(texstudio PUBLIC qtermwidget5)
 endif()
 
 
