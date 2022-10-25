@@ -1,5 +1,5 @@
 # njuthesis class
-# Matthew Bertucci 2022/08/10 for v1.0.0
+# Matthew Bertucci 2022/10/24 for v1.1.0
 
 #include:xtemplate
 #include:l3keys2e
@@ -87,7 +87,9 @@ footer/content*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
 image/path={%<{路径1},{路径2},...%>}
 image/nju-emblem={%<文件%>}
 image/nju-name={%<文件%>}
-footnote/style=#plain,pifont
+footnote/style=#plain,pifont,circled,circled*
+footnote/hang#true,false
+footnote/circledtext-option=%<选项列表%>
 math/style=#TeX,ISO,GB
 math/integral=#upright,slanted
 math/integral-limits#true,false
