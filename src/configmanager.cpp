@@ -698,6 +698,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
         defaultStyle=2;
     }
     registerOption("GUI/Style", &modernStyle, defaultStyle, &pseudoDialog->comboBoxInterfaceModernStyle);
+	registerOption("GUI/Icon Theme", &iconTheme, 0, &pseudoDialog->comboBoxInterfaceIconTheme);
 #if defined Q_WS_X11 || defined Q_OS_LINUX
 	interfaceFontFamily = "<later>";
 	interfaceStyle = "<later>";
@@ -710,7 +711,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
-	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
+	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 24);
 	registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
     registerOption("GUI/PDFToobarIconSize", &guiPDFToolbarIconSize, 16);
@@ -1894,8 +1895,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 #endif
 			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 		}
-		if (changedProperties.contains(&interfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&useTexmakerPalette)) {
-			if (changedProperties.contains(&modernStyle))
+		// XXX not really sure whether a change in the icon theme requires a restart
+		if (changedProperties.contains(&interfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&iconTheme) || changedProperties.contains(&useTexmakerPalette)) {
+			if (changedProperties.contains(&modernStyle) || changedProperties.contains(&iconTheme))
 				UtilsUi::txsInformation("Some elements cannot be adapted to the new style while the application is running. Please restart to get a consistent experience.");
 			if (interfaceStyle == tr("default")) interfaceStyle = "";
             if(displayedInterfaceStyle=="Orion Dark" && interfaceStyle!=displayedInterfaceStyle){
@@ -2791,7 +2793,7 @@ void ConfigManager::loadTranslations(QString locale)
  */
 void ConfigManager::setInterfaceStyle()
 {
-	//style is controlled by the properties interfaceStyle, modernStyle and useTexmakerPalette
+	//style is controlled by the properties interfaceStyle, modernStyle, iconTheme and useTexmakerPalette
 	//default values are read from systemPalette and defaultStyleName
 
 	QString newStyle = interfaceStyle != "" ? interfaceStyle : defaultStyleName;

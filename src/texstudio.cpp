@@ -6552,6 +6552,7 @@ void Texstudio::generalOptions()
 {
     bool oldDarkMode = darkMode;
     int oldModernStyle = modernStyle;
+	int oldIconTheme = iconTheme;
     bool oldSystemTheme = useSystemTheme;
     int oldReplaceQuotes = configManager.replaceQuotes;
     autosaveTimer.stop();
@@ -6719,7 +6720,7 @@ void Texstudio::generalOptions()
             ed->document()->markFormatCacheDirty();
             ed->update();
         }
-        if (oldModernStyle != modernStyle || oldSystemTheme != useSystemTheme) {
+        if (oldModernStyle != modernStyle || oldIconTheme != iconTheme|| oldSystemTheme != useSystemTheme) {
             iconCache.clear();
             setupMenus();
             setupDockWidgets();

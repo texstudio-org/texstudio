@@ -8,7 +8,7 @@
     <mark>
         <id>error</id>
         <color>#FF8080@E0</color>
-        <icon>:/images-ng/error.svgz</icon>
+        <icon>error</icon>
         <user>false</user>
         <focus>true</focus>
         <priority>3</priority>
@@ -18,7 +18,7 @@
     <mark>
         <id>warning</id>
         <color>#FFDF00@E0</color>
-        <icon>:/images-ng/warning.svgz</icon>
+        <icon>warning</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>2</priority>
@@ -28,7 +28,7 @@
     <mark>
         <id>badbox</id>
         <color>#8feeff</color>
-        <icon>:/images-ng/badbox.svg</icon>
+        <icon>badbox</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -38,7 +38,7 @@
     <mark>
         <id>bookmark</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook.svgz</icon>
+        <icon>lbook</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -48,7 +48,7 @@
     <mark>
         <id>bookmark0</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook0.svgz</icon>
+        <icon>lbook0</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -58,7 +58,7 @@
     <mark>
         <id>bookmark1</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook1.svgz</icon>
+        <icon>lbook1</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -68,7 +68,7 @@
     <mark>
         <id>bookmark2</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook2.svgz</icon>
+        <icon>lbook2</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -78,7 +78,7 @@
     <mark>
         <id>bookmark3</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook3.svgz</icon>
+        <icon>lbook3</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -88,7 +88,7 @@
     <mark>
         <id>bookmark4</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook4.svgz</icon>
+        <icon>lbook4</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -98,7 +98,7 @@
     <mark>
         <id>bookmark5</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook5.svgz</icon>
+        <icon>lbook5</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -108,7 +108,7 @@
     <mark>
         <id>bookmark6</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook6.svgz</icon>
+        <icon>lbook6</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -118,7 +118,7 @@
     <mark>
         <id>bookmark7</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook7.svgz</icon>
+        <icon>lbook7</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -128,7 +128,7 @@
     <mark>
         <id>bookmark8</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook8.svgz</icon>
+        <icon>lbook8</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>
@@ -138,7 +138,7 @@
     <mark>
         <id>bookmark9</id>
         <color>#D6DDFF</color>
-        <icon>:/images-ng/lbook9.svgz</icon>
+        <icon>lbook9</icon>
         <user>true</user>
         <focus>false</focus>
         <priority>0</priority>

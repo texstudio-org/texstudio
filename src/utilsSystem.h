@@ -46,6 +46,17 @@ QString findResourceFile(const QString &fileName, bool allowOverride = false, QS
  * 2: modern style - dark
  */
 extern int modernStyle;
+
+/*!
+ * \brief icon theme used
+ *
+ * Global variable storing which icon theme is used.
+ * 0: Colibre Icon Theme adapted from LibreOffice
+ * 1: Modern Icon Theme
+ * 2: Classic Icon Theme
+ */
+extern int iconTheme;
+
 /*!
  * \brief if dark mode is used
  */

@@ -243,6 +243,7 @@ QString quoteSpaces(const QString &s)
 
 
 int modernStyle;
+int iconTheme;
 bool darkMode;
 bool useSystemTheme;
 
@@ -262,21 +263,29 @@ QString getRealIconFile(const QString &icon)
         suffixList=QStringList{"_dm",""};
     QStringList iconNames = QStringList();
     for(const QString& suffix : suffixList){
-        iconNames
-                << ":/images-ng/" + icon + suffix + ".svg"
-                << ":/images-ng/" + icon + suffix + ".svgz" ;
-        if (modernStyle) {
-            iconNames << ":/images-ng/modern/" + icon + suffix + ".svg"
-                      << ":/images-ng/modern/" + icon + suffix + ".svgz"
-                      << ":/modern/images/modern/" + icon + suffix + ".png";
-        } else {
-            iconNames << ":/images-ng/classic/" + icon + suffix + ".svg"
-                      << ":/images-ng/classic/" + icon + suffix + ".svgz"
-                      << ":/classic/images/classic/" + icon + suffix + ".png";
-        }
-        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".svg" ;//voruebergehend
-        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".png"; //voruebergehend
-        iconNames << ":/images/" + icon + ".png";
+
+        QString iconThemeName = "";
+
+		if (iconTheme == 0) { // colibre
+			iconThemeName = "colibre";
+		} else if (iconTheme == 1) { // modern
+			iconThemeName = "modern";
+		} else if (iconTheme == 2) { // classic
+			iconThemeName = "classic";
+		}
+
+		iconNames << ":/images-ng/" + iconThemeName + "/" + icon + suffix + ".svg"
+					<< ":/images-ng/" + iconThemeName + "/" + icon + suffix + ".svgz"
+					<< ":/modern/images/" + iconThemeName + "/" + icon + suffix + ".png";
+
+        iconNames << ":/symbols-ng/icons/" + iconThemeName + "/" + icon + suffix + ".svg" ;//voruebergehend
+        iconNames << ":/symbols-ng/icons/" + iconThemeName + "/" + icon + suffix + ".png"; //voruebergehend
+        iconNames << ":/images/" + iconThemeName + "/" + icon + ".png";
+
+		// fallback
+		iconNames
+			<< ":/images-ng/" + icon + suffix + ".svg"
+			<< ":/images-ng/" + icon + suffix + ".svgz" ;
     }
 
 	foreach (const QString &name, iconNames) {

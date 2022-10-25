@@ -98,15 +98,15 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	displayLogAction = new QAction(tr("Log File"), this);
 	displayLogAction->setCheckable(true);
 	connect(displayLogAction, SIGNAL(triggered(bool)), this, SLOT(setWidgetVisibleFromAction(bool)));
-	filterErrorAction = new QAction(QIcon(":/images-ng/error.svgz"), tr("Show Error"), this);
+	filterErrorAction = new QAction(getRealIcon("error"), tr("Show Error"), this);
 	filterErrorAction->setCheckable(true);
 	filterErrorAction->setChecked(true);
 	connect(filterErrorAction, SIGNAL(toggled(bool)), this, SLOT(filterChanged(bool)));
-	filterWarningAction = new QAction(QIcon(":/images-ng/warning.svgz"), tr("Show Warning"), this);
+	filterWarningAction = new QAction(getRealIcon("warning"), tr("Show Warning"), this);
 	filterWarningAction->setCheckable(true);
 	filterWarningAction->setChecked(true);
 	connect(filterWarningAction, SIGNAL(toggled(bool)), this, SLOT(filterChanged(bool)));
-	filterBadBoxAction = new QAction(QIcon(":/images-ng/badbox.svg"), tr("Show BadBox"), this);
+	filterBadBoxAction = new QAction(getRealIcon("badbox"), tr("Show BadBox"), this);
 	filterBadBoxAction->setCheckable(true);
 	filterBadBoxAction->setChecked(true);
 	connect(filterBadBoxAction, SIGNAL(toggled(bool)), this, SLOT(filterChanged(bool)));
