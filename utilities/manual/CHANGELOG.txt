@@ -1,5 +1,6 @@
 TeXstudio 4.4.0
 -----------------
+- new icon theme Colibri (by geolta)
 - modernized manual
 - faster removing of multiple lines
 - end multi cursor mode with esc
