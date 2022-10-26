@@ -129,8 +129,9 @@ add_subdirectory(src/latexparser)
 add_subdirectory(src/symbolpanel)
 
 #qtermwidget
-find_package(QTermWidget5 QUIET)
-if(QTermWidget5_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
+#find_package(QTermWidget5 QUIET)
+find_package(QTermWidget QUIET)
+if(QTERMWIDGET_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
    message(STATUS "Using QTermWidget5")
    set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DINTERNAL_TERMINAL)
 endif()
@@ -322,8 +323,7 @@ if(UNIX AND NOT APPLE)
 endif()
 
 #qtermwidget
-find_package(QTermWidget5 QUIET)
-if(QTermWidget5_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
+if(QTERMWIDGET_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
    target_link_libraries(texstudio PUBLIC qtermwidget5)
 endif()
 
