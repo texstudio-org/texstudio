@@ -42,6 +42,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network Xml Concurrent Widget
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS PrintSupport Svg Qml REQUIRED)
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core5Compat REQUIRED)
+	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS LinguistTools QUIET)
 endif()
 
 message(STATUS "building for Qt ${QT_VERSION_MAJOR}")
@@ -61,28 +62,11 @@ set(RESOURCE_FILES
 )
 
 set(TRANSLATION_FILES
-	translation/texstudio_ar.ts
-	translation/texstudio_cs.ts
-	translation/texstudio_de.ts
-	translation/texstudio_el.ts
-	translation/texstudio_es.ts
-	translation/texstudio_fa.ts
-	translation/texstudio_fr.ts
-	translation/texstudio_hu.ts
-	translation/texstudio_id_ID.ts
-	translation/texstudio_it.ts
-	translation/texstudio_ja.ts
-	translation/texstudio_ko.ts
-	translation/texstudio_ko_KR.ts
-	translation/texstudio_nl.ts
-	translation/texstudio_pl.ts
-	translation/texstudio_pt_BR.ts
-	translation/texstudio_ru_RU.ts
-	translation/texstudio_tr_TR.ts
-	translation/texstudio_uk.ts
-	translation/texstudio_vi.ts
-	translation/texstudio_zh_CN.ts
+	translation/texstudio_en.ts
 )
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+qt6_add_lupdate(texstudio TS_FILES ${TRANSLATION_FILES})
+endif()
 
 if(WIN32)
 	set(SOURCE_FILES ${SOURCE_FILES} win.rc)
