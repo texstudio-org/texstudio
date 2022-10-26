@@ -293,6 +293,7 @@
 <file>completion/beamerthemeSaintPetersburg.cwl</file>
 <file>completion/beamerthemesidebar.cwl</file>
 <file>completion/beamerthemeSimpleDarkBlue.cwl</file>
+<file>completion/beamerthemeSimplePlus.cwl</file>
 <file>completion/beamerthemeSingapore.cwl</file>
 <file>completion/beamerthemeSzeged.cwl</file>
 <file>completion/beamerthemetamu.cwl</file>
@@ -824,6 +825,7 @@
 <file>completion/class-nwafuthesis.cwl</file>
 <file>completion/class-nwejmart.cwl</file>
 <file>completion/class-oblivoir.cwl</file>
+<file>completion/class-octavo.cwl</file>
 <file>completion/class-oup-authoring-template.cwl</file>
 <file>completion/class-papertex.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
@@ -1312,6 +1314,7 @@
 <file>completion/environ.cwl</file>
 <file>completion/envlab.cwl</file>
 <file>completion/envmath.cwl</file>
+<file>completion/eolang.cwl</file>
 <file>completion/eolgrab.cwl</file>
 <file>completion/epic.cwl</file>
 <file>completion/epigrafica.cwl</file>
@@ -2469,6 +2472,7 @@
 <file>completion/pagesel.cwl</file>
 <file>completion/pageslts.cwl</file>
 <file>completion/pandora.cwl</file>
+<file>completion/pangram.cwl</file>
 <file>completion/papermas.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/paralist.cwl</file>
