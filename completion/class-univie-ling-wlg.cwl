@@ -1,8 +1,10 @@
 # univie-ling-wlg class
-# Matthew Bertucci 2022/10/03 for v.2.0
+# Matthew Bertucci 2022/10/21 for v.2.1
 
 #include:class-scrartcl
 #include:cochineal
+#include:sourcesanspro
+#include:DejaVuSansMono
 #include:url
 #include:microtype
 #include:scalefnt
@@ -34,6 +36,7 @@ expertfonts#true,false
 titlepage=#none,specialprint,issue
 preprint#true,false
 peerrev#true,false
+draftmark=#true,false,firstpage
 #endkeyvals
 
 #ifOption:biblatex
@@ -55,15 +58,28 @@ issueeditor#true,false
 
 #ifOption:expertfonts
 #include:MinionPro
+#include:MyriadPro
 #endif
 #ifOption:expertfonts=true
 #include:MinionPro
+#include:MyriadPro
+#endif
+
+#ifOption:draftmark
+#include:draftwatermark
+#endif
+#ifOption:draftmark=true
+#include:draftwatermark
+#endif
+#ifOption:draftmark=firstpage
+#include:draftwatermark
 #endif
 
 \aff*[m|f]{affiliation%text}
 \aff*{affiliation%text}
 \aff[m|f]{affiliation%text}
 \aff{affiliation%text}
+\AfterInputencOrAtEndPreamble{code}#*
 \author[short names]{names}
 \backmatter
 \computelastpage#*

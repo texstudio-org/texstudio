@@ -1,13 +1,29 @@
 # piton package
-# Matthew Bertucci 2022/10/08 for v0.7
+# Matthew Bertucci 2022/10/23 for v0.8
 
 #include:l3keys2e
 #include:luatexbase
 #include:luacode
 
 #keyvals:\usepackage/piton#c
+footnote
+footnotehyper
 escape-inside=%<two-chars%>
 #endkeyvals
+
+#ifOption:footnote
+#include:footnote
+#endif
+#ifOption:footnote=true
+#include:footnote
+#endif
+
+#ifOption:footnotehyper
+#include:footnotehyper
+#endif
+#ifOption:footnotehyper=true
+#include:footnotehyper
+#endif
 
 \piton{code%definition}
 \begin{Piton}#V
@@ -24,6 +40,8 @@ all-line-numbers
 resume
 splittable
 background-color=#%color
+slim#true,false
+left-margin=##L
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}

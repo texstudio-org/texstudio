@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 2022-07-21 for v3.1.4
+# Matthew Bertucci 2022-10-24 for v3.1.9
 
 #include:translations
 #include:amstext
@@ -399,6 +399,7 @@ complex-symbol-angle=%<symbol%>
 complex-symbol-degree=%<symbol%>
 input-complex-root=%<tokens%>
 output-complex-root=%<symbol%>
+print-complex-unity#true,false
 #endkeyvals
 
 ## 4.8 Angles

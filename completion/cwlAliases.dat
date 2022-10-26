@@ -1494,3 +1494,7 @@ unigrazpub:
 class-unigrazpub
 latex-document
 tex
+octavo:
+class-octavo
+latex-document
+tex

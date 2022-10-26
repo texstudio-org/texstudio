@@ -45,6 +45,27 @@
 \newdglsfieldlike{field}{cs%cmd}{Cs%cmd}{CS%cmd}#d
 \newdglsfieldlike[default-options%keyvals]{field}{cs%cmd}{Cs%cmd}{CS%cmd}#d
 
+#keyvals:\dgls#c,\dGls#c,\dGLS#c,\dglspl#c,\dGlspl#c,\dGLSpl#c,\dglslink#c,\dGlslink#c,\dglsdisp#c,\dGlsdisp#c,\dglsfield#c,\dGlsfield#c,\dGLSfield#c,\newdglsfield#c,\newdglsfieldlike#c
+# glossaries-extra options
+hyperoutside#true,false
+textformat=%<csname%>
+innertextformat=%<csname%>
+postunset=#global,local,none
+prereset
+prereset=#global,local,none
+preunset=#global,local,none
+noindex#true,false
+wrgloss=#before,after
+thevalue=%<location%>
+theHvalue=%<the-H-value%>
+prefix=%<link-prefix%>
+# glossaries options
+hyper#true,false
+format=%<csname%>
+counter=%<counter%>
+local#true,false
+#endkeyvals
+
 \glsxtrmultientryadjustedname{sublist1}{name}{sublist2}{label}#*r
 \Glsxtrmultientryadjustedname{sublist1}{name}{sublist2}{label}#*r
 \GlsXtrmultientryadjustedname{sublist1}{name}{sublist2}{label}#*r
@@ -67,6 +88,7 @@
 \glsrenewcommand{cmd}[args]{definition}#*d
 \glsrenewcommand{cmd}[args][default]{definition}#*d
 \GlsXtrIndexCounterLink{text}{label}#*
+\GlsXtrDualBackLink{text}{label}#*r
 \GlsXtrDualField#*
 \glsxtrSetWidest{type}{level}{text}#*
 \glsxtrSetWidestFallback{max depth}{list}#*
@@ -217,7 +239,12 @@
 \glsxtractualanchor#*
 \glsxtrsetactualanchor{counter}#*
 \glsxtrtitlednamereflink{format}{location}{title%text}{file}#*
+\glsxtrequationlocfmt{location}{title%text}#*
 \glsxtrwrglossarylocfmt{location}{title%text}#*
+\glsxtraddlabelprefix{prefix}#*
+\glsxtrprependlabelprefix{prefix}#*
+\glsxtrclearlabelprefixes#*
+\glsxtrifinlabelprefixlist{prefix}{true}{false}#*
 \ifGlsXtrPrefixLabelFallbackLast#*
 \GlsXtrPrefixLabelFallbackLasttrue#*
 \GlsXtrPrefixLabelFallbackLastfalse#*

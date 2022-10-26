@@ -1,5 +1,5 @@
 # se2thesis class
-# Matthew Bertucci 2022/09/29 for v1.1.1
+# Matthew Bertucci 2022/10/25 for v1.2.0
 
 #include:graphicx
 #include:translations
@@ -40,6 +40,7 @@ fontmode=#original,replacement,auto
 
 \version{version}
 \degreeprogramme{programme-name}
+\matrnumber{matriculation-number}
 \supervisor{name}
 \cosupervisor{name}
 \advisor{name}
