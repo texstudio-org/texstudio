@@ -8034,57 +8034,70 @@ biblabel=#superscript,brackets
 \mkibid{arg}#*
 #endif
 
-### biblatex-publist v1.26 ###
+### biblatex-publist v2.0 ###
 #ifOption:style=publist
 # from publist.bbx
-#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+\ExecutePublistOptions{options%keyvals}
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c,\ExecutePublistOptions#c
 plauthorname=%<surname%>
 plauthorfirstname=%<first name%>
-plauthornameprefix=%<von part%>
+plauthornameprefix=%<von-part%>
 plauthorhandling=#omit,highlight
 nameorder=#family-given,given-family
-boldyear#true,false
-pubstateextra#true,false
+hlyear#true,false
 marginyear#true,false
-plnumbered=#true,false,reset
-reversenumbering#true,false
+plsorting=%<sorting scheme%>
 plauthorfirstinit#true,false
+jifinfo#true,false
+oainfo=#simple,verbose,none
 prinfo#true,false
-linktitleall#true,false
-linktitledoi#true,false
-linktitleurl#true,false
-linktitleisbn#true,false
-linktitleissn#true,false
+linktitles=#all,doi,url,isbn,issn,none
 #endkeyvals
+# options that can't be set with \ExecutePublistOptions
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+pubstateextra#true,false
+plnumbering=#global,local,global-descending,local-descending,none
+#endkeyvals
+\begin{plnumgroup}
+\end{plnumgroup}
+\setplnum{integer}
 \plauthorname{surname}
 \plauthorname[first name]{surname}
 \plauthorname[first name][von part]{surname}
 \plnameomission#*
 \plmarginyear{text}#*
+\plyearhl{text}#*
 \plauthorhl{text}#*
+\plextrainfosep#*
 \extralabelnumberwidth#*
-\shiftbplnum{integer}
+\shiftplnum{integer}
 \publistbasestyle#*
 \plisbnlink{ISBN%URL}#*U
 \plissnlink{ISSN%URL}#*U
 \mkbibdesc{number}#*
 \mkbibsecstart{number}#*
-\printprinfo{string}#*
-\thenonplauthors#*
-\thenonpleditors#*
-\theplauthor#*
-\thepleditor#*
-\theplauthors#*
-\thepleditors#*
-\therealliststop#*
-\thenonplauthor#*
-\thenonpleditor#*
+\thenonplauthors#S
+\thenonpleditors#S
+\theplauthor#S
+\thepleditor#S
+\theplauthors#S
+\thepleditors#S
+\therealliststop#S
+\thenonplauthor#S
+\thenonpleditor#S
+\ExecuteDepPublistOptions{arg}#S
+\thebplitems#S
+\thebplsecitems#S
+\thebplbgitems#S
+\theplnumgroup#S
+\resetplnumgroup#S
 # from publist.cbx
 \citeitem[prenote][postnote]{bibid}#*C
 \citeitem[postnote]{bibid}#*C
 \citeitem{bibid}#C
 \shiftciteitem{integer}
 \mkrefdesc{number}#*
+\theprevcrefsection#S
 #endif
 
 #ifOption:bibstyle=publist
