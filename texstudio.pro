@@ -417,7 +417,7 @@ exists(./.git)  {
     SOURCES += src/git_revision.cpp
   } else {
     message(GIT sh)
-    system(\"$${PWD}/git_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
+    system(\"$${PWD}/git_revision_qmake.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\" \"$${PWD}\")
     SOURCES += src/git_revision.cpp
   }
 } else {
