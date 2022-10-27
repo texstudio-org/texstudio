@@ -372,12 +372,12 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>Modern</string>
+                  <string>Oxygen Modern</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Classic</string>
+                  <string>Oxygen Classic</string>
                  </property>
                 </item>
                </widget>
