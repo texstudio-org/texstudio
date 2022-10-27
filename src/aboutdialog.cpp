@@ -31,7 +31,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 	                        tr("TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).") + "<br>" +
 	                        tr("TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).") + "<br>" +
 	                        tr("TeXstudio contains an image by Alexander Klink.") + "<br>" +
-	                        tr("TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).") + "<br>" +
+	                        tr("TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.") + "<br>" +
 	                        tr("TeXstudio uses flowlayout from Qt5.6 examples.") + "<br>" +
                             tr("TeXstudio uses adwaita-qt (GPL2) from ") + "https://github.com/FedoraQt/adwaita-qt <br>" +
 	                        "<br>" +
