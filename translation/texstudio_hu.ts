@@ -1860,12 +1860,12 @@ meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az u
     <message>
         <location filename="../src/configdialog.ui" line="362"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Ikontéma:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="370"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -2197,7 +2197,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="../src/configdialog.ui" line="3223"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Alábbi szűrőlista</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3322"/>
@@ -11453,7 +11453,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="944"/>
         <source>C&amp;ut Line or Selection</source>
-        <translation type="unfinished"/>
+        <translation>Sor kivágása vagy kiválasztása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11387"/>

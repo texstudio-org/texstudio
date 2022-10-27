@@ -1862,12 +1862,12 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="362"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Thème d&apos;icônes :</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="370"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -2203,7 +2203,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3223"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Filtrer la liste ci-dessous</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3322"/>
@@ -11467,7 +11467,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location filename="../src/texstudio.cpp" line="944"/>
         <source>C&amp;ut Line or Selection</source>
-        <translation type="unfinished"/>
+        <translation>Co&amp;uper la ligne ou la sélection</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11387"/>

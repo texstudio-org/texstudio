@@ -1859,7 +1859,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="362"/>
         <source>Icon Theme:</source>
-        <translation>Iconthema:</translation>
+        <translation>Iconset:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="370"/>

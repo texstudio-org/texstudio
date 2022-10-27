@@ -1861,12 +1861,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="362"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Тема піктограми:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="370"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Колібрі</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -2202,7 +2202,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3223"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Фільтрувати список нижче</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3322"/>
@@ -11473,7 +11473,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="944"/>
         <source>C&amp;ut Line or Selection</source>
-        <translation type="unfinished"/>
+        <translation>В&amp;ирізати рядок або обране</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11387"/>

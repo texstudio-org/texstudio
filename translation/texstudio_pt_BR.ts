@@ -1860,12 +1860,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="362"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Tema dos ícones:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="370"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -2201,7 +2201,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3223"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Filtrar a lista abaixo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3322"/>
@@ -11469,7 +11469,7 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
     <message>
         <location filename="../src/texstudio.cpp" line="944"/>
         <source>C&amp;ut Line or Selection</source>
-        <translation type="unfinished"/>
+        <translation>C&amp;ortar linha ou selecção</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11387"/>
