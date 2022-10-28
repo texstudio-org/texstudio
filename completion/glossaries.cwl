@@ -141,6 +141,7 @@ kernelglossredefs=#false,true,nowarn
 #keyvals:\setglossarystyle#c
 list
 listgroup
+listhypergroup
 altlist
 altlistgroup
 altlisthypergroup
