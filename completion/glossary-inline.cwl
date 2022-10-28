@@ -5,11 +5,11 @@
 \glsinlinesubseparator#*
 \glsinlineparentchildseparator#*
 \glspostinline#*
-\glsinlinenameformat{label}{name}
-\glsinlinesubnameformat{label}{name}
-\glsinlineemptydescformat{symbol}{number list}
-\glsinlinedescformat{description}{symbol}{number list}
-\glsinlinesubdescformat{description}{symbol}{number list}
+\glsinlinenameformat{label}{name}#*
 \glsinlineifhaschildren{label}{true}{false}#*r
-\glsinlinedopostchild#*
+\glsinlinesubnameformat{label}{name}#*
+\glsinlineemptydescformat{symbol}{location list}#*
+\glsinlinedescformat{description}{symbol}{location list}#*
+\glsinlinesubdescformat{description}{symbol}{location list}#*
 \glsinlinepostchild#*
+\glsinlinedopostchild#*
