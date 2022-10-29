@@ -52,7 +52,7 @@ set(HEADER_FILES ${HEADER_FILES}
 
 set(SOURCE_FILES ${SOURCE_FILES}
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditor.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditorfactory.cpp
+    #${CMAKE_CURRENT_SOURCE_DIR}/lib/qeditorfactory.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qcodeedit.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qpanellayout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qformatscheme.cpp
