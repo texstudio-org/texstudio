@@ -64,8 +64,9 @@ set(RESOURCE_FILES
 set(TRANSLATION_FILES
 	translation/texstudio_en.ts
 )
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-qt6_add_lupdate(texstudio TS_FILES ${TRANSLATION_FILES})
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message(STATUS "Generate translation source option.")
+    qt6_add_lupdate(texstudio TS_FILES ${TRANSLATION_FILES})
 endif()
 
 if(WIN32)
