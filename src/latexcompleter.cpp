@@ -963,7 +963,7 @@ CompletionWord manipulateCompletionWord(CompletionWord cw,QString key,QString re
         for (int j = 0; j < cw.placeHolders[i].count(); j++) {
             CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
             if (ph.offset > index)
-                ph.offset += replacement.length() - 1;
+                ph.offset += replacement.length() - key.length();
         }
     }
     if(makePlaceholder){
@@ -1110,7 +1110,7 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
                                     for (int j = 0; j < cw.placeHolders[i].count(); j++) {
                                         CodeSnippetPlaceHolder &ph = cw.placeHolders[i][j];
                                         if (ph.offset > index)
-                                            ph.offset += id.word.length() - 1;
+                                            ph.offset += id.word.length() - key.length();
                                     }
                                 }
                                 words.append(cw);
