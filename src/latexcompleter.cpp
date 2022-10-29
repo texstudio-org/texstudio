@@ -972,7 +972,12 @@ CompletionWord manipulateCompletionWord(CompletionWord cw,QString key,QString re
         ph.length=replacement.length();
         ph.id=-1;
         ph.flags=CodeSnippetPlaceHolder::AutoSelect;
-        cw.placeHolders.last().append(ph);
+        int k=0;
+        for(;cw.placeHolders.last().length();++k){
+            if(cw.placeHolders.last().value(k).offset>index)
+                break;
+        }
+        cw.placeHolders.last().insert(k,ph);
     }
     return cw;
 }
