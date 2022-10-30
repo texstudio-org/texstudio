@@ -1,5 +1,5 @@
 # luaquotes package
-# Matthew Bertucci 2022/08/26 for v1.0.0
+# Matthew Bertucci 2022/10/29 for v1.1
 
 #include:iftex
 #include:luacode
@@ -36,6 +36,8 @@ de
 \lqdoubleprime
 \okina
 
+\abbrevsingleoff#*
+\abbrevsingleon#*
 \dedoublequotesoff#*
 \dedoublequoteson#*
 \desinglequotelinestartoff#*
