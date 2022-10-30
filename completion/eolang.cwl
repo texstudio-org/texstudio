@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/10/29 for v0.2.0
+# Matthew Bertucci 2022/10/30 for v0.3.0
 
 #include:stmaryrd
 #include:amsmath
@@ -34,6 +34,7 @@ tmpdir=%<path%>
 \xmir
 
 \phiConst#m
+\phiWave#m
 \phiDotted#m
 
 # internal
