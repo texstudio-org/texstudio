@@ -42,11 +42,11 @@ set(HEADER_FILES ${HEADER_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qformatconfig.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsimplecolorpicker.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qcalltip.h
-	${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfa.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfa.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfadefinition.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/light_vector.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/xml2qnfa.h
-	PARENT_SCOPE
+    PARENT_SCOPE
 )
 
 set(SOURCE_FILES ${SOURCE_FILES}
@@ -81,7 +81,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qformatconfig.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsimplecolorpicker.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qcalltip.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfa.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfa.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/qnfadefinition.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/qnfa/xml2qnfa.cpp
     PARENT_SCOPE
