@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2022/10/23 for v3.1.0
+# Matthew Bertucci 2022/10/23 for v3.1.1
 
 #include:expl3
 #include:l3keys2e
@@ -22,6 +22,7 @@
 #include:array
 #include:amsmath
 #include:amssymb
+#include:pifont
 #include:amsthm
 #include:unicode-math
 #include:pdfpages
@@ -175,6 +176,7 @@ misc/arialFont=%<字符串%>
 \end{blindPeerReview}#*
 \arabicHeiti{arg}#*
 \arialfamily#*
+\BigStar#*
 \circled[opt]{arg}#*
 \circled{arg}#*
 \dunderline[opt]{arg1}{arg2}#*
