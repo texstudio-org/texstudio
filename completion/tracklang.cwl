@@ -1,5 +1,5 @@
 # tracklang package
-# Matthew Bertucci 2022/01/22 for v1.5
+# Matthew Bertucci 2022/10/30 for v1.6
 
 #keyvals:\usepackage/tracklang#c
 %<language%>
@@ -18,16 +18,15 @@
 \TrackLangEnvCodeSet#*
 \TrackLangEnvModifier#*
 \TrackLangQueryEnv#*
-\TrackLangQueryOtherEnv{name}#*
+\TrackLangQueryOtherEnv{env-name}#*
 \TrackLangParseFromEnv#*
-
 \AnyTrackedLanguages{true}{false}#*
 \GetTrackedDialectFromLanguageTag{tag}{cmd}#*d
 \TrackedDialectClosestSubMatch#*
-\ForEachTrackedDialect{cmd}{code}#*d
-\ForEachTrackedLanguage{cmd}{code}#*d
-\IfTrackedLanguage{label}{true}{false}#*
-\IfTrackedDialect{label}{true}{false}#*
+\ForEachTrackedDialect{cmd}{body}#*d
+\ForEachTrackedLanguage{cmd}{body}#*d
+\IfTrackedLanguage{language-label}{true}{false}#*
+\IfTrackedDialect{dialect-label}{true}{false}#*
 \TrackedLanguageFromDialect{dialect}#*
 \TrackedDialectsFromLanguage{root language label}#*
 \IfTrackedLanguageHasIsoCode{code type}{label}{true}{false}#*
@@ -45,6 +44,7 @@
 \IfHasTrackedDialectVariant{dialect}{true}{false}#*
 \GetTrackedDialectScript{dialect}#*
 \IfHasTrackedDialectScript{dialect}{true}{false}#*
+\TrackLangGetDefaultScript{language}#*
 \IfTrackedDialectIsScriptCs{dialect}{cs}{true}{false}#*
 \GetTrackedDialectSubLang{dialect}#*
 \IfHasTrackedDialectSubLang{dialect}{true}{false}#*
@@ -61,31 +61,29 @@
 \CurrentTrackedIsoCode#*
 \CurrentTrackedDialectModifier#*
 \CurrentTrackedDialectVariant#*
-\CurrentTrackedDialectSubTag#*
+\CurrentTrackedDialectSubLang#*
 \CurrentTrackedDialectAdditional#*
 \CurrentTrackedLanguageTag#*
 \CurrentTrackedDialectScript#*
-\TrackLangProvidesResource{tag}#*
-\TrackLangProvidesResource{tag}[version info]#*
-\TrackLangRequireResource{localeid2}#*
-\TrackLangRequireResourceOrDo{localeid2}{code1}{code2}#*
-\TrackLangRequestResource{localeid2}{not found code}#*
+\TrackLangProvidesResource{tag}{version info}#*
+\TrackLangRequireResource{tag}#*
+\TrackLangRequireResourceOrDo{tag}{code1}{code2}#*
+\TrackLangRequestResource{tag}{not found code}#*
 \TrackLangAddToHook{code}{type}#*
 \TrackLangAddToCaptions{code}#*
 \TrackLangRedefHook{code}{type}#*
-
+\TrackLangAddExtraScriptFile{file}#*i
+\TrackLangAddExtraRegionFile{file}#*i
 \TrackPredefinedDialect{dialect}#*
 \SetCurrentTrackedDialect{dialect}#*
-\TrackLangAddExtraScriptFile{filename}#*
-\TrackLangAddExtraRegionFile{filename}#*
 \TrackLangNewLanguage{%<language%>}{%<639-1 code%>}{%<639-2 (T)%>}{%<639-2 (B)%>}{%<639-3%>}{%<3166-1%>}{%<default script%>}#*
+\AddTrackedDialect{dialect label}{root language label}#*
 \AddTrackedLanguage{root language label}#*
-\TrackLangProvidePredefinedLanguage{label}#*
-\TrackLangProvidePredefinedDialect{dialect}{language}{region}{modifier}{variant}{map}{script}#*
-\AddTrackedDialect{dialect}{root language label}#*
 \TrackLangLastTrackedDialect#*
-\SetTrackedDialectLabelMap{from}{to}#*
-\AddTrackedLanguageIsoCodes{root language}#*
+\TrackLangProvidePredefinedLanguage{language label}#*
+\TrackLangProvidePredefinedDialect{dialect}{language}{3166-1 code}{modifier}{variant}{map}{script}#*
+\SetTrackedDialectLabelMap{tracklang-label}{hook-label}#*
+\AddTrackedLanguageIsoCodes{root language label}#*
 \SetTrackedDialectModifier{dialect}{value}#*
 \SetTrackedDialectScript{dialect}{value}#*
 \SetTrackedDialectVariant{dialect}{value}#*
@@ -95,18 +93,8 @@
 \AddTrackedCountryIsoCode{root language}#*
 \AddTrackedIsoLanguage{code type}{code}{language}#*
 \CurrentTrackedDialectSubLang#*
-\CurrentTrackedIsoCodeI#*
-\CurrentTrackedIsoCodeII#*
-\CurrentTrackedIsoCodeIII#*
-\GetTrackedDialectFromMapping{language hook}#*
-\GetTrackedDialectToMapping{tracklang label}#*
-\IfHookHasMappingFromTrackedDialect{hook label}{true}{false}#*
-\IfTrackedDialectHasMapping{tracklang label}{true}{false}#*
-\LetTrackLangOption{option}{synonym}#*
-\LetTrackLangSynonym{option}{synonym}#*
 \TrackLangDeclareDialectOption{dialect}{root lang}{3166-1 code}{modifier}{variant}{map}{script}#*
 \TrackLangDeclareLanguageOption{%<language%>}{%<639-1 code%>}{%<639-2 (T)%>}{%<639-2 (B)%>}{%<639-3%>}{%<3166-1%>}{%<default script%>}#*
-\TrackLangGetDefaultScript{language}#*
 \TrackLangGetKnownCountry{language}#*
 \TrackLangGetKnownIsoThreeLetterLangB{language}#*
 \TrackLangGetKnownIsoThreeLetterLang{language}#*
@@ -124,12 +112,22 @@
 \TrackLangIfRegionTag{tag}{true}{false}#*
 \TrackLangIfScriptTag{tag}{true}{false}#*
 \TrackLangIfVariantTag{tag}{true}{false}#*
+
+# not in main documentation
+\CurrentTrackedIsoCodeI#*
+\CurrentTrackedIsoCodeII#*
+\CurrentTrackedIsoCodeIII#*
+\GetTrackedDialectFromMapping{language hook}#*
+\GetTrackedDialectToMapping{tracklang label}#*
+\IfHookHasMappingFromTrackedDialect{hook label}{true}{false}#*
+\IfTrackedDialectHasMapping{tracklang label}{true}{false}#*
+\LetTrackLangOption{option}{synonym}#*
+\LetTrackLangSynonym{option}{synonym}#*
 \tracklangparseenvatmod#S
 \tracklangparsemod#S
 \tracklangtmp#S
 
 # from tracklang-region-codes.tex (not automatically loaded)
-\TrackLangRegionMap{numeric code}{alpha-2 code}{alpha-3 code}#S
 \TrackLangAlphaIIToNumericRegion{alpha-2 code}#S
 \TrackLangNumericToAlphaIIRegion{numeric code}#S
 \TrackLangIfKnownAlphaIIRegion{alpha-2 code}{true}{false}#S
@@ -137,3 +135,4 @@
 \TrackLangAlphaIIIToNumericRegion{alpha-3 code}#S
 \TrackLangNumericToAlphaIIIRegion{numeric code}#S
 \TrackLangIfKnownAlphaIIIRegion{alpha-3 code}{true}{false}#S
+\TrackLangRegionMap{numeric code}{alpha-2 code}{alpha-3 code}#S
