@@ -1701,6 +1701,7 @@
 <file>completion/hepparticles.cwl</file>
 <file>completion/hep-text.cwl</file>
 <file>completion/hep-title.cwl</file>
+<file>completion/hepunits.cwl</file>
 <file>completion/hereapplies.cwl</file>
 <file>completion/heros-otf.cwl</file>
 <file>completion/he-she.cwl</file>
@@ -1835,6 +1836,7 @@
 <file>completion/itnumpar.cwl</file>
 <file>completion/iwona.cwl</file>
 <file>completion/jamtimes.cwl</file>
+<file>completion/JeuxCartes.cwl</file>
 <file>completion/jigsaw.cwl</file>
 <file>completion/jkmath.cwl</file>
 <file>completion/jlreq-deluxe.cwl</file>
