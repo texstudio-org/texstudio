@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2022/10/23 for v0.8
+# Matthew Bertucci 2022/10/31 for v0.9
 
 #include:l3keys2e
 #include:luatexbase
@@ -39,9 +39,11 @@ line-numbers
 all-line-numbers
 resume
 splittable
+splittable=%<integer%>
 background-color=#%color
 slim#true,false
 left-margin=##L
+tab-size=%<integer%>
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
