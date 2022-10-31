@@ -60,6 +60,9 @@ set(RESOURCE_FILES
 	completion.qrc
 	images.qrc
 )
+set(ICON_FILES
+    texstudio.icns
+)
 
 set(TRANSLATION_FILES
 	translation/texstudio_en.ts
@@ -243,7 +246,7 @@ endif()
 add_subdirectory(src/pdfviewer)
 
 # Build texstudio application
-add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES})
+add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${ICON_FILES})
 target_link_libraries(texstudio PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
@@ -267,7 +270,7 @@ set_target_properties(texstudio PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER texstudio.org
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE_ICON_FILE texstudio.icns
+    MACOSX_BUNDLE_ICON_FILE ${ICON_FILES}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
