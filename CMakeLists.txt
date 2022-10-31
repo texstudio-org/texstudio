@@ -61,9 +61,24 @@ set(RESOURCE_FILES
 	images.qrc
 )
 if(APPLE)
-    file(GLOB_RECURSE manual
-        LIST_DIRECTORIES true
+    file(GLOB manual
         utilities/manual/build/html/*.html
+    )
+    set(manual ${manual} utilities/manual/build/html/searchindex.js)
+    file(GLOB images
+        utilities/manual/build/html/_images/*.png
+    )
+    file(GLOB static
+        utilities/manual/build/html/_static/*
+    )
+    file(GLOB static_scripts
+        utilities/manual/build/html/_static/scripts/*
+    )
+    file(GLOB static_styles
+        utilities/manual/build/html/_static/styles/*
+    )
+    file(GLOB design_static
+        utilities/manual/build/html/_sphinx_design_static/*
     )
     file(GLOB_RECURSE templates
        templates/*
@@ -269,7 +284,7 @@ endif()
 add_subdirectory(src/pdfviewer)
 
 # Build texstudio application
-add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${OSX_FILES})
+add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${OSX_FILES} ${manual} ${images} ${static} ${static_scripts} ${static_styles} ${design_static})
 target_link_libraries(texstudio PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
@@ -288,6 +303,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 endif()
 
 set_source_files_properties(${OSX_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+set_source_files_properties(${manual} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html")
+set_source_files_properties(${images} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html/_images")
+set_source_files_properties(${static} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html/_static")
+set_source_files_properties(${static_scripts} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html/_static/scripts")
+set_source_files_properties(${static_styles} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html/_static/styles")
+set_source_files_properties(${design_static} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/html/_sphinx_design_static")
 
 set_target_properties(texstudio PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER texstudio.org
