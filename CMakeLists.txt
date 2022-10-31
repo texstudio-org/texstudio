@@ -65,11 +65,23 @@ if(APPLE)
         LIST_DIRECTORIES true
         utilities/manual/build/html/*.html
     )
+    file(GLOB_RECURSE templates
+       templates/*
+    )
+    file(GLOB_RECURSE translation
+       translation/*.qm
+    )
+    file(GLOB_RECURSE dictionaries
+       utilities/dictionaries/*
+    )
+
     set(OSX_FILES
         texstudio.icns
         utilities/latex2e.html
         utilities/latex2e.css
-        ${manual}
+        ${templates}
+        ${dictionaries}
+        ${translation}
     )
 else()
     set(OSX_FILES "")
