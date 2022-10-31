@@ -60,9 +60,20 @@ set(RESOURCE_FILES
 	completion.qrc
 	images.qrc
 )
-set(ICON_FILES
-    texstudio.icns
-)
+if(APPLE)
+    file(GLOB_RECURSE manual
+        LIST_DIRECTORIES true
+        utilities/manual/build/html/*.html
+    )
+    set(OSX_FILES
+        texstudio.icns
+        utilities/latex2e.html
+        utilities/latex2e.css
+        ${manual}
+    )
+else()
+    set(OSX_FILES "")
+endif()
 
 set(TRANSLATION_FILES
 	translation/texstudio_en.ts
@@ -246,7 +257,7 @@ endif()
 add_subdirectory(src/pdfviewer)
 
 # Build texstudio application
-add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${ICON_FILES})
+add_executable(texstudio ${SOURCE_FILES} ${HEADER_FILES} ${RESOURCE_FILES} ${FORM_FILES} ${OSX_FILES})
 target_link_libraries(texstudio PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
@@ -264,13 +275,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 	target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
 endif()
 
-set_source_files_properties(texstudio.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+set_source_files_properties(${OSX_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 
 set_target_properties(texstudio PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER texstudio.org
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE_ICON_FILE ${ICON_FILES}
+    MACOSX_BUNDLE_ICON_FILE texstudio.icns
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
