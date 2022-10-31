@@ -1,8 +1,7 @@
 # markdown package
-# Matthew Bertucci 2022/10/04 for v2.17.1-0-g8ca83f5
+# Matthew Bertucci 2022/10/31 for v2.18.0-0-gd8ae860
 
 #include:expl3
-#include:ifthen
 #include:paralist
 #include:amsmath
 #include:amssymb
@@ -59,7 +58,6 @@ eagerCache#true,false
 extensions=%<file names%>
 expectJekyllData#true,false
 fancyLists#true,false
-footnotes#true,false
 fencedCode#true,false
 jekyllData#true,false
 hardLineBreaks#true,false
@@ -67,9 +65,11 @@ hashEnumerators#true,false
 headerAttributes#true,false
 html#true,false
 hybrid#true,false
-inlineFootnotes#true,false
+inlineNotes#true,false
+notes#true,false
 pipeTables#true,false
 preserveTabs#true,false
+rawAttribute#true,false
 relativeReferences#true,false
 smartEllipses#true,false
 shiftHeadings=%<shift amount%>
@@ -158,6 +158,7 @@ jekyllDataRenderers={%<keyvals%>}
 \endmarkdown#S
 \markdownBegin#*
 \markdownEnd#*
+\markdownEscape{file}#*
 \markdownExecute{code}#*
 \markdownExecuteDirect{code}#*
 \markdownExecuteShellEscape#*
@@ -276,8 +277,6 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererFancyOlItemPrototype#*
 \markdownRendererFancyOlItemWithNumber#*
 \markdownRendererFancyOlItemWithNumberPrototype#*
-\markdownRendererFootnote#*
-\markdownRendererFootnotePrototype{arg1}#*
 \markdownRendererHalfTickedBox#*
 \markdownRendererHalfTickedBoxPrototype#*
 \markdownRendererHash#*
@@ -296,8 +295,6 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererHeadingThreePrototype{arg1}#*
 \markdownRendererHeadingTwo#*
 \markdownRendererHeadingTwoPrototype{arg1}#*
-\markdownRendererHorizontalRule#*
-\markdownRendererHorizontalRulePrototype#*
 \markdownRendererImage#*
 \markdownRendererImagePrototype{arg1}{arg2}{arg3}{arg4}#*
 \markdownRendererInlineHtmlComment#*
@@ -306,6 +303,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererInputBlockHtmlElement#*
 \markdownRendererInputFencedCode#*
 \markdownRendererInputFencedCodePrototype{arg1}{arg2}#*
+\markdownRendererInputRawBlock{file}{attribute}#*
+\markdownRendererInputRawInlinePrototype{file}{attribute}#*
+\markdownRendererInputRawInline{file}{attribute}#*
+\markdownRendererInputRawBlockPrototype{file}{attribute}#*
 \markdownRendererInputVerbatim#*
 \markdownRendererInputVerbatimPrototype{arg1}#*
 \markdownRendererInterblockSeparator#*
@@ -339,6 +340,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererLinkPrototype{arg1}{arg2}{arg3}{arg4}#*
 \markdownRendererNbsp#*
 \markdownRendererNbspPrototype#*
+\markdownRendererNote{text}#*
+\markdownRendererNotePrototype{text}#*
 \markdownRendererOlBegin#*
 \markdownRendererOlBeginPrototype#*
 \markdownRendererOlBeginTight#*
@@ -371,6 +374,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererTablePrototype{arg1}{arg2}{arg3}#*
 \markdownRendererTextCite#*
 \markdownRendererTextCitePrototype{arg1}#*
+\markdownRendererThematicBreak#*
+\markdownRendererThematicBreakPrototype#*
 \markdownRendererTickedBox#*
 \markdownRendererTickedBoxPrototype#*
 \markdownRendererTilde#*
@@ -392,3 +397,9 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererUntickedBox#*
 \markdownRendererUntickedBoxPrototype#*
 \markdownVersion#*
+
+# deprecated
+\markdownRendererFootnote#S
+\markdownRendererFootnotePrototype#S
+\markdownRendererHorizontalRule#S
+\markdownRendererHorizontalRulePrototype#S
