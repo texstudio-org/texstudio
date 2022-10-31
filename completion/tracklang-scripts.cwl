@@ -1,9 +1,9 @@
 # tracklang-scripts package
-# Matthew Bertucci 1/22/2022 for v1.5
+# Matthew Bertucci 2022/10/30 for v1.6
 
 #include:tracklang
 
-\TrackLangScriptMap{alpha code}{number}{name}{direction}{parent}#*
+\TrackLangScriptMap{letter code}{numeric code}{script name}{direction}{parent script}#*
 \TrackLangScriptAlphaToNumeric{alpha code}#*
 \TrackLangScriptIfKnownAlpha{alpha code}{true}{false}#*
 \TrackLangScriptNumericToAlpha{numeric code}#*

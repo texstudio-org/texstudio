@@ -1,5 +1,5 @@
 # frenchmath package
-# Matthew Bertucci 2022/10/17 for v1.6
+# Matthew Bertucci 2022/10/27 for v2.0
 
 #include:ifthen
 #include:mathrsfs
@@ -10,7 +10,73 @@
 
 #keyvals:\usepackage/frenchmath#c
 capsit
+upgreek
+Upgreek
 #endkeyvals
+
+#ifOption:upgreek
+#include:upgreek
+\italpha#*m
+\itbeta#*m
+\itgamma#*m
+\itdelta#*m
+\itepsilon#*m
+\itzeta#*m
+\iteta#*m
+\ittheta#*m
+\itiota#*m
+\itkappa#*m
+\itlambda#*m
+\itmu#*m
+\itnu#*m
+\itxi#*m
+\itpi#*m
+\itrho#*m
+\itsigma#*m
+\ittau#*m
+\itupsilon#*m
+\itphi#*m
+\itchi#*m
+\itpsi#*m
+\itomega#*m
+\itvarepsilon#*m
+\itvartheta#*m
+\itvarpi#*m
+\itvarsigma#*m
+\itvarphi#*m
+#endif
+
+#ifOption:Upgreek
+#include:upgreek
+\italpha#*m
+\itbeta#*m
+\itgamma#*m
+\itdelta#*m
+\itepsilon#*m
+\itzeta#*m
+\iteta#*m
+\ittheta#*m
+\itiota#*m
+\itkappa#*m
+\itlambda#*m
+\itmu#*m
+\itnu#*m
+\itxi#*m
+\itpi#*m
+\itrho#*m
+\itsigma#*m
+\ittau#*m
+\itupsilon#*m
+\itphi#*m
+\itchi#*m
+\itpsi#*m
+\itomega#*m
+\itvarepsilon#*m
+\itvartheta#*m
+\itvarpi#*m
+\itvarsigma#*m
+\itvarphi#*m
+#endif
 
 \curs{text%plain}
 \ssi

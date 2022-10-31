@@ -1,5 +1,5 @@
 # iexec package
-# Matthew Bertucci 2022/10/16 for v0.9.0
+# Matthew Bertucci 2022/10/29 for v0.11.2
 
 #include:shellesc
 #include:pgfkeys
@@ -17,6 +17,7 @@ trace
 quiet
 stdout=%<file name%>
 stderr=%<file name%>
+exit=%<file name%>
 trace
 append
 log

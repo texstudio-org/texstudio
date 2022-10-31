@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/10/16 for v7.15.0
+# Matthew Bertucci 2022/10/28 for v7.17.0
 
 #include:ifxetex
 #include:ifluatex
@@ -244,6 +244,7 @@ babel
 backblaze
 backbonedotjs
 backendless
+backstage
 badgr
 badoo
 baidu
@@ -276,6 +277,7 @@ bigcartel
 bigcommerce
 bilibili
 billboard
+bim
 binance
 biolink
 bit
@@ -587,6 +589,7 @@ dotenv
 dotnet
 douban
 doubanread
+dovecot
 dpd
 dragonframe
 draugiemdotlv
@@ -609,6 +612,7 @@ dwm
 dynamics365
 dynatrace
 e
+e3
 ea
 eagle
 easyjet
@@ -636,6 +640,7 @@ element
 elementary
 elementor
 eleventy
+elgato
 elixir
 eljueves
 ello
@@ -647,6 +652,7 @@ emby
 emirates
 emlakjet
 empirekred
+engadget
 enpass
 enterprisedb
 envato
@@ -755,6 +761,7 @@ fossa
 fossilscm
 foursquare
 foursquarecityguide
+fox
 foxtel
 fozzy
 framer
@@ -889,6 +896,7 @@ groupme
 groupon
 grubhub
 grunt
+gsk
 gtk
 guangzhoumetro
 guilded
@@ -976,6 +984,7 @@ ibeacon
 ibm
 ibmcloud
 ibmwatson
+iced
 iceland
 icinga
 icloud
@@ -1338,6 +1347,7 @@ monoprix
 monster
 monzo
 moo
+moonrepo
 morrisons
 moscowmetro
 motorola
@@ -1969,6 +1979,7 @@ stackpath
 stackshare
 stadia
 staffbase
+standardjs
 starbucks
 stardock
 starlingbank
@@ -2031,6 +2042,7 @@ symfony
 symphony
 sympy
 synology
+system76
 tableau
 tablecheck
 tacobell
@@ -2325,6 +2337,7 @@ wordpress
 workplace
 worldhealthorganization
 wpengine
+wpexplorer
 wprocket
 writedotas
 wwe

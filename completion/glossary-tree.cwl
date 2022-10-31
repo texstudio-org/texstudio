@@ -1,7 +1,7 @@
 # glossary-tree package
-# Matthew Bertucci 11/7/2021 for v4.49
+# Matthew Bertucci 2022/10/28 for v4.50
 
-\glstreenamefmt{name}#*
+\glstreenamefmt{text}#*
 \glstreegroupheaderfmt{text}#*
 \glstreenavigationfmt{text}#*
 \glstreepredesc#*
@@ -9,11 +9,10 @@
 \glstreeitem#*
 \glstreesubitem#*
 \glstreesubsubitem#*
-\glssetwidest{text}#*
-\glssetwidest[level]{text}#*
+\glstreeindent#*
+\glssetwidest{name}#*
+\glssetwidest[level]{name}#*
 \glsfindwidesttoplevelname#*
 \glsfindwidesttoplevelname[glossary list]#*
 \glstreenamebox{width}{text}#*
-
 \indexspace#*
-\glstreeindent#*

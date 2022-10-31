@@ -1,6 +1,6 @@
 # xepersian 23.7
 # hadi_sfr (info@hadisafari.ir)
-# updated 2022/07/15 for v24.7
+# updated 2022/10/30 for v24.8
 
 # Equivalent Persian Commands, documentclasses and some other commands are not included
 
@@ -171,6 +171,7 @@ perpagefootnote
 #include:bidi-perpage
 #endif
 
+\xepersianreleasename#*
 \xepersianversion#*
 \xepersiandate#*
 \settextfont{font name}

@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2022/07/20 for v1.57
+# Matthew Bertucci 2022/10/27 for v1.58
 
 #include:etoolbox
 #include:makecmds
@@ -618,6 +618,7 @@ numerals=#Western,Devanagari
 
 #keyvals:\setdefaultlanguage/hungarian#c,\setmainlanguage/hungarian#c,\setotherlanguage/hungarian#c,\textlang/hungarian#c,\texthungarian#c,\begin{lang}/hungarian#c,\begin{hungarian}#c,\selectlanguage/hungarian#c,\foreignlanguage/hungarian#c,\begin{otherlanguage}/hungarian#c,\begin{otherlanguage*}/hungarian#c,\resetdefaultlanguage/hungarian#c,\setlanguagealias/hungarian#c,\setlanguagealias*/hungarian#c,\pghyphenation/hungarian#c,\setlanghyphenmins/hungarian#c
 swapstrings=#all,captions,headings,headers,hheaders,none
+forceheadingpunctuation#true,false
 #endkeyvals
 
 \ontoday#*
@@ -994,6 +995,7 @@ lang=#local,main,%<language%>
 \ifbabellanguageloaded{language}{true}{false}#*
 \iflanguageidloaded{type}{id}{true}{false}#*
 \iflanguageoption{language}{opt key}{opt value}{true}{false}#*
+\setforeignlanguage{language}#*
 
 ## undocumented commands from gloss-*.ldf files
 # shared commands

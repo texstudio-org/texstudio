@@ -1,10 +1,9 @@
 # glossary-list package
-# Matthew Bertucci 11/7/2021 for v4.49
+# Matthew Bertucci 2022/10/28 for v4.50
 
 \glslistinit#*
 \glslistexpandedname{label}#*
-
 \indexspace#*
-\glslistgroupheaderfmt{label}#*
-\glslistnavigationitem{label}#*
+\glslistgroupheaderfmt{title%text}#*
+\glslistnavigationitem{navigation items}#*
 \glslistdottedwidth#*

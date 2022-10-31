@@ -1,11 +1,12 @@
 # glossary-hypernav package
-# Matthew Bertucci 11/7/2021 for v4.49
+# Matthew Bertucci 2022/10/28 for v4.50
 
-\glsnavhyperlink{label}{text}#r
-\glsnavhyperlink[type]{label}{text}#r
-\glsnavhypertarget{label}{text}#r
-\glsnavhypertarget[type]{label}{text}#r
-\glsnavigation#*
+\glsnavhypertarget{group-label}{group-title%text}
+\glsnavhypertarget[glossary-label]{group-label}{group-title%text}
+\glsnavhyperlink{group-label}{group-title%text}
+\glsnavhyperlink[glossary-label]{group-label}{group-title%text}
+\glsnavhyperlinkname{group-label}#*
+\glsnavhyperlinkname[glossary-label]{group-label}#*
+\glsnavigation
 \glshypernavsep#*
 \glssymbolnav#*
-\glsnavhyperlinkname{type}{label}#*r

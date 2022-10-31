@@ -40,14 +40,23 @@ notrim
 \cmidrules(trim){colspecs}#t
 
 \midruleX
-\resetmidruleX#t
-\midruleXstep#*
-\midruleXrule#*
-\themidruleX#*
-\midruleXaux#*
-\ifmidruleX#*
-\midruleXtrue#*
-\midruleXfalse#*
+\setmidruleX{keyvals}
+\setmidruleX[o|n|f]{keyvals}
+\setmidruleX*{keyvals}
+\setmidruleX*[o|n|f]{keyvals}
 
+#keyvals:\setmidruleX,\setmidruleX*
+step=%<integer%>
+rule=
+reset#true,false
+resetnum=%<integer%>
+cntr=%<integer%>
+#endkeyvals
+
+\resetmidruleX
+\midruleXreset#S
+
+# not documented
+\forcecolspec{arg}#S
 \oldgcmidrule#S
 \oldcmidrule#S
