@@ -1,5 +1,5 @@
 # luatexko package
-# Matthew Bertucci 2022/05/03 for v3.4
+# Matthew Bertucci 2022/11/01 for v3.5
 
 #include:luatexbase
 #include:fontspec
@@ -205,7 +205,7 @@ Renderer=%<renderer%>
 #endkeyvals
 
 # not documented
-\ifluatexkoselectfontrunning#*
+\ifluatexkorunningselectfont#*
 \japanese#*
 \korean#*
 \koreanlanguage#*
@@ -245,8 +245,9 @@ Renderer=%<renderer%>
 \luatexkorubyalloc#*
 \luatexkorubyattr#*
 \luatexkorubycount#*
-\luatexkoselectfontrunningfalse#*
-\luatexkoselectfontrunningtrue#*
+\luatexkorunningselectfontfalse#*
+\luatexkorunningselectfonttrue#*
+\luatexkoselectfont#*
 \luatexkostretchfactor#*
 \luatexkouhcinputencoding#*
 \luatexkoulinecount#*
