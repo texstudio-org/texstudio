@@ -168,8 +168,8 @@ jobs:
         brew install cmake
         brew install quazip
         brew install hunspell
-        wget https://github.com/sunderme/homebrew-poppler-build/releases/download/22.10.0/poppler-qt6--22.10.0.big_sur.bottle.tar.gz
-        brew install ./poppler-qt6--22.10.0.big_sur.bottle.tar.gz
+        wget https://github.com/sunderme/homebrew-poppler-build/releases/download/22.11.0/poppler-qt6--22.11.0.big_sur.bottle.tar.gz
+        brew install ./poppler-qt6--22.11.0.big_sur.bottle.tar.gz
         
 
     - name: Configure
