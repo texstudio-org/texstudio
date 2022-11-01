@@ -297,7 +297,9 @@ target_link_libraries(texstudio PRIVATE
 	Qt${QT_VERSION_MAJOR}::Concurrent 
 	Qt${QT_VERSION_MAJOR}::UiTools
 )
-target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
+if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0")
+	target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
+endif()
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 	target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
 endif()
