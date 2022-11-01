@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2022/07/06 for 2022/07/05 release
+# Matthew Bertucci 2022/11/01 for 2022/11/01 release
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
@@ -436,8 +436,9 @@ debug={%<options%>}
 \height#*L
 \partopsep#*L
 \parsep#*L
-\footheight#*L
 \hideskip#*
+\stockheight#*L
+\stockwidth#*L
 
 # pdftex specials
 \efcode#*
