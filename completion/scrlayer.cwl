@@ -25,6 +25,7 @@ manualmark
 markcase=#lower,upper,used,ignoreuppercase,nouppercase,ignoreupper,noupper
 #endkeyvals
 
+\footheight#*L
 \MakeMarkcase{text}#*
 \rightfirstmark#*
 \rightbotmark#*
