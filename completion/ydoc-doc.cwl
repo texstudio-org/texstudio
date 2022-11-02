@@ -1,5 +1,5 @@
 # ydoc-code package
-# Matthew Bertucci 11/13/2021 for v0.6alpha
+# Matthew Bertucci 2022/11/02 for v0.7alpha
 
 #include:shortvrb
 #include:url
@@ -20,7 +20,8 @@
 \ctanlocation{path}
 \repository{URL}#U
 \homepage{URL}#U
-\email{address}#U
+\email{address%URL}#U
+\github{URL}#U
 \pkgtitle{text}
 
 # not yet implemented
