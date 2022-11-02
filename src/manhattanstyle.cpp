@@ -122,7 +122,7 @@ public:
 	QImage lineeditImage;
 	QImage lineeditImage_disabled;
 
-	StyleAnimator animator;
+    Manhattan::StyleAnimator animator;
 };
 
 ManhattanStyle::ManhattanStyle(const QString &baseStyleName)
@@ -446,12 +446,12 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 		if (doTransition) {
 			QImage startImage(option->rect.size(), QImage::Format_ARGB32_Premultiplied);
 			QImage endImage(option->rect.size(), QImage::Format_ARGB32_Premultiplied);
-			Animation *anim = d->animator.widgetAnimation(widget);
+            Manhattan::Animation *anim = d->animator.widgetAnimation(widget);
 			QStyleOption opt = *option;
             opt.state = static_cast<QStyle::State>(oldState);
             opt.state |= static_cast<State>(State_Animating);
 			startImage.fill(0);
-			Transition *t = new Transition;
+            Manhattan::Transition *t = new Manhattan::Transition;
 			t->setWidget(w);
 			QPainter startPainter(&startImage);
 			if (!anim) {
@@ -499,7 +499,7 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
         break;
 
 	case PE_PanelButtonTool: {
-		Animation *anim = d->animator.widgetAnimation(widget);
+        Manhattan::Animation *anim = d->animator.widgetAnimation(widget);
 		if (!animating && anim) {
 			anim->paint(painter, option);
 		} else {

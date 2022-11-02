@@ -1,5 +1,5 @@
 
-configure_file(config-adwaita.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-adwaita.h )
+#configure_file(config-adwaita.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-adwaita.h )
 
 set(Adwaita_SRCS
     animations/adwaitaanimation.cpp
@@ -36,7 +36,7 @@ set(Adwaita_SRCS
     adwaitastyleplugin.cpp
     adwaitawindowmanager.cpp
 )
-add_definitions(-DQT_PLUGIN)
+#add_definitions(-DQT_PLUGIN)
 
 if (MSVC)
     add_definitions(-D_USE_MATH_DEFINES) # Needed for M_PI on MSVC
@@ -52,12 +52,21 @@ include_directories(
 
 set(LIBRARY_NAME "adwaita-qt${QT_VERSION_NUMBER}")
 
-add_library(${LIBRARY_NAME} MODULE ${Adwaita_SRCS})
-target_link_libraries(${LIBRARY_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDBUS_LIBRARY})
-set_target_properties(${LIBRARY_NAME} PROPERTIES
-    LINK_FLAGS "-Wl,--no-undefined"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
-    OUTPUT_NAME "adwaita"
-    PREFIX "")
+add_library(${LIBRARY_NAME} STATIC ${Adwaita_SRCS})
+#add_library(quazip STATIC ${QUAZIP_HEADER_FILES} ${QUAZIP_SOURCE_FILES})
+target_compile_definitions(${LIBRARY_NAME} PUBLIC -DADWAITA-QT_STATIC
+    Qt${QT_VERSION_NUMBER}::Gui
+    Qt${QT_VERSION_NUMBER}::Widgets
+    Qt${QT_VERSION_NUMBER}::Core
+    Qt${QT_VERSION_NUMBER}::DBus
+) 
 
-install(TARGETS ${LIBRARY_NAME} DESTINATION "${QT_PLUGINS_DIR}/styles")
+
+#target_link_libraries(${LIBRARY_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDBUS_LIBRARY})
+#set_target_properties(${LIBRARY_NAME} PROPERTIES
+#    LINK_FLAGS "-Wl,--no-undefined"
+#    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+#    OUTPUT_NAME "adwaita"
+#    PREFIX "")
+
+#install(TARGETS ${LIBRARY_NAME} DESTINATION "${QT_PLUGINS_DIR}/styles")

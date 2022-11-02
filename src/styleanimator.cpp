@@ -30,7 +30,8 @@
 #include "styleanimator.h"
 
 #include <QStyleOption>
-
+namespace Manhattan
+{
 Animation * StyleAnimator::widgetAnimation(const QWidget *widget) const
 {
     if (!widget)
@@ -151,4 +152,5 @@ void StyleAnimator::startAnimation(Animation *t)
     if (animations.size() > 0 && !animationTimer.isActive()) {
         animationTimer.start(35, this);
     }
+}
 }

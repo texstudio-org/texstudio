@@ -204,6 +204,15 @@ if(NOT MSVC)
 else()
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_CRASH_HANDLER)
 endif()
+
+option(TEXSTUDIO_BUILD_ADWAITA "Enable/Disable internal adwaita-qt style" ON)
+if(TEXSTUDIO_BUILD_ADWAITA)
+    find_package(Qt${QT_VERSION_MAJOR}DBus REQUIRED)
+    set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DADWAITA)
+    message(STATUS "integrate adwaita style")
+endif()
+add_subdirectory(src/adwaita-qt)
+
 option(TEXSTUDIO_ENABLE_TESTS "Enable/Disable internal tests" OFF)
 if(${TEXSTUDIO_ENABLE_TESTS})
 	message(STATUS "tests enabled.")
@@ -291,17 +300,20 @@ target_link_libraries(texstudio PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::PrintSupport
     Qt${QT_VERSION_MAJOR}::Svg
-	Qt${QT_VERSION_MAJOR}::Network 
-	Qt${QT_VERSION_MAJOR}::Xml 
-	Qt${QT_VERSION_MAJOR}::Qml 
-	Qt${QT_VERSION_MAJOR}::Concurrent 
-	Qt${QT_VERSION_MAJOR}::UiTools
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Xml
+    Qt${QT_VERSION_MAJOR}::Qml
+    Qt${QT_VERSION_MAJOR}::Concurrent
+    Qt${QT_VERSION_MAJOR}::UiTools
 )
 if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0")
-	target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
+    target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
 endif()
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-	target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
+    target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
+endif()
+if(TEXSTUDIO_BUILD_ADWAITA)
+    target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::DBus)
 endif()
 
 set_source_files_properties(${OSX_FILES} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")

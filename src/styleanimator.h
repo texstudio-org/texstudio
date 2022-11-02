@@ -43,7 +43,7 @@
  * there.
  *
  */
- 
+namespace Manhattan{
 class Animation
 {
 public :
@@ -97,4 +97,5 @@ private:
     QBasicTimer animationTimer;
     QList <Animation*> animations;
 };
+}
 #endif // ANIMATION_H

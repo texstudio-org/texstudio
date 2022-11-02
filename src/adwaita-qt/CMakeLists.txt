@@ -1,53 +1,91 @@
-project(Adwaita)
+if(TEXSTUDIO_BUILD_ADWAITA)
 
-cmake_minimum_required(VERSION 2.8.11)
+    set(INC_DIRECTORIES
+        ${INC_DIRECTORIES}
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/style
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/debug
+        PARENT_SCOPE
+    )
 
-set(CMAKE_AUTOMOC ON)
-add_definitions(-std=c++11)
+    set(SOURCE_FILES ${SOURCE_FILES}
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaanimation.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaanimations.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaanimationdata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitabaseengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitabusyindicatordata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitabusyindicatorengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitadialdata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitadialengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaenabledata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitagenericdata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaheaderviewdata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaheaderviewengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitascrollbardata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitascrollbarengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaspinboxengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaspinboxdata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitastackedwidgetdata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitastackedwidgetengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatabbarengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatabbardata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatoolboxengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatransitiondata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatransitionwidget.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitawidgetstateengine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitawidgetstatedata.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/debug/adwaitawidgetexplorer.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitaaddeventfilter.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitahelper.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitamnemonics.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitasplitterproxy.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitastyle.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitastyleplugin.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitawindowmanager.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/kstylekde4compat.cpp
+        PARENT_SCOPE
+    )
 
-option(USE_QT4 "Use Qt4 instead of Qt5" OFF)
-if (USE_QT4)
-    find_package(Qt4 REQUIRED)
-    set(QT_VERSION_NUMBER "4")
-else()
-    find_package(Qt5Core REQUIRED)
-    find_package(Qt5Gui REQUIRED)
-    find_package(Qt5Widgets REQUIRED)
-    find_package(Qt5DBus REQUIRED)
-    set(QT_QTGUI_LIBRARY Qt5::Gui Qt5::Widgets)
-    set(QT_QTCORE_LIBRARY Qt5::Core)
-    set(QT_QTDBUS_LIBRARY Qt5::DBus)
-    #target_link_libraries(${LIBRARY_NAME} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
-    set(QT_VERSION_NUMBER "5")
-    get_target_property(REAL_QMAKE_EXECUTABLE ${Qt5Core_QMAKE_EXECUTABLE}
-                       IMPORTED_LOCATION)
-    if (NOT QT_PLUGINS_DIR)
-        execute_process(COMMAND "${REAL_QMAKE_EXECUTABLE}" -query QT_INSTALL_PLUGINS
-                        OUTPUT_VARIABLE QT_PLUGINS_DIR
-                        ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-    endif()
+    set(HEADER_FILES ${HEADER_FILES}
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitaaddeventfilter.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitadebug.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaita.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitahelper.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitamnemonics.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitasplitterproxy.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitastyle.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/adwaitawindowmanager.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/config-adwaita.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/kstylekde4compat.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaanimationdata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaanimation.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaanimations.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitabaseengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitabusyindicatordata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitabusyindicatorengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitadatamap.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitadialdata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitadialengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaenabledata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitagenericdata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaheaderviewdata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaheaderviewengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitawidgetstateengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitascrollbardata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitascrollbarengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaspinboxdata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitaspinboxengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitastackedwidgetdata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitastackedwidgetengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatabbardata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatabbarengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatoolboxengine.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatransitiondata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitatransitionwidget.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/animations/adwaitawidgetstatedata.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/style/debug/adwaitawidgetexplorer.h
+        PARENT_SCOPE
+    )
+
 endif()
-
-if (NOT CMAKE_INSTALL_PREFIX)
-    set (CMAKE_INSTALL_PREFIX "/usr/local")
-endif()
-
-if (NOT DATA_INSTALL_DIR)
-    set (DATA_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/share")
-endif()
-if (NOT THEME_INSTALL_DIR)
-    set (THEME_INSTALL_DIR "${DATA_INSTALL_DIR}/themes")
-endif()
-
-set(ADWAITA_THEME_DIR "${THEME_INSTALL_DIR}/Adwaita/qt")
-
-option(BUILD_EXAMPLE "Build an example widget factory app" OFF)
-if (BUILD_EXAMPLE)
-    if (USE_QT4)
-        error("It's not possible to build the example using Qt4 yet, sorry.")
-    else()
-        add_subdirectory(demo)
-    endif()
-endif()
-
-add_subdirectory(style)
