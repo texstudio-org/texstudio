@@ -973,7 +973,7 @@ CompletionWord manipulateCompletionWord(CompletionWord cw,QString key,QString re
         ph.id=-1;
         ph.flags=CodeSnippetPlaceHolder::AutoSelect;
         int k=0;
-        for(;cw.placeHolders.last().length();++k){
+        for(;k<cw.placeHolders.last().length();++k){
             if(cw.placeHolders.last().value(k).offset>index)
                 break;
         }
