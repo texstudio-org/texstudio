@@ -1,8 +1,10 @@
 # hep-float package
-# Matthew Bertucci 11/13/2021 for v1.0
+# Matthew Bertucci 2022/11/03 for v1.1
 
 #include:kvoptions
 #include:subcaption
+#include:calc
+#include:etoolbox
 #include:booktabs
 #include:multirow
 #include:graphicx
@@ -19,4 +21,6 @@ manualplacement#true,false
 \graphic[width]{imagefile}#g
 \graphics{file path}
 
-\tikzsetnextfilename{arg}#*
+\panelhspace#*
+\panelvspace#*
+\tikzsetnextfilename{imagefile}#*g
