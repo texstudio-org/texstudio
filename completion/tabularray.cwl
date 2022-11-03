@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 2022/07/02 for v2022C
+# Matthew Bertucci 2022/11/02 for v2022D
 
 #include:expl3
 #include:xparse
@@ -76,6 +76,7 @@ hline
 verb
 measure=#vbox
 baseline=#t,T,m,b,B,%<row number%>
+delimiter={%<keyvals%>}
 #endkeyvals
 
 \SetHline{cols}{styles%keyvals}#*
@@ -375,6 +376,9 @@ lastfoot
 foot
 #endkeyvals
 
+\tblrcontfootname#*
+\tblrcontheadname#*
+
 \SetTblrStyle{element}{styles%keyvals}
 
 #keyvals:\SetTblrStyle#c
@@ -413,8 +417,10 @@ booktabs
 counter
 diagbox
 functional
+nameref
 siunitx
 varwidth
+zref
 #endkeyvals
 
 # from amsmath tblrlibrary
@@ -515,3 +521,7 @@ process=%<function%>
 \end{tblrNoHyper}#S
 \pagebreak[number]#*
 \nopagebreak[number]#*
+\lTblrCaptionTl#S
+\lTblrEntryTl#S
+\lTblrLabelTl#S
+\lTblrRefMoreClist#S
