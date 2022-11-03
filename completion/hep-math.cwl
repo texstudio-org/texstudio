@@ -1,18 +1,23 @@
 # hep-math package
-# Matthew Bertucci 2022/06/10 for v1.0
+# Matthew Bertucci 2022/11/03 for v1.1
 
 #include:mathtools
 #include:xparse
 #include:soulutf8
+#include:amssymb
 #include:units
 #include:cancel
 #include:slashed
 #include:mleftright
+#include:etoolbox
+#include:xpatch
 
 \mathdef{cmd}{def}#d
 \mathdef{cmd}[args]{def}#d
+\mathdef{cmd}[args][default]{def}#d
 \textoverline{text}#*
 \overline{text%plain}
+\widebar{text%formula}
 \oset{over%formula}{math%formula}
 \overleft{math%formula}
 \overright{math%formula}
@@ -115,7 +120,8 @@
 \pb{arg1}{arg2}#m
 \comm{arg1}{arg2}#m
 \acomm{arg1}{arg2}#m
-\braketspace#*
+\braketouterspace#*
+\braketinnerspace#*
 \braket{arg1}{arg2}#m
 \bra{arg}#m
 \ket{arg}#m
