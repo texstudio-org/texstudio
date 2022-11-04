@@ -1498,3 +1498,7 @@ octavo:
 class-octavo
 latex-document
 tex
+ydoc:
+class-ydoc
+latex-document
+tex
