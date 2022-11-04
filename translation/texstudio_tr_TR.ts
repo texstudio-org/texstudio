@@ -1861,12 +1861,12 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
     <message>
         <location filename="../src/configdialog.ui" line="362"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Simge teması:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="370"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -2202,7 +2202,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3223"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Aşağıdaki listeyi süz</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3322"/>
@@ -11461,7 +11461,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
     <message>
         <location filename="../src/texstudio.cpp" line="944"/>
         <source>C&amp;ut Line or Selection</source>
-        <translation type="unfinished"/>
+        <translation>Satırı &amp;ya da seçimi kes</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11387"/>
