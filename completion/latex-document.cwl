@@ -3,9 +3,11 @@
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
-# Matthew Bertucci 2022/07/06 for 2022/07/05 release
+# Matthew Bertucci 2022/11/01 for 2022/11/01 release
+
 #include:latex-dev
 #include:textcomp
+
 \abstractname#*
 \addcontentsline{file}{secunit}{entry}#*
 \Alph{counter}#*
@@ -269,9 +271,12 @@
 \makeindex
 \makelabel#*
 \MakeLowercase{text}#*
+\MakeLowercase[options%keyvals]{text}#*
 \maketitle
 \MakeTitlecase{text}#*
+\MakeTitlecase[options%keyvals]{text}#*
 \MakeUppercase{text}#*
+\MakeUppercase[options%keyvals]{text}#*
 \mapstochar#*m
 \marginpar[left]{right}#*
 \marginpar{right}#*
@@ -630,6 +635,11 @@ ieeetr
 plain
 siam
 unsrt
+#endkeyvals
+
+#keyvals:\MakeLowercase#c,\MakeTitlecase#c,\MakeUppercase#c
+locale=%<BCP-47 tag%>
+lang=%<BCP-47 tag%>
 #endkeyvals
 
 #keyvals:\mathversion#c

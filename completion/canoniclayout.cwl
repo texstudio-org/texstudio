@@ -1,19 +1,32 @@
 # canoniclayout package
-# Matthew Bertucci 1/8/2021 for v0.5
+# Matthew Bertucci 2022/11/01 for v1.0
 
-#include:xfp
+#include:etoolbox
+#include:pict2e
+#include:xcolor
 
 \currentfontletters
 \charactersperpage
 
-\CLshape#*
-\CLinvshape#*
-\innermargin#*
-\outermargin#*
-\uppermargin#*
-\CLpageratio#*
-\CLlargeratio#*
-\CLsmallratio#*
-\CLcharcount#*
-\CLlinesperpage#*
-\CLcharsperpage#*
+\CLstartdrawings#*
+\CLstopdrawings#*
+
+\CLshape#S
+\CLinvshape#S
+\CLinner#S
+\CLouter#S
+\CLtop#S
+\CLbottom#S
+\CLx#S
+\CLxx#S
+\CLcirclecenterX#S
+\CLcirclecenterY#S
+\CLcircleradius#S
+\CLcirclediameter#S
+\CLpageW#S
+\CLdiagX#S
+\CLdiagY#S
+\CLlly#S
+\CLllLx#S
+\CLllRx#S
+\CLdrawing#S

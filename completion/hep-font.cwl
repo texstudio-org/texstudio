@@ -1,10 +1,11 @@
 # hep-font package
-# Matthew Bertucci 11/13/2021 for v1.0
+# Matthew Bertucci 2022/11/02 for v1.1
 
 #include:kvoptions
 #include:ifluatex
 #include:ifxetex
 #include:fontenc
+#include:pdftexcmds
 #include:fix-cm
 #include:microtype
 #include:cfr-lm
@@ -13,9 +14,21 @@
 #include:inputenc
 
 #keyvals:\usepackage/hep-font#c
+size=#8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt,default
+sans
+serif
 oldstyle
-lining#true,false
+lining
 #endkeyvals
+
+#ifOption:oldstyle
+#include:units
+#include:xpatch
+#endif
+#ifOption:oldstyle=true
+#include:units
+#include:xpatch
+#endif
 
 \ifxetexorluatex#*
 \xetexorluatextrue#*

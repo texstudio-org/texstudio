@@ -1,10 +1,9 @@
 # achemso class (distinct from achemso package; see achemso.cwl)
-# Matthew Bertucci 2022/10/01 for v3.13d
+# Matthew Bertucci 2022/10/31 for v3.13e
 
 #include:xkeyval
 #include:geometry
 #include:caption
-#include:etoolbox
 #include:float
 #include:graphicx
 #include:setspace

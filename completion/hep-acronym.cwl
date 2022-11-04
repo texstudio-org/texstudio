@@ -1,5 +1,5 @@
 # hep-acronym package
-# Matthew Bertucci 11/13/2021 for v1.0
+# Matthew Bertucci 2022/11/03 for v1.1
 
 #include:glossaries-extra
 #include:everyhook
@@ -15,6 +15,8 @@
 \acronym*[typeset abbr]{abbr}{def%text}#*
 \acronym*{abbr}{def%text}[plural def%text]#*
 \acronym*[typeset abbr]{abbr}{def%text}[plural def%text]#*
+
+\sentence
 
 \shortacronym{abbr}{def%text}
 \shortacronym[typeset abbr]{abbr}{def%text}

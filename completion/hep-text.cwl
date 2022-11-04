@@ -1,5 +1,5 @@
 # hep-text package
-# Matthew Bertucci 11/13/2021 for v1.0
+# Matthew Bertucci 2022/11/03 for v1.1
 
 #include:kvoptions
 #include:babel
@@ -23,6 +23,7 @@ lang=%<language%>
 \online{URL}{text%plain}#U
 \email{email%URL}#U
 \prefix{prefix}{word%text}
+\subsubparagraph
 \begin{inlinelist}
 \begin{inlinelist}[options%keyvals]
 \end{inlinelist}
@@ -80,6 +81,9 @@ itemjoin*=%<string%>
 afterlabel=%<string%>
 mode=#unboxed,boxed
 #endkeyvals
+
+\begin{enumdesc}#S
+\end{enumdesc}#S
 
 # from all option of foreign
 \addendum

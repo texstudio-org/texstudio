@@ -1,5 +1,5 @@
 # tipauni package
-# Matthew Bertucci 2/23/2022 for v0.6
+# Matthew Bertucci 2022/11/01 for v0.6.1
 
 #include:fontspec
 #include:xparse
@@ -93,16 +93,21 @@ incompatible
 \textesh
 \stdlnetiebar{arg}
 \textsubring{arg}
+\textsupring{arg}
 \textsubwedge{arg}
+\textsupwedge{arg}
 \textsubrhalfring{arg}
 \textsublhalfring{arg}
 \textsubplus{arg}
 \textsubbar{arg}
+\textsupbar{arg}
 \textovercross{arg}
 \textsyllabic{arg}
 \textsubarch{arg}
 \textsubumlaut{arg}
+\textsupumlaut{arg}
 \textsubtilde{arg}
+\textsuptilde{arg}
 \textseagull{arg}
 \textsuperimposetilde{arg}
 \textraising{arg}
@@ -136,17 +141,22 @@ incompatible
 \tipauniretracting{arg}#*
 \tipauniovercross{arg}#*
 \tipauniseagull{arg}#*
-\tipaunisubring{arg}#*
+\tipauniring{arg}#*
+\TipaUniSupRing{arg}#*
 \TipaUniSubRing{arg}#*
-\tipaunisubwedge{arg}#*
+\tipauniwedge{arg}#*
 \TipaUniSubWedge{arg}#*
-\tipaunisubbar{arg}#*
+\TipaUniSupWedge{arg}#*
+\tipaunibar{arg}#*
 \TipaUniSubBar{arg}#*
+\TipaUniSupBar{arg}#*
 \tipauniovercross{arg}#*
-\tipaunisubumlaut{arg}#*
+\tipauniumlaut{arg}#*
 \TipaUniSubUmlaut{arg}#*
-\tipaunisubtilde{arg}#*
+\TipaUniSupUmlaut{arg}#*
+\tipaunitilde{arg}#*
 \TipaUniSubTilde{arg}#*
+\TipaUniSupTilde{arg}#*
 \tipaunisuperimposetilde{arg}#*
 \tipaunitexttoptiebar{arg1}{arg2}#*
 \tipaunit{arg}#*

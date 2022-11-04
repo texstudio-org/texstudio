@@ -45,6 +45,7 @@ usegeometry
 \areaset[BCOR]{width}{height}
 \AfterSettingArea{code}
 \AfterSettingArea*{code}
+\footheight#*L
 
 # deprecated
 \SetDIVList#S

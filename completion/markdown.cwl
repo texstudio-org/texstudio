@@ -1,8 +1,7 @@
 # markdown package
-# Matthew Bertucci 2022/10/04 for v2.17.1-0-g8ca83f5
+# Matthew Bertucci 2022/10/31 for v2.18.0-0-gd8ae860
 
 #include:expl3
-#include:ifthen
 #include:paralist
 #include:amsmath
 #include:amssymb
@@ -59,7 +58,6 @@ eagerCache#true,false
 extensions=%<file names%>
 expectJekyllData#true,false
 fancyLists#true,false
-footnotes#true,false
 fencedCode#true,false
 jekyllData#true,false
 hardLineBreaks#true,false
@@ -67,9 +65,11 @@ hashEnumerators#true,false
 headerAttributes#true,false
 html#true,false
 hybrid#true,false
-inlineFootnotes#true,false
+inlineNotes#true,false
+notes#true,false
 pipeTables#true,false
 preserveTabs#true,false
+rawAttribute#true,false
 relativeReferences#true,false
 smartEllipses#true,false
 shiftHeadings=%<shift amount%>
@@ -110,60 +110,59 @@ jekyllDataRenderers={%<keyvals%>}
 #include:varioref
 #endif
 
-\ifmarkdownLaTeXLoaded#*
-\markdownError{warning text%text}#*
-\markdownInfo{info text%text}#*
-\markdownInputPlainTeX{file}#*i
-\markdownLaTeXBasicCitations{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#*
-\markdownLaTeXBasicTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#*
-\markdownLaTeXBibLaTeXCitations{arg1}{arg2}{arg3}{arg4}{arg5}#*
-\markdownLaTeXBibLaTeXTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}#*
-\markdownLaTeXBottomRule#*
-\markdownLaTeXCitationsCounter#*
-\markdownLaTeXCitationsTotal#*
-\markdownLaTeXColumnCounter#*
-\markdownLaTeXColumnTotal#*
-\markdownLaTeXLoadedfalse#*
-\markdownLaTeXLoadedtrue#*
-\markdownLaTeXMidRule#*
-\markdownLaTeXNatbibCitations{arg1}{arg2}{arg3}{arg4}{arg5}#*
-\markdownLaTeXNatbibTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}#*
-\markdownLaTeXReadAlignments{arg1}#*
-\markdownLaTeXRendererAbsoluteLink{arg1}{arg2}{arg3}{arg4}#*
-\markdownLaTeXRendererRelativeLink{arg1}#*
-\markdownLaTeXRenderTableCell{arg1}#*
-\markdownLaTeXRenderTableRow{arg1}#*
-\markdownLaTeXRowCounter#*
-\markdownLaTeXRowTotal#*
-\markdownLATEXStrongEmphasis{text}#*
-\markdownLaTeXTable{arg1}#*
-\markdownLaTeXTableAlignment{arg1}#*
-\markdownLaTeXTableEnd{arg1}#*
-\markdownLaTeXThemeLoad{package}{theme name}#*u
-\markdownLaTeXThemeName#*
-\markdownLaTeXThemePackageName#*
-\markdownLaTeXTopRule#*
-\markdownLaTeXUlItem#*
+\ifmarkdownLaTeXLoaded#S
+\markdownError{error text%text}{help text%text}#S
+\markdownInfo{info text%text}#S
+\markdownInputPlainTeX{file}#Si
+\markdownLaTeXBasicCitations{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\markdownLaTeXBasicTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\markdownLaTeXBibLaTeXCitations{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\markdownLaTeXBibLaTeXTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\markdownLaTeXBottomRule#S
+\markdownLaTeXCitationsCounter#S
+\markdownLaTeXCitationsTotal#S
+\markdownLaTeXColumnCounter#S
+\markdownLaTeXColumnTotal#S
+\markdownLaTeXLoadedfalse#S
+\markdownLaTeXLoadedtrue#S
+\markdownLaTeXMidRule#S
+\markdownLaTeXNatbibCitations{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\markdownLaTeXNatbibTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\markdownLaTeXReadAlignments{arg1}#S
+\markdownLaTeXRenderTableCell{arg1}#S
+\markdownLaTeXRenderTableRow{arg1}#S
+\markdownLaTeXRowCounter#S
+\markdownLaTeXRowTotal#S
+\markdownLATEXStrongEmphasis{text}#S
+\markdownLaTeXTable{arg1}#S
+\markdownLaTeXTableAlignment{arg1}#S
+\markdownLaTeXTableEnd{arg1}#S
+\markdownLaTeXThemeLoad{package}{theme name}#Su
+\markdownLaTeXThemeName#S
+\markdownLaTeXThemePackageName#S
+\markdownLaTeXTopRule#S
+\markdownLaTeXUlItem#S
 \markdownMakeOther#*
 \markdownOptionCodeSpans#*
 \markdownOptionExpectJekyllData#*
 \markdownOptionRelativeReferences#*
 \markdownOptionTexComments#*
 \markdownOptionUnderscores#*
-\markdownVersionSpace#*
-\markdownWarning{warning text%text}#*
+\markdownVersionSpace#S
+\markdownWarning{warning text%text}#S
 
 # from markdown.tex
 \markdown#S
 \endmarkdown#S
 \markdownBegin#*
 \markdownEnd#*
+\markdownEscape{file}#*
 \markdownExecute{code}#*
 \markdownExecuteDirect{code}#*
 \markdownExecuteShellEscape#*
 \markdownIfOption{option}{true}{false}#*
-\markdownInputFileStream#*
-\markdownLastModified#*
+\markdownInputFileStream#S
+\markdownLastModified#S
 \markdownLuaExecute{code}#*
 \markdownLuaOptions#*
 \markdownOptionBlankBeforeBlockquote#*
@@ -205,7 +204,7 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownOptionTeXComments#*
 \markdownOptionTightLists#*
 \markdownOptionUnderscores#*
-\markdownOutputFileStream#*
+\markdownOutputFileStream#S
 \markdownPrepare#*
 \markdownPrepareLuaOptions#*
 \markdownReadAndConvert#*
@@ -276,8 +275,6 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererFancyOlItemPrototype#*
 \markdownRendererFancyOlItemWithNumber#*
 \markdownRendererFancyOlItemWithNumberPrototype#*
-\markdownRendererFootnote#*
-\markdownRendererFootnotePrototype{arg1}#*
 \markdownRendererHalfTickedBox#*
 \markdownRendererHalfTickedBoxPrototype#*
 \markdownRendererHash#*
@@ -296,8 +293,6 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererHeadingThreePrototype{arg1}#*
 \markdownRendererHeadingTwo#*
 \markdownRendererHeadingTwoPrototype{arg1}#*
-\markdownRendererHorizontalRule#*
-\markdownRendererHorizontalRulePrototype#*
 \markdownRendererImage#*
 \markdownRendererImagePrototype{arg1}{arg2}{arg3}{arg4}#*
 \markdownRendererInlineHtmlComment#*
@@ -306,6 +301,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererInputBlockHtmlElement#*
 \markdownRendererInputFencedCode#*
 \markdownRendererInputFencedCodePrototype{arg1}{arg2}#*
+\markdownRendererInputRawBlock{file}{attribute}#*
+\markdownRendererInputRawInlinePrototype{file}{attribute}#*
+\markdownRendererInputRawInline{file}{attribute}#*
+\markdownRendererInputRawBlockPrototype{file}{attribute}#*
 \markdownRendererInputVerbatim#*
 \markdownRendererInputVerbatimPrototype{arg1}#*
 \markdownRendererInterblockSeparator#*
@@ -318,8 +317,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererJekyllDataEmptyPrototype{arg1}#*
 \markdownRendererJekyllDataEnd#*
 \markdownRendererJekyllDataEndPrototype#*
-\markdownRendererJekyllDataMappingBegin#*
-\markdownRendererJekyllDataMappingBeginPrototype{arg1}{arg2}#*
+\markdownRendererJekyllDataMappingBegin{key%plain}{number}#*
+\markdownRendererJekyllDataMappingBeginPrototype{key%plain}{number}#*
 \markdownRendererJekyllDataMappingEnd#*
 \markdownRendererJekyllDataMappingEndPrototype#*
 \markdownRendererJekyllDataNumber#*
@@ -339,6 +338,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererLinkPrototype{arg1}{arg2}{arg3}{arg4}#*
 \markdownRendererNbsp#*
 \markdownRendererNbspPrototype#*
+\markdownRendererNote{text}#*
+\markdownRendererNotePrototype{text}#*
 \markdownRendererOlBegin#*
 \markdownRendererOlBeginPrototype#*
 \markdownRendererOlBeginTight#*
@@ -371,6 +372,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererTablePrototype{arg1}{arg2}{arg3}#*
 \markdownRendererTextCite#*
 \markdownRendererTextCitePrototype{arg1}#*
+\markdownRendererThematicBreak#*
+\markdownRendererThematicBreakPrototype#*
 \markdownRendererTickedBox#*
 \markdownRendererTickedBoxPrototype#*
 \markdownRendererTilde#*
@@ -391,4 +394,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererUnderscorePrototype#*
 \markdownRendererUntickedBox#*
 \markdownRendererUntickedBoxPrototype#*
-\markdownVersion#*
+\markdownVersion#S
+
+# deprecated
+\markdownRendererFootnote#S
+\markdownRendererFootnotePrototype#S
+\markdownRendererHorizontalRule#S
+\markdownRendererHorizontalRulePrototype#S

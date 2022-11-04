@@ -1,9 +1,10 @@
 # bodeplot package
-# Matthew Bertucci 2022/07/14 for v1.1.1
+# Matthew Bertucci 2022/11/01 for v1.1.2
 
 #include:tikz
 #include:pdftexcmds
 #include:ifplatform
+#include:environ
 #include:pgfplots
 
 #keyvals:\usepackage/bodeplot#c
