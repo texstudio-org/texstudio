@@ -85,5 +85,45 @@
         <file alias="qxs/defaultFormatsDark.qxf">utilities/qxs/defaultFormatsDark.qxf</file>
         <file>utilities/stylesheet_francesco.qss</file>
         <file>images/doc.png</file>
+        <file>images/rc/radio_unchecked_disabled.png</file>
+        <file>images/rc/radio_unchecked_focus.png</file>
+        <file>images/rc/radio_unchecked.png</file>
+        <file>images/rc/right_arrow_disabled.png</file>
+        <file>images/rc/right_arrow.png</file>
+        <file>images/rc/sizegrip.png</file>
+        <file>images/rc/stylesheet-branch-end.png</file>
+        <file>images/rc/stylesheet-branch-more.png</file>
+        <file>images/rc/stylesheet-vline.png</file>
+        <file>images/rc/transparent.png</file>
+        <file>images/rc/undock.png</file>
+        <file>images/rc/up_arrow_disabled.png</file>
+        <file>images/rc/up_arrow.png</file>
+        <file>images/rc/Vmovetoolbar.png</file>
+        <file>images/rc/Vsepartoolbar.png</file>
+        <file>images/rc/checkbox_checked_disabled.png</file>
+        <file>images/rc/checkbox_checked_focus.png</file>
+        <file>images/rc/checkbox_checked.png</file>
+        <file>images/rc/checkbox_indeterminate_disabled.png</file>
+        <file>images/rc/checkbox_indeterminate_focus.png</file>
+        <file>images/rc/checkbox_indeterminate.png</file>
+        <file>images/rc/checkbox_unchecked_disabled.png</file>
+        <file>images/rc/checkbox_unchecked_focus.png</file>
+        <file>images/rc/checkbox_unchecked.png</file>
+        <file>images/rc/branch_closed-on.png</file>
+        <file>images/rc/branch_closed.png</file>
+        <file>images/rc/branch_open-on.png</file>
+        <file>images/rc/branch_open.png</file>
+        <file>images/rc/close-hover.png</file>
+        <file>images/rc/close-pressed.png</file>
+        <file>images/rc/close.png</file>
+        <file>images/rc/down_arrow_disabled.png</file>
+        <file>images/rc/down_arrow.png</file>
+        <file>images/rc/Hmovetoolbar.png</file>
+        <file>images/rc/Hsepartoolbar.png</file>
+        <file>images/rc/left_arrow_disabled.png</file>
+        <file>images/rc/left_arrow.png</file>
+        <file>images/rc/radio_checked_disabled.png</file>
+        <file>images/rc/radio_checked_focus.png</file>
+        <file>images/rc/radio_checked.png</file>
     </qresource>
 </RCC>
