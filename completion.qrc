@@ -954,6 +954,7 @@
 <file>completion/class-xepersian-magazine.cwl</file>
 <file>completion/class-yaletter.cwl</file>
 <file>completion/class-ycbook.cwl</file>
+<file>completion/class-ydoc.cwl</file>
 <file>completion/class-zbMATH.cwl</file>
 <file>completion/cleanthesis.cwl</file>
 <file>completion/ClearSans.cwl</file>
@@ -1698,6 +1699,7 @@
 <file>completion/hep-font.cwl</file>
 <file>completion/hep-math.cwl</file>
 <file>completion/hep-math-font.cwl</file>
+<file>completion/hep-paper.cwl</file>
 <file>completion/hepparticles.cwl</file>
 <file>completion/hep-text.cwl</file>
 <file>completion/hep-title.cwl</file>
