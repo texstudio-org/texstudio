@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/10/28 for v7.17.0
+# Matthew Bertucci 2022/11/05 for v7.18.0
 
 #include:ifxetex
 #include:ifluatex
@@ -1352,6 +1352,7 @@ morrisons
 moscowmetro
 motorola
 mozilla
+mqtt
 msi
 msibusiness
 mta
@@ -1718,6 +1719,7 @@ rancher
 rarible
 rasa
 raspberrypi
+ravelry
 ray
 razer
 razorpay
