@@ -2645,6 +2645,7 @@ primary-location-formats={%<list%>}
 principal-location-formats={%<list%>}
 primary-loc-counters=#combine,match,split
 principal-loc-counters=#combine,match,split
+merge-ranges#true,false
 min-loc-range=%<value%>
 max-loc-diff=%<integer%>
 suffixF=%<value%>
