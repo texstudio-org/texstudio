@@ -1,6 +1,6 @@
 # bidi package
 # hadi_sfr (info@hadisafari.ir)
-# updated 2022/07/15 for v39.2
+# updated 2022/11/06 for v39.2
 
 #include:xetex
 #include:iftex
@@ -135,6 +135,7 @@ perpagefootnote
 
 \bidiversion#*
 \bididate#*
+\bidireleasename#*
 \TeXXeTOn#*
 \TeXXeTOff#*
 
