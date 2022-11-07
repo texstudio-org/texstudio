@@ -169,6 +169,9 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.4.0-1/Qt5Compat-6.4.0-Darwin.tar.xz
         sudo tar xvf ./Qt5Compat-6.4.0-Darwin.tar.xz -C /usr/local/QtBase-6.4.0-Darwin --strip-components=1
         rm Qt5Compat-6.4.0-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.4.0-1/QtTools-6.4.0-Darwin.tar.xz
+        sudo tar xvf ./QtTools-6.4.0-Darwin.tar.xz -C /usr/local/QtBase-6.4.0-Darwin --strip-components=1
+        rm QtTools-6.4.0-Darwin.tar.xz
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.4.0-1/QtDeclarative-6.4.0-Darwin.tar.xz
         sudo tar xvf ./QtDeclarative-6.4.0-Darwin.tar.xz -C /usr/local/QtBase-6.4.0-Darwin --strip-components=1
         rm QtDeclarative-6.4.0-Darwin.tar.xz
