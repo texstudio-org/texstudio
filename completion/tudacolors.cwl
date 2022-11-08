@@ -1,5 +1,5 @@
 # tudacolors package
-# Matthew Bertucci 2/12/2022 for v3.22
+# Matthew Bertucci 2022/11/08 for v3.28
 
 #include:expl3
 #include:l3keys2e
@@ -14,6 +14,7 @@ text=#black,white
 cmyk
 RGB
 department=mecheng
+departmentconfigprefix=%<prefix%>
 #endkeyvals
 
 TUDa-0d#B
