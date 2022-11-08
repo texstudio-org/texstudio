@@ -1,4 +1,4 @@
-# neo-euler package
+# euler-math package
 # Matthew Bertucci 2022/11/06 for v0.30
 
 #include:iftex
