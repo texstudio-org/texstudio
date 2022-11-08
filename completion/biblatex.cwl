@@ -5746,7 +5746,7 @@ xindy#true,false
 \citefilmnoindex{bibid}#*C
 #endif
 
-### biblatex-gb7714-2015 v1.1j ###
+### biblatex-gb7714-2015 v1.1k ###
 #ifOption:style=gb7714-2015
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from gb7714-2015.bbx
@@ -5958,6 +5958,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \dealsortlan#*
 \bibitemindent#*
 \therefnumeric#*
+\biblabelbox#*
 \biblabelextend#*
 \setaligngbnumeric#*
 \setaligngbstyle#*
