@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/11/04 for v2.0.0
+# Matthew Bertucci 2022/11/08 for v2.0.1
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -25,7 +25,7 @@
 #include:csvsimple-l3
 #include:tcolorbox
 # tcolorbox loaded with most option and minted library loaded by default
-#include:ifluatex
+#include:iftex
 #include:piton
 #include:fancyvrb
 #include:pythontex
