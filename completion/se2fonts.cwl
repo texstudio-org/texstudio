@@ -1,11 +1,11 @@
 # se2fonts package
-# Matthew Bertucci 2022/09/29 for v1.1.1
+# Matthew Bertucci 2022/11/08 for v1.3.0
 
 #include:fontspec
 #include:unicode-math
 
 #keyvals:\usepackage/se2fonts#c
-fontmode=#original,replacement,auto
+fmode=#original,replacement,auto
 #endkeyvals
 
 \pdftexengine#*
