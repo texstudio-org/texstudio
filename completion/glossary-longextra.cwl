@@ -1,5 +1,5 @@
 # glossary-longextra package
-# Matthew Bertucci 2022/10/28 for v1.50
+# Matthew Bertucci 2022/11/09 for v1.50
 
 #include:glossary-longbooktabs
 
@@ -90,3 +90,46 @@
 \glslongextraLongShortTabularHeader#*
 \glslongextraLongShortTabularFooter#*
 \glslongextraLongShortHeader#*
+\glslongextraCustomIField#*
+\glslongextraCustomIIField#*
+\glslongextraCustomIIIField#*
+\glslongextraCustomIHeader#*
+\glslongextraCustomIIHeader#*
+\glslongextraCustomIIIHeader#*
+\glslongextraCustomIFmt{label}#*
+\glslongextraSubCustomIFmt{level}{label}#*
+\glslongextraCustomIIFmt{label}#*
+\glslongextraSubCustomIIFmt{level}{label}#*
+\glslongextraCustomIIIFmt{label}#*
+\glslongextraSubCustomIIIFmt{level}{label}#*
+\glslongextraCustomIAlign#*
+\glslongextraCustomIIAlign#*
+\glslongextraCustomIIIAlign#*
+\glslongextraCustomTabularFooter#*
+\glslongextraNameCustomITabularHeader#*
+\glslongextraNameCustomIHeader#*
+\glslongextraCustomINameTabularHeader#*
+\glslongextraCustomINameHeader#*
+\glslongextraNameCustomIITabularHeader#*
+\glslongextraNameCustomIIHeader#*
+\glslongextraCustomIINameTabularHeader#*
+\glslongextraCustomIINameHeader#*
+\glslongextraNameCustomIIITabularHeader#*
+\glslongextraNameCustomIIIHeader#*
+\glslongextraCustomIIINameTabularHeader#*
+\glslongextraCustomIIINameHeader#*
+\glslongextraCustomISetDescWidth#*
+\glslongextraCustomIISetDescWidth#*
+\glslongextraCustomIIISetDescWidth#*
+\glslongextraNameCustomIDescTabularHeader#*
+\glslongextraNameCustomIDescHeader#*
+\glslongextraDescCustomINameTabularHeader#*
+\glslongextraDescCustomINameHeader#*
+\glslongextraNameCustomIIDescTabularHeader#*
+\glslongextraNameCustomIIDescHeader#*
+\glslongextraDescCustomIINameTabularHeader#*
+\glslongextraDescCustomIINameHeader#*
+\glslongextraNameCustomIIIDescTabularHeader#*
+\glslongextraNameCustomIIIDescHeader#*
+\glslongextraDescCustomIIINameTabularHeader#*
+\glslongextraDescCustomIIINameHeader#*
