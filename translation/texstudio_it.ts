@@ -2826,7 +2826,7 @@ Desideri proseguire comunque?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="491"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;evidenziazione della sintassi di vari comandi, ambienti e selezioni può essere cambiata qui.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="492"/>
@@ -3050,7 +3050,9 @@ prima di poter caricare un&apos;icona per quell&apos;elemento.</translation>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
-        <translation type="unfinished"/>
+        <translation>I file di dizionario sono stati importati in
+%1.
+Questo percorso non è nella lista dei percorsi dei dizionari. Desideri aggiungerlo alla lista?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1229"/>
@@ -3167,7 +3169,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Review remarks (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>Commenti di revisione (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="25"/>
@@ -3893,7 +3895,7 @@ Desideri che TeXstudio lo attivi adesso?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1975"/>
         <source>Clear file list</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi la lista dei file</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1976"/>
@@ -3953,7 +3955,7 @@ Desideri che TeXstudio lo attivi adesso?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="3512"/>
         <source>text is restored after restart</source>
-        <translation type="unfinished"/>
+        <translation>il testo è ripristinato dopo il riavvio</translation>
     </message>
 </context>
 <context>
@@ -4332,7 +4334,7 @@ Sei sicuro di voler perdere le modifiche?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="271"/>
         <source>Caption for the image</source>
-        <translation type="unfinished"/>
+        <translation>Didascalia dell&apos;immagine</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="324"/>
@@ -6382,7 +6384,7 @@ Se ignori questo avviso, TeXstudio tenterà il salvataggio nella posizione speci
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Creazione del file di backup fallita. Puoi comunque continuare a salvare. Tuttavia, se il salvataggio fallisce, potresti perdere i dati del file originale. Desideri continuare?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1101"/>
@@ -8145,7 +8147,7 @@ Almeno alcune frasi sono necessarie come base da cui ricavare il testo causale</
     <message>
         <location filename="../src/spellerutility.cpp" line="257"/>
         <source>Dictionary import failed: No files could be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>Importazione del dizionario fallita: non è stato possibile estrarre alcun file.</translation>
     </message>
 </context>
 <context>
