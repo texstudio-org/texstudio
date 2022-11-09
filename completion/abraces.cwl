@@ -1,5 +1,5 @@
 # abraces package
-# Matthew Bertucci 2/8/2022 for v2.0
+# Matthew Bertucci 2022/11/07 for v2.1
 
 #include:xparse
 
@@ -41,7 +41,7 @@ overload
 #endif
 
 # not documented
-\bracebox#*
+\bracebox#S
 \bracescript{arg}#*
 \bracefil{arg}#*
 \aupbracefill{arg}#*
@@ -51,3 +51,4 @@ overload
 \upbracketend#*
 \upbracketend[opt]#*
 \genbrace{arg}#*
+\TrimArgSpaces#S

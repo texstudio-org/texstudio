@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2022/10/18 for v1.87
+# Matthew Bertucci 2022/11/07 for v1.88
 
 #include:xkeyval
 #include:xstring
@@ -157,6 +157,7 @@ JOCCH
 JRC
 PACMCGIT
 PACMHCI
+PACMNET
 PACMPL
 POMACS
 TAAS

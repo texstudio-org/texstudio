@@ -58,12 +58,7 @@ description*
 \restartlist{list name}
 
 \EnumitemId#*
-\SetLabelAlign{value%keyvals}{commands}#*
-#keyvals:\SetLabelAlign
-right
-left
-parleft
-#endkeyvals
+\SetLabelAlign{value}{commands}#*
 \labelindent#*
 \SetEnumerateShortLabel{key%plain}{replacement}#*
 \setlistdepth{integer}

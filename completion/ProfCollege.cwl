@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/10/14 for v0.99-z-a
+# Matthew Bertucci 2022/11/04 for v0.99-z-b
 
 #include:verbatim
 #include:mathtools
@@ -537,6 +537,26 @@ Volume#true,false
 Solide=#pave,cube,cylindre,prisme,cone,pyramide,boule
 #endkeyvals
 
+## Empilements de cubes ##
+\VueCubes{liste de hauteurs}
+\VueCubes[clés%keyvals]{liste de hauteurs}
+
+#keyvals:\VueCubes
+Largeur=%<nombre%>
+Profondeur=%<nombre%>
+Hauteur=%<nombre%>
+Echelle=%<nombre%>
+CouleurCube=#%color
+Angle=%<degres%>
+Trou#true,false
+Creation#true,false
+Grilles#true,false
+Face#true,false
+CouleurFleche=#%color
+Solution#true,false
+Nom=%<nom%>
+#endkeyvals
+
 ## Opérations posées ##
 \Addition{n1}{n2}
 \Addition[clés%keyvals]{n1}{n2}
@@ -926,6 +946,8 @@ Grille#true,false
 PasGrilleX=%<nombre%>
 PasGrilleY=%<nombre%>
 Graduations#true,false
+PasGradX=%<nombre%>
+PasGradY=%<nombre%>
 Bornea=%<nombre%>
 Borneb=%<nombre%>
 CouleurTrace=#%color
@@ -963,6 +985,7 @@ Difference#true,false
 Oppose#true,false
 Remarquable#true,false
 Echange=#0,1,2,3
+Tableau#true,false
 #endkeyvals
 
 \Resultat
@@ -1051,6 +1074,30 @@ Enonce#true,false
 Solution#true,false
 Unite=##L
 Taille=%<nombre%>
+#endkeyvals
+
+## Une tortue ##
+\Tortue{liste des commandes}
+\Tortue[clés%keyvals]{liste des commandes}
+
+#keyvals:\Tortue
+Pas=##L
+Epaisseur=%<nombre%>
+TortueD#true,false
+TortueF#true,false
+Angle=%<degrés%>
+Etape=%<nombre%>
+Grille#true,false
+LargeurG=%<nombre%>
+HauteurG=%<nombre%>
+Axes#true,false
+Origine={(%<x,y%>)}
+Cases#true,false
+Depart={(%<x,y%>)}
+## not documented
+# Etapes#true,false
+# Nom=%<fichier%>
+# Debut#true,false
 #endkeyvals
 
 ## Les briques Scratch ##
@@ -1187,6 +1234,8 @@ Lignes=%<integer%>
 Largeur=%<integer%>
 Coef=%<nombre%>
 Solution#true,false
+CartonReponse#true,false
+Resultats#true,false
 #endkeyvals
 
 \ColoriludeEnonce
@@ -1352,6 +1401,9 @@ Lieu=%<nom%>
 Relatif#true,false
 Puissance#true,false
 Autre#true,false
+Consignes="%<texte%>"
+LargeurUn=##L
+Echelle=%<nombre%>
 Addition#true,false
 Couleur=#%color
 #endkeyvals
@@ -1843,6 +1895,8 @@ Teal#B
 \buildtabrelieold#S
 \BuildtabStat#S
 \buildtabt#S
+\BuildVueCubes{arg1}{arg2}#S
+\BuildVueCubesSolution#S
 \CalculAngle{arg1}#S
 \CalculECC{arg1}#S
 \CalculFrequence{arg1}#S
@@ -1914,6 +1968,8 @@ Teal#B
 \DessineRoseMulSol#S
 \dispogpfc{arg1}{arg2}{arg3}#S
 \DistriEchange{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\DistriTableau[opt]{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\DistriTableau{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \DivCom#S
 \DiviseurCommun{arg1}{arg2}#S
 \DiviseurNumero{arg1}{arg2}#S
@@ -2414,6 +2470,7 @@ Teal#B
 \PfCKakuro#S
 \PfCKenKen#S
 \PfCLargeurJury#S
+\PfCLargeurQCM#S
 \PfCLargeurQuestion#S
 \PfCLargeurReponse#S
 \PfCListeATrier#S
@@ -2422,6 +2479,7 @@ Teal#B
 \PfCListeCCNb#S
 \PfCListeCCOp#S
 \PfCListeCmdTortue#S
+\PfCListeHauteursCubes#S
 \PfCListeRLE#S
 \PfCListeSymbolTrivial#S
 \PfCLongInter#S
@@ -2464,10 +2522,12 @@ Teal#B
 \PfCTBstrut#S
 \PfCTestBlack#S
 \PfCTestEtoile#S
+\PfCTestMP#S
 \PfCThalesUnit#S
 \PfCTotal#S
 \PfCTrigoUnit#S
 \PfCTstrut#S
+\PfCVueCubeNom#S
 \PfCYHKimpair#S
 \PfCYHKlast#S
 \PfCYHKListe#S
@@ -2677,10 +2737,9 @@ Teal#B
 \toklisterle#S
 \toklistetracesgrad{arg}#S
 \toklisteTriomino{arg}#S
+\toklisteVueCube#S
 \tokPfCCBRappels#S
 \tokPfCEngrenages#S
-\Tortue[opt]{arg}#S
-\Tortue{arg}#S
 \TortueCreationFichier[opt]{arg}#S
 \TortueCreationFichier{arg}#S
 \TortueDessinFinal#S
@@ -2698,13 +2757,9 @@ Teal#B
 \TraceEchiquierColorilude#S
 \TraceGraphique[opt]{arg}#S
 \TraceGraphique{arg}#S
-\TraceLabyMathAlea{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\TraceLabyMathAleaSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\TraceLabyNombre{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\TraceLabyFacto{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\TraceLabyFactoSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceLabyNombreDouble{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\TraceLabyNombreold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\TraceSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\TraceSolutionold{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceTriomino{arg1}#S
 \TraceTriominoHexa{arg1}#S
 \TrigoCalculs{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2756,6 +2811,7 @@ Teal#B
 \Updatetoksrepere{arg1}#S
 \UpdatetoksRLE{arg}#S
 \UpdatetoksTriomino{arg1}#S
+\UpdatetoksVueCube{arg}#S
 \UpdateTraces{arg1}#S
 \valabsdeno#S
 \valabsnum#S

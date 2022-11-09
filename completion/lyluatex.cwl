@@ -1,15 +1,13 @@
 # lyluatex package
-# Matthew Bertucci 2/12/2022 for v1.0f
+# Matthew Bertucci 2022/11/07 for v1.1.1
 
-#include:luatexbase
-#include:luaotfload
-#include:xkeyval
 #include:graphicx
 #include:minibox
 #include:environ
 #include:currfile
 #include:pdfpages
 #include:varwidth
+#include:luaoptions
 #include:metalogo
 
 \lyluatex#*
@@ -18,7 +16,6 @@
 \in#S
 \mm#S
 \pt#S
-\lysetoption{option%keyvals}{value}
 \lyFilename{filename}#*
 \lyIntertext{text}#*
 \lyVersion{version}#*
@@ -130,7 +127,7 @@ no-rest-positions#true,false
 raw-pdf#true,false
 #endkeyvals
 
-#keyvals:\lysetoption#c,\lyscore#c
+#keyvals:\setluaoption#c,\lyscore#c
 insert
 fullpagestyle
 print-page-number
