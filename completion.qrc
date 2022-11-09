@@ -1362,6 +1362,7 @@
 <file>completion/eukdate.cwl</file>
 <file>completion/eukleides.cwl</file>
 <file>completion/euler.cwl</file>
+<file>completion/euler-math.cwl</file>
 <file>completion/eulerpx.cwl</file>
 <file>completion/eulervm.cwl</file>
 <file>completion/euroitc.cwl</file>
@@ -2046,6 +2047,7 @@
 <file>completion/luaaddplot.cwl</file>
 <file>completion/luabibentry.cwl</file>
 <file>completion/luabidi.cwl</file>
+<file>completion/luacas.cwl</file>
 <file>completion/luacensor.cwl</file>
 <file>completion/lua-check-hyphen.cwl</file>
 <file>completion/luacode.cwl</file>
@@ -2060,6 +2062,7 @@
 <file>completion/luamathalign.cwl</file>
 <file>completion/luamesh.cwl</file>
 <file>completion/luamplib.cwl</file>
+<file>completion/luaoptions.cwl</file>
 <file>completion/luaotfload.cwl</file>
 <file>completion/luapackageloader.cwl</file>
 <file>completion/luaprogtable.cwl</file>
@@ -3083,6 +3086,7 @@
 <file>completion/software-biblatex.cwl</file>
 <file>completion/somedefs.cwl</file>
 <file>completion/songbook.cwl</file>
+<file>completion/songproj.cwl</file>
 <file>completion/songs.cwl</file>
 <file>completion/soul.cwl</file>
 <file>completion/soulpos.cwl</file>
