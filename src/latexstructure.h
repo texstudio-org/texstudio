@@ -18,7 +18,8 @@ struct StructureEntry {
 	enum Context { ///< mark if entry is located beyond appendix/end document commands
         Unknown = 0x0000,
 		InAppendix = 0x0001,
-		BeyondEnd = 0x0010
+        BeyondEnd = 0x0010,
+        Import = 0x0100
 	};
 	Q_DECLARE_FLAGS(Contexts, Context)
 	Type type;

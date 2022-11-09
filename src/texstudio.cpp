@@ -7854,10 +7854,11 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
         }
         if(se->type==StructureEntry::SE_INCLUDE || se->type==StructureEntry::SE_BIBTEX){
             saveCurrentCursorToHistory();
+            bool relativeToCurrentDoc=se->hasContext(StructureEntry::Import);
             QString defaultExt = se->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
             QString name=se->title;
             name.replace("\\string~",QDir::homePath());
-            openExternalFile(name,defaultExt,se->document);
+            openExternalFile(name,defaultExt,se->document,relativeToCurrentDoc);
         }
     }
 }
@@ -9471,7 +9472,7 @@ void Texstudio::findMissingBracket()
 	if (c.isValid()) currentEditor()->setCursor(c);
 }
 
-void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc)
+void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc, bool relativeToCurrentDoc)
 {
 	if (!doc) {
 		if (!currentEditor()) return;
@@ -9482,6 +9483,9 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
     QStringList curPaths;
     if (defaultExt == "bib") {
         curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
+    }
+    if(relativeToCurrentDoc){
+        curPaths<< ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
     }
     bool loaded = false;
     loaded = load(documents.getAbsoluteFilePath(name, defaultExt,curPaths));

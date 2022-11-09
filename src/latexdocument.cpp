@@ -1080,6 +1080,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (lp.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
 				StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
+                newInclude->setContext(StructureEntry::Import);
 				QDir dir(firstArg);
                 QFileInfo fi(dir, Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,i));
 				QString file = fi.filePath();
