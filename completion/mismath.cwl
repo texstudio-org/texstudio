@@ -1,12 +1,11 @@
 # mismath package
-# Matthew Bertucci 4/18/2022 for v1.8
+# Matthew Bertucci 2022/11/11 for v2.0
 
 #include:amsmath
 #include:esvect
 #include:ifthen
 #include:xspace
 #include:mathtools
-#include:upgreek
 
 # all options passed to amsmath
 #keyvals:\usepackage/mismath#c
@@ -31,13 +30,7 @@ alignedleftspaceyesifneg
 \inumber
 \jnumber
 \pinumber
-\pinumber[font%keyvals]
-
-#keyvals:\pinumber
-Symbol
-Euler
-Symbolsmallscale
-#endkeyvals
+\pinumber[csname]
 
 \abs{arg}#m
 \adj#m
@@ -101,7 +94,6 @@ Symbolsmallscale
 \P#m
 \Par#m
 \Par#m
-\paren{arg}#m
 \PEupright#*
 \pow{expr}{exponent}#m
 \probastyle#*
