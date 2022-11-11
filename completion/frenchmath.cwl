@@ -1,5 +1,5 @@
 # frenchmath package
-# Matthew Bertucci 2022/10/27 for v2.0
+# Matthew Bertucci 2022/11/11 for v2.1
 
 #include:ifthen
 #include:mathrsfs
@@ -92,6 +92,7 @@ Upgreek
 \supeg#m
 \vide#m
 \paral#m
+\paral*#m
 \cmod#m
 \pgcd#m
 \ppcm#m
