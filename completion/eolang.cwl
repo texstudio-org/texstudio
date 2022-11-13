@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/10/30 for v0.3.0
+# Matthew Bertucci 2022/11/13 for v0.5.0
 
 #include:stmaryrd
 #include:amsmath
@@ -11,8 +11,8 @@
 #include:ifxetex
 #include:pdftexcmds
 #include:tikz
-# loads arrows, shapes, decorations, decorations.pathmorphing, intersections,
-# positioning, backgrounds, calc, and shapes.arrows tikzlibraries
+# loads arrows, shapes, snakes, decorations, decorations.pathmorphing,
+# positioning, backgrounds, and calc tikzlibraries
 #include:trimclip
 
 #keyvals:\usepackage/eolang#c
@@ -35,6 +35,8 @@ tmpdir=%<path%>
 
 \phiConst#m
 \phiWave#m
+\phiSlot{arg}#m
+\phiMany{arg}{under}{over}#m
 \phiDotted#m
 
 # internal
