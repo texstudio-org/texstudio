@@ -1,14 +1,16 @@
 # piton package
-# Matthew Bertucci 2022/10/31 for v0.9
+# Matthew Bertucci 2022/11/09 for v0.95
 
 #include:l3keys2e
 #include:luatexbase
 #include:luacode
 
 #keyvals:\usepackage/piton#c
+comment-latex=%<string%>
+math-comments#true,false
+escape-inside=%<two-chars%>
 footnote
 footnotehyper
-escape-inside=%<two-chars%>
 #endkeyvals
 
 #ifOption:footnote
@@ -28,7 +30,14 @@ escape-inside=%<two-chars%>
 \piton{code%definition}
 \begin{Piton}#V
 \end{Piton}
+
 \PitonInputFile{file}#i
+\PitonInputFile[options%keyvals]{file}#i
+
+#keyvals:\PitonInputFile
+first-line=%<integer%>
+last-line=%<integer%>
+#endkeyvals
 
 \PitonOptions{options%keyvals}
 
@@ -44,6 +53,7 @@ background-color=#%color
 slim#true,false
 left-margin=##L
 tab-size=%<integer%>
+show-spaces
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
@@ -80,7 +90,6 @@ Post.Function=%<formatting%>
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
 # not documented
-\pitonEOL#*
 \PitonStyle{arg}#*
 \myfiledate#S
 \myfileversion#S

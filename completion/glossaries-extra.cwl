@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2022/10/18 for v1.49
+# Matthew Bertucci 2022/11/09 for v1.50
 
 #include:glossaries
 
@@ -165,6 +165,7 @@ showtargets=#left,right,innerleft,innerright,annoteleft,annoteright
 #include:glossary-bookindex
 #include:glossary-longextra
 #include:glossary-topic
+#include:glossary-table
 #endif
 #ifOption:stylemods=inline
 #include:glossaries-extra-stylemods
@@ -1573,13 +1574,13 @@ counter=%<counter%>
 local#true,false
 #endkeyvals
 
-#keyvals:\setupglsadd#c,\glsaddeach#c,\GlsXtrAutoAddOnFormat#c
+#keyvals:\setupglsadd#c,\glsaddeach#c,\glsstartrange#c,\glsendrange#c,\GlsXtrAutoAddOnFormat#c
 format=%<csname%>
 counter=%<counter%>
 local#true,false
 #endkeyvals
 
-#keyvals:\glsadd#c,\glsaddall#c,\setupglsadd#c,\glsaddeach#c,\GlsXtrAutoAddOnFormat#c
+#keyvals:\glsadd#c,\glsaddall#c,\setupglsadd#c,\glsaddeach#c,\glsstartrange#c,\glsendrange#c,\GlsXtrAutoAddOnFormat#c
 thevalue=%<location%>
 theHvalue=%<<prefix><location>%>
 #endkeyvals
@@ -1775,6 +1776,11 @@ theHvalue=%<<prefix><location>%>
 \glsaddallunindexed[glossary-types]
 \glsaddeach{labellist}#r
 \glsaddeach[options%keyvals]{labellist}#r
+\glsstartrange{labellist}#r
+\glsstartrange[options%keyvals]{labellist}#r
+\glsendrange{labellist}#r
+\glsendrange[options%keyvals]{labellist}#r
+\GlsXtrSetDefaultRangeFormat{encap}
 \GlsXtrAutoAddOnFormat{format list}{glsadd options%keyvals}
 \GlsXtrAutoAddOnFormat[label]{format list}{glsadd options%keyvals}
 \glsxtrdowrglossaryhook{label}#*
@@ -2260,13 +2266,18 @@ groups#true,false
 \glsxtrnoidxgroups#*
 \glsxtrgroupfield#*
 \glsxtraddgroup{label}{code}#*
+\printunsrtglossarygrouphook{internal cs}#*
 \glssubgroupheading{prev-level}{level}{parent-label}{group-label}#*
 \GlsXtrLocationField#*
+\printunsrtglossarypostbegin{internal cs}#*
+\printunsrtglossarypreend{internal cs}#*
 \glscurrententrylevel#*
 \glscurrenttoplevelentry#*
 \glscurrentrootentry#*
 \printunsrtglossaryentryprocesshook{label}#*
 \printunsrtglossaryskipentry#*
+\printunsrtglossarypreentryprocesshook{internal cs}#*
+\printunsrtglossarypostentryprocesshook{internal cs}#*
 \printunsrtglossarypredoglossary#*
 \printunsrtglossaryhandler{label}#*r
 \glsxtrunsrtdo{label}#*r
@@ -2347,12 +2358,24 @@ leveloffset=%<<n> or ++<n>%>
 abbr-long-short
 abbr-short-long
 bookindex
+long-custom1-name
+long-custom2-name
+long-custom3-name
+long-desc-custom1-name
+long-desc-custom2-name
+long-desc-custom3-name
 long-desc-name
 long-desc-sym-name
 long-desc-sym
 long-loc-desc-name
 long-loc-desc-sym-name
 long-loc-sym-desc-name
+long-name-custom1
+long-name-custom1-desc
+long-name-custom2
+long-name-custom2-desc
+long-name-custom3
+long-name-custom3-desc
 long-name-desc-loc
 long-name-desc-sym-loc
 long-name-desc-sym
@@ -2969,6 +2992,7 @@ compound-write-def=#none,all,ref
 \seealsoname#*
 
 ### not in main documentation ###
+\glsxtrcontinuedname#S
 \glsxtrcounterprefix#S
 \glsxtrdohyperlink#S
 \glsxtrdoidentify{arg}#S

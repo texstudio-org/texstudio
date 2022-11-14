@@ -1,5 +1,5 @@
 # unicodefonttable package
-# Matthew Bertucci 10/23/2021 for v1.0e
+# Matthew Bertucci 2022/11/13 for v1.0g
 
 #include:xcolor
 #include:xparse
@@ -19,24 +19,25 @@
 #keyvals:\displayfonttable,\displayfonttable*,\fonttablesetup
 header#true,false
 noheader#true,false
-title-format=
-title-format-cont=
+title-format=%<code%>
+title-format-cont=%<code%>
 display-block=#titles,rules,none
 hex-digits=#block,foot,head,head+foot,none
-hex-digits-font=
+hex-digits-font=%<font commands%>
+hex-digits-row-format=%<code%>
 color=#%color
 statistics#true,false
 nostatistics#true,false
-statistics-font=
-statistics-format=
+statistics-font=%<font commands%>
+statistics-format=%<code%>
 glyph-width=##L
-missing-glyph=
-missing-glyph-font=
+missing-glyph=%<code%>
+missing-glyph-font=%<font commands%>
 missing-glyph-color=#%color
 compare-with=%<font name%>
 compare-color=#%color
 compare-bgcolor=#%color
-statistics-compare-format=
+statistics-compare-format=%<code%>
 range-start=%<slot%>
 range-end=%<slot%>
 #endkeyvals

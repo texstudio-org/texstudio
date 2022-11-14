@@ -1,5 +1,5 @@
 # pgf-PeriodicTable package
-# Matthew Bertucci 2022/10/12 for v1.0.0
+# Matthew Bertucci 2022/11/09 for v1.0.1
 
 #include:tikz
 # loads fadings tikzlibrary
@@ -59,9 +59,6 @@ background={%<TikZ keys%>}
 IUPAC#true,false
 show label LaAc#true,false
 label LaAc font=%<font commands%>
-capitalize element names#true,false
-Name
-name
 languages={%<lang1,lang2,...%>}
 other languages font=%<font commands%>
 other languages color=#%color
@@ -174,22 +171,36 @@ CS render mode=#fill,outline,fill and outline
 CS outline color=#%color
 CS outline width=##L
 CS={%<keyvals%>}
+name color=#%color
+name font=%<font commands%>
+name align=#left,center,right
+capitalize element names#true,false
+name
+Name
+NAME
 Ar color=#%color
 Ar font=%<font commands%>
 Ar label=#m,w
 Ar precision=%<integer%>
 Ar={%<keyvals%>}
+d color=#%color
+d font=%<font commands%>
+d unit=#g/dm3,g/cm3,both
+d precision=%<integer%>
+d={%<keyvals%>}
 ls=#fig,txt,fig+txt
 ls color=#%color
 ls font=%<font commands%>
 ls align=#left,center,right
+ls unit=#pm,A
+ls precision=%<integer%>
+lat={%<keyvals%>}
 DiscY color=#%color
 DiscY font=%<font commands%>
 DiscY BC scale=%<factor%>
 eDist color=#%color
 eDist font=%<font commands%>
 eDist sep=%<separator%>
-name color=#%color
 R color=#%color
 Rcov color=#%color
 Rion color=#%color
@@ -203,7 +214,6 @@ Tboil color=#%color
 TboilC color=#%color
 eConfign color=#%color
 eConfignl color=#%color
-d color=#%color
 Cp color=#%color
 kT color=#%color
 lsa color=#%color
@@ -212,7 +222,6 @@ lsc color=#%color
 lsca color=#%color
 DiscC color=#%color
 spectra color=#%color
-name font=%<font commands%>
 R font=%<font commands%>
 Rcov font=%<font commands%>
 Rion font=%<font commands%>
@@ -226,7 +235,6 @@ Tboil font=%<font commands%>
 TboilC font=%<font commands%>
 eConfign font=%<font commands%>
 eConfignl font=%<font commands%>
-d font=%<font commands%>
 Cp font=%<font commands%>
 kT font=%<font commands%>
 lsa font=%<font commands%>
@@ -239,10 +247,8 @@ cell font=%<font commands%>
 cell color=#%color
 E precision=%<integer%>
 T precision=%<integer%>
-d precision=%<integer%>
 Cp precision=%<integer%>
 kT precision=%<integer%>
-ls precision=%<integer%>
 #endkeyvals
 
 solido#B
@@ -287,7 +293,6 @@ sintetico#B
 \ifpgfPTlegendaextra#S
 \ifpgfPTlegendapins#S
 \ifpgfPTMNMline#S
-\ifpgfPTNames#S
 \ifpgfPTonlycells#S
 \ifpgfPTonlycellsPerAndGroupNum#S
 \ifpgfPTonlycellsPerAndGroupNumZ#S
@@ -338,6 +343,7 @@ sintetico#B
 \pgfPTDiscYcolor#S
 \pgfPTDiscYfont#S
 \pgfPTdprecision#S
+\pgfPTdunit#S
 \pgfPTeaffcolor#S
 \pgfPTeafffont#S
 \pgfPTeConfigncolor#S
@@ -408,14 +414,15 @@ sintetico#B
 \pgfPTlsfont#S
 \pgfPTlsprecision#S
 \pgfPTlstxtfig#S
+\pgfPTlsunit#S
 \pgfPTMNMlinecolor#S
 \pgfPTMNMlinefalse#S
 \pgfPTMNMlinetrue#S
 \pgfPTMNMlinewidth#S
+\pgfPTnamealign#S
 \pgfPTnamecolor#S
 \pgfPTnamefont#S
-\pgfPTNamesfalse#S
-\pgfPTNamestrue#S
+\pgfPTNames#S
 \pgfPTOcolor#S
 \pgfPTOfont#S
 \pgfPTonlycellsfalse#S

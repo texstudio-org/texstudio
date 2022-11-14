@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 2022/07/15 for v0.43
+# Matthew Bertucci 2022/11/10 for v0.46
 
 #include:iftex
 #include:unicode-math
@@ -17,7 +17,6 @@ fulloldstyle
 lighttext
 oldstylenums
 oldstyle
-longs
 veryoldstyle
 largesmallcaps
 altfligs
@@ -46,11 +45,13 @@ symbols
 \kpeuro[amount]
 \KpLight#*
 \KpRoman#*
+\longs
 \lscshape
 \ltseries
 \pscshape
 \ringbelow{arg}
 \sbseries
+\shorts
 \texteb{text}
 \textlsc{text}
 \textlt{text}

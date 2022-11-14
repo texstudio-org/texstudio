@@ -2,11 +2,12 @@
 # dani/2006-02-18
 # modified Edson 30-12-2010
 # modified T. Hoffmann 15-05-2014
-# modified Matthew Bertucci 2/10/2022 for v4.0.1
+# modified Matthew Bertucci 2022/11/09 for v4.1
 
 #keyvals:\usepackage/fancyhdr#c
 nocheck
 compatV3
+twoside
 myheadings
 headings
 #endkeyvals
@@ -31,6 +32,7 @@ headings
 \fancypagestyle{style name}{definitions%text}#s#%fancypagestyle
 
 #keyvals:\pagestyle#c,\thispagestyle#c
+fancy
 %fancypagestyle
 #endkeyvals
 

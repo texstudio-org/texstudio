@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/11/05 for v7.18.0
+# Matthew Bertucci 2022/11/11 for v7.19.0
 
 #include:ifxetex
 #include:ifluatex
@@ -98,6 +98,7 @@ alltrails
 alpinedotjs
 alpinelinux
 altiumdesigner
+alwaysdata
 amazon
 amazonalexa
 amazonapigateway
@@ -2271,6 +2272,7 @@ wakatime
 walkman
 wallabag
 walmart
+wantedly
 wappalyzer
 warnerbros
 warp

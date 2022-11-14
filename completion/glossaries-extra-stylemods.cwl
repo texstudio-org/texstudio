@@ -1,5 +1,5 @@
 # glossaries-extra-stylemods package
-# Matthew Bertucci 2022/10/19 for v1.49
+# Matthew Bertucci 2022/11/09 for v1.50
 
 #keyvals:\usepackage/glossaries-extra-stylemods#c
 all
@@ -31,6 +31,7 @@ table
 #include:glossary-bookindex
 #include:glossary-longextra
 #include:glossary-topic
+#include:glossary-table
 #endif
 #ifOption:inline
 #include:glossary-inline

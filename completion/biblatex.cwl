@@ -8797,12 +8797,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \newcommaunitNoStar#S
 #endif
 
-### biblatex-unified v1.00 ###
+### biblatex-unified v1.20 ###
 #ifOption:style=unified
 # from unified.bbx
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 issueandeditor#true,false
-compactdois#true,false
+compactlinks#true,false
+alllinks#true,false
 #endkeyvals
 \mkbibdateunified{arg1}{arg2}{arg3}#*
 # from unified.cbx
