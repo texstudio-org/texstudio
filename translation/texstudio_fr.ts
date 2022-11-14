@@ -3518,22 +3518,22 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="100"/>
         <source>label</source>
-        <translation>\&amp;label{⟨identifiant⟩}</translation>
+        <translation>\&amp;label</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="101"/>
         <source>index</source>
-        <translation>\&amp;index{⟨entrée⟩}</translation>
+        <translation>\&amp;index</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="102"/>
         <source>cite</source>
-        <translation>\&amp;cite{⟨clé⟩}</translation>
+        <translation>\&amp;cite</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>footnote</source>
-        <translation>\&amp;footnote{⟨texte⟩}</translation>
+        <translation>\&amp;footnote</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="104"/>
@@ -3773,17 +3773,17 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>ref</source>
-        <translation>\&amp;ref{⟨identifiant⟩}</translation>
+        <translation>\&amp;ref</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>eqref</source>
-        <translation>\&amp;eqref{⟨identifiant⟩}</translation>
+        <translation>\&amp;eqref</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>pageref</source>
-        <translation>\&amp;pageref{⟨identifiant⟩}</translation>
+        <translation>\&amp;pageref</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1086"/>
@@ -10516,7 +10516,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1693"/>
         <source>Insert encoding as TeX comment</source>
-        <translation>Insérer le codage d&apos;entrée en tant que commentaire TeX</translation>
+        <translation>Insérer le codage d&apos;entrée en tant que commentaire magique</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1707"/>
