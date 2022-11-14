@@ -1105,6 +1105,7 @@
 <file>completion/customdice.cwl</file>
 <file>completion/cuted.cwl</file>
 <file>completion/cutwin.cwl</file>
+<file>completion/cvss.cwl</file>
 <file>completion/cwpuzzle.cwl</file>
 <file>completion/cyber.cwl</file>
 <file>completion/cypriot.cwl</file>
@@ -1750,6 +1751,7 @@
 <file>completion/hvmaths.cwl</file>
 <file>completion/hvpygmentex.cwl</file>
 <file>completion/hvqrurl.cwl</file>
+<file>completion/hwemoji.cwl</file>
 <file>completion/hypbmsec.cwl</file>
 <file>completion/hypcap.cwl</file>
 <file>completion/hypdestopt.cwl</file>
@@ -1962,6 +1964,7 @@
 <file>completion/libertinus-otf.cwl</file>
 <file>completion/libertinust1math.cwl</file>
 <file>completion/libertinus-type1.cwl</file>
+<file>completion/libgreek.cwl</file>
 <file>completion/librarian.cwl</file>
 <file>completion/librebaskerville.cwl</file>
 <file>completion/LibreBodoni.cwl</file>
