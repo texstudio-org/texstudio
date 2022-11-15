@@ -1,5 +1,5 @@
 # projlib-titlepage package
-# Matthew Bertucci 2022/04/23 for 2022/07/23 release
+# Matthew Bertucci 2022/11/15 for 2022/11/15 release
 
 #include:projlib-logo
 #include:projlib-paper
@@ -17,6 +17,10 @@ title=%<text%>
 subtitle=%<text%>
 author=%<name%>
 date=%<date%>
+title-page-name=%<name%>
+license-page-name=%<name%>
+info=%<text%>
+license=%<text%>
 style=%<style%>
 color=#%color
 #endkeyvals
