@@ -1,5 +1,5 @@
 # BFH beamertheme
-# Matthew Bertucci 2/12/2022 for v2.0.0
+# Matthew Bertucci 2022/11/15 for v2.1.4
 
 #keyvals:\usetheme/BFH#c
 logofile=%<file%>
@@ -24,6 +24,8 @@ authorontitle#true,false
 \titlegraphic*{text}
 \inserttitleVcenter{text}
 \lecturepage#*
+\separatorpage{type}#*
+\separatorpage*{type}#*
 
 # from BFH colortheme
 #include:bfhcolors
