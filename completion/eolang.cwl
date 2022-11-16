@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/11/13 for v0.5.0
+# Matthew Bertucci 2022/11/16 for v0.6.0
 
 #include:stmaryrd
 #include:amsmath
@@ -11,12 +11,14 @@
 #include:ifxetex
 #include:pdftexcmds
 #include:tikz
-# loads arrows, shapes, snakes, decorations, decorations.pathmorphing,
-# positioning, backgrounds, and calc tikzlibraries
+# loads arrows, shapes, snakes, decorations, decorations.pathmorphing, decorations.pathreplacing,
+# positioning, calc, math, and arrows.meta tikzlibraries
+#include:hyperref
 #include:trimclip
 
 #keyvals:\usepackage/eolang#c
 tmpdir=%<path%>
+nocomments
 #endkeyvals
 
 \begin{phiquation}#\math
