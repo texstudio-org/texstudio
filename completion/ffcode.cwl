@@ -1,7 +1,7 @@
 # ffcode package
-# Matthew Bertucci 9/14/2021 for v0.4.1
+# Matthew Bertucci 2022/11/16 for v0.6.0
 
-#include:xkeyval
+#include:pgfopts
 #include:minted
 #include:tcolorbox
 
@@ -15,6 +15,6 @@ nocn
 
 \ff{code%definition}
 \begin{ffcode}#V
-\end{ffcode}#V
+\end{ffcode}
 \begin{ffcode*}{%<minted options%>}#V
-\end{ffcode*}#V
+\end{ffcode*}
