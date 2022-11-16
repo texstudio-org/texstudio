@@ -1,43 +1,35 @@
 # Chivo package
-# Matthew Bertucci 1/18/2022 for v2.1
+# Matthew Bertucci 2022/11/16 for v2.2
 
-#include:ifxetex
-#include:ifluatex
-#include:mweights
+#include:iftex
 #include:fontaxes
 #include:kvoptions
 
 #keyvals:\usepackage/Chivo#c
 thin#true,false
+extralight#true,false
 light#true,false
 regular#true,false
 medium#true,false
+semibold#true,false
 bold#true,false
 extrabold#true,false
 black#true,false
 lining#true,false
-lf#true,false
 oldstyle#true,false
-osf#true,false
-tabular#true,false
-tab#true,false
 proportional#true,false
-prop#true,false
-scaled=%<factor%>
+tabular#true,false
 familydefault#true,false
 opentype
 type1
+scale=%<factor%>
 #endkeyvals
 
+\textsuperior{text}
 \sufigures
-\textsu{text}
-\textsuperior{text}#*
+\textinferior{text}
 \infigures
-\textin{text}
-\textinferior{text}#*
+\textnumerator{text}
 \nufigures
-\textnu{text}
-\textnumerator{text}#*
+\textdenominator{text}
 \defigures
-\textde{text}
-\textdenominator{text}#*
