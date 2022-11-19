@@ -980,6 +980,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					preambel.prepend("beamer");
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
 				}
+                if (cmd=="\\usetikzlibrary") { // special treatment for  \usetheme
+                    QString preambel = "tikzlibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                }
 
 				QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
 				if (cmd == "\\documentclass") {

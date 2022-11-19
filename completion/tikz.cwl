@@ -92,7 +92,7 @@
 \tikzgdlatenodeoptionacallback{arg1}#S
 
 ### < Libraries > ###
-\usetikzlibrary{library list%keyvals}
+\usetikzlibrary{library list%keyvals}#u
 #keyvals:\usetikzlibrary#c
 3d
 angles
