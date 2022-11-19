@@ -868,7 +868,7 @@ void ConfigDialog::advancedOptionsToggled(bool on)
 
 void ConfigDialog::advancedOptionsClicked(bool on)
 {
-	if (on) {
+	if (on & !riddled) {
 		if (!askRiddle()) ui.checkBoxShowAdvancedOptions->setChecked(false);
 		else riddled = true;
 	}
