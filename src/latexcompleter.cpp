@@ -1686,7 +1686,10 @@ void LatexCompleter::updateAbbreviations()
 		// <!compatibility>
 		cw.word = macro.abbrev;
 		cw.sortWord = makeSortWord(cw.word);
-		cw.setName(macro.abbrev + tr(" (Usertag)"));
+		if (macro.name == "")
+			cw.setName(macro.abbrev + tr(" (Usertag)"));
+		else 
+			cw.setName(macro.abbrev + " (" + macro.name + ")");
 		wordsAbbrev << cw;
 	}
 	listModel->setAbbrevWords(wordsAbbrev);
