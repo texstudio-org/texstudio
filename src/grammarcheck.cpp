@@ -50,14 +50,57 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 
 	// this is a heuristic, some LanguageTool languages have the format de-DE, others just it (instead of it-IT)
 	// this list contains all two-character languages that do not have a four-character equivalent.
-	languageMapping.insert("ca-CA", "ca");
-	languageMapping.insert("en-EN", "en");
-	languageMapping.insert("es-ES", "es");
-	languageMapping.insert("fa-FA", "fa");
-	languageMapping.insert("fr-FR", "fr");
-	languageMapping.insert("it-IT", "it");
-	languageMapping.insert("nl-NL", "nl");
-	languageMapping.insert("sv-SV", "sv");
+    languageMapping.insert("ast-ES","ast-ES");
+    languageMapping.insert("be-BY","be-BY");
+    languageMapping.insert("br-FR","br-FR");
+    languageMapping.insert("ca-CA", "ca");
+    languageMapping.insert("ca-ES","ca-ES");
+    languageMapping.insert("ca-ES-valencia","ca-ES-valencia");
+    languageMapping.insert("da-DK","da-DK");
+    languageMapping.insert("de-AT","de-AT");
+    languageMapping.insert("de-CH","de-CH");
+    languageMapping.insert("de-DE","de-DE");
+    languageMapping.insert("de-DE-x-simple-language-DE","de-DE-x-simple-language-DE");
+    languageMapping.insert("de-LU","de-LU");
+    languageMapping.insert("el-GR","el-GR");
+    languageMapping.insert("en-AU","en-AU");
+    languageMapping.insert("en-CA","en-CA");
+    languageMapping.insert("en-EN", "en");
+    languageMapping.insert("en-GB","en-GB");
+    languageMapping.insert("en-NZ","en-NZ");
+    languageMapping.insert("en-US","en-US");
+    languageMapping.insert("en-ZA","en-ZA");
+    languageMapping.insert("es-AR","es-AR");
+    //languageMapping.insert("es-ES", "es");
+    languageMapping.insert("es-ES","es-ES");
+    languageMapping.insert("fa-FA", "fa");
+    languageMapping.insert("fa-IR","fa-IR");
+    //languageMapping.insert("fr-FR", "fr");
+    languageMapping.insert("fr-FR","fr-FR");
+    languageMapping.insert("ga-IE","ga-IE");
+    languageMapping.insert("gl-ES","gl-ES");
+    //languageMapping.insert("it-IT", "it");
+    languageMapping.insert("it-IT","it-IT");
+    languageMapping.insert("ja-JP","ja-JP");
+    languageMapping.insert("km-KH","km-KH");
+    languageMapping.insert("nl-BE","nl-BE");
+    //languageMapping.insert("nl-NL", "nl");
+    languageMapping.insert("nl-NL","nl-NL");
+    languageMapping.insert("pl-PL","pl-PL");
+    languageMapping.insert("pt-AO","pt-AO");
+    languageMapping.insert("pt-BR","pt-BR");
+    languageMapping.insert("pt-MZ","pt-MZ");
+    languageMapping.insert("pt-PT","pt-PT");
+    languageMapping.insert("ro-RO","ro-RO");
+    languageMapping.insert("ru-RU","ru-RU");
+    languageMapping.insert("sk-SK","sk-SK");
+    languageMapping.insert("sl-SI","sl-SI");
+    languageMapping.insert("sv-SE","sv-SE");
+    languageMapping.insert("sv-SV", "sv");
+    languageMapping.insert("ta-IN","ta-IN");
+    languageMapping.insert("tl-PH","tl-PH");
+    languageMapping.insert("uk-UA","uk-UA");
+    languageMapping.insert("zh-CN","zh-CN");
 }
 
 QString GrammarCheck::serverUrl() {
