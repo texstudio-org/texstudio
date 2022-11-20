@@ -265,7 +265,8 @@ public slots:
 private slots:
     void lineDeleted(QDocumentLineHandle *l,int hint=-1);
 	void textReplaceFromAction();
-	void spellCheckingAlwaysIgnore();
+    void spellCheckingAddToDict();
+    void spellCheckingIgnoreAll();
 	void populateSpellingMenu();
 	void addReplaceActions(QMenu *menu, const QStringList &replacements, bool italic);
 	void addSpellingActions(QMenu *menu, QString word, bool dedicatedMenu);

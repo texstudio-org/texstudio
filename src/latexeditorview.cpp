@@ -2265,12 +2265,25 @@ void LatexEditorView::textReplaceFromAction()
         wordSelection=QDocumentCursor();
 	}
 }
-
-void LatexEditorView::spellCheckingAlwaysIgnore()
+/*!
+ * \brief add word to ignore file
+ */
+void LatexEditorView::spellCheckingAddToDict()
 {
     if (speller && editor && wordSelection.selectedText() == defaultInputBinding->lastSpellCheckedWord) {
         QString newToIgnore = wordSelection.selectedText();
         speller->addToIgnoreList(newToIgnore);
+    }
+}
+/*!
+ * \brief add word to ignore list but not into file
+ * Volatile addition.
+ */
+void LatexEditorView::spellCheckingIgnoreAll()
+{
+    if (speller && editor && wordSelection.selectedText() == defaultInputBinding->lastSpellCheckedWord) {
+        QString newToIgnore = wordSelection.selectedText();
+        speller->addToIgnoreList(newToIgnore,false);
     }
 }
 
@@ -2317,15 +2330,19 @@ void LatexEditorView::addSpellingActions(QMenu *menu, QString word, bool dedicat
 	addReplaceActions(menu, suggestions, false);
 
 	QAction *act = new QAction(LatexEditorView::tr("Add to Dictionary"), menu);
-	connect(act, SIGNAL(triggered()), this, SLOT(spellCheckingAlwaysIgnore()));
+    connect(act, &QAction::triggered, this, &LatexEditorView::spellCheckingAddToDict);
+    QAction *act2 = new QAction(LatexEditorView::tr("Ignore all"), menu);
+    connect(act2, &QAction::triggered, this, &LatexEditorView::spellCheckingIgnoreAll);
 	if (dedicatedMenu) {
 		menu->addSeparator();
 	} else {
 		QFont ignoreFont;
 		ignoreFont.setItalic(true);
 		act->setFont(ignoreFont);
+        act2->setFont(ignoreFont);
 	}
 	menu->addAction(act);
+    menu->addAction(act2);
 	menu->setProperty("isSpellingPopulated", true);
 }
 
