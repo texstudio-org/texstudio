@@ -96,7 +96,7 @@ bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
 
 void SpellerUtility::saveIgnoreList()
 {
-	if (ignoreListFileName != "" && ignoredWords.count() > 0) {
+    if (ignoreListFileName != "" && ignoredWordList.count() > 0) {
 		QFile f(ignoreListFileName);
 		if (f.open(QFile::WriteOnly)) {
 			QTextCodec *utf8 = QTextCodec::codecForName("UTF-8");
@@ -119,8 +119,12 @@ void SpellerUtility::unload()
         pChecker = nullptr;
 	}
 }
-
-void SpellerUtility::addToIgnoreList(QString toIgnore)
+/*!
+ * \brief add word to ignore list
+ * \param toIgnore
+ * \param intoIgnFile: true save into file, false not permanent
+ */
+void SpellerUtility::addToIgnoreList(QString toIgnore,bool intoIgnFile)
 {
 	QString word = latexToPlainWord(toIgnore);
 	QByteArray encodedString;
@@ -133,11 +137,13 @@ void SpellerUtility::addToIgnoreList(QString toIgnore)
     }
 	pChecker->add(encodedString.data());
 	ignoredWords.insert(word);
-	if (!ignoredWordList.contains(word))
-        ignoredWordList.insert(std::lower_bound(ignoredWordList.begin(), ignoredWordList.end(), word, localeAwareLessThan), word);
-	ignoredWordsModel.setStringList(ignoredWordList);
-	saveIgnoreList();
-	emit ignoredWordAdded(word);
+    if(intoIgnFile){
+        if (!ignoredWordList.contains(word))
+            ignoredWordList.insert(std::lower_bound(ignoredWordList.begin(), ignoredWordList.end(), word, localeAwareLessThan), word);
+        ignoredWordsModel.setStringList(ignoredWordList);
+        saveIgnoreList();
+    }
+    emit ignoredWordAdded(word);
 }
 
 void SpellerUtility::removeFromIgnoreList(QString toIgnore)

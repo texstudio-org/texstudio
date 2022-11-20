@@ -40,6 +40,7 @@ SpellerDialog::SpellerDialog(QWidget *parent, SpellerUtility *utility)
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), this, SLOT(addIgnoredWord()));
 	connect(ui.pushButtonRemove, SIGNAL(clicked()), this, SLOT(removeIgnoredWord()));
 	connect(ui.pushButtonIgnore, SIGNAL(clicked()), this, SLOT(slotIgnore()));
+    connect(ui.pushButtonIgnoreAll, SIGNAL(clicked()), this, SLOT(slotIgnoreAll()));
 	connect(ui.pushButtonAlwaysIgnore, SIGNAL(clicked()), this, SLOT(slotAlwaysIgnore()));
 	connect(ui.pushButtonReplace, SIGNAL(clicked()), this, SLOT(slotReplace()));
 	connect(ui.listSuggestions, SIGNAL(itemSelectionChanged()), this, SLOT(updateItem()));
@@ -142,7 +143,16 @@ void SpellerDialog::updateItem()
 
 void SpellerDialog::slotIgnore()
 {
-	SpellingNextWord();
+    SpellingNextWord();
+}
+/*!
+ * \brief add word to a volatile ignore list
+ */
+void SpellerDialog::slotIgnoreAll()
+{
+    m_speller->addToIgnoreList(ui.lineEditOriginal->text(),false);
+    ignoreListChanged = true;
+    SpellingNextWord();
 }
 
 void SpellerDialog::slotAlwaysIgnore()

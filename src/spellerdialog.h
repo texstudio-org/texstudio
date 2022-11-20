@@ -51,6 +51,7 @@ protected:
 private slots:
 	void accept();
 	void slotIgnore();
+    void slotIgnoreAll();
 	void slotAlwaysIgnore();
 	void slotReplace();
 	void updateItem();

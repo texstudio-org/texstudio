@@ -25,7 +25,7 @@ class SpellerUtility: public QObject {
 
 public:
 	friend class SpellerManager;
-	void addToIgnoreList(QString toIgnore);
+    void addToIgnoreList(QString toIgnore, bool intoIgnFile=true);
 	void removeFromIgnoreList(QString toIgnore);
 	QStringListModel* ignoreListModel();
 
