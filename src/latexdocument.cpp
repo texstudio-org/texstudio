@@ -971,6 +971,11 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 			///usepackage
 			if (lp.possibleCommands["%usepackage"].contains(cmd)) {
+                if(firstArg.contains("\\")){
+                    // argument contains backslash
+                    // hence, invalid and to be ignored
+                    continue;
+                }
 				completerNeedsUpdate = true;
 				QStringList packagesHelper = firstArg.split(",");
 
