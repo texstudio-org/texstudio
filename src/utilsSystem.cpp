@@ -202,6 +202,7 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
+    searchFiles << QCoreApplication::applicationDirPath() + "/help/build/html/"; //windows new manual
 	searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"; //windows new
 
