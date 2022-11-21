@@ -1,30 +1,47 @@
 # pixelart package
-# Matthew Bertucci 12/14/2021 for v0.2.0
+# Matthew Bertucci 2022/11/18 for v1.0.0
 
-#include:pgf
-#include:pgfopts
+#include:iftex
+#include:luacode
 #include:tikz
-#include:pgfkeys
-#include:etoolbox
-# loads the parser pgfmodule and calc tikzlibrary
+# loads patterns tikzlibrary
 
 #keyvals:\usepackage/pixelart#c
 draft
 #endkeyvals
 
-\bwpixelart{pixels}
-\bwpixelart[options%keyvals]{pixels}
+\pixelart{pixels}
+\pixelart[options%keyvals]{pixels}
+\tikzpixelart{coord}{pixels}
+\tikzpixelart[options%keyvals]{coord}{pixels}
+\setpixelartdefault{options%keyvals}
 
-#keyvals:\bwpixelart
-color=#%color
-scale=%<factor%>
-raise=##L
+\pixelartlogo#*
+\pixelartlogo[options%keyvals]#*
+\pixelartheart#*
+\pixelartheart[options%keyvals]#*
+\pixelartname#*
+\pixelartname[options%keyvals]#*
+\pixelartlogobw#*
+\pixelartlogobw[options%keyvals]#*
+\pixelartheartbw#*
+\pixelartheartbw[options%keyvals]#*
+\pixelartnamebw#*
+\pixelartnamebw[options%keyvals]#*
+
+#keyvals:\pixelart,\tikzpixelart,\setpixelartdefault,\pixelartlogo,\pixelartheart,\pixelartname,\pixelartlogobw,\pixelartheartbw,\pixelartnamebw
+colors=%<options%>
+draft#true,false
+margin=##L
+squares
+squares={%<options%>}
+stack
+style=%<keyword%>
+tikz={%<TikZ keys%>}
 #endkeyvals
 
-\tikzbwpixelart{pixels}
-\tikzbwpixelart[options%keyvals]{pixels}
+\newpixelartcolors{name}{keyvals}
+\renewpixelartcolors{name}{keyvals}
 
-#keyvals:\tikzbwpixelart
-color=#%color
-scale=%<factor%>
-#endkeyvals
+\setpixelartdebugon
+\setpixelartdebugoff

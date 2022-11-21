@@ -1,5 +1,5 @@
 # yfonts-otf package
-# Matthew Bertucci 2022/08/09 for v0.40
+# Matthew Bertucci 2022/11/16 for v0.43
 
 #include:iftex
 #include:fontspec
@@ -20,6 +20,8 @@ gothvarlongs
 \Jvar
 \longs
 \shorts
+\ZWNJ
+\ZWS
 
 \fileversion#S
 \filedate#S
