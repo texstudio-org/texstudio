@@ -1,5 +1,5 @@
 # hvfloat package
-# Matthew Bertucci 2022/09/08 for v2.41
+# Matthew Bertucci 2022/11/21 for v2.44
 
 #include:caption
 #include:varwidth
@@ -7,7 +7,8 @@
 #include:atbegshi
 #include:picture
 #include:trimclip
-#include:expl3
+#include:etoolbox
+#include:marginnote
 #include:multido
 #include:graphicx
 #include:xkeyval
@@ -61,6 +62,7 @@ useOBox#true,false
 onlyText#true,false
 nonFloat#true,false
 wide#true,false
+inMargin#true,false
 objectFrame#true,false
 style=%<style%>
 capFormat={%<caption settings%>}
