@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>793</width>
-            <height>816</height>
+            <width>662</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -212,16 +212,6 @@
                <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
                 <property name="text">
                  <string>Ignore Most System Colors</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
-                <property name="text">
-                 <string>MRU Document Chooser</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -393,33 +383,7 @@
              <property name="advancedOption" stdset="0">
               <bool>true</bool>
              </property>
-             <layout class="QGridLayout">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_8">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Max. Recent Documents:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBoxMaxRecentFiles">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="maximum">
-                 <number>10000</number>
-                </property>
-               </widget>
-              </item>
+             <layout class="QGridLayout" columnstretch="0,0,1">
               <item row="2" column="0">
                <widget class="QLabel" name="label_10">
                 <property name="sizePolicy">
@@ -433,7 +397,17 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="4" column="1">
+               <widget class="QCheckBox" name="checkBoxRememberFileFilter">
+                <property name="text">
+                 <string>Remember selected file filter in open/save dialog </string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="2">
                <widget class="QSpinBox" name="spinBoxMaxRecentProjects">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -446,7 +420,40 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Max. Recent Documents:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+               <widget class="QSpinBox" name="spinBoxMaxRecentFiles">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QCheckBox" name="checkBoxUseNativeFileDialog">
+                <property name="text">
+                 <string>Use system file dialogs</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
                <widget class="QCheckBox" name="checkBoxParseMaster">
                 <property name="text">
                  <string>Always Show Structure of Master Document</string>
@@ -456,20 +463,13 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QCheckBox" name="checkBoxRememberFileFilter">
+              <item row="6" column="2">
+               <widget class="QCheckBox" name="checkBoxMRUDocumentChooser">
                 <property name="text">
-                 <string>Remember selected file filter in open/save dialog </string>
+                 <string>MRU Document Chooser</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QCheckBox" name="checkBoxUseNativeFileDialog">
-                <property name="text">
-                 <string>Use system file dialogs</string>
                 </property>
                </widget>
               </item>
@@ -766,8 +766,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>876</width>
-            <height>622</height>
+            <width>662</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -924,8 +924,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>241</width>
-                   <height>106</height>
+                   <width>638</width>
+                   <height>70</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -2031,8 +2031,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>786</width>
-            <height>1898</height>
+            <width>528</width>
+            <height>1379</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3311,8 +3311,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>600</width>
-            <height>908</height>
+            <width>405</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3837,8 +3837,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>422</width>
-            <height>322</height>
+            <width>292</width>
+            <height>228</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4104,8 +4104,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>615</width>
-            <height>710</height>
+            <width>409</width>
+            <height>488</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4787,7 +4787,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>comboBoxLanguage</tabstop>
   <tabstop>spinBoxMaxRecentFiles</tabstop>
   <tabstop>spinBoxMaxRecentProjects</tabstop>
-  <tabstop>checkBoxParseMaster</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
   <tabstop>checkBoxRunAfterBibTeXChange</tabstop>
   <tabstop>comboBoxShowStdout</tabstop>
