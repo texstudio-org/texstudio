@@ -790,8 +790,9 @@ routing
 \pgflsystemrandomizeanglepercent#S
 \pgfdeclarelindenmayersystem{name}{specification}#S
 \pgflsystemcurrentstep#S
+\pgflsystemcurrentleftangle#S
 \pgflsystemcurrentrightangle#S
-\pgflsystemradonmizestep#S
+\pgflsystemrandomizestep#S
 \pgflsystemranomizerightangle#S
 \pgflsystemranomizeleftangle#S
 \pgflsystemdrawforward#S
