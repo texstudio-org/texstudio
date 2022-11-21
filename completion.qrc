@@ -1078,6 +1078,7 @@
 <file>completion/CronosPro-FontDef.cwl</file>
 <file>completion/crop.cwl</file>
 <file>completion/cropmark.cwl</file>
+<file>completion/crossrefenum.cwl</file>
 <file>completion/crossreference.cwl</file>
 <file>completion/crossreftools.cwl</file>
 <file>completion/crumbs.cwl</file>
@@ -1956,6 +1957,7 @@
 <file>completion/lewisstruc.cwl</file>
 <file>completion/lexend.cwl</file>
 <file>completion/lexref.cwl</file>
+<file>completion/lgrmath.cwl</file>
 <file>completion/lhelp.cwl</file>
 <file>completion/libertine.cwl</file>
 <file>completion/libertinegc.cwl</file>
@@ -2471,6 +2473,7 @@
 <file>completion/overlays.cwl</file>
 <file>completion/overlock.cwl</file>
 <file>completion/overpic.cwl</file>
+<file>completion/oz.cwl</file>
 <file>completion/pacioli.cwl</file>
 <file>completion/padcount.cwl</file>
 <file>completion/pagecolor.cwl</file>
