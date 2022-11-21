@@ -793,8 +793,8 @@ routing
 \pgflsystemcurrentleftangle#S
 \pgflsystemcurrentrightangle#S
 \pgflsystemrandomizestep#S
-\pgflsystemranomizerightangle#S
-\pgflsystemranomizeleftangle#S
+\pgflsystemrandomizerightangle#S
+\pgflsystemrandomizeleftangle#S
 \pgflsystemdrawforward#S
 \pgflsystemmoveforward#S
 \pgflsystemturnright#S
