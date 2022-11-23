@@ -527,6 +527,27 @@ The results is the following highlighting:
 
 ## Building texstudio
 TexStudio uses `cmake` as a building system.
+
+To compile and install TeXstudio, write in a terminal:
+```
+mkdir build
+cmake ..
+cmake --build . --target install
+```
+
+On Unix and MacOSX you can also use:
+sudo sh BUILD.sh
+
+(you only need to use sudo if you want to install it system-wide)
+
+Requirements : 
+- Qt tool kit (qt.io) (6.2+ recommended)
+- Poppler for the internal pdf preview 
+  (is automatically disabled if poppler is not found)
+
+More details on building TexStudio can be found in the [wiki](https://github.com/texstudio-org/texstudio/wiki/Compiling).
+
+
 `cmake` detects the presence of optional dependencies and builds accordingly.
 The following optional dependencies are listed below.
 | dependency | feature when present | when not present |

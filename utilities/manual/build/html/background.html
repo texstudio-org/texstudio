@@ -852,8 +852,24 @@ python code:</p>
 </section>
 <section id="building-texstudio">
 <h2>Building texstudio<a class="headerlink" href="#building-texstudio" title="Permalink to this heading">#</a></h2>
-<p>TexStudio uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> as a building system.
-<code class="docutils literal notranslate"><span class="pre">cmake</span></code> detects the presence of optional dependencies and builds accordingly.
+<p>TexStudio uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> as a building system.</p>
+<p>To compile and install TeXstudio, write in a terminal:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>mkdir build
+cmake ..
+cmake --build . --target install
+</pre></div>
+</div>
+<p>On Unix and MacOSX you can also use:
+sudo sh BUILD.sh</p>
+<p>(you only need to use sudo if you want to install it system-wide)</p>
+<p>Requirements :</p>
+<ul class="simple">
+<li><p>Qt tool kit (qt.io) (6.2+ recommended)</p></li>
+<li><p>Poppler for the internal pdf preview
+(is automatically disabled if poppler is not found)</p></li>
+</ul>
+<p>More details on building TexStudio can be found in the <a class="reference external" href="https://github.com/texstudio-org/texstudio/wiki/Compiling">wiki</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cmake</span></code> detects the presence of optional dependencies and builds accordingly.
 The following optional dependencies are listed below.</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
