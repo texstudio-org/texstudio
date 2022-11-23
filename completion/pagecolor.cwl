@@ -1,10 +1,9 @@
 # pagecolor package
-# Matthew Bertucci 9/28/2021 for v1.0i
+# Matthew Bertucci 2022/11/22 for v1.1a
 
+#include:hardwrap
 #include:kvoptions
 #include:xcolor
-#include:ifpdf
-#include:ifluatex
 
 #keyvals:\usepackage/pagecolor#c
 pagecolor=#%color
