@@ -525,3 +525,24 @@ The results is the following highlighting:
 
 ![](images/format_example.png)
 
+## Building texstudio
+TexStudio uses `cmake` as a building system.
+`cmake` detects the presence of optional dependencies and builds accordingly.
+The following optional dependencies are listed below.
+| dependency | feature when present | when not present |
+| --- | --- | --- |
+| poppler-qt | internal pdf viewer | no pdf viewer |
+| libquazip | use system libquazip | build and use internal libquazip |
+| hunspell | use system hunspell | build and use internal hunspell |
+| qtermwidget | provide terminal pane | no terminal pane |
+
+TexStudio offers some optional features which can be turned on/off as desired.
+The change is done a cmake option, e.g. `cmake -DTEXSTUDIO_ENABLE_CRASH_HANDLER=OFF ..`
+
+Options:
+| Option | default | description |
+| --- | --- | --- |
+| TEXSTUDIO_ENABLE_CRASH_HANDLER | on | provide a crash handler |
+| TEXSTUDIO_BUILD_ADWAITA  | on | build adwaita style |
+| TEXSTUDIO_ENABLE_TESTS  | off | build self-tests |
+

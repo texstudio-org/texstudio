@@ -850,6 +850,67 @@ python code:</p>
 <p><img alt="" src="_images/format_example.png" /></p>
 </section>
 </section>
+<section id="building-texstudio">
+<h2>Building texstudio<a class="headerlink" href="#building-texstudio" title="Permalink to this heading">#</a></h2>
+<p>TexStudio uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> as a building system.
+<code class="docutils literal notranslate"><span class="pre">cmake</span></code> detects the presence of optional dependencies and builds accordingly.
+The following optional dependencies are listed below.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>dependency</p></th>
+<th class="head"><p>feature when present</p></th>
+<th class="head"><p>when not present</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>poppler-qt</p></td>
+<td><p>internal pdf viewer</p></td>
+<td><p>no pdf viewer</p></td>
+</tr>
+<tr class="row-odd"><td><p>libquazip</p></td>
+<td><p>use system libquazip</p></td>
+<td><p>build and use internal libquazip</p></td>
+</tr>
+<tr class="row-even"><td><p>hunspell</p></td>
+<td><p>use system hunspell</p></td>
+<td><p>build and use internal hunspell</p></td>
+</tr>
+<tr class="row-odd"><td><p>qtermwidget</p></td>
+<td><p>provide terminal pane</p></td>
+<td><p>no terminal pane</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>TexStudio offers some optional features which can be turned on/off as desired.
+The change is done a cmake option, e.g. <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DTEXSTUDIO_ENABLE_CRASH_HANDLER=OFF</span> <span class="pre">..</span></code></p>
+<p>Options:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TEXSTUDIO_ENABLE_CRASH_HANDLER</p></td>
+<td><p>on</p></td>
+<td><p>provide a crash handler</p></td>
+</tr>
+<tr class="row-odd"><td><p>TEXSTUDIO_BUILD_ADWAITA</p></td>
+<td><p>on</p></td>
+<td><p>build adwaita style</p></td>
+</tr>
+<tr class="row-even"><td><p>TEXSTUDIO_ENABLE_TESTS</p></td>
+<td><p>off</p></td>
+<td><p>build self-tests</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 
         </article>
@@ -926,6 +987,7 @@ python code:</p>
 <li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#building-texstudio">Building texstudio</a></li>
 </ul>
 </li>
 </ul>
