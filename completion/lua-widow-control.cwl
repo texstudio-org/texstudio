@@ -1,5 +1,5 @@
 # lua-widow-control package
-# Matthew Bertucci 2022/08/24 for v2.2.2
+# Matthew Bertucci 2022/11/22 for v3.0.0
 
 #include:luatex
 #include:microtype
@@ -7,17 +7,21 @@
 \lwcsetup{options%keyvals}
 
 #keyvals:\lwcsetup,\usepackage/lua-widow-control#c
-enable
 disable
-strict
-emergencystretch=##L
+enable
 disablecmds={%<\macro1,\macro2,...%>}
+emergencystretch=##L
 widowpenalty=%<integer%>
 orphanpenalty=%<integer%>
 nobreak=#keep,split,warn
 max-cost=%<integer%>
+draft
+showcosts#true,false
+showcolours#true,false
+draftoffset=##L
 debug#true,false
-draft#true,false
+default
+strict
 balanced
 #endkeyvals
 
