@@ -1,5 +1,5 @@
 # lwarp package
-# Matthew Bertucci 1/30/2022 for v0.902
+# Matthew Bertucci 2022/11/22 for v0.909
 
 #include:iftex
 #include:ifpdf
@@ -65,6 +65,7 @@ GlossaryCmd=%<shell command%>
 OSWindows
 pdftotextEnc=%<encoding%>
 lwarpmk
+warpdisable
 warpprint
 warpHTML
 BaseJobname=%<jobname%>
@@ -103,6 +104,7 @@ BaseJobname=%<jobname%>
 \AltTextClose
 \HTMLnewcolumntype{name}{definition}
 \HTMLnewcolumntype{name}[args]{definition}
+\HTMLnewcolumntype{name}[args][default]{definition}
 \begin{warpprint}
 \end{warpprint}
 \begin{warpHTML}
@@ -146,6 +148,7 @@ BaseJobname=%<jobname%>
 \BlockClassSingle{css class}{text}#*
 \CaptionSeparator#*
 \cdashline#*
+\csNewCommandCopycs{dest csname}{source csname}#*
 \CustomizeMathJax{macros}#*
 \defaddtocounter{name}{value}#*
 \displaymathnormal#*
@@ -203,6 +206,7 @@ BaseJobname=%<jobname%>
 \mrowcell#*
 \multicolumnrow{cols}{halign}[vpos]{numrows}[bigstruts]{width}[fixup]{text}#*
 \multicolumnrow{cols}{halign}{numrows}{width}{text}#*
+\NewEnvironmentCopy{dest%envname}{source}#*N
 \nexttoken#*
 \nohyperpage{arg1}#*
 \OSPathSymbol#*

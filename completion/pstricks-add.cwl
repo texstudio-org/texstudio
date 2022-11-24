@@ -1,5 +1,5 @@
 # pstricks-add package
-# Matthew Bertucci 2/19/2022 for v0.17
+# Matthew Bertucci 2022/11/21 for v3.93
 
 #include:pstricks
 #include:pst-plot
@@ -32,8 +32,6 @@
 \psChart{list1}{list2}{radius}
 \psCircleTangents(x1,y1)(x2,y2){radius}
 \psCircleTangents(x1,y1){radius1}(x2,y2){radius2}
-\psColorLine(x0,y0)(x1,y1)
-\psColorLine[options%keyvals](x0,y0)(x1,y1)
 \psComment(x0,y0)(x1,y1){text}
 \psComment(x0,y0)(x1,y1){text}[line macro][put macro]#*
 \psComment*(x0,y0)(x1,y1){text}
@@ -86,6 +84,10 @@
 \psParallelLine[options%keyvals](x0,y0)(x1,y1)(x2,y2){length}{end node name}
 \psParallelLine[options%keyvals]{arrows}(x0,y0)(x1,y1)(x2,y2){length}{end node name}
 \psParallelLine{arrows}(x0,y0)(x1,y1)(x2,y2){length}{end node name}
+\psColorLine(x0,y0)(x1,y1)
+\psColorLine{arrows}(x0,y0)(x1,y1)
+\psColorLine[options%keyvals](x0,y0)(x1,y1)
+\psColorLine[options%keyvals]{arrows}(x0,y0)(x1,y1)
 \psparallelogrambox[options%keyvals]{stuff}
 \psparallelogrambox{stuff}
 \psplotDiffEqn[%<options%>]{%<x0%>}{%<x1%>}{%<y0%>}{%<f(x,y,y',...)%>}

@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/11/08 for v2.0.1
+# Matthew Bertucci 2022/11/21 for v2.0.4
 
 #include:xcolor
 # xcolor loaded with table and svgnames options
@@ -13,13 +13,13 @@
 #include:ifthen
 #include:xparse
 #include:xkeyval
-#include:xfp
 #include:xstring
 #include:xintexpr
 #include:xintbinhex
 #include:simplekv
 #include:listofitems
 #include:tabularray
+#include:hvlogos
 #include:siunitx
 #include:fontawesome5
 #include:csvsimple-l3
@@ -65,6 +65,49 @@ Couleur=#%color
 Style={%<TikZ clés%>}
 xl=%<num%>
 xr=%<num%>
+#endkeyvals
+
+## Présentation d’une solution d’équation par balayage ##
+\SolutionTVI{fonction}{valeur}
+\SolutionTVI[options%keyvals]{fonction}{valeur}
+
+#keyvals:\SolutionTVI
+NomFct=%<nom%>
+NomSol=%<nom%>
+va=%<nombre%>
+vb=%<nombre%>
+Precision=%<nombre%>
+Stretch=%<factor%>
+Balayage#true,false
+Calculatrice#true,false
+Majuscule#true,false
+#endkeyvals
+
+## Suites récurrentes simples ##
+\CalculTermeRecurrence{fonction associée}
+\CalculTermeRecurrence[options%keyvals]{fonction associée}
+
+#keyvals:\CalculTermeRecurrence
+No=%<nombre%>
+UNo=%<nombre%>
+Precision=%<nombre%>
+N=%<nombre%>
+#endkeyvals
+
+\SolutionSeuil{fonction associée}{seuil}
+\SolutionSeuil[options%keyvals]{fonction associée}{seuil}
+
+#keyvals:\SolutionSeuil
+NomSuite=%<nom%>
+No=%<nombre%>
+UNo=%<nombre%>
+SolN=%<nombre%>
+Precision=%<nombre%>
+Stretch=%<factor%>
+Balayage#true,false
+Calculatrice#true,false
+Majuscule#true,false
+Sens=%<< ou >%>
 #endkeyvals
 
 ## Suites récurrentes et « toile » ##
@@ -891,6 +934,8 @@ vertcapyt#B
 \basedepart#S
 \begin{PLstats}#S
 \begin{PLstats}[opt]#S
+\begin{PresentationCode}[color]{tcolorbox options}#SV
+\begin{PresentationCode}{tcolorbox options}#SV
 \begin{pythont}#S
 \begin{tcpythontexcode}#S
 \begin{tcpythontexcode}[width]#S
@@ -899,6 +944,7 @@ vertcapyt#B
 \BorneInf#S
 \BorneSup#S
 \calculargument#S
+\CalculInterneTermeRecurrence{arg1}{arg2}{arg3}{arg4}#S
 \CFcoulcmd#S
 \CFcouleur#S
 \CFcoulres#S
@@ -930,7 +976,14 @@ vertcapyt#B
 \denominateur#S
 \densexpo{arg}#S
 \densnorm{arg}#S
+\DHTnomfct#S
+\DHTnomsol#S
+\DHTprec#S
+\DHTstretch#S
+\DHTva#S
+\DHTvb#S
 \end{PLstats}#S
+\end{PresentationCode}#S
 \end{pythont}#S
 \end{tcpythontexcode}#S
 \end{tcpythontexcodeno}#S
@@ -1094,6 +1147,15 @@ vertcapyt#B
 \schematdsaff{arg1}{arg2}{arg3}{arg4}#S
 \schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \schematdsparab{arg1}{arg2}{arg3}{arg4}{arg5}[opt]#S
+\SensDeb#S
+\SEUILindiceinit#S
+\SEUILn#S
+\SEUILnmu#S
+\SEUILnomsuite#S
+\SEUILprec#S
+\SEUILsens#S
+\SEUILstretch#S
+\SEUILtermeinit#S
 \SMcase#S
 \SMcaseb#S
 \SPGrilleSudoMaths#S
@@ -1106,6 +1168,10 @@ vertcapyt#B
 \SPLnbsplines#S
 \SPLstyle#S
 \SPLtaillepoints#S
+\SRnfinal#S
+\SRninit#S
+\SRprec#S
+\SRuninit#S
 \tdscouleur#S
 \tdshaut#S
 \tdslarg#S
