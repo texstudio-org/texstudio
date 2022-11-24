@@ -35,7 +35,7 @@ highlighting
 \tikzmarkmath#S
 \tikzmarkmath[prefix]#S
 \endtikzmarkmath#S
-\thetikzmarkequation#*
+\thetikzmarkequation#S
 
 # highlighting library
 \StartHighlighting#S
