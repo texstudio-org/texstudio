@@ -3,6 +3,7 @@
 #include "templateselector.h"
 #include "mostQtHeaders.h"
 #include "configmanager.h"
+#include <QLibraryInfo>
 
 QString TemplateManager::configBaseDir;
 
@@ -32,9 +33,21 @@ QString TemplateManager::builtinTemplateDir()
 #define PREFIX ""
 #endif
 #ifndef Q_OS_MAC
-	QString fn = PREFIX"/share/texstudio/";
-	if (!QDir(fn).isReadable()) { // fallback if program is not installed (e.g. debug build )
-		fn = QCoreApplication::applicationDirPath() + "/templates/";
+    QStringList paths;
+
+#if QT_VERSION_MAJOR>=6
+    paths << QLibraryInfo::path(QLibraryInfo::PrefixPath)+"/share/texstudio/";
+#else
+    paths << PREFIX"/share/texstudio/";
+#endif
+    paths << "/usr/share/texstudio/"<< "/usr/local/share/texstudio/";
+    paths<<QCoreApplication::applicationDirPath() + "/templates/";
+    QString fn;
+    for(const QString &pathName:paths){
+        if (QDir(pathName).isReadable()) {
+            fn=pathName;
+            break;
+        }
 	}
 	return fn;
 #endif
