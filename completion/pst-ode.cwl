@@ -1,4 +1,4 @@
-# pst-ob3d package
+# pst-ode package
 # Matthew Bertucci 2022/11/24 for v0.18
 
 #include:pstricks
