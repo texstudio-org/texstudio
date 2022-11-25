@@ -571,7 +571,7 @@ and do the actual work inside the wrapper script:
 
 
 ## Configuring the language set-up
-TexStudio supports language checking for spell-checking and grammar checking.
+TeXstudio supports language checking for spell-checking and grammar checking.
 Further more a thesaurus is offered for selected languages.
 
 ![Configure Language](images/configure_language.png)
@@ -746,7 +746,7 @@ Tooltips on formulas/math also show a preview of said formula.
 ![Preview](images/configure_preview.png)
 
 ## Configuring Highlight Colors
-TexStudio allows the adaptation of editor syntax highlight colors for personal taste.
+TeXstudio allows the adaptation of editor syntax highlight colors for personal taste.
 Color, font modification, as well as font family and size can be set.
 
 The priority setting determines which highlight is shown if more than one is active.
@@ -758,7 +758,7 @@ Changing font family or size may lead to distorted text output in the editor and
 ![Highlight Colors](images/configure_syntaxhighlighting.png)
 
 ## Configuring GUI scaling
-When using TexStudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TexStudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel independently. The change is performed immediately so that the result can be observed directly.
+When using TeXstudio with high-resolution monitors, aspects of the GUI may be too small or large for personal taste. TeXstudio allows to scale the upper toolbar, the central (secondary) toolbar, the embedded pdf viewer toolbar and the symbol grid of the symbol panel independently. The change is performed immediately so that the result can be observed directly.
 
 ![GUI scaling](images/configure_guiscaling.png)
 
@@ -808,7 +808,7 @@ custom toolbar list in the configure dialog.
 
 ## Configuring SVN/GIT support
 
-TexStudio supports some simple actions for subversion/git. Here svn or git can be selected.
+TeXstudio supports some simple actions for subversion/git. Here svn or git can be selected.
 
 \"Automatically check in after save\" allows TeXstudio to perform a SVN
 check in after every save of a document, thus providing a very complete

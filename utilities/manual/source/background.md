@@ -525,8 +525,8 @@ The results is the following highlighting:
 
 ![](images/format_example.png)
 
-## Building TexStudio
-TexStudio uses `cmake` as a building system.
+## Building TeXstudio
+TeXstudio uses `cmake` as a building system.
 
 To compile and install TeXstudio, write in a terminal:
 ```
@@ -546,7 +546,7 @@ Requirements :
 - Poppler for the internal pdf preview 
   (is automatically disabled if poppler is not found)
 
-More details on building TexStudio can be found in the [wiki](https://github.com/texstudio-org/texstudio/wiki/Compiling).
+More details on building TeXstudio can be found in the [wiki](https://github.com/texstudio-org/texstudio/wiki/Compiling).
 
 
 `cmake` detects the presence of optional dependencies and builds accordingly.
@@ -558,7 +558,7 @@ The following optional dependencies are listed below.
 | hunspell | use system hunspell | build and use internal hunspell |
 | qtermwidget | provide terminal pane | no terminal pane |
 
-TexStudio offers some optional features which can be turned on/off as desired.
+TeXstudio offers some optional features which can be turned on/off as desired.
 The change is done via cmake options, e.g. `cmake -DTEXSTUDIO_ENABLE_CRASH_HANDLER=OFF ..`
 
 Options:
