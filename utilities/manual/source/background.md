@@ -525,12 +525,13 @@ The results is the following highlighting:
 
 ![](images/format_example.png)
 
-## Building texstudio
+## Building TexStudio
 TexStudio uses `cmake` as a building system.
 
 To compile and install TeXstudio, write in a terminal:
 ```
 mkdir build
+cd build
 cmake ..
 cmake --build . --target install
 ```
@@ -558,7 +559,7 @@ The following optional dependencies are listed below.
 | qtermwidget | provide terminal pane | no terminal pane |
 
 TexStudio offers some optional features which can be turned on/off as desired.
-The change is done a cmake option, e.g. `cmake -DTEXSTUDIO_ENABLE_CRASH_HANDLER=OFF ..`
+The change is done via cmake options, e.g. `cmake -DTEXSTUDIO_ENABLE_CRASH_HANDLER=OFF ..`
 
 Options:
 | Option | default | description |

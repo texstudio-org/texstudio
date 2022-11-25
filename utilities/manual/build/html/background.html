@@ -851,10 +851,11 @@ python code:</p>
 </section>
 </section>
 <section id="building-texstudio">
-<h2>Building texstudio<a class="headerlink" href="#building-texstudio" title="Permalink to this heading">#</a></h2>
+<h2>Building TexStudio<a class="headerlink" href="#building-texstudio" title="Permalink to this heading">#</a></h2>
 <p>TexStudio uses <code class="docutils literal notranslate"><span class="pre">cmake</span></code> as a building system.</p>
 <p>To compile and install TeXstudio, write in a terminal:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>mkdir build
+cd build
 cmake ..
 cmake --build . --target install
 </pre></div>
@@ -900,7 +901,7 @@ The following optional dependencies are listed below.</p>
 </table>
 </div>
 <p>TexStudio offers some optional features which can be turned on/off as desired.
-The change is done a cmake option, e.g. <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DTEXSTUDIO_ENABLE_CRASH_HANDLER=OFF</span> <span class="pre">..</span></code></p>
+The change is done via cmake options, e.g. <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-DTEXSTUDIO_ENABLE_CRASH_HANDLER=OFF</span> <span class="pre">..</span></code></p>
 <p>Options:</p>
 <div class="table-wrapper colwidths-auto docutils container">
 <table class="docutils align-default">
@@ -1003,7 +1004,7 @@ The change is done a cmake option, e.g. <code class="docutils literal notranslat
 <li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#building-texstudio">Building texstudio</a></li>
+<li><a class="reference internal" href="#building-texstudio">Building TexStudio</a></li>
 </ul>
 </li>
 </ul>
