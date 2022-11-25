@@ -568,3 +568,10 @@ Options:
 | TEXSTUDIO_BUILD_ADWAITA  | on | build adwaita style |
 | TEXSTUDIO_ENABLE_TESTS  | off | build self-tests |
 
+### Updating translations
+With `cmake` the command `lupdate` does not work diretcly.
+Instead when building for qt6 a debug build (`DCMAKE_BUILD_TYPE=Debug`), a traget `texstudio_lupdate` is defined which needs to be called.
+```
+build>qt-cmake .. -DCMAKE_BUILD_TYPE=Debug
+build>cmake --build . -t texstudio_lupdate
+```

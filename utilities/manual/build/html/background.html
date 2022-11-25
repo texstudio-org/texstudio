@@ -927,6 +927,15 @@ The change is done via cmake options, e.g. <code class="docutils literal notrans
 </tbody>
 </table>
 </div>
+<section id="updating-translations">
+<h3>Updating translations<a class="headerlink" href="#updating-translations" title="Permalink to this heading">#</a></h3>
+<p>With <code class="docutils literal notranslate"><span class="pre">cmake</span></code> the command <code class="docutils literal notranslate"><span class="pre">lupdate</span></code> does not work diretcly.
+Instead when building for qt6 a debug build (<code class="docutils literal notranslate"><span class="pre">DCMAKE_BUILD_TYPE=Debug</span></code>), a traget <code class="docutils literal notranslate"><span class="pre">texstudio_lupdate</span></code> is defined which needs to be called.</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span>build&gt;qt-cmake .. -DCMAKE<span class="nb">_</span>BUILD<span class="nb">_</span>TYPE=Debug
+build&gt;cmake --build . -t texstudio<span class="nb">_</span>lupdate
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1004,7 +1013,10 @@ The change is done via cmake options, e.g. <code class="docutils literal notrans
 <li><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#building-texstudio">Building TexStudio</a></li>
+<li><a class="reference internal" href="#building-texstudio">Building TexStudio</a><ul>
+<li><a class="reference internal" href="#updating-translations">Updating translations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
