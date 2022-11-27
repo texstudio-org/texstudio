@@ -4,6 +4,7 @@ TeXstudio 4.4.1
 - allow ignore all in spell checker dialog
 - fix language code for LanguageTool
 - fix cancel file close (#2705)
+- fix missing icons in latex/math menu
 
 TeXstudio 4.4.0
 -----------------
