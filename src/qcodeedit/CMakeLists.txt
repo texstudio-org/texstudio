@@ -38,7 +38,7 @@ set(HEADER_FILES ${HEADER_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsearchreplacepanel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinedialog.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinepanel.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qeditconfig.h
+    #${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qeditconfig.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qformatconfig.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsimplecolorpicker.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qcalltip.h
@@ -77,7 +77,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsearchreplacepanel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinedialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qgotolinepanel.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qeditconfig.cpp
+    #${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qeditconfig.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qformatconfig.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qsimplecolorpicker.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/widgets/qcalltip.cpp
