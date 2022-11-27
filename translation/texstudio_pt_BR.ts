@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="34"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
-        <translation type="unfinished"/>
+        <translation>O TeXstudio usa ícones de Crystal Project (LGPL), do tema Oxygen (CC-BY-SA 3.0) e do tema Colibre (CC0) do LibreOffice.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="35"/>
@@ -1868,12 +1868,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="365"/>
         <source>Oxygen Modern</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen moderno</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="370"/>
         <source>Oxygen Classic</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen clássico</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -4691,7 +4691,7 @@ O assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2334"/>
         <source>Ignore all</source>
-        <translation type="unfinished"/>
+        <translation>Ignorar tudo</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2599"/>
@@ -8097,7 +8097,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/spellerdialog.ui" line="87"/>
         <source>Ignore &amp;Once</source>
-        <translation type="unfinished"/>
+        <translation>Ign&amp;orar uma vez</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="127"/>
@@ -8117,12 +8117,12 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/spellerdialog.ui" line="184"/>
         <source>Ig&amp;nore All</source>
-        <translation type="unfinished"/>
+        <translation>Ig&amp;norar tudo</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="191"/>
         <source>&amp;Add to dictionary</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Adicionar ao dicionário</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="85"/>
