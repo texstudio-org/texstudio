@@ -383,30 +383,31 @@ void Editors::tabBarContextMenu(const QPoint &point)
 	if (!tabGroup) return;
 
 	QMenu menu;
+	QAction *act;
 	foreach (LatexEditorView *edView, editors()) {
-		QAction *act = menu.addAction(edView->displayNameForUI());
+		act = menu.addAction(edView->displayNameForUI());
 		act->setData(QVariant::fromValue<LatexEditorView *>(edView));
 		connect(act, SIGNAL(triggered()), SLOT(setCurrentEditorFromAction()));
 	}
 
 	menu.addSeparator();
-	QAction *act = menu.addAction(tr("Move to other view"));
-	LatexEditorView *editorUnderCursor = tabGroup->editorAt(point);
-	act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
-	if (!editorUnderCursor) act->setEnabled(false);
-	connect(act, SIGNAL(triggered()), SLOT(moveToOtherTabGroup()));
 
-	if (tabGroups[0] == tabWidgetFromEditor(editorUnderCursor)) {
-		act = menu.addAction(tr("Move all others to other view"));
+	LatexEditorView *editorUnderCursor = tabGroup->editorAt(point);
+	if (editorUnderCursor) {
+		act = menu.addAction(tr("Move to other view"));
 		act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
-		if (!editorUnderCursor) act->setEnabled(false);
-		connect(act, SIGNAL(triggered()), SLOT(moveAllOthersToOtherTabGroup()));
-	}
-	else {
-		act = menu.addAction(tr("Move all to other view"));
-		act->setData(QVariant::fromValue<TxsTabWidget *>(tabGroup));
-		if (!editorUnderCursor) act->setEnabled(false);
-		connect(act, SIGNAL(triggered()), SLOT(moveAllToOtherTabGroup()));
+		connect(act, SIGNAL(triggered()), SLOT(moveToOtherTabGroup()));
+
+		if (tabGroups[0] == tabWidgetFromEditor(editorUnderCursor)) {
+			act = menu.addAction(tr("Move all others to other view"));
+			act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
+			connect(act, SIGNAL(triggered()), SLOT(moveAllOthersToOtherTabGroup()));
+		}
+		else {
+			act = menu.addAction(tr("Move all to other view"));
+			act->setData(QVariant::fromValue<TxsTabWidget *>(tabGroup));
+			connect(act, SIGNAL(triggered()), SLOT(moveAllToOtherTabGroup()));
+		}
 	}
 
 	act = menu.addAction((splitter->orientation() == Qt::Horizontal) ? tr("Split Vertically") : tr("Split Horizontally"));
