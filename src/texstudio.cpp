@@ -889,7 +889,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "revert", tr("&Revert to saved..."), SLOT(fileUtilRevert()));
 	submenu->addSeparator();
 	newManagedAction(submenu, "copyfilename", tr("Copy filename to &clipboard"), SLOT(fileUtilCopyFileName()));
-	newManagedAction(submenu, "copymasterfilename", tr("Copy master filename to clipboard"), SLOT(fileUtilCopyMasterFileName()));
+	newManagedAction(submenu, "copymasterfilename", tr("Copy root filename to clipboard"), SLOT(fileUtilCopyMasterFileName()));
 
     QMenu *svnSubmenu = newManagedMenu(menu, "svn", tr("S&VN/GIT..."));
 	newManagedAction(svnSubmenu, "checkin", tr("Check &in..."), SLOT(fileCheckin()));
