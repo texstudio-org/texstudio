@@ -464,8 +464,9 @@ void Editors::moveAllToOtherTabGroup() {
 
 	// NOTE: This code assumes exactly two tabGroups
 	int otherGroupIndex = (tabGroups[0] == tabGroup) ? 1 : 0;
-	foreach (LatexEditorView *edView, tabGroup->editors())
+    foreach (LatexEditorView *edView, tabGroup->editors()){
 		moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);
+    }
 }
 
 void Editors::moveAllOthersToOtherTabGroup() {
@@ -477,10 +478,11 @@ void Editors::moveAllOthersToOtherTabGroup() {
 
 	// NOTE: This code assumes exactly two tabGroups
 	int otherGroupIndex = (tabGroups[0] == tabGroupCurrent) ? 1 : 0;
-	foreach (LatexEditorView *edView, tabGroupCurrent->editors())
-		if (edView == edViewCurrent)
-			{}
-		else {moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);}
+    foreach (LatexEditorView *edView, tabGroupCurrent->editors()){
+        if (edView != edViewCurrent){
+            moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);
+        }
+    }
 }
 
 
