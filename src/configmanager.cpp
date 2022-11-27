@@ -477,7 +477,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
 	registerOption("Bibliography/BibFileEncoding", &bibFileEncoding, "UTF-8", &pseudoDialog->comboBoxBibFileEncoding);
-	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
+	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseRootDoc);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
     registerOption("Files/Autoload", &autoLoadChildren, true, &pseudoDialog->checkBoxAutoLoad);
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
