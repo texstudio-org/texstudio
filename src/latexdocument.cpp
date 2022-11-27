@@ -2958,7 +2958,7 @@ void LatexDocument::emitUpdateCompleter()
 void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter)
 {
 	LatexPackage zw;
-    QList<LatexPackage> packages;
+    QVector<LatexPackage> packages;
 	LatexCompleterConfig *completerConfig = edView->getCompleter()->getConfig();
 	foreach (const QString &elem, files) {
 		if (loadedFiles.contains(elem))
