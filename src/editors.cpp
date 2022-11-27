@@ -396,15 +396,18 @@ void Editors::tabBarContextMenu(const QPoint &point)
 	if (!editorUnderCursor) act->setEnabled(false);
 	connect(act, SIGNAL(triggered()), SLOT(moveToOtherTabGroup()));
 
-	act = menu.addAction(tr("Move all to other view"));
-	act->setData(QVariant::fromValue<TxsTabWidget *>(tabGroup));
-	if (!editorUnderCursor) act->setEnabled(false);
-	connect(act, SIGNAL(triggered()), SLOT(moveAllToOtherTabGroup()));
-
-	act = menu.addAction(tr("Move all others to other view"));
-	act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
-	if (!editorUnderCursor) act->setEnabled(false);
-	connect(act, SIGNAL(triggered()), SLOT(moveAllOthersToOtherTabGroup()));
+	if (tabGroups[0] == tabWidgetFromEditor(editorUnderCursor)) {
+		act = menu.addAction(tr("Move all others to other view"));
+		act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
+		if (!editorUnderCursor) act->setEnabled(false);
+		connect(act, SIGNAL(triggered()), SLOT(moveAllOthersToOtherTabGroup()));
+	}
+	else {
+		act = menu.addAction(tr("Move all to other view"));
+		act->setData(QVariant::fromValue<TxsTabWidget *>(tabGroup));
+		if (!editorUnderCursor) act->setEnabled(false);
+		connect(act, SIGNAL(triggered()), SLOT(moveAllToOtherTabGroup()));
+	}
 
 	act = menu.addAction((splitter->orientation() == Qt::Horizontal) ? tr("Split Vertically") : tr("Split Horizontally"));
 	connect(act, SIGNAL(triggered()), SLOT(changeSplitOrientation()));
