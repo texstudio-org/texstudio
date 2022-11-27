@@ -9214,11 +9214,11 @@ void Texstudio::showOldRevisions()
 	cmbLog->insertItems(0, log);
 	lay->addWidget(cmbLog);
     connect(svndlg, &QDialog::finished, this, &Texstudio::svnDialogClosed);
-	connect(cmbLog, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeToRevision(QString)));
+    connect(cmbLog, SIGNAL(currentTextChanged(QString)), this, SLOT(changeToRevision(QString)));
     connect(currentEditor(), SIGNAL(textEdited(QKeyEvent*)), svndlg, SLOT(close()));
 	currentEditor()->setProperty("Revision", log.first());
 	svndlg->setAttribute(Qt::WA_DeleteOnClose, true);
-	svndlg->show();
+    svndlg->show();
 }
 /*!
  * \brief reset when closing svn old revision dialog
