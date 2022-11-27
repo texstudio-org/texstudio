@@ -2958,6 +2958,7 @@ void LatexDocument::emitUpdateCompleter()
 void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter)
 {
 	LatexPackage zw;
+    QList<LatexPackage> packages;
 	LatexCompleterConfig *completerConfig = edView->getCompleter()->getConfig();
 	foreach (const QString &elem, files) {
 		if (loadedFiles.contains(elem))
@@ -2996,12 +2997,28 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
 			}
 			emit importPackage(name);
 		} else {
-			pck.unite(zw, gatherForCompleter);
+            packages<<zw;
 			loadedFiles.append(elem);
-			if (!zw.requiredPackages.isEmpty())
+            if (!zw.requiredPackages.isEmpty()){
 				gatherCompletionFiles(zw.requiredPackages, loadedFiles, pck, gatherForCompleter);
+                packages<<pck;
+            }
 		}
 	}
+    // multi way unite
+    while(packages.size()>1){
+        const int sz=packages.size();
+        for(int i=0;i<packages.size()/2;++i){
+            packages[i].unite(packages[sz/2+i], gatherForCompleter);
+        }
+        if(sz%2==1){
+            // odd number of packages, add to first
+            packages[0].unite(packages[sz-1],gatherForCompleter);
+        }
+        // remove rest of packages from list
+        packages.remove(sz/2,sz-sz/2);
+    }
+    pck=packages.value(0);
 }
 
 QString LatexDocument::getMagicComment(const QString &name) const
