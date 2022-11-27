@@ -3031,8 +3031,11 @@ void Texstudio::fileClose()
         lst={doc};
     }
 
-    saveFilesForClosing(lst);
+    bool closeFile = saveFilesForClosing(lst);
 
+    if(!closeFile){
+        return;
+    }
     documents.deleteDocument(currentEditorView()->document);
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
     updateTOCs();
