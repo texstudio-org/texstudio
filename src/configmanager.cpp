@@ -666,11 +666,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/SupportShellStyleLiteralQuotes", &BuildManager::m_supportShellStyleLiteralQuotes, true);
 
 	//Paths
-#ifdef Q_OS_MAC
-	QString defaultSearchPaths = "/usr/local/texlive/2012/bin/x86_64-darwin"; //workaround for xelatex
-#else
 	QString defaultSearchPaths;
-#endif
+
 	registerOption("Tools/Search Paths", &BuildManager::additionalSearchPaths, defaultSearchPaths, &pseudoDialog->lineEditPathCommands);
 	registerOption("Tools/Log Paths", &BuildManager::additionalLogPaths, "", &pseudoDialog->lineEditPathLog);
 	registerOption("Tools/PDF Paths", &BuildManager::additionalPdfPaths, "", &pseudoDialog->lineEditPathPDF);
