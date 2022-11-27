@@ -477,7 +477,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
 	registerOption("Bibliography/BibFileEncoding", &bibFileEncoding, "UTF-8", &pseudoDialog->comboBoxBibFileEncoding);
-	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
+	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseRootDoc);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
     registerOption("Files/Autoload", &autoLoadChildren, true, &pseudoDialog->checkBoxAutoLoad);
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -1985,7 +1985,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems)
 			act->setVisible(true);
 			QString temp = recentProjectList.at(i);
 			temp.replace("&", "&&");
-            act->setText(tr("Master Document: ") + (i <= 13 ? QString("&%1 ").arg(static_cast<char>('M' + i)) : "") + QDir::toNativeSeparators(temp));
+            act->setText(tr("Root Document: ") + (i <= 13 ? QString("&%1 ").arg(static_cast<char>('M' + i)) : "") + QDir::toNativeSeparators(temp));
 			act->setData(recentProjectList.at(i));
 		} else act->setVisible(false);
 	}
