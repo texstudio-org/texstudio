@@ -61,6 +61,7 @@ protected slots:
 	void onEditorChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
 	void moveToOtherTabGroup();
 	void moveAllToOtherTabGroup();
+	void moveAllOthersToOtherTabGroup();
 	void moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int targetIndex);
 
 protected:
