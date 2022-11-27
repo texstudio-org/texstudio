@@ -63,8 +63,8 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	connect(ui.cbHeight, SIGNAL(toggled(bool)), this, SLOT(includeOptionChanged()));
 	connect(ui.leWidth, SIGNAL(textChanged(QString)), this, SLOT(includeOptionChanged()));
 	connect(ui.leHeight, SIGNAL(textChanged(QString)), this, SLOT(includeOptionChanged()));
-	connect(ui.cbWidthUnit, SIGNAL(currentIndexChanged(QString)), this, SLOT(includeOptionChanged()));
-	connect(ui.cbHeightUnit, SIGNAL(currentIndexChanged(QString)), this, SLOT(includeOptionChanged()));
+    connect(ui.cbWidthUnit, SIGNAL(currentTextChanged(QString)), this, SLOT(includeOptionChanged()));
+    connect(ui.cbHeightUnit, SIGNAL(currentTextChanged(QString)), this, SLOT(includeOptionChanged()));
 	connect(ui.lePlacement, SIGNAL(textChanged(QString)), this, SLOT(updatePlacement()));
 	connect(ui.pbPlaceExpand, SIGNAL(clicked()), this, SLOT(togglePlacementCheckboxes()));
 	connect(ui.cbPlaceTop, SIGNAL(clicked()), this, SLOT(updatePlacement()));

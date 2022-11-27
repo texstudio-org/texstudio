@@ -398,7 +398,7 @@ void QEditConfig::loadKeys(const QMap<QString, QVariant>& keys)
 		} else if ( it.key() == "encoding" ) {
 			cbEncoding->setCurrentIndex(cbEncoding->findText(it->toString()));
 			if ( m_direct )
-				on_cbEncoding_currentIndexChanged(it->toString());
+                on_cbEncoding_currentTextChanged(it->toString());
 		} else if ( it.key() == "line_endings" ) {
 			int le = it->toInt();
 
@@ -533,7 +533,7 @@ void QEditConfig::on_chkShowTrailingWhitespace_toggled(bool y)
 /*!
 	\brief Slot used to apply encodings settings
 */
-void QEditConfig::on_cbEncoding_currentIndexChanged(const QString& name)
+void QEditConfig::on_cbEncoding_currentTextChanged(const QString& name)
 {
 	if ( m_direct )
 	{
