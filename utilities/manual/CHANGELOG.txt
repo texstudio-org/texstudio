@@ -3,6 +3,7 @@ TeXstudio 4.4.1
 - fix file association on OSX
 - allow ignore all in spell checker dialog
 - fix language code for LanguageTool
+- fix cancel file close (#2705)
 
 TeXstudio 4.4.0
 -----------------
