@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/11/04 for v0.99-z-b
+# Matthew Bertucci 2022/11/27 for v0.99-z-c
 
 #include:verbatim
 #include:mathtools
@@ -14,6 +14,7 @@
 #include:xinttools
 #include:iftex
 #include:luamplib
+#include:luacas
 #include:gmp
 #include:xintexpr
 #include:listofitems
@@ -332,6 +333,38 @@ MemeEnonce#true,false
 CoinBG={%<(x,y)%>}
 CoinHD={%<(x,y)%>}
 TypeTrace="%<type%>"
+#endkeyvals
+
+## Les solides ##
+\Solide
+\Solide[clés%keyvals]
+
+#keyvals:\Solide
+Phi=%<degrés%>
+Theta=%<degrés%>
+Distance=%<nombre%>
+Aretes#true,false
+Sommets#true,false
+ListeSommets={%<liste%>}
+Traces={%<MP code%>}
+Nom=#pave,cylindre,cone,pyramide,sphere
+Largeur=%<nombre%>
+Hauteur=%<nombre%>
+Profondeur=%<nombre%>
+RayonCylindre=%<nombre%>
+HauteurCylindre=%<nombre%>
+Anglex=%<degrés%>
+Reguliere#true,false
+SommetsPyramide=%<nombre%>
+DecalageSommet={(%<x,y,z%>)}
+RayonCone=%<nombre%>
+HauteurCone=%<nombre%>
+RayonSphere=%<nombre%>
+Section
+PointsSection={%<liste%>}
+CouleurSection=#%color
+CoefSection=%<coef%>
+ObjetSection=
 #endkeyvals
 
 ## Les positions relatives de deux droites ##
@@ -927,10 +960,12 @@ Definition#true,false
 Ecriture#true,false
 Points#true,false
 Tangentes#true,false
+Catmull#true,false
 PasX=%<nombre%>
 PasY=%<nombre%>
 UniteX=%<nombre%>
 UniteY=%<nombre%>
+Epaisseur=
 Prolonge#true,false
 Trace#true,false
 Xmin=%<nombre%>
@@ -1221,6 +1256,8 @@ Debut=%<integer%>
 Fin=%<integer%>
 EcartVertical=%<nombre%>
 Echelle=%<factor%>
+Droites#true,false
+DemiDroites#true,false
 Solution#true,false
 LignesIdentiques#true,false
 #endkeyvals
@@ -1519,6 +1556,16 @@ Graine=%<integer%>
 Relatifs#true,false
 Original#true,false
 Plaques=%<nombre%>
+#endkeyvals
+
+## Des barres de calculs ##
+\BarresCalculs{liste des calculs}{mot clé}
+\BarresCalculs[clés%keyvals]{liste des calculs}{mot clé}
+
+#keyvals:\BarresCalculs
+Litteral#true,false
+Perso#true,false
+Decimaux#true,false
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -2113,7 +2160,6 @@ Teal#B
 \ListeContenuCol#S
 \ListeCouleur#S
 \ListeCouleurEntier#S
-\ListeDefDroites#S
 \ListeDefiTableCode#S
 \ListeDefiTableMax#S
 \ListeDefiTablePhrase#S
@@ -2187,6 +2233,7 @@ Teal#B
 \ListeNombreCollen#S
 \ListeNomsCAN#S
 \ListeNomsMul#S
+\ListeNomSommet#S
 \ListeObjetsCAN#S
 \ListeObjetsSymbolesCAN#S
 \ListePANombre#S
@@ -2266,6 +2313,7 @@ Teal#B
 \MPBillard{arg1}{arg2}{arg3}#S
 \MPBillardSolution{arg1}{arg2}{arg3}#S
 \MPCalculatrice{arg1}{arg2}{arg3}#S
+\MPCatmull{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPCinq{arg1}{arg2}{arg3}#S
 \MPCourbe{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPCourbePoints{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2327,6 +2375,11 @@ Teal#B
 \MPPlanTrace{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPRadar{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \MPSeyes{arg1}{arg2}{arg3}#S
+\MPSolideCone{arg1}{arg2}{arg3}#S
+\MPSolideCylindre{arg1}{arg2}{arg3}#S
+\MPSolidePave{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPSolidePyramide{arg1}{arg2}{arg3}{arg4}#S
+\MPSolideSphere{arg1}{arg2}{arg3}#S
 \MPStat{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \MPStatCirculaireQ{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPStatNew{arg1}{arg2}#S
@@ -2474,12 +2527,16 @@ Teal#B
 \PfCLargeurQuestion#S
 \PfCLargeurReponse#S
 \PfCListeATrier#S
+\PfCListeBarresCalculs#S
+\PfCListeCalculsBarre#S
 \PfCListeCCAide#S
 \PfCListeCCAidelen#S
 \PfCListeCCNb#S
 \PfCListeCCOp#S
 \PfCListeCmdTortue#S
 \PfCListeHauteursCubes#S
+\PfCListeResultats#S
+\PfCListeResultatsBarre#S
 \PfCListeRLE#S
 \PfCListeSymbolTrivial#S
 \PfCLongInter#S
@@ -2706,7 +2763,6 @@ Teal#B
 \toklistecaseM{arg}#S
 \toklistecaseP{arg}#S
 \toklistecouleur#S
-\toklistedefdroites{arg}#S
 \toklistedefligne{arg}#S
 \toklistedonhor{arg}#S
 \toklistefrise{arg}#S
@@ -2740,6 +2796,8 @@ Teal#B
 \toklisteVueCube#S
 \tokPfCCBRappels#S
 \tokPfCEngrenages#S
+\toksolidelistepointssections#S
+\toksolidelistesommets#S
 \TortueCreationFichier[opt]{arg}#S
 \TortueCreationFichier{arg}#S
 \TortueDessinFinal#S
@@ -2748,10 +2806,8 @@ Teal#B
 \TotalLaby#S
 \TotalP#S
 \toto#S
-\TraceDessinGradue{arg1}{arg2}{arg3}{arg4}#S
-\TraceDessinGradueMul{arg1}#S
-\TraceDessinGradueMulSolution{arg1}{arg2}{arg3}#S
-\TraceDessinGradueSolution{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\TraceDessinGradue{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
+\TraceDessinGradueMul{arg1}{arg2}{arg3}#S
 \TraceDoubleSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceEchiquierColoreColorilude#S
 \TraceEchiquierColorilude#S
@@ -2810,6 +2866,7 @@ Teal#B
 \Updatetoksq{arg1}#S
 \Updatetoksrepere{arg1}#S
 \UpdatetoksRLE{arg}#S
+\UpdatetoksSolide{arg}#S
 \UpdatetoksTriomino{arg1}#S
 \UpdatetoksVueCube{arg}#S
 \UpdateTraces{arg1}#S
