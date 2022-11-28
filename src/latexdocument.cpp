@@ -2957,18 +2957,17 @@ void LatexDocument::emitUpdateCompleter()
 
 void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter)
 {
-	LatexPackage zw;
-    QVector<LatexPackage> packages;
-	LatexCompleterConfig *completerConfig = edView->getCompleter()->getConfig();
-	foreach (const QString &elem, files) {
-		if (loadedFiles.contains(elem))
-			continue;
-		if (parent->cachedPackages.contains(elem)) {
-			zw = parent->cachedPackages.value(elem);
-		} else {
+    LatexPackage zw;
+    LatexCompleterConfig *completerConfig = edView->getCompleter()->getConfig();
+    foreach (const QString &elem, files) {
+        if (loadedFiles.contains(elem))
+            continue;
+        if (parent->cachedPackages.contains(elem)) {
+            zw = parent->cachedPackages.value(elem);
+        } else {
             // check if package is actually not depending on options
-			QString fileName = LatexPackage::keyToCwlFilename(elem);
-			QStringList options = LatexPackage::keyToOptions(elem);
+            QString fileName = LatexPackage::keyToCwlFilename(elem);
+            QStringList options = LatexPackage::keyToOptions(elem);
             bool found=false;
             if(parent->cachedPackages.contains(fileName) ){
                 zw = parent->cachedPackages.value(fileName);
@@ -2985,40 +2984,24 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
                     parent->cachedPackages.insert(fileName, zw); // cache package as empty/not found package
                 }
             }
-		}
-		if (zw.notFound) {
-			QString name = elem;
-			LatexDocument *masterDoc = getRootDocument();
-			if (masterDoc) {
-				QString fn = masterDoc->getFileInfo().absolutePath();
-				name += "/" + fn;
-				// TODO: oha, the key can be even more complex: option#filename.cwl/masterfile
-				// consider this in the key-handling functions of LatexPackage
-			}
-			emit importPackage(name);
-		} else {
-            packages<<zw;
-			loadedFiles.append(elem);
-            if (!zw.requiredPackages.isEmpty()){
-				gatherCompletionFiles(zw.requiredPackages, loadedFiles, pck, gatherForCompleter);
-                packages<<pck;
+        }
+        if (zw.notFound) {
+            QString name = elem;
+            LatexDocument *masterDoc = getRootDocument();
+            if (masterDoc) {
+                QString fn = masterDoc->getFileInfo().absolutePath();
+                name += "/" + fn;
+                // TODO: oha, the key can be even more complex: option#filename.cwl/masterfile
+                // consider this in the key-handling functions of LatexPackage
             }
-		}
-	}
-    // multi way unite
-    while(packages.size()>1){
-        const int sz=packages.size();
-        for(int i=0;i<packages.size()/2;++i){
-            packages[i].unite(packages[sz/2+i], gatherForCompleter);
+            emit importPackage(name);
+        } else {
+            pck.unite(zw, gatherForCompleter);
+            loadedFiles.append(elem);
+            if (!zw.requiredPackages.isEmpty())
+                gatherCompletionFiles(zw.requiredPackages, loadedFiles, pck, gatherForCompleter);
         }
-        if(sz%2==1){
-            // odd number of packages, add to first
-            packages[0].unite(packages[sz-1],gatherForCompleter);
-        }
-        // remove rest of packages from list
-        packages.remove(sz/2,sz-sz/2);
     }
-    pck=packages.value(0);
 }
 
 QString LatexDocument::getMagicComment(const QString &name) const
