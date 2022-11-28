@@ -1864,17 +1864,17 @@ Dado que o Unicode não tem suporte nativo no LaTeX, tem de incluir os pacotes a
     <message>
         <location filename="../src/configdialog.ui" line="396"/>
         <source>Max. Recent Root Documents:</source>
-        <translation type="unfinished"/>
+        <translation>Máx. documentos raiz recentes:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="459"/>
         <source>Always Show Structure of Root Document</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar sempre estrutura do documento raiz</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="710"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Selector de ficheiro (Opcional. Se presente, incluir dois pontos finais):&lt;/i&gt; Sem selector, seleccionar o ficheiro raiz. &lt;b&gt;c:&lt;/b&gt; seleccionar o ficheiro actual, &lt;b&gt;p{ext}:&lt;/b&gt; Encontrar um ficheiro com o mesmo nome que o ficheiro raiz &lt;b&gt;ext&lt;/b&gt;. procurar na pasta do ficheiro raiz e pastas PDF adicionais.&lt;br /&gt;&lt;i&gt;Partes do caminho:&lt;/i&gt; uma combinação de &lt;b&gt;a&lt;/b&gt;: caminho absoluto, &lt;b&gt;m&lt;/b&gt;: nome do ficheiro base sem extensão,&lt;b&gt;e&lt;/b&gt;: extensão, &lt;b&gt;r&lt;/b&gt;: caminho relativo da raiz, &lt;b&gt;*&lt;/b&gt;: todos os ficheiros com o padrão seguinte&lt;br/&gt;&lt;i&gt;Caracteres finais:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: termina o selector. Os seguintes caracteres terminam o selector e têm significado adicional&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: entre aspas duplas, &lt;b&gt;.&lt;/b&gt; (dot) adicionar um ponto no fim, (space): adicionar um espaço no fim&lt;br/&gt;&lt;i&gt;Exemplos:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: nome de ficheiro absoluto e completo entre aspas duplas, &lt;b&gt;?e)&lt;/b&gt; só a extensão sem ponto inicial (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; nome de ficheiro entre aspas duplas sem extensão (idêntico a &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nome de ficheiro com extensão (e.g. exemplo.tex), &lt;b&gt;?*.aux&lt;/b&gt;: todos os ficheiros .aux na pasta actual</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2540"/>
@@ -3914,7 +3914,7 @@ Deseja removê-las?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="1988"/>
         <source>Root Document: </source>
-        <translation type="unfinished"/>
+        <translation>Documento raiz:</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2757"/>
@@ -9343,7 +9343,7 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Copy root filename to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Copiar nome do ficheiro raiz para a memória</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="930"/>
