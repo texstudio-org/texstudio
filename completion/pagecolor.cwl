@@ -1,5 +1,5 @@
 # pagecolor package
-# Matthew Bertucci 2022/11/22 for v1.1a
+# Matthew Bertucci 2022/11/27 for v1.2a
 
 #include:hardwrap
 #include:kvoptions
@@ -14,3 +14,8 @@ nopagecolor
 \thepagecolornone
 \newpagecolor{color}
 \restorepagecolor
+
+# require crop package loaded
+\backgroundpagecolor{color}#*
+\newbackgroundpagecolor{color}#*
+\restorebackgroundpagecolor#*
