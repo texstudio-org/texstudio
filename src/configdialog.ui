@@ -27,7 +27,7 @@
     <number>9</number>
    </property>
    <property name="horizontalSpacing">
-    <number>18</number>
+    <number>12</number>
    </property>
    <property name="verticalSpacing">
     <number>6</number>
@@ -60,7 +60,7 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="3">
+   <item row="2" column="0" colspan="2">
     <layout class="QHBoxLayout">
      <property name="spacing">
       <number>6</number>
@@ -138,7 +138,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="2" rowspan="2">
+   <item row="0" column="1" rowspan="2">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
@@ -197,7 +197,7 @@
             <number>0</number>
            </property>
            <property name="rightMargin">
-            <number>9</number>
+            <number>0</number>
            </property>
            <property name="bottomMargin">
             <number>0</number>
@@ -777,6 +777,9 @@
            <property name="topMargin">
             <number>0</number>
            </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
            <property name="bottomMargin">
             <number>0</number>
            </property>
@@ -912,122 +915,104 @@
                </widget>
               </item>
               <item row="7" column="0" colspan="2">
-               <widget class="QScrollArea" name="scrollAreaPaths">
-                <property name="frameShape">
-                 <enum>QFrame::NoFrame</enum>
+               <layout class="QGridLayout" name="gridLayout_1">
+                <property name="leftMargin">
+                 <number>9</number>
                 </property>
-                <property name="widgetResizable">
-                 <bool>true</bool>
+                <property name="topMargin">
+                 <number>0</number>
                 </property>
-                <widget class="QWidget" name="scrollAreaWidgetContents_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>638</width>
-                   <height>70</height>
-                  </rect>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_1">
-                  <property name="leftMargin">
-                   <number>9</number>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <property name="verticalSpacing">
+                 <number>2</number>
+                </property>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="lineEditPathPDF"/>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="lineEditPathCommands"/>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QPushButton" name="pushButtonPathPdf">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
                   </property>
-                  <property name="topMargin">
-                   <number>0</number>
+                  <property name="text">
+                   <string/>
                   </property>
-                  <property name="rightMargin">
-                   <number>0</number>
+                  <property name="icon">
+                   <iconset resource="../images.qrc">
+                    <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                   </property>
-                  <property name="bottomMargin">
-                   <number>0</number>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_59">
+                  <property name="text">
+                   <string>Commands ($PATH)</string>
                   </property>
-                  <property name="verticalSpacing">
-                   <number>2</number>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_58">
+                  <property name="text">
+                   <string>PDF File</string>
                   </property>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="lineEditPathPDF"/>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="lineEditPathCommands"/>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QPushButton" name="pushButtonPathPdf">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../images.qrc">
-                      <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_59">
-                    <property name="text">
-                     <string>Commands ($PATH)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_58">
-                    <property name="text">
-                     <string>PDF File</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEditPathLog"/>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QPushButton" name="pushButtonPathLog">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../images.qrc">
-                      <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QPushButton" name="pushButtonPathCommands">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../images.qrc">
-                      <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_57">
-                    <property name="text">
-                     <string>Log File</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </widget>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="lineEditPathLog"/>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QPushButton" name="pushButtonPathLog">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../images.qrc">
+                    <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="2">
+                 <widget class="QPushButton" name="pushButtonPathCommands">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../images.qrc">
+                    <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_57">
+                  <property name="text">
+                   <string>Log File</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item row="6" column="0" colspan="2">
                <widget class="QLabel" name="label_68">
@@ -1400,7 +1385,7 @@ Then you can select a new shortcut by one of the following ways:
        <item>
         <widget class="QGroupBox" name="groupBox_17">
          <property name="title">
-          <string>Scaling</string>
+          <string>GUI Scaling</string>
          </property>
          <layout class="QGridLayout">
           <property name="horizontalSpacing">
@@ -1522,19 +1507,6 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
-           <spacer name="verticalSpacer_6">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>470</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_71">
             <property name="text">
@@ -1583,6 +1555,22 @@ Then you can select a new shortcut by one of the following ways:
           </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1638,14 +1626,14 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="12" column="0">
+          <item row="11" column="0">
            <widget class="QLabel" name="label_33">
             <property name="text">
              <string>Show Line Numbers:</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="1">
+          <item row="11" column="1">
            <widget class="QComboBox" name="comboboxLineNumbers">
             <property name="" stdset="0">
              <bool>true</bool>
@@ -1687,14 +1675,14 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="6" column="1" colspan="4">
+          <item row="12" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxFolding">
             <property name="text">
              <string>Folding</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="3" colspan="2">
+          <item row="7" column="3" colspan="2">
            <widget class="QCheckBox" name="checkBoxReplaceIndentTabByWhitespace">
             <property name="text">
              <string>Replace Indentation Tab by Spaces</string>
@@ -1708,7 +1696,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="11" column="0">
+          <item row="10" column="0">
            <widget class="QLabel" name="label_39">
             <property name="text">
              <string>Replace Double Quotes:</string>
@@ -1728,7 +1716,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Indentation Mode:</string>
@@ -1815,7 +1803,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="11" column="1" colspan="4">
+          <item row="10" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
@@ -1876,7 +1864,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="8" column="1" colspan="2">
+          <item row="7" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>false</bool>
@@ -1955,7 +1943,7 @@ Then you can select a new shortcut by one of the following ways:
             </layout>
            </widget>
           </item>
-          <item row="9" column="3" colspan="2">
+          <item row="8" column="3" colspan="2">
            <widget class="QCheckBox" name="checkBoxReplaceTextTabByWhitespace">
             <property name="text">
              <string>Replace Tab in Text by Spaces</string>
@@ -1992,7 +1980,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="10" column="3" colspan="2">
+          <item row="9" column="3" colspan="2">
            <widget class="QCheckBox" name="checkboxRemoveTrailingWsOnSave">
             <property name="text">
              <string>Remove Trailing Whitespace on Save</string>
@@ -3316,6 +3304,18 @@ them here.</string>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QGroupBox" name="groupBox_Dictionaries">
              <property name="title">
@@ -3854,7 +3854,7 @@ them here.</string>
            <item>
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
-              <string>Segment Preview</string>
+              <string>Preview</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
@@ -3990,7 +3990,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="5" column="0">
                <widget class="QCheckBox" name="checkBoxReplaceBeamer">
                 <property name="text">
                  <string>Replace beamer class by article</string>
@@ -4003,7 +4003,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="6" column="0">
                <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
                 <property name="text">
                  <string>Precompile Preamble</string>
@@ -4558,7 +4558,7 @@ Note: Changing this setting will only affect documents that are opened afterward
       </layout>
      </widget>
      <widget class="QWidget" name="pageSVN">
-      <layout class="QVBoxLayout">
+      <layout class="QGridLayout">
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -4571,84 +4571,96 @@ Note: Changing this setting will only affect documents that are opened afterward
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item>
-        <widget class="QComboBox" name="comboBoxUseVCS">
-         <item>
-          <property name="text">
-           <string>Use SVN</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Use GIT</string>
-          </property>
-         </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_18">
+         <property name="title">
+          <string>SVN/GIT</string>
+         </property>
+         <layout class="QVBoxLayout">
+          <item>
+           <widget class="QComboBox" name="comboBoxUseVCS">
+            <item>
+             <property name="text">
+              <string>Use SVN</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Use GIT</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBoxAutoCheckinLevel">
+            <property name="toolTip">
+             <string>Select how txs checks in saved files</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>No automatic check-in after save</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Check-in after File/Save only</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Check-in after all save operations, i.e. also before compiles.</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbSVNUndo">
+            <property name="text">
+             <string>Use SVN/GIT revisions to undo before last saved version</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="cbKeywordSubstitution">
+            <property name="toolTip">
+             <string>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</string>
+            </property>
+            <property name="text">
+             <string>Substitute Keywords with Properties (on svn add)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLabel" name="label_21">
+              <property name="text">
+               <string>SVN Directory Search Depth: </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="sbDirSearchDepth">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </item>
-       <item>
-        <widget class="QComboBox" name="comboBoxAutoCheckinLevel">
-         <property name="toolTip">
-          <string>Select how txs checks in saved files</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>No automatic check-in after save</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Check-in after File/Save only</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Check-in after all save operations, i.e. also before compiles.</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="cbSVNUndo">
-         <property name="text">
-          <string>Use SVN/GIT revisions to undo before last saved version</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="cbKeywordSubstitution">
-         <property name="toolTip">
-          <string>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</string>
-         </property>
-         <property name="text">
-          <string>Substitute Keywords with Properties (on svn add)</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout">
-         <item>
-          <widget class="QLabel" name="label_21">
-           <property name="text">
-            <string>SVN Directory Search Depth: </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="sbDirSearchDepth">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
+       <item row="1" column="0">
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::MinimumExpanding</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -4757,22 +4769,6 @@ Note: Changing this setting will only affect documents that are opened afterward
       </layout>
      </widget>
     </widget>
-   </item>
-   <item row="0" column="1">
-    <spacer name="vsCompletionList">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
