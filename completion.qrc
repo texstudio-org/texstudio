@@ -3351,8 +3351,13 @@
 <file>completion/tikzlibraryautomata.cwl</file>
 <file>completion/tikzlibrarybabel.cwl</file>
 <file>completion/tikzlibrarybackgrounds.cwl</file>
+<file>completion/tikzlibrarybbox.cwl</file>
 <file>completion/tikzlibrarybending.cwl</file>
+<file>completion/tikzlibrarybraids.cwl</file>
 <file>completion/tikzlibrarycalendar.cwl</file>
+<file>completion/tikzlibrarycalligraphy.cwl</file>
+<file>completion/tikzlibrarycd.cwl</file>
+<file>completion/tikzlibraryceltic.cwl</file>
 <file>completion/tikzlibrarychains.cwl</file>
 <file>completion/tikzlibrarycircuits.cwl</file>
 <file>completion/tikzlibrarycircuits.ee.cwl</file>
@@ -3379,6 +3384,9 @@
 <file>completion/tikzlibraryer.cwl</file>
 <file>completion/tikzlibraryexternal.cwl</file>
 <file>completion/tikzlibraryfadings.cwl</file>
+<file>completion/tikzlibraryfill.hexagon.cwl</file>
+<file>completion/tikzlibraryfill.image.cwl</file>
+<file>completion/tikzlibraryfill.rhombus.cwl</file>
 <file>completion/tikzlibraryfit.cwl</file>
 <file>completion/tikzlibraryfixedpointarithmetic.cwl</file>
 <file>completion/tikzlibraryfolding.cwl</file>
@@ -3387,6 +3395,7 @@
 <file>completion/tikzlibrarygraphs.cwl</file>
 <file>completion/tikzlibrarygraphs.standard.cwl</file>
 <file>completion/tikzlibraryintersections.cwl</file>
+<file>completion/tikzlibraryknots.cwl</file>
 <file>completion/tikzlibrarylindenmayersystems.cwl</file>
 <file>completion/tikzlibrarymath.cwl</file>
 <file>completion/tikzlibrarymatrix.cwl</file>
@@ -3411,6 +3420,7 @@
 <file>completion/tikzlibraryshapes.misc.cwl</file>
 <file>completion/tikzlibraryshapes.multipart.cwl</file>
 <file>completion/tikzlibraryshapes.symbols.cwl</file>
+<file>completion/tikzlibraryspath3.cwl</file>
 <file>completion/tikzlibraryspy.cwl</file>
 <file>completion/tikzlibrarysvg.path.cwl</file>
 <file>completion/tikzlibrarythrough.cwl</file>
