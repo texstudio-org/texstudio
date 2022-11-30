@@ -1,5 +1,5 @@
 # jlreq class
-# Matthew Bertucci 2022/07/17 for release 2022/07/13
+# Matthew Bertucci 2022/11/28 for release 2022/11/28
 
 #include:l3keys2e
 #include:etoolbox
@@ -290,10 +290,6 @@ clear_markcommand#true,false
 #endkeyvals
 
 # not documented
-\cleartoevenpage
-\cleartoevenpage[pagestyle]
-\cleartooddpage
-\cleartooddpage[pagestyle]
 \ifjlreqadjustreferencemark#S
 \if西暦#*
 \inlinenote*{text}

@@ -1,5 +1,5 @@
 # LuaTeX primitives
-# Matthew Bertucci updated 2/6/2022 for v1.15
+# Matthew Bertucci updated 2022/11/25 for v1.15.1
 
 ### from LuaTeX Reference Manual ###
 ## 2 Basic TeX enhancements ##
@@ -204,6 +204,7 @@
 \Uunderdelimiter#*
 \Udelimiterover#*
 \Udelimiterunder#*
+\variablefam#*
 
 # 7.3 Math styles #
 \mathstyle#*

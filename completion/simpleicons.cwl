@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/11/11 for v7.19.0
+# Matthew Bertucci 2022/11/25 for v7.20.0
 
 #include:ifxetex
 #include:ifluatex
@@ -50,6 +50,7 @@ adobephotoshop
 adobepremierepro
 adobexd
 adonisjs
+adp
 adyen
 aerlingus
 aeroflot

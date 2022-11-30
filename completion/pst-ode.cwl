@@ -1,5 +1,5 @@
-# pst-ob3d package
-# Matthew Bertucci 2/23/2022 for v0.15
+# pst-ode package
+# Matthew Bertucci 2022/11/24 for v0.18
 
 #include:pstricks
 
@@ -18,6 +18,7 @@ algebraic
 algebraicAll
 silent
 varsteptol=%<number%>
+rk4
 #endkeyvals
 
 \pstODEsaveState{state}

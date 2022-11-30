@@ -123,7 +123,6 @@ circuits.logic.IEC
 circuits.logic.US
 circuits.plc.ladder
 circuits.plc.sfc
-circular
 commutative-diagrams
 curvilinear
 datavisualization.3d

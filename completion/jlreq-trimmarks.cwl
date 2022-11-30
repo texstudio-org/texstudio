@@ -1,5 +1,5 @@
 # jlreq-trimmarks package
-# Matthew Bertucci 2022/07/18 for release 2022/07/13
+# Matthew Bertucci 2022/11/28 for release 2022/11/28
 
 #include:l3keys2e
 #include:jlreq-helpers
@@ -26,7 +26,5 @@ bleed_margin={%<top=<length>,bottom=<length>,gutter=<length>,fore-edge=<length>%
 banner={%<specs%>}
 trimmarks_width=##L
 color=#%color
+trimmarks_pattern={%<options%>}
 #endkeyvals
-
-\stockheight#*
-\stockwidth#*
