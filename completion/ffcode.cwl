@@ -1,5 +1,5 @@
 # ffcode package
-# Matthew Bertucci 2022/11/16 for v0.6.0
+# Matthew Bertucci 2022/11/30 for v0.7.0
 
 #include:pgfopts
 #include:minted
@@ -11,6 +11,8 @@ noframes
 nobars
 nonumbers
 nocn
+bold
+sf
 #endkeyvals
 
 \ff{code%definition}
