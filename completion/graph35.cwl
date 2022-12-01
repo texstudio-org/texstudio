@@ -1,5 +1,5 @@
 # graph35 package
-# Matthew Bertucci 2022/11/30 for v0.1.1
+# Matthew Bertucci 2022/11/30 for v0.1.3
 
 #include:etoolbox
 #include:pixelart0
@@ -21,7 +21,7 @@ color=#real,blackandwhite
 
 \setgraphcolor{color setting%keyvals}
 
-#keyvals:\usepackage/graph35#c
+#keyvals:\setgraphcolor#c
 real
 blackandwhite
 #endkeyvals
