@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2022/10/27 for v1.58
+# Matthew Bertucci 2022/11/30 for v1.59
 
 #include:etoolbox
 #include:makecmds
@@ -66,6 +66,8 @@ verbose#true,false
 \textbulgarian{text}#*
 \textcatalan[options%keyvals]{text}#*
 \textcatalan{text}#*
+\textchinese[options%keyvals]{text}#*
+\textchinese{text}#*
 \textcoptic[options%keyvals]{text}#*
 \textcoptic{text}#*
 \textcroatian[options%keyvals]{text}#*
@@ -154,6 +156,8 @@ verbose#true,false
 \textpolish{text}#*
 \textportuguese[options%keyvals]{text}#*
 \textportuguese{text}#*
+\textpunjabi[options%keyvals]{text}#*
+\textpunjabi{text}#*
 \textromanian[options%keyvals]{text}#*
 \textromanian{text}#*
 \textromansh[options%keyvals]{text}#*
@@ -231,6 +235,8 @@ verbose#true,false
 \begin{bulgarian}#*
 \begin{catalan}[options%keyvals]#*
 \begin{catalan}#*
+\begin{chinese}[options%keyvals]#*
+\begin{chinese}#*
 \begin{coptic}[options%keyvals]#*
 \begin{coptic}#*
 \begin{croatian}[options%keyvals]#*
@@ -319,6 +325,8 @@ verbose#true,false
 \begin{polish}#*
 \begin{portuguese}[options%keyvals]#*
 \begin{portuguese}#*
+\begin{punjabi}[options%keyvals]#*
+\begin{punjabi}#*
 \begin{romanian}[options%keyvals]#*
 \begin{romanian}#*
 \begin{romansh}[options%keyvals]#*
@@ -378,6 +386,7 @@ verbose#true,false
 \end{breton}#*
 \end{bulgarian}#*
 \end{catalan}#*
+\end{chinese}#*
 \end{coptic}#*
 \end{croatian}#*
 \end{czech}#*
@@ -422,6 +431,7 @@ verbose#true,false
 \end{piedmontese}#*
 \end{polish}#*
 \end{portuguese}#*
+\end{punjabi}#*
 \end{romanian}#*
 \end{romansh}#*
 \end{russian}#*
@@ -524,6 +534,11 @@ changecounternumbering#true,false
 babelshorthands#true,false
 #endkeyvals
 
+#keyvals:\setdefaultlanguage/chinese#c,\setmainlanguage/chinese#c,\setotherlanguage/chinese#c,\textlang/chinese#c,\textchinese#c,\begin{lang}/chinese#c,\begin{chinese}#c,\selectlanguage/chinese#c,\foreignlanguage/chinese#c,\begin{otherlanguage}/chinese#c,\begin{otherlanguage*}/chinese#c,\resetdefaultlanguage/chinese#c,\setlanguagealias/chinese#c,\setlanguagealias*/chinese#c,\pghyphenation/chinese#c,\setlanghyphenmins/chinese#c
+variant=#simplified,traditional
+numerals=#arabic,chinese
+#endkeyvals
+
 #keyvals:\setdefaultlanguage/croatian#c,\setmainlanguage/croatian#c,\setotherlanguage/croatian#c,\textlang/croatian#c,\textcroatian#c,\begin{lang}/croatian#c,\begin{croatian}#c,\selectlanguage/croatian#c,\foreignlanguage/croatian#c,\begin{otherlanguage}/croatian#c,\begin{otherlanguage*}/croatian#c,\resetdefaultlanguage/croatian#c,\setlanguagealias/croatian#c,\setlanguagealias*/croatian#c,\pghyphenation/croatian#c,\setlanghyphenmins/croatian#c
 babelshorthands#true,false
 disabledigraphs#true,false
@@ -596,10 +611,10 @@ numerals=#greek,arabic
 attic#true,false
 #endkeyvals
 
-\Greeknumber{text}#*
-\greeknumber{text}#*
+\Greeknumber{number}#S
+\greeknumber{number}#S
 \atticnumeral#*
-\atticnum#*
+\atticnum#S
 
 #keyvals:\setdefaultlanguage/hebrew#c,\setmainlanguage/hebrew#c,\setotherlanguage/hebrew#c,\textlang/hebrew#c,\texthebrew#c,\begin{lang}/hebrew#c,\begin{hebrew}#c,\selectlanguage/hebrew#c,\foreignlanguage/hebrew#c,\begin{otherlanguage}/hebrew#c,\begin{otherlanguage*}/hebrew#c,\resetdefaultlanguage/hebrew#c,\setlanguagealias/hebrew#c,\setlanguagealias*/hebrew#c,\pghyphenation/hebrew#c,\setlanghyphenmins/hebrew#c
 fullyear#true,false
@@ -687,6 +702,10 @@ vlna#true,false
 variant=#brazilian,portuguese
 babelshorthands#true,false
 splithyphens#true,false
+#endkeyvals
+
+#keyvals:\setdefaultlanguage/punjabi#c,\setmainlanguage/punjabi#c,\setotherlanguage/punjabi#c,\textlang/punjabi#c,\textpunjabi#c,\begin{lang}/punjabi#c,\begin{punjabi}#c,\selectlanguage/punjabi#c,\foreignlanguage/punjabi#c,\begin{otherlanguage}/punjabi#c,\begin{otherlanguage*}/punjabi#c,\resetdefaultlanguage/punjabi#c,\setlanguagealias/punjabi#c,\setlanguagealias*/punjabi#c,\pghyphenation/punjabi#c,\setlanghyphenmins/punjabi#c
+numerals=#western,gurmukhi
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/russian#c,\setmainlanguage/russian#c,\setotherlanguage/russian#c,\textlang/russian#c,\textrussian#c,\begin{lang}/russian#c,\begin{russian}#c,\selectlanguage/russian#c,\foreignlanguage/russian#c,\begin{otherlanguage}/russian#c,\begin{otherlanguage*}/russian#c,\resetdefaultlanguage/russian#c,\setlanguagealias/russian#c,\setlanguagealias*/russian#c,\pghyphenation/russian#c,\setlanghyphenmins/russian#c
@@ -784,6 +803,7 @@ date=#long,short
 \captionsbreton#*
 \captionsbulgarian#*
 \captionscatalan#*
+\captionschinese#*
 \captionscoptic#*
 \captionscroatian#*
 \captionsczech#*
@@ -828,6 +848,7 @@ date=#long,short
 \captionspiedmontese#*
 \captionspolish#*
 \captionsportuguese#*
+\captionspunjabi#*
 \captionsromanian#*
 \captionsromansh#*
 \captionsrussian#*
@@ -865,6 +886,7 @@ date=#long,short
 \datebreton#*
 \datebulgarian#*
 \datecatalan#*
+\datechinese#*
 \datecoptic#*
 \datecroatian#*
 \dateczech#*
@@ -909,6 +931,7 @@ date=#long,short
 \datepiedmontese#*
 \datepolish#*
 \dateportuguese#*
+\datepunjabi#*
 \dateromanian#*
 \dateromansh#*
 \daterussian#*
@@ -950,29 +973,32 @@ lang=#local,main,%<language%>
 \bengalidigits{text}#*
 \devanagaridigits{text}#*
 \farsidigits{text}#*
+\gurmukhidigits{text}#*
 \kannadadigits{text}#*
 \khmerdigits{text}#*
 \laodigits{text}#*
 \nkodigits{text}#*
 \thaidigits{text}#*
 \tibetandigits{text}#*
-\armeniannumeral{text}#*
-\belarusiannumeral{text}#*
-\Belarusiannumeral{text}#*
-\georgiannumeral{text}#*
-\greeknumeral{text}#*
-\Greeknumeral{text}#*
-\hebrewnumeral{text}#*
-\Hebrewnumeral{text}#*
-\Hebrewnumeralfinal{text}#*
-\mongoliannumeral{text}#*
-\Mongoliannumeral{text}#*
-\russiannumeral{text}#*
-\Russiannumeral{text}#*
-\serbiannumeral{text}#*
-\Serbiannumeral{text}#*
-\ukrainiannumeral{text}#*
-\Ukrainiannumeral{text}#*
+\armeniannumeral{number}#*
+\belarusiannumeral{number}#*
+\Belarusiannumeral{number}#*
+\chinesenumeral{number}#*
+\georgiannumeral{number}#*
+\greeknumeral{number}#*
+\Greeknumeral{number}#*
+\hebrewnumeral{number}#*
+\Hebrewnumeral{number}#*
+\Hebrewnumeralfinal{number}#*
+\mongoliannumeral{number}#*
+\Mongoliannumeral{number}#*
+\punjabinumeral{number}#*
+\russiannumeral{number}#*
+\Russiannumeral{number}#*
+\serbiannumeral{number}#*
+\Serbiannumeral{number}#*
+\ukrainiannumeral{number}#*
+\Ukrainiannumeral{number}#*
 
 \RTLfootnote{text}#*
 \LTRfootnote{text}#*
@@ -995,7 +1021,10 @@ lang=#local,main,%<language%>
 \ifbabellanguageloaded{language}{true}{false}#*
 \iflanguageidloaded{type}{id}{true}{false}#*
 \iflanguageoption{language}{opt key}{opt value}{true}{false}#*
-\setforeignlanguage{language}#*
+\setforeignlanguage{language}#S
+\ifxpglanginaux#S
+\xpglanginauxfalse#S
+\xpglanginauxtrue#S
 
 ## undocumented commands from gloss-*.ldf files
 # shared commands
@@ -1022,6 +1051,9 @@ lang=#local,main,%<language%>
 \Lgem#S
 \lslash#S
 \Lslash#S
+
+# from gloss-chinese.ldf
+\chinesenumber{number}#S
 
 # from gloss-french.ldf
 \ier#S
@@ -1073,6 +1105,9 @@ lang=#local,main,%<language%>
 # from gloss-persian.ldf
 \farsigregmonth{number}#S
 \farsimonth{number}#S
+
+# from gloss-punjabi.ldf
+\punjabinumber{number}#S
 
 # from gloss-nko.ldf
 \nkodayprefix{number}#S
