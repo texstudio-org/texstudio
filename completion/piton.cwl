@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2022/11/09 for v0.95
+# Matthew Bertucci 2022/11/30 for v0.99
 
 #include:l3keys2e
 #include:luatexbase
@@ -54,6 +54,11 @@ slim#true,false
 left-margin=##L
 tab-size=%<integer%>
 show-spaces
+break-lines
+indent-broken-lines
+end-of-broken-line=%<symbol%>
+continuation-symbol=%<symbol%>
+continuation-symbol-on-indentation=%<symbol%>
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
