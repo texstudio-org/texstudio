@@ -1,5 +1,5 @@
 # xduugthesis class
-# Matthew Bertucci 2022/11/23 for v2.14.1.3
+# Matthew Bertucci 2022/12/01 for v2.18.1.1
 
 #include:expl3
 #include:xparse
@@ -23,11 +23,11 @@
 
 #keyvals:\xdusetup#c
 style={%<keyvals%>}
-style/cjk-font=#win,adobe,founder,sinotype,fandol,none
+style/cjk-font=#adobe,fandol,founder,sinotype,win,none
 style/cjk-fake-bold=%<伪粗体粗细程度%>
 style/cjk-fake-slant=%<伪斜体倾斜程度%>
 style/latin-font=#tac,tacn,thcs,gyre,none
-style/math-font=#asana,cambria,cm,fira,garamond,lm,libertinus,stix,bonum,dejavu,pagella,schola,termes,xits,erewhon,none
+style/math-font=#asana,cambria,cm,concrete,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,stix2,stix,xcharter,xits,bonum,dejavu,pagella,schola,termes,none
 style/unicode-math={%<unicode-math宏包选项%>}
 style/font-type=#font,file
 style/font-path={%<路径%>}
@@ -43,9 +43,11 @@ style/fix-include#true,false
 style/fix-includegraphics#true,false
 style/ref-add-space#true,false
 style/caption-label-sep={%<间距%>}
+style/caption-format=#plain,hang
 style/table-small-font#true,false
 style/algorithm-small-caption#true,false
 style/algorithm-small-font#true,false
+style/algorithm-caption-align=#left,centering
 style/before-skip={%<间距列表%>}
 style/after-skip={%<间距列表%>}
 style/chap-zihao=#0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8
