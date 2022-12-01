@@ -1,10 +1,10 @@
 # graph35 package
-# Matthew Bertucci 12/22/2021 for v0.1.1
+# Matthew Bertucci 2022/11/30 for v0.1.1
 
 #include:etoolbox
-#include:pixelart
+#include:pixelart0
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #include:pgfkeys
 #include:etoolbox
 #include:amssymb
@@ -86,4 +86,4 @@ scale=%<factor%>
 raise=##L
 #endkeyvals
 
-\boolvalue{boolean}#*
+\boolvalue{boolean}#S
