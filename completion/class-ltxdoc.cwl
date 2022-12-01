@@ -1,5 +1,5 @@
 # ltxdoc class
-# Matthew Bertucci 10/18/2021 for v2.1b
+# Matthew Bertucci 2022/12/01 for v2.1i
 
 #include:doc
 
@@ -30,7 +30,6 @@ openbib
 #endkeyvals
 
 \cmd{command}
-\cs{csname}
 \marg{text%plain}
 \oarg{text%plain}
 \parg{text%plain}
