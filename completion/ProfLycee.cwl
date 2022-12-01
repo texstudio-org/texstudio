@@ -1,13 +1,11 @@
 # ProfLycee package
-# Matthew Bertucci 2022/11/21 for v2.0.4
+# Matthew Bertucci 2022/11/30 for v2.0.6
 
+#include:mathtools
 #include:xcolor
 # xcolor loaded with table and svgnames options
 #include:tikz
-# loads calc, decorations, decorations.pathreplacing, decorations.markings, arrows,
-# arrows.meta, babel, shapes.geometric, and decorations.pathmorphing tikzlibraries
 #include:tkz-tab
-#include:mathtools
 #include:pgf
 #include:pgffor
 #include:ifthen
@@ -23,6 +21,14 @@
 #include:siunitx
 #include:fontawesome5
 #include:csvsimple-l3
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.markings
+#include:tikzlibraryarrows.meta
+#include:tikzlibrarybabel
+#include:tikzlibraryshapes.geometric
+#include:tikzlibrarydecorations.pathmorphing
 #include:tcolorbox
 # tcolorbox loaded with most option and minted library loaded by default
 #include:iftex
@@ -237,6 +243,11 @@ Label#true,false
 \CartoucheCapytale[prefix]{code capytale}
 \CartoucheCapytale*{code capytale}
 \CartoucheCapytale*[prefix]{code capytale}
+
+## Présentation de code LaTeX ##
+\begin{PresentationCode}[color]{tcolorbox options}#V
+\begin{PresentationCode}{tcolorbox options}#V
+\end{PresentationCode}
 
 ## Pavé droit « simple » ##
 \PaveTikz
@@ -932,10 +943,6 @@ vertcapyt#B
 \BaMqu#S
 \BaMRemplissage#S
 \basedepart#S
-\begin{PLstats}#S
-\begin{PLstats}[opt]#S
-\begin{PresentationCode}[color]{tcolorbox options}#SV
-\begin{PresentationCode}{tcolorbox options}#SV
 \begin{pythont}#S
 \begin{tcpythontexcode}#S
 \begin{tcpythontexcode}[width]#S
@@ -982,8 +989,6 @@ vertcapyt#B
 \DHTstretch#S
 \DHTva#S
 \DHTvb#S
-\end{PLstats}#S
-\end{PresentationCode}#S
 \end{pythont}#S
 \end{tcpythontexcode}#S
 \end{tcpythontexcodeno}#S
