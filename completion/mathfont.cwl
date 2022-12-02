@@ -1,5 +1,5 @@
 # mathfont package
-# Matthew Bertucci 2/12/2022 for v2.0
+# Matthew Bertucci 2022/12/01 for v2.1
 
 #include:atveryend
 
@@ -450,3 +450,5 @@ bfrak
 
 # deprecated
 \restoremathinternals#S
+\newmathbold{cmd}{font name}#Sd
+\newmathboldit{cmd}{font name}#Sd
