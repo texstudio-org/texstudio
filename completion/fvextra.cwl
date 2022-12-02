@@ -1,7 +1,6 @@
 # fvextra package
-# Matthew Bertucci 12/28/2021 for v1.4
+# Matthew Bertucci 2022/12/01 for v1.5
 
-#include:ifthen
 #include:etoolbox
 #include:fancyvrb
 #include:upquote
@@ -27,7 +26,7 @@ stepnumberoffsetvalues#true,false
 tab=%<macro%>
 tabcolor=#%color
 breakafter=%<string%>
-breakaftergroup#true,false
+breakafterinrun#true,false
 breakaftersymbolpre=%<string%>
 breakaftersymbolpost=%<string%>
 breakanywhere#true,false
@@ -35,12 +34,13 @@ breakanywheresymbolpre=%<string%>
 breakanywheresymbolpost=%<string%>
 breakautoindent#true,false
 breakbefore=%<string%>
-breakbeforegroup#true,false
+breakbeforeinrun#true,false
 breakbeforesymbolpre=%<string%>
 breakbeforesymbolpost=%<string%>
 breakindent=##L
 breakindentnchars=%<integer%>
 breaklines#true,false
+breaknonspaceingroup#true,false
 breaksymbol=%<string%>
 breaksymbolleft=%<string%>
 breaksymbolright=%<string%>
@@ -107,12 +107,17 @@ reflabel=##l
 aftersave={%<code%>}
 #endkeyvals
 
+\FancyVerbFormatInline{text%plain}#*
 \FancyVerbFormatText#*
 
 \EscVerb{backslash-escaped text}
 \EscVerb[options%keyvals]{backslash-escaped text}
 \EscVerb*{backslash-escaped text}#*
 \EscVerb*[options%keyvals]{backslash-escaped text}#*
+
+\begin{VerbEnv}#V
+\begin{VerbEnv}[options%keyvals]#V
+\end{VerbEnv}
 
 \FancyVerbBreakStart#*
 \FancyVerbBreakStop#*
@@ -149,6 +154,7 @@ FancyVerbHighlightColor#B
 \FVExtraDetokenizeEscVArg{arg1}{arg2}#*
 \FVExtraDetokenizeREscVArg{arg1}{arg2}#*
 \FVExtraRetokenizeVArg{macro%cmd}{code}{chars}#*d
+\FVExtraUnexpandedReadStarOArgMArgBVArg{arg}#*
 \RobustVerb[options%keyvals]{verbatimSymbol}#S
 \RobustVerb|%<code%>|#*
 \RobustVerb[%<options%>]|%<code%>|#*
