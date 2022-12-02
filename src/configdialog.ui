@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Configure TeXstudio</string>
   </property>
-  <layout class="QGridLayout">
+ <layout class="QGridLayout">
    <property name="leftMargin">
     <number>9</number>
    </property>
@@ -32,7 +32,25 @@
    <property name="verticalSpacing">
     <number>6</number>
    </property>
-   <item row="0" column="0">
+<item row="0" column="0">
+<widget class="QSplitter" name="mainSplitter">
+ <property name="childrenCollapsible">
+  <bool>
+   true
+  </bool>
+ </property>
+ <property name="handleWidth">
+  <number>9</number>
+ </property>
+ <widget class="QWidget" name="leftPart">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+       <horstretch>2</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+  <layout class="QVBoxLayout">
+   <item>
     <widget class="QListWidget" name="contentsWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -42,14 +60,8 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>200</width>
+       <width>40</width>
        <height>410</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>400</width>
-       <height>32000</height>
       </size>
      </property>
      <property name="horizontalScrollBarPolicy">
@@ -60,72 +72,7 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-       <property name="text">
-        <string>Show Advanced Options</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>407</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
-        <string>OK</string>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="0">
+   <item>
     <widget class="QLineEdit" name="lineEditMetaFilter">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -138,7 +85,17 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="2">
+  </layout>
+ </widget>
+ <widget class="QWidget" name="rightPart">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+       <horstretch>4</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+  <layout class="QGridLayout">
+   <item row="0" column="0" rowspan="2">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
@@ -526,7 +483,7 @@
              <property name="title">
               <string>Update</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout3">
+             <layout class="QGridLayout" name="gridLayout03">
               <item row="0" column="6">
                <widget class="QComboBox" name="comboBoxUpdateLevel">
                 <property name="sizePolicy">
@@ -4771,6 +4728,79 @@ Note: Changing this setting will only affect documents that are opened afterward
     </widget>
    </item>
   </layout>
+ </widget>
+</widget>
+</item>
+ <item row="1" column="0">
+  <layout class="QGridLayout">
+   <item row="2" column="0" colspan="2">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+       <property name="text">
+        <string>Show Advanced Options</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </item>
+ </layout>
  </widget>
  <tabstops>
   <tabstop>scrollAreaGeneral</tabstop>
