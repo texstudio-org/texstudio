@@ -175,9 +175,9 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.4.1/QtDeclarative-6.4.1-Darwin.tar.xz
         sudo tar xvf ./QtDeclarative-6.4.1-Darwin.tar.xz -C /usr/local/QtBase-6.4.1-Darwin --strip-components=1
         rm QtDeclarative-6.4.1-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.4.1/poppler-0.1.1-Darwin.tar.xz
-        sudo tar xvf ./poppler-0.1.1-Darwin.tar.xz -C /usr/local/QtBase-6.4.1-Darwin --strip-components=1
-        rm poppler-0.1.1-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.4.1/poppler-22.12.0-Darwin.tar.xz
+        sudo tar xvf ./poppler-22.12.0-Darwin.tar.xz -C /usr/local/QtBase-6.4.1-Darwin --strip-components=1
+        rm poppler-22.12.0-Darwin.tar.xz
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/6.4.1/QuaZip-1.3-Darwin.tar.xz
         sudo tar xvf ./QuaZip-1.3-Darwin.tar.xz -C /usr/local/QtBase-6.4.1-Darwin --strip-components=1
         rm QuaZip-1.3-Darwin.tar.xz
