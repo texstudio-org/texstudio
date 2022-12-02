@@ -1,4 +1,4 @@
-# updated 2/21/2022 for v3.7q
+# updated 2022/12/01 for v3.7.19
 
 #include:iftex
 #include:array
@@ -254,8 +254,8 @@ twoside
 \bottomrule#*
 \bottomsectionpenalty#*
 \bottomsectionskip
-\boxedverbatim#*
-\boxedverbatiminput#*
+\boxedverbatiminput{file}#i
+\boxedverbatiminput*{file}#i
 \boxverbflag#*
 \Bref{key}#r
 \bs#*
@@ -598,7 +598,6 @@ right
 \ctableftskip#*
 \ctabrightskip#*
 \ctabsetlines#*
-\ctabular{preamble}#*
 \currenttitle#*
 \dashbox{length}(width,height)[position]{text}
 \date#*
@@ -674,26 +673,8 @@ right
 \end{vminipage}
 \end{vplace}
 \end{writeverbatim}
-\endarray#*
-\endboxedverbatim#*
-\endctabular#*
-\endfboxverbatim#*
-\enditemize#*
 \endMakeFramed#*
-\endminipage#*
-\endnoteentry#*
-\endnoteentryend#*
-\endsidecaption#*
-\endsidecontcaption#*
-\endsidelegend#*
-\endsidenamedlegend#*
-\endtabular#*
-\endtabularx#*
-\endverbatim#*
-\endverbatimoutput#*
-\endwriteverbatim#*
 \ensureonecol#*
-\enumerate#*
 \epigraph{text}{source}
 \epigraphflush#*
 \epigraphfontsize{fontsize}#*
@@ -718,7 +699,6 @@ right
 \extratabsurround#*
 \fancybreak{text}#*
 \fancybreak*{text}#*
-\fboxverbatim#*
 \fcardinal{number}#*
 \feetabovefloat#*
 \feetatbottom#*
@@ -1678,9 +1658,7 @@ none
 \sidecapsep#*
 \sidecapsep#*
 \sidecapstyle#*
-\sidecaption#*
 \sidecapwidth#*
-\sidecontcaption#*
 \sidecontents#*
 \sidefootadjust
 \sidefootcontents#*
@@ -1693,17 +1671,18 @@ none
 \sidefootmarksep
 \sidefootmarkstyle{code}
 \sidefootmarkwidth
-\sidefootnote#*
+\sidefootnote{text}#*
+\sidefootnote[num]{text}#*
 \sidefootnotemark#*
-\sidefootnotetext#*
+\sidefootnotemark[num]#*
+\sidefootnotetext{text}#*
+\sidefootnotetext[num]{text}#*
 \sidefootparindent
 \sidefootscript#*
 \sidefoottextfont#*
 \sidefootvsep
 \sidefootwidth
 \sideins#*
-\sidelegend#*
-\sidenamedlegend#*
 \sidepar#*
 \sideparfont#*
 \sideparform#*
@@ -1934,8 +1913,8 @@ none
 \verb#*
 \verbatimbreakchar#*
 \verbatimindent
-\verbatiminput#*
-\verbatimoutput{file}#*
+\verbatiminput{file}#i
+\verbatiminput*{file}#i
 \verbfootnote#*
 \verselinebreak#*
 \verselinebreak[length]#*
@@ -1955,7 +1934,6 @@ none
 \wrappingoff#*
 \wrappingon#*
 \wrapright#*
-\writeverbatim{stream}#*
 \x#*
 \xindyindex#*
 \xlvchars
