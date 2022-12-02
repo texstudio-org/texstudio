@@ -47,11 +47,32 @@
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
          <property name="headerHidden">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
+         <property name="columnCount">
+          <number>4</number>
+         </property>
+         <attribute name="headerVisible">
+          <bool>true</bool>
+         </attribute>
          <column>
           <property name="text">
-           <string notr="true">1</string>
+           <string notr="true">Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string notr="true">Shortcut</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string notr="true">Trigger</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Abbreviation</string>
           </property>
          </column>
         </widget>

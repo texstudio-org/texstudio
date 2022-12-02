@@ -132,6 +132,9 @@ void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
     auto *item=new QTreeWidgetItem();
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
     item->setText(0,m.name);
+    item->setText(1,m.shortcut());
+    item->setText(2,m.trigger);
+    item->setText(3,m.abbrev);
     item->setData(0,Qt::UserRole,QVariant::fromValue(m));
     if(insertRow){
         ui.treeWidget->addTopLevelItem(item);
@@ -516,6 +519,7 @@ void UserMenuDialog::shortcutChanged()
         Macro m=v.value<Macro>();
         m.setShortcut(ui.cbShortcut->currentText());
         item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+        item->setText(1,m.shortcut());
     }
 }
 
@@ -528,6 +532,7 @@ void UserMenuDialog::abbrevChanged()
         Macro m=v.value<Macro>();
         m.abbrev=ui.abbrevEdit->text();
         item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+        item->setText(3,m.abbrev);
     }
 }
 
@@ -540,6 +545,7 @@ void UserMenuDialog::triggerChanged()
         Macro m=v.value<Macro>();
         m.setTrigger(ui.triggerEdit->text());
         item->setData(0,Qt::UserRole,QVariant::fromValue(m));
+        item->setText(2,m.trigger);
     }
 }
 
