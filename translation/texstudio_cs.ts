@@ -742,137 +742,137 @@ Změňte, prosím, své nastavení a stanovte seznamy příkazů pouze ve Volby 
         <translation>Nastavit TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="86"/>
+        <location filename="../src/configdialog.ui" line="4759"/>
         <source>Show Advanced Options</source>
         <translation>Ukázat pokročilé volby</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="112"/>
+        <location filename="../src/configdialog.ui" line="4785"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="122"/>
+        <location filename="../src/configdialog.ui" line="4795"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="208"/>
-        <location filename="../src/configdialog.ui" line="2051"/>
+        <location filename="../src/configdialog.ui" line="165"/>
+        <location filename="../src/configdialog.ui" line="1996"/>
         <source>Appearance</source>
         <translation>Vzhled</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="290"/>
-        <location filename="../src/configdialog.ui" line="3687"/>
+        <location filename="../src/configdialog.ui" line="247"/>
+        <location filename="../src/configdialog.ui" line="3644"/>
         <source>Language:</source>
         <translation>Jazyk:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="303"/>
+        <location filename="../src/configdialog.ui" line="260"/>
         <source>Font:</source>
         <translation>Písmo:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="335"/>
-        <location filename="../src/configdialog.ui" line="1804"/>
-        <location filename="../src/configdialog.ui" line="4717"/>
+        <location filename="../src/configdialog.ui" line="292"/>
+        <location filename="../src/configdialog.ui" line="1749"/>
+        <location filename="../src/configdialog.ui" line="4686"/>
         <source>Font Size:</source>
         <translation>Velikost písma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="311"/>
+        <location filename="../src/configdialog.ui" line="268"/>
         <source>Classic</source>
         <translation>Nadčasové</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="316"/>
+        <location filename="../src/configdialog.ui" line="273"/>
         <source>Modern</source>
         <translation>Pokrokové</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="267"/>
+        <location filename="../src/configdialog.ui" line="224"/>
         <source>Style:</source>
         <translation>Styl:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="342"/>
+        <location filename="../src/configdialog.ui" line="299"/>
         <source>Use System Theme Icons</source>
         <translation>Použít systémové ikony</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="234"/>
-        <location filename="../src/configdialog.ui" line="4689"/>
+        <location filename="../src/configdialog.ui" line="191"/>
+        <location filename="../src/configdialog.ui" line="4658"/>
         <source>Color Scheme:</source>
         <translation>Barevné pojetí:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="214"/>
+        <location filename="../src/configdialog.ui" line="171"/>
         <source>Ignore Most System Colors</source>
         <translation>Používat vlastní pojetí barev</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="469"/>
+        <location filename="../src/configdialog.ui" line="426"/>
         <source>MRU Document Chooser</source>
         <translation>Volič dokumentu MRU</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="321"/>
+        <location filename="../src/configdialog.ui" line="278"/>
         <source>Modern - dark</source>
         <translation>Současný - tmavý</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="381"/>
+        <location filename="../src/configdialog.ui" line="338"/>
         <source>Files</source>
         <translation>Soubory</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="432"/>
+        <location filename="../src/configdialog.ui" line="389"/>
         <source>Max. Recent Documents:</source>
         <translation>Největší počet naposledy otevřených dokumentů:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="403"/>
+        <location filename="../src/configdialog.ui" line="360"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Pamatovat si vybraný souborový filtr v dialogu pro otevírání/ukládání</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="452"/>
+        <location filename="../src/configdialog.ui" line="409"/>
         <source>Use system file dialogs</source>
         <translation>Použít systémové dialogy pro výběr souboru</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="482"/>
+        <location filename="../src/configdialog.ui" line="439"/>
         <source>Session</source>
         <translation>Sezení</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="491"/>
+        <location filename="../src/configdialog.ui" line="448"/>
         <source>Restore Previous Session at Startup</source>
         <translation>Obnovit předchozí sezení při spuštění</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="498"/>
+        <location filename="../src/configdialog.ui" line="455"/>
         <source>Store relative paths</source>
         <translation>Ukládat relativní cesty</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="511"/>
+        <location filename="../src/configdialog.ui" line="468"/>
         <source>Startup</source>
         <translation>Spuštění programu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="517"/>
+        <location filename="../src/configdialog.ui" line="474"/>
         <source>Check LaTeX Configuration</source>
         <translation>Ověřit nastavení LaTeXu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="527"/>
+        <location filename="../src/configdialog.ui" line="484"/>
         <source>Update</source>
         <translation>Aktualizovat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="539"/>
+        <location filename="../src/configdialog.ui" line="496"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
@@ -883,155 +883,155 @@ Změňte, prosím, své nastavení a stanovte seznamy příkazů pouze ve Volby 
 - Vývojářské verze: Obsahují nejnovější vlastnosti, mohou však vykazovat nestálost. (na stálá vydání a uchazeče o vydání je upozorňováno také).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="546"/>
+        <location filename="../src/configdialog.ui" line="503"/>
         <source>Stable Releases</source>
         <translation>Stabilní vydání</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="551"/>
+        <location filename="../src/configdialog.ui" line="508"/>
         <source>Release Candidates</source>
         <translation>Kandidáti na vydání</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="556"/>
+        <location filename="../src/configdialog.ui" line="513"/>
         <source>Development Versions</source>
         <translation>Vývojářské verze</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="577"/>
+        <location filename="../src/configdialog.ui" line="534"/>
         <source>Check Now</source>
         <translation>Ověřit nyní</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="604"/>
+        <location filename="../src/configdialog.ui" line="561"/>
         <source>Last Checked:</source>
         <translation>Neposledy ověřeno:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="611"/>
+        <location filename="../src/configdialog.ui" line="568"/>
         <source> days</source>
         <translation> dní</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="624"/>
+        <location filename="../src/configdialog.ui" line="581"/>
         <source>Automatically check every</source>
         <translation>Automaticky ověřit každých</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="631"/>
+        <location filename="../src/configdialog.ui" line="588"/>
         <source>Update Level:</source>
         <translation>Úroveň aktualizace:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="686"/>
+        <location filename="../src/configdialog.ui" line="643"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Příkazy (%: název souboru bez přípony - @ : číslo řádku - ?: rozšířené volby pro název souboru)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="693"/>
+        <location filename="../src/configdialog.ui" line="650"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Zvláštní znaky:&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="700"/>
+        <location filename="../src/configdialog.ui" line="657"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
         <translation>&lt;b&gt;%&lt;/b&gt;: název souboru bez přípony; &lt;b&gt;@&lt;/b&gt;: číslo řádku; &lt;b&gt;?[přepínač][části názvu cesty][ukončující znak]&lt;/b&gt;: formátovaný název souboru</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="726"/>
+        <location filename="../src/configdialog.ui" line="683"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; a &lt;b&gt;?? &lt;/b&gt; se stanou: %, @ nebo ?</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="804"/>
+        <location filename="../src/configdialog.ui" line="764"/>
         <source>Meta Commands</source>
         <translation>Příkazy meta</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="817"/>
+        <location filename="../src/configdialog.ui" line="777"/>
         <source>User Commands</source>
         <translation>Uživatelské příkazy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="827"/>
+        <location filename="../src/configdialog.ui" line="787"/>
         <source>Build Options</source>
         <translation>Volby pro sestavování</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="839"/>
+        <location filename="../src/configdialog.ui" line="799"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
         <translation>Spustí txs:///recompile-bibliography, pokud byly soubory bib změněny.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="842"/>
+        <location filename="../src/configdialog.ui" line="802"/>
         <source>Check and update bibliography before compiling</source>
         <translation>Ověřit a aktualizovat bibliografii před sestavením</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="809"/>
         <source>Show messages when starting compiling</source>
         <translation>Ukázat zprávy při spuštění překladu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="874"/>
+        <location filename="../src/configdialog.ui" line="834"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Nespouštějte další běh prohlížeče, pokud soubor dvi/ps/pdf je již otevřen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="881"/>
+        <location filename="../src/configdialog.ui" line="841"/>
         <source>Show stdout:</source>
         <translation>Ukázat běžný výstup (stdout):</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="889"/>
-        <location filename="../src/configdialog.ui" line="2292"/>
-        <location filename="../src/configdialog.ui" line="3960"/>
+        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="2237"/>
+        <location filename="../src/configdialog.ui" line="3917"/>
         <source>Never</source>
         <translation>Nikdy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="894"/>
+        <location filename="../src/configdialog.ui" line="854"/>
         <source>Only For User Commands</source>
         <translation>Pouze pro příkazy uživatele</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="899"/>
+        <location filename="../src/configdialog.ui" line="859"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
         <translation>Vždy (pokud není přesměrován &gt; /dev/null)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="907"/>
+        <location filename="../src/configdialog.ui" line="867"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
         <translation>Některé LaTeXové konstrukce (např. odkazy), potřebují více sestavovacích kol, dokud nejsou zobrazeny správně.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="910"/>
+        <location filename="../src/configdialog.ui" line="870"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Největší počet opakování sestavování:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="973"/>
+        <location filename="../src/configdialog.ui" line="917"/>
         <source>Commands ($PATH)</source>
         <translation>Příkazy ($PATH)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="980"/>
+        <location filename="../src/configdialog.ui" line="924"/>
         <source>PDF File</source>
         <translation>Soubor PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1024"/>
+        <location filename="../src/configdialog.ui" line="968"/>
         <source>Log File</source>
         <translation>Soubor se záznamem</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1035"/>
+        <location filename="../src/configdialog.ui" line="977"/>
         <source>Additional Search Paths:</source>
         <translation>Dodatečné vyhledávací cesty:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1042"/>
+        <location filename="../src/configdialog.ui" line="984"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1050,33 +1050,33 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1052"/>
+        <location filename="../src/configdialog.ui" line="994"/>
         <source>Replace Environment Variables</source>
         <translation>Nahradit proměnné prostředí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1059"/>
+        <location filename="../src/configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
         <translation>V případě, že při sestavování dojde k chybě, ukázat záznam</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1066"/>
+        <location filename="../src/configdialog.ui" line="1008"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
         <translation>Toto umožní nově vymezit příkazy pomocí poznámek ve stylu &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. Na podrobnosti se podívejte do příručky.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1069"/>
+        <location filename="../src/configdialog.ui" line="1011"/>
         <source>Interpret command definition in magic comments</source>
         <translation>Vyložit vymezení příkazu v kouzelných poznámkách</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1106"/>
+        <location filename="../src/configdialog.ui" line="1048"/>
         <location filename="../src/configdialog.cpp" line="531"/>
         <source>Shortcuts</source>
         <translation>Zkratky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1113"/>
+        <location filename="../src/configdialog.ui" line="1055"/>
         <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1089,976 +1089,971 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
 (3) napsat řetězec pro klávesovou zkratku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1130"/>
-        <location filename="../src/configdialog.ui" line="1377"/>
+        <location filename="../src/configdialog.ui" line="1072"/>
+        <location filename="../src/configdialog.ui" line="1319"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1135"/>
+        <location filename="../src/configdialog.ui" line="1077"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1140"/>
+        <location filename="../src/configdialog.ui" line="1082"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1145"/>
+        <location filename="../src/configdialog.ui" line="1087"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1153"/>
+        <location filename="../src/configdialog.ui" line="1095"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
         <translation>Zavřít prvek se použije na pevně stanovený seznam prvků uživatelského rozhraní (ne všechny jsou ukázány zde). První viditelný prvek bude zavřen. S tímto nastavením můžete vyloučit některé prvky z možnosti, aby byly zavřeny.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1156"/>
+        <location filename="../src/configdialog.ui" line="1098"/>
         <source>Close Element (Esc)</source>
         <translation>Zavřít prvek (Esc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1162"/>
+        <location filename="../src/configdialog.ui" line="1104"/>
         <source>Close Log-View</source>
         <translation>Zavřít zobrazení zápisu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1169"/>
+        <location filename="../src/configdialog.ui" line="1111"/>
         <source>Close Embedded Viewer</source>
         <translation>Zavřít vložený prohlížeč</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1176"/>
+        <location filename="../src/configdialog.ui" line="1118"/>
         <source>Close Full Screen Mode</source>
         <translation>Zavřít režim na celou obrazovku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1186"/>
+        <location filename="../src/configdialog.ui" line="1128"/>
         <source>Show Shortcuts in Tooltips</source>
         <translation>Ukázat zkratky v nástrojových radách</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1209"/>
+        <location filename="../src/configdialog.ui" line="1151"/>
         <location filename="../src/configdialog.cpp" line="532"/>
         <source>Menus</source>
         <translation>Nabídky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1216"/>
+        <location filename="../src/configdialog.ui" line="1158"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation>Zde jsou vypsány položky nabídek a lze je skrýt nebo upravit.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1229"/>
+        <location filename="../src/configdialog.ui" line="1171"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1234"/>
+        <location filename="../src/configdialog.ui" line="1176"/>
         <location filename="../src/configdialog.cpp" line="520"/>
         <source>Command</source>
         <translation>Příkaz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1239"/>
+        <location filename="../src/configdialog.ui" line="1181"/>
         <source>Slot</source>
         <translation>Místo</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1247"/>
+        <location filename="../src/configdialog.ui" line="1189"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
         <translation>Tímto se řídí, zda seznam nahoře ukazuje všechny položky nabídek nebo jen ty běžně měněné.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1250"/>
+        <location filename="../src/configdialog.ui" line="1192"/>
         <source>Show All</source>
         <translation>Ukázat vše</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1273"/>
+        <location filename="../src/configdialog.ui" line="1215"/>
         <source>Toolbar Customization</source>
         <translation>Úprava nástrojového panelu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1282"/>
+        <location filename="../src/configdialog.ui" line="1224"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation>Tímto se ukáží všechny činnosti nyní upravovaného nástrojového pruhu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1307"/>
+        <location filename="../src/configdialog.ui" line="1249"/>
         <source>This adds an action to the toolbar.</source>
         <translation>Tímto se přidá činnost do nástrojového pruhu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1321"/>
+        <location filename="../src/configdialog.ui" line="1263"/>
         <source>This removes an action from the toolbar.</source>
         <translation>Tímto se odstraní činnost z nástrojového pruhu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1350"/>
+        <location filename="../src/configdialog.ui" line="1292"/>
         <source>Here you can choose a toolbar to modify.</source>
         <translation>Zde můžete vybrat nástrojový pruh, který se má upravit.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1357"/>
+        <location filename="../src/configdialog.ui" line="1299"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
         <translation>Zde můžete vybrat seznam příkazů, který lze přiřadit nástrojovému pruhu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1364"/>
+        <location filename="../src/configdialog.ui" line="1306"/>
         <source>This shows available actions to map on a toolbar.</source>
         <translation>Tímto se ukáží dostupné činnosti přiřaditelné nástrojovému pruhu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1403"/>
-        <source>Scaling</source>
-        <translation>Změna velikosti</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1541"/>
+        <location filename="../src/configdialog.ui" line="1470"/>
         <source>Secondary Toolbars</source>
         <translation>Vedlejší nástrojové pruhy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1450"/>
-        <location filename="../src/configdialog.ui" line="1457"/>
-        <location filename="../src/configdialog.ui" line="1514"/>
-        <location filename="../src/configdialog.ui" line="1580"/>
+        <location filename="../src/configdialog.ui" line="1392"/>
+        <location filename="../src/configdialog.ui" line="1399"/>
+        <location filename="../src/configdialog.ui" line="1456"/>
+        <location filename="../src/configdialog.ui" line="1509"/>
         <source>Reset</source>
         <translation>Obnovit výchozí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1521"/>
+        <location filename="../src/configdialog.ui" line="1463"/>
         <source>Symbol Grid</source>
         <translation>Mřížka symbolů</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1443"/>
+        <location filename="../src/configdialog.ui" line="1385"/>
         <source>Main Toolbar</source>
         <translation>Hlavní nástrojový pruh</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1486"/>
+        <location filename="../src/configdialog.ui" line="1428"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
         <translation>Tímto se změní velikost vodorovných nástrojových pruhů (pro zobrazení ve vysokém rozlišení).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1412"/>
+        <location filename="../src/configdialog.ui" line="1354"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
         <translation>Tímto se změní velikost mřížky symbolů (pro zobrazení ve vysokém rozlišení).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1464"/>
+        <location filename="../src/configdialog.ui" line="1406"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
         <translation>Tímto se změní velikost svislých nástrojových pruhů (pro zobrazení ve vysokém rozlišení).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1622"/>
+        <location filename="../src/configdialog.ui" line="1567"/>
         <location filename="../src/configdialog.cpp" line="535"/>
-        <location filename="../src/configmanager.cpp" line="1521"/>
+        <location filename="../src/configmanager.cpp" line="1518"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1634"/>
+        <location filename="../src/configdialog.ui" line="1579"/>
         <source>Inline Checking:</source>
         <translation>Přezkoušení vkládaného:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1673"/>
+        <location filename="../src/configdialog.ui" line="1618"/>
         <source>Check non tex files</source>
         <translation>Ověřit ne-texové soubory</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1683"/>
+        <location filename="../src/configdialog.ui" line="1628"/>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation>Vyhledat v LaTeXové distribuci nainstalované balíčky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1693"/>
+        <location filename="../src/configdialog.ui" line="1638"/>
         <source>Folding</source>
         <translation>Skládání kódu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1700"/>
+        <location filename="../src/configdialog.ui" line="1645"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation>Nahradit odsazovací zarážku mezerami</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1707"/>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="1652"/>
+        <location filename="../src/configdialog.ui" line="4672"/>
         <source>Font Family:</source>
         <translation>Rodina písma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1714"/>
+        <location filename="../src/configdialog.ui" line="1659"/>
         <source>Replace Double Quotes:</source>
         <translation>Nahradit dvojité uvozovky:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1727"/>
+        <location filename="../src/configdialog.ui" line="1672"/>
         <source>Default Font Encoding:</source>
         <translation>Výchozí kódování písma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1734"/>
+        <location filename="../src/configdialog.ui" line="1679"/>
         <source>Indentation Mode:</source>
         <translation>Režim odsazení:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1741"/>
+        <location filename="../src/configdialog.ui" line="1686"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Automatické určení kódování:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1751"/>
+        <location filename="../src/configdialog.ui" line="1696"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
         <translation>Analyzovat LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1758"/>
+        <location filename="../src/configdialog.ui" line="1703"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>Lze rozhodovat pouze mezi utf16/utf-8 a ISO 8859-1!</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1761"/>
+        <location filename="../src/configdialog.ui" line="1706"/>
         <source>Analyze Characters</source>
         <translation>Analyzovat znaky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1785"/>
-        <location filename="../src/configdialog.ui" line="4045"/>
-        <location filename="../src/configdialog.ui" line="4142"/>
+        <location filename="../src/configdialog.ui" line="1730"/>
+        <location filename="../src/configdialog.ui" line="4002"/>
+        <location filename="../src/configdialog.ui" line="4099"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1811"/>
+        <location filename="../src/configdialog.ui" line="1756"/>
         <source>Line Spacing:</source>
         <translation>Rozestupy řádků:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1822"/>
+        <location filename="../src/configdialog.ui" line="1767"/>
         <source>No Replacement</source>
         <translation>Žádné nahrazování</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1827"/>
+        <location filename="../src/configdialog.ui" line="1772"/>
         <source>English Quotes:  `` &apos;&apos;</source>
         <translation>Anglické uvozovky:  `` &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1832"/>
+        <location filename="../src/configdialog.ui" line="1777"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
         <translation>Francouzské uvozovky:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1837"/>
+        <location filename="../src/configdialog.ui" line="1782"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
         <translation>Německé uvozovky:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1842"/>
+        <location filename="../src/configdialog.ui" line="1787"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
         <translation>Francouzské uvozovky (babel): \og \fg{}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1847"/>
+        <location filename="../src/configdialog.ui" line="1792"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
         <translation>Obrácené francouzské uvozovky: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1852"/>
+        <location filename="../src/configdialog.ui" line="1797"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>Balíček csquotes: \enquote{  }</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1857"/>
+        <location filename="../src/configdialog.ui" line="1802"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Anglické uvozovky (unicode): “ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1862"/>
+        <location filename="../src/configdialog.ui" line="1807"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
         <translation>Polské uvozovky: ,, &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1867"/>
+        <location filename="../src/configdialog.ui" line="1812"/>
         <source>Polish Quotes (unicode): „ ”</source>
         <translation>Polské uvozovky (unicode): „ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1875"/>
+        <location filename="../src/configdialog.ui" line="1820"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Ukázat pouze neproporcionální písma</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1886"/>
+        <location filename="../src/configdialog.ui" line="1831"/>
         <source>Ignore Indentation</source>
         <translation>Nevšímat si odsazení</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1891"/>
+        <location filename="../src/configdialog.ui" line="1836"/>
         <source>Keep Indentation</source>
         <translation>Zachovat odsazení</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1896"/>
+        <location filename="../src/configdialog.ui" line="1841"/>
         <source>Indent and Unindent Automatically</source>
         <translation>Odsadit a zrušit odsazení automaticky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1916"/>
+        <location filename="../src/configdialog.ui" line="1861"/>
         <source>Spelling</source>
         <translation>Pravopis</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1923"/>
+        <location filename="../src/configdialog.ui" line="1868"/>
         <source>Grammar</source>
         <translation>Mluvnice</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1930"/>
+        <location filename="../src/configdialog.ui" line="1875"/>
         <source>Citations</source>
         <translation>Citace</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1937"/>
+        <location filename="../src/configdialog.ui" line="1882"/>
         <source>References</source>
         <translation>Odkazy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1944"/>
+        <location filename="../src/configdialog.ui" line="1889"/>
         <source>Syntax</source>
         <translation>Skladba</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1951"/>
+        <location filename="../src/configdialog.ui" line="1896"/>
         <source>Package</source>
         <translation>Balíček</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1961"/>
+        <location filename="../src/configdialog.ui" line="1906"/>
         <source>Replace Tab in Text by Spaces</source>
         <translation>Nahradit zarážku v textu mezerami</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1968"/>
+        <location filename="../src/configdialog.ui" line="1913"/>
         <source>Automatically load included files</source>
         <translation>Automaticky nahrát zahrnuté soubory</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1978"/>
+        <location filename="../src/configdialog.ui" line="1923"/>
         <source>Hide grammar errors in non-text environments</source>
         <translation>Skrýt gramatické chyby v ne-textových prostředích</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1988"/>
+        <location filename="../src/configdialog.ui" line="1933"/>
         <source>Hide spelling errors in non-text environments</source>
         <translation>Skrýt pravopisné chyby v ne-textových prostředích</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1998"/>
+        <location filename="../src/configdialog.ui" line="1943"/>
         <source>Remove Trailing Whitespace on Save</source>
         <translation>Odstranit neviditelné znaky na konci při uložení</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1644"/>
+        <location filename="../src/configdialog.ui" line="1589"/>
         <source>Show Line Numbers:</source>
         <translation>Ukázat čísla řádků:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1655"/>
+        <location filename="../src/configdialog.ui" line="1600"/>
         <source>No Line Numbers</source>
         <translation>Žádná čísla řádků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1660"/>
+        <location filename="../src/configdialog.ui" line="1605"/>
         <source>All Line Numbers</source>
         <translation>Čísla všech řádků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1665"/>
+        <location filename="../src/configdialog.ui" line="1610"/>
         <source>Only Important Line Numbers</source>
         <translation>Pouze důležitá čísla řádků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2074"/>
+        <location filename="../src/configdialog.ui" line="2019"/>
         <source>Show State Panel</source>
         <translation>Ukázat stavový panel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2086"/>
+        <location filename="../src/configdialog.ui" line="2031"/>
         <source>Tab Width:</source>
         <translation>Šířka zarážky:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2121"/>
+        <location filename="../src/configdialog.ui" line="2066"/>
         <source>Show Whitespace</source>
         <translation>Ukázat bílý znak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2134"/>
+        <location filename="../src/configdialog.ui" line="2079"/>
         <source>Show Line Change State</source>
         <translation>Ukázat řádkový stav</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2144"/>
+        <location filename="../src/configdialog.ui" line="2089"/>
         <source>Draw cursor as a thick line</source>
         <translation>Kreslit ukazatel jako tlustou čáru</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2147"/>
+        <location filename="../src/configdialog.ui" line="2092"/>
         <source>Bold Cursor</source>
         <translation>Tučný ukazatel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2163"/>
+        <location filename="../src/configdialog.ui" line="2108"/>
         <source>Search Panel</source>
         <translation>Panel hledání</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2169"/>
+        <location filename="../src/configdialog.ui" line="2114"/>
         <source>Close search and replace panel together</source>
         <translation>Zavřít společně panel pro hledání a nahrazování</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2179"/>
+        <location filename="../src/configdialog.ui" line="2124"/>
         <source>Use single line selection as Search Word</source>
         <translation>Jako hledané slovo použít jednořádkový výběr</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2189"/>
+        <location filename="../src/configdialog.ui" line="2134"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Omezit oblast hledání na stávající výběr</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2199"/>
+        <location filename="../src/configdialog.ui" line="2144"/>
         <source>Special options</source>
         <translation>Zvláštní volby</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2232"/>
+        <location filename="../src/configdialog.ui" line="2177"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Ukázat značky zápisů při klepnutí na položku záznamu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2278"/>
+        <location filename="../src/configdialog.ui" line="2223"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Přidat záznamy přímo do související nabídky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2283"/>
+        <location filename="../src/configdialog.ui" line="2228"/>
         <source>Create Dedicated Submenu</source>
         <translation>Vytvořit jednoúčelovou podnabídku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2503"/>
+        <location filename="../src/configdialog.ui" line="2448"/>
         <source>Spellchecking via context menu:</source>
         <translation>Ověřování pravopisu přes související nabídku:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2438"/>
+        <location filename="../src/configdialog.ui" line="2383"/>
         <source>Default Log Encoding</source>
         <translation>Výchozí kódování zápisu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2297"/>
+        <location filename="../src/configdialog.ui" line="2242"/>
         <source>1 minute</source>
         <translation>1 minuta</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2302"/>
+        <location filename="../src/configdialog.ui" line="2247"/>
         <source>2 minutes</source>
         <translation>2 minuty</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2307"/>
+        <location filename="../src/configdialog.ui" line="2252"/>
         <source>5 minutes</source>
         <translation>Každých 5 minut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2312"/>
+        <location filename="../src/configdialog.ui" line="2257"/>
         <source>10 minutes</source>
         <translation>Každých 10 minut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2317"/>
+        <location filename="../src/configdialog.ui" line="2262"/>
         <source>20 minutes</source>
         <translation>Každých 20 minut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2322"/>
+        <location filename="../src/configdialog.ui" line="2267"/>
         <source>60 minutes</source>
         <translation>Každých 60 minut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2510"/>
+        <location filename="../src/configdialog.ui" line="2455"/>
         <source>Auto Complete Parentheses</source>
         <translation>Automaticky doplnit závorky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2431"/>
+        <location filename="../src/configdialog.ui" line="2376"/>
         <source>Smooth Scrolling</source>
         <translation>Plynulé posouvání obrazu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2239"/>
+        <location filename="../src/configdialog.ui" line="2184"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Přiblížení a oddálení pomocí kolečka myši</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2445"/>
+        <location filename="../src/configdialog.ui" line="2390"/>
         <source>Auto Save All Files:</source>
         <translation>Automaticky uložit všechny soubory:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2341"/>
+        <location filename="../src/configdialog.ui" line="2286"/>
         <source>Line Wrapping:</source>
         <translation>Zalamování řádků:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2517"/>
+        <location filename="../src/configdialog.ui" line="2462"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation>Dvojité klepnutí na výběr: Zahrnout zpětné lomítko na začátku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2251"/>
+        <location filename="../src/configdialog.ui" line="2196"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Uložené soubory nahrát při vnějších změnách tiše znovu (zahodí zásobník kroků zpět/znovu)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2378"/>
+        <location filename="../src/configdialog.ui" line="2323"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Ukázat nápovědu k příkazům ve vnitřním prohlížeči PDF (texdoc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2393"/>
+        <location filename="../src/configdialog.ui" line="2338"/>
         <source>Select Word</source>
         <translation>Vybrat slovo</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2398"/>
+        <location filename="../src/configdialog.ui" line="2343"/>
         <source>Select Word or Command</source>
         <translation>Vybrat slovo nebo příkaz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2403"/>
+        <location filename="../src/configdialog.ui" line="2348"/>
         <source>Select Parentheses Content</source>
         <translation>Vybrat obsah závorek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2408"/>
+        <location filename="../src/configdialog.ui" line="2353"/>
         <source>Select Parentheses</source>
         <translation>Vybrat závorky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2413"/>
+        <location filename="../src/configdialog.ui" line="2358"/>
         <source>Select Line</source>
         <translation>Vybrat řádek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2260"/>
+        <location filename="../src/configdialog.ui" line="2205"/>
         <source>Monitor open files for external changes</source>
         <translation>Sledovat u otevřených souborů vnější změny</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2368"/>
+        <location filename="../src/configdialog.ui" line="2313"/>
         <source>Triple-Click Selection:</source>
         <translation>Výběr trojitým klepnutím:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2208"/>
+        <location filename="../src/configdialog.ui" line="2153"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Toto používá QSaveFile k zabránění ztrátě stávajících datpokud dojde k selhání při operaci zápisu. Nevýhodou je, že se nynější uživatel stane vlastníkem souboru a rozšířené vlastnosti souboru jsou ztraceny. Také se zdá, že jsou s tímto způsobem potíže u složek dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2211"/>
+        <location filename="../src/configdialog.ui" line="2156"/>
         <source>Safe writing of files</source>
         <translation>Bezpečný zápis souborů</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2348"/>
+        <location filename="../src/configdialog.ui" line="2293"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation>Přepsat uzavírající závorku, která je následována zástupným znakem</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2355"/>
+        <location filename="../src/configdialog.ui" line="2300"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation>Toto účinkuje, jen pokud je šířka dokumentu omezena měkkým nebo tvrdým zalamováním řádků.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2358"/>
+        <location filename="../src/configdialog.ui" line="2303"/>
         <source>Center Document in Editor</source>
         <translation>Zarovnat dokument na střed v editoru</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2489"/>
+        <location filename="../src/configdialog.ui" line="2434"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Ukázat nápovědu jako nástrojovou radu na textu v editoru</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2421"/>
+        <location filename="../src/configdialog.ui" line="2366"/>
         <source>Maximal Characters:</source>
         <translation>Největší počet znaků:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2466"/>
+        <location filename="../src/configdialog.ui" line="2411"/>
         <source>No Line Wrap</source>
         <translation>Žádné zalamování řádků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2471"/>
+        <location filename="../src/configdialog.ui" line="2416"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>Měkké zalomení řádků na okraji okna</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2476"/>
+        <location filename="../src/configdialog.ui" line="2421"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>Měkké zalomení řádků po největším počtu znaků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2481"/>
+        <location filename="../src/configdialog.ui" line="2426"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Tvrdé zalomení řádků po největším počtu znaků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2330"/>
+        <location filename="../src/configdialog.ui" line="2275"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Při používání znaků Unicode musí LaTeX znaky stále ještě vykreslovat.
 Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumentu zahrnout příslušné balíčky pro znaky Unicode.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2334"/>
+        <location filename="../src/configdialog.ui" line="2279"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Vložit symbol jako Unicode</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2496"/>
+        <location filename="../src/configdialog.ui" line="2441"/>
         <source>Go to error when displaying log</source>
         <translation>Přejít při zobrazení zápisu na chybu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2218"/>
+        <location filename="../src/configdialog.ui" line="2163"/>
         <source>Show image tooltip on image files</source>
         <translation>Ukázat obrázkovou nástrojovou radu na obrázkové soubory</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2225"/>
+        <location filename="../src/configdialog.ui" line="2170"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Přepsat otevírající závorku, která je následována zástupným znakem</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2385"/>
+        <location filename="../src/configdialog.ui" line="2330"/>
         <source>Allow Drag and Drop</source>
         <translation>Povolit přetažení a upuštění</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2267"/>
+        <location filename="../src/configdialog.ui" line="2212"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vnější programy (jako je Zotero) mohou do texstudia protlačit citace voláním: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Pokud ukazatel již není uvnitř příkazu citace, &amp;quot;příkaz&amp;quot; zde zadaný je použit jako \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1548"/>
+        <location filename="../src/configdialog.ui" line="1477"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tímto se změní velikost nástrojových pruhů vloženého prohlížeče PDF (pro zobrazení ve vysokém rozlišení).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1573"/>
+        <location filename="../src/configdialog.ui" line="1502"/>
         <source>Embedded PDF Toolbar</source>
         <translation>Nástrojový pruh vloženého PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2270"/>
+        <location filename="../src/configdialog.ui" line="2215"/>
         <source>Latex Command for pushed citations:</source>
         <translation>Latexový příkaz pro strčené citace:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2524"/>
+        <location filename="../src/configdialog.ui" line="2469"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
         <translation>Přílišné svislé posunutí (posunování za koncem souboru)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2534"/>
+        <location filename="../src/configdialog.ui" line="2479"/>
         <source>Structure Panel</source>
         <translation>Stavební panel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2565"/>
+        <location filename="../src/configdialog.ui" line="2510"/>
         <source>Mark structure elements beyond \end{document}</source>
         <translation>Označit stavební prvky za \end{document}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2572"/>
+        <location filename="../src/configdialog.ui" line="2517"/>
         <source>Reference commands in context menu:</source>
         <translation>Odkazovat příkazy v související nabídce:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2612"/>
+        <location filename="../src/configdialog.ui" line="2557"/>
         <source>Mark structure elements in appendix</source>
         <translation>Označit stavební prvky v dodatku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2585"/>
+        <location filename="../src/configdialog.ui" line="2530"/>
         <source>Regular expression for TODO comment: </source>
         <translation>Regulární výraz pro poznámku CO SE MÁ UDĚLAT:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2592"/>
+        <location filename="../src/configdialog.ui" line="2537"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Převzít odsazení zahrnutých ve stromové struktuře</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2544"/>
+        <location filename="../src/configdialog.ui" line="2489"/>
         <source>No Color Background</source>
         <translation>Bez barevného pozadí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2549"/>
+        <location filename="../src/configdialog.ui" line="2494"/>
         <source>Green Background</source>
         <translation>Zelené pozadí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2554"/>
+        <location filename="../src/configdialog.ui" line="2499"/>
         <source>Blue Background</source>
         <translation>Modré pozadí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2562"/>
+        <location filename="../src/configdialog.ui" line="2507"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Prvky jako &amp;quot;\section&amp;quot; jsou zvýrazněny jinou barvou pozadí, aby bylo ukázáno, že se &lt;span style=&quot; font-weight:600;&quot;&gt;neobjeví&lt;/span&gt; v dokumentu.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2609"/>
+        <location filename="../src/configdialog.ui" line="2554"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Prvky jako &amp;quot;\section&amp;quot; jsou zvýrazněny jinou barvou pozadí, aby bylo ukázáno, že se objeví jako dodatek.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2599"/>
+        <location filename="../src/configdialog.ui" line="2544"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nynější poloha ukazatele je zvýrazněna v zobrazení stavby.&lt;/p&gt;&lt;p&gt;Pokud je volba zapnuta, záznam je rozbalen a posunut, aby byl viditelný.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="352"/>
+        <location filename="../src/configdialog.ui" line="309"/>
         <source>Icon Theme:</source>
         <translation>Téma ikon:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="360"/>
+        <location filename="../src/configdialog.ui" line="317"/>
         <source>Colibre</source>
         <translation>Colibre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="365"/>
+        <location filename="../src/configdialog.ui" line="322"/>
         <source>Oxygen Modern</source>
         <translation>Oxygen Modern</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="370"/>
+        <location filename="../src/configdialog.ui" line="327"/>
         <source>Oxygen Classic</source>
         <translation>Oxygen Classic</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="396"/>
+        <location filename="../src/configdialog.ui" line="353"/>
         <source>Max. Recent Root Documents:</source>
-        <translation type="unfinished"/>
+        <translation>Maximum naposledy otevřených hlavních dokumentů:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="459"/>
+        <location filename="../src/configdialog.ui" line="416"/>
         <source>Always Show Structure of Root Document</source>
-        <translation type="unfinished"/>
+        <translation>Vždy ukazovat strukturu hlavního dokumentu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="710"/>
+        <location filename="../src/configdialog.ui" line="667"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"/>
+        <translation>&lt;i&gt;Selektor souborů (Volitelný. Pokud je přítomen, zahrňte ukončující dvojtečku):&lt;/i&gt; Pokud neexistuje selektor, vyberte hlavní soubor. &lt;b&gt;c:&lt;/b&gt; vybrat současný soubor, &lt;b&gt;p{ext}:&lt;/b&gt; Najít soubor se stejným základním názvem a příponou, jako má hlavní soubor &lt;b&gt;ext&lt;/b&gt;. Hledání probíhá v hlavním souborovém adresáři a dodatečných adresářích s PDF.&lt;br /&gt;&lt;i&gt;Části názvu cesty:&lt;/i&gt; kombinace &lt;b&gt;a&lt;/b&gt;: absolutní cesty, &lt;b&gt;m&lt;/b&gt;: název základního souboru bez přípony,&lt;b&gt;e&lt;/b&gt;: přípona, &lt;b&gt;r&lt;/b&gt;: cesta relativní k hlavní složce, &lt;b&gt;*&lt;/b&gt;: všechny soubory odpovídají následujícímu vzoru&lt;br/&gt;&lt;i&gt;Ukončující znaky:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ukončí selektor. Následující znaky ukončí selektor a mají další význam&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: uzavřít ve dvojitých uvozovkách, &lt;b&gt;.&lt;/b&gt; (tečka) přidat tečku na konec, (mezera): přidat mezeru na konec&lt;br/&gt;&lt;i&gt;Příklady:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: doplnit absolutní název souboru uzavřený v dvojitých uvozovkách, &lt;b&gt;?e)&lt;/b&gt; pouze přípona bez tečky na začátku (např. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; název souboru v dvojitých uvozovkách bez přípony (totéž co &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; název souboru s příponou (např. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: všechny soubory .aux v současném adresáři</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2540"/>
+        <location filename="../src/configdialog.ui" line="2485"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Celkový obsah používá k rozlišení různých souborů různé odstíny barvy pozadí. Barevné schéma lze změnit zde.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2602"/>
+        <location filename="../src/configdialog.ui" line="2547"/>
         <source>Scroll to current cursor position</source>
         <translation>Posunout na nynější polohu ukazatele</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2619"/>
+        <location filename="../src/configdialog.ui" line="2564"/>
         <source>Use color in global TOC:</source>
         <translation>Použít barvu v celkovém obsahu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2639"/>
+        <location filename="../src/configdialog.ui" line="2584"/>
         <source>Bibliography</source>
         <translation>Bibliografie</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2645"/>
+        <location filename="../src/configdialog.ui" line="2590"/>
         <source>bib File Encoding:</source>
         <translation>Kódování znaků souboru bib:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2652"/>
+        <location filename="../src/configdialog.ui" line="2597"/>
         <source>Parse BibTeX</source>
         <translation>Udělat rozbor BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2665"/>
+        <location filename="../src/configdialog.ui" line="2610"/>
         <source>Table Autoformating</source>
         <translation>Automatické formátování tabulky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2671"/>
+        <location filename="../src/configdialog.ui" line="2616"/>
         <source>One Line Per Cell</source>
         <translation>Jeden řádek na buňku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2679"/>
+        <location filename="../src/configdialog.ui" line="2624"/>
         <source>Behind Line Break</source>
         <translation>Za zalomením řádku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2684"/>
+        <location filename="../src/configdialog.ui" line="2629"/>
         <source>Separate Line (No Indent)</source>
         <translation>Oddělit řádek (bez odsazení)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2689"/>
+        <location filename="../src/configdialog.ui" line="2634"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Oddělit řádek (odsazeno k prvnímu sloupci)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2697"/>
+        <location filename="../src/configdialog.ui" line="2642"/>
         <source>Special Commands Position:</source>
         <translation>Poloha zvláštních příkazů:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2707"/>
+        <location filename="../src/configdialog.ui" line="2652"/>
         <source>Special Commands:</source>
         <translation>Zvláštní příkazy:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2717"/>
+        <location filename="../src/configdialog.ui" line="2662"/>
         <source>Additional Search Paths</source>
         <translation>Dodatečné cesty k prohledání</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2726"/>
+        <location filename="../src/configdialog.ui" line="2671"/>
         <source>Bib Files:</source>
         <translation>Soubory Bib:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2739"/>
+        <location filename="../src/configdialog.ui" line="2684"/>
         <source>Image Files:</source>
         <translation>Obrázkové soubory:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2777"/>
+        <location filename="../src/configdialog.ui" line="2722"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2783"/>
+        <location filename="../src/configdialog.ui" line="2728"/>
         <source>Automatically insert LRM characters</source>
         <translation>Automaticky vložit znaky LRM</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2790"/>
+        <location filename="../src/configdialog.ui" line="2735"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Režim ukazatele s viditelným sloupcem (tj. přesunout ukazatel ve směru směrových kláves šipek v textu zprava doleva - RTL)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2797"/>
+        <location filename="../src/configdialog.ui" line="2742"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Automaticky přepnout rozložení klávesnice: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2804"/>
+        <location filename="../src/configdialog.ui" line="2749"/>
         <source>depending on character direction</source>
         <translation>V závislosti na směru znaku</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2811"/>
+        <location filename="../src/configdialog.ui" line="2756"/>
         <source>depending on text/math mode</source>
         <translation>V závislosti na textovém/ matematickém režimu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2821"/>
+        <location filename="../src/configdialog.ui" line="2766"/>
         <source>Hacks/Workarounds</source>
         <translation>Osekání/Ošetření</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2827"/>
+        <location filename="../src/configdialog.ui" line="2772"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Zakázat ošetření při psaní přízvuků (pouze u Mac OS X)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2834"/>
+        <location filename="../src/configdialog.ui" line="2779"/>
         <source>Try to automatically choose best display options</source>
         <translation>Pokusit se automaticky vybrat nejlepší možnost zobrazení</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2852"/>
+        <location filename="../src/configdialog.ui" line="2797"/>
         <source>Render Mode:</source>
         <translation>Režim vykreslení:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2860"/>
+        <location filename="../src/configdialog.ui" line="2805"/>
         <source>QCE (recommended)</source>
         <translation>QCE (doporučeno)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2865"/>
+        <location filename="../src/configdialog.ui" line="2810"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2870"/>
+        <location filename="../src/configdialog.ui" line="2815"/>
         <source>Single Letter</source>
         <translation>Jedno písmeno</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2878"/>
+        <location filename="../src/configdialog.ui" line="2823"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Pokud je povolena vyrovnávací paměť vykreslovaných řádků, jsou vykreslované řádky ukládány do vyrovnávací paměti, takže je není potřeba dělat znovu. Vede to k zlepšení v rychlosti (zvláště na systému Mac) za cenu vyššího používání paměti.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2881"/>
+        <location filename="../src/configdialog.ui" line="2826"/>
         <source>Disable cache of rendered lines</source>
         <translation>Zakázat vyrovnávací paměť vykreslovaných řádků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2888"/>
+        <location filename="../src/configdialog.ui" line="2833"/>
         <source>Disable fixed pitch mode</source>
         <translation>Vypnout režim pevné šířky písmen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2895"/>
+        <location filename="../src/configdialog.ui" line="2840"/>
         <source>Disable cache of character width</source>
         <translation>Vypnout vyrovnávací paměť pro pevné šířky písmen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2902"/>
+        <location filename="../src/configdialog.ui" line="2847"/>
         <source>Use QImage as cache type</source>
         <translation>Použít QImage jako typ vyrovnávací paměti</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2965"/>
+        <location filename="../src/configdialog.ui" line="2910"/>
         <source>Formats</source>
         <translation>Formáty</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2994"/>
+        <location filename="../src/configdialog.ui" line="2939"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <source>Completion</source>
         <translation>Doplnění</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3000"/>
+        <location filename="../src/configdialog.ui" line="2945"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2077,118 +2072,118 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3010"/>
+        <location filename="../src/configdialog.ui" line="2955"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Automaticky nahradit latexové příkazy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3017"/>
+        <location filename="../src/configdialog.ui" line="2962"/>
         <source>Insert Arguments</source>
         <translation>Vložit argumenty</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3027"/>
+        <location filename="../src/configdialog.ui" line="2972"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Ukáže nástrojovou radu s cílovým textem pro labels/bibitem, udělá náhled barev nebo obrázků</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3030"/>
+        <location filename="../src/configdialog.ui" line="2975"/>
         <source>ToolTip-Preview</source>
         <translation>Náhled na nástrojovou radu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3037"/>
+        <location filename="../src/configdialog.ui" line="2982"/>
         <source>Arguments as Placeholders</source>
         <translation>Argumenty a zástupné znaky</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3047"/>
+        <location filename="../src/configdialog.ui" line="2992"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>Ukáže nástrojovou radu s popisem vybraného příkazu pro doplňovatele</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3050"/>
+        <location filename="../src/configdialog.ui" line="2995"/>
         <source>ToolTip-Help</source>
         <translation>Nástrojová rada</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3060"/>
+        <location filename="../src/configdialog.ui" line="3005"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Spustí doplňovatele, jakmile je napsáno &apos;\&apos;. Popřípadě lze doplňovatele spustit ručně zkratkou Ctrl+Space.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3063"/>
+        <location filename="../src/configdialog.ui" line="3008"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Automaticky spustit doplňování při psaní LaTeXových příkazů</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3072"/>
+        <location filename="../src/configdialog.ui" line="3017"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Velikost pruhu s kartami dole nebo nahoře doplňovatele</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3075"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
         <source>Tab Bar Size</source>
         <translation>Velikost karty</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3085"/>
+        <location filename="../src/configdialog.ui" line="3030"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>Velikost karet se sadami příkazů dole nebo nahoře doplňovatele</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3119"/>
+        <location filename="../src/configdialog.ui" line="3064"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Doplnit vybraný text, když je zadán neslovní znak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3129"/>
+        <location filename="../src/configdialog.ui" line="3074"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Pokud mají všechny návrhy doplňovatele další znaky společné, můžete použít &lt;Tab&gt; pro jejich automatické vložení.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3132"/>
+        <location filename="../src/configdialog.ui" line="3077"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Automaticky doplnit společnou předponu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3144"/>
+        <location filename="../src/configdialog.ui" line="3089"/>
         <source>Preferred Commands Set:</source>
         <translation>Upřednostňovaná sada příkazů:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3152"/>
+        <location filename="../src/configdialog.ui" line="3097"/>
         <source>Typical</source>
         <translation>Typické</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3157"/>
+        <location filename="../src/configdialog.ui" line="3102"/>
         <source>Most Used</source>
         <translation>Nejpoužívanější</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3162"/>
+        <location filename="../src/configdialog.ui" line="3107"/>
         <source>Fuzzy</source>
         <translation>Nejasné</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3167"/>
+        <location filename="../src/configdialog.ui" line="3112"/>
         <source>All</source>
         <translation>Vše</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3190"/>
+        <location filename="../src/configdialog.ui" line="3135"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Pokud je matematický výraz vložen přes doplnění mimo matematické prostředí, znaky $$ jsou automaticky přidány.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3193"/>
+        <location filename="../src/configdialog.ui" line="3138"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Automaticky vložit matematické oddělovací znaky, kde jsou potřeba</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3205"/>
-        <location filename="../src/configdialog.ui" line="3243"/>
+        <location filename="../src/configdialog.ui" line="3150"/>
+        <location filename="../src/configdialog.ui" line="3188"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2202,466 +2197,461 @@ určení selže nebo chcete zahrnout zvláštní uživatelské doplňovací soub
 můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3213"/>
+        <location filename="../src/configdialog.ui" line="3158"/>
         <source>Permanently active completion files:</source>
         <translation>Trvale činné doplňovací seznamy slov:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3223"/>
+        <location filename="../src/configdialog.ui" line="3168"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Filtruj následující seznam</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3322"/>
+        <location filename="../src/configdialog.ui" line="3279"/>
         <source>Spell Check</source>
         <translation>Ověření pravopisu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3328"/>
+        <location filename="../src/configdialog.ui" line="3285"/>
         <source>Default Language:</source>
         <translation>Výchozí jazyk:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3355"/>
+        <location filename="../src/configdialog.ui" line="3312"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Adresáře pro pravopisné slovníky:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3362"/>
+        <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>Složky se slovníky Hunspell oddělenými středníkem. Zvláštní klíčová slova [txs-settings-dir] a [txs-app-dir] budou řešena podle příslušejících adresářů.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3372"/>
+        <location filename="../src/configdialog.ui" line="3329"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3379"/>
+        <location filename="../src/configdialog.ui" line="3336"/>
         <source>Thesaurus Database:</source>
         <translation>Slovníková databáze:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3409"/>
+        <location filename="../src/configdialog.ui" line="3366"/>
         <source>TextLabel</source>
         <translation>Textová jmenovka</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3422"/>
+        <location filename="../src/configdialog.ui" line="3379"/>
         <source>Import Dictionary...</source>
         <translation>Zavést slovník...</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3432"/>
+        <location filename="../src/configdialog.ui" line="3389"/>
         <source>Internal Grammar Check</source>
         <translation>Vnitřní ověření mluvnice</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3438"/>
+        <location filename="../src/configdialog.ui" line="3395"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Slova opakovaná v rámci odstavce budou zvýrazněna.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3441"/>
+        <location filename="../src/configdialog.ui" line="3398"/>
         <source>Check for Word Repetitions</source>
         <translation>Prověřit opakování slov</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3448"/>
+        <location filename="../src/configdialog.ui" line="3405"/>
         <source>Words Between Repetitions:</source>
         <translation>Slova mezi opakováními:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3458"/>
+        <location filename="../src/configdialog.ui" line="3415"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Stejná slova jsou označena jako opakování, pokud mezi nimi není větší než tento počet slov.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3468"/>
+        <location filename="../src/configdialog.ui" line="3425"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Stejná, delší slova jsou označena jako opakování s dlouhým dosahem, pokud mezi nimi není větší než tento počet slov.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3478"/>
+        <location filename="../src/configdialog.ui" line="3435"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Pouze slova mající tuto délku jsou označena pro opakování s dlouhým dosahem.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3488"/>
+        <location filename="../src/configdialog.ui" line="3445"/>
         <source>Long Range Repetitions:</source>
         <translation>Opakování s dlouhým dosahem:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3498"/>
+        <location filename="../src/configdialog.ui" line="3455"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>Nejmenší délka slov s dlouhým opakováním:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3508"/>
+        <location filename="../src/configdialog.ui" line="3465"/>
         <source>Wordlist Directory:</source>
         <translation>Adresář se seznamem slov:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
+        <location filename="../src/configdialog.ui" line="3472"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Některá běžná nebo nevýrazná slova budou zvýrazněna.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3518"/>
+        <location filename="../src/configdialog.ui" line="3475"/>
         <source>Check for Bad Words</source>
         <translation>Prověřit špatná slova</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3525"/>
+        <location filename="../src/configdialog.ui" line="3482"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Adresář obsahující seznam slov, která jsou &quot;špatná&quot; nebo se smí opakovat.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3552"/>
+        <location filename="../src/configdialog.ui" line="3509"/>
         <source>LanguageTool</source>
         <translation>Nástroj pro jazyk</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3558"/>
+        <location filename="../src/configdialog.ui" line="3515"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>Cesta obsahující archiv Java s LanguageTool (jazykovým nástrojem).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3565"/>
+        <location filename="../src/configdialog.ui" line="3522"/>
         <source>LT Path:</source>
         <translation>Cesta LT:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3572"/>
+        <location filename="../src/configdialog.ui" line="3529"/>
         <source>Start LanguageTool if not running</source>
         <translation>Spustit LanguageTool (jazykový nástroj), pokud neběží</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3579"/>
+        <location filename="../src/configdialog.ui" line="3536"/>
         <source>Server URL: </source>
         <translation>Adresa serveru (URL):</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3586"/>
+        <location filename="../src/configdialog.ui" line="3543"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Čárkou oddělený seznam pravidel pro LanguageTool (jazykového nástroje), která nebudou zvýrazněna jako chyby.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3610"/>
+        <location filename="../src/configdialog.ui" line="3567"/>
         <source>Ignored Rules:</source>
         <translation>Přehlížená pravidla:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3617"/>
-        <location filename="../src/configdialog.ui" line="3627"/>
-        <location filename="../src/configdialog.ui" line="3637"/>
-        <location filename="../src/configdialog.ui" line="3667"/>
+        <location filename="../src/configdialog.ui" line="3574"/>
+        <location filename="../src/configdialog.ui" line="3584"/>
+        <location filename="../src/configdialog.ui" line="3594"/>
+        <location filename="../src/configdialog.ui" line="3624"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Čárkou oddělený seznam pravidel LanguageTool (jazykového nástroje), která budou zvýrazněna ve zvláštním formátu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3647"/>
+        <location filename="../src/configdialog.ui" line="3604"/>
         <source>Special Rules 3:</source>
         <translation>Zvláštní pravidla 3:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3657"/>
+        <location filename="../src/configdialog.ui" line="3614"/>
         <source>Special Rules 2:</source>
         <translation>Zvláštní pravidla 2:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3677"/>
+        <location filename="../src/configdialog.ui" line="3634"/>
         <source>Special Rules 1:</source>
         <translation>Zvláštní pravidla 1:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3694"/>
+        <location filename="../src/configdialog.ui" line="3651"/>
         <source>Special Rules 4:</source>
         <translation>Zvláštní pravidla 4:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3704"/>
+        <location filename="../src/configdialog.ui" line="3661"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>Bude odvozeno od jazyka ověřování pravopisu použitého v dokumentu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3711"/>
+        <location filename="../src/configdialog.ui" line="3668"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>Spustitelný soubor Java, používaný pro spuštění LanguageTool (jazykového nástroje), pokud tento neběží.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3718"/>
+        <location filename="../src/configdialog.ui" line="3675"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3725"/>
-        <location filename="../src/configdialog.ui" line="3773"/>
+        <location filename="../src/configdialog.ui" line="3682"/>
+        <location filename="../src/configdialog.ui" line="3730"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>Argumenty, které se předávají při spuštění LanguageTool. Tato volba pracuje pouze v případě, že se LanguageTool spouští přímo z TexStudia (tedy například neplatí pro již běžící server).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3728"/>
+        <location filename="../src/configdialog.ui" line="3685"/>
         <source>LT Arguments:</source>
         <translation>Argumenty pro LanguageTool:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3752"/>
-        <location filename="../src/configdialog.ui" line="3780"/>
+        <location filename="../src/configdialog.ui" line="3709"/>
+        <location filename="../src/configdialog.ui" line="3737"/>
         <source>Restore Default</source>
         <translation>Obnovit výchozí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3766"/>
+        <location filename="../src/configdialog.ui" line="3723"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>Adresa (URL) pro spojení s LanguageTool (jazykovým nástrojem).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3857"/>
-        <source>Segment Preview</source>
-        <translation>Náhled části</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3863"/>
+        <location filename="../src/configdialog.ui" line="3820"/>
         <source>Command:</source>
         <translation>Příkaz:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3874"/>
+        <location filename="../src/configdialog.ui" line="3831"/>
         <source>Preview with dvipng</source>
         <translation>Náhled s dvipng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3879"/>
+        <location filename="../src/configdialog.ui" line="3836"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Náhled s dvipng --follow (parallel)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3884"/>
+        <location filename="../src/configdialog.ui" line="3841"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Náhled s dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3889"/>
+        <location filename="../src/configdialog.ui" line="3846"/>
         <source>Preview with pdflatex</source>
         <translation>Náhled pomocí pdflatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3894"/>
+        <location filename="../src/configdialog.ui" line="3851"/>
         <source>Preview with lualatex</source>
         <translation>Náhled s lualatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3902"/>
+        <location filename="../src/configdialog.ui" line="3859"/>
         <source>Display Mode:</source>
         <translation>Režim zobrazení:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3916"/>
+        <location filename="../src/configdialog.ui" line="3873"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Ukázat náhled jako radu k nástroji, pokud je panel neviditelný</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3921"/>
+        <location filename="../src/configdialog.ui" line="3878"/>
         <source>Always show preview in preview panel</source>
         <translation>Ukázat náhled v náhledovém panelu vždy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3926"/>
+        <location filename="../src/configdialog.ui" line="3883"/>
         <source>Always show preview as tool tip</source>
         <translation>Ukázat náhled vždy jako radu k nástroji</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3931"/>
+        <location filename="../src/configdialog.ui" line="3888"/>
         <source>Always show both</source>
         <translation>Ukázat vždy obojí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3936"/>
+        <location filename="../src/configdialog.ui" line="3893"/>
         <source>Inline</source>
         <translation>Vkládaný</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3941"/>
+        <location filename="../src/configdialog.ui" line="3898"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Ukázat ve vloženém prohlížeči</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3949"/>
+        <location filename="../src/configdialog.ui" line="3906"/>
         <source>Update the preview on text change</source>
         <translation>Obnovit náhled při změně textu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3952"/>
+        <location filename="../src/configdialog.ui" line="3909"/>
         <source>Auto Update:</source>
         <translation>Automatické obnovení:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3965"/>
+        <location filename="../src/configdialog.ui" line="3922"/>
         <source>Previously previewed text</source>
         <translation>Předtím nahlížený text</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3973"/>
+        <location filename="../src/configdialog.ui" line="3930"/>
         <source>Auto Update Delay:</source>
         <translation>Zpoždění automatického obnovení:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3996"/>
+        <location filename="../src/configdialog.ui" line="3953"/>
         <source>Replace beamer class by article</source>
         <translation>Nahradit třídu beamer article</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4009"/>
+        <location filename="../src/configdialog.ui" line="3966"/>
         <source>Precompile Preamble</source>
         <translation>Předsestavit úvodní část</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4022"/>
+        <location filename="../src/configdialog.ui" line="3979"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Ukázat náhled jako nástrojovou radu na vzorcích v editoru</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4032"/>
-        <location filename="../src/configdialog.ui" line="4155"/>
+        <location filename="../src/configdialog.ui" line="3989"/>
+        <location filename="../src/configdialog.ui" line="4112"/>
         <source>Scaling:</source>
         <translation>Změna velikosti:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4127"/>
+        <location filename="../src/configdialog.ui" line="4084"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Internal PDF Viewer</source>
         <translation>Vnitřní prohlížeč PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4278"/>
+        <location filename="../src/configdialog.ui" line="4235"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Stanovit jako šestnáctkovou hodnotu RGBA. Je vyžadována průhlednost, protože zvýraznění se kvůli technickým omezením kreslí nahoře textu.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4281"/>
+        <location filename="../src/configdialog.ui" line="4238"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4367"/>
+        <location filename="../src/configdialog.ui" line="4324"/>
         <source>Original Size</source>
         <translation>Původní velikost</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4372"/>
+        <location filename="../src/configdialog.ui" line="4329"/>
         <source>Fit to Window Width</source>
         <translation>Přizpůsobit šířce okna</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4377"/>
+        <location filename="../src/configdialog.ui" line="4334"/>
         <source>Fit to Window Size</source>
         <translation>Přizpůsobit velikosti okna</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4382"/>
+        <location filename="../src/configdialog.ui" line="4339"/>
         <source>Scaled Size</source>
         <translation>Změněná velikost</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4387"/>
+        <location filename="../src/configdialog.ui" line="4344"/>
         <source>Fit to Text Width</source>
         <translation>Přizpůsobit šířce textu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4211"/>
+        <location filename="../src/configdialog.ui" line="4168"/>
         <source>Infinite</source>
         <translation>Nekonečná</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4477"/>
+        <location filename="../src/configdialog.ui" line="4434"/>
         <source>Scale Option:</source>
         <translation>Volba pro velikost:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4514"/>
+        <location filename="../src/configdialog.ui" line="4471"/>
         <source>Magnifier Size:</source>
         <translation>Velikost zvětšovacího skla:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4230"/>
+        <location filename="../src/configdialog.ui" line="4187"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4295"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source>Square</source>
         <translation>Čtvercová</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4300"/>
+        <location filename="../src/configdialog.ui" line="4257"/>
         <source>Circle</source>
         <translation>Kruhová</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4305"/>
+        <location filename="../src/configdialog.ui" line="4262"/>
         <source>Circle without shadow</source>
         <translation>Kruh bez stínu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4268"/>
+        <location filename="../src/configdialog.ui" line="4225"/>
         <source>Highlight Duration</source>
         <translation>Zvýraznit dobu trvání</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4467"/>
+        <location filename="../src/configdialog.ui" line="4424"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>Zakázat vodorovné posunování pro Přizpůsobit šířce textu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4359"/>
+        <location filename="../src/configdialog.ui" line="4316"/>
         <source>Border</source>
         <translation>Okraj</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4484"/>
+        <location filename="../src/configdialog.ui" line="4441"/>
         <source>Magnifier Shape:</source>
         <translation>Tvar zvětšovacího skla:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4521"/>
+        <location filename="../src/configdialog.ui" line="4478"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>V režimu Vložené automaticky skrýt nástrojové pruhy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4326"/>
+        <location filename="../src/configdialog.ui" line="4283"/>
         <source>Highlight Color</source>
         <translation>Zvýraznit barvu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4240"/>
+        <location filename="../src/configdialog.ui" line="4197"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stanovuje, jakým způsobem je PDF nahráno:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Uložen ve vyrovnávací paměti:&lt;/b&gt; Nahrát soubor do vyrovnávací paměti a ověřit úplnost. Potom data předat poppleru. Toto bylo v první řadě zavedeno jako zrychlení pro starší verze poppleru (&amp;lt;0.24), které nebyly &quot;thread-safe&quot;. bylo hlášeno, že poppler může při nahrávání velkých objemů dat uložených do vyrovnávací paměti spadnout. Z toho důvodu je tato volba zamítnuta.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Přímý:&lt;/b&gt; Používá vlastní funkce poppleru pro nahrávání ze souborů. Toto je nejrychlejší cesta, ale neumožňuje přezkoušení neúplných souborů.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Smíšený (doporučeno):&lt;/b&gt; Nejprve soubor nahraje do vyrovnávací paměti a přezkouší jej na úplnost. U malých souborů (&amp;lt; 50MB) jsou data předána dál přímo poppleru.Velké soubory jsou nahrány pomocí vlastních funkcí poppleru pro nahrávání souborů. Tento postup podporuje přezkoušení souborů na úplnost a zabraňuje možným potížím spojeným s pády velkých souborů PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4250"/>
+        <location filename="../src/configdialog.ui" line="4207"/>
         <source>Buffered</source>
         <translation>Uložen ve vyrovnávací paměti</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4255"/>
+        <location filename="../src/configdialog.ui" line="4212"/>
         <source>Direct</source>
         <translation>Přímý</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4260"/>
+        <location filename="../src/configdialog.ui" line="4217"/>
         <source>Hybrid</source>
         <translation>Smíšený</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4179"/>
+        <location filename="../src/configdialog.ui" line="4136"/>
         <source>Cache Size:</source>
         <translation>Velikost vyrovnávací paměti:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4437"/>
-        <location filename="../src/configdialog.ui" line="4491"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
+        <location filename="../src/configdialog.ui" line="4448"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2672,118 +2662,118 @@ Pokud se při vykreslování objevují potíže, můžet vyzkoušet náhradní j
 Poznámka: Změna tohoto nastavení ovlivní jen následně otevřené dokumenty.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4189"/>
+        <location filename="../src/configdialog.ui" line="4146"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4417"/>
+        <location filename="../src/configdialog.ui" line="4374"/>
         <source>Synchronized Files Types:</source>
         <translation>Seřízené typy souborů:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4443"/>
+        <location filename="../src/configdialog.ui" line="4400"/>
         <source>Render Backend:</source>
         <translation>Vykreslovací jádro:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4162"/>
+        <location filename="../src/configdialog.ui" line="4119"/>
         <source>Load Strategy:</source>
         <translation>Postup nahrání:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4395"/>
+        <location filename="../src/configdialog.ui" line="4352"/>
         <source> MB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4460"/>
+        <location filename="../src/configdialog.ui" line="4417"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Poznámka: Okenní/Vložený režim je nastaven v Sestavení → Prohlížeč PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4427"/>
+        <location filename="../src/configdialog.ui" line="4384"/>
         <source>Paper Color</source>
         <translation>Barva papíru</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4336"/>
+        <location filename="../src/configdialog.ui" line="4293"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Výchozí barva pozadí. Zadejte ji jako šestnáctkovou hodnotu RGB. Poznámka: Toto ovlivní jen PDF nahrané po změně volby. Barvy papíru již nahraného PDF není změněna.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4172"/>
+        <location filename="../src/configdialog.ui" line="4129"/>
         <source>Auto-recompile document on changes</source>
         <translation>Automaticky znovupřeložit dokument při změnách</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4453"/>
+        <location filename="../src/configdialog.ui" line="4410"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>Velikost laserového ukazovátka při vystoupení:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4528"/>
+        <location filename="../src/configdialog.ui" line="4485"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>Barva laserového ukazovátka při vystoupení:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4578"/>
+        <location filename="../src/configdialog.ui" line="4541"/>
         <source>Use SVN</source>
         <translation>Použít SVN</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4583"/>
+        <location filename="../src/configdialog.ui" line="4546"/>
         <source>Use GIT</source>
         <translation>Použít GIT</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4591"/>
+        <location filename="../src/configdialog.ui" line="4554"/>
         <source>Select how txs checks in saved files</source>
         <translation>Vyberte, jak txs zapisuje v uložených souborech</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4595"/>
+        <location filename="../src/configdialog.ui" line="4558"/>
         <source>No automatic check-in after save</source>
         <translation>Žádné automatické zapisování po uložení</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4600"/>
+        <location filename="../src/configdialog.ui" line="4563"/>
         <source>Check-in after File/Save only</source>
         <translation>Zapsání jen po Soubor/Uložit</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4605"/>
+        <location filename="../src/configdialog.ui" line="4568"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Zapsání po všech operacích ukládání, to jest i před přeložením.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4613"/>
+        <location filename="../src/configdialog.ui" line="4576"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Použít revize SVN/GIT pro krok Zpět před naposledy uloženou verzi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4620"/>
+        <location filename="../src/configdialog.ui" line="4583"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Při svn add provede svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4623"/>
+        <location filename="../src/configdialog.ui" line="4586"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Nahradit klíčová slova vlastnostmi (při svn add)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4632"/>
+        <location filename="../src/configdialog.ui" line="4595"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Hloubka prohledávání adresáře SVN: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4683"/>
+        <location filename="../src/configdialog.ui" line="4652"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal Terminal</source>
         <translation>Vnitřní terminál</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4734"/>
+        <location filename="../src/configdialog.ui" line="4703"/>
         <source>Shell:</source>
         <translation>Shell:</translation>
     </message>
@@ -2862,6 +2852,7 @@ chcete nastavit?</translation>
         <translation>Rozdíly</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3814"/>
         <location filename="../src/configdialog.cpp" line="498"/>
         <location filename="../src/configdialog.cpp" line="540"/>
         <source>Preview</source>
@@ -2928,6 +2919,7 @@ chcete nastavit?</translation>
         <translation>Nástrojové pruhy</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1345"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>GUI Scaling</source>
         <translation>Změna velikosti rozhraní</translation>
@@ -2948,6 +2940,7 @@ chcete nastavit?</translation>
         <translation>Přezkoušení jazyka</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4534"/>
         <location filename="../src/configdialog.cpp" line="542"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -3066,7 +3059,7 @@ podrobněji. Zakažte znovu pokročilé volby, pokud chcete
 vidět jen nejběžnější nastavení.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1522"/>
+        <location filename="../src/configmanager.cpp" line="1519"/>
         <source>Basic Key Mapping</source>
         <translation>Základní přiřazení kláves</translation>
     </message>
@@ -3794,165 +3787,165 @@ vidět jen nejběžnější nastavení.</translation>
         <translation>Odkaz na stranu - \pageref{〈klíč〉}</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1086"/>
-        <location filename="../src/configmanager.cpp" line="1092"/>
-        <location filename="../src/configmanager.cpp" line="1108"/>
-        <location filename="../src/configmanager.cpp" line="1113"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>Key replacement: %1 %2</source>
         <translation>Nahrazení kláves: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1086"/>
-        <location filename="../src/configmanager.cpp" line="1108"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
         <source>before word</source>
         <translation>před slovem</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1092"/>
-        <location filename="../src/configmanager.cpp" line="1113"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>after word</source>
         <translation>za slovem</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1441"/>
-        <location filename="../src/configmanager.cpp" line="1442"/>
-        <location filename="../src/configmanager.cpp" line="1620"/>
-        <location filename="../src/configmanager.cpp" line="1626"/>
-        <location filename="../src/configmanager.cpp" line="1902"/>
-        <location filename="../src/configmanager.cpp" line="1910"/>
+        <location filename="../src/configmanager.cpp" line="1438"/>
+        <location filename="../src/configmanager.cpp" line="1439"/>
+        <location filename="../src/configmanager.cpp" line="1617"/>
+        <location filename="../src/configmanager.cpp" line="1623"/>
+        <location filename="../src/configmanager.cpp" line="1899"/>
+        <location filename="../src/configmanager.cpp" line="1907"/>
         <source>default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1499"/>
+        <location filename="../src/configmanager.cpp" line="1496"/>
         <source>Menus</source>
         <translation>Nabídky</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1507"/>
+        <location filename="../src/configmanager.cpp" line="1504"/>
         <source>Menus PDF-Viewer</source>
         <translation>Nabídky prohlížeče PDF</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1543"/>
-        <location filename="../src/configmanager.cpp" line="2756"/>
+        <location filename="../src/configmanager.cpp" line="1540"/>
+        <location filename="../src/configmanager.cpp" line="2753"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;Žádný&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1589"/>
+        <location filename="../src/configmanager.cpp" line="1586"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Vložit novou položku nabídky (před)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1592"/>
+        <location filename="../src/configmanager.cpp" line="1589"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Vložit novou podřízenou položku nabídky (před)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1595"/>
+        <location filename="../src/configmanager.cpp" line="1592"/>
         <source>Revert/Remove User Menu Item</source>
         <translation>Vrátit/Odstranit položku uživatelské nabídky</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1613"/>
+        <location filename="../src/configmanager.cpp" line="1610"/>
         <source>Latex/Math menus</source>
         <translation>Nabídky Latex/Matematika</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1614"/>
+        <location filename="../src/configmanager.cpp" line="1611"/>
         <source>All menus</source>
         <translation>Všechny nabídky</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1615"/>
+        <location filename="../src/configmanager.cpp" line="1612"/>
         <source>Special Tags</source>
         <translation>Zvláštní značky</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1697"/>
+        <location filename="../src/configmanager.cpp" line="1694"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Povolil jste automatické nahrazení uvozovek. Jsou tu však makra se spouštěcím řetězcem (?language:latex)(?&lt;=\s|^) nebo (?language:latex)(?&lt;=\S), jež zruší nové nahrazení uvozovek.
 hcete je odstranit?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1956"/>
+        <location filename="../src/configmanager.cpp" line="1953"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Pro úplné využití vnitřního prohlížeče PDF je potřeba, aby byl zapnut synctex. Má to teď TeXstudio udělat?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1971"/>
+        <location filename="../src/configmanager.cpp" line="1968"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Poslední Hlavní dokument %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1974"/>
+        <location filename="../src/configmanager.cpp" line="1971"/>
         <source>Recent File %1</source>
         <translation>Naposledy otevřený soubor %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1975"/>
+        <location filename="../src/configmanager.cpp" line="1972"/>
         <source>Clear file list</source>
         <translation>Vymazat seznam souborů</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1976"/>
+        <location filename="../src/configmanager.cpp" line="1973"/>
         <source>File list</source>
         <translation>Seznam souborů</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1977"/>
+        <location filename="../src/configmanager.cpp" line="1974"/>
         <source>Open first non-open file</source>
         <translation>Otevřít první neotevřený soubor</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1978"/>
+        <location filename="../src/configmanager.cpp" line="1975"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Otevřít všechny soubory</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1988"/>
+        <location filename="../src/configmanager.cpp" line="1985"/>
         <source>Root Document: </source>
-        <translation type="unfinished"/>
+        <translation>Hlavní dokument:</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2757"/>
+        <location filename="../src/configmanager.cpp" line="2754"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Výchozí&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3001"/>
+        <location filename="../src/configmanager.cpp" line="2998"/>
         <source>Configure</source>
         <translation>Nastavit</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3008"/>
+        <location filename="../src/configmanager.cpp" line="3005"/>
         <source>Select Program</source>
         <translation>Vybrat program</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3015"/>
+        <location filename="../src/configmanager.cpp" line="3012"/>
         <source>Restore Default</source>
         <translation>Obnovit výchozí</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3062"/>
+        <location filename="../src/configmanager.cpp" line="3059"/>
         <source>Repeat contained compilation commands</source>
         <translation>Opakovat obsažené příkazy k překladu</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3110"/>
+        <location filename="../src/configmanager.cpp" line="3107"/>
         <source>Add</source>
         <translation>Přidat</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3173"/>
+        <location filename="../src/configmanager.cpp" line="3170"/>
         <source>Browse program</source>
         <translation>Prohlížeč</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3512"/>
+        <location filename="../src/configmanager.cpp" line="3509"/>
         <source>text is restored after restart</source>
         <translation>text je obnoven po restartu</translation>
     </message>
@@ -4048,42 +4041,47 @@ hcete je odstranit?</translation>
 <context>
     <name>Editors</name>
     <message>
-        <location filename="../src/editors.cpp" line="393"/>
+        <location filename="../src/editors.cpp" line="397"/>
         <source>Move to other view</source>
         <translation>Přejít do jiného zobrazení</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="399"/>
+        <location filename="../src/editors.cpp" line="402"/>
+        <source>Move all others to other view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/editors.cpp" line="407"/>
         <source>Move all to other view</source>
         <translation>Přesunout vše do jiného zobrazení</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="404"/>
+        <location filename="../src/editors.cpp" line="413"/>
         <source>Split Vertically</source>
         <translation>Rozdělit svisle</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="404"/>
+        <location filename="../src/editors.cpp" line="413"/>
         <source>Split Horizontally</source>
         <translation>Rozdělit vodorovně</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="409"/>
+        <location filename="../src/editors.cpp" line="418"/>
         <source>Set Read-Only</source>
         <translation>Nastavit pouze pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="411"/>
+        <location filename="../src/editors.cpp" line="420"/>
         <source>Unset Read-Only</source>
         <translation>Zrušit nastavení pouze pro čtení</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="416"/>
+        <location filename="../src/editors.cpp" line="425"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="419"/>
+        <location filename="../src/editors.cpp" line="428"/>
         <source>Close All Other Documents</source>
         <translation>Zavřít všechny ostatní dokumenty</translation>
     </message>
@@ -4688,7 +4686,7 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2334"/>
         <source>Ignore all</source>
-        <translation type="unfinished"/>
+        <translation>Ignoruj vše</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2599"/>
@@ -8094,7 +8092,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <location filename="../src/spellerdialog.ui" line="87"/>
         <source>Ignore &amp;Once</source>
-        <translation type="unfinished"/>
+        <translation>Ignoruj jednou &amp;Once</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="127"/>
@@ -8114,12 +8112,12 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <location filename="../src/spellerdialog.ui" line="184"/>
         <source>Ig&amp;nore All</source>
-        <translation type="unfinished"/>
+        <translation>Ig&amp;noruj vše</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.ui" line="191"/>
         <source>&amp;Add to dictionary</source>
-        <translation type="unfinished"/>
+        <translation>Přidej do složky &amp;Add</translation>
     </message>
     <message>
         <location filename="../src/spellerdialog.cpp" line="85"/>
@@ -8992,7 +8990,7 @@ se nepodařilo odstranit.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2132"/>
+        <location filename="../src/configmanager.cpp" line="2129"/>
         <source>Edit &amp;Macros...</source>
         <translation>Upravit &amp;makra...</translation>
     </message>
@@ -9342,7 +9340,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="892"/>
         <source>Copy root filename to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Kopíruj jméno souboru do schránky</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="930"/>
@@ -11469,7 +11467,7 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     <message>
         <location filename="../src/texstudio.cpp" line="944"/>
         <source>C&amp;ut Line or Selection</source>
-        <translation type="unfinished"/>
+        <translation>Vyjmi řádek nebo výběr C&amp;ut</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11394"/>
@@ -12014,77 +12012,80 @@ zahrnut dokument v %1</translation>
         <translation>Upravit makra</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="77"/>
+        <location filename="../src/usermenudialog.ui" line="98"/>
         <source>Browse offered macros on txs site.</source>
         <translation>Procházet makra nabídnutá na stránce txs.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="80"/>
+        <location filename="../src/usermenudialog.ui" line="101"/>
         <source>Browse</source>
         <translation>Procházet</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="87"/>
+        <location filename="../src/usermenudialog.ui" line="108"/>
         <source>Export macro to file</source>
         <translation>Vyvést makro do souboru</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="90"/>
+        <location filename="../src/usermenudialog.ui" line="111"/>
         <source>Export</source>
         <translation>Vyvést</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="97"/>
+        <location filename="../src/usermenudialog.ui" line="118"/>
         <source>Import macro from file</source>
         <translation>Zavést makro ze souboru</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="100"/>
+        <location filename="../src/usermenudialog.ui" line="121"/>
         <source>Import</source>
         <translation>Zavést</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="117"/>
+        <location filename="../src/usermenudialog.ui" line="138"/>
         <source>Add</source>
         <translation>Přidat</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="128"/>
+        <location filename="../src/usermenudialog.ui" line="149"/>
         <source>Folder</source>
         <translation>Složka</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="145"/>
+        <location filename="../src/usermenudialog.ui" line="166"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="181"/>
+        <location filename="../src/usermenudialog.ui" line="202"/>
         <source>Up</source>
         <translation>Nahoru</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="204"/>
+        <location filename="../src/usermenudialog.ui" line="225"/>
         <source>Down</source>
         <translation>Dolů</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="221"/>
+        <location filename="../src/usermenudialog.ui" line="60"/>
+        <location filename="../src/usermenudialog.ui" line="242"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="238"/>
+        <location filename="../src/usermenudialog.ui" line="75"/>
+        <location filename="../src/usermenudialog.ui" line="259"/>
         <source>Abbreviation</source>
         <translation>Zkratka</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="250"/>
+        <location filename="../src/usermenudialog.ui" line="70"/>
+        <location filename="../src/usermenudialog.ui" line="271"/>
         <source>Trigger</source>
         <translation>Spouštěč</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="327"/>
+        <location filename="../src/usermenudialog.ui" line="348"/>
         <source>If this trigger string is written in any tex document, 
 it is replaced by the current tag.
 
@@ -12111,134 +12112,135 @@ a (?&lt;=\s|^) pro označení nahrazení, která se mají objevit jen před slov
 Můžete použít zvláštní hodnotu ?txs-start pro spuštění skriptu při spouštění txs.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="360"/>
+        <location filename="../src/usermenudialog.ui" line="381"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="369"/>
+        <location filename="../src/usermenudialog.ui" line="390"/>
         <source>Normal</source>
         <translation>Obvyklá</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="376"/>
+        <location filename="../src/usermenudialog.ui" line="397"/>
         <source>Environment</source>
         <translation>Prostředí</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="389"/>
+        <location filename="../src/usermenudialog.ui" line="410"/>
         <source>Script</source>
         <translation>Skript</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="398"/>
+        <location filename="../src/usermenudialog.ui" line="419"/>
         <source>LaTeX Content</source>
         <translation>LaTeXové příkazy</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="423"/>
+        <location filename="../src/usermenudialog.ui" line="444"/>
         <source>Run Script</source>
         <translation>Spustit skript</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="443"/>
+        <location filename="../src/usermenudialog.ui" line="464"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="450"/>
+        <location filename="../src/usermenudialog.ui" line="471"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="459"/>
+        <location filename="../src/usermenudialog.ui" line="480"/>
         <source>Description</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="466"/>
+        <location filename="../src/usermenudialog.ui" line="65"/>
+        <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shortcut</source>
         <translation>Klávesová zkratka</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="482"/>
+        <location filename="../src/usermenudialog.ui" line="503"/>
         <source>Shift+F1</source>
         <translation>Shift+F1</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="487"/>
+        <location filename="../src/usermenudialog.ui" line="508"/>
         <source>Shift+F2</source>
         <translation>Shift+F2</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="492"/>
+        <location filename="../src/usermenudialog.ui" line="513"/>
         <source>Shift+F4</source>
         <translation>Shift+F4</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="497"/>
-        <location filename="../src/usermenudialog.ui" line="502"/>
+        <location filename="../src/usermenudialog.ui" line="518"/>
+        <location filename="../src/usermenudialog.ui" line="523"/>
         <source>Shift+F5</source>
         <translation>Shift+F5</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="507"/>
+        <location filename="../src/usermenudialog.ui" line="528"/>
         <source>Shift+F6</source>
         <translation>Shift+F6</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="512"/>
+        <location filename="../src/usermenudialog.ui" line="533"/>
         <source>Shift+F7</source>
         <translation>Shift+F7</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="517"/>
+        <location filename="../src/usermenudialog.ui" line="538"/>
         <source>Shift+F8</source>
         <translation>Shift+F8</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="522"/>
+        <location filename="../src/usermenudialog.ui" line="543"/>
         <source>Shift+F9</source>
         <translation>Shift+F9</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="527"/>
+        <location filename="../src/usermenudialog.ui" line="548"/>
         <source>Shift+F10</source>
         <translation>Shift+F10</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="532"/>
+        <location filename="../src/usermenudialog.ui" line="553"/>
         <source>Shift+F11</source>
         <translation>Shift+F11</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="537"/>
+        <location filename="../src/usermenudialog.ui" line="558"/>
         <source>Shift+F12</source>
         <translation>Shift+F12</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="325"/>
+        <location filename="../src/usermenudialog.cpp" line="328"/>
         <source>Folder is not empty.</source>
         <translation>Složka není prázdná.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="330"/>
+        <location filename="../src/usermenudialog.cpp" line="333"/>
         <source>Do you really want to delete the current macro?</source>
         <translation>Opravdu chcete smazat nynější makro?</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="409"/>
+        <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macro</source>
         <translation>Zavést makro</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="409"/>
-        <location filename="../src/usermenudialog.cpp" line="421"/>
+        <location filename="../src/usermenudialog.cpp" line="412"/>
+        <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>txs macro files (*.txsMacro)</source>
         <translation>Soubory maker txs (*.txsMacro)</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="421"/>
+        <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>Export macro</source>
         <translation>Vyvést makro</translation>
     </message>

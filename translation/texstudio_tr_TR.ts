@@ -741,137 +741,137 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
         <translation>TeXstudio ayarları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="86"/>
+        <location filename="../src/configdialog.ui" line="4759"/>
         <source>Show Advanced Options</source>
         <translation>Gelişmiş ayarları görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="112"/>
+        <location filename="../src/configdialog.ui" line="4785"/>
         <source>OK</source>
         <translation>Tamam</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="122"/>
+        <location filename="../src/configdialog.ui" line="4795"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="208"/>
-        <location filename="../src/configdialog.ui" line="2051"/>
+        <location filename="../src/configdialog.ui" line="165"/>
+        <location filename="../src/configdialog.ui" line="1996"/>
         <source>Appearance</source>
         <translation>Görünüm</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="290"/>
-        <location filename="../src/configdialog.ui" line="3687"/>
+        <location filename="../src/configdialog.ui" line="247"/>
+        <location filename="../src/configdialog.ui" line="3644"/>
         <source>Language:</source>
         <translation>Dil:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="303"/>
+        <location filename="../src/configdialog.ui" line="260"/>
         <source>Font:</source>
         <translation>Yazı tipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="335"/>
-        <location filename="../src/configdialog.ui" line="1804"/>
-        <location filename="../src/configdialog.ui" line="4717"/>
+        <location filename="../src/configdialog.ui" line="292"/>
+        <location filename="../src/configdialog.ui" line="1749"/>
+        <location filename="../src/configdialog.ui" line="4686"/>
         <source>Font Size:</source>
         <translation>Yazı boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="311"/>
+        <location filename="../src/configdialog.ui" line="268"/>
         <source>Classic</source>
         <translation>Klasik</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="316"/>
+        <location filename="../src/configdialog.ui" line="273"/>
         <source>Modern</source>
         <translation>Çağdaş</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="267"/>
+        <location filename="../src/configdialog.ui" line="224"/>
         <source>Style:</source>
         <translation>Biçem:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="342"/>
+        <location filename="../src/configdialog.ui" line="299"/>
         <source>Use System Theme Icons</source>
         <translation>Sistem tema simgeleri kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="234"/>
-        <location filename="../src/configdialog.ui" line="4689"/>
+        <location filename="../src/configdialog.ui" line="191"/>
+        <location filename="../src/configdialog.ui" line="4658"/>
         <source>Color Scheme:</source>
         <translation>Renk şeması: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="214"/>
+        <location filename="../src/configdialog.ui" line="171"/>
         <source>Ignore Most System Colors</source>
         <translation>Çoğu sistem rengi yok sayılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="469"/>
+        <location filename="../src/configdialog.ui" line="426"/>
         <source>MRU Document Chooser</source>
         <translation>MRU belge seçici</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="321"/>
+        <location filename="../src/configdialog.ui" line="278"/>
         <source>Modern - dark</source>
         <translation>Çağdaş - koyu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="381"/>
+        <location filename="../src/configdialog.ui" line="338"/>
         <source>Files</source>
         <translation>Dosyalar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="432"/>
+        <location filename="../src/configdialog.ui" line="389"/>
         <source>Max. Recent Documents:</source>
         <translation>Son kullanılan belge sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="403"/>
+        <location filename="../src/configdialog.ui" line="360"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Aç/kaydet penceresinde seçilmiş dosya süzgeci hatırlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="452"/>
+        <location filename="../src/configdialog.ui" line="409"/>
         <source>Use system file dialogs</source>
         <translation>Sistem dosya pencereleri kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="482"/>
+        <location filename="../src/configdialog.ui" line="439"/>
         <source>Session</source>
         <translation>Oturum</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="491"/>
+        <location filename="../src/configdialog.ui" line="448"/>
         <source>Restore Previous Session at Startup</source>
         <translation>Başlangıçta önceki oturum geri yüklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="498"/>
+        <location filename="../src/configdialog.ui" line="455"/>
         <source>Store relative paths</source>
         <translation>Göreli yollar kaydedilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="511"/>
+        <location filename="../src/configdialog.ui" line="468"/>
         <source>Startup</source>
         <translation>Başlangıç</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="517"/>
+        <location filename="../src/configdialog.ui" line="474"/>
         <source>Check LaTeX Configuration</source>
         <translation>LaTeX yapılandırmasını denetle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="527"/>
+        <location filename="../src/configdialog.ui" line="484"/>
         <source>Update</source>
         <translation>Güncelle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="539"/>
+        <location filename="../src/configdialog.ui" line="496"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
@@ -882,156 +882,156 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
 - Geliştirime Sürümleri: En son özellikleri içerir, ancak kararsız olabilir. (Kararlı sürümler ve yayın adayı sürümler de bildirilir).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="546"/>
+        <location filename="../src/configdialog.ui" line="503"/>
         <source>Stable Releases</source>
         <translation>Kararlı sürümler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="551"/>
+        <location filename="../src/configdialog.ui" line="508"/>
         <source>Release Candidates</source>
         <translation>Yayın adayları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="556"/>
+        <location filename="../src/configdialog.ui" line="513"/>
         <source>Development Versions</source>
         <translation>Geliştirme sürümleri</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="577"/>
+        <location filename="../src/configdialog.ui" line="534"/>
         <source>Check Now</source>
         <translation>Şimdi denetle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="604"/>
+        <location filename="../src/configdialog.ui" line="561"/>
         <source>Last Checked:</source>
         <translation>Son denetleme:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="611"/>
+        <location filename="../src/configdialog.ui" line="568"/>
         <source> days</source>
         <translation>gün</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="624"/>
+        <location filename="../src/configdialog.ui" line="581"/>
         <source>Automatically check every</source>
         <translation>Şu sıklıkta otomatik denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="631"/>
+        <location filename="../src/configdialog.ui" line="588"/>
         <source>Update Level:</source>
         <translation>Güncelleme düzeyi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="686"/>
+        <location filename="../src/configdialog.ui" line="643"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Komutlar (%: uzantı olmadan dosya adı - @: satır numarası - ?: genişletilmiş dosya adı seçenekleri)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="693"/>
+        <location filename="../src/configdialog.ui" line="650"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Özel karakterler&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="700"/>
+        <location filename="../src/configdialog.ui" line="657"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
         <translation>&lt;b&gt;%&lt;/b&gt;: uzantı olmadan dosya adı; &lt;b&gt;@&lt;/b&gt;: satır numarası; &lt;b&gt;?[seçici][yol adı bölümü][sonlandırıcı karakter]&lt;/b&gt;: biçimlendirilmiş dosya adı</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="726"/>
+        <location filename="../src/configdialog.ui" line="683"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; ve &lt;b&gt;?? &lt;/b&gt; şuna dönüşür: %, @ ya da ?
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="804"/>
+        <location filename="../src/configdialog.ui" line="764"/>
         <source>Meta Commands</source>
         <translation>Üst veri komutları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="817"/>
+        <location filename="../src/configdialog.ui" line="777"/>
         <source>User Commands</source>
         <translation>Kullanıcı komutları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="827"/>
+        <location filename="../src/configdialog.ui" line="787"/>
         <source>Build Options</source>
         <translation>Oluşturma ayarları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="839"/>
+        <location filename="../src/configdialog.ui" line="799"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
         <translation>Bib dosyaları değiştiğinde txs:///recompile-bibliography çalıştırılır.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="842"/>
+        <location filename="../src/configdialog.ui" line="802"/>
         <source>Check and update bibliography before compiling</source>
         <translation>Derlemeden önce kaynakça denetlenip güncellensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="809"/>
         <source>Show messages when starting compiling</source>
         <translation>Derleme başlatılırken iletiler görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="874"/>
+        <location filename="../src/configdialog.ui" line="834"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>dvi/ps/pdf dosyası zaten açılmışsa, görüntüleyicinin yeni bir kopyası başlatılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="881"/>
+        <location filename="../src/configdialog.ui" line="841"/>
         <source>Show stdout:</source>
         <translation>stdout görünümü:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="889"/>
-        <location filename="../src/configdialog.ui" line="2292"/>
-        <location filename="../src/configdialog.ui" line="3960"/>
+        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="2237"/>
+        <location filename="../src/configdialog.ui" line="3917"/>
         <source>Never</source>
         <translation>Asla</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="894"/>
+        <location filename="../src/configdialog.ui" line="854"/>
         <source>Only For User Commands</source>
         <translation>Yalnız kullanıcı komutları için</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="899"/>
+        <location filename="../src/configdialog.ui" line="859"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
         <translation>Her zaman (yönlendirilmemişse &gt; /dev/null)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="907"/>
+        <location filename="../src/configdialog.ui" line="867"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
         <translation>Bazı LaTeX yapılarının (başvurular gibi) doğru şekilde görüntülenmesi için birden fazla derleme döngüsü gerekir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="910"/>
+        <location filename="../src/configdialog.ui" line="870"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>En fazla derleme yinelenmesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="973"/>
+        <location filename="../src/configdialog.ui" line="917"/>
         <source>Commands ($PATH)</source>
         <translation>Komutlar ($PATH)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="980"/>
+        <location filename="../src/configdialog.ui" line="924"/>
         <source>PDF File</source>
         <translation>PDF dosyası</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1024"/>
+        <location filename="../src/configdialog.ui" line="968"/>
         <source>Log File</source>
         <translation>Günlük dosyası</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1035"/>
+        <location filename="../src/configdialog.ui" line="977"/>
         <source>Additional Search Paths:</source>
         <translation>Ek arama yolları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1042"/>
+        <location filename="../src/configdialog.ui" line="984"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1050,33 +1050,33 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harfe duyarlıdır.
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1052"/>
+        <location filename="../src/configdialog.ui" line="994"/>
         <source>Replace Environment Variables</source>
         <translation>Ortam değişkenlerini değiştir</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1059"/>
+        <location filename="../src/configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
         <translation>Derleme hatası oluşursa günlük görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1066"/>
+        <location filename="../src/configdialog.ui" line="1008"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
         <translation>Bu seçenek&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;uygulaması&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-uygulaması&lt;/code&gt; ve &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-uygulaması&lt;/code&gt; açıklama biçemlerini kullanarak komutları yeniden tanımlamanızı sağlar. Ayrıntılı bilgi almak için belgelere bakabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1069"/>
+        <location filename="../src/configdialog.ui" line="1011"/>
         <source>Interpret command definition in magic comments</source>
         <translation>Sihirli açıklamalardaki komut tanımı yorumlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1106"/>
+        <location filename="../src/configdialog.ui" line="1048"/>
         <location filename="../src/configdialog.cpp" line="531"/>
         <source>Shortcuts</source>
         <translation>Kısayollar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1113"/>
+        <location filename="../src/configdialog.ui" line="1055"/>
         <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1089,976 +1089,971 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
 (3) Kısayol dizgesini yazarak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1130"/>
-        <location filename="../src/configdialog.ui" line="1377"/>
+        <location filename="../src/configdialog.ui" line="1072"/>
+        <location filename="../src/configdialog.ui" line="1319"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1135"/>
+        <location filename="../src/configdialog.ui" line="1077"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1140"/>
+        <location filename="../src/configdialog.ui" line="1082"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1145"/>
+        <location filename="../src/configdialog.ui" line="1087"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1153"/>
+        <location filename="../src/configdialog.ui" line="1095"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
         <translation>Bileşeni kapatma sabit bir GUI bileşeni listesine uygulanır (tümü burada görüntülenmez). Görülebilen ilk bileşen kapatılır. Bu ayarı kullanarak bazı bileşenlerin kapatılmasını engelleyebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1156"/>
+        <location filename="../src/configdialog.ui" line="1098"/>
         <source>Close Element (Esc)</source>
         <translation>Bileşeni kapat (Esc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1162"/>
+        <location filename="../src/configdialog.ui" line="1104"/>
         <source>Close Log-View</source>
         <translation>Günlük görünümünü kapat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1169"/>
+        <location filename="../src/configdialog.ui" line="1111"/>
         <source>Close Embedded Viewer</source>
         <translation>Gömülü görüntüleyiciyi kapat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1176"/>
+        <location filename="../src/configdialog.ui" line="1118"/>
         <source>Close Full Screen Mode</source>
         <translation>Tam ekran kipinden çık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1186"/>
+        <location filename="../src/configdialog.ui" line="1128"/>
         <source>Show Shortcuts in Tooltips</source>
         <translation>Araç ipuçlarında kısayollar görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1209"/>
+        <location filename="../src/configdialog.ui" line="1151"/>
         <location filename="../src/configdialog.cpp" line="532"/>
         <source>Menus</source>
         <translation>Menüler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1216"/>
+        <location filename="../src/configdialog.ui" line="1158"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation>Burada gizlenebilecek ya da düzenlenebilecek menü ögeleri listelenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1229"/>
+        <location filename="../src/configdialog.ui" line="1171"/>
         <source>Name</source>
         <translation>Ad</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1234"/>
+        <location filename="../src/configdialog.ui" line="1176"/>
         <location filename="../src/configdialog.cpp" line="520"/>
         <source>Command</source>
         <translation>Komut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1239"/>
+        <location filename="../src/configdialog.ui" line="1181"/>
         <source>Slot</source>
         <translation>Aralık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1247"/>
+        <location filename="../src/configdialog.ui" line="1189"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
         <translation>Bu seçenek, yukarıdaki listede tüm menü ögelerinin ya da yalnızca ortak değiştirilen ögelerin görüntülenmesini sağlar.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1250"/>
+        <location filename="../src/configdialog.ui" line="1192"/>
         <source>Show All</source>
         <translation>Tümünü görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1273"/>
+        <location filename="../src/configdialog.ui" line="1215"/>
         <source>Toolbar Customization</source>
         <translation>Araç çubuğu özelleştirme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1282"/>
+        <location filename="../src/configdialog.ui" line="1224"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation>Bu seçenek, düzenlenmekte olan araç çubuğundaki tüm işlemleri görüntüler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1307"/>
+        <location filename="../src/configdialog.ui" line="1249"/>
         <source>This adds an action to the toolbar.</source>
         <translation>Bu seçenek araç çubuğuna bir işlem ekler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1321"/>
+        <location filename="../src/configdialog.ui" line="1263"/>
         <source>This removes an action from the toolbar.</source>
         <translation>Bu seçenek, araç çubuğundaki bir işlemi siler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1350"/>
+        <location filename="../src/configdialog.ui" line="1292"/>
         <source>Here you can choose a toolbar to modify.</source>
         <translation>Buradan düzenlemek istediğiniz bir araç çubuğunu seçebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1357"/>
+        <location filename="../src/configdialog.ui" line="1299"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
         <translation>Buradan araç çubuğu ile eşleştirilecek komutların listesini seçebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1364"/>
+        <location filename="../src/configdialog.ui" line="1306"/>
         <source>This shows available actions to map on a toolbar.</source>
         <translation>Buradan bir araç çubuğu ile eşleştirilebilecek işlemleri görebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1403"/>
-        <source>Scaling</source>
-        <translation>Ölçek</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1541"/>
+        <location filename="../src/configdialog.ui" line="1470"/>
         <source>Secondary Toolbars</source>
         <translation>İkincil araç çubukları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1450"/>
-        <location filename="../src/configdialog.ui" line="1457"/>
-        <location filename="../src/configdialog.ui" line="1514"/>
-        <location filename="../src/configdialog.ui" line="1580"/>
+        <location filename="../src/configdialog.ui" line="1392"/>
+        <location filename="../src/configdialog.ui" line="1399"/>
+        <location filename="../src/configdialog.ui" line="1456"/>
+        <location filename="../src/configdialog.ui" line="1509"/>
         <source>Reset</source>
         <translation>Sıfırla</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1521"/>
+        <location filename="../src/configdialog.ui" line="1463"/>
         <source>Symbol Grid</source>
         <translation>Simge tablosu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1443"/>
+        <location filename="../src/configdialog.ui" line="1385"/>
         <source>Main Toolbar</source>
         <translation>Ana araç çubuğu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1486"/>
+        <location filename="../src/configdialog.ui" line="1428"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
         <translation>Bu seçenek yatay araç çubuklarının ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1412"/>
+        <location filename="../src/configdialog.ui" line="1354"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
         <translation>Bu seçenek simge tablosunun ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1464"/>
+        <location filename="../src/configdialog.ui" line="1406"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
         <translation>Bu seçenek dikey araç çubuklarının ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1622"/>
+        <location filename="../src/configdialog.ui" line="1567"/>
         <location filename="../src/configdialog.cpp" line="535"/>
-        <location filename="../src/configmanager.cpp" line="1521"/>
+        <location filename="../src/configmanager.cpp" line="1518"/>
         <source>Editor</source>
         <translation>Düzenleyici</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1634"/>
+        <location filename="../src/configdialog.ui" line="1579"/>
         <source>Inline Checking:</source>
         <translation>Satır arası denetleme:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1673"/>
+        <location filename="../src/configdialog.ui" line="1618"/>
         <source>Check non tex files</source>
         <translation>tex olmayan dosyalar denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1683"/>
+        <location filename="../src/configdialog.ui" line="1628"/>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation>LaTeX dağıtımındaki kurulu paketler taransın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1693"/>
+        <location filename="../src/configdialog.ui" line="1638"/>
         <source>Folding</source>
         <translation>Katlama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1700"/>
+        <location filename="../src/configdialog.ui" line="1645"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation>Sekme girintileri yerine boşluk kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1707"/>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="1652"/>
+        <location filename="../src/configdialog.ui" line="4672"/>
         <source>Font Family:</source>
         <translation>Yazı tipi ailesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1714"/>
+        <location filename="../src/configdialog.ui" line="1659"/>
         <source>Replace Double Quotes:</source>
         <translation>Çift tırnaklar şununla değiştirilsin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1727"/>
+        <location filename="../src/configdialog.ui" line="1672"/>
         <source>Default Font Encoding:</source>
         <translation>Varsayılan metin kodlaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1734"/>
+        <location filename="../src/configdialog.ui" line="1679"/>
         <source>Indentation Mode:</source>
         <translation>Girinti kipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1741"/>
+        <location filename="../src/configdialog.ui" line="1686"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Otomatik kodlama algılaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1751"/>
+        <location filename="../src/configdialog.ui" line="1696"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
         <translation>LaTeX incelensin (% !TeX kodlaması, inputenc, inputenx)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1758"/>
+        <location filename="../src/configdialog.ui" line="1703"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>yalnız utf16/utf-8 ile ISO 8859-1 arasında karar verebilir!</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1761"/>
+        <location filename="../src/configdialog.ui" line="1706"/>
         <source>Analyze Characters</source>
         <translation>Karakterler incelensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1785"/>
-        <location filename="../src/configdialog.ui" line="4045"/>
-        <location filename="../src/configdialog.ui" line="4142"/>
+        <location filename="../src/configdialog.ui" line="1730"/>
+        <location filename="../src/configdialog.ui" line="4002"/>
+        <location filename="../src/configdialog.ui" line="4099"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1811"/>
+        <location filename="../src/configdialog.ui" line="1756"/>
         <source>Line Spacing:</source>
         <translation>Satır boşluğu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1822"/>
+        <location filename="../src/configdialog.ui" line="1767"/>
         <source>No Replacement</source>
         <translation>Değiştirilmesin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1827"/>
+        <location filename="../src/configdialog.ui" line="1772"/>
         <source>English Quotes:  `` &apos;&apos;</source>
         <translation>İngiliz türü tırnaklar: `` &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1832"/>
+        <location filename="../src/configdialog.ui" line="1777"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
         <translation>Fransız türü tırnaklar: &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1837"/>
+        <location filename="../src/configdialog.ui" line="1782"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
         <translation>Alman türü tırnaklar: &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1842"/>
+        <location filename="../src/configdialog.ui" line="1787"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
         <translation>Fransız türü tırnaklar (babel): \og{} \fg{}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1847"/>
+        <location filename="../src/configdialog.ui" line="1792"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
         <translation>Ters Fransız türü tırnaklar: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1852"/>
+        <location filename="../src/configdialog.ui" line="1797"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>csquotes paketi: \enquote{  }</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1857"/>
+        <location filename="../src/configdialog.ui" line="1802"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>İngiliz türü tırnaklar (unicode): “ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1862"/>
+        <location filename="../src/configdialog.ui" line="1807"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
         <translation>Polonya türü tırnaklar: ,, &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1867"/>
+        <location filename="../src/configdialog.ui" line="1812"/>
         <source>Polish Quotes (unicode): „ ”</source>
         <translation>Polonya türü tırnaklar (unicode): „ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1875"/>
+        <location filename="../src/configdialog.ui" line="1820"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Yalnız eş aralıklı yazı tipleri görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1886"/>
+        <location filename="../src/configdialog.ui" line="1831"/>
         <source>Ignore Indentation</source>
         <translation>Girinti yok sayılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1891"/>
+        <location filename="../src/configdialog.ui" line="1836"/>
         <source>Keep Indentation</source>
         <translation>Girinti korunsun</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1896"/>
+        <location filename="../src/configdialog.ui" line="1841"/>
         <source>Indent and Unindent Automatically</source>
         <translation>Girintiler otomatik olarak arttırılıp azaltılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1916"/>
+        <location filename="../src/configdialog.ui" line="1861"/>
         <source>Spelling</source>
         <translation>Yazım</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1923"/>
+        <location filename="../src/configdialog.ui" line="1868"/>
         <source>Grammar</source>
         <translation>Dil bilgisi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1930"/>
+        <location filename="../src/configdialog.ui" line="1875"/>
         <source>Citations</source>
         <translation>Alıntılar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1937"/>
+        <location filename="../src/configdialog.ui" line="1882"/>
         <source>References</source>
         <translation>Başvurular</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1944"/>
+        <location filename="../src/configdialog.ui" line="1889"/>
         <source>Syntax</source>
         <translation>Söz dizimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1951"/>
+        <location filename="../src/configdialog.ui" line="1896"/>
         <source>Package</source>
         <translation>Paket</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1961"/>
+        <location filename="../src/configdialog.ui" line="1906"/>
         <source>Replace Tab in Text by Spaces</source>
         <translation>Metindeki sekmeler boşluk ile değiştirilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1968"/>
+        <location filename="../src/configdialog.ui" line="1913"/>
         <source>Automatically load included files</source>
         <translation>Katılan dosyalar otomatik olarak yüklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1978"/>
+        <location filename="../src/configdialog.ui" line="1923"/>
         <source>Hide grammar errors in non-text environments</source>
         <translation>Metin olmayan ortamlarda dil bilgisi hataları gizlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1988"/>
+        <location filename="../src/configdialog.ui" line="1933"/>
         <source>Hide spelling errors in non-text environments</source>
         <translation>Metin olmayan ortamlarda yazım hataları gizlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1998"/>
+        <location filename="../src/configdialog.ui" line="1943"/>
         <source>Remove Trailing Whitespace on Save</source>
         <translation>Kaydederken sondaki boşluklar kaldırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1644"/>
+        <location filename="../src/configdialog.ui" line="1589"/>
         <source>Show Line Numbers:</source>
         <translation>Satır numaraları görüntülensin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1655"/>
+        <location filename="../src/configdialog.ui" line="1600"/>
         <source>No Line Numbers</source>
         <translation>Satır numarası görüntülenmesin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1660"/>
+        <location filename="../src/configdialog.ui" line="1605"/>
         <source>All Line Numbers</source>
         <translation>Tüm satır numaraları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1665"/>
+        <location filename="../src/configdialog.ui" line="1610"/>
         <source>Only Important Line Numbers</source>
         <translation>Yalnız önemli satır numaraları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2074"/>
+        <location filename="../src/configdialog.ui" line="2019"/>
         <source>Show State Panel</source>
         <translation>Durum panosu görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2086"/>
+        <location filename="../src/configdialog.ui" line="2031"/>
         <source>Tab Width:</source>
         <translation>Sekme genişliği:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2121"/>
+        <location filename="../src/configdialog.ui" line="2066"/>
         <source>Show Whitespace</source>
         <translation>Boşluklar görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2134"/>
+        <location filename="../src/configdialog.ui" line="2079"/>
         <source>Show Line Change State</source>
         <translation>Satır değişiklik durumu görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2144"/>
+        <location filename="../src/configdialog.ui" line="2089"/>
         <source>Draw cursor as a thick line</source>
         <translation>İmleç kalın çizgi olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2147"/>
+        <location filename="../src/configdialog.ui" line="2092"/>
         <source>Bold Cursor</source>
         <translation>Kalın imleç</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2163"/>
+        <location filename="../src/configdialog.ui" line="2108"/>
         <source>Search Panel</source>
         <translation>Arama panosu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2169"/>
+        <location filename="../src/configdialog.ui" line="2114"/>
         <source>Close search and replace panel together</source>
         <translation>Arama ve değiştirme panosu birlikte kapatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2179"/>
+        <location filename="../src/configdialog.ui" line="2124"/>
         <source>Use single line selection as Search Word</source>
         <translation>Arama sözcüğü olarak tek satır seçimi kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2189"/>
+        <location filename="../src/configdialog.ui" line="2134"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Arama kapsamı yapılmış seçimle kısıtlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2199"/>
+        <location filename="../src/configdialog.ui" line="2144"/>
         <source>Special options</source>
         <translation>Özel seçenekler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2232"/>
+        <location filename="../src/configdialog.ui" line="2177"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Günlük kaydına tıklandığında günlük işaretleri görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2278"/>
+        <location filename="../src/configdialog.ui" line="2223"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Kayıtlar doğrudan sağ tık menüsüne eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2283"/>
+        <location filename="../src/configdialog.ui" line="2228"/>
         <source>Create Dedicated Submenu</source>
         <translation>Adanmış alt menü ekle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2503"/>
+        <location filename="../src/configdialog.ui" line="2448"/>
         <source>Spellchecking via context menu:</source>
         <translation>Sağ tık menüsünde yazım denetimi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2438"/>
+        <location filename="../src/configdialog.ui" line="2383"/>
         <source>Default Log Encoding</source>
         <translation>Varsayılan günlük kodlaması</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2297"/>
+        <location filename="../src/configdialog.ui" line="2242"/>
         <source>1 minute</source>
         <translation>1 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2302"/>
+        <location filename="../src/configdialog.ui" line="2247"/>
         <source>2 minutes</source>
         <translation>2 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2307"/>
+        <location filename="../src/configdialog.ui" line="2252"/>
         <source>5 minutes</source>
         <translation>5 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2312"/>
+        <location filename="../src/configdialog.ui" line="2257"/>
         <source>10 minutes</source>
         <translation>10 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2317"/>
+        <location filename="../src/configdialog.ui" line="2262"/>
         <source>20 minutes</source>
         <translation>20 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2322"/>
+        <location filename="../src/configdialog.ui" line="2267"/>
         <source>60 minutes</source>
         <translation>60 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2510"/>
+        <location filename="../src/configdialog.ui" line="2455"/>
         <source>Auto Complete Parentheses</source>
         <translation>Parantezler otomatik olarak kapatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2431"/>
+        <location filename="../src/configdialog.ui" line="2376"/>
         <source>Smooth Scrolling</source>
         <translation>Düzgün kaydırma</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2239"/>
+        <location filename="../src/configdialog.ui" line="2184"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Fare tekerleği yakınlaştırması</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2445"/>
+        <location filename="../src/configdialog.ui" line="2390"/>
         <source>Auto Save All Files:</source>
         <translation>Tüm dosyalar otomatik olarak kaydedilsin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2341"/>
+        <location filename="../src/configdialog.ui" line="2286"/>
         <source>Line Wrapping:</source>
         <translation>Satır kaydırma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2517"/>
+        <location filename="../src/configdialog.ui" line="2462"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation>Çift tıklayarak seçim: Baştaki ters bölü karakteri katılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2251"/>
+        <location filename="../src/configdialog.ui" line="2196"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Dışarıdan değişiklik yapılmış dosyalar sessizce geri yüklensin (geri al/yinele belleğini siler)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2378"/>
+        <location filename="../src/configdialog.ui" line="2323"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Komut yardımları iç pdf görüntüleyicide görüntülensin (texdoc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2393"/>
+        <location filename="../src/configdialog.ui" line="2338"/>
         <source>Select Word</source>
         <translation>Sözcük seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2398"/>
+        <location filename="../src/configdialog.ui" line="2343"/>
         <source>Select Word or Command</source>
         <translation>Sözcük ya da komut seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2403"/>
+        <location filename="../src/configdialog.ui" line="2348"/>
         <source>Select Parentheses Content</source>
         <translation>Paranteze alınacak içeriği seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2408"/>
+        <location filename="../src/configdialog.ui" line="2353"/>
         <source>Select Parentheses</source>
         <translation>Parantez seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2413"/>
+        <location filename="../src/configdialog.ui" line="2358"/>
         <source>Select Line</source>
         <translation>Satır seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2260"/>
+        <location filename="../src/configdialog.ui" line="2205"/>
         <source>Monitor open files for external changes</source>
         <translation>Açık dosyalarda dışarıdan yapılan değişiklikler izlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2368"/>
+        <location filename="../src/configdialog.ui" line="2313"/>
         <source>Triple-Click Selection:</source>
         <translation>Üç tıklama seçimi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2208"/>
+        <location filename="../src/configdialog.ui" line="2153"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek ile, yazma işlemi tamamlanamaz ise var olan verilerin kaybolmasını engellemek için QSaveFile kullanılır. Bir sakıncası geçerli kullanıcının dosya sahibi olarak atanması ve genişletilmiş dosya özniteliklerinin kaybolmasıdır. Ayrıca, bu yöntemin dropbox klasörleri ile sorunları var gibi görünüyor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2211"/>
+        <location filename="../src/configdialog.ui" line="2156"/>
         <source>Safe writing of files</source>
         <translation>Güvenli dosya yazma</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2348"/>
+        <location filename="../src/configdialog.ui" line="2293"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation>Bir yer belirtecini izleyen kapanış parantezinin üzerine yazılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2355"/>
+        <location filename="../src/configdialog.ui" line="2300"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation>Bu seçenek, yalnız belge genişliği değişken ya da sabit satır kaydırma ile sınırlandırılmış ise bir etki yapar.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2358"/>
+        <location filename="../src/configdialog.ui" line="2303"/>
         <source>Center Document in Editor</source>
         <translation>Belge düzenleyicide ortalansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2489"/>
+        <location filename="../src/configdialog.ui" line="2434"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Yardım, düzenleyicide metin üzerinde ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2421"/>
+        <location filename="../src/configdialog.ui" line="2366"/>
         <source>Maximal Characters:</source>
         <translation>En fazla karakter sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2466"/>
+        <location filename="../src/configdialog.ui" line="2411"/>
         <source>No Line Wrap</source>
         <translation>Satır kaydırılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2471"/>
+        <location filename="../src/configdialog.ui" line="2416"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>Satırlar pencere kenarına göre değişerek kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2476"/>
+        <location filename="../src/configdialog.ui" line="2421"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>Satırlar en fazla karakter sayısına göre değişerek kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2481"/>
+        <location filename="../src/configdialog.ui" line="2426"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Satırlar en fazla karakter sayısına göre sabit kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2330"/>
+        <location filename="../src/configdialog.ui" line="2275"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Kaynak kodunda unicode karakterler kullanıldığında, Karakterlerin hala
 LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olarak desteklenmediğinden, unicode karakterler için belgenize ilgili paketleri katmanız gerekir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2334"/>
+        <location filename="../src/configdialog.ui" line="2279"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Simgeler ünikod olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2496"/>
+        <location filename="../src/configdialog.ui" line="2441"/>
         <source>Go to error when displaying log</source>
         <translation>Günlük görüntülenirken hataya gidilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2218"/>
+        <location filename="../src/configdialog.ui" line="2163"/>
         <source>Show image tooltip on image files</source>
         <translation>Görsel dosyalarında görsel ipucu görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2225"/>
+        <location filename="../src/configdialog.ui" line="2170"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Bir yer belirtecini izleyen açılış parantezinin üzerine yazılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2385"/>
+        <location filename="../src/configdialog.ui" line="2330"/>
         <source>Allow Drag and Drop</source>
         <translation>Sürükleyip bırakılabilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2267"/>
+        <location filename="../src/configdialog.ui" line="2212"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dış uygulamalar (Zotero gibi) texstudio içine alıntıları şu komut ile gönderebilir: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;İmleç zaten bir alıntı komutu içinde değil ise \cite-command olarak burada belirtilen &amp;quot;komut&amp;quot; kullanılır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1548"/>
+        <location filename="../src/configdialog.ui" line="1477"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek gömülü PDF görüntüleyici araç çubuğunun ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1573"/>
+        <location filename="../src/configdialog.ui" line="1502"/>
         <source>Embedded PDF Toolbar</source>
         <translation>Gömülü PDF araç çubuğu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2270"/>
+        <location filename="../src/configdialog.ui" line="2215"/>
         <source>Latex Command for pushed citations:</source>
         <translation>Alıntıları aktarmak için kullanılacak LaTex komutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2524"/>
+        <location filename="../src/configdialog.ui" line="2469"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
         <translation>Dikey dışa kaydırma (dosya sonunun altına kaydır)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2534"/>
+        <location filename="../src/configdialog.ui" line="2479"/>
         <source>Structure Panel</source>
         <translation>Yapı panosu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2565"/>
+        <location filename="../src/configdialog.ui" line="2510"/>
         <source>Mark structure elements beyond \end{document}</source>
         <translation> \end{document} sonrasındaki yapı bileşenleri işaretlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2572"/>
+        <location filename="../src/configdialog.ui" line="2517"/>
         <source>Reference commands in context menu:</source>
         <translation>Sağ tık menüsündeki komut bilgileri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2612"/>
+        <location filename="../src/configdialog.ui" line="2557"/>
         <source>Mark structure elements in appendix</source>
         <translation>Ekteki yapı bileşenleri işaretlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2585"/>
+        <location filename="../src/configdialog.ui" line="2530"/>
         <source>Regular expression for TODO comment: </source>
         <translation>YAPILACAKİŞ açıklaması için kurallı ifade:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2592"/>
+        <location filename="../src/configdialog.ui" line="2537"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Yapı ağacındaki içeriklerin girintisi korunsun</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2544"/>
+        <location filename="../src/configdialog.ui" line="2489"/>
         <source>No Color Background</source>
         <translation>Renkli arka plan kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2549"/>
+        <location filename="../src/configdialog.ui" line="2494"/>
         <source>Green Background</source>
         <translation>Yeşil arka plan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2554"/>
+        <location filename="../src/configdialog.ui" line="2499"/>
         <source>Blue Background</source>
         <translation>Mavi arka plan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2562"/>
+        <location filename="../src/configdialog.ui" line="2507"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;quot;\section&amp;quot; gibi bileşenler farklı bir arka plan rengiyle vurgulanır ve belgede &lt;span style=&quot; font-weight:600;&quot;&gt;görüntülenmez&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2609"/>
+        <location filename="../src/configdialog.ui" line="2554"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;quot;\section&amp;quot; gibi bileşenler farklı bir arka plan rengiyle vurgulanır ve ek olarak görüntülenir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2599"/>
+        <location filename="../src/configdialog.ui" line="2544"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yapılandırma görünümünde geçerli imleç konumu görüntülenir.&lt;/p&gt;&lt;p&gt;Bu seçenek etkinleştirildiğinde kayıt görüntülenebilmesi için açılır ve kaydırılır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="352"/>
+        <location filename="../src/configdialog.ui" line="309"/>
         <source>Icon Theme:</source>
         <translation>Simge teması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="360"/>
+        <location filename="../src/configdialog.ui" line="317"/>
         <source>Colibre</source>
         <translation>Colibre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="365"/>
+        <location filename="../src/configdialog.ui" line="322"/>
         <source>Oxygen Modern</source>
         <translation>Oxygen Modern</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="370"/>
+        <location filename="../src/configdialog.ui" line="327"/>
         <source>Oxygen Classic</source>
         <translation>Oxygen Classic</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="396"/>
+        <location filename="../src/configdialog.ui" line="353"/>
         <source>Max. Recent Root Documents:</source>
         <translation>Son kullanılan kök belge sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="459"/>
+        <location filename="../src/configdialog.ui" line="416"/>
         <source>Always Show Structure of Root Document</source>
         <translation>Kök belge yapısı her zaman görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="710"/>
+        <location filename="../src/configdialog.ui" line="667"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
         <translation>&lt;i&gt;Dosya seçici (İsteğe bağlı. Varsa sona erdiren iki nokta üst üste katılır):&lt;/i&gt; Seçici yoksa kök dosya seçilir. &lt;b&gt;c:&lt;/b&gt;Geçerli dosyayı seçer, &lt;b&gt;p{ext}:&lt;/b&gt; Kök dosya ile aynı temel dosya adına ve &lt;b&gt;ext&lt;/b&gt; uzantısına sahip bir dosyayı bulur. &lt;br /&gt;&lt;i&gt;Yol adı bölümleri&lt;/i&gt; &lt;b&gt;a&lt;/b&gt;: Mutlak yol, &lt;b&gt;m&lt;/b&gt;: Uzantı olmadan temel dosya adı, &lt;b&gt;e:&lt;/b&gt; Uzantı ve &lt;b&gt;r&lt;/b&gt;: Köke göre yol değerlerinden oluşur, &lt;b&gt;*&lt;/b&gt;: Modele uyan tüm dosyalar&lt;br/&gt;&lt;i&gt;Sonlandırma karakterleri: &lt;b&gt;)&lt;/b&gt;: Seçiciyi sonlandırır. Şu karakterler seçiciyi sonlandırır ve şu anlamlara gelir&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;:  Çift tırnak arasına alır, &lt;b&gt;.&lt;/b&gt;: (dot) Sona bir nokta ekler, (space): Sona bir boşluk ekler&lt;br/&gt;&lt;i&gt;Örnekler:&lt;/i&gt;&lt;b&gt; ?osya&amp;quot;&lt;/b&gt;: Mutlak dosya adını çift tırnak arasında tamamlar, &lt;b&gt;?e)&lt;/b&gt; Önünde nokta olmadan uzantıyı tamamlar (tex gibi), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; Uzantısı olmadan çift tırnak içinde dosya adı (&lt;b&gt;%&lt;/b&gt; ile aynı), &lt;b&gt;?me&lt;/b&gt; Uzantı ile dosya adı (ornek.tex gibi), &lt;b&gt;?*.aux&lt;/b&gt;: Geçerli klasördeki tüm .aux dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2540"/>
+        <location filename="../src/configdialog.ui" line="2485"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Genel içindekiler tablosu farklı dosyaların ayırt edilebilmesi için farklı arka plan gölgelemesi kullanır. Renk şeması buradan değiştirilebilir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2602"/>
+        <location filename="../src/configdialog.ui" line="2547"/>
         <source>Scroll to current cursor position</source>
         <translation>Geçerli imleç konumuna kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2619"/>
+        <location filename="../src/configdialog.ui" line="2564"/>
         <source>Use color in global TOC:</source>
         <translation>Genel içindekiler tablosunda renk kullanılsın:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2639"/>
+        <location filename="../src/configdialog.ui" line="2584"/>
         <source>Bibliography</source>
         <translation>Kaynakça</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2645"/>
+        <location filename="../src/configdialog.ui" line="2590"/>
         <source>bib File Encoding:</source>
         <translation>bib dosya kodlaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2652"/>
+        <location filename="../src/configdialog.ui" line="2597"/>
         <source>Parse BibTeX</source>
         <translation>BibTeX işleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2665"/>
+        <location filename="../src/configdialog.ui" line="2610"/>
         <source>Table Autoformating</source>
         <translation>Otomatik tablo biçimlendirme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2671"/>
+        <location filename="../src/configdialog.ui" line="2616"/>
         <source>One Line Per Cell</source>
         <translation>Hücre başına bir satır</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2679"/>
+        <location filename="../src/configdialog.ui" line="2624"/>
         <source>Behind Line Break</source>
         <translation>Satır sonundan sonra</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2684"/>
+        <location filename="../src/configdialog.ui" line="2629"/>
         <source>Separate Line (No Indent)</source>
         <translation>Ayrı satır (girinti olmadan)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2689"/>
+        <location filename="../src/configdialog.ui" line="2634"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Ayrı satır (ilk sütuna göre girintili)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2697"/>
+        <location filename="../src/configdialog.ui" line="2642"/>
         <source>Special Commands Position:</source>
         <translation>Özel komutların konumu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2707"/>
+        <location filename="../src/configdialog.ui" line="2652"/>
         <source>Special Commands:</source>
         <translation>Özel komutlar:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2717"/>
+        <location filename="../src/configdialog.ui" line="2662"/>
         <source>Additional Search Paths</source>
         <translation>Ek arama yolları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2726"/>
+        <location filename="../src/configdialog.ui" line="2671"/>
         <source>Bib Files:</source>
         <translation>Bib dosyaları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2739"/>
+        <location filename="../src/configdialog.ui" line="2684"/>
         <source>Image Files:</source>
         <translation>Görsel dosyaları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2777"/>
+        <location filename="../src/configdialog.ui" line="2722"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2783"/>
+        <location filename="../src/configdialog.ui" line="2728"/>
         <source>Automatically insert LRM characters</source>
         <translation>LRM karakterleri otomatik olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2790"/>
+        <location filename="../src/configdialog.ui" line="2735"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Görsel sütun imleç kipi (sağdan sola yazılmış metinlerde imleç ok tuşları yönünde hareket eder)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2797"/>
+        <location filename="../src/configdialog.ui" line="2742"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Tuş takımı görünümü otomatik olarak değiştirilsin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2804"/>
+        <location filename="../src/configdialog.ui" line="2749"/>
         <source>depending on character direction</source>
         <translation>karakter yönüne bağlı olarak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2811"/>
+        <location filename="../src/configdialog.ui" line="2756"/>
         <source>depending on text/math mode</source>
         <translation>metin/matematik kipine bağlı olarak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2821"/>
+        <location filename="../src/configdialog.ui" line="2766"/>
         <source>Hacks/Workarounds</source>
         <translation>Değişiklikler/çözümler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2827"/>
+        <location filename="../src/configdialog.ui" line="2772"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Aksan yazarken çözüm devre dışı bırakılsın (yalnız Mac OS X için)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2834"/>
+        <location filename="../src/configdialog.ui" line="2779"/>
         <source>Try to automatically choose best display options</source>
         <translation>En uygun ekran ayarları otomatik olarak seçilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2852"/>
+        <location filename="../src/configdialog.ui" line="2797"/>
         <source>Render Mode:</source>
         <translation>Oluşturma kipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2860"/>
+        <location filename="../src/configdialog.ui" line="2805"/>
         <source>QCE (recommended)</source>
         <translation>QCE (önerilir)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2865"/>
+        <location filename="../src/configdialog.ui" line="2810"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2870"/>
+        <location filename="../src/configdialog.ui" line="2815"/>
         <source>Single Letter</source>
         <translation>Tek harf</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2878"/>
+        <location filename="../src/configdialog.ui" line="2823"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Oluşturulmuş satırlar için ön bellek etkinleştirilmiş ise, oluşturulan satırlar ön belleğe kaydedilir ve yeniden oluşturulmaları gerekmez. Bu seçenek, daha fazla bellek kullanılmasına yol açar ancak hızın iyileşmesini (özellikle Mac üzerinde) sağlar.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2881"/>
+        <location filename="../src/configdialog.ui" line="2826"/>
         <source>Disable cache of rendered lines</source>
         <translation>Oluşturulmuş satırlar ön belleği kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2888"/>
+        <location filename="../src/configdialog.ui" line="2833"/>
         <source>Disable fixed pitch mode</source>
         <translation>Sabit aralık kipi kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2895"/>
+        <location filename="../src/configdialog.ui" line="2840"/>
         <source>Disable cache of character width</source>
         <translation>Karakter genişliği ön belleği kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2902"/>
+        <location filename="../src/configdialog.ui" line="2847"/>
         <source>Use QImage as cache type</source>
         <translation>Ön bellek türü olarak QImage kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2965"/>
+        <location filename="../src/configdialog.ui" line="2910"/>
         <source>Formats</source>
         <translation>Biçimler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2994"/>
+        <location filename="../src/configdialog.ui" line="2939"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <source>Completion</source>
         <translation>Tamamlama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3000"/>
+        <location filename="../src/configdialog.ui" line="2945"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2077,118 +2072,118 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3010"/>
+        <location filename="../src/configdialog.ui" line="2955"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>LaTeX komutları otomatik değiştirilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3017"/>
+        <location filename="../src/configdialog.ui" line="2962"/>
         <source>Insert Arguments</source>
         <translation>Argümanları ekle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3027"/>
+        <location filename="../src/configdialog.ui" line="2972"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Etiketler/bibitem için hedef metin ile renk ya da görsellerin ön izlemesini içeren bir ipucu görüntüler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3030"/>
+        <location filename="../src/configdialog.ui" line="2975"/>
         <source>ToolTip-Preview</source>
         <translation>İpucu ön izlemesi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3037"/>
+        <location filename="../src/configdialog.ui" line="2982"/>
         <source>Arguments as Placeholders</source>
         <translation>Yer belirtici olarak argümanlar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3047"/>
+        <location filename="../src/configdialog.ui" line="2992"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>Seçilmiş tamamlayıcı komutun açıklamasını ipucu olarak görüntüler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3050"/>
+        <location filename="../src/configdialog.ui" line="2995"/>
         <source>ToolTip-Help</source>
         <translation>İpucu yardımı</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3060"/>
+        <location filename="../src/configdialog.ui" line="3005"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>&apos;\&apos; karakteri yazıldığında tamamlayıcıyı başlatır. Alternatif olarak tamamlayıcı her zaman Ctrl+Space kısayol tuşları ile başlatılabilir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3063"/>
+        <location filename="../src/configdialog.ui" line="3008"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Tamamlayıcı LaTeX komutları yazıldığında otomatik olarak başlatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3072"/>
+        <location filename="../src/configdialog.ui" line="3017"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Tamamlayıcının altında ya da üstündeki sekme çubuğunun boyutu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3075"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
         <source>Tab Bar Size</source>
         <translation>Sekme çubuğu boyutu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3085"/>
+        <location filename="../src/configdialog.ui" line="3030"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>Tamamlayıcının altında ya da üstündeki komut kümesi sekmelerinin boyutu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3119"/>
+        <location filename="../src/configdialog.ui" line="3064"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Sözcük olmayan bir karakter yazıldığında seçilmiş metin tamamlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3129"/>
+        <location filename="../src/configdialog.ui" line="3074"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Tüm tamamlayıcı önerilerinde sonraki karakterler ortak ise bunları otomatik olarak eklemek için &lt;Tab&gt; kullanabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3132"/>
+        <location filename="../src/configdialog.ui" line="3077"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Otomatik tamamlanacak ortak ön ek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3144"/>
+        <location filename="../src/configdialog.ui" line="3089"/>
         <source>Preferred Commands Set:</source>
         <translation>Yeğlenen komut kümesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3152"/>
+        <location filename="../src/configdialog.ui" line="3097"/>
         <source>Typical</source>
         <translation>Tipik</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3157"/>
+        <location filename="../src/configdialog.ui" line="3102"/>
         <source>Most Used</source>
         <translation>En çok kullanılan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3162"/>
+        <location filename="../src/configdialog.ui" line="3107"/>
         <source>Fuzzy</source>
         <translation>Karmaşık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3167"/>
+        <location filename="../src/configdialog.ui" line="3112"/>
         <source>All</source>
         <translation>Tümü</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3190"/>
+        <location filename="../src/configdialog.ui" line="3135"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Herhangi bir dış matematik ortamından bir matematik komutu eklendiğinde otomatik olarak $$ eklenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3193"/>
+        <location filename="../src/configdialog.ui" line="3138"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Gerektiğinde matematik sınırlayıcıları otomatik olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3205"/>
-        <location filename="../src/configdialog.ui" line="3243"/>
+        <location filename="../src/configdialog.ui" line="3150"/>
+        <location filename="../src/configdialog.ui" line="3188"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2203,466 +2198,461 @@ ya da belirli kullanıcı tamamlama dosyaları eklemek isterseniz, onları
 buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3213"/>
+        <location filename="../src/configdialog.ui" line="3158"/>
         <source>Permanently active completion files:</source>
         <translation>Kalıcı olarak etkin tamamlama dosyaları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3223"/>
+        <location filename="../src/configdialog.ui" line="3168"/>
         <source>Filter list below</source>
         <translation>Aşağıdaki listeyi süz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3322"/>
+        <location filename="../src/configdialog.ui" line="3279"/>
         <source>Spell Check</source>
         <translation>Yazım denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3328"/>
+        <location filename="../src/configdialog.ui" line="3285"/>
         <source>Default Language:</source>
         <translation>Varsayılan dil:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3355"/>
+        <location filename="../src/configdialog.ui" line="3312"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Yazım sözlüğü klasörleri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3362"/>
+        <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>Hunspell sözlüklerinin aranacağı bir ya da bir kaç klasörü noktalı virgül ile ayırarak yazabilirsiniz. İlgili klasörlere dönüştürülen [txs-settings-dir] ve [txs-app-dir] anahtar sözcüklerini kullanabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3372"/>
+        <location filename="../src/configdialog.ui" line="3329"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3379"/>
+        <location filename="../src/configdialog.ui" line="3336"/>
         <source>Thesaurus Database:</source>
         <translation>Eş anlamlılar sözlüğü veritabanı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3409"/>
+        <location filename="../src/configdialog.ui" line="3366"/>
         <source>TextLabel</source>
         <translation>MetinEtiketi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3422"/>
+        <location filename="../src/configdialog.ui" line="3379"/>
         <source>Import Dictionary...</source>
         <translation>Sözlüğü içe aktar...</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3432"/>
+        <location filename="../src/configdialog.ui" line="3389"/>
         <source>Internal Grammar Check</source>
         <translation>İç dil bilgisi denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3438"/>
+        <location filename="../src/configdialog.ui" line="3395"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Bir paragraf içinde yinelenen sözcükler vurgulanacak.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3441"/>
+        <location filename="../src/configdialog.ui" line="3398"/>
         <source>Check for Word Repetitions</source>
         <translation>Yinelenen sözcükler denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3448"/>
+        <location filename="../src/configdialog.ui" line="3405"/>
         <source>Words Between Repetitions:</source>
         <translation>Yinelenmeler arasındaki sözcük sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3458"/>
+        <location filename="../src/configdialog.ui" line="3415"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Aynı sözcükler, aralarında belirtilen sayı kadar sözcük bulunmaması durumunda yinelenme olarak işaretlenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3468"/>
+        <location filename="../src/configdialog.ui" line="3425"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Aynı olduğu halde daha uzun olan sözcükler, aralarında belirtilen sayı kadar sözcük bulunmaması durumunda yinelenme olarak işaretlenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3478"/>
+        <location filename="../src/configdialog.ui" line="3435"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Yalnız belirtilen karakter uzunluğundaki sözcükler uzun yinelenmeler için denetlenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3488"/>
+        <location filename="../src/configdialog.ui" line="3445"/>
         <source>Long Range Repetitions:</source>
         <translation>Uzun aralıklı yinelenmeler:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3498"/>
+        <location filename="../src/configdialog.ui" line="3455"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>En kısa uzun aralıklı yinelenen sözcük uzunluğu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3508"/>
+        <location filename="../src/configdialog.ui" line="3465"/>
         <source>Wordlist Directory:</source>
         <translation>Sözcük listesi dizini:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
+        <location filename="../src/configdialog.ui" line="3472"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Belirli resmi olmayan ya da zayıf sözcükler vurgulanır.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3518"/>
+        <location filename="../src/configdialog.ui" line="3475"/>
         <source>Check for Bad Words</source>
         <translation>Kötü sözcükler denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3525"/>
+        <location filename="../src/configdialog.ui" line="3482"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>&quot;Kötü&quot; ya da yinelenebilecek sözcüklerin listesini içeren dizin.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3552"/>
+        <location filename="../src/configdialog.ui" line="3509"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3558"/>
+        <location filename="../src/configdialog.ui" line="3515"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>LanguageTool java arşiv dosyasının bulunduğu yol.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3565"/>
+        <location filename="../src/configdialog.ui" line="3522"/>
         <source>LT Path:</source>
         <translation>LT yolu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3572"/>
+        <location filename="../src/configdialog.ui" line="3529"/>
         <source>Start LanguageTool if not running</source>
         <translation>LanguageTool çalışmıyorsa başlatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3579"/>
+        <location filename="../src/configdialog.ui" line="3536"/>
         <source>Server URL: </source>
         <translation>Sunucu adresi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3586"/>
+        <location filename="../src/configdialog.ui" line="3543"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Hata olarak vurgulanmayacak LanguageTool kurallarının virgül ile ayrılmış listesi.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3610"/>
+        <location filename="../src/configdialog.ui" line="3567"/>
         <source>Ignored Rules:</source>
         <translation>Yok sayılan kurallar:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3617"/>
-        <location filename="../src/configdialog.ui" line="3627"/>
-        <location filename="../src/configdialog.ui" line="3637"/>
-        <location filename="../src/configdialog.ui" line="3667"/>
+        <location filename="../src/configdialog.ui" line="3574"/>
+        <location filename="../src/configdialog.ui" line="3584"/>
+        <location filename="../src/configdialog.ui" line="3594"/>
+        <location filename="../src/configdialog.ui" line="3624"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Özel bir biçimde vurgulanacak LanguageTool kurallarının virgül ile ayrılmış listesi.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3647"/>
+        <location filename="../src/configdialog.ui" line="3604"/>
         <source>Special Rules 3:</source>
         <translation>3. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3657"/>
+        <location filename="../src/configdialog.ui" line="3614"/>
         <source>Special Rules 2:</source>
         <translation>2. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3677"/>
+        <location filename="../src/configdialog.ui" line="3634"/>
         <source>Special Rules 1:</source>
         <translation>1. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3694"/>
+        <location filename="../src/configdialog.ui" line="3651"/>
         <source>Special Rules 4:</source>
         <translation>4. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3704"/>
+        <location filename="../src/configdialog.ui" line="3661"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>Belgede kullanılan yazım denetleyicinin dili kullanılarak anlam çıkarılır.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3711"/>
+        <location filename="../src/configdialog.ui" line="3668"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>LanguageTool çalışmıyorsa başlatmak için kullanılacak çalıştılabilir java dosyası.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3718"/>
+        <location filename="../src/configdialog.ui" line="3675"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3725"/>
-        <location filename="../src/configdialog.ui" line="3773"/>
+        <location filename="../src/configdialog.ui" line="3682"/>
+        <location filename="../src/configdialog.ui" line="3730"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>LanguageTool başlatılırken aktarılacak bağımsız değişkenler. Bu seçenek yalnız LanguageTool TeXstudio içinden başlatıldığında (yani zaten çalışmakta olan bir sunucuda olmadığında) etkili olur.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3728"/>
+        <location filename="../src/configdialog.ui" line="3685"/>
         <source>LT Arguments:</source>
         <translation>LT bağımsız değişkenleri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3752"/>
-        <location filename="../src/configdialog.ui" line="3780"/>
+        <location filename="../src/configdialog.ui" line="3709"/>
+        <location filename="../src/configdialog.ui" line="3737"/>
         <source>Restore Default</source>
         <translation>Varsayılanları geri yükle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3766"/>
+        <location filename="../src/configdialog.ui" line="3723"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>LanguageTool bağlantı adresi.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3857"/>
-        <source>Segment Preview</source>
-        <translation>Bölüm ön izlemesi</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3863"/>
+        <location filename="../src/configdialog.ui" line="3820"/>
         <source>Command:</source>
         <translation>Komut:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3874"/>
+        <location filename="../src/configdialog.ui" line="3831"/>
         <source>Preview with dvipng</source>
         <translation>dvipng ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3879"/>
+        <location filename="../src/configdialog.ui" line="3836"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>dvipng --follow (paralel) ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3884"/>
+        <location filename="../src/configdialog.ui" line="3841"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>dvips/ghostscript ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3889"/>
+        <location filename="../src/configdialog.ui" line="3846"/>
         <source>Preview with pdflatex</source>
         <translation>pdflatex ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3894"/>
+        <location filename="../src/configdialog.ui" line="3851"/>
         <source>Preview with lualatex</source>
         <translation>luaLaTex ile ön izle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3902"/>
+        <location filename="../src/configdialog.ui" line="3859"/>
         <source>Display Mode:</source>
         <translation>Görüntüleme kipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3916"/>
+        <location filename="../src/configdialog.ui" line="3873"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Pano gizli ise ön izleme ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3921"/>
+        <location filename="../src/configdialog.ui" line="3878"/>
         <source>Always show preview in preview panel</source>
         <translation>Ön izleme her zaman ön izleme panosunda görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3926"/>
+        <location filename="../src/configdialog.ui" line="3883"/>
         <source>Always show preview as tool tip</source>
         <translation>Ön izleme her zaman ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3931"/>
+        <location filename="../src/configdialog.ui" line="3888"/>
         <source>Always show both</source>
         <translation>Her zaman ikisi de görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3936"/>
+        <location filename="../src/configdialog.ui" line="3893"/>
         <source>Inline</source>
         <translation>Satır arası</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3941"/>
+        <location filename="../src/configdialog.ui" line="3898"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>İç görüntüleyicide görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3949"/>
+        <location filename="../src/configdialog.ui" line="3906"/>
         <source>Update the preview on text change</source>
         <translation>Metin değiştirildiğinde ön izleme güncellensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3952"/>
+        <location filename="../src/configdialog.ui" line="3909"/>
         <source>Auto Update:</source>
         <translation>Otomatik güncelleme:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3965"/>
+        <location filename="../src/configdialog.ui" line="3922"/>
         <source>Previously previewed text</source>
         <translation>Önceki ön izlenmiş metin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3973"/>
+        <location filename="../src/configdialog.ui" line="3930"/>
         <source>Auto Update Delay:</source>
         <translation>Otomatik güncelleme gecikmesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3996"/>
+        <location filename="../src/configdialog.ui" line="3953"/>
         <source>Replace beamer class by article</source>
         <translation>Beamer sınıfı article ile değiştirilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4009"/>
+        <location filename="../src/configdialog.ui" line="3966"/>
         <source>Precompile Preamble</source>
         <translation>Önceden derlenmiş giriş</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4022"/>
+        <location filename="../src/configdialog.ui" line="3979"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Düzenleyicide formüllerin ön izlemesi ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4032"/>
-        <location filename="../src/configdialog.ui" line="4155"/>
+        <location filename="../src/configdialog.ui" line="3989"/>
+        <location filename="../src/configdialog.ui" line="4112"/>
         <source>Scaling:</source>
         <translation>Ölçek:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4127"/>
+        <location filename="../src/configdialog.ui" line="4084"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Internal PDF Viewer</source>
         <translation>İç PDF görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4278"/>
+        <location filename="../src/configdialog.ui" line="4235"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Onaltılık RGBA değeri olarak yazın. Not: Vurgulamalar teknik sınırlamalar nedeniyle metnin üzerine yapıldığından saydamlık gereklidir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4281"/>
+        <location filename="../src/configdialog.ui" line="4238"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4367"/>
+        <location filename="../src/configdialog.ui" line="4324"/>
         <source>Original Size</source>
         <translation>Özgün boyut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4372"/>
+        <location filename="../src/configdialog.ui" line="4329"/>
         <source>Fit to Window Width</source>
         <translation>Pencere genişliğine sığdırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4377"/>
+        <location filename="../src/configdialog.ui" line="4334"/>
         <source>Fit to Window Size</source>
         <translation>Pencere boyutuna sığdırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4382"/>
+        <location filename="../src/configdialog.ui" line="4339"/>
         <source>Scaled Size</source>
         <translation>Ölçeklenmiş boyut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4387"/>
+        <location filename="../src/configdialog.ui" line="4344"/>
         <source>Fit to Text Width</source>
         <translation>Metin genişliğine sığdırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4211"/>
+        <location filename="../src/configdialog.ui" line="4168"/>
         <source>Infinite</source>
         <translation>Sonsuz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4477"/>
+        <location filename="../src/configdialog.ui" line="4434"/>
         <source>Scale Option:</source>
         <translation>Ölçek ayarı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4514"/>
+        <location filename="../src/configdialog.ui" line="4471"/>
         <source>Magnifier Size:</source>
         <translation>Büyüteç boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4230"/>
+        <location filename="../src/configdialog.ui" line="4187"/>
         <source> dpi</source>
         <translation>dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4295"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source>Square</source>
         <translation>Kare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4300"/>
+        <location filename="../src/configdialog.ui" line="4257"/>
         <source>Circle</source>
         <translation>Daire</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4305"/>
+        <location filename="../src/configdialog.ui" line="4262"/>
         <source>Circle without shadow</source>
         <translation>Gölgesiz daire</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4268"/>
+        <location filename="../src/configdialog.ui" line="4225"/>
         <source>Highlight Duration</source>
         <translation>Vurgulama süresi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4467"/>
+        <location filename="../src/configdialog.ui" line="4424"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>&quot;Metin genişliğine sığdırılsın&quot; seçeneği için yatay kaydırmayı devre dışı bırakın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4359"/>
+        <location filename="../src/configdialog.ui" line="4316"/>
         <source>Border</source>
         <translation>Kenarlık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4484"/>
+        <location filename="../src/configdialog.ui" line="4441"/>
         <source>Magnifier Shape:</source>
         <translation>Büyüteç şekli:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4521"/>
+        <location filename="../src/configdialog.ui" line="4478"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Gömülü kipte araç çubukları otomatik gizlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4326"/>
+        <location filename="../src/configdialog.ui" line="4283"/>
         <source>Highlight Color</source>
         <translation>Vurgu rengi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4240"/>
+        <location filename="../src/configdialog.ui" line="4197"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bir PDF dosyasının nasıl yükleneceğini belirler:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Ara bellek ile:&lt;/b&gt; Dosya bir ara belleğe yüklenir ve eksiksiz olup olmadığını denetlenir. Ardından verileri Poppler üzerine iletilir. Bu seçenek öncelikle, işlem güvenliği olmayan eski Poppler sürümlerini (&amp;lt;0,24) hızlandırmak için sunulmuştur. Büyük ara bellekleri yüklenirken Poppler uygulamasının çökebileceği bildirilmiştir. Bu nedenle bu seçenek kullanımdan kaldırılmıştır.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Doğrudan:&lt;/b&gt; Doğal Poppler dosya yüklemesi kullanılır. Bu en hızlı seçenektir, ancak eksik dosyaların denetlenmesine izin vermez.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Karma (önerilir):&lt;/b&gt; Önce dosya ara belleğe yüklenir ve eksiksiz olup olmadığı denetlenir. Ara bellek küçük belgeler için kullanılır (&amp;lt; 50MB). Büyük dosyalar için doğal Poppler dosya yüklemesi kullanılır. Bu seçenek, büyük PDF dosyaları ile ilgili sorunları önlerken dosya denetimini de kullanır. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4250"/>
+        <location filename="../src/configdialog.ui" line="4207"/>
         <source>Buffered</source>
         <translation>Ara bellekte</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4255"/>
+        <location filename="../src/configdialog.ui" line="4212"/>
         <source>Direct</source>
         <translation>Doğrudan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4260"/>
+        <location filename="../src/configdialog.ui" line="4217"/>
         <source>Hybrid</source>
         <translation>Karma</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4179"/>
+        <location filename="../src/configdialog.ui" line="4136"/>
         <source>Cache Size:</source>
         <translation>Ön bellek boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4437"/>
-        <location filename="../src/configdialog.ui" line="4491"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
+        <location filename="../src/configdialog.ui" line="4448"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2673,118 +2663,118 @@ Oluşturma sorunları çıkıyorsa alternatif &apos;Arthur&apos; arka plan uygul
 Not: Bu ayar, yalnız değiştirildikten sonra açılan belgeleri etkiler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4189"/>
+        <location filename="../src/configdialog.ui" line="4146"/>
         <source> px</source>
         <translation>piksel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4417"/>
+        <location filename="../src/configdialog.ui" line="4374"/>
         <source>Synchronized Files Types:</source>
         <translation>Eşitlenmiş dosya türleri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4443"/>
+        <location filename="../src/configdialog.ui" line="4400"/>
         <source>Render Backend:</source>
         <translation>Oluşturucu arka plan uygulaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4162"/>
+        <location filename="../src/configdialog.ui" line="4119"/>
         <source>Load Strategy:</source>
         <translation>Yükleme stratejisi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4395"/>
+        <location filename="../src/configdialog.ui" line="4352"/>
         <source> MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4460"/>
+        <location filename="../src/configdialog.ui" line="4417"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Not: Pencere/gömülü kip oluştur -&gt; PDF görüntüleyici menüsünden ayarlanabilir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4427"/>
+        <location filename="../src/configdialog.ui" line="4384"/>
         <source>Paper Color</source>
         <translation>Kağıt rengi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4336"/>
+        <location filename="../src/configdialog.ui" line="4293"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Varsayılan arka plan rengi. Onaltılık RGB değeri olarak belirtin. Not: Bu ayar yalnız değiştirilmesinden sonra yüklenen PDF dosyalarını etkiler. Zaten açık olan PDF dosyalarının kağıt rengi değiştirilmez.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4172"/>
+        <location filename="../src/configdialog.ui" line="4129"/>
         <source>Auto-recompile document on changes</source>
         <translation>Değişiklik yapıldığında belge otomatik olarak derlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4453"/>
+        <location filename="../src/configdialog.ui" line="4410"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>Sunum laser işaretleyici boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4528"/>
+        <location filename="../src/configdialog.ui" line="4485"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>Sunum laser işaretleyici rengi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4578"/>
+        <location filename="../src/configdialog.ui" line="4541"/>
         <source>Use SVN</source>
         <translation>SVN kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4583"/>
+        <location filename="../src/configdialog.ui" line="4546"/>
         <source>Use GIT</source>
         <translation>GIT kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4591"/>
+        <location filename="../src/configdialog.ui" line="4554"/>
         <source>Select how txs checks in saved files</source>
         <translation>Kaydedilmiş dosyalarda txs denetiminin nasıl yapılacağını seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4595"/>
+        <location filename="../src/configdialog.ui" line="4558"/>
         <source>No automatic check-in after save</source>
         <translation>Kaydedildikten sonra otomatik çıkış yapılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4600"/>
+        <location filename="../src/configdialog.ui" line="4563"/>
         <source>Check-in after File/Save only</source>
         <translation>Yalnız dosya/kaydet işleminden sonra çıkış yapılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4605"/>
+        <location filename="../src/configdialog.ui" line="4568"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Tüm kaydetme işlemlerinden sonra,yani derlemeden önce çıkış yapılsın.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4613"/>
+        <location filename="../src/configdialog.ui" line="4576"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Son kaydedilen sürümden öncesine dönmek için SVN/GIT sürümleri kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4620"/>
+        <location filename="../src/configdialog.ui" line="4583"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>svn add sırasında svn propset svn:keywords &quot;Date Author Revision HeadURL&quot; yürütülsün</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4623"/>
+        <location filename="../src/configdialog.ui" line="4586"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Anahtar sözcükler özellikler ile değiştirilsin (svn add işleminde)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4632"/>
+        <location filename="../src/configdialog.ui" line="4595"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN dizini arama düzeyi derinliği:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4683"/>
+        <location filename="../src/configdialog.ui" line="4652"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal Terminal</source>
         <translation>İç konsol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4734"/>
+        <location filename="../src/configdialog.ui" line="4703"/>
         <source>Shell:</source>
         <translation>Kabuk:</translation>
     </message>
@@ -2863,6 +2853,7 @@ ayarlamak istiyor musunuz?</translation>
         <translation>Fark</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3814"/>
         <location filename="../src/configdialog.cpp" line="498"/>
         <location filename="../src/configdialog.cpp" line="540"/>
         <source>Preview</source>
@@ -2929,6 +2920,7 @@ ayarlamak istiyor musunuz?</translation>
         <translation>Araç çubukları</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1345"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>GUI Scaling</source>
         <translation>GUI ölçekleme</translation>
@@ -2949,6 +2941,7 @@ ayarlamak istiyor musunuz?</translation>
         <translation>Dil denetimi</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4534"/>
         <location filename="../src/configdialog.cpp" line="542"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -3067,7 +3060,7 @@ options again to only view the most common settings.</source>
 görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1522"/>
+        <location filename="../src/configmanager.cpp" line="1519"/>
         <source>Basic Key Mapping</source>
         <translation>Temel tuş eşleştirme</translation>
     </message>
@@ -3795,165 +3788,165 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <translation>sayfaref</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1086"/>
-        <location filename="../src/configmanager.cpp" line="1092"/>
-        <location filename="../src/configmanager.cpp" line="1108"/>
-        <location filename="../src/configmanager.cpp" line="1113"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>Key replacement: %1 %2</source>
         <translation>Tuş değişimi: %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1086"/>
-        <location filename="../src/configmanager.cpp" line="1108"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
         <source>before word</source>
         <translation>sözcükten önce</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1092"/>
-        <location filename="../src/configmanager.cpp" line="1113"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>after word</source>
         <translation>sözcükten sonra</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1441"/>
-        <location filename="../src/configmanager.cpp" line="1442"/>
-        <location filename="../src/configmanager.cpp" line="1620"/>
-        <location filename="../src/configmanager.cpp" line="1626"/>
-        <location filename="../src/configmanager.cpp" line="1902"/>
-        <location filename="../src/configmanager.cpp" line="1910"/>
+        <location filename="../src/configmanager.cpp" line="1438"/>
+        <location filename="../src/configmanager.cpp" line="1439"/>
+        <location filename="../src/configmanager.cpp" line="1617"/>
+        <location filename="../src/configmanager.cpp" line="1623"/>
+        <location filename="../src/configmanager.cpp" line="1899"/>
+        <location filename="../src/configmanager.cpp" line="1907"/>
         <source>default</source>
         <translation>varsayılan</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1499"/>
+        <location filename="../src/configmanager.cpp" line="1496"/>
         <source>Menus</source>
         <translation>Menüler</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1507"/>
+        <location filename="../src/configmanager.cpp" line="1504"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menüler PDF görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1543"/>
-        <location filename="../src/configmanager.cpp" line="2756"/>
+        <location filename="../src/configmanager.cpp" line="1540"/>
+        <location filename="../src/configmanager.cpp" line="2753"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;yok&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1589"/>
+        <location filename="../src/configmanager.cpp" line="1586"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Yeni menü ögesi ekle (önce)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1592"/>
+        <location filename="../src/configmanager.cpp" line="1589"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Yeni alt menü ekle (önce)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1595"/>
+        <location filename="../src/configmanager.cpp" line="1592"/>
         <source>Revert/Remove User Menu Item</source>
         <translation>Kullanıcı menü ögesini geri al/kaldır</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1613"/>
+        <location filename="../src/configmanager.cpp" line="1610"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/matematik menüleri</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1614"/>
+        <location filename="../src/configmanager.cpp" line="1611"/>
         <source>All menus</source>
         <translation>Tüm menüler</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1615"/>
+        <location filename="../src/configmanager.cpp" line="1612"/>
         <source>Special Tags</source>
         <translation>Özel kod imleri</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1697"/>
+        <location filename="../src/configmanager.cpp" line="1694"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Otomatik tırnak değiştirmeyi etkinleştirdiniz. Bununla birlikte, yeni tırnak değiştirmeyi geçersiz kılacak (?language:latex)(?&lt;=\s|^) ya da (?language:latex)(?&lt;=\S) tetik dizgesine sahip olan makrolar var.
 Bunları kaldırmak ister misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1956"/>
+        <location filename="../src/configmanager.cpp" line="1953"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>İç PDF görüntüleyiciyi tüm özellikleriyle kullanabilmek için synctex etkinleştirilmelidir. şimdi TeXstudio tarafından etkinleştirilsin mi?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1971"/>
+        <location filename="../src/configmanager.cpp" line="1968"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Son &apos;Ana belge&apos; %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1974"/>
+        <location filename="../src/configmanager.cpp" line="1971"/>
         <source>Recent File %1</source>
         <translation>Son dosya %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1975"/>
+        <location filename="../src/configmanager.cpp" line="1972"/>
         <source>Clear file list</source>
         <translation>Dosya listesini temizle</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1976"/>
+        <location filename="../src/configmanager.cpp" line="1973"/>
         <source>File list</source>
         <translation>Dosya listesi</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1977"/>
+        <location filename="../src/configmanager.cpp" line="1974"/>
         <source>Open first non-open file</source>
         <translation>Açık olmayan ilk dosyayı aç</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1978"/>
+        <location filename="../src/configmanager.cpp" line="1975"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Bütün dosyaları aç</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1988"/>
+        <location filename="../src/configmanager.cpp" line="1985"/>
         <source>Root Document: </source>
         <translation>Kök belge:</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2757"/>
+        <location filename="../src/configmanager.cpp" line="2754"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;varsayılan&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3001"/>
+        <location filename="../src/configmanager.cpp" line="2998"/>
         <source>Configure</source>
         <translation>Yapılandırma</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3008"/>
+        <location filename="../src/configmanager.cpp" line="3005"/>
         <source>Select Program</source>
         <translation>Program seçin</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3015"/>
+        <location filename="../src/configmanager.cpp" line="3012"/>
         <source>Restore Default</source>
         <translation>Varsayılanları geri yükle</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3062"/>
+        <location filename="../src/configmanager.cpp" line="3059"/>
         <source>Repeat contained compilation commands</source>
         <translation>Katılan derleme komutlarını yinele</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3110"/>
+        <location filename="../src/configmanager.cpp" line="3107"/>
         <source>Add</source>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3173"/>
+        <location filename="../src/configmanager.cpp" line="3170"/>
         <source>Browse program</source>
         <translation>Programa göz at</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3512"/>
+        <location filename="../src/configmanager.cpp" line="3509"/>
         <source>text is restored after restart</source>
         <translation>metin yeniden başlatmadan sonra geri yüklendi</translation>
     </message>
@@ -4049,42 +4042,47 @@ Bunları kaldırmak ister misiniz?</translation>
 <context>
     <name>Editors</name>
     <message>
-        <location filename="../src/editors.cpp" line="393"/>
+        <location filename="../src/editors.cpp" line="397"/>
         <source>Move to other view</source>
         <translation>Başka görünüme taşı</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="399"/>
+        <location filename="../src/editors.cpp" line="402"/>
+        <source>Move all others to other view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/editors.cpp" line="407"/>
         <source>Move all to other view</source>
         <translation>Tümünü başka görünüme taşı</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="404"/>
+        <location filename="../src/editors.cpp" line="413"/>
         <source>Split Vertically</source>
         <translation>Dikey böl</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="404"/>
+        <location filename="../src/editors.cpp" line="413"/>
         <source>Split Horizontally</source>
         <translation>Yatay böl</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="409"/>
+        <location filename="../src/editors.cpp" line="418"/>
         <source>Set Read-Only</source>
         <translation>Salt okunur olarak ayarla</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="411"/>
+        <location filename="../src/editors.cpp" line="420"/>
         <source>Unset Read-Only</source>
         <translation>Salt okunur ayarını kaldır</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="416"/>
+        <location filename="../src/editors.cpp" line="425"/>
         <source>Close</source>
         <translation>Kapat</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="419"/>
+        <location filename="../src/editors.cpp" line="428"/>
         <source>Close All Other Documents</source>
         <translation>Tüm diğer belgeleri kapat</translation>
     </message>
@@ -8993,7 +8991,7 @@ dosyası silinemedi.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2132"/>
+        <location filename="../src/configmanager.cpp" line="2129"/>
         <source>Edit &amp;Macros...</source>
         <translation>&amp;Makroları düzenle...</translation>
     </message>
@@ -12020,77 +12018,80 @@ included document in %1</source>
         <translation>Makroları düzenle</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="77"/>
+        <location filename="../src/usermenudialog.ui" line="98"/>
         <source>Browse offered macros on txs site.</source>
         <translation>txs sitesinde önerilen makrolara göz at.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="80"/>
+        <location filename="../src/usermenudialog.ui" line="101"/>
         <source>Browse</source>
         <translation>Göz at</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="87"/>
+        <location filename="../src/usermenudialog.ui" line="108"/>
         <source>Export macro to file</source>
         <translation>Makroyu dosya olarak dışa aktar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="90"/>
+        <location filename="../src/usermenudialog.ui" line="111"/>
         <source>Export</source>
         <translation>Dışa aktar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="97"/>
+        <location filename="../src/usermenudialog.ui" line="118"/>
         <source>Import macro from file</source>
         <translation>Makroyu dosyadan içe aktar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="100"/>
+        <location filename="../src/usermenudialog.ui" line="121"/>
         <source>Import</source>
         <translation>İçe aktar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="117"/>
+        <location filename="../src/usermenudialog.ui" line="138"/>
         <source>Add</source>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="128"/>
+        <location filename="../src/usermenudialog.ui" line="149"/>
         <source>Folder</source>
         <translation>Klasör</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="145"/>
+        <location filename="../src/usermenudialog.ui" line="166"/>
         <source>Remove</source>
         <translation>Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="181"/>
+        <location filename="../src/usermenudialog.ui" line="202"/>
         <source>Up</source>
         <translation>Yukarı</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="204"/>
+        <location filename="../src/usermenudialog.ui" line="225"/>
         <source>Down</source>
         <translation>Aşağı</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="221"/>
+        <location filename="../src/usermenudialog.ui" line="60"/>
+        <location filename="../src/usermenudialog.ui" line="242"/>
         <source>Name</source>
         <translation>Ad</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="238"/>
+        <location filename="../src/usermenudialog.ui" line="75"/>
+        <location filename="../src/usermenudialog.ui" line="259"/>
         <source>Abbreviation</source>
         <translation>Kısaltma</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="250"/>
+        <location filename="../src/usermenudialog.ui" line="70"/>
+        <location filename="../src/usermenudialog.ui" line="271"/>
         <source>Trigger</source>
         <translation>Tetikleyici</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="327"/>
+        <location filename="../src/usermenudialog.ui" line="348"/>
         <source>If this trigger string is written in any tex document, 
 it is replaced by the current tag.
 
@@ -12117,134 +12118,135 @@ yalnız bir sözcükten önce olması gereken değişiklikleri işaretlemek içi
 Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="360"/>
+        <location filename="../src/usermenudialog.ui" line="381"/>
         <source>Type</source>
         <translation>Tür</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="369"/>
+        <location filename="../src/usermenudialog.ui" line="390"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="376"/>
+        <location filename="../src/usermenudialog.ui" line="397"/>
         <source>Environment</source>
         <translation>Ortam</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="389"/>
+        <location filename="../src/usermenudialog.ui" line="410"/>
         <source>Script</source>
         <translation>Betik</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="398"/>
+        <location filename="../src/usermenudialog.ui" line="419"/>
         <source>LaTeX Content</source>
         <translation>LaTeX içeriği</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="423"/>
+        <location filename="../src/usermenudialog.ui" line="444"/>
         <source>Run Script</source>
         <translation>Betiği yürüt</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="443"/>
+        <location filename="../src/usermenudialog.ui" line="464"/>
         <source>OK</source>
         <translation>Tamam</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="450"/>
+        <location filename="../src/usermenudialog.ui" line="471"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="459"/>
+        <location filename="../src/usermenudialog.ui" line="480"/>
         <source>Description</source>
         <translation>Açıklama</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="466"/>
+        <location filename="../src/usermenudialog.ui" line="65"/>
+        <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shortcut</source>
         <translation>Kısayol</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="482"/>
+        <location filename="../src/usermenudialog.ui" line="503"/>
         <source>Shift+F1</source>
         <translation>Shift+F1</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="487"/>
+        <location filename="../src/usermenudialog.ui" line="508"/>
         <source>Shift+F2</source>
         <translation>Shift+F2</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="492"/>
+        <location filename="../src/usermenudialog.ui" line="513"/>
         <source>Shift+F4</source>
         <translation>Shift+F4</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="497"/>
-        <location filename="../src/usermenudialog.ui" line="502"/>
+        <location filename="../src/usermenudialog.ui" line="518"/>
+        <location filename="../src/usermenudialog.ui" line="523"/>
         <source>Shift+F5</source>
         <translation>Shift+F5</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="507"/>
+        <location filename="../src/usermenudialog.ui" line="528"/>
         <source>Shift+F6</source>
         <translation>Shift+F6</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="512"/>
+        <location filename="../src/usermenudialog.ui" line="533"/>
         <source>Shift+F7</source>
         <translation>Shift+F7</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="517"/>
+        <location filename="../src/usermenudialog.ui" line="538"/>
         <source>Shift+F8</source>
         <translation>Shift+F8</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="522"/>
+        <location filename="../src/usermenudialog.ui" line="543"/>
         <source>Shift+F9</source>
         <translation>Shift+F9</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="527"/>
+        <location filename="../src/usermenudialog.ui" line="548"/>
         <source>Shift+F10</source>
         <translation>Shift+F10</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="532"/>
+        <location filename="../src/usermenudialog.ui" line="553"/>
         <source>Shift+F11</source>
         <translation>Shift+F11</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="537"/>
+        <location filename="../src/usermenudialog.ui" line="558"/>
         <source>Shift+F12</source>
         <translation>Shift+F12</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="325"/>
+        <location filename="../src/usermenudialog.cpp" line="328"/>
         <source>Folder is not empty.</source>
         <translation>Klasör boş değil.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="330"/>
+        <location filename="../src/usermenudialog.cpp" line="333"/>
         <source>Do you really want to delete the current macro?</source>
         <translation>Geçerli makroyu silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="409"/>
+        <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macro</source>
         <translation>Makroyu içe aktar</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="409"/>
-        <location filename="../src/usermenudialog.cpp" line="421"/>
+        <location filename="../src/usermenudialog.cpp" line="412"/>
+        <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>txs macro files (*.txsMacro)</source>
         <translation>txs makro dosyaları (*.txsMacro)</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="421"/>
+        <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>Export macro</source>
         <translation>Makroyu dışa aktar</translation>
     </message>

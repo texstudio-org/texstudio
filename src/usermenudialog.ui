@@ -57,17 +57,17 @@
          </attribute>
          <column>
           <property name="text">
-           <string notr="true">Name</string>
+           <string>Name</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string notr="true">Shortcut</string>
+           <string>Shortcut</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string notr="true">Trigger</string>
+           <string>Trigger</string>
           </property>
          </column>
          <column>

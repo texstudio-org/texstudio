@@ -741,137 +741,137 @@ Please change your configuration and define command lists only at &apos;Options 
         <translation>Налаштування TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="86"/>
+        <location filename="../src/configdialog.ui" line="4759"/>
         <source>Show Advanced Options</source>
         <translation>Показати додаткові параметри</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="112"/>
+        <location filename="../src/configdialog.ui" line="4785"/>
         <source>OK</source>
         <translation>Гаразд</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="122"/>
+        <location filename="../src/configdialog.ui" line="4795"/>
         <source>Cancel</source>
         <translation>Скасувати</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="208"/>
-        <location filename="../src/configdialog.ui" line="2051"/>
+        <location filename="../src/configdialog.ui" line="165"/>
+        <location filename="../src/configdialog.ui" line="1996"/>
         <source>Appearance</source>
         <translation>Вигляд</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="290"/>
-        <location filename="../src/configdialog.ui" line="3687"/>
+        <location filename="../src/configdialog.ui" line="247"/>
+        <location filename="../src/configdialog.ui" line="3644"/>
         <source>Language:</source>
         <translation>Мова:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="303"/>
+        <location filename="../src/configdialog.ui" line="260"/>
         <source>Font:</source>
         <translation>Шрифт:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="335"/>
-        <location filename="../src/configdialog.ui" line="1804"/>
-        <location filename="../src/configdialog.ui" line="4717"/>
+        <location filename="../src/configdialog.ui" line="292"/>
+        <location filename="../src/configdialog.ui" line="1749"/>
+        <location filename="../src/configdialog.ui" line="4686"/>
         <source>Font Size:</source>
         <translation>Розмір шрифту:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="311"/>
+        <location filename="../src/configdialog.ui" line="268"/>
         <source>Classic</source>
         <translation>Класична</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="316"/>
+        <location filename="../src/configdialog.ui" line="273"/>
         <source>Modern</source>
         <translation>Сучасна</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="267"/>
+        <location filename="../src/configdialog.ui" line="224"/>
         <source>Style:</source>
         <translation>Стиль:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="342"/>
+        <location filename="../src/configdialog.ui" line="299"/>
         <source>Use System Theme Icons</source>
         <translation>Використовувати системні піктограми</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="234"/>
-        <location filename="../src/configdialog.ui" line="4689"/>
+        <location filename="../src/configdialog.ui" line="191"/>
+        <location filename="../src/configdialog.ui" line="4658"/>
         <source>Color Scheme:</source>
         <translation>Схема кольорів:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="214"/>
+        <location filename="../src/configdialog.ui" line="171"/>
         <source>Ignore Most System Colors</source>
         <translation>Нехтувати більшістю системних кольорів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="469"/>
+        <location filename="../src/configdialog.ui" line="426"/>
         <source>MRU Document Chooser</source>
         <translation>Вибирач часто вживаних документів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="321"/>
+        <location filename="../src/configdialog.ui" line="278"/>
         <source>Modern - dark</source>
         <translation>Сучасна - темна</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="381"/>
+        <location filename="../src/configdialog.ui" line="338"/>
         <source>Files</source>
         <translation>Файли</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="432"/>
+        <location filename="../src/configdialog.ui" line="389"/>
         <source>Max. Recent Documents:</source>
         <translation>Макс. число останніх документів:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="403"/>
+        <location filename="../src/configdialog.ui" line="360"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Пам&apos;ятати фільтр виділення файлів при відкритті/збереженні</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="452"/>
+        <location filename="../src/configdialog.ui" line="409"/>
         <source>Use system file dialogs</source>
         <translation>Використовувати діалоги з системного файлу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="482"/>
+        <location filename="../src/configdialog.ui" line="439"/>
         <source>Session</source>
         <translation>Сесія</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="491"/>
+        <location filename="../src/configdialog.ui" line="448"/>
         <source>Restore Previous Session at Startup</source>
         <translation>Відновити попередній сеанс при запуску</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="498"/>
+        <location filename="../src/configdialog.ui" line="455"/>
         <source>Store relative paths</source>
         <translation>Зберігати відносні шляхи</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="511"/>
+        <location filename="../src/configdialog.ui" line="468"/>
         <source>Startup</source>
         <translation>Запуск</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="517"/>
+        <location filename="../src/configdialog.ui" line="474"/>
         <source>Check LaTeX Configuration</source>
         <translation>Перевірити конфігурацію LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="527"/>
+        <location filename="../src/configdialog.ui" line="484"/>
         <source>Update</source>
         <translation>Оновлення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="539"/>
+        <location filename="../src/configdialog.ui" line="496"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
@@ -882,156 +882,156 @@ Please change your configuration and define command lists only at &apos;Options 
  — Версії для розробників: містять останню функціональність, але можуть бути нестабільними. (Отримання сповіщень також про стабільні версії і версії-кандидати).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="546"/>
+        <location filename="../src/configdialog.ui" line="503"/>
         <source>Stable Releases</source>
         <translation>Стабільні версії</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="551"/>
+        <location filename="../src/configdialog.ui" line="508"/>
         <source>Release Candidates</source>
         <translation>Версії-кандидати</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="556"/>
+        <location filename="../src/configdialog.ui" line="513"/>
         <source>Development Versions</source>
         <translation>Версії для розробників</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="577"/>
+        <location filename="../src/configdialog.ui" line="534"/>
         <source>Check Now</source>
         <translation>Перевірити зараз</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="604"/>
+        <location filename="../src/configdialog.ui" line="561"/>
         <source>Last Checked:</source>
         <translation>Остання перевірка:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="611"/>
+        <location filename="../src/configdialog.ui" line="568"/>
         <source> days</source>
         <translation>днів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="624"/>
+        <location filename="../src/configdialog.ui" line="581"/>
         <source>Automatically check every</source>
         <translation>Автоматично перевіряти кожні</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="631"/>
+        <location filename="../src/configdialog.ui" line="588"/>
         <source>Update Level:</source>
         <translation>Рівень оновлення:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="686"/>
+        <location filename="../src/configdialog.ui" line="643"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Команди (% - назва файлу без розширення;   @ - номер рядка;   ? - параметри розширеної назви файлу)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="693"/>
+        <location filename="../src/configdialog.ui" line="650"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Спеціальні символи:&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="700"/>
+        <location filename="../src/configdialog.ui" line="657"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
         <translation>&lt;b&gt;%&lt;/b&gt;: назва файлу без розширення; &lt;b&gt;@&lt;/b&gt;: номер рядка; &lt;b&gt;?[селектор][частини назви шляху][кінцевий символ]&lt;/b&gt;: форматована назва файлу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="726"/>
+        <location filename="../src/configdialog.ui" line="683"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; і &lt;b&gt;??&lt;/b&gt; стає: %, @ або ?
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="804"/>
+        <location filename="../src/configdialog.ui" line="764"/>
         <source>Meta Commands</source>
         <translation>Метакоманди</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="817"/>
+        <location filename="../src/configdialog.ui" line="777"/>
         <source>User Commands</source>
         <translation>Команди користувача</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="827"/>
+        <location filename="../src/configdialog.ui" line="787"/>
         <source>Build Options</source>
         <translation>Параметри збирання</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="839"/>
+        <location filename="../src/configdialog.ui" line="799"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
         <translation>Виконати txs:///recompile-bibliography, якщо файли бібліографії були змінені.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="842"/>
+        <location filename="../src/configdialog.ui" line="802"/>
         <source>Check and update bibliography before compiling</source>
         <translation>Перевірити та оновити бібліографію перед компіляцією</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="809"/>
         <source>Show messages when starting compiling</source>
         <translation>Показувати повідомлення при початку компіляції</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="874"/>
+        <location filename="../src/configdialog.ui" line="834"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Не запускати новий примірник переглядача, якщо dvi/ps/pdf файл вже відкрито</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="881"/>
+        <location filename="../src/configdialog.ui" line="841"/>
         <source>Show stdout:</source>
         <translation>Показувати стандатний вивід (stdout): </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="889"/>
-        <location filename="../src/configdialog.ui" line="2292"/>
-        <location filename="../src/configdialog.ui" line="3960"/>
+        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="2237"/>
+        <location filename="../src/configdialog.ui" line="3917"/>
         <source>Never</source>
         <translation>Ніколи</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="894"/>
+        <location filename="../src/configdialog.ui" line="854"/>
         <source>Only For User Commands</source>
         <translation>Лише для команд користувача</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="899"/>
+        <location filename="../src/configdialog.ui" line="859"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
         <translation>Завжди (якщо не має перенаправлення &gt; /dev/null)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="907"/>
+        <location filename="../src/configdialog.ui" line="867"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
         <translation>Деякі конструкції LaTeX (наприклад, посилання) для правильного відображення вимагають кількаразової компіляції.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="910"/>
+        <location filename="../src/configdialog.ui" line="870"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Макс. число повторень компіляції:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="973"/>
+        <location filename="../src/configdialog.ui" line="917"/>
         <source>Commands ($PATH)</source>
         <translation>Команди ($PATH)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="980"/>
+        <location filename="../src/configdialog.ui" line="924"/>
         <source>PDF File</source>
         <translation>Файл PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1024"/>
+        <location filename="../src/configdialog.ui" line="968"/>
         <source>Log File</source>
         <translation>Файл журналу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1035"/>
+        <location filename="../src/configdialog.ui" line="977"/>
         <source>Additional Search Paths:</source>
         <translation>Додаткові шляхи пошуку:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1042"/>
+        <location filename="../src/configdialog.ui" line="984"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1050,33 +1050,33 @@ Linux, OS X:
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1052"/>
+        <location filename="../src/configdialog.ui" line="994"/>
         <source>Replace Environment Variables</source>
         <translation>Замінити змінні оточення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1059"/>
+        <location filename="../src/configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
         <translation>Показати журнал у випадку помилки компіляції</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1066"/>
+        <location filename="../src/configdialog.ui" line="1008"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
         <translation>Це дозволяє перевизначити команди за допомогою коментаря з стилем &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; та &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. За подробицями див. цей посібник.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1069"/>
+        <location filename="../src/configdialog.ui" line="1011"/>
         <source>Interpret command definition in magic comments</source>
         <translation>Інтерпретувати означення команди у чарівних коментарях</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1106"/>
+        <location filename="../src/configdialog.ui" line="1048"/>
         <location filename="../src/configdialog.cpp" line="531"/>
         <source>Shortcuts</source>
         <translation>Скорочення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1113"/>
+        <location filename="../src/configdialog.ui" line="1055"/>
         <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1089,976 +1089,971 @@ Then you can select a new shortcut by one of the following ways:
 (3) ввести рядок для скорочення клавіш</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1130"/>
-        <location filename="../src/configdialog.ui" line="1377"/>
+        <location filename="../src/configdialog.ui" line="1072"/>
+        <location filename="../src/configdialog.ui" line="1319"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1135"/>
+        <location filename="../src/configdialog.ui" line="1077"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1140"/>
+        <location filename="../src/configdialog.ui" line="1082"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1145"/>
+        <location filename="../src/configdialog.ui" line="1087"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1153"/>
+        <location filename="../src/configdialog.ui" line="1095"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
         <translation>Команда закрити елемент застосовується до певного списку елементів інтерфейсу (не всі перераховані тут). Буде закритий перший видимий елемент. З цим параметром ви можете виключити деякі параметри із закриття.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1156"/>
+        <location filename="../src/configdialog.ui" line="1098"/>
         <source>Close Element (Esc)</source>
         <translation>Закрити елемент (Esc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1162"/>
+        <location filename="../src/configdialog.ui" line="1104"/>
         <source>Close Log-View</source>
         <translation>Закрити перегляд журналу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1169"/>
+        <location filename="../src/configdialog.ui" line="1111"/>
         <source>Close Embedded Viewer</source>
         <translation>Закрити вбудований переглядач</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1176"/>
+        <location filename="../src/configdialog.ui" line="1118"/>
         <source>Close Full Screen Mode</source>
         <translation>Закрити повноекранний режим</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1186"/>
+        <location filename="../src/configdialog.ui" line="1128"/>
         <source>Show Shortcuts in Tooltips</source>
         <translation>Показати ярлики в підказках</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1209"/>
+        <location filename="../src/configdialog.ui" line="1151"/>
         <location filename="../src/configdialog.cpp" line="532"/>
         <source>Menus</source>
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1216"/>
+        <location filename="../src/configdialog.ui" line="1158"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation>Тут наведені елементи меню, які можна приховати або змінити.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1229"/>
+        <location filename="../src/configdialog.ui" line="1171"/>
         <source>Name</source>
         <translation>Назва</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1234"/>
+        <location filename="../src/configdialog.ui" line="1176"/>
         <location filename="../src/configdialog.cpp" line="520"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1239"/>
+        <location filename="../src/configdialog.ui" line="1181"/>
         <source>Slot</source>
         <translation>Слот</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1247"/>
+        <location filename="../src/configdialog.ui" line="1189"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
         <translation>Задайте, щоб вищевказаний список показував усі елементи меню або тільки часто змінювані.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1250"/>
+        <location filename="../src/configdialog.ui" line="1192"/>
         <source>Show All</source>
         <translation>Показувати усе</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1273"/>
+        <location filename="../src/configdialog.ui" line="1215"/>
         <source>Toolbar Customization</source>
         <translation>Панелі інструментів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1282"/>
+        <location filename="../src/configdialog.ui" line="1224"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation>Показує усі дії із редагованої панелі інструментів.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1307"/>
+        <location filename="../src/configdialog.ui" line="1249"/>
         <source>This adds an action to the toolbar.</source>
         <translation>Додає дію у панель інструментів.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1321"/>
+        <location filename="../src/configdialog.ui" line="1263"/>
         <source>This removes an action from the toolbar.</source>
         <translation>Вилучає дію із панелі інструментів.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1350"/>
+        <location filename="../src/configdialog.ui" line="1292"/>
         <source>Here you can choose a toolbar to modify.</source>
         <translation>Тут можна вибрати панель інструментів для видозміни.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1357"/>
+        <location filename="../src/configdialog.ui" line="1299"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
         <translation>Тут можна вибрати список команд, які здатні відображатися на панелі інструментів.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1364"/>
+        <location filename="../src/configdialog.ui" line="1306"/>
         <source>This shows available actions to map on a toolbar.</source>
         <translation>Показує дії, доступні для відображення на панелі інструментів.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1403"/>
-        <source>Scaling</source>
-        <translation>Масштаб</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1541"/>
+        <location filename="../src/configdialog.ui" line="1470"/>
         <source>Secondary Toolbars</source>
         <translation>Другорядні панелі інструментів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1450"/>
-        <location filename="../src/configdialog.ui" line="1457"/>
-        <location filename="../src/configdialog.ui" line="1514"/>
-        <location filename="../src/configdialog.ui" line="1580"/>
+        <location filename="../src/configdialog.ui" line="1392"/>
+        <location filename="../src/configdialog.ui" line="1399"/>
+        <location filename="../src/configdialog.ui" line="1456"/>
+        <location filename="../src/configdialog.ui" line="1509"/>
         <source>Reset</source>
         <translation>Оновити</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1521"/>
+        <location filename="../src/configdialog.ui" line="1463"/>
         <source>Symbol Grid</source>
         <translation>Таблиця символів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1443"/>
+        <location filename="../src/configdialog.ui" line="1385"/>
         <source>Main Toolbar</source>
         <translation>Головна панель інструментів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1486"/>
+        <location filename="../src/configdialog.ui" line="1428"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
         <translation>Змінює масштаб горизонтальних панелей інструментів (для дисплеїв з високою роздільною здатністю).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1412"/>
+        <location filename="../src/configdialog.ui" line="1354"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
         <translation>Змінює масштаб таблиці символів (для дисплеїв з високою роздільною здатністю).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1464"/>
+        <location filename="../src/configdialog.ui" line="1406"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
         <translation>Змінює масштаб вертикальних панелей інструментів (для дисплеїв з високою роздільною здатністю).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1622"/>
+        <location filename="../src/configdialog.ui" line="1567"/>
         <location filename="../src/configdialog.cpp" line="535"/>
         <location filename="../src/configmanager.cpp" line="1518"/>
         <source>Editor</source>
         <translation>Редактор</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1634"/>
+        <location filename="../src/configdialog.ui" line="1579"/>
         <source>Inline Checking:</source>
         <translation>Вбудована перевірка:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1673"/>
+        <location filename="../src/configdialog.ui" line="1618"/>
         <source>Check non tex files</source>
         <translation>Перевіряти не-tex файли</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1683"/>
+        <location filename="../src/configdialog.ui" line="1628"/>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation>Сканувати дистрибутив LaTeX за встановленими пакетами</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1693"/>
+        <location filename="../src/configdialog.ui" line="1638"/>
         <source>Folding</source>
         <translation>Згортання коду</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1700"/>
+        <location filename="../src/configdialog.ui" line="1645"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation>Замінити відступ табуляцією на пробіли</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1707"/>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="1652"/>
+        <location filename="../src/configdialog.ui" line="4672"/>
         <source>Font Family:</source>
         <translation>Гарнітура шрифту:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1714"/>
+        <location filename="../src/configdialog.ui" line="1659"/>
         <source>Replace Double Quotes:</source>
         <translation>Заміна подвійних лапок:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1727"/>
+        <location filename="../src/configdialog.ui" line="1672"/>
         <source>Default Font Encoding:</source>
         <translation>Усталене кодування:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1734"/>
+        <location filename="../src/configdialog.ui" line="1679"/>
         <source>Indentation Mode:</source>
         <translation>Режим відступу:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1741"/>
+        <location filename="../src/configdialog.ui" line="1686"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Автоматичне виявлення кодування:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1751"/>
+        <location filename="../src/configdialog.ui" line="1696"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
         <translation>Аналізувати LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1758"/>
+        <location filename="../src/configdialog.ui" line="1703"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>можна вибирати тільки між utf-16/utf-8 та ISO 8859-1!</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1761"/>
+        <location filename="../src/configdialog.ui" line="1706"/>
         <source>Analyze Characters</source>
         <translation>Аналізувати символи</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1785"/>
-        <location filename="../src/configdialog.ui" line="4045"/>
-        <location filename="../src/configdialog.ui" line="4142"/>
+        <location filename="../src/configdialog.ui" line="1730"/>
+        <location filename="../src/configdialog.ui" line="4002"/>
+        <location filename="../src/configdialog.ui" line="4099"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1811"/>
+        <location filename="../src/configdialog.ui" line="1756"/>
         <source>Line Spacing:</source>
         <translation>Відстань між рядками:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1822"/>
+        <location filename="../src/configdialog.ui" line="1767"/>
         <source>No Replacement</source>
         <translation>Не замінювати</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1827"/>
+        <location filename="../src/configdialog.ui" line="1772"/>
         <source>English Quotes:  `` &apos;&apos;</source>
         <translation>Англійські лапки:  `` &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1832"/>
+        <location filename="../src/configdialog.ui" line="1777"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
         <translation>Французькі лапки:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1837"/>
+        <location filename="../src/configdialog.ui" line="1782"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
         <translation>Німецькі лапки:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1842"/>
+        <location filename="../src/configdialog.ui" line="1787"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
         <translation>Французькі лапки (babel): \og{} \fg{}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1847"/>
+        <location filename="../src/configdialog.ui" line="1792"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
         <translation>Обернені французькі лапки: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1852"/>
+        <location filename="../src/configdialog.ui" line="1797"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>Пакет csquotes: \enquote{  }</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1857"/>
+        <location filename="../src/configdialog.ui" line="1802"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Англійські лапки (юнікод): “ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1862"/>
+        <location filename="../src/configdialog.ui" line="1807"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
         <translation>Польські лапки: ,, &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1867"/>
+        <location filename="../src/configdialog.ui" line="1812"/>
         <source>Polish Quotes (unicode): „ ”</source>
         <translation>Польські лапки (юнікод): „ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1875"/>
+        <location filename="../src/configdialog.ui" line="1820"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Показувати тільки шрифт фіксованої ширини</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1886"/>
+        <location filename="../src/configdialog.ui" line="1831"/>
         <source>Ignore Indentation</source>
         <translation>Нехтувати відступом</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1891"/>
+        <location filename="../src/configdialog.ui" line="1836"/>
         <source>Keep Indentation</source>
         <translation>Зберігати відступ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1896"/>
+        <location filename="../src/configdialog.ui" line="1841"/>
         <source>Indent and Unindent Automatically</source>
         <translation>Автоматично створювати або вилучати відступ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1916"/>
+        <location filename="../src/configdialog.ui" line="1861"/>
         <source>Spelling</source>
         <translation>Правопис</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1923"/>
+        <location filename="../src/configdialog.ui" line="1868"/>
         <source>Grammar</source>
         <translation>Граматика</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1930"/>
+        <location filename="../src/configdialog.ui" line="1875"/>
         <source>Citations</source>
         <translation>Цитати</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1937"/>
+        <location filename="../src/configdialog.ui" line="1882"/>
         <source>References</source>
         <translation>Посилання</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1944"/>
+        <location filename="../src/configdialog.ui" line="1889"/>
         <source>Syntax</source>
         <translation>Синтаксис</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1951"/>
+        <location filename="../src/configdialog.ui" line="1896"/>
         <source>Package</source>
         <translation>Пакет</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1961"/>
+        <location filename="../src/configdialog.ui" line="1906"/>
         <source>Replace Tab in Text by Spaces</source>
         <translation>Замінити табуляцію у тексті на пробіли</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1968"/>
+        <location filename="../src/configdialog.ui" line="1913"/>
         <source>Automatically load included files</source>
         <translation>Автоматично завантажувати включені файли</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1978"/>
+        <location filename="../src/configdialog.ui" line="1923"/>
         <source>Hide grammar errors in non-text environments</source>
         <translation>Приховати граматичні помилки поза текстом</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1988"/>
+        <location filename="../src/configdialog.ui" line="1933"/>
         <source>Hide spelling errors in non-text environments</source>
         <translation>Приховати правописні помилки поза текстом</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1998"/>
+        <location filename="../src/configdialog.ui" line="1943"/>
         <source>Remove Trailing Whitespace on Save</source>
         <translation>Видалити завершальні пробіли при збереженні</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1644"/>
+        <location filename="../src/configdialog.ui" line="1589"/>
         <source>Show Line Numbers:</source>
         <translation>Показувати номери рядків:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1655"/>
+        <location filename="../src/configdialog.ui" line="1600"/>
         <source>No Line Numbers</source>
         <translation>Без номерів рядків</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1660"/>
+        <location filename="../src/configdialog.ui" line="1605"/>
         <source>All Line Numbers</source>
         <translation>Усі номери рядків</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1665"/>
+        <location filename="../src/configdialog.ui" line="1610"/>
         <source>Only Important Line Numbers</source>
         <translation>Лише важливі номери рядків</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2074"/>
+        <location filename="../src/configdialog.ui" line="2019"/>
         <source>Show State Panel</source>
         <translation>Показувати панель стану</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2086"/>
+        <location filename="../src/configdialog.ui" line="2031"/>
         <source>Tab Width:</source>
         <translation>Ширина табуляції:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2121"/>
+        <location filename="../src/configdialog.ui" line="2066"/>
         <source>Show Whitespace</source>
         <translation>Показувати символ пробілу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2134"/>
+        <location filename="../src/configdialog.ui" line="2079"/>
         <source>Show Line Change State</source>
         <translation>Показувати статус зміни рядка</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2144"/>
+        <location filename="../src/configdialog.ui" line="2089"/>
         <source>Draw cursor as a thick line</source>
         <translation>Відображати курсор як жирну лінію</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2147"/>
+        <location filename="../src/configdialog.ui" line="2092"/>
         <source>Bold Cursor</source>
         <translation>Жирний курсор</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2163"/>
+        <location filename="../src/configdialog.ui" line="2108"/>
         <source>Search Panel</source>
         <translation>Панель пошуку</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2169"/>
+        <location filename="../src/configdialog.ui" line="2114"/>
         <source>Close search and replace panel together</source>
         <translation>Закривати панелі пошуку і заміни одночасно</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2179"/>
+        <location filename="../src/configdialog.ui" line="2124"/>
         <source>Use single line selection as Search Word</source>
         <translation>Використовувати виділення одного рядка як взірець пошуку</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2189"/>
+        <location filename="../src/configdialog.ui" line="2134"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Обмежити область пошуку наявним виділенням</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2199"/>
+        <location filename="../src/configdialog.ui" line="2144"/>
         <source>Special options</source>
         <translation>Особливі параметри</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2232"/>
+        <location filename="../src/configdialog.ui" line="2177"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Показувати маркери журналу при натисканні на елемент журналу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2278"/>
+        <location filename="../src/configdialog.ui" line="2223"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Додавати пропозиції безпосередньо у контекстне меню</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2283"/>
+        <location filename="../src/configdialog.ui" line="2228"/>
         <source>Create Dedicated Submenu</source>
         <translation>Створити окреме підменю</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2503"/>
+        <location filename="../src/configdialog.ui" line="2448"/>
         <source>Spellchecking via context menu:</source>
         <translation>Перевірка правопису через контекстне меню:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2438"/>
+        <location filename="../src/configdialog.ui" line="2383"/>
         <source>Default Log Encoding</source>
         <translation>Усталене кодування журналу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2297"/>
+        <location filename="../src/configdialog.ui" line="2242"/>
         <source>1 minute</source>
         <translation>1 хвилина</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2302"/>
+        <location filename="../src/configdialog.ui" line="2247"/>
         <source>2 minutes</source>
         <translation>2 хвилини</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2307"/>
+        <location filename="../src/configdialog.ui" line="2252"/>
         <source>5 minutes</source>
         <translation>5 хвилин</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2312"/>
+        <location filename="../src/configdialog.ui" line="2257"/>
         <source>10 minutes</source>
         <translation>10 хвилин</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2317"/>
+        <location filename="../src/configdialog.ui" line="2262"/>
         <source>20 minutes</source>
         <translation>20 хвилин</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2322"/>
+        <location filename="../src/configdialog.ui" line="2267"/>
         <source>60 minutes</source>
         <translation>60 хвилин</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2510"/>
+        <location filename="../src/configdialog.ui" line="2455"/>
         <source>Auto Complete Parentheses</source>
         <translation>Автоматично закривати дужки</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2431"/>
+        <location filename="../src/configdialog.ui" line="2376"/>
         <source>Smooth Scrolling</source>
         <translation>Плавне прокручування</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2239"/>
+        <location filename="../src/configdialog.ui" line="2184"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Масштаб за допомогою коліщатка миші</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2445"/>
+        <location filename="../src/configdialog.ui" line="2390"/>
         <source>Auto Save All Files:</source>
         <translation>Автоматично зберігати усі файли:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2341"/>
+        <location filename="../src/configdialog.ui" line="2286"/>
         <source>Line Wrapping:</source>
         <translation>Перенесення слів:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2517"/>
+        <location filename="../src/configdialog.ui" line="2462"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation>Вибір подвійним клацанням: включати передню обернену скісну риску</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2251"/>
+        <location filename="../src/configdialog.ui" line="2196"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Перевантажувати збережені файли при зовнішніх змінах (очищається стек команд повернення/повтору)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2378"/>
+        <location filename="../src/configdialog.ui" line="2323"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Показувати довідку про команди у вбудованому переглядачі pdf (texdoc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2393"/>
+        <location filename="../src/configdialog.ui" line="2338"/>
         <source>Select Word</source>
         <translation>Виділити слово</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2398"/>
+        <location filename="../src/configdialog.ui" line="2343"/>
         <source>Select Word or Command</source>
         <translation>Виділити слово чи команду</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2403"/>
+        <location filename="../src/configdialog.ui" line="2348"/>
         <source>Select Parentheses Content</source>
         <translation>Виділити вміст у дужках</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2408"/>
+        <location filename="../src/configdialog.ui" line="2353"/>
         <source>Select Parentheses</source>
         <translation>Виділити дужки</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2413"/>
+        <location filename="../src/configdialog.ui" line="2358"/>
         <source>Select Line</source>
         <translation>Вибрати рядок</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2260"/>
+        <location filename="../src/configdialog.ui" line="2205"/>
         <source>Monitor open files for external changes</source>
         <translation>Моніторити відкриті файли за зовнішніми змінами</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2368"/>
+        <location filename="../src/configdialog.ui" line="2313"/>
         <source>Triple-Click Selection:</source>
         <translation>Виділення потрійним клацанням:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2208"/>
+        <location filename="../src/configdialog.ui" line="2153"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Цей параметр використовує QSaveFile для уникнення втрати наявних даних, коли операція запису зазнала невдачі. Як недолік, поточний користувач стає власником файлу і втрачаються розширені атрибути файлу. Крім того, можуть появитися проблеми цього методу з теками dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2211"/>
+        <location filename="../src/configdialog.ui" line="2156"/>
         <source>Safe writing of files</source>
         <translation>Безпечний запис файлів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2348"/>
+        <location filename="../src/configdialog.ui" line="2293"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation>Переписувати праву дужку після заповнювача</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2355"/>
+        <location filename="../src/configdialog.ui" line="2300"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation>Це діє лише, коли довжина документа обмежена м&apos;яким жорстким перенесенням рядка.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2358"/>
+        <location filename="../src/configdialog.ui" line="2303"/>
         <source>Center Document in Editor</source>
         <translation>Центрувати документ в редакторі</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2489"/>
+        <location filename="../src/configdialog.ui" line="2434"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Показати довідку як підказку у текстовому полі редактора</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2421"/>
+        <location filename="../src/configdialog.ui" line="2366"/>
         <source>Maximal Characters:</source>
         <translation>Максимальне число символів:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2466"/>
+        <location filename="../src/configdialog.ui" line="2411"/>
         <source>No Line Wrap</source>
         <translation>Без  перенесення слів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2471"/>
+        <location filename="../src/configdialog.ui" line="2416"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>М&apos;яке перенесення слів на краю вікна</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2476"/>
+        <location filename="../src/configdialog.ui" line="2421"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>М&apos;яке перенесення слів після максимального числа символів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2481"/>
+        <location filename="../src/configdialog.ui" line="2426"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Тверде перенесення слів після макс. числа символів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2330"/>
+        <location filename="../src/configdialog.ui" line="2275"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>При використанні символів Юнікоду у вихідному тексті LaTeX 
 продовжує формувати символи. Оскільки LaTeX не має прямої підтримки Юнікоду, вам потрібно включити пакети, які забезпечують символи Юнікоду.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2334"/>
+        <location filename="../src/configdialog.ui" line="2279"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Вставляти як символ Юнікоду</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2496"/>
+        <location filename="../src/configdialog.ui" line="2441"/>
         <source>Go to error when displaying log</source>
         <translation>Перейти до помилки при відображенні журналу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2218"/>
+        <location filename="../src/configdialog.ui" line="2163"/>
         <source>Show image tooltip on image files</source>
         <translation>Показувати підказку як зображення на файли зображень</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2225"/>
+        <location filename="../src/configdialog.ui" line="2170"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Переписувати ліву дужку перед заповнювачем</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2385"/>
+        <location filename="../src/configdialog.ui" line="2330"/>
         <source>Allow Drag and Drop</source>
         <translation>Дозволити перетягування</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2267"/>
+        <location filename="../src/configdialog.ui" line="2212"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Зовнішні програми (на кшталт Zotero) можуть надсилати цитування в texstudio через виклик: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Якщо курсор ще не перебуває в команді цитування, то ця &amp;quot;команда&amp;quot; вказана тут використовується як \cite-команда.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1548"/>
+        <location filename="../src/configdialog.ui" line="1477"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Змінює масштаб панелі інструментів вбудованого pdf переглядача (для екоанів з високою роздільною здатністю).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1573"/>
+        <location filename="../src/configdialog.ui" line="1502"/>
         <source>Embedded PDF Toolbar</source>
         <translation>Панель вбудованого PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2270"/>
+        <location filename="../src/configdialog.ui" line="2215"/>
         <source>Latex Command for pushed citations:</source>
         <translation>Команди Latex для надісланих цитувань:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2524"/>
+        <location filename="../src/configdialog.ui" line="2469"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
         <translation>Вертикальне прокручування (прокручування вниз до кінця файлу)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2534"/>
+        <location filename="../src/configdialog.ui" line="2479"/>
         <source>Structure Panel</source>
         <translation>Панель структури</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2565"/>
+        <location filename="../src/configdialog.ui" line="2510"/>
         <source>Mark structure elements beyond \end{document}</source>
         <translation>Позначати структурні елементи за \end{document}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2572"/>
+        <location filename="../src/configdialog.ui" line="2517"/>
         <source>Reference commands in context menu:</source>
         <translation>Команди перехресних посилань у контекстному меню:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2612"/>
+        <location filename="../src/configdialog.ui" line="2557"/>
         <source>Mark structure elements in appendix</source>
         <translation>Позначати структурні елементи у додатку</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2585"/>
+        <location filename="../src/configdialog.ui" line="2530"/>
         <source>Regular expression for TODO comment: </source>
         <translation>Регулярні вирази для коментаря СПРАВИ: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2592"/>
+        <location filename="../src/configdialog.ui" line="2537"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Зберігати відступи елементів у дереві структури</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2544"/>
+        <location filename="../src/configdialog.ui" line="2489"/>
         <source>No Color Background</source>
         <translation>Без кольорового тла</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2549"/>
+        <location filename="../src/configdialog.ui" line="2494"/>
         <source>Green Background</source>
         <translation>Зелене тло</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2554"/>
+        <location filename="../src/configdialog.ui" line="2499"/>
         <source>Blue Background</source>
         <translation>Синє тло</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2562"/>
+        <location filename="../src/configdialog.ui" line="2507"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Елементи подібні до &amp;quot;\section&amp;quot; виділяються різним тлом кольору,  щоб показати, що вони &lt;span style=&quot; font-weight:600;&quot;&gt;не будуть&lt;/span&gt; появлятися у документі.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2609"/>
+        <location filename="../src/configdialog.ui" line="2554"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Елемнти подібні до &amp;quot;\section&amp;quot; виділяються різним тлом кольору, щоби показати, що вони появляться як додаток.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2599"/>
+        <location filename="../src/configdialog.ui" line="2544"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Поточна позиція курсора виділяється у перегляді структури.&lt;/p&gt;&lt;p&gt;Якщо цей параметр активний, то відповідний пункт розкривається та стає видимим.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="352"/>
+        <location filename="../src/configdialog.ui" line="309"/>
         <source>Icon Theme:</source>
         <translation>Тема піктограми:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="360"/>
+        <location filename="../src/configdialog.ui" line="317"/>
         <source>Colibre</source>
         <translation>Колібрі</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="365"/>
+        <location filename="../src/configdialog.ui" line="322"/>
         <source>Oxygen Modern</source>
         <translation>Oxygen сучасна</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="370"/>
+        <location filename="../src/configdialog.ui" line="327"/>
         <source>Oxygen Classic</source>
         <translation>Oxygen класична</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="396"/>
+        <location filename="../src/configdialog.ui" line="353"/>
         <source>Max. Recent Root Documents:</source>
         <translation>Максимум останніх кореневих документів:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="459"/>
+        <location filename="../src/configdialog.ui" line="416"/>
         <source>Always Show Structure of Root Document</source>
         <translation>Завжди показувати структуру кореневого документа</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="710"/>
+        <location filename="../src/configdialog.ui" line="667"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
         <translation>&lt;i&gt;Селектор файлів (Необов&apos;язково. Якщо наявний, то долучіть кінцеву двокрапку):&lt;/i&gt; Якщо нема селектора, то виберіть головний файл. &lt;b&gt;c:&lt;/b&gt; виберіть поточний файл, &lt;b&gt;p{ext}:&lt;/b&gt; Знайдіть файл з тою самою базовою назвою, як у кореневого файла та розширенням &lt;b&gt;ext&lt;/b&gt;. Пошук зроблено у каталозі кореневого файла та додаткових каталогах PDF.&lt;br /&gt;&lt;i&gt;Частини назви шляху:&lt;/i&gt; поєднання &lt;b&gt;a&lt;/b&gt;: абсолютного шляху, &lt;b&gt;m&lt;/b&gt;: назва базового файлу без розширення,&lt;b&gt;e&lt;/b&gt;: розширення, &lt;b&gt;r&lt;/b&gt;: відносний шлях до кореневого, &lt;b&gt;*&lt;/b&gt;: усі файли, що відповідають наступному шаблону&lt;br/&gt;&lt;i&gt;Кінцеві символи:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: закриває селектор. Наступні символи закривають селектор і мають додаткове значення&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: взяти у подвійні лапки, &lt;b&gt;.&lt;/b&gt;  (крапка) додає крапку в кінці, (пропуск): додає пропуск в кінці&lt;br/&gt;&lt;i&gt;Приклади:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: створює абсолютну назву файлу, взяту у подвійні лапки, &lt;b&gt;?e)&lt;/b&gt; просто розширення без передньої крапки (наприклад, tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; взята у подвійні лапки назва файлу без розширення (рівносильна &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; назва файлу з розширенням (наприклад, example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: усі файли .aux у поточному каталозі</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2540"/>
+        <location filename="../src/configdialog.ui" line="2485"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Глобальний TOC використовує різні відтінки кольору тла, щоб відрізнити різні файли. Схема кольорів може бути змінена тут.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2602"/>
+        <location filename="../src/configdialog.ui" line="2547"/>
         <source>Scroll to current cursor position</source>
         <translation>Прокрутити до поточної позиції курсора</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2619"/>
+        <location filename="../src/configdialog.ui" line="2564"/>
         <source>Use color in global TOC:</source>
         <translation>Використовувати колір у глобальному TOC:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2639"/>
+        <location filename="../src/configdialog.ui" line="2584"/>
         <source>Bibliography</source>
         <translation>Бібліографія</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2645"/>
+        <location filename="../src/configdialog.ui" line="2590"/>
         <source>bib File Encoding:</source>
         <translation>Кодування файлу bib:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2652"/>
+        <location filename="../src/configdialog.ui" line="2597"/>
         <source>Parse BibTeX</source>
         <translation>Здійснювати аналіз BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2665"/>
+        <location filename="../src/configdialog.ui" line="2610"/>
         <source>Table Autoformating</source>
         <translation>Автоформатування таблиці</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2671"/>
+        <location filename="../src/configdialog.ui" line="2616"/>
         <source>One Line Per Cell</source>
         <translation>Один рядок на одну комірку</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2679"/>
+        <location filename="../src/configdialog.ui" line="2624"/>
         <source>Behind Line Break</source>
         <translation>Після кінця рядка</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2684"/>
+        <location filename="../src/configdialog.ui" line="2629"/>
         <source>Separate Line (No Indent)</source>
         <translation>Окремий рядок (без відступу)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2689"/>
+        <location filename="../src/configdialog.ui" line="2634"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Окремий рядок (відступ до першого стовпчика)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2697"/>
+        <location filename="../src/configdialog.ui" line="2642"/>
         <source>Special Commands Position:</source>
         <translation>Позиція спеціальних команд:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2707"/>
+        <location filename="../src/configdialog.ui" line="2652"/>
         <source>Special Commands:</source>
         <translation>Спеціальні команди:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2717"/>
+        <location filename="../src/configdialog.ui" line="2662"/>
         <source>Additional Search Paths</source>
         <translation>Додаткові шляхи пошуку</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2726"/>
+        <location filename="../src/configdialog.ui" line="2671"/>
         <source>Bib Files:</source>
         <translation>Файли Bib:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2739"/>
+        <location filename="../src/configdialog.ui" line="2684"/>
         <source>Image Files:</source>
         <translation>Файли зображень:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2777"/>
+        <location filename="../src/configdialog.ui" line="2722"/>
         <source>Bi-Di</source>
         <translation>Двонапрямлений текст</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2783"/>
+        <location filename="../src/configdialog.ui" line="2728"/>
         <source>Automatically insert LRM characters</source>
         <translation>Автоматично вставляти символи LRM</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2790"/>
+        <location filename="../src/configdialog.ui" line="2735"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Візуальний стовпцевий режим курсору (тобто курсор переміщується в напрямку стрілок у rtl-тексті)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2797"/>
+        <location filename="../src/configdialog.ui" line="2742"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Автоматично перемикати розкладку клавіатури:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2804"/>
+        <location filename="../src/configdialog.ui" line="2749"/>
         <source>depending on character direction</source>
         <translation>за напрямком написання</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2811"/>
+        <location filename="../src/configdialog.ui" line="2756"/>
         <source>depending on text/math mode</source>
         <translation>за режимом текст/математика</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2821"/>
+        <location filename="../src/configdialog.ui" line="2766"/>
         <source>Hacks/Workarounds</source>
         <translation>Втулки/Манівці</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2827"/>
+        <location filename="../src/configdialog.ui" line="2772"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Вимкнути тимчасові рішення для набору акцентів (лише Mac OS X) </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2834"/>
+        <location filename="../src/configdialog.ui" line="2779"/>
         <source>Try to automatically choose best display options</source>
         <translation>Спробувати автоматично вибирати найкращі параметри дисплею</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2852"/>
+        <location filename="../src/configdialog.ui" line="2797"/>
         <source>Render Mode:</source>
         <translation>Режим вимальовування:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2860"/>
+        <location filename="../src/configdialog.ui" line="2805"/>
         <source>QCE (recommended)</source>
         <translation>QCE (рекомендовано)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2865"/>
+        <location filename="../src/configdialog.ui" line="2810"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2870"/>
+        <location filename="../src/configdialog.ui" line="2815"/>
         <source>Single Letter</source>
         <translation>Одна буква</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2878"/>
+        <location filename="../src/configdialog.ui" line="2823"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Якщо активований кеш оброблюваних рядків, то такі рядки зберігаються у кеші, що скасовує необхідність їхньої повторної обробки. Метою цього є прискорення швидкості обробки (особливо на Mac) за рахунок  більшого використання пам&apos;яті.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2881"/>
+        <location filename="../src/configdialog.ui" line="2826"/>
         <source>Disable cache of rendered lines</source>
         <translation>Вимкнути кеш оброблювуваних рядків</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2888"/>
+        <location filename="../src/configdialog.ui" line="2833"/>
         <source>Disable fixed pitch mode</source>
         <translation>Вимкнути моноширинний режим</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2895"/>
+        <location filename="../src/configdialog.ui" line="2840"/>
         <source>Disable cache of character width</source>
         <translation>Вимкнути кеш ширини символів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2902"/>
+        <location filename="../src/configdialog.ui" line="2847"/>
         <source>Use QImage as cache type</source>
         <translation>Використовувати QImage як тип кешу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2965"/>
+        <location filename="../src/configdialog.ui" line="2910"/>
         <source>Formats</source>
         <translation>Формати</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2994"/>
+        <location filename="../src/configdialog.ui" line="2939"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <source>Completion</source>
         <translation>Завершення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3000"/>
+        <location filename="../src/configdialog.ui" line="2945"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2077,118 +2072,118 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3010"/>
+        <location filename="../src/configdialog.ui" line="2955"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Автозаміна команд  LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3017"/>
+        <location filename="../src/configdialog.ui" line="2962"/>
         <source>Insert Arguments</source>
         <translation>Вставити аргументи</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3027"/>
+        <location filename="../src/configdialog.ui" line="2972"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Показує підказку із цільовим текстом для міток, посилань, бібліографії, кольорів чи зображень</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3030"/>
+        <location filename="../src/configdialog.ui" line="2975"/>
         <source>ToolTip-Preview</source>
         <translation>Перегляд при наведенні мишки</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3037"/>
+        <location filename="../src/configdialog.ui" line="2982"/>
         <source>Arguments as Placeholders</source>
         <translation>Аргументи як заповнювачі</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3047"/>
+        <location filename="../src/configdialog.ui" line="2992"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>Виконувати попередній перегляд у вигляді підказки з описом вибраної команди завершення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3050"/>
+        <location filename="../src/configdialog.ui" line="2995"/>
         <source>ToolTip-Help</source>
         <translation>Довідка-підказка</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3060"/>
+        <location filename="../src/configdialog.ui" line="3005"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Запустити завершувач як тільки буде введено символ &apos;\&apos; . Альтернативно, завершувач завжди може бути запущений вручну з допомогою Ctrl+Space.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3063"/>
+        <location filename="../src/configdialog.ui" line="3008"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Автозавершення команд LaTeX&apos;у при введенні</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3072"/>
+        <location filename="../src/configdialog.ui" line="3017"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Розмір маркера табуляції внизу або вгорі процедури завершення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3075"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
         <source>Tab Bar Size</source>
         <translation>Розмір маркера табулятора</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3085"/>
+        <location filename="../src/configdialog.ui" line="3030"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>Розмір команд встановлює величину табуляції внизу або вгорі завершувача</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3119"/>
+        <location filename="../src/configdialog.ui" line="3064"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Завершувати вибраний текст, коли введений несловесний символ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3129"/>
+        <location filename="../src/configdialog.ui" line="3074"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Якщо всі пропозиції завершувача використовують наступний спільний символ, Ви можете використовувати &lt;Tab&gt;, щоб автоматично вставити їх.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3132"/>
+        <location filename="../src/configdialog.ui" line="3077"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Автоматично завершувати спільні префікси</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3144"/>
+        <location filename="../src/configdialog.ui" line="3089"/>
         <source>Preferred Commands Set:</source>
         <translation>Бажаний набір команд:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3152"/>
+        <location filename="../src/configdialog.ui" line="3097"/>
         <source>Typical</source>
         <translation>Типові</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3157"/>
+        <location filename="../src/configdialog.ui" line="3102"/>
         <source>Most Used</source>
         <translation>Найвживаніші</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3162"/>
+        <location filename="../src/configdialog.ui" line="3107"/>
         <source>Fuzzy</source>
         <translation>Нечітке</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3167"/>
+        <location filename="../src/configdialog.ui" line="3112"/>
         <source>All</source>
         <translation>Усі</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3190"/>
+        <location filename="../src/configdialog.ui" line="3135"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Якщо математична команда вставлена через завершення ззовні математичного середовища, то $$ автоматично вставляється.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3193"/>
+        <location filename="../src/configdialog.ui" line="3138"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Автоматично вставляти математичні розділювачі за потреби</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3205"/>
-        <location filename="../src/configdialog.ui" line="3243"/>
+        <location filename="../src/configdialog.ui" line="3150"/>
+        <location filename="../src/configdialog.ui" line="3188"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2203,466 +2198,461 @@ them here.</source>
 Ви можете змусити їх використовуватися через відмітку тут.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3213"/>
+        <location filename="../src/configdialog.ui" line="3158"/>
         <source>Permanently active completion files:</source>
         <translation>Постійно активні файли завершення:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3223"/>
+        <location filename="../src/configdialog.ui" line="3168"/>
         <source>Filter list below</source>
         <translation>Фільтрувати список нижче</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3322"/>
+        <location filename="../src/configdialog.ui" line="3279"/>
         <source>Spell Check</source>
         <translation>Перевірка правопису</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3328"/>
+        <location filename="../src/configdialog.ui" line="3285"/>
         <source>Default Language:</source>
         <translation>Усталена мова:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3355"/>
+        <location filename="../src/configdialog.ui" line="3312"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Каталоги із правописними словниками:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3362"/>
+        <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>Теки зі словників Hunspell відокремлені крапкою з комою. Спеціальним ключовим словам [txs-settings-dir] та [txs-app-dir] будуть призначені відповідні каталоги.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3372"/>
+        <location filename="../src/configdialog.ui" line="3329"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3379"/>
+        <location filename="../src/configdialog.ui" line="3336"/>
         <source>Thesaurus Database:</source>
         <translation>База даних тезауруса:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3409"/>
+        <location filename="../src/configdialog.ui" line="3366"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3422"/>
+        <location filename="../src/configdialog.ui" line="3379"/>
         <source>Import Dictionary...</source>
         <translation>Імпортувати словник…</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3432"/>
+        <location filename="../src/configdialog.ui" line="3389"/>
         <source>Internal Grammar Check</source>
         <translation>Внутрішня перевірка граматики</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3438"/>
+        <location filename="../src/configdialog.ui" line="3395"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Слова, що повторюються всередині абзацу, будуть виділені.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3441"/>
+        <location filename="../src/configdialog.ui" line="3398"/>
         <source>Check for Word Repetitions</source>
         <translation>Перевірка повторення слів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3448"/>
+        <location filename="../src/configdialog.ui" line="3405"/>
         <source>Words Between Repetitions:</source>
         <translation>Число слів між повтореннями:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3458"/>
+        <location filename="../src/configdialog.ui" line="3415"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Однакові слова будуть відзначені як повторення, якщо між ними є не більше вказаного числа слів.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3468"/>
+        <location filename="../src/configdialog.ui" line="3425"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Довгі слова будуть відзначені як далеке повторення, якщо між ними є не більше вказаного числа слів.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3478"/>
+        <location filename="../src/configdialog.ui" line="3435"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Тільки слова з вказаною довжиною перевіряються в якості віддалених повторень.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3488"/>
+        <location filename="../src/configdialog.ui" line="3445"/>
         <source>Long Range Repetitions:</source>
         <translation>Далекі повторення:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3498"/>
+        <location filename="../src/configdialog.ui" line="3455"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>Мінімальна довжина слів з далекими повтореннями:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3508"/>
+        <location filename="../src/configdialog.ui" line="3465"/>
         <source>Wordlist Directory:</source>
         <translation>Каталог списку слів:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
+        <location filename="../src/configdialog.ui" line="3472"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Будуть підсвічуватися неформальні або сумнівні слова.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3518"/>
+        <location filename="../src/configdialog.ui" line="3475"/>
         <source>Check for Bad Words</source>
         <translation>Перевірка „лайливих“ слів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3525"/>
+        <location filename="../src/configdialog.ui" line="3482"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Каталог, що містить списки &quot;поганих&quot; слів або слів, які можуть повторюватися.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3552"/>
+        <location filename="../src/configdialog.ui" line="3509"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3558"/>
+        <location filename="../src/configdialog.ui" line="3515"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>Шлях, що містить java-архів LanguageTool.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3565"/>
+        <location filename="../src/configdialog.ui" line="3522"/>
         <source>LT Path:</source>
         <translation>Шлях до LanguageTool:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3572"/>
+        <location filename="../src/configdialog.ui" line="3529"/>
         <source>Start LanguageTool if not running</source>
         <translation>Запустити LanguageTool, якщо він ще не запущений</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3579"/>
+        <location filename="../src/configdialog.ui" line="3536"/>
         <source>Server URL: </source>
         <translation>URL сервера:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3586"/>
+        <location filename="../src/configdialog.ui" line="3543"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Список розділених комами правил LanguageTool, які не будуть виділятися як помилки.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3610"/>
+        <location filename="../src/configdialog.ui" line="3567"/>
         <source>Ignored Rules:</source>
         <translation>Правила ігнорування:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3617"/>
-        <location filename="../src/configdialog.ui" line="3627"/>
-        <location filename="../src/configdialog.ui" line="3637"/>
-        <location filename="../src/configdialog.ui" line="3667"/>
+        <location filename="../src/configdialog.ui" line="3574"/>
+        <location filename="../src/configdialog.ui" line="3584"/>
+        <location filename="../src/configdialog.ui" line="3594"/>
+        <location filename="../src/configdialog.ui" line="3624"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Список розділених комами правил LanguageTool, які визначають виділення в спеціальному форматі.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3647"/>
+        <location filename="../src/configdialog.ui" line="3604"/>
         <source>Special Rules 3:</source>
         <translation>Спеціальні правила 3:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3657"/>
+        <location filename="../src/configdialog.ui" line="3614"/>
         <source>Special Rules 2:</source>
         <translation>Спеціальні правила 2:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3677"/>
+        <location filename="../src/configdialog.ui" line="3634"/>
         <source>Special Rules 1:</source>
         <translation>Спеціальні правила 1:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3694"/>
+        <location filename="../src/configdialog.ui" line="3651"/>
         <source>Special Rules 4:</source>
         <translation>Спеціальні правила 4:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3704"/>
+        <location filename="../src/configdialog.ui" line="3661"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>Буде прийнято рішення на основі мови для перевірки правопису, яка використовується в документі.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3711"/>
+        <location filename="../src/configdialog.ui" line="3668"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>Виконуваний модуль Java, який використовується для запуску LanguageTool, якщо останній ще не запущений.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3718"/>
+        <location filename="../src/configdialog.ui" line="3675"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3725"/>
-        <location filename="../src/configdialog.ui" line="3773"/>
+        <location filename="../src/configdialog.ui" line="3682"/>
+        <location filename="../src/configdialog.ui" line="3730"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>Аргументи надсилаються під час запуску LanguageTool. Цей параметр має вплив лише, коли LanguageTool запускається із TeXstudio (тобто він безсильний для вже запущеного сервера).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3728"/>
+        <location filename="../src/configdialog.ui" line="3685"/>
         <source>LT Arguments:</source>
         <translation>Аргументи LT:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3752"/>
-        <location filename="../src/configdialog.ui" line="3780"/>
+        <location filename="../src/configdialog.ui" line="3709"/>
+        <location filename="../src/configdialog.ui" line="3737"/>
         <source>Restore Default</source>
         <translation>Відновити усталені значення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3766"/>
+        <location filename="../src/configdialog.ui" line="3723"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>Url для з&apos;єднання з LanguageTool.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3857"/>
-        <source>Segment Preview</source>
-        <translation>Перегляд сегменту</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3863"/>
+        <location filename="../src/configdialog.ui" line="3820"/>
         <source>Command:</source>
         <translation>Команда:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3874"/>
+        <location filename="../src/configdialog.ui" line="3831"/>
         <source>Preview with dvipng</source>
         <translation>Попередній перегляд через dvipng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3879"/>
+        <location filename="../src/configdialog.ui" line="3836"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Попередній перегляд через dvipng --follow (паралельний)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3884"/>
+        <location filename="../src/configdialog.ui" line="3841"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Попередній перегляд через dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3889"/>
+        <location filename="../src/configdialog.ui" line="3846"/>
         <source>Preview with pdflatex</source>
         <translation>Попередній перегляд через pdflatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3894"/>
+        <location filename="../src/configdialog.ui" line="3851"/>
         <source>Preview with lualatex</source>
         <translation>Попередній перегляд через lualatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3902"/>
+        <location filename="../src/configdialog.ui" line="3859"/>
         <source>Display Mode:</source>
         <translation>Режим відображення:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3916"/>
+        <location filename="../src/configdialog.ui" line="3873"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Показувати перегляд як підказку, якщо панель схована</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3921"/>
+        <location filename="../src/configdialog.ui" line="3878"/>
         <source>Always show preview in preview panel</source>
         <translation>Завжди показувати перегляд у панелі попереднього перегляду</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3926"/>
+        <location filename="../src/configdialog.ui" line="3883"/>
         <source>Always show preview as tool tip</source>
         <translation>Завжди показувати перегляд у вигляді підказки</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3931"/>
+        <location filename="../src/configdialog.ui" line="3888"/>
         <source>Always show both</source>
         <translation>Завжди показувати і те, і інше</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3936"/>
+        <location filename="../src/configdialog.ui" line="3893"/>
         <source>Inline</source>
         <translation>Вбудований</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3941"/>
+        <location filename="../src/configdialog.ui" line="3898"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Показувати у вбудованому переглядачі</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3949"/>
+        <location filename="../src/configdialog.ui" line="3906"/>
         <source>Update the preview on text change</source>
         <translation>Оновлювати перегляд при зміні тексту</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3952"/>
+        <location filename="../src/configdialog.ui" line="3909"/>
         <source>Auto Update:</source>
         <translation>Автоматичне оновлення:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3965"/>
+        <location filename="../src/configdialog.ui" line="3922"/>
         <source>Previously previewed text</source>
         <translation>Раніше переглянутий текст</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3973"/>
+        <location filename="../src/configdialog.ui" line="3930"/>
         <source>Auto Update Delay:</source>
         <translation>Затримка автоматичного оновлення:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3996"/>
+        <location filename="../src/configdialog.ui" line="3953"/>
         <source>Replace beamer class by article</source>
         <translation>Замінити клас beamer на article</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4009"/>
+        <location filename="../src/configdialog.ui" line="3966"/>
         <source>Precompile Preamble</source>
         <translation>Попередньо компілювати преамбулу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4022"/>
+        <location filename="../src/configdialog.ui" line="3979"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Показати перегляд формул у редакторі як підказку</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4032"/>
-        <location filename="../src/configdialog.ui" line="4155"/>
+        <location filename="../src/configdialog.ui" line="3989"/>
+        <location filename="../src/configdialog.ui" line="4112"/>
         <source>Scaling:</source>
         <translation>Масштаб:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4127"/>
+        <location filename="../src/configdialog.ui" line="4084"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Internal PDF Viewer</source>
         <translation>Внутрішній переглядач pdf</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4278"/>
+        <location filename="../src/configdialog.ui" line="4235"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Вказати шістнадцяткове значення RGBA. Примітка: прозорість потрібно вказати тому, що підсвічування синтаксису вимальовується поверх тексту через технічні обмеження.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4281"/>
+        <location filename="../src/configdialog.ui" line="4238"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4367"/>
+        <location filename="../src/configdialog.ui" line="4324"/>
         <source>Original Size</source>
         <translation>Початковий розмір</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4372"/>
+        <location filename="../src/configdialog.ui" line="4329"/>
         <source>Fit to Window Width</source>
         <translation>За шириною вікна</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4377"/>
+        <location filename="../src/configdialog.ui" line="4334"/>
         <source>Fit to Window Size</source>
         <translation>За розмірами вікна</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4382"/>
+        <location filename="../src/configdialog.ui" line="4339"/>
         <source>Scaled Size</source>
         <translation>Масштабований розмір</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4387"/>
+        <location filename="../src/configdialog.ui" line="4344"/>
         <source>Fit to Text Width</source>
         <translation>За шириною тексту</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4211"/>
+        <location filename="../src/configdialog.ui" line="4168"/>
         <source>Infinite</source>
         <translation>Нескінченна</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4477"/>
+        <location filename="../src/configdialog.ui" line="4434"/>
         <source>Scale Option:</source>
         <translation>Параметри масштабу:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4514"/>
+        <location filename="../src/configdialog.ui" line="4471"/>
         <source>Magnifier Size:</source>
         <translation>Розмір лупи:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4230"/>
+        <location filename="../src/configdialog.ui" line="4187"/>
         <source> dpi</source>
         <translation>т/д</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4295"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source>Square</source>
         <translation>Квадрат</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4300"/>
+        <location filename="../src/configdialog.ui" line="4257"/>
         <source>Circle</source>
         <translation>Коло</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4305"/>
+        <location filename="../src/configdialog.ui" line="4262"/>
         <source>Circle without shadow</source>
         <translation>Коло без тіні</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4268"/>
+        <location filename="../src/configdialog.ui" line="4225"/>
         <source>Highlight Duration</source>
         <translation>Тривалість підсвічування:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4467"/>
+        <location filename="../src/configdialog.ui" line="4424"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>Вимкнути горизонтальну прокрутку для „За шириною тексту“</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4359"/>
+        <location filename="../src/configdialog.ui" line="4316"/>
         <source>Border</source>
         <translation>Межа</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4484"/>
+        <location filename="../src/configdialog.ui" line="4441"/>
         <source>Magnifier Shape:</source>
         <translation>Форма лупи:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4521"/>
+        <location filename="../src/configdialog.ui" line="4478"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Автоматично ховати панелі інструментів у вбудованому режимі</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4326"/>
+        <location filename="../src/configdialog.ui" line="4283"/>
         <source>Highlight Color</source>
         <translation>Колір підсвічування</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4240"/>
+        <location filename="../src/configdialog.ui" line="4197"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Визначає спосіб завантаження PDF:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Буферизований:&lt;/b&gt; Завантаження файлу в буфер і перевірка цілісності. Потім дані передаються в poppler. Переважно це було введено для прискорення старих версій poppler (&amp;lt;0.24), які не були безпечними щодо потоків. Наявні відомості, що poppler може аварійно завершитися при завантаженні великого буфера. Тому даний параметр вважається застарілим.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Прямий:&lt;/b&gt; Використовується рідне завантаження файлу poppler. Це найшвидший спосіб, але він не дозволяє перевіряти цілісність файлів.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Гібридний (рекомендується):&lt;/b&gt; файл завантажується в буфер і перевіряється його цілісність. Цей буфер використовується для невеликих документів (&amp;lt; 50МБ). Великі файли завантажуються через рідне завантаження файлів poppler. Так об&apos;єднуються перевірка файлів і запобігання проблем з великими файлами PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4250"/>
+        <location filename="../src/configdialog.ui" line="4207"/>
         <source>Buffered</source>
         <translation>Буферизований</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4255"/>
+        <location filename="../src/configdialog.ui" line="4212"/>
         <source>Direct</source>
         <translation>Прямий</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4260"/>
+        <location filename="../src/configdialog.ui" line="4217"/>
         <source>Hybrid</source>
         <translation>Гібридний</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4179"/>
+        <location filename="../src/configdialog.ui" line="4136"/>
         <source>Cache Size:</source>
         <translation>Розмір кешу:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4437"/>
-        <location filename="../src/configdialog.ui" line="4491"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
+        <location filename="../src/configdialog.ui" line="4448"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2673,118 +2663,118 @@ Note: Changing this setting will only affect documents that are opened afterward
 Зауваження: зміна цього параметра вплине тільки на документи, які відкриті після зміни.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4189"/>
+        <location filename="../src/configdialog.ui" line="4146"/>
         <source> px</source>
         <translation>пікс.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4417"/>
+        <location filename="../src/configdialog.ui" line="4374"/>
         <source>Synchronized Files Types:</source>
         <translation>Типи синхронізованих файлів:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4443"/>
+        <location filename="../src/configdialog.ui" line="4400"/>
         <source>Render Backend:</source>
         <translation>Обробник для вимальовування:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4162"/>
+        <location filename="../src/configdialog.ui" line="4119"/>
         <source>Load Strategy:</source>
         <translation>Стратегія завантаження:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4395"/>
+        <location filename="../src/configdialog.ui" line="4352"/>
         <source> MB</source>
         <translation> Мб</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4460"/>
+        <location filename="../src/configdialog.ui" line="4417"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Зауваження: віконний/панельний режими налаштовуються в Збирання -&gt; Переглядач PDF</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4427"/>
+        <location filename="../src/configdialog.ui" line="4384"/>
         <source>Paper Color</source>
         <translation>Колір паперу</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4336"/>
+        <location filename="../src/configdialog.ui" line="4293"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Усталений колір тла. Вказується як шістнадцяткове значення RGB. Примітка: це діятим лише на файли PDF, завантажені після зміни цього параметра. Колір паперу вже відкритого файла  PDF не зміниться.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4172"/>
+        <location filename="../src/configdialog.ui" line="4129"/>
         <source>Auto-recompile document on changes</source>
         <translation>Автоматично компілювати документ під час змін</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4453"/>
+        <location filename="../src/configdialog.ui" line="4410"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>Розмір лазерного вказівника на презентації:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4528"/>
+        <location filename="../src/configdialog.ui" line="4485"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>Колір лазерного вказівника на презентації:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4578"/>
+        <location filename="../src/configdialog.ui" line="4541"/>
         <source>Use SVN</source>
         <translation>Використовувати SVN</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4583"/>
+        <location filename="../src/configdialog.ui" line="4546"/>
         <source>Use GIT</source>
         <translation>Використовувати GIT</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4591"/>
+        <location filename="../src/configdialog.ui" line="4554"/>
         <source>Select how txs checks in saved files</source>
         <translation>Виберіть, як txs реєструє збережені файли</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4595"/>
+        <location filename="../src/configdialog.ui" line="4558"/>
         <source>No automatic check-in after save</source>
         <translation>Без автоматичної реєстрації після збереження</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4600"/>
+        <location filename="../src/configdialog.ui" line="4563"/>
         <source>Check-in after File/Save only</source>
         <translation>Реєстрація лише після Файл/Зберегти</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4605"/>
+        <location filename="../src/configdialog.ui" line="4568"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Перевіряти після усіх операцій збереження, тобто також перед компіляцією.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4613"/>
+        <location filename="../src/configdialog.ui" line="4576"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Використовувати варіанти SVN/GIT для скасування перед останнім збереженим варіантом</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4620"/>
+        <location filename="../src/configdialog.ui" line="4583"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>в svn додати executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4623"/>
+        <location filename="../src/configdialog.ui" line="4586"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Замінювати ключові слова їхніми значеннями (при додаванні у SVN)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4632"/>
+        <location filename="../src/configdialog.ui" line="4595"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Глибина пошуку SVN каталогів: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4683"/>
+        <location filename="../src/configdialog.ui" line="4652"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal Terminal</source>
         <translation>Внутрішній термінал</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4734"/>
+        <location filename="../src/configdialog.ui" line="4703"/>
         <source>Shell:</source>
         <translation>Оболонка:</translation>
     </message>
@@ -2863,6 +2853,7 @@ to set the key anyway?</source>
         <translation>Різниці</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3814"/>
         <location filename="../src/configdialog.cpp" line="498"/>
         <location filename="../src/configdialog.cpp" line="540"/>
         <source>Preview</source>
@@ -2929,6 +2920,7 @@ to set the key anyway?</source>
         <translation>Панелі інструментів</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1345"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>GUI Scaling</source>
         <translation>Масштабування ГІК</translation>
@@ -2949,6 +2941,7 @@ to set the key anyway?</source>
         <translation>Перевірка мови</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4534"/>
         <location filename="../src/configdialog.cpp" line="542"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -12091,6 +12084,7 @@ included document in %1</source>
         <translation>Вниз</translation>
     </message>
     <message>
+        <location filename="../src/usermenudialog.ui" line="60"/>
         <location filename="../src/usermenudialog.ui" line="242"/>
         <source>Name</source>
         <translation>Назва</translation>
@@ -12102,6 +12096,7 @@ included document in %1</source>
         <translation>Скорочення</translation>
     </message>
     <message>
+        <location filename="../src/usermenudialog.ui" line="70"/>
         <location filename="../src/usermenudialog.ui" line="271"/>
         <source>Trigger</source>
         <translation>Перемикач</translation>
@@ -12178,6 +12173,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>Опис</translation>
     </message>
     <message>
+        <location filename="../src/usermenudialog.ui" line="65"/>
         <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shortcut</source>
         <translation>Скорочення</translation>

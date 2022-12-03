@@ -741,137 +741,137 @@ Var vänlig ändra din konfiguration och definiera kommandolistor enbart i: &apo
         <translation>Konfigurera TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="86"/>
+        <location filename="../src/configdialog.ui" line="4759"/>
         <source>Show Advanced Options</source>
         <translation>Visa avancerade inställningar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="112"/>
+        <location filename="../src/configdialog.ui" line="4785"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="122"/>
+        <location filename="../src/configdialog.ui" line="4795"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="208"/>
-        <location filename="../src/configdialog.ui" line="2051"/>
+        <location filename="../src/configdialog.ui" line="165"/>
+        <location filename="../src/configdialog.ui" line="1996"/>
         <source>Appearance</source>
         <translation>Utseende</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="290"/>
-        <location filename="../src/configdialog.ui" line="3687"/>
+        <location filename="../src/configdialog.ui" line="247"/>
+        <location filename="../src/configdialog.ui" line="3644"/>
         <source>Language:</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="303"/>
+        <location filename="../src/configdialog.ui" line="260"/>
         <source>Font:</source>
         <translation>Typsnitt:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="335"/>
-        <location filename="../src/configdialog.ui" line="1804"/>
-        <location filename="../src/configdialog.ui" line="4717"/>
+        <location filename="../src/configdialog.ui" line="292"/>
+        <location filename="../src/configdialog.ui" line="1749"/>
+        <location filename="../src/configdialog.ui" line="4686"/>
         <source>Font Size:</source>
         <translation>Typsnittsstorlek:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="311"/>
+        <location filename="../src/configdialog.ui" line="268"/>
         <source>Classic</source>
         <translation>Klassisk</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="316"/>
+        <location filename="../src/configdialog.ui" line="273"/>
         <source>Modern</source>
         <translation>Modern</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="267"/>
+        <location filename="../src/configdialog.ui" line="224"/>
         <source>Style:</source>
         <translation>Stil:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="342"/>
+        <location filename="../src/configdialog.ui" line="299"/>
         <source>Use System Theme Icons</source>
         <translation>Använd ikoner från systemets stilmall</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="234"/>
-        <location filename="../src/configdialog.ui" line="4689"/>
+        <location filename="../src/configdialog.ui" line="191"/>
+        <location filename="../src/configdialog.ui" line="4658"/>
         <source>Color Scheme:</source>
         <translation>Färgschema</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="214"/>
+        <location filename="../src/configdialog.ui" line="171"/>
         <source>Ignore Most System Colors</source>
         <translation>Ignorera de flesta av systemfärgerna</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="469"/>
+        <location filename="../src/configdialog.ui" line="426"/>
         <source>MRU Document Chooser</source>
         <translation>MRU Dokument-väljare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="321"/>
+        <location filename="../src/configdialog.ui" line="278"/>
         <source>Modern - dark</source>
         <translation>Modern - mörkt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="381"/>
+        <location filename="../src/configdialog.ui" line="338"/>
         <source>Files</source>
         <translation>Filer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="432"/>
+        <location filename="../src/configdialog.ui" line="389"/>
         <source>Max. Recent Documents:</source>
         <translation>Max antal senaste dokument:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="403"/>
+        <location filename="../src/configdialog.ui" line="360"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Kom ihåg valda filfilter i öppna/spara fildialogerna</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="452"/>
+        <location filename="../src/configdialog.ui" line="409"/>
         <source>Use system file dialogs</source>
         <translation>Använd systemets fildialogrutor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="482"/>
+        <location filename="../src/configdialog.ui" line="439"/>
         <source>Session</source>
         <translation>Session</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="491"/>
+        <location filename="../src/configdialog.ui" line="448"/>
         <source>Restore Previous Session at Startup</source>
         <translation>Återställ föregående session vid uppstart</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="498"/>
+        <location filename="../src/configdialog.ui" line="455"/>
         <source>Store relative paths</source>
         <translation>Spara relativa adresser</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="511"/>
+        <location filename="../src/configdialog.ui" line="468"/>
         <source>Startup</source>
         <translation>Uppstart</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="517"/>
+        <location filename="../src/configdialog.ui" line="474"/>
         <source>Check LaTeX Configuration</source>
         <translation>Kontrollera LaTeX-konfigurationen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="527"/>
+        <location filename="../src/configdialog.ui" line="484"/>
         <source>Update</source>
         <translation>Uppdatera</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="539"/>
+        <location filename="../src/configdialog.ui" line="496"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
@@ -882,156 +882,156 @@ Var vänlig ändra din konfiguration och definiera kommandolistor enbart i: &apo
 - Utvecklingsversioner: Innehåller de senaste funktionerna men kan vara instabila. (Du får även notifieringar om stabila versioner och releasekandidater)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="546"/>
+        <location filename="../src/configdialog.ui" line="503"/>
         <source>Stable Releases</source>
         <translation>Stabil version</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="551"/>
+        <location filename="../src/configdialog.ui" line="508"/>
         <source>Release Candidates</source>
         <translation>Releasekandidater</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="556"/>
+        <location filename="../src/configdialog.ui" line="513"/>
         <source>Development Versions</source>
         <translation>Utvecklingsversioner</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="577"/>
+        <location filename="../src/configdialog.ui" line="534"/>
         <source>Check Now</source>
         <translation>Kontrollera nu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="604"/>
+        <location filename="../src/configdialog.ui" line="561"/>
         <source>Last Checked:</source>
         <translation>Senast kontrollerad:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="611"/>
+        <location filename="../src/configdialog.ui" line="568"/>
         <source> days</source>
         <translation>dag</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="624"/>
+        <location filename="../src/configdialog.ui" line="581"/>
         <source>Automatically check every</source>
         <translation>Automatiskt kontrollera var</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="631"/>
+        <location filename="../src/configdialog.ui" line="588"/>
         <source>Update Level:</source>
         <translation>Uppdateringsnivå:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="686"/>
+        <location filename="../src/configdialog.ui" line="643"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Kommandon (%: filnamn utan ändelse - @: radnummber - ?: utökade alternativ för filnamn)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="693"/>
+        <location filename="../src/configdialog.ui" line="650"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Specialtecken&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="700"/>
+        <location filename="../src/configdialog.ui" line="657"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="726"/>
+        <location filename="../src/configdialog.ui" line="683"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; och &lt;b&gt;?? &lt;/b&gt; blir: %, @ eller ?
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="804"/>
+        <location filename="../src/configdialog.ui" line="764"/>
         <source>Meta Commands</source>
         <translation>Metakommandon</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="817"/>
+        <location filename="../src/configdialog.ui" line="777"/>
         <source>User Commands</source>
         <translation>Användarkommandon</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="827"/>
+        <location filename="../src/configdialog.ui" line="787"/>
         <source>Build Options</source>
         <translation>Byggalternativ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="839"/>
+        <location filename="../src/configdialog.ui" line="799"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
         <translation>Kör txs:///recompile-bibliography om bib-filerna har ändrats.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="842"/>
+        <location filename="../src/configdialog.ui" line="802"/>
         <source>Check and update bibliography before compiling</source>
         <translation>Kontrollera och uppdatera bibliografi före kompilering</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="809"/>
         <source>Show messages when starting compiling</source>
         <translation>Visa meddelande när kompilering startar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="874"/>
+        <location filename="../src/configdialog.ui" line="834"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Starta inte en ny instans av visaren om DVI/PS/PDF-filen redan är öppnad.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="881"/>
+        <location filename="../src/configdialog.ui" line="841"/>
         <source>Show stdout:</source>
         <translation>Visa stdout:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="889"/>
-        <location filename="../src/configdialog.ui" line="2292"/>
-        <location filename="../src/configdialog.ui" line="3960"/>
+        <location filename="../src/configdialog.ui" line="849"/>
+        <location filename="../src/configdialog.ui" line="2237"/>
+        <location filename="../src/configdialog.ui" line="3917"/>
         <source>Never</source>
         <translation>Aldrig</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="894"/>
+        <location filename="../src/configdialog.ui" line="854"/>
         <source>Only For User Commands</source>
         <translation>Bara för användarkommandon</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="899"/>
+        <location filename="../src/configdialog.ui" line="859"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
         <translation>Alltid (om inte skickas till &gt; /dev/null)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="907"/>
+        <location filename="../src/configdialog.ui" line="867"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
         <translation>Vissa LaTeX-element (e.g. referenser) kräver multipla kompileringar innan de visas korrekt.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="910"/>
+        <location filename="../src/configdialog.ui" line="870"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Maximalt antal repetitioner av kompileringar:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="973"/>
+        <location filename="../src/configdialog.ui" line="917"/>
         <source>Commands ($PATH)</source>
         <translation>Kommandon ($PATH)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="980"/>
+        <location filename="../src/configdialog.ui" line="924"/>
         <source>PDF File</source>
         <translation>PDF-fil</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1024"/>
+        <location filename="../src/configdialog.ui" line="968"/>
         <source>Log File</source>
         <translation>Loggfil</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1035"/>
+        <location filename="../src/configdialog.ui" line="977"/>
         <source>Additional Search Paths:</source>
         <translation>Alternativa sökvägar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1042"/>
+        <location filename="../src/configdialog.ui" line="984"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1050,33 +1050,33 @@ Variabler skrivs som: $MYVAR. Det görs tydlig skillnad på versaler och gemener
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1052"/>
+        <location filename="../src/configdialog.ui" line="994"/>
         <source>Replace Environment Variables</source>
         <translation>Ersätt miljövariabler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1059"/>
+        <location filename="../src/configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
         <translation>Visa logg i händelse av kompileringsfel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1066"/>
+        <location filename="../src/configdialog.ui" line="1008"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1069"/>
+        <location filename="../src/configdialog.ui" line="1011"/>
         <source>Interpret command definition in magic comments</source>
         <translation>Läs kommandodefinitionen i magiska kommentarer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1106"/>
+        <location filename="../src/configdialog.ui" line="1048"/>
         <location filename="../src/configdialog.cpp" line="531"/>
         <source>Shortcuts</source>
         <translation>Genvägar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1113"/>
+        <location filename="../src/configdialog.ui" line="1055"/>
         <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1085,975 +1085,970 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1130"/>
-        <location filename="../src/configdialog.ui" line="1377"/>
+        <location filename="../src/configdialog.ui" line="1072"/>
+        <location filename="../src/configdialog.ui" line="1319"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1135"/>
+        <location filename="../src/configdialog.ui" line="1077"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1140"/>
+        <location filename="../src/configdialog.ui" line="1082"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1145"/>
+        <location filename="../src/configdialog.ui" line="1087"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1153"/>
+        <location filename="../src/configdialog.ui" line="1095"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1156"/>
+        <location filename="../src/configdialog.ui" line="1098"/>
         <source>Close Element (Esc)</source>
         <translation>Stäng element (Escape)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1162"/>
+        <location filename="../src/configdialog.ui" line="1104"/>
         <source>Close Log-View</source>
         <translation>Stäng Loggvyn</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1169"/>
+        <location filename="../src/configdialog.ui" line="1111"/>
         <source>Close Embedded Viewer</source>
         <translation>Stäng inbyggd visare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1176"/>
+        <location filename="../src/configdialog.ui" line="1118"/>
         <source>Close Full Screen Mode</source>
         <translation>Stäng fullskärmsläge</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1186"/>
+        <location filename="../src/configdialog.ui" line="1128"/>
         <source>Show Shortcuts in Tooltips</source>
         <translation>Visa genvägar i verktygstips</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1209"/>
+        <location filename="../src/configdialog.ui" line="1151"/>
         <location filename="../src/configdialog.cpp" line="532"/>
         <source>Menus</source>
         <translation>Menyer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1216"/>
+        <location filename="../src/configdialog.ui" line="1158"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation>Här listas menyelementen och kan gömmas eller redigeras.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1229"/>
+        <location filename="../src/configdialog.ui" line="1171"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1234"/>
+        <location filename="../src/configdialog.ui" line="1176"/>
         <location filename="../src/configdialog.cpp" line="520"/>
         <source>Command</source>
         <translation>Kommando</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1239"/>
+        <location filename="../src/configdialog.ui" line="1181"/>
         <source>Slot</source>
         <translation>Slot</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1247"/>
+        <location filename="../src/configdialog.ui" line="1189"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
         <translation>Detta kontrollerar om listan ovan ska innehålla alla menyelement eller bara de mest ändrade.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1250"/>
+        <location filename="../src/configdialog.ui" line="1192"/>
         <source>Show All</source>
         <translation>Visa alla</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1273"/>
+        <location filename="../src/configdialog.ui" line="1215"/>
         <source>Toolbar Customization</source>
         <translation>Verktygsfält Konfiguration</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1282"/>
+        <location filename="../src/configdialog.ui" line="1224"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation>Detta visar alla åtgärder på det nuvarande redigerade verktygsfältet.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1307"/>
+        <location filename="../src/configdialog.ui" line="1249"/>
         <source>This adds an action to the toolbar.</source>
         <translation>Detta lägger till en åtgärd på verktygsfältet.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1321"/>
+        <location filename="../src/configdialog.ui" line="1263"/>
         <source>This removes an action from the toolbar.</source>
         <translation>Detta tar bort en åtgärd från verktygsfältet.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1350"/>
+        <location filename="../src/configdialog.ui" line="1292"/>
         <source>Here you can choose a toolbar to modify.</source>
         <translation>Här kan du välja ett verktygsfält att modifiera.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1357"/>
+        <location filename="../src/configdialog.ui" line="1299"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
         <translation>Här kan du välja en lista av åtgärder som kan mappas till verktygsfältet.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1364"/>
+        <location filename="../src/configdialog.ui" line="1306"/>
         <source>This shows available actions to map on a toolbar.</source>
         <translation>Detta visar tillgängliga åtgärder att mappas till ett verktygsfält.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1403"/>
-        <source>Scaling</source>
-        <translation>Skalning</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1541"/>
+        <location filename="../src/configdialog.ui" line="1470"/>
         <source>Secondary Toolbars</source>
         <translation>Sekundära verktygsfält</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1450"/>
-        <location filename="../src/configdialog.ui" line="1457"/>
-        <location filename="../src/configdialog.ui" line="1514"/>
-        <location filename="../src/configdialog.ui" line="1580"/>
+        <location filename="../src/configdialog.ui" line="1392"/>
+        <location filename="../src/configdialog.ui" line="1399"/>
+        <location filename="../src/configdialog.ui" line="1456"/>
+        <location filename="../src/configdialog.ui" line="1509"/>
         <source>Reset</source>
         <translation>Återställ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1521"/>
+        <location filename="../src/configdialog.ui" line="1463"/>
         <source>Symbol Grid</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1443"/>
+        <location filename="../src/configdialog.ui" line="1385"/>
         <source>Main Toolbar</source>
         <translation>Huvudverktygsfält</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1486"/>
+        <location filename="../src/configdialog.ui" line="1428"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
         <translation>Detta ändrar skalningen på det horisontella verktygsfältet (för högupplösta skärmar).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1412"/>
+        <location filename="../src/configdialog.ui" line="1354"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1464"/>
+        <location filename="../src/configdialog.ui" line="1406"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
         <translation>Detta ändrar skalningen på det vertikala verktygsfältet (för högupplösta skärmar).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1622"/>
+        <location filename="../src/configdialog.ui" line="1567"/>
         <location filename="../src/configdialog.cpp" line="535"/>
-        <location filename="../src/configmanager.cpp" line="1521"/>
+        <location filename="../src/configmanager.cpp" line="1518"/>
         <source>Editor</source>
         <translation>Redigerare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1634"/>
+        <location filename="../src/configdialog.ui" line="1579"/>
         <source>Inline Checking:</source>
         <translation>Infogad kontroll:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1673"/>
+        <location filename="../src/configdialog.ui" line="1618"/>
         <source>Check non tex files</source>
         <translation>Kontrollera icke-tex-filer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1683"/>
+        <location filename="../src/configdialog.ui" line="1628"/>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation>Scanna LaTeX-distributionen efter installerade paket</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1693"/>
+        <location filename="../src/configdialog.ui" line="1638"/>
         <source>Folding</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1700"/>
+        <location filename="../src/configdialog.ui" line="1645"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation>Byt ut radindrag med tabbtecken mot blanksteg.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1707"/>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="1652"/>
+        <location filename="../src/configdialog.ui" line="4672"/>
         <source>Font Family:</source>
         <translation>Fontfamilj:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1714"/>
+        <location filename="../src/configdialog.ui" line="1659"/>
         <source>Replace Double Quotes:</source>
         <translation>Ersätt dubbla citationstecken:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1727"/>
+        <location filename="../src/configdialog.ui" line="1672"/>
         <source>Default Font Encoding:</source>
         <translation>Standard fontkodning:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1734"/>
+        <location filename="../src/configdialog.ui" line="1679"/>
         <source>Indentation Mode:</source>
         <translation>Radindragsläge:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1741"/>
+        <location filename="../src/configdialog.ui" line="1686"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Automatiskt detektering av teckenkodning</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1751"/>
+        <location filename="../src/configdialog.ui" line="1696"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
         <translation>Analysera LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1758"/>
+        <location filename="../src/configdialog.ui" line="1703"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>kan bara välja mellan utf16/utf-8 och ISO 8859-1 !</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1761"/>
+        <location filename="../src/configdialog.ui" line="1706"/>
         <source>Analyze Characters</source>
         <translation>Analysera tecken</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1785"/>
-        <location filename="../src/configdialog.ui" line="4045"/>
-        <location filename="../src/configdialog.ui" line="4142"/>
+        <location filename="../src/configdialog.ui" line="1730"/>
+        <location filename="../src/configdialog.ui" line="4002"/>
+        <location filename="../src/configdialog.ui" line="4099"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1811"/>
+        <location filename="../src/configdialog.ui" line="1756"/>
         <source>Line Spacing:</source>
         <translation>Radavstånd:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1822"/>
+        <location filename="../src/configdialog.ui" line="1767"/>
         <source>No Replacement</source>
         <translation>Ingen ersättning</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1827"/>
+        <location filename="../src/configdialog.ui" line="1772"/>
         <source>English Quotes:  `` &apos;&apos;</source>
         <translation>Engelska citationstecken:  `` &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1832"/>
+        <location filename="../src/configdialog.ui" line="1777"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
         <translation>Franska citationstecken:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1837"/>
+        <location filename="../src/configdialog.ui" line="1782"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
         <translation>Tyska citationstecken:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1842"/>
+        <location filename="../src/configdialog.ui" line="1787"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
         <translation>Franska citationstecken (babel): \og{} \fg{}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1847"/>
+        <location filename="../src/configdialog.ui" line="1792"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
         <translation>Omvända franska citationstecken: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1852"/>
+        <location filename="../src/configdialog.ui" line="1797"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>Paketet csquotes: \enquote{  }</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1857"/>
+        <location filename="../src/configdialog.ui" line="1802"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Engelska citationstecken (unicode): “ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1862"/>
+        <location filename="../src/configdialog.ui" line="1807"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
         <translation>Polska citationstecken: ,, &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1867"/>
+        <location filename="../src/configdialog.ui" line="1812"/>
         <source>Polish Quotes (unicode): „ ”</source>
         <translation>Polska citationstecken (Unicode): „ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1875"/>
+        <location filename="../src/configdialog.ui" line="1820"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Visa bara typsnitt med fast bredd</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1886"/>
+        <location filename="../src/configdialog.ui" line="1831"/>
         <source>Ignore Indentation</source>
         <translation>Ignorera radindrag</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1891"/>
+        <location filename="../src/configdialog.ui" line="1836"/>
         <source>Keep Indentation</source>
         <translation>Behåll radindrag</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1896"/>
+        <location filename="../src/configdialog.ui" line="1841"/>
         <source>Indent and Unindent Automatically</source>
         <translation>Sätt radindrag automatiskt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1916"/>
+        <location filename="../src/configdialog.ui" line="1861"/>
         <source>Spelling</source>
         <translation>Stavning</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1923"/>
+        <location filename="../src/configdialog.ui" line="1868"/>
         <source>Grammar</source>
         <translation>Grammatik</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1930"/>
+        <location filename="../src/configdialog.ui" line="1875"/>
         <source>Citations</source>
         <translation>Citeringar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1937"/>
+        <location filename="../src/configdialog.ui" line="1882"/>
         <source>References</source>
         <translation>Referenser</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1944"/>
+        <location filename="../src/configdialog.ui" line="1889"/>
         <source>Syntax</source>
         <translation>Syntax</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1951"/>
+        <location filename="../src/configdialog.ui" line="1896"/>
         <source>Package</source>
         <translation>Paket</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1961"/>
+        <location filename="../src/configdialog.ui" line="1906"/>
         <source>Replace Tab in Text by Spaces</source>
         <translation>Ersätt tabbtecken i text med mellanslagstecken</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1968"/>
+        <location filename="../src/configdialog.ui" line="1913"/>
         <source>Automatically load included files</source>
         <translation>Automatisk laddning av inkluderade filer.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1978"/>
+        <location filename="../src/configdialog.ui" line="1923"/>
         <source>Hide grammar errors in non-text environments</source>
         <translation>Dölj grammatiska fel i miljöer som inte är text.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1988"/>
+        <location filename="../src/configdialog.ui" line="1933"/>
         <source>Hide spelling errors in non-text environments</source>
         <translation>Dölj stavfel i miljöer som inte är text</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1998"/>
+        <location filename="../src/configdialog.ui" line="1943"/>
         <source>Remove Trailing Whitespace on Save</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1644"/>
+        <location filename="../src/configdialog.ui" line="1589"/>
         <source>Show Line Numbers:</source>
         <translation>Visa radnummer:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1655"/>
+        <location filename="../src/configdialog.ui" line="1600"/>
         <source>No Line Numbers</source>
         <translation>Inga radnummer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1660"/>
+        <location filename="../src/configdialog.ui" line="1605"/>
         <source>All Line Numbers</source>
         <translation>Alla radnummer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1665"/>
+        <location filename="../src/configdialog.ui" line="1610"/>
         <source>Only Important Line Numbers</source>
         <translation>Bara signifikanta radnummer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2074"/>
+        <location filename="../src/configdialog.ui" line="2019"/>
         <source>Show State Panel</source>
         <translation>Vissa tillståndspanel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2086"/>
+        <location filename="../src/configdialog.ui" line="2031"/>
         <source>Tab Width:</source>
         <translation>Tabb-avstånd:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2121"/>
+        <location filename="../src/configdialog.ui" line="2066"/>
         <source>Show Whitespace</source>
         <translation>Visa mellanrum</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2134"/>
+        <location filename="../src/configdialog.ui" line="2079"/>
         <source>Show Line Change State</source>
         <translation>Visa tillstånd för radändringar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2144"/>
+        <location filename="../src/configdialog.ui" line="2089"/>
         <source>Draw cursor as a thick line</source>
         <translation>Rita markör som bred linje</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2147"/>
+        <location filename="../src/configdialog.ui" line="2092"/>
         <source>Bold Cursor</source>
         <translation>Fet markör</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2163"/>
+        <location filename="../src/configdialog.ui" line="2108"/>
         <source>Search Panel</source>
         <translation>Sökpanel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2169"/>
+        <location filename="../src/configdialog.ui" line="2114"/>
         <source>Close search and replace panel together</source>
         <translation>Stäng Sök och Ersätt-panelen tillsammans</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2179"/>
+        <location filename="../src/configdialog.ui" line="2124"/>
         <source>Use single line selection as Search Word</source>
         <translation>Använd enradsmarkering som sökord</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2189"/>
+        <location filename="../src/configdialog.ui" line="2134"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Begränsa sökomfånget till en existerande markering</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2199"/>
+        <location filename="../src/configdialog.ui" line="2144"/>
         <source>Special options</source>
         <translation>Specialalternativ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2232"/>
+        <location filename="../src/configdialog.ui" line="2177"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Visa markörer när loggpost väljs</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2278"/>
+        <location filename="../src/configdialog.ui" line="2223"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Lägg till element direkt i kontextmeny</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2283"/>
+        <location filename="../src/configdialog.ui" line="2228"/>
         <source>Create Dedicated Submenu</source>
         <translation>Skapa dedikerad undermeny</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2503"/>
+        <location filename="../src/configdialog.ui" line="2448"/>
         <source>Spellchecking via context menu:</source>
         <translation>Stavningskontroll via kontextmeny:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2438"/>
+        <location filename="../src/configdialog.ui" line="2383"/>
         <source>Default Log Encoding</source>
         <translation>Standard loggkodning:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2297"/>
+        <location filename="../src/configdialog.ui" line="2242"/>
         <source>1 minute</source>
         <translation>1 minuter</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2302"/>
+        <location filename="../src/configdialog.ui" line="2247"/>
         <source>2 minutes</source>
         <translation>2 minuter</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2307"/>
+        <location filename="../src/configdialog.ui" line="2252"/>
         <source>5 minutes</source>
         <translation>5 minuter</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2312"/>
+        <location filename="../src/configdialog.ui" line="2257"/>
         <source>10 minutes</source>
         <translation>10 minuter</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2317"/>
+        <location filename="../src/configdialog.ui" line="2262"/>
         <source>20 minutes</source>
         <translation>20 minuter</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2322"/>
+        <location filename="../src/configdialog.ui" line="2267"/>
         <source>60 minutes</source>
         <translation>60 minuter</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2510"/>
+        <location filename="../src/configdialog.ui" line="2455"/>
         <source>Auto Complete Parentheses</source>
         <translation>Komplettera automatiskt parenteser</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2431"/>
+        <location filename="../src/configdialog.ui" line="2376"/>
         <source>Smooth Scrolling</source>
         <translation>Mjuk rullning</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2239"/>
+        <location filename="../src/configdialog.ui" line="2184"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Zoom med mushjulet</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2445"/>
+        <location filename="../src/configdialog.ui" line="2390"/>
         <source>Auto Save All Files:</source>
         <translation>Spara alla filer automatiskt:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2341"/>
+        <location filename="../src/configdialog.ui" line="2286"/>
         <source>Line Wrapping:</source>
         <translation>Radbrytning:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2517"/>
+        <location filename="../src/configdialog.ui" line="2462"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2251"/>
+        <location filename="../src/configdialog.ui" line="2196"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Ladda automatiskt om sparade filer när de ändrats av externa program (kastar bort ångerhistoriken)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2378"/>
+        <location filename="../src/configdialog.ui" line="2323"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Visa hjälp för kommandon i den interna PDF-visaren (texdoc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2393"/>
+        <location filename="../src/configdialog.ui" line="2338"/>
         <source>Select Word</source>
         <translation>Välj ord</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2398"/>
+        <location filename="../src/configdialog.ui" line="2343"/>
         <source>Select Word or Command</source>
         <translation>Välj ord eller kommando</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2403"/>
+        <location filename="../src/configdialog.ui" line="2348"/>
         <source>Select Parentheses Content</source>
         <translation>Välj innehåll i parenteser</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2408"/>
+        <location filename="../src/configdialog.ui" line="2353"/>
         <source>Select Parentheses</source>
         <translation>Välj parenteser</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2413"/>
+        <location filename="../src/configdialog.ui" line="2358"/>
         <source>Select Line</source>
         <translation>Välj rad</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2260"/>
+        <location filename="../src/configdialog.ui" line="2205"/>
         <source>Monitor open files for external changes</source>
         <translation>Övervaka öppna filer för externa  ändringar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2368"/>
+        <location filename="../src/configdialog.ui" line="2313"/>
         <source>Triple-Click Selection:</source>
         <translation>Markering med trippelklickning:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2208"/>
+        <location filename="../src/configdialog.ui" line="2153"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Detta använder QSaveFile för att förhindra förlust av existerande data om skrivningen misslyckas. Nackdelen är att den aktuella användaren blir ägare till filen och utökade filrättigheter förloras. Den här metoden har också visat sig kunna leda till problem med Dropbox-kataloger.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2211"/>
+        <location filename="../src/configdialog.ui" line="2156"/>
         <source>Safe writing of files</source>
         <translation>Säker skrivning av filer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2348"/>
+        <location filename="../src/configdialog.ui" line="2293"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation>Skriv över avslutande klamrar som följer en platshållare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2355"/>
+        <location filename="../src/configdialog.ui" line="2300"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation>Det här har bara effekt om bredden på dokumentet är begränsat av mjuk eller hård radbrytning.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2358"/>
+        <location filename="../src/configdialog.ui" line="2303"/>
         <source>Center Document in Editor</source>
         <translation>Centrera dokumentet i redigeraren</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2489"/>
+        <location filename="../src/configdialog.ui" line="2434"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Visa hjälp som verktygstips på text i redigeraren</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2421"/>
+        <location filename="../src/configdialog.ui" line="2366"/>
         <source>Maximal Characters:</source>
         <translation>Maximalt antal tecken:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2466"/>
+        <location filename="../src/configdialog.ui" line="2411"/>
         <source>No Line Wrap</source>
         <translation>Ingen radbrytning.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2471"/>
+        <location filename="../src/configdialog.ui" line="2416"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>Mjuk radbrytning vid fönstrets kant</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2476"/>
+        <location filename="../src/configdialog.ui" line="2421"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>Mjuk radbrytning efter max. tecken</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2481"/>
+        <location filename="../src/configdialog.ui" line="2426"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Hård radbrytning efter max. tecken</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2330"/>
+        <location filename="../src/configdialog.ui" line="2275"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>När Unicode används i källkoden måste LaTeX kunna rendera tecknen. Då LaTeX saknar inbyggt stöd för Unicode måste du inkludera lämpligt paket med stöd för Unicode-tecken i ditt dokument.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2334"/>
+        <location filename="../src/configdialog.ui" line="2279"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Infoga symboler som Unicode</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2496"/>
+        <location filename="../src/configdialog.ui" line="2441"/>
         <source>Go to error when displaying log</source>
         <translation>Gå till felmeddelanden när loggfilen visas</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2218"/>
+        <location filename="../src/configdialog.ui" line="2163"/>
         <source>Show image tooltip on image files</source>
         <translation>Visa bildverktygstips på bildfiler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2225"/>
+        <location filename="../src/configdialog.ui" line="2170"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Skriv över inledande klamrar som följs av en platshållare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2385"/>
+        <location filename="../src/configdialog.ui" line="2330"/>
         <source>Allow Drag and Drop</source>
         <translation>Tillåt drag och släpp</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2267"/>
+        <location filename="../src/configdialog.ui" line="2212"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1548"/>
+        <location filename="../src/configdialog.ui" line="1477"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Detta ändrar skalningen av verktygsfältet för den inbyggda pdf-läsaren (för högupplösta skärmar).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1573"/>
+        <location filename="../src/configdialog.ui" line="1502"/>
         <source>Embedded PDF Toolbar</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2270"/>
+        <location filename="../src/configdialog.ui" line="2215"/>
         <source>Latex Command for pushed citations:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2524"/>
+        <location filename="../src/configdialog.ui" line="2469"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2534"/>
+        <location filename="../src/configdialog.ui" line="2479"/>
         <source>Structure Panel</source>
         <translation>Strukturpanel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2565"/>
+        <location filename="../src/configdialog.ui" line="2510"/>
         <source>Mark structure elements beyond \end{document}</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2572"/>
+        <location filename="../src/configdialog.ui" line="2517"/>
         <source>Reference commands in context menu:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2612"/>
+        <location filename="../src/configdialog.ui" line="2557"/>
         <source>Mark structure elements in appendix</source>
         <translation>Markera strukturelement i appendix</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2585"/>
+        <location filename="../src/configdialog.ui" line="2530"/>
         <source>Regular expression for TODO comment: </source>
         <translation>Reguljära uttryck för TODO-kommentarer:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2592"/>
+        <location filename="../src/configdialog.ui" line="2537"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2544"/>
+        <location filename="../src/configdialog.ui" line="2489"/>
         <source>No Color Background</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2549"/>
+        <location filename="../src/configdialog.ui" line="2494"/>
         <source>Green Background</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2554"/>
+        <location filename="../src/configdialog.ui" line="2499"/>
         <source>Blue Background</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2562"/>
+        <location filename="../src/configdialog.ui" line="2507"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2609"/>
+        <location filename="../src/configdialog.ui" line="2554"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2599"/>
+        <location filename="../src/configdialog.ui" line="2544"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="352"/>
+        <location filename="../src/configdialog.ui" line="309"/>
         <source>Icon Theme:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="360"/>
+        <location filename="../src/configdialog.ui" line="317"/>
         <source>Colibre</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="365"/>
+        <location filename="../src/configdialog.ui" line="322"/>
         <source>Oxygen Modern</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="370"/>
+        <location filename="../src/configdialog.ui" line="327"/>
         <source>Oxygen Classic</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="396"/>
+        <location filename="../src/configdialog.ui" line="353"/>
         <source>Max. Recent Root Documents:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="459"/>
+        <location filename="../src/configdialog.ui" line="416"/>
         <source>Always Show Structure of Root Document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="710"/>
+        <location filename="../src/configdialog.ui" line="667"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2540"/>
+        <location filename="../src/configdialog.ui" line="2485"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2602"/>
+        <location filename="../src/configdialog.ui" line="2547"/>
         <source>Scroll to current cursor position</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2619"/>
+        <location filename="../src/configdialog.ui" line="2564"/>
         <source>Use color in global TOC:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2639"/>
+        <location filename="../src/configdialog.ui" line="2584"/>
         <source>Bibliography</source>
         <translation>Bibliografi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2645"/>
+        <location filename="../src/configdialog.ui" line="2590"/>
         <source>bib File Encoding:</source>
         <translation>Teckenkodning för bib-fil:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2652"/>
+        <location filename="../src/configdialog.ui" line="2597"/>
         <source>Parse BibTeX</source>
         <translation>Läs BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2665"/>
+        <location filename="../src/configdialog.ui" line="2610"/>
         <source>Table Autoformating</source>
         <translation>Automatiskt formatering av tabell</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2671"/>
+        <location filename="../src/configdialog.ui" line="2616"/>
         <source>One Line Per Cell</source>
         <translation>En rad per cell</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2679"/>
+        <location filename="../src/configdialog.ui" line="2624"/>
         <source>Behind Line Break</source>
         <translation>Bakom radbrytning</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2684"/>
+        <location filename="../src/configdialog.ui" line="2629"/>
         <source>Separate Line (No Indent)</source>
         <translation>Separat rad (inget indrag)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2689"/>
+        <location filename="../src/configdialog.ui" line="2634"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Separat rad (indrag till första kolumnen)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2697"/>
+        <location filename="../src/configdialog.ui" line="2642"/>
         <source>Special Commands Position:</source>
         <translation>Specialkommandon position:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2707"/>
+        <location filename="../src/configdialog.ui" line="2652"/>
         <source>Special Commands:</source>
         <translation>Specialkommandon:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2717"/>
+        <location filename="../src/configdialog.ui" line="2662"/>
         <source>Additional Search Paths</source>
         <translation>Ytterligare sökvägar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2726"/>
+        <location filename="../src/configdialog.ui" line="2671"/>
         <source>Bib Files:</source>
         <translation>Bib-filer:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2739"/>
+        <location filename="../src/configdialog.ui" line="2684"/>
         <source>Image Files:</source>
         <translation>Bildfiler:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2777"/>
+        <location filename="../src/configdialog.ui" line="2722"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2783"/>
+        <location filename="../src/configdialog.ui" line="2728"/>
         <source>Automatically insert LRM characters</source>
         <translation>Lägg automatiskt till LRM-tecken</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2790"/>
+        <location filename="../src/configdialog.ui" line="2735"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Visuell kolumnmarkör-läge (i.e. flytta markören riktningen som ges av piltangenterna i text)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2797"/>
+        <location filename="../src/configdialog.ui" line="2742"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Byt automatiskt tangentbordslayout:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2804"/>
+        <location filename="../src/configdialog.ui" line="2749"/>
         <source>depending on character direction</source>
         <translation>beroende på tecknets riktning</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2811"/>
+        <location filename="../src/configdialog.ui" line="2756"/>
         <source>depending on text/math mode</source>
         <translation>beroende på text/matematik-läge</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2821"/>
+        <location filename="../src/configdialog.ui" line="2766"/>
         <source>Hacks/Workarounds</source>
         <translation>Hack/Workaround</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2827"/>
+        <location filename="../src/configdialog.ui" line="2772"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Inaktivera workardound för skrivande av accenttecken (enbart MacOS)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2834"/>
+        <location filename="../src/configdialog.ui" line="2779"/>
         <source>Try to automatically choose best display options</source>
         <translation>Försök att automatiskt välja de bästa grafikvalen.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2852"/>
+        <location filename="../src/configdialog.ui" line="2797"/>
         <source>Render Mode:</source>
         <translation>Renderingsläge: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2860"/>
+        <location filename="../src/configdialog.ui" line="2805"/>
         <source>QCE (recommended)</source>
         <translation>QCE (rekommenderas)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2865"/>
+        <location filename="../src/configdialog.ui" line="2810"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2870"/>
+        <location filename="../src/configdialog.ui" line="2815"/>
         <source>Single Letter</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2878"/>
+        <location filename="../src/configdialog.ui" line="2823"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2881"/>
+        <location filename="../src/configdialog.ui" line="2826"/>
         <source>Disable cache of rendered lines</source>
         <translation>Inaktivera cache av renderade linjer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2888"/>
+        <location filename="../src/configdialog.ui" line="2833"/>
         <source>Disable fixed pitch mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2895"/>
+        <location filename="../src/configdialog.ui" line="2840"/>
         <source>Disable cache of character width</source>
         <translation>Inaktivera cache av teckenbredd</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2902"/>
+        <location filename="../src/configdialog.ui" line="2847"/>
         <source>Use QImage as cache type</source>
         <translation>Använd QImage som cache-typ</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2965"/>
+        <location filename="../src/configdialog.ui" line="2910"/>
         <source>Formats</source>
         <translation>Format</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2994"/>
+        <location filename="../src/configdialog.ui" line="2939"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <source>Completion</source>
         <translation>Komplettering</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3000"/>
+        <location filename="../src/configdialog.ui" line="2945"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2065,118 +2060,118 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3010"/>
+        <location filename="../src/configdialog.ui" line="2955"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Automatiskt ersätt LaTeX-kommandon</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3017"/>
+        <location filename="../src/configdialog.ui" line="2962"/>
         <source>Insert Arguments</source>
         <translation>Infoga argument</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3027"/>
+        <location filename="../src/configdialog.ui" line="2972"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3030"/>
+        <location filename="../src/configdialog.ui" line="2975"/>
         <source>ToolTip-Preview</source>
         <translation>Verktygstips-granskare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3037"/>
+        <location filename="../src/configdialog.ui" line="2982"/>
         <source>Arguments as Placeholders</source>
         <translation>Argument som platshållare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3047"/>
+        <location filename="../src/configdialog.ui" line="2992"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3050"/>
+        <location filename="../src/configdialog.ui" line="2995"/>
         <source>ToolTip-Help</source>
         <translation>Verktygstips-hjälp</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3060"/>
+        <location filename="../src/configdialog.ui" line="3005"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3063"/>
+        <location filename="../src/configdialog.ui" line="3008"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3072"/>
+        <location filename="../src/configdialog.ui" line="3017"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3075"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
         <source>Tab Bar Size</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3085"/>
+        <location filename="../src/configdialog.ui" line="3030"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3119"/>
+        <location filename="../src/configdialog.ui" line="3064"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3129"/>
+        <location filename="../src/configdialog.ui" line="3074"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3132"/>
+        <location filename="../src/configdialog.ui" line="3077"/>
         <source>Auto Complete Common Prefix</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3144"/>
+        <location filename="../src/configdialog.ui" line="3089"/>
         <source>Preferred Commands Set:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3152"/>
+        <location filename="../src/configdialog.ui" line="3097"/>
         <source>Typical</source>
         <translation>Typisk</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3157"/>
+        <location filename="../src/configdialog.ui" line="3102"/>
         <source>Most Used</source>
         <translation>Mest använd</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3162"/>
+        <location filename="../src/configdialog.ui" line="3107"/>
         <source>Fuzzy</source>
         <translation>Fuzzy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3167"/>
+        <location filename="../src/configdialog.ui" line="3112"/>
         <source>All</source>
         <translation>Alla</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3190"/>
+        <location filename="../src/configdialog.ui" line="3135"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3193"/>
+        <location filename="../src/configdialog.ui" line="3138"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3205"/>
-        <location filename="../src/configdialog.ui" line="3243"/>
+        <location filename="../src/configdialog.ui" line="3150"/>
+        <location filename="../src/configdialog.ui" line="3188"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2186,466 +2181,461 @@ them here.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3213"/>
+        <location filename="../src/configdialog.ui" line="3158"/>
         <source>Permanently active completion files:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3223"/>
+        <location filename="../src/configdialog.ui" line="3168"/>
         <source>Filter list below</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3322"/>
+        <location filename="../src/configdialog.ui" line="3279"/>
         <source>Spell Check</source>
         <translation>Stavningskontroll</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3328"/>
+        <location filename="../src/configdialog.ui" line="3285"/>
         <source>Default Language:</source>
         <translation>Standardspråk:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3355"/>
+        <location filename="../src/configdialog.ui" line="3312"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Katalog för ordböcker:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3362"/>
+        <location filename="../src/configdialog.ui" line="3319"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3372"/>
+        <location filename="../src/configdialog.ui" line="3329"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3379"/>
+        <location filename="../src/configdialog.ui" line="3336"/>
         <source>Thesaurus Database:</source>
         <translation>Ordboksdatabas:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3409"/>
+        <location filename="../src/configdialog.ui" line="3366"/>
         <source>TextLabel</source>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3422"/>
+        <location filename="../src/configdialog.ui" line="3379"/>
         <source>Import Dictionary...</source>
         <translation>Importera ordbok...</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3432"/>
+        <location filename="../src/configdialog.ui" line="3389"/>
         <source>Internal Grammar Check</source>
         <translation>Intern grammatikkontroll</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3438"/>
+        <location filename="../src/configdialog.ui" line="3395"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3441"/>
+        <location filename="../src/configdialog.ui" line="3398"/>
         <source>Check for Word Repetitions</source>
         <translation>Sök efter repetitioner av ord</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3448"/>
+        <location filename="../src/configdialog.ui" line="3405"/>
         <source>Words Between Repetitions:</source>
         <translation>Ord mellan repetitioner:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3458"/>
+        <location filename="../src/configdialog.ui" line="3415"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Identiska ord markeras som repetitioner om det inte är fler än så här många ord mellan dem.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3468"/>
+        <location filename="../src/configdialog.ui" line="3425"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Identiska, längre ord markeras som repetitioner på större avstånd om det inte är fler än så här många ord mellan dem.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3478"/>
+        <location filename="../src/configdialog.ui" line="3435"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Bara ord som har så här många tecken kontrolleras om de repeteras på större avstånd.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3488"/>
+        <location filename="../src/configdialog.ui" line="3445"/>
         <source>Long Range Repetitions:</source>
         <translation>Repetitioner på större avstånd:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3498"/>
+        <location filename="../src/configdialog.ui" line="3455"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3508"/>
+        <location filename="../src/configdialog.ui" line="3465"/>
         <source>Wordlist Directory:</source>
         <translation>Katalog med listor med ord:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
+        <location filename="../src/configdialog.ui" line="3472"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Vissa informella eller svaga ord kommer markeras.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3518"/>
+        <location filename="../src/configdialog.ui" line="3475"/>
         <source>Check for Bad Words</source>
         <translation>Sök efter fula ord</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3525"/>
+        <location filename="../src/configdialog.ui" line="3482"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Katalog innehållandes listorna med ord som är &quot;fula&quot; eller kan repeteras.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3552"/>
+        <location filename="../src/configdialog.ui" line="3509"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3558"/>
+        <location filename="../src/configdialog.ui" line="3515"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>Sökväg innehållandes LanguageTool Java-arkivet.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3565"/>
+        <location filename="../src/configdialog.ui" line="3522"/>
         <source>LT Path:</source>
         <translation>LT Sökväg:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3572"/>
+        <location filename="../src/configdialog.ui" line="3529"/>
         <source>Start LanguageTool if not running</source>
         <translation>Starta LanguageTool om det inte körs.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3579"/>
+        <location filename="../src/configdialog.ui" line="3536"/>
         <source>Server URL: </source>
         <translation>Server URL: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3586"/>
+        <location filename="../src/configdialog.ui" line="3543"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Kommaseparerad lista med LanguageTool-regler som inte kommer markeras som fel.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3610"/>
+        <location filename="../src/configdialog.ui" line="3567"/>
         <source>Ignored Rules:</source>
         <translation>Ignorera regler:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3617"/>
-        <location filename="../src/configdialog.ui" line="3627"/>
-        <location filename="../src/configdialog.ui" line="3637"/>
-        <location filename="../src/configdialog.ui" line="3667"/>
+        <location filename="../src/configdialog.ui" line="3574"/>
+        <location filename="../src/configdialog.ui" line="3584"/>
+        <location filename="../src/configdialog.ui" line="3594"/>
+        <location filename="../src/configdialog.ui" line="3624"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Kommaseparerad lista med LanguageTool-regler som kommer markeras med ett speciellt format.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3647"/>
+        <location filename="../src/configdialog.ui" line="3604"/>
         <source>Special Rules 3:</source>
         <translation>Specialregler 3:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3657"/>
+        <location filename="../src/configdialog.ui" line="3614"/>
         <source>Special Rules 2:</source>
         <translation>Specialregler 2:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3677"/>
+        <location filename="../src/configdialog.ui" line="3634"/>
         <source>Special Rules 1:</source>
         <translation>Specialregler 1:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3694"/>
+        <location filename="../src/configdialog.ui" line="3651"/>
         <source>Special Rules 4:</source>
         <translation>Specialregler 4:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3704"/>
+        <location filename="../src/configdialog.ui" line="3661"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3711"/>
+        <location filename="../src/configdialog.ui" line="3668"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>Javas exekverbara fil, används för att starta LanguageTool om det inte körs.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3718"/>
+        <location filename="../src/configdialog.ui" line="3675"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3725"/>
-        <location filename="../src/configdialog.ui" line="3773"/>
+        <location filename="../src/configdialog.ui" line="3682"/>
+        <location filename="../src/configdialog.ui" line="3730"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3728"/>
+        <location filename="../src/configdialog.ui" line="3685"/>
         <source>LT Arguments:</source>
         <translation>LT Argument:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3752"/>
-        <location filename="../src/configdialog.ui" line="3780"/>
+        <location filename="../src/configdialog.ui" line="3709"/>
+        <location filename="../src/configdialog.ui" line="3737"/>
         <source>Restore Default</source>
         <translation>Återställ grundställningarna</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3766"/>
+        <location filename="../src/configdialog.ui" line="3723"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>URL för att ansluta till LanguageTool. </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3857"/>
-        <source>Segment Preview</source>
-        <translation>Segment-granskare</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3863"/>
+        <location filename="../src/configdialog.ui" line="3820"/>
         <source>Command:</source>
         <translation>Kommando:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3874"/>
+        <location filename="../src/configdialog.ui" line="3831"/>
         <source>Preview with dvipng</source>
         <translation>Förhandsgranska med dvipng</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3879"/>
+        <location filename="../src/configdialog.ui" line="3836"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Förhandsgranska med dvipng --follow (parallell)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3884"/>
+        <location filename="../src/configdialog.ui" line="3841"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Förhandsgranska med dvips/ghostscript</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3889"/>
+        <location filename="../src/configdialog.ui" line="3846"/>
         <source>Preview with pdflatex</source>
         <translation>Förhandsgranska med pdflatex</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3894"/>
+        <location filename="../src/configdialog.ui" line="3851"/>
         <source>Preview with lualatex</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3902"/>
+        <location filename="../src/configdialog.ui" line="3859"/>
         <source>Display Mode:</source>
         <translation>Visningläge:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3916"/>
+        <location filename="../src/configdialog.ui" line="3873"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Visa alltid förhandsgranskning som verktygstips om panelen är dold</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3921"/>
+        <location filename="../src/configdialog.ui" line="3878"/>
         <source>Always show preview in preview panel</source>
         <translation>Visa alltid förhandsgranskning i granskningspanelen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3926"/>
+        <location filename="../src/configdialog.ui" line="3883"/>
         <source>Always show preview as tool tip</source>
         <translation>Visa alltid förhandsgranskning som verktygstips</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3931"/>
+        <location filename="../src/configdialog.ui" line="3888"/>
         <source>Always show both</source>
         <translation>Visa alltid båda</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3936"/>
+        <location filename="../src/configdialog.ui" line="3893"/>
         <source>Inline</source>
         <translation>Infoga</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3941"/>
+        <location filename="../src/configdialog.ui" line="3898"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Visa i inbyggd läsare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3949"/>
+        <location filename="../src/configdialog.ui" line="3906"/>
         <source>Update the preview on text change</source>
         <translation>Uppdatera förhandsgranskning när texten ändras</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3952"/>
+        <location filename="../src/configdialog.ui" line="3909"/>
         <source>Auto Update:</source>
         <translation>Uppdatera automatiskt:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3965"/>
+        <location filename="../src/configdialog.ui" line="3922"/>
         <source>Previously previewed text</source>
         <translation>Föregående visad text</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3973"/>
+        <location filename="../src/configdialog.ui" line="3930"/>
         <source>Auto Update Delay:</source>
         <translation>Fördröjning vid automatiskt uppdatering:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3996"/>
+        <location filename="../src/configdialog.ui" line="3953"/>
         <source>Replace beamer class by article</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4009"/>
+        <location filename="../src/configdialog.ui" line="3966"/>
         <source>Precompile Preamble</source>
         <translation>Förkompilera ingress</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4022"/>
+        <location filename="../src/configdialog.ui" line="3979"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4032"/>
-        <location filename="../src/configdialog.ui" line="4155"/>
+        <location filename="../src/configdialog.ui" line="3989"/>
+        <location filename="../src/configdialog.ui" line="4112"/>
         <source>Scaling:</source>
         <translation>Skalning:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4127"/>
+        <location filename="../src/configdialog.ui" line="4084"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Internal PDF Viewer</source>
         <translation>Inbyggd PDF-visare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4278"/>
+        <location filename="../src/configdialog.ui" line="4235"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Specificera som hexadecimalt RGBA-värde. Notera: Transparensen är nödvändig då markeringen ritas ovanpå texten p.g.a. tekniska begränsningar.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4281"/>
+        <location filename="../src/configdialog.ui" line="4238"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4367"/>
+        <location filename="../src/configdialog.ui" line="4324"/>
         <source>Original Size</source>
         <translation>Original-storlek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4372"/>
+        <location filename="../src/configdialog.ui" line="4329"/>
         <source>Fit to Window Width</source>
         <translation>Anpassa till fönstrets bredd</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4377"/>
+        <location filename="../src/configdialog.ui" line="4334"/>
         <source>Fit to Window Size</source>
         <translation>Anpassa till fönstrets storlek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4382"/>
+        <location filename="../src/configdialog.ui" line="4339"/>
         <source>Scaled Size</source>
         <translation>Skalad storlek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4387"/>
+        <location filename="../src/configdialog.ui" line="4344"/>
         <source>Fit to Text Width</source>
         <translation>Anpassa till textens bredd</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4211"/>
+        <location filename="../src/configdialog.ui" line="4168"/>
         <source>Infinite</source>
         <translation>Oändlig</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4477"/>
+        <location filename="../src/configdialog.ui" line="4434"/>
         <source>Scale Option:</source>
         <translation>Skalningsalternativ:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4514"/>
+        <location filename="../src/configdialog.ui" line="4471"/>
         <source>Magnifier Size:</source>
         <translation>Storlek på förstoringsglas:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4230"/>
+        <location filename="../src/configdialog.ui" line="4187"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4295"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source>Square</source>
         <translation>Kvadrat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4300"/>
+        <location filename="../src/configdialog.ui" line="4257"/>
         <source>Circle</source>
         <translation>Cirkel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4305"/>
+        <location filename="../src/configdialog.ui" line="4262"/>
         <source>Circle without shadow</source>
         <translation>Cirkel utan skugga</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4268"/>
+        <location filename="../src/configdialog.ui" line="4225"/>
         <source>Highlight Duration</source>
         <translation>Längd för framhävning</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4467"/>
+        <location filename="../src/configdialog.ui" line="4424"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>Inaktivera horisontell bläddring för &quot;Anpassa till textens bredd&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4359"/>
+        <location filename="../src/configdialog.ui" line="4316"/>
         <source>Border</source>
         <translation>Kant</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4484"/>
+        <location filename="../src/configdialog.ui" line="4441"/>
         <source>Magnifier Shape:</source>
         <translation>Utseende på förstoringsglas:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4521"/>
+        <location filename="../src/configdialog.ui" line="4478"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Dölj verktygsfälten automatiskt vid inbyggt läge</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4326"/>
+        <location filename="../src/configdialog.ui" line="4283"/>
         <source>Highlight Color</source>
         <translation>Framhävningsfärg</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4240"/>
+        <location filename="../src/configdialog.ui" line="4197"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4250"/>
+        <location filename="../src/configdialog.ui" line="4207"/>
         <source>Buffered</source>
         <translation>Buffrad</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4255"/>
+        <location filename="../src/configdialog.ui" line="4212"/>
         <source>Direct</source>
         <translation>Direkt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4260"/>
+        <location filename="../src/configdialog.ui" line="4217"/>
         <source>Hybrid</source>
         <translation>Hybrid</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4179"/>
+        <location filename="../src/configdialog.ui" line="4136"/>
         <source>Cache Size:</source>
         <translation>Cache-storlek:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4437"/>
-        <location filename="../src/configdialog.ui" line="4491"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
+        <location filename="../src/configdialog.ui" line="4448"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2653,118 +2643,118 @@ Note: Changing this setting will only affect documents that are opened afterward
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4189"/>
+        <location filename="../src/configdialog.ui" line="4146"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4417"/>
+        <location filename="../src/configdialog.ui" line="4374"/>
         <source>Synchronized Files Types:</source>
         <translation>Synkroniserade filtyper:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4443"/>
+        <location filename="../src/configdialog.ui" line="4400"/>
         <source>Render Backend:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4162"/>
+        <location filename="../src/configdialog.ui" line="4119"/>
         <source>Load Strategy:</source>
         <translation>Laddningsstrategi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4395"/>
+        <location filename="../src/configdialog.ui" line="4352"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4460"/>
+        <location filename="../src/configdialog.ui" line="4417"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Notera: Fönster/inbyggt läge konfigureras via Bygg -&gt; PDF-visare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4427"/>
+        <location filename="../src/configdialog.ui" line="4384"/>
         <source>Paper Color</source>
         <translation>Pappersfärg</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4336"/>
+        <location filename="../src/configdialog.ui" line="4293"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4172"/>
+        <location filename="../src/configdialog.ui" line="4129"/>
         <source>Auto-recompile document on changes</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4453"/>
+        <location filename="../src/configdialog.ui" line="4410"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4528"/>
+        <location filename="../src/configdialog.ui" line="4485"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4578"/>
+        <location filename="../src/configdialog.ui" line="4541"/>
         <source>Use SVN</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4583"/>
+        <location filename="../src/configdialog.ui" line="4546"/>
         <source>Use GIT</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4591"/>
+        <location filename="../src/configdialog.ui" line="4554"/>
         <source>Select how txs checks in saved files</source>
         <translation>Välj hur TXS checkar in sparade filer</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4595"/>
+        <location filename="../src/configdialog.ui" line="4558"/>
         <source>No automatic check-in after save</source>
         <translation>Ingen automatiskt incheckning efter sparande</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4600"/>
+        <location filename="../src/configdialog.ui" line="4563"/>
         <source>Check-in after File/Save only</source>
         <translation>Checka in endast efter Arkiv/Spara</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4605"/>
+        <location filename="../src/configdialog.ui" line="4568"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Checka in efter allt sparande, m.a.o även före kompileringar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4613"/>
+        <location filename="../src/configdialog.ui" line="4576"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4620"/>
+        <location filename="../src/configdialog.ui" line="4583"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Vid SVN lägg till exekveras svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4623"/>
+        <location filename="../src/configdialog.ui" line="4586"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4632"/>
+        <location filename="../src/configdialog.ui" line="4595"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Sökdjup i SVN-katalogen:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4683"/>
+        <location filename="../src/configdialog.ui" line="4652"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal Terminal</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4734"/>
+        <location filename="../src/configdialog.ui" line="4703"/>
         <source>Shell:</source>
         <translation type="unfinished"/>
     </message>
@@ -2841,6 +2831,7 @@ to set the key anyway?</source>
         <translation>Diff</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="3814"/>
         <location filename="../src/configdialog.cpp" line="498"/>
         <location filename="../src/configdialog.cpp" line="540"/>
         <source>Preview</source>
@@ -2907,6 +2898,7 @@ to set the key anyway?</source>
         <translation>Verktygsfält</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="1345"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>GUI Scaling</source>
         <translation>Skalning av användargränssnitt</translation>
@@ -2927,6 +2919,7 @@ to set the key anyway?</source>
         <translation>Språkkontroll</translation>
     </message>
     <message>
+        <location filename="../src/configdialog.ui" line="4534"/>
         <location filename="../src/configdialog.cpp" line="542"/>
         <source>SVN/GIT</source>
         <translation type="unfinished"/>
@@ -3041,7 +3034,7 @@ options again to only view the most common settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1522"/>
+        <location filename="../src/configmanager.cpp" line="1519"/>
         <source>Basic Key Mapping</source>
         <translation type="unfinished"/>
     </message>
@@ -3769,164 +3762,164 @@ options again to only view the most common settings.</source>
         <translation>pageref</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1086"/>
-        <location filename="../src/configmanager.cpp" line="1092"/>
-        <location filename="../src/configmanager.cpp" line="1108"/>
-        <location filename="../src/configmanager.cpp" line="1113"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>Key replacement: %1 %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1086"/>
-        <location filename="../src/configmanager.cpp" line="1108"/>
+        <location filename="../src/configmanager.cpp" line="1083"/>
+        <location filename="../src/configmanager.cpp" line="1105"/>
         <source>before word</source>
         <translation>före ord</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1092"/>
-        <location filename="../src/configmanager.cpp" line="1113"/>
+        <location filename="../src/configmanager.cpp" line="1089"/>
+        <location filename="../src/configmanager.cpp" line="1110"/>
         <source>after word</source>
         <translation>efter ord</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1441"/>
-        <location filename="../src/configmanager.cpp" line="1442"/>
-        <location filename="../src/configmanager.cpp" line="1620"/>
-        <location filename="../src/configmanager.cpp" line="1626"/>
-        <location filename="../src/configmanager.cpp" line="1902"/>
-        <location filename="../src/configmanager.cpp" line="1910"/>
+        <location filename="../src/configmanager.cpp" line="1438"/>
+        <location filename="../src/configmanager.cpp" line="1439"/>
+        <location filename="../src/configmanager.cpp" line="1617"/>
+        <location filename="../src/configmanager.cpp" line="1623"/>
+        <location filename="../src/configmanager.cpp" line="1899"/>
+        <location filename="../src/configmanager.cpp" line="1907"/>
         <source>default</source>
         <translation>standard</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1499"/>
+        <location filename="../src/configmanager.cpp" line="1496"/>
         <source>Menus</source>
         <translation>Menyer</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1507"/>
+        <location filename="../src/configmanager.cpp" line="1504"/>
         <source>Menus PDF-Viewer</source>
         <translation>Menyer PDF-visare</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1543"/>
-        <location filename="../src/configmanager.cpp" line="2756"/>
+        <location filename="../src/configmanager.cpp" line="1540"/>
+        <location filename="../src/configmanager.cpp" line="2753"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;none&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1589"/>
+        <location filename="../src/configmanager.cpp" line="1586"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Lägg till nytt menyelement (före)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1592"/>
+        <location filename="../src/configmanager.cpp" line="1589"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Lägg till ny undermeny (före)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1595"/>
+        <location filename="../src/configmanager.cpp" line="1592"/>
         <source>Revert/Remove User Menu Item</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1613"/>
+        <location filename="../src/configmanager.cpp" line="1610"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematik-menyer</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1614"/>
+        <location filename="../src/configmanager.cpp" line="1611"/>
         <source>All menus</source>
         <translation>Alla menyer</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1615"/>
+        <location filename="../src/configmanager.cpp" line="1612"/>
         <source>Special Tags</source>
         <translation>Specialtaggar</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1697"/>
+        <location filename="../src/configmanager.cpp" line="1694"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1956"/>
+        <location filename="../src/configmanager.cpp" line="1953"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1971"/>
+        <location filename="../src/configmanager.cpp" line="1968"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Senaste huvuddokument %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1974"/>
+        <location filename="../src/configmanager.cpp" line="1971"/>
         <source>Recent File %1</source>
         <translation>Senaste fil %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1975"/>
+        <location filename="../src/configmanager.cpp" line="1972"/>
         <source>Clear file list</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1976"/>
+        <location filename="../src/configmanager.cpp" line="1973"/>
         <source>File list</source>
         <translation>Fillista</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1977"/>
+        <location filename="../src/configmanager.cpp" line="1974"/>
         <source>Open first non-open file</source>
         <translation>Öppna första icke-öppna fil</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1978"/>
+        <location filename="../src/configmanager.cpp" line="1975"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Öppna alla filer</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1988"/>
+        <location filename="../src/configmanager.cpp" line="1985"/>
         <source>Root Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2757"/>
+        <location filename="../src/configmanager.cpp" line="2754"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;default&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3001"/>
+        <location filename="../src/configmanager.cpp" line="2998"/>
         <source>Configure</source>
         <translation>Konfigurera</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3008"/>
+        <location filename="../src/configmanager.cpp" line="3005"/>
         <source>Select Program</source>
         <translation>Välj program</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3015"/>
+        <location filename="../src/configmanager.cpp" line="3012"/>
         <source>Restore Default</source>
         <translation>Återställ grundställningarna</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3062"/>
+        <location filename="../src/configmanager.cpp" line="3059"/>
         <source>Repeat contained compilation commands</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3110"/>
+        <location filename="../src/configmanager.cpp" line="3107"/>
         <source>Add</source>
         <translation>Lägg till</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3173"/>
+        <location filename="../src/configmanager.cpp" line="3170"/>
         <source>Browse program</source>
         <translation>Välj program</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3512"/>
+        <location filename="../src/configmanager.cpp" line="3509"/>
         <source>text is restored after restart</source>
         <translation type="unfinished"/>
     </message>
@@ -4022,42 +4015,47 @@ Do you want to remove them?</source>
 <context>
     <name>Editors</name>
     <message>
-        <location filename="../src/editors.cpp" line="393"/>
+        <location filename="../src/editors.cpp" line="397"/>
         <source>Move to other view</source>
         <translation>Flytta till annan vy</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="399"/>
+        <location filename="../src/editors.cpp" line="402"/>
+        <source>Move all others to other view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/editors.cpp" line="407"/>
         <source>Move all to other view</source>
         <translation>Flytta alla till annan vy</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="404"/>
+        <location filename="../src/editors.cpp" line="413"/>
         <source>Split Vertically</source>
         <translation>Dela vertikalt</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="404"/>
+        <location filename="../src/editors.cpp" line="413"/>
         <source>Split Horizontally</source>
         <translation>Dela horisontellt</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="409"/>
+        <location filename="../src/editors.cpp" line="418"/>
         <source>Set Read-Only</source>
         <translation>Sätt skrivskyddat</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="411"/>
+        <location filename="../src/editors.cpp" line="420"/>
         <source>Unset Read-Only</source>
         <translation>Ta bort skrivskydd</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="416"/>
+        <location filename="../src/editors.cpp" line="425"/>
         <source>Close</source>
         <translation>Stäng</translation>
     </message>
     <message>
-        <location filename="../src/editors.cpp" line="419"/>
+        <location filename="../src/editors.cpp" line="428"/>
         <source>Close All Other Documents</source>
         <translation>Stäng alla andra dokument</translation>
     </message>
@@ -8926,7 +8924,7 @@ kunde inte raderas.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2132"/>
+        <location filename="../src/configmanager.cpp" line="2129"/>
         <source>Edit &amp;Macros...</source>
         <translation>Redigera &amp;makron...</translation>
     </message>
@@ -11939,77 +11937,80 @@ inkluderade dokument i %1</translation>
         <translation>Redigera makron</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="77"/>
+        <location filename="../src/usermenudialog.ui" line="98"/>
         <source>Browse offered macros on txs site.</source>
         <translation>Bläddra bland erbjudna makron på txs-sajten.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="80"/>
+        <location filename="../src/usermenudialog.ui" line="101"/>
         <source>Browse</source>
         <translation>Bläddra</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="87"/>
+        <location filename="../src/usermenudialog.ui" line="108"/>
         <source>Export macro to file</source>
         <translation>Exportera makro till fil</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="90"/>
+        <location filename="../src/usermenudialog.ui" line="111"/>
         <source>Export</source>
         <translation>Exportera</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="97"/>
+        <location filename="../src/usermenudialog.ui" line="118"/>
         <source>Import macro from file</source>
         <translation>Importera makro från fil</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="100"/>
+        <location filename="../src/usermenudialog.ui" line="121"/>
         <source>Import</source>
         <translation>Importera</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="117"/>
+        <location filename="../src/usermenudialog.ui" line="138"/>
         <source>Add</source>
         <translation>Lägg till</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="128"/>
+        <location filename="../src/usermenudialog.ui" line="149"/>
         <source>Folder</source>
         <translation>Mapp</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="145"/>
+        <location filename="../src/usermenudialog.ui" line="166"/>
         <source>Remove</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="181"/>
+        <location filename="../src/usermenudialog.ui" line="202"/>
         <source>Up</source>
         <translation>Upp</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="204"/>
+        <location filename="../src/usermenudialog.ui" line="225"/>
         <source>Down</source>
         <translation>Ner</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="221"/>
+        <location filename="../src/usermenudialog.ui" line="60"/>
+        <location filename="../src/usermenudialog.ui" line="242"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="238"/>
+        <location filename="../src/usermenudialog.ui" line="75"/>
+        <location filename="../src/usermenudialog.ui" line="259"/>
         <source>Abbreviation</source>
         <translation>Förkortning</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="250"/>
+        <location filename="../src/usermenudialog.ui" line="70"/>
+        <location filename="../src/usermenudialog.ui" line="271"/>
         <source>Trigger</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="327"/>
+        <location filename="../src/usermenudialog.ui" line="348"/>
         <source>If this trigger string is written in any tex document, 
 it is replaced by the current tag.
 
@@ -12025,134 +12026,135 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="360"/>
+        <location filename="../src/usermenudialog.ui" line="381"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="369"/>
+        <location filename="../src/usermenudialog.ui" line="390"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="376"/>
+        <location filename="../src/usermenudialog.ui" line="397"/>
         <source>Environment</source>
         <translation>Omgivning</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="389"/>
+        <location filename="../src/usermenudialog.ui" line="410"/>
         <source>Script</source>
         <translation>Skript</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="398"/>
+        <location filename="../src/usermenudialog.ui" line="419"/>
         <source>LaTeX Content</source>
         <translation>LaTeX-innehåll</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="423"/>
+        <location filename="../src/usermenudialog.ui" line="444"/>
         <source>Run Script</source>
         <translation>Kör skript</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="443"/>
+        <location filename="../src/usermenudialog.ui" line="464"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="450"/>
+        <location filename="../src/usermenudialog.ui" line="471"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="459"/>
+        <location filename="../src/usermenudialog.ui" line="480"/>
         <source>Description</source>
         <translation>Beskrivning</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="466"/>
+        <location filename="../src/usermenudialog.ui" line="65"/>
+        <location filename="../src/usermenudialog.ui" line="487"/>
         <source>Shortcut</source>
         <translation>Genväg</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="482"/>
+        <location filename="../src/usermenudialog.ui" line="503"/>
         <source>Shift+F1</source>
         <translation>Skift+F1</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="487"/>
+        <location filename="../src/usermenudialog.ui" line="508"/>
         <source>Shift+F2</source>
         <translation>Skift+F2</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="492"/>
+        <location filename="../src/usermenudialog.ui" line="513"/>
         <source>Shift+F4</source>
         <translation>Skift-F4</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="497"/>
-        <location filename="../src/usermenudialog.ui" line="502"/>
+        <location filename="../src/usermenudialog.ui" line="518"/>
+        <location filename="../src/usermenudialog.ui" line="523"/>
         <source>Shift+F5</source>
         <translation>Skift-F5</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="507"/>
+        <location filename="../src/usermenudialog.ui" line="528"/>
         <source>Shift+F6</source>
         <translation>Skift-F6</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="512"/>
+        <location filename="../src/usermenudialog.ui" line="533"/>
         <source>Shift+F7</source>
         <translation>Skift-F7</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="517"/>
+        <location filename="../src/usermenudialog.ui" line="538"/>
         <source>Shift+F8</source>
         <translation>Skift-F8</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="522"/>
+        <location filename="../src/usermenudialog.ui" line="543"/>
         <source>Shift+F9</source>
         <translation>Skift-F9</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="527"/>
+        <location filename="../src/usermenudialog.ui" line="548"/>
         <source>Shift+F10</source>
         <translation>Skift-F10</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="532"/>
+        <location filename="../src/usermenudialog.ui" line="553"/>
         <source>Shift+F11</source>
         <translation>Skift-F11</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.ui" line="537"/>
+        <location filename="../src/usermenudialog.ui" line="558"/>
         <source>Shift+F12</source>
         <translation>Skift-F12</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="325"/>
+        <location filename="../src/usermenudialog.cpp" line="328"/>
         <source>Folder is not empty.</source>
         <translation>Mappen är inte tom.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="330"/>
+        <location filename="../src/usermenudialog.cpp" line="333"/>
         <source>Do you really want to delete the current macro?</source>
         <translation>Vill du verkligen radera det aktuella makrot?</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="409"/>
+        <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macro</source>
         <translation>Importera makro</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="409"/>
-        <location filename="../src/usermenudialog.cpp" line="421"/>
+        <location filename="../src/usermenudialog.cpp" line="412"/>
+        <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>txs macro files (*.txsMacro)</source>
         <translation>txs makrofiler (*.txsMacro)</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="421"/>
+        <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>Export macro</source>
         <translation>Exportera makro</translation>
     </message>
