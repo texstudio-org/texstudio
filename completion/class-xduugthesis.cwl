@@ -1,5 +1,5 @@
 # xduugthesis class
-# Matthew Bertucci 2022/12/01 for v2.18.1.1
+# Matthew Bertucci 2022/12/03 for v3.1.0.0
 
 #include:expl3
 #include:xparse
@@ -44,10 +44,14 @@ style/fix-includegraphics#true,false
 style/ref-add-space#true,false
 style/caption-label-sep={%<间距%>}
 style/caption-format=#plain,hang
+style/ft-caption-format=#plain,hang
+style/ft-caption-align=#left,centering,centering-left
 style/table-small-font#true,false
 style/algorithm-small-caption#true,false
 style/algorithm-small-font#true,false
-style/algorithm-caption-align=#left,centering
+style/alg-caption-format=#plain,hang
+style/alg-caption-align=#left,centering,centering-left
+add-alg-rule-vspace#true,false
 style/before-skip={%<间距列表%>}
 style/after-skip={%<间距列表%>}
 style/chap-zihao=#0,-0,1,-1,2,-2,3,-3,4,-4,5,-5,6,-6,7,8
