@@ -1236,7 +1236,15 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						continue; // ignore type keys, like width#L
 					}
                     if(options.startsWith("%")){
+
                         if (!ltxCommands->possibleCommands[options].contains(word)) {
+                            // special treatement for %color (mix)
+                            if(options=="%color"){
+                                if(word=="!") continue;
+                                bool ok;
+                                word.toInt(&ok);
+                                if(ok) continue; // number !
+                            }
                             Error elem;
                             elem.range = QPair<int, int>(tk.start, tk.length);
                             elem.type = ERR_unrecognizedKeyValues;
