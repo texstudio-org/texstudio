@@ -1174,8 +1174,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 		if (tk.subtype == Token::keyVal_val) {
 			//figure out keyval
 			QString word = line.mid(tk.start, tk.length);
-            if(word=="{"){
-                continue; // assume open brace is always valid
+            if(word=="{" || tk.type==Token::braces){
+                continue; // assume open brace is always valid or element in braces can't be checked (will get here again w/o braces)
             }
 			// first get command
             QString command = tk.optionalCommandName;
@@ -1236,7 +1236,6 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						continue; // ignore type keys, like width#L
 					}
                     if(options.startsWith("%")){
-
                         if (!ltxCommands->possibleCommands[options].contains(word)) {
                             // special treatement for %color (mix)
                             if(options=="%color"){
