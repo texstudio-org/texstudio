@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/11/25 for v7.20.0
+# Matthew Bertucci 2022/12/02 for v7.21.0
 
 #include:ifxetex
 #include:ifluatex
@@ -728,6 +728,7 @@ firebase
 firefox
 firefoxbrowser
 fireship
+firewalla
 first
 fitbit
 fite
@@ -1152,6 +1153,7 @@ kuaishou
 kubernetes
 kubuntu
 kuma
+kuula
 kyocera
 labview
 lada
@@ -1732,10 +1734,12 @@ reactos
 reactquery
 reactrouter
 reacttable
+readme
 readthedocs
 realm
 reason
 reasonstudios
+red
 redbubble
 reddit
 redhat
@@ -2269,6 +2273,7 @@ vultr
 w3c
 wacom
 wagtail
+wails
 wakatime
 walkman
 wallabag
