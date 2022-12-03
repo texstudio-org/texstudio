@@ -1,5 +1,5 @@
 # ppt-slides package
-# Matthew Bertucci 2022/09/24 for v0.1.5
+# Matthew Bertucci 2022/12/03 for v0.2.0
 
 #include:pgfopts
 #include:xcolor
@@ -9,6 +9,7 @@
 #include:varwidth
 #include:qrcode
 #include:tikz
+#include:tikzlibrarycalc
 #include:tikzpagenodes
 #include:enumitem
 # loads inline option of enumitem
