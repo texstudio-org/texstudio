@@ -722,14 +722,14 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="109"/>
-        <location filename="../src/additionaltranslations.cpp" line="111"/>
+        <location filename="../src/additionaltranslations.cpp" line="110"/>
+        <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>num</source>
         <translation>num</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="110"/>
-        <location filename="../src/additionaltranslations.cpp" line="112"/>
+        <location filename="../src/additionaltranslations.cpp" line="111"/>
+        <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>den</source>
         <translation>den</translation>
     </message>
@@ -3099,682 +3099,687 @@ options again to only view the most common settings.</source>
         <translation>&amp;Tabulátor környezetek</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="18"/>
+        <location filename="../src/additionaltranslations.cpp" line="19"/>
         <source>&amp;Vertical Spacing</source>
         <translation>&amp;Függőleges helykihagyás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="19"/>
+        <location filename="../src/additionaltranslations.cpp" line="20"/>
         <source>International &amp;Accents</source>
         <translation>&amp;Nemzetközi ékezetek</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="22"/>
+        <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Cross References</source>
         <translation>Kereszthivatkozások</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="23"/>
+        <location filename="../src/additionaltranslations.cpp" line="24"/>
         <source>Bibliography</source>
         <translation>Bibliográfia</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="24"/>
+        <location filename="../src/additionaltranslations.cpp" line="25"/>
         <source>&amp;Math</source>
         <translation>&amp;Matematika</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="26"/>
+        <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Functions</source>
         <translation>Ma&amp;tematikai függvények</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="28"/>
+        <location filename="../src/additionaltranslations.cpp" line="29"/>
         <source>Math Font St&amp;yles</source>
         <translation>Mat&amp;ematikai betűváltozatok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="30"/>
+        <location filename="../src/additionaltranslations.cpp" line="31"/>
         <source>Math &amp;Accents</source>
         <translation>Matemat&amp;ikai ékezetek</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="31"/>
+        <location filename="../src/additionaltranslations.cpp" line="32"/>
         <source>Math S&amp;paces</source>
         <translation>Matemati&amp;kai helykihagyás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="32"/>
+        <location filename="../src/additionaltranslations.cpp" line="33"/>
         <source>AMS packages</source>
         <translation>AMS csomagok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="20"/>
+        <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Input/Include &amp;Files</source>
         <translation>&amp;Fájlok beillesztése</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="21"/>
+        <location filename="../src/additionaltranslations.cpp" line="18"/>
+        <source>&amp;Horizontal Spacing</source>
+        <translation>&amp;Vízszintes helykihagyás</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Review remarks (easyReview)</source>
         <translation>Bírálati megjegyzések (easyReview csomaggal)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="25"/>
+        <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math &amp;Equations</source>
         <translation>Matematikai &amp;egyenletek</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="27"/>
+        <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math &amp;Definitions</source>
         <translation>Tételszerű &amp;környezetek</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="29"/>
+        <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Math &amp;Stacking Symbols</source>
         <translation>Matematikai &amp;halmozási szimbólumok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="33"/>
+        <location filename="../src/additionaltranslations.cpp" line="34"/>
         <source>\begin{document}</source>
         <translation>\begin{document}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="34"/>
+        <location filename="../src/additionaltranslations.cpp" line="35"/>
         <source>part</source>
         <translation>Rész</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="35"/>
+        <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>chapter</source>
         <translation>Fejezet</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="36"/>
+        <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>section</source>
         <translation>Szakasz</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="37"/>
+        <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>subsection</source>
         <translation>Alszakasz</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="38"/>
+        <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>subsubsection</source>
         <translation>Alalszakasz</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="39"/>
+        <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>paragraph</source>
         <translation>Paragrafus</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="40"/>
+        <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>subparagraph</source>
         <translation>Alparagrafus</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="41"/>
+        <location filename="../src/additionaltranslations.cpp" line="42"/>
         <source>part*</source>
         <translation>Rész*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="42"/>
+        <location filename="../src/additionaltranslations.cpp" line="43"/>
         <source>chapter*</source>
         <translation>Fejezet*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="43"/>
+        <location filename="../src/additionaltranslations.cpp" line="44"/>
         <source>section*</source>
         <translation>Szakasz*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="44"/>
+        <location filename="../src/additionaltranslations.cpp" line="45"/>
         <source>subsection*</source>
         <translation>Alszakasz*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="45"/>
+        <location filename="../src/additionaltranslations.cpp" line="46"/>
         <source>subsubsection*</source>
         <translation>Alalszakasz*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="46"/>
+        <location filename="../src/additionaltranslations.cpp" line="47"/>
         <source>paragraph*</source>
         <translation>Paragrafus*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="47"/>
+        <location filename="../src/additionaltranslations.cpp" line="48"/>
         <source>subparagraph*</source>
         <translation>Alparagrafus*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="48"/>
+        <location filename="../src/additionaltranslations.cpp" line="49"/>
         <source>\begin{&lt;environment&gt;}</source>
         <translation>\begin{&lt;környezet&gt;}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="49"/>
+        <location filename="../src/additionaltranslations.cpp" line="50"/>
         <source>\begin{center}</source>
         <translation>\begin{center}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="50"/>
+        <location filename="../src/additionaltranslations.cpp" line="51"/>
         <source>\begin{flushleft}</source>
         <translation>\begin{flushleft}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="51"/>
+        <location filename="../src/additionaltranslations.cpp" line="52"/>
         <source>\begin{flushright}</source>
         <translation>\begin{flushright}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="52"/>
+        <location filename="../src/additionaltranslations.cpp" line="53"/>
         <source>\begin{quote}</source>
         <translation>\begin{quote}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="53"/>
+        <location filename="../src/additionaltranslations.cpp" line="54"/>
         <source>\begin{quotation}</source>
         <translation>\begin{quotation}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="54"/>
+        <location filename="../src/additionaltranslations.cpp" line="55"/>
         <source>\begin{verse}</source>
         <translation>\begin{verse}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="55"/>
+        <location filename="../src/additionaltranslations.cpp" line="56"/>
         <source>\begin{verbatim}</source>
         <translation>\begin{verbatim}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="56"/>
+        <location filename="../src/additionaltranslations.cpp" line="57"/>
         <source>\begin{table}</source>
         <translation>\begin{table}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="57"/>
+        <location filename="../src/additionaltranslations.cpp" line="58"/>
         <source>\begin{figure}</source>
         <translation>\begin{figure}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="58"/>
+        <location filename="../src/additionaltranslations.cpp" line="59"/>
         <source>\begin{titlepage}</source>
         <translation>\begin{titlepage}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="59"/>
+        <location filename="../src/additionaltranslations.cpp" line="60"/>
         <source>\begin{itemize}</source>
         <translation>\begin{itemize}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="60"/>
+        <location filename="../src/additionaltranslations.cpp" line="61"/>
         <source>\begin{enumerate}</source>
         <translation>\begin{enumerate}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="61"/>
+        <location filename="../src/additionaltranslations.cpp" line="62"/>
         <source>\begin{description}</source>
         <translation>\begin{description}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="62"/>
+        <location filename="../src/additionaltranslations.cpp" line="63"/>
         <source>\begin{list}</source>
         <translation>\begin{list}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="63"/>
+        <location filename="../src/additionaltranslations.cpp" line="64"/>
         <source>mbox</source>
         <translation>mbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="64"/>
+        <location filename="../src/additionaltranslations.cpp" line="65"/>
         <source>makebox</source>
         <translation>makebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="65"/>
+        <location filename="../src/additionaltranslations.cpp" line="66"/>
         <source>fbox</source>
         <translation>fbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="66"/>
+        <location filename="../src/additionaltranslations.cpp" line="67"/>
         <source>framebox</source>
         <translation>framebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="67"/>
+        <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>newsavebox</source>
         <translation>newsavebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="68"/>
+        <location filename="../src/additionaltranslations.cpp" line="69"/>
         <source>sbox</source>
         <translation>sbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="69"/>
+        <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>savebox</source>
         <translation>savebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="70"/>
+        <location filename="../src/additionaltranslations.cpp" line="71"/>
         <source>usebox</source>
         <translation>usebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="71"/>
+        <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>raisebox</source>
         <translation>raisebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="72"/>
+        <location filename="../src/additionaltranslations.cpp" line="73"/>
         <source>parbox</source>
         <translation>parbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="73"/>
+        <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>\begin{minipage}</source>
         <translation>\begin{minipage}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="74"/>
+        <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>rule</source>
         <translation>vonal</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="75"/>
+        <location filename="../src/additionaltranslations.cpp" line="76"/>
         <source>Emphasis - \emph</source>
         <translation>Kiemelés - \emph</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="76"/>
+        <location filename="../src/additionaltranslations.cpp" line="77"/>
         <source>Italics - \textit</source>
         <translation>Dőlt - \textit</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="77"/>
+        <location filename="../src/additionaltranslations.cpp" line="78"/>
         <source>Slanted - \textsl</source>
         <translation>Döntött - \textsl</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="78"/>
+        <location filename="../src/additionaltranslations.cpp" line="79"/>
         <source>Boldface - \textbf</source>
         <translation>Félkövér - \textbf</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="79"/>
+        <location filename="../src/additionaltranslations.cpp" line="80"/>
         <source>Typewriter - \texttt</source>
         <translation>Írógép - \texttt</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="80"/>
+        <location filename="../src/additionaltranslations.cpp" line="81"/>
         <source>Small Caps - \textsc</source>
         <translation>Kiskapitális - \textsc</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="81"/>
+        <location filename="../src/additionaltranslations.cpp" line="82"/>
         <source>Sans Serif - \textsf</source>
         <translation>Talpatlan - \textsf</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="82"/>
+        <location filename="../src/additionaltranslations.cpp" line="83"/>
         <source>Underline - \underline</source>
         <translation>Aláhúzott - \underline</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="83"/>
+        <location filename="../src/additionaltranslations.cpp" line="84"/>
         <source>tiny</source>
         <translation>Pici</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="84"/>
+        <location filename="../src/additionaltranslations.cpp" line="85"/>
         <source>scriptsize</source>
         <translation>Indexméret</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="85"/>
+        <location filename="../src/additionaltranslations.cpp" line="86"/>
         <source>footnotesize</source>
         <translation>Lábjegyzetméret</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="86"/>
+        <location filename="../src/additionaltranslations.cpp" line="87"/>
         <source>small</source>
         <translation>kicsi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="87"/>
+        <location filename="../src/additionaltranslations.cpp" line="88"/>
         <source>normalsize</source>
         <translation>Normálméret</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="88"/>
+        <location filename="../src/additionaltranslations.cpp" line="89"/>
         <source>large</source>
         <translation>nagy</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="89"/>
+        <location filename="../src/additionaltranslations.cpp" line="90"/>
         <source>Large</source>
         <translation>Nagy</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="90"/>
+        <location filename="../src/additionaltranslations.cpp" line="91"/>
         <source>LARGE</source>
         <translation>NAGY</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="91"/>
+        <location filename="../src/additionaltranslations.cpp" line="92"/>
         <source>huge</source>
         <translation>hatalmas</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="92"/>
+        <location filename="../src/additionaltranslations.cpp" line="93"/>
         <source>Huge</source>
         <translation>Hatalmas</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="93"/>
+        <location filename="../src/additionaltranslations.cpp" line="94"/>
         <source>\begin{tabbing}</source>
         <translation>\begin{tabbing}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="94"/>
+        <location filename="../src/additionaltranslations.cpp" line="95"/>
         <source>\begin{tabular}</source>
         <translation>\begin{tabular}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="95"/>
+        <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>New line - \\</source>
         <translation>Új sor - \\</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="98"/>
+        <location filename="../src/additionaltranslations.cpp" line="99"/>
         <source>\includeonly{filelist}</source>
         <translation>\includeonly{fájllista}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="99"/>
+        <location filename="../src/additionaltranslations.cpp" line="100"/>
         <source>\includegraphics{file}</source>
         <translation>\includegraphics{fájlnév}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="97"/>
+        <location filename="../src/additionaltranslations.cpp" line="98"/>
         <source>\include{file}</source>
         <translation>\include{fájlnév}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="96"/>
+        <location filename="../src/additionaltranslations.cpp" line="97"/>
         <source>\input{file}</source>
         <translation>\input{fájlnév}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="100"/>
+        <location filename="../src/additionaltranslations.cpp" line="101"/>
         <source>label</source>
         <translation>Címke</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="101"/>
+        <location filename="../src/additionaltranslations.cpp" line="102"/>
         <source>index</source>
         <translation>Index</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="102"/>
+        <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>cite</source>
         <translation>Idézet</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="103"/>
+        <location filename="../src/additionaltranslations.cpp" line="104"/>
         <source>footnote</source>
         <translation>Lábjegyzet</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="104"/>
+        <location filename="../src/additionaltranslations.cpp" line="105"/>
         <source>Inline math mode $...$</source>
         <translation>Sorközi matematikai mód $...$</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="105"/>
+        <location filename="../src/additionaltranslations.cpp" line="106"/>
         <source>LaTeX inline math mode \(...\)</source>
         <translation>LaTeX sorközi matematikai mód \(...\)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="106"/>
+        <location filename="../src/additionaltranslations.cpp" line="107"/>
         <source>Display math mode \[...\]</source>
         <translation>Kiemelt matematikai mód \[...\]</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="107"/>
+        <location filename="../src/additionaltranslations.cpp" line="108"/>
         <source>Subscript - _{}</source>
         <translation>Alsó index - _{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="108"/>
+        <location filename="../src/additionaltranslations.cpp" line="109"/>
         <source>Superscript - ^{}</source>
         <translation>Felső index - ^{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="113"/>
+        <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>\begin{array}</source>
         <translation>\begin{array}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="114"/>
+        <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env equation</source>
         <translation>equation</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="115"/>
+        <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env equation* (amsmath)</source>
         <translation>equation* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="116"/>
+        <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>env align (amsmath)</source>
         <translation>align (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="121"/>
+        <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>env align* (amsmath)</source>
         <translation>align* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="117"/>
+        <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env alignat (amsmath)</source>
         <translation>alignat (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="122"/>
+        <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>env alignat* (amsmath)</source>
         <translation>alignat* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="118"/>
+        <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env flalign (amsmath)</source>
         <translation>flalign (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="123"/>
+        <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env flalign* (amsmath)</source>
         <translation>flalign* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="119"/>
+        <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env gather (amsmath)</source>
         <translation>gather (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="124"/>
+        <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>env gather* (amsmath)</source>
         <translation>gather* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="120"/>
+        <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env multline (amsmath)</source>
         <translation>multline (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="125"/>
+        <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>env multline* (amsmath)</source>
         <translation>multline* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="126"/>
+        <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>env cases (amsmath)</source>
         <translation>cases (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="127"/>
+        <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>env split (amsmath)</source>
         <translation>split (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="128"/>
+        <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>env Corollary (ntheorem)</source>
         <translation>Corollary (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="129"/>
+        <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>env Definition (ntheorem)</source>
         <translation>Definition (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="130"/>
+        <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>env Example (ntheorem)</source>
         <translation>Example (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="131"/>
+        <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>env Lemma (ntheorem)</source>
         <translation>Lemma (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="132"/>
+        <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>env Proof (ntheorem)</source>
         <translation>Proof (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="133"/>
+        <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>env Proposition (ntheorem)</source>
         <translation>Proposition (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="134"/>
+        <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>env Remark (ntheorem)</source>
         <translation>Remark (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="135"/>
+        <location filename="../src/additionaltranslations.cpp" line="136"/>
         <source>env Theorem (ntheorem)</source>
         <translation>Theorem (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="136"/>
+        <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>Roman - \mathrm{}</source>
         <translation>Normál – \mathrm{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="137"/>
+        <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>Italic - \mathit{}</source>
         <translation>Dőlt – \mathit{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="138"/>
+        <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>Bold - \mathbf{}</source>
         <translation>Félkövér – \mathbf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="139"/>
+        <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>Sans Serif - \mathsf{}</source>
         <translation>Talpatlan – \mathsf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="140"/>
+        <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>Typewriter - \mathtt{}</source>
         <translation>Írógép – \mathtt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="141"/>
+        <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Calligraphic - \mathcal{}</source>
         <translation>Kalligrafikus – \mathcal{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="142"/>
+        <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
         <translation>Kontúros – \mathbb{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="143"/>
+        <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
         <translation>Fraktúr – \mathfrak{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="144"/>
+        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\overset (amsmath)</source>
         <translation>\overset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="145"/>
+        <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>\underset (amsmath)</source>
         <translation>\underset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="146"/>
+        <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>\sideset (amsmath)</source>
         <translation>\sideset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>\prescript (mathtools)</source>
         <translation>\prescript (mathtools)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>Negative - \!</source>
         <translation>Negatív - \!</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>Thin - \,</source>
         <translation>Vékony - \,</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>Medium - \:</source>
         <translation>Közepes - \:</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>Thick - \;</source>
         <translation>Vastag - \;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Interword - \ </source>
         <translation>Szóköz</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>One quad - \quad</source>
         <translation>Negyed - \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Two quads - \qquad</source>
         <translation>Két negyed - \qquad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>ref</source>
         <translation>Hivatkozás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>eqref</source>
         <translation>Egyenlethivatkozás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="157"/>
+        <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>pageref</source>
         <translation>Oldalhivatkozás</translation>
     </message>
@@ -6766,462 +6771,462 @@ Megjegyzések:
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="158"/>
+        <location filename="../src/additionaltranslations.cpp" line="159"/>
         <source>background</source>
         <translation>háttér</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="159"/>
+        <location filename="../src/additionaltranslations.cpp" line="160"/>
         <source>line:error</source>
         <translation>vonal: hiba</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>line:warning</source>
         <translation>vonal: figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>line:badbox</source>
         <translation>vonal: hibás szövegdoboz</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="162"/>
+        <location filename="../src/additionaltranslations.cpp" line="163"/>
         <source>line:bookmark</source>
         <translation>vonal: könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="163"/>
+        <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>line:bookmark0</source>
         <translation>vonal: 0. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="164"/>
+        <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>line:bookmark1</source>
         <translation>vonal: 1. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="165"/>
+        <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>line:bookmark2</source>
         <translation>vonal: 2. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="166"/>
+        <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>line:bookmark3</source>
         <translation>vonal: 3. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="167"/>
+        <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>line:bookmark4</source>
         <translation>vonal: 4. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="168"/>
+        <location filename="../src/additionaltranslations.cpp" line="169"/>
         <source>line:bookmark5</source>
         <translation>vonal: 5. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="169"/>
+        <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>line:bookmark6</source>
         <translation>vonal: 6. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="170"/>
+        <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>line:bookmark7</source>
         <translation>vonal: 7. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="171"/>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>line:bookmark8</source>
         <translation>vonal: 8. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>line:bookmark9</source>
         <translation>vonal: 9. könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="173"/>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>magicComment</source>
         <translation>mágikus megjegyzés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>commentTodo</source>
         <translation>Todo megjegyzés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="175"/>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>comment</source>
         <translation>megjegyzés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>keyword</source>
         <translation>kulcsszó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="177"/>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>extra-keyword</source>
         <translation>extra kulcsszó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>math-keyword</source>
         <translation>matematikai kulcsszó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="179"/>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>link</source>
         <translation>link</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>align-ampersand</source>
         <translation>&amp; elhelyezés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="181"/>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>verbatim</source>
         <translation>formázott</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>sweave-block</source>
         <translation>sweave-blokk</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="183"/>
+        <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>sweave-delimiter</source>
         <translation>sweave-elválasztó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="184"/>
+        <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>pweave-block</source>
         <translation>pweave-blokk</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="185"/>
+        <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>pweave-delimiter</source>
         <translation>pweave-elválasztó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="186"/>
+        <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>picture</source>
         <translation>kép</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="187"/>
+        <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>picture-keyword</source>
         <translation>kép kulcsszó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="188"/>
+        <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>braceMatch</source>
         <translation>zárójel párral</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="189"/>
+        <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>braceMismatch</source>
         <translation>zárójel pár nélkül</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="190"/>
+        <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>search</source>
         <translation>keresés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="191"/>
+        <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>numbers</source>
         <translation>számok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="192"/>
+        <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>math-delimiter</source>
         <translation>matematikai határolójel</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="193"/>
+        <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>math-text</source>
         <translation>matematikai szöveg</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="194"/>
+        <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>text</source>
         <translation>szöveg</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="195"/>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>escapeseq</source>
         <translation>escape szekvencia</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>spellingMistake</source>
         <translation>helyesírási hiba</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="197"/>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>wordRepetition</source>
         <translation>szóismétlés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>wordRepetitionLongRange</source>
         <translation>távoli szóismétlés </translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="199"/>
+        <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>badWord</source>
         <translation>rossz szó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="200"/>
+        <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>grammarMistake</source>
         <translation>nyelvtani hiba</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="201"/>
+        <location filename="../src/additionaltranslations.cpp" line="202"/>
         <source>grammarMistakeSpecial1</source>
         <translation>nyelvtani hiba 1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="202"/>
+        <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>grammarMistakeSpecial2</source>
         <translation>nyelvtani hiba 2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="203"/>
+        <location filename="../src/additionaltranslations.cpp" line="204"/>
         <source>grammarMistakeSpecial3</source>
         <translation>nyelvtani hiba 3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="204"/>
+        <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>grammarMistakeSpecial4</source>
         <translation>nyelvtani hiba 4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="205"/>
+        <location filename="../src/additionaltranslations.cpp" line="206"/>
         <source>latexSyntaxMistake</source>
         <translation>LaTeX szintaxis hiba</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="206"/>
+        <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>temporaryCodeCompletion</source>
         <translation>ideiglenes kódkiegészítés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="207"/>
+        <location filename="../src/additionaltranslations.cpp" line="208"/>
         <source>environment</source>
         <translation>környezet</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="208"/>
+        <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>referencePresent</source>
         <translation>rendben lévő hivatkozás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="209"/>
+        <location filename="../src/additionaltranslations.cpp" line="210"/>
         <source>referenceMissing</source>
         <translation>hiányzó hivatkozás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="210"/>
+        <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>referenceMultiple</source>
         <translation>többszörös hivatkozás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="211"/>
+        <location filename="../src/additionaltranslations.cpp" line="212"/>
         <source>citationPresent</source>
         <translation>rendben lévő idézés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="212"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>citationMissing</source>
         <translation>hiányzó idézés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
+        <location filename="../src/additionaltranslations.cpp" line="214"/>
         <source>packagePresent</source>
         <translation>Csomag létezik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="214"/>
+        <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>packageMissing</source>
         <translation>Csomag hiányzik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="215"/>
+        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>structure</source>
         <translation>struktúra</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="216"/>
+        <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>current</source>
         <translation>jelenlegi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="217"/>
+        <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>selection</source>
         <translation>kiválasztott</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="218"/>
+        <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>replacement</source>
         <translation>helyettesítés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="219"/>
+        <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>diffDelete</source>
         <translation>Törlés-különbség</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="220"/>
+        <location filename="../src/additionaltranslations.cpp" line="221"/>
         <source>diffAdd</source>
         <translation>Hozzáadás-különbség</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="221"/>
+        <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>diffReplace</source>
         <translation>Csere-különbség</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="222"/>
+        <location filename="../src/additionaltranslations.cpp" line="223"/>
         <source>previewSelection</source>
         <translation>előnézetKiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="223"/>
+        <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>txs-test</source>
         <translation>txs-test</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="224"/>
+        <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>txs-test-summary</source>
         <translation>txs-teszt-eredmény</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="225"/>
+        <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>txs-test-pass</source>
         <translation>txs-test-pass</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="226"/>
+        <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>txs-test-fail</source>
         <translation>txs-test-fail</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="227"/>
+        <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>txs-test-warn</source>
         <translation>txs-test-warn</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="228"/>
+        <location filename="../src/additionaltranslations.cpp" line="229"/>
         <source>txs-test-qdebug</source>
         <translation>txs-test-qdebug</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="229"/>
+        <location filename="../src/additionaltranslations.cpp" line="230"/>
         <source>dtx:guard</source>
         <translation>dtx:guard</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="230"/>
+        <location filename="../src/additionaltranslations.cpp" line="231"/>
         <source>dtx:macro</source>
         <translation>dtx:macro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="231"/>
+        <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>dtx:verbatim</source>
         <translation>dtx:verbatim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="232"/>
+        <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>dtx:specialchar</source>
         <translation>dtx:specialchar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="233"/>
+        <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>dtx:commands</source>
         <translation>dtx:parancsok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="234"/>
+        <location filename="../src/additionaltranslations.cpp" line="235"/>
         <source>lua:keyword</source>
         <translation>lua:kulcsszó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="235"/>
+        <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>lua:comment</source>
         <translation>lua:megjegyzés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="236"/>
+        <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>asymptote:block</source>
         <translation>asymptote:blokk</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="237"/>
+        <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>asymptote:keyword</source>
         <translation>asymptote:kulcsszó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="238"/>
+        <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>asymptote:type</source>
         <translation>asymptote:típus</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="239"/>
+        <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>asymptote:numbers</source>
         <translation>asymptote:számok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="240"/>
+        <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>asymptote:string</source>
         <translation>asymptote:szöveg</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="241"/>
+        <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>asymptote:comment</source>
         <translation>asymptote:komment</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="242"/>
+        <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>qtscript:comment</source>
         <translation>qtscript:komment</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="243"/>
+        <location filename="../src/additionaltranslations.cpp" line="244"/>
         <source>qtscript:string</source>
         <translation>qtscript:sztring</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="244"/>
+        <location filename="../src/additionaltranslations.cpp" line="245"/>
         <source>qtscript:number</source>
         <translation>qtscript:szám</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>qtscript:keyword</source>
         <translation>qtscript:kulcsszó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="246"/>
+        <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>qtscript:txs-variable</source>
         <translation>qtscript:txs-változó</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="247"/>
+        <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>qtscript:txs-function</source>
         <translation>qtscript:txs-függvény</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="248"/>
+        <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>preedit</source>
         <translation>előszerkesztés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="249"/>
+        <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>normal</source>
         <translation>normál</translation>
     </message>
@@ -8840,136 +8845,136 @@ fájlt nem lehet eltávolítani.</translation>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="250"/>
+        <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>Custom</source>
         <translation>Egyéni</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="251"/>
+        <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>File</source>
         <translation>Fájl</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="252"/>
+        <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>Edit</source>
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="253"/>
+        <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>Tools</source>
         <translation>Eszközök</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="254"/>
+        <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>Math</source>
         <translation>Matematika</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="255"/>
+        <location filename="../src/additionaltranslations.cpp" line="256"/>
         <source>Format</source>
         <translation>Formázás</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="256"/>
+        <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>Table</source>
         <translation>Táblázat</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="257"/>
+        <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>Diff</source>
         <translation>Különbség</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="258"/>
+        <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>Review</source>
         <translation>Bírálat</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="259"/>
+        <location filename="../src/additionaltranslations.cpp" line="260"/>
         <location filename="../src/texstudio.cpp" line="289"/>
         <source>Central</source>
         <translation>Központi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="260"/>
+        <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="261"/>
+        <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="262"/>
+        <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>Bináris</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="263"/>
+        <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtx fájl</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="264"/>
+        <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Homespring</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="265"/>
+        <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="266"/>
+        <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="267"/>
+        <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="268"/>
+        <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Sweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="269"/>
+        <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="270"/>
+        <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX makró</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="271"/>
+        <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXS teszteredmények</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="272"/>
+        <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>Egyszerű szöveg</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="273"/>
+        <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
