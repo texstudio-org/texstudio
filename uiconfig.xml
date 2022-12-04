@@ -12,21 +12,21 @@
   
   
   <menu id="sectioning" text="&amp;Sectioning">
-    <insert id="part" text="\part" insert="\part{%&lt;title%>}" icon="part"/>
-    <insert id="chapter" text="\chapter" insert="\chapter{%&lt;title%>}" icon="chapter"/>
-    <insert id="section" text="\section" insert="\section{%&lt;title%>}" icon="section"/>
-    <insert id="subsection" text="\subsection" insert="\subsection{%&lt;title%>}" icon="subsection"/>
-    <insert id="subsubsection" text="\subsubsection" insert="\subsubsection{%&lt;title%>}" icon="subsubsection"/>
-    <insert id="paragraph" text="\paragraph" insert="\paragraph{%&lt;title%>}"/>
-    <insert id="subparagraph" text="\subparagraph" insert="\subparagraph{%&lt;title%>}"/>
+    <insert id="part" text="part" insert="\part{%&lt;title%>}" icon="part"/>
+    <insert id="chapter" text="chapter" insert="\chapter{%&lt;title%>}" icon="chapter"/>
+    <insert id="section" text="section" insert="\section{%&lt;title%>}" icon="section"/>
+    <insert id="subsection" text="subsection" insert="\subsection{%&lt;title%>}" icon="subsection"/>
+    <insert id="subsubsection" text="subsubsection" insert="\subsubsection{%&lt;title%>}" icon="subsubsection"/>
+    <insert id="paragraph" text="paragraph" insert="\paragraph{%&lt;title%>}"/>
+    <insert id="subparagraph" text="subparagraph" insert="\subparagraph{%&lt;title%>}"/>
 
-    <insert id="part*" text="\part*" insert="\part*{%&lt;title%>}"/>
-    <insert id="chapter*" text="\chapter*" insert="\chapter*{%&lt;title%>}"/>
-    <insert id="section*" text="\section*" insert="\section*{%&lt;title%>}"/>
-    <insert id="subsection*" text="\subsection*" insert="\subsection*{%&lt;title%>}"/>
-    <insert id="subsubsection*" text="\subsubsection*" insert="\subsubsection*{%&lt;title%>}"/>
-    <insert id="paragraph*" text="\paragraph*" insert="\paragraph*{%&lt;title%>}"/>
-    <insert id="subparagraph*" text="\subparagraph*" insert="\subparagraph*{%&lt;title%>}"/>
+    <insert id="part*" text="part*" insert="\part*{%&lt;title%>}"/>
+    <insert id="chapter*" text="chapter*" insert="\chapter*{%&lt;title%>}"/>
+    <insert id="section*" text="section*" insert="\section*{%&lt;title%>}"/>
+    <insert id="subsection*" text="subsection*" insert="\subsection*{%&lt;title%>}"/>
+    <insert id="subsubsection*" text="subsubsection*" insert="\subsubsection*{%&lt;title%>}"/>
+    <insert id="paragraph*" text="paragraph*" insert="\paragraph*{%&lt;title%>}"/>
+    <insert id="subparagraph*" text="subparagraph*" insert="\subparagraph*{%&lt;title%>}"/>
   </menu>
 
   <menu id="environment" text="&amp;Environments">
@@ -92,18 +92,18 @@
   
   
   <menu id="boxes" text="Boxes">
-     <insert id="mbox" text="\mbox" insert="\mbox{%&lt;content%>}"/>
-     <insert id="makebox" text="\makebox" insert="\makebox[][]{%&lt;content%>}"/>
-     <insert id="fbox" text="\fbox" insert="\fbox{%&lt;content%>}"/>
-     <insert id="framebox" text="\framebox" insert="\framebox[][]{%&lt;content%>}"/>
-     <insert id="newsavebox" text="\newsavebox" insert="\newsavebox{%&lt;name%>}"/>
-     <insert id="sbox" text="\sbox" insert="\sbox{%&lt;name%>}{%&lt;content%>}"/>
-     <insert id="savebox" text="\savebox" insert="\savebox{%&lt;name%>}[][]{%&lt;content%>}"/>
-     <insert id="usebox" text="\usebox" insert="\usebox{%&lt;name%>}"/>
-     <insert id="raisebox" text="\raisebox" insert="\raisebox{%&lt;voffset%>}[][]{%&lt;content%>}"/>
-     <insert id="parbox" text="\parbox" insert="\parbox[]{%&lt;width%>}{%&lt;content%>}"/>
+     <insert id="mbox" text="mbox" insert="\mbox{%&lt;content%>}"/>
+     <insert id="makebox" text="makebox" insert="\makebox[][]{%&lt;content%>}"/>
+     <insert id="fbox" text="fbox" insert="\fbox{%&lt;content%>}"/>
+     <insert id="framebox" text="framebox" insert="\framebox[][]{%&lt;content%>}"/>
+     <insert id="newsavebox" text="newsavebox" insert="\newsavebox{%&lt;name%>}"/>
+     <insert id="sbox" text="sbox" insert="\sbox{%&lt;name%>}{%&lt;content%>}"/>
+     <insert id="savebox" text="savebox" insert="\savebox{%&lt;name%>}[][]{%&lt;content%>}"/>
+     <insert id="usebox" text="usebox" insert="\usebox{%&lt;name%>}"/>
+     <insert id="raisebox" text="raisebox" insert="\raisebox{%&lt;voffset%>}[][]{%&lt;content%>}"/>
+     <insert id="parbox" text="parbox" insert="\parbox[]{%&lt;width%>}{%&lt;content%>}"/>
      <insert id="minipage" text="\begin{minipage}" insert="\begin{minipage}[][][]{%&lt;width%>}%\%|%\\end{minipage}"/>
-     <insert id="rule" text="\rule" insert="\rule[]{%&lt;width%>}{%&lt;height%>}"/>
+     <insert id="rule" text="rule" insert="\rule[]{%&lt;width%>}{%&lt;height%>}"/>
   </menu>
   
   
@@ -119,16 +119,16 @@
   </menu>
 
   <menu id="fontsizes" text="Font Sizes">
-    <insert id="tiny" text="\tiny" insert="{\tiny %|}"/>
-    <insert id="scriptsize" text="\scriptsize" insert="{\scriptsize %|}"/>
-    <insert id="footnotesize" text="\footnotesize" insert="{\footnotesize %|}"/>
-    <insert id="small" text="\small" insert="{\small %|}"/>
-    <insert id="normalsize" text="\normalsize" insert="{\normalsize %|}"/>
-    <insert id="large" text="\large" insert="{\large %|}"/>
-    <insert id="Large" text="\Large" insert="{\Large %|}"/>
-    <insert id="LARGE" text="\LARGE" insert="{\LARGE %|}"/>
-    <insert id="huge" text="\huge" insert="{\huge %|}"/>
-    <insert id="Huge" text="\Huge" insert="{\Huge %|}"/>
+    <insert id="tiny" text="tiny" insert="{\tiny %|}"/>
+    <insert id="scriptsize" text="scriptsize" insert="{\scriptsize %|}"/>
+    <insert id="footnotesize" text="footnotesize" insert="{\footnotesize %|}"/>
+    <insert id="small" text="small" insert="{\small %|}"/>
+    <insert id="normalsize" text="normalsize" insert="{\normalsize %|}"/>
+    <insert id="large" text="large" insert="{\large %|}"/>
+    <insert id="Large" text="Large" insert="{\Large %|}"/>
+    <insert id="LARGE" text="LARGE" insert="{\LARGE %|}"/>
+    <insert id="huge" text="huge" insert="{\huge %|}"/>
+    <insert id="Huge" text="Huge" insert="{\Huge %|}"/>
   </menu>
 
   
@@ -223,13 +223,13 @@
   </menu>
 
   <menu id="references" text="Cross References">
-    <insert id="label" text="\label" insert="\label{%&lt;key%>}" info="\label{key}"/>
-    <action id="ref" text="\ref" slot="1insertRef()"/> 
-    <action id="eqref" text="\eqref" slot="1insertEqRef()"/> 
-    <action id="pageref" text="\pageref" slot="1insertPageRef()"/> 
-    <insert id="index" text="\index" insert="\index{%&lt;key%>}"/>
-    <insert id="cite" text="\cite" insert="\cite{%&lt;key%>}"  info="This command generates an in-text citation to the reference associated with the ref entry in the bib file"/>
-    <insert id="footnote" text="\footnote" insert="\footnote{%&lt;text%|%>}" info="\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page."/>
+    <insert id="label" text="label" insert="\label{%&lt;key%>}" info="\label{key}"/>
+    <action id="ref" text="ref" slot="1insertRef()"/> 
+    <action id="eqref" text="eqref" slot="1insertEqRef()"/> 
+    <action id="pageref" text="pageref" slot="1insertPageRef()"/> 
+    <insert id="index" text="index" insert="\index{%&lt;key%>}"/>
+    <insert id="cite" text="cite" insert="\cite{%&lt;key%>}"  info="This command generates an in-text citation to the reference associated with the ref entry in the bib file"/>
+    <insert id="footnote" text="footnote" insert="\footnote{%&lt;text%|%>}" info="\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page."/>
   </menu>
   
   <menu id="bibliographyMenu" text="Bibliography">
