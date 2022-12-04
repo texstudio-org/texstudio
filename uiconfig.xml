@@ -163,8 +163,8 @@
     <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
     <insert id="smallskip" text="\smallskip" insert="\smallskip" info="The \smallskip command adds a 'small' vertical space."/>
     <insert id="baselineskip" text="\baselineskip" insert="\baselineskip" info="The \baselineskip command adds the normal distance between lines in a paragraph."/>
-    <insert id="vspace" text="\vspace" insert="\vspace{%&lt;skip%>}" info="The \vspace command inserts an amount of skip (positiv, zero or negativ) of vertical space."/>
-    <insert id="vfill" text="\vfill" insert="\vfill" info="The \vfill command inserts a rubber length which has no natural space but that can stretch vertictally as far as needed."/>
+    <insert id="vspace" text="\vspace" insert="\vspace{%&lt;skip%>}" info="The \vspace command inserts an amount of skip (positive, zero or negative) of vertical space."/>
+    <insert id="vfill" text="\vfill" insert="\vfill" info="The \vfill command inserts a rubber length which has no natural space but that can stretch vertically as far as needed."/>
     <insert id="newline" text="New line - \\" insert="\\%\" info="The \newline command breaks the line right where it is." icon="newline" shortcut="Ctrl+Return"/>
   </menu>
   
