@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2022/08/05 for v1.08
+# Matthew Bertucci 2022/12/03 for v1.09
 
 #include:plaintex
 #include:luatex
@@ -84,7 +84,7 @@
 \eqstyle{code}
 \loadboldmath{[bold-font-file]} \to {[normal-font-file]}
 \addUmathfont{cmd}{[normal-font]}{features}{[bold-font]}{features}{factor}#d
-\resetmathchars %<\famname ⟨list of sequences⟩%> ;
+\mathchars %<\famname ⟨list of sequences⟩%> ;
 
 ## Typical elements of the document ##
 # NOTE: \chap{title} etc. are not proper syntax but must be listed here
@@ -372,8 +372,13 @@
 \addto%<\macro%>{%<text%>}
 \adef%<⟨char⟩%>{%<body%>}
 \afterfi{text}
+\aheadto%<\macro%>{%<text%>}
+\basefilename %<⟨filename⟩%>
 \bp{dimen expression}
+\casesof %<⟨token⟩ ⟨list of cases⟩%>
 \cs{string}
+\cstochar%<⟨\sequence⟩%>
+\currfile
 \eoldef
 \eoldef{cmd}#Sd
 \eqbox[label]{text}
@@ -400,10 +405,16 @@
 \isfont
 \isnextchar %<⟨char⟩%>{%<text1%>}{%<text2%>}
 \kv{key%plain}
+\nospaceafter %<\macro%>
+\nospacefuturelet
+\nospacefuturelet{cmd}#Sd
 \opinput{file}#i
 \optdef%<\macro%>[%<opt-default%>] %<⟨parameters⟩%>{%<body%>}
 \optdef{cmd}#Sd
 \opwarning{text}
+\posx[label]
+\posy[label]
+\posg[label]
 \private
 \public
 \readkv%<\macro%>
@@ -412,6 +423,7 @@
 \sdef{%<string%>}%<⟨parameters⟩%>{%<body%>}
 \setctable
 \restorectable
+\setpos[label]
 \slet{stringA%definition}{stringB%definition}
 \sxdef{string%definition}{def}#S
 \sxdef{%<string%>}%<⟨parameters⟩%>{%<body%>}
@@ -420,6 +432,7 @@
 \usesecond{arg1}{arg2}
 \wterm{text}
 \xargs %<⟨what⟩ ⟨token1⟩ ⟨token2⟩ ...%>
+\xcasesof %<⟨list of pairs⟩%>
 
 ## Compatibility with Plain TEX ##
 \oldaccents#*
@@ -454,6 +467,7 @@
 \CS#*
 \csplain#*
 \defaultoptsize
+\docgen %<⟨package⟩%>
 \doloadmath
 \dunhill#*
 \ea#*
@@ -483,6 +497,7 @@
 \ignslash#*
 \iindex{word}
 \initunifonts#*
+\inlinkcolor#*
 \itemnum
 \layernum
 \layers %<⟨number⟩%>
@@ -491,6 +506,7 @@
 \lipsumtext[number]#*
 \listskipamount
 \localcolor
+\mathcodes %<⟨family⟩%> {%<list-of-pairs%>}
 \mathsboff
 \mathsbon
 \mfontsrule
@@ -504,6 +520,7 @@
 \newcurrfontsize{size spec}
 \newmarks
 \newmarks{cmd}#Sd
+\newpublic%<⟨do⟩ ⟨\sequence⟩%>
 \nextpages={%<code%>}
 \NO#*
 \nobibwarning[list of bib-labels]
@@ -516,6 +533,7 @@
 \opt
 \optexcatcodes
 \optexversion#*
+\outlinkcolor#*
 \pageresources#*
 \pcent
 \pdfunidef%<\macro%>{%<text%>}
@@ -551,6 +569,8 @@
 \setmathsizes[%<text-size%>/%<script-size%>/%<scriptscript-size%>]
 \setwordspace{scale}
 \setwsp#*
+\sfont%<⟨control sequence⟩%> = [%<fontname%>]%<:⟨opt1;opt2;...⟩%>
+\sfont{cmd}#Sd
 \shadowlevels
 \shordcitations
 \skiptoeol
@@ -573,8 +593,11 @@
 \ttprop#*
 \ttset#*
 \ttshift
+\ufont%<⟨control sequence⟩%> = [%<fontname%>]%<:⟨opt1;opt2;...⟩%>
+\ufont{cmd}#Sd
 \upital#*
 \upper{text}#*
+\Urange %<⟨from⟩-⟨to⟩%>
 \useK
 \uslang#S
 \uv#S
@@ -625,13 +648,17 @@
 \extend#S
 \Garamondl#S
 \GFSBodoni#S
+\hair#S
 \Heros#S
 \initials#S
+\Iwona#S
 \Kerkis#S
 \keybr#S
 \kf#S
 \ki#S
 \Kpfonts#S
+\Kurier#S
+\Lato#S
 \lf#S
 \li#S
 \Libertine#S

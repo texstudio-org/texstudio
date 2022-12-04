@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/11/16 for v0.6.0
+# Matthew Bertucci 2022/11/30 for v0.8.0
 
 #include:stmaryrd
 #include:amsmath
@@ -11,14 +11,21 @@
 #include:ifxetex
 #include:pdftexcmds
 #include:tikz
-# loads arrows, shapes, snakes, decorations, decorations.pathmorphing, decorations.pathreplacing,
-# positioning, calc, math, and arrows.meta tikzlibraries
+#include:tikzlibraryshapes
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarypositioning
+#include:tikzlibrarycalc
+#include:tikzlibrarymath
+#include:tikzlibraryarrows.meta
 #include:hyperref
 #include:trimclip
 
 #keyvals:\usepackage/eolang#c
 tmpdir=%<path%>
 nocomments
+anonymous
 #endkeyvals
 
 \begin{phiquation}#\math
@@ -35,12 +42,15 @@ nocomments
 \phic
 \xmir
 
+\phiSlot{arg}#m
 \phiConst#m
 \phiWave#m
-\phiSlot{arg}#m
-\phiMany{arg}{under}{over}#m
 \phiDotted#m
+\phiOset{over}{arg}#m
+\phiUset{under}{arg}#m
+\phiMany{arg}{under}{over}#m
 
 # internal
 \begin{phicture}#S
 \end{phicture}#S
+\phiEOL#S

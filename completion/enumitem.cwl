@@ -64,7 +64,7 @@ description*
 \setlistdepth{integer}
 \AddEnumerateCounter{LaTeX-cmd}{internal-cmd}{widest label}#*
 \AddEnumerateCounter*{LaTeX-cmd}{internal-cmd}{integer}#*
-\SetEnumitemKey{key%plain}{replacement options%keyvals}#*
+\SetEnumitemKey{key%plain}{replacement options%keyvals}#*s#%enumitemkey
 \SetEnumitemValue{key%plain}{string-value}{replacement}#*
 \SetEnumitemSize{name}{selector}#*
 \DrawEnumitemLabel#*
@@ -118,4 +118,5 @@ itemjoin=%<string%>
 itemjoin*=%<string%>
 afterlabel=%<string%>
 mode=#unboxed,boxed
+%enumitemkey
 #endkeyvals

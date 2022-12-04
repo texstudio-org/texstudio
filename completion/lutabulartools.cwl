@@ -1,5 +1,5 @@
 # lutabulartools package
-# Matthew Bertucci 4/24/2022 for release 2022-04-16
+# Matthew Bertucci 4/24/2022 for release 2022-11-29
 
 #include:booktabs
 #include:multirow
@@ -11,24 +11,32 @@
 #include:luacode
 #include:penlight
 
-#keyvals:\usepackage/lutabulartools#c
-notrim
+\settabular{options%keyvals}
+
+#keyvals:\settabular
+nopad#true,false
+tbrule#true,false
+rowsep=%<integer%>
+colsep=%<integer%>
 #endkeyvals
 
 \lttdebugON
 \lttdebugOFF
+\lttdebugprt
 
 \MC{contents%text}#t
 \MC[cell spec]{contents%text}#t
-\MC[cell spec]<cell format>(override multicolumn col){contents%text}#t
+\MC[cell spec][override multicol]<cell format>{contents%text}#t
 \MC*{contents%text}#t
 \MC*[cell spec]{contents%text}#t
-\MC*[cell spec]<cell format>(override multicolumn col){contents%text}#t
+\MC*[cell spec][override multicol]<cell format>{contents%text}#t
 
 \setMCrepl{column}{spec}
 \setMChordef{column}{alignments}
 \setMCverdef{column}{alignments}
 \addMCsicol{column}
+
+\midrulesat{row1,row2,...}
 
 \gmidrule{colspecs}#t
 \gmidrule(trim){colspecs}#t
@@ -39,13 +47,12 @@ notrim
 \cmidrules{colspecs}#t
 \cmidrules(trim){colspecs}#t
 
-\midruleX
-\setmidruleX{keyvals}
-\setmidruleX[o|n|f]{keyvals}
-\setmidruleX*{keyvals}
-\setmidruleX*[o|n|f]{keyvals}
+\midruleX{keyvals}
+\midruleX[o|n|f]{keyvals}
+\midruleX*{keyvals}
+\midruleX*[o|n|f]{keyvals}
 
-#keyvals:\setmidruleX,\setmidruleX*
+#keyvals:\midruleX,\midruleX*
 step=%<integer%>
 rule=
 reset#true,false
@@ -54,7 +61,7 @@ cntr=%<integer%>
 #endkeyvals
 
 \resetmidruleX
-\midruleXreset#S
+\resetmidruleX[counter]
 
 # not documented
 \forcecolspec{arg}#S
