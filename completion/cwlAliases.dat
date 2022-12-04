@@ -1502,3 +1502,7 @@ ydoc:
 class-ydoc
 latex-document
 tex
+ukbill:
+class-ukbill
+latex-document
+tex
