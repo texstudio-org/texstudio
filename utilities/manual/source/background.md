@@ -76,6 +76,7 @@ Additional options only available in debug versions of TeXstudio:
 | `--disable-tests` | Prevent running any tests. |
 | `--execute-tests` | Force running the most common tests. |
 | `--execute-all-tests` | Force running all tests. |
+| `--update-translations` | generate file `additionaltranslation.cpp`which contains translatable string from `uiconfig.xml`. |
 
 Note: The most common tests are run automatically, if there were changes
 to the executable (i.e. TXS has been compiled since the last run).
