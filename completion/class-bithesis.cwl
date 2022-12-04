@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2022/10/23 for v3.1.1
+# Matthew Bertucci 2022/12/04 for v3.2.0
 
 #include:expl3
 #include:l3keys2e
@@ -51,6 +51,7 @@ cover/headerImage=%<图片路径%>
 cover/xiheiFont=%<字体路径%>
 cover/dilimiter=%<任意字符串%>
 cover/autoWidth#true,false
+cover/autoWidthPadding=##L
 cover/labelMaxWidth=##L
 cover/valueMaxWidth=##L
 cover/labelAlign=#c,l,r
