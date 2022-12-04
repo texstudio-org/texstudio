@@ -218,6 +218,14 @@ void SyntaxCheckTest::checkkeyval_data(){
              <<"\\SI[color=red,modea=text]{test}"<<true;
      QTest::newRow("2 key/value,error value")
              <<"\\SI[color=red,mode=texta]{test}"<<true;
+     QTest::newRow("key/value,color error")
+             <<"\\SI[color=reda]{test}"<<true;
+     QTest::newRow("key/value,color in braces")
+             <<"\\SI[color={red}]{test}"<<false;
+     QTest::newRow("key/value,mixed color in braces")
+             <<"\\SI[color={red!20!black}]{test}"<<false;
+     QTest::newRow("key/value,mixed color")
+             <<"\\SI[color=red!20!black]{test}"<<false;
      QTest::newRow("2 key/value,composite key")
              <<"\\SI[mode=text,number-mode=math]{test}"<<false;
      QTest::newRow("yathesis without options")
