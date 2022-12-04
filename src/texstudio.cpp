@@ -1206,7 +1206,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "remHLine", tr("Remove \\hline", "table"), SLOT(remHLineCB()));
 	newManagedAction(submenu, "insertTableTemplate", tr("Remodel Table Using Template", "table"), SLOT(insertTableTemplate()));
 	newManagedAction(submenu, "alignColumns", tr("Align Columns"), SLOT(alignTableCols()), QKeySequence(), "alignCols");
-	submenu = newManagedMenu(menu, "magicComments", tr("Add magic comments ..."));
+	submenu = newManagedMenu(menu, "magicComments", tr("Add magic comments"));
 	newManagedAction(submenu, "addMagicRoot", tr("Insert root document name as TeX comment"), SLOT(addMagicRoot()));
 	newManagedAction(submenu, "addMagicLang", tr("Insert language as TeX comment"), SLOT(insertSpellcheckMagicComment()));
 	newManagedAction(submenu, "addMagicCoding", tr("Insert document coding as TeX comment"), SLOT(addMagicCoding()));
