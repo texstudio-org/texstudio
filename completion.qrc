@@ -927,6 +927,7 @@
 <file>completion/class-ujarticle.cwl</file>
 <file>completion/class-ujbook.cwl</file>
 <file>completion/class-ujreport.cwl</file>
+<file>completion/class-ukbill.cwl</file>
 <file>completion/class-ulect-l.cwl</file>
 <file>completion/class-ulthese.cwl</file>
 <file>completion/class-unbtex.cwl</file>
@@ -1070,6 +1071,7 @@
 <file>completion/cpssp.cwl</file>
 <file>completion/cquthesis.cwl</file>
 <file>completion/crbox.cwl</file>
+<file>completion/createsudoku.cwl</file>
 <file>completion/create-theorem.cwl</file>
 <file>completion/crefthe.cwl</file>
 <file>completion/crimson.cwl</file>
@@ -2672,6 +2674,7 @@
 <file>completion/prftree.cwl</file>
 <file>completion/principia.cwl</file>
 <file>completion/printlen.cwl</file>
+<file>completion/printsudoku.cwl</file>
 <file>completion/prnthyph.cwl</file>
 <file>completion/proba.cwl</file>
 <file>completion/probsoln.cwl</file>
@@ -3091,6 +3094,7 @@
 <file>completion/snotez.cwl</file>
 <file>completion/sobolev.cwl</file>
 <file>completion/software-biblatex.cwl</file>
+<file>completion/solvesudoku.cwl</file>
 <file>completion/somedefs.cwl</file>
 <file>completion/songbook.cwl</file>
 <file>completion/songproj.cwl</file>
@@ -3381,6 +3385,7 @@
 <file>completion/tikzlibrarydecorations.pathreplacing.cwl</file>
 <file>completion/tikzlibrarydecorations.shapes.cwl</file>
 <file>completion/tikzlibrarydecorations.text.cwl</file>
+<file>completion/tikzlibraryducks.cwl</file>
 <file>completion/tikzlibraryer.cwl</file>
 <file>completion/tikzlibraryexternal.cwl</file>
 <file>completion/tikzlibraryfadings.cwl</file>
