@@ -147,12 +147,12 @@
     <insert id="enspace" text="\enspace" insert="\enspace" info="The \enspace command inserts a horizontal space of 1/2em."/>
     <insert id="quad" text="\quad" insert="\quad" info="The \quad command inserts a horizontal space of 1em (1em being the width of M)."/>
     <insert id="qquad" text="\qquad" insert="\qquad" info="The \qquad command inserts a horizontal space of 2em."/>
-    <insert id="thinspace" text="\thinspace" insert="\thinspace" info="The command \thinsapce produces unbreakable and unstretchable space of 1/6em (same as \, in math mode)."/>
-    <insert id="negthinspace" text="\negthinspace" insert="\negthinspace" info="The command \thinspace produces unbreakable and unstretchable space of -1/6em (same as \, in math mode)."/>
+    <insert id="thinspace" text="\thinspace" insert="\thinspace" info="The command \thinspace produces unbreakable and unstretchable space of 1/6em (same as \, in math mode)."/>
+    <insert id="negthinspace" text="\negthinspace" insert="\negthinspace" info="The command \negthinspace produces unbreakable and unstretchable space of -1/6em (same as \, in math mode)."/>
     <insert id="hspace" text="\hspace" insert="\hspace{%&lt;skip%>}" info="The \hspace command inserts an amount of skip of horizontal space."/>
     <insert id="hfill" text="\hfill" insert="\hfill" info="The \hfill command inserts a rubber length which has no natural space but that can stretch horizontally as far as needed."/>
-    <insert id="hrulefill" text="\hrulefill" insert="\hrulefill" info="The \hrulefill command produces an infinite horizontal rubber length hat LaTeX fills with a rule (that is, a line), instead of white space."/>
-    <insert id="dotfill" text="\dotfill" insert="\dotfill" info="The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with with dots, instead of white space."/>
+    <insert id="hrulefill" text="\hrulefill" insert="\hrulefill" info="The \hrulefill command produces an infinite horizontal rubber length that LaTeX fills with a rule (that is, a line), instead of white space."/>
+    <insert id="dotfill" text="\dotfill" insert="\dotfill" info="The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with dots, instead of white space."/>
   </menu>
 
   <menu id="verticalSpacing" text="&amp;Vertical Spacing">
