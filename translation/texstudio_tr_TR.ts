@@ -4049,7 +4049,7 @@ Bunları kaldırmak ister misiniz?</translation>
     <message>
         <location filename="../src/editors.cpp" line="402"/>
         <source>Move all others to other view</source>
-        <translation type="unfinished"/>
+        <translation>Tüm diğerlerini başka görünüme taşı</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="407"/>
