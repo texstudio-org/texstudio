@@ -2,7 +2,8 @@
 # Matthew Bertucci 2/15/2022 for v0.7
 
 #include:tikz
-# loads shapes.misc, arrows, and calc tikzlibraries
+#include:tikzlibraryshapes.misc
+#include:tikzlibrarycalc
 #include:cnltx-base
 
 \chordscheme
