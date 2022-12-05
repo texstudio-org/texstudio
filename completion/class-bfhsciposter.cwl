@@ -8,7 +8,7 @@
 #include:bfhlogo
 #include:graphicx
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #include:tcolorbox
 # loads poster tcolorbox library
 #include:pdfcol
