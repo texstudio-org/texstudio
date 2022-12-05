@@ -3,7 +3,10 @@
 
 #include:ifluatex
 #include:tikz
-# loads backgrounds, arrows, shapes, tikzmark, and calc tikzlibraries
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryshapes
+#include:tikzlibrarytikzmark
+#include:tikzlibrarycalc
 #include:xcolor
 #include:expl3
 #include:l3keys2e
