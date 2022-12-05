@@ -3,6 +3,7 @@
 
 #include:tikz
 #include:ifthen
+#include:tikzlibrarypositioning
 
 \copyrightbox{content}{text}
 \copyrightbox[placement%keyvals]{content}{text}
