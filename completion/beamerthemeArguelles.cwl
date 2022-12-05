@@ -7,7 +7,7 @@
 #include:microtype
 #include:fontawesome
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 
 cultured#B
 sumi#B
