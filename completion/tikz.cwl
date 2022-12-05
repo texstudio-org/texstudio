@@ -190,7 +190,6 @@ patterns.meta
 penrose
 perspective
 petri
-phylogenetics
 pie
 plothandlers
 plotmarks
