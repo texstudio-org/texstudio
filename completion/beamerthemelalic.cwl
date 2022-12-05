@@ -10,6 +10,12 @@
 \agendaautomatica[number]
 \segundacoluna#*
 
+# from lalic innertheme
+#include:tikz
+#include:tikzlibrarypositioning
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes.misc
+
 # from lalic colortheme
 #include:xcolor
 lalicbackground#B
