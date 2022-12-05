@@ -6,7 +6,7 @@
 #include:tcolorbox
 # loads skins (which loads tikz), fitting, and external tcblibraries
 #include:tikz
-# loads arrows.meta and fit tikzlibraries
+#include:tikzlibraryfit
 
 \gtruselibrary{library list%keyvals}
 
