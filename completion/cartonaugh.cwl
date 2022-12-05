@@ -4,6 +4,8 @@
 #include:luatex
 #include:iftex
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibrarymatrix
 #include:xparse
 #include:xstring
 
