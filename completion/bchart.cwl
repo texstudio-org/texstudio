@@ -1,7 +1,9 @@
 # bchart package
 # Matthew Bertucci 9/3/2021 for v0.1.2
 
+#include:ifthen
 #include:tikz
+#include:tikzlibrarycalc
 
 \begin{bchart}[options%keyvals]
 \end{bchart}
@@ -33,3 +35,19 @@ label=
 \bclabel{label}#/bchart
 
 \bcfontstyle#*
+\bcpos#S
+\bcwidth#S
+\bcunit#S
+\bcmin#S
+\bcmax#S
+\bcstep#S
+\bcsteps#S
+\bcscale#S
+\bcplainchart#S
+\bcbarcolor#S
+\bcbartext#S
+\bcbarlabel#S
+\bcbarvalue#S
+\bcplainbar#S
+\bcskiplabel#S
+\bcstripunit{arg}#S
