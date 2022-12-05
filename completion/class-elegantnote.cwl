@@ -30,7 +30,7 @@
 #include:extsizes
 #include:fancyhdr
 #include:tikz
-# loads shadows tikzlibrary
+#include:tikzlibraryshadows
 #include:listings
 #include:lstautogobble
 
