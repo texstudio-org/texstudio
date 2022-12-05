@@ -8,6 +8,9 @@
 #include:varwidth
 #include:tabto
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibraryfit
+#include:tikzlibrarytikzmark
 
 #keyvals:\usepackage/algpseudocodex#c
 noEnd#true,false
