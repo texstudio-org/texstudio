@@ -5,7 +5,7 @@
 #include:l3keys2e
 #include:siunitx
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #include:xparse
 
 \ENsetup{options%keyvals}
