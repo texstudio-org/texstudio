@@ -5,7 +5,9 @@
 #include:ifthen
 #include:relsize
 #include:xargs
-# loads calc, fit, and shapes tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryfit
+#include:tikzlibraryshapes
 
 #keyvals:\usepackage/fast-diagram#c
 raccourcis
