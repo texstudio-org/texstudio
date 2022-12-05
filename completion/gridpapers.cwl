@@ -5,7 +5,8 @@
 #include:kvoptions
 #include:xcolor
 #include:tikz
-# loads patterns.meta and calc tikzlibraries
+#include:tikzlibrarypatterns.meta
+#include:tikzlibrarycalc
 #include:tikzpagenodes
 #include:pagecolor
 #include:geometry
