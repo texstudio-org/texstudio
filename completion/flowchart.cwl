@@ -3,7 +3,7 @@
 
 #include:tikz
 #include:makeshape
-# loads shapes tikzlibrary
+#include:tikzlibraryshapes
 
 \band#*
 \predprocAnchorpath#*
