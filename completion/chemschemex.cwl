@@ -9,7 +9,10 @@
 #include:fancylabel
 #include:graphicx
 #include:tikz
-# loads shapes.multipart, decorations, decorations.markings, positioning, and arrows.meta tikzlibraries
+#include:tikzlibraryshapes.multipart
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarypositioning
 
 #keyvals:\usepackage/chemschemex#c
 image={%<\includegraphics options%>}
