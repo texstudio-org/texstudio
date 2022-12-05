@@ -7,8 +7,7 @@
 #include:environ
 #include:mathtools
 #include:tikz
-# loads cd tikzlibrary
-#include:tikz-cd
+#include:tikzlibrarycd
 
 \intomargin
 \noeqnnumwarn
