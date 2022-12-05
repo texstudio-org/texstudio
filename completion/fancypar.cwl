@@ -3,6 +3,7 @@
 
 #include:xkeyval
 #include:tikz
+#include:tikzlibrarycalc
 #include:xcolor
 
 \fancyparsetup{keyvals}
