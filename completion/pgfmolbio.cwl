@@ -6,7 +6,8 @@
 #include:xcolor
 # xcolor loaded with svgnames and dvipsnames options
 #include:tikz
-# loads positioning and svg.path tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibrarysvg.path
 
 #keyvals:\usepackage/pgfmolbio#c
 chromatogram
