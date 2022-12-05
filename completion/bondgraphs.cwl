@@ -5,7 +5,9 @@
 #include:bm
 #include:kvoptions
 #include:tikz
-# loads arrows, arrows.meta, decorations.pathreplacing, positioning, and shapes tikzlibraries
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes
 
 #keyvals:\usepackage/bondgraphs#c
 labelcolour=#%color
