@@ -11,6 +11,14 @@
 #include:amsmath
 #include:amssymb
 #include:mathtools
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibraryfit
+#include:tikzlibrarypatterns
+#include:tikzlibraryshadows
 
 \dynkin{%<letter%>}{%<rank%>}
 \dynkin{%<letter%>}[%<twisted rank%>]{%<rank%>}
