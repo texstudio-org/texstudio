@@ -4,6 +4,7 @@
 #include:etoolbox
 #include:chemfig
 #include:xcolor
+#include:tikzlibrarydecorations.pathmorphing
 
 \carbohydrate{spec}
 \carbohydrate[options%keyvals]{spec}
