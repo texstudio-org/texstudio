@@ -435,7 +435,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	managedToolBars.append(ManagedToolBar("Diff", QStringList() << "main/file/svn/prevdiff" << "main/file/svn/nextdiff"  ));
     managedToolBars.append(ManagedToolBar("Review", QStringList() << "main/latex/review/alert" << "main/latex/review/comment" << "main/latex/review/add" << "main/latex/review/delete" << "main/latex/review/replace" ));
 	managedToolBars.append(ManagedToolBar("Central", QStringList() << "main/edit/goto/goback" << "main/edit/goto/goforward" << "separator" << "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright" << "separator" <<
-	                                      "main/latex/spacing/newline" << "separator" <<
+	                                      "main/latex/verticalSpacing/newline" << "separator" <<
 	                                      "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt"));
 
     Ui::ConfigDialog *pseudoDialog = static_cast<Ui::ConfigDialog *>(nullptr);
