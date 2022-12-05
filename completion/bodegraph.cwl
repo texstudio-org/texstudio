@@ -4,7 +4,9 @@
 #include:ifsym
 #include:ifthen
 #include:tikz
-# loads shapes, arrows, backgrounds, and decorations.markings tikzlibraries
+#include:tikzlibraryshapes
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarydecorations.markings
 
 \semilog{min-decades}{max-decades}{y-min}{y-max}
 \semilog*{min-decades}{max-decades}{y-min}{y-max}
