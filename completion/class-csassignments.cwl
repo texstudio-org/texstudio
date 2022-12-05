@@ -31,7 +31,7 @@
 #include:multicol
 #include:tgpagella
 #include:suffix
-# loads arrows and calc tikzlibraries
+#include:tikzlibrarycalc
 
 # passes all options to article class
 #keyvals:\documentclass/csassignments#c
