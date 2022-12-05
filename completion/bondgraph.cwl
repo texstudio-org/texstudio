@@ -2,7 +2,7 @@
 # Matthew Bertucci 2/15/2022 for v1.0
 
 #include:tikz
-# loads arrows pgflibrary and positioning tikzlibrary
+#include:tikzlibrarypositioning
 #include:ifthen
 
 \bondleft{label1%formula}{label2%formula}
