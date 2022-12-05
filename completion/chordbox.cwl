@@ -2,7 +2,8 @@
 # Matthew Bertucci 2022/09/26 for v1.0
 
 #include:tikz
-# loads shapes.misc, scopes, and backgrounds tikzlibraries
+#include:tikzlibraryshapes.misc
+#include:tikzlibrarybackgrounds
 #include:xifthen
 #include:xstring
 
