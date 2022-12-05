@@ -5,6 +5,7 @@
 #include:l3keys2e
 #include:varwidth
 #include:tikz
+#include:tikzlibrarybending
 #include:xparse
 
 #keyvals:\usepackage/witharrows#c
