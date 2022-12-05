@@ -6,7 +6,8 @@
 #include:xcolor
 #include:calc
 #include:tikz
-# loads positioning and calc tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibrarycalc
 #include:ifthen
 #include:xargs
 #include:pgf
