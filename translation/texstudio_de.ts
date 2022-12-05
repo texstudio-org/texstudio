@@ -934,13 +934,13 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
     <message>
         <location filename="../src/configdialog.ui" line="657"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation>&lt;b&gt;%&lt;/b&gt;: Dateiname ohne Endung; &lt;b&gt;@&lt;/b&gt;: Zeilennummer; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: Formatierter Dateiname</translation>
+        <translation>&lt;b&gt;%&lt;/b&gt; ergibt den Dateinamen ohne Endung, &lt;b&gt;@&lt;/b&gt; die Zeilennummer, &lt;b&gt;?[Dateiselektor][Pfadnamenteile][Endekennzeichen]&lt;/b&gt;einen formatierten Dateinamen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="683"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
-        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; und &lt;b&gt;??&lt;/b&gt; werden ersetzt durch: %, @ oder ?
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; und &lt;b&gt;??&lt;/b&gt; werden ersetzt durch %, @ bzw. ?
 </translation>
     </message>
     <message>
@@ -1456,7 +1456,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="../src/configdialog.ui" line="1943"/>
         <source>Remove Trailing Whitespace on Save</source>
-        <translation>Entferne voranliegende Leerzeichen beim Speichern</translation>
+        <translation>Beim Speichern Leerzeichen und Tabs an Zeilenenden entfernen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1589"/>
@@ -1676,7 +1676,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="../src/configdialog.ui" line="2293"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation>Überschreibe schließende Klammer, die von einem Platzhalter gefolgt wird</translation>
+        <translation>Überschreibe schließende Klammern, die einem Platzhalter folgen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2300"/>
@@ -1742,7 +1742,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2170"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation>Überschreibe öffnende Klammer, die von einem Platzhalter gefolgt wird</translation>
+        <translation>Überschreibe öffnende Klammern, denen ein Platzhalter folgt</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2330"/>
@@ -1867,7 +1867,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="667"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation>&lt;i&gt;Dateienselektor (Optional. Wenn vorhanden benötigt ein abschließenden Doppelpunkt):&lt;/i&gt;Falls kein Slektor gewählt wurde, wähle Root Datei.&lt;b&gt;c:&lt;/b&gt;wähle aktuelle Datei,&lt;b&gt;p{ext}&lt;/b&gt;Suche eine Datei mit dem selben Grundnamen wie die Root Datei und einer Erweiterung &lt;b&gt;ext&lt;/b&gt;. Die Suche wird im Root Dateiverzeichnis und in zusätzlichen PDF Verzeichnissen durchgeführt.&lt;br /&gt;&lt;i&gt;Pfadnamenteile:&lt;/i&gt;Eine Kombination der folgenden Symbole &lt;b&gt;a&lt;/b&gt;: absoluter Pfad, &lt;b&gt;m&lt;/b&gt;: Dateiname ohne Endung,&lt;b&gt;e&lt;/b&gt;: Dateiendung, &lt;b&gt;r&lt;/b&gt; relativer Pfad zur Root Datei, &lt;b&gt;*&lt;/b&gt;: alle Dateien, die das folgende Muster erfüllen.&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt; )&lt;/b&gt;: Beendet den Befehl. Ebenso beenden die folgenden Symbole den Befehl. Sie haben jedoch eine Zusatzbedeutung&lt;br/&gt;&lt;b&gt;&quot;&lt;/b&gt;: mit doppelten Anführungszeichen umschließen, &lt;b&gt;. &lt;/b&gt;(Punkt) fügt am Ende einen Punkt ein, (Leerzeichen): fügt am Ende ein Leerzeichen ein&lt;br/&gt;&lt;i&gt;Beispiele:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: absoluter Dateiname in Anführungszeichen, &lt;b&gt;?e)&lt;/b&gt; nur Dateiendung (z.B. tex), &lt;br/&gt;&lt;b&gt;?m&quot;&lt;/b&gt; Dateiname in Anführungszeichen ohne Endung (identisch to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; Dateiname mit Endung (z.B. example.tex) &lt;b&gt;?*.aux&lt;/b&gt;: alle .aux Dateinen im aktuellen Verzeichnis</translation>
+        <translation>&lt;i&gt;Dateiselektor:&lt;/i&gt;Ohne Selektor wird die Root Datei gewählt. Alle Selektoren sind inklusive Doppelpunkt. &lt;b&gt;c:&lt;/b&gt; wählt die aktuelle Datei und &lt;b&gt;p{ext}:&lt;/b&gt; sucht eine Datei mit demselben Grundnamen wie die Root Datei und der Erweiterung &lt;b&gt;ext&lt;/b&gt;, wobei im Root Verzeichnis und in zusätzlichen PDF Verzeichnissen gesucht wird.&lt;br /&gt;&lt;i&gt;Pfadnamenteile:&lt;/i&gt; Eine Kombination der Symbole &lt;b&gt;a&lt;/b&gt; (absoluter Pfad der Datei), &lt;b&gt;m&lt;/b&gt;(Dateiname ohne Endung), &lt;b&gt;e&lt;/b&gt; (Dateiendung), &lt;b&gt;r&lt;/b&gt; (relativer Pfad der Datei) und &lt;b&gt;*muster&lt;/b&gt; (alle Dateien, die muster entsprechen).&lt;br/&gt;&lt;i&gt;Endekennzeichen:&lt;/i&gt; Sie beenden die Formatierung, wobei &lt;b&gt; )&lt;/b&gt; nur beendet, &lt;b&gt;&quot;&lt;/b&gt; noch mit Gänsefüßchen umschließt und &lt;b&gt;. &lt;/b&gt; (der Punkt) oder &quot; &quot; (das Leerzeichen) einen Punkt bzw. ein Leerzeichen anhängt.&lt;br/&gt;&lt;i&gt;Beispiele:&lt;/i&gt; Resultat von &lt;b&gt;?ame&quot;&lt;/b&gt; ist der absolute Dateiname in Gänsefüßchen, von &lt;b&gt;?e)&lt;/b&gt; die Dateiendung (z.B. tex), von &lt;b&gt;?m&quot;&lt;/b&gt; der Dateiname ohne Endung in Gänsefüßchen (identisch zu &lt;b&gt;%&lt;/b&gt;), von &lt;b&gt;?me&lt;/b&gt; der Dateiname mit Endung (z.B. example.tex) und von &lt;b&gt;?*.aux&lt;/b&gt; alle .aux Dateien im aktuellen Verzeichnis.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2485"/>
