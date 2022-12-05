@@ -2,7 +2,7 @@
 # Matthew Bertucci 3/29/2022 for release 2010/08/06
 
 #include:tikz
-# loads shapes and snakes tikzlibraries
+#include:tikzlibraryshapes
 #include:ifthen
 
 #keyvals:\usepackage/drawstack#c
