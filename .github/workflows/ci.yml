@@ -18,7 +18,7 @@ jobs:
       run: sudo apt-get update
 
     - name: Dependencies
-      run: sudo apt-get install cmake qtbase5-dev qt5-default qt5-qmake libqt5svg5-dev qtdeclarative5-dev qttools5-dev libqt5svg5-dev zlib1g-dev pkg-config libhunspell-dev libquazip5-dev
+      run: sudo apt-get install cmake qtbase5-dev qt5-qmake libqt5svg5-dev qtdeclarative5-dev qttools5-dev libqt5svg5-dev zlib1g-dev pkg-config libhunspell-dev libquazip5-dev
 
     - name: Configure
       run: cmake -DTEXSTUDIO_ENABLE_TESTS=ON -DTEXSTUDIO_BUILD_ADWAITA=OFF -DCMAKE_BUILD_TYPE=Debug .
