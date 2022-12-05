@@ -2,6 +2,8 @@
 # Matthew Bertucci 8/12/2021
 
 #include:tikz
+#include:tikzlibrarypatterns
+#include:tikzlibrarycalc
 
 \duck
 \duck[options%keyvals]
