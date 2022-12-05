@@ -123,6 +123,7 @@ circuits.logic.IEC
 circuits.logic.US
 circuits.plc.ladder
 circuits.plc.sfc
+colorbrewer
 commutative-diagrams
 curvilinear
 datavisualization
@@ -228,6 +229,7 @@ tqft
 trees
 turtle
 views
+zx-calculus
 #endkeyvals
 
 ### < Keys > ###
