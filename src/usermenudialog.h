@@ -45,7 +45,6 @@ private:
 	QCodeEdit *codeedit;
 	QLanguageFactory *languages;
 	QSearchReplacePanel *searchReplacePanel;
-    QPalette *specialPalette;
 
 signals:
 	void runScript(const QString &script);

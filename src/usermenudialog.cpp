@@ -26,7 +26,7 @@
 #include "utilsUI.h"
 
 UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory *languageFactory)
-    : QDialog(parent), languages(languageFactory),specialPalette(nullptr)
+    : QDialog(parent), languages(languageFactory)
 {
 	setWindowTitle(name);
 	ui.setupUi(this);
@@ -545,15 +545,11 @@ void UserMenuDialog::triggerChanged()
     if(!re.isValid()){
         // syntax error in regex
         ui.triggerEdit->setToolTip(re.errorString()+tr(" (col. %1)").arg(re.patternErrorOffset()));
-        if(!specialPalette){
-            specialPalette = new QPalette();
-            specialPalette->setColor(QPalette::Base,QColor(255,154,103));
-        }
-        ui.triggerEdit->setPalette(*specialPalette);
+        ui.triggerEdit->setStyleSheet("QLineEdit { background: red; color : white; }");
 
         return;
     }else{
-        ui.triggerEdit->setPalette(palette());
+        ui.triggerEdit->setStyleSheet(QString());
     }
     // update current macro
     QTreeWidgetItem *item=ui.treeWidget->currentItem();
