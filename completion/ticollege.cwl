@@ -4,6 +4,11 @@
 #include:xcolor
 #include:newtxtt
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes
+#include:tikzlibraryshadows
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarybabel
 #include:ifthen
 #include:xkeyval
 #include:mathtools
