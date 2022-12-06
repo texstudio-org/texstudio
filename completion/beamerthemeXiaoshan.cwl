@@ -4,7 +4,8 @@
 #include:beamerthememetropolis
 #include:pgfornament-han
 #include:tikz
-# loads decorations and decorations.markings tikzlibraries
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.markings
 #include:cncolours
 #include:needspace
 
