@@ -3,7 +3,11 @@
 
 #include:tikz
 #include:pgfcalendar
-# loads arrows, backgrounds, calc, patterns, positioning, and shapes.geometric tikzlibraries
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarycalc
+#include:tikzlibrarypatterns
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes.geometric
 
 \ganttset{options%keyvals}
 \begin{ganttchart}{start tss}{end tss}
