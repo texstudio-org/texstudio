@@ -4,7 +4,12 @@
 #include:xkeyval
 #include:graphicx
 #include:tikz
-# loads shadows, calc, fadings, shapes.geometric, patterns, and decorations.pathmorphing tikzlibraries
+#include:tikzlibraryshadows
+#include:tikzlibrarycalc
+#include:tikzlibraryfadings
+#include:tikzlibraryshapes.geometric
+#include:tikzlibrarypatterns
+#include:tikzlibrarydecorations.pathmorphing
 #include:eso-pic
 #include:fp
 #include:geometry
