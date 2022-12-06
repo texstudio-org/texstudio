@@ -3,7 +3,8 @@
 
 #include:keyval
 #include:tikz
-# loads calc and fadings tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryfadings
 
 \begin{ProductBox}
 \begin{ProductBox}[options%keyvals]
