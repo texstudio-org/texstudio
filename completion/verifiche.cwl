@@ -12,7 +12,12 @@
 #include:graphicx
 #include:xcolor
 #include:tikz
-# loads calc, shapes.geometric, patterns, positioning, angles, and quotes tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes.geometric
+#include:tikzlibrarypatterns
+#include:tikzlibrarypositioning
+#include:tikzlibraryangles
+#include:tikzlibraryquotes
 #include:booktabs
 #include:ulem
 
