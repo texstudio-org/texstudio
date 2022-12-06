@@ -854,6 +854,18 @@ void QSearchReplacePanel::cFind_textEdited(const QString& text)
 {
 	if (! m_search) init();
 
+    // check regex syntax
+    if(cbRegExp->isChecked()){
+        QRegularExpression re(text);
+        if(!re.isValid()){
+            // syntax error in regex
+            cFind->lineEdit()->setStyleSheet("QLineEdit { background: orange; color : black; }");
+            cFind->lineEdit()->setToolTip(re.errorString()+tr(" (col. %1)").arg(re.patternErrorOffset()));
+            return;
+        }
+    }
+    cFind->lineEdit()->setToolTip("");
+
 	if(m_search->searchText().length()==text.length()+1 && m_search->searchText().startsWith(text)){
 		// last letter removed (backspace)
 		QDocumentCursor cur=m_initialCursorPos.top();

@@ -549,6 +549,7 @@ void UserMenuDialog::triggerChanged()
         return;
     }else{
         ui.triggerEdit->setStyleSheet(QString());
+        ui.triggerEdit->setToolTip("");
     }
     // update current macro
     QTreeWidgetItem *item=ui.treeWidget->currentItem();
