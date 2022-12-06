@@ -3,7 +3,14 @@
 
 #include:ifthen
 #include:tikz
-# loads shapes, arrows, positioning, automata, calc, 3d, decorations.pathreplacing, decorations.pathmorphing, and patterns tikzlibraries
+#include:tikzlibraryshapes
+#include:tikzlibrarypositioning
+#include:tikzlibraryautomata
+#include:tikzlibrarycalc
+#include:tikzlibrary3d
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarypatterns
 #include:xargs
 #include:verbatim
 
