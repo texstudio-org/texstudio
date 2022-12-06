@@ -6,6 +6,7 @@
 #include:pdftexcmds
 #include:siunitx
 #include:tikz
+#include:tikzlibraryshadings
 #include:xparse
 
 ### 3 Map Definition and Map Coordinates ###
