@@ -25,7 +25,7 @@ UpdateChecker::~UpdateChecker()
 QString UpdateChecker::lastCheckAsString()
 {
 	QDateTime lastCheck = ConfigManager::getInstance()->getOption("Update/LastCheck").toDateTime();
-	return lastCheck.isValid() ? lastCheck.toString("d.M.yyyy hh:mm") : tr("Never", "last update");
+	return lastCheck.isValid() ? QLocale().toString(lastCheck, QLocale::ShortFormat) : tr("Never", "last update");
 }
 
 void UpdateChecker::autoCheck()
@@ -140,7 +140,7 @@ void UpdateChecker::checkForNewVersion()
 	// config dialog (check button) passes correct current index from dialog, so user can check with different settings without closing dialog
 	// auto check uses -1, since we do not have the current gui value. in this case we can stay with config value.
 	int updateLevel;
-	if (comboBoxUpdateLevel > -1)		
+	if (comboBoxUpdateLevel > -1)
 		updateLevel = comboBoxUpdateLevel;
 	else
 		updateLevel = ConfigManager::getInstance()->getOption("Update/UpdateLevel").toInt();
