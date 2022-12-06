@@ -4,6 +4,12 @@
 #include:class-scrartcl
 #include:tikz
 # loads dvipsnames and svgnames options of xcolor
+#include:tikzlibrarydecorations.shapes
+#include:tikzlibrarydecorations.text
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.markings
+#include:tikzlibraryshadows
 #include:ragged2e
 #include:footmisc
 #include:framed
