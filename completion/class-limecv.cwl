@@ -14,6 +14,11 @@
 #include:xkeyval
 #include:tikz
 #include:graphicx
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarymatrix
 #include:fontspec
 #include:fontawesome5
 
