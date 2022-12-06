@@ -2,7 +2,9 @@
 # Matthew Bertucci 12/14/2021 for v0.1.1
 
 #include:tikz
-# loads arrows.meta, calc, positioning, and shapes tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\tikzset#c
 memory graph
