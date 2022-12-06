@@ -4,6 +4,7 @@
 #include:xcolor
 #include:pgfkeys
 #include:tikz
+#include:tikzlibrarydecorations.pathmorphing
 #include:xstring
 
 \planet[keyvals]
