@@ -2,6 +2,9 @@
 # Matthew Bertucci updated 12/13/2021 for v0.7f
 
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarydecorations.pathmorphing
 #include:environ
 
 \texttiming{characters}
