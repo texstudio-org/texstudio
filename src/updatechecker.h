@@ -5,6 +5,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include "utilsVersion.h"
+#include <QLocale>
 
 class UpdateChecker : public QObject
 {
