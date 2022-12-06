@@ -6,7 +6,8 @@
 #include:xparse
 #include:xstring
 #include:tikz
-# loads calc and matrix tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarymatrix
 
 \begin{karnaugh-map}
 \begin{karnaugh-map}[%<x-size%>][%<y-size%>][%<z-size%>]
