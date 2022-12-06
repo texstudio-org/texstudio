@@ -4,7 +4,9 @@
 #include:tikz
 #include:xkeyval
 #include:etoolbox
-# loads calc, intersections, arrows.meta, and patterns tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryintersections
+#include:tikzlibrarypatterns
 # symbology sublibrary loads the following
 #include:booktabs
 #include:xltabular
