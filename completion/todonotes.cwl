@@ -7,6 +7,7 @@
 #include:xkeyval
 #include:xcolor
 #include:tikz
+#include:tikzlibrarypositioning
 #include:calc
 
 #keyvals:\usepackage/todonotes#c
@@ -39,6 +40,10 @@ shadow
 dvistyle
 figwidth=##L
 #endkeyvals
+
+#ifOption:loadshadowlibrary
+#include:tikzlibraryshadows
+#endif
 
 \todo{text%todo}#D
 \todo[options%keyvals]{text%todo}#D
