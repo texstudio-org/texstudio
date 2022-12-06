@@ -7,7 +7,10 @@
 #include:xargs
 #include:etoolbox
 #include:iflang
-# loads calc, positioning, fit, chains, and scopes tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
+#include:tikzlibrarychains
 
 \begin{lattice}#\pictureHighlight
 \begin{lattice}[scale]
