@@ -25,7 +25,6 @@
 #include:tikzlibrarydecorations
 #include:tikzlibrarydecorations.pathreplacing
 #include:tikzlibrarydecorations.markings
-#include:tikzlibraryarrows.meta
 #include:tikzlibrarybabel
 #include:tikzlibraryshapes.geometric
 #include:tikzlibrarydecorations.pathmorphing
