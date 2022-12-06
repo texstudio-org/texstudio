@@ -26,7 +26,7 @@
 #include "utilsUI.h"
 
 UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory *languageFactory)
-    : QDialog(parent), languages(languageFactory)
+    : QDialog(parent), languages(languageFactory),specialPalette(nullptr)
 {
 	setWindowTitle(name);
 	ui.setupUi(this);
@@ -125,6 +125,7 @@ UserMenuDialog::~UserMenuDialog()
 {
 	delete searchReplacePanel;
 	delete codeedit;
+    delete specialPalette;
 }
 
 void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
@@ -538,6 +539,23 @@ void UserMenuDialog::abbrevChanged()
 
 void UserMenuDialog::triggerChanged()
 {
+    // check if trigger is a valid regex
+    const QString text=ui.triggerEdit->text();
+    QRegularExpression re(text);
+    if(!re.isValid()){
+        // syntax error in regex
+        ui.triggerEdit->setToolTip(re.errorString()+tr(" (col. %1)").arg(re.patternErrorOffset()));
+        if(!specialPalette){
+            specialPalette = new QPalette();
+            specialPalette->setColor(QPalette::Base,QColor(255,154,103));
+        }
+        ui.triggerEdit->setPalette(*specialPalette);
+
+        return;
+    }else{
+        ui.triggerEdit->setPalette(palette());
+    }
+    // update current macro
     QTreeWidgetItem *item=ui.treeWidget->currentItem();
     if(item==nullptr) return;
     QVariant v=item->data(0,Qt::UserRole);
