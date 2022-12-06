@@ -5,6 +5,17 @@
 # loads svgnames option of xcolor
 #include:tikz
 # loads wargame.hex, wargame.natoapp6c, and wargame.chit tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes.symbols
+#include:tikzlibrarypositioning
+#include:tikzlibraryintersections
+#include:tikzlibraryshapes.geometric
+#include:tikzlibraryshapes.arrows
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarymath
 
 #keyvals:\usepackage/wargame#c
 noterrainpic
