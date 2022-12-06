@@ -8,7 +8,14 @@
 #include:xstring
 #include:etoolbox
 #include:tikz
-# loads shapes, decorations, shadows, backgrounds, calc, fadings, fit, and decorations.pathmorphing tikzlibraries
+#include:tikzlibraryshapes
+#include:tikzlibrarydecorations
+#include:tikzlibraryshadows
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarycalc
+#include:tikzlibraryfadings
+#include:tikzlibraryfit
+#include:tikzlibrarydecorations.pathmorphing
 # loads arrows pgflibrary
 #include:class-extarticle
 #include:geometry
