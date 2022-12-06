@@ -5,7 +5,8 @@
 #include:xstring
 #include:amssymb
 #include:tikz
-# loads calc, arrows, and fadings tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryfadings
 #include:enumitem
 #include:numprint
 #include:fancyvrb
