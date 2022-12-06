@@ -3,7 +3,7 @@
 
 #include:kvoptions
 #include:tikz
-# loads math tikzlibrary
+#include:tikzlibrarymath
 #include:color
 
 #keyvals:\usepackage/simplenodes#c
