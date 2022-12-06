@@ -934,7 +934,7 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
     <message>
         <location filename="../src/configdialog.ui" line="657"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation>&lt;b&gt;%&lt;/b&gt; ergibt den Dateinamen ohne Endung, &lt;b&gt;@&lt;/b&gt; die Zeilennummer, &lt;b&gt;?[Dateiselektor][Pfadnamenteile][Endekennzeichen]&lt;/b&gt;einen formatierten Dateinamen</translation>
+        <translation>&lt;b&gt;%&lt;/b&gt; ergibt den Dateinamen ohne Endung, &lt;b&gt;@&lt;/b&gt; die Zeilennummer, &lt;b&gt;?[Dateiselektor][Pfadnamenteile][Endekennzeichen]&lt;/b&gt; einen formatierten Dateinamen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="683"/>
@@ -976,7 +976,7 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
     <message>
         <location filename="../src/configdialog.ui" line="834"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation>Starte keine neue Instanz des Betrachters falls die dvi/ps/pdf-Datei schon geöffnet wurde</translation>
+        <translation>Starte keine neue Instanz des Betrachters, falls die dvi/ps/pdf-Datei schon geöffnet wurde</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="841"/>
@@ -1056,7 +1056,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     <message>
         <location filename="../src/configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
-        <translation>Zeige log im Falle eines Übersetzungfehlers</translation>
+        <translation>Zeige Log im Falle eines Übersetzungsfehlers</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1008"/>
@@ -1066,7 +1066,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     <message>
         <location filename="../src/configdialog.ui" line="1011"/>
         <source>Interpret command definition in magic comments</source>
-        <translation>Interpretiere Befehldefinitionen in &quot;magischen Kommentaren&quot;</translation>
+        <translation>Interpretiere Befehlsdefinitionen in &quot;magischen Kommentaren&quot;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1048"/>
@@ -1556,7 +1556,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="../src/configdialog.ui" line="2383"/>
         <source>Default Log Encoding</source>
-        <translation>Standard-Zeichenkodierung für Log</translation>
+        <translation>Standard-Zeichenkodierung für Log:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2242"/>
@@ -1616,7 +1616,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="../src/configdialog.ui" line="2462"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation>Doppelklick-Auswahl: nehme führendes Backslash hinzu</translation>
+        <translation>Auswahl eines Befehls per Doppelklick schließt den Backslash ein</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2196"/>
@@ -1661,7 +1661,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="../src/configdialog.ui" line="2313"/>
         <source>Triple-Click Selection:</source>
-        <translation>Dreifach Klick Selektion:</translation>
+        <translation>Dreifachklick-Auswahl:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2153"/>
@@ -1732,7 +1732,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2441"/>
         <source>Go to error when displaying log</source>
-        <translation>Springe zum Fehler wenn das Log angezeigt wird</translation>
+        <translation>Springe zum Fehler, wenn das Log angezeigt wird</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2163"/>
@@ -1767,7 +1767,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2215"/>
         <source>Latex Command for pushed citations:</source>
-        <translation>Latex Befehl für extern eingefügte Zitate:</translation>
+        <translation>Zitat-Befehl für extern eingefügte Zitate:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2469"/>
@@ -1782,22 +1782,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2510"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation>Strukturelemente hinter\end{document} markieren</translation>
+        <translation>Strukturelemente hinter \end{document} markieren</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2517"/>
         <source>Reference commands in context menu:</source>
-        <translation>Referenz-Befehle im Kontextmenu</translation>
+        <translation>Referenz-Befehle im Kontextmenü:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2557"/>
         <source>Mark structure elements in appendix</source>
-        <translation>Strukturelemente im Appendix markieren</translation>
+        <translation>Strukturelemente im Anhang markieren</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2530"/>
         <source>Regular expression for TODO comment: </source>
-        <translation>Regular Expression für TODO Kommentare:</translation>
+        <translation>Regulärer Ausdruck für TODO Kommentare:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2537"/>
@@ -1867,7 +1867,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="667"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation>&lt;i&gt;Dateiselektor:&lt;/i&gt;Ohne Selektor wird die Root Datei gewählt. Alle Selektoren sind inklusive Doppelpunkt. &lt;b&gt;c:&lt;/b&gt; wählt die aktuelle Datei und &lt;b&gt;p{ext}:&lt;/b&gt; sucht eine Datei mit demselben Grundnamen wie die Root Datei und der Erweiterung &lt;b&gt;ext&lt;/b&gt;, wobei im Root Verzeichnis und in zusätzlichen PDF Verzeichnissen gesucht wird.&lt;br /&gt;&lt;i&gt;Pfadnamenteile:&lt;/i&gt; Eine Kombination der Symbole &lt;b&gt;a&lt;/b&gt; (absoluter Pfad der Datei), &lt;b&gt;m&lt;/b&gt;(Dateiname ohne Endung), &lt;b&gt;e&lt;/b&gt; (Dateiendung), &lt;b&gt;r&lt;/b&gt; (relativer Pfad der Datei) und &lt;b&gt;*muster&lt;/b&gt; (alle Dateien, die muster entsprechen).&lt;br/&gt;&lt;i&gt;Endekennzeichen:&lt;/i&gt; Sie beenden die Formatierung, wobei &lt;b&gt; )&lt;/b&gt; nur beendet, &lt;b&gt;&quot;&lt;/b&gt; noch mit Gänsefüßchen umschließt und &lt;b&gt;. &lt;/b&gt; (der Punkt) oder &quot; &quot; (das Leerzeichen) einen Punkt bzw. ein Leerzeichen anhängt.&lt;br/&gt;&lt;i&gt;Beispiele:&lt;/i&gt; Resultat von &lt;b&gt;?ame&quot;&lt;/b&gt; ist der absolute Dateiname in Gänsefüßchen, von &lt;b&gt;?e)&lt;/b&gt; die Dateiendung (z.B. tex), von &lt;b&gt;?m&quot;&lt;/b&gt; der Dateiname ohne Endung in Gänsefüßchen (identisch zu &lt;b&gt;%&lt;/b&gt;), von &lt;b&gt;?me&lt;/b&gt; der Dateiname mit Endung (z.B. example.tex) und von &lt;b&gt;?*.aux&lt;/b&gt; alle .aux Dateien im aktuellen Verzeichnis.</translation>
+        <translation>&lt;i&gt;Dateiselektor:&lt;/i&gt; Ohne Selektor wird die Root Datei gewählt. Alle Selektoren sind inklusive Doppelpunkt. &lt;b&gt;c:&lt;/b&gt; wählt die aktuelle Datei und &lt;b&gt;p{ext}:&lt;/b&gt; sucht eine Datei mit demselben Grundnamen wie die Root Datei und der Erweiterung &lt;b&gt;ext&lt;/b&gt;, wobei im Root Verzeichnis und in zusätzlichen PDF Verzeichnissen gesucht wird.&lt;br /&gt;&lt;i&gt;Pfadnamenteile:&lt;/i&gt; Eine Kombination der Symbole &lt;b&gt;a&lt;/b&gt; (absoluter Pfad der Datei), &lt;b&gt;m&lt;/b&gt; (Dateiname ohne Endung), &lt;b&gt;e&lt;/b&gt; (Dateiendung), &lt;b&gt;r&lt;/b&gt; (relativer Pfad der Datei) und &lt;b&gt;*muster&lt;/b&gt; (alle Dateien, die muster entsprechen).&lt;br/&gt;&lt;i&gt;Endekennzeichen:&lt;/i&gt; Sie beenden die Formatierung, wobei &lt;b&gt; )&lt;/b&gt; nur beendet, &lt;b&gt;&quot;&lt;/b&gt; noch mit Gänsefüßchen umschließt und &lt;b&gt;. &lt;/b&gt; (der Punkt) oder &quot; &quot; (das Leerzeichen) einen Punkt bzw. ein Leerzeichen anhängt.&lt;br/&gt;&lt;i&gt;Beispiele:&lt;/i&gt; Resultat von &lt;b&gt;?ame&quot;&lt;/b&gt; ist der absolute Dateiname in Gänsefüßchen, von &lt;b&gt;?e)&lt;/b&gt; die Dateiendung (z.B. tex), von &lt;b&gt;?m&quot;&lt;/b&gt; der Dateiname ohne Endung in Gänsefüßchen (identisch zu &lt;b&gt;%&lt;/b&gt;), von &lt;b&gt;?me&lt;/b&gt; der Dateiname mit Endung (z.B. example.tex) und von &lt;b&gt;?*.aux&lt;/b&gt; alle .aux Dateien im aktuellen Verzeichnis.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2485"/>
@@ -1882,7 +1882,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2564"/>
         <source>Use color in global TOC:</source>
-        <translation>Nutze Hintergrundfarbe in globalen Inhaltsverzeichnis</translation>
+        <translation>Hintergrundfarbe im globalen Inhaltsverzeichnis (TOC)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2584"/>
@@ -1962,7 +1962,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2735"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation>Visueller Spaltenmodus des Cursors (d.h. der Cursor bewegt such in Richtung der Pfeiltasten auch bei Rechts-nach-Links-Texten)</translation>
+        <translation>Cursor bewegt sich auch bei Rechts-nach-Links-Texten in Richtung der Pfeiltasten</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2742"/>
@@ -2037,7 +2037,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2847"/>
         <source>Use QImage as cache type</source>
-        <translation>Nutze QImage as Cache-Typ</translation>
+        <translation>Nutze QImage als Cache-Typ</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2910"/>
@@ -2112,7 +2112,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3008"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation>Starte automatische Vervollständigung wenn LaTeX-Kommandos eingegeben werden</translation>
+        <translation>Starte automatische Vervollständigung, wenn LaTeX-Kommandos eingegeben werden</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3017"/>
@@ -2264,7 +2264,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3405"/>
         <source>Words Between Repetitions:</source>
-        <translation>Anzahl von Worten zwischen Wiederholungen:</translation>
+        <translation>Anzahl Wörter zwischen Wiederholungen:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3415"/>
@@ -2329,7 +2329,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3529"/>
         <source>Start LanguageTool if not running</source>
-        <translation>Starte LanguageTool falls es nicht läuft</translation>
+        <translation>Starte LanguageTool, falls es nicht läuft</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3536"/>
@@ -2475,7 +2475,7 @@ hier erzwungen werden.</translation>
         <location filename="../src/configdialog.ui" line="3898"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation>Zeige in eingebetteten PDF-Betrachter</translation>
+        <translation>Zeige im eingebetteten PDF-Betrachter</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3906"/>
@@ -2694,7 +2694,7 @@ Achtung: Eine Änderung dieser Einstellung macht sich erst bei Dokumenten bemerk
     <message>
         <location filename="../src/configdialog.ui" line="4384"/>
         <source>Paper Color</source>
-        <translation>Papierfarbe</translation>
+        <translation>Papierfarbe:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4293"/>
@@ -2704,7 +2704,7 @@ Achtung: Eine Änderung dieser Einstellung macht sich erst bei Dokumenten bemerk
     <message>
         <location filename="../src/configdialog.ui" line="4129"/>
         <source>Auto-recompile document on changes</source>
-        <translation>Automatisch neu-kompilieren bei Textänderungen</translation>
+        <translation>Automatisch neu kompilieren bei Textänderungen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4410"/>
@@ -2739,17 +2739,17 @@ Achtung: Eine Änderung dieser Einstellung macht sich erst bei Dokumenten bemerk
     <message>
         <location filename="../src/configdialog.ui" line="4563"/>
         <source>Check-in after File/Save only</source>
-        <translation>Check-in nach nur nach expliziten Speichern </translation>
+        <translation>Check-in nur nach explizitem Speichern </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4568"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation>Check-in nach allen Speicheropreationen, auch vor jedem Kompilieren.</translation>
+        <translation>Check-in nach allen Speicheroperationen und vor jedem Kompilieren.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4576"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
-        <translation>Nutze SVN/GIT-Versionen um vor der letzten gespeicherten Version rückgängig zu machen</translation>
+        <translation>Nutze SVN/GIT-Versionen, um vor der letzten gespeicherten Version rückgängig zu machen</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4583"/>
