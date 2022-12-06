@@ -3,6 +3,8 @@
 
 #include:tikz
 #include:pgfopts
+#include:tikzlibrarycalc
+#include:tikzlibraryexternal
 
 \wick{arg}#m
 \wick[options%keyvals]{arg}#m
