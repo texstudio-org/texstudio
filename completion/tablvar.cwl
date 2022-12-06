@@ -14,6 +14,7 @@ tikz
 
 #ifOption:tikz
 #include:tikz
+#include:tikzlibrarypatterns
 #endif
 
 \begin{tablvar}{nombre}#m\array
