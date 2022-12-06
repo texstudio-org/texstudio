@@ -125,7 +125,6 @@ UserMenuDialog::~UserMenuDialog()
 {
 	delete searchReplacePanel;
 	delete codeedit;
-    delete specialPalette;
 }
 
 void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
@@ -545,7 +544,7 @@ void UserMenuDialog::triggerChanged()
     if(!re.isValid()){
         // syntax error in regex
         ui.triggerEdit->setToolTip(re.errorString()+tr(" (col. %1)").arg(re.patternErrorOffset()));
-        ui.triggerEdit->setStyleSheet("QLineEdit { background: red; color : white; }");
+        ui.triggerEdit->setStyleSheet("QLineEdit { background: orange; color : black; }");
 
         return;
     }else{
