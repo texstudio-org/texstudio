@@ -183,6 +183,7 @@ matrix
 matrix.skeleton
 mindmap
 nef
+ocgx
 optics
 overlay-beamer-styles
 patterns
