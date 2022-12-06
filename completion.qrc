@@ -3410,6 +3410,7 @@
 <file>completion/tikzlibrarypetri.cwl</file>
 <file>completion/tikzlibraryplotmarks.cwl</file>
 <file>completion/tikzlibrarypositioning.cwl</file>
+<file>completion/tikzlibraryprofiler.cwl</file>
 <file>completion/tikzlibraryquotes.cwl</file>
 <file>completion/tikzlibraryrdf.cwl</file>
 <file>completion/tikzlibraryshadings.cwl</file>
