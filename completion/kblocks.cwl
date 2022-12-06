@@ -3,7 +3,23 @@
 
 #include:tikz
 #include:circuitikz
-
+#include:tikzlibraryshapes.misc
+#include:tikzlibrarymath
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryfit
+#include:tikzlibraryshadows
+#include:tikzlibrarymatrix
+#include:tikzlibrarychains
+#include:tikzlibrarypositioning
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.text
+#include:tikzlibraryshapes.multipart
+#include:tikzlibrarygraphs
+#include:tikzlibraryexternal
+  
 \begin{kblock}#\pictureHighlight
 \end{kblock}
 
