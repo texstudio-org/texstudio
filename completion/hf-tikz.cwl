@@ -2,7 +2,7 @@
 # Matthew Bertucci 10/24/2021 for v0.3a
 
 #include:tikz
-# loads shadings tikzlibrary
+#include:tikzlibraryshadings
 #include:xparse
 #include:etoolbox
 
