@@ -1,12 +1,19 @@
 # tikz-network package
 # Matthew Bertucci 9/21/2021 for v1.1
 
+#include:xifthen
+#include:xkeyval
 #include:tikz
-#include:etex
 #include:datatool
 #include:graphicx
 #include:trimspaces
-#include:xifthen
+#include:tikzlibrarypositioning
+#include:tikzlibrary3d
+#include:tikzlibraryfit
+#include:tikzlibrarycalc
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryarrows.meta
+#include:tikzlibraryshapes.geometric
 
 \Vertex{name}
 \Vertex[options%keyvals]{name}
