@@ -2,7 +2,9 @@
 # Matthew Bertucci 1/18/2022 for v0.8.2
 
 #include:tikz
-# loads chains, arrows, shadows, shapes.misc, and scopes tikzlibraries
+#include:tikzlibrarychains
+#include:tikzlibraryshadows
+#include:tikzlibraryshapes.misc
 
 #keyvals:\begin{tikzpicture}#c
 syntaxdiagramm
