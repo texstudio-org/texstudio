@@ -2,9 +2,22 @@
 # Matthew Bertucci 2022/09/23 for v4.25c
 
 #include:tikz
-# loads angles, arrows, arrows.meta, backgrounds, calc, decorations, decorations.markings
-# decorations.pathreplacing, decorations.shapes, decorations.text, decorations.pathmorphing
-# intersections, math, plotmarks, positioning, quotes, shapes.misc, and through tikzlibraries
+#include:tikzlibraryangles
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.shapes
+#include:tikzlibrarydecorations.text
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibraryintersections
+#include:tikzlibrarymath
+#include:tikzlibraryplotmarks
+#include:tikzlibrarypositioning
+#include:tikzlibraryquotes
+#include:tikzlibraryshapes.misc
+#include:tikzlibrarythrough
 #include:xfp
 #include:xpatch
 
