@@ -4,6 +4,16 @@
 #include:tikz
 #include:ifluatex
 #include:pgfopts
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarygraphs
+#include:tikzlibrarypatterns
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes.geometric
+#include:tikzlibrarygraphdrawing
 
 \feynmandiagram{content};
 \feynmandiagram[options%keyvals][diagram options]{content};
