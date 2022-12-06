@@ -2,7 +2,7 @@
 # Matthew Bertucci 2022/11/09 for v1.0.1
 
 #include:tikz
-# loads fadings tikzlibrary
+#include:tikzlibraryfadings
 #include:fontenc
 # loads T1 option of fontenc
 
