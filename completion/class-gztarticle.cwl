@@ -49,7 +49,10 @@
 #include:afterpage
 #include:xcolor
 #include:tikz
-# loads babel, fadings, positioning, and calc tikzlibraries
+#include:tikzlibrarybabel
+#include:tikzlibraryfadings
+#include:tikzlibrarypositioning
+#include:tikzlibrarycalc
 #include:pgfplots
 #include:tcolorbox
 # loads breakable, skins, hooks, xparse, theorems, and listingsutf8 tcolorbox libraries
