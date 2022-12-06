@@ -4,7 +4,9 @@
 #include:ifthen
 #include:tikz
 #include:verbatim
-# loads arrows, decorations.pathmorphing, decorations.shapes, and calc tikzlibraries
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.shapes
+#include:tikzlibrarycalc
 
 \sync{start}{target}{labels}
 \sync*{start}{target}{labels}
