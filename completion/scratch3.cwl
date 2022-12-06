@@ -3,7 +3,8 @@
 
 #include:simplekv
 #include:tikz
-# loads shapes.misc, arrows.meta pgflibraries and bending tikzlibrary
+#include:tikzlibraryshapes.misc
+#include:tikzlibrarybending
 
 ## 2 L'environnement scratch ##
 \begin{scratch}
