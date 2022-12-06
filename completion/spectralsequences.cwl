@@ -5,8 +5,12 @@
 #include:tikz
 #include:verbatim
 #include:xparse
-# loads quotes, fit, positioning, intersections, backgrounds, and shapes tikzlibraries
-# loads arrows.meta pgflibrary
+#include:tikzlibraryquotes
+#include:tikzlibraryfit
+#include:tikzlibrarypositioning
+#include:tikzlibraryintersections
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryshapes
 
 #ifOption:tooltip
 #include:pdfcomment
