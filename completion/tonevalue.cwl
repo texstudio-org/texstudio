@@ -5,7 +5,8 @@
 #include:etoolbox
 #include:listofitems
 #include:tikz
-# loads positioning, decorations.markings, and arrows tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibrarydecorations.markings
 #include:xcolor
 #include:xkeyval
 #include:xstring
