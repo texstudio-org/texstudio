@@ -12,6 +12,8 @@
 #include:arrayjob
 #include:pgf
 #include:tikz
+#include:tikzlibraryshapes.misc
+#include:tikzlibraryshapes.geometric
 
 \PDIP(pincount){pinarray}
 \pctPDIP(pincount){pinarray}
