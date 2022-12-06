@@ -4,7 +4,8 @@
 #include:pgf
 #include:ifthen
 # tikz must be loaded first
-# loads calc, 3d, and arrows libraries
+#include:tikzlibrarycalc
+#include:tikzlibrary3d
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c,\path#c,\draw#c,\fill#c,\filldraw#c,\pattern#c,\shade#c,\shadedraw#c,\clip#c,\node#c,\coordinate#c,\nodepart#c,\pic#c,\matrix#c,\calendar#c,\chainin#c,\arrow#c,\arrowreversed#c,\tdplotdrawarc#c,\tdplotdrawpolytopearc#c
 tdplot_main_coords
