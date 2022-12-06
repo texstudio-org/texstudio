@@ -3,6 +3,9 @@
 
 #include:xcolor
 #include:dynkin-diagrams
+#include:tikzlibrarypositioning
+#include:tikzlibraryfadings
+#include:tikzlibraryquotes
 
 \hasse{%<letter%>}{%<rank%>}
 \hasse[%<options%>]{%<letter%>}{%<rank%>}
