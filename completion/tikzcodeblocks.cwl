@@ -7,6 +7,17 @@
 #include:fontawesome
 #include:tikz
 #include:longtable
+#include:tikzlibrarymatrix
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarymath
+#include:tikzlibrarytrees
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.pathmorphing
 #include:translations
 #include:xspace
 #include:ifthen
