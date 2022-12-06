@@ -3,6 +3,11 @@
 
 #include:tikz
 #include:xifthen
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarymath
 
 \begin{annotationimage}{options%keyvals}{imagefile}#g\pictureHighlight
 \end{annotationimage}
