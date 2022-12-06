@@ -4,7 +4,7 @@
 #include:ifthen
 #include:xkeyval
 #include:tikz
-# loads arrows and patterns tikzlibraries
+#include:tikzlibrarypatterns
 
 \tkzTabInit{expr1/height1,expr2/height2,...}{expr1,expr2,...}
 \tkzTabInit[options%keyvals]{expr1/height1,expr2/height2,...}{expr1,expr2,...}
