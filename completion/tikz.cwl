@@ -192,7 +192,6 @@ patterns.meta
 penrose
 perspective
 petri
-pie
 plothandlers
 plotmarks
 positioning
