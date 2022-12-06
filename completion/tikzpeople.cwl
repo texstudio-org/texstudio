@@ -4,6 +4,10 @@
 #include:tikz
 #include:calc
 #include:etoolbox
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning
 
 #keyvals:\usepackage/tikzpeople#c
 draft
