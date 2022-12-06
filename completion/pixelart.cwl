@@ -4,7 +4,7 @@
 #include:iftex
 #include:luacode
 #include:tikz
-# loads patterns tikzlibrary
+#include:tikzlibrarypatterns
 
 #keyvals:\usepackage/pixelart#c
 draft
