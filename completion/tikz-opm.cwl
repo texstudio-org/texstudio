@@ -2,8 +2,10 @@
 # Matthew Bertucci 2/15/2022 for v0.1.1
 
 #include:tikz
-# loads shapes.geometric, calc, and positioning tikzlibraries
-# and shapes.multipart and arrows pgflibraries
+#include:tikzlibraryshapes.geometric
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning 
+#include:tikzlibraryshapes.multipart
 #include:makeshape
 #include:amsmath
 
