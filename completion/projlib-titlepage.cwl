@@ -4,7 +4,7 @@
 #include:projlib-logo
 #include:projlib-paper
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 
 \TitlePage{keyvals}
 \TitlePage[options]{keyvals}
