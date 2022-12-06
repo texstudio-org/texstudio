@@ -3,6 +3,8 @@
 
 #include:tikz
 #include:tikzlings-addons
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibraryfadings
 
 \sheep
 \sheep[options%keyvals]
