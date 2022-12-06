@@ -2,7 +2,8 @@
 # Matthew Bertucci 2022/06/11 for v1.1
 
 #include:tikz
-# loads shapes and fadings tikzlibraries
+#include:tikzlibraryshapes
+#include:tikzlibraryfadings
 #include:afterpage
 
 \spot{text}
