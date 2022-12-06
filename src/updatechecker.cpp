@@ -25,7 +25,7 @@ UpdateChecker::~UpdateChecker()
 QString UpdateChecker::lastCheckAsString()
 {
 	QDateTime lastCheck = ConfigManager::getInstance()->getOption("Update/LastCheck").toDateTime();
-	return lastCheck.isValid() ? QLocale::QLocale().toString(lastCheck, QLocale::ShortFormat) : tr("Never", "last update");
+	return lastCheck.isValid() ? QLocale().toString(lastCheck, QLocale::ShortFormat) : tr("Never", "last update");
 }
 
 void UpdateChecker::autoCheck()
