@@ -1,5 +1,5 @@
 # mathfont package
-# Matthew Bertucci 2022/12/01 for v2.1
+# Matthew Bertucci 2022/12/04 for v2.2
 
 #include:atveryend
 
@@ -86,6 +86,7 @@ bfrak
 \CharmFile#*
 
 \mathconstantsfont{font name}
+\mathconstantsfont[shape]{font name}
 
 \aacute{arg}#m
 \Alpha#*m

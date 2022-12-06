@@ -6,7 +6,10 @@
 #include:ragged2e
 #include:marginnote
 #include:tikz
-# loads decorations.pathmorphing, decorations.pathreplacing, calc, and shapes.geometric tikzlibraries
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes.geometric
 
 \begin{logicpuzzle}
 \begin{logicpuzzle}[options%keyvals]

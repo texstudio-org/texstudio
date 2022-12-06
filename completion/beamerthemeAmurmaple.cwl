@@ -10,7 +10,11 @@
 #include:tcolorbox
 # loads skins tcolorbox library
 #include:tikz
-# loads backgrounds, quotes, angles, automata, arrows, and calc tikzlibraries
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryquotes
+#include:tikzlibraryangles
+#include:tikzlibraryautomata
+#include:tikzlibrarycalc
 
 #keyvals:\usetheme/Amurmaple#c
 nogauge

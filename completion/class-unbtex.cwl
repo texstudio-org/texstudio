@@ -16,7 +16,9 @@
 #include:xcolor
 # loads dvipsnames and table options of xcolor
 #include:tikz
-# loads external, shapes, arrows, and positioning tikzlibraries
+#include:tikzlibraryexternal
+#include:tikzlibraryshapes
+#include:tikzlibrarypositioning
 #include:amsmath
 #include:amsfonts
 #include:amsthm

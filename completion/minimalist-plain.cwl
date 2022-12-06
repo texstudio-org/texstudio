@@ -4,7 +4,8 @@
 #include:relsize
 #include:anyfontsize
 #include:tikz
-# loads calc and shadings tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshadings
 #include:tikzpagenodes
 #include:geometry
 #include:fancyhdr

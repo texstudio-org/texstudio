@@ -19,6 +19,7 @@
 #include:enumerate
 #include:environ
 #include:hyperref
+#include:tikzlibrarycalc
 
 \begin{slide}{title%text}
 \end{slide}

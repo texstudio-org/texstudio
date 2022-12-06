@@ -2,6 +2,7 @@
 # Matthew Bertucci 12/3/2021
 
 #include:tikz
+#include:tikzlibrarycalc
 #include:xifthen
 #include:kvoptions
 

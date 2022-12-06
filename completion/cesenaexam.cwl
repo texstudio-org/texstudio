@@ -5,6 +5,14 @@
 #include:graphicx
 #include:tikz
 #include:circuitikz
+#include:tikzlibraryintersections
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
+#include:tikzlibrarycalc
+#include:tikzlibrarythrough
+#include:tikzlibrarybabel
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarybackgrounds
 #include:titlesec
 
 #keyvals:\usepackage/cesenaexam#c

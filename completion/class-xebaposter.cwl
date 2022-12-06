@@ -12,7 +12,9 @@
 # loads T1 option of fontenc
 #include:geometry
 #include:pgfpages
-# loads decorations, fadings, snakes, and calc tikzlibraries
+#include:tikzlibrarydecorations
+#include:tikzlibraryfadings
+#include:tikzlibrarycalc
 
 #keyvals:\documentclass/xebaposter#c
 landscape

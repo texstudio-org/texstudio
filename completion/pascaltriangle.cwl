@@ -5,7 +5,7 @@
 #include:xparse
 #include:amsmath
 #include:tikz
-# loads shapes.geometric tikzlibrary
+#include:tikzlibraryshapes.geometric
 #include:etoolbox
 
 \pascal{order}

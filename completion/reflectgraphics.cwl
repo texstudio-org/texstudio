@@ -6,6 +6,7 @@
 #include:graphicx
 #include:calc
 #include:tikz
+#include:tikzlibraryfadings
 
 \reflectgraphics{imagefile}#g
 \reflectgraphics[options%keyvals]{imagefile}#g

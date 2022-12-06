@@ -6,7 +6,7 @@
 #include:xparse
 #include:xstring
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 
 \NewAdigraph{name}{nodes}
 \NewAdigraph{name}{nodes}{edges}

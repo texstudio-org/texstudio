@@ -4,7 +4,7 @@
 #include:ifthen
 #include:pgffor
 #include:tikz
-# loads shapes and arrows tikzlibraries
+#include:tikzlibraryshapes
 
 \bXInput{name}#/tikzpicture
 \bXInput[label]{name}#/tikzpicture

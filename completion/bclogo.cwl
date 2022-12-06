@@ -16,7 +16,8 @@ blur
 
 #ifOption:tikz
 #include:tikz
-# loads shadows and decorations.pathmorphing tikzlibraries
+#include:tikzlibraryshadows
+#include:tikzlibrarydecorations.pathmorphing
 #endif
 
 #ifOption:pstricks

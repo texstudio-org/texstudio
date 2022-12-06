@@ -2,7 +2,7 @@
 # Matthew Bertucci 12/28/2021 for v2.1
 
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #include:xstring
 #include:xkeyval
 

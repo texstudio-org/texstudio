@@ -6,7 +6,8 @@
 #include:siunitx
 #include:tikz
 #include:xparse
-# loads datavisualization and fit tikzlibraries
+#include:tikzlibrarydatavisualization
+#include:tikzlibraryfit
 
 \StatsSortData %<\macro%> = {%<data source%>}
 \StatsSortData{cmd}#Sd
@@ -269,11 +270,3 @@ histogram/legend/label=%<TikZ label value%>
 \range#*
 \xstep#*
 \total#*
-
-## from datavisualization tikzlibrary
-\datavisualization#*
-\datavisualization[options%keyvals]#*
-\tikzdatavisualizationset{options%keyvals}#*
-\tikzpointandanchordirection{code1}{code2}#*
-\tikzdvvisualizercounter#*
-\tikzdvdeclarestylesheetcolorseries{name}{color model}{init color}{step}#*

@@ -5,7 +5,8 @@
 #include:calc
 #include:kvoptions
 #include:tikz
-# loads positioning and decorations.pathmorphing tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibrarydecorations.pathmorphing
 
 \cpsspformat{options%keyvals}
 \cpsspinput{file}#i

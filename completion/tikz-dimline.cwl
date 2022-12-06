@@ -3,6 +3,9 @@
 
 #include:tikz
 #include:pgfplots
+#include:ifthen
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.markings
 
 \dimline[options%keyvals]{start}{end}{label}
 

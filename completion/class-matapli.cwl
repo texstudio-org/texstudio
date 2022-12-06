@@ -26,7 +26,7 @@
 #include:url
 #include:hyperref
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #include:ifthen
 #include:titlesec
 #include:titletoc

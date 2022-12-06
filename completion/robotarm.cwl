@@ -2,7 +2,7 @@
 # Matthew Bertucci 3/9/2022 for v0.1
 
 #include:tikz
-# loads patterns tikzlibrary
+#include:tikzlibrarypatterns
 
 \robotArm{number}
 \robotArm[options%keyvals]{number}

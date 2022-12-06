@@ -16,9 +16,7 @@
 
 \usepgflibrary{list of libraries%keyvals}#*
 #keyvals:\usepgflibrary#c
-arrows
 arrows.meta
-arrows.spaced
 curvilinear
 datavisualization.barcharts
 datavisualization.formats.functions

@@ -5,7 +5,8 @@
 #include:ifthen
 #include:pgfmath
 #include:tikz
-# loads math and shapes tikzlibraries
+#include:tikzlibrarymath
+#include:tikzlibraryshapes
 #include:tkz-euclide
 
 \begin{chordbar}{num of bars}{name}

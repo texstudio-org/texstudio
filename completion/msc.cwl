@@ -2,7 +2,13 @@
 # Matthew Bertucci 2022/05/16 for v2.00
 
 #include:tikz
-# loads positioning, fit, calc, arrows, decorations.markings, shapes.misc, shapes.geometric, and shapes.symbols tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.markings
+#include:tikzlibraryshapes.misc
+#include:tikzlibraryshapes.geometric
+#include:tikzlibraryshapes.symbols
 #include:xstring
 #include:calc
 

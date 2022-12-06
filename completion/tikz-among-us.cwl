@@ -7,7 +7,8 @@
 # Developed by FHZ -- Brasil
 # ======================
 #include:tikz
-# loads calc and shadings tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshadings
 #include:xifthen
 
 # ======================

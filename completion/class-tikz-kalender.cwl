@@ -16,8 +16,7 @@
 #include:babel
 #include:translator
 #include:tikz
-# loads calendar tikzlibrary
-#include:pgfcalendar
+#include:tikzlibrarycalendar
 # loads svgnames option of xcolor
 
 \setup{options%keyvals}

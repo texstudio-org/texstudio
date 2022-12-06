@@ -2,7 +2,7 @@
 # Matthew Bertucci 4/23/2022 for v0.9
 
 #include:tikz
-# loads patterns tikzlibrary
+#include:tikzlibrarypatterns
 #include:expl3
 
 \thing[options%keyvals]

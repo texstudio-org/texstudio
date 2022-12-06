@@ -17,7 +17,9 @@
 # loads most option of tcolorbox
 #include:tensor
 #include:tikz
-# loads shapes, fit, and tikzmark tikzlibraries
+#include:tikzlibraryshapes
+#include:tikzlibraryfit
+#include:tikzlibrarytikzmark
 #include:unicode-math
 #include:hyperref
 

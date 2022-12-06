@@ -3,6 +3,7 @@
 # www.tobias-weh.de
 
 #include:tikz
+#include:tikzlibrarycalc
 #include:xpatch
 #include:xparse
 

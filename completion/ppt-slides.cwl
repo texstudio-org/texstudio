@@ -1,5 +1,5 @@
 # ppt-slides package
-# Matthew Bertucci 2022/12/03 for v0.2.0
+# Matthew Bertucci 2022/12/04 for v0.2.1
 
 #include:pgfopts
 #include:xcolor
@@ -57,7 +57,8 @@ nominutes
 \pptRight{text}
 #endif
 
-\pptMiddle{text}
+\begin{pptMiddle}
+\end{pptMiddle}
 \pptBanner{text}
 \pptBanner[color]{text}
 \pptChapter{title}#L1

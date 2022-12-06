@@ -12,12 +12,16 @@
 # │   └── pgfopts.sty
 # ├── beamerinnerthemetrigon.sty
 # │   ├── pgfopts.sty
-# │   └── tikz.sty
+# │   ├── tikz.sty
+# │   ├── tikzlibrarycalc.code.tex
+# │   └── tikzlibrary3d.code.tex
 # └── beamerouterthemetrigon.sty
 #     └── pgfopts.sty
 
 #include:pgfopts
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibrary3d
 #include:sourcesanspro
 
 \trigonset{options%keyvals}

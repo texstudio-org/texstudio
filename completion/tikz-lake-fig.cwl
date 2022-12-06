@@ -4,7 +4,8 @@
 #include:xcolor
 # loads x11names xcolor option
 #include:tikz
-# loads decorations.pathmorphing and calc tikzlibraries
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarycalc
 #include:subfiles
 #include:pbox
 #include:multirow

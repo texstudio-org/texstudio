@@ -3,6 +3,8 @@
 
 #include:tikz
 #include:tikzlings-addons
+#include:tikzlibraryshadows.blur
+#include:tikzlibraryfadings
 
 \koala
 \koala[options%keyvals]

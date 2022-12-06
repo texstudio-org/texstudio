@@ -4,7 +4,9 @@
 #include:ifthen
 #include:kvoptions
 #include:tikz
-# loads calc, decorations.pathreplacing, and positioning tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarypositioning
 #include:xkeyval
 #include:xparse
 #include:xstring

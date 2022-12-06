@@ -8,7 +8,7 @@
 # loads most option of tcolorbox
 #include:xeCJKfntef
 #include:linegoal
-# loads shapes.misc tikzlibrary
+#include:tikzlibraryshapes.misc
 
 #keyvals:\examsetup,\ExamPrintAnswerSet
 question={%<键值列表%>}

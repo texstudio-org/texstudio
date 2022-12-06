@@ -3,7 +3,7 @@
 
 #include:siunitx
 #include:tikz
-# loads circuits.ee.IEC tikzlibrary
+#include:tikzlibrarycircuits.ee.IEC
 
 \Massstab{Zahl1}{Einheit1%formula}{Zahl2}{Einheit2%formula}
 \tqty{Zahl}{Einheit%formula}

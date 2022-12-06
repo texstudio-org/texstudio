@@ -7,7 +7,9 @@
 #include:pgfopts
 #include:relsize
 #include:tikz
-# loads positioning, backgrounds, and shapes.misc tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryshapes.misc
 #include:enumitem
 #include:fontawesome
 #include:sfmath

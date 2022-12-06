@@ -8,6 +8,9 @@
 #include:kvoptions
 #include:relsize
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes.symbols
+#include:tikzlibraryshadows
 #include:xcolor
 #include:xparse
 #include:xstring

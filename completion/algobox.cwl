@@ -5,6 +5,7 @@
 #include:xparse
 #include:environ
 #include:tikz
+#include:tikzlibrarycalc
 #include:xcolor
 
 \begin{algobox}#V

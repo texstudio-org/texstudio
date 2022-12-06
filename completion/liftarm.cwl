@@ -5,7 +5,7 @@
 #include:xcolor
 # loads dvipsnames option of xcolor
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 
 \liftarm{point}{length%plain}{angle}
 \liftarm[options%keyvals]{point}{length%plain}{angle}

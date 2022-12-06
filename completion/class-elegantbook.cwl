@@ -38,6 +38,11 @@
 # loads pagestyles option of titlesec
 #include:biblatex
 #include:tikz
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarycalc
+#include:tikzlibraryshadows
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
 #include:apptools
 #include:pifont
 #include:manfnt
@@ -1506,17 +1511,6 @@ frenchplum#B
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors{row}{odd-row-color}{even-row-color}
-\rowcolors[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors{row}{color}{color}#S
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*{row}{odd-row-color}{even-row-color}
-\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors*{row}{color}{color}#S
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from shortlabels option of enumitem
 #keyvals:\begin{enumerate}#c,\begin{itemize}#c,\begin{description}#c,\begin{enumerate*}#c,\begin{itemize*}#c,\begin{description*}#c

@@ -10,7 +10,7 @@
 #include:graphicx
 #include:scalerel
 #include:tikz
-# loads svg.path tikzlibrary
+#include:tikzlibrarysvg.path
 #include:hyperref
 #include:booktabs
 #include:threeparttable

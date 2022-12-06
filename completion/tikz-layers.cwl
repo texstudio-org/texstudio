@@ -2,7 +2,7 @@
 # Matthew Bertucci 12/24/2021 for v0.9
 
 #include:tikz
-# loads backgrounds tikzlibrary
+#include:tikzlibrarybackgrounds
 
 #keyvals:\begin{scope}#c,\scoped#c
 on behind layer

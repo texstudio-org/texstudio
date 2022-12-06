@@ -16,6 +16,8 @@
 #include:etoolbox
 #include:translations
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.pathmorphing
 #include:xfrac
 
 #keyvals:\usepackage/chemmacros#c

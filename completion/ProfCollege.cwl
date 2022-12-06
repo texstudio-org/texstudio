@@ -25,7 +25,15 @@
 #include:tcolorbox
 # tcolorbox loaded with most option
 #include:tikz
-# loads calc, shapes, arrows, tikzmark, chains, positioning, shapes.symbols, babel, and fit tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes
+#include:tikzlibrarytikzmark
+#include:tikzlibrarychains
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes.symbols
+#include:tikzlibrarybabel
+#include:tikzlibraryfit
+#include:tikzlibrarybackgrounds
 #include:suffix
 #include:multicol
 #include:hhline

@@ -12,6 +12,10 @@ roundedcorners
 shadow
 #endkeyvals
 
+#ifOption:shadow
+#include:tikzlibraryshadows
+#endif
+
 \opaqueblock<overlay specification>{text}
 \opaqueblock<overlay specification>[width]{text}
 \invblock<overlay specification>

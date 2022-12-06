@@ -3,7 +3,9 @@
 
 #include:ifthen
 #include:tikz
-# loads decorations.markings, hobby, and bending tikzlibraries
+#include:tikzlibrarydecorations.markings
+#include:tikzlibraryhobby
+#include:tikzlibrarybending
 
 \measure{(x1,y1)}{(x2,y2)}{label}
 \measure[anchor spec]{(x1,y1)}{(x2,y2)}{label}

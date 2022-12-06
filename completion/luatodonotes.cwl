@@ -6,6 +6,9 @@
 #include:ifthen
 #include:xkeyval
 #include:tikz
+#include:tikzlibrarypositioning
+#include:tikzlibraryintersections
+#include:tikzlibrarydecorations.pathmorphing
 #include:luacode
 #include:atbegshi
 #include:xstring
@@ -59,6 +62,10 @@ rasterHeight=##L
 additionalMargin=##L
 debug
 #endkeyvals
+
+#ifOption:shadow
+#include:tikzlibraryshadows
+#endif
 
 \todo{text%todo}#D
 \todo[options%keyvals]{text%todo}#D

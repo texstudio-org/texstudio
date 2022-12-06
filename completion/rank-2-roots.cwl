@@ -8,6 +8,14 @@
 #include:expl3
 #include:pgfkeys
 #include:pgfopts
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarypositioning
+#include:tikzlibraryfadings
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibraryshadings
+#include:tikzlibraryfadings
 
 \begin{rootSystem}{type%keyvals}
 \end{rootSystem}

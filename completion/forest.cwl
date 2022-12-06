@@ -2,7 +2,9 @@
 # Matthew Bertucci 2022/07/06 for v2.1.5
 
 #include:tikz
-# loads shapes, fit, and calc tikzlibraries
+#include:tikzlibraryshapes
+#include:tikzlibraryfit
+#include:tikzlibrarycalc
 # loads intersections pgflibrary
 #include:pgfopts
 #include:etoolbox
@@ -17,9 +19,7 @@ linguistics
 #endkeyvals
 
 #ifOption:external
-\tikzexternalize
-\tikzexternalenable
-\tikzexternaldisable
+#include:tikzlibraryexternal
 #endif
 
 #ifOption:linguistics

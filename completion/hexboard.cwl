@@ -2,7 +2,7 @@
 # Matthew Bertucci 2/23/2022 for v1.0
 
 #include:tikz
-# loads shapes.geometric tikzlibrary
+#include:tikzlibraryshapes.geometric
 #include:xstring
 
 \begin{hexpicture}#\pictureHighlight

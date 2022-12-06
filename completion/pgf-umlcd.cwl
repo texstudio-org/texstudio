@@ -7,7 +7,9 @@ simplified
 #endkeyvals
 
 #include:tikz
-# loads arrows, shapes.multipart, backgrounds, and fit tikzlibraries
+#include:tikzlibraryshapes.multipart
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryfit
 
 \begin{class}{class name%text}{x,y}
 \begin{class}[TikZ options]{class name%text}{x,y}

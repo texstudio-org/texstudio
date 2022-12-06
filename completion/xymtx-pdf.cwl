@@ -5,6 +5,10 @@
 #include:tikz
 #include:pgfcore
 #include:xcolor
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryfit
+#include:tikzlibrarycalc
 
 \black
 \blue

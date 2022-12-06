@@ -2,8 +2,12 @@
 # Matthew Bertucci 2/14/2022 for v1.0
 
 #include:tikz
-
-# loads shapes.misc pgflibrary and arrows, decorations.pathmorphing, backgrounds, positioning, fit, and shadows tikzlibraries
+#include:tikzlibraryshapes.misc
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
+#include:tikzlibraryshadows
 
 \bStart{text}
 \bPlusDown{text}

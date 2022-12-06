@@ -3,7 +3,12 @@
 
 #include:ifthen
 #include:tikz
-# loads calc, shadows, shapes, shapes.symbols, positioning, and math tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshadows
+#include:tikzlibraryshapes
+#include:tikzlibraryshapes.symbols
+#include:tikzlibrarypositioning
+#include:tikzlibrarymath
 #include:xcolor
 #include:xkeyval
 

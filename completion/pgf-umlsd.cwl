@@ -2,7 +2,7 @@
 # Matthew Bertucci 4/7/2022 for v0.6
 
 #include:tikz
-# loads arrows and shadows tikzlibraries
+#include:tikzlibraryshadows
 #include:ifthen
 
 #keyvals:\usepackage/pgf-umlsd#c

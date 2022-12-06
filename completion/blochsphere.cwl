@@ -2,7 +2,10 @@
 # Matthew Bertucci 12/30/2021 for v3.3
 
 #include:tikz
-# loads decorations.pathreplacing, decorations.markings, calc, and fadings tikzlibraries
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarycalc
+#include:tikzlibraryfadings
 #include:etoolbox
 #include:environ
 #include:ifthen

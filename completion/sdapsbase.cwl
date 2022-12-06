@@ -4,7 +4,9 @@
 #include:expl3
 #include:qrcode
 #include:tikz
-# loads calc, positioning, and decorations.pathmorphing tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning
+#include:tikzlibrarydecorations.pathmorphing
 
 # from sdapscode128.tex
 \X#S

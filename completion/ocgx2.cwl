@@ -67,7 +67,7 @@ onmouseall
 
 #ifOption:tikz
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #keyvals:\tikzset#c,\begin{tikzpicture}#c,\begin{scope}#c,\node#c
 ocg={%<options%>}
 ocmd={%<options%>}

@@ -11,7 +11,7 @@
 #include:fp-upn
 #include:numprint
 #include:tikz
-# loads shadows tikzlibrary
+#include:tikzlibraryshadows
 #include:tabularx
 #include:environ
 #include:fancyhdr

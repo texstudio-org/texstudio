@@ -123,6 +123,7 @@ circuits.logic.IEC
 circuits.logic.US
 circuits.plc.ladder
 circuits.plc.sfc
+colorbrewer
 commutative-diagrams
 curvilinear
 datavisualization
@@ -182,6 +183,7 @@ matrix
 matrix.skeleton
 mindmap
 nef
+ocgx
 optics
 overlay-beamer-styles
 patterns
@@ -190,7 +192,6 @@ patterns.meta
 penrose
 perspective
 petri
-phylogenetics
 pie
 plothandlers
 plotmarks
@@ -229,6 +230,7 @@ tqft
 trees
 turtle
 views
+zx-calculus
 #endkeyvals
 
 ### < Keys > ###

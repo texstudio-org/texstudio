@@ -2,7 +2,8 @@
 # Matthew Bertucci 3/14/2022 for v1.0
 
 #include:tikz
-# loads quotes, calc, and arrows.meta tikzlibraries
+#include:tikzlibraryquotes
+#include:tikzlibrarycalc
 #include:xparse
 #include:float
 

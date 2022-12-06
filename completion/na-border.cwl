@@ -8,6 +8,18 @@
 #include:xcolor
 # loads svgnames, dvipsnames, and x11names options of xcolor
 #include:tikz
+#include:tikzlibrarypatterns
+#include:tikzlibraryshapes
+#include:tikzlibraryshadings
+#include:tikzlibraryshadows
+#include:tikzlibraryshapes.geometric
+#include:tikzlibrarydecorations
+#include:tikzlibrarypositioning
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarycalc
+#include:tikzlibraryfadings
+#include:tikzlibraryshapes.misc
+#include:tikzlibraryintersections
 #include:fancyhdr
 
 \naborder{color}{letter}

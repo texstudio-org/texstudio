@@ -23,5 +23,8 @@ lalicfonttext#B
 
 # from lalic outertheme
 #include:tikz
-# loads positioning, calc, shapes.misc, and math tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes.misc
+#include:tikzlibrarymath
 \progressbar#*

@@ -15,7 +15,8 @@
 #include:enumitem
 #include:varwidth
 #include:tikzpagenodes
-# loads decorations.markings and decorations.text tikzlibraries
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydecorations.text
 #include:exam-zh-question
 #include:exam-zh-font
 #include:exam-zh-choices

@@ -51,6 +51,10 @@ tkzpic=#0,1
 width=%<number%>
 #endkeyvals
 
+#ifOption:externalize=1
+#include:tikzlibraryexternal
+#endif
+
 \vpartition{sorted blocks}
 \vpartition[options%keyvals]{sorted blocks}
 

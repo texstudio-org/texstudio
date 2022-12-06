@@ -3,7 +3,7 @@
 
 #include:tikz
 #include:tikzlings-addons
-# loads decorations.pathmorphing tikzlibrary
+#include:tikzlibrarydecorations.pathmorphing
 
 \wolf
 \wolf[options%keyvals]

@@ -4,7 +4,7 @@
 #include:ifsym
 #include:ifthen
 #include:tikz
-# loads shapes and arrows tikzlibraries
+#include:tikzlibraryshapes
 
 \Etape{nom}
 \Etape[pos]{nom}

@@ -3,7 +3,8 @@
 
 #include:xkeyval
 #include:tikz
-# loads plotmarks, plothandlers, and calc tikzlibraries
+#include:tikzlibraryplotmarks
+#include:tikzlibrarycalc
 #include:datatool
 
 \DTLplot{db list%special}{settings%keyvals}

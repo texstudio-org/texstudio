@@ -3,11 +3,18 @@
 
 #include:tikz
 #include:pgfopts
-# loads feynhand and graphs tikzlibraries
+#include:tikzlibrarygraphs
 
 ## from tikzlibraryfeynhand.code.tex
-# loads arrows.meta, calc, decorations, decorations.markings, decorations.pathmorphing,
-# decorations.pathreplacing, external, patterns, positioning, and shapes.geometric tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibraryexternal
+#include:tikzlibrarypatterns
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes.geometric
 
 \tikzfeynhandset{options%keyvals}
 

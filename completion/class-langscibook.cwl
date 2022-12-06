@@ -13,6 +13,8 @@
 #include:graphicx
 #include:hyphenat
 #include:tikz
+#include:tikzlibrarypositioning
+#include:tikzlibrarycalc
 #include:url
 #include:calc
 #include:geometry

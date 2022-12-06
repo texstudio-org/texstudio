@@ -5,7 +5,8 @@
 #include:tikz
 #include:trimspaces
 #include:xkeyval
-# loads arrows.meta, decorations.pathreplacing, and decorations.pathmorphing tikzlibraries
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.pathmorphing
 
 #keyvals:\usepackage/yquant#c
 compat=#newest,0.3,0.4,0.6

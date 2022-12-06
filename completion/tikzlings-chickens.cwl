@@ -3,6 +3,7 @@
 
 #include:tikz
 #include:tikzlings-addons
+#include:tikzlibrarydecorations.pathmorphing
 
 \chicken
 \chicken[options%keyvals]

@@ -5,7 +5,7 @@
 #include:autoaligne
 #include:icomma
 #include:pgfplots
-# loads shapes.misc tikzlibrary
+#include:tikzlibraryshapes.misc
 
 \begin{Kosy}#\pictureHighlight
 \begin{Kosy}[pgfplots options%keyvals]

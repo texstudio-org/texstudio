@@ -3,13 +3,22 @@
 
 #include:etoolbox
 #include:tikz
-# loads  intersections, shadings, patterns.meta, decorations.pathmorphing, shapes.symbols, and shapes.geometric tikzlibraries
+#include:tikzlibraryintersections
+#include:tikzlibraryshadings
+#include:tikzlibrarypatterns.meta
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibraryshapes.symbols
+#include:tikzlibraryshapes.geometric
 
 #keyvals:\usepackage/tikzpingus#c
 glows
 manual-layers
 bare
 #endkeyvals
+
+#ifOption:glows
+#include:tikzlibraryfadings
+#endif
 
 \pingu
 \pingu[options%keyvals]

@@ -7,6 +7,8 @@
 #include:xcolor
 #include:xspace
 #include:l3keys2e
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarytrees
 
 \tikzsymbolsset{keyvals}
 

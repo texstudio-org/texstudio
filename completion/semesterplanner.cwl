@@ -5,6 +5,7 @@
 #include:color
 #include:schedule
 #include:tikz
+#include:tikzlibraryshapes
 
 \begin{timetable}
 \end{timetable}
