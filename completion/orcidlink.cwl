@@ -3,7 +3,7 @@
 
 #include:hyperref
 #include:tikz
-# loads svg.path tikzlibrary
+#include:tikzlibrarysvg.path
 
 orcidlogocol#B
 
