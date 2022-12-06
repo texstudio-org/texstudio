@@ -11,7 +11,11 @@
 #include:listofitems
 #include:xparse
 #include:ifthen
-# loads positioning, shapes.misc, shapes.geometric, backgrounds, and fit tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes.misc
+#include:tikzlibraryshapes.geometric
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryfit
 
 #keyvals:\usepackage/quiz2socrative#c
 pdfQuiz
