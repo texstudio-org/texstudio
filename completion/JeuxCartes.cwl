@@ -5,7 +5,7 @@
 #include:xcolor
 # loads table and svgnames options of xcolor
 #include:tikz
-# loads calc and scopes tikzlibraries
+#include:tikzlibrarycalc
 #include:pgffor
 #include:xfp
 #include:listofitems
