@@ -31,7 +31,7 @@
 #include:listings
 #include:hyperref
 #include:tikz
-# loads tikzlibrary svg.path
+#include:tikzlibrarysvg.path
 
 #keyvals:\documentclass/oup-authoring-template#c
 namedate
