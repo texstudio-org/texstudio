@@ -5,7 +5,11 @@
 # loads the dvipsnames and table options of xcolor
 #include:newtxtt
 #include:tikz
-# loads calc, shapes, arrows, shadows, backgrounds, and babel tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshapes
+#include:tikzlibraryshadows
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarybabel
 #include:ifthen
 #include:xkeyval
 #include:mathtools
