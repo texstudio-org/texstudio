@@ -2,7 +2,7 @@
 # Matthew Bertucci 2022/09/16 for v1.0
 
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 
 \wheelchart{wheelchart data}
 \wheelchart[options%keyvals]{wheelchart data}
