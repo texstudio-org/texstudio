@@ -3,7 +3,10 @@
 
 #include:tikz
 #include:ifthen
-# loads the positioning, spath3, arrows.meta, shapes, and intersections libraries
+#include:tikzlibrarypositioning
+#include:tikzlibraryspath3
+#include:tikzlibraryshapes
+#include:tikzlibraryintersections
 
 #keyvals:\node#c
 unit int=#stirred,liquid,stirred liquid,packed,fixed,tubular,U tube,two pass,four pass,single,double,triple,tray,dashed tray,weir tray,numbered tray,packed,double packed,liquid rotated,phase sep,inlet west,inlet east,inlet north,inlet south
