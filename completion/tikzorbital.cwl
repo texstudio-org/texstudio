@@ -3,6 +3,7 @@
 #
 #include:ifthen
 #include:tikz
+#include:tikzlibraryshapes
 #
 \drawLevel[options%keyvals]{name}#/tikzpicture
 \orbital[options%keyvals]{type}#/tikzpicture
