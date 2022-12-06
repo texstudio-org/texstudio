@@ -4,7 +4,8 @@
 #include:cncolours
 #include:pgfornament-han
 #include:tikz
-# loads decorations and decorations.markings tikzlibraries
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.markings
 #include:calc
 #include:pgfmath
 
