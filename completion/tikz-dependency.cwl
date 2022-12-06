@@ -3,7 +3,13 @@
 
 #include:environ
 #include:tikz
-# loads matrix, arrows, backgrounds, calc, patterns, positioning, fit, and shapes tikzlibraries
+#include:tikzlibrarymatrix
+#include:tikzlibrarybackgrounds
+#include:tikzlibrarycalc
+#include:tikzlibrarypatterns
+#include:tikzlibrarypositioning
+#include:tikzlibraryfit
+#include:tikzlibraryshapes
 
 \begin{dependency}#\pictureHighlight
 \begin{dependency}[options%keyvals]
