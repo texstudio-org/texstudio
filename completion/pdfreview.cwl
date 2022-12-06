@@ -9,7 +9,8 @@
 #include:graphicx
 #include:kvoptions
 #include:tikz
-# loads calc, arrows, and positioning tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarypositioning
 #include:twoopt
 #include:xstring
 #include:grffile
