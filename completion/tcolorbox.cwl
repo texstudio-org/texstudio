@@ -10,10 +10,14 @@
 #include:verbatim
 
 # << Package options (load libraries) >>
-#ifOption:external
-#include:pdftexcmds
-#include:shellesc
-#include:incgraph
+#ifOption:skins
+#include:tikz
+#endif
+
+#ifOption:vignette
+## loads skins library
+#include:tikz
+#include:tikzlibraryfadings
 #endif
 
 #ifOption:listings
@@ -23,7 +27,7 @@
 #endif
 
 #ifOption:listingsutf8
-## loads option listings
+## loads listings library
 #include:listings
 #include:listingsutf8
 #include:pdftexcmds
@@ -34,13 +38,8 @@
 #include:minted
 #endif
 
-#ifOption:skins
-#include:tikz
-#endif
-
-#ifOption:vignette
-## loads option skins
-#include:tikz
+#ifOption:theorems
+#include:amsmath
 #endif
 
 #ifOption:breakable
@@ -48,37 +47,32 @@
 #endif
 
 #ifOption:magazine
-## loads option breakable
+## loads breakable library
 #include:pdfcol
 #endif
 
 #ifOption:poster
-## loads options skins, breakable, magazine, and fitting
+## loads skins, breakable, magazine, and fitting libraries
 #include:tikz
 #include:pdfcol
 #endif
 
-#ifOption:theorems
-#include:amsmath
-#endif
-
-#ifOption:xparse
-#include:xparse
+#ifOption:external
+#include:pdftexcmds
+#include:shellesc
+#include:incgraph
 #endif
 
 #ifOption:documentation
-## loads options listings, skins, and xparse
+## loads skins, raster, and listings libraries
 #include:hyperref
 #include:listings
 #include:makeidx
 #include:marginnote
-#include:marvosym
 #include:pdftexcmds
-#include:pifont
 #include:refcount
 #include:shellesc
 #include:tikz
-#include:xparse
 ## make documentation commands regular (w/o #*) if "documentation" option explicitly loaded
 \begin{docCommand}{name}{parameters}
 \begin{docCommand}[options%keyvals]{name}{parameters}
@@ -181,14 +175,14 @@
 #endif
 
 #ifOption:many
-## loads options skins, breakable, theorems, and xparse
+## loads skins, breakable, raster, hookes, theorems, and fitting libraries
 #include:amsmath
 #include:tikz
 #include:pdfcol
 #endif
 
 #ifOption:most
-## loads all options except minted and documentation
+## loads all libraries except minted and documentation
 #include:amsmath
 #include:incgraph
 #include:listings
@@ -196,23 +190,24 @@
 #include:pdftexcmds
 #include:shellesc
 #include:tikz
+#include:tikzlibraryfadings
 #include:pdfcol
 #endif
 
 #ifOption:all
-## loads all options except documentation
+## loads all libraries
 #include:amsmath
 #include:incgraph
 #include:listings
 #include:listingsutf8
 #include:minted
-#include:pdftexcmds
-#include:pdftexcmds
-#include:shellesc
-#include:shellesc
 #include:tikz
-#include:xparse
+#include:tikzlibraryfadings
 #include:pdfcol
+#include:hyperref
+#include:makeidx
+#include:marginnote
+#include:refcount
 ## make documentation commands regular (w/o #*) if "all" option explicitly loaded
 \begin{docCommand}{name}{parameters}
 \begin{docCommand}[options%keyvals]{name}{parameters}
