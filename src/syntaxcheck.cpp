@@ -593,7 +593,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             }else{
                 elem.format=mFormatList["math"];
             }
-            if(tk.type==Token::braces){
+            if(tk.type==Token::braces || tk.type==Token::openBrace){
                 // add to active env
                 Environment env;
                 env.name = "math";
@@ -603,10 +603,18 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 env.level = tk.level;
                 env.startingColumn=tk.start+1;
                 env.endingColumn=tk.start+tk.length-1;
+                if(tk.type==Token::openBrace){
+                    env.endingColumn=-1;
+                }
                 // avoid stacking same env (e.g. braces in braces, see #2411 )
                 Environment topEnv=activeEnv.top();
                 if(topEnv.name!=env.name)
                     activeEnv.push(env);
+            }
+            if(tk.type==Token::closeBrace){
+                if(activeEnv.top().name=="math"){
+                    activeEnv.pop();
+                }
             }
             newRanges.append(elem);
         }
