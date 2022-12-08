@@ -1,5 +1,25 @@
 # lineno package
-# Matthew Bertucci 10/4/2021 for v4.41
+# Matthew Bertucci 2022/12/06 for v5.00
+
+#include:etoolbox
+
+#keyvals:\usepackage/lineno#c
+addpageno
+mathrefs
+edtable
+longtable
+nolongtablepatch
+left
+right
+switch
+switch*
+columnwise
+pagewise
+running
+modulo
+modulo*
+mathlines
+#endkeyvals
 
 #ifOption:addpageno
 #include:vplref
@@ -23,24 +43,6 @@
 #include:edtable
 #include:longtable
 #endif
-
-#keyvals:\usepackage/lineno#c
-addpageno
-mathrefs
-edtable
-longtable
-nolongtablepatch
-left
-right
-switch
-switch*
-columnwise
-pagewise
-running
-modulo
-modulo*
-mathlines
-#endkeyvals
 
 \linenumbers
 \linenumbers*

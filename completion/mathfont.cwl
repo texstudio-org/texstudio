@@ -1,7 +1,5 @@
 # mathfont package
-# Matthew Bertucci 2022/12/04 for v2.2
-
-#include:atveryend
+# Matthew Bertucci 2022/12/06 for v2.2a
 
 #keyvals:\usepackage/mathfont#c
 easter-egg
@@ -15,7 +13,7 @@ no-adjust
 #endif
 
 \mathfont{font name}
-\mathfont[character classes%keyvals]{font name}
+\mathfont[keywords%keyvals]{font name}
 
 #keyvals:\mathfont
 upper
@@ -68,25 +66,31 @@ bfrak
 \mathbfsc{text%plain}#m
 \mathbfscit{text%plain}#m
 
-\newmathrm{cmd}{font name}#d
-\newmathit{cmd}{font name}#d
-\newmathbf{cmd}{font name}#d
-\newmathbfit{cmd}{font name}#d
-\newmathsc{cmd}{font name}#d
-\newmathscit{cmd}{font name}#d
-\newmathbfsc{cmd}{font name}#d
-\newmathbfscit{cmd}{font name}#d
-\newmathfontcommand{cmd}{font name}{series}{shape}#*d
-
-\RuleThicknessFactor#*
-\IntegralItalicFactor#*
-\SurdVerticalFactor#*
-\SurdHorizontalFactor#*
-\CharmLine#*
-\CharmFile#*
+\newmathrm{control sequence%cmd}{font name}#d
+\newmathit{control sequence%cmd}{font name}#d
+\newmathbf{control sequence%cmd}{font name}#d
+\newmathbfit{control sequence%cmd}{font name}#d
+\newmathsc{control sequence%cmd}{font name}#d
+\newmathscit{control sequence%cmd}{font name}#d
+\newmathbfsc{control sequence%cmd}{font name}#d
+\newmathbfscit{control sequence%cmd}{font name}#d
+\newmathfontcommand{control sequence%cmd}{font name}{series}{shape}#d
 
 \mathconstantsfont{font name}
-\mathconstantsfont[shape]{font name}
+\mathconstantsfont[shape%keyvals]{font name}
+
+#keyvals:\mathconstantsfont
+upright
+italic
+#endkeyvals
+
+\CharmLine{integer list}
+\CharmFile{filename}
+
+\RuleThicknessFactor{integer}
+\IntegralItalicFactor{integer}
+\SurdVerticalFactor{integer}
+\SurdHorizontalFactor{integer}
 
 \aacute{arg}#m
 \Alpha#*m
