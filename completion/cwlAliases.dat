@@ -1506,3 +1506,7 @@ ukbill:
 class-ukbill
 latex-document
 tex
+jourcl:
+class-jourcl
+latex-document
+tex
