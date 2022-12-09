@@ -1,5 +1,5 @@
 # dtxdescribe package
-# Matthew Bertucci 2022/09/16 for v1.05
+# Matthew Bertucci 2022/12/07 for v1.06
 
 #include:makeidx
 #include:etoolbox
@@ -238,6 +238,8 @@ mylinkcolor#B
 \usage{text%plain}#*
 \begin{dtxdexample}#*
 \end{dtxdexample}#*
+\begin{dtxexamplefloat}#S
+\end{dtxexamplefloat}#S
 \begin{noindmacro}{macro%cmd}#*
 \end{noindmacro}#*
 \begin{noindenvironment}{envname}#*

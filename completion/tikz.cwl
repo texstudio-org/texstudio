@@ -192,7 +192,6 @@ patterns.meta
 penrose
 perspective
 petri
-pie
 plothandlers
 plotmarks
 positioning
@@ -200,7 +199,6 @@ profiler
 quantikz
 quotes
 rdf
-routing
 rulercompass
 scopes
 shadings
