@@ -327,6 +327,12 @@ myheadings
 plain
 #endkeyvals
 
+# available if float package loaded
+#keyvals:\floatstyle
+komaabove
+komabelow
+#endkeyvals
+
 # deprecated
 \ifnumbered#S
 \ifthispageodd#S

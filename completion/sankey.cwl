@@ -3,7 +3,9 @@
 
 #include:etoolbox
 #include:tikz
-# loads calc, decorations.markings, and dubins tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarydecorations.markings
+#include:tikzlibrarydubins
 #include:xfp
 #include:xparse
 
@@ -117,9 +119,3 @@ debug color=#%color
 \qty#*
 \orient#*
 \pos#*
-
-## from dubins tikzlibrary
-\ifpgfmathcond{condition}#*
-\dubinspath{options}#*
-\dubinspathset{options}#*
-\dubinspathcalc{options}#*

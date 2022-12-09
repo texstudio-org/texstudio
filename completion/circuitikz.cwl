@@ -2,7 +2,9 @@
 # updated 2022/09/09 for v1.5.4
 
 #include:tikz
-# loads calc, arrows.meta, bending, and fpu tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibrarybending
+#include:tikzlibraryfpu
 
 #keyvals:\usepackage/circuitikz#c
 european
