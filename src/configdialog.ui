@@ -1388,7 +1388,14 @@ Then you can select a new shortcut by one of the following ways:
               <property name="horizontalSpacing">
                <number>15</number>
               </property>
-              <item row="4" column="1" colspan="2">
+              <item row="0" column="0" colspan="3">
+               <widget class="QLabel" name="label_SlidersNote">
+                <property name="text">
+                 <string>Note: The change of symbols can be monitored live</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1" colspan="2">
                <widget class="QSlider" name="horizontalSliderSymbol">
                 <property name="toolTip">
                  <string>This changes the scaling of the symbol grid (for high resolution displays).</string>
@@ -1419,28 +1426,28 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="label_11">
                 <property name="text">
                  <string>Main Toolbar</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="3">
+              <item row="1" column="3">
                <widget class="QToolButton" name="tbRevertIcon">
                 <property name="text">
                  <string>Reset</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="3">
+              <item row="2" column="3">
                <widget class="QToolButton" name="tbRevertCentralIcon">
                 <property name="text">
                  <string>Reset</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" colspan="2">
+              <item row="2" column="1" colspan="2">
                <widget class="QSlider" name="horizontalSliderCentraIcon">
                 <property name="toolTip">
                  <string>This changes the scaling of the vertical toolbars (for high resolution displays).</string>
@@ -1462,7 +1469,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="0" column="1" colspan="2">
+              <item row="1" column="1" colspan="2">
                <widget class="QSlider" name="horizontalSliderIcon">
                 <property name="toolTip">
                  <string>This changes the scaling of the horizontal toolbars (for high resolution displays).</string>
@@ -1490,28 +1497,28 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="4" column="3">
+              <item row="5" column="3">
                <widget class="QToolButton" name="tbRevertSymbol">
                 <property name="text">
                  <string>Reset</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="5" column="0">
                <widget class="QLabel" name="label_72">
                 <property name="text">
                  <string>Symbol Grid</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="label_71">
                 <property name="text">
                  <string>Secondary Toolbars</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1" colspan="2">
+              <item row="6" column="1" colspan="2">
                <widget class="QSlider" name="horizontalSliderPDF">
                 <property name="toolTip">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1536,14 +1543,14 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="6" column="0">
                <widget class="QLabel" name="label_87">
                 <property name="text">
                  <string>Embedded PDF Toolbar</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="3">
+              <item row="6" column="3">
                <widget class="QToolButton" name="tbRevertPDF">
                 <property name="text">
                  <string>Reset</string>
