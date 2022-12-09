@@ -164,17 +164,7 @@
                  <property name="title">
                   <string>Appearance</string>
                  </property>
-                 <layout class="QGridLayout">
-                  <item row="4" column="1">
-                   <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
-                    <property name="text">
-                     <string>Ignore Most System Colors</string>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
+                 <layout class="QGridLayout" columnstretch="0,0,1">
                   <item row="0" column="1" colspan="3">
                    <widget class="QComboBox" name="comboBoxInterfaceStyle">
                     <property name="sizePolicy">
@@ -202,7 +192,7 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="10" column="1" colspan="3">
+                  <item row="10" column="1" colspan="1">
                    <widget class="QComboBox" name="comboBoxLanguage">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -293,15 +283,45 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="2">
-                   <widget class="QCheckBox" name="checkBoxUseSystemTheme">
-                    <property name="text">
-                     <string>Use System Theme Icons</string>
+                  <item row="4" column="1" colspan="3">
+                   <layout class="QHBoxLayout">
+                    <property name="spacing">
+                     <number>9</number>
                     </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
+                      <property name="text">
+                       <string>Ignore Most System Colors</string>
+                      </property>
+                      <property name="advancedOption" stdset="0">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxUseSystemTheme">
+                      <property name="text">
+                       <string>Use System Theme Icons</string>
+                      </property>
+                      <property name="advancedOption" stdset="0">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_27">
@@ -835,41 +855,52 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_37">
-                    <property name="text">
-                     <string>Show stdout:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QComboBox" name="comboBoxShowStdout">
-                    <item>
-                     <property name="text">
-                      <string>Never</string>
-                     </property>
+                  <item row="3" column="0" colspan="2">
+                   <layout class="QGridLayout" columnstretch="0,1">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_37">
+                      <property name="text">
+                       <string>Show stdout:</string>
+                      </property>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>Only For User Commands</string>
-                     </property>
+                    <item row="0" column="1">
+                     <widget class="QComboBox" name="comboBoxShowStdout">
+                      <item>
+                       <property name="text">
+                        <string>Never</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Only For User Commands</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Always (If not redirected &gt; /dev/null)</string>
+                       </property>
+                      </item>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>Always (If not redirected &gt; /dev/null)</string>
-                     </property>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_38">
+                      <property name="toolTip">
+                       <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
+                      </property>
+                      <property name="text">
+                       <string>Maximum Compile Repetitions:</string>
+                      </property>
+                     </widget>
                     </item>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_38">
-                    <property name="toolTip">
-                     <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
-                    </property>
-                    <property name="text">
-                     <string>Maximum Compile Repetitions:</string>
-                    </property>
-                   </widget>
+                    <item row="1" column="1">
+                     <widget class="QSpinBox" name="spinBoxRerunLatex">
+                      <property name="value">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </item>
                   <item row="7" column="0" colspan="2">
                    <layout class="QGridLayout" name="gridLayout_1">
@@ -1012,13 +1043,6 @@ Variables are written as: $MYVAR. They are case-sensitive.
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="1">
-                   <widget class="QSpinBox" name="spinBoxRerunLatex">
-                    <property name="value">
-                     <number>5</number>
-                    </property>
-                   </widget>
-                  </item>
                  </layout>
                 </widget>
                </item>
@@ -1098,6 +1122,9 @@ Then you can select a new shortcut by one of the following ways:
               <string>Close Element (Esc)</string>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <property name="spacing">
+               <number>9</number>
+              </property>
               <item>
                <widget class="QCheckBox" name="checkBoxCloseLogByEsc">
                 <property name="text">
@@ -1118,6 +1145,19 @@ Then you can select a new shortcut by one of the following ways:
                  <string>Close Full Screen Mode</string>
                 </property>
                </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </widget>
@@ -1344,9 +1384,9 @@ Then you can select a new shortcut by one of the following ways:
              <property name="title">
               <string>GUI Scaling</string>
              </property>
-             <layout class="QGridLayout">
+             <layout class="QGridLayout" columnstretch="0,1,1">
               <property name="horizontalSpacing">
-               <number>60</number>
+               <number>15</number>
               </property>
               <item row="4" column="1" colspan="2">
                <widget class="QSlider" name="horizontalSliderSymbol">
@@ -2755,7 +2795,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                  <property name="title">
                   <string>Bi-Di</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout8">
+                 <layout class="QGridLayout" name="gridLayout81">
                   <item row="0" column="0" colspan="3">
                    <widget class="QCheckBox" name="checkBoxAutoLRM">
                     <property name="text">
@@ -3312,7 +3352,7 @@ them here.</string>
                  <property name="title">
                   <string>Spell Check</string>
                  </property>
-                 <layout class="QGridLayout" name="_4">
+                 <layout class="QGridLayout" columnstretch="0,1,1,1,1,1" name="_4">
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_43">
                     <property name="text">
@@ -3847,7 +3887,7 @@ them here.</string>
                  <property name="title">
                   <string>Preview</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_5">
+                 <layout class="QGridLayout" columnstretch="0,1" name="gridLayout_5">
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_31">
                     <property name="text">
@@ -3981,7 +4021,7 @@ them here.</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="0">
+                  <item row="5" column="0" colspan="2">
                    <widget class="QCheckBox" name="checkBoxReplaceBeamer">
                     <property name="text">
                      <string>Replace beamer class by article</string>
@@ -3994,7 +4034,7 @@ them here.</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="0">
+                  <item row="6" column="0" colspan="2">
                    <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
                     <property name="text">
                      <string>Precompile Preamble</string>
@@ -4506,7 +4546,7 @@ Note: Changing this setting will only affect documents that are opened afterward
                     </property>
                    </widget>
                   </item>
-                  <item row="18" column="0">
+                  <item row="18" column="0" colspan="2">
                    <widget class="QCheckBox" name="autoHideToolbars">
                     <property name="text">
                      <string>Auto-hide Toolbars in Embedded Mode</string>
