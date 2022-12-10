@@ -666,8 +666,8 @@ enable tick line clipping#true,false
 
 ## pgfplots.code.tex
 \ifpgfplotsthreedim#*
-\pgfplotsthreedimtrue#*
-\pgfplotsthreedimfalse#*
+\pgfplotsthreedimtrue#S
+\pgfplotsthreedimfalse#S
 \pgfnodepartimagebox#*
 \axisdefaultwidth#*
 \axisdefaultheight#*
@@ -681,23 +681,23 @@ enable tick line clipping#true,false
 \pgfplotspointmetarange#*
 \pgfplotspointmetatransformed#*
 \pgfplotspointmetatransformedrange#*
-\length#*
-\disstart#*
-\disend#*
-\discontstyle#*
+\length#S
+\disstart#S
+\disend#S
+\discontstyle#S
 \pgfplotsretval#*
 \pgfplotsextra{path code}#*
-\curcolumnNum#*
-\maxcolumnCount#*
-\legendplotpos#*
-\theHpgfplotslink#*
+\curcolumnNum#S
+\maxcolumnCount#S
+\legendplotpos#S
+\theHpgfplotslink#S
 \pgfmathlogtologten{arg}#*
-\upperrightcorner#*
-\lowerleftinnercorner#*
-\innerdiagonal#*
-\origin#*
-\xaxisvec#*
-\yaxisvec#*
+\upperrightcorner#S
+\lowerleftinnercorner#S
+\innerdiagonal#S
+\origin#S
+\xaxisvec#S
+\yaxisvec#S
 \pgfplotsdefineaxistype{type}{code}#*
 \pgfplotssetaxistype{type}#*
 \pgfplotssetlayers{layer config name}#*
@@ -736,12 +736,12 @@ enable tick line clipping#true,false
 \pgfplotscolorbardrawstandalone#*
 \pgfplotscolorbardrawstandalone[options]#*
 \pgfplotsifnodeexists{node}{true}{false}#*
-\axispath#*
+\axispath#S
 \pgfplotsinterruptdatabb#*
 \endpgfplotsinterruptdatabb#*
 \logten#*
 \reciproclogten#*
-\logi{arg}#*
+\logi{arg}#S
 \axisdefaultticklabel#*
 \axisdefaultticklabellog#*
 \legend{list}#/axis,semilogxaxis,semilogyaxis,loglogaxis,groupplot,polaraxis,smithchart,ternaryaxis
@@ -756,7 +756,7 @@ enable tick line clipping#true,false
 \pgfplotsifinaxis{true}{false}#*
 \numplots#*
 \numplotsofactualtype#*
-\closedcycle#*
+\closedcycle
 \pgfplotsaxisplotphase#*
 \pgfplotsreplacepdfmark{picture id1}{picture id2}#*
 \axis#S
@@ -824,17 +824,17 @@ units
 \pgfplotsforeachungrouped %<\variable%> in {%<list%>}{%<code%>}#*
 \pgfplotsforeachungrouped{macro%cmd}#Sd
 \pgfplotsforeachtodomain{domain}#*
-\ifpgfplotsforeachungroupedassumenumeric#*
-\pgfplotsforeachungroupedassumenumerictrue#*
-\pgfplotsforeachungroupedassumenumericfalse#*
+\ifpgfplotsforeachungroupedassumenumeric#S
+\pgfplotsforeachungroupedassumenumerictrue#S
+\pgfplotsforeachungroupedassumenumericfalse#S
 \pgfplotsinvokeforeach{list}{code}#*
 \pgfplotsforeachlogarithmicformatresultwith{code}#*
 \pgfplotsforeachlogarithmicungrouped[samples]#*
 \pgfplotsforeachlogarithmicmathid
 \pgfplotsmathmodint{x}{y}#*
-\ifpgfplotsloopcontinue#*
-\pgfplotsloopcontinuetrue#*
-\pgfplotsloopcontinuefalse#*
+\ifpgfplotsloopcontinue#S
+\pgfplotsloopcontinuetrue#S
+\pgfplotsloopcontinuefalse#S
 \pgfplotsloop{code}{body}#*
 \pgfplotsutilstrcmp{string1}{string2}#*
 \pgfplotsmathcarttopol{x}{y}{angle macro%cmd}{radius macro%cmd}#*d
