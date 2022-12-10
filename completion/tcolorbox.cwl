@@ -1042,6 +1042,7 @@ every box on layer 1/.style={%<options%>}
 every box on layer 2/.style={%<options%>}
 every box on layer 3/.style={%<options%>}
 every box on layer 4/.style={%<options%>}
+every box on higher layers/.style={%<options%>}
 capture=#minipage,hbox,fitbox
 hbox
 minipage
@@ -2064,6 +2065,11 @@ doclang/updated=%<text%>
 doclang/value=%<text%>
 doclang/values=%<text%>
 #endkeyvals
+
+## not documented
+\tcbdimto{arg1}{arg2}#S
+\tcbglueto{arg1}{arg2}#S
+\tcbpkgprefix#S
 
 # << init options >>
 
