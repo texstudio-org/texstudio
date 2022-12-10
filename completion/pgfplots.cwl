@@ -9,7 +9,6 @@
 # ├── tikz.sty
 # ├── pgfplots.revision.tex
 # ├── tikzlibraryplotmarks.code.tex
-# │   └── pgflibraryplotmarks.code.tex
 # └── pgfplots.code.tex
 #     ├── pgfplotscore.code.tex
 #     │   └── pgfplotssysgeneric.code.tex
@@ -39,17 +38,16 @@
 #     ├── pgfplotsticks.code.tex
 #     ├── pgfplots.paths.code.tex
 #     ├── tikzlibrarydecorations.code.tex
-#     │   └── pgfmoduledecorations.code.tex
 #     ├── tikzlibrarydecorations.pathmorphing.code.tex
-#     │   ├── tikzlibrarydecorations.code.tex
-#     │   └── pgflibrarydecorations.pathmorphing.code.tex
 #     ├── tikzlibrarydecorations.pathreplacing.code.tex
-#     │   ├── tikzlibrarydecorations.code.tex
-#     │   └── pgflibrarydecorations.pathreplacing.code.tex
 #     └── tikzlibrarypgfplots.contourlua.code.tex
 
 #include:graphicx
 #include:tikz
+#include:tikzlibraryplotmarks
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
 
 ### Main commands ###
 \begin{axis}#/tikzpicture
@@ -665,10 +663,6 @@ enable tick line clipping#true,false
 \pgfplotsrevisiondatetime#*
 \pgfplotsversiondate#*
 \pgfplotsrevisiondate#*
-
-## tikzlibraryplotmarks.code.tex
-## └── pgflibraryplotmarks.code.tex
-# no new user commands
 
 ## pgfplots.code.tex
 \ifpgfplotsthreedim#*
@@ -1443,93 +1437,6 @@ issymbolic=
 ## pgfplots.paths.code.tex
 # no new user commands
 
-## tikzlibrarydecorations.code.tex
-## └── pgfmoduledecorations.code.tex
-\pgfdecoratedcompleteddistance#*
-\pgfdecoratedremainingdistance#*
-\pgfdecoratedinputsegmentcompleteddistance#*
-\pgfdecoratedinputsegmentremainingdistance#*
-\pgfdecorationsegmentamplitude#*
-\pgfdecorationsegmentlength#*
-\pgfdecorationsegmentangle#*
-\pgfdecorationsegmentaspect#*
-\pgfmetadecorationsegmentamplitude#*
-\pgfmetadecorationsegmentlength#*
-\ifpgfdecoratepathhascorners#*
-\pgfdecoratepathhascornerstrue#*
-\pgfdecoratepathhascornersfalse#*
-\pgfdeclaredecoration{name}{initial state}{states}#*
-\state{name}{code}#*
-\state{name}[options%keyvals]{code}#*
-#keyvals:\state#c
-switch if less than=%<dimen%> to %<new state%>
-switch if input segment less than=%<dimen%> to %<new state%>
-width=##L
-repeat state=%<repetitions%>
-next state=%<new state%>
-if input segment is closepath={%<options%>}
-auto end on length=##L
-auto corner on length=##L
-persistent precomputation=%<precode%>
-persistent postcomputation=%<postcode%>
-#endkeyvals
-\pgfifdecoration{name}{if code}{else code}#*
-\pgfdeclaremetadecoration{name}{initial state}{states}#*
-\pgfifmetadecoration{name}{if code}{else code}#*
-\decoration{name}#*
-\beforedecoration{before code}#*
-\afterdecoration{after code}#*
-\pgfmetadecoratedpathlength#*
-\pgfmetadecoratedcompleteddistance#*
-\pgfmetadecoratedinputsegmentcompleteddistance#*
-\pgfmetadecoratedinputsegmentremainingdistance#*
-\pgfdecoratebeforecode#*
-\pgfdecorateaftercode#*
-\pgfdecoratepath{name}{path commands}#*
-\pgfdecoratecurrentpath{name}#*
-\begin{pgfdecoration}{name}#*
-\end{pgfdecoration}#*
-\pgfdecoration{name}#S
-\endpgfdecoration#S
-\pgfdecorationpath#*
-\pgfdecoratedpath#*
-\pgfdecorateexistingpath#*
-\pgfdecoratedpathlength#*
-\pgfpointdecoratedpathfirst#*
-\pgfpointdecoratedpathlast#*
-\pgfpointdecoratedinputsegmentfirst#*
-\pgfpointdecoratedinputsegmentlast#*
-\pgfsetdecorationsegmenttransformation{code}#*
-\pgfmetadecoratedremainingdistance#*
-\pgfpointmetadecoratedpathfirst#*
-\pgfpointmetadecoratedpathlast#*
-\pgfdecoratedinputsegmentlength#*
-\pgfdecoratedangle#*
-\pgfdecoratedinputsegmentstartangle#*
-\pgfdecoratedinputsegmentendangle#*
-\pgfdecorationcurrentinputsegment#*
-\pgfdecorationnextinputsegmentobject#*
-\pgfdecorationinputsegmentmoveto#*
-\pgfdecorationinputsegmentlineto#*
-\pgfdecorationinputsegmentcurveto#*
-\pgfdecorationinputsegmentclosepath#*
-\pgfdecorationinputsegmentlast#*
-\ifpgfdecoraterectangleclockwise#*
-\pgfdecoraterectangleclockwisetrue#*
-\pgfdecoraterectangleclockwisefalse#*
-\begin{pgfmetadecoration}{name}#*
-\end{pgfmetadecoration}#*
-\pgfmetadecoration{name}#S
-\endpgfmetadecoration#S
-
-## tikzlibrarydecorations.pathmorphing.code.tex
-## ├── tikzlibrarydecorations.code.tex
-## └── pgflibrarydecorations.pathmorphing.code.tex
-## tikzlibrarydecorations.pathreplacing.code.tex
-## ├── tikzlibrarydecorations.code.tex
-## └── pgflibrarydecorations.pathreplacing.code.tex
-# both libraries load decorations pgfmodule and no new user commands
-
 ## tikzlibrarypgfplots.contourlua.code.tex
 # no new user commands
 
@@ -1557,8 +1464,8 @@ persistent postcomputation=%<postcode%>
 \hourto#S
 \minuteto#S
 \pgfplotstempjuliandate#S
-\pgfplotstemptime
-\pgfplotstempjuliandatenumeric
+\pgfplotstemptime#S
+\pgfplotstempjuliandatenumeric#S
 \hour#S
 \Hour#S
 \minute#S
