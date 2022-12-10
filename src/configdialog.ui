@@ -3323,7 +3323,7 @@ them here.</string>
                  <property name="title">
                   <string>Spell Check</string>
                  </property>
-                 <layout class="QGridLayout" name="_4">
+                 <layout class="QGridLayout" columnstretch="0,1,1,1,1,1" name="_4">
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_43">
                     <property name="text">
