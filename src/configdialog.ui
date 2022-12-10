@@ -164,17 +164,7 @@
                  <property name="title">
                   <string>Appearance</string>
                  </property>
-                 <layout class="QGridLayout">
-                  <item row="4" column="1">
-                   <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
-                    <property name="text">
-                     <string>Ignore Most System Colors</string>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
+                 <layout class="QGridLayout" columnstretch="0,0,1">
                   <item row="0" column="1" colspan="3">
                    <widget class="QComboBox" name="comboBoxInterfaceStyle">
                     <property name="sizePolicy">
@@ -293,15 +283,45 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="2">
-                   <widget class="QCheckBox" name="checkBoxUseSystemTheme">
-                    <property name="text">
-                     <string>Use System Theme Icons</string>
+                  <item row="4" column="1" colspan="3">
+                   <layout class="QHBoxLayout">
+                    <property name="spacing">
+                     <number>9</number>
                     </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxUseTexmakerPalette">
+                      <property name="text">
+                       <string>Ignore Most System Colors</string>
+                      </property>
+                      <property name="advancedOption" stdset="0">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxUseSystemTheme">
+                      <property name="text">
+                       <string>Use System Theme Icons</string>
+                      </property>
+                      <property name="advancedOption" stdset="0">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_27">
