@@ -4506,7 +4506,7 @@ Note: Changing this setting will only affect documents that are opened afterward
                     </property>
                    </widget>
                   </item>
-                  <item row="18" column="0">
+                  <item row="18" column="0" colspan="2">
                    <widget class="QCheckBox" name="autoHideToolbars">
                     <property name="text">
                      <string>Auto-hide Toolbars in Embedded Mode</string>
