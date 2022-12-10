@@ -835,41 +835,52 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_37">
-                    <property name="text">
-                     <string>Show stdout:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QComboBox" name="comboBoxShowStdout">
-                    <item>
-                     <property name="text">
-                      <string>Never</string>
-                     </property>
+                  <item row="3" column="0" colspan="2">
+                   <layout class="QGridLayout" columnstretch="0,1">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_37">
+                      <property name="text">
+                       <string>Show stdout:</string>
+                      </property>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>Only For User Commands</string>
-                     </property>
+                    <item row="0" column="1">
+                     <widget class="QComboBox" name="comboBoxShowStdout">
+                      <item>
+                       <property name="text">
+                        <string>Never</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Only For User Commands</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Always (If not redirected &gt; /dev/null)</string>
+                       </property>
+                      </item>
+                     </widget>
                     </item>
-                    <item>
-                     <property name="text">
-                      <string>Always (If not redirected &gt; /dev/null)</string>
-                     </property>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_38">
+                      <property name="toolTip">
+                       <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
+                      </property>
+                      <property name="text">
+                       <string>Maximum Compile Repetitions:</string>
+                      </property>
+                     </widget>
                     </item>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_38">
-                    <property name="toolTip">
-                     <string>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</string>
-                    </property>
-                    <property name="text">
-                     <string>Maximum Compile Repetitions:</string>
-                    </property>
-                   </widget>
+                    <item row="1" column="1">
+                     <widget class="QSpinBox" name="spinBoxRerunLatex">
+                      <property name="value">
+                       <number>5</number>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </item>
                   <item row="7" column="0" colspan="2">
                    <layout class="QGridLayout" name="gridLayout_1">
@@ -1009,13 +1020,6 @@ Variables are written as: $MYVAR. They are case-sensitive.
                     </property>
                     <property name="text">
                      <string>Interpret command definition in magic comments</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QSpinBox" name="spinBoxRerunLatex">
-                    <property name="value">
-                     <number>5</number>
                     </property>
                    </widget>
                   </item>
