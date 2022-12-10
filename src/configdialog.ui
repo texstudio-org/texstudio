@@ -483,111 +483,175 @@
                  <property name="title">
                   <string>Update</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout03">
-                  <item row="0" column="6">
-                   <widget class="QComboBox" name="comboBoxUpdateLevel">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="toolTip">
-                     <string>Defines the kinds of update notifications you will receive:
+                 <layout class="QVBoxLayout">
+                  <item>
+                   <layout class="QHBoxLayout">
+                    <item>
+                     <layout class="QVBoxLayout">
+                      <item>
+                       <layout class="QHBoxLayout">
+                        <item>
+                         <widget class="QLabel" name="label_74">
+                          <property name="advancedOption" stdset="0">
+                           <bool>true</bool>
+                          </property>
+                          <property name="text">
+                           <string>Update Level:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QComboBox" name="comboBoxUpdateLevel">
+                          <property name="advancedOption" stdset="0">
+                           <bool>true</bool>
+                          </property>
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                            <horstretch>1</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="toolTip">
+                           <string>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</string>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string>Stable Releases</string>
-                     </property>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string>Stable Releases</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Release Candidates</string>
+                           </property>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Development Versions</string>
+                           </property>
+                          </item>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QCheckBox" name="checkBoxAutoUpdateCheck">
+                          <property name="text">
+                           <string>Automatically check every</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QSpinBox" name="spinBoxAutoUpdateCheckIntervalDays">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                            <horstretch>1</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="suffix">
+                           <string> days</string>
+                          </property>
+                          <property name="minimum">
+                           <number>0</number>
+                          </property>
+                          <property name="maximum">
+                           <number>999</number>
+                          </property>
+                          <property name="value">
+                           <number>7</number>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
                     </item>
                     <item>
-                     <property name="text">
-                      <string>Release Candidates</string>
-                     </property>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout">
+                    <item>
+                     <widget class="QLabel" name="label_56">
+                      <property name="text">
+                       <string>Last Checked:</string>
+                      </property>
+                     </widget>
                     </item>
                     <item>
-                     <property name="text">
-                      <string>Development Versions</string>
-                     </property>
+                     <widget class="QLabel" name="labelUpdateCheckDate">
+                      <property name="text">
+                       <string notr="true">&lt;checkDate&gt;</string>
+                      </property>
+                     </widget>
                     </item>
-                   </widget>
+                    <item>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
-                  <item row="1" column="4">
-                   <spacer name="horizontalSpacer_7">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="1" column="3">
-                   <widget class="QPushButton" name="pushButtonUpdateCheckNow">
-                    <property name="text">
-                     <string>Check Now</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3" colspan="2">
-                   <spacer name="horizontalSpacer_4">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="labelUpdateCheckDate">
-                    <property name="text">
-                     <string notr="true">&lt;checkDate&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_56">
-                    <property name="text">
-                     <string>Last Checked:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBoxAutoUpdateCheckIntervalDays">
-                    <property name="suffix">
-                     <string> days</string>
-                    </property>
-                    <property name="minimum">
-                     <number>0</number>
-                    </property>
-                    <property name="value">
-                     <number>7</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QCheckBox" name="checkBoxAutoUpdateCheck">
-                    <property name="text">
-                     <string>Automatically check every</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="5">
-                   <widget class="QLabel" name="label_74">
-                    <property name="text">
-                     <string>Update Level:</string>
-                    </property>
-                   </widget>
+                  <item>
+                   <layout class="QHBoxLayout">
+                    <item>
+                     <widget class="QPushButton" name="pushButtonUpdateCheckNow">
+                      <property name="text">
+                       <string>Check Now</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
                  </layout>
                 </widget>
