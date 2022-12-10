@@ -976,7 +976,7 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
     <message>
         <location filename="../src/configdialog.ui" line="834"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation>Starte keine neue Instanz des Betrachters, falls die dvi/ps/pdf-Datei schon geöffnet wurde</translation>
+        <translation>Starte keine neue Instanz des Betrachters, falls die dvi/ps/pdf-Datei offen ist</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="841"/>
@@ -1023,7 +1023,7 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
     <message>
         <location filename="../src/configdialog.ui" line="968"/>
         <source>Log File</source>
-        <translation>Log</translation>
+        <translation>Log-Datei</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="977"/>
@@ -1872,7 +1872,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2485"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Das globale Inhaltsverzeichnis nutzt verschiedene Schattierungen einer Hintergrundfarbe um zwischen verschiedenen Dateien unterscheiden zu können. Das Farbschema kann hier geändert werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Das globale Inhaltsverzeichnis nutzt verschiedene Schattierungen einer Hintergrundfarbe, um zwischen verschiedenen Dateien unterscheiden zu können. Das Farbschema kann hier geändert werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2547"/>
@@ -1882,7 +1882,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2564"/>
         <source>Use color in global TOC:</source>
-        <translation>Hintergrundfarbe im globalen Inhaltsverzeichnis (TOC)</translation>
+        <translation>Farbe im globalen Inhaltsverzeichnis (TOC):</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2584"/>
@@ -1962,7 +1962,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2735"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation>Cursor bewegt sich auch bei Rechts-nach-Links-Texten in Richtung der Pfeiltasten</translation>
+        <translation>Bewege Cursor auch bei Rechts-nach-Links-Texten in Richtung der Pfeiltasten</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2742"/>
