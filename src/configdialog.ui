@@ -1098,6 +1098,9 @@ Then you can select a new shortcut by one of the following ways:
               <string>Close Element (Esc)</string>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <property name="spacing">
+               <number>9</number>
+              </property>
               <item>
                <widget class="QCheckBox" name="checkBoxCloseLogByEsc">
                 <property name="text">
@@ -1118,6 +1121,19 @@ Then you can select a new shortcut by one of the following ways:
                  <string>Close Full Screen Mode</string>
                 </property>
                </widget>
+              </item>
+              <item>
+               <spacer>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </widget>
