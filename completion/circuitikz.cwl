@@ -1,5 +1,5 @@
 # circuitikz package
-# updated 2022/09/09 for v1.5.4
+# updated 2022/12/11 for v1.6.0
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -137,6 +137,7 @@ example
 \pgfcircdeclarecutespdt{name}{bar pos}{arrow code}#*
 \drawmeteringcircle#*
 \pgfcircdeclarejumper{name}{link arc height}#*
+\tunablewidth#S
 
 # from pgfcirctripoles.tex
 \pgfcircdeclarelogicport{name}{number}{code}#*
@@ -200,8 +201,6 @@ example
 \innerdot#S
 \outerdot#S
 \pgfcircmathresult#*
-\texti#S
-\textii#S
 \componentisboxed#S
 \pgfcircdeclarefourport{name}{code}#*
 \pgfcircdeclaredbipole{arg1}{arg2}{arg3}#*
