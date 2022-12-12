@@ -1,5 +1,5 @@
 # cooking-units package
-# Matthew Bertucci 12/12/2021 for v2.00
+# Matthew Bertucci 2022/12/11 for v3.00
 
 #include:xparse
 #include:translations
@@ -88,6 +88,7 @@ mixed-fraction-space=##L
 cutext-space=%<string%>
 phrase-space=%<string%>
 amount-unit-space=%<string%>
+times-space=%<string%>
 recalculate-amount#true,false
 set-number-of-persons=%<integer%>
 label=%<string%>*%<integer%>

@@ -9,7 +9,6 @@
 # ├── tikz.sty
 # ├── pgfplots.revision.tex
 # ├── tikzlibraryplotmarks.code.tex
-# │   └── pgflibraryplotmarks.code.tex
 # └── pgfplots.code.tex
 #     ├── pgfplotscore.code.tex
 #     │   └── pgfplotssysgeneric.code.tex
@@ -39,17 +38,16 @@
 #     ├── pgfplotsticks.code.tex
 #     ├── pgfplots.paths.code.tex
 #     ├── tikzlibrarydecorations.code.tex
-#     │   └── pgfmoduledecorations.code.tex
 #     ├── tikzlibrarydecorations.pathmorphing.code.tex
-#     │   ├── tikzlibrarydecorations.code.tex
-#     │   └── pgflibrarydecorations.pathmorphing.code.tex
 #     ├── tikzlibrarydecorations.pathreplacing.code.tex
-#     │   ├── tikzlibrarydecorations.code.tex
-#     │   └── pgflibrarydecorations.pathreplacing.code.tex
 #     └── tikzlibrarypgfplots.contourlua.code.tex
 
 #include:graphicx
 #include:tikz
+#include:tikzlibraryplotmarks
+#include:tikzlibrarydecorations
+#include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarydecorations.pathreplacing
 
 ### Main commands ###
 \begin{axis}#/tikzpicture
@@ -75,7 +73,7 @@
 \pgfplotsset{options%keyvals}
 
 ### Keys ###
-#keyvals:\begin{axis}#c,\begin{loglogaxis}#c,\begin{semilogxaxis}#c,\begin{semilogyaxis}#c,\addplot#c,\addplot3#c,\addplot+#c,\pgfplotsset#c,\begin{groupplot}#c,\begin{smithchart}#c,\begin{polaraxis}#c,\begin{ternaryaxis}#c
+#keyvals:\begin{axis}#c,\begin{loglogaxis}#c,\begin{semilogxaxis}#c,\begin{semilogyaxis}#c,\addplot#c,\addplot3#c,\addplot+#c,\pgfplotsset#c,\begin{groupplot}#c,\nextgroupplot#c,\begin{smithchart}#c,\begin{polaraxis}#c,\begin{ternaryaxis}#c
 ## Main pgfplots and tikz keys ##
 compat=#1.18,1.17,1.16,1.15,1.14,1.13,1.12,1.11,1.10,1.9,1.8,1.7,1.6,1.5.1,1.5,1.4,1.3,pre 1.3,default
 empty line=#auto,none,scanline,jump
@@ -666,14 +664,10 @@ enable tick line clipping#true,false
 \pgfplotsversiondate#*
 \pgfplotsrevisiondate#*
 
-## tikzlibraryplotmarks.code.tex
-## └── pgflibraryplotmarks.code.tex
-# no new user commands
-
 ## pgfplots.code.tex
 \ifpgfplotsthreedim#*
-\pgfplotsthreedimtrue#*
-\pgfplotsthreedimfalse#*
+\pgfplotsthreedimtrue#S
+\pgfplotsthreedimfalse#S
 \pgfnodepartimagebox#*
 \axisdefaultwidth#*
 \axisdefaultheight#*
@@ -687,23 +681,23 @@ enable tick line clipping#true,false
 \pgfplotspointmetarange#*
 \pgfplotspointmetatransformed#*
 \pgfplotspointmetatransformedrange#*
-\length#*
-\disstart#*
-\disend#*
-\discontstyle#*
+\length#S
+\disstart#S
+\disend#S
+\discontstyle#S
 \pgfplotsretval#*
 \pgfplotsextra{path code}#*
-\curcolumnNum#*
-\maxcolumnCount#*
-\legendplotpos#*
-\theHpgfplotslink#*
+\curcolumnNum#S
+\maxcolumnCount#S
+\legendplotpos#S
+\theHpgfplotslink#S
 \pgfmathlogtologten{arg}#*
-\upperrightcorner#*
-\lowerleftinnercorner#*
-\innerdiagonal#*
-\origin#*
-\xaxisvec#*
-\yaxisvec#*
+\upperrightcorner#S
+\lowerleftinnercorner#S
+\innerdiagonal#S
+\origin#S
+\xaxisvec#S
+\yaxisvec#S
 \pgfplotsdefineaxistype{type}{code}#*
 \pgfplotssetaxistype{type}#*
 \pgfplotssetlayers{layer config name}#*
@@ -742,12 +736,12 @@ enable tick line clipping#true,false
 \pgfplotscolorbardrawstandalone#*
 \pgfplotscolorbardrawstandalone[options]#*
 \pgfplotsifnodeexists{node}{true}{false}#*
-\axispath#*
+\axispath#S
 \pgfplotsinterruptdatabb#*
 \endpgfplotsinterruptdatabb#*
 \logten#*
 \reciproclogten#*
-\logi{arg}#*
+\logi{arg}#S
 \axisdefaultticklabel#*
 \axisdefaultticklabellog#*
 \legend{list}#/axis,semilogxaxis,semilogyaxis,loglogaxis,groupplot,polaraxis,smithchart,ternaryaxis
@@ -762,7 +756,7 @@ enable tick line clipping#true,false
 \pgfplotsifinaxis{true}{false}#*
 \numplots#*
 \numplotsofactualtype#*
-\closedcycle#*
+\closedcycle
 \pgfplotsaxisplotphase#*
 \pgfplotsreplacepdfmark{picture id1}{picture id2}#*
 \axis#S
@@ -830,17 +824,17 @@ units
 \pgfplotsforeachungrouped %<\variable%> in {%<list%>}{%<code%>}#*
 \pgfplotsforeachungrouped{macro%cmd}#Sd
 \pgfplotsforeachtodomain{domain}#*
-\ifpgfplotsforeachungroupedassumenumeric#*
-\pgfplotsforeachungroupedassumenumerictrue#*
-\pgfplotsforeachungroupedassumenumericfalse#*
+\ifpgfplotsforeachungroupedassumenumeric#S
+\pgfplotsforeachungroupedassumenumerictrue#S
+\pgfplotsforeachungroupedassumenumericfalse#S
 \pgfplotsinvokeforeach{list}{code}#*
 \pgfplotsforeachlogarithmicformatresultwith{code}#*
 \pgfplotsforeachlogarithmicungrouped[samples]#*
 \pgfplotsforeachlogarithmicmathid
 \pgfplotsmathmodint{x}{y}#*
-\ifpgfplotsloopcontinue#*
-\pgfplotsloopcontinuetrue#*
-\pgfplotsloopcontinuefalse#*
+\ifpgfplotsloopcontinue#S
+\pgfplotsloopcontinuetrue#S
+\pgfplotsloopcontinuefalse#S
 \pgfplotsloop{code}{body}#*
 \pgfplotsutilstrcmp{string1}{string2}#*
 \pgfplotsmathcarttopol{x}{y}{angle macro%cmd}{radius macro%cmd}#*d
@@ -1124,7 +1118,7 @@ output format=#csv,native
 \pgfplotscolormapifdefined{colormap}{true}{false}#*
 \pgfplotscolormapassertexists{colormap}#*
 \pgfplotscolormaptoshadingspec{colormap}{pgf size}{macro%cmd}#*d
-\pgfplotscolormaptoshadingspectorgb
+\pgfplotscolormaptoshadingspectorgb#*
 \pgfplotscolormapreversedtoshadingspec{colormap}{pgf size}{macro%cmd}#*d
 \pgfplotscolormaprange#*
 \pgfplotscolormapgetcolorspace{colormap}#*
@@ -1443,209 +1437,5 @@ issymbolic=
 ## pgfplots.paths.code.tex
 # no new user commands
 
-## tikzlibrarydecorations.code.tex
-## └── pgfmoduledecorations.code.tex
-\pgfdecoratedcompleteddistance#*
-\pgfdecoratedremainingdistance#*
-\pgfdecoratedinputsegmentcompleteddistance#*
-\pgfdecoratedinputsegmentremainingdistance#*
-\pgfdecorationsegmentamplitude#*
-\pgfdecorationsegmentlength#*
-\pgfdecorationsegmentangle#*
-\pgfdecorationsegmentaspect#*
-\pgfmetadecorationsegmentamplitude#*
-\pgfmetadecorationsegmentlength#*
-\ifpgfdecoratepathhascorners#*
-\pgfdecoratepathhascornerstrue#*
-\pgfdecoratepathhascornersfalse#*
-\pgfdeclaredecoration{name}{initial state}{states}#*
-\state{name}{code}#*
-\state{name}[options%keyvals]{code}#*
-#keyvals:\state#c
-switch if less than=%<dimen%> to %<new state%>
-switch if input segment less than=%<dimen%> to %<new state%>
-width=##L
-repeat state=%<repetitions%>
-next state=%<new state%>
-if input segment is closepath={%<options%>}
-auto end on length=##L
-auto corner on length=##L
-persistent precomputation=%<precode%>
-persistent postcomputation=%<postcode%>
-#endkeyvals
-\pgfifdecoration{name}{if code}{else code}#*
-\pgfdeclaremetadecoration{name}{initial state}{states}#*
-\pgfifmetadecoration{name}{if code}{else code}#*
-\decoration{name}#*
-\beforedecoration{before code}#*
-\afterdecoration{after code}#*
-\pgfmetadecoratedpathlength#*
-\pgfmetadecoratedcompleteddistance#*
-\pgfmetadecoratedinputsegmentcompleteddistance#*
-\pgfmetadecoratedinputsegmentremainingdistance#*
-\pgfdecoratebeforecode#*
-\pgfdecorateaftercode#*
-\pgfdecoratepath{name}{path commands}#*
-\pgfdecoratecurrentpath{name}#*
-\begin{pgfdecoration}{name}#*
-\end{pgfdecoration}#*
-\pgfdecoration{name}#S
-\endpgfdecoration#S
-\pgfdecorationpath#*
-\pgfdecoratedpath#*
-\pgfdecorateexistingpath#*
-\pgfdecoratedpathlength#*
-\pgfpointdecoratedpathfirst#*
-\pgfpointdecoratedpathlast#*
-\pgfpointdecoratedinputsegmentfirst#*
-\pgfpointdecoratedinputsegmentlast#*
-\pgfsetdecorationsegmenttransformation{code}#*
-\pgfmetadecoratedremainingdistance#*
-\pgfpointmetadecoratedpathfirst#*
-\pgfpointmetadecoratedpathlast#*
-\pgfdecoratedinputsegmentlength#*
-\pgfdecoratedangle#*
-\pgfdecoratedinputsegmentstartangle#*
-\pgfdecoratedinputsegmentendangle#*
-\pgfdecorationcurrentinputsegment#*
-\pgfdecorationnextinputsegmentobject#*
-\pgfdecorationinputsegmentmoveto#*
-\pgfdecorationinputsegmentlineto#*
-\pgfdecorationinputsegmentcurveto#*
-\pgfdecorationinputsegmentclosepath#*
-\pgfdecorationinputsegmentlast#*
-\ifpgfdecoraterectangleclockwise#*
-\pgfdecoraterectangleclockwisetrue#*
-\pgfdecoraterectangleclockwisefalse#*
-\begin{pgfmetadecoration}{name}#*
-\end{pgfmetadecoration}#*
-\pgfmetadecoration{name}#S
-\endpgfmetadecoration#S
-
-## tikzlibrarydecorations.pathmorphing.code.tex
-## ├── tikzlibrarydecorations.code.tex
-## └── pgflibrarydecorations.pathmorphing.code.tex
-## tikzlibrarydecorations.pathreplacing.code.tex
-## ├── tikzlibrarydecorations.code.tex
-## └── pgflibrarydecorations.pathreplacing.code.tex
-# both libraries load decorations pgfmodule and no new user commands
-
 ## tikzlibrarypgfplots.contourlua.code.tex
-# no new user commands
-
-### pgfplots Libraries ###
-## Commands in those libraries shipped with pgfplots also listed here with #S
-## pgfplots loads only contourlua by default; rest must be loaded with \usepgfplotslibrary
-## If another package loads a library the commands can be copied to that package's cwl with #S removed or replaced with #*
-
-## clickable pgfplotslibrary
-# loads the insdljs and eforms packages
-\pgfplotscatcodeDQ#S
-\pgfplotsclickablecreate[keyvals]#S
-\pushButtonDefaults#S
-\textFieldDefaults#S
-
-## colorbrewer pgfplotslibrary
-# no new user commands
-
-## colormaps pgfplotslibrary
-# no new user commands
-
-## dateplot pgfplotslibrary
-# loads pgfcalendar package
-\julianto#S
-\hourto#S
-\minuteto#S
-\pgfplotstempjuliandate#S
-\pgfplotstemptime
-\pgfplotstempjuliandatenumeric
-\hour#S
-\Hour#S
-\minute#S
-\Minute#S
-\lowlevel#S
-\Second#S
-
-## decorations.softclip pgfplotslibrary (also a tikzlibrary)
-# loads intersections tikzlibrary and fillbetween pgflibrary
-\pgfpathcomputesoftclippath{input path}{clip path}#S
-\tikzifisnamedpath{path}{true}{false}#S
-
-## external pgfplotslibrary
-# loads external tikzlibrary
-# no new user commands
-
-## fillbetween pgfplotslibrary
-# loads fillbetween tikzlibrary and decorations.softclip pgfplotslibrary
-\pgfplotslibraryfillbetweenpreparecurrentlayer#S
-# from fillbetween tikzlibrary
-# loads intersections and decorations.softclip tikzlibraries
-\tikzsegmentindex#S
-\tikzsegmentlastindex#S
-\tikzfillbetween{draw style}#S
-\tikzfillbetween[options%keyvals]{draw style}#S
-\tikzgetnamedpath{path}#S
-\tikznamecurrentpath{name}#S
-\tikzpathintersectionsegments#S
-\tikzpathintersectionsegments[options%keyvals]#S
-\pgfpointlastofsetpath#S
-\pgfcomputeintersectionsegments{1 or 2}#S
-\pgfgetintersectionsegmentpath{1 or 2}#S
-\pgfcomputereversepath#S
-\pgfpathreplacefirstmoveto{macro}#S
-\pgfsetpathandBB{macro}#S
-\pgfaddpathandBB{macro}#S
-\pgfaddpath{macro}#S
-
-## groupplots pgfplotslibrary
-# loads calc tikzlibrary
-\nextgroupplot#S
-\groupplot#S
-\endgroupplot#S
-\begin{groupplot}#*/tikzpicture
-\begin{groupplot}[options%keyvals]#*/tikzpicture
-\end{groupplot}#*
-
-## patchplots pgfplotslibrary
-\pgfplotspathcubicfrominterpolation{arg1}{arg2}{arg3}{arg4}#S
-\Pcur#S
-\Pstart#S
-\Pnextseq#S
-\Pstartidx#S
-
-## polar pgfplotslibrary
-\begin{polaraxis}#*/tikzpicture
-\begin{polaraxis}[options%keyvals]#*/tikzpicture
-\end{polaraxis}#*
-
-## smithchart pgfplotslibrary
-\ifpgfplotspointisinsmithchartCS#S
-\pgfplotspointisinsmithchartCStrue#S
-\pgfplotspointisinsmithchartCSfalse#S
-\pgfplotscoordmathcomplexdivision{Re1}{Im1}{Re2}{Im2}#S
-\pgfmathresultim#S
-\smithchart#S
-\endsmithchart#S
-\smithchartaxis#S
-\endsmithchartaxis#S
-\begin{smithchart}#*/tikzpicture
-\begin{smithchart}[options%keyvals]#*/tikzpicture
-\end{smithchart}#*
-
-## statistics pgfplotslibrary
-\pgfplotsplothandlerboxplot#S
-\pgfplotsplothandlerboxplotprepared#S
-\pgfplotsboxplotvalue{options}#S
-\boxplotvalue{options}#S
-\pgfplotsboxplotpointabbox{}{}#S
-\pgfplotsboxplotpointabwhisker{}{}#S
-\pgfplotsboxplotpointab{}{}#S
-
-## ternary pgfplotslibrary
-\pgfplotsplothandlertieline#S
-\begin{ternaryaxis}#*/tikzpicture
-\begin{ternaryaxis}[options%keyvals]#*/tikzpicture
-\end{ternaryaxis}#*
-
-## units pgfplotslibrary
 # no new user commands
