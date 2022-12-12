@@ -1118,7 +1118,7 @@ output format=#csv,native
 \pgfplotscolormapifdefined{colormap}{true}{false}#*
 \pgfplotscolormapassertexists{colormap}#*
 \pgfplotscolormaptoshadingspec{colormap}{pgf size}{macro%cmd}#*d
-\pgfplotscolormaptoshadingspectorgb
+\pgfplotscolormaptoshadingspectorgb#*
 \pgfplotscolormapreversedtoshadingspec{colormap}{pgf size}{macro%cmd}#*d
 \pgfplotscolormaprange#*
 \pgfplotscolormapgetcolorspace{colormap}#*
