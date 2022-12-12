@@ -100,6 +100,7 @@
 <file>completion/altsubsup.cwl</file>
 <file>completion/altverse.cwl</file>
 <file>completion/amsaddr.cwl</file>
+<file>completion/amsbib.cwl</file>
 <file>completion/amsbooka.cwl</file>
 <file>completion/amsbsy.cwl</file>
 <file>completion/amscd.cwl</file>
@@ -2267,6 +2268,7 @@
 <file>completion/modular.cwl</file>
 <file>completion/modulus.cwl</file>
 <file>completion/mol2chemfig.cwl</file>
+<file>completion/monofill.cwl</file>
 <file>completion/montserrat.cwl</file>
 <file>completion/moodle.cwl</file>
 <file>completion/moredefs.cwl</file>
@@ -2377,6 +2379,7 @@
 <file>completion/nextpage.cwl</file>
 <file>completion/nexus-otf.cwl</file>
 <file>completion/ngerman.cwl</file>
+<file>completion/nicefilelist.cwl</file>
 <file>completion/nicefrac.cwl</file>
 <file>completion/niceframe.cwl</file>
 <file>completion/nicematrix.cwl</file>
@@ -2570,6 +2573,19 @@
 <file>completion/pgf-PeriodicTable.cwl</file>
 <file>completion/pgf-pie.cwl</file>
 <file>completion/pgfplots.cwl</file>
+<file>completion/pgfplotslibraryclickable.cwl</file>
+<file>completion/pgfplotslibrarycolorbrewer.cwl</file>
+<file>completion/pgfplotslibrarydateplot.cwl</file>
+<file>completion/pgfplotslibrarydecorations.softclip.cwl</file>
+<file>completion/pgfplotslibraryexternal.cwl</file>
+<file>completion/pgfplotslibraryfillbetween.cwl</file>
+<file>completion/pgfplotslibrarygroupplots.cwl</file>
+<file>completion/pgfplotslibrarypatchplots.cwl</file>
+<file>completion/pgfplotslibrarypolar.cwl</file>
+<file>completion/pgfplotslibrarysmithchart.cwl</file>
+<file>completion/pgfplotslibrarystatistics.cwl</file>
+<file>completion/pgfplotslibraryternary.cwl</file>
+<file>completion/pgfplotslibraryunits.cwl</file>
 <file>completion/pgfplotstable.cwl</file>
 <file>completion/pgfrcs.cwl</file>
 <file>completion/pgf-soroban.cwl</file>
@@ -3345,6 +3361,7 @@
 <file>completion/tikz-dependency.cwl</file>
 <file>completion/tikz-dimline.cwl</file>
 <file>completion/tikzducks.cwl</file>
+<file>completion/tikzexternal.cwl</file>
 <file>completion/tikz-feynhand.cwl</file>
 <file>completion/tikz-feynman.cwl</file>
 <file>completion/tikzfill.cwl</file>
@@ -3382,6 +3399,7 @@
 <file>completion/tikzlibrarycircuits.logic.US.cwl</file>
 <file>completion/tikzlibrarycircuits.plc.ladder.cwl</file>
 <file>completion/tikzlibrarycircuits.plc.sfc.cwl</file>
+<file>completion/tikzlibrarycolorbrewer.cwl</file>
 <file>completion/tikzlibrarycommutative-diagrams.cwl</file>
 <file>completion/tikzlibrarycurvilinear.cwl</file>
 <file>completion/tikzlibrarydatavisualization.3d.cwl</file>
@@ -3471,6 +3489,7 @@
 <file>completion/tikzlibraryswigs.cwl</file>
 <file>completion/tikzlibraryswitching-architectures.cwl</file>
 <file>completion/tikzlibrarythrough.cwl</file>
+<file>completion/tikzlibrarytikzlings.cwl</file>
 <file>completion/tikzlibrarytikzmark.cwl</file>
 <file>completion/tikzlibrarytqft.cwl</file>
 <file>completion/tikzlibrarytrees.cwl</file>
