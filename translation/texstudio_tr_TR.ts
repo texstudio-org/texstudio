@@ -721,14 +721,14 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="109"/>
-        <location filename="../src/additionaltranslations.cpp" line="111"/>
+        <location filename="../src/additionaltranslations.cpp" line="110"/>
+        <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>num</source>
         <translation>num</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="110"/>
-        <location filename="../src/additionaltranslations.cpp" line="112"/>
+        <location filename="../src/additionaltranslations.cpp" line="111"/>
+        <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>den</source>
         <translation>den</translation>
     </message>
@@ -741,137 +741,137 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
         <translation>TeXstudio ayarları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4759"/>
+        <location filename="../src/configdialog.ui" line="4855"/>
         <source>Show Advanced Options</source>
         <translation>Gelişmiş ayarları görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4785"/>
+        <location filename="../src/configdialog.ui" line="4881"/>
         <source>OK</source>
         <translation>Tamam</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4795"/>
+        <location filename="../src/configdialog.ui" line="4891"/>
         <source>Cancel</source>
         <translation>İptal</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="165"/>
-        <location filename="../src/configdialog.ui" line="1996"/>
+        <location filename="../src/configdialog.ui" line="2061"/>
         <source>Appearance</source>
         <translation>Görünüm</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="247"/>
-        <location filename="../src/configdialog.ui" line="3644"/>
+        <location filename="../src/configdialog.ui" line="237"/>
+        <location filename="../src/configdialog.ui" line="3709"/>
         <source>Language:</source>
         <translation>Dil:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="260"/>
+        <location filename="../src/configdialog.ui" line="250"/>
         <source>Font:</source>
         <translation>Yazı tipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="292"/>
-        <location filename="../src/configdialog.ui" line="1749"/>
-        <location filename="../src/configdialog.ui" line="4686"/>
+        <location filename="../src/configdialog.ui" line="282"/>
+        <location filename="../src/configdialog.ui" line="1810"/>
+        <location filename="../src/configdialog.ui" line="4782"/>
         <source>Font Size:</source>
         <translation>Yazı boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="268"/>
+        <location filename="../src/configdialog.ui" line="258"/>
         <source>Classic</source>
         <translation>Klasik</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="273"/>
+        <location filename="../src/configdialog.ui" line="263"/>
         <source>Modern</source>
         <translation>Çağdaş</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="224"/>
+        <location filename="../src/configdialog.ui" line="214"/>
         <source>Style:</source>
         <translation>Biçem:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="299"/>
+        <location filename="../src/configdialog.ui" line="304"/>
         <source>Use System Theme Icons</source>
         <translation>Sistem tema simgeleri kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="191"/>
-        <location filename="../src/configdialog.ui" line="4658"/>
+        <location filename="../src/configdialog.ui" line="181"/>
+        <location filename="../src/configdialog.ui" line="4754"/>
         <source>Color Scheme:</source>
         <translation>Renk şeması: </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="171"/>
+        <location filename="../src/configdialog.ui" line="294"/>
         <source>Ignore Most System Colors</source>
         <translation>Çoğu sistem rengi yok sayılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="426"/>
+        <location filename="../src/configdialog.ui" line="446"/>
         <source>MRU Document Chooser</source>
         <translation>MRU belge seçici</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="278"/>
+        <location filename="../src/configdialog.ui" line="268"/>
         <source>Modern - dark</source>
         <translation>Çağdaş - koyu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="338"/>
+        <location filename="../src/configdialog.ui" line="358"/>
         <source>Files</source>
         <translation>Dosyalar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="389"/>
+        <location filename="../src/configdialog.ui" line="409"/>
         <source>Max. Recent Documents:</source>
         <translation>Son kullanılan belge sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="360"/>
+        <location filename="../src/configdialog.ui" line="380"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Aç/kaydet penceresinde seçilmiş dosya süzgeci hatırlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="409"/>
+        <location filename="../src/configdialog.ui" line="429"/>
         <source>Use system file dialogs</source>
         <translation>Sistem dosya pencereleri kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="439"/>
+        <location filename="../src/configdialog.ui" line="459"/>
         <source>Session</source>
         <translation>Oturum</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="448"/>
+        <location filename="../src/configdialog.ui" line="468"/>
         <source>Restore Previous Session at Startup</source>
         <translation>Başlangıçta önceki oturum geri yüklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="455"/>
+        <location filename="../src/configdialog.ui" line="475"/>
         <source>Store relative paths</source>
         <translation>Göreli yollar kaydedilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="468"/>
+        <location filename="../src/configdialog.ui" line="488"/>
         <source>Startup</source>
         <translation>Başlangıç</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="474"/>
+        <location filename="../src/configdialog.ui" line="494"/>
         <source>Check LaTeX Configuration</source>
         <translation>LaTeX yapılandırmasını denetle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="484"/>
+        <location filename="../src/configdialog.ui" line="504"/>
         <source>Update</source>
         <translation>Güncelle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="496"/>
+        <location filename="../src/configdialog.ui" line="516"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
@@ -882,156 +882,156 @@ Lütfen yapılandırmanızı değiştirin ve komut listelerini &apos;Ayarlar -&g
 - Geliştirime Sürümleri: En son özellikleri içerir, ancak kararsız olabilir. (Kararlı sürümler ve yayın adayı sürümler de bildirilir).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="503"/>
+        <location filename="../src/configdialog.ui" line="523"/>
         <source>Stable Releases</source>
         <translation>Kararlı sürümler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="508"/>
+        <location filename="../src/configdialog.ui" line="528"/>
         <source>Release Candidates</source>
         <translation>Yayın adayları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="513"/>
+        <location filename="../src/configdialog.ui" line="533"/>
         <source>Development Versions</source>
         <translation>Geliştirme sürümleri</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="534"/>
+        <location filename="../src/configdialog.ui" line="554"/>
         <source>Check Now</source>
         <translation>Şimdi denetle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="561"/>
+        <location filename="../src/configdialog.ui" line="581"/>
         <source>Last Checked:</source>
         <translation>Son denetleme:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="568"/>
+        <location filename="../src/configdialog.ui" line="588"/>
         <source> days</source>
         <translation>gün</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="581"/>
+        <location filename="../src/configdialog.ui" line="601"/>
         <source>Automatically check every</source>
         <translation>Şu sıklıkta otomatik denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="588"/>
+        <location filename="../src/configdialog.ui" line="608"/>
         <source>Update Level:</source>
         <translation>Güncelleme düzeyi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="643"/>
+        <location filename="../src/configdialog.ui" line="663"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Komutlar (%: uzantı olmadan dosya adı - @: satır numarası - ?: genişletilmiş dosya adı seçenekleri)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="650"/>
+        <location filename="../src/configdialog.ui" line="670"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Özel karakterler&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="657"/>
+        <location filename="../src/configdialog.ui" line="677"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
         <translation>&lt;b&gt;%&lt;/b&gt;: uzantı olmadan dosya adı; &lt;b&gt;@&lt;/b&gt;: satır numarası; &lt;b&gt;?[seçici][yol adı bölümü][sonlandırıcı karakter]&lt;/b&gt;: biçimlendirilmiş dosya adı</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="683"/>
+        <location filename="../src/configdialog.ui" line="703"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; ve &lt;b&gt;?? &lt;/b&gt; şuna dönüşür: %, @ ya da ?
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="764"/>
+        <location filename="../src/configdialog.ui" line="784"/>
         <source>Meta Commands</source>
         <translation>Üst veri komutları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="777"/>
+        <location filename="../src/configdialog.ui" line="797"/>
         <source>User Commands</source>
         <translation>Kullanıcı komutları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="787"/>
+        <location filename="../src/configdialog.ui" line="807"/>
         <source>Build Options</source>
         <translation>Oluşturma ayarları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="799"/>
+        <location filename="../src/configdialog.ui" line="819"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
         <translation>Bib dosyaları değiştiğinde txs:///recompile-bibliography çalıştırılır.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="802"/>
+        <location filename="../src/configdialog.ui" line="822"/>
         <source>Check and update bibliography before compiling</source>
         <translation>Derlemeden önce kaynakça denetlenip güncellensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="809"/>
+        <location filename="../src/configdialog.ui" line="829"/>
         <source>Show messages when starting compiling</source>
         <translation>Derleme başlatılırken iletiler görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="834"/>
+        <location filename="../src/configdialog.ui" line="854"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>dvi/ps/pdf dosyası zaten açılmışsa, görüntüleyicinin yeni bir kopyası başlatılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="841"/>
+        <location filename="../src/configdialog.ui" line="863"/>
         <source>Show stdout:</source>
         <translation>stdout görünümü:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="849"/>
-        <location filename="../src/configdialog.ui" line="2237"/>
-        <location filename="../src/configdialog.ui" line="3917"/>
+        <location filename="../src/configdialog.ui" line="871"/>
+        <location filename="../src/configdialog.ui" line="2302"/>
+        <location filename="../src/configdialog.ui" line="3982"/>
         <source>Never</source>
         <translation>Asla</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="854"/>
+        <location filename="../src/configdialog.ui" line="876"/>
         <source>Only For User Commands</source>
         <translation>Yalnız kullanıcı komutları için</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="859"/>
+        <location filename="../src/configdialog.ui" line="881"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
         <translation>Her zaman (yönlendirilmemişse &gt; /dev/null)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="867"/>
+        <location filename="../src/configdialog.ui" line="889"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
         <translation>Bazı LaTeX yapılarının (başvurular gibi) doğru şekilde görüntülenmesi için birden fazla derleme döngüsü gerekir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="870"/>
+        <location filename="../src/configdialog.ui" line="892"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>En fazla derleme yinelenmesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="917"/>
+        <location filename="../src/configdialog.ui" line="948"/>
         <source>Commands ($PATH)</source>
         <translation>Komutlar ($PATH)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="924"/>
+        <location filename="../src/configdialog.ui" line="955"/>
         <source>PDF File</source>
         <translation>PDF dosyası</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="968"/>
+        <location filename="../src/configdialog.ui" line="999"/>
         <source>Log File</source>
         <translation>Günlük dosyası</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="977"/>
+        <location filename="../src/configdialog.ui" line="1008"/>
         <source>Additional Search Paths:</source>
         <translation>Ek arama yolları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="984"/>
+        <location filename="../src/configdialog.ui" line="1015"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1050,33 +1050,33 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harfe duyarlıdır.
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="994"/>
+        <location filename="../src/configdialog.ui" line="1025"/>
         <source>Replace Environment Variables</source>
         <translation>Ortam değişkenlerini değiştir</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1001"/>
+        <location filename="../src/configdialog.ui" line="1032"/>
         <source>Show log in case of compile error</source>
         <translation>Derleme hatası oluşursa günlük görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1008"/>
+        <location filename="../src/configdialog.ui" line="1039"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
         <translation>Bu seçenek&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;uygulaması&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-uygulaması&lt;/code&gt; ve &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-uygulaması&lt;/code&gt; açıklama biçemlerini kullanarak komutları yeniden tanımlamanızı sağlar. Ayrıntılı bilgi almak için belgelere bakabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1011"/>
+        <location filename="../src/configdialog.ui" line="1042"/>
         <source>Interpret command definition in magic comments</source>
         <translation>Sihirli açıklamalardaki komut tanımı yorumlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1048"/>
+        <location filename="../src/configdialog.ui" line="1072"/>
         <location filename="../src/configdialog.cpp" line="531"/>
         <source>Shortcuts</source>
         <translation>Kısayollar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1055"/>
+        <location filename="../src/configdialog.ui" line="1079"/>
         <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1089,971 +1089,976 @@ Ardından aşağıdaki yöntemlerden birini kullanarak yeni bir kısayol atayabi
 (3) Kısayol dizgesini yazarak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1072"/>
-        <location filename="../src/configdialog.ui" line="1319"/>
+        <location filename="../src/configdialog.ui" line="1096"/>
+        <location filename="../src/configdialog.ui" line="1343"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1077"/>
+        <location filename="../src/configdialog.ui" line="1101"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1082"/>
+        <location filename="../src/configdialog.ui" line="1106"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1087"/>
+        <location filename="../src/configdialog.ui" line="1111"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1095"/>
+        <location filename="../src/configdialog.ui" line="1119"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
         <translation>Bileşeni kapatma sabit bir GUI bileşeni listesine uygulanır (tümü burada görüntülenmez). Görülebilen ilk bileşen kapatılır. Bu ayarı kullanarak bazı bileşenlerin kapatılmasını engelleyebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1098"/>
+        <location filename="../src/configdialog.ui" line="1122"/>
         <source>Close Element (Esc)</source>
         <translation>Bileşeni kapat (Esc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1104"/>
+        <location filename="../src/configdialog.ui" line="1128"/>
         <source>Close Log-View</source>
         <translation>Günlük görünümünü kapat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1111"/>
+        <location filename="../src/configdialog.ui" line="1135"/>
         <source>Close Embedded Viewer</source>
         <translation>Gömülü görüntüleyiciyi kapat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1118"/>
+        <location filename="../src/configdialog.ui" line="1142"/>
         <source>Close Full Screen Mode</source>
         <translation>Tam ekran kipinden çık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1128"/>
+        <location filename="../src/configdialog.ui" line="1152"/>
         <source>Show Shortcuts in Tooltips</source>
         <translation>Araç ipuçlarında kısayollar görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1151"/>
+        <location filename="../src/configdialog.ui" line="1175"/>
         <location filename="../src/configdialog.cpp" line="532"/>
         <source>Menus</source>
         <translation>Menüler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1158"/>
+        <location filename="../src/configdialog.ui" line="1182"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation>Burada gizlenebilecek ya da düzenlenebilecek menü ögeleri listelenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1171"/>
+        <location filename="../src/configdialog.ui" line="1195"/>
         <source>Name</source>
         <translation>Ad</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1176"/>
+        <location filename="../src/configdialog.ui" line="1200"/>
         <location filename="../src/configdialog.cpp" line="520"/>
         <source>Command</source>
         <translation>Komut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1181"/>
+        <location filename="../src/configdialog.ui" line="1205"/>
         <source>Slot</source>
         <translation>Aralık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1189"/>
+        <location filename="../src/configdialog.ui" line="1213"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
         <translation>Bu seçenek, yukarıdaki listede tüm menü ögelerinin ya da yalnızca ortak değiştirilen ögelerin görüntülenmesini sağlar.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1192"/>
+        <location filename="../src/configdialog.ui" line="1216"/>
         <source>Show All</source>
         <translation>Tümünü görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1215"/>
+        <location filename="../src/configdialog.ui" line="1239"/>
         <source>Toolbar Customization</source>
         <translation>Araç çubuğu özelleştirme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1224"/>
+        <location filename="../src/configdialog.ui" line="1248"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation>Bu seçenek, düzenlenmekte olan araç çubuğundaki tüm işlemleri görüntüler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1249"/>
+        <location filename="../src/configdialog.ui" line="1273"/>
         <source>This adds an action to the toolbar.</source>
         <translation>Bu seçenek araç çubuğuna bir işlem ekler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1263"/>
+        <location filename="../src/configdialog.ui" line="1287"/>
         <source>This removes an action from the toolbar.</source>
         <translation>Bu seçenek, araç çubuğundaki bir işlemi siler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1292"/>
+        <location filename="../src/configdialog.ui" line="1316"/>
         <source>Here you can choose a toolbar to modify.</source>
         <translation>Buradan düzenlemek istediğiniz bir araç çubuğunu seçebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1299"/>
+        <location filename="../src/configdialog.ui" line="1323"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
         <translation>Buradan araç çubuğu ile eşleştirilecek komutların listesini seçebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1306"/>
+        <location filename="../src/configdialog.ui" line="1330"/>
         <source>This shows available actions to map on a toolbar.</source>
         <translation>Buradan bir araç çubuğu ile eşleştirilebilecek işlemleri görebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1470"/>
+        <location filename="../src/configdialog.ui" line="1501"/>
         <source>Secondary Toolbars</source>
         <translation>İkincil araç çubukları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1392"/>
-        <location filename="../src/configdialog.ui" line="1399"/>
-        <location filename="../src/configdialog.ui" line="1456"/>
-        <location filename="../src/configdialog.ui" line="1509"/>
+        <location filename="../src/configdialog.ui" line="1423"/>
+        <location filename="../src/configdialog.ui" line="1430"/>
+        <location filename="../src/configdialog.ui" line="1487"/>
+        <location filename="../src/configdialog.ui" line="1540"/>
         <source>Reset</source>
         <translation>Sıfırla</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1463"/>
+        <location filename="../src/configdialog.ui" line="1494"/>
         <source>Symbol Grid</source>
         <translation>Simge tablosu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1385"/>
+        <location filename="../src/configdialog.ui" line="1416"/>
         <source>Main Toolbar</source>
         <translation>Ana araç çubuğu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1428"/>
+        <location filename="../src/configdialog.ui" line="1459"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
         <translation>Bu seçenek yatay araç çubuklarının ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1354"/>
+        <location filename="../src/configdialog.ui" line="1385"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
         <translation>Bu seçenek simge tablosunun ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1406"/>
+        <location filename="../src/configdialog.ui" line="1437"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
         <translation>Bu seçenek dikey araç çubuklarının ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1567"/>
+        <location filename="../src/configdialog.ui" line="1628"/>
         <location filename="../src/configdialog.cpp" line="535"/>
         <location filename="../src/configmanager.cpp" line="1518"/>
         <source>Editor</source>
         <translation>Düzenleyici</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1579"/>
+        <location filename="../src/configdialog.ui" line="1640"/>
         <source>Inline Checking:</source>
         <translation>Satır arası denetleme:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1618"/>
+        <location filename="../src/configdialog.ui" line="1679"/>
         <source>Check non tex files</source>
         <translation>tex olmayan dosyalar denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1628"/>
+        <location filename="../src/configdialog.ui" line="1689"/>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation>LaTeX dağıtımındaki kurulu paketler taransın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1638"/>
+        <location filename="../src/configdialog.ui" line="1699"/>
         <source>Folding</source>
         <translation>Katlama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1645"/>
+        <location filename="../src/configdialog.ui" line="1706"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation>Sekme girintileri yerine boşluk kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1652"/>
-        <location filename="../src/configdialog.ui" line="4672"/>
+        <location filename="../src/configdialog.ui" line="1713"/>
+        <location filename="../src/configdialog.ui" line="4768"/>
         <source>Font Family:</source>
         <translation>Yazı tipi ailesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1659"/>
+        <location filename="../src/configdialog.ui" line="1720"/>
         <source>Replace Double Quotes:</source>
         <translation>Çift tırnaklar şununla değiştirilsin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1672"/>
+        <location filename="../src/configdialog.ui" line="1733"/>
         <source>Default Font Encoding:</source>
         <translation>Varsayılan metin kodlaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1679"/>
+        <location filename="../src/configdialog.ui" line="1740"/>
         <source>Indentation Mode:</source>
         <translation>Girinti kipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1686"/>
+        <location filename="../src/configdialog.ui" line="1747"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Otomatik kodlama algılaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1696"/>
+        <location filename="../src/configdialog.ui" line="1757"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
         <translation>LaTeX incelensin (% !TeX kodlaması, inputenc, inputenx)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1703"/>
+        <location filename="../src/configdialog.ui" line="1764"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>yalnız utf16/utf-8 ile ISO 8859-1 arasında karar verebilir!</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1706"/>
+        <location filename="../src/configdialog.ui" line="1767"/>
         <source>Analyze Characters</source>
         <translation>Karakterler incelensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1730"/>
-        <location filename="../src/configdialog.ui" line="4002"/>
-        <location filename="../src/configdialog.ui" line="4099"/>
+        <location filename="../src/configdialog.ui" line="1791"/>
+        <location filename="../src/configdialog.ui" line="4067"/>
+        <location filename="../src/configdialog.ui" line="4164"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1756"/>
+        <location filename="../src/configdialog.ui" line="1817"/>
         <source>Line Spacing:</source>
         <translation>Satır boşluğu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1767"/>
+        <location filename="../src/configdialog.ui" line="1828"/>
         <source>No Replacement</source>
         <translation>Değiştirilmesin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1772"/>
+        <location filename="../src/configdialog.ui" line="1833"/>
         <source>English Quotes:  `` &apos;&apos;</source>
         <translation>İngiliz türü tırnaklar: `` &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1777"/>
+        <location filename="../src/configdialog.ui" line="1838"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
         <translation>Fransız türü tırnaklar: &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1782"/>
+        <location filename="../src/configdialog.ui" line="1843"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
         <translation>Alman türü tırnaklar: &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1787"/>
+        <location filename="../src/configdialog.ui" line="1848"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
         <translation>Fransız türü tırnaklar (babel): \og{} \fg{}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1792"/>
+        <location filename="../src/configdialog.ui" line="1853"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
         <translation>Ters Fransız türü tırnaklar: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1797"/>
+        <location filename="../src/configdialog.ui" line="1858"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>csquotes paketi: \enquote{  }</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1802"/>
+        <location filename="../src/configdialog.ui" line="1863"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>İngiliz türü tırnaklar (unicode): “ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1807"/>
+        <location filename="../src/configdialog.ui" line="1868"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
         <translation>Polonya türü tırnaklar: ,, &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1812"/>
+        <location filename="../src/configdialog.ui" line="1873"/>
         <source>Polish Quotes (unicode): „ ”</source>
         <translation>Polonya türü tırnaklar (unicode): „ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1820"/>
+        <location filename="../src/configdialog.ui" line="1881"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Yalnız eş aralıklı yazı tipleri görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1831"/>
+        <location filename="../src/configdialog.ui" line="1892"/>
         <source>Ignore Indentation</source>
         <translation>Girinti yok sayılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1836"/>
+        <location filename="../src/configdialog.ui" line="1897"/>
         <source>Keep Indentation</source>
         <translation>Girinti korunsun</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1841"/>
+        <location filename="../src/configdialog.ui" line="1902"/>
         <source>Indent and Unindent Automatically</source>
         <translation>Girintiler otomatik olarak arttırılıp azaltılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1861"/>
+        <location filename="../src/configdialog.ui" line="1922"/>
         <source>Spelling</source>
         <translation>Yazım</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1868"/>
+        <location filename="../src/configdialog.ui" line="1929"/>
         <source>Grammar</source>
         <translation>Dil bilgisi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1875"/>
+        <location filename="../src/configdialog.ui" line="1936"/>
         <source>Citations</source>
         <translation>Alıntılar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1882"/>
+        <location filename="../src/configdialog.ui" line="1943"/>
         <source>References</source>
         <translation>Başvurular</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1889"/>
+        <location filename="../src/configdialog.ui" line="1950"/>
         <source>Syntax</source>
         <translation>Söz dizimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1896"/>
+        <location filename="../src/configdialog.ui" line="1957"/>
         <source>Package</source>
         <translation>Paket</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1906"/>
+        <location filename="../src/configdialog.ui" line="1967"/>
         <source>Replace Tab in Text by Spaces</source>
         <translation>Metindeki sekmeler boşluk ile değiştirilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1913"/>
+        <location filename="../src/configdialog.ui" line="1974"/>
         <source>Automatically load included files</source>
         <translation>Katılan dosyalar otomatik olarak yüklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1923"/>
+        <location filename="../src/configdialog.ui" line="1984"/>
         <source>Hide grammar errors in non-text environments</source>
         <translation>Metin olmayan ortamlarda dil bilgisi hataları gizlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1933"/>
+        <location filename="../src/configdialog.ui" line="1994"/>
         <source>Hide spelling errors in non-text environments</source>
         <translation>Metin olmayan ortamlarda yazım hataları gizlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1943"/>
+        <location filename="../src/configdialog.ui" line="2004"/>
         <source>Remove Trailing Whitespace on Save</source>
         <translation>Kaydederken sondaki boşluklar kaldırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1589"/>
+        <location filename="../src/configdialog.ui" line="1650"/>
         <source>Show Line Numbers:</source>
         <translation>Satır numaraları görüntülensin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1600"/>
+        <location filename="../src/configdialog.ui" line="1661"/>
         <source>No Line Numbers</source>
         <translation>Satır numarası görüntülenmesin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1605"/>
+        <location filename="../src/configdialog.ui" line="1666"/>
         <source>All Line Numbers</source>
         <translation>Tüm satır numaraları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1610"/>
+        <location filename="../src/configdialog.ui" line="1671"/>
         <source>Only Important Line Numbers</source>
         <translation>Yalnız önemli satır numaraları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2019"/>
+        <location filename="../src/configdialog.ui" line="2084"/>
         <source>Show State Panel</source>
         <translation>Durum panosu görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2031"/>
+        <location filename="../src/configdialog.ui" line="2096"/>
         <source>Tab Width:</source>
         <translation>Sekme genişliği:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2066"/>
+        <location filename="../src/configdialog.ui" line="2131"/>
         <source>Show Whitespace</source>
         <translation>Boşluklar görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2079"/>
+        <location filename="../src/configdialog.ui" line="2144"/>
         <source>Show Line Change State</source>
         <translation>Satır değişiklik durumu görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2089"/>
+        <location filename="../src/configdialog.ui" line="2154"/>
         <source>Draw cursor as a thick line</source>
         <translation>İmleç kalın çizgi olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2092"/>
+        <location filename="../src/configdialog.ui" line="2157"/>
         <source>Bold Cursor</source>
         <translation>Kalın imleç</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2108"/>
+        <location filename="../src/configdialog.ui" line="2173"/>
         <source>Search Panel</source>
         <translation>Arama panosu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2114"/>
+        <location filename="../src/configdialog.ui" line="2179"/>
         <source>Close search and replace panel together</source>
         <translation>Arama ve değiştirme panosu birlikte kapatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2124"/>
+        <location filename="../src/configdialog.ui" line="2189"/>
         <source>Use single line selection as Search Word</source>
         <translation>Arama sözcüğü olarak tek satır seçimi kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2134"/>
+        <location filename="../src/configdialog.ui" line="2199"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Arama kapsamı yapılmış seçimle kısıtlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2144"/>
+        <location filename="../src/configdialog.ui" line="2209"/>
         <source>Special options</source>
         <translation>Özel seçenekler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2177"/>
+        <location filename="../src/configdialog.ui" line="2242"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Günlük kaydına tıklandığında günlük işaretleri görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2223"/>
+        <location filename="../src/configdialog.ui" line="2288"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Kayıtlar doğrudan sağ tık menüsüne eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2228"/>
+        <location filename="../src/configdialog.ui" line="2293"/>
         <source>Create Dedicated Submenu</source>
         <translation>Adanmış alt menü ekle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2448"/>
+        <location filename="../src/configdialog.ui" line="2513"/>
         <source>Spellchecking via context menu:</source>
         <translation>Sağ tık menüsünde yazım denetimi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2383"/>
+        <location filename="../src/configdialog.ui" line="2448"/>
         <source>Default Log Encoding</source>
         <translation>Varsayılan günlük kodlaması</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2242"/>
+        <location filename="../src/configdialog.ui" line="2307"/>
         <source>1 minute</source>
         <translation>1 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2247"/>
+        <location filename="../src/configdialog.ui" line="2312"/>
         <source>2 minutes</source>
         <translation>2 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2252"/>
+        <location filename="../src/configdialog.ui" line="2317"/>
         <source>5 minutes</source>
         <translation>5 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2257"/>
+        <location filename="../src/configdialog.ui" line="2322"/>
         <source>10 minutes</source>
         <translation>10 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2262"/>
+        <location filename="../src/configdialog.ui" line="2327"/>
         <source>20 minutes</source>
         <translation>20 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2267"/>
+        <location filename="../src/configdialog.ui" line="2332"/>
         <source>60 minutes</source>
         <translation>60 dakika</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2455"/>
+        <location filename="../src/configdialog.ui" line="2520"/>
         <source>Auto Complete Parentheses</source>
         <translation>Parantezler otomatik olarak kapatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2376"/>
+        <location filename="../src/configdialog.ui" line="2441"/>
         <source>Smooth Scrolling</source>
         <translation>Düzgün kaydırma</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2184"/>
+        <location filename="../src/configdialog.ui" line="2249"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Fare tekerleği yakınlaştırması</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2390"/>
+        <location filename="../src/configdialog.ui" line="2455"/>
         <source>Auto Save All Files:</source>
         <translation>Tüm dosyalar otomatik olarak kaydedilsin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2286"/>
+        <location filename="../src/configdialog.ui" line="2351"/>
         <source>Line Wrapping:</source>
         <translation>Satır kaydırma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2462"/>
+        <location filename="../src/configdialog.ui" line="2527"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation>Çift tıklayarak seçim: Baştaki ters bölü karakteri katılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2196"/>
+        <location filename="../src/configdialog.ui" line="2261"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Dışarıdan değişiklik yapılmış dosyalar sessizce geri yüklensin (geri al/yinele belleğini siler)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2323"/>
+        <location filename="../src/configdialog.ui" line="2388"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Komut yardımları iç pdf görüntüleyicide görüntülensin (texdoc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2338"/>
+        <location filename="../src/configdialog.ui" line="2403"/>
         <source>Select Word</source>
         <translation>Sözcük seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2343"/>
+        <location filename="../src/configdialog.ui" line="2408"/>
         <source>Select Word or Command</source>
         <translation>Sözcük ya da komut seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2348"/>
+        <location filename="../src/configdialog.ui" line="2413"/>
         <source>Select Parentheses Content</source>
         <translation>Paranteze alınacak içeriği seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2353"/>
+        <location filename="../src/configdialog.ui" line="2418"/>
         <source>Select Parentheses</source>
         <translation>Parantez seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2358"/>
+        <location filename="../src/configdialog.ui" line="2423"/>
         <source>Select Line</source>
         <translation>Satır seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2205"/>
+        <location filename="../src/configdialog.ui" line="2270"/>
         <source>Monitor open files for external changes</source>
         <translation>Açık dosyalarda dışarıdan yapılan değişiklikler izlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2313"/>
+        <location filename="../src/configdialog.ui" line="2378"/>
         <source>Triple-Click Selection:</source>
         <translation>Üç tıklama seçimi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2153"/>
+        <location filename="../src/configdialog.ui" line="2218"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek ile, yazma işlemi tamamlanamaz ise var olan verilerin kaybolmasını engellemek için QSaveFile kullanılır. Bir sakıncası geçerli kullanıcının dosya sahibi olarak atanması ve genişletilmiş dosya özniteliklerinin kaybolmasıdır. Ayrıca, bu yöntemin dropbox klasörleri ile sorunları var gibi görünüyor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2156"/>
+        <location filename="../src/configdialog.ui" line="2221"/>
         <source>Safe writing of files</source>
         <translation>Güvenli dosya yazma</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2293"/>
+        <location filename="../src/configdialog.ui" line="2358"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation>Bir yer belirtecini izleyen kapanış parantezinin üzerine yazılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2300"/>
+        <location filename="../src/configdialog.ui" line="2365"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation>Bu seçenek, yalnız belge genişliği değişken ya da sabit satır kaydırma ile sınırlandırılmış ise bir etki yapar.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2303"/>
+        <location filename="../src/configdialog.ui" line="2368"/>
         <source>Center Document in Editor</source>
         <translation>Belge düzenleyicide ortalansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2434"/>
+        <location filename="../src/configdialog.ui" line="2499"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Yardım, düzenleyicide metin üzerinde ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2366"/>
+        <location filename="../src/configdialog.ui" line="2431"/>
         <source>Maximal Characters:</source>
         <translation>En fazla karakter sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2411"/>
+        <location filename="../src/configdialog.ui" line="2476"/>
         <source>No Line Wrap</source>
         <translation>Satır kaydırılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2416"/>
+        <location filename="../src/configdialog.ui" line="2481"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>Satırlar pencere kenarına göre değişerek kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2421"/>
+        <location filename="../src/configdialog.ui" line="2486"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>Satırlar en fazla karakter sayısına göre değişerek kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2426"/>
+        <location filename="../src/configdialog.ui" line="2491"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Satırlar en fazla karakter sayısına göre sabit kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2275"/>
+        <location filename="../src/configdialog.ui" line="2340"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Kaynak kodunda unicode karakterler kullanıldığında, Karakterlerin hala
 LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olarak desteklenmediğinden, unicode karakterler için belgenize ilgili paketleri katmanız gerekir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2279"/>
+        <location filename="../src/configdialog.ui" line="2344"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Simgeler ünikod olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2441"/>
+        <location filename="../src/configdialog.ui" line="2506"/>
         <source>Go to error when displaying log</source>
         <translation>Günlük görüntülenirken hataya gidilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2163"/>
+        <location filename="../src/configdialog.ui" line="2228"/>
         <source>Show image tooltip on image files</source>
         <translation>Görsel dosyalarında görsel ipucu görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2170"/>
+        <location filename="../src/configdialog.ui" line="2235"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Bir yer belirtecini izleyen açılış parantezinin üzerine yazılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2330"/>
+        <location filename="../src/configdialog.ui" line="2395"/>
         <source>Allow Drag and Drop</source>
         <translation>Sürükleyip bırakılabilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2212"/>
+        <location filename="../src/configdialog.ui" line="2277"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dış uygulamalar (Zotero gibi) texstudio içine alıntıları şu komut ile gönderebilir: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;İmleç zaten bir alıntı komutu içinde değil ise \cite-command olarak burada belirtilen &amp;quot;komut&amp;quot; kullanılır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1477"/>
+        <location filename="../src/configdialog.ui" line="1508"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu seçenek gömülü PDF görüntüleyici araç çubuğunun ölçeğini değiştirir (yüksek çözünürlüklü ekranlar için).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1502"/>
+        <location filename="../src/configdialog.ui" line="1533"/>
         <source>Embedded PDF Toolbar</source>
         <translation>Gömülü PDF araç çubuğu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2215"/>
+        <location filename="../src/configdialog.ui" line="2280"/>
         <source>Latex Command for pushed citations:</source>
         <translation>Alıntıları aktarmak için kullanılacak LaTex komutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2469"/>
+        <location filename="../src/configdialog.ui" line="2534"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
         <translation>Dikey dışa kaydırma (dosya sonunun altına kaydır)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2479"/>
+        <location filename="../src/configdialog.ui" line="2544"/>
         <source>Structure Panel</source>
         <translation>Yapı panosu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2510"/>
+        <location filename="../src/configdialog.ui" line="2575"/>
         <source>Mark structure elements beyond \end{document}</source>
         <translation> \end{document} sonrasındaki yapı bileşenleri işaretlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2517"/>
+        <location filename="../src/configdialog.ui" line="2582"/>
         <source>Reference commands in context menu:</source>
         <translation>Sağ tık menüsündeki komut bilgileri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2557"/>
+        <location filename="../src/configdialog.ui" line="2622"/>
         <source>Mark structure elements in appendix</source>
         <translation>Ekteki yapı bileşenleri işaretlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2530"/>
+        <location filename="../src/configdialog.ui" line="2595"/>
         <source>Regular expression for TODO comment: </source>
         <translation>YAPILACAKİŞ açıklaması için kurallı ifade:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2537"/>
+        <location filename="../src/configdialog.ui" line="2602"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Yapı ağacındaki içeriklerin girintisi korunsun</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2489"/>
+        <location filename="../src/configdialog.ui" line="2554"/>
         <source>No Color Background</source>
         <translation>Renkli arka plan kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2494"/>
+        <location filename="../src/configdialog.ui" line="2559"/>
         <source>Green Background</source>
         <translation>Yeşil arka plan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2499"/>
+        <location filename="../src/configdialog.ui" line="2564"/>
         <source>Blue Background</source>
         <translation>Mavi arka plan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2507"/>
+        <location filename="../src/configdialog.ui" line="2572"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;quot;\section&amp;quot; gibi bileşenler farklı bir arka plan rengiyle vurgulanır ve belgede &lt;span style=&quot; font-weight:600;&quot;&gt;görüntülenmez&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2554"/>
+        <location filename="../src/configdialog.ui" line="2619"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;quot;\section&amp;quot; gibi bileşenler farklı bir arka plan rengiyle vurgulanır ve ek olarak görüntülenir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2544"/>
+        <location filename="../src/configdialog.ui" line="2609"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yapılandırma görünümünde geçerli imleç konumu görüntülenir.&lt;/p&gt;&lt;p&gt;Bu seçenek etkinleştirildiğinde kayıt görüntülenebilmesi için açılır ve kaydırılır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="309"/>
+        <location filename="../src/configdialog.ui" line="329"/>
         <source>Icon Theme:</source>
         <translation>Simge teması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="317"/>
+        <location filename="../src/configdialog.ui" line="337"/>
         <source>Colibre</source>
         <translation>Colibre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="322"/>
+        <location filename="../src/configdialog.ui" line="342"/>
         <source>Oxygen Modern</source>
         <translation>Oxygen Modern</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="327"/>
+        <location filename="../src/configdialog.ui" line="347"/>
         <source>Oxygen Classic</source>
         <translation>Oxygen Classic</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="353"/>
+        <location filename="../src/configdialog.ui" line="373"/>
         <source>Max. Recent Root Documents:</source>
         <translation>Son kullanılan kök belge sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="416"/>
+        <location filename="../src/configdialog.ui" line="436"/>
         <source>Always Show Structure of Root Document</source>
         <translation>Kök belge yapısı her zaman görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="667"/>
+        <location filename="../src/configdialog.ui" line="687"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
         <translation>&lt;i&gt;Dosya seçici (İsteğe bağlı. Varsa sona erdiren iki nokta üst üste katılır):&lt;/i&gt; Seçici yoksa kök dosya seçilir. &lt;b&gt;c:&lt;/b&gt;Geçerli dosyayı seçer, &lt;b&gt;p{ext}:&lt;/b&gt; Kök dosya ile aynı temel dosya adına ve &lt;b&gt;ext&lt;/b&gt; uzantısına sahip bir dosyayı bulur. &lt;br /&gt;&lt;i&gt;Yol adı bölümleri&lt;/i&gt; &lt;b&gt;a&lt;/b&gt;: Mutlak yol, &lt;b&gt;m&lt;/b&gt;: Uzantı olmadan temel dosya adı, &lt;b&gt;e:&lt;/b&gt; Uzantı ve &lt;b&gt;r&lt;/b&gt;: Köke göre yol değerlerinden oluşur, &lt;b&gt;*&lt;/b&gt;: Modele uyan tüm dosyalar&lt;br/&gt;&lt;i&gt;Sonlandırma karakterleri: &lt;b&gt;)&lt;/b&gt;: Seçiciyi sonlandırır. Şu karakterler seçiciyi sonlandırır ve şu anlamlara gelir&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;:  Çift tırnak arasına alır, &lt;b&gt;.&lt;/b&gt;: (dot) Sona bir nokta ekler, (space): Sona bir boşluk ekler&lt;br/&gt;&lt;i&gt;Örnekler:&lt;/i&gt;&lt;b&gt; ?osya&amp;quot;&lt;/b&gt;: Mutlak dosya adını çift tırnak arasında tamamlar, &lt;b&gt;?e)&lt;/b&gt; Önünde nokta olmadan uzantıyı tamamlar (tex gibi), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; Uzantısı olmadan çift tırnak içinde dosya adı (&lt;b&gt;%&lt;/b&gt; ile aynı), &lt;b&gt;?me&lt;/b&gt; Uzantı ile dosya adı (ornek.tex gibi), &lt;b&gt;?*.aux&lt;/b&gt;: Geçerli klasördeki tüm .aux dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2485"/>
+        <location filename="../src/configdialog.ui" line="1378"/>
+        <source>Note: The change of symbols can be monitored live</source>
+        <translation>Not: Simgelerin değişimi canlı olarak izlenebilir</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2550"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Genel içindekiler tablosu farklı dosyaların ayırt edilebilmesi için farklı arka plan gölgelemesi kullanır. Renk şeması buradan değiştirilebilir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2547"/>
+        <location filename="../src/configdialog.ui" line="2612"/>
         <source>Scroll to current cursor position</source>
         <translation>Geçerli imleç konumuna kaydırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2564"/>
+        <location filename="../src/configdialog.ui" line="2629"/>
         <source>Use color in global TOC:</source>
         <translation>Genel içindekiler tablosunda renk kullanılsın:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2584"/>
+        <location filename="../src/configdialog.ui" line="2649"/>
         <source>Bibliography</source>
         <translation>Kaynakça</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2590"/>
+        <location filename="../src/configdialog.ui" line="2655"/>
         <source>bib File Encoding:</source>
         <translation>bib dosya kodlaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2597"/>
+        <location filename="../src/configdialog.ui" line="2662"/>
         <source>Parse BibTeX</source>
         <translation>BibTeX işleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2610"/>
+        <location filename="../src/configdialog.ui" line="2675"/>
         <source>Table Autoformating</source>
         <translation>Otomatik tablo biçimlendirme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2616"/>
+        <location filename="../src/configdialog.ui" line="2681"/>
         <source>One Line Per Cell</source>
         <translation>Hücre başına bir satır</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2624"/>
+        <location filename="../src/configdialog.ui" line="2689"/>
         <source>Behind Line Break</source>
         <translation>Satır sonundan sonra</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2629"/>
+        <location filename="../src/configdialog.ui" line="2694"/>
         <source>Separate Line (No Indent)</source>
         <translation>Ayrı satır (girinti olmadan)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2634"/>
+        <location filename="../src/configdialog.ui" line="2699"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Ayrı satır (ilk sütuna göre girintili)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2642"/>
+        <location filename="../src/configdialog.ui" line="2707"/>
         <source>Special Commands Position:</source>
         <translation>Özel komutların konumu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2652"/>
+        <location filename="../src/configdialog.ui" line="2717"/>
         <source>Special Commands:</source>
         <translation>Özel komutlar:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2662"/>
+        <location filename="../src/configdialog.ui" line="2727"/>
         <source>Additional Search Paths</source>
         <translation>Ek arama yolları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2671"/>
+        <location filename="../src/configdialog.ui" line="2736"/>
         <source>Bib Files:</source>
         <translation>Bib dosyaları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2684"/>
+        <location filename="../src/configdialog.ui" line="2749"/>
         <source>Image Files:</source>
         <translation>Görsel dosyaları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2722"/>
+        <location filename="../src/configdialog.ui" line="2787"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2728"/>
+        <location filename="../src/configdialog.ui" line="2793"/>
         <source>Automatically insert LRM characters</source>
         <translation>LRM karakterleri otomatik olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2735"/>
+        <location filename="../src/configdialog.ui" line="2800"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Görsel sütun imleç kipi (sağdan sola yazılmış metinlerde imleç ok tuşları yönünde hareket eder)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2742"/>
+        <location filename="../src/configdialog.ui" line="2807"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Tuş takımı görünümü otomatik olarak değiştirilsin:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2749"/>
+        <location filename="../src/configdialog.ui" line="2814"/>
         <source>depending on character direction</source>
         <translation>karakter yönüne bağlı olarak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2756"/>
+        <location filename="../src/configdialog.ui" line="2821"/>
         <source>depending on text/math mode</source>
         <translation>metin/matematik kipine bağlı olarak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2766"/>
+        <location filename="../src/configdialog.ui" line="2831"/>
         <source>Hacks/Workarounds</source>
         <translation>Değişiklikler/çözümler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2772"/>
+        <location filename="../src/configdialog.ui" line="2837"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Aksan yazarken çözüm devre dışı bırakılsın (yalnız Mac OS X için)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2779"/>
+        <location filename="../src/configdialog.ui" line="2844"/>
         <source>Try to automatically choose best display options</source>
         <translation>En uygun ekran ayarları otomatik olarak seçilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2797"/>
+        <location filename="../src/configdialog.ui" line="2862"/>
         <source>Render Mode:</source>
         <translation>Oluşturma kipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2805"/>
+        <location filename="../src/configdialog.ui" line="2870"/>
         <source>QCE (recommended)</source>
         <translation>QCE (önerilir)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2810"/>
+        <location filename="../src/configdialog.ui" line="2875"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2815"/>
+        <location filename="../src/configdialog.ui" line="2880"/>
         <source>Single Letter</source>
         <translation>Tek harf</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2823"/>
+        <location filename="../src/configdialog.ui" line="2888"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Oluşturulmuş satırlar için ön bellek etkinleştirilmiş ise, oluşturulan satırlar ön belleğe kaydedilir ve yeniden oluşturulmaları gerekmez. Bu seçenek, daha fazla bellek kullanılmasına yol açar ancak hızın iyileşmesini (özellikle Mac üzerinde) sağlar.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2826"/>
+        <location filename="../src/configdialog.ui" line="2891"/>
         <source>Disable cache of rendered lines</source>
         <translation>Oluşturulmuş satırlar ön belleği kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2833"/>
+        <location filename="../src/configdialog.ui" line="2898"/>
         <source>Disable fixed pitch mode</source>
         <translation>Sabit aralık kipi kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2840"/>
+        <location filename="../src/configdialog.ui" line="2905"/>
         <source>Disable cache of character width</source>
         <translation>Karakter genişliği ön belleği kullanılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2847"/>
+        <location filename="../src/configdialog.ui" line="2912"/>
         <source>Use QImage as cache type</source>
         <translation>Ön bellek türü olarak QImage kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2910"/>
+        <location filename="../src/configdialog.ui" line="2975"/>
         <source>Formats</source>
         <translation>Biçimler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2939"/>
+        <location filename="../src/configdialog.ui" line="3004"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <source>Completion</source>
         <translation>Tamamlama</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2945"/>
+        <location filename="../src/configdialog.ui" line="3010"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2072,118 +2077,118 @@ LaTeX tarafından oluşturması gerekir. Unicode, LaTeX tarafından doğal olara
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2955"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>LaTeX komutları otomatik değiştirilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2962"/>
+        <location filename="../src/configdialog.ui" line="3027"/>
         <source>Insert Arguments</source>
         <translation>Argümanları ekle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2972"/>
+        <location filename="../src/configdialog.ui" line="3037"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Etiketler/bibitem için hedef metin ile renk ya da görsellerin ön izlemesini içeren bir ipucu görüntüler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2975"/>
+        <location filename="../src/configdialog.ui" line="3040"/>
         <source>ToolTip-Preview</source>
         <translation>İpucu ön izlemesi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2982"/>
+        <location filename="../src/configdialog.ui" line="3047"/>
         <source>Arguments as Placeholders</source>
         <translation>Yer belirtici olarak argümanlar</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2992"/>
+        <location filename="../src/configdialog.ui" line="3057"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>Seçilmiş tamamlayıcı komutun açıklamasını ipucu olarak görüntüler</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2995"/>
+        <location filename="../src/configdialog.ui" line="3060"/>
         <source>ToolTip-Help</source>
         <translation>İpucu yardımı</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3005"/>
+        <location filename="../src/configdialog.ui" line="3070"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>&apos;\&apos; karakteri yazıldığında tamamlayıcıyı başlatır. Alternatif olarak tamamlayıcı her zaman Ctrl+Space kısayol tuşları ile başlatılabilir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3008"/>
+        <location filename="../src/configdialog.ui" line="3073"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Tamamlayıcı LaTeX komutları yazıldığında otomatik olarak başlatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3017"/>
+        <location filename="../src/configdialog.ui" line="3082"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Tamamlayıcının altında ya da üstündeki sekme çubuğunun boyutu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3020"/>
+        <location filename="../src/configdialog.ui" line="3085"/>
         <source>Tab Bar Size</source>
         <translation>Sekme çubuğu boyutu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3030"/>
+        <location filename="../src/configdialog.ui" line="3095"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>Tamamlayıcının altında ya da üstündeki komut kümesi sekmelerinin boyutu</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3064"/>
+        <location filename="../src/configdialog.ui" line="3129"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Sözcük olmayan bir karakter yazıldığında seçilmiş metin tamamlansın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3074"/>
+        <location filename="../src/configdialog.ui" line="3139"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Tüm tamamlayıcı önerilerinde sonraki karakterler ortak ise bunları otomatik olarak eklemek için &lt;Tab&gt; kullanabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3077"/>
+        <location filename="../src/configdialog.ui" line="3142"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Otomatik tamamlanacak ortak ön ek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3089"/>
+        <location filename="../src/configdialog.ui" line="3154"/>
         <source>Preferred Commands Set:</source>
         <translation>Yeğlenen komut kümesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3097"/>
+        <location filename="../src/configdialog.ui" line="3162"/>
         <source>Typical</source>
         <translation>Tipik</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3102"/>
+        <location filename="../src/configdialog.ui" line="3167"/>
         <source>Most Used</source>
         <translation>En çok kullanılan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3107"/>
+        <location filename="../src/configdialog.ui" line="3172"/>
         <source>Fuzzy</source>
         <translation>Karmaşık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3112"/>
+        <location filename="../src/configdialog.ui" line="3177"/>
         <source>All</source>
         <translation>Tümü</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3135"/>
+        <location filename="../src/configdialog.ui" line="3200"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Herhangi bir dış matematik ortamından bir matematik komutu eklendiğinde otomatik olarak $$ eklenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3138"/>
+        <location filename="../src/configdialog.ui" line="3203"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Gerektiğinde matematik sınırlayıcıları otomatik olarak eklensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3150"/>
-        <location filename="../src/configdialog.ui" line="3188"/>
+        <location filename="../src/configdialog.ui" line="3215"/>
+        <location filename="../src/configdialog.ui" line="3253"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2198,461 +2203,461 @@ ya da belirli kullanıcı tamamlama dosyaları eklemek isterseniz, onları
 buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3158"/>
+        <location filename="../src/configdialog.ui" line="3223"/>
         <source>Permanently active completion files:</source>
         <translation>Kalıcı olarak etkin tamamlama dosyaları:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3168"/>
+        <location filename="../src/configdialog.ui" line="3233"/>
         <source>Filter list below</source>
         <translation>Aşağıdaki listeyi süz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3279"/>
+        <location filename="../src/configdialog.ui" line="3344"/>
         <source>Spell Check</source>
         <translation>Yazım denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3285"/>
+        <location filename="../src/configdialog.ui" line="3350"/>
         <source>Default Language:</source>
         <translation>Varsayılan dil:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3312"/>
+        <location filename="../src/configdialog.ui" line="3377"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Yazım sözlüğü klasörleri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3319"/>
+        <location filename="../src/configdialog.ui" line="3384"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>Hunspell sözlüklerinin aranacağı bir ya da bir kaç klasörü noktalı virgül ile ayırarak yazabilirsiniz. İlgili klasörlere dönüştürülen [txs-settings-dir] ve [txs-app-dir] anahtar sözcüklerini kullanabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3329"/>
+        <location filename="../src/configdialog.ui" line="3394"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3336"/>
+        <location filename="../src/configdialog.ui" line="3401"/>
         <source>Thesaurus Database:</source>
         <translation>Eş anlamlılar sözlüğü veritabanı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3366"/>
+        <location filename="../src/configdialog.ui" line="3431"/>
         <source>TextLabel</source>
         <translation>MetinEtiketi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3379"/>
+        <location filename="../src/configdialog.ui" line="3444"/>
         <source>Import Dictionary...</source>
         <translation>Sözlüğü içe aktar...</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3389"/>
+        <location filename="../src/configdialog.ui" line="3454"/>
         <source>Internal Grammar Check</source>
         <translation>İç dil bilgisi denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3395"/>
+        <location filename="../src/configdialog.ui" line="3460"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Bir paragraf içinde yinelenen sözcükler vurgulanacak.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3398"/>
+        <location filename="../src/configdialog.ui" line="3463"/>
         <source>Check for Word Repetitions</source>
         <translation>Yinelenen sözcükler denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3405"/>
+        <location filename="../src/configdialog.ui" line="3470"/>
         <source>Words Between Repetitions:</source>
         <translation>Yinelenmeler arasındaki sözcük sayısı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3415"/>
+        <location filename="../src/configdialog.ui" line="3480"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Aynı sözcükler, aralarında belirtilen sayı kadar sözcük bulunmaması durumunda yinelenme olarak işaretlenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3425"/>
+        <location filename="../src/configdialog.ui" line="3490"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Aynı olduğu halde daha uzun olan sözcükler, aralarında belirtilen sayı kadar sözcük bulunmaması durumunda yinelenme olarak işaretlenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3435"/>
+        <location filename="../src/configdialog.ui" line="3500"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Yalnız belirtilen karakter uzunluğundaki sözcükler uzun yinelenmeler için denetlenir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3445"/>
+        <location filename="../src/configdialog.ui" line="3510"/>
         <source>Long Range Repetitions:</source>
         <translation>Uzun aralıklı yinelenmeler:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3455"/>
+        <location filename="../src/configdialog.ui" line="3520"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>En kısa uzun aralıklı yinelenen sözcük uzunluğu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3465"/>
+        <location filename="../src/configdialog.ui" line="3530"/>
         <source>Wordlist Directory:</source>
         <translation>Sözcük listesi dizini:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3472"/>
+        <location filename="../src/configdialog.ui" line="3537"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Belirli resmi olmayan ya da zayıf sözcükler vurgulanır.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3475"/>
+        <location filename="../src/configdialog.ui" line="3540"/>
         <source>Check for Bad Words</source>
         <translation>Kötü sözcükler denetlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3482"/>
+        <location filename="../src/configdialog.ui" line="3547"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>&quot;Kötü&quot; ya da yinelenebilecek sözcüklerin listesini içeren dizin.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3509"/>
+        <location filename="../src/configdialog.ui" line="3574"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
+        <location filename="../src/configdialog.ui" line="3580"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>LanguageTool java arşiv dosyasının bulunduğu yol.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3522"/>
+        <location filename="../src/configdialog.ui" line="3587"/>
         <source>LT Path:</source>
         <translation>LT yolu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3529"/>
+        <location filename="../src/configdialog.ui" line="3594"/>
         <source>Start LanguageTool if not running</source>
         <translation>LanguageTool çalışmıyorsa başlatılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3536"/>
+        <location filename="../src/configdialog.ui" line="3601"/>
         <source>Server URL: </source>
         <translation>Sunucu adresi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3543"/>
+        <location filename="../src/configdialog.ui" line="3608"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Hata olarak vurgulanmayacak LanguageTool kurallarının virgül ile ayrılmış listesi.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3567"/>
+        <location filename="../src/configdialog.ui" line="3632"/>
         <source>Ignored Rules:</source>
         <translation>Yok sayılan kurallar:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3574"/>
-        <location filename="../src/configdialog.ui" line="3584"/>
-        <location filename="../src/configdialog.ui" line="3594"/>
-        <location filename="../src/configdialog.ui" line="3624"/>
+        <location filename="../src/configdialog.ui" line="3639"/>
+        <location filename="../src/configdialog.ui" line="3649"/>
+        <location filename="../src/configdialog.ui" line="3659"/>
+        <location filename="../src/configdialog.ui" line="3689"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Özel bir biçimde vurgulanacak LanguageTool kurallarının virgül ile ayrılmış listesi.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3604"/>
+        <location filename="../src/configdialog.ui" line="3669"/>
         <source>Special Rules 3:</source>
         <translation>3. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3614"/>
+        <location filename="../src/configdialog.ui" line="3679"/>
         <source>Special Rules 2:</source>
         <translation>2. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3634"/>
+        <location filename="../src/configdialog.ui" line="3699"/>
         <source>Special Rules 1:</source>
         <translation>1. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3651"/>
+        <location filename="../src/configdialog.ui" line="3716"/>
         <source>Special Rules 4:</source>
         <translation>4. özel kural:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3661"/>
+        <location filename="../src/configdialog.ui" line="3726"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>Belgede kullanılan yazım denetleyicinin dili kullanılarak anlam çıkarılır.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3668"/>
+        <location filename="../src/configdialog.ui" line="3733"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>LanguageTool çalışmıyorsa başlatmak için kullanılacak çalıştılabilir java dosyası.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3675"/>
+        <location filename="../src/configdialog.ui" line="3740"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3682"/>
-        <location filename="../src/configdialog.ui" line="3730"/>
+        <location filename="../src/configdialog.ui" line="3747"/>
+        <location filename="../src/configdialog.ui" line="3795"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>LanguageTool başlatılırken aktarılacak bağımsız değişkenler. Bu seçenek yalnız LanguageTool TeXstudio içinden başlatıldığında (yani zaten çalışmakta olan bir sunucuda olmadığında) etkili olur.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3685"/>
+        <location filename="../src/configdialog.ui" line="3750"/>
         <source>LT Arguments:</source>
         <translation>LT bağımsız değişkenleri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3709"/>
-        <location filename="../src/configdialog.ui" line="3737"/>
+        <location filename="../src/configdialog.ui" line="3774"/>
+        <location filename="../src/configdialog.ui" line="3802"/>
         <source>Restore Default</source>
         <translation>Varsayılanları geri yükle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3723"/>
+        <location filename="../src/configdialog.ui" line="3788"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>LanguageTool bağlantı adresi.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3820"/>
+        <location filename="../src/configdialog.ui" line="3885"/>
         <source>Command:</source>
         <translation>Komut:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3831"/>
+        <location filename="../src/configdialog.ui" line="3896"/>
         <source>Preview with dvipng</source>
         <translation>dvipng ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3836"/>
+        <location filename="../src/configdialog.ui" line="3901"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>dvipng --follow (paralel) ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3841"/>
+        <location filename="../src/configdialog.ui" line="3906"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>dvips/ghostscript ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3846"/>
+        <location filename="../src/configdialog.ui" line="3911"/>
         <source>Preview with pdflatex</source>
         <translation>pdflatex ile ön izleme</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3851"/>
+        <location filename="../src/configdialog.ui" line="3916"/>
         <source>Preview with lualatex</source>
         <translation>luaLaTex ile ön izle</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3859"/>
+        <location filename="../src/configdialog.ui" line="3924"/>
         <source>Display Mode:</source>
         <translation>Görüntüleme kipi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3873"/>
+        <location filename="../src/configdialog.ui" line="3938"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Pano gizli ise ön izleme ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3878"/>
+        <location filename="../src/configdialog.ui" line="3943"/>
         <source>Always show preview in preview panel</source>
         <translation>Ön izleme her zaman ön izleme panosunda görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3883"/>
+        <location filename="../src/configdialog.ui" line="3948"/>
         <source>Always show preview as tool tip</source>
         <translation>Ön izleme her zaman ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3888"/>
+        <location filename="../src/configdialog.ui" line="3953"/>
         <source>Always show both</source>
         <translation>Her zaman ikisi de görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3893"/>
+        <location filename="../src/configdialog.ui" line="3958"/>
         <source>Inline</source>
         <translation>Satır arası</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3898"/>
+        <location filename="../src/configdialog.ui" line="3963"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>İç görüntüleyicide görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3906"/>
+        <location filename="../src/configdialog.ui" line="3971"/>
         <source>Update the preview on text change</source>
         <translation>Metin değiştirildiğinde ön izleme güncellensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3909"/>
+        <location filename="../src/configdialog.ui" line="3974"/>
         <source>Auto Update:</source>
         <translation>Otomatik güncelleme:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3922"/>
+        <location filename="../src/configdialog.ui" line="3987"/>
         <source>Previously previewed text</source>
         <translation>Önceki ön izlenmiş metin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3930"/>
+        <location filename="../src/configdialog.ui" line="3995"/>
         <source>Auto Update Delay:</source>
         <translation>Otomatik güncelleme gecikmesi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3953"/>
+        <location filename="../src/configdialog.ui" line="4018"/>
         <source>Replace beamer class by article</source>
         <translation>Beamer sınıfı article ile değiştirilsin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3966"/>
+        <location filename="../src/configdialog.ui" line="4031"/>
         <source>Precompile Preamble</source>
         <translation>Önceden derlenmiş giriş</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3979"/>
+        <location filename="../src/configdialog.ui" line="4044"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Düzenleyicide formüllerin ön izlemesi ipucu olarak görüntülensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3989"/>
-        <location filename="../src/configdialog.ui" line="4112"/>
+        <location filename="../src/configdialog.ui" line="4054"/>
+        <location filename="../src/configdialog.ui" line="4177"/>
         <source>Scaling:</source>
         <translation>Ölçek:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4084"/>
+        <location filename="../src/configdialog.ui" line="4149"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Internal PDF Viewer</source>
         <translation>İç PDF görüntüleyici</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4235"/>
+        <location filename="../src/configdialog.ui" line="4300"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Onaltılık RGBA değeri olarak yazın. Not: Vurgulamalar teknik sınırlamalar nedeniyle metnin üzerine yapıldığından saydamlık gereklidir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4238"/>
+        <location filename="../src/configdialog.ui" line="4303"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4324"/>
+        <location filename="../src/configdialog.ui" line="4389"/>
         <source>Original Size</source>
         <translation>Özgün boyut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4329"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
         <source>Fit to Window Width</source>
         <translation>Pencere genişliğine sığdırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4334"/>
+        <location filename="../src/configdialog.ui" line="4399"/>
         <source>Fit to Window Size</source>
         <translation>Pencere boyutuna sığdırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4339"/>
+        <location filename="../src/configdialog.ui" line="4404"/>
         <source>Scaled Size</source>
         <translation>Ölçeklenmiş boyut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4344"/>
+        <location filename="../src/configdialog.ui" line="4409"/>
         <source>Fit to Text Width</source>
         <translation>Metin genişliğine sığdırılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4168"/>
+        <location filename="../src/configdialog.ui" line="4233"/>
         <source>Infinite</source>
         <translation>Sonsuz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4434"/>
+        <location filename="../src/configdialog.ui" line="4499"/>
         <source>Scale Option:</source>
         <translation>Ölçek ayarı:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4471"/>
+        <location filename="../src/configdialog.ui" line="4536"/>
         <source>Magnifier Size:</source>
         <translation>Büyüteç boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4187"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source> dpi</source>
         <translation>dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4252"/>
+        <location filename="../src/configdialog.ui" line="4317"/>
         <source>Square</source>
         <translation>Kare</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4257"/>
+        <location filename="../src/configdialog.ui" line="4322"/>
         <source>Circle</source>
         <translation>Daire</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4262"/>
+        <location filename="../src/configdialog.ui" line="4327"/>
         <source>Circle without shadow</source>
         <translation>Gölgesiz daire</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4225"/>
+        <location filename="../src/configdialog.ui" line="4290"/>
         <source>Highlight Duration</source>
         <translation>Vurgulama süresi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4424"/>
+        <location filename="../src/configdialog.ui" line="4489"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>&quot;Metin genişliğine sığdırılsın&quot; seçeneği için yatay kaydırmayı devre dışı bırakın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4316"/>
+        <location filename="../src/configdialog.ui" line="4381"/>
         <source>Border</source>
         <translation>Kenarlık</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4441"/>
+        <location filename="../src/configdialog.ui" line="4506"/>
         <source>Magnifier Shape:</source>
         <translation>Büyüteç şekli:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4478"/>
+        <location filename="../src/configdialog.ui" line="4543"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Gömülü kipte araç çubukları otomatik gizlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4283"/>
+        <location filename="../src/configdialog.ui" line="4348"/>
         <source>Highlight Color</source>
         <translation>Vurgu rengi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4197"/>
+        <location filename="../src/configdialog.ui" line="4262"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bir PDF dosyasının nasıl yükleneceğini belirler:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Ara bellek ile:&lt;/b&gt; Dosya bir ara belleğe yüklenir ve eksiksiz olup olmadığını denetlenir. Ardından verileri Poppler üzerine iletilir. Bu seçenek öncelikle, işlem güvenliği olmayan eski Poppler sürümlerini (&amp;lt;0,24) hızlandırmak için sunulmuştur. Büyük ara bellekleri yüklenirken Poppler uygulamasının çökebileceği bildirilmiştir. Bu nedenle bu seçenek kullanımdan kaldırılmıştır.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Doğrudan:&lt;/b&gt; Doğal Poppler dosya yüklemesi kullanılır. Bu en hızlı seçenektir, ancak eksik dosyaların denetlenmesine izin vermez.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Karma (önerilir):&lt;/b&gt; Önce dosya ara belleğe yüklenir ve eksiksiz olup olmadığı denetlenir. Ara bellek küçük belgeler için kullanılır (&amp;lt; 50MB). Büyük dosyalar için doğal Poppler dosya yüklemesi kullanılır. Bu seçenek, büyük PDF dosyaları ile ilgili sorunları önlerken dosya denetimini de kullanır. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4207"/>
+        <location filename="../src/configdialog.ui" line="4272"/>
         <source>Buffered</source>
         <translation>Ara bellekte</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4212"/>
+        <location filename="../src/configdialog.ui" line="4277"/>
         <source>Direct</source>
         <translation>Doğrudan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4217"/>
+        <location filename="../src/configdialog.ui" line="4282"/>
         <source>Hybrid</source>
         <translation>Karma</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4136"/>
+        <location filename="../src/configdialog.ui" line="4201"/>
         <source>Cache Size:</source>
         <translation>Ön bellek boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4394"/>
-        <location filename="../src/configdialog.ui" line="4448"/>
+        <location filename="../src/configdialog.ui" line="4459"/>
+        <location filename="../src/configdialog.ui" line="4513"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2663,118 +2668,118 @@ Oluşturma sorunları çıkıyorsa alternatif &apos;Arthur&apos; arka plan uygul
 Not: Bu ayar, yalnız değiştirildikten sonra açılan belgeleri etkiler.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4146"/>
+        <location filename="../src/configdialog.ui" line="4211"/>
         <source> px</source>
         <translation>piksel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4374"/>
+        <location filename="../src/configdialog.ui" line="4439"/>
         <source>Synchronized Files Types:</source>
         <translation>Eşitlenmiş dosya türleri:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4400"/>
+        <location filename="../src/configdialog.ui" line="4465"/>
         <source>Render Backend:</source>
         <translation>Oluşturucu arka plan uygulaması:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4119"/>
+        <location filename="../src/configdialog.ui" line="4184"/>
         <source>Load Strategy:</source>
         <translation>Yükleme stratejisi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4352"/>
+        <location filename="../src/configdialog.ui" line="4417"/>
         <source> MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4417"/>
+        <location filename="../src/configdialog.ui" line="4482"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Not: Pencere/gömülü kip oluştur -&gt; PDF görüntüleyici menüsünden ayarlanabilir.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4384"/>
+        <location filename="../src/configdialog.ui" line="4449"/>
         <source>Paper Color</source>
         <translation>Kağıt rengi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4293"/>
+        <location filename="../src/configdialog.ui" line="4358"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Varsayılan arka plan rengi. Onaltılık RGB değeri olarak belirtin. Not: Bu ayar yalnız değiştirilmesinden sonra yüklenen PDF dosyalarını etkiler. Zaten açık olan PDF dosyalarının kağıt rengi değiştirilmez.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4129"/>
+        <location filename="../src/configdialog.ui" line="4194"/>
         <source>Auto-recompile document on changes</source>
         <translation>Değişiklik yapıldığında belge otomatik olarak derlensin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4410"/>
+        <location filename="../src/configdialog.ui" line="4475"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>Sunum laser işaretleyici boyutu:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4485"/>
+        <location filename="../src/configdialog.ui" line="4550"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>Sunum laser işaretleyici rengi:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4541"/>
+        <location filename="../src/configdialog.ui" line="4636"/>
         <source>Use SVN</source>
         <translation>SVN kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4546"/>
+        <location filename="../src/configdialog.ui" line="4641"/>
         <source>Use GIT</source>
         <translation>GIT kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4554"/>
+        <location filename="../src/configdialog.ui" line="4649"/>
         <source>Select how txs checks in saved files</source>
         <translation>Kaydedilmiş dosyalarda txs denetiminin nasıl yapılacağını seçin</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4558"/>
+        <location filename="../src/configdialog.ui" line="4653"/>
         <source>No automatic check-in after save</source>
         <translation>Kaydedildikten sonra otomatik çıkış yapılmasın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4563"/>
+        <location filename="../src/configdialog.ui" line="4658"/>
         <source>Check-in after File/Save only</source>
         <translation>Yalnız dosya/kaydet işleminden sonra çıkış yapılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4568"/>
+        <location filename="../src/configdialog.ui" line="4663"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Tüm kaydetme işlemlerinden sonra,yani derlemeden önce çıkış yapılsın.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4576"/>
+        <location filename="../src/configdialog.ui" line="4671"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Son kaydedilen sürümden öncesine dönmek için SVN/GIT sürümleri kullanılsın</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4583"/>
+        <location filename="../src/configdialog.ui" line="4678"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>svn add sırasında svn propset svn:keywords &quot;Date Author Revision HeadURL&quot; yürütülsün</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4586"/>
+        <location filename="../src/configdialog.ui" line="4681"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Anahtar sözcükler özellikler ile değiştirilsin (svn add işleminde)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4595"/>
+        <location filename="../src/configdialog.ui" line="4690"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN dizini arama düzeyi derinliği:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4652"/>
+        <location filename="../src/configdialog.ui" line="4748"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal Terminal</source>
         <translation>İç konsol</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="4799"/>
         <source>Shell:</source>
         <translation>Kabuk:</translation>
     </message>
@@ -2853,7 +2858,7 @@ ayarlamak istiyor musunuz?</translation>
         <translation>Fark</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3814"/>
+        <location filename="../src/configdialog.ui" line="3879"/>
         <location filename="../src/configdialog.cpp" line="498"/>
         <location filename="../src/configdialog.cpp" line="540"/>
         <source>Preview</source>
@@ -2920,7 +2925,7 @@ ayarlamak istiyor musunuz?</translation>
         <translation>Araç çubukları</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1345"/>
+        <location filename="../src/configdialog.ui" line="1369"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>GUI Scaling</source>
         <translation>GUI ölçekleme</translation>
@@ -2941,7 +2946,7 @@ ayarlamak istiyor musunuz?</translation>
         <translation>Dil denetimi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4534"/>
+        <location filename="../src/configdialog.ui" line="4629"/>
         <location filename="../src/configdialog.cpp" line="542"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -3108,682 +3113,687 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
         <translation>&amp;Tablo ortamı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="18"/>
+        <location filename="../src/additionaltranslations.cpp" line="19"/>
         <source>&amp;Vertical Spacing</source>
         <translation>&amp;Dikey boşluk</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="19"/>
+        <location filename="../src/additionaltranslations.cpp" line="20"/>
         <source>International &amp;Accents</source>
         <translation>Uluslararası &amp;vurgular</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="22"/>
+        <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Cross References</source>
         <translation>Çapraz başvurular</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="23"/>
+        <location filename="../src/additionaltranslations.cpp" line="24"/>
         <source>Bibliography</source>
         <translation>Kaynakça</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="24"/>
+        <location filename="../src/additionaltranslations.cpp" line="25"/>
         <source>&amp;Math</source>
         <translation>&amp;Matematik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="26"/>
+        <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Functions</source>
         <translation>Matematik iş&amp;levleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="28"/>
+        <location filename="../src/additionaltranslations.cpp" line="29"/>
         <source>Math Font St&amp;yles</source>
         <translation>Matematik &amp;yazı biçemleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="30"/>
+        <location filename="../src/additionaltranslations.cpp" line="31"/>
         <source>Math &amp;Accents</source>
         <translation>Matematik &amp;vurguları</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="31"/>
+        <location filename="../src/additionaltranslations.cpp" line="32"/>
         <source>Math S&amp;paces</source>
         <translation>Matematik b&amp;oşlukları</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="32"/>
+        <location filename="../src/additionaltranslations.cpp" line="33"/>
         <source>AMS packages</source>
         <translation>AMS paketleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="20"/>
+        <location filename="../src/additionaltranslations.cpp" line="21"/>
         <source>Input/Include &amp;Files</source>
         <translation>&amp;Dosyaları gir/kat</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="21"/>
+        <location filename="../src/additionaltranslations.cpp" line="18"/>
+        <source>&amp;Horizontal Spacing</source>
+        <translation>&amp;Yatay aralık</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="22"/>
         <source>Review remarks (easyReview)</source>
         <translation>Yorumları gözden geçir (kolay gözden geçirme)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="25"/>
+        <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math &amp;Equations</source>
         <translation>Metematik &amp;denklemleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="27"/>
+        <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math &amp;Definitions</source>
         <translation>Matematik &amp;tanımları</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="29"/>
+        <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Math &amp;Stacking Symbols</source>
         <translation>Matematik &amp;küme simgeleri</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="33"/>
+        <location filename="../src/additionaltranslations.cpp" line="34"/>
         <source>\begin{document}</source>
         <translation>\begin{document}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="34"/>
+        <location filename="../src/additionaltranslations.cpp" line="35"/>
         <source>part</source>
         <translation>part</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="35"/>
+        <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>chapter</source>
         <translation>chapter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="36"/>
+        <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>section</source>
         <translation>section</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="37"/>
+        <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>subsection</source>
         <translation>subsection</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="38"/>
+        <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>subsubsection</source>
         <translation>subsubsection</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="39"/>
+        <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>paragraph</source>
         <translation>paragraph</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="40"/>
+        <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>subparagraph</source>
         <translation>subparagraph</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="41"/>
+        <location filename="../src/additionaltranslations.cpp" line="42"/>
         <source>part*</source>
         <translation>part*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="42"/>
+        <location filename="../src/additionaltranslations.cpp" line="43"/>
         <source>chapter*</source>
         <translation>chapter*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="43"/>
+        <location filename="../src/additionaltranslations.cpp" line="44"/>
         <source>section*</source>
         <translation>section*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="44"/>
+        <location filename="../src/additionaltranslations.cpp" line="45"/>
         <source>subsection*</source>
         <translation>subsection*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="45"/>
+        <location filename="../src/additionaltranslations.cpp" line="46"/>
         <source>subsubsection*</source>
         <translation>subsubsection*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="46"/>
+        <location filename="../src/additionaltranslations.cpp" line="47"/>
         <source>paragraph*</source>
         <translation>paragraph*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="47"/>
+        <location filename="../src/additionaltranslations.cpp" line="48"/>
         <source>subparagraph*</source>
         <translation>subparagraph*</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="48"/>
+        <location filename="../src/additionaltranslations.cpp" line="49"/>
         <source>\begin{&lt;environment&gt;}</source>
         <translation>\begin{&lt;environment&gt;}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="49"/>
+        <location filename="../src/additionaltranslations.cpp" line="50"/>
         <source>\begin{center}</source>
         <translation>\begin{center}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="50"/>
+        <location filename="../src/additionaltranslations.cpp" line="51"/>
         <source>\begin{flushleft}</source>
         <translation>\begin{flushleft}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="51"/>
+        <location filename="../src/additionaltranslations.cpp" line="52"/>
         <source>\begin{flushright}</source>
         <translation>\begin{flushright}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="52"/>
+        <location filename="../src/additionaltranslations.cpp" line="53"/>
         <source>\begin{quote}</source>
         <translation>\begin{quote}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="53"/>
+        <location filename="../src/additionaltranslations.cpp" line="54"/>
         <source>\begin{quotation}</source>
         <translation>\begin{quotation}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="54"/>
+        <location filename="../src/additionaltranslations.cpp" line="55"/>
         <source>\begin{verse}</source>
         <translation>\begin{verse}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="55"/>
+        <location filename="../src/additionaltranslations.cpp" line="56"/>
         <source>\begin{verbatim}</source>
         <translation>\begin{verbatim}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="56"/>
+        <location filename="../src/additionaltranslations.cpp" line="57"/>
         <source>\begin{table}</source>
         <translation>\begin{table}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="57"/>
+        <location filename="../src/additionaltranslations.cpp" line="58"/>
         <source>\begin{figure}</source>
         <translation>\begin{figure}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="58"/>
+        <location filename="../src/additionaltranslations.cpp" line="59"/>
         <source>\begin{titlepage}</source>
         <translation>\begin{titlepage}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="59"/>
+        <location filename="../src/additionaltranslations.cpp" line="60"/>
         <source>\begin{itemize}</source>
         <translation>\begin{itemize}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="60"/>
+        <location filename="../src/additionaltranslations.cpp" line="61"/>
         <source>\begin{enumerate}</source>
         <translation>\begin{enumerate}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="61"/>
+        <location filename="../src/additionaltranslations.cpp" line="62"/>
         <source>\begin{description}</source>
         <translation>\begin{description}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="62"/>
+        <location filename="../src/additionaltranslations.cpp" line="63"/>
         <source>\begin{list}</source>
         <translation>\begin{list}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="63"/>
+        <location filename="../src/additionaltranslations.cpp" line="64"/>
         <source>mbox</source>
         <translation>mbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="64"/>
+        <location filename="../src/additionaltranslations.cpp" line="65"/>
         <source>makebox</source>
         <translation>makebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="65"/>
+        <location filename="../src/additionaltranslations.cpp" line="66"/>
         <source>fbox</source>
         <translation>fbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="66"/>
+        <location filename="../src/additionaltranslations.cpp" line="67"/>
         <source>framebox</source>
         <translation>framebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="67"/>
+        <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>newsavebox</source>
         <translation>newsavebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="68"/>
+        <location filename="../src/additionaltranslations.cpp" line="69"/>
         <source>sbox</source>
         <translation>sbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="69"/>
+        <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>savebox</source>
         <translation>savebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="70"/>
+        <location filename="../src/additionaltranslations.cpp" line="71"/>
         <source>usebox</source>
         <translation>usebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="71"/>
+        <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>raisebox</source>
         <translation>raisebox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="72"/>
+        <location filename="../src/additionaltranslations.cpp" line="73"/>
         <source>parbox</source>
         <translation>parbox</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="73"/>
+        <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>\begin{minipage}</source>
         <translation>\begin{minipage}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="74"/>
+        <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>rule</source>
         <translation>rule</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="75"/>
+        <location filename="../src/additionaltranslations.cpp" line="76"/>
         <source>Emphasis - \emph</source>
         <translation>Vurgu - \emph</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="76"/>
+        <location filename="../src/additionaltranslations.cpp" line="77"/>
         <source>Italics - \textit</source>
         <translation>Yatık - \textit</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="77"/>
+        <location filename="../src/additionaltranslations.cpp" line="78"/>
         <source>Slanted - \textsl</source>
         <translation>Eğik - \textsl</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="78"/>
+        <location filename="../src/additionaltranslations.cpp" line="79"/>
         <source>Boldface - \textbf</source>
         <translation>Koyu - \textbf</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="79"/>
+        <location filename="../src/additionaltranslations.cpp" line="80"/>
         <source>Typewriter - \texttt</source>
         <translation>Daktilo - \texttt</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="80"/>
+        <location filename="../src/additionaltranslations.cpp" line="81"/>
         <source>Small Caps - \textsc</source>
         <translation>Küçük büyük harfler - \textsc</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="81"/>
+        <location filename="../src/additionaltranslations.cpp" line="82"/>
         <source>Sans Serif - \textsf</source>
         <translation>Sans Serif - \textsf</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="82"/>
+        <location filename="../src/additionaltranslations.cpp" line="83"/>
         <source>Underline - \underline</source>
         <translation>Alt çizgi - \underline</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="83"/>
+        <location filename="../src/additionaltranslations.cpp" line="84"/>
         <source>tiny</source>
         <translation>minik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="84"/>
+        <location filename="../src/additionaltranslations.cpp" line="85"/>
         <source>scriptsize</source>
         <translation>küçükboyut</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="85"/>
+        <location filename="../src/additionaltranslations.cpp" line="86"/>
         <source>footnotesize</source>
         <translation>dipnotboyutu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="86"/>
+        <location filename="../src/additionaltranslations.cpp" line="87"/>
         <source>small</source>
         <translation>küçük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="87"/>
+        <location filename="../src/additionaltranslations.cpp" line="88"/>
         <source>normalsize</source>
         <translation>normalboyut</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="88"/>
+        <location filename="../src/additionaltranslations.cpp" line="89"/>
         <source>large</source>
         <translation>büyük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="89"/>
+        <location filename="../src/additionaltranslations.cpp" line="90"/>
         <source>Large</source>
         <translation>Büyük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="90"/>
+        <location filename="../src/additionaltranslations.cpp" line="91"/>
         <source>LARGE</source>
         <translation>BÜYÜK</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="91"/>
+        <location filename="../src/additionaltranslations.cpp" line="92"/>
         <source>huge</source>
         <translation>çokbüyük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="92"/>
+        <location filename="../src/additionaltranslations.cpp" line="93"/>
         <source>Huge</source>
         <translation>Çokbüyük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="93"/>
+        <location filename="../src/additionaltranslations.cpp" line="94"/>
         <source>\begin{tabbing}</source>
         <translation>\begin{tabbing}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="94"/>
+        <location filename="../src/additionaltranslations.cpp" line="95"/>
         <source>\begin{tabular}</source>
         <translation>\begin{tabular}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="95"/>
+        <location filename="../src/additionaltranslations.cpp" line="96"/>
         <source>New line - \\</source>
         <translation>Yeni satır - \\</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="98"/>
+        <location filename="../src/additionaltranslations.cpp" line="99"/>
         <source>\includeonly{filelist}</source>
         <translation>\includeonly{filelist}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="99"/>
+        <location filename="../src/additionaltranslations.cpp" line="100"/>
         <source>\includegraphics{file}</source>
         <translation>\includegraphics{file}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="97"/>
+        <location filename="../src/additionaltranslations.cpp" line="98"/>
         <source>\include{file}</source>
         <translation>\include{file}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="96"/>
+        <location filename="../src/additionaltranslations.cpp" line="97"/>
         <source>\input{file}</source>
         <translation>\input{file}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="100"/>
+        <location filename="../src/additionaltranslations.cpp" line="101"/>
         <source>label</source>
         <translation>etiket</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="101"/>
+        <location filename="../src/additionaltranslations.cpp" line="102"/>
         <source>index</source>
         <translation>dizin</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="102"/>
+        <location filename="../src/additionaltranslations.cpp" line="103"/>
         <source>cite</source>
         <translation>alıntı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="103"/>
+        <location filename="../src/additionaltranslations.cpp" line="104"/>
         <source>footnote</source>
         <translation>dipnot</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="104"/>
+        <location filename="../src/additionaltranslations.cpp" line="105"/>
         <source>Inline math mode $...$</source>
         <translation>Satır arası matematik kipi $...$</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="105"/>
+        <location filename="../src/additionaltranslations.cpp" line="106"/>
         <source>LaTeX inline math mode \(...\)</source>
         <translation>LaTeX satır arası matematik kipi \(...\)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="106"/>
+        <location filename="../src/additionaltranslations.cpp" line="107"/>
         <source>Display math mode \[...\]</source>
         <translation>Matematik kipini görüntüle \[...\]</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="107"/>
+        <location filename="../src/additionaltranslations.cpp" line="108"/>
         <source>Subscript - _{}</source>
         <translation>Alt simge - _{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="108"/>
+        <location filename="../src/additionaltranslations.cpp" line="109"/>
         <source>Superscript - ^{}</source>
         <translation>Üst simge - ^{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="113"/>
+        <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>\begin{array}</source>
         <translation>\begin{array}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="114"/>
+        <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>env equation</source>
         <translation>env denklemi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="115"/>
+        <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>env equation* (amsmath)</source>
         <translation>env denklemi* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="116"/>
+        <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>env align (amsmath)</source>
         <translation>env hizası (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="121"/>
+        <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>env align* (amsmath)</source>
         <translation>env hizası* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="117"/>
+        <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>env alignat (amsmath)</source>
         <translation>env alignat (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="122"/>
+        <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>env alignat* (amsmath)</source>
         <translation>env alignat* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="118"/>
+        <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>env flalign (amsmath)</source>
         <translation>env flalign (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="123"/>
+        <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>env flalign* (amsmath)</source>
         <translation>env flalign* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="119"/>
+        <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>env gather (amsmath)</source>
         <translation>env gather (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="124"/>
+        <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>env gather* (amsmath)</source>
         <translation>env gather* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="120"/>
+        <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>env multline (amsmath)</source>
         <translation>env multline (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="125"/>
+        <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>env multline* (amsmath)</source>
         <translation>env multline* (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="126"/>
+        <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>env cases (amsmath)</source>
         <translation>env cases (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="127"/>
+        <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>env split (amsmath)</source>
         <translation>env split (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="128"/>
+        <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>env Corollary (ntheorem)</source>
         <translation>env Sonucu (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="129"/>
+        <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>env Definition (ntheorem)</source>
         <translation>env Tanımı (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="130"/>
+        <location filename="../src/additionaltranslations.cpp" line="131"/>
         <source>env Example (ntheorem)</source>
         <translation>env Örneği (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="131"/>
+        <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>env Lemma (ntheorem)</source>
         <translation>env Ön kabulu (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="132"/>
+        <location filename="../src/additionaltranslations.cpp" line="133"/>
         <source>env Proof (ntheorem)</source>
         <translation>env İspatı (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="133"/>
+        <location filename="../src/additionaltranslations.cpp" line="134"/>
         <source>env Proposition (ntheorem)</source>
         <translation>env Önermesi (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="134"/>
+        <location filename="../src/additionaltranslations.cpp" line="135"/>
         <source>env Remark (ntheorem)</source>
         <translation>env Notu (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="135"/>
+        <location filename="../src/additionaltranslations.cpp" line="136"/>
         <source>env Theorem (ntheorem)</source>
         <translation>env Teoremi (ntheorem)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="136"/>
+        <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>Roman - \mathrm{}</source>
         <translation>Romen - \mathrm{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="137"/>
+        <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>Italic - \mathit{}</source>
         <translation>Yatık - \mathit{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="138"/>
+        <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>Bold - \mathbf{}</source>
         <translation>Koyu - \mathbf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="139"/>
+        <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>Sans Serif - \mathsf{}</source>
         <translation>Sans Serif - \mathsf{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="140"/>
+        <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>Typewriter - \mathtt{}</source>
         <translation>Daktilo - \mathtt{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="141"/>
+        <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Calligraphic - \mathcal{}</source>
         <translation>Kaligrafik - \mathcal{}</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="142"/>
+        <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
         <translation>Karatahta koyu - \mathbb{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="143"/>
+        <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
         <translation>Fraktür - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="144"/>
+        <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\overset (amsmath)</source>
         <translation>\overset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="145"/>
+        <location filename="../src/additionaltranslations.cpp" line="146"/>
         <source>\underset (amsmath)</source>
         <translation>\underset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="146"/>
+        <location filename="../src/additionaltranslations.cpp" line="147"/>
         <source>\sideset (amsmath)</source>
         <translation>\sideset (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="147"/>
+        <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>\prescript (mathtools)</source>
         <translation>\prescript (mathtools)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="148"/>
+        <location filename="../src/additionaltranslations.cpp" line="149"/>
         <source>Negative - \!</source>
         <translation>Negatif - \!</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="149"/>
+        <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>Thin - \,</source>
         <translation>İnce - \,</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="150"/>
+        <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>Medium - \:</source>
         <translation>Orta - \:</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="151"/>
+        <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>Thick - \;</source>
         <translation>Kalın - \;</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="152"/>
+        <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Interword - \ </source>
         <translation>Sözcük arası - \ </translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="153"/>
+        <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>One quad - \quad</source>
         <translation>Bir quad - \quad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="154"/>
+        <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Two quads - \qquad</source>
         <translation>İki quad - \qquad</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="155"/>
+        <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>ref</source>
         <translation>ref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="156"/>
+        <location filename="../src/additionaltranslations.cpp" line="157"/>
         <source>eqref</source>
         <translation>denklemref</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="157"/>
+        <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>pageref</source>
         <translation>sayfaref</translation>
     </message>
@@ -6782,462 +6792,462 @@ Notlar:
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="158"/>
+        <location filename="../src/additionaltranslations.cpp" line="159"/>
         <source>background</source>
         <translation>arka plan</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="159"/>
+        <location filename="../src/additionaltranslations.cpp" line="160"/>
         <source>line:error</source>
         <translation>satır:hata</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="160"/>
+        <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>line:warning</source>
         <translation>satır:uyarı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="161"/>
+        <location filename="../src/additionaltranslations.cpp" line="162"/>
         <source>line:badbox</source>
         <translation>satır:kötü kutu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="162"/>
+        <location filename="../src/additionaltranslations.cpp" line="163"/>
         <source>line:bookmark</source>
         <translation>satır:yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="163"/>
+        <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>line:bookmark0</source>
         <translation>satır:0. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="164"/>
+        <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>line:bookmark1</source>
         <translation>satır:1. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="165"/>
+        <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>line:bookmark2</source>
         <translation>satır:2. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="166"/>
+        <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>line:bookmark3</source>
         <translation>satır:3. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="167"/>
+        <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>line:bookmark4</source>
         <translation>satır:4. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="168"/>
+        <location filename="../src/additionaltranslations.cpp" line="169"/>
         <source>line:bookmark5</source>
         <translation>satır:5. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="169"/>
+        <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>line:bookmark6</source>
         <translation>satır:6. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="170"/>
+        <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>line:bookmark7</source>
         <translation>satır:7. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="171"/>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>line:bookmark8</source>
         <translation>satır:8. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>line:bookmark9</source>
         <translation>satır:9. yer imi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="173"/>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>magicComment</source>
         <translation>SihirliAçıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>commentTodo</source>
         <translation>AçıklamaYapılacakİş</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="175"/>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>comment</source>
         <translation>açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>keyword</source>
         <translation>anahtar sözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="177"/>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>extra-keyword</source>
         <translation>ek anahtar sözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>math-keyword</source>
         <translation>matematik anahtar sözcüğü</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="179"/>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>link</source>
         <translation>bağlantı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>align-ampersand</source>
         <translation>hizala-ve-isareti</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="181"/>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>verbatim</source>
         <translation>sözcüğü sözcüğüne</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>sweave-block</source>
         <translation>sweave-bloğu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="183"/>
+        <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>sweave-delimiter</source>
         <translation>sweave-ayıracı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="184"/>
+        <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>pweave-block</source>
         <translation>pweave-bloğu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="185"/>
+        <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>pweave-delimiter</source>
         <translation>pweave-ayıracı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="186"/>
+        <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>picture</source>
         <translation>görsel</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="187"/>
+        <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>picture-keyword</source>
         <translation>görsel-anahtar-sözcüğü</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="188"/>
+        <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>braceMatch</source>
         <translation>YaylıParantezEşleşen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="189"/>
+        <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>braceMismatch</source>
         <translation>YayılıParantezEşleşmeyen</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="190"/>
+        <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>search</source>
         <translation>arama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="191"/>
+        <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>numbers</source>
         <translation>sayılar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="192"/>
+        <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>math-delimiter</source>
         <translation>matematik-sınırlayıcı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="193"/>
+        <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>math-text</source>
         <translation>math-text</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="194"/>
+        <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>text</source>
         <translation>metin</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="195"/>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>escapeseq</source>
         <translation>KaçışSıralaması</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>spellingMistake</source>
         <translation>YazımHatası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="197"/>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>wordRepetition</source>
         <translation>SözcükYinelenmesi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>wordRepetitionLongRange</source>
         <translation>UzunAralıklıSözcükYinelenmesi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="199"/>
+        <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>badWord</source>
         <translation>KötüSözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="200"/>
+        <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>grammarMistake</source>
         <translation>DilBilgisiHatası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="201"/>
+        <location filename="../src/additionaltranslations.cpp" line="202"/>
         <source>grammarMistakeSpecial1</source>
         <translation>DilBilgisiHatasıÖzel1</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="202"/>
+        <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>grammarMistakeSpecial2</source>
         <translation>DilBilgisiHatasıÖzel2</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="203"/>
+        <location filename="../src/additionaltranslations.cpp" line="204"/>
         <source>grammarMistakeSpecial3</source>
         <translation>DilBilgisiHatasıÖzel3</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="204"/>
+        <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>grammarMistakeSpecial4</source>
         <translation>DilBilgisiHatasıÖzel4</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="205"/>
+        <location filename="../src/additionaltranslations.cpp" line="206"/>
         <source>latexSyntaxMistake</source>
         <translation>LatexSözDizimiHatası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="206"/>
+        <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>temporaryCodeCompletion</source>
         <translation>GeçiciKodTamamlama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="207"/>
+        <location filename="../src/additionaltranslations.cpp" line="208"/>
         <source>environment</source>
         <translation>ortam</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="208"/>
+        <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>referencePresent</source>
         <translation>BaşvuruVar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="209"/>
+        <location filename="../src/additionaltranslations.cpp" line="210"/>
         <source>referenceMissing</source>
         <translation>BaşvuruEksik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="210"/>
+        <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>referenceMultiple</source>
         <translation>BaşvuruBirdenÇok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="211"/>
+        <location filename="../src/additionaltranslations.cpp" line="212"/>
         <source>citationPresent</source>
         <translation>AlıntıVar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="212"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>citationMissing</source>
         <translation>AlıntıEksik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
+        <location filename="../src/additionaltranslations.cpp" line="214"/>
         <source>packagePresent</source>
         <translation>PaketVar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="214"/>
+        <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>packageMissing</source>
         <translation>PaketEksik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="215"/>
+        <location filename="../src/additionaltranslations.cpp" line="216"/>
         <source>structure</source>
         <translation>yapı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="216"/>
+        <location filename="../src/additionaltranslations.cpp" line="217"/>
         <source>current</source>
         <translation>geçerli</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="217"/>
+        <location filename="../src/additionaltranslations.cpp" line="218"/>
         <source>selection</source>
         <translation>seçim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="218"/>
+        <location filename="../src/additionaltranslations.cpp" line="219"/>
         <source>replacement</source>
         <translation>değişiklik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="219"/>
+        <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>diffDelete</source>
         <translation>FarkSil</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="220"/>
+        <location filename="../src/additionaltranslations.cpp" line="221"/>
         <source>diffAdd</source>
         <translation>FarkEkle</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="221"/>
+        <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>diffReplace</source>
         <translation>FarkDeğiştir</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="222"/>
+        <location filename="../src/additionaltranslations.cpp" line="223"/>
         <source>previewSelection</source>
         <translation>ÖnİzlemeSeçimi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="223"/>
+        <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>txs-test</source>
         <translation>txs-deneme</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="224"/>
+        <location filename="../src/additionaltranslations.cpp" line="225"/>
         <source>txs-test-summary</source>
         <translation>txs-deneme-özeti</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="225"/>
+        <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>txs-test-pass</source>
         <translation>txs-deneme-başarılı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="226"/>
+        <location filename="../src/additionaltranslations.cpp" line="227"/>
         <source>txs-test-fail</source>
         <translation>txs-deneme-başarısız</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="227"/>
+        <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>txs-test-warn</source>
         <translation>txs-deneme-uyarı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="228"/>
+        <location filename="../src/additionaltranslations.cpp" line="229"/>
         <source>txs-test-qdebug</source>
         <translation>txs-deneme-hata-ayıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="229"/>
+        <location filename="../src/additionaltranslations.cpp" line="230"/>
         <source>dtx:guard</source>
         <translation>dtx:koruma</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="230"/>
+        <location filename="../src/additionaltranslations.cpp" line="231"/>
         <source>dtx:macro</source>
         <translation>dtx:makro</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="231"/>
+        <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>dtx:verbatim</source>
         <translation>dtx:sözcüksözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="232"/>
+        <location filename="../src/additionaltranslations.cpp" line="233"/>
         <source>dtx:specialchar</source>
         <translation>dtx:özelkarakter</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="233"/>
+        <location filename="../src/additionaltranslations.cpp" line="234"/>
         <source>dtx:commands</source>
         <translation>dtx:komutlar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="234"/>
+        <location filename="../src/additionaltranslations.cpp" line="235"/>
         <source>lua:keyword</source>
         <translation>lua:anahtarsözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="235"/>
+        <location filename="../src/additionaltranslations.cpp" line="236"/>
         <source>lua:comment</source>
         <translation>lua:açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="236"/>
+        <location filename="../src/additionaltranslations.cpp" line="237"/>
         <source>asymptote:block</source>
         <translation>asymptote:blok</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="237"/>
+        <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>asymptote:keyword</source>
         <translation>asymptote:anahtarsözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="238"/>
+        <location filename="../src/additionaltranslations.cpp" line="239"/>
         <source>asymptote:type</source>
         <translation>asymptote:tür</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="239"/>
+        <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>asymptote:numbers</source>
         <translation>asymptote:sayılar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="240"/>
+        <location filename="../src/additionaltranslations.cpp" line="241"/>
         <source>asymptote:string</source>
         <translation>asymptote:dizge</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="241"/>
+        <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>asymptote:comment</source>
         <translation>asymptote:açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="242"/>
+        <location filename="../src/additionaltranslations.cpp" line="243"/>
         <source>qtscript:comment</source>
         <translation>qtscript:açıklama</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="243"/>
+        <location filename="../src/additionaltranslations.cpp" line="244"/>
         <source>qtscript:string</source>
         <translation>qtscript:dizge</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="244"/>
+        <location filename="../src/additionaltranslations.cpp" line="245"/>
         <source>qtscript:number</source>
         <translation>qtscript:sayı</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="245"/>
+        <location filename="../src/additionaltranslations.cpp" line="246"/>
         <source>qtscript:keyword</source>
         <translation>qtscript:anahtarsözcük</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="246"/>
+        <location filename="../src/additionaltranslations.cpp" line="247"/>
         <source>qtscript:txs-variable</source>
         <translation>qtscript:txs-değişkeni</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="247"/>
+        <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>qtscript:txs-function</source>
         <translation>qtscript:txs-işlevi</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="248"/>
+        <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>preedit</source>
         <translation>öndüzenleme</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="249"/>
+        <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
@@ -7532,6 +7542,11 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="630"/>
         <source>The search text occurs %1 times within the search scope.</source>
         <translation>Arama metni aralıkta %1 kez bulunuyor.</translation>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="863"/>
+        <source> (col. %1)</source>
+        <translation> (%1. süt)</translation>
     </message>
 </context>
 <context>
@@ -8856,136 +8871,136 @@ dosyası silinemedi.</translation>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="250"/>
+        <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>Custom</source>
         <translation>Özel</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="251"/>
+        <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>File</source>
         <translation>Dosya</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="252"/>
+        <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>Edit</source>
         <translation>Düzenle</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="253"/>
+        <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>Tools</source>
         <translation>Araçlar</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="254"/>
+        <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>Math</source>
         <translation>Matematik</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="255"/>
+        <location filename="../src/additionaltranslations.cpp" line="256"/>
         <source>Format</source>
         <translation>Biçim</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="256"/>
+        <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>Table</source>
         <translation>Tablo</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="257"/>
+        <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>Diff</source>
         <translation>Fark</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="258"/>
+        <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>Review</source>
         <translation>Gözden geçir</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="259"/>
+        <location filename="../src/additionaltranslations.cpp" line="260"/>
         <location filename="../src/texstudio.cpp" line="289"/>
         <source>Central</source>
         <translation>Merkez</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="260"/>
+        <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="261"/>
+        <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="262"/>
+        <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>İkili</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="263"/>
+        <location filename="../src/additionaltranslations.cpp" line="264"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtx dosyası</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="264"/>
+        <location filename="../src/additionaltranslations.cpp" line="265"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Homespring</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="265"/>
+        <location filename="../src/additionaltranslations.cpp" line="266"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="266"/>
+        <location filename="../src/additionaltranslations.cpp" line="267"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="267"/>
+        <location filename="../src/additionaltranslations.cpp" line="268"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>QtScript</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="268"/>
+        <location filename="../src/additionaltranslations.cpp" line="269"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Sweave</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="269"/>
+        <location filename="../src/additionaltranslations.cpp" line="270"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="270"/>
+        <location filename="../src/additionaltranslations.cpp" line="271"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX makrosu</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="271"/>
+        <location filename="../src/additionaltranslations.cpp" line="272"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXS deneme sonuçları</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="272"/>
+        <location filename="../src/additionaltranslations.cpp" line="273"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>Düz metin</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="273"/>
+        <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
@@ -12249,6 +12264,11 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
         <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>Export macro</source>
         <translation>Makroyu dışa aktar</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.cpp" line="546"/>
+        <source> (col. %1)</source>
+        <translation> (%1. süt)</translation>
     </message>
 </context>
 <context>
