@@ -979,14 +979,22 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				completerNeedsUpdate = true;
 				QStringList packagesHelper = firstArg.split(",");
 
-				if (cmd.endsWith("theme")) { // special treatment for  \usetheme
+				if (cmd.endsWith("theme")) { // special treatment for \usetheme
 					QString preambel = cmd;
 					preambel.remove(0, 4);
 					preambel.prepend("beamer");
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
 				}
-                if (cmd=="\\usetikzlibrary") { // special treatment for  \usetheme
+                if (cmd=="\\usetikzlibrary") { // special treatment for \usetikzlibrary
                     QString preambel = "tikzlibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                }
+		if (cmd=="\\usepgfplotslibrary") { // special treatment for \usepgfplotslibrary
+                    QString preambel = "pgfplotslibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                }
+		if (cmd=="\\tcbuselibrary") { // special treatment for \tcbuselibrary
+                    QString preambel = "tcolorboxlibrary";
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
                 }
 

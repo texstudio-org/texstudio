@@ -310,7 +310,7 @@
 #endif
 
 # << Libraries >>
-\tcbuselibrary{%<library%>%keys}
+\tcbuselibrary{%<library%>%keys}#u
 #keyvals:\tcbuselibrary,\usepackage/tcolorbox#c
 skins
 vignette

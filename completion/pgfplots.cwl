@@ -789,7 +789,7 @@ enable tick line clipping#true,false
 # no new user commands
 
 ## pgfplotslibrary.code.tex
-\usepgfplotslibrary{library list%keyvals}
+\usepgfplotslibrary{library list%keyvals}#u
 \pgfplotsiflibraryloaded{library%keyvals}{true}{false}#*
 #keyvals:\usepgfplotslibrary#c,\pgfplotsiflibraryloaded#c
 clickable
