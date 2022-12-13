@@ -6,6 +6,7 @@
 #include:ifplatform
 #include:environ
 #include:pgfplots
+#include:pgfplotslibrarygroupplots
 
 #keyvals:\usepackage/bodeplot#c
 pgf
