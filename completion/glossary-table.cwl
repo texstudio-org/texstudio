@@ -10,6 +10,7 @@
 
 #keyvals:\printunsrttable
 # same options as \printunsrtglossary except nogroupskip, nonumberlist, and style
+type=%<glossary-label%>
 title=%<text%>
 toctitle=%<text%>
 numberedsection=#false,nolabel,autolabel
@@ -35,6 +36,7 @@ par=#false,justified,ragged
 other=%<field-label%>
 init={%<code%>}
 block-style=#name,name-desc,desc-name,name-symbol,symbol-name,name-other,other-name,symbol-other,other-symbol,name-symbol-desc,name-desc-symbol,name-other-desc,desc-other-name,name-symbol-other-desc,name-other-symbol-desc,desc-symbol-other-name,desc-other-symbol-name
+clearpage
 #endkeyvals
 
 \glstableiffilter{label}{true}{false}#*
