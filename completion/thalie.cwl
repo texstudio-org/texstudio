@@ -1,5 +1,5 @@
 # thalie package
-# Matthew Bertucci 12/28/2021 for v0.10c
+# Matthew Bertucci 2022/12/12 for v0.13a
 
 #include:etoolbox
 #include:pgfkeys
@@ -53,10 +53,13 @@ xspace#true,false
 \scenemark{text}#*
 
 \begin{dramatis}
-\begin{dramatis}[hidden]%<%>
+\begin{dramatis}[options%keyvals]
 \end{dramatis}
 
-\characterspace
+#keyvals:\begin{dramatis}
+hidden#true,false
+defaultcast=%<cast%>
+#endkeyvals
 
 \character{name}
 \character[options%keyvals]{name}
@@ -65,17 +68,38 @@ xspace#true,false
 desc=%<description%>
 cmd=%<csname%>
 drama=%<name%>
+cast=%<cast%>
 #endkeyvals
 
 \begin{charactergroup}{description}
 \begin{charactergroup}[width]{description}
 \end{charactergroup}
 
+\begin{castgroup}{name}
+\begin{castgroup}[options%keyvals]{name}
+\end{castgroup}
+
+#keyvals:\begin{castgroup}
+desc=%<description%>
+cmd=%<csname%>
+drama=%<name%>
+#endkeyvals
+
+\cast{cast}
+
+\characterspace
+
 \begin{dramatisenv}#*
 \end{dramatisenv}#*
-\dramatischaracter{name}{description}#*
+\begin{dramatischaractergroup}{width}{description}#*
+\end{dramatischaractergroup}#*
+\begin{dramatischaractercastgroup}{name}{description}{cast}#*
+\end{dramatischaractercastgroup}#*
+\dramatischaracter{name}{description}{cast}#*
 \dramatischaractername{name}#*
 \dramatischaracterdescription{description}#*
+\dramatischaractercast{cast}#*
+\dramatiscast{cast}#*
 
 \disposablecharacter{name}
 \disposablecharacter[directions]{name}
