@@ -4,10 +4,8 @@
 #include:listings
 #include:xcolor
 #include:tcolorbox
-# loads listings and skins tcolorbox libraries
-#include:pdftexcmds
-#include:shellesc
-#include:tikz
+#include:tcolorboxlibrarylistings
+#include:tcolorboxlibraryskins
 
 #keyvals:\usepackage/maker#c
 arduino
