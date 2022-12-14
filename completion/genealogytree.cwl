@@ -18,6 +18,12 @@ fanchart
 all
 #endkeyvals
 
+#ifOption:debug
+#include:array
+#include:tabularx
+#include:tcolorboxlibrarybreakable
+#endif
+
 ### 3 Genealogy Tree Macros ###
 
 ## 3.1 Creating a Genealogy Tree ##
