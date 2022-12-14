@@ -33,8 +33,8 @@ teiexport=#true,false,tidy
 
 #ifOption:layout=fitapp
 #include:tcolorbox
-# loads fitting and skins tcolorbox libraries
-#include:tikz
+#include:tcolorboxlibraryfitting
+#include:tcolorboxlibraryskins
 #endif
 
 #ifOption:poetry=verse
