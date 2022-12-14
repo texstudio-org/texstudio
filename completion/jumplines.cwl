@@ -8,7 +8,7 @@
 #include:xcolor
 # xcolor loaded with dvipsnames, x11names, and svgnames options
 #include:tcolorbox
-# tcolorbox loaded with breakable option
+#include:tcolorboxlibrarybreakable
 #include:babel
 # babel loaded with ngerman and english options
 #include:tocloft
@@ -88,9 +88,6 @@ ArticleAuthor={%<list of authors%>}
 \TeaserBoxList#*
 \articlesname#*
 \byauthor#*
-
-# from breakable option of tcolorbox
-#include:pdfcol
 
 # from dvipsnames option of xcolor
 Apricot#B
