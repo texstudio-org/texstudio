@@ -23,7 +23,7 @@
 #include:xlop
 #include:xfp
 #include:tcolorbox
-# tcolorbox loaded with most option
+#include:tcolorboxlibrarymost
 #include:tikz
 #include:tikzlibrarycalc
 #include:tikzlibraryshapes
@@ -1849,28 +1849,6 @@ YellowGreen#B
 Pink#B
 Seashell#B
 Teal#B
-
-# from most option of tcolorbox (repeats removed)
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:shellesc
-#include:pdfcol
-
-# from tikzmark library v1.10
-\tikzmark{name}
-\tikzmark[drawing command]{name}
-\tikzmark{name}{coordinate}
-\pgfmark{name}
-\iftikzmark{name}{true}{false}
-\iftikzmarkexists{name}
-\iftikzmarkoncurrentpage{name}
-\iftikzmarkonpage{name}{page}
-\tikzmarknode{name}{contents}
-\tikzmarknode[options]{name}{contents}
-\subnode{name}{contents}
-\subnode[options]{name}{contents}
-\usetikzmarklibrary{library}#*
 
 # not documented
 \addtotok{arg1}{arg2}#S
