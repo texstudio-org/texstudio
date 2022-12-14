@@ -10,6 +10,7 @@
 #include:l3keys2e
 #include:aliascnt
 #include:etoolbox
+#include:tcolorboxlibraryhooks
 
 \pseudoset{options%keyvals}
 \pseudodefinestyle{name}{options%keyvals}#s#%pseudostyle
