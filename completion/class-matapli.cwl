@@ -38,7 +38,7 @@
 #include:bclogo
 #include:lettrine
 #include:tcolorbox
-# loads breakable and most tcolorbox libraries
+#include:tcolorboxlibrarymost
 #include:incgraph
 #include:listings
 #include:listingsutf8
