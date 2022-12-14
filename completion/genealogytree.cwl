@@ -4,8 +4,9 @@
 #include:expl3
 #include:xparse
 #include:tcolorbox
-# loads skins (which loads tikz), fitting, and external tcblibraries
-#include:tikz
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibraryfitting
+#include:tcolorboxlibraryexternal
 #include:tikzlibraryfit
 
 \gtruselibrary{library list%keyvals}
