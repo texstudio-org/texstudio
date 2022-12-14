@@ -2,12 +2,9 @@
 # Matthew Bertucci 2022/11/10 for v1
 
 #include:tcolorbox
-# loads skins option of tcolorbox
+#include:tcolorboxlibraryskins
 #include:xstring
 #include:hyperref
-
-# from skins option of tcolorbox
-#include:tikz
 
 \cvssScore{CVSS string}
 \cvssScorepretty{CVSS string}
