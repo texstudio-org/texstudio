@@ -13,7 +13,7 @@
 #include:float
 #include:paracol
 #include:tcolorbox
-# loads most option of tcolorbox
+#include:tcolorboxlibrarymost
 #include:tikz
 #include:graphicx
 #include:mdframed
@@ -88,12 +88,3 @@
 \सुटालेखtrue#*
 \स्थानfalse#*
 \स्थानtrue#*
-
-# from most option of tcolorbox
-#include:amsmath
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
-#include:pdfcol
