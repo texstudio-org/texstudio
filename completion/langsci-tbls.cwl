@@ -3,10 +3,8 @@
 
 #include:etoolbox
 #include:tcolorbox
-# loads breakable, skins, and xparse tcolorbox libraries
-#include:pdfcol
-#include:tikz
-#include:xparse
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
 
 #keyvals:\usepackage/langsci-tbls#c
 mdframed
