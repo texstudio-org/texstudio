@@ -3,7 +3,6 @@
 
 #include:class-memoir
 #include:xparse
-#include:etex
 #include:newunicodechar
 #include:inputenc
 #include:fontenc
@@ -30,7 +29,8 @@
 #include:colortbl
 #include:enumitem
 #include:tcolorbox
-# breakable and skins tcolorbox libraries loaded
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
 #include:pdfcol
 #include:tikz
 
