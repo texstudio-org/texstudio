@@ -326,6 +326,7 @@
 <file>completion/bfhletter.cwl</file>
 <file>completion/bfhmodule.cwl</file>
 <file>completion/bguq.cwl</file>
+<file>completion/bibcop.cwl</file>
 <file>completion/bibentry.cwl</file>
 <file>completion/biblatex2bibitem.cwl</file>
 <file>completion/biblatex-archaeology.cwl</file>
@@ -1168,6 +1169,7 @@
 <file>completion/dhucs-setspace.cwl</file>
 <file>completion/dhucs-trivcj.cwl</file>
 <file>completion/dhucs-ucshyper.cwl</file>
+<file>completion/diadia.cwl</file>
 <file>completion/diagbox.cwl</file>
 <file>completion/diagram.cwl</file>
 <file>completion/diagxy.cwl</file>
@@ -2991,6 +2993,7 @@
 <file>completion/schulma-physik.cwl</file>
 <file>completion/schwalbe.cwl</file>
 <file>completion/scientific-thesis-cover.cwl</file>
+<file>completion/scikgtex.cwl</file>
 <file>completion/sclang-prettifier.cwl</file>
 <file>completion/scontents.cwl</file>
 <file>completion/scraddr.cwl</file>
