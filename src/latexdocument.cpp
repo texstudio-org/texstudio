@@ -997,6 +997,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     QString preambel = "tcolorboxlibrary";
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
                 }
+		if (cmd=="\\UseTblrLibrary") { // special treatment for \UseTblrLibrary
+                    QString preambel = "tabularraylibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                }
 
 				QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
 				if (cmd == "\\documentclass") {
