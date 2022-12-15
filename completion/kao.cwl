@@ -57,7 +57,7 @@
 #include:enumitem
 # loads inline option of enumitem
 #include:tcolorbox
-# loads most option of tcolorbox
+#include:tcolorboxlibrarymost
 #include:pdfpages
 #include:subfiles
 #include:todonotes
@@ -1085,14 +1085,6 @@ YellowOrange#B
 \begin{description*}
 \begin{description*}[options%keyvals]
 \end{description*}
-
-# from most option of tcolorbox
-#include:amsmath
-#include:incgraph
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
-#include:pdfcol
 
 # from xindy option of glossaries
 \GlsSetXdyLanguage{language}
