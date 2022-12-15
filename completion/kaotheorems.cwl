@@ -22,25 +22,11 @@ exercisebackground=#%color
 
 #ifOption:framed
 #include:tcolorbox
-# loads most option of tcolorbox
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
-#include:tikz
-#include:pdfcol
+#include:tcolorboxlibrarymost
 #endif
 #ifOption:framed=true
 #include:tcolorbox
-# loads most option of tcolorbox
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
-#include:tikz
-#include:pdfcol
+#include:tcolorboxlibrarymost
 #endif
 
 #keyvals:\theoremstyle#c
