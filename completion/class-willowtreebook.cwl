@@ -31,8 +31,6 @@
 #include:tcolorbox
 #include:tcolorboxlibrarybreakable
 #include:tcolorboxlibraryskins
-#include:pdfcol
-#include:tikz
 
 #ifOption:ContainsChinese
 #include:CJKutf8
