@@ -2,7 +2,10 @@
 # Matthew Bertucci 2022/06/23
 
 #include:tikz
-# loads shadows, shape.callouts, decorations.pathreplacing, and decorations.text tikzlibraries
+#include:tikzlibraryshadows
+#include:tikzlibraryshape.callouts
+#include:tikzlibrarydecorations.pathreplacing
+#include:tikzlibrarydecorations.text
 #include:ifthen
 
 \boxheight#*
