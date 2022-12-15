@@ -27,9 +27,7 @@
 # loads amsfashion options of projlib-author
 #include:projlib-titlepage
 #include:tcolorbox
-# loads many option of tcolorbox
-#include:amsmath
-#include:pdfcol
+#include:tcolorboxlibrarymany
 
 \LocallyStopLineNumbers
 \ResumeLineNumbers
