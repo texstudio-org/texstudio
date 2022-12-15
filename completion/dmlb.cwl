@@ -22,7 +22,7 @@
 #include:pgf
 #include:pgfplots
 #include:pgfplotstable
-# loads dateplot pgfplotslibrary
+#include:pgfplotslibrarydateplot
 
 #keyvals:\usepackage/dmlb#c
 graph

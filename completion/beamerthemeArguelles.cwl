@@ -31,7 +31,8 @@ mp
 #include:pgfplots
 #include:csvsimple
 #include:tikzlibrarycalc
-# loads statistics and fillbetween pgfplotslibraries
+#include:pgfplotslibrarystatistics
+#include:pgfplotslibraryfillbetween
 #endif
 
 \mediumfont

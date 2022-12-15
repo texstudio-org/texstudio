@@ -4,8 +4,9 @@
 #include:expl3
 #include:xparse
 #include:tcolorbox
-# loads skins (which loads tikz), fitting, and external tcblibraries
-#include:tikz
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibraryfitting
+#include:tcolorboxlibraryexternal
 #include:tikzlibraryfit
 
 \gtruselibrary{library list%keyvals}
@@ -16,6 +17,12 @@ templates
 fanchart
 all
 #endkeyvals
+
+#ifOption:debug
+#include:array
+#include:tabularx
+#include:tcolorboxlibrarybreakable
+#endif
 
 ### 3 Genealogy Tree Macros ###
 

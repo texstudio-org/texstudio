@@ -1,10 +1,14 @@
 # njuvisual package
-# Matthew Bertucci 2022/07/03 for v0.2.1
+# Matthew Bertucci 2022/12/13 for v0.3.0
 
-#include:expl3
 #include:tikz
 
+#keyvals:\usepackage/njuvisual#c
+force
+#endkeyvals
+
 njuviolet#B
+njupurple#B
 njumagenta#B
 njublue#B
 njuyellow#B
@@ -14,13 +18,14 @@ nju-cs-blue#B
 nju-cs-green#B
 nju-chem-red#B
 nju-chem-gold#B
+nju-physics-blue#B
 
-\njuemblem{width}{height}
-\njuemblem[options%keyvals]{width}{height}
-\njuname{width}{height}
-\njuname[options%keyvals]{width}{height}
-\njuname*{width}{height}
-\njuname*[options%keyvals]{width}{height}
+\njuemblem{宽度}{高度}
+\njuemblem[选项%keyvals]{宽度}{高度}
+\njuname{宽度}{高度}
+\njuname[选项%keyvals]{宽度}{高度}
+\njuname*{宽度}{高度}
+\njuname*[选项%keyvals]{宽度}{高度}
 
 #keyvals:\njuemblem,\njuname,\njuname*
 color=#%color
@@ -29,7 +34,7 @@ color*=#%color
 department=%<院系名称%>
 #endkeyvals
 
-\njumotto{width}{height}
-\njumotto[color]{width}{height}
-\njuspirit{width}{height}
-\njuspirit[color]{width}{height}
+\njumotto{宽度}{高度}
+\njumotto[color]{宽度}{高度}
+\njuspirit{宽度}{高度}
+\njuspirit[color]{宽度}{高度}

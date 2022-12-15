@@ -5,7 +5,7 @@
 #include:xparse
 #include:amsthm
 #include:tcolorbox
-# loads most option of tcolorbox
+#include:tcolorboxlibrarymost
 #include:xeCJKfntef
 #include:linegoal
 #include:tikzlibraryshapes.misc
@@ -159,13 +159,3 @@ blank-vsep=##L
 #endkeyvals
 
 \score{分数}
-
-# from most option of tcolorbox
-#include:amsmath
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
-#include:tikz
-#include:pdfcol

@@ -7,13 +7,9 @@
 #include:accsupp
 #include:changepage
 #include:tcolorbox
-# loads listings, breakable, skins, and xparse tcolorbox libraries
-#include:listings
-#include:pdftexcmds
-#include:shellesc
-#include:pdfcol
-#include:tikz
-#include:xparse
+#include:tcolorboxlibrarylistings
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
 
 #keyvals:\usepackage/pst-exa#c
 swpl

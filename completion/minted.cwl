@@ -2,6 +2,7 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
+# modified by Matthew Bertucci 2022 Dec 12, minted v2.7
 
 #include:keyval
 #include:kvoptions
@@ -141,10 +142,6 @@ texcl#true,false
 texcomments#true,false
 xleftmargin=##L
 xrightmargin=##L
-#endkeyvals
-
-# Keys that exclude \mintinline
-#keyvals:\begin{minted},\mint,\inputminted,\setminted,\newminted,\newmint,\newmintedfile
 breakafter=%<string%>
 breakaftergroup#true,false
 breakaftersymbolpre=%<string%>
@@ -183,5 +180,14 @@ breaksymbolseprightnchars=%<int%>
 \TestAppExists{application}#*
 \MintedPygmentize#*
 \MintedPython#*
-\PYG#*
-\PYGZsq#*
+\PYG#S
+\PYGZsq#S
+\PYGZhy#S
+\RobustMintInline{arg}#S
+\RobustMintInline[opt]{arg}#S
+\RobustMintInlineProcess{arg1}{arg2}{arg3}#S
+\RobustMint{arg}#S
+\RobustMint[opt]{arg}#S
+\RobustMintProcess{arg1}{arg2}{arg3}#S
+\RobustNewMint#S
+\RobustNewMintInline#S

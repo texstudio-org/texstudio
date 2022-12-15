@@ -55,7 +55,11 @@
 #include:tikzlibrarycalc
 #include:pgfplots
 #include:tcolorbox
-# loads breakable, skins, hooks, xparse, theorems, and listingsutf8 tcolorbox libraries
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibraryhooks
+#include:tcolorboxlibrarytheorems
+#include:tcolorboxlibrarylistingsutf8
 #include:tikzpagenodes
 #include:amsthm
 #include:thmtools
@@ -1362,15 +1366,6 @@ SuppressWarning#true,false
 \begin{description*}
 \begin{description*}[options%keyvals]
 \end{description*}
-
-# from breakable tcolorbox library
-#include:pdfcol
-
-# from listingsutf8 tcolorbox library
-#include:listings
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
 
 # not documented
 \begin{authorsinstructions}#*

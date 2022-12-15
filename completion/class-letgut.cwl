@@ -41,10 +41,10 @@
 #include:cleveref
 #include:letgut-banner
 #include:tcolorbox
-# loads listings, xparse, breakable, skins, and hooks tcolorbox libraries
-#include:shellesc
-#include:pdfcol
-#include:tikz
+#include:tcolorboxlibrarylistings
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibraryhooks
 
 \letgutsetup{options%keyvals}
 

@@ -29,7 +29,8 @@
 #include:tikzlibraryshapes.geometric
 #include:tikzlibrarydecorations.pathmorphing
 #include:tcolorbox
-# tcolorbox loaded with most option and minted library loaded by default
+#include:tcolorboxlibrarymost
+#include:tcolorboxlibraryminted
 #include:iftex
 #include:piton
 #include:fancyvrb
@@ -871,17 +872,6 @@ YellowGreen#B
 Pink#B
 Seashell#B
 Teal#B
-
-# from most option of tcolorbox (repeats removed)
-#include:amsmath
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:shellesc
-#include:pdfcol
-
-# from minted tcolorbox library
-#include:minted
 
 PLlinux#B
 PLmgray#B

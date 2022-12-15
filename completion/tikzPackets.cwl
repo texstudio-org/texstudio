@@ -4,7 +4,7 @@
 #include:tikz
 #include:xparse
 #include:tcolorbox
-# loads skins tcolorbox library
+#include:tcolorboxlibraryskins
 #include:pbox
 
 \packetsInit

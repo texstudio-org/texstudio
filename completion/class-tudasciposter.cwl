@@ -8,7 +8,7 @@
 #include:tikz
 #include:tikzlibrarycalc
 #include:tcolorbox
-# loads poster tcolorbox library
+#include:tcolorboxlibraryposter
 #include:pdfcol
 #include:geometry
 #include:tudarules

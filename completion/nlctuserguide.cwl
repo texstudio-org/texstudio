@@ -15,7 +15,9 @@
 #include:varioref
 #include:xcolor
 #include:tcolorbox
-# loads breakable, skins, and listings tcolorbox options
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarylistings
 #include:hyperref
 #include:mfirstuc
 #include:glossaries-extra
@@ -1857,17 +1859,6 @@ style6#B
 \warningsym#*
 \warningtext#*
 \xrsectionref{arg1}{arg2}{arg3}#*
-
-# from breakable option of tcolorbox
-#include:pdfcol
-
-# from skins option of tcolorbox
-#include:tikz
-
-# from listings option of tcolorbox
-#include:listings
-#include:pdftexcmds
-#include:shellesc
 
 # from record=nameref option of glossaries-extra
 #include:glossaries-extra-bib2gls

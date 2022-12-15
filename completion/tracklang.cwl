@@ -1,5 +1,5 @@
 # tracklang package
-# Matthew Bertucci 2022/10/30 for v1.6
+# Matthew Bertucci 2022/12/13 for v1.6.1
 
 #keyvals:\usepackage/tracklang#c
 %<language%>
@@ -67,6 +67,7 @@
 \CurrentTrackedDialectScript#*
 \TrackLangProvidesResource{tag}{version info}#*
 \TrackLangRequireResource{tag}#*
+\TrackLangEncodingName#*
 \TrackLangRequireResourceOrDo{tag}{code1}{code2}#*
 \TrackLangRequestResource{tag}{not found code}#*
 \TrackLangAddToHook{code}{type}#*

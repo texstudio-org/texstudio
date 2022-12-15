@@ -3,6 +3,7 @@
 
 #include:tikz
 #include:tcolorbox
+#include:tcolorboxlibraryskins
 
 #keyvals:\usetheme/Verona#c
 showheader
