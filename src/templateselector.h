@@ -13,6 +13,7 @@
 #define Header_Template_Selector
 
 #include "mostQtHeaders.h"
+#include "qnetworkaccessmanager.h"
 #include "templatemanager.h"
 #include "ui_templateselector.h"
 
@@ -50,6 +51,7 @@ public:
 	bool createInFolder() const;
 	QString creationFolder() const;
 	void addResource(AbstractTemplateResource *res);
+    void addOnlineRepository();
 	void hideFolderSelection();
 
 signals:
@@ -59,6 +61,8 @@ signals:
 private slots:
 	void showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *previousItem);
 	void templatesTreeContextMenu(QPoint point);
+    void itemExpanded(QTreeWidgetItem *item);
+    void onRequestCompleted();
 
 	void on_templatesTree_doubleClicked(const QModelIndex &index);
 	void on_btPath_clicked();
@@ -75,11 +79,18 @@ private:
 		return (val.isEmpty()) ? defaultIfValEmpty : val;
 	}
 
+    void makeRequest(QString url, QString path, QTreeWidgetItem *item=nullptr, bool download=false);
+
 	Ui::templateSelectorDialog ui;
 	PreviewLabel *previewLabel;
 
+    QNetworkAccessManager *networkManager;
+
 	static const int TemplateHandleRole;
 	static const int ResourceRole;
+    static const int UrlRole;
+    static const int PathRole;
+    static const int DownloadRole;
 };
 
 #endif // TEMPLATESELECTOR_H

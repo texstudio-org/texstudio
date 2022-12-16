@@ -230,3 +230,9 @@ void LocalFileTemplateResource::update()
 	}
 }
 
+
+OnlineFileTemplate::OnlineFileTemplate(QJsonDocument jsonDoc)
+{
+    m_jsonDoc=jsonDoc;
+    m_dd=m_jsonDoc.object();
+}

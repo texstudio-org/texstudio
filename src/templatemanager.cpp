@@ -224,6 +224,9 @@ TemplateSelector *TemplateManager::createLatexTemplateDialog()
 	foreach (AbstractTemplateResource *res, l) {
 		dialog->addResource(res);
 	}
+    // add online category
+    dialog->addOnlineRepository();
+
 	return dialog;
 }
 
