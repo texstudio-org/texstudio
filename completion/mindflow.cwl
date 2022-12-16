@@ -22,11 +22,7 @@ nonbreakable#true,false
 
 #ifOption:nonbreakable
 #include:tcolorbox
-# tcolorbox loaded with option many
-#include:amsmath
-#include:tikz
-#include:xparse
-#include:pdfcol
+#include:tcolorboxlibrarymany
 #keyvals:\mindflowset
 backgroundcolor=#%color
 #endkeyvals
@@ -34,11 +30,7 @@ mindflowBackground#B
 #endif
 #ifOption:nonbreakable=true
 #include:tcolorbox
-# tcolorbox loaded with option many
-#include:amsmath
-#include:tikz
-#include:xparse
-#include:pdfcol
+#include:tcolorboxlibrarymany
 #keyvals:\mindflowset
 backgroundcolor=#%color
 #endkeyvals

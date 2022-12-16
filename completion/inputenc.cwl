@@ -31,8 +31,13 @@ cp1257
 ansinew
 utf8
 utf8x
+armscii8
 #endkeyvals
 
 #ifOption:utf8x
 #include:ucs
+#endif
+
+#ifOption:armscii8
+\definearmew{character}
 #endif
