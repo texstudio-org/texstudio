@@ -144,6 +144,7 @@
 <file>completion/arevmath.cwl</file>
 <file>completion/arevtext.cwl</file>
 <file>completion/arimo.cwl</file>
+<file>completion/armtex.cwl</file>
 <file>completion/arraycols.cwl</file>
 <file>completion/array.cwl</file>
 <file>completion/arrayjobx.cwl</file>
@@ -3252,6 +3253,14 @@
 <file>completion/tabularht.cwl</file>
 <file>completion/tabularkv.cwl</file>
 <file>completion/tabularray.cwl</file>
+<file>completion/tabularraylibraryamsmath.cwl</file>
+<file>completion/tabularraylibrarybooktabs.cwl</file>
+<file>completion/tabularraylibrarydiagbox.cwl</file>
+<file>completion/tabularraylibraryfunctional.cwl</file>
+<file>completion/tabularraylibrarynameref.cwl</file>
+<file>completion/tabularraylibrarysiunitx.cwl</file>
+<file>completion/tabularraylibraryvarwidth.cwl</file>
+<file>completion/tabularraylibraryzref.cwl</file>
 <file>completion/tabularx.cwl</file>
 <file>completion/tabulary.cwl</file>
 <file>completion/tabvar.cwl</file>
@@ -3368,7 +3377,6 @@
 <file>completion/thumby.cwl</file>
 <file>completion/ticket.cwl</file>
 <file>completion/ticollege.cwl</file>
-<file>completion/tiklibraryshapes.gates.logic.cwl</file>
 <file>completion/tikz-3dplot.cwl</file>
 <file>completion/tikz-among-us.cwl</file>
 <file>completion/tikz-among-us-fancyhdr.cwl</file>
@@ -3497,6 +3505,7 @@
 <file>completion/tikzlibraryshapes.cwl</file>
 <file>completion/tikzlibraryshapes.gates.ee.cwl</file>
 <file>completion/tikzlibraryshapes.gates.ee.IEC.cwl</file>
+<file>completion/tikzlibraryshapes.gates.logic.cwl</file>
 <file>completion/tikzlibraryshapes.gates.logic.IEC.cwl</file>
 <file>completion/tikzlibraryshapes.gates.logic.US.cwl</file>
 <file>completion/tikzlibraryshapes.geometric.cwl</file>
