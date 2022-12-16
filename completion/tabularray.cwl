@@ -406,10 +406,7 @@ hang=##L
 \MapTblrRemarks{code}#*
 
 \NewTblrLibrary{name}{code}#*
-\UseTblrLibrary{library%keyvals}
-# note \UseTblrLibrary is not a package loading command, however each tblrlibrary
-# except "counter" loads the package of the same name, so the #u designation is convenient
-\UseTblrLibrary{package}#Su
+\UseTblrLibrary{library%keyvals}#u
 
 #keyvals:\UseTblrLibrary#c
 amsmath
