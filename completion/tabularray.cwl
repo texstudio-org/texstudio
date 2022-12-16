@@ -89,7 +89,7 @@ delimiter={%<keyvals%>}
 \cline{index}#*
 \cline[styles%keyvals]{index}#*
 
-#keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c
+#keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c,\toprule#c,\midrule#c,\cmidrule#c,\bottomrule#c,\cmidrulemore#c,\specialrule#c
 dash=#solid,dashed,dotted
 solid
 dashed
