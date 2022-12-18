@@ -276,7 +276,7 @@ void TemplateSelector::onRequestCompleted()
                 QString name=dd["name"].toString();
                 if(name.endsWith(".json")){
                     auto *item=new QTreeWidgetItem();
-                    item->setText(0,name.chopped(5));
+                    item->setText(0,name.left(name.length()-5));
                     item->setIcon(0,QIcon::fromTheme("file"));
                     item->setData(0,DownloadRole,dd["download_url"].toString());
                     item->setData(0,UrlRole, url);
