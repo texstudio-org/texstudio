@@ -156,7 +156,12 @@ const QNetworkRequest::Attribute tplAttributeItem = static_cast<QNetworkRequest:
  */
 void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *item,bool download)
 {
-    QString m_url=url+path;
+
+    QString m_url=url;
+    if(!url.endsWith("/")){
+        m_url+="/";
+    }
+    m_url+=path;
     if(download){
         // check if cached
         if(inCache(path)){
@@ -475,7 +480,9 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
             QString path=currentItem->data(0,PathRole).toString();
             QString url=currentItem->data(0,UrlRole).toString();
             QString downloadUrl=currentItem->data(0,DownloadRole).toString();
-            makeRequest(downloadUrl,path,currentItem,true);
+            if(!downloadUrl.isEmpty()){
+                makeRequest(downloadUrl,path,currentItem,true);
+            }
         }else{
             AbstractTemplateResource *res = (currentItem) ? (currentItem->data(0, ResourceRole).value<AbstractTemplateResource *>()) : nullptr;
             // if !res the currentItem is invalid
