@@ -345,9 +345,12 @@ void TemplateSelector::onCachedRequestCompleted(const QByteArray &ba,QTreeWidget
     }
     if(url.endsWith("tex")){
         QString path=rootItem->data(0, PathRole).toString();
+        path.chop(4);
+        path+="tex";
+        const QString fn=m_cachingDir+"/"+path;
         TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
         OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
-        tpl->setURL(url);
+        tpl->setURL(fn);
         accept();
     }
 }
