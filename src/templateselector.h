@@ -103,4 +103,8 @@ private:
     static const int TexRole;
 };
 
+#if QT_VERSION_MAJOR<6
+Q_DECLARE_METATYPE(QTreeWidgetItem *)
+#endif
+
 #endif // TEMPLATESELECTOR_H

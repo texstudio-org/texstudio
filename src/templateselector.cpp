@@ -161,7 +161,7 @@ void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *it
         // check if cached
         if(inCache(path)){
             QFile file(m_cachingDir+"/"+path);
-            if(file.open(QIODeviceBase::ReadOnly)){
+            if(file.open(QFile::ReadOnly)){
                 QByteArray ba=file.readAll();
                 onCachedRequestCompleted(ba,item,url);
                 return;
@@ -195,7 +195,7 @@ void TemplateSelector::saveToCache(const QByteArray &data, const QString &path)
         dir.mkpath(fn.left(i));
     }
     QFile file(fn);
-    if(file.open(QIODeviceBase::WriteOnly)){
+    if(file.open(QFile::WriteOnly)){
         file.write(data);
         file.close();
     }
