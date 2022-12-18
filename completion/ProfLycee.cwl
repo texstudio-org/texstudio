@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/11/30 for v2.0.6
+# Matthew Bertucci 2022/12/15 for v2.0.9
 
 #include:mathtools
 #include:xcolor
@@ -14,6 +14,8 @@
 #include:xstring
 #include:xintexpr
 #include:xintbinhex
+#include:xinttools
+#include:randomlist
 #include:simplekv
 #include:listofitems
 #include:tabularray
@@ -187,6 +189,7 @@ HautRes=%<hauteur%>
 #keyvals:\begin{CodePiton}
 Lignes#true,false
 Largeur=##L
+TaillePolice=%<font commands%>
 Alignement=#justify,left,flush left,right,flush right,center,flush center
 #endkeyvals
 
@@ -198,6 +201,8 @@ Alignement=#justify,left,flush left,right,flush right,center,flush center
 #keyvals:\begin{envcodepythontex}
 Largeur=##L
 Centre#true,false
+TaillePolice=%<font commands%>
+EspacementVertical=%<factor%>
 Lignes#true,false
 #endkeyvals
 
@@ -215,6 +220,8 @@ Lignes#true,false
 #keyvals:\begin{ConsolePythontex}
 Largeur=##L
 Centre#true,false
+TaillePolice=%<font commands%>
+EspacementVertical=%<factor%>
 Label#true,false
 #endkeyvals
 
@@ -570,6 +577,23 @@ Largeur=%<nombre%>
 Hauteur=%<nombre%>
 AfficheM#true,false
 AfficheCadre#true,false
+#endkeyvals
+
+## Nombres aléatoires ##
+\NbAlea{a}{b}{macro%cmd}#d
+\NbAlea[n]{a}{b}{macro%cmd}#d
+\VarNbAlea{macro%cmd}{calculs}#d
+
+\TirageAleatoireEntiers{macro%cmd}#d
+\TirageAleatoireEntiers[options%keyvals]{macro%cmd}#d
+
+#keyvals:\TirageAleatoireEntiers
+ValMin=%<nombre%>
+ValMax=%<nombre%>
+NbVal=%<nombre%>
+Sep=%<séparateur%>
+Tri=#non,croissant,decroissant
+Repetition#true,false
 #endkeyvals
 
 ## Conversions binaire/hexadécimal/décimal ##
@@ -958,8 +982,11 @@ vertcapyt#B
 \chbrut#S
 \chiffre#S
 \CODPITalign#S
+\CODPITfonte#S
 \CODPITlargeur#S
+\CODPYfonte#S
 \CODPYlargeur#S
+\CODPYstretch#S
 \COEFF#S
 \COEFFA#S
 \Coeffa#S
@@ -968,7 +995,9 @@ vertcapyt#B
 \convertbasedixtobase{arg1}{arg2}#S
 \convertbasetobasedix{arg1}{arg2}#S
 \cpt#S
+\CSPYfonte#S
 \CSPYlargeur#S
+\CSPYstretch#S
 \denominateur#S
 \densexpo{arg}#S
 \densnorm{arg}#S
@@ -1166,6 +1195,11 @@ vertcapyt#B
 \SRninit#S
 \SRprec#S
 \SRuninit#S
+\TAEEmax#S
+\TAEEmin#S
+\TAEEnb#S
+\TAEEsep#S
+\TAEEtri#S
 \tdscouleur#S
 \tdshaut#S
 \tdslarg#S
@@ -1191,6 +1225,8 @@ vertcapyt#B
 \TGTXL#S
 \TGTXR#S
 \theCFnum#S
+\TriListeCroiss{arg}#S
+\TriListeDecroiss{arg}#S
 \TriPartieA#S
 \TriPartieB#S
 \TriPartieC#S

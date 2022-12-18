@@ -4,8 +4,8 @@
 #include:expl3
 
 \named
-\NamedDelim%<<begin-token><end-token>%>
-\globalNamedDelim%<<begin-token><end-token>%>
+\NamedDelim%⟨begin-token⟩⟨end-token⟩%>
+\globalNamedDelim%<⟨begin-token⟩⟨end-token⟩%>
 
 \namedefDate#S
 \namedefVersion#S

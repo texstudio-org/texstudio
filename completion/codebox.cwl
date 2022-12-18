@@ -7,25 +7,14 @@
 #include:xparse
 #include:fontawesome5
 #include:tcolorbox
-# loads skins, xparse, breakable, minted, and listings tcolorbox libraries
-# loads shapes.geometric tikzlibrary
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryminted
+#include:tcolorboxlibrarylistings
+#include:tikzlibraryshapes.geometric
 #include:varwidth
 #include:xcolor
 #include:etoolbox
-
-# from skins tcolorbox library
-#include:tikz
-
-# from breakable tcolorbox library
-#include:pdfcol
-
-# from minted tcolorbox library
-#include:minted
-
-# from listings tcolorbox library
-#include:listings
-#include:pdftexcmds
-#include:shellesc
 
 \begin{codebox}{title%text}#V
 \begin{codebox}[options%keyvals]{title%text}#V
