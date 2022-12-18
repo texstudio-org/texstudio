@@ -53,6 +53,7 @@ public:
 	void addResource(AbstractTemplateResource *res);
     void addOnlineRepository();
 	void hideFolderSelection();
+    void setCachingDir(const QString &path);
 
 signals:
 	void editTemplateRequest(TemplateHandle th);
@@ -63,6 +64,7 @@ private slots:
 	void templatesTreeContextMenu(QPoint point);
     void itemExpanded(QTreeWidgetItem *item);
     void onRequestCompleted();
+    void acceptResult();
 
 	void on_templatesTree_doubleClicked(const QModelIndex &index);
 	void on_btPath_clicked();
@@ -86,11 +88,15 @@ private:
 
     QNetworkAccessManager *networkManager;
 
+    QString m_cachingDir;
+
 	static const int TemplateHandleRole;
 	static const int ResourceRole;
     static const int UrlRole;
     static const int PathRole;
     static const int DownloadRole;
+    static const int PreviewRole;
+    static const int TexRole;
 };
 
 #endif // TEMPLATESELECTOR_H

@@ -23,6 +23,8 @@ const int TemplateSelector::ResourceRole = Qt::UserRole + 1;
 const int TemplateSelector::UrlRole = Qt::UserRole + 2;
 const int TemplateSelector::PathRole = Qt::UserRole + 3;
 const int TemplateSelector::DownloadRole = Qt::UserRole + 4;
+const int TemplateSelector::PreviewRole = Qt::UserRole + 5;
+const int TemplateSelector::TexRole = Qt::UserRole + 6;
 
 
 void PreviewLabel::setScaledPixmap(const QPixmap &pm)
@@ -77,8 +79,8 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 		gl->addWidget(previewLabel, 0, 2);
 	}
 
-	connect(ui.buttonBox, SIGNAL(accepted()), SLOT(accept()));
-	connect(ui.buttonBox, SIGNAL(rejected()), SLOT(reject()));
+    connect(ui.buttonBox, &QDialogButtonBox::accepted, this, &TemplateSelector::acceptResult);
+    connect(ui.buttonBox, SIGNAL(rejected()), SLOT(reject()));
 
 	ui.templatesTree->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(ui.templatesTree, SIGNAL(customContextMenuRequested(QPoint)), SLOT(templatesTreeContextMenu(QPoint)));
@@ -184,13 +186,37 @@ void TemplateSelector::onRequestCompleted()
 
     if(reply->request().attribute(tplAttributeDirectURL).toBool()){
         // download requested
-        qDebug()<<"to be implemented";
-        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
-        OnlineFileTemplate *tmpl=new OnlineFileTemplate(jsonDoc);
+        if(url.endsWith("json")){
+            QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
+            OnlineFileTemplate *tmpl=new OnlineFileTemplate(jsonDoc);
 
-        TemplateHandle th=TemplateHandle(tmpl);
-        rootItem->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
-        showInfo(rootItem,nullptr);
+            TemplateHandle th=TemplateHandle(tmpl);
+            rootItem->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
+            showInfo(rootItem,nullptr);
+            QString previewURL=rootItem->data(0, PreviewRole).toString();
+            makeRequest(previewURL,"",rootItem,true);
+        }
+        if(url.endsWith("png")){
+            TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
+            OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
+            QImage img=QImage::fromData(ba);
+            tpl->setPreviewImage(QPixmap::fromImage(img));
+            showInfo(rootItem,nullptr);
+        }
+        if(url.endsWith("tex")){
+            QString path=rootItem->data(0, PathRole).toString();
+            path.chop(4);
+            path+="tex";
+            const QString fn=m_cachingDir+"/"+path;
+            QFile file(fn);
+            file.open(QIODeviceBase::WriteOnly);
+            file.write(ba);
+            file.close();
+            TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
+            OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
+            tpl->setURL(fn);
+            accept();
+        }
     }else{
         // folder overview requested
         QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
@@ -210,6 +236,24 @@ void TemplateSelector::onRequestCompleted()
                     item->setData(0,PathRole, path+name);
                     rootItem->addChild(item);
                 }
+                if(name.endsWith(".png")){
+                    // add to last item
+                    // naming scheme needs to be followed and then abc.json is before abc.png ...
+                    // i.e. this needs to be improved.
+                    int i=rootItem->childCount()-1;
+                    if(i<0) continue;
+                    auto *item=rootItem->child(i);
+                    item->setData(0,PreviewRole,dd["download_url"].toString());
+                }
+                if(name.endsWith(".tex")){
+                    // add to last item
+                    // naming scheme needs to be followed and then abc.json is before abc.png ...
+                    // i.e. this needs to be improved.
+                    int i=rootItem->childCount()-1;
+                    if(i<0) continue;
+                    auto *item=rootItem->child(i);
+                    item->setData(0,TexRole,dd["download_url"].toString());
+                }
             }else{
                 // folder
                 QString name=dd["name"].toString();
@@ -227,6 +271,20 @@ void TemplateSelector::onRequestCompleted()
                 makeRequest(url,path+name+"/",item);
             }
         }
+    }
+}
+
+void TemplateSelector::acceptResult()
+{
+    auto *item=ui.templatesTree->currentItem();
+    if(item && item->data(0,UrlRole).isValid()){
+                    QString path=item->data(0,PathRole).toString();
+                    QString url=item->data(0,UrlRole).toString();
+                    QString downloadUrl=item->data(0,DownloadRole).toString();
+                    QString texUrl=item->data(0,TexRole).toString();
+                    makeRequest(texUrl,"",item,true);
+    }else{
+        accept();
     }
 }
 
@@ -261,7 +319,16 @@ void TemplateSelector::hideFolderSelection()
 	ui.rbCreateInFolder->hide();
 	ui.rbCreateInEditor->hide();
 	ui.lePath->hide();
-	ui.btPath->hide();
+    ui.btPath->hide();
+}
+
+void TemplateSelector::setCachingDir(const QString &path)
+{
+    m_cachingDir=path;
+    QDir dir(path);
+    if(!dir.exists()){
+        dir.mkpath(path);
+    }
 }
 
 void TemplateSelector::on_btPath_clicked()

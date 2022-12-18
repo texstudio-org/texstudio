@@ -74,13 +74,18 @@ public:
     virtual QString author() const { return m_dd["Author"].toString(); }
     virtual QString version() const { return m_dd["Version"].toString(); }
     virtual QString license() const { return m_dd["License"].toString(); }
-    virtual QPixmap previewImage() const { return QPixmap(); }
-    virtual QString file() const { return ""; }
+    virtual QPixmap previewImage() const { return m_preview; }
+    virtual QString file() const { return m_url; }
     virtual bool isEditable() const { return false; }
+
+    void setPreviewImage(QPixmap img) {m_preview=img;}
+    void setURL(const QString& name) {m_url=name;}
 
 protected:
     QJsonDocument m_jsonDoc;
     QJsonObject m_dd;
+    QPixmap m_preview;
+    QString m_url;
 };
 
 

@@ -30,6 +30,7 @@ public:
 	bool isMultifile() const;
 	bool createInFolder(const QString &path) const;
 	QStringList filesToOpen() const;
+    Template* getHandle() const;
 private:
 	void setTmpl(Template *tmpl);
 	Template *m_tmpl;  // only write via setTmpl()
