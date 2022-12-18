@@ -82,6 +82,7 @@ private:
 	}
 
     void makeRequest(QString url, QString path, QTreeWidgetItem *item=nullptr, bool download=false);
+    void saveToCache(const QByteArray &data,const QString &path);
 
 	Ui::templateSelectorDialog ui;
 	PreviewLabel *previewLabel;

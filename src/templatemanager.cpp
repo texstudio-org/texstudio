@@ -212,7 +212,7 @@ QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QS
 TemplateSelector *TemplateManager::createLatexTemplateDialog()
 {
 	TemplateSelector *dialog = new TemplateSelector(tr("Select LaTeX Template"));
-    dialog->setCachingDir(configBaseDir+"/cachedTemplates");
+    dialog->setCachingDir(configBaseDir+"cachedTemplates");
 	connect(dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
 

@@ -159,6 +159,28 @@ void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *it
     connect(reply, &QNetworkReply::finished, this, &TemplateSelector::onRequestCompleted);
 }
 
+/*!
+ * \brief write bytearray as file at path
+ * Serves as cached data
+ * Generates all intermediate folders
+ * \param data
+ * \param path
+ */
+void TemplateSelector::saveToCache(const QByteArray &data, const QString &path)
+{
+    const QString fn=m_cachingDir+"/"+path;
+    int i=fn.lastIndexOf("/");
+    QDir dir(fn.left(i));
+    if(!dir.exists()){
+        dir.mkpath(fn.left(i));
+    }
+    QFile file(fn);
+    if(file.open(QIODeviceBase::WriteOnly)){
+        file.write(data);
+        file.close();
+    }
+}
+
 
 void TemplateSelector::itemExpanded(QTreeWidgetItem* item){
 
@@ -195,6 +217,9 @@ void TemplateSelector::onRequestCompleted()
             showInfo(rootItem,nullptr);
             QString previewURL=rootItem->data(0, PreviewRole).toString();
             makeRequest(previewURL,"",rootItem,true);
+            // cache json
+            QString path=rootItem->data(0, PathRole).toString();
+            saveToCache(ba,path);
         }
         if(url.endsWith("png")){
             TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
@@ -202,16 +227,18 @@ void TemplateSelector::onRequestCompleted()
             QImage img=QImage::fromData(ba);
             tpl->setPreviewImage(QPixmap::fromImage(img));
             showInfo(rootItem,nullptr);
+            // cache png
+            QString path=rootItem->data(0, PathRole).toString();
+            path.chop(4);
+            path+="png";
+            saveToCache(ba,path);
         }
         if(url.endsWith("tex")){
             QString path=rootItem->data(0, PathRole).toString();
             path.chop(4);
             path+="tex";
             const QString fn=m_cachingDir+"/"+path;
-            QFile file(fn);
-            file.open(QIODeviceBase::WriteOnly);
-            file.write(ba);
-            file.close();
+            saveToCache(ba,path);
             TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
             OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
             tpl->setURL(fn);
