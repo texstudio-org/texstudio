@@ -146,9 +146,29 @@ const QNetworkRequest::Attribute tplAttributeURL = static_cast<QNetworkRequest::
 const QNetworkRequest::Attribute tplAttributePath = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User+2);
 const QNetworkRequest::Attribute tplAttributeItem = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User+3);
 
+/*!
+ * \brief send a network request for online data of the template repository
+ * Used cached files if present
+ * \param url
+ * \param path
+ * \param item
+ * \param download
+ */
 void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *item,bool download)
 {
     QString m_url=url+path;
+    if(download){
+        // check if cached
+        if(inCache(path)){
+            QFile file(m_cachingDir+"/"+path);
+            if(file.open(QIODeviceBase::ReadOnly)){
+                QByteArray ba=file.readAll();
+                onCachedRequestCompleted(ba,item,url);
+                return;
+            }
+        }
+        m_url=url;
+    }
     QNetworkRequest request = QNetworkRequest(QUrl(m_url));
     request.setRawHeader("User-Agent", "TeXstudio Template Browser");
     request.setAttribute(tplAttributeDirectURL,download);
@@ -216,10 +236,10 @@ void TemplateSelector::onRequestCompleted()
             rootItem->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
             showInfo(rootItem,nullptr);
             QString previewURL=rootItem->data(0, PreviewRole).toString();
-            makeRequest(previewURL,"",rootItem,true);
+            makeRequest(previewURL,path,rootItem,true);
             // cache json
-            QString path=rootItem->data(0, PathRole).toString();
-            saveToCache(ba,path);
+            QString fn=rootItem->data(0, PathRole).toString();
+            saveToCache(ba,fn);
         }
         if(url.endsWith("png")){
             TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
@@ -301,6 +321,47 @@ void TemplateSelector::onRequestCompleted()
     }
 }
 
+void TemplateSelector::onCachedRequestCompleted(const QByteArray &ba,QTreeWidgetItem *rootItem,const QString &url)
+{
+    if(url.endsWith("json")){
+        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
+        OnlineFileTemplate *tmpl=new OnlineFileTemplate(jsonDoc);
+
+        TemplateHandle th=TemplateHandle(tmpl);
+        rootItem->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
+        showInfo(rootItem,nullptr);
+        QString previewURL=rootItem->data(0, PreviewRole).toString();
+        QString path=rootItem->data(0, PathRole).toString();
+        path.chop(4);
+        path+="png";
+        makeRequest(previewURL,path,rootItem,true);
+    }
+    if(url.endsWith("png")){
+        TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
+        OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
+        QImage img=QImage::fromData(ba);
+        tpl->setPreviewImage(QPixmap::fromImage(img));
+        showInfo(rootItem,nullptr);
+    }
+    if(url.endsWith("tex")){
+        QString path=rootItem->data(0, PathRole).toString();
+        TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
+        OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
+        tpl->setURL(url);
+        accept();
+    }
+}
+/*!
+ * \brief checks if path is already cached
+ * \param path
+ * \return
+ */
+bool TemplateSelector::inCache(const QString &path)
+{
+    const QString fn=m_cachingDir+"/"+path;
+    return QFileInfo::exists(fn);
+}
+
 void TemplateSelector::acceptResult()
 {
     auto *item=ui.templatesTree->currentItem();
@@ -309,7 +370,7 @@ void TemplateSelector::acceptResult()
                     QString url=item->data(0,UrlRole).toString();
                     QString downloadUrl=item->data(0,DownloadRole).toString();
                     QString texUrl=item->data(0,TexRole).toString();
-                    makeRequest(texUrl,"",item,true);
+                    makeRequest(texUrl,path,item,true);
     }else{
         accept();
     }
@@ -411,7 +472,7 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
             QString path=currentItem->data(0,PathRole).toString();
             QString url=currentItem->data(0,UrlRole).toString();
             QString downloadUrl=currentItem->data(0,DownloadRole).toString();
-            makeRequest(downloadUrl,"",currentItem,true);
+            makeRequest(downloadUrl,path,currentItem,true);
         }else{
             AbstractTemplateResource *res = (currentItem) ? (currentItem->data(0, ResourceRole).value<AbstractTemplateResource *>()) : nullptr;
             // if !res the currentItem is invalid

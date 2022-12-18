@@ -64,6 +64,7 @@ private slots:
 	void templatesTreeContextMenu(QPoint point);
     void itemExpanded(QTreeWidgetItem *item);
     void onRequestCompleted();
+
     void acceptResult();
 
 	void on_templatesTree_doubleClicked(const QModelIndex &index);
@@ -83,6 +84,8 @@ private:
 
     void makeRequest(QString url, QString path, QTreeWidgetItem *item=nullptr, bool download=false);
     void saveToCache(const QByteArray &data,const QString &path);
+    void onCachedRequestCompleted(const QByteArray &ba,QTreeWidgetItem *rootItem,const QString &url);
+    bool inCache(const QString &path);
 
 	Ui::templateSelectorDialog ui;
 	PreviewLabel *previewLabel;
