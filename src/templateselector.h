@@ -101,6 +101,7 @@ private:
     static const int DownloadRole;
     static const int PreviewRole;
     static const int TexRole;
+    static const int PopulatedRole;
 };
 
 #if QT_VERSION_MAJOR<6

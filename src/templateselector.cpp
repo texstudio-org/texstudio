@@ -25,6 +25,7 @@ const int TemplateSelector::PathRole = Qt::UserRole + 3;
 const int TemplateSelector::DownloadRole = Qt::UserRole + 4;
 const int TemplateSelector::PreviewRole = Qt::UserRole + 5;
 const int TemplateSelector::TexRole = Qt::UserRole + 6;
+const int TemplateSelector::PopulatedRole = Qt::UserRole + 7;
 
 
 void PreviewLabel::setScaledPixmap(const QPixmap &pm)
@@ -208,7 +209,8 @@ void TemplateSelector::saveToCache(const QByteArray &data, const QString &path)
 
 
 void TemplateSelector::itemExpanded(QTreeWidgetItem* item){
-
+    bool populated=item->data(0,PopulatedRole).toBool();
+    if(populated) return;
     QString path=item->data(0,PathRole).toString();
     QString url=item->data(0,UrlRole).toString();
     if(url.isEmpty()) return; // not an online resource
@@ -279,6 +281,7 @@ void TemplateSelector::onRequestCompleted()
         }
 
         rootItem->takeChildren();
+        rootItem->setData(0,PopulatedRole,true);
         foreach(auto element,elements){
             QJsonObject dd=element.toObject();
             if(dd["type"].toString()=="file"){
