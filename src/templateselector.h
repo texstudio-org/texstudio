@@ -86,6 +86,7 @@ private:
     void saveToCache(const QByteArray &data,const QString &path);
     void onCachedRequestCompleted(const QByteArray &ba,QTreeWidgetItem *rootItem,const QString &url);
     bool inCache(const QString &path);
+    QString appendPath(QString base,QString path);
 
 	Ui::templateSelectorDialog ui;
 	PreviewLabel *previewLabel;

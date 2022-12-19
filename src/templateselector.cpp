@@ -158,15 +158,11 @@ const QNetworkRequest::Attribute tplAttributeItem = static_cast<QNetworkRequest:
 void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *item,bool download)
 {
 
-    QString m_url=url;
-    if(!url.endsWith("/")){
-        m_url+="/";
-    }
-    m_url+=path;
+    QString m_url=appendPath(url,path);
     if(download){
         // check if cached
         if(inCache(path)){
-            QFile file(m_cachingDir+"/"+path);
+            QFile file(appendPath(m_cachingDir,path));
             if(file.open(QFile::ReadOnly)){
                 QByteArray ba=file.readAll();
                 onCachedRequestCompleted(ba,item,url);
@@ -194,7 +190,7 @@ void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *it
  */
 void TemplateSelector::saveToCache(const QByteArray &data, const QString &path)
 {
-    const QString fn=m_cachingDir+"/"+path;
+    const QString fn=appendPath(m_cachingDir,path);
     int i=fn.lastIndexOf("/");
     QDir dir(fn.left(i));
     if(!dir.exists()){
@@ -264,7 +260,7 @@ void TemplateSelector::onRequestCompleted()
             QString path=rootItem->data(0, PathRole).toString();
             path.chop(4);
             path+="tex";
-            const QString fn=m_cachingDir+"/"+path;
+            const QString fn=appendPath(m_cachingDir,path);
             saveToCache(ba,path);
             TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
             OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
@@ -275,10 +271,6 @@ void TemplateSelector::onRequestCompleted()
         // folder overview requested
         QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
         QJsonArray elements=jsonDoc.array();
-
-        if(!path.endsWith("/")){
-            path+="/";
-        }
 
         rootItem->takeChildren();
         rootItem->setData(0,PopulatedRole,true);
@@ -292,7 +284,7 @@ void TemplateSelector::onRequestCompleted()
                     item->setIcon(0,QIcon::fromTheme("file"));
                     item->setData(0,DownloadRole,dd["download_url"].toString());
                     item->setData(0,UrlRole, url);
-                    item->setData(0,PathRole, path+name);
+                    item->setData(0,PathRole, appendPath(path,name));
                     rootItem->addChild(item);
                 }
                 if(name.endsWith(".png")){
@@ -325,7 +317,7 @@ void TemplateSelector::onRequestCompleted()
                 QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << tr("<loading...>"));
                 item->addChild(twi);
                 item->setData(0, UrlRole, url);
-                item->setData(0, PathRole, path+name);
+                item->setData(0, PathRole, appendPath(path,name));
                 rootItem->addChild(item);
             }
         }
@@ -358,7 +350,7 @@ void TemplateSelector::onCachedRequestCompleted(const QByteArray &ba,QTreeWidget
         QString path=rootItem->data(0, PathRole).toString();
         path.chop(4);
         path+="tex";
-        const QString fn=m_cachingDir+"/"+path;
+        const QString fn=appendPath(m_cachingDir,path);
         TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
         OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());
         tpl->setURL(fn);
@@ -372,8 +364,31 @@ void TemplateSelector::onCachedRequestCompleted(const QByteArray &ba,QTreeWidget
  */
 bool TemplateSelector::inCache(const QString &path)
 {
-    const QString fn=m_cachingDir+"/"+path;
+    const QString fn=appendPath(m_cachingDir,path);
     return QFileInfo::exists(fn);
+}
+/*!
+ * \brief add path to base with "/"
+ * Make sure that only one "/" is between the  two
+ * and the construct does not end with an slash
+ * \param base
+ * \param path
+ * \return base+"/"+path
+ */
+QString TemplateSelector::appendPath(QString base, QString path)
+{
+    QString result=base;
+    if(!result.endsWith("/")){
+        result+="/";
+    }
+    if(path.startsWith("/")){
+        result.chop(1); // "/" is provided by path
+    }
+    result+=path;
+    if(result.endsWith("/")){
+        result.chop(1);
+    }
+    return result;
 }
 
 void TemplateSelector::acceptResult()
@@ -381,6 +396,8 @@ void TemplateSelector::acceptResult()
     auto *item=ui.templatesTree->currentItem();
     if(item && item->data(0,UrlRole).isValid()){
                     QString path=item->data(0,PathRole).toString();
+                    path.chop(4);
+                    path+="tex";
                     QString url=item->data(0,UrlRole).toString();
                     QString downloadUrl=item->data(0,DownloadRole).toString();
                     QString texUrl=item->data(0,TexRole).toString();
