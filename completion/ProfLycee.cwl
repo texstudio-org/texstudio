@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/12/15 for v2.0.9
+# Matthew Bertucci 2022/12/19 for v2.1.0
 
 #include:mathtools
 #include:xcolor
@@ -20,6 +20,7 @@
 #include:listofitems
 #include:tabularray
 #include:hvlogos
+#include:fancyvrb
 #include:siunitx
 #include:fontawesome5
 #include:csvsimple-l3
@@ -35,14 +36,53 @@
 #include:tcolorboxlibraryminted
 #include:iftex
 #include:piton
-#include:fancyvrb
-#include:pythontex
 
 #keyvals:\usepackage/ProfLycee#c
 nonshellescape
 build
+pythontex
 csvii
 #endkeyvals
+
+#ifOption:pythontex
+#include:pythontex
+\begin{CodePythontex}#V
+\begin{CodePythontex}[options%keyvals]#V
+\end{CodePythontex}
+#keyvals:\begin{CodePythontex}
+Largeur=##L
+Centre#true,false
+TaillePolice=%<font commands%>
+EspacementVertical=%<factor%>
+Lignes#true,false
+#endkeyvals
+\begin{ConsolePythontex}#V
+\begin{ConsolePythontex}[options%keyvals]#V
+\end{ConsolePythontex}
+#keyvals:\begin{ConsolePythontex}
+Largeur=##L
+Centre#true,false
+TaillePolice=%<font commands%>
+EspacementVertical=%<factor%>
+Label#true,false
+#endkeyvals
+\begin{pythont}#S
+\begin{tcpythontexcode}#S
+\begin{tcpythontexcode}[width]#S
+\begin{tcpythontexcodeno}#S
+\begin{tcpythontexcodeno}[width]#S
+\CODPYfonte#S
+\CODPYlargeur#S
+\CODPYstretch#S
+\CSPYfonte#S
+\CSPYlargeur#S
+\CSPYstretch#S
+\end{pythont}#S
+\end{tcpythontexcode}#S
+\end{tcpythontexcodeno}#S
+\hookcenterpost#S
+\hookcenterpre#S
+#endif
 
 #ifOption:csvii
 #include:csvsimple-legacy
@@ -114,9 +154,14 @@ Precision=%<nombre%>
 Stretch=%<factor%>
 Balayage#true,false
 Calculatrice#true,false
+Simple#true,false
 Majuscule#true,false
+Exact#true,false
+Conclusion#true,false
 Sens=%<< ou >%>
 #endkeyvals
+
+\CompteurSeuil#*
 
 ## Suites récurrentes et « toile » ##
 \ToileRecurrence[options%keyvals]
@@ -194,36 +239,11 @@ Alignement=#justify,left,flush left,right,flush right,center,flush center
 #endkeyvals
 
 ## Code & Console Python, via les packages Pythontex ou Minted ##
-\begin{CodePythontex}#V
-\begin{CodePythontex}[options%keyvals]#V
-\end{CodePythontex}
-
-#keyvals:\begin{envcodepythontex}
-Largeur=##L
-Centre#true,false
-TaillePolice=%<font commands%>
-EspacementVertical=%<factor%>
-Lignes#true,false
-#endkeyvals
-
 \begin{CodePythonMinted}#V
 \begin{CodePythonMinted}[largeur%l][tcolorbox options]#V
 \begin{CodePythonMinted}*#V
 \begin{CodePythonMinted}*[largeur%l][tcolorbox options]#V
 \end{CodePythonMinted}
-
-## Code & Console Python, version Pythontex ou Minted ##
-\begin{ConsolePythontex}#V
-\begin{ConsolePythontex}[options%keyvals]#V
-\end{ConsolePythontex}
-
-#keyvals:\begin{ConsolePythontex}
-Largeur=##L
-Centre#true,false
-TaillePolice=%<font commands%>
-EspacementVertical=%<factor%>
-Label#true,false
-#endkeyvals
 
 ## Pseudo-Code ##
 \begin{PseudoCode}
@@ -701,6 +721,9 @@ Alea#true,false
 Anegatif#true,false
 #endkeyvals
 
+## Simplification de racines ##
+\SimplificationRacine{expression ou calcul}
+
 ## PixelART via un fichier csv, en TikZ ##
 \PixelArtTikz{file}#i
 \PixelArtTikz[options%keyvals]{file}#i
@@ -956,15 +979,11 @@ vertcapyt#B
 \BaMqu#S
 \BaMRemplissage#S
 \basedepart#S
-\begin{pythont}#S
-\begin{tcpythontexcode}#S
-\begin{tcpythontexcode}[width]#S
-\begin{tcpythontexcodeno}#S
-\begin{tcpythontexcodeno}[width]#S
 \BorneInf#S
 \BorneSup#S
 \calculargument#S
 \CalculInterneTermeRecurrence{arg1}{arg2}{arg3}{arg4}#S
+\CalculSeuil{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \CFcoulcmd#S
 \CFcouleur#S
 \CFcoulres#S
@@ -984,9 +1003,6 @@ vertcapyt#B
 \CODPITalign#S
 \CODPITfonte#S
 \CODPITlargeur#S
-\CODPYfonte#S
-\CODPYlargeur#S
-\CODPYstretch#S
 \COEFF#S
 \COEFFA#S
 \Coeffa#S
@@ -995,9 +1011,6 @@ vertcapyt#B
 \convertbasedixtobase{arg1}{arg2}#S
 \convertbasetobasedix{arg1}{arg2}#S
 \cpt#S
-\CSPYfonte#S
-\CSPYlargeur#S
-\CSPYstretch#S
 \denominateur#S
 \densexpo{arg}#S
 \densnorm{arg}#S
@@ -1007,9 +1020,6 @@ vertcapyt#B
 \DHTstretch#S
 \DHTva#S
 \DHTvb#S
-\end{pythont}#S
-\end{tcpythontexcode}#S
-\end{tcpythontexcodeno}#S
 \extractcoeff{liste}{numero}#S
 \fctdecx#S
 \fprimea#S
@@ -1018,8 +1028,6 @@ vertcapyt#B
 \GRPHPROBcoulsurf#S
 \GRPHPROBhauteur#S
 \GRPHPROBlarg#S
-\hookcenterpost#S
-\hookcenterpre#S
 \ifinal#S
 \iinit#S
 \indice#S
