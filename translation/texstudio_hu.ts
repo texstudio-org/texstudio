@@ -8753,13 +8753,13 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="129"/>
         <source>Online Repository</source>
-        <translation type="unfinished"/>
+        <translation>Online tároló</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="137"/>
         <location filename="../src/templateselector.cpp" line="317"/>
         <source>&lt;loading...&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;betöltés...&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="455"/>
