@@ -12,10 +12,9 @@
 #include:etoolbox
 #include:minted
 #include:tcolorbox
-# loads skins, xparse, and breakable tcolorbox libraries
-#include:pdfcol
-#include:tikz
-# loads shapes.geometric tikzlibrary
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarybreakable
+#include:tikzlibraryshapes.geometric
 
 \begin{terminal}{title%text}#V
 \begin{terminal}[options%keyvals]{title%text}#V

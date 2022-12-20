@@ -1,8 +1,9 @@
 # msu-thesis class
-# Matthew Bertucci 2022/08/25 for v3.5
+# Matthew Bertucci 2022/12/15 for v4.0
 
 #include:class-memoir
 #include:etoolbox
+#include:textpos
 
 #keyvals:\documentclass/msu-thesis#c
 PhD
@@ -103,22 +104,30 @@ twoside
 #include:tikz
 #endif
 
+\begin{abbreviations}
+\end{abbreviations}
 \begin{appendix}
 \end{appendix}
-\begin{publicabstract}
-\end{publicabstract}
 
+\abbrev{abbreviation}{explanation%text}
 \bibpagename#S
 \bibtocname#S
 \dedication{text}
+\dualmajor{major1%text}{major2%text}
 \fieldofstudy{field%text}
-\makebibliographypage
+\listofabbreviations#*
+\listabbreviationsname#*
+\listalgorithmname#*
+\makebibliographypage#*
 \makecopyrightpage
 \makecopyrightpage*
 \makededicationpage
-\MakeLinkUppercase#S
 \maketitlepage
+\msuabbrevdelim
+\msuabbrevfont
+\msuabbrevwidth{width}
 \msuappendixnumformat#*
 \msucaptiondelim
-\publicabstractname#*
+\msutocdelim#*
 \setabstractnamespace{factor}
+\usememdefaultlineskip#*

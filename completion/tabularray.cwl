@@ -89,7 +89,7 @@ delimiter={%<keyvals%>}
 \cline{index}#*
 \cline[styles%keyvals]{index}#*
 
-#keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c
+#keyvals:\SetHline#c,\SetHlines#c,\SetVspace#c,\hline#c,\cline#c,\toprule#c,\midrule#c,\cmidrule#c,\bottomrule#c,\cmidrulemore#c,\specialrule#c
 dash=#solid,dashed,dotted
 solid
 dashed
@@ -406,10 +406,7 @@ hang=##L
 \MapTblrRemarks{code}#*
 
 \NewTblrLibrary{name}{code}#*
-\UseTblrLibrary{library%keyvals}
-# note \UseTblrLibrary is not a package loading command, however each tblrlibrary
-# except "counter" loads the package of the same name, so the #u designation is convenient
-\UseTblrLibrary{package}#Su
+\UseTblrLibrary{library%keyvals}#u
 
 #keyvals:\UseTblrLibrary#c
 amsmath
@@ -422,77 +419,6 @@ siunitx
 varwidth
 zref
 #endkeyvals
-
-# from amsmath tblrlibrary
-\begin{+array}{preamble}#*m\array
-\end{+array}#*m
-\begin{+matrix}#*m\array
-\begin{+matrix}[inner specs%keyvals]#*m\array
-\end{+matrix}#*m
-\begin{+bmatrix}#*m\array
-\begin{+bmatrix}[inner specs%keyvals]#*m\array
-\end{+bmatrix}#*m
-\begin{+Bmatrix}#*m\array
-\begin{+Bmatrix}[inner specs%keyvals]#*m\array
-\end{+Bmatrix}#*m
-\begin{+pmatrix}#*m\array
-\begin{+pmatrix}[inner specs%keyvals]#*m\array
-\end{+pmatrix}#*m
-\begin{+vmatrix}#*m\array
-\begin{+vmatrix}[inner specs%keyvals]#*m\array
-\end{+vmatrix}#*m
-\begin{+Vmatrix}#*m\array
-\begin{+Vmatrix}[inner specs%keyvals]#*m\array
-\end{+Vmatrix}#*m
-\begin{+cases}#*m\array
-\begin{+cases}[inner specs%keyvals]#*m\array
-\end{+cases}#*m
-
-# from booktabs tblrlibrary
-\toprule#*
-\toprule[options]#*
-\midrule#*
-\midrule[options]#*
-\cmidrule{i-j}#*
-\cmidrule[options]{i-j}#*
-\bottomrule#*
-\bottomrule[options]#*
-\cmidrulemore{i-j}#*
-\morecmidrules#*
-\begin{booktabs}{preamble}#*\tabular
-\end{booktabs}#*
-\begin{longtabs}{preamble}#*\tabular
-\end{longtabs}#*
-\begin{talltabs}{preamble}#*\tabular
-\end{talltabs}#*
-\specialrule{width}{sep1}{sep2}#*
-\addrowspace#*
-\addrowspace[space%l]#*
-\addlinespace#*
-\addlinespace[space%l]#*
-
-# from functional tblrlibrary
-#keyvals:\begin{tblr}#c,\SetTblrOuter#c
-evaluate=%<function%>
-#endkeyvals
-
-#keyvals:\SetTblrInner#c,\begin{+matrix}#c,\begin{+bmatrix}#c,\begin{+Bmatrix}#c,\begin{+pmatrix}#c,\begin{+vmatrix}#c,\begin{+Vmatrix}#c,\begin{+cases}#c
-process=%<function%>
-#endkeyvals
-
-\cellGetText{rownum}{colnum}#*
-\cellSetText{rownum}{colnum}{text}#*
-\cellSetStyle{rownum}{colnum}{style}#*
-\rowSetStyle{rownum}{style}#*
-\columnSetStyle{style}#*
-
-# from diagbox tblrlibrary
-\diagbox{lower}{upper}#*
-\diagboxthree{lower}{middle}{upper}#*
-
-# from siunitx tblrlibrary
-\TblrNum{number}#*
-\TblrUnit{unit}#*
 
 # miscellaneous undocumented
 \LogTblrTracing{arg}#*

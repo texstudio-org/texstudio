@@ -742,137 +742,137 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
         <translation>A TeXstudio beállításai</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4759"/>
+        <location filename="../src/configdialog.ui" line="4855"/>
         <source>Show Advanced Options</source>
         <translation>Speciális beállítások megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4785"/>
+        <location filename="../src/configdialog.ui" line="4881"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4795"/>
+        <location filename="../src/configdialog.ui" line="4891"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="165"/>
-        <location filename="../src/configdialog.ui" line="1996"/>
+        <location filename="../src/configdialog.ui" line="2061"/>
         <source>Appearance</source>
         <translation>Megjelenés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="247"/>
-        <location filename="../src/configdialog.ui" line="3644"/>
+        <location filename="../src/configdialog.ui" line="237"/>
+        <location filename="../src/configdialog.ui" line="3709"/>
         <source>Language:</source>
         <translation>Nyelv:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="260"/>
+        <location filename="../src/configdialog.ui" line="250"/>
         <source>Font:</source>
         <translation>Betűtípus:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="292"/>
-        <location filename="../src/configdialog.ui" line="1749"/>
-        <location filename="../src/configdialog.ui" line="4686"/>
+        <location filename="../src/configdialog.ui" line="282"/>
+        <location filename="../src/configdialog.ui" line="1810"/>
+        <location filename="../src/configdialog.ui" line="4782"/>
         <source>Font Size:</source>
         <translation>Betűméret:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="268"/>
+        <location filename="../src/configdialog.ui" line="258"/>
         <source>Classic</source>
         <translation>Klasszikus</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="273"/>
+        <location filename="../src/configdialog.ui" line="263"/>
         <source>Modern</source>
         <translation>Modern</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="224"/>
+        <location filename="../src/configdialog.ui" line="214"/>
         <source>Style:</source>
         <translation>Stílus:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="299"/>
+        <location filename="../src/configdialog.ui" line="304"/>
         <source>Use System Theme Icons</source>
         <translation>Rendszertéma ikonok használata</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="191"/>
-        <location filename="../src/configdialog.ui" line="4658"/>
+        <location filename="../src/configdialog.ui" line="181"/>
+        <location filename="../src/configdialog.ui" line="4754"/>
         <source>Color Scheme:</source>
         <translation>Színséma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="171"/>
+        <location filename="../src/configdialog.ui" line="294"/>
         <source>Ignore Most System Colors</source>
         <translation>A legtöbb rendszerszín mellőzése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="426"/>
+        <location filename="../src/configdialog.ui" line="446"/>
         <source>MRU Document Chooser</source>
         <translation>MRU dokumentum választó</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="278"/>
+        <location filename="../src/configdialog.ui" line="268"/>
         <source>Modern - dark</source>
         <translation>Modern – sötét</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="338"/>
+        <location filename="../src/configdialog.ui" line="358"/>
         <source>Files</source>
         <translation>Fájlok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="389"/>
+        <location filename="../src/configdialog.ui" line="409"/>
         <source>Max. Recent Documents:</source>
         <translation>Legutóbbi dokumentumok max. száma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="360"/>
+        <location filename="../src/configdialog.ui" line="380"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Emlékezzen a kiválasztott fájlszűrőre párbeszédablak megnyitásakor/mentésekor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="409"/>
+        <location filename="../src/configdialog.ui" line="429"/>
         <source>Use system file dialogs</source>
         <translation>A rendszer fájlválasztó párbeszédablakának használata</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="439"/>
+        <location filename="../src/configdialog.ui" line="459"/>
         <source>Session</source>
         <translation>Munkamenet</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="448"/>
+        <location filename="../src/configdialog.ui" line="468"/>
         <source>Restore Previous Session at Startup</source>
         <translation>Előző munkamenet visszaállítása indításkor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="455"/>
+        <location filename="../src/configdialog.ui" line="475"/>
         <source>Store relative paths</source>
         <translation>Relatív útvonalak tárolása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="468"/>
+        <location filename="../src/configdialog.ui" line="488"/>
         <source>Startup</source>
         <translation>Indítás</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="474"/>
+        <location filename="../src/configdialog.ui" line="494"/>
         <source>Check LaTeX Configuration</source>
         <translation>LaTeX konfiguráció ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="484"/>
+        <location filename="../src/configdialog.ui" line="504"/>
         <source>Update</source>
         <translation>Frissítés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="496"/>
+        <location filename="../src/configdialog.ui" line="516"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
@@ -883,155 +883,155 @@ Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beál
 – Fejlesztői verziók: a legfrissebb funkciókat tartalmazzák, de instabilak lehetnek. (A stabil és a kiadásra jelölt változatokról is ad értesítést)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="503"/>
+        <location filename="../src/configdialog.ui" line="523"/>
         <source>Stable Releases</source>
         <translation>Stabil kiadások</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="508"/>
+        <location filename="../src/configdialog.ui" line="528"/>
         <source>Release Candidates</source>
         <translation>Kiadásra jelölt verziók</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="513"/>
+        <location filename="../src/configdialog.ui" line="533"/>
         <source>Development Versions</source>
         <translation>Fejlesztői verziók</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="534"/>
+        <location filename="../src/configdialog.ui" line="554"/>
         <source>Check Now</source>
         <translation>Azonnali ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="561"/>
+        <location filename="../src/configdialog.ui" line="581"/>
         <source>Last Checked:</source>
         <translation>Utoljára ellenőrizve:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="568"/>
+        <location filename="../src/configdialog.ui" line="588"/>
         <source> days</source>
         <translation>naponta</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="581"/>
+        <location filename="../src/configdialog.ui" line="601"/>
         <source>Automatically check every</source>
         <translation>Automatikus ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="588"/>
+        <location filename="../src/configdialog.ui" line="608"/>
         <source>Update Level:</source>
         <translation>Frissítési szint:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="643"/>
+        <location filename="../src/configdialog.ui" line="663"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Parancsok (%: fájlnév kiterjesztés nélkül - @: sor száma - ?: kiterjesztett fájlnév opciók)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="650"/>
+        <location filename="../src/configdialog.ui" line="670"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Speciális karakterek&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="657"/>
+        <location filename="../src/configdialog.ui" line="677"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
         <translation>&lt;b&gt;%&lt;/b&gt;: fájlnév kiterjesztés nélkül &lt;b&gt;@&lt;/b&gt;: sor száma; &lt;b&gt;?[választó][útvonalnév részek][lezáró karakter]&lt;/b&gt;: formázott fájlnév</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="683"/>
+        <location filename="../src/configdialog.ui" line="703"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; és &lt;b&gt;?? &lt;/b&gt; lesz: %, @ vagy ?</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="764"/>
+        <location filename="../src/configdialog.ui" line="784"/>
         <source>Meta Commands</source>
         <translation>Meta parancsok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="777"/>
+        <location filename="../src/configdialog.ui" line="797"/>
         <source>User Commands</source>
         <translation>Felhasználói parancsok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="787"/>
+        <location filename="../src/configdialog.ui" line="807"/>
         <source>Build Options</source>
         <translation>Fordítási beállítások</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="799"/>
+        <location filename="../src/configdialog.ui" line="819"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
         <translation>A txs:///recompile-bibliography futtatása, ha a bib-fájlok megváltoztak.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="802"/>
+        <location filename="../src/configdialog.ui" line="822"/>
         <source>Check and update bibliography before compiling</source>
         <translation>A bibliográfia ellenőrzése és frissítése fordítás előtt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="809"/>
+        <location filename="../src/configdialog.ui" line="829"/>
         <source>Show messages when starting compiling</source>
         <translation>Fordításkor üzeneteket mutat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="834"/>
+        <location filename="../src/configdialog.ui" line="854"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Ne indítsa a megjelenítő újabb példányát, ha a dvi/ps/pdf már meg van nyitva</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="841"/>
+        <location filename="../src/configdialog.ui" line="863"/>
         <source>Show stdout:</source>
         <translation>Megmutatja az alapértelmezet kimenetet:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="849"/>
-        <location filename="../src/configdialog.ui" line="2237"/>
-        <location filename="../src/configdialog.ui" line="3917"/>
+        <location filename="../src/configdialog.ui" line="871"/>
+        <location filename="../src/configdialog.ui" line="2302"/>
+        <location filename="../src/configdialog.ui" line="3982"/>
         <source>Never</source>
         <translation>Soha</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="854"/>
+        <location filename="../src/configdialog.ui" line="876"/>
         <source>Only For User Commands</source>
         <translation>Csak a felhasználói parancsokat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="859"/>
+        <location filename="../src/configdialog.ui" line="881"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
         <translation>Mindig (ha nincs a /dev/null -ba irányítva)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="867"/>
+        <location filename="../src/configdialog.ui" line="889"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
         <translation>Néhány LaTeX szerkezet (pl. a hivatkozások) többszöri fordítást igényel.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="870"/>
+        <location filename="../src/configdialog.ui" line="892"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Fordításismétlések maximális száma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="917"/>
+        <location filename="../src/configdialog.ui" line="948"/>
         <source>Commands ($PATH)</source>
         <translation>Parancsok ($PATH)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="924"/>
+        <location filename="../src/configdialog.ui" line="955"/>
         <source>PDF File</source>
         <translation>PDF Fájl</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="968"/>
+        <location filename="../src/configdialog.ui" line="999"/>
         <source>Log File</source>
         <translation>Naplófájl</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="977"/>
+        <location filename="../src/configdialog.ui" line="1008"/>
         <source>Additional Search Paths:</source>
         <translation>További elérési út:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="984"/>
+        <location filename="../src/configdialog.ui" line="1015"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1050,33 +1050,33 @@ A változókat $MYVAR-ként kell megadni. Kis-nagybetű érzékeny.
 </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="994"/>
+        <location filename="../src/configdialog.ui" line="1025"/>
         <source>Replace Environment Variables</source>
         <translation>Környezeti változók cseréje</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1001"/>
+        <location filename="../src/configdialog.ui" line="1032"/>
         <source>Show log in case of compile error</source>
         <translation>Napló megjelenítése fordítási hiba esetén</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1008"/>
+        <location filename="../src/configdialog.ui" line="1039"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
         <translation>Lehetővé teszi parancsok újradefiniálását a &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; és a &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt; komment stílusokkal. Részletekért, lásd a felhasználói útmutatót.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1011"/>
+        <location filename="../src/configdialog.ui" line="1042"/>
         <source>Interpret command definition in magic comments</source>
         <translation>Parancs definíciók fordítása mágikus kommentekben</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1048"/>
+        <location filename="../src/configdialog.ui" line="1072"/>
         <location filename="../src/configdialog.cpp" line="531"/>
         <source>Shortcuts</source>
         <translation>Billentyűparancsok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1055"/>
+        <location filename="../src/configdialog.ui" line="1079"/>
         <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1088,971 +1088,976 @@ Then you can select a new shortcut by one of the following ways:
 (3) begépelheti a billentyűparancs szövegét</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1072"/>
-        <location filename="../src/configdialog.ui" line="1319"/>
+        <location filename="../src/configdialog.ui" line="1096"/>
+        <location filename="../src/configdialog.ui" line="1343"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1077"/>
+        <location filename="../src/configdialog.ui" line="1101"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1082"/>
+        <location filename="../src/configdialog.ui" line="1106"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1087"/>
+        <location filename="../src/configdialog.ui" line="1111"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1095"/>
+        <location filename="../src/configdialog.ui" line="1119"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
         <translation>Az Elemek Bezárása GUI elemek egy meghatározott listájára vonatkozik (nem mindegyik jelenik meg itt). Az első látható elem bezárul. Ezzel a beállítással megakadályozhatja néhány elem bezárulását.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1098"/>
+        <location filename="../src/configdialog.ui" line="1122"/>
         <source>Close Element (Esc)</source>
         <translation>Elem bezárása (Esc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1104"/>
+        <location filename="../src/configdialog.ui" line="1128"/>
         <source>Close Log-View</source>
         <translation>Napló bezárása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1111"/>
+        <location filename="../src/configdialog.ui" line="1135"/>
         <source>Close Embedded Viewer</source>
         <translation>Beépített nézőke bezárása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1118"/>
+        <location filename="../src/configdialog.ui" line="1142"/>
         <source>Close Full Screen Mode</source>
         <translation>Kilépés teljes képernyős módból</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1128"/>
+        <location filename="../src/configdialog.ui" line="1152"/>
         <source>Show Shortcuts in Tooltips</source>
         <translation>Billentyűparancsok megjelenítése a buboréksúgókban</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1151"/>
+        <location filename="../src/configdialog.ui" line="1175"/>
         <location filename="../src/configdialog.cpp" line="532"/>
         <source>Menus</source>
         <translation>Menük</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1158"/>
+        <location filename="../src/configdialog.ui" line="1182"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation>A menüelemek itt kerülnek felsorolásra, és elrejthetőek vagy szerkeszthetőek.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1171"/>
+        <location filename="../src/configdialog.ui" line="1195"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1176"/>
+        <location filename="../src/configdialog.ui" line="1200"/>
         <location filename="../src/configdialog.cpp" line="520"/>
         <source>Command</source>
         <translation>Parancs</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1181"/>
+        <location filename="../src/configdialog.ui" line="1205"/>
         <source>Slot</source>
         <translation>Rés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1189"/>
+        <location filename="../src/configdialog.ui" line="1213"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
         <translation>Ez szabályozza, hogy a fenti lista az összes menüt mutatja, vagy csak a gyakran változókat.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1192"/>
+        <location filename="../src/configdialog.ui" line="1216"/>
         <source>Show All</source>
         <translation>Az összes megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1215"/>
+        <location filename="../src/configdialog.ui" line="1239"/>
         <source>Toolbar Customization</source>
         <translation>Eszköztár testreszabása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1224"/>
+        <location filename="../src/configdialog.ui" line="1248"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation>Ez mutat meg minden műveletet a jelenleg szerkesztett eszköztáron.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1249"/>
+        <location filename="../src/configdialog.ui" line="1273"/>
         <source>This adds an action to the toolbar.</source>
         <translation>Ez egy műveletet ad hozzá az eszköztárhoz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1263"/>
+        <location filename="../src/configdialog.ui" line="1287"/>
         <source>This removes an action from the toolbar.</source>
         <translation>Ez eltávolít egy műveletet az eszköztárról.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1292"/>
+        <location filename="../src/configdialog.ui" line="1316"/>
         <source>Here you can choose a toolbar to modify.</source>
         <translation>Itt kiválaszthatja a módosítandó eszköztárat.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1299"/>
+        <location filename="../src/configdialog.ui" line="1323"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
         <translation>Itt kiválaszthatja a parancsok listáját, amelyek az eszköztárra tehetőek.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1306"/>
+        <location filename="../src/configdialog.ui" line="1330"/>
         <source>This shows available actions to map on a toolbar.</source>
         <translation>Ez mutatja meg az eszköztárra tehető, elérhető műveleteket.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1470"/>
+        <location filename="../src/configdialog.ui" line="1501"/>
         <source>Secondary Toolbars</source>
         <translation>Másodlagos eszköztárak</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1392"/>
-        <location filename="../src/configdialog.ui" line="1399"/>
-        <location filename="../src/configdialog.ui" line="1456"/>
-        <location filename="../src/configdialog.ui" line="1509"/>
+        <location filename="../src/configdialog.ui" line="1423"/>
+        <location filename="../src/configdialog.ui" line="1430"/>
+        <location filename="../src/configdialog.ui" line="1487"/>
+        <location filename="../src/configdialog.ui" line="1540"/>
         <source>Reset</source>
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1463"/>
+        <location filename="../src/configdialog.ui" line="1494"/>
         <source>Symbol Grid</source>
         <translation>Szimbólumrács</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1385"/>
+        <location filename="../src/configdialog.ui" line="1416"/>
         <source>Main Toolbar</source>
         <translation>Fő eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1428"/>
+        <location filename="../src/configdialog.ui" line="1459"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
         <translation>Ez megváltoztatja a vízszintes eszköztárak méretezését (nagy felbontású kijelzőkhöz).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1354"/>
+        <location filename="../src/configdialog.ui" line="1385"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
         <translation>Ez megváltoztatja a szimbólumrács méretezését (nagy felbontású kijelzőkhöz).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1406"/>
+        <location filename="../src/configdialog.ui" line="1437"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
         <translation>Ez megváltoztatja a függőleges eszköztárak méretezését (nagy felbontású kijelzőkhöz).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1567"/>
+        <location filename="../src/configdialog.ui" line="1628"/>
         <location filename="../src/configdialog.cpp" line="535"/>
         <location filename="../src/configmanager.cpp" line="1518"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1579"/>
+        <location filename="../src/configdialog.ui" line="1640"/>
         <source>Inline Checking:</source>
         <translation>Sorközi ellenőrzés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1618"/>
+        <location filename="../src/configdialog.ui" line="1679"/>
         <source>Check non tex files</source>
         <translation>Nem szövegfájlok ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1628"/>
+        <location filename="../src/configdialog.ui" line="1689"/>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation>A LaTeX disztribúció felderítése telepített csomagok után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1638"/>
+        <location filename="../src/configdialog.ui" line="1699"/>
         <source>Folding</source>
         <translation>Összezárás</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1645"/>
+        <location filename="../src/configdialog.ui" line="1706"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation>Behúzási tabulatárok cseréje szóközökre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1652"/>
-        <location filename="../src/configdialog.ui" line="4672"/>
+        <location filename="../src/configdialog.ui" line="1713"/>
+        <location filename="../src/configdialog.ui" line="4768"/>
         <source>Font Family:</source>
         <translation>Betűcsalád:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1659"/>
+        <location filename="../src/configdialog.ui" line="1720"/>
         <source>Replace Double Quotes:</source>
         <translation>Kettős idézőjelek helyettesítése:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1672"/>
+        <location filename="../src/configdialog.ui" line="1733"/>
         <source>Default Font Encoding:</source>
         <translation>Alapértelmezett karakterkódolás:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1679"/>
+        <location filename="../src/configdialog.ui" line="1740"/>
         <source>Indentation Mode:</source>
         <translation>Behúzás mód:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1686"/>
+        <location filename="../src/configdialog.ui" line="1747"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Automatikus kódolásérzékelés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1696"/>
+        <location filename="../src/configdialog.ui" line="1757"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
         <translation>LaTeX elemzés (% !TeX kódolás, inputenc, inputenx)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1703"/>
+        <location filename="../src/configdialog.ui" line="1764"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>Csak utf16/utf-8 és ISO 8859-1 közül tud választani!</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1706"/>
+        <location filename="../src/configdialog.ui" line="1767"/>
         <source>Analyze Characters</source>
         <translation>Karakterek elemzése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1730"/>
-        <location filename="../src/configdialog.ui" line="4002"/>
-        <location filename="../src/configdialog.ui" line="4099"/>
+        <location filename="../src/configdialog.ui" line="1791"/>
+        <location filename="../src/configdialog.ui" line="4067"/>
+        <location filename="../src/configdialog.ui" line="4164"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1756"/>
+        <location filename="../src/configdialog.ui" line="1817"/>
         <source>Line Spacing:</source>
         <translation>Sorkihagyás:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1767"/>
+        <location filename="../src/configdialog.ui" line="1828"/>
         <source>No Replacement</source>
         <translation>Nincs helyettesítés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1772"/>
+        <location filename="../src/configdialog.ui" line="1833"/>
         <source>English Quotes:  `` &apos;&apos;</source>
         <translation>Angol idézőjelek:  `` &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1777"/>
+        <location filename="../src/configdialog.ui" line="1838"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
         <translation>Francia idézőjelek:  &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1782"/>
+        <location filename="../src/configdialog.ui" line="1843"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
         <translation>Német idézőjelek:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1787"/>
+        <location filename="../src/configdialog.ui" line="1848"/>
         <source>French Quotes (babel): \og{} \fg{}</source>
         <translation>Francia idézőjelek (babel): \og{} \fg{}</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1792"/>
+        <location filename="../src/configdialog.ui" line="1853"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
         <translation>Fordított francia idézőjelek: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1797"/>
+        <location filename="../src/configdialog.ui" line="1858"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>csquotes csomag: \enquote{  }</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1802"/>
+        <location filename="../src/configdialog.ui" line="1863"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Angol idézőjelek: (unicode): “ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1807"/>
+        <location filename="../src/configdialog.ui" line="1868"/>
         <source>Polish Quotes: ,, &apos;&apos;</source>
         <translation>Lengyel iédőjelek: ,, &apos;&apos;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1812"/>
+        <location filename="../src/configdialog.ui" line="1873"/>
         <source>Polish Quotes (unicode): „ ”</source>
         <translation>Lengyel idézőjelek (Unicode): „ ”</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1820"/>
+        <location filename="../src/configdialog.ui" line="1881"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Csak a rögzített szélességű betűkészletek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1831"/>
+        <location filename="../src/configdialog.ui" line="1892"/>
         <source>Ignore Indentation</source>
         <translation>Behúzás mellőzése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1836"/>
+        <location filename="../src/configdialog.ui" line="1897"/>
         <source>Keep Indentation</source>
         <translation>Behúzás megtartása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1841"/>
+        <location filename="../src/configdialog.ui" line="1902"/>
         <source>Indent and Unindent Automatically</source>
         <translation>Behúzás és annak automatikus megszüntetése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1861"/>
+        <location filename="../src/configdialog.ui" line="1922"/>
         <source>Spelling</source>
         <translation>Betűzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1868"/>
+        <location filename="../src/configdialog.ui" line="1929"/>
         <source>Grammar</source>
         <translation>Nyelvtan</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1875"/>
+        <location filename="../src/configdialog.ui" line="1936"/>
         <source>Citations</source>
         <translation>Idézetek</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1882"/>
+        <location filename="../src/configdialog.ui" line="1943"/>
         <source>References</source>
         <translation>Hivatkozások</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1889"/>
+        <location filename="../src/configdialog.ui" line="1950"/>
         <source>Syntax</source>
         <translation>Szintaxis</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1896"/>
+        <location filename="../src/configdialog.ui" line="1957"/>
         <source>Package</source>
         <translation>Csomag</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1906"/>
+        <location filename="../src/configdialog.ui" line="1967"/>
         <source>Replace Tab in Text by Spaces</source>
         <translation>Szövegbeli tabulátorok cseréje szóközökre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1913"/>
+        <location filename="../src/configdialog.ui" line="1974"/>
         <source>Automatically load included files</source>
         <translation>Tartalmazott fájlok automatikus betöltése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1923"/>
+        <location filename="../src/configdialog.ui" line="1984"/>
         <source>Hide grammar errors in non-text environments</source>
         <translation>Nyelvtani hibák elrejtése nem szöveges környezetben</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1933"/>
+        <location filename="../src/configdialog.ui" line="1994"/>
         <source>Hide spelling errors in non-text environments</source>
         <translation>Helyesírási hibák elrejtése nem szöveges környezetben</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1943"/>
+        <location filename="../src/configdialog.ui" line="2004"/>
         <source>Remove Trailing Whitespace on Save</source>
         <translation>Követő szóközök eltávolítása mentéskor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1589"/>
+        <location filename="../src/configdialog.ui" line="1650"/>
         <source>Show Line Numbers:</source>
         <translation>A sorok számának megjelenítése:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1600"/>
+        <location filename="../src/configdialog.ui" line="1661"/>
         <source>No Line Numbers</source>
         <translation>A sorok ne legyenek számozva</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1605"/>
+        <location filename="../src/configdialog.ui" line="1666"/>
         <source>All Line Numbers</source>
         <translation>Minden sorszám</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1610"/>
+        <location filename="../src/configdialog.ui" line="1671"/>
         <source>Only Important Line Numbers</source>
         <translation>Csak a fontos sorok számai</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2019"/>
+        <location filename="../src/configdialog.ui" line="2084"/>
         <source>Show State Panel</source>
         <translation>Állapotpanel megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2031"/>
+        <location filename="../src/configdialog.ui" line="2096"/>
         <source>Tab Width:</source>
         <translation>Tabulátor szélesség:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2066"/>
+        <location filename="../src/configdialog.ui" line="2131"/>
         <source>Show Whitespace</source>
         <translation>Üres karakterek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2079"/>
+        <location filename="../src/configdialog.ui" line="2144"/>
         <source>Show Line Change State</source>
         <translation>Sor módosítási állapotának megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2089"/>
+        <location filename="../src/configdialog.ui" line="2154"/>
         <source>Draw cursor as a thick line</source>
         <translation>Kurzor megjelenítése vastag vonalként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2092"/>
+        <location filename="../src/configdialog.ui" line="2157"/>
         <source>Bold Cursor</source>
         <translation>Félkövér kurzor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2108"/>
+        <location filename="../src/configdialog.ui" line="2173"/>
         <source>Search Panel</source>
         <translation>Keresés panel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2114"/>
+        <location filename="../src/configdialog.ui" line="2179"/>
         <source>Close search and replace panel together</source>
         <translation>Keresés és csere panelek együttes bezárása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2124"/>
+        <location filename="../src/configdialog.ui" line="2189"/>
         <source>Use single line selection as Search Word</source>
         <translation>Kijelölt szöveg használata keresőszóként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2134"/>
+        <location filename="../src/configdialog.ui" line="2199"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Keresési tartomány megszorítása egy létező kiválasztásra</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2144"/>
+        <location filename="../src/configdialog.ui" line="2209"/>
         <source>Special options</source>
         <translation>Különleges beállítások</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2177"/>
+        <location filename="../src/configdialog.ui" line="2242"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Megmutatja a naplójelzőket ha a naplójelzőre kattintunk</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2223"/>
+        <location filename="../src/configdialog.ui" line="2288"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Elemek közvetlen hozzáadása a párbeszéd menühöz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2228"/>
+        <location filename="../src/configdialog.ui" line="2293"/>
         <source>Create Dedicated Submenu</source>
         <translation>Külön almenü létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2448"/>
+        <location filename="../src/configdialog.ui" line="2513"/>
         <source>Spellchecking via context menu:</source>
         <translation>Helyesírás-ellenőrzés a párbeszéd menün keresztül:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2383"/>
+        <location filename="../src/configdialog.ui" line="2448"/>
         <source>Default Log Encoding</source>
         <translation>Alapértelmezett naplókódolás</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2242"/>
+        <location filename="../src/configdialog.ui" line="2307"/>
         <source>1 minute</source>
         <translation>1 perc</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2247"/>
+        <location filename="../src/configdialog.ui" line="2312"/>
         <source>2 minutes</source>
         <translation>2 perc</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2252"/>
+        <location filename="../src/configdialog.ui" line="2317"/>
         <source>5 minutes</source>
         <translation>5 percenként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2257"/>
+        <location filename="../src/configdialog.ui" line="2322"/>
         <source>10 minutes</source>
         <translation>10 percenként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2262"/>
+        <location filename="../src/configdialog.ui" line="2327"/>
         <source>20 minutes</source>
         <translation>20 percenként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2267"/>
+        <location filename="../src/configdialog.ui" line="2332"/>
         <source>60 minutes</source>
         <translation>Óránként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2455"/>
+        <location filename="../src/configdialog.ui" line="2520"/>
         <source>Auto Complete Parentheses</source>
         <translation>Zárójelpárok automatikus bezárása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2376"/>
+        <location filename="../src/configdialog.ui" line="2441"/>
         <source>Smooth Scrolling</source>
         <translation>Finom görgetés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2184"/>
+        <location filename="../src/configdialog.ui" line="2249"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Nagyítás az egérgörgővel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2390"/>
+        <location filename="../src/configdialog.ui" line="2455"/>
         <source>Auto Save All Files:</source>
         <translation>Minden fájl automatikus mentése:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2286"/>
+        <location filename="../src/configdialog.ui" line="2351"/>
         <source>Line Wrapping:</source>
         <translation>Sortörés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2462"/>
+        <location filename="../src/configdialog.ui" line="2527"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation>Dupla kattintásos kiválasztás: a vezető fordított ferde vonal belevétele</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2196"/>
+        <location filename="../src/configdialog.ui" line="2261"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Külső változtatás esetén a mentett fájlt figyelmeztetés nélkül visszatölti (a Vissza/Újra változások elvesznek)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2323"/>
+        <location filename="../src/configdialog.ui" line="2388"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Parancsok súgójának mutatása a belső pdf-megjelenítőben (texdoc)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2338"/>
+        <location filename="../src/configdialog.ui" line="2403"/>
         <source>Select Word</source>
         <translation>Szó kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2343"/>
+        <location filename="../src/configdialog.ui" line="2408"/>
         <source>Select Word or Command</source>
         <translation>Szó vagy parancs kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2348"/>
+        <location filename="../src/configdialog.ui" line="2413"/>
         <source>Select Parentheses Content</source>
         <translation>Zárójelezett rész kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2353"/>
+        <location filename="../src/configdialog.ui" line="2418"/>
         <source>Select Parentheses</source>
         <translation>Zárójelpárok kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2358"/>
+        <location filename="../src/configdialog.ui" line="2423"/>
         <source>Select Line</source>
         <translation>Sor kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2205"/>
+        <location filename="../src/configdialog.ui" line="2270"/>
         <source>Monitor open files for external changes</source>
         <translation>Nyitott fájlok külső változtatásainak figyelése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2313"/>
+        <location filename="../src/configdialog.ui" line="2378"/>
         <source>Triple-Click Selection:</source>
         <translation>Tripla kattintásos kiválasztás:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2153"/>
+        <location filename="../src/configdialog.ui" line="2218"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ez a QSaveFile-t használja, hogy megelőzze a létező adat elvesztését ha az írási művelet sikertelen. Ennek hátránya, hogy a jelenlegi felhasználó lesz a fájl tulajdonosa és a bővített fájl attribútumok elvesznek. Továbbá, úgy tűnik, hogy problémák vannak ezzel a módszerrel dropbox mappák esetén.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2156"/>
+        <location filename="../src/configdialog.ui" line="2221"/>
         <source>Safe writing of files</source>
         <translation>Fájlok biztonságos írása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2293"/>
+        <location filename="../src/configdialog.ui" line="2358"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation>Helykitöltő utáni bezáró zárójel átírása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2300"/>
+        <location filename="../src/configdialog.ui" line="2365"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
         <translation>Csak akkor van hatása, ha a dokumentum szélességet sortörés korlátozza.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2303"/>
+        <location filename="../src/configdialog.ui" line="2368"/>
         <source>Center Document in Editor</source>
         <translation>Dokumentum középre helyezése a szerkesztőben</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2434"/>
+        <location filename="../src/configdialog.ui" line="2499"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Szöveg buboréksúgójának megjelenítése a szerkesztőben</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2366"/>
+        <location filename="../src/configdialog.ui" line="2431"/>
         <source>Maximal Characters:</source>
         <translation>Karakterek maximális száma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2411"/>
+        <location filename="../src/configdialog.ui" line="2476"/>
         <source>No Line Wrap</source>
         <translation>Nincs sortörés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2416"/>
+        <location filename="../src/configdialog.ui" line="2481"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>Puha sortörés ablak szélén</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2421"/>
+        <location filename="../src/configdialog.ui" line="2486"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>Puha sortörés a max. karakterszám után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2426"/>
+        <location filename="../src/configdialog.ui" line="2491"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Kemény sortörés a max. karakterszám után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2275"/>
+        <location filename="../src/configdialog.ui" line="2340"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Amikor unicode karaktereket használ a forráskódban, akkor a LaTeX-nek
 meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az unicode-ot, ezért a megfelelő csomagokat kell használni a dokumentumban található unicode karakterekhez.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2279"/>
+        <location filename="../src/configdialog.ui" line="2344"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Szimbólum beszúrása Unicode karakterként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2441"/>
+        <location filename="../src/configdialog.ui" line="2506"/>
         <source>Go to error when displaying log</source>
         <translation>Napló megjelenésekor a hibára ugrik</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2163"/>
+        <location filename="../src/configdialog.ui" line="2228"/>
         <source>Show image tooltip on image files</source>
         <translation>Kép buboréksúgó megjelenítése képfájlokon</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2170"/>
+        <location filename="../src/configdialog.ui" line="2235"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Helykitöltő előtti nyitó zárójel átírása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2330"/>
+        <location filename="../src/configdialog.ui" line="2395"/>
         <source>Allow Drag and Drop</source>
         <translation>Fogd és vidd engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2212"/>
+        <location filename="../src/configdialog.ui" line="2277"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A külső programok (mint a Zotero) tudnak idézeteket beszúrni a texstudióba a következő parancsokkal: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;idézet&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Ha a kurzor még nincs idézet parancson belül, akkor az itt megadott &amp;quot;parancs&amp;quot; \cite-parancsként lesz használva.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1477"/>
+        <location filename="../src/configdialog.ui" line="1508"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>Ez megváltoztatja a beépített PDF néző eszköztárának méretezését (nagy felbontású kijelzőkhöz).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1502"/>
+        <location filename="../src/configdialog.ui" line="1533"/>
         <source>Embedded PDF Toolbar</source>
         <translation>Beépített PDF néző eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2215"/>
+        <location filename="../src/configdialog.ui" line="2280"/>
         <source>Latex Command for pushed citations:</source>
         <translation>LaTeX parancs a beszúrt idézetekhez:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2469"/>
+        <location filename="../src/configdialog.ui" line="2534"/>
         <source>Vertical Overscroll (Scroll below end of file)</source>
         <translation>Függőleges túlgörgetés (Görgetés a fájl vége alá)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2479"/>
+        <location filename="../src/configdialog.ui" line="2544"/>
         <source>Structure Panel</source>
         <translation>Struktúra panel</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2510"/>
+        <location filename="../src/configdialog.ui" line="2575"/>
         <source>Mark structure elements beyond \end{document}</source>
         <translation>A \end{document}-en túli lévő szerkezeti elemek megjelölése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2517"/>
+        <location filename="../src/configdialog.ui" line="2582"/>
         <source>Reference commands in context menu:</source>
         <translation>Hivatkozási parancsok a párbeszéd menüben:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2557"/>
+        <location filename="../src/configdialog.ui" line="2622"/>
         <source>Mark structure elements in appendix</source>
         <translation>A függelékben lévő szerkezeti elemek megjelölése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2530"/>
+        <location filename="../src/configdialog.ui" line="2595"/>
         <source>Regular expression for TODO comment: </source>
         <translation>Reguláris kifejezés a TODO megjegyzéshez:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2537"/>
+        <location filename="../src/configdialog.ui" line="2602"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Behúzás megtartása a struktúra fában</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2489"/>
+        <location filename="../src/configdialog.ui" line="2554"/>
         <source>No Color Background</source>
         <translation>Nincs háttérszín</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2494"/>
+        <location filename="../src/configdialog.ui" line="2559"/>
         <source>Green Background</source>
         <translation>Zöld háttér</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2499"/>
+        <location filename="../src/configdialog.ui" line="2564"/>
         <source>Blue Background</source>
         <translation>Kék háttér</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2507"/>
+        <location filename="../src/configdialog.ui" line="2572"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Az olyan elemek, mint a  &amp;quot;\section&amp;quot; más háttérszínnel vannak kiemelve, jelezve, hogy ezek &lt;span style=&quot; font-weight:600;&quot;&gt;nem&lt;/span&gt; fognak megjelenni a dokumentumban.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2554"/>
+        <location filename="../src/configdialog.ui" line="2619"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Az olyan elemek, mint a &amp;quot;\section&amp;quot; más háttérszínnel vannak kiemelve, jelezve, hogy ezek függelékként fognak megjelenni.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2544"/>
+        <location filename="../src/configdialog.ui" line="2609"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A kurzor aktuális pozíciója ki van emelve a struktúra nézetben.&lt;/p&gt;&lt;p&gt;Ha ez az opció aktív, a bejegyzés kibontásra kerül és görgetve láthatóvá válik.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="309"/>
+        <location filename="../src/configdialog.ui" line="329"/>
         <source>Icon Theme:</source>
         <translation>Ikontéma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="317"/>
+        <location filename="../src/configdialog.ui" line="337"/>
         <source>Colibre</source>
         <translation>Colibre</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="322"/>
+        <location filename="../src/configdialog.ui" line="342"/>
         <source>Oxygen Modern</source>
         <translation>Oxygen Modern</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="327"/>
+        <location filename="../src/configdialog.ui" line="347"/>
         <source>Oxygen Classic</source>
         <translation>Oxygen Classic</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="353"/>
+        <location filename="../src/configdialog.ui" line="373"/>
         <source>Max. Recent Root Documents:</source>
         <translation>Legutóbbi gyökérdokumentumok max. száma:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="416"/>
+        <location filename="../src/configdialog.ui" line="436"/>
         <source>Always Show Structure of Root Document</source>
         <translation>Mindig mutassa a gyökérdokumentum struktúráját</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="667"/>
+        <location filename="../src/configdialog.ui" line="687"/>
         <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
         <translation>&lt;i&gt;Fájlválasztó (Nem kötelező. Ha jelen van, akkor a záró kettőspontot is tartalmazza):&lt;/i&gt; Ha nincs választó, akkor a gyökérfájlt választja ki. &lt;b&gt;c:&lt;/b&gt; jelenlegi fájl kiválasztása, &lt;b&gt;p{ext}:&lt;/b&gt; A gyökérfájllal egyező alapnevű és &lt;b&gt;ext&lt;/b&gt; kiterjesztésű fájl. A keresés a gyökérfájl könyvtárában és a további PDF könyvtárakban történik.&lt;br /&gt;&lt;i&gt;Útvonal részek:&lt;/i&gt; a következők kombinációja, &lt;b&gt;a&lt;/b&gt;: abszolút útvonal, &lt;b&gt;m&lt;/b&gt;: alap fájlnév kiterjesztés nélkül, &lt;b&gt;e&lt;/b&gt;: kiterjesztés, &lt;b&gt;r&lt;/b&gt;: relatív útvonal a gyökérfájlhoz, &lt;b&gt;*&lt;/b&gt;: a következő mintával egyező összes fájl&lt;br/&gt;&lt;i&gt;Záró karakterek:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: lezárja a választót. A következő karakterek lezárják a választót és további jelentéssel bírnak&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: körbezárás dupla idézőjellel, &lt;b&gt;.&lt;/b&gt; (pont) egy pont hozzáfűzése a végéhez, (szóköz): egy szóköz hozzáfűzése a végéhez&lt;br/&gt;&lt;i&gt;Példák:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: a teljes abszolút fájlnév dupla idézőjelek között, &lt;b&gt;?e)&lt;/b&gt; csak a kiterjesztés, kezdő ponttal (például .tex),&lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; fájlnév dupla idézőjelek között, kiterjesztés nélkül (egyenértékű ezzel: &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; fájlnév kiterjesztéssel (például example.tex), &lt;b&gt;?*.aux&lt;/b&gt; az összes .aux fájl a jelenlegi könyvtárban</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2485"/>
+        <location filename="../src/configdialog.ui" line="1378"/>
+        <source>Note: The change of symbols can be monitored live</source>
+        <translation>Megjegyzés: A szimbólumok változása élőben követhető</translation>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="2550"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>A globális tartalomjegyzék különböző árnyalatú háttérszínt használ a különböző fájlok megkülönböztetésére. A színséma itt módosítható. </translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2547"/>
+        <location filename="../src/configdialog.ui" line="2612"/>
         <source>Scroll to current cursor position</source>
         <translation>Görgessen a kurzor aktuális pozíciójához</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2564"/>
+        <location filename="../src/configdialog.ui" line="2629"/>
         <source>Use color in global TOC:</source>
         <translation>Szín használata a globális tartalomjegyzékben:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2584"/>
+        <location filename="../src/configdialog.ui" line="2649"/>
         <source>Bibliography</source>
         <translation>Bibliográfia</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2590"/>
+        <location filename="../src/configdialog.ui" line="2655"/>
         <source>bib File Encoding:</source>
         <translation>bib Tex fájl kódolása:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2597"/>
+        <location filename="../src/configdialog.ui" line="2662"/>
         <source>Parse BibTeX</source>
         <translation>BibTeX feldolgozása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2610"/>
+        <location filename="../src/configdialog.ui" line="2675"/>
         <source>Table Autoformating</source>
         <translation>Táblázat automatikus formázása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2616"/>
+        <location filename="../src/configdialog.ui" line="2681"/>
         <source>One Line Per Cell</source>
         <translation>Cellánként egy sor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2624"/>
+        <location filename="../src/configdialog.ui" line="2689"/>
         <source>Behind Line Break</source>
         <translation>Sortörés mögött</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2629"/>
+        <location filename="../src/configdialog.ui" line="2694"/>
         <source>Separate Line (No Indent)</source>
         <translation>Elválasztó vonal (behúzás nélkül)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2634"/>
+        <location filename="../src/configdialog.ui" line="2699"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Elválasztó vonal (az első oszlopba beszúrva)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2642"/>
+        <location filename="../src/configdialog.ui" line="2707"/>
         <source>Special Commands Position:</source>
         <translation>Különleges parancsok elhelyezkedése:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2652"/>
+        <location filename="../src/configdialog.ui" line="2717"/>
         <source>Special Commands:</source>
         <translation>Különleges parancsok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2662"/>
+        <location filename="../src/configdialog.ui" line="2727"/>
         <source>Additional Search Paths</source>
         <translation>További elérési út</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2671"/>
+        <location filename="../src/configdialog.ui" line="2736"/>
         <source>Bib Files:</source>
         <translation>Bib Fájlok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2684"/>
+        <location filename="../src/configdialog.ui" line="2749"/>
         <source>Image Files:</source>
         <translation>Képfájlok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2722"/>
+        <location filename="../src/configdialog.ui" line="2787"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2728"/>
+        <location filename="../src/configdialog.ui" line="2793"/>
         <source>Automatically insert LRM characters</source>
         <translation>LRM karakterek automatikus beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2735"/>
+        <location filename="../src/configdialog.ui" line="2800"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Vizuális oszlop kurzor mód (vagyis az rtl szövegben a kurzort a nyílbillentyűk mozgatják)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2742"/>
+        <location filename="../src/configdialog.ui" line="2807"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Billentyűzetkiosztás automatikus átváltása:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2749"/>
+        <location filename="../src/configdialog.ui" line="2814"/>
         <source>depending on character direction</source>
         <translation>karakteriránytól függően</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2756"/>
+        <location filename="../src/configdialog.ui" line="2821"/>
         <source>depending on text/math mode</source>
         <translation>szöveges/matematikai módtól függően</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2766"/>
+        <location filename="../src/configdialog.ui" line="2831"/>
         <source>Hacks/Workarounds</source>
         <translation>Buherálás/Kerülő megoldások</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2772"/>
+        <location filename="../src/configdialog.ui" line="2837"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Kerülő megoldás kiiktatása ékezetek gépelésekor (csak Mac OS X esetén)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2779"/>
+        <location filename="../src/configdialog.ui" line="2844"/>
         <source>Try to automatically choose best display options</source>
         <translation>Automatikusan megpróbálja a legjobb megjelenítési beállításokat választani</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2797"/>
+        <location filename="../src/configdialog.ui" line="2862"/>
         <source>Render Mode:</source>
         <translation>Renderelési mód:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2805"/>
+        <location filename="../src/configdialog.ui" line="2870"/>
         <source>QCE (recommended)</source>
         <translation>QCE (ajánlott)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2810"/>
+        <location filename="../src/configdialog.ui" line="2875"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2815"/>
+        <location filename="../src/configdialog.ui" line="2880"/>
         <source>Single Letter</source>
         <translation>egyszerű levél</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2823"/>
+        <location filename="../src/configdialog.ui" line="2888"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Ha a renderelt sorok gyorsítótára be van kapcsolva, akkor azokat nem kell újrarenderelni. Ez sebességnövekedést eredményez (különösen Macen), nagyobb memóriahasználat árán.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2826"/>
+        <location filename="../src/configdialog.ui" line="2891"/>
         <source>Disable cache of rendered lines</source>
         <translation>A renderelt sorok gyorsítótárának kikapcsolása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2833"/>
+        <location filename="../src/configdialog.ui" line="2898"/>
         <source>Disable fixed pitch mode</source>
         <translation>Rögzített szélességű mód kiiktatása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2840"/>
+        <location filename="../src/configdialog.ui" line="2905"/>
         <source>Disable cache of character width</source>
         <translation>Karakterszélesség tárolójának kiiktatása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2847"/>
+        <location filename="../src/configdialog.ui" line="2912"/>
         <source>Use QImage as cache type</source>
         <translation>QImage használata gyorsítótár típusként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2910"/>
+        <location filename="../src/configdialog.ui" line="2975"/>
         <source>Formats</source>
         <translation>Formátumok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2939"/>
+        <location filename="../src/configdialog.ui" line="3004"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <source>Completion</source>
         <translation>Kiegészítés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2945"/>
+        <location filename="../src/configdialog.ui" line="3010"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2071,118 +2076,118 @@ meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az u
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2955"/>
+        <location filename="../src/configdialog.ui" line="3020"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>LaTeX parancsok automatikus cseréje</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2962"/>
+        <location filename="../src/configdialog.ui" line="3027"/>
         <source>Insert Arguments</source>
         <translation>Argumentumok beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2972"/>
+        <location filename="../src/configdialog.ui" line="3037"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Buboréksúgót jelenít meg a címkék/bibliográfia elemek, előnézet színek vagy képek célszövegéhez</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2975"/>
+        <location filename="../src/configdialog.ui" line="3040"/>
         <source>ToolTip-Preview</source>
         <translation>Buboréksúgó-előnézet</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2982"/>
+        <location filename="../src/configdialog.ui" line="3047"/>
         <source>Arguments as Placeholders</source>
         <translation>Argumentumok helykitöltőként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2992"/>
+        <location filename="../src/configdialog.ui" line="3057"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>A kiválasztott kiegészítendő parancsra leírást mutat előnézetként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="2995"/>
+        <location filename="../src/configdialog.ui" line="3060"/>
         <source>ToolTip-Help</source>
         <translation>Buboréksúgó</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3005"/>
+        <location filename="../src/configdialog.ui" line="3070"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>A kiegészítő egy \ jelet begépelése után elindul. Egyébként kézzel, a Ctrl+Space lenyomásával is indítható.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3008"/>
+        <location filename="../src/configdialog.ui" line="3073"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>A kiegészítő automatikusan működésbe lép LaTeX parancsok begépelésekor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3017"/>
+        <location filename="../src/configdialog.ui" line="3082"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>A lapsor mérete a kiegészítő alján vagy tetején</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3020"/>
+        <location filename="../src/configdialog.ui" line="3085"/>
         <source>Tab Bar Size</source>
         <translation>A lapsor mérete</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3030"/>
+        <location filename="../src/configdialog.ui" line="3095"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>A parancskészlet fülek mérete a kiegészítő alján vagy tetején</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3064"/>
+        <location filename="../src/configdialog.ui" line="3129"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>A kiválasztott szöveg kiegészítése nem-szó karakter lenyomására</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3074"/>
+        <location filename="../src/configdialog.ui" line="3139"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation>Ha minden javaslatban közös az összes további karakter, a &lt;Tab&gt; automatikusan beszúrja a szövegbe.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3077"/>
+        <location filename="../src/configdialog.ui" line="3142"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Gyakori prefixek automatikus kiegészítése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3089"/>
+        <location filename="../src/configdialog.ui" line="3154"/>
         <source>Preferred Commands Set:</source>
         <translation>Beállított parancskészlet:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3097"/>
+        <location filename="../src/configdialog.ui" line="3162"/>
         <source>Typical</source>
         <translation>Tipikus</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3102"/>
+        <location filename="../src/configdialog.ui" line="3167"/>
         <source>Most Used</source>
         <translation>Leggyakrabban használt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3107"/>
+        <location filename="../src/configdialog.ui" line="3172"/>
         <source>Fuzzy</source>
         <translation>Fuzzy</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3112"/>
+        <location filename="../src/configdialog.ui" line="3177"/>
         <source>All</source>
         <translation>Mind</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3135"/>
+        <location filename="../src/configdialog.ui" line="3200"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
         <translation>Ha egy matematikai parancs kiegészítéssel kerül beszúrásra matematikai környezeten kívül, akkor a $$ automatikusan megjelenik.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3138"/>
+        <location filename="../src/configdialog.ui" line="3203"/>
         <source>Auto Insert Math Delimiters where needed</source>
         <translation>Matematikai határolójelek automatikus beszúrása ahol szükséges</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3150"/>
-        <location filename="../src/configdialog.ui" line="3188"/>
+        <location filename="../src/configdialog.ui" line="3215"/>
+        <location filename="../src/configdialog.ui" line="3253"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2193,461 +2198,461 @@ them here.</source>
 További csomagok keresése általában nem szükséges, bár ha felismerésük nem sikerült, esetleg különleges, felhasználók által készített fájlokat akarunk használni, megpróbálhatjuk ennek a funkciónak a használatát.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3158"/>
+        <location filename="../src/configdialog.ui" line="3223"/>
         <source>Permanently active completion files:</source>
         <translation>Állandóan aktív kiegészítésfájlok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3168"/>
+        <location filename="../src/configdialog.ui" line="3233"/>
         <source>Filter list below</source>
         <translation>Alábbi szűrőlista</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3279"/>
+        <location filename="../src/configdialog.ui" line="3344"/>
         <source>Spell Check</source>
         <translation>Helyesírás-ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3285"/>
+        <location filename="../src/configdialog.ui" line="3350"/>
         <source>Default Language:</source>
         <translation>Alapértelmezett nyelv:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3312"/>
+        <location filename="../src/configdialog.ui" line="3377"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Szótár könyvtár:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3319"/>
+        <location filename="../src/configdialog.ui" line="3384"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
         <translation>A Hunspell szótárakat tartalmazó mappák pontosvesszőkkel vannak elválasztva. A [txs-settings-dir] és a [txs-app-dir] speciális kulcsszavak a megfelelő könyvtáraikhoz képest lesznek feloldva.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3329"/>
+        <location filename="../src/configdialog.ui" line="3394"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3336"/>
+        <location filename="../src/configdialog.ui" line="3401"/>
         <source>Thesaurus Database:</source>
         <translation>Tezaurusz adatbázis:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3366"/>
+        <location filename="../src/configdialog.ui" line="3431"/>
         <source>TextLabel</source>
         <translation>Szövegcímke</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3379"/>
+        <location filename="../src/configdialog.ui" line="3444"/>
         <source>Import Dictionary...</source>
         <translation>Szótár importálása…</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3389"/>
+        <location filename="../src/configdialog.ui" line="3454"/>
         <source>Internal Grammar Check</source>
         <translation>Belső nyelvtani ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3395"/>
+        <location filename="../src/configdialog.ui" line="3460"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Egy bekezdésen belüli ismétlődő szavak ki lesznek emelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3398"/>
+        <location filename="../src/configdialog.ui" line="3463"/>
         <source>Check for Word Repetitions</source>
         <translation>Szóismétlés ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3405"/>
+        <location filename="../src/configdialog.ui" line="3470"/>
         <source>Words Between Repetitions:</source>
         <translation>Szavak az ismételtek között:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3415"/>
+        <location filename="../src/configdialog.ui" line="3480"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Azonos szavak ismételtként lesznek megjelölve, ha ennél a számnál nincs több szó köztük.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3425"/>
+        <location filename="../src/configdialog.ui" line="3490"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Azonos távoli szavak távoli ismételtként lesznek megjelölve, ha ennél a számnál nincs több szó köztük.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3435"/>
+        <location filename="../src/configdialog.ui" line="3500"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>A legalább ilyen hosszú szavak lesznek távoli ismételtként megjelölve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3445"/>
+        <location filename="../src/configdialog.ui" line="3510"/>
         <source>Long Range Repetitions:</source>
         <translation>Távoli szóismétlések:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3455"/>
+        <location filename="../src/configdialog.ui" line="3520"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>Távoli ismétlődő szavak minimális hossza:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3465"/>
+        <location filename="../src/configdialog.ui" line="3530"/>
         <source>Wordlist Directory:</source>
         <translation>Szószedet könyvtár:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3472"/>
+        <location filename="../src/configdialog.ui" line="3537"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Bizonyos informális szavak ki lesznek emelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3475"/>
+        <location filename="../src/configdialog.ui" line="3540"/>
         <source>Check for Bad Words</source>
         <translation>Rossz szavak keresése</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3482"/>
+        <location filename="../src/configdialog.ui" line="3547"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Könyvtár, mely tartalmazza a &quot;rossz&quot;, vagy ismételt szavak listáját.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3509"/>
+        <location filename="../src/configdialog.ui" line="3574"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
+        <location filename="../src/configdialog.ui" line="3580"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>LanguageTool java tároló útvonala.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3522"/>
+        <location filename="../src/configdialog.ui" line="3587"/>
         <source>LT Path:</source>
         <translation>LT útvonal:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3529"/>
+        <location filename="../src/configdialog.ui" line="3594"/>
         <source>Start LanguageTool if not running</source>
         <translation>LanguageTool indítása, ha nem fut</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3536"/>
+        <location filename="../src/configdialog.ui" line="3601"/>
         <source>Server URL: </source>
         <translation>Kiszolgáló URL címe:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3543"/>
+        <location filename="../src/configdialog.ui" line="3608"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Vesszővel elválasztott LanguageTool szabályok, melyek nem lesznek hibaként kiemelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3567"/>
+        <location filename="../src/configdialog.ui" line="3632"/>
         <source>Ignored Rules:</source>
         <translation>Mellőzött szabályok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3574"/>
-        <location filename="../src/configdialog.ui" line="3584"/>
-        <location filename="../src/configdialog.ui" line="3594"/>
-        <location filename="../src/configdialog.ui" line="3624"/>
+        <location filename="../src/configdialog.ui" line="3639"/>
+        <location filename="../src/configdialog.ui" line="3649"/>
+        <location filename="../src/configdialog.ui" line="3659"/>
+        <location filename="../src/configdialog.ui" line="3689"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Vesszővel elválasztott LanguageTool szabályok, melyek különleges formátumban lesznek kiemelve.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3604"/>
+        <location filename="../src/configdialog.ui" line="3669"/>
         <source>Special Rules 3:</source>
         <translation>Különleges szabályok 3:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3614"/>
+        <location filename="../src/configdialog.ui" line="3679"/>
         <source>Special Rules 2:</source>
         <translation>Különleges szabályok 2:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3634"/>
+        <location filename="../src/configdialog.ui" line="3699"/>
         <source>Special Rules 1:</source>
         <translation>Különleges szabályok 1:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3651"/>
+        <location filename="../src/configdialog.ui" line="3716"/>
         <source>Special Rules 4:</source>
         <translation>Különleges szabályok 4:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3661"/>
+        <location filename="../src/configdialog.ui" line="3726"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>A dokumentumban használt helyesírás-ellenőrző nyelvéből lesz kitalálva.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3668"/>
+        <location filename="../src/configdialog.ui" line="3733"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>A LanguageTool indítására használt Java program, ha az nem fut.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3675"/>
+        <location filename="../src/configdialog.ui" line="3740"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3682"/>
-        <location filename="../src/configdialog.ui" line="3730"/>
+        <location filename="../src/configdialog.ui" line="3747"/>
+        <location filename="../src/configdialog.ui" line="3795"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
         <translation>A LanguageTool indításakor átadott argumentumok. Ennek a beállításnak csak akkor van hatása, ha a LanguageTool a TeXstudióból kerül indításra (tehát egy már futó kiszolgáló esetén nem).</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3685"/>
+        <location filename="../src/configdialog.ui" line="3750"/>
         <source>LT Arguments:</source>
         <translation>LT argumentumok</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3709"/>
-        <location filename="../src/configdialog.ui" line="3737"/>
+        <location filename="../src/configdialog.ui" line="3774"/>
+        <location filename="../src/configdialog.ui" line="3802"/>
         <source>Restore Default</source>
         <translation>Alapértelmezés visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3723"/>
+        <location filename="../src/configdialog.ui" line="3788"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>URL a LanguageTool-hoz való csatlakozáshoz.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3820"/>
+        <location filename="../src/configdialog.ui" line="3885"/>
         <source>Command:</source>
         <translation>Parancs:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3831"/>
+        <location filename="../src/configdialog.ui" line="3896"/>
         <source>Preview with dvipng</source>
         <translation>Előnézet dvipng segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3836"/>
+        <location filename="../src/configdialog.ui" line="3901"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>Előnézet dvipng --follow segítségével (párhuzamosan)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3841"/>
+        <location filename="../src/configdialog.ui" line="3906"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>Előnézet dvips/ghostscript segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3846"/>
+        <location filename="../src/configdialog.ui" line="3911"/>
         <source>Preview with pdflatex</source>
         <translation>Előnézet pdflatex segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3851"/>
+        <location filename="../src/configdialog.ui" line="3916"/>
         <source>Preview with lualatex</source>
         <translation>Előnézet lualatex segítségével</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3859"/>
+        <location filename="../src/configdialog.ui" line="3924"/>
         <source>Display Mode:</source>
         <translation>Megjelenítési mód:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3873"/>
+        <location filename="../src/configdialog.ui" line="3938"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Előnézet megjelenítése buboréksúgóként, ha a panel rejtve van</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3878"/>
+        <location filename="../src/configdialog.ui" line="3943"/>
         <source>Always show preview in preview panel</source>
         <translation>Mindig mutasson előnézetet az előnézet panelen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3883"/>
+        <location filename="../src/configdialog.ui" line="3948"/>
         <source>Always show preview as tool tip</source>
         <translation>Mindig mutasson előnézetet tippként</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3888"/>
+        <location filename="../src/configdialog.ui" line="3953"/>
         <source>Always show both</source>
         <translation>Mindig mutassa mindkettőt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3893"/>
+        <location filename="../src/configdialog.ui" line="3958"/>
         <source>Inline</source>
         <translation>Sorban</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3898"/>
+        <location filename="../src/configdialog.ui" line="3963"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Beágyazott megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3906"/>
+        <location filename="../src/configdialog.ui" line="3971"/>
         <source>Update the preview on text change</source>
         <translation>Előnézet frissítése a szöveg változásakor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3909"/>
+        <location filename="../src/configdialog.ui" line="3974"/>
         <source>Auto Update:</source>
         <translation>Automatikus frissítés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3922"/>
+        <location filename="../src/configdialog.ui" line="3987"/>
         <source>Previously previewed text</source>
         <translation>Szöveg korábbi előnézete</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3930"/>
+        <location filename="../src/configdialog.ui" line="3995"/>
         <source>Auto Update Delay:</source>
         <translation>Késleltetett automatikus frissítés:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3953"/>
+        <location filename="../src/configdialog.ui" line="4018"/>
         <source>Replace beamer class by article</source>
         <translation>A beamer osztályt article osztállyal helyettesítí</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3966"/>
+        <location filename="../src/configdialog.ui" line="4031"/>
         <source>Precompile Preamble</source>
         <translation>Preambulum előfordítása</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3979"/>
+        <location filename="../src/configdialog.ui" line="4044"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Előnézet megjelenítése buboréksúgóként a szerkesztőben lévő képleteken</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3989"/>
-        <location filename="../src/configdialog.ui" line="4112"/>
+        <location filename="../src/configdialog.ui" line="4054"/>
+        <location filename="../src/configdialog.ui" line="4177"/>
         <source>Scaling:</source>
         <translation>Méret:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4084"/>
+        <location filename="../src/configdialog.ui" line="4149"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Internal PDF Viewer</source>
         <translation>Belső PDF-megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4235"/>
+        <location filename="../src/configdialog.ui" line="4300"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>RGBA érték hexadecimális megadása. Megjegyzés: az átlátszóság elvárt, mivel technikai korlátozások miatt a kiemelés a szöveg tetején jelenik meg.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4238"/>
+        <location filename="../src/configdialog.ui" line="4303"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4324"/>
+        <location filename="../src/configdialog.ui" line="4389"/>
         <source>Original Size</source>
         <translation>Eredeti méret</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4329"/>
+        <location filename="../src/configdialog.ui" line="4394"/>
         <source>Fit to Window Width</source>
         <translation>Igazítás az ablak széléhez</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4334"/>
+        <location filename="../src/configdialog.ui" line="4399"/>
         <source>Fit to Window Size</source>
         <translation>Igazítás az ablak méretéhez</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4339"/>
+        <location filename="../src/configdialog.ui" line="4404"/>
         <source>Scaled Size</source>
         <translation>Egyéni méret</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4344"/>
+        <location filename="../src/configdialog.ui" line="4409"/>
         <source>Fit to Text Width</source>
         <translation>Teljes szélesség</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4168"/>
+        <location filename="../src/configdialog.ui" line="4233"/>
         <source>Infinite</source>
         <translation>Végtelen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4434"/>
+        <location filename="../src/configdialog.ui" line="4499"/>
         <source>Scale Option:</source>
         <translation>Méret tulajdonságok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4471"/>
+        <location filename="../src/configdialog.ui" line="4536"/>
         <source>Magnifier Size:</source>
         <translation>Nagyító mérete:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4187"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4252"/>
+        <location filename="../src/configdialog.ui" line="4317"/>
         <source>Square</source>
         <translation>Téglalap</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4257"/>
+        <location filename="../src/configdialog.ui" line="4322"/>
         <source>Circle</source>
         <translation>Kör</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4262"/>
+        <location filename="../src/configdialog.ui" line="4327"/>
         <source>Circle without shadow</source>
         <translation>Kör, árnyék nélkül</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4225"/>
+        <location filename="../src/configdialog.ui" line="4290"/>
         <source>Highlight Duration</source>
         <translation>Időtartam kiemelés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4424"/>
+        <location filename="../src/configdialog.ui" line="4489"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>Vízszintes görgetés letiltása „Teljes szélesség” esetén</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4316"/>
+        <location filename="../src/configdialog.ui" line="4381"/>
         <source>Border</source>
         <translation>Szegély</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4441"/>
+        <location filename="../src/configdialog.ui" line="4506"/>
         <source>Magnifier Shape:</source>
         <translation>Nagyító alakja:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4478"/>
+        <location filename="../src/configdialog.ui" line="4543"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Beágyazott módban elrejti az eszköztárat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4283"/>
+        <location filename="../src/configdialog.ui" line="4348"/>
         <source>Highlight Color</source>
         <translation>Színkiemelés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4197"/>
+        <location filename="../src/configdialog.ui" line="4262"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDF fájlok betöltésének meghatározása:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Tárolt:&lt;/b&gt; Betölti a fájlt egy tárolóba és ellenőrzi a teljességét, ezután adja át a popplernek. Elsődlegesen sebességnövelés céljára vezették be régi poppler verziókhoz (&amp;lt;0.24) melyek nem voltak szálbiztosak. Nagy fájlok esetén ez összeomlást okozhat. Így ez az opció elavult.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Közvetlen:&lt;/b&gt; A fájl közvetlenül a popplerhez kerül. Így a leggyorsabb, de a fájlok teljessége ily módon nincs ellenőrizve.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Vegyes (ajánlott):&lt;/b&gt; Kis dokumentumok (&amp;lt; 50MB) esetén először betölti a fájlt egy tárolóba és ellenőrzi a teljességét), a nagy fájlok közvetlenül a popplerhez kerülnek. Ez a módszer kombinálja a problémák megelőzésére végzett fájlellenőrzést a nagy PDF fájlok optimális kezelésével.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4207"/>
+        <location filename="../src/configdialog.ui" line="4272"/>
         <source>Buffered</source>
         <translation>Tárolt</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4212"/>
+        <location filename="../src/configdialog.ui" line="4277"/>
         <source>Direct</source>
         <translation>Közvetlen</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4217"/>
+        <location filename="../src/configdialog.ui" line="4282"/>
         <source>Hybrid</source>
         <translation>Vegyes</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4136"/>
+        <location filename="../src/configdialog.ui" line="4201"/>
         <source>Cache Size:</source>
         <translation>Gyorsítótár méret:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4394"/>
-        <location filename="../src/configdialog.ui" line="4448"/>
+        <location filename="../src/configdialog.ui" line="4459"/>
+        <location filename="../src/configdialog.ui" line="4513"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2658,118 +2663,118 @@ Ha renderelési problémák vannak, akkor kipróbálhatja az alternatív „Arth
 Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentumokra érvényes.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4146"/>
+        <location filename="../src/configdialog.ui" line="4211"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4374"/>
+        <location filename="../src/configdialog.ui" line="4439"/>
         <source>Synchronized Files Types:</source>
         <translation>Szinkronizált fájltípusok:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4400"/>
+        <location filename="../src/configdialog.ui" line="4465"/>
         <source>Render Backend:</source>
         <translation>Renderelési háttérrendszer:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4119"/>
+        <location filename="../src/configdialog.ui" line="4184"/>
         <source>Load Strategy:</source>
         <translation>Betöltési stratégia:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4352"/>
+        <location filename="../src/configdialog.ui" line="4417"/>
         <source> MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4417"/>
+        <location filename="../src/configdialog.ui" line="4482"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Megjegyzés: az ablakos/beágyazott mód az Fordítás -&gt; PDF-megjelenítő lapon állítható be</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4384"/>
+        <location filename="../src/configdialog.ui" line="4449"/>
         <source>Paper Color</source>
         <translation>Papír színe</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4293"/>
+        <location filename="../src/configdialog.ui" line="4358"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation>Alapértelmezett háttérszín. Hexadecimális RGB értékként adja meg. Figyelem: Ez csak a beállítás megváltoztatása után betöltött PDF-eket befolyásolja. A már megnyitott PDF-ek papírszíne nem módosul.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4129"/>
+        <location filename="../src/configdialog.ui" line="4194"/>
         <source>Auto-recompile document on changes</source>
         <translation>A dokumentum automatikus újrafordítása változáskor</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4410"/>
+        <location filename="../src/configdialog.ui" line="4475"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation>Bemutató lézermutató mérete:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4485"/>
+        <location filename="../src/configdialog.ui" line="4550"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation>Bemutató lézermutató színe:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4541"/>
+        <location filename="../src/configdialog.ui" line="4636"/>
         <source>Use SVN</source>
         <translation>Használjon SVN-t</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4546"/>
+        <location filename="../src/configdialog.ui" line="4641"/>
         <source>Use GIT</source>
         <translation>Használjon GIT-et</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4554"/>
+        <location filename="../src/configdialog.ui" line="4649"/>
         <source>Select how txs checks in saved files</source>
         <translation>Válassza ki hogy csekkolja be a txs a mentett fájlokat</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4558"/>
+        <location filename="../src/configdialog.ui" line="4653"/>
         <source>No automatic check-in after save</source>
         <translation>Nincs automatikus bejelentkezés mentés után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4563"/>
+        <location filename="../src/configdialog.ui" line="4658"/>
         <source>Check-in after File/Save only</source>
         <translation>Bejelentkezés csak Fájl/Mentés után</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4568"/>
+        <location filename="../src/configdialog.ui" line="4663"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Bejelentkezés minden mentés művelet után, tehát fordítás előtt is.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4576"/>
+        <location filename="../src/configdialog.ui" line="4671"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation>Használja az SVN / GIT verziókat az utolsó mentett verzió előtti visszavonáshoz</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4583"/>
+        <location filename="../src/configdialog.ui" line="4678"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>Az svn add futtatásakor végrehajtódik az svn propset svn:keyword &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4586"/>
+        <location filename="../src/configdialog.ui" line="4681"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Kulcsszavak helyettesítése Tulajdonságokkal (svn add esetén)</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4595"/>
+        <location filename="../src/configdialog.ui" line="4690"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN könyvtár keresési mélység:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4652"/>
+        <location filename="../src/configdialog.ui" line="4748"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal Terminal</source>
         <translation>Belső terminál</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4703"/>
+        <location filename="../src/configdialog.ui" line="4799"/>
         <source>Shell:</source>
         <translation>Parancsértelmező:</translation>
     </message>
@@ -2847,7 +2852,7 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Különbség</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3814"/>
+        <location filename="../src/configdialog.ui" line="3879"/>
         <location filename="../src/configdialog.cpp" line="498"/>
         <location filename="../src/configdialog.cpp" line="540"/>
         <source>Preview</source>
@@ -2914,7 +2919,7 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1345"/>
+        <location filename="../src/configdialog.ui" line="1369"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>GUI Scaling</source>
         <translation>A GUI méretezése</translation>
@@ -2935,7 +2940,7 @@ Biztosan ezt szeretné beállítani?</translation>
         <translation>Nyelvi ellenőrzés</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4534"/>
+        <location filename="../src/configdialog.ui" line="4629"/>
         <location filename="../src/configdialog.cpp" line="542"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -4588,17 +4593,17 @@ A varázsló nem támogatja a parancsot</translation>
         <translation>BLOKKOK</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2598"/>
+        <location filename="../src/latexdocument.cpp" line="2610"/>
         <source>Invalid codec</source>
         <translation>Nem létező kodek</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2612"/>
+        <location filename="../src/latexdocument.cpp" line="2624"/>
         <source>Missing value for -job-name</source>
         <translation>A job-name értéke hiányzik</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2615"/>
+        <location filename="../src/latexdocument.cpp" line="2627"/>
         <source>Unknown magic comment</source>
         <translation>Ismeretlen mágikus megjegyzés</translation>
     </message>
@@ -7522,6 +7527,11 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <source>The search text occurs %1 times within the search scope.</source>
         <translation>A keresett szöveg %1 alkalommal található meg a keresési környezetben.</translation>
     </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="863"/>
+        <source> (col. %1)</source>
+        <translation>(%1. oszlop)</translation>
+    </message>
 </context>
 <context>
     <name>QStatusPanel</name>
@@ -8697,7 +8707,7 @@ fájlt nem lehet eltávolítani.</translation>
     </message>
     <message>
         <location filename="../src/templatemanager.cpp" line="159"/>
-        <location filename="../src/templatemanager.cpp" line="236"/>
+        <location filename="../src/templatemanager.cpp" line="240"/>
         <source>User</source>
         <translation>Felhasználó</translation>
     </message>
@@ -8712,18 +8722,18 @@ fájlt nem lehet eltávolítani.</translation>
         <translation>LaTeX sablon kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/templatemanager.cpp" line="232"/>
+        <location filename="../src/templatemanager.cpp" line="236"/>
         <source>Select Table Template</source>
         <translation>Táblázat sablon kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/templatemanager_p.cpp" line="53"/>
+        <location filename="../src/templatemanager_p.cpp" line="58"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
         <translation>A célkönyvtár nem üres. Ajánlatos egy új könyvtárt kijelölni, egyébként létező fájlok íródhatnak felül. Mindenképpen ezt a könyvtárat szeretné használni?</translation>
     </message>
     <message>
-        <location filename="../src/templatemanager_p.cpp" line="119"/>
-        <location filename="../src/templatemanager_p.cpp" line="159"/>
+        <location filename="../src/templatemanager_p.cpp" line="124"/>
+        <location filename="../src/templatemanager_p.cpp" line="164"/>
         <source>You do not have read permission to this file:</source>
         <translation>Nincs jogosultsága olvasni az alábbi fájlt:</translation>
     </message>
@@ -8731,85 +8741,96 @@ fájlt nem lehet eltávolítani.</translation>
 <context>
     <name>TemplateSelector</name>
     <message>
-        <location filename="../src/templateselector.cpp" line="34"/>
+        <location filename="../src/templateselector.cpp" line="46"/>
         <source>No Preview</source>
         <translation>Nincs előnézet</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="86"/>
+        <location filename="../src/templateselector.cpp" line="98"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
         <translation>A sajblont ajánlatos új könyvtárba telepíteni, hogy ne írjon át korábbi fájlokat.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="151"/>
+        <location filename="../src/templateselector.cpp" line="129"/>
+        <source>Online Repository</source>
+        <translation>Online tároló</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="137"/>
+        <location filename="../src/templateselector.cpp" line="317"/>
+        <source>&lt;loading...&gt;</source>
+        <translation>&lt;betöltés...&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="455"/>
         <source>Select Target Folder</source>
         <translation>Célkönyvtár kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="181"/>
+        <location filename="../src/templateselector.cpp" line="485"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;Nincs név&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="184"/>
+        <location filename="../src/templateselector.cpp" line="488"/>
         <source>Date</source>
         <translation>Dátum</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="185"/>
+        <location filename="../src/templateselector.cpp" line="489"/>
         <source>Version</source>
         <translation>Verzió</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="186"/>
+        <location filename="../src/templateselector.cpp" line="490"/>
         <source>License</source>
         <translation>Licenc</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="220"/>
+        <location filename="../src/templateselector.cpp" line="533"/>
         <source>Edit Template</source>
         <translation>Sablon szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="221"/>
+        <location filename="../src/templateselector.cpp" line="534"/>
         <source>Edit Template Info</source>
         <translation>Sablon-információ szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="222"/>
+        <location filename="../src/templateselector.cpp" line="535"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="225"/>
+        <location filename="../src/templateselector.cpp" line="538"/>
         <source>Open Template Location</source>
         <translation>Sablon megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="239"/>
-        <location filename="../src/templateselector.cpp" line="250"/>
-        <location filename="../src/templateselector.cpp" line="261"/>
+        <location filename="../src/templateselector.cpp" line="552"/>
+        <location filename="../src/templateselector.cpp" line="563"/>
+        <location filename="../src/templateselector.cpp" line="574"/>
         <source>This template cannot be edited.</source>
         <translation>Ez a sablon nem szerkeszthető.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="266"/>
+        <location filename="../src/templateselector.cpp" line="579"/>
         <source>Please Confirm</source>
         <translation>Kérem erősítse meg</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="266"/>
+        <location filename="../src/templateselector.cpp" line="579"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Biztosan törli a sablont?</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="273"/>
-        <location filename="../src/templateselector.cpp" line="278"/>
+        <location filename="../src/templateselector.cpp" line="586"/>
+        <location filename="../src/templateselector.cpp" line="591"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Nincs jogosultsága törölni a fájlt.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="288"/>
+        <location filename="../src/templateselector.cpp" line="601"/>
         <source>Could not open location:</source>
         <translation>Nem nyitható meg:</translation>
     </message>
@@ -12240,6 +12261,11 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
         <location filename="../src/usermenudialog.cpp" line="424"/>
         <source>Export macro</source>
         <translation>Makró exportálása</translation>
+    </message>
+    <message>
+        <location filename="../src/usermenudialog.cpp" line="546"/>
+        <source> (col. %1)</source>
+        <translation>(%1. oszlop)</translation>
     </message>
 </context>
 <context>

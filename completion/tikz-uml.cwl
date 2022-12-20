@@ -3,7 +3,11 @@
 
 #include:ifthen
 #include:tikz
-# loads backgrounds, arrows, shapes, fit, shadows, and decorations.markings tikzlibraries
+#include:tikzlibrarybackgrounds
+#include:tikzlibraryshapes
+#include:tikzlibraryfit
+#include:tikzlibraryshadows
+#include:tikzlibrarydecorations.markings
 #include:xstring
 #include:calc
 #include:pgfopts

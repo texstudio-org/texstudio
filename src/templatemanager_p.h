@@ -2,6 +2,7 @@
 #define Header_Template_Manager_P
 
 #include "mostQtHeaders.h"
+#include "qjsondocument.h"
 #include "templatemanager.h"
 
 // Abstract base class for templates
@@ -62,6 +63,29 @@ private:
 	QString imageFile() const;
 	QString m_mainfile; // a single .tex file or a .zip for multiple files
 	bool m_editable;
+};
+
+class OnlineFileTemplate : public Template
+{
+public:
+    OnlineFileTemplate(QJsonDocument jsonDoc);
+    virtual QString name() const { return m_dd["Name"].toString(); }
+    virtual QString description() const { return m_dd["Description"].toString(); }
+    virtual QString author() const { return m_dd["Author"].toString(); }
+    virtual QString version() const { return m_dd["Version"].toString(); }
+    virtual QString license() const { return m_dd["License"].toString(); }
+    virtual QPixmap previewImage() const { return m_preview; }
+    virtual QString file() const { return m_url; }
+    virtual bool isEditable() const { return false; }
+
+    void setPreviewImage(QPixmap img) {m_preview=img;}
+    void setURL(const QString& name) {m_url=name;}
+
+protected:
+    QJsonDocument m_jsonDoc;
+    QJsonObject m_dd;
+    QPixmap m_preview;
+    QString m_url;
 };
 
 

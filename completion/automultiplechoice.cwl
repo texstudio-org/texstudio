@@ -62,7 +62,10 @@ survey
 
 #ifOption:survey
 #include:tikz 
-# loads positioning, shapes, arrows, tikzmark, and decorations.pathreplacing tikzlibraries
+#include:tikzlibrarypositioning
+#include:tikzlibraryshapes
+#include:tikzlibrarytikzmark
+#include:tikzlibrarydecorations.pathreplacing
 # not documented
 \answer[opt]{arg1}{arg2}{arg3}{arg4}#S
 \answer{arg1}{arg2}{arg3}{arg4}#S

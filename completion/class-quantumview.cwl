@@ -11,7 +11,7 @@
 #include:xcolor
 #include:xstring
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #include:hyperref
 
 #keyvals:\documentclass/quantumview#c

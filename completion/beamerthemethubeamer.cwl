@@ -2,7 +2,7 @@
 # Matthew Bertucci 2/12/2022 for v1.1.0
 
 #include:tikz
-# loads external tikzlibrary
+#include:tikzlibraryexternal
 #include:pgf
 #include:multicol
 #include:multimedia

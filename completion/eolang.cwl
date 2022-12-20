@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/11/30 for v0.8.0
+# Matthew Bertucci 2022/12/15 for v0.9.0
 
 #include:stmaryrd
 #include:amsmath
@@ -49,6 +49,10 @@ anonymous
 \phiOset{over}{arg}#m
 \phiUset{under}{arg}#m
 \phiMany{arg}{under}{over}#m
+\phiSaveTo{name}
+\sodgSaveTo{name}
+\eoAnon{content}
+\eoAnon[substitution]{content}
 
 # internal
 \begin{phicture}#S
