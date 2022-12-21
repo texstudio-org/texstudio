@@ -454,30 +454,50 @@ void PDFLaserPointer::paintEvent(QPaintEvent *event)
 	drawCircleGradient(painter, outline, QColor(globalConfig ? globalConfig->laserPointerColor : "#ff0000"), 5);
 }
 
-#ifdef PHONON
-PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> annot, int page): VideoPlayer(parent), page(page)
+#ifdef MEDIAPLAYER
+// TODO: migrate to QTMM
+PDFVideoWidget::PDFVideoWidget(PDFWidget *parent, PDFMovie *movie): QVideoWidget(parent), movie(movie)
+{
+	REQUIRE(parent && movie);
+
+	if(popup) delete popup;
+	popup = new QMenu(this);
+	popup->addAction(tr("&Play"), movie, SLOT(realPlay()));
+	popup->addAction(tr("P&ause"), movie, SLOT(pause()));
+	popup->addAction(tr("&Stop"), movie, SLOT(stop()));
+	popup->addSeparator();
+	popup->addAction(tr("S&eek"), movie, SLOT(seekDialog()));
+	popup->addAction(tr("Set &volume"), movie, SLOT(setVolumeDialog()));
+}
+
+PDFVideoWidget::~PDFVideoWidget()
+{
+	if(popup) delete popup;
+}
+
+PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> annot, int page): QMediaPlayer(parent), page(page)
 {
 	REQUIRE(parent && annot && parent->getPDFDocument());
 	REQUIRE(annot->subType() == Poppler::Annotation::AMovie);
 	REQUIRE(annot->movie());
 	boundary = annot->boundary();
+
 	QString url = annot->movie()->url();
 	url = QFileInfo(parent->getPDFDocument()->fileName()).dir().absoluteFilePath(url);
 	if (!QFileInfo(url).exists()) {
-		QMessageBox::warning(this, "", tr("File %1 does not exists").arg(url));
+		QMessageBox::warning(videoWidget, "", tr("File %1 does not exists").arg(url));
 		return;
 	}
-	this->load(QUrl::fromLocalFile(url));
+	this->setMedia(QUrl::fromLocalFile(url));
 
-	popup = new QMenu(this);
-	popup->addAction(tr("&Play"), this, SLOT(realPlay()));
-	popup->addAction(tr("P&ause"), this, SLOT(pause()));
-	popup->addAction(tr("&Stop"), this, SLOT(stop()));
-	popup->addSeparator();
-	popup->addAction(tr("S&eek"), this, SLOT(seekDialog()));
-	popup->addAction(tr("Set &volume"), this, SLOT(setVolumeDialog()));
+	if(videoWidget) delete videoWidget;
+	videoWidget = new PDFVideoWidget(parent, this);
+	this->setVideoOutput(videoWidget);
+	videoWidget->setCursor(Qt::PointingHandCursor);
+}
 
-	setCursor(Qt::PointingHandCursor);
+PDFMovie::~PDFMovie()
+{
 }
 
 void PDFMovie::place()
@@ -486,30 +506,35 @@ void PDFMovie::place()
 	REQUIRE(pdf);
 	QPointF tl = pdf->mapFromScaledPosition(page, boundary.topLeft());
 	QPointF br = pdf->mapFromScaledPosition(page, boundary.bottomRight());
-	setFixedSize(br.x() - tl.x(), br.y() - tl.y());
-	move(tl.toPoint());
+	videoWidget->setFixedSize(br.x() - tl.x(), br.y() - tl.y());
+	videoWidget->move(tl.toPoint());
 }
 
-void PDFMovie::contextMenuEvent(QContextMenuEvent *e)
+void PDFMovie::show()
+{
+	videoWidget->show();
+}
+
+void PDFVideoWidget::contextMenuEvent(QContextMenuEvent *e)
 {
 	popup->popup(e->globalPos());
 	e->accept();
 }
 
-void PDFMovie::mouseReleaseEvent(QMouseEvent *e)
+void PDFVideoWidget::mouseReleaseEvent(QMouseEvent *e)
 {
 	//qDebug() << "click: "<<isPaused() << " == !" << isPlaying() << " " << currentTime() << " / " << totalTime();
-	if (isPlaying()) pause();
-	else realPlay();
+	if (movie->state() == QMediaPlayer::PlayingState) movie->pause();
+	else movie->realPlay();
 	e->accept();
 }
 
 void PDFMovie::realPlay()
 {
-	if (isPlaying()) return;
-	if (isPaused() && currentTime() < totalTime()) play();
+	if (this->state() == QMediaPlayer::PlayingState) return;
+	if (this->state() == QMediaPlayer::PausedState && position() < duration()) this->play();
 	else {
-		seek(0);
+		setPosition(0);
 		QTimer::singleShot(500, this, SLOT(play()));
 	}
 }
@@ -525,11 +550,11 @@ void PDFMovie::setVolumeDialog()
 
 void PDFMovie::seekDialog()
 {
-	float pos = currentTime() * 0.001;
+	float pos = position() * 0.001;
 	UniversalInputDialog uid;
 	uid.addVariable(&pos, tr("Time:"));
 	if (!uid.exec()) return;
-	seek(pos * 1000LL);
+	setPosition(pos * 1000LL);
 }
 #endif
 
@@ -573,8 +598,8 @@ PDFWidget::PDFWidget(bool embedded)
 	Q_ASSERT(globalConfig);
 	if (!globalConfig) return;
 
-#ifdef PHONON
-	movie = 0;
+#ifdef MEDIAPLAYER
+	movie = nullptr;
 #endif
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
@@ -705,20 +730,20 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 	document = doc;
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
-    horizontalTextRange.setWidth(-1.0);
+	horizontalTextRange.setWidth(-1.0);
 
 	if (!document.isNull()) {
 		docPages = document->numPages();
 		setSinglePageStep(globalConfig->singlepagestep);
 	} else
 		docPages = 0;
-#ifdef PHONON
+#ifdef MEDIAPLAYER
 	if (movie) {
 		delete movie;
 		movie = 0;
 	}
 #endif
-    reloadPage();
+	reloadPage();
 	windowResized();
 }
 
@@ -737,7 +762,7 @@ void PDFWidget::windowResized()
 		fitWindow(true);
 		break;
 	}
-    delayedUpdate();
+	delayedUpdate();
 }
 
 void fillRectBorder(QPainter &painter, const QRect &inner, const QRect &outer)
@@ -756,7 +781,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 
 	qreal newDpi = dpi * scaleFactor;
 
-    qreal overScale = painter.device()->devicePixelRatio();
+	qreal overScale = painter.device()->devicePixelRatio();
 
 	QRect newRect = rect();
 	PDFDocument *doc = getPDFDocument();
@@ -1035,7 +1060,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 {
 	switch (annotation->subType()) {
 	case Poppler::Annotation::AMovie: {
-#ifdef PHONON
+#ifdef MEDIAPLAYER
 		if (movie) delete movie;
 		movie = new PDFMovie(this, qSharedPointerDynamicCast<Poppler::MovieAnnotation>(annotation), page);
 		movie->place();
@@ -1043,7 +1068,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 		movie->play();
 #else
 		Q_UNUSED(page)
-		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option PHONON=true");
+		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option MEDIAPLAYER=true");
 #endif
 		break;
 	}
@@ -1823,7 +1848,7 @@ void PDFWidget::updateStatusBar()
 		doc->showPage(realPageIndex + 1);
 		doc->showScale(scaleFactor);
 	}
-#ifdef PHONON
+#ifdef MEDIAPLAYER
 	if (movie) movie->place();
 #endif
 }
