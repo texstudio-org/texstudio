@@ -20,7 +20,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     ui.textBrowser->setHtml(QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + "<br>" +
                             tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion(),QT_VERSION_STR,COMPILED_DEBUG_OR_RELEASE) + "<br><br>" +
 	                        "Copyright (c)<br>" +
-	                        TEXSTUDIO ": Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>"
+	                        TEXSTUDIO + ": Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>" +
 	                        "Texmaker: Pascal Brachet<br>" +
 	                        "QCodeEdit: Luc Bruant<br>" +
 	                        tr("html conversion: ") + QString::fromUtf8("Joël Amblard</i><br>") +
@@ -33,7 +33,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 	                        tr("TeXstudio contains an image by Alexander Klink.") + "<br>" +
 	                        tr("TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.") + "<br>" +
 	                        tr("TeXstudio uses flowlayout from Qt5.6 examples.") + "<br>" +
-                            tr("TeXstudio uses adwaita-qt (GPL2) from ") + "https://github.com/FedoraQt/adwaita-qt <br>" +
+                            tr("TeXstudio uses adwaita-qt (GPL2) from ") + "<a href=\"https://github.com/FedoraQt/adwaita-qt\">https://github.com/FedoraQt/adwaita-qt</a><br>" +
 	                        "<br>" +
                             tr("Thanks to ") + QString::fromUtf8("Frédéric Devernay, Denis Bitouzé, Vesselin Atanasov, Yukai Chou, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev, David Sichau, Grigory Mozhaev, mattgk, A. Weder, Pavel Fric, András Somogyi, István Blahota, Edson Henriques, Grant McLean, Tom Jampen, Kostas Oikinimou, Lion Guillaume, ranks.nl, AI Corleone, Diego Andrés Jarrín, Matthias Pospiech, Zulkifli Hidayat, Christian Spieß, Robert Diaz, Kirill Müller, Atsushi Nakajima Yuriy Kolerov, Victor Kozyakin, Mattia Meneguzzo, Andriy Bandura, Carlos Eduardo Valencia Urbina, Koutheir Attouchi, Stefan Kraus, Bjoern Menke, Charles Brunet, François Gannaz, Marek Kurdej, Paulo Silva, Thiago de Melo, YoungFrog, Klaus Schneider-Zapp, Jakob Nixdorf, Thomas Leitz, Quoc Ho, Matthew Bertucci, geolta.<br><br>") +
                             tr("Project home site:") + " <a href=\"https://texstudio.org/\">https://texstudio.org/</a><br><br>" +
