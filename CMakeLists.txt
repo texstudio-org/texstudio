@@ -283,6 +283,15 @@ else()
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_TESTS)
 endif()
 
+option(TEXSTUDIO_ENABLE_MEDIAPLAYER "Enable/Disable the video player in pdf files" OFF)
+if(${TEXSTUDIO_ENABLE_MEDIAPLAYER})
+	message(STATUS "the video player in pdf files is enabled.")
+	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Multimedia MultimediaWidgets REQUIRED)
+	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DMEDIAPLAYER)
+else()
+	message(STATUS "the video player in pdf files is disabled.")
+endif()
+
 # poppler
 
 find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR} Cpp)
@@ -377,6 +386,14 @@ if(QTERMWIDGET_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
    target_link_libraries(texstudio PUBLIC qtermwidget5)
 endif()
 
+#mediaplayer
+if(Qt${QT_VERSION_MAJOR}Multimedia_FOUND)
+	message(STATUS "${Qt${QT_VERSION_MAJOR}Multimedia_FOUND}")
+	target_include_directories(texstudio PUBLIC ${Qt${QT_VERSION_MAJOR}Multimedia_INCLUDE_DIRS})
+	target_include_directories(texstudio PUBLIC ${Qt${QT_VERSION_MAJOR}MultimediaWidgets_INCLUDE_DIRS})
+	target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::Multimedia)
+	target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::MultimediaWidgets)
+endif()
 
 if(Poppler_FOUND)
 	message(STATUS "${Poppler_DEFINITIONS}")
