@@ -536,7 +536,7 @@
     <message>
         <location filename="../src/buildmanager.cpp" line="380"/>
         <source>Default Glossary Tool</source>
-        <translation>Standard Glossary Programm</translation>
+        <translation>Standard Glossarprogramm</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="390"/>
@@ -966,7 +966,7 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
     <message>
         <location filename="../src/configdialog.ui" line="822"/>
         <source>Check and update bibliography before compiling</source>
-        <translation>Bibilograhie vor dem Übersetzen aktualisieren</translation>
+        <translation>Bibliographie vor dem Übersetzen aktualisieren</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="829"/>

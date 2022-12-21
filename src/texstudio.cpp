@@ -11059,7 +11059,11 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 	int iconWidth=qRound(value*scale);
 
 	if (changePanel) {
-		leftPanel->setCurrentWidget(leftPanel->widget("symbols"));
+		QWidget *sympanel = leftPanel->widget("symbols");
+		if ( !leftPanel->hiddenWidgets().split("|").contains(sympanel->property("id").toString()) ) {
+			leftPanel->setCurrentWidget(sympanel);
+			emit leftPanel->titleChanged(sympanel->property("Name").toString());
+		}
 	}
 	symbolWidget->setSymbolSize(iconWidth);
 }
