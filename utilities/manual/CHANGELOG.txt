@@ -4,6 +4,14 @@ TeXstudio 4.4.2
 
 TeXstudio 4.4.1
 -----------------
+- new menu Idefix/Preview Display Mode (#2760)
+- insert inline math mode as $$ (#2719)
+- add editor action "Move all (others) to other view" (#2713)
+- left and right part of the Config Dialog now resizable with a splitter (#2707)
+- new menu LaTeX/Horizontal Spacing (#2687)
+- add macro name to completer list (#2679)
+- show macro trigger and shortcut in configuration window (#2635)
+- fix side panel title when changing grid size in config (#2743)
 - fix file association on OSX
 - allow ignore all in spell checker dialog
 - fix language code for LanguageTool
