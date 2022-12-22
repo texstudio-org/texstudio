@@ -371,4 +371,5 @@ private slots:
 private:
 	void updateManagedOptionObjects(ManagedProperty *property);
 };
+Q_DECLARE_METATYPE(ConfigManager::PreviewMode);
 #endif
