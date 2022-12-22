@@ -1091,29 +1091,7 @@ void Texstudio::setupMenus()
 	previewModeGroup->addAction(act);
 #endif
 
-	ConfigManager::PreviewMode pm = configManager.previewMode;
-	switch (pm) {
-		case ConfigManager::PM_TOOLTIP_AS_FALLBACK:
-			getManagedAction("main/edit2/previewMode/PM_TOOLTIP_AS_FALLBACK")->setChecked(true);
-			break;
-		case ConfigManager::PM_PANEL:
-			getManagedAction("main/edit2/previewMode/PM_PANEL")->setChecked(true);
-			break;
-		case ConfigManager::PM_TOOLTIP:
-			getManagedAction("main/edit2/previewMode/PM_TOOLTIP")->setChecked(true);
-			break;
-		case ConfigManager::PM_BOTH:
-			getManagedAction("main/edit2/previewMode/PM_BOTH")->setChecked(true);
-			break;
-#ifndef NO_POPPLER_PREVIEW
-		case ConfigManager::PM_EMBEDDED:
-			getManagedAction("main/edit2/previewMode/PM_EMBEDDED")->setChecked(true);
-			break;
-#endif
-		default:	// PM_INLINE
-			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
-	}
-
+	setCheckedPreviewModeAction();
 
 	menu->addSeparator();
     newManagedEditorAction(menu, "togglecomment", tr("Toggle &Comment"), "toggleCommentSelection", Qt::CTRL | Qt::Key_T);
@@ -1492,7 +1470,33 @@ void Texstudio::setPreviewMode()
 		configManager.previewMode = act->data().value<ConfigManager::PreviewMode>();
 	}
 }
-
+/*! \brief set action for Menu Preview Display Mode
+*/
+void Texstudio::setCheckedPreviewModeAction()
+{
+	ConfigManager::PreviewMode pm = configManager.previewMode;
+	switch (pm) {
+		case ConfigManager::PM_TOOLTIP_AS_FALLBACK:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP_AS_FALLBACK")->setChecked(true);
+			break;
+		case ConfigManager::PM_PANEL:
+			getManagedAction("main/edit2/previewMode/PM_PANEL")->setChecked(true);
+			break;
+		case ConfigManager::PM_TOOLTIP:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP")->setChecked(true);
+			break;
+		case ConfigManager::PM_BOTH:
+			getManagedAction("main/edit2/previewMode/PM_BOTH")->setChecked(true);
+			break;
+#ifndef NO_POPPLER_PREVIEW
+		case ConfigManager::PM_EMBEDDED:
+			getManagedAction("main/edit2/previewMode/PM_EMBEDDED")->setChecked(true);
+			break;
+#endif
+		default:	// PM_INLINE
+			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
+	}
+}
 /*! \brief set-up all tool-bars
  */
 void Texstudio::setupToolBars()
@@ -6809,28 +6813,7 @@ void Texstudio::generalOptions()
     }
 #endif
     // update action from Menu Preview Display Mode
-	ConfigManager::PreviewMode pm = configManager.previewMode;
-	switch (pm) {
-		case ConfigManager::PM_TOOLTIP_AS_FALLBACK:
-			getManagedAction("main/edit2/previewMode/PM_TOOLTIP_AS_FALLBACK")->setChecked(true);
-			break;
-		case ConfigManager::PM_PANEL:
-			getManagedAction("main/edit2/previewMode/PM_PANEL")->setChecked(true);
-			break;
-		case ConfigManager::PM_TOOLTIP:
-			getManagedAction("main/edit2/previewMode/PM_TOOLTIP")->setChecked(true);
-			break;
-		case ConfigManager::PM_BOTH:
-			getManagedAction("main/edit2/previewMode/PM_BOTH")->setChecked(true);
-			break;
-#ifndef NO_POPPLER_PREVIEW
-		case ConfigManager::PM_EMBEDDED:
-			getManagedAction("main/edit2/previewMode/PM_EMBEDDED")->setChecked(true);
-			break;
-#endif
-		default:	// PM_INLINE
-			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
-	}
+	setCheckedPreviewModeAction();
 #ifdef INTERNAL_TERMINAL
     outputView->getTerminalWidget()->updateSettings();
 #endif
