@@ -1,5 +1,5 @@
 # jourcl class
-# Matthew Bertucci 2022/12/07 for v2022/11/14
+# Matthew Bertucci 2022/12/16 for v2022/12/16
 
 #include:graphicx
 #include:fancyhdr
@@ -38,7 +38,6 @@ bottom
 \InstitutionName{institution}
 \Introduction{text}
 \JournalName{journal%text}
-\makecoverletter
 \NameSurname{name}
 \pabstract#*
 \pAuthorOrcid
@@ -66,6 +65,7 @@ bottom
 \pSecondNameSurname
 \pSecondRecommended
 \psignature#*
+\pSignaturePath
 \pSpecialIssue
 \pStreetNo#*
 \pThirdEmail
@@ -79,7 +79,10 @@ bottom
 \SecondInstitution{institution}
 \SecondNameSurname{name}
 \SecondRecommended{name}
+\showreviewers
+\showSignature{imagefile}#g
 \signature{text}
+\signaturePath{imagefile}#g
 \SpecialIssue{issue}
 \StreetNo{streetno}
 \ThirdEmail{email%URL}#U
@@ -94,7 +97,6 @@ bottom
 \yourstruly
 
 \aboutme{text}#S
-\addreviewers#S
 \addreviewersPosition#S
 \ifempty{arg}#S
 \RecommendedPerson{role}{name}{institution}{email%URL}#*U

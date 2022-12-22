@@ -5,7 +5,7 @@
 #include:kvoptions
 
 \NodetreeSet{options%keyvals}
-\nodetreeset{options%keyvals}#*
+\nodetreeset{options%keyvals}#S
 
 #keyvals:\usepackage/nodetree#c,\NodetreeSet,\nodetreeset
 channel=%<output channel%>
@@ -17,7 +17,7 @@ decimalplaces=%<integer%>
 #endkeyvals
 
 \NodetreeSetOption[option%keyvals]{value}
-\nodetreeoption[option%keyvals]{value}#*
+\nodetreeoption[option%keyvals]{value}#S
 \NodetreeResetOption{option%keyvals}
 
 #keyvals:\NodetreeSetOption,\nodetreeoption,\NodetreeResetOption
@@ -30,8 +30,8 @@ decimalplaces
 #endkeyvals
 
 \NodetreeReset
-\nodetreereset#*
+\nodetreereset#S
 \NodetreeRegisterCallback{callbacks}
-\nodetreeregister{callbacks}#*
+\nodetreeregister{callbacks}#S
 \NodetreeUnregisterCallback{callbacks}
-\nodetreeunregister{callbacks}#*
+\nodetreeunregister{callbacks}#S

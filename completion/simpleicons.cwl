@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/12/09 for v8.0.0
+# Matthew Bertucci 2022/12/09 for v8.1.0
 
 #include:ifxetex
 #include:ifluatex
@@ -718,6 +718,7 @@ ffmpeg
 fiat
 fidoalliance
 fifa
+fig
 figma
 figshare
 fila

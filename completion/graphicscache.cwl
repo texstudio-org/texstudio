@@ -1,11 +1,12 @@
 # graphicscache package
-# Matthew Bertucci 2/4/2022 for v0.3
+# Matthew Bertucci 2022/12/20 for v0.4
 
 #include:graphicx
 #include:xstring
 #include:filemod
 #include:letltxmacro
 #include:pgfopts
+#include:pgffor
 #include:ifplatform
 #include:pdftexcmds
 #include:ltxcmds

@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/12/15 for v0.9.0
+# Matthew Bertucci 2022/12/16 for v0.9.1
 
 #include:stmaryrd
 #include:amsmath
@@ -10,6 +10,7 @@
 #include:ifluatex
 #include:ifxetex
 #include:pdftexcmds
+#include:xstring
 #include:tikz
 #include:tikzlibraryshapes
 #include:tikzlibrarydecorations
@@ -53,8 +54,8 @@ anonymous
 \sodgSaveTo{name}
 \eoAnon{content}
 \eoAnon[substitution]{content}
+\phiEOL#*
 
 # internal
 \begin{phicture}#S
 \end{phicture}#S
-\phiEOL#S
