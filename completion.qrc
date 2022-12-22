@@ -562,6 +562,7 @@
 <file>completion/chngcntr.cwl</file>
 <file>completion/chordbars.cwl</file>
 <file>completion/chordbox.cwl</file>
+<file>completion/chronology.cwl</file>
 <file>completion/chronosys.cwl</file>
 <file>completion/churchslavonic.cwl</file>
 <file>completion/cinzel.cwl</file>
@@ -957,6 +958,7 @@
 <file>completion/class-xduugthesis.cwl</file>
 <file>completion/class-xebaposter.cwl</file>
 <file>completion/class-xepersian-magazine.cwl</file>
+<file>completion/class-xput.cwl</file>
 <file>completion/class-yaletter.cwl</file>
 <file>completion/class-ycbook.cwl</file>
 <file>completion/class-ydoc.cwl</file>
@@ -2330,6 +2332,7 @@
 <file>completion/nahuatl.cwl</file>
 <file>completion/nameauth.cwl</file>
 <file>completion/namedef.cwl</file>
+<file>completion/namedtensor.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/na-position.cwl</file>
 <file>completion/natbib.cwl</file>
@@ -2765,6 +2768,8 @@
 <file>completion/pst-feyn.cwl</file>
 <file>completion/pst-fill.cwl</file>
 <file>completion/pst-fit.cwl</file>
+<file>completion/pst-flags-colors-html.cwl</file>
+<file>completion/pst-flags.cwl</file>
 <file>completion/pst-fr3d.cwl</file>
 <file>completion/pst-fractal.cwl</file>
 <file>completion/pst-func.cwl</file>
