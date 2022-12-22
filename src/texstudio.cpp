@@ -1064,30 +1064,33 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "previewMode", tr("Preview Dis&play Mode"));
 	previewModeGroup = new QActionGroup(this);
-	act = newManagedAction(submenu, "preview1", tr("Show preview as tooltip if panel is hidden"), SLOT(setPreviewMode()));
+	act = newManagedAction(submenu, "PM_TOOLTIP_AS_FALLBACK", tr("Show preview as tooltip if panel is hidden"), SLOT(setPreviewMode()));
 	act->setData(ConfigManager::PM_TOOLTIP_AS_FALLBACK);
 	act->setCheckable(true);
 	previewModeGroup->addAction(act);
-	act = newManagedAction(submenu, "preview2", tr("Always show preview in preview panel"), SLOT(setPreviewMode()));
+	act = newManagedAction(submenu, "PM_PANEL", tr("Always show preview in preview panel"), SLOT(setPreviewMode()));
 	act->setData(ConfigManager::PM_PANEL);
 	act->setCheckable(true);
 	previewModeGroup->addAction(act);
-	act = newManagedAction(submenu, "preview3", tr("Always show preview as tool tip"), SLOT(setPreviewMode()));
+	act = newManagedAction(submenu, "PM_TOOLTIP", tr("Always show preview as tool tip"), SLOT(setPreviewMode()));
 	act->setData(ConfigManager::PM_TOOLTIP);
 	act->setCheckable(true);
 	previewModeGroup->addAction(act);
-	act = newManagedAction(submenu, "preview4", tr("Always show both"), SLOT(setPreviewMode()));
+	act = newManagedAction(submenu, "PM_BOTH", tr("Always show both"), SLOT(setPreviewMode()));
 	act->setData(ConfigManager::PM_BOTH);
 	act->setCheckable(true);
 	previewModeGroup->addAction(act);
-	act = newManagedAction(submenu, "preview5", tr("Inline"), SLOT(setPreviewMode()));
+	act = newManagedAction(submenu, "PM_INLINE", tr("Inline"), SLOT(setPreviewMode()));
 	act->setData(ConfigManager::PM_INLINE);
 	act->setCheckable(true);
 	previewModeGroup->addAction(act);
-	act = newManagedAction(submenu, "preview6", tr("Show in embedded viewer"), SLOT(setPreviewMode()));
+	// poppler preview
+#ifndef NO_POPPLER_PREVIEW
+	act = newManagedAction(submenu, "PM_EMBEDDED", tr("Show in embedded viewer"), SLOT(setPreviewMode()));
 	act->setData(ConfigManager::PM_EMBEDDED);
 	act->setCheckable(true);
 	previewModeGroup->addAction(act);
+#endif
 
 	for(QAction *a:previewModeGroup->actions()) {
 		if(a->data() == configManager.previewMode){
