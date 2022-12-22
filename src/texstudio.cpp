@@ -110,7 +110,6 @@
  */
 
 
-QActionGroup *previewModeGroup = nullptr;
 const QString APPICON(":appicon");
 
 bool programStopped = false;
@@ -1063,7 +1062,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "removePreviewLatex", tr("C&lear Inline Preview"), SLOT(clearPreview()));
 
 	submenu = newManagedMenu(menu, "previewMode", tr("Preview Dis&play Mode"));
-	previewModeGroup = new QActionGroup(this);
+	QActionGroup *previewModeGroup = new QActionGroup(this);
 	act = newManagedAction(submenu, "PM_TOOLTIP_AS_FALLBACK", tr("Show preview as tooltip if panel is hidden"), SLOT(setPreviewMode()));
 	act->setData(ConfigManager::PM_TOOLTIP_AS_FALLBACK);
 	act->setCheckable(true);
@@ -1092,12 +1091,29 @@ void Texstudio::setupMenus()
 	previewModeGroup->addAction(act);
 #endif
 
-	for(QAction *a:previewModeGroup->actions()) {
-		if(a->data() == configManager.previewMode){
-			a->setChecked(true);
+	ConfigManager::PreviewMode pm = configManager.previewMode;
+	switch (pm) {
+		case ConfigManager::PM_TOOLTIP_AS_FALLBACK:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP_AS_FALLBACK")->setChecked(true);
 			break;
-		}
+		case ConfigManager::PM_PANEL:
+			getManagedAction("main/edit2/previewMode/PM_PANEL")->setChecked(true);
+			break;
+		case ConfigManager::PM_TOOLTIP:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP")->setChecked(true);
+			break;
+		case ConfigManager::PM_BOTH:
+			getManagedAction("main/edit2/previewMode/PM_BOTH")->setChecked(true);
+			break;
+#ifndef NO_POPPLER_PREVIEW
+		case ConfigManager::PM_EMBEDDED:
+			getManagedAction("main/edit2/previewMode/PM_EMBEDDED")->setChecked(true);
+			break;
+#endif
+		default:	// PM_INLINE
+			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
 	}
+
 
 	menu->addSeparator();
     newManagedEditorAction(menu, "togglecomment", tr("Toggle &Comment"), "toggleCommentSelection", Qt::CTRL | Qt::Key_T);
@@ -6793,13 +6809,28 @@ void Texstudio::generalOptions()
     }
 #endif
     // update action from Menu Preview Display Mode
-    for(QAction *a:previewModeGroup->actions()) {
-        if(a->data() == configManager.previewMode){
-            a->setChecked(true);
-            break;
-        }
-    }
-
+	ConfigManager::PreviewMode pm = configManager.previewMode;
+	switch (pm) {
+		case ConfigManager::PM_TOOLTIP_AS_FALLBACK:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP_AS_FALLBACK")->setChecked(true);
+			break;
+		case ConfigManager::PM_PANEL:
+			getManagedAction("main/edit2/previewMode/PM_PANEL")->setChecked(true);
+			break;
+		case ConfigManager::PM_TOOLTIP:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP")->setChecked(true);
+			break;
+		case ConfigManager::PM_BOTH:
+			getManagedAction("main/edit2/previewMode/PM_BOTH")->setChecked(true);
+			break;
+#ifndef NO_POPPLER_PREVIEW
+		case ConfigManager::PM_EMBEDDED:
+			getManagedAction("main/edit2/previewMode/PM_EMBEDDED")->setChecked(true);
+			break;
+#endif
+		default:	// PM_INLINE
+			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
+	}
 #ifdef INTERNAL_TERMINAL
     outputView->getTerminalWidget()->updateSettings();
 #endif
