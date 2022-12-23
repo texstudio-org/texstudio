@@ -110,7 +110,6 @@
  */
 
 
-
 const QString APPICON(":appicon");
 
 bool programStopped = false;
@@ -1057,8 +1056,42 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
     newManagedAction(menu, "pasteAsLatex", tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_V), "editpaste");
 	newManagedAction(menu, "convertTo", tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
+
+	menu->addSeparator();
     newManagedAction(menu, "previewLatex", tr("Pre&view Selection/Parentheses"), SLOT(previewLatex()), Qt::ALT | Qt::Key_P);
 	newManagedAction(menu, "removePreviewLatex", tr("C&lear Inline Preview"), SLOT(clearPreview()));
+
+	submenu = newManagedMenu(menu, "previewMode", tr("Preview Dis&play Mode"));
+	QActionGroup *previewModeGroup = new QActionGroup(this);
+	act = newManagedAction(submenu, "PM_TOOLTIP_AS_FALLBACK", tr("Show preview as tooltip if panel is hidden"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_TOOLTIP_AS_FALLBACK);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_PANEL", tr("Always show preview in preview panel"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_PANEL);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_TOOLTIP", tr("Always show preview as tool tip"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_TOOLTIP);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_BOTH", tr("Always show both"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_BOTH);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_INLINE", tr("Inline"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_INLINE);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	// poppler preview
+#ifndef NO_POPPLER_PREVIEW
+	act = newManagedAction(submenu, "PM_EMBEDDED", tr("Show in embedded viewer"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_EMBEDDED);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+#endif
+
+	setCheckedPreviewModeAction();
 
 	menu->addSeparator();
     newManagedEditorAction(menu, "togglecomment", tr("Toggle &Comment"), "toggleCommentSelection", Qt::CTRL | Qt::Key_T);
@@ -1427,6 +1460,42 @@ void Texstudio::setupMenus()
 
 	configManager.modifyMenuContents();
 	configManager.modifyManagedShortcuts();
+}
+/*! \brief slot for actions from Menu Preview Display Mode
+*/
+void Texstudio::setPreviewMode()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		configManager.previewMode = act->data().value<ConfigManager::PreviewMode>();
+	}
+}
+/*! \brief set action for Menu Preview Display Mode
+*/
+void Texstudio::setCheckedPreviewModeAction()
+{
+	ConfigManager::PreviewMode pm = configManager.previewMode;
+	switch (pm) {
+		case ConfigManager::PM_TOOLTIP_AS_FALLBACK:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP_AS_FALLBACK")->setChecked(true);
+			break;
+		case ConfigManager::PM_PANEL:
+			getManagedAction("main/edit2/previewMode/PM_PANEL")->setChecked(true);
+			break;
+		case ConfigManager::PM_TOOLTIP:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP")->setChecked(true);
+			break;
+		case ConfigManager::PM_BOTH:
+			getManagedAction("main/edit2/previewMode/PM_BOTH")->setChecked(true);
+			break;
+#ifndef NO_POPPLER_PREVIEW
+		case ConfigManager::PM_EMBEDDED:
+			getManagedAction("main/edit2/previewMode/PM_EMBEDDED")->setChecked(true);
+			break;
+#endif
+		default:	// PM_INLINE
+			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
+	}
 }
 /*! \brief set-up all tool-bars
  */
@@ -6743,6 +6812,8 @@ void Texstudio::generalOptions()
         delete pdfviewerWindow;
     }
 #endif
+    // update action from Menu Preview Display Mode
+	setCheckedPreviewModeAction();
 #ifdef INTERNAL_TERMINAL
     outputView->getTerminalWidget()->updateSettings();
 #endif

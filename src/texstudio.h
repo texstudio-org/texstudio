@@ -368,6 +368,8 @@ protected slots:
 	void editSpell();
 	void editThesaurus(int line = -1, int col = -1);
 	void editChangeLineEnding();
+	void setPreviewMode();
+	void setCheckedPreviewModeAction();
 	void editSetupEncoding();
 	void editInsertUnicode(); ///< open dialog to insert a unicode character
 	void editInsertRefToNextLabel(const QString &refCmd = "\\ref", bool backward = false);
