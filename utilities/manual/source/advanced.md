@@ -96,14 +96,14 @@ the following magic comments:
 :   Defines the compiler to be used for the document. To be precise, it
     overrides the default compiler (command `txs:///compile`) which is
     used in the actions \"Build & View\" as well as \"Compile\". Valid
-    options are \"latex\",\"pdflatex\",\"xelatex\",\"lualatex\" and
+    options are \"latex\", \"pdflatex\", \"xelatex\", \"lualatex\" and
     \"user*n*\" (e.g. user0 as user defined command 0)
 
 `% !TeX TXS-program:bibliography = txs:///biber`
 :   This is a TeXstudio-specific setting. It overrides the build-system
     command specified to the left by the one on the right. In the
     example, we tell TXS to use the biber command (`txs:///biber`) for
-    the general \"Bibliography command (txs:///bibliography). See also
+    the general \"Bibliography command\" (txs:///bibliography). See also
     the [description of the build system](configuration.md#advanced-configuration-of-the-build-system).
 
 `% !TeX TXS-SCRIPT = name`
@@ -143,7 +143,7 @@ be a java script. The needed functionality can be selected by checkbox.
 
 The \"abbreviation\" is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
-that the pseudo-command needs to start with a backslash (\"\\\").
+that the pseudo-command needs to start with a backslash (\"\\\\\").
 
 \"Trigger\" is a regular expression which triggers the inclusion of the
 macro: When the last written characters match this expression, they are
