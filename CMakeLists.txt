@@ -296,7 +296,7 @@ endif()
 
 find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR} Cpp)
 if(NOT POPPLER_FOUND)
-	message(STATUS "Internal pdf previewer disabled as you wish.")
+        message(STATUS "Poppler not found, internal pdf previewer disabled.")
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_POPPLER_PREVIEW)
 endif()
 add_subdirectory(src/pdfviewer)
