@@ -291,13 +291,13 @@ overridden, if an <em>explicit root document</em> is set at
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">program</span> <span class="pre">=</span> <span class="pre">pdflatex</span></code></dt><dd><p>Defines the compiler to be used for the document. To be precise, it
 overrides the default compiler (command <code class="docutils literal notranslate"><span class="pre">txs:///compile</span></code>) which is
 used in the actions “Build &amp; View” as well as “Compile”. Valid
-options are “latex”,”pdflatex”,”xelatex”,”lualatex” and
+options are “latex”, “pdflatex”, “xelatex”, “lualatex” and
 “user<em>n</em>” (e.g. user0 as user defined command 0)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-program:bibliography</span> <span class="pre">=</span> <span class="pre">txs:///biber</span></code></dt><dd><p>This is a TeXstudio-specific setting. It overrides the build-system
 command specified to the left by the one on the right. In the
 example, we tell TXS to use the biber command (<code class="docutils literal notranslate"><span class="pre">txs:///biber</span></code>) for
-the general “Bibliography command (txs:///bibliography). See also
+the general “Bibliography command” (txs:///bibliography). See also
 the <a class="reference internal" href="configuration.html#advanced-configuration-of-the-build-system"><span class="std std-doc">description of the build system</span></a>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-SCRIPT</span> <span class="pre">=</span> <span class="pre">name</span></code></dt><dd><p>This defines a temporary script macro .</p>
@@ -334,7 +334,7 @@ text which is directly placed into txs. It can also be an
 be a java script. The needed functionality can be selected by checkbox.</p>
 <p>The “abbreviation” is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
-that the pseudo-command needs to start with a backslash (”&quot;).</p>
+that the pseudo-command needs to start with a backslash (”\”).</p>
 <p>“Trigger” is a regular expression which triggers the inclusion of the
 macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
