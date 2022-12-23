@@ -1,11 +1,16 @@
 TeXstudio 4.5.1
 -----------------
 - Provide online template repository
-- change preview target in IDEFIX menu
+- change preview target in IDEFIX menu (#2760)
 - use QtMultimedia instead of phonon to show movies in pdf (non-default)
 - regex in search panel is syntax checked and marked if wrong
-- latex menu for horizontal spacing
-- config dialog with resizable splitter
+- latex menu for horizontal spacing (#2687)
+- config dialog with resizable splitter (#2707)
+- insert inline math mode as $$ (#2719)
+- add editor action "Move all (others) to other view" (#2713)
+- show macro name in completer list (#2679)
+- show macro trigger and shortcut in configuration window (#2635)
+- fix wrong side panel title when changing grid size in config (#2743)
 
 TeXstudio 4.4.1
 -----------------
