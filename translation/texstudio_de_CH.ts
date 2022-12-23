@@ -3190,7 +3190,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="34"/>
         <source>The main American Mathematical Society packages</source>
-        <translation type="unfinished"/>
+        <translation>American Mathematical Society Paket</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="35"/>
@@ -3200,12 +3200,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation type="unfinished"/>
+        <translation>Text ist nur zwischen \begin{document} und \end{document} erlaubt.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>The \title command declares text to be the title.</source>
-        <translation type="unfinished"/>
+        <translation>Der \title Befehl definiert Text als Titel.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
@@ -3590,17 +3590,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation type="unfinished"/>
+        <translation>Der \enspace Befehl fügt einen horizontalen Abstand von 1/2em ein.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>Der \quad Befehl fügt einen horizontalen Abstand von 1em (1em ist die Weite des Buchstaben M).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>The \qquad command inserts a horizontal space of 2em.</source>
-        <translation type="unfinished"/>
+        <translation>Der \qquad Befehl fügt einen horizontalen Abstand von 2em ein.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
@@ -3635,7 +3635,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation type="unfinished"/>
+        <translation>Der \newpage Befehl beendet die aktuelle Seite</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
@@ -3650,17 +3650,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Der \bigskip Befehl fügt einen &apos;großen&apos; senkrechten Abstand ein.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Der \medskip Befehl fügt einen &apos;mittleren&apos; senkrechten Abstand ein.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Der \smallskip Befehl fügt einen &apos;kleinen&apos; senkrechten Abstand ein.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
@@ -3680,7 +3680,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>The \newline command breaks the line right where it is.</source>
-        <translation type="unfinished"/>
+        <translation>Der \newline Befehl erzeugt einen Zeilenumbruch.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
@@ -3810,12 +3810,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\alert{Text} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{Text}{Kommentar} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
@@ -4015,7 +4015,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>Negative thin space</source>
-        <translation type="unfinished"/>
+        <translation>Negativer &apos;dünner&apos; Abstand</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
@@ -4025,7 +4025,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>3/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>3/18 von einem \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
@@ -4035,7 +4035,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>4/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>4/18 von einem \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="208"/>
@@ -4045,7 +4045,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>5/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>5/18 von einem \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="210"/>
@@ -4065,7 +4065,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>A \quad is a horizontal space with a size equal to the font size.</source>
-        <translation type="unfinished"/>
+        <translation>\quad ist ein horizontaler Abstand proportional zur Zeichengröße</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="214"/>
@@ -4075,7 +4075,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>Twice the size of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>Doppelte Weite eines \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="216"/>
