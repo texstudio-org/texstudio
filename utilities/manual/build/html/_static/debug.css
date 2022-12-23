@@ -64,6 +64,6 @@ body {
 .sb-footer__inner {
   background: salmon;
 }
-.sb-article {
+[role="main"] {
   background: white;
 }

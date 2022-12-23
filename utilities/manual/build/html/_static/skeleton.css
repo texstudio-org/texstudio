@@ -143,19 +143,19 @@ article {
 
 .sb-article-container,
 .sb-footer-content__inner,
-.drop-secondary-sidebar-for-full-width-content .sb-article,
+.drop-secondary-sidebar-for-full-width-content [role="main"],
 .drop-secondary-sidebar-for-full-width-content .match-content-width {
   width: 100vw;
 }
 
-.sb-article,
+[role="main"],
 .match-content-width {
   padding: 0 1rem;
   box-sizing: border-box;
 }
 
 @media (min-width: 32rem) {
-  .sb-article,
+  [role="main"],
   .match-content-width {
     padding: 0 2rem;
   }
@@ -167,33 +167,33 @@ article {
     width: auto;
   }
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 42rem;
   }
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 42rem;
   }
 }
 @media (min-width: 46rem) {
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 46rem;
   }
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 46rem;
   }
 }
 @media (min-width: 50rem) {
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 50rem;
   }
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 50rem;
   }
@@ -208,33 +208,33 @@ article {
     display: none !important;
   }
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 59rem;
   }
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 42rem;
   }
 }
 @media (min-width: 63rem) {
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 63rem;
   }
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 46rem;
   }
 }
 @media (min-width: 67rem) {
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 67rem;
   }
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 50rem;
   }
@@ -249,11 +249,11 @@ article {
     display: none !important;
   }
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 59rem;
   }
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 42rem;
   }
@@ -261,24 +261,24 @@ article {
 
 /* Full desktop views */
 @media (min-width: 80rem) {
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 46rem;
   }
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 63rem;
   }
 }
 
 @media (min-width: 84rem) {
-  .sb-article,
+  [role="main"],
   .match-content-width {
     width: 50rem;
   }
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 67rem;
   }
@@ -286,7 +286,7 @@ article {
 
 @media (min-width: 88rem) {
   .sb-footer-content__inner,
-  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content [role="main"],
   .drop-secondary-sidebar-for-full-width-content .match-content-width {
     width: 67rem;
   }
