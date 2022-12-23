@@ -2689,9 +2689,9 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 			                                tr(qPrintable(att.namedItem("text").nodeValue())), slotfunc,
 											QList<QKeySequence>() << shortcut,
 			                                att.namedItem("icon").nodeValue());
-			act->setWhatsThis(att.namedItem("info").nodeValue());
-            act->setStatusTip(att.namedItem("info").nodeValue());
-            act->setToolTip(att.namedItem("info").nodeValue());
+            act->setWhatsThis(tr(qPrintable(att.namedItem("info").nodeValue())));
+            act->setStatusTip(tr(qPrintable(att.namedItem("info").nodeValue())));
+            act->setToolTip(tr(qPrintable(att.namedItem("info").nodeValue())));
 			act->setData(att.namedItem("insert").nodeValue());
 		} else if (c.nodeName() == "separator") menu->addSeparator();
 	}
