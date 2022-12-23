@@ -7071,6 +7071,9 @@ void Texstudio::generateAddtionalTranslations()
 			QString text = attribs.namedItem("text").nodeValue();
 			if (!text.isEmpty() && !commandOnly.exactMatch(text))
 				translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
+            QString info = attribs.namedItem("info").nodeValue();
+            if (!info.isEmpty() && !commandOnly.exactMatch(info))
+                translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + info.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
 			QString insert = attribs.namedItem("insert").nodeValue();
 			if (!insert.isEmpty()) {
 				CodeSnippet cs(insert, false);
