@@ -61,7 +61,20 @@ QList<int> Version::parseVersionNumber(const QString &versionNumber)
 	for (int i=result.count(); i < 3; i++) {
 		result << 0;  // 1.0 is extended to 1.0.0
 	}
-	return result;
+    return result;
+}
+
+int Version::parseVersionNumberToInt(const QString &versionNumber)
+{
+    QList<int> parts=parseVersionNumber(versionNumber);
+    int result=0;
+    if(parts.length()==3){
+        for(int i=0;i<parts.length();++i){
+            result*=256;
+            result+=parts.value(i);
+        }
+    }
+    return result;
 }
 
 // accepts a or a.b or a.b.c where a, b, and c each a sequence of atleast 1 digits like 4711

@@ -82,6 +82,27 @@ private slots:
 		QEQUAL(Version::parseVersionNumber(version) == vList, valid);
 	}
 
+    void parseVersionNumberToInt_data() {
+        QTest::addColumn<QString>("version");
+        QTest::addColumn<int>("result");
+
+        QTest::newRow("parseVersionNumber1") << "2.3" << 0x00020300;
+        QTest::newRow("parseVersionNumber2") << "" << 0;
+        QTest::newRow("parseVersionNumber3") << "12.3.11" << 0x000C030B;
+        QTest::newRow("parseVersionNumber4") << "4" << 0x00040000;
+        QTest::newRow("parseVersionNumber5") << "-4.0.0" << 0;
+        QTest::newRow("parseVersionNumber6") << "4.5.6dev" << 0;
+        QTest::newRow("parseVersionNumber7") << "4..6" << 0;
+        QTest::newRow("parseVersionNumber8") << "4.5." << 0;
+        QTest::newRow("parseVersionNumber9") << "2.3.1.8" << 0;
+    }
+
+    void parseVersionNumberToInt() {
+        QFETCH(QString, version);
+        QFETCH(int, result);
+        QEQUAL(Version::parseVersionNumberToInt(version),result);
+    }
+
 	void stringVersion2Parts_data() {
 		QTest::addColumn<QString>("version");
 		QTest::addColumn<QStringList>("parts");

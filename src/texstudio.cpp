@@ -9992,7 +9992,7 @@ void Texstudio::setClipboardText(const QString &text, const QClipboard::Mode &mo
 
 int Texstudio::getVersion() const
 {
-	return TXSVERSION_NUMERIC;
+    return Version::parseVersionNumberToInt(TXSVERSION);
 }
 
 /*!
