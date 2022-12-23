@@ -3210,7 +3210,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation type="unfinished"/>
+        <translation>Der \author Befehlt deklariert die Autoren, wobei Namen eine Liste ist, die durch den \and Befehl getrennt werden.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
@@ -3225,7 +3225,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>Put this command where you want the table of contents to go</source>
-        <translation type="unfinished"/>
+        <translation>Platziere diesen Befehl wo das Inhaltsverzeichnis erscheinen soll</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
@@ -3555,7 +3555,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="107"/>
         <source>\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \&gt;  \&gt; more \\%n\end{tabbing}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabbing}%nText \= mehr Text \= noch mehr Text \= letzter Text \\%nzweite Zeile \&gt;  \&gt; mehr \\%n\end{tabbing}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="108"/>
@@ -3575,12 +3575,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>The \hline command draws a horizontal line the width of the table.</source>
-        <translation type="unfinished"/>
+        <translation>Der \hline Befehl zeichnet eine horizontale Linie über die gesamte Breite der Tabelle.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>The \vline command draws a vertical line extending the full height and depth of its row.</source>
-        <translation type="unfinished"/>
+        <translation>Der \vline Befehl zeichnet eine senkrechte Linie über die ganz Höhe einer Zeile.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
@@ -3615,7 +3615,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>The \hspace command inserts an amount of skip of horizontal space.</source>
-        <translation type="unfinished"/>
+        <translation>Der \hspace Befehl fügt eine horizontalen Abstand der Größe &quot;skip&quot; ein.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
@@ -3855,7 +3855,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
-        <translation type="unfinished"/>
+        <translation>\footnote[Anzahl]{Text}%nDer \footnote Befehl setzt eine nummerierte Fußnote im unteren Rand der aktuellen Seite.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
@@ -3870,27 +3870,27 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>The math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>Die Mathematikumgebung kann im Paragraph und LR Modus genutzt werden</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>The LaTeX math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX Mathematikumgebung kann im Paragraph und LR Modus genutzt werden</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>The displaymath environment can be used only in paragraph mode</source>
-        <translation type="unfinished"/>
+        <translation>Diplaymath-Umgebung kann nur im Paragraph-Modus genutzt werden</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{array}{Spalte1Spalte2...coln}%ncEintrag Spalte 1 &amp; Eintrag Spalte 2 ... &amp; Eintrag Spalte n \\%n...%n\end{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>The equation environment centres your equation on the page and places the equation number in the right margin.</source>
-        <translation type="unfinished"/>
+        <translation>Die Equation-Umgebung zentriert die Gleichung und platziert die Gleichungsnummer rechts am Rand.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="179"/>
