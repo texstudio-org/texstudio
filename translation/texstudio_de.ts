@@ -3215,12 +3215,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>If used, the \date command declares the date, either with explicit arg for explicit date or with empty arg for no date. If not used, the current date will automatically be inserted by \maketitle.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn benutzt, deklariert der \date Befehl das Datum, entweder mit dem Argument, um ein Datum festzulegen oder mit leerem Argument, um kein Datum zu setzen. Wenn es nicht genutzt wird, wird das aktuelle Datum automatisch von  \maketitle verwendet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page.</source>
-        <translation type="unfinished"/>
+        <translation>Dieser Befehl generiert einen Titel auf einer eigenen Seite%n- außer in der Artikel-Klasse, die den Titel am Anfang der ersten Seite setzt.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
@@ -3360,7 +3360,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>The itemize environment produces a &apos;bulleted&apos; list.%nEach item of an itemized list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Die itemize Umgebung produziert eine Liste.%nJedes Element der Liste beginnt mit dem Befehl \item. </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
@@ -3370,7 +3370,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Die enumerate Umgebung produziert eine Aufzählung.%nJedes Element der Aufzählung beginnt mit dem Befehl \item. </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
@@ -3380,7 +3380,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command.</source>
-        <translation type="unfinished"/>
+        <translation>Die description Umgebung produziert eine Beschreibung.%nJedes Element der Beschreibung beginnt mit dem Befehl \item[Schlüsselwort]. </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="73"/>
@@ -3390,7 +3390,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Das {label} Argument ist ein kurzer Text, der in einem Kasten gesetzt wird als Marke.%nDas {spacing} Argument enthält Befehle, die die Abstände in der Liste verändern.%nJeder Eintrag der Liste beginnt mit einem \item Befehl.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
@@ -3565,12 +3565,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="109"/>
         <source>\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabular}[Position]{Spalten}%nEintrag Spalte 1 &amp; Eintrag Spalte 2 ... &amp; Eintrag Spalte n \\%n...%n\end{tabular}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="110"/>
         <source>\multicolumn{cols}{pos}{text}%ncol, specifies the number of columns to span.%npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.%ntext specifies what text is to make up the entry.</source>
-        <translation type="unfinished"/>
+        <translation>\multicolumn{Spalten}{Position}{Text}%nSpalten, spezifiert die Anzahl von Spalten die zusammengefasst werden sollen.%nPosition  spezifiziert die Formatierung: c für zentriert, l für linksbündig, r für rechtsbündig.%nText ist der Text des Eintrags.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
@@ -3585,7 +3585,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>The command \space gives you a space where you can&apos;t enter a space character.</source>
-        <translation type="unfinished"/>
+        <translation>Der Befehl \space gibt einen Leerzeichen wenn man nicht das Zeichen &quot;Leerzeichen&quot; verwenden kann.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
@@ -3605,32 +3605,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>The command \thinspace produces unbreakable and unstretchable space of 1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>Der Befehl \thinspace setzt einen unzerbrechlichen und nicht dehnbaren Abstand von 1/6em (wie \, im Mathematikmodus).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>The command \negthinspace produces unbreakable and unstretchable space of -1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>Der Befehl \negthinspace setzt einen unzerbrechlichen und nicht dehnbaren Abstand von -1/6em (wie \, im Mathematikmodus).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>The \hspace command inserts an amount of skip of horizontal space.</source>
-        <translation>Der \hspace Befehl fügt eine horizontalen Abstand der Größe &quot;skip&quot; ein.</translation>
+        <translation>Der \hspace Befehl fügt einen horizontalen Abstand der Größe &quot;skip&quot; ein.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>The \hfill command inserts a rubber length which has no natural space but that can stretch horizontally as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Der \hfill Befehl setzt eine dehnbaren Abstand, die keine Mindestbreite besitzt und sich beliebig weit ausdehnen kann.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>The \hrulefill command produces an infinite horizontal rubber length that LaTeX fills with a rule (that is, a line), instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>Der \hrulefill Befehl setzt eine dehnbare Weite, die LaTeX mit einer Linie statt Leerzeichen füllt.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with dots, instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>Der \dotfill Befehl setzt eine dehnbare Weite, die LaTeX mit Punkten statt Leerzeichen füllt.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
@@ -3640,12 +3640,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>The \linebreak command tells LaTeX to break the current line at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Der \linebreak Befehl veranlasst LaTeX die aktuelle Zeile am Punkt des Befehls umzubrechen.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>The \pagebreak command tells LaTeX to break the current page at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Der \pagebreak Befehl veranlasst LaTeX die aktuelle Seite am Punkt des Befehls umzubrechen.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
@@ -3665,12 +3665,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>The \vspace command inserts an amount of skip (positive, zero or negative) of vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Der \vspace Befehl fügt einen vertikalen Abstand der Größe &quot;skip&quot; ein, der positiv,negativ oder 0 sein kann.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>The \vfill command inserts a rubber length which has no natural space but that can stretch vertically as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Der \vfill Befehl setzt einen dehnbaren vertikalen Abstand, die keine Mindesthöhe besitzt und sich beliebig weit ausdehnen kann.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
@@ -3850,7 +3850,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
-        <translation type="unfinished"/>
+        <translation>Dieser Befehl generiert ein Zitat zu einer Referenz, die mit dem ref-Eintrag in der bib-Datei verbunden ist.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
@@ -3860,12 +3860,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation type="unfinished"/>
+        <translation>Das Argument des Befehls \bibliographystyle bezieht auf eine Datei Stil.bst, die definiert wie Zitate dargestellt werden.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
-        <translation type="unfinished"/>
+        <translation>\addbibresource{bib-Datei} fügt den Ort einer Datenbank-Datei für biblatex wie eine .bib-Datei. Der Dateiname sollte die Dateierweiterung enthalten (z.B. &apos;\addbibresource{mybibliography.bib}&apos;). Man kann nur eine Datei pro \addbibresource{} Befehl setzen (komma-separierte Listen sind nicht erlaubt), aber es können mehrere Befehle verwendet werden.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
