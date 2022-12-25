@@ -367,7 +367,7 @@
     <insert id="medium" text="Medium - \:" insert="\:" info="4/18 of a \quad"/>
     <insert id="large" text="Thick - \;" insert="\;" info="5/18 of a \quad"/>
 	<insert id="interword" text="Interword - \ " insert="\ " info="regular whitespace"/>
-	<insert id="quad" text="One quad - \quad" insert="\quad " info="A \quad is a horizontal space with a size equal to the font size."/>
+	<insert id="quad" text="One quad - \quad" insert="\quad " info="The \quad command inserts a horizontal space of 1em (1em being the width of M)."/>
     <insert id="qquad" text="Two quads - \qquad" insert="\qquad" info="Twice the size of a \quad"/>
   </menu>
 </menu>
