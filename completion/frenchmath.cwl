@@ -1,18 +1,24 @@
 # frenchmath package
-# Matthew Bertucci 2022/11/11 for v2.1
+# Matthew Bertucci 2022/12/26 for v2.3
 
 #include:ifthen
 #include:mathrsfs
 #include:amssymb
 #include:amsopn
 #include:xspace
+#include:ibrackets
 #include:ncccomma
 
 #keyvals:\usepackage/frenchmath#c
 capsit
+lgrmath
 upgreek
 Upgreek
 #endkeyvals
+
+#ifOption:lgrmath
+#include:lgrmath
+#endif
 
 #ifOption:upgreek
 #include:upgreek
@@ -105,3 +111,5 @@ Upgreek
 \ch#m
 \sh#m
 \th
+\cosec#m
+\cosech#m
