@@ -1,11 +1,12 @@
 # mismath package
-# Matthew Bertucci 2022/11/11 for v2.0
+# Matthew Bertucci 2022/12/26 for v2.1
 
 #include:amsmath
 #include:esvect
 #include:ifthen
 #include:xspace
 #include:mathtools
+#include:ibrackets
 
 # all options passed to amsmath
 #keyvals:\usepackage/mismath#c
@@ -48,6 +49,7 @@ alignedleftspaceyesifneg
 \boldvect{arg}#m
 \boldvectcommand{arg}#*
 \C#m
+\codim#m
 \Conv#m
 \Cov#m
 \cov#m
@@ -104,12 +106,14 @@ alignedleftspaceyesifneg
 \rot#m
 \sech#m
 \sgn#m
+\sinc#m
 \spa#m
 \then#m
 \tr#m
 \txt{text}#m
 \unbr{arg}#m
 \V#m
+\var#m
 \Var#m
 \vect{arg}#m
 \Z#m
