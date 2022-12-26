@@ -346,6 +346,8 @@ bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *edi
 
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor)
 {
+	bool isPicMenu;
+	
     if (!contextMenu) contextMenu = new QMenu(nullptr);
 	contextMenu->clear();
 	contextMenu->setProperty("isSpellingPopulated", QVariant());  // delete information on spelling
@@ -370,7 +372,8 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			bool removePreviewActionFound = false;
 			foreach (QAction *act, baseActions) {
 				if (act->objectName().endsWith("removePreviewLatex")) {
-					act->setData(posInDocCoordinates);
+					isPicMenu = true;
+					act->setData( QVariantList() << QVariant(posInDocCoordinates) << QVariant(isPicMenu) );
 					contextMenu->addAction(act);
 					removePreviewActionFound = true;
 					break;
@@ -381,8 +384,8 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 
 			QVariant vPixmap = cursor.line().getCookie(QDocumentLine::PICTURE_COOKIE);
 			if (vPixmap.isValid()) {
-				(contextMenu->addAction("Copy Image", edView, SLOT(copyImageFromAction())))->setData(vPixmap);
-				(contextMenu->addAction("Save Image As...", edView, SLOT(saveImageFromAction())))->setData(vPixmap);
+				(contextMenu->addAction(LatexEditorView::tr("&Copy Image"), edView, SLOT(copyImageFromAction())))->setData(vPixmap);
+				(contextMenu->addAction(LatexEditorView::tr("&Save Image As..."), edView, SLOT(saveImageFromAction())))->setData(vPixmap);
 			}
 			contextMenu->exec(event->globalPos());
 			return true;
@@ -535,6 +538,44 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredThesaurus()));
 			contextMenu->addAction(act);
+		}
+		{
+			//	copy managed action "previewLatex" from texstudio.cpp
+//			QAction *act = new QAction(LatexEditorView::tr("Pre&view Selection/Parentheses"));
+			QAction *act = new QAction();
+			act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
+			edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredPreviewLatex()));
+			int i = -1;
+			foreach (QAction *baseAct, baseActions) {
+				i++;
+				if (baseAct->objectName().endsWith("previewLatex")) {
+					act->setObjectName(baseAct->objectName());
+					act->setText(baseAct->text());
+					act->setShortcut(baseAct->shortcut());
+					baseActions[i] = act;
+					break;
+				}
+			}
+		}
+		
+		{
+			//	copy managed action "removePreviewLatex" from texstudio.cpp
+//			QAction *act = new QAction(LatexEditorView::tr("C&lear Inline Preview"));
+			QAction *act = new QAction();
+			isPicMenu = false;
+			act->setData( QVariantList() << QVariant(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber())) << QVariant(isPicMenu) );
+			edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredClearPreview()));
+			int i = -1;
+			foreach (QAction *baseAct, baseActions) {
+				i++;
+				if (baseAct->objectName().endsWith("removePreviewLatex")) {
+					act->setObjectName(baseAct->objectName());
+					act->setText(baseAct->text());
+					act->setShortcut(baseAct->shortcut());
+					baseActions[i] = act;
+					break;
+				}
+			}
 		}
 
 		//resolve differences
@@ -3056,6 +3097,22 @@ void LatexEditorView::triggeredThesaurus()
 	QAction *act = qobject_cast<QAction *>(sender());
 	QPoint pt = act->data().toPoint();
 	emit thesaurus(pt.x(), pt.y());
+}
+
+void LatexEditorView::triggeredPreviewLatex()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	QPoint pt = act->data().toPoint();
+	emit previewlatex(pt.x(), pt.y());
+}
+
+void LatexEditorView::triggeredClearPreview()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	QVariantList vl = act->data().toList();
+	QPoint pt = vl[0].toPoint();
+	bool isPicMenu = vl[1].toBool();
+	emit clearpreview(pt.x(), pt.y(), isPicMenu);
 }
 
 void LatexEditorView::changeSpellingDict(const QString &name)

@@ -2004,6 +2004,8 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
     connect(edit->document, SIGNAL(encodingChanged()), this, SLOT(updateStatusBarEncoding()));
     connect(edit, SIGNAL(thesaurus(int,int)), this, SLOT(editThesaurus(int,int)));
+    connect(edit, SIGNAL(previewlatex(int,int)), this, SLOT(previewLatex(int,int)));
+    connect(edit, SIGNAL(clearpreview(int,int, bool)), this, SLOT(clearPreview(int,int,bool)));
     connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
     connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
     connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOCs()));
@@ -8293,7 +8295,7 @@ void Texstudio::saveEditorCursorToHistory(LatexEditorView *edView)
 	cursorHistory->insertPos(edView->editor->cursor());
 }
 
-void Texstudio::previewLatex()
+void Texstudio::previewLatex(int line, int col)
 {
 	if (!currentEditorView()) return;
 	// get selection
@@ -8302,6 +8304,9 @@ void Texstudio::previewLatex()
 	if (c.hasSelection()) {
 		previewc = c; //X o riginalText = c.selectedText();
 	} else {
+		if (line > -1 && col > -1) {
+			c.moveTo(line, col);
+		}
 		// math context
 		QSet<int> mathFormats = QSet<int>() << m_formats->id("numbers") << m_formats->id("math-keyword") << m_formats->id("align-ampersand");
 		QSet<int> lineEndFormats = QSet<int>() << m_formats->id("keyword") /* newline char */ << m_formats->id("comment");
@@ -8455,7 +8460,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 	}
 }
 
-void Texstudio::clearPreview()
+void Texstudio::clearPreview(int line, int col, bool isPicMenu)
 {
 	QEditor *edit = currentEditor();
 	if (!edit) return;
@@ -8463,19 +8468,21 @@ void Texstudio::clearPreview()
 	int startLine = 0;
 	int endLine = 0;
 
-	QAction *act = qobject_cast<QAction *>(sender());
-	if (act && act->data().isValid()) {
+	if (isPicMenu) {
 		// inline preview context menu supplies the calling point in doc coordinates as data
-		startLine = edit->document()->indexOf(edit->lineAtPosition(act->data().toPoint()));
+		startLine = edit->document()->indexOf(edit->lineAtPosition(QPoint(line, col)));
 		// slight performance penalty for use of lineNumber(), which is not stictly necessary because
 		// we convert it back to a QDocumentLine, but easier to handle together with the other cases
 		endLine = startLine;
-		act->setData(QVariant());
 	} else if (edit->cursor().hasSelection()) {
 		startLine = edit->cursor().selectionStart().lineNumber();
 		endLine = edit->cursor().selectionEnd().lineNumber();
 	} else {
-		startLine = edit->cursor().lineNumber();
+		if (line > -1 && col > -1) {
+			startLine = line;
+		} else {
+			startLine = edit->cursor().lineNumber();
+		}
 		endLine = startLine;
 	}
 

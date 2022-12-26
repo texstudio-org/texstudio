@@ -579,9 +579,9 @@ protected slots:
 	void saveCurrentCursorToHistory();
 	void saveEditorCursorToHistory(LatexEditorView *edView);
 
-	void previewLatex();
+	void previewLatex(int line=-1, int col=-1);
 	void previewAvailable(const QString &imageFile, const PreviewSource &source);
-	void clearPreview();
+	void clearPreview(int line=-1, int col=-1, bool isPicMenu=false);
 	void showPreview(const QString &text);
 	void showPreview(const QDocumentCursor &c);
 	void showPreview(const QDocumentCursor &c, bool addToList);

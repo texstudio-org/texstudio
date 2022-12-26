@@ -236,6 +236,8 @@ private slots:
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
 	void triggeredThesaurus();
+	void triggeredPreviewLatex();
+	void triggeredClearPreview();
 	void reloadSpeller();
 	void changeSpellingDict(const QString &name);
 	void copyImageFromAction();
@@ -333,6 +335,8 @@ signals:
 	void openFile(const QString &baseName, const QString &defaultExtension);
 	void openCompleter();
 	void thesaurus(int line, int col);
+	void previewlatex(int line, int col);
+	void clearpreview(int line, int col, bool isPicMenu);
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	void gotoDefinition(QDocumentCursor c);
