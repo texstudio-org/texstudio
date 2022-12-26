@@ -206,6 +206,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     tk1.start=tk.start;
                     tk1.length=1;
                     tk1.type=Token::verbatim;
+                    tk1.dlh=tk.dlh;
                     tk.type=Token::symbol;
                     tk.subtype=Token::verbatimStop;
                     tk.level = level;
