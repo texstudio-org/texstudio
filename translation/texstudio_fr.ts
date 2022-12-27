@@ -3598,6 +3598,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
         <translation>La commande \quad insère une espace horizontale de 1em (1em étant la largeur d&apos;un M).</translation>
     </message>
@@ -4065,11 +4066,6 @@ de base, il suffit de désactiver ces options avancées.</translation>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
         <source>One quad - \quad</source>
         <translation>&amp;Un cadratin - \quad</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
-        <source>A \quad is a horizontal space with a size equal to the font size.</source>
-        <translation>Un \quad est une espace horizontale de taille égale à celle de la police.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="214"/>

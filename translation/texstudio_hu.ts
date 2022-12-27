@@ -3186,7 +3186,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="34"/>
         <source>The main American Mathematical Society packages</source>
-        <translation type="unfinished"/>
+        <translation>Az Amerikai Matematikai Társaság főbb csomagjai</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="35"/>
@@ -3196,32 +3196,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation type="unfinished"/>
+        <translation>Szöveg csak \begin{document} és \end{document} között megengedett.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>The \title command declares text to be the title.</source>
-        <translation type="unfinished"/>
+        <translation>A \title parancs szöveget deklarál címként.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation type="unfinished"/>
+        <translation>Az \author parancs deklarálja a szerző(ke)t, ahol a names a szerzők listája \and parancsokkal elválasztva.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>If used, the \date command declares the date, either with explicit arg for explicit date or with empty arg for no date. If not used, the current date will automatically be inserted by \maketitle.</source>
-        <translation type="unfinished"/>
+        <translation>Ha használja, a \date parancs deklarálja a dátumot, explicit arg esetén az explicit dátumként, üres arg esetén dátum nélkül. Ha nem használja, az aktuális dátumot automatikusan beszúrja a \maketitle.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page.</source>
-        <translation type="unfinished"/>
+        <translation>Ez a parancs létrehoz egy címet egy külön címoldalon%n-, kivéve az article osztályt, ahol a cím általában az első oldal tetejére kerül.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>Put this command where you want the table of contents to go</source>
-        <translation type="unfinished"/>
+        <translation>Helyezze ezt a parancsot oda, ahol a tartalomjegyzéket szeretné elérni</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
@@ -3356,7 +3356,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>The itemize environment produces a &apos;bulleted&apos; list.%nEach item of an itemized list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Az itemize környezet számozatlan listát állít elő.%nA lista minden eleme egy \item paranccsal kezdődik.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
@@ -3366,7 +3366,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Az enumerate környezet számozott listát állít elő.%nA lista minden eleme egy \item paranccsal kezdődik.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
@@ -3376,7 +3376,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command.</source>
-        <translation type="unfinished"/>
+        <translation>A description környezet leíró lista készítéséhez használható.%nA lista minden eleme egy \item[label] paranccsal kezdődik.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="73"/>
@@ -3386,12 +3386,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>A {label} argumentum egy szövegrész, amelyet egy dobozba szúrnak be a címke létrehozásához.%nA {spacing} argumentum parancsokat tartalmaz a lista térköz paramétereinek módosítására.%nA lista minden eleme egy \item paranccsal kezdődik .</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>\item[label] Hello</source>
-        <translation type="unfinished"/>
+        <translation>\item[label] Hello</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="76"/>
@@ -3551,7 +3551,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="107"/>
         <source>\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \&gt;  \&gt; more \\%n\end{tabbing}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabbing}%nszöveg \= több szöveg \= még több szöveg \= utolsó szöveg \\%nmásodik sor \&gt; \&gt; több \\%n\end{tabbing}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="108"/>
@@ -3561,112 +3561,113 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="109"/>
         <source>\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="110"/>
         <source>\multicolumn{cols}{pos}{text}%ncol, specifies the number of columns to span.%npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.%ntext specifies what text is to make up the entry.</source>
-        <translation type="unfinished"/>
+        <translation>\multicolumn{cols}{pos}{text}%ncol, megadja az összevonandó oszlopok számát.%npos meghatározza a bejegyzés formázását: c középre, l balra, r jobbra.%ntext határozza meg, hogy milyen szöveg legyen a bejegyzésben.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>The \hline command draws a horizontal line the width of the table.</source>
-        <translation type="unfinished"/>
+        <translation>A \hline parancs egy vízszintes vonalat húz a táblázat szélességében.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>The \vline command draws a vertical line extending the full height and depth of its row.</source>
-        <translation type="unfinished"/>
+        <translation>A \vline parancs függőleges vonalat rajzol, amely a sor teljes magasságára és mélységére kiterjed.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>The command \space gives you a space where you can&apos;t enter a space character.</source>
-        <translation type="unfinished"/>
+        <translation>A \space parancs szóközt ad, ahol nem írhat szóköz karaktert.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation type="unfinished"/>
+        <translation>Az \enspace parancs 1/2em vízszintes szóközt szúr be.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>A \quad parancs 1em vízszintes szóközt szúr be (1em az M betű szélessége).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>The \qquad command inserts a horizontal space of 2em.</source>
-        <translation type="unfinished"/>
+        <translation>A \qquad parancs 2em vízszintes szóközt szúr be</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>The command \thinspace produces unbreakable and unstretchable space of 1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>A \thinspace parancs törhetetlen és rugalmatlan 1/6em szóközt állít elő (ugyanaz, mint \, matematikai módban).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>The command \negthinspace produces unbreakable and unstretchable space of -1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>A \negthinspace parancs törhetetlen és rugalmatlan -1/6em szóközt állít elő (ugyanaz, mint \! matematikai módban).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>The \hspace command inserts an amount of skip of horizontal space.</source>
-        <translation type="unfinished"/>
+        <translation>A \hspace parancs adott mértékű vízszintes szóközt szúr be.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>The \hfill command inserts a rubber length which has no natural space but that can stretch horizontally as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>A \hfill parancs beszúr egy rugalmas térközt, amelynek nincs természetes hossza, hanem vízszintesen nyúlik ameddig szükséges.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>The \hrulefill command produces an infinite horizontal rubber length that LaTeX fills with a rule (that is, a line), instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>A \hrulefill parancs egy végtelen rugalmas vízszintes térközt hoz létre, amit a LaTeX egy vonallal tölt ki szóköz helyett.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with dots, instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>A \dotfill parancs egy végtelen rugalmas vízszintes térközt hoz létre, amit a LaTeX egy pontsorral tölt ki szóköz helyett.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation type="unfinished"/>
+        <translation>A \newpage parancs befejezi az aktuális oldalt</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>The \linebreak command tells LaTeX to break the current line at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>A \linebreak parancs arra utasítja a LaTeX-et, hogy törje meg az aktuális sort a parancs pontjában.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>The \pagebreak command tells LaTeX to break the current page at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>A \pagebreak parancs arra utasítja a LaTeX-et, hogy a parancs pontján törje meg az aktuális oldalt.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>A \bigskip parancs egy „nagy” függőleges térközt ad.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>A \medskip parancs egy „közepes” függőleges térközt ad.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>A \smallskip parancs egy „kicsi” függőleges térközt ad.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>The \vspace command inserts an amount of skip (positive, zero or negative) of vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>A \vspace parancs bizonyos mértékű (pozitív, nulla vagy negatív) függőleges térközt szúr be.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>The \vfill command inserts a rubber length which has no natural space but that can stretch vertically as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>A \vfill parancs beszúr egy rugalmas térközt, amelynek nincs természetes hossza, hanem függőlegesen nyúlik ameddig szükséges.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
@@ -3676,7 +3677,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>The \newline command breaks the line right where it is.</source>
-        <translation type="unfinished"/>
+        <translation>A \newline parancs megtöri a sort ott, ahol van.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
@@ -3806,87 +3807,87 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\alert{text} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{text}{comment} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\add{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\add{text} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\remove{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\remove{text} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\replace{text}{replacement} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Turn on review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Kapcsolja be a bírálati megjegyzéseket a pdf-ben</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>Turn off review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Kapcsolja ki a bírálati megjegyzéseket a pdf-ben</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
-        <translation type="unfinished"/>
+        <translation>\label{key}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
-        <translation type="unfinished"/>
+        <translation>Ez a parancs szövegbeli hivatkozást generál a bib fájl bejegyzéséhez társított hivatkozásra</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
-        <translation type="unfinished"/>
+        <translation>\footnote[number]{text}%nA \footnote parancs a számozott lábjegyzet szövegét az aktuális oldal aljára helyezi.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation type="unfinished"/>
+        <translation>A \bibliographystyle argumentuma egy style.bst fájlra vonatkozik, amely meghatározza, hogyan nézzenek ki az idézetek</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
-        <translation type="unfinished"/>
+        <translation>A \addbibresource{bibfile} a biblatexhez tartozó .bib forrásfájl helyét határozza meg. A fájlnévnek tartalmaznia kell a kiterjesztést (pl. „\addbibresource{mybibliography.bib}”). Egy \addbibresource{} parancsban csak egy fájl adható meg (vesszővel elválasztott listák nem engedélyezettek). De több parancsot is használhat.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>The math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>A math környezet bekezdés és LR módban is használható</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>The LaTeX math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>A LaTeX math környezet bekezdés és LR módban is használható</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>The displaymath environment can be used only in paragraph mode</source>
-        <translation type="unfinished"/>
+        <translation>A displaymath környezet csak bekezdés módban használható</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>The equation environment centres your equation on the page and places the equation number in the right margin.</source>
-        <translation type="unfinished"/>
+        <translation>Az equation környezet az egyenletet az oldal középpontjába helyezi, és az egyenletszámot a jobb margóra helyezi.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="179"/>
@@ -4011,7 +4012,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>Negative thin space</source>
-        <translation type="unfinished"/>
+        <translation>Negatív keskeny térköz</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
@@ -4021,7 +4022,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>3/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>A \quad 3/18-ada</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
@@ -4031,7 +4032,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>4/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>A \quad 4/18-ada</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="208"/>
@@ -4041,7 +4042,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>5/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>A \quad 5/18-ada</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="210"/>
@@ -4051,17 +4052,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>regular whitespace</source>
-        <translation type="unfinished"/>
+        <translation>szabályos szóköz</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
         <source>One quad - \quad</source>
         <translation>Negyed - \quad</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
-        <source>A \quad is a horizontal space with a size equal to the font size.</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="214"/>
@@ -4071,7 +4067,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>Twice the size of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>A \quad méretének kétszerese</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="216"/>
@@ -9958,7 +9954,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1064"/>
         <source>Preview Dis&amp;play Mode</source>
-        <translation type="unfinished"/>
+        <translation>Meg&amp;jelenítési mód előnézete</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1066"/>
