@@ -67,6 +67,7 @@ alignedleftspaceyesifneg
 \E#m
 \End#m
 \eqdef#m
+\eqdef*#m
 \erf#m
 \F#m
 \grad#m
