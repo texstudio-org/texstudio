@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2022/10/05 for v3.81
+# tbraun 4.11.2008; Matthew Bertucci 2022/12/26 for v3.84
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -20,7 +20,7 @@ silent
 strings=#generic,unicode,encoded,%<label%>,%<font encoding%>
 hyphenmap=#off,first,select,other,other*
 bidi=#default,basic,basic-r,bidi-l,bidi-r
-layout=#sectioning,counters,contents,footnotes,captions,columns,graphics,extras
+layout=#sectioning,counters,counters*,contents,footnotes,captions,columns,graphics,extras
 provide=*
 provide+=*
 provide*=*
@@ -271,15 +271,22 @@ attribute=
 \babeladjust{keyvals}
 
 #keyvals:\babeladjust
-bidi.text=#on,off
-bidi.mirroring=#on,off
 bidi.mapdigits=#on,off
-layout.lists=#on,off
-layout.tabular=#on,off
+bidi.mirroring=#on,off
+bidi.text=#on,off
 linebreak.sea=#on,off
 linebreak.cjk=#on,off
 justify.arabic=#on,off
+layout.tabular=#on,off
+layout.lists=#on,off
+autoload.bcp47=#on,off
+bcp47.toname=#on,off
 autoload.options=
+autoload.bcp47.prefix=
+autoload.bcp47.options=
+prehyphenation.disable=#nohyphenation,off
+select.write=#shift,keep,omit
+select.encoding=#off
 #endkeyvals
 
 \fmtname#*

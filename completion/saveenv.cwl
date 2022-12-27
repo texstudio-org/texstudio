@@ -1,5 +1,5 @@
 # saveenv package
-# Matthew Bertucci 202207/11 for v0.0.0
+# Matthew Bertucci 2022/12/23 for v0.0.1
 
 #include:precattl
 
@@ -9,3 +9,8 @@
 \end{saveenvghost}
 \begin{saveenvkeeplast}{macro%cmd}#d
 \end{saveenvkeeplast}
+
+\begin{saveenvreinsert}{macro%cmd}{code}#d
+\end{saveenvreinsert}
+\begin{saveenvkeeplastreinsert}{macro%cmd}{code}#d
+\end{saveenvkeeplastreinsert}

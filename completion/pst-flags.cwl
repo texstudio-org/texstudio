@@ -1,5 +1,5 @@
 # pst-flags package
-# Matthew Bertucci 2022/12/20 for v0.01
+# Matthew Bertucci 2022/12/26 for v2022/12/25
 
 #include:fp
 #include:pstricks
@@ -516,6 +516,10 @@ etRed#B
 etYellow#B
 fiBlue#B
 fjCyan#B
+flagIOCrownBlue#B
+flagIOCrownGreen#B
+flagIOCrownRed#B
+flagIOCrownYellow#B
 frBlue#B
 frRed#B
 gaBlue#B
@@ -811,6 +815,10 @@ zwYellow#B
 
 # not documented
 \ammCharSpacing{text}{length}#S
+\crownLily#S
+\crownLily[opt]#S
+\crownLilyDouble#S
+\crownLilyDouble[opt]#S
 \flagBEO#S
 \flagBEO[size]#S
 \flagBYPattern{arg1}{arg2}{arg3}#S
@@ -818,6 +826,11 @@ zwYellow#B
 \flagGECross[size]#S
 \flagHKSeal[opt]{arg1}{arg2}#S
 \flagHKSeal{arg1}{arg2}#S
+\flagIOCrown#S
+\flagIOCrown[size]#S
+\flagIOTree#S
+\flagIOWave{arg}#S
+\flagIOWave[opt]{arg}#S
 \flagIranEmblem{arg1}{arg2}#S
 \flagIranSlogan{arg1}{arg2}#S
 \flagPYseal{arg}#S
