@@ -1310,6 +1310,7 @@
 <file>completion/empheq.cwl</file>
 <file>completion/emptypage.cwl</file>
 <file>completion/endfloat.cwl</file>
+<file>completion/endheads.cwl</file>
 <file>completion/endiagram.cwl</file>
 <file>completion/endnotes.cwl</file>
 <file>completion/endnotes-hy.cwl</file>
@@ -1650,6 +1651,7 @@
 <file>completion/GoudyIn.cwl</file>
 <file>completion/grabbox.cwl</file>
 <file>completion/gradientframe.cwl</file>
+<file>completion/gradient-text.cwl</file>
 <file>completion/grading-scheme.cwl</file>
 <file>completion/grafcet.cwl</file>
 <file>completion/graph35.cwl</file>
@@ -2076,6 +2078,7 @@
 <file>completion/lualatex-truncate.cwl</file>
 <file>completion/luamathalign.cwl</file>
 <file>completion/luamesh.cwl</file>
+<file>completion/luamodulartables.cwl</file>
 <file>completion/luamplib.cwl</file>
 <file>completion/luaoptions.cwl</file>
 <file>completion/luaotfload.cwl</file>
@@ -2870,6 +2873,7 @@
 <file>completion/pymacros.cwl</file>
 <file>completion/python.cwl</file>
 <file>completion/pythonhighlight.cwl</file>
+<file>completion/pythonimmediate.cwl</file>
 <file>completion/pythontex.cwl</file>
 <file>completion/qcm.cwl</file>
 <file>completion/qqru.cwl</file>
@@ -3556,6 +3560,7 @@
 <file>completion/tikzlings-snowmen.cwl</file>
 <file>completion/tikzlings-squirrels.cwl</file>
 <file>completion/tikzlings-wolves.cwl</file>
+<file>completion/tikz-mirror-lens.cwl</file>
 <file>completion/tikz-network.cwl</file>
 <file>completion/tikz-opm.cwl</file>
 <file>completion/tikzorbital.cwl</file>
@@ -3645,6 +3650,7 @@
 <file>completion/trsym.cwl</file>
 <file>completion/truncate.cwl</file>
 <file>completion/truthtable.cwl</file>
+<file>completion/tsvtemplate.cwl</file>
 <file>completion/tucv.cwl</file>
 <file>completion/tudacolors.cwl</file>
 <file>completion/tudafonts.cwl</file>

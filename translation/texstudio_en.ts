@@ -3562,6 +3562,7 @@ options again to only view the most common settings.</source>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
+        <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4028,11 +4029,6 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
         <source>One quad - \quad</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="213"/>
-        <source>A \quad is a horizontal space with a size equal to the font size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
