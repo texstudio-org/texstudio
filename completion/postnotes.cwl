@@ -1,11 +1,12 @@
 # postnotes package
-# Matthew Bertucci 2022/04/29 for v0.1.2
+# Matthew Bertucci 2022/12/28 for v0.2.0
 
 \postnote{text}
 \postnote[options%keyvals]{text}
 
 #keyvals:\postnote
-mark=%<mark%>
+mark=%<number%>
+markstr=%<string%>
 sortnum=%<number%>
 nomark
 label=##l
@@ -14,11 +15,10 @@ zlabel=##l
 
 \postnotesection{text}
 \postnotesection[options%keyvals]{text}
-\postnotesectionx{text}
-\postnotesectionx[options%keyvals]{text}
 
 #keyvals:\postnotesection,\postnotesectionx
 name=%<name%>
+exp#true,false
 #endkeyvals
 
 \printpostnotes
@@ -67,3 +67,7 @@ sort#true,false
 \thepostnote#*
 \thepostnotesection#*
 \thepostnotetext#*
+
+# deprecated
+\postnotesectionx{text}#S
+\postnotesectionx[options]{text}#S
