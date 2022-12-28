@@ -18,6 +18,7 @@
 #include:biblatex
 # loads style=gb7714-2015 option of biblatex
 #include:tabularray
+#include:tabularraylibraryfunctional
 #include:enumitem
 
 \xdusetup{options%keyvals}
