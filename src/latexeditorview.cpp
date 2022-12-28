@@ -541,40 +541,38 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		}
 		{
 			//	copy managed action "previewLatex" from texstudio.cpp
-//			QAction *act = new QAction(LatexEditorView::tr("Pre&view Selection/Parentheses"));
-			QAction *act = new QAction();
-			act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
-			edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredPreviewLatex()));
-			int i = -1;
+			int i = 0;
 			foreach (QAction *baseAct, baseActions) {
-				i++;
-				if (baseAct->objectName().endsWith("previewLatex")) {
+				if (baseAct->objectName().endsWith("/previewLatex")) {
+					QAction *act = new QAction();
 					act->setObjectName(baseAct->objectName());
 					act->setText(baseAct->text());
 					act->setShortcut(baseAct->shortcut());
+					act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
+					edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredPreviewLatex()));
 					baseActions[i] = act;
 					break;
 				}
+				i++;
 			}
 		}
 		
 		{
 			//	copy managed action "removePreviewLatex" from texstudio.cpp
-//			QAction *act = new QAction(LatexEditorView::tr("C&lear Inline Preview"));
-			QAction *act = new QAction();
 			isPicMenu = false;
-			act->setData( QVariantList() << QVariant(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber())) << QVariant(isPicMenu) );
-			edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredClearPreview()));
-			int i = -1;
+			int i = 0;
 			foreach (QAction *baseAct, baseActions) {
-				i++;
-				if (baseAct->objectName().endsWith("removePreviewLatex")) {
+				if (baseAct->objectName().endsWith("/removePreviewLatex")) {
+					QAction *act = new QAction();
 					act->setObjectName(baseAct->objectName());
 					act->setText(baseAct->text());
 					act->setShortcut(baseAct->shortcut());
+					act->setData( QVariantList() << QVariant(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber())) << QVariant(isPicMenu) );
+					edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredClearPreview()));
 					baseActions[i] = act;
 					break;
 				}
+				i++;
 			}
 		}
 
