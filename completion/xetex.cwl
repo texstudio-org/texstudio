@@ -140,3 +140,7 @@
 # Engine version
 \XeTeXversion#*
 \XeTeXrevision#*
+
+# other (not in ref guide)
+\XeTeXhyphenatablelength#*
+\XeTeXinterwordspaceshaping#*
