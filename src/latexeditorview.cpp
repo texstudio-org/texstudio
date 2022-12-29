@@ -95,6 +95,9 @@ private:
 	QPoint lastMousePressLeft;
 	bool isDoubleClick;  // event sequence of a double click: press, release, double click, release - this is true on the second release
     Qt::KeyboardModifiers modifiersWhenPressed;
+
+    int contextMenu_row=-1;
+    int contextMenu_col=-1;
 };
 
 static const QString LRMStr = QChar(LRM);
@@ -370,7 +373,10 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			bool removePreviewActionFound = false;
 			foreach (QAction *act, baseActions) {
 				if (act->objectName().endsWith("removePreviewLatex")) {
-					act->setData(posInDocCoordinates);
+                    // inline preview context menu supplies the calling point in doc coordinates as data
+                    contextMenu_row = editor->document()->indexOf(editor->lineAtPosition(posInDocCoordinates));
+                    // slight performance penalty for use of lineNumber(), which is not stictly necessary because
+                    // we convert it back to a QDocumentLine, but easier to handle together with the other cases
 					contextMenu->addAction(act);
 					removePreviewActionFound = true;
 					break;
@@ -381,10 +387,15 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 
 			QVariant vPixmap = cursor.line().getCookie(QDocumentLine::PICTURE_COOKIE);
 			if (vPixmap.isValid()) {
-				(contextMenu->addAction("Copy Image", edView, SLOT(copyImageFromAction())))->setData(vPixmap);
-				(contextMenu->addAction("Save Image As...", edView, SLOT(saveImageFromAction())))->setData(vPixmap);
+                (contextMenu->addAction(LatexEditorView::tr("Copy Image"), edView, SLOT(copyImageFromAction())))->setData(vPixmap);
+                (contextMenu->addAction(LatexEditorView::tr("Save Image As..."), edView, SLOT(saveImageFromAction())))->setData(vPixmap);
 			}
 			contextMenu->exec(event->globalPos());
+
+            // reset context menu position
+            contextMenu_row=-1;
+            contextMenu_col=-1;
+
 			return true;
 		}
 	}
@@ -575,6 +586,10 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		contextMenu->addSeparator();
 	}
 	contextMenu->addActions(baseActions);
+    // set context menu position
+    contextMenu_row=cursor.anchorLineNumber();
+    contextMenu_col=cursor.anchorColumnNumber();
+
 	if (validPosition) {
 		contextMenu->addSeparator();
 
@@ -591,6 +606,11 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		curPoint.ry() += editor->document()->getLineSpacing();
         contextMenu->exec(editor->mapToGlobal(editor->mapFromContents(curPoint.toPoint())));
 	}
+    // reset position of context menu
+    contextMenu_row=-1;
+    contextMenu_col=-1;
+
+
 	event->accept();
 
 	return true;
@@ -1442,7 +1462,27 @@ QList<QAction *> LatexEditorView::getBaseActions()
 void LatexEditorView::setBaseActions(QList<QAction *> baseActions)
 {
 	if (!defaultInputBinding) return;
-	defaultInputBinding->baseActions = baseActions;
+    defaultInputBinding->baseActions = baseActions;
+}
+/*!
+ * \brief return the line row where context menu was started
+ * DefaultInputBinding only
+ * \return
+ */
+int LatexEditorView::getLineRowforContexMenu()
+{
+    if (!defaultInputBinding) return -1;
+    return defaultInputBinding->contextMenu_row;
+}
+/*!
+ * \brief return the line column where context menu was started
+ * DefaultInputBinding only
+ * \return
+ */
+int LatexEditorView::getLineColforContexMenu()
+{
+    if (!defaultInputBinding) return -1;
+    return defaultInputBinding->contextMenu_col;
 }
 
 void LatexEditorView::setSpellerManager(SpellerManager *manager)

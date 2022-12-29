@@ -8299,25 +8299,32 @@ void Texstudio::saveEditorCursorToHistory(LatexEditorView *edView)
 void Texstudio::previewLatex()
 {
 	if (!currentEditorView()) return;
+    LatexEditorView *edView=currentEditorView();
+    QEditor *editor=edView->editor;
+
 	// get selection
-	QDocumentCursor c = currentEditorView()->editor->cursor();
+    QDocumentCursor c = editor->cursor();
+
 	QDocumentCursor previewc;
 	if (c.hasSelection()) {
 		previewc = c; //X o riginalText = c.selectedText();
 	} else {
+        if (edView->getLineRowforContexMenu()>=0) {
+            c.moveTo(edView->getLineRowforContexMenu(), edView->getLineColforContexMenu());
+        }
 		// math context
 		QSet<int> mathFormats = QSet<int>() << m_formats->id("numbers") << m_formats->id("math-keyword") << m_formats->id("align-ampersand");
 		QSet<int> lineEndFormats = QSet<int>() << m_formats->id("keyword") /* newline char */ << m_formats->id("comment");
 		mathFormats.remove(0); // keep only valid entries in list
 		lineEndFormats.remove(0);
-		previewc = currentEditorView()->findFormatsBegin(c, mathFormats, lineEndFormats);
-		previewc = currentEditorView()->parenthizedTextSelection(previewc);
+        previewc = edView->findFormatsBegin(c, mathFormats, lineEndFormats);
+        previewc = edView->parenthizedTextSelection(previewc);
 	}
 	if (!previewc.hasSelection()) {
 		// special handling for cusor in the middle of \[ or \]
 		if (c.previousChar() == '\\' && (c.nextChar() == '[' || c.nextChar() == ']')) {
 			c.movePosition(1, QDocumentCursor::PreviousCharacter);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
+            previewc = edView->parenthizedTextSelection(c);
 		}
 	}
         if (!previewc.hasSelection()) {
@@ -8330,16 +8337,16 @@ void Texstudio::previewLatex()
                 TokenList tl = c.line().handle()->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
                 tk=Parsing::getCommandTokenFromToken(tl,tk);
                 c.setColumnNumber(tk.start);
-                previewc = currentEditorView()->parenthizedTextSelection(c);
+                previewc = edView->parenthizedTextSelection(c);
             }
             if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
                 c.setColumnNumber(tk.start);
-                previewc = currentEditorView()->parenthizedTextSelection(c);
+                previewc = edView->parenthizedTextSelection(c);
             }
         }
         if (!previewc.hasSelection()) {
             // already at parenthesis
-            previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
+            previewc = edView->parenthizedTextSelection(editor->cursor());
         }
 	if (!previewc.hasSelection()) return;
 
@@ -8466,14 +8473,13 @@ void Texstudio::clearPreview()
 	int startLine = 0;
 	int endLine = 0;
 
-	QAction *act = qobject_cast<QAction *>(sender());
-	if (act && act->data().isValid()) {
-		// inline preview context menu supplies the calling point in doc coordinates as data
-		startLine = edit->document()->indexOf(edit->lineAtPosition(act->data().toPoint()));
-		// slight performance penalty for use of lineNumber(), which is not stictly necessary because
-		// we convert it back to a QDocumentLine, but easier to handle together with the other cases
+    LatexEditorView *edView=currentEditorView();
+    int row=edView->getLineRowforContexMenu();
+    if (row>=0) {
+        // inline preview context menu supplies the calling point as row/col in LatexEditorView member variable
+        // That variable is only >-1 when context menu is active
+        startLine = row;
 		endLine = startLine;
-		act->setData(QVariant());
 	} else if (edit->cursor().hasSelection()) {
 		startLine = edit->cursor().selectionStart().lineNumber();
 		endLine = edit->cursor().selectionEnd().lineNumber();
