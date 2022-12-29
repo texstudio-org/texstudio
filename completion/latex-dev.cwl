@@ -440,7 +440,7 @@ debug={%<options%>}
 \stockheight#*L
 \stockwidth#*L
 
-# pdftex specials
+# pdftex v3.141592653-2.6-1.40.25
 \efcode#*
 \expanded#*
 \ifincsname#*
@@ -532,6 +532,7 @@ debug={%<options%>}
 \pdfobjcompresslevel#*
 \pdfomitcharset#*
 \pdfomitinfodict#*
+\pdfomitprocset#*
 \pdfoutline#*
 \pdfoutput#*
 \pdfpageattr{attributes}#*
