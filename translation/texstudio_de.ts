@@ -9522,7 +9522,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="893"/>
         <source>S&amp;VN/GIT...</source>
-        <translation>S&amp;VN/GIT...</translation>
+        <translation>S&amp;VN/GIT</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="894"/>
@@ -9957,7 +9957,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1064"/>
         <source>Preview Dis&amp;play Mode</source>
-        <translation>Vorschau Modus</translation>
+        <translation>Vorschau &amp;Modus</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1066"/>

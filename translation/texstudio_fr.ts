@@ -3224,12 +3224,12 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page.</source>
-        <translation>Cette commande génère un titre sur une page de titre séparée%n- sauf dans la classe des articles, où le titre est normalement placé en haut de la première page.</translation>
+        <translation>Cette commande génère un titre sur une page de titre séparée%n— sauf dans la classe `article`, où le titre est normalement placé en haut de la première page.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>Put this command where you want the table of contents to go</source>
-        <translation>Placez cette commande à l&apos;endroit où vous voulez que la table des matières soit placée.</translation>
+        <translation>Insérez cette commande à l&apos;endroit où vous voulez que la table des matières soit placée.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
@@ -3364,7 +3364,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>The itemize environment produces a &apos;bulleted&apos; list.%nEach item of an itemized list begins with an \item command.</source>
-        <translation>L&apos;environnement itemize produit une liste « à puces » (plutôt « à tirets » en typographie française).%nChaque élément d&apos;une telle liste commence par une commande \item.</translation>
+        <translation>L&apos;environnement `itemize` produit une liste « à puces » (plutôt « à tirets » en typographie française).%nChaque élément d&apos;une telle liste commence par une commande \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
@@ -3600,7 +3600,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation>La commande \quad insère une espace horizontale de 1em (1em étant la largeur d&apos;un M).</translation>
+        <translation>La commande \quad insère un cadratin (espace horizontale de 1em, 1em étant la largeur d&apos;un M).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
