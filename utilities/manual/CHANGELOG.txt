@@ -11,6 +11,7 @@ TeXstudio 4.5.1
 - show macro name in completer list (#2679)
 - show macro trigger and shortcut in configuration window (#2635)
 - fix wrong side panel title when changing grid size in config (#2743)
+- preview/clear preview now use position of context menu as reference (#2794)
 
 TeXstudio 4.4.1
 -----------------
