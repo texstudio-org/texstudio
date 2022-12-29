@@ -8475,14 +8475,14 @@ void Texstudio::clearPreview()
 
     LatexEditorView *edView=currentEditorView();
     int row=edView->getLineRowforContexMenu();
-    if (row>=0) {
+    if (edit->cursor().hasSelection()) {
+		startLine = edit->cursor().selectionStart().lineNumber();
+		endLine = edit->cursor().selectionEnd().lineNumber();
+	} else if (row>=0) {
         // inline preview context menu supplies the calling point as row/col in LatexEditorView member variable
         // That variable is only >-1 when context menu is active
         startLine = row;
 		endLine = startLine;
-	} else if (edit->cursor().hasSelection()) {
-		startLine = edit->cursor().selectionStart().lineNumber();
-		endLine = edit->cursor().selectionEnd().lineNumber();
 	} else {
 		startLine = edit->cursor().lineNumber();
 		endLine = startLine;
