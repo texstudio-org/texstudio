@@ -346,8 +346,6 @@ bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *edi
 
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor)
 {
-	bool isPicMenu;
-	
     if (!contextMenu) contextMenu = new QMenu(nullptr);
 	contextMenu->clear();
 	contextMenu->setProperty("isSpellingPopulated", QVariant());  // delete information on spelling
@@ -372,8 +370,12 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			bool removePreviewActionFound = false;
 			foreach (QAction *act, baseActions) {
 				if (act->objectName().endsWith("removePreviewLatex")) {
-					isPicMenu = true;
-					act->setData( QVariantList() << QVariant(posInDocCoordinates) << QVariant(isPicMenu) );
+					// inline preview context menu supplies the calling point in doc coordinates as data
+					int startLine = editor->document()->indexOf(editor->lineAtPosition(posInDocCoordinates));
+					// slight performance penalty for use of lineNumber(), which is not stictly necessary because
+					// we convert it back to a QDocumentLine, but easier to handle together with the other cases
+					int endLine = startLine;
+					act->setData( QPoint(startLine, endLine) );
 					contextMenu->addAction(act);
 					removePreviewActionFound = true;
 					break;
@@ -559,7 +561,6 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		
 		{
 			//	copy managed action "removePreviewLatex" from texstudio.cpp
-			isPicMenu = false;
 			int i = 0;
 			foreach (QAction *baseAct, baseActions) {
 				if (baseAct->objectName().endsWith("/removePreviewLatex")) {
@@ -567,7 +568,9 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					act->setObjectName(baseAct->objectName());
 					act->setText(baseAct->text());
 					act->setShortcut(baseAct->shortcut());
-					act->setData( QVariantList() << QVariant(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber())) << QVariant(isPicMenu) );
+					int startLine = cursor.anchorLineNumber();
+					int endLine = startLine;
+					act->setData(QPoint(startLine, endLine));
 					edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredClearPreview()));
 					baseActions[i] = act;
 					break;
@@ -3107,10 +3110,10 @@ void LatexEditorView::triggeredPreviewLatex()
 void LatexEditorView::triggeredClearPreview()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
-	QVariantList vl = act->data().toList();
-	QPoint pt = vl[0].toPoint();
-	bool isPicMenu = vl[1].toBool();
-	emit clearpreview(pt.x(), pt.y(), isPicMenu);
+	QPoint pt = act->data().toPoint();
+	int startLine = pt.x();
+	int endLine = pt.y();
+	emit clearpreview(startLine, endLine);
 }
 
 void LatexEditorView::changeSpellingDict(const QString &name)

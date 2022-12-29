@@ -2005,7 +2005,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     connect(edit->document, SIGNAL(encodingChanged()), this, SLOT(updateStatusBarEncoding()));
     connect(edit, SIGNAL(thesaurus(int,int)), this, SLOT(editThesaurus(int,int)));
     connect(edit, SIGNAL(previewlatex(int,int)), this, SLOT(previewLatex(int,int)));
-    connect(edit, SIGNAL(clearpreview(int,int, bool)), this, SLOT(clearPreview(int,int,bool)));
+    connect(edit, SIGNAL(clearpreview(int,int)), this, SLOT(clearPreview(int,int)));
     connect(edit, SIGNAL(changeDiff(QPoint)), this, SLOT(editChangeDiff(QPoint)));
     connect(edit, SIGNAL(saveCurrentCursorToHistoryRequested()), this, SLOT(saveCurrentCursorToHistory()));
     connect(edit->document,SIGNAL(structureUpdated(LatexDocument*)),this,SLOT(updateTOCs()));
@@ -8460,30 +8460,19 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 	}
 }
 
-void Texstudio::clearPreview(int line, int col, bool isPicMenu)
+void Texstudio::clearPreview(int startLine, int endLine)
 {
 	QEditor *edit = currentEditor();
 	if (!edit) return;
 
-	int startLine = 0;
-	int endLine = 0;
-
-	if (isPicMenu) {
-		// inline preview context menu supplies the calling point in doc coordinates as data
-		startLine = edit->document()->indexOf(edit->lineAtPosition(QPoint(line, col)));
-		// slight performance penalty for use of lineNumber(), which is not stictly necessary because
-		// we convert it back to a QDocumentLine, but easier to handle together with the other cases
-		endLine = startLine;
-	} else if (edit->cursor().hasSelection()) {
+	if (edit->cursor().hasSelection()) {
 		startLine = edit->cursor().selectionStart().lineNumber();
 		endLine = edit->cursor().selectionEnd().lineNumber();
 	} else {
-		if (line > -1 && col > -1) {
-			startLine = line;
-		} else {
+		if (startLine == -1 && endLine == -1) {
 			startLine = edit->cursor().lineNumber();
+			endLine = startLine;
 		}
-		endLine = startLine;
 	}
 
         for (int i = startLine; i <= endLine; i++) {

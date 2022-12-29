@@ -581,7 +581,7 @@ protected slots:
 
 	void previewLatex(int line=-1, int col=-1);
 	void previewAvailable(const QString &imageFile, const PreviewSource &source);
-	void clearPreview(int line=-1, int col=-1, bool isPicMenu=false);
+	void clearPreview(int startLine=-1, int endLine=-1);
 	void showPreview(const QString &text);
 	void showPreview(const QDocumentCursor &c);
 	void showPreview(const QDocumentCursor &c, bool addToList);

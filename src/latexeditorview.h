@@ -336,7 +336,7 @@ signals:
 	void openCompleter();
 	void thesaurus(int line, int col);
 	void previewlatex(int line, int col);
-	void clearpreview(int line, int col, bool isPicMenu);
+	void clearpreview(int startLine, int endLine);
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	void gotoDefinition(QDocumentCursor c);
