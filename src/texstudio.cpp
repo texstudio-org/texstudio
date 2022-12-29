@@ -8475,7 +8475,12 @@ void Texstudio::clearPreview()
 
     LatexEditorView *edView=currentEditorView();
     int row=edView->getLineRowforContexMenu();
-    if (edit->cursor().hasSelection()) {
+    int col=edView->getLineColforContexMenu();
+    if(row>=0 && col<0){
+        // context menu position takes precedence when click directly on preview image
+        startLine = row;
+        endLine = startLine;
+    } else if (edit->cursor().hasSelection()) {
 		startLine = edit->cursor().selectionStart().lineNumber();
 		endLine = edit->cursor().selectionEnd().lineNumber();
 	} else if (row>=0) {
