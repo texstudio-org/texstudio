@@ -1,410 +1,567 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <!DOCTYPE KileSymbolSources>
+
 <symbols>
 
-   <formatVersion major="0" minor ="22" />
+	<formatVersion major="0" minor="22"/>
 
-   <symbolGroupName>user</symbolGroupName>
+	<symbolGroupName>user</symbolGroupName>
 
-   <preamble>
-      <class>article</class>
-      <arguments>12pt</arguments>
-      <additional>\pagestyle{empty}
-		  \setlength{\parindent}{0cm}
-		  \usepackage[T1]{fontenc}
-		  \usepackage{xcolor,amsmath}
-		  \setlength{\fboxsep}{1pt}
-		  \newcommand{\fb}[2][8pt]{\fcolorbox{black!60}{white}{\color{black!60}\makebox[#1][c]{#2}}}
-      </additional>
-   </preamble>
+	<preamble>
+		<class>standalone</class>
+		<arguments>10bp,margin=1bp</arguments>
+		<additional>\usepackage[T1]{fontenc}
+\usepackage{xcolor,amsmath}
+\setlength{\fboxsep}{0bp}
+\newcommand{\fb}[2][10bp]{\fcolorbox{black!60}{white}{\color{black!60}\parbox[c][#1][c]{#1}{\makebox[#1][c]{#2}}}}
+\newcommand{\pb}[2][8bp]{\parbox[b][#1][b]{#1}{\makebox[#1][c]{#2}}}</additional>
+	</preamble>
 
-   <unicodeCommandPackages>
-      <package>
-         <name>inputenc</name>
-         <arguments>utf8</arguments>
-      </package>
-   </unicodeCommandPackages>
+	<unicodeCommandPackages>
+		<package>
+			<name>inputenc</name>
+			<arguments>utf8</arguments>
+		</package>
+	</unicodeCommandPackages>
 
-   <!-- insert stuff here    -->
-<symbolGroupName>icons</symbolGroupName>
+	<!-- insert stuff here -->
 
-<commandDefinition>
-   <latexCommand>\div</latexCommand>
-   <mathMode>true</mathMode>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<symbolGroupName>icons</symbolGroupName>
 
-<commandDefinition>
-   <latexCommand>\equiv</latexCommand>
-   <mathMode>true</mathMode>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\div</latexCommand>
+		<mathMode>true</mathMode>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\Rightarrow</latexCommand>
-   <mathMode>true</mathMode>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\equiv</latexCommand>
+		<mathMode>true</mathMode>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\{\}</latexCommand>
-   <mathMode>true</mathMode>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\Rightarrow</latexCommand>
+		<mathMode>true</mathMode>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\lambda</latexCommand>
-   <mathMode>true</mathMode>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\{\}</latexCommand>
+		<mathMode>true</mathMode>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\CYRZH</latexCommand>
-   <unicodeCommand>Ж</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\lambda</latexCommand>
+		<mathMode>true</mathMode>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\forall</latexCommand>
-   <mathMode>true</mathMode>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\CYRZH</latexCommand>
+		<unicodeCommand>Ж</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\checkmark</latexCommand>
-   <unicodeCommand>✓</unicodeCommand>
-   <package>
-      <name>amssymb</name>
-   </package>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\forall</latexCommand>
+		<mathMode>true</mathMode>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-<latexCommand>\smiley</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<forcePNG>true</forcePNG>
-<iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\checkmark</latexCommand>
+		<unicodeCommand>✓</unicodeCommand>
+		<package>
+			<name>amssymb</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-<latexCommand>\'{a}</latexCommand>
-<forcePNG>true</forcePNG>
-<iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\smiley</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<!-- modern varian -->
+	<commandDefinition>
+		<latexCommand>\'{a}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\fb{$\div$}</latexCommand>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<!-- modern variant -->
 
-<commandDefinition>
-   <latexCommand>\setlength{\fboxsep}{0pt}
-    \fcolorbox{black!60}{white}{%
-    \begin{minipage}[c][12pt][c]{7.5pt}%
-    \vspace*{1pt} \hspace*{1.5pt}\color{black!60}$\equiv$%
-    \end{minipage} %
-    }
-   </latexCommand>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		 <latexCommand>\fb{$\div$}</latexCommand>
+		 <!-- <forcePNG>true</forcePNG> -->
+		 <iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\setlength{\fboxsep}{0pt}
-  \fcolorbox{black!60}{white}{%
-  \begin{minipage}[c][12pt][c]{7.5pt}%
-  \vspace*{1pt}\color{black!60}$\Rightarrow$%
-  \end{minipage} %
-  }
-  </latexCommand>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb{$\equiv$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\fb[12pt]{$\{\}$}</latexCommand>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb{$\Rightarrow$\strut}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\fb{$\boldsymbol\lambda$}</latexCommand>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb[11bp]{$\{\}$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\fb[10pt]{\CYRZH}</latexCommand>
-   <unicodeCommand>Ж</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb{$\boldsymbol\lambda$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\fb{$\boldsymbol\forall$}</latexCommand>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb[12bp]{\CYRZH}</latexCommand>
+		<unicodeCommand>Ж</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<!-- <package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package> -->
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <latexCommand>\fb{\bf\checkmark}</latexCommand>
-   <unicodeCommand>✓</unicodeCommand>
-   <package>
-      <name>amssymb</name>
-   </package>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb{$\boldsymbol\forall$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-<latexCommand>\fb{\bf\smiley}</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<forcePNG>true</forcePNG>
-<iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb{\bf\checkmark}</latexCommand>
+		<unicodeCommand>✓</unicodeCommand>
+		<package>
+			<name>amssymb</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-<latexCommand>\fb{\bf\'{a}}</latexCommand>
-<forcePNG>true</forcePNG>
-<iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb{\bf\smiley}</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>dot</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\dot{a}$</latexCommand>
-  <iconMode>true</iconMode>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
+	<commandDefinition>
+		<latexCommand>\fb{\bf\'{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>grave</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\grave{a}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>dot</name>
+		<latexCommand>\pb[6bp]{$\dot{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
 
-<commandDefinition>
-  <name>acute</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\acute{a}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>dot_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\dot{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
 
-<commandDefinition>
-  <name>vec</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\vec{a}$</latexCommand>
-  <iconMode>true</iconMode>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
+	<commandDefinition>
+		<name>grave</name>
+		<latexCommand>\pb[6bp]{$\grave{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>check</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\check{a}$</latexCommand>
-  <iconMode>true</iconMode>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
+	<commandDefinition>
+		<name>grave_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\grave{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>ddot</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\ddot{a}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>acute</name>
+		<latexCommand>\pb[6bp]{$\acute{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>tilde</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\tilde{a}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>acute_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\acute{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>bar</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\bar{a}$</latexCommand>
-  <forcePNG>true</forcePNG>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>vec</name>
+		<latexCommand>\pb[6bp]{$\vec{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
 
-<commandDefinition>
-  <name>breve</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\breve{a}$</latexCommand>
-  <forcePNG>true</forcePNG>
-  <iconMode>true</iconMode>
-</commandDefinition>
-<commandDefinition>
-  <name>hat</name>
-  <latexCommand>\special{dvisvgm:bbox f 37 57 47 67}
-    $\hat{a}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>vec_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\vec{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
 
-<commandDefinition>
-  <name>accent1</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \'{a}</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>check</name>
+		<latexCommand>\pb[6bp]{$\check{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
 
-<commandDefinition>
-  <name>accent2</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \`{a}</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
-<commandDefinition>
-  <name>accent3</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \^{a}</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
-<commandDefinition>
-  <name>accent4</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \"{a}</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
-<commandDefinition>
-  <name>accent5</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \~{a}</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
-<commandDefinition>
-  <name>accent6</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \={a}</latexCommand>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
-<commandDefinition>
-  <name>accent7</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \.{a}</latexCommand>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
-<commandDefinition>
-  <name>accent8</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \v{a}</latexCommand>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
-<commandDefinition>
-  <name>accent9</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \u{a}</latexCommand>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
+	<commandDefinition>
+		<name>check_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\check{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
 
-<commandDefinition>
-  <name>accent10</name>
-  <latexCommand>\special{dvisvgm:bbox f 38 58 46 66}
-    \H{a}</latexCommand>
-  <forcePNG>true</forcePNG>
-</commandDefinition>
+	<commandDefinition>
+		<name>ddot</name>
+		<latexCommand>\pb[6bp]{$\ddot{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-   <name>PS</name>
-   <latexCommand>\fb{PS}</latexCommand>
-   <forcePNG>true</forcePNG>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>ddot_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\ddot{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathrm</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathrm{A}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>tilde</name>
+		<latexCommand>\pb[6bp]{$\tilde{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathbf</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathbf{A}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>tilde_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\tilde{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathbb</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathbb{A}$</latexCommand>
-  <package>
-      <name>amssymb</name>
-   </package>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>bar</name>
+		<latexCommand>\pb[6bp]{$\bar{a}$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathsf</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathsf{A}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>bar_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\bar{a}$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathtt</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathtt{A}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>breve</name>
+		<latexCommand>\pb[6bp]{$\breve{a}$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathit</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathit{A}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>breve_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\breve{a}$}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathcal</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathcal{A}$</latexCommand>
-  <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>hat</name>
+		<latexCommand>\pb[6bp]{$\hat{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
-<commandDefinition>
-  <name>font_mathfrak</name>
-  <latexCommand>\special{dvisvgm:bbox f 39 57.5 48.5 67}
-    $\mathfrak{A}$</latexCommand>
-  <package>
-      <name>amssymb</name>
-   </package>
-   <iconMode>true</iconMode>
-</commandDefinition>
+	<commandDefinition>
+		<name>hat_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{$\hat{a}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent1</name>
+		<latexCommand>\pb[6bp]{\'{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent1_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\'{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent2</name>
+		<latexCommand>\pb[6bp]{\`{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent2_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\`{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent3</name>
+		<latexCommand>\pb[6bp]{\^{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent3_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\^{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent4</name>
+		<latexCommand>\pb[6bp]{\"{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent4_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\"{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent5</name>
+		<latexCommand>\pb[6bp]{\~{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent5_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\~{a}}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent6</name>
+		<latexCommand>\pb[6bp]{\={a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent6_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\={a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent7</name>
+		<latexCommand>\pb[6bp]{\.{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent7_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\.{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent8</name>
+		<latexCommand>\pb[6bp]{\v{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent8_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\v{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent9</name>
+		<latexCommand>\pb[6bp]{\u{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent9_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\u{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent10</name>
+		<latexCommand>\pb[6bp]{\H{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent10_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\H{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>PS</name>
+		<latexCommand>\fb[12bp]{PS}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathrm</name>
+		<latexCommand>\pb[7bp]{$\mathrm{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathrm_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathrm{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathbf</name>
+		<latexCommand>\pb[7bp]{$\mathbf{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathbf_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathbf{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathbb</name>
+		<latexCommand>\pb[7bp]{$\mathbb{A}$}</latexCommand>
+		<package>
+			<name>amssymb</name>
+		</package>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathbb_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathbb{A}$}</latexCommand>
+		<package>
+			<name>amssymb</name>
+		</package>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathsf</name>
+		<latexCommand>\pb[7bp]{$\mathsf{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathsf_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathsf{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathtt</name>
+		<latexCommand>\pb[7bp]{$\mathtt{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathtt_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathtt{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathit</name>
+		<latexCommand>\pb[7bp]{$\mathit{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathit_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathit{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathcal</name>
+		<latexCommand>\pb[7bp]{$\mathcal{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathcal_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathcal{A}$}</latexCommand>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathfrak</name>
+		<latexCommand>\pb[7bp]{$\mathfrak{A}$}</latexCommand>
+		<package>
+			<name>amssymb</name>
+		</package>
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>font_mathfrak_dm</name>
+		<latexCommand>\color{black!2}\pb[7bp]{$\mathfrak{A}$}</latexCommand>
+		<package>
+			<name>amssymb</name>
+		</package>
+		<iconMode>true</iconMode>
+	</commandDefinition>
 
 </symbols>
