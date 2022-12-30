@@ -903,10 +903,10 @@ QSettings *ConfigManager::readSettings(bool reread)
             fallBackPaths << parseDir("[txs-app-dir]/../Resources") << "/Applications/texstudio.app/Contents/Resources";
 #endif
 			dic = findResourceFile(QString(QLocale::system().name()) + ".dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("en_US.dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("en_GB.dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("fr_FR.dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("de_DE.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("en_US.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("en_GB.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("fr_FR.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("de_DE.dic", true, temp, fallBackPaths);
 		}
 		QFileInfo fi(dic);
 		if (fi.exists()) {
