@@ -2786,7 +2786,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                  <property name="title">
                   <string>Bi-Di</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout8">
+                 <layout class="QGridLayout" name="gridLayout_8a">
                   <item row="0" column="0" colspan="3">
                    <widget class="QCheckBox" name="checkBoxAutoLRM">
                     <property name="text">
