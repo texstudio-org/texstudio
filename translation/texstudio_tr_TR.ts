@@ -3205,12 +3205,12 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation type="unfinished"/>
+        <translation>Metin yalnızca \begin{document} ve \end{document} arasına yazılabilir.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>The \title command declares text to be the title.</source>
-        <translation type="unfinished"/>
+        <translation>\title komutu metnin bir başlık olduğunu belirtir.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>

@@ -3075,7 +3075,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="11"/>
         <source>&amp;Sectioning</source>
-        <translation>A&amp;ufteilung</translation>
+        <translation>&amp;Gliederung</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="12"/>
@@ -3575,7 +3575,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>The \vline command draws a vertical line extending the full height and depth of its row.</source>
-        <translation>Der \vline Befehl zeichnet eine senkrechte Linie über die ganz Höhe einer Zeile.</translation>
+        <translation>Der \vline Befehl zeichnet eine senkrechte Linie über die ganze Höhe einer Zeile.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>

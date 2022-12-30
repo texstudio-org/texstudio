@@ -3802,7 +3802,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command.</source>
-        <translation type="unfinished"/>
+        <translation>A description környezet címkézett listát állít elő.%nA lista minden eleme \item[címke] paranccsal kezdődik.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
@@ -4914,12 +4914,12 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="390"/>
         <source>Copy Image</source>
-        <translation type="unfinished"/>
+        <translation>Kép másolása</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="391"/>
         <source>Save Image As...</source>
-        <translation type="unfinished"/>
+        <translation>Kép mentése másként...</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="450"/>
