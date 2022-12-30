@@ -69,7 +69,7 @@ QT_TRANSLATE_NOOP("ConfigManager", "The itemize environment produces a 'bulleted
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{enumerate}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \\item command."), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{description}"), 
-QT_TRANSLATE_NOOP("ConfigManager", "The description environment is used to make labelled lists.%nEach item of the list begins with an \\item[label] command."), 
+QT_TRANSLATE_NOOP("ConfigManager", "The description environment produces a labelled list.%nEach item of the list begins with an \\item[label] command."), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{list}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \\item command."), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\item[label] Hello"), 
