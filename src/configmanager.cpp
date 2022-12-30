@@ -881,7 +881,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	//----------------------------dictionaries-------------------------
 
 	if (spellDictDir.isEmpty()) {
-		// non-exeistent or invalid settings for dictionary
+        // non-existent or invalid settings for dictionary
 		// try restore from old format where there was only one dictionary - spell_dic can be removed later when users have migrated to the new version
 		QString dic = spell_dic;
         if (!QFileInfo::exists(dic)) {
@@ -900,7 +900,7 @@ QSettings *ConfigManager::readSettings(bool reread)
                           << parseDir("[txs-app-dir]/../share/texstudio") ;
 #endif
 #ifdef Q_OS_MAC
-			fallBackPaths << parseDir("[txs-app-dir]/Contents/Resources") << "/Applications/texstudio.app/Contents/Resources";
+            fallBackPaths << parseDir("[txs-app-dir]/../Resources") << "/Applications/texstudio.app/Contents/Resources";
 #endif
 			dic = findResourceFile(QString(QLocale::system().name()) + ".dic", true, temp, fallBackPaths);
 			if (dic == "") spell_dic = findResourceFile("en_US.dic", true, temp, fallBackPaths);
