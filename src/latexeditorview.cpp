@@ -476,8 +476,19 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			tk = tl.at(i);
 
 		if (tk.type == Token::file) {
+            Token cmdTk=Parsing::getCommandTokenFromToken(tl,tk);
+            QString fn=tk.getText();
+            if(cmdTk.getText()=="\\subimport"){
+                int i=tl.indexOf(cmdTk);
+                TokenList tl2=tl.mid(i); // in case of several cmds in one line
+                QString path=Parsing::getArg(tl,Token::definition);
+                if(!path.endsWith("/")){
+                    path+="/";
+                }
+                fn=path+fn;
+            }
 			QAction *act = new QAction(LatexEditorView::tr("Open %1").arg(tk.getText()), contextMenu);
-			act->setData(tk.getText());
+            act->setData(fn);
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
