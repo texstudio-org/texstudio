@@ -594,8 +594,8 @@ loesungLinkVerbergen
 #include:geometry
 
 ## typ: Beurteilung ##
-# loads breakable tcolorbox library, which loads pdfcol
-#include:pdfcol
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
 
 #keyvals:\usepackage/schule#c
 beurteilung={%<Namen%>}

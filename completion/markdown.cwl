@@ -1,7 +1,6 @@
 # markdown package
-# Matthew Bertucci 2022/10/31 for v2.18.0-0-gd8ae860
+# Matthew Bertucci 2022/12/23 for v2.19.0-0-g80fcf20
 
-#include:expl3
 #include:paralist
 #include:amsmath
 #include:amssymb
@@ -46,7 +45,9 @@ debugExtensionsFileName=%<file name%>
 outputDir=%<directory%>
 blankBeforeBlockquote#true,false
 blankBeforeCodeFence#true,false
+blankBeforeDivFence#true,false
 blankBeforeHeading#true,false
+bracketedSpans#true,false
 breakableBlockquotes#true,false
 citations#true,false
 citationNbsps#true,false
@@ -59,6 +60,7 @@ extensions=%<file names%>
 expectJekyllData#true,false
 fancyLists#true,false
 fencedCode#true,false
+fencedDivs#true,false
 jekyllData#true,false
 hardLineBreaks#true,false
 hashEnumerators#true,false
@@ -224,6 +226,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererBlockQuoteBeginPrototype#*
 \markdownRendererBlockQuoteEnd#*
 \markdownRendererBlockQuoteEndPrototype#*
+\markdownRendererBracketedSpanAttributeContextBegin#*
+\markdownRendererBracketedSpanAttributeContextBeginPrototype#*
+\markdownRendererBracketedSpanAttributeContextEnd#*
+\markdownRendererBracketedSpanAttributeContextEndPrototype#*
 \markdownRendererCircumflex#*
 \markdownRendererCircumflexPrototype#*
 \markdownRendererCite#*
@@ -275,6 +281,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererFancyOlItemPrototype#*
 \markdownRendererFancyOlItemWithNumber#*
 \markdownRendererFancyOlItemWithNumberPrototype#*
+\markdownRendererFencedDivAttributeContextBegin#*
+\markdownRendererFencedDivAttributeContextBeginPrototype#*
+\markdownRendererFencedDivAttributeContextEnd#*
+\markdownRendererFencedDivAttributeContextEndPrototype#*
 \markdownRendererHalfTickedBox#*
 \markdownRendererHalfTickedBoxPrototype#*
 \markdownRendererHash#*

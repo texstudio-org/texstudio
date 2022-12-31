@@ -13,6 +13,7 @@
 #define Header_Template_Selector
 
 #include "mostQtHeaders.h"
+#include "qnetworkaccessmanager.h"
 #include "templatemanager.h"
 #include "ui_templateselector.h"
 
@@ -50,7 +51,9 @@ public:
 	bool createInFolder() const;
 	QString creationFolder() const;
 	void addResource(AbstractTemplateResource *res);
+    void addOnlineRepository();
 	void hideFolderSelection();
+    void setCachingDir(const QString &path);
 
 signals:
 	void editTemplateRequest(TemplateHandle th);
@@ -59,6 +62,10 @@ signals:
 private slots:
 	void showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *previousItem);
 	void templatesTreeContextMenu(QPoint point);
+    void itemExpanded(QTreeWidgetItem *item);
+    void onRequestCompleted();
+
+    void acceptResult();
 
 	void on_templatesTree_doubleClicked(const QModelIndex &index);
 	void on_btPath_clicked();
@@ -75,11 +82,31 @@ private:
 		return (val.isEmpty()) ? defaultIfValEmpty : val;
 	}
 
+    void makeRequest(QString url, QString path, QTreeWidgetItem *item=nullptr, bool download=false);
+    void saveToCache(const QByteArray &data,const QString &path);
+    void onCachedRequestCompleted(const QByteArray &ba,QTreeWidgetItem *rootItem,const QString &url);
+    bool inCache(const QString &path);
+    QString appendPath(QString base,QString path);
+
 	Ui::templateSelectorDialog ui;
 	PreviewLabel *previewLabel;
 
+    QNetworkAccessManager *networkManager;
+
+    QString m_cachingDir;
+
 	static const int TemplateHandleRole;
 	static const int ResourceRole;
+    static const int UrlRole;
+    static const int PathRole;
+    static const int DownloadRole;
+    static const int PreviewRole;
+    static const int TexRole;
+    static const int PopulatedRole;
 };
+
+#if QT_VERSION_MAJOR<6
+Q_DECLARE_METATYPE(QTreeWidgetItem *)
+#endif
 
 #endif // TEMPLATESELECTOR_H

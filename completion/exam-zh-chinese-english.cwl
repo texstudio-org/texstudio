@@ -3,7 +3,7 @@
 
 #include:expl3
 #include:tcolorbox
-# loads most option of tcolorbox
+#include:tcolorboxlibrarymost
 #include:varwidth
 
 #keyvals:\examsetup,\ExamPrintAnswerSet
@@ -119,13 +119,3 @@ zhu-circlednumber-base=#tikz,font
 \begin{writingbox}
 \begin{writingbox}[tcolorbox keys]
 \end{writingbox}
-
-# from most option of tcolorbox
-#include:amsmath
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
-#include:tikz
-#include:pdfcol

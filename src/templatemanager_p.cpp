@@ -29,6 +29,11 @@ bool TemplateHandle::isMultifile() const     { return (m_tmpl) ? m_tmpl->isMulti
 
 bool TemplateHandle::createInFolder(const QString &path) const { return (m_tmpl) ? m_tmpl->createInFolder(path) : false; }
 QStringList TemplateHandle::filesToOpen() const { return (m_tmpl) ? m_tmpl->filesToOpen() : QStringList(); }
+
+Template *TemplateHandle::getHandle() const
+{
+    return m_tmpl;
+}
 // *INDENT-ON* (astyle-config)
 
 
@@ -230,3 +235,9 @@ void LocalFileTemplateResource::update()
 	}
 }
 
+
+OnlineFileTemplate::OnlineFileTemplate(QJsonDocument jsonDoc)
+{
+    m_jsonDoc=jsonDoc;
+    m_dd=m_jsonDoc.object();
+}

@@ -75,7 +75,7 @@
 	cursor.moveTo(cursor.lineNumber()-1,0);&#10;
 	cursor.movePosition(1,cursorEnums.EndOfLine );"
 	info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon="enumerate"/>
-    <insert id="description" text="\begin{description}" insert="\begin{description}%\\item[%&lt;label%>] %&lt;description%>%\\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
+    <insert id="description" text="\begin{description}" insert="\begin{description}%\\item[%&lt;label%>] %&lt;description%>%\\end{description}" info="The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command."/>
     <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%\\item %|%\\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
     <insert id="item" text="\item" insert="%SCRIPT&#10;
     var ln=cursor.lineNumber();&#10;
@@ -367,7 +367,7 @@
     <insert id="medium" text="Medium - \:" insert="\:" info="4/18 of a \quad"/>
     <insert id="large" text="Thick - \;" insert="\;" info="5/18 of a \quad"/>
 	<insert id="interword" text="Interword - \ " insert="\ " info="regular whitespace"/>
-	<insert id="quad" text="One quad - \quad" insert="\quad " info="A \quad is a horizontal space with a size equal to the font size."/>
+	<insert id="quad" text="One quad - \quad" insert="\quad " info="The \quad command inserts a horizontal space of 1em (1em being the width of M)."/>
     <insert id="qquad" text="Two quads - \qquad" insert="\qquad" info="Twice the size of a \quad"/>
   </menu>
 </menu>

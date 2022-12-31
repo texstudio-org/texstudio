@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-project(TeXstudio VERSION 4.4.2 LANGUAGES C CXX)
+project(TeXstudio VERSION 4.5.1 LANGUAGES C CXX)
 SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 set(CMAKE_DEBUG_POSTFIX "d")
 set(CMAKE_AUTOMOC ON)
@@ -283,11 +283,20 @@ else()
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_TESTS)
 endif()
 
+option(TEXSTUDIO_ENABLE_MEDIAPLAYER "Enable/Disable the video player in pdf files" OFF)
+if(${TEXSTUDIO_ENABLE_MEDIAPLAYER})
+	message(STATUS "the video player in pdf files is enabled.")
+	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Multimedia MultimediaWidgets REQUIRED)
+	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DMEDIAPLAYER)
+else()
+	message(STATUS "the video player in pdf files is disabled.")
+endif()
+
 # poppler
 
 find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR} Cpp)
 if(NOT POPPLER_FOUND)
-	message(STATUS "Internal pdf previewer disabled as you wish.")
+        message(STATUS "Poppler not found, internal pdf previewer disabled.")
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DNO_POPPLER_PREVIEW)
 endif()
 add_subdirectory(src/pdfviewer)
@@ -377,6 +386,14 @@ if(QTERMWIDGET_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
    target_link_libraries(texstudio PUBLIC qtermwidget5)
 endif()
 
+#mediaplayer
+if(Qt${QT_VERSION_MAJOR}Multimedia_FOUND)
+	message(STATUS "${Qt${QT_VERSION_MAJOR}Multimedia_FOUND}")
+	target_include_directories(texstudio PUBLIC ${Qt${QT_VERSION_MAJOR}Multimedia_INCLUDE_DIRS})
+	target_include_directories(texstudio PUBLIC ${Qt${QT_VERSION_MAJOR}MultimediaWidgets_INCLUDE_DIRS})
+	target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::Multimedia)
+	target_link_libraries(texstudio PUBLIC Qt${QT_VERSION_MAJOR}::MultimediaWidgets)
+endif()
 
 if(Poppler_FOUND)
 	message(STATUS "${Poppler_DEFINITIONS}")

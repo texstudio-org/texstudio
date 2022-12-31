@@ -22,6 +22,7 @@
 #include:pgf
 #include:pgfplots
 #include:pgfplotstable
+#include:pgfplotslibrarydateplot
 
 #keyvals:\usepackage/dmlb#c
 graph
@@ -29,6 +30,8 @@ graph
 
 #ifOption:graph
 #include:pgfcalendar
+#include:tikzlibrarycalendar
+#include:tikzlibraryexternal
 #endif
 
 evenRowColor#B

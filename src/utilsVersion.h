@@ -3,10 +3,7 @@
 
 #define TEXSTUDIO "TeXstudio"
 
-
-#define TXSVERSION "4.4.2"
-
-#define TXSVERSION_NUMERIC 0x040402
+#define TXSVERSION "4.5.1"
 
 extern const char *TEXSTUDIO_GIT_REVISION;
 
@@ -27,6 +24,7 @@ public:
 	static QStringList parseGitData(const QString &data);
 	static QStringList stringVersion2Parts(const QString &str);
 	static QList<int> parseVersionNumber(const QString &versionNumber);
+    static int parseVersionNumberToInt(const QString &versionNumber);
 	static bool versionNumberIsValid(const QString &versionNumber);
 	static QString versionToString(const Version &v);
 	Version() : revision(0), commitsAfter(0) {}

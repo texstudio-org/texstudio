@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/12/02 for v7.21.0
+# Matthew Bertucci 2022/12/09 for v8.1.0
 
 #include:ifxetex
 #include:ifluatex
@@ -170,7 +170,6 @@ apachetomcat
 aparat
 apollographql
 apostrophe
-appannie
 appian
 apple
 applearcade
@@ -342,6 +341,7 @@ burgerking
 burton
 buymeacoffee
 buzzfeed
+bvg
 byjus
 byte
 bytedance
@@ -503,6 +503,7 @@ csharp
 css3
 cssmodules
 csswizardry
+cts
 cucumber
 curl
 curseforge
@@ -532,7 +533,6 @@ datagrip
 dataiku
 datastax
 dataverse
-dataversioncontrol
 datocms
 datto
 dazn
@@ -718,6 +718,7 @@ ffmpeg
 fiat
 fidoalliance
 fifa
+fig
 figma
 figshare
 fila
@@ -1921,6 +1922,7 @@ smrt
 smugmug
 snapchat
 snapcraft
+sncf
 snowflake
 snowpack
 snyk

@@ -3,6 +3,7 @@
 
 #include:morewrites
 #include:tcolorbox
+#include:tcolorboxlibrarymany
 #include:xcolor
 #include:inputenc
 #include:textgreek
@@ -11,11 +12,6 @@
 #include:xparse
 #include:xstring
 #include:minted
-
-# from many option of tcolorbox
-#include:amsmath
-#include:tikz
-#include:pdfcol
 
 #keyvals:\usepackage/runcode#c
 run

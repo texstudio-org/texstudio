@@ -3,7 +3,8 @@
 
 #include:anyfontsize
 #include:tikz
-# loads calc and shadings tikzlibraries
+#include:tikzlibrarycalc
+#include:tikzlibraryshadings
 #include:tikzpagenodes
 #include:geometry
 #include:fancyhdr
@@ -27,8 +28,7 @@
 # loads amsfashion options of projlib-author
 #include:projlib-titlepage
 #include:tcolorbox
-# loads many option of tcolorbox
-#include:pdfcol
+#include:tcolorboxlibrarymany
 
 \begin{keyword}
 \end{keyword}

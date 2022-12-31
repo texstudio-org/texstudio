@@ -115,26 +115,45 @@ protected:
 
 };
 
-#ifdef PHONON
-#include <phonon/VideoPlayer>
+#ifdef MEDIAPLAYER
+#include <QtMultimedia>
+#include <QtMultimediaWidgets>
 
-class PDFMovie: public Phonon::VideoPlayer
+class PDFMovie;
+
+class PDFVideoWidget: public QVideoWidget
+{
+	Q_OBJECT
+public:
+	PDFVideoWidget(PDFWidget *parent, PDFMovie *movie);
+	~PDFVideoWidget();
+protected:
+	void contextMenuEvent(QContextMenuEvent *e);
+	void mouseReleaseEvent(QMouseEvent *e);
+private:
+	QMenu *popup = nullptr;
+	PDFMovie *movie = nullptr;
+};
+
+class PDFMovie: public QMediaPlayer
 {
 	Q_OBJECT
 public:
 	PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> annot, int page);
+	~PDFMovie();
 	void place();
-protected:
-	void contextMenuEvent(QContextMenuEvent *);
-	void mouseReleaseEvent(QMouseEvent *e);
+	void show();
+//protected:
+//	void contextMenuEvent(QContextMenuEvent *);
+//	void mouseReleaseEvent(QMouseEvent *e);
 public slots:
 	void realPlay();
 	void setVolumeDialog();
 	void seekDialog();
 private:
-	QMenu *popup;
 	QRectF boundary;
 	int page;
+	PDFVideoWidget *videoWidget = nullptr;
 };
 #endif
 
@@ -330,7 +349,7 @@ private:
 
 	PDFMagnifier	*magnifier;
 	PDFLaserPointer	*laserPointer;
-#ifdef PHONON
+#ifdef MEDIAPLAYER
 	PDFMovie	*movie;
 #endif
 	int		currentTool;	// the current tool selected in the toolbar

@@ -6,9 +6,9 @@
 #include:xparse
 #include:hyperref
 #include:tcolorbox
-# loads fitting, skins, and breakable tcolorbox libraries
-#include:tikz
-#include:pdfcol
+#include:tcolorboxlibraryfitting
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarybreakable
 
 \gfiGetDay
 \gfiGetMonth

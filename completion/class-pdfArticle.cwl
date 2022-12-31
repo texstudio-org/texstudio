@@ -34,24 +34,22 @@
 #ifOption:extra
 #include:minted
 #include:tcolorbox
-# tcolorbox loaded with many, vignette, minted, magazine, poster, and external libraries
-#include:tikz
-#include:xparse
-#include:pdfcol
-#include:pdftexcmds
-#include:shellesc
-#include:incgraph
+#include:tcolorboxlibrarymany
+#include:tcolorboxlibraryvignette
+#include:tcolorboxlibraryminted
+#include:tcolorboxlibrarymagazine
+#include:tcolorboxlibraryposter
+#include:tcolorboxlibraryexternal
 #endif
 #ifOption:extra=true
 #include:minted
 #include:tcolorbox
-# tcolorbox loaded with many, vignette, minted, magazine, poster, and external libraries
-#include:tikz
-#include:xparse
-#include:pdfcol
-#include:pdftexcmds
-#include:shellesc
-#include:incgraph
+#include:tcolorboxlibrarymany
+#include:tcolorboxlibraryvignette
+#include:tcolorboxlibraryminted
+#include:tcolorboxlibrarymagazine
+#include:tcolorboxlibraryposter
+#include:tcolorboxlibraryexternal
 #endif
 
 #keyvals:\documentclass/pdfArticle#c

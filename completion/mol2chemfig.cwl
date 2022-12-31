@@ -7,7 +7,7 @@
 #include:ifmtarg
 #include:calc
 #include:xstring
-# loads decorations tikzlibrary
+#include:tikzlibrarydecorations
 
 \mcfinput{file}#i
 \mcfpush{anchor1}{angle1:dist1}{anchor2}{angle2:dist2}

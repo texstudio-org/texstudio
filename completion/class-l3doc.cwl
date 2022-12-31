@@ -1,5 +1,5 @@
 # l3doc class
-# Matthew Bertucci 2022/09/06 for v2022/01/12
+# Matthew Bertucci 2022/12/18 for v2022/12/17
 
 #include:expl3
 #include:calc
@@ -158,7 +158,12 @@ verb
 \TestMissing{explanation%text}
 
 \DescribeOption{option}
-\SpecialOptionIndex{option}
+\DescribeOption[options]{option}#*
+\begin{optionenv}{option}#*
+\begin{optionenv}[options]{option}#*
+\end{optionenv}#*
+\PrintDescribeOption{option}#*
+\PrintOptionName{option}#*
 
 \manual#*
 \dbend

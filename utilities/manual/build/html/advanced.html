@@ -13,10 +13,10 @@
 <meta property="og:description" content="Sessions: TeXstudio uses “Sessions” to store and restore the set-up of open documents. Session are stored as.txss2 files. By default, the session is stored when exiting from TeXstudio and restored ..." />
   <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
 
-    <link rel="shortcut icon" href="_static/texstudio.ico"/><meta name="generator" content="sphinx-5.2.1, furo 2022.09.15"/>
-        <title>Advanced features - TeXstudio 4.4.2 documentation</title>
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+        <title>Advanced features - TeXstudio 4.5.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -133,7 +133,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.4.2 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.5.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -159,10 +159,10 @@
     <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">TeXstudio 4.4.2 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.5.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
-  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
@@ -195,7 +195,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -292,13 +293,13 @@ overridden, if an <em>explicit root document</em> is set at
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">program</span> <span class="pre">=</span> <span class="pre">pdflatex</span></code></dt><dd><p>Defines the compiler to be used for the document. To be precise, it
 overrides the default compiler (command <code class="docutils literal notranslate"><span class="pre">txs:///compile</span></code>) which is
 used in the actions “Build &amp; View” as well as “Compile”. Valid
-options are “latex”,”pdflatex”,”xelatex”,”lualatex” and
+options are “latex”, “pdflatex”, “xelatex”, “lualatex” and
 “user<em>n</em>” (e.g. user0 as user defined command 0)</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-program:bibliography</span> <span class="pre">=</span> <span class="pre">txs:///biber</span></code></dt><dd><p>This is a TeXstudio-specific setting. It overrides the build-system
 command specified to the left by the one on the right. In the
 example, we tell TXS to use the biber command (<code class="docutils literal notranslate"><span class="pre">txs:///biber</span></code>) for
-the general “Bibliography command (txs:///bibliography). See also
+the general “Bibliography command” (txs:///bibliography). See also
 the <a class="reference internal" href="configuration.html#advanced-configuration-of-the-build-system"><span class="std std-doc">description of the build system</span></a>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-SCRIPT</span> <span class="pre">=</span> <span class="pre">name</span></code></dt><dd><p>This defines a temporary script macro .</p>
@@ -335,7 +336,7 @@ text which is directly placed into txs. It can also be an
 be a java script. The needed functionality can be selected by checkbox.</p>
 <p>The “abbreviation” is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
-that the pseudo-command needs to start with a backslash (”&quot;).</p>
+that the pseudo-command needs to start with a backslash (”\”).</p>
 <p>“Trigger” is a regular expression which triggers the inclusion of the
 macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
@@ -1086,9 +1087,7 @@ to html” tool.</p>
             
           </div>
           <div class="right-details">
-            <div class="icons">
-              
-            </div>
+            
           </div>
         </div>
         

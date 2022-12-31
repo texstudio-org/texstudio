@@ -8,8 +8,7 @@
 #include:iftex
 #include:luamesh
 #include:tcolorbox
-# loads skins tcolorbox library
-#include:tikz
+#include:tcolorboxlibraryskins
 #include:tikzlibrarybackgrounds
 #include:tikzlibraryquotes
 #include:tikzlibraryangles

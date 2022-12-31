@@ -155,7 +155,7 @@ void ScriptEngineTest::scriptApp_data(){
 
     QTest::newRow("app.version")
         << "var a=app.getVersion();editor.setText(a, false)"
-        << QString::number(TXSVERSION_NUMERIC);
+        << QString::number(Version::parseVersionNumberToInt(TXSVERSION));
     QTest::newRow("app.currentFileName")
         << "var a=app.getCurrentFileName();editor.setText(a, false)"
         << "";

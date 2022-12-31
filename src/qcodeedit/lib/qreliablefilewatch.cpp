@@ -197,7 +197,9 @@ void QReliableFileWatch::sourceChanged(const QString& filepath)
 
 	qDebug("%s modified.", qPrintable(filepath));
 	QFileInfo info(filepath);
-	if(it->lastModified==info.lastModified() && it->size==info.size()){
+	// (issue #2805) when using e.g. cloud storage, clashes between mtime precision of different file-systems can occur.
+	// assume no more than 1 second precision. If new time is older than cached time, ignore.
+	if(it->lastModified.secsTo(info.lastModified()) < 1 && it->size == info.size()) {
 		qDebug("filtered");
 		return;
 	}

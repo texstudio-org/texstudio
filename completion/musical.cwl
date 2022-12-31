@@ -8,9 +8,8 @@
 #include:titlesec
 #include:footmisc
 #include:tcolorbox
-# loads breakable and skins tcolorbox libraries
-#include:pdfcol
-#include:tikz
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryskins
 
 \scripttitles#*
 \themusicalpage#*

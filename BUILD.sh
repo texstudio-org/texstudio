@@ -79,9 +79,9 @@ readoption "Do you want to use the internal pdf viewer (requires the Poppler lib
 OPTION_PDFVIEWER=$NEWVALUE
 if [ "$OPTION_PDFVIEWER" = yes ]; then
 	readoption "Do you want to use the video player in pdf files (requires the Phonon library)?" no;
-	OPTION_PHONON=$NEWVALUE
+	OPTION_MEDIAPLAYER=$NEWVALUE
 else
-	OPTION_PHONON=no
+	OPTION_MEDIAPLAYER=no
 fi
 
 if [ "$SYSTEM" = 1 ]; then
@@ -115,7 +115,7 @@ fi
 TXSCOMPILEOPTIONS=$*
 if [ "$OPTION_PDFVIEWER" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_POPPLER_PREVIEW=true"; fi
 if [ "$OPTION_INTERNAL_TERMINAL" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS INTERNAL_TERMINAL=true"; fi
-if [ "$OPTION_PHONON" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS PHONON=true"; fi
+if [ "$OPTION_MEDIAPLAYER" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS MEDIAPLAYER=true"; fi
 if [ "$OPTION_TESTS" = no ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS NO_TESTS=true"; fi
 if [ "$OPTION_DEBUG_BUILD" = yes ]; then
 	TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS CONFIG+=debug CONFIG-=debug_and_release CONFIG-=release"

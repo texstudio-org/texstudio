@@ -87,10 +87,9 @@ versionGreaterOrEqual($$QT_VERSION, "6.0.0") {
     DEFINES += MXE
 }
 
-!isEmpty(PHONON){
-    CONFIG += link_pkgconfig
-    PKGCONFIG += phonon4qt5
-    DEFINES += PHONON
+!isEmpty(MEDIAPLAYER){
+    QT += multimedia multimediawidgets
+    DEFINES += MEDIAPLAYER
 }
 
 !versionGreaterOrEqual($$QT_VERSION, "6.0.0") {

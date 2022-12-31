@@ -1,6 +1,7 @@
 
 To compile and install TeXstudio, write:
 mkdir build
+cd build
 cmake ..
 cmake --build . --target install
 

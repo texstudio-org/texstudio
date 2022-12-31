@@ -14,7 +14,7 @@
 #include:nicematrix
 #include:qrcode
 #include:tcolorbox
-# loads most option of tcolorbox
+#include:tcolorboxlibrarymost
 #include:tensor
 #include:tikz
 #include:tikzlibraryshapes
@@ -250,26 +250,3 @@ decodearray={%<color array%>}
 \begin{description*}
 \begin{description*}[options%keyvals]
 \end{description*}
-
-# from most option of tcolorbox (repeats excluded)
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:pdftexcmds
-#include:shellesc
-#include:pdfcol
-
-# from tikzmark library v1.10
-\tikzmark{name}
-\tikzmark[drawing command]{name}
-\tikzmark{name}{coordinate}
-\pgfmark{name}
-\iftikzmark{name}{true}{false}
-\iftikzmarkexists{name}
-\iftikzmarkoncurrentpage{name}
-\iftikzmarkonpage{name}{page}
-\tikzmarknode{name}{contents}
-\tikzmarknode[options]{name}{contents}
-\subnode{name}{contents}
-\subnode[options]{name}{contents}
-\usetikzmarklibrary{library}#*

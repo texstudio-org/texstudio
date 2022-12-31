@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/11/30 for v0.8.0
+# Matthew Bertucci 2022/12/16 for v0.9.1
 
 #include:stmaryrd
 #include:amsmath
@@ -10,6 +10,7 @@
 #include:ifluatex
 #include:ifxetex
 #include:pdftexcmds
+#include:xstring
 #include:tikz
 #include:tikzlibraryshapes
 #include:tikzlibrarydecorations
@@ -49,8 +50,12 @@ anonymous
 \phiOset{over}{arg}#m
 \phiUset{under}{arg}#m
 \phiMany{arg}{under}{over}#m
+\phiSaveTo{name}
+\sodgSaveTo{name}
+\eoAnon{content}
+\eoAnon[substitution]{content}
+\phiEOL#*
 
 # internal
 \begin{phicture}#S
 \end{phicture}#S
-\phiEOL#S

@@ -29,20 +29,20 @@ highlighting
 # no new user commands
 
 # ams library
-\begin{tikzmarkmath}#S
-\begin{tikzmarkmath}[prefix]#S
-\end{tikzmarkmath}#S
+\begin{tikzmarkmath}#*
+\begin{tikzmarkmath}[prefix]#*
+\end{tikzmarkmath}#*
 \tikzmarkmath#S
 \tikzmarkmath[prefix]#S
 \endtikzmarkmath#S
 \thetikzmarkequation#S
 
 # highlighting library
-\StartHighlighting#S
-\StartHighlighting[options%keyvals]#S
-\StopHighlighting#S
-\Highlight{text}#S
-\Highlight[options%keyvals]{text}#S
+\StartHighlighting#*
+\StartHighlighting[options%keyvals]#*
+\StopHighlighting#*
+\Highlight{text}#*
+\Highlight[options%keyvals]{text}#*
 
 ## not in main documentation
 \savepointas{arg1}{arg2}{arg3}{arg4}#S

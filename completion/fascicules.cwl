@@ -12,9 +12,10 @@
 #include:multicol
 #include:calc
 #include:tikz
-# loads calc tikzlibrary
+#include:tikzlibrarycalc
 #include:nameref
 #include:tcolorbox
+#include:tcolorboxlibrarytheorems
 #include:pgfopts
 #include:environ
 #include:tagging

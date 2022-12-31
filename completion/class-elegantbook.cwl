@@ -48,7 +48,7 @@
 #include:manfnt
 #include:bbding
 #include:tcolorbox
-# loads many option of tcolorbox
+#include:tcolorboxlibrarymany
 #include:adforn
 #include:fancyhdr
 #include:listings
@@ -1534,6 +1534,3 @@ i
 
 # from pagestyles option of titlesec
 #include:titleps
-
-# from many option of tcolorbox
-#include:pdfcol

@@ -12,9 +12,8 @@
 #include:ifoddpage
 #include:filemod
 #include:tcolorbox
-# loads skins and breakable tcolorbox libraries
-# from breakable tcolorbox library
-#include:pdfcol
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarybreakable
 
 #keyvals:\usepackage/hvextern#c
 checkCode

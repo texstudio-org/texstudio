@@ -1,6 +1,17 @@
-TeXstudio 4.4.2
+TeXstudio 4.5.1
 -----------------
-- 
+- Provide online template repository
+- change preview target in IDEFIX menu (#2760)
+- use QtMultimedia instead of phonon to show movies in pdf (non-default)
+- regex in search panel is syntax checked and marked if wrong
+- latex menu for horizontal spacing (#2687)
+- config dialog with resizable splitter (#2707)
+- insert inline math mode as $$ (#2719)
+- add editor action "Move all (others) to other view" (#2713)
+- show macro name in completer list (#2679)
+- show macro trigger and shortcut in configuration window (#2635)
+- fix wrong side panel title when changing grid size in config (#2743)
+- preview/clear preview now use position of context menu as reference (#2794)
 
 TeXstudio 4.4.1
 -----------------
@@ -33,6 +44,7 @@ TeXstudio 4.3.0
 - show most used command at first place in completer
 - more cwls
 - get position into clipboard in pdf on ctrl+shift+click (#2623)
+- set grid column of first page in pdf viewer with a mouse click (#2190)
 - copy/paste table content into table/matrix wizard
 - move to next/previous word now stops at every delimiter (no skip over several brackets) #2311
 - build qt6/win for win10+

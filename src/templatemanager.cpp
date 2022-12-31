@@ -107,123 +107,25 @@ void TemplateManager::checkForOldUserTemplates()
 	}
 }
 
-
-// Creates a new template resource from the information of the XML node.
-// The parent is the template manager. You may reparent the resource later.
-// returns 0 if there is no valid resource info in the node
-AbstractTemplateResource *TemplateManager::createResourceFromXMLNode(const QDomElement &resElem)
-{
-	if (resElem.tagName() != "Resource") {
-		qDebug() << "Not an XML Resource Node";
-        return nullptr;
-	}
-
-	QString name, path, description;
-	bool isEditable = false;
-	QIcon icon;
-	QDomElement elem = resElem.firstChildElement("Path");
-	if (!elem.isNull())
-		path = elem.text();
-	elem = resElem.firstChildElement("Description");
-	if (!elem.isNull())
-		description = elem.text();
-	elem = resElem.firstChildElement("Editable");
-	if (!elem.isNull())
-		isEditable = elem.text() == "1" || elem.text().toLower() == "true";
-	elem = resElem.firstChildElement("Icon");
-	QStringList iconNames;
-	if (!elem.isNull())
-		iconNames << elem.text();
-	// locate the icon in the resource path
-	QDir d(path);
-	iconNames << "LatexTemplateResource.svg" << "LatexTemplateResource.svgz" << "LatexTemplateResource.png";
-	foreach (const QString &name, iconNames) {
-		if (d.exists(name)) {
-			icon = QIcon(d.absoluteFilePath(name));
-			break;
-		}
-	}
-
-	elem = resElem.firstChildElement("Name");
-	if (!elem.isNull())
-		name = elem.text();
-	if (name.isEmpty())
-		name = tr("Unnamed Resource");
-	else if (name == "%Builtin") {
-		name = tr("Builtin");
-		path = builtinTemplateDir();
-		description = tr("Basic template files shipped with TeXstudio.");
-		isEditable = false;
-		icon = QIcon(":/images/appicon.png");
-	} else if (name == "%User") {
-		name = tr("User");
-		path = userTemplateDir();
-		description = tr("User created template files");
-		isEditable = true;
-		icon = getRealIcon("user");
-	}
-
-	if (QFileInfo(path).isDir()) {
-		LocalLatexTemplateResource *tplResource = new LocalLatexTemplateResource(path, name, this, icon);
-		tplResource->setDescription(description);
-		tplResource->setEditable(isEditable);
-		return tplResource;
-	}
-    return nullptr;
-}
-
-QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QString &filename)
-{
-	QList<AbstractTemplateResource *> list;
-
-	QFile file(filename);
-	if (!file.open(QFile::ReadOnly)) {
-		qDebug() << "unable to open template resource file" << filename;
-		return list;
-	}
-
-	QDomDocument domDoc;
-	QString errorMsg;
-	int errorLine;
-	if (!domDoc.setContent(&file, &errorMsg, &errorLine)) {
-		file.close();
-		qDebug() << "invalid xml file format" << filename;
-		qDebug() << "at line" << errorLine << ":" << errorMsg;
-		return list;
-	}
-
-	QDomElement root = domDoc.documentElement();
-	if (root.tagName() != "LatexTemplateResources") {
-		qDebug() << "not a template resource configuration file" << filename;
-		return list;
-	}
-
-	QDomElement elem = root.firstChildElement("Resource");
-	while (!elem.isNull()) {
-		AbstractTemplateResource *tplResource = createResourceFromXMLNode(elem);
-		if (tplResource) {
-			list.append(tplResource);
-		}
-		elem = elem.nextSiblingElement("Resource");
-	}
-	return list;
-}
-
 TemplateSelector *TemplateManager::createLatexTemplateDialog()
 {
 	TemplateSelector *dialog = new TemplateSelector(tr("Select LaTeX Template"));
+    dialog->setCachingDir(configBaseDir+"cachedTemplates");
 	connect(dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
 
-	QFileInfo fi(QDir(configBaseDir), "template_resources.xml");
-	if (!fi.exists()) {
-		QFile::copy(":/utilities/template_resources.xml", fi.absoluteFilePath()); // set up default
-	}
+    LocalLatexTemplateResource *builtinTemplates= new LocalLatexTemplateResource(builtinTemplateDir(), tr("Builtin"), this, QIcon(":/images/appicon.png"));
+    LocalLatexTemplateResource *userTemplates= new LocalLatexTemplateResource(userTemplateDir(), tr("User"), this, getRealIcon("user"));
+    QString description = tr("Basic template files shipped with TeXstudio.");
+    builtinTemplates->setDescription(description);
+    description = tr("User created template files");
+    userTemplates->setDescription(description);
+    userTemplates->setEditable(true);
+    dialog->addResource(builtinTemplates);
+    dialog->addResource(userTemplates);
+    // add online category
+    dialog->addOnlineRepository();
 
-	QList<AbstractTemplateResource *> l = resourcesFromXMLFile(fi.absoluteFilePath());
-	foreach (AbstractTemplateResource *res, l) {
-		dialog->addResource(res);
-	}
 	return dialog;
 }
 

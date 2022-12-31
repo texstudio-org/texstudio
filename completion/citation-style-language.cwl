@@ -1,16 +1,15 @@
 # citation-style-language package
-# Matthew Bertucci 2022/08/20 for v0.2.0
+# Matthew Bertucci 2022/12/25 for v0.3.0
 
-#include:expl3
-#include:xparse
-#include:l3keys2e
 #include:filehook
 #include:url
 
 \cslsetup{options%keyvals}
 
 #keyvals:\cslsetup,\usepackage/citation-style-language#c
+regression-test#true,false
 style=#american-chemical-society,american-medical-association,american-political-science-association,american-sociological-association,apa,chicago-author-date,chicago-fullnote-bibliography,chicago-note-bibliography,elsevier-harvard,harvard-cite-them-right,ieee,modern-humanities-research-association,modern-language-association,nature,vancouver
+class=
 locale=%<language code%>
 bib-font=%<font commands%>
 bib-item-sep=%<<length> or <glue>%>
@@ -26,15 +25,24 @@ entry-spacing=%<number%>
 \addbibresource[options]{bib file}#*
 
 \cite[options%keyvals]{keylist}
+\parencite{keylist}#*
+\parencite[options%keyvals]{keylist}#*
+\citep{keylist}#*
+\citep[options%keyvals]{keylist}#*
+\textcite{keylist}
+\textcite[options%keyvals]{keylist}
+\citet{keylist}#*
+\citet[options%keyvals]{keylist}#*
 \cites{%<key1%>}{%<key2%>}%<...{keyN}%>
 \cites[%<options%>]{%<key1%>}[%<options%>]{%<key2%>}%<...[options]{keyN}%>
+\citeauthor{keylist}
 
-#keyvals:\cite,\cites
-prefix=%<prefix%>
-suffix=%<suffix%>
+#keyvals:\cite,\parencite,\citep,\textcite,\citet,\cites
+prefix=%<text%>
+suffix=%<text%>
 act=%<number%>
 appendix=%<number%>
-article-locator=%<number%>
+article=%<number%>
 book=%<number%>
 canon=%<number%>
 chapter=%<number%>
@@ -43,6 +51,7 @@ elocation=%<number%>
 equation=%<number%>
 figure=%<number%>
 folio=%<number%>
+infix=%<text%>
 issue=%<number%>
 line=%<number%>
 note=%<number%>
@@ -57,7 +66,7 @@ sub-verbo=%<number%>
 supplement=%<number%>
 table=%<number%>
 timestamp=%<number%>
-title-locator=%<number%>
+title=%<number%>
 verse=%<number%>
 version=%<number%>
 volume=%<number%>

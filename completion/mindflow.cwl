@@ -1,8 +1,8 @@
 # mindflow package
-# Matthew Bertucci 2/2/2022 for v1.2
+# Matthew Bertucci 2022/12/10 for v2022/12/06
 
 #include:kvoptions
-#include:linenoamsmath
+#include:lineno
 #include:xcolor
 #include:nowidow
 #include:verbatim
@@ -22,11 +22,15 @@ nonbreakable#true,false
 
 #ifOption:nonbreakable
 #include:tcolorbox
-# tcolorbox loaded with option many
-#include:amsmath
-#include:tikz
-#include:xparse
-#include:pdfcol
+#include:tcolorboxlibrarymany
+#keyvals:\mindflowset
+backgroundcolor=#%color
+#endkeyvals
+mindflowBackground#B
+#endif
+#ifOption:nonbreakable=true
+#include:tcolorbox
+#include:tcolorboxlibrarymany
 #keyvals:\mindflowset
 backgroundcolor=#%color
 #endkeyvals

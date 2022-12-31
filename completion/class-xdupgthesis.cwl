@@ -1,5 +1,5 @@
 # xdupgthesis class
-# Matthew Bertucci 2022/12/03 for v3.1.0.0
+# Matthew Bertucci 2022/12/11 for v4.0.1.0
 
 #include:expl3
 #include:xparse
@@ -17,7 +17,6 @@
 #include:xspace
 #include:biblatex
 # loads style=gb7714-2015 option of biblatex
-#include:environ
 #include:tabularray
 #include:enumitem
 
@@ -110,6 +109,7 @@ info/keywords*={%<英文关键词%>}
 info/los={%<符号对照表文件路径%>}
 info/loa={%<缩略语对照表文件路径%>}
 info/bib-resource={%<参考文献文件路径%>}
+info/appendix={%<附录文件路径%>}
 info/acknowledgements={%<致谢文件路径%>}
 info/bio={%<作者简介路径%>}
 #endkeyvals
@@ -118,8 +118,6 @@ info/bio={%<作者简介路径%>}
 \end{edubg}
 \begin{resresult}
 \end{resresult}
-\begin{appendixes}
-\end{appendixes}
 \noauxwrite{参考文献引用命令}
 \chapter{英文标题%title}{中文标题%title}#L1
 \section{英文标题%title}{中文标题%title}#L2

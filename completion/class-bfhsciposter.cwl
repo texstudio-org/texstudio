@@ -10,8 +10,7 @@
 #include:tikz
 #include:tikzlibrarycalc
 #include:tcolorbox
-# loads poster tcolorbox library
-#include:pdfcol
+#include:tcolorboxlibraryposter
 #include:geometry
 #include:xparse
 #include:bfhcolors

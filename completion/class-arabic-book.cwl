@@ -8,7 +8,8 @@
 #include:amsmath
 #include:enumitem
 #include:tikz
-# loads matrix, arrows, and decorations.pathmorphing tikzlibraries
+#include:tikzlibrarymatrix
+#include:tikzlibrarydecorations.pathmorphing
 #include:setspace
 #include:titling
 #include:ifthen

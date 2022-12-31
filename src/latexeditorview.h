@@ -107,6 +107,8 @@ public:
 
 	static QList<QAction *> getBaseActions();
 	static void setBaseActions(QList<QAction *> baseActions);
+    static int getLineRowforContexMenu();
+    static int getLineColforContexMenu();
 	void setSpellerManager(SpellerManager *manager);
     bool setSpeller(const QString &name,bool updateComment=false);
 	Q_INVOKABLE QString getSpeller();

@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/11/30 for v2.0.6
+# Matthew Bertucci 2022/12/19 for v2.1.0
 
 #include:mathtools
 #include:xcolor
@@ -14,10 +14,13 @@
 #include:xstring
 #include:xintexpr
 #include:xintbinhex
+#include:xinttools
+#include:randomlist
 #include:simplekv
 #include:listofitems
 #include:tabularray
 #include:hvlogos
+#include:fancyvrb
 #include:siunitx
 #include:fontawesome5
 #include:csvsimple-l3
@@ -29,17 +32,57 @@
 #include:tikzlibraryshapes.geometric
 #include:tikzlibrarydecorations.pathmorphing
 #include:tcolorbox
-# tcolorbox loaded with most option and minted library loaded by default
+#include:tcolorboxlibrarymost
+#include:tcolorboxlibraryminted
 #include:iftex
 #include:piton
-#include:fancyvrb
-#include:pythontex
 
 #keyvals:\usepackage/ProfLycee#c
 nonshellescape
 build
+pythontex
 csvii
 #endkeyvals
+
+#ifOption:pythontex
+#include:pythontex
+\begin{CodePythontex}#V
+\begin{CodePythontex}[options%keyvals]#V
+\end{CodePythontex}
+#keyvals:\begin{CodePythontex}
+Largeur=##L
+Centre#true,false
+TaillePolice=%<font commands%>
+EspacementVertical=%<factor%>
+Lignes#true,false
+#endkeyvals
+\begin{ConsolePythontex}#V
+\begin{ConsolePythontex}[options%keyvals]#V
+\end{ConsolePythontex}
+#keyvals:\begin{ConsolePythontex}
+Largeur=##L
+Centre#true,false
+TaillePolice=%<font commands%>
+EspacementVertical=%<factor%>
+Label#true,false
+#endkeyvals
+\begin{pythont}#S
+\begin{tcpythontexcode}#S
+\begin{tcpythontexcode}[width]#S
+\begin{tcpythontexcodeno}#S
+\begin{tcpythontexcodeno}[width]#S
+\CODPYfonte#S
+\CODPYlargeur#S
+\CODPYstretch#S
+\CSPYfonte#S
+\CSPYlargeur#S
+\CSPYstretch#S
+\end{pythont}#S
+\end{tcpythontexcode}#S
+\end{tcpythontexcodeno}#S
+\hookcenterpost#S
+\hookcenterpre#S
+#endif
 
 #ifOption:csvii
 #include:csvsimple-legacy
@@ -111,9 +154,14 @@ Precision=%<nombre%>
 Stretch=%<factor%>
 Balayage#true,false
 Calculatrice#true,false
+Simple#true,false
 Majuscule#true,false
+Exact#true,false
+Conclusion#true,false
 Sens=%<< ou >%>
 #endkeyvals
+
+\CompteurSeuil#*
 
 ## Suites récurrentes et « toile » ##
 \ToileRecurrence[options%keyvals]
@@ -186,36 +234,16 @@ HautRes=%<hauteur%>
 #keyvals:\begin{CodePiton}
 Lignes#true,false
 Largeur=##L
+TaillePolice=%<font commands%>
 Alignement=#justify,left,flush left,right,flush right,center,flush center
 #endkeyvals
 
 ## Code & Console Python, via les packages Pythontex ou Minted ##
-\begin{CodePythontex}#V
-\begin{CodePythontex}[options%keyvals]#V
-\end{CodePythontex}
-
-#keyvals:\begin{envcodepythontex}
-Largeur=##L
-Centre#true,false
-Lignes#true,false
-#endkeyvals
-
 \begin{CodePythonMinted}#V
 \begin{CodePythonMinted}[largeur%l][tcolorbox options]#V
 \begin{CodePythonMinted}*#V
 \begin{CodePythonMinted}*[largeur%l][tcolorbox options]#V
 \end{CodePythonMinted}
-
-## Code & Console Python, version Pythontex ou Minted ##
-\begin{ConsolePythontex}#V
-\begin{ConsolePythontex}[options%keyvals]#V
-\end{ConsolePythontex}
-
-#keyvals:\begin{ConsolePythontex}
-Largeur=##L
-Centre#true,false
-Label#true,false
-#endkeyvals
 
 ## Pseudo-Code ##
 \begin{PseudoCode}
@@ -571,6 +599,23 @@ AfficheM#true,false
 AfficheCadre#true,false
 #endkeyvals
 
+## Nombres aléatoires ##
+\NbAlea{a}{b}{macro%cmd}#d
+\NbAlea[n]{a}{b}{macro%cmd}#d
+\VarNbAlea{macro%cmd}{calculs}#d
+
+\TirageAleatoireEntiers{macro%cmd}#d
+\TirageAleatoireEntiers[options%keyvals]{macro%cmd}#d
+
+#keyvals:\TirageAleatoireEntiers
+ValMin=%<nombre%>
+ValMax=%<nombre%>
+NbVal=%<nombre%>
+Sep=%<séparateur%>
+Tri=#non,croissant,decroissant
+Repetition#true,false
+#endkeyvals
+
 ## Conversions binaire/hexadécimal/décimal ##
 \ConversionDecBin{nombre}
 \ConversionDecBin[options%keyvals]{nombre}
@@ -675,6 +720,9 @@ mainlevee=%<segment-length%> et %<amplitude%>
 Alea#true,false
 Anegatif#true,false
 #endkeyvals
+
+## Simplification de racines ##
+\SimplificationRacine{expression ou calcul}
 
 ## PixelART via un fichier csv, en TikZ ##
 \PixelArtTikz{file}#i
@@ -872,17 +920,6 @@ Pink#B
 Seashell#B
 Teal#B
 
-# from most option of tcolorbox (repeats removed)
-#include:amsmath
-#include:incgraph
-#include:listings
-#include:listingsutf8
-#include:shellesc
-#include:pdfcol
-
-# from minted tcolorbox library
-#include:minted
-
 PLlinux#B
 PLmgray#B
 PLmpurple#B
@@ -942,15 +979,11 @@ vertcapyt#B
 \BaMqu#S
 \BaMRemplissage#S
 \basedepart#S
-\begin{pythont}#S
-\begin{tcpythontexcode}#S
-\begin{tcpythontexcode}[width]#S
-\begin{tcpythontexcodeno}#S
-\begin{tcpythontexcodeno}[width]#S
 \BorneInf#S
 \BorneSup#S
 \calculargument#S
 \CalculInterneTermeRecurrence{arg1}{arg2}{arg3}{arg4}#S
+\CalculSeuil{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \CFcoulcmd#S
 \CFcouleur#S
 \CFcoulres#S
@@ -968,8 +1001,8 @@ vertcapyt#B
 \chbrut#S
 \chiffre#S
 \CODPITalign#S
+\CODPITfonte#S
 \CODPITlargeur#S
-\CODPYlargeur#S
 \COEFF#S
 \COEFFA#S
 \Coeffa#S
@@ -978,7 +1011,6 @@ vertcapyt#B
 \convertbasedixtobase{arg1}{arg2}#S
 \convertbasetobasedix{arg1}{arg2}#S
 \cpt#S
-\CSPYlargeur#S
 \denominateur#S
 \densexpo{arg}#S
 \densnorm{arg}#S
@@ -988,9 +1020,6 @@ vertcapyt#B
 \DHTstretch#S
 \DHTva#S
 \DHTvb#S
-\end{pythont}#S
-\end{tcpythontexcode}#S
-\end{tcpythontexcodeno}#S
 \extractcoeff{liste}{numero}#S
 \fctdecx#S
 \fprimea#S
@@ -999,8 +1028,6 @@ vertcapyt#B
 \GRPHPROBcoulsurf#S
 \GRPHPROBhauteur#S
 \GRPHPROBlarg#S
-\hookcenterpost#S
-\hookcenterpre#S
 \ifinal#S
 \iinit#S
 \indice#S
@@ -1176,6 +1203,11 @@ vertcapyt#B
 \SRninit#S
 \SRprec#S
 \SRuninit#S
+\TAEEmax#S
+\TAEEmin#S
+\TAEEnb#S
+\TAEEsep#S
+\TAEEtri#S
 \tdscouleur#S
 \tdshaut#S
 \tdslarg#S
@@ -1201,6 +1233,8 @@ vertcapyt#B
 \TGTXL#S
 \TGTXR#S
 \theCFnum#S
+\TriListeCroiss{arg}#S
+\TriListeDecroiss{arg}#S
 \TriPartieA#S
 \TriPartieB#S
 \TriPartieC#S

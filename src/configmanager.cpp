@@ -881,7 +881,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	//----------------------------dictionaries-------------------------
 
 	if (spellDictDir.isEmpty()) {
-		// non-exeistent or invalid settings for dictionary
+        // non-existent or invalid settings for dictionary
 		// try restore from old format where there was only one dictionary - spell_dic can be removed later when users have migrated to the new version
 		QString dic = spell_dic;
         if (!QFileInfo::exists(dic)) {
@@ -900,13 +900,13 @@ QSettings *ConfigManager::readSettings(bool reread)
                           << parseDir("[txs-app-dir]/../share/texstudio") ;
 #endif
 #ifdef Q_OS_MAC
-			fallBackPaths << parseDir("[txs-app-dir]/Contents/Resources") << "/Applications/texstudio.app/Contents/Resources";
+            fallBackPaths << parseDir("[txs-app-dir]/../Resources") << "/Applications/texstudio.app/Contents/Resources";
 #endif
 			dic = findResourceFile(QString(QLocale::system().name()) + ".dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("en_US.dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("en_GB.dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("fr_FR.dic", true, temp, fallBackPaths);
-			if (dic == "") spell_dic = findResourceFile("de_DE.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("en_US.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("en_GB.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("fr_FR.dic", true, temp, fallBackPaths);
+            if (dic == "") dic = findResourceFile("de_DE.dic", true, temp, fallBackPaths);
 		}
 		QFileInfo fi(dic);
 		if (fi.exists()) {
@@ -2689,9 +2689,9 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 			                                tr(qPrintable(att.namedItem("text").nodeValue())), slotfunc,
 											QList<QKeySequence>() << shortcut,
 			                                att.namedItem("icon").nodeValue());
-			act->setWhatsThis(att.namedItem("info").nodeValue());
-            act->setStatusTip(att.namedItem("info").nodeValue());
-            act->setToolTip(att.namedItem("info").nodeValue());
+            act->setWhatsThis(tr(qPrintable(att.namedItem("info").nodeValue())));
+            act->setStatusTip(tr(qPrintable(att.namedItem("info").nodeValue())));
+            act->setToolTip(tr(qPrintable(att.namedItem("info").nodeValue())));
 			act->setData(att.namedItem("insert").nodeValue());
 		} else if (c.nodeName() == "separator") menu->addSeparator();
 	}

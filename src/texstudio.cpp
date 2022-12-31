@@ -110,7 +110,6 @@
  */
 
 
-
 const QString APPICON(":appicon");
 
 bool programStopped = false;
@@ -1057,8 +1056,42 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
     newManagedAction(menu, "pasteAsLatex", tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_V), "editpaste");
 	newManagedAction(menu, "convertTo", tr("Co&nvert to LaTeX"), SLOT(convertToLatex()));
+
+	menu->addSeparator();
     newManagedAction(menu, "previewLatex", tr("Pre&view Selection/Parentheses"), SLOT(previewLatex()), Qt::ALT | Qt::Key_P);
 	newManagedAction(menu, "removePreviewLatex", tr("C&lear Inline Preview"), SLOT(clearPreview()));
+
+	submenu = newManagedMenu(menu, "previewMode", tr("Preview Dis&play Mode"));
+	QActionGroup *previewModeGroup = new QActionGroup(this);
+	act = newManagedAction(submenu, "PM_TOOLTIP_AS_FALLBACK", tr("Show preview as tooltip if panel is hidden"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_TOOLTIP_AS_FALLBACK);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_PANEL", tr("Always show preview in preview panel"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_PANEL);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_TOOLTIP", tr("Always show preview as tool tip"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_TOOLTIP);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_BOTH", tr("Always show both"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_BOTH);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	act = newManagedAction(submenu, "PM_INLINE", tr("Inline"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_INLINE);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+	// poppler preview
+#ifndef NO_POPPLER_PREVIEW
+	act = newManagedAction(submenu, "PM_EMBEDDED", tr("Show in embedded viewer"), SLOT(setPreviewMode()));
+	act->setData(ConfigManager::PM_EMBEDDED);
+	act->setCheckable(true);
+	previewModeGroup->addAction(act);
+#endif
+
+	setCheckedPreviewModeAction();
 
 	menu->addSeparator();
     newManagedEditorAction(menu, "togglecomment", tr("Toggle &Comment"), "toggleCommentSelection", Qt::CTRL | Qt::Key_T);
@@ -1427,6 +1460,42 @@ void Texstudio::setupMenus()
 
 	configManager.modifyMenuContents();
 	configManager.modifyManagedShortcuts();
+}
+/*! \brief slot for actions from Menu Preview Display Mode
+*/
+void Texstudio::setPreviewMode()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		configManager.previewMode = act->data().value<ConfigManager::PreviewMode>();
+	}
+}
+/*! \brief set action for Menu Preview Display Mode
+*/
+void Texstudio::setCheckedPreviewModeAction()
+{
+	ConfigManager::PreviewMode pm = configManager.previewMode;
+	switch (pm) {
+		case ConfigManager::PM_TOOLTIP_AS_FALLBACK:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP_AS_FALLBACK")->setChecked(true);
+			break;
+		case ConfigManager::PM_PANEL:
+			getManagedAction("main/edit2/previewMode/PM_PANEL")->setChecked(true);
+			break;
+		case ConfigManager::PM_TOOLTIP:
+			getManagedAction("main/edit2/previewMode/PM_TOOLTIP")->setChecked(true);
+			break;
+		case ConfigManager::PM_BOTH:
+			getManagedAction("main/edit2/previewMode/PM_BOTH")->setChecked(true);
+			break;
+#ifndef NO_POPPLER_PREVIEW
+		case ConfigManager::PM_EMBEDDED:
+			getManagedAction("main/edit2/previewMode/PM_EMBEDDED")->setChecked(true);
+			break;
+#endif
+		default:	// PM_INLINE
+			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
+	}
 }
 /*! \brief set-up all tool-bars
  */
@@ -6743,6 +6812,8 @@ void Texstudio::generalOptions()
         delete pdfviewerWindow;
     }
 #endif
+    // update action from Menu Preview Display Mode
+	setCheckedPreviewModeAction();
 #ifdef INTERNAL_TERMINAL
     outputView->getTerminalWidget()->updateSettings();
 #endif
@@ -7000,6 +7071,9 @@ void Texstudio::generateAddtionalTranslations()
 			QString text = attribs.namedItem("text").nodeValue();
 			if (!text.isEmpty() && !commandOnly.exactMatch(text))
 				translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
+            QString info = attribs.namedItem("info").nodeValue();
+            if (!info.isEmpty() && !commandOnly.exactMatch(info))
+                translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + info.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
 			QString insert = attribs.namedItem("insert").nodeValue();
 			if (!insert.isEmpty()) {
 				CodeSnippet cs(insert, false);
@@ -8225,25 +8299,32 @@ void Texstudio::saveEditorCursorToHistory(LatexEditorView *edView)
 void Texstudio::previewLatex()
 {
 	if (!currentEditorView()) return;
+    LatexEditorView *edView=currentEditorView();
+    QEditor *editor=edView->editor;
+
 	// get selection
-	QDocumentCursor c = currentEditorView()->editor->cursor();
+    QDocumentCursor c = editor->cursor();
+
 	QDocumentCursor previewc;
 	if (c.hasSelection()) {
 		previewc = c; //X o riginalText = c.selectedText();
 	} else {
+        if (edView->getLineRowforContexMenu()>=0) {
+            c.moveTo(edView->getLineRowforContexMenu(), edView->getLineColforContexMenu());
+        }
 		// math context
 		QSet<int> mathFormats = QSet<int>() << m_formats->id("numbers") << m_formats->id("math-keyword") << m_formats->id("align-ampersand");
 		QSet<int> lineEndFormats = QSet<int>() << m_formats->id("keyword") /* newline char */ << m_formats->id("comment");
 		mathFormats.remove(0); // keep only valid entries in list
 		lineEndFormats.remove(0);
-		previewc = currentEditorView()->findFormatsBegin(c, mathFormats, lineEndFormats);
-		previewc = currentEditorView()->parenthizedTextSelection(previewc);
+        previewc = edView->findFormatsBegin(c, mathFormats, lineEndFormats);
+        previewc = edView->parenthizedTextSelection(previewc);
 	}
 	if (!previewc.hasSelection()) {
 		// special handling for cusor in the middle of \[ or \]
 		if (c.previousChar() == '\\' && (c.nextChar() == '[' || c.nextChar() == ']')) {
 			c.movePosition(1, QDocumentCursor::PreviousCharacter);
-			previewc = currentEditorView()->parenthizedTextSelection(c);
+            previewc = edView->parenthizedTextSelection(c);
 		}
 	}
         if (!previewc.hasSelection()) {
@@ -8256,16 +8337,16 @@ void Texstudio::previewLatex()
                 TokenList tl = c.line().handle()->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
                 tk=Parsing::getCommandTokenFromToken(tl,tk);
                 c.setColumnNumber(tk.start);
-                previewc = currentEditorView()->parenthizedTextSelection(c);
+                previewc = edView->parenthizedTextSelection(c);
             }
             if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
                 c.setColumnNumber(tk.start);
-                previewc = currentEditorView()->parenthizedTextSelection(c);
+                previewc = edView->parenthizedTextSelection(c);
             }
         }
         if (!previewc.hasSelection()) {
             // already at parenthesis
-            previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
+            previewc = edView->parenthizedTextSelection(editor->cursor());
         }
 	if (!previewc.hasSelection()) return;
 
@@ -8392,17 +8473,21 @@ void Texstudio::clearPreview()
 	int startLine = 0;
 	int endLine = 0;
 
-	QAction *act = qobject_cast<QAction *>(sender());
-	if (act && act->data().isValid()) {
-		// inline preview context menu supplies the calling point in doc coordinates as data
-		startLine = edit->document()->indexOf(edit->lineAtPosition(act->data().toPoint()));
-		// slight performance penalty for use of lineNumber(), which is not stictly necessary because
-		// we convert it back to a QDocumentLine, but easier to handle together with the other cases
-		endLine = startLine;
-		act->setData(QVariant());
-	} else if (edit->cursor().hasSelection()) {
+    LatexEditorView *edView=currentEditorView();
+    int row=edView->getLineRowforContexMenu();
+    int col=edView->getLineColforContexMenu();
+    if(row>=0 && col<0){
+        // context menu position takes precedence when click directly on preview image
+        startLine = row;
+        endLine = startLine;
+    } else if (edit->cursor().hasSelection()) {
 		startLine = edit->cursor().selectionStart().lineNumber();
 		endLine = edit->cursor().selectionEnd().lineNumber();
+	} else if (row>=0) {
+        // inline preview context menu supplies the calling point as row/col in LatexEditorView member variable
+        // That variable is only >-1 when context menu is active
+        startLine = row;
+		endLine = startLine;
 	} else {
 		startLine = edit->cursor().lineNumber();
 		endLine = startLine;
@@ -9921,7 +10006,7 @@ void Texstudio::setClipboardText(const QString &text, const QClipboard::Mode &mo
 
 int Texstudio::getVersion() const
 {
-	return TXSVERSION_NUMERIC;
+    return Version::parseVersionNumberToInt(TXSVERSION);
 }
 
 /*!
@@ -11059,7 +11144,11 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 	int iconWidth=qRound(value*scale);
 
 	if (changePanel) {
-		leftPanel->setCurrentWidget(leftPanel->widget("symbols"));
+		QWidget *sympanel = leftPanel->widget("symbols");
+		if ( !leftPanel->hiddenWidgets().split("|").contains(sympanel->property("id").toString()) ) {
+			leftPanel->setCurrentWidget(sympanel);
+			emit leftPanel->titleChanged(sympanel->property("Name").toString());
+		}
 	}
 	symbolWidget->setSymbolSize(iconWidth);
 }
