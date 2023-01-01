@@ -1,12 +1,10 @@
 # witharrows package
-# Matthew Bertucci 4/22/2022 for v2.7
+# Matthew Bertucci 2023/01/01 for v2.8
 
-#include:expl3
 #include:l3keys2e
 #include:varwidth
 #include:tikz
 #include:tikzlibrarybending
-#include:xparse
 
 #keyvals:\usepackage/witharrows#c
 footnote
@@ -29,6 +27,7 @@ footnotehyper
 #keyvals:\begin{WithArrows},\WithArrowsOptions,\WithArrowsNewStyle
 c
 b
+right-overlap#true,false
 #endkeyvals
 
 #keyvals:\begin{WithArrows},\begin{DispWithArrows},\begin{DispWithArrows*},\WithArrowsOptions,\WithArrowsNewStyle
