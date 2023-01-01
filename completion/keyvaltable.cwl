@@ -1,12 +1,16 @@
 # keyvaltable package
-# Matthew Bertucci 10/1/2021 for v2.2
+# Matthew Bertucci 2023/01/01 for v2.3
 
 #include:etoolbox
 #include:xkeyval
 #include:trimspaces
+#include:colortbl
 #include:xcolor
-# loads table option of xcolor
 #include:booktabs
+
+#keyvals:\usepackage/keyvaltable#c
+compat=%<version%>
+#endkeyvals
 
 \NewKeyValTable{table name}{colspecs}
 \NewKeyValTable[options%keyvals]{table name}{colspecs}
@@ -56,6 +60,30 @@
 \kvtNewRowStyle{name}{options%keyvals}
 \kvtRenewRowStyle{name}{options%keyvals}
 
+\MidRule
+\MidRule[width]
+\CMidRule{columns}
+\CMidRule[width]{columns}
+
+\kvtRuleTop{color}
+\kvtRuleTop[width]{color}
+\kvtRuleBottom{color}
+\kvtRuleBottom[width]{color}
+\kvtRuleMid{color1}{color2}
+\kvtRuleMid[width]{color1}{color2}
+\kvtRuleMid{color}{color}#S
+\kvtRuleMid[width]{color}{color}#S
+\kvtRuleCMid{a-b}{color1}{color2}
+\kvtRuleCMid(trim){a-b}{color1}{color2}
+\kvtRuleCMid[width](trim){a-b}{color1}{color2}
+\kvtRuleCMid{a-b}{color}{color}#S
+\kvtRuleCMid(trim){a-b}{color}{color}#S
+\kvtRuleCMid[width](trim){a-b}{color}{color}#S
+\kvtRulesCMid{rlist}{color1}{color2}
+\kvtRulesCMid[width]{rlist}{color1}{color2}
+\kvtRulesCMid{rlist}{color}{color}#S
+\kvtRulesCMid[width]{rlist}{color}{color}#S
+
 \kvtTableOpt{option}#*
 
 \kvtSet{options%keyvals}
@@ -102,6 +130,7 @@ Row/expandonce#true,false
 Row/expand#true,false
 HeadCell/align=%<coltype%>
 HeadCell/head=%<text%>
+HeadCell/underline#true,false
 ColGroup/span=%<+ separated columns%>
 ColGroup/align=%<coltype%>
 ColGroup/format=%<single-arg macro%>
@@ -147,18 +176,3 @@ captionpos=#t,b
 \metatblUsePackage{envnames}#*
 \metatblRequire{envnames}#*
 \metatblAtEnd{envname}{code}#*
-
-# from table option of xcolor
-#include:colortbl
-## double command as workaround for color args to be recognized properly as colors
-\rowcolors{row}{odd-row-color}{even-row-color}
-\rowcolors[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors{row}{color}{color}#S
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*{row}{odd-row-color}{even-row-color}
-\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors*{row}{color}{color}#S
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
