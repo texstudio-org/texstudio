@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2022/12/09 for v8.1.0
+# Matthew Bertucci 2023/01/01 for v8.2.0
 
 #include:ifxetex
 #include:ifluatex
@@ -505,6 +505,7 @@ cssmodules
 csswizardry
 cts
 cucumber
+cultura
 curl
 curseforge
 cycling74
@@ -1005,6 +1006,7 @@ ifood
 ifttt
 iheartradio
 ikea
+iledefrancemobilites
 imagej
 imdb
 imgur
@@ -1015,6 +1017,7 @@ infiniti
 influxdb
 informatica
 infosys
+infracost
 ingress
 inkdrop
 inkscape
@@ -1339,6 +1342,7 @@ mlflow
 mobx
 mobxstatetree
 mocha
+modrinth
 modx
 mojangstudios
 moleculer
@@ -1611,6 +1615,7 @@ podman
 poetry
 pointy
 pokemon
+polars
 polkadot
 poly
 polymerproject
