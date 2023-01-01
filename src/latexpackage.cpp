@@ -50,6 +50,7 @@ QStringList LatexPackage::keyToOptions(const QString &key)
 			elem = elem.left(i);
 		}
 		elem = elem.simplified();
+        elem = elem.remove(QChar(' '));
 		result[k] = elem;
 	}
 	return result;
