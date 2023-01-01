@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2022/11/30 for v0.99
+# Matthew Bertucci 2023/01/01 for v1.0
 
 #include:l3keys2e
 #include:luatexbase
@@ -44,6 +44,7 @@ last-line=%<integer%>
 #keyvals:\PitonOptions
 gobble=%<integer%>
 auto-gobble
+tabs-auto-gobble
 line-numbers
 all-line-numbers
 resume
