@@ -246,32 +246,30 @@
   <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
   <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript" shortcut="Ctrl+Shift+D"/>  
   <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="superscript" shortcut="Ctrl+Shift+U"/>  
-  <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
-  <insert id="dfrac" text="\dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="dfrac" shortcut="Ctrl+Shift+F"/>  
-  <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
-  <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
-  <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
+  <insert id="frac" text="Fraction - \frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
+  <insert id="dfrac" text="Fraction - \dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" info="\dfrac is an amsmath package shorthand for \displaystyle\frac..." icon="dfrac" shortcut="Ctrl+Shift+F"/>  
+  <insert id="sqrt" text="Square Root - \sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
   <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
 
   
   <menu id="equations" text="Math &amp;Equations">
-      <insert id="equation" text="env equation" insert="\begin{equation}\label{%&lt;key%>}%\%|%\\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>
-      <insert id="equation*" text="env equation* (amsmath)" insert="\begin{equation*}%\%|%\\end{equation*}"/>
-      <insert id="align" text="env align (amsmath)" insert="\begin{align}%\%|%\\end{align}"/>
-      <insert id="alignat" text="env alignat (amsmath)" insert="\begin{alignat}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat}"/>
-      <insert id="flalign" text="env flalign (amsmath)" insert="\begin{flalign}%\%|%\\end{flalign}"/>
-      <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\%|%\\end{gather}"/>
-      <insert id="multline" text="env multline (amsmath)" insert="\begin{multline}%\%|%\\end{multline}"/>
-      <insert id="align*" text="env align* (amsmath)" insert="\begin{align*}%\%|%\\end{align*}"/>
-      <insert id="alignat*" text="env alignat* (amsmath)" insert="\begin{alignat*}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat*}"/>
-      <insert id="flalign*" text="env flalign* (amsmath)" insert="\begin{flalign*}%\%|%\\end{flalign*}"/>
-      <insert id="gather*" text="env gather* (amsmath)" insert="\begin{gather*}%\%|%\\end{gather*}"/>
-      <insert id="multline*" text="env multline* (amsmath)" insert="\begin{multline*}%\%|%\\end{multline*}"/>
+      <insert id="equation" text="env equation" insert="\begin{equation}\label{%&lt;key%>}%\%|%\\end{equation}" info="The equation environment centers one equation on the page and places the equation number in the margin." shortcut="Ctrl+Shift+N"/>
+      <insert id="align" text="env align (amsmath)" insert="\begin{align}%\%|%\\end{align}" info="The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns."/>
+      <insert id="alignat" text="env alignat (amsmath)" insert="\begin{alignat}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat}" info="The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter."/>
+      <insert id="flalign" text="env flalign (amsmath)" insert="\begin{flalign}%\%|%\\end{flalign}" info="The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number."/>
+      <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\%|%\\end{gather}" info="The gather environment is used for multiple centered equations separated by \\, each having an equation number."/>
+      <insert id="multline" text="env multline (amsmath)" insert="\begin{multline}%\%|%\\end{multline}" info="The multline environment is a variation of the equation environment used for equations that don't fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered."/>
+      <insert id="equation*" text="env equation* (amsmath)" insert="\begin{equation*}%\%|%\\end{equation*}" info="The equation* environment is an unnumbered equation environment."/>
+      <insert id="align*" text="env align* (amsmath)" insert="\begin{align*}%\%|%\\end{align*}" info="The align* environment is an unnumbered align environment."/>
+      <insert id="alignat*" text="env alignat* (amsmath)" insert="\begin{alignat*}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat*}" info="The alignat* environment is an unnumbered alignat environment."/>
+      <insert id="flalign*" text="env flalign* (amsmath)" insert="\begin{flalign*}%\%|%\\end{flalign*}" info="The flalign* environment is an unnumbered flalign environment."/>
+      <insert id="gather*" text="env gather* (amsmath)" insert="\begin{gather*}%\%|%\\end{gather*}" info="The gather* environment is an unnumbered gather environment."/>
+      <insert id="multline*" text="env multline* (amsmath)" insert="\begin{multline*}%\%|%\\end{multline*}" info="The multline* environment is an unnumbered multline environment."/>
 
       <separator/>
 
-	<insert id="cases" text="env cases (amsmath)" insert="\begin{cases}%\%|%\\end{cases}"/>
-        <insert id="split" text="env split (amsmath)" insert="\begin{split}%\%|%\\end{split}"/>
+      <insert id="cases" text="env cases (amsmath)" insert="\begin{cases}%\%|%\\end{cases}" info="The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns."/>
+      <insert id="split" text="env split (amsmath)" insert="\begin{split}%\%|%\\end{split}" info="The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments."/>
   </menu>   
       
   
@@ -372,4 +370,3 @@
   </menu>
 </menu>
 </TexMakerXUI>
-
