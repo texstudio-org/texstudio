@@ -110,6 +110,7 @@ protected:
 	Q_INVOKABLE inline QAction *getManagedAction(const QString &id) { return configManager.getManagedAction(id); }
 	Q_INVOKABLE inline QList<QAction *> getManagedActions(const QStringList &ids, const QString &commonPrefix = "") { return configManager.getManagedActions(ids, commonPrefix); }
     Q_INVOKABLE QAction *insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "");
+    Q_INVOKABLE void loadManagedMenu(const QString &fn);
 
 	void addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile);
     void addMacrosAsTagList();

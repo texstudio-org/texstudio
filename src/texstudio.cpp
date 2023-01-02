@@ -562,7 +562,15 @@ QAction *Texstudio::insertManagedAction(QAction *before, const QString &id, cons
 	QAction *inserted = newManagedAction(menu, id, text, slotName, shortCut, iconFile);
 	menu->removeAction(inserted);
 	menu->insertAction(before, inserted);
-	return inserted;
+    return inserted;
+}
+/*!
+ * \brief loadManagedMenu for script use
+ * \param fn
+ */
+void Texstudio::loadManagedMenu(const QString &fn)
+{
+    configManager.loadManagedMenus(fn);
 }
 
 /*!
