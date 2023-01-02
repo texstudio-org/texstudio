@@ -73,17 +73,6 @@ Bcolor=#%color
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors{row}{odd-row-color}{even-row-color}
-\rowcolors[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors{row}{color}{color}#S
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*{row}{odd-row-color}{even-row-color}
-\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors*{row}{color}{color}#S
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from dvipsnames option of xcolor
 Apricot#B
