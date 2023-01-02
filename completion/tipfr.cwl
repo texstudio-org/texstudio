@@ -100,14 +100,6 @@ calcraise=##L
 
 # from the table option of xcolor
 #include:colortbl
-## double command as workaround for color args to be recognized properly as colors
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from the dvipsnames option of xcolor
 Apricot#B
