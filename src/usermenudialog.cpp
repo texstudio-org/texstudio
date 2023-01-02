@@ -539,9 +539,10 @@ void UserMenuDialog::abbrevChanged()
 void UserMenuDialog::triggerChanged()
 {
     // check if trigger is a valid regex
+    const QStringList fixedTriggers{"?txs-start","?new-file","?new-from-template","?load-file","?load-this-file","?save-file","?close-file","?master-changed","?after-typeset","?after-command-run"};
     const QString text=ui.triggerEdit->text();
     QRegularExpression re(text);
-    if(!re.isValid()){
+    if(!re.isValid() && !fixedTriggers.contains(text)){
         // syntax error in regex
         ui.triggerEdit->setToolTip(re.errorString()+tr(" (col. %1)").arg(re.patternErrorOffset()));
         ui.triggerEdit->setStyleSheet("QLineEdit { background: orange; color : black; }");
