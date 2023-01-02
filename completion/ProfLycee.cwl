@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2022/12/19 for v2.1.0
+# Matthew Bertucci 2023/01/01 for v2.1.3
 
 #include:mathtools
 #include:xcolor
@@ -233,6 +233,7 @@ HautRes=%<hauteur%>
 
 #keyvals:\begin{CodePiton}
 Lignes#true,false
+Gobble#true,false
 Largeur=##L
 TaillePolice=%<font commands%>
 Alignement=#justify,left,flush left,right,flush right,center,flush center
@@ -399,6 +400,8 @@ Affs#true,false
 #keyvals:\AxesTikz
 Epaisseur=##L
 Police=%<font commands%>
+ElargirOx=%<num%>
+ElargirOy=%<num%>
 Labelx=%<text%>
 Labely=%<text%>
 AffLabel=#x,y,xy
@@ -424,10 +427,10 @@ Annee#true,false
 #endkeyvals
 
 \FenetreTikz
-\FenetreSimpleTikz{liste abscisses}{liste ordonnées}
-\FenetreSimpleTikz{liste abscisses}<options axe Oy>{liste ordonnées}
-\FenetreSimpleTikz<options axe Ox>{liste abscisses}{liste ordonnées}
-\FenetreSimpleTikz<options axe Ox>{liste abscisses}<options axe Oy>{liste ordonnées}
+\FenetreSimpleTikz{liste valx}{liste valy}
+\FenetreSimpleTikz<opt axe Ox>{liste valx}<opt axe Oy>{liste valy}
+\FenetreSimpleTikz(opt axes)<opt axe Ox>{liste valx}<opt axe Oy>{liste valy}
+\FenetreSimpleTikz[opt](opt axes)<opt axe Ox>{liste valx}<opt axe Oy>{liste valy}
 
 \OrigineTikz#*
 \OrigineTikz[options%keyvals]#*
@@ -724,6 +727,15 @@ Anegatif#true,false
 ## Simplification de racines ##
 \SimplificationRacine{expression ou calcul}
 
+## Mesure principale d’un angle ##
+\MesurePrincipale{angle}
+\MesurePrincipale[options%keyvals]{angle}
+
+#keyvals:\MesurePrincipale
+d#true,false
+Crochets#true,false
+#endkeyvals
+
 ## PixelART via un fichier csv, en TikZ ##
 \PixelArtTikz{file}#i
 \PixelArtTikz[options%keyvals]{file}#i
@@ -935,6 +947,12 @@ vertcapyt#B
 \algomathttPL{text%plain}#S
 \axesafflabel#S
 \axesechellefleche#S
+\axeselargx#S
+\axeselargy#S
+\axesenlargxD#S
+\axesenlargxG#S
+\axesenlargyD#S
+\axesenlargyG#S
 \axesfont#S
 \axeslabelx#S
 \axeslabely#S

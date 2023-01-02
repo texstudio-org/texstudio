@@ -1,5 +1,5 @@
 # tikz-mirror-lens package
-# 2022/12/26 for v1.0.0
+# 2022/12/28 for v1.0.1
 # adapted from cwl written by package author Fernando H. G. Zucatelli
 # original: http://mirrors.ctan.org/graphics/pgf/contrib/tikz-mirror-lens/tex/tikz-mirror-lens.cwl
 
@@ -39,10 +39,12 @@
 \mirrorBase{f}{yM}{minXaxis}{maxXaxis}#n
 \mirrorPts{v}{f}{c}#n
 \mirrorRays{p}{pp}{o}{i}#n
+\mirrorRays[arrows]{p}{pp}{o}{i}#n
 # =======================================================
 \lensBase{f}{yM}{minXaxis}{maxXaxis}#n
 \lensPts{v}{f}{a}#n
 \lensRays{p}{pp}{o}{i}#n
+\lensRays[arrows]{p}{pp}{o}{i}#n
 # =======================================================
 \mirrorMath{f}{p}{o}{epsilon}{yM}#n
 \lensMath{f}{p}{o}{epsilon}{yM}#n

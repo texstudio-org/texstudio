@@ -115,17 +115,6 @@ decodearray={%<color array%>}
 
 # from table option of xcolor
 #include:colortbl
-\rowcolors{row}{odd-row-color}{even-row-color}
-\rowcolors[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors{row}{color}{color}#S
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*{row}{odd-row-color}{even-row-color}
-\rowcolors*[commands]{row}{odd-row-color}{even-row-color}
-\rowcolors*{row}{color}{color}#S
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from T1 option of fontenc
 \DH#n

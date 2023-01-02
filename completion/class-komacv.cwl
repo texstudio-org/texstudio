@@ -186,13 +186,6 @@ emaillinkfont
 
 #ifOption:xcolor=table
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 #endif
 
 #ifOption:xcolor=fixpdftex

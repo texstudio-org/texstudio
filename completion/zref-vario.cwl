@@ -1,5 +1,5 @@
 # zref-vario package
-# Matthew Bertucci 2022/07/11 for v0.1.5
+# Matthew Bertucci 2023/01/01 for v0.1.6
 
 #include:varioref
 #include:zref-clever
@@ -115,3 +115,5 @@ vrefformat=
 vrefrangeformat=
 fullrefformat=
 #endkeyvals
+
+\zvhyperlink{text}

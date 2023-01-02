@@ -7,13 +7,6 @@ compress
 
 # passes table option to xcolor
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 
 # from BerlinFU colortheme
 FUblue#B

@@ -135,13 +135,6 @@ eptitlecolor#B
 # from xcolor options
 #ifOption:table
 #include:colortbl
-\rowcolors[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors[commands]{row}{color}{color}#S
-\rowcolors*[commands]{row}{even-row-color}{odd-row-color}
-\rowcolors*[commands]{row}{color}{color}#S
-\showrowcolors
-\hiderowcolors
-\rownum
 #endif
 #ifOption:fixpdftex
 #include:pdfcolmk

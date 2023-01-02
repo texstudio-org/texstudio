@@ -21,7 +21,7 @@
 #include:titletoc
 #include:caption
 #include:tabularray
-# loads booktabs tblrlibrary
+#include:tabularraylibrarybooktabs
 #include:listings
 #include:amsthm
 #include:thmtools
@@ -532,30 +532,6 @@ i
 \begin{description*}
 \begin{description*}[options%keyvals]
 \end{description*}
-
-# from booktabs tblrlibrary
-#include:booktabs
-\toprule
-\toprule[options]
-\midrule
-\midrule[options]
-\cmidrule{i-j}
-\cmidrule[options]{i-j}
-\bottomrule
-\bottomrule[options]
-\cmidrulemore{i-j}
-\morecmidrules
-\begin{booktabs}{preamble%keyvals}#\tabular
-\end{booktabs}
-\begin{longtabs}{preamble%keyvals}#\tabular
-\end{longtabs}
-\begin{talltabs}{preamble%keyvals}#\tabular
-\end{talltabs}
-\specialrule{width}{sep1}{sep2}
-\addrowspace
-\addrowspace[space%l]
-\addlinespace
-\addlinespace[space%l]
 
 # from svgnames option of xcolor
 AliceBlue#B
