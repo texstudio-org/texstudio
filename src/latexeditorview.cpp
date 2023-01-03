@@ -1017,6 +1017,10 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
                 }
                 fn=path+fn;
             }
+            if(document->getStateImportedFile()){
+                fn+="#";  // mark as relative to current file (subimport -> input)
+            }
+
             LinkOverlay lo(tk, LinkOverlay::FileOverlay);
             lo.m_link=fn;
             setLinkOverlay(lo);
@@ -1851,6 +1855,9 @@ void LatexEditorView::openExternalFile()
 	QAction *act = qobject_cast<QAction *>(sender());
 	QString name = act->data().toString();
     name.replace("\\string~",QDir::homePath());
+    if(document->getStateImportedFile()){
+        name+="#";
+    }
 	if (!name.isEmpty())
 		emit openFile(name);
 }

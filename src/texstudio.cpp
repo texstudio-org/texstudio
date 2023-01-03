@@ -9576,6 +9576,10 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	}
 	if (!doc) return;
 	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
+    if(name.endsWith('#')){
+        relativeToCurrentDoc=true;
+        name.chop(1);
+    }
     QStringList curPaths;
     if (defaultExt == "bib") {
         curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
@@ -9614,13 +9618,9 @@ void Texstudio::openExternalFileFromAction()
     QAction *act = qobject_cast<QAction *>(sender());
     QString name = act->data().toString();
     name.replace("\\string~",QDir::homePath());
-    bool relativeToCurrent=false;
-    if(name.endsWith('#')){
-        name.chop(1);
-        relativeToCurrent=true;
-    }
+
     if (!name.isEmpty())
-        openExternalFile(name,"tex",nullptr,relativeToCurrent);
+        openExternalFile(name);
 }
 
 void Texstudio::cursorHovered()
