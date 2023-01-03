@@ -396,7 +396,6 @@
 \mathrulesfam#*
 \mathrulesmode#*
 \mathrulethicknessmode#*
-\synctex#*
 
 ### from ltluatex.tex v1.1x ###
 \newattribute{attribute%cmd}#*d
