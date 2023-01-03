@@ -1,5 +1,5 @@
 # beaulivre class
-# Matthew Bertucci 2022/09/08 for 2022/09/03 release
+# Matthew Bertucci 2023/01/02 for 2023/01/02 release
 
 #include:class-book
 #include:silence
@@ -197,6 +197,14 @@ biolinum
 
 \xlongequal{sup}#m
 \xlongequal[sub]{sup}#m
+\xtwoheadrightarrow{sup}#m
+\xtwoheadrightarrow[sub]{sup}#m
+\xtwoheadleftarrow{sup}#m
+\xtwoheadleftarrow[sub]{sup}#m
+
+\IfPrintModeTF{true-code}{false-code}#*
+\IfPrintModeT{true-code}#*
+\IfPrintModeF{false-code}#*
 
 \loweredvdots#*m
 \mdwhtsquare#*m
