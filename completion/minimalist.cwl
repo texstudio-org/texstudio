@@ -1,6 +1,8 @@
 # minimalist package
-# Matthew Bertucci 2022/06/18 for 2022/06/16 release
+# Matthew Bertucci 2023/01/02 for 2023/01/02 release
 
+#include:amsmath
+#include:lineno
 #include:projlib-paper
 #include:projlib-language
 #include:minimalist-plain
