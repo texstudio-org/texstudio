@@ -49,6 +49,7 @@ struct LinkOverlay {
 	LinkOverlayType type;
 	QDocumentLine docLine;
 	QFormatRange formatRange;
+    QString m_link;
 
 	LinkOverlay() : type(Invalid) {}
 	LinkOverlay(const LinkOverlay &o);

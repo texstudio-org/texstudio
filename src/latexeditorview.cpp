@@ -303,7 +303,7 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 				emit edView->gotoDefinition(cursor);
 				return true;
 			case LinkOverlay::FileOverlay:
-                emit edView->openFile(lo.text());
+                emit edView->openFile(lo.m_link.isEmpty() ? lo.text() : lo.m_link);
 				return true;
 			case LinkOverlay::UrlOverlay:
 				if (!QDesktopServices::openUrl(lo.text())) {
@@ -1000,12 +1000,26 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 	if (validPosition) {
 		QDocumentLineHandle *dlh = cursor.line().handle();
 
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		Token tk = Parsing::getTokenAtCol(dlh, cursor.columnNumber());
 
 		if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
 			setLinkOverlay(LinkOverlay(tk, LinkOverlay::RefOverlay));
 		} else if (tk.type == Token::file) {
-			setLinkOverlay(LinkOverlay(tk, LinkOverlay::FileOverlay));
+            Token cmdTk=Parsing::getCommandTokenFromToken(tl,tk);
+            QString fn=tk.getText();
+            if(cmdTk.getText()=="\\subimport"){
+                int i=tl.indexOf(cmdTk);
+                TokenList tl2=tl.mid(i); // in case of several cmds in one line
+                QString path=Parsing::getArg(tl,Token::definition);
+                if(!path.endsWith("/")){
+                    path+="/";
+                }
+                fn=path+fn;
+            }
+            LinkOverlay lo(tk, LinkOverlay::FileOverlay);
+            lo.m_link=fn;
+            setLinkOverlay(lo);
 		} else if (tk.type == Token::url) {
 			setLinkOverlay(LinkOverlay(tk, LinkOverlay::UrlOverlay));
 		} else if (tk.type == Token::package) {
@@ -1031,6 +1045,7 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 
 void LatexEditorView::setLinkOverlay(const LinkOverlay &overlay)
 {
+    qDebug()<<"set over"<<overlay.m_link;
 	if (linkOverlay.isValid()) {
 		if (overlay == linkOverlay) {
 			return; // same overlay
@@ -1048,6 +1063,7 @@ void LatexEditorView::setLinkOverlay(const LinkOverlay &overlay)
 
 void LatexEditorView::removeLinkOverlay()
 {
+    qDebug()<<"remove over";
 	if (linkOverlay.isValid()) {
 		linkOverlay.docLine.removeOverlay(linkOverlay.formatRange);
 		linkOverlay = LinkOverlay();
@@ -3349,6 +3365,7 @@ LinkOverlay::LinkOverlay(const LinkOverlay &o)
 	if (o.isValid()) {
 		docLine = o.docLine;
 		formatRange = o.formatRange;
+        m_link = o.m_link;
 	}
 }
 
