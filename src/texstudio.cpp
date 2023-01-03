@@ -7939,7 +7939,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
         }
         if(se->type==StructureEntry::SE_INCLUDE || se->type==StructureEntry::SE_BIBTEX){
             saveCurrentCursorToHistory();
-            bool relativeToCurrentDoc=se->hasContext(StructureEntry::Import);
+            bool relativeToCurrentDoc=se->hasContext(StructureEntry::Import) || se->document->getStateImportedFile();
             QString defaultExt = se->type == StructureEntry::SE_BIBTEX ? ".bib" : ".tex";
             QString name=se->title;
             name.replace("\\string~",QDir::homePath());

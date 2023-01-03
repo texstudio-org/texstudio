@@ -72,7 +72,8 @@ public:
     Q_INVOKABLE LatexEditorView *getEditorView() const;
 	QString getFileName() const;
 	QFileInfo getFileInfo() const;
-	//QSet<QString> texFiles; //absolute file names, also contains fileName
+    void setAsImportedFile(bool state);
+    bool getStateImportedFile();
 
     Q_PROPERTY(QString fileName READ getFileName)
     Q_PROPERTY(QFileInfo fileInfo READ getFileInfo)
@@ -160,7 +161,7 @@ public:
 		return getRootDocument();    // DEPRECATED: only the for backward compatibility of user scripts
 	}
 
-	Q_INVOKABLE QStringList includedFiles();
+    Q_INVOKABLE QStringList includedFiles(bool importsOnly=false);
 	Q_INVOKABLE QStringList includedFilesAndParent();
     Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = nullptr);
 
@@ -215,6 +216,7 @@ private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
 	QFileInfo fileInfo;
+    bool importedFile=false; /// mark if this file was loaded via import/subimport, i.e. inputs relative to this file instead of root !
 
 	LatexEditorView *edView;
 
@@ -234,6 +236,7 @@ private:
 	QMultiHash<QDocumentLineHandle *, UserCommandPair> mUserCommandList;
 	QMultiHash<QDocumentLineHandle *, QString> mUsepackageList;
 	QMultiHash<QDocumentLineHandle *, QString> mIncludedFilesList;
+    QMultiHash<QDocumentLineHandle *, QString> mImportedFilesList;
 
 	QList<QDocumentLineHandle *> mLineSnapshot;
 

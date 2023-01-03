@@ -131,7 +131,25 @@ bool LatexDocument::isHidden()
 
 QFileInfo LatexDocument::getFileInfo() const
 {
-	return fileInfo;
+    return fileInfo;
+}
+/*!
+ * \brief declare file as imported file
+ * Imported means imported via \subimport/\import
+ * Included files here are relative to this file
+ * \param state
+ */
+void LatexDocument::setAsImportedFile(bool state)
+{
+    importedFile=state;
+}
+/*!
+ * \brief read state importedFile
+ * \return
+ */
+bool LatexDocument::getStateImportedFile()
+{
+    return importedFile;
 }
 
 QMultiHash<QDocumentLineHandle *, FileNamePair> &LatexDocument::mentionedBibTeXFiles()
@@ -316,7 +334,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
         mUserCommandList.remove(dlh);
 
         QStringList removeIncludes = mIncludedFilesList.values(dlh);
-        if (mIncludedFilesList.remove(dlh) > 0) {
+        removeIncludes.append(mImportedFilesList.values(dlh));
+        if (mIncludedFilesList.remove(dlh) > 0 || mImportedFilesList.remove(dlh)>0) {
             parent->removeDocs(removeIncludes);
             parent->updateMasterSlaveRelations(this);
         }
@@ -564,7 +583,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 		mRefItem.remove(dlh);
 		QStringList removedIncludes = mIncludedFilesList.values(dlh);
+        removedIncludes.append(mImportedFilesList.values(dlh));
 		mIncludedFilesList.remove(dlh);
+        mImportedFilesList.remove(dlh);
 
 		if (mUserCommandList.remove(dlh) > 0) completerNeedsUpdate = true;
 		if (mBibItem.remove(dlh))
@@ -1108,11 +1129,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newInclude->title = file;
 				QString fname = findFileName(file);
 				removedIncludes.removeAll(fname);
-				mIncludedFilesList.insert(line(i).handle(), fname);
+                mImportedFilesList.insert(line(i).handle(), fname);
 				LatexDocument *dc = parent->findDocumentFromName(fname);
 				if (dc) {
 					childDocs.insert(dc);
 					dc->setMasterDocument(this, recheckLabels);
+                    dc->importedFile=true;
 				} else {
 					lstFilesToLoad << fname;
 					//parent->addDocToLoad(fname);
@@ -2751,12 +2773,16 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 		if (elem == doc)
 			continue;
 		QStringList includedFiles = elem->includedFiles();
+        QStringList importedFiles = elem->includedFiles(true);
         if (includedFiles.contains(fname)) {
             if(!elem->containsChild(doc)){
                 elem->addChild(doc);
             }
             doc->setMasterDocument(elem, false);
 		}
+        if (importedFiles.contains(fname)) {
+            doc->setAsImportedFile(true);
+        }
     }
 
 	// check for already open child documents (included in this file)
@@ -2829,9 +2855,13 @@ LatexDocument *LatexDocument::getRootDocument()
     return const_cast<LatexDocument *>(getRootDocument(nullptr));
 }
 
-QStringList LatexDocument::includedFiles()
+QStringList LatexDocument::includedFiles(bool importsOnly)
 {
-	QStringList helper = mIncludedFilesList.values();
+    QStringList helper;
+    if(!importsOnly){
+        helper.append(mIncludedFilesList.values());
+    }
+    helper.append(mImportedFilesList.values());
 	QStringList result;
 	foreach (const QString elem, helper) {
 		if (!elem.isEmpty() && !result.contains(elem))
