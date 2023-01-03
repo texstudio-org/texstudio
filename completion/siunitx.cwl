@@ -1,12 +1,11 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 2022-10-24 for v3.1.9
+# Matthew Bertucci 2023-01-03 for v3.2.0
 
 #include:translations
 #include:amstext
 #include:color
-#include:l3keys2e
 #include:array
 
 #ifOption:use-xspace
@@ -22,7 +21,7 @@
 \arcsecond
 \as#*
 \astronomicalunit
-\atto#*
+\atto
 \becquerel
 \bel
 \bit
@@ -118,6 +117,7 @@
 \metre
 \MeV#*
 \meV#*
+\mF#*
 \mg#*
 \mH#*
 \MHz#*
@@ -188,8 +188,12 @@
 \qtyproduct{numbers}{unit%formula}
 \qtyrange[options%keyvals]{number1}{number2}{unit%formula}
 \qtyrange{number1}{number2}{unit%formula}
+\quecto
+\quetta
 \radian
 \raiseto{%<power%>}
+\ronna
+\ronto
 \s#*
 \second
 \siemens
@@ -323,7 +327,8 @@ retain-zero-uncertainty#true,false
 drop-exponent#true,false
 drop-uncertainty#true,false
 drop-zero-decimal#true,false
-exponent-mode=#input,fixed,engineering,scientific
+exponent-mode=#input,fixed,engineering,scientific,threshold
+exponent-thresholds=%<min:max%>
 fixed-exponent=%<integer%>
 minimum-integer-digits=%<integer%>
 minimum-decimal-digits=%<integer%>
@@ -352,7 +357,9 @@ output-close-uncertainty=%<symbol%>
 output-decimal-marker=%<symbol%>
 output-exponent-marker=%<symbol%>
 output-open-uncertainty=%<symbol%>
+print-exponent-implicit-plus#true,false
 print-implicit-plus#true,false
+print-mantissa-implicit-plus#true,false
 print-unity-mantissa#true,false
 print-zero-exponent#true,false
 print-zero-integer#true,false
