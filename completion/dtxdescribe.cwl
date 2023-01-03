@@ -1,5 +1,5 @@
 # dtxdescribe package
-# Matthew Bertucci 2022/12/07 for v1.06
+# Matthew Bertucci 2023/01/03 for v1.07
 
 #include:makeidx
 #include:etoolbox
@@ -247,3 +247,4 @@ mylinkcolor#B
 \removebs{arg}#*
 \MacroFont#*
 \IndexMin#*
+\DTXDbreak#*
