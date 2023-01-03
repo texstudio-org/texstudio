@@ -9614,8 +9614,13 @@ void Texstudio::openExternalFileFromAction()
     QAction *act = qobject_cast<QAction *>(sender());
     QString name = act->data().toString();
     name.replace("\\string~",QDir::homePath());
+    bool relativeToCurrent=false;
+    if(name.endsWith('#')){
+        name.chop(1);
+        relativeToCurrent=true;
+    }
     if (!name.isEmpty())
-        openExternalFile(name);
+        openExternalFile(name,"tex",nullptr,relativeToCurrent);
 }
 
 void Texstudio::cursorHovered()
@@ -11546,7 +11551,11 @@ void Texstudio::customMenuStructure(const QPoint &pos){
     }
     if (contextEntry->type == StructureEntry::SE_INCLUDE) {
         QMenu menu;
-        menu.addAction(tr("Open Document"), this, SLOT(openExternalFileFromAction()))->setData(QVariant::fromValue(contextEntry->title));
+        QString fn=contextEntry->title;
+        if(contextEntry->document->getStateImportedFile()){
+                fn+="#"; // mark as relative to current
+        }
+        menu.addAction(tr("Open Document"), this, SLOT(openExternalFileFromAction()))->setData(fn);
         menu.addAction(tr("Go to Definition"), this, SLOT(gotoLineFromAction()))->setData(QVariant::fromValue(contextEntry));
 
         menu.exec(w->mapToGlobal(pos));
