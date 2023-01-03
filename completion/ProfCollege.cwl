@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2022/11/27 for v0.99-z-c
+# Matthew Bertucci 2023/01/02 for v0.99-z-d
 
 #include:verbatim
 #include:mathtools
@@ -996,6 +996,7 @@ Borneb=%<nombre%>
 CouleurTrace=#%color
 NomCourbe=%<nom%>
 LabelC=%<nombre%>
+Traces={%<MP code%>}
 #endkeyvals
 
 ## La distributivité ##
@@ -1576,6 +1577,41 @@ Perso#true,false
 Decimaux#true,false
 #endkeyvals
 
+## Enigme et aire ##
+\EnigmeAire
+\EnigmeAire[clés%keyvals]
+
+#keyvals:\EnigmeAire
+Modele=#A,B,C,D,E,F
+Etape=%<nombre%>
+Echelle=##L
+Couleur=#%color
+#endkeyvals
+
+## Tectonic ##
+\Tectonic{description du jeu}
+\Tectonic[clés%keyvals]{description du jeu}
+
+#keyvals:\Tectonic
+TLargeur=%<nombre%>
+THauteur=%<nombre%>
+Taille=%<nombre%>
+Largeur=##L
+Solution#true,false
+CouleurSolution=#%color
+#endkeyvals
+
+## Le jeu du calisson ##
+\Calisson{description du jeu}
+\Calisson[clés%keyvals]{description du jeu}
+
+#keyvals:\Calisson
+Rayon=##L
+Taille=%<nombre%>
+Solution#true,false
+Couleur=#%color
+#endkeyvals
+
 ## Bulles et cartes mentales ##
 \begin{Mind}#\pictureHighlight
 \end{Mind}
@@ -1908,6 +1944,7 @@ Teal#B
 \BonSortieSmiley#*
 \Brouillon{arg1}{arg2}{arg3}{arg4}#S
 \buildarbreproba#S
+\BuildCalisson{arg1}{arg2}#S
 \builddemidroitenew#S
 \buildechelleproba#S
 \BuildEngrenages{arg}#S
@@ -2305,6 +2342,12 @@ Teal#B
 \MPCourbePoints{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPDessineFrise{arg}#S
 \MPEchelleProbaUn{arg1}{arg2}{arg3}{arg4}#S
+\MPEnigmeAireA#S
+\MPEnigmeAireB#S
+\MPEnigmeAireC#S
+\MPEnigmeAireD#S
+\MPEnigmeAireE#S
+\MPEnigmeAireF#S
 \MPEspacePave{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPEspaceSphere{arg1}{arg2}#S
 \MPFigReciThales{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2563,6 +2606,7 @@ Teal#B
 \PfCTableurLargeur#S
 \PfCTableurLargeurUn#S
 \PfCTBstrut#S
+\PfCTectonic#S
 \PfCTestBlack#S
 \PfCTestEtoile#S
 \PfCTestMP#S
@@ -2745,6 +2789,8 @@ Teal#B
 \TikzPHD#S
 \TikzRB#S
 \TikzRH#S
+\tokcalissonlistetracesd#S
+\tokcalissonlistetracesg#S
 \toklisteaffhor{arg}#S
 \toklistecaseM{arg}#S
 \toklistecaseP{arg}#S
@@ -2829,6 +2875,10 @@ Teal#B
 \UpdateRemplissage{arg1}#S
 \Updatetoks{arg1}#S
 \updatetoks{arg1}#S
+\UpdatetoksCalissond{arg}#S
+\UpdatetoksCalissondDepart{arg}#S
+\UpdatetoksCalissong{arg}#S
+\UpdatetoksCalissongDepart{arg}#S
 \UpdatetoksCB{arg}#S
 \Updatetoksdemidroite{arg1}#S
 \Updatetoksdroite{arg1}#S
