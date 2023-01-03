@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/01/01 for v2.1.3
+# Matthew Bertucci 2023/01/03 for v2.1.4
 
 #include:mathtools
 #include:xcolor
@@ -113,6 +113,18 @@ Couleur=#%color
 Style={%<TikZ clés%>}
 xl=%<num%>
 xr=%<num%>
+#endkeyvals
+
+## Résolution approchée d’une équation ##
+\ResolutionApprochee{équation}
+\ResolutionApprochee{équation}[macro]
+\ResolutionApprochee[options%keyvals]{équation}
+\ResolutionApprochee[options%keyvals]{équation}[macro]
+
+#keyvals:\ResolutionApprochee
+Precision=%<integer%>
+Intervalle=%<min:max%>
+Variable=%<variable%>
 #endkeyvals
 
 ## Présentation d’une solution d’équation par balayage ##
@@ -1038,6 +1050,9 @@ vertcapyt#B
 \DHTstretch#S
 \DHTva#S
 \DHTvb#S
+\DICHOTOinterv#S
+\DICHOTOstep#S
+\DICHOTOvar#S
 \extractcoeff{liste}{numero}#S
 \fctdecx#S
 \fprimea#S
