@@ -1,5 +1,5 @@
 # newcomputermodern package
-# Matthew Bertucci 12/11/2021 for v4.0
+# Matthew Bertucci 2023/01/02 for v4.2
 
 #include:fontspec
 #include:unicode-math
@@ -12,12 +12,12 @@
 \vibce
 \textivbcealt{text%plain}
 \ivbcealt
-\ipatext
-\ipatextsans
 \textipa{text%plain}
-\textsansipa{text%plain}
-\uncial
+\ipatext
+\textoldipa{text%plain}#*
+\oldipatext#*
 \textuncial{text}
+\uncial
 
 \atticonequarter#*
 \hermionianfifty#*
