@@ -1,5 +1,5 @@
 # zref-clever package
-# Matthew Bertucci 4/24/2022 for v0.3.0
+# Matthew Bertucci 2023/01/03 for v0.3.3
 
 #include:zref-base
 #include:zref-user
@@ -55,6 +55,7 @@ font=%<font commands%>
 note=%<text%>
 check={%<checks%>}
 countertype={%<<counter>%> = %<<type> list%>}
+reftype=%<type%>
 counterresetters={%<counter list%>}
 counterresetby={%<<counter=encl counter> list%>}
 currentcounter=%<counter%>
