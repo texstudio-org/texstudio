@@ -3,972 +3,1095 @@
 <!DOCTYPE KileSymbolSources>
 <symbols>
 
-   <formatVersion major="0" minor ="22" />
-
-   <symbolGroupName>user</symbolGroupName>
-
-   <preamble>
-      <class>article</class>
-      <arguments>12pt</arguments>
-      <additional>\pagestyle{empty}
-		  \setlength{\parindent}{0cm}
-		  \usepackage[T1]{fontenc}
-      </additional>
-   </preamble>
-
-   <unicodeCommandPackages>
-      <package>
-         <name>inputenc</name>
-         <arguments>utf8</arguments>
-      </package>
-   </unicodeCommandPackages>
-
-   <!-- insert stuff here    -->
-<symbolGroupName>wasysym</symbolGroupName>
-
-<commandDefinition>
-<latexCommand>\male</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\female</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\currency</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\phone</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\recorder</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\clock</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\lightning</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\pointer</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\RIGHTarrow</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\LEFTarrow</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\UParrow</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\DOWNarrow</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\AC</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\HF</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\VHF</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Square</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\CheckedBox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<forcePNG>true</forcePNG>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\XBox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\hexagon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\pentagon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\octagon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\varhexagon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\hexstar</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\varhexstar</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\davidsstar</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\diameter</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\invdiameter</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\varangle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\wasylozenge</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\kreuz</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\smiley</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\frownie</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\blacksmiley</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\sun</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\checked</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\bell</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\eighthnote</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\quarternote</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\halfnote</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\fullnote</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\twonotes</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\brokenvert</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\ataribox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\wasytherefore</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Circle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\CIRCLE</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Leftcircle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\LEFTCIRCLE</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Rightcircle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\RIGHTCIRCLE</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\LEFTcircle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\RIGHTcircle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\vernal</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\ascnode</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\descnode</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\fullmoon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\newmoon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\leftmoon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\rightmoon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\astrosun</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\mercury</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\venus</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\earth</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\mars</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\jupiter</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\saturn</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\uranus</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\neptune</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\pluto</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\aries</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\taurus</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\gemini</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\cancer</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\leo</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\virgo</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\libra</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\scorpio</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\sagittarius</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\capricornus</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\aquarius</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\pisces</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\conjunction</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\opposition</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLstar</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLlog</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLbox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLup</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLdown</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLinput</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLcomment</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLinv</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLuparrowbox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLdownarrowbox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLleftarrowbox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLrightarrowbox</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\notbackslash</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\notslash</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLminus</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLnot{}</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLcirc{}</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\APLvert{}</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Bowtie</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\leftturn</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\rightturn</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\photon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\gluon</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\cent</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\permil</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\agemO</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\thorn</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Thorn</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\openo</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\inve</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\mho</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Join</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Box</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\Diamond</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\leadsto</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\sqsubset</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\sqsupset</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\lhd</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\unlhd</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\LHD</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\rhd</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\unrhd</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\RHD</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\apprle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\apprge</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\wasypropto</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\invneg</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\ocircle</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
-<commandDefinition>
-<latexCommand>\logof</latexCommand>
-<package>
-<name>wasysym</name>
-</package>
-<mathMode>true</mathMode>
-</commandDefinition>
-
+	<formatVersion major="0" minor ="22" />
+
+	<symbolGroupName>user</symbolGroupName>
+
+	<preamble>
+		<class>standalone</class>
+		<arguments>10bp,margin=1bp</arguments>
+		<additional>\usepackage[T1]{fontenc}</additional>
+	</preamble>
+
+	<unicodeCommandPackages>
+		<package>
+			<name>inputenc</name>
+			<arguments>utf8</arguments>
+		</package>
+	</unicodeCommandPackages>
+
+	<!-- insert stuff here -->
+
+	<symbolGroupName>wasysym</symbolGroupName>
+
+	<commandDefinition>
+		<latexCommand>\male</latexCommand>
+		<unicodeCommand>♂</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\female</latexCommand>
+		<unicodeCommand>♀</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\currency</latexCommand>
+		<unicodeCommand>¤</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\phone</latexCommand>
+		<unicodeCommand>☎</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\recorder</latexCommand>
+		<unicodeCommand>⌕</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\clock</latexCommand>
+		<unicodeCommand>⏲</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\lightning</latexCommand>
+		<unicodeCommand>↯</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\pointer</latexCommand>
+		<unicodeCommand>⇨</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\RIGHTarrow</latexCommand>
+		<unicodeCommand>⏵</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\LEFTarrow</latexCommand>
+		<unicodeCommand>⏴</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\UParrow</latexCommand>
+		<unicodeCommand>⏶</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\DOWNarrow</latexCommand>
+		<unicodeCommand>⏷</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\AC</latexCommand>
+		<unicodeCommand>⁓</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\HF</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\VHF</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Square</latexCommand>
+		<unicodeCommand>☐</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\CheckedBox</latexCommand>
+		<unicodeCommand>☑</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\XBox</latexCommand>
+		<unicodeCommand>☒</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\hexagon</latexCommand>
+		<unicodeCommand>⎔</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\pentagon</latexCommand>
+		<unicodeCommand>⬠</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\octagon</latexCommand>
+		<unicodeCommand>⯃</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\varhexagon</latexCommand>
+		<unicodeCommand>⬡</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\hexstar</latexCommand>
+		<unicodeCommand>⚹</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\varhexstar</latexCommand>
+		<unicodeCommand>✲</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\davidsstar</latexCommand>
+		<unicodeCommand>✡</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\diameter</latexCommand>
+		<unicodeCommand>⌀</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\invdiameter</latexCommand>
+		<unicodeCommand>⍉</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\varangle</latexCommand>
+		<unicodeCommand>∢</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\wasylozenge</latexCommand>
+		<unicodeCommand>⌑</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\kreuz</latexCommand>
+		<unicodeCommand>🕂</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\smiley</latexCommand>
+		<unicodeCommand>☺</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\frownie</latexCommand>
+		<unicodeCommand>☹</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\blacksmiley</latexCommand>
+		<unicodeCommand>☻</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\sun</latexCommand>
+		<unicodeCommand>☼</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\checked</latexCommand>
+		<unicodeCommand>🗸</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\bell</latexCommand>
+		<unicodeCommand>🕭</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\eighthnote</latexCommand>
+		<unicodeCommand>♪</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\quarternote</latexCommand>
+		<unicodeCommand>♩</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\halfnote</latexCommand>
+		<unicodeCommand>𝅗𝅥</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\fullnote</latexCommand>
+		<unicodeCommand>𝅝</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\twonotes</latexCommand>
+		<unicodeCommand>🎝</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\brokenvert</latexCommand>
+		<unicodeCommand>¦</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\ataribox</latexCommand>
+		<unicodeCommand>⌺</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\wasytherefore</latexCommand>
+		<unicodeCommand>∴</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Circle</latexCommand>
+		<unicodeCommand>○</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\CIRCLE</latexCommand>
+		<unicodeCommand>●</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Leftcircle</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Rightcircle</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\LEFTCIRCLE</latexCommand>
+		<unicodeCommand>◖</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\RIGHTCIRCLE</latexCommand>
+		<unicodeCommand>◗</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\LEFTcircle</latexCommand>
+		<unicodeCommand>◐</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\RIGHTcircle</latexCommand>
+		<unicodeCommand>◑</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\vernal</latexCommand>
+		<unicodeCommand>♈︎</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\ascnode</latexCommand>
+		<unicodeCommand>☊</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\descnode</latexCommand>
+		<unicodeCommand>☋</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\fullmoon</latexCommand>
+		<unicodeCommand>🌕</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\newmoon</latexCommand>
+		<unicodeCommand>🌑</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\leftmoon</latexCommand>
+		<unicodeCommand>☾</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\rightmoon</latexCommand>
+		<unicodeCommand>☽</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\astrosun</latexCommand>
+		<unicodeCommand>☉</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\mercury</latexCommand>
+		<unicodeCommand>☿</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\venus</latexCommand>
+		<unicodeCommand>♀</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\earth</latexCommand>
+		<unicodeCommand>♁</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\mars</latexCommand>
+		<unicodeCommand>♂</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\jupiter</latexCommand>
+		<unicodeCommand>♃</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\saturn</latexCommand>
+		<unicodeCommand>♄</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\uranus</latexCommand>
+		<unicodeCommand>♅</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\neptune</latexCommand>
+		<unicodeCommand>♆</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\pluto</latexCommand>
+		<unicodeCommand>♇</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\aries</latexCommand>
+		<unicodeCommand>♈</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\taurus</latexCommand>
+		<unicodeCommand>♉</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\gemini</latexCommand>
+		<unicodeCommand>♊</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\cancer</latexCommand>
+		<unicodeCommand>♋</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\leo</latexCommand>
+		<unicodeCommand>♌</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\virgo</latexCommand>
+		<unicodeCommand>♍</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\libra</latexCommand>
+		<unicodeCommand>♎</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\scorpio</latexCommand>
+		<unicodeCommand>♏</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\sagittarius</latexCommand>
+		<unicodeCommand>♐</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\capricornus</latexCommand>
+		<unicodeCommand>♑</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\aquarius</latexCommand>
+		<unicodeCommand>♒</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\pisces</latexCommand>
+		<unicodeCommand>♓</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\conjunction</latexCommand>
+		<unicodeCommand>☌</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\opposition</latexCommand>
+		<unicodeCommand>☍</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLstar</latexCommand>
+		<unicodeCommand>＊</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLlog</latexCommand>
+		<unicodeCommand>⍟</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLbox</latexCommand>
+		<unicodeCommand>⎕</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLup</latexCommand>
+		<unicodeCommand>∆</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLdown</latexCommand>
+		<unicodeCommand>∇</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLinput</latexCommand>
+		<unicodeCommand>⍞</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLcomment</latexCommand>
+		<unicodeCommand>⍝</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLinv</latexCommand>
+		<unicodeCommand>⌹</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLuparrowbox</latexCommand>
+		<unicodeCommand>⍐</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLdownarrowbox</latexCommand>
+		<unicodeCommand>⍗</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLleftarrowbox</latexCommand>
+		<unicodeCommand>⍇</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLrightarrowbox</latexCommand>
+		<unicodeCommand>⍈</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\notbackslash</latexCommand>
+		<unicodeCommand>⍀</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\notslash</latexCommand>
+		<unicodeCommand>⌿</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLminus</latexCommand>
+		<unicodeCommand>-</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLnot{}</latexCommand>
+		<unicodeCommand>∼</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLcirc{}</latexCommand>
+		<unicodeCommand>○</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\APLvert{}</latexCommand>
+		<unicodeCommand>∣</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Bowtie</latexCommand>
+		<unicodeCommand>⑅</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\leftturn</latexCommand>
+		<unicodeCommand>↺</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\rightturn</latexCommand>
+		<unicodeCommand>↻</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\photon</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\gluon</latexCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\cent</latexCommand>
+		<unicodeCommand>¢</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\permil</latexCommand>
+		<unicodeCommand>‰</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\agemO</latexCommand>
+		<unicodeCommand>Ʊ</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\thorn</latexCommand>
+		<unicodeCommand>þ</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Thorn</latexCommand>
+		<unicodeCommand>Þ</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\openo</latexCommand>
+		<unicodeCommand>ɔ</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\inve</latexCommand>
+		<unicodeCommand>ǝ</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\mho</latexCommand>
+		<unicodeCommand></unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Join</latexCommand>
+		<unicodeCommand>⨝</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Box</latexCommand>
+		<unicodeCommand>□</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\Diamond</latexCommand>
+		<unicodeCommand>◇</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\leadsto</latexCommand>
+		<unicodeCommand>↝</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\sqsubset</latexCommand>
+		<unicodeCommand>⊏</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\sqsupset</latexCommand>
+		<unicodeCommand>⊐</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\lhd</latexCommand>
+		<unicodeCommand>⊲</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\unlhd</latexCommand>
+		<unicodeCommand>⊴</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\LHD</latexCommand>
+		<unicodeCommand>◄</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\rhd</latexCommand>
+		<unicodeCommand>⊳</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\unrhd</latexCommand>
+		<unicodeCommand>⊵</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\RHD</latexCommand>
+		<unicodeCommand>►</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\apprle</latexCommand>
+		<unicodeCommand>≲</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\apprge</latexCommand>
+		<unicodeCommand>≳</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\wasypropto</latexCommand>
+		<unicodeCommand>∝</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\invneg</latexCommand>
+		<unicodeCommand>⌐</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\ocircle</latexCommand>
+		<unicodeCommand>○</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\logof</latexCommand>
+		<unicodeCommand>⍟</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
 
 </symbols>
