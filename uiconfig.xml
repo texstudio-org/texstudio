@@ -178,6 +178,11 @@
     <insert id="8" text="\v{}" insert="\v{}" icon="accent8"/>
     <insert id="9" text="\u{}" insert="\u{}" icon="accent9"/>
     <insert id="10" text="\H{}" insert="\H{}" icon="accent10"/>
+    <insert id="11" text="\r{}" insert="\r{}" icon="accent11"/>
+    <insert id="12" text="\c{}" insert="\c{}" icon="accent12"/>
+    <insert id="13" text="\k{}" insert="\k{}" icon="accent13"/>
+    <insert id="14" text="\b{}" insert="\b{}" icon="accent14"/>
+    <insert id="15" text="\d{}" insert="\d{}" icon="accent15"/>
   </menu>
 
   <menu id="insertfiles" text="Input/Include &amp;Files">

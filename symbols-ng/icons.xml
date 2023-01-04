@@ -15,7 +15,8 @@
 \usepackage{xcolor,amsmath}
 \setlength{\fboxsep}{0bp}
 \newcommand{\fb}[2][10bp]{\fcolorbox{black!60}{white}{\color{black!60}\parbox[c][#1][c]{#1}{\makebox[#1][c]{#2}}}}
-\newcommand{\pb}[2][8bp]{\parbox[b][#1][b]{#1}{\makebox[#1][c]{#2}}}</additional>
+\newcommand{\pb}[2][8bp]{\parbox[b][#1][b]{#1}{\makebox[#1][c]{#2}}}
+\newcommand{\pt}[2][8bp]{\parbox[t][#1][t]{#1}{\makebox[#1][c]{#2}}}</additional>
 	</preamble>
 
 	<unicodeCommandPackages>
@@ -445,6 +446,76 @@
 	<commandDefinition>
 		<name>accent10_dm</name>
 		<latexCommand>\color{black!2}\pb[6bp]{\H{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent11</name>
+		<latexCommand>\pb[6bp]{\r{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent11_dm</name>
+		<latexCommand>\color{black!2}\pb[6bp]{\r{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent12</name>
+		<latexCommand>\pt[6bp]{\c{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent12_dm</name>
+		<latexCommand>\color{black!2}\pt[6bp]{\c{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent13</name>
+		<latexCommand>\pt[6bp]{\k{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent13_dm</name>
+		<latexCommand>\color{black!2}\pt[6bp]{\k{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent14</name>
+		<latexCommand>\pt[6bp]{\b{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent14_dm</name>
+		<latexCommand>\color{black!2}\pt[6bp]{\b{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent15</name>
+		<latexCommand>\pt[6bp]{\d{a}}</latexCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<iconMode>true</iconMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<name>accent15_dm</name>
+		<latexCommand>\color{black!2}\pt[6bp]{\d{a}}</latexCommand>
 		<!-- <forcePNG>true</forcePNG> -->
 		<iconMode>true</iconMode>
 	</commandDefinition>
