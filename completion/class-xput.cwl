@@ -1,5 +1,5 @@
 # xput class
-# Matthew Bertucci 2022/12/20 for v1.0.1
+# Matthew Bertucci 2023/01/04 for v1.0.2
 
 #include:pgfopts
 #include:tikz
@@ -294,7 +294,6 @@ downsample threshold=%<number%>
 \posy{arg1}{arg2}#S
 \posycell{arg}#S
 \posyrow{arg1}{arg2}#S
-\preventunrestrictedshellexecution#S
 \quality{arg}#S
 \rowsF#S
 \rowsFlex#S
