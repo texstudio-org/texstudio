@@ -2772,15 +2772,21 @@ void ConfigManager::loadTranslations(QString locale)
 		locale = QString(QLocale::system().name()).left(2);
 		if (locale.length() < 2) locale = "en";
 	}
-	QString txsTranslationFile = findResourceFile("texstudio_" + locale + ".qm");
+	QString txsSourceFile = "texstudio_" + locale + ".qm";
+	QString txsTranslationFile = findResourceFile(txsSourceFile);
 
     if (txsTranslationFile.isEmpty()) {
-        txsTranslationFile = findResourceFile("translation/texstudio_" + locale + ".qm");
+        txsSourceFile = "translation/texstudio_" + locale + ".qm";
+        txsTranslationFile = findResourceFile(txsSourceFile);
     }
+    QString qtSourceFile = "qt_" + locale + ".qm";
+    QString qtTranslationFile = findResourceFile(qtSourceFile);
     bool result0=appTranslator->load(txsTranslationFile);
-    bool result1=basicTranslator->load(findResourceFile("qt_" + locale + ".qm"));
+    bool result1=basicTranslator->load(qtTranslationFile);
     if(!result0 || !result1 ){
-        qDebug()<<"loading translations failed !";
+        qDebug().noquote() << "loading translations: "
+                + (txsTranslationFile != "" ? ("\"" + txsTranslationFile + "\"" + (result0 ? " loaded" : " not loaded")) : "\"" + txsSourceFile + "\" not found") + ", "
+                + (qtTranslationFile  != "" ? ("\"" + qtTranslationFile  + "\"" + (result1 ? " loaded" : " not loaded")) : "\"" + qtSourceFile  + "\" not found");
     }
 }
 /*!
