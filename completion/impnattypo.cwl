@@ -4,6 +4,8 @@
 #include:ifluatex
 #include:kvoptions
 #include:xcolor
+#include:luatexbase
+#include:luacode
 
 #keyvals:\usepackage/impnattypo#c
 draft#true,false
