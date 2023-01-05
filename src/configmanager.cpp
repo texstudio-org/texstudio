@@ -2782,7 +2782,7 @@ void ConfigManager::loadTranslations(QString locale)
     QString qtTranslationFile = findResourceFile(qtSourceFile);
     bool result0=appTranslator->load(txsTranslationFile);
     bool result1=basicTranslator->load(qtTranslationFile);
-    if(!result0 || !result1 ){
+    if(locale!="en" && (!result0 || !result1) ){
         qDebug().noquote() << "loading translations: "
                 + (txsTranslationFile != "" ? ("\"" + txsTranslationFile + "\"" + (result0 ? " loaded" : " not loaded")) : "\"" + txsSourceFile + "\" not found") + ", "
                 + (qtTranslationFile  != "" ? ("\"" + qtTranslationFile  + "\"" + (result1 ? " loaded" : " not loaded")) : "\"" + qtSourceFile  + "\" not found");
