@@ -200,7 +200,7 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 #endif
 	searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
 	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
-	searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/translation/"; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
     searchFiles << QCoreApplication::applicationDirPath() + "/help/build/html/"; //windows new manual
 	searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
@@ -208,10 +208,10 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 
 	if (allowOverride) searchFiles << ":/"; //resource fall back
 
-	foreach (const QString &s, additionalFallbackPaths)
+	foreach (const QString &s, additionalFallbackPaths) {
 		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
 		else searchFiles << s + "/";
-
+	}
 	foreach (const QString &fn, searchFiles) {
 		QFileInfo fic(fn + fileName);
 		if (fic.exists() && fic.isReadable())
