@@ -3,2839 +3,2380 @@
 <!DOCTYPE KileSymbolSources>
 <symbols>
 
-   <formatVersion major="0" minor="22"/>
-
-   <symbolGroupName>user</symbolGroupName>
-
-   <preamble>
-      <class>article</class>
-      <arguments>12pt</arguments>
-      <additional>\pagestyle{empty}
-		  \setlength{\parindent}{0cm}
-		  \usepackage[T1]{fontenc}
-      </additional>
-   </preamble>
-
-   <unicodeCommandPackages>
-      
-   </unicodeCommandPackages>
-
-   <!-- insert stuff here    -->
-<symbolGroupName>cyrillic</symbolGroupName>
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRA  -->
-<commandDefinition>
-   <latexCommand>\CYRA</latexCommand>
-   <unicodeCommand>А</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRB  -->
-<commandDefinition>
-   <latexCommand>\CYRB</latexCommand>
-   <unicodeCommand>Б</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRV  -->
-<commandDefinition>
-   <latexCommand>\CYRV</latexCommand>
-   <unicodeCommand>В</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRG  -->
-<commandDefinition>
-   <latexCommand>\CYRG</latexCommand>
-   <unicodeCommand>Г</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRD  -->
-<commandDefinition>
-   <latexCommand>\CYRD</latexCommand>
-   <unicodeCommand>Д</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRE  -->
-<commandDefinition>
-   <latexCommand>\CYRE</latexCommand>
-   <unicodeCommand>Е</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRYO  -->
-<commandDefinition>
-   <latexCommand>\CYRYO</latexCommand>
-   <unicodeCommand>Ё</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRZH  -->
-<commandDefinition>
-   <latexCommand>\CYRZH</latexCommand>
-   <unicodeCommand>Ж</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRZ  -->
-<commandDefinition>
-   <latexCommand>\CYRZ</latexCommand>
-   <unicodeCommand>З</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRI  -->
-<commandDefinition>
-   <latexCommand>\CYRI</latexCommand>
-   <unicodeCommand>И</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRISHRT  -->
-<commandDefinition>
-   <latexCommand>\CYRISHRT</latexCommand>
-   <unicodeCommand>Й</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRK  -->
-<commandDefinition>
-   <latexCommand>\CYRK</latexCommand>
-   <unicodeCommand>К</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRL  -->
-<commandDefinition>
-   <latexCommand>\CYRL</latexCommand>
-   <unicodeCommand>Л</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRM  -->
-<commandDefinition>
-   <latexCommand>\CYRM</latexCommand>
-   <unicodeCommand>М</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRN  -->
-<commandDefinition>
-   <latexCommand>\CYRN</latexCommand>
-   <unicodeCommand>Н</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRO  -->
-<commandDefinition>
-   <latexCommand>\CYRO</latexCommand>
-   <unicodeCommand>О</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRP  -->
-<commandDefinition>
-   <latexCommand>\CYRP</latexCommand>
-   <unicodeCommand>П</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRR  -->
-<commandDefinition>
-   <latexCommand>\CYRR</latexCommand>
-   <unicodeCommand>Р</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRS  -->
-<commandDefinition>
-   <latexCommand>\CYRS</latexCommand>
-   <unicodeCommand>С</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRT  -->
-<commandDefinition>
-   <latexCommand>\CYRT</latexCommand>
-   <unicodeCommand>Т</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRU  -->
-<commandDefinition>
-   <latexCommand>\CYRU</latexCommand>
-   <unicodeCommand>У</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRF  -->
-<commandDefinition>
-   <latexCommand>\CYRF</latexCommand>
-   <unicodeCommand>Ф</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRH  -->
-<commandDefinition>
-   <latexCommand>\CYRH</latexCommand>
-   <unicodeCommand>Х</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRC  -->
-<commandDefinition>
-   <latexCommand>\CYRC</latexCommand>
-   <unicodeCommand>Ц</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRCH  -->
-<commandDefinition>
-   <latexCommand>\CYRCH</latexCommand>
-   <unicodeCommand>Ч</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRSH  -->
-<commandDefinition>
-   <latexCommand>\CYRSH</latexCommand>
-   <unicodeCommand>Ш</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRSHCH  -->
-<commandDefinition>
-   <latexCommand>\CYRSHCH</latexCommand>
-   <unicodeCommand>Щ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRHRDSN  -->
-<commandDefinition>
-   <latexCommand>\CYRHRDSN</latexCommand>
-   <unicodeCommand>Ъ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRERY  -->
-<commandDefinition>
-   <latexCommand>\CYRERY</latexCommand>
-   <unicodeCommand>Ы</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRSFTSN  -->
-<commandDefinition>
-   <latexCommand>\CYRSFTSN</latexCommand>
-   <unicodeCommand>Ь</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYREREV  -->
-<commandDefinition>
-   <latexCommand>\CYREREV</latexCommand>
-   <unicodeCommand>Э</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRYU  -->
-<commandDefinition>
-   <latexCommand>\CYRYU</latexCommand>
-   <unicodeCommand>Ю</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRYA  -->
-<commandDefinition>
-   <latexCommand>\CYRYA</latexCommand>
-   <unicodeCommand>Я</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyra  -->
-<commandDefinition>
-   <latexCommand>\cyra</latexCommand>
-   <unicodeCommand>а</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrb  -->
-<commandDefinition>
-   <latexCommand>\cyrb</latexCommand>
-   <unicodeCommand>б</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrv  -->
-<commandDefinition>
-   <latexCommand>\cyrv</latexCommand>
-   <unicodeCommand>в</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrg  -->
-<commandDefinition>
-   <latexCommand>\cyrg</latexCommand>
-   <unicodeCommand>г</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrd  -->
-<commandDefinition>
-   <latexCommand>\cyrd</latexCommand>
-   <unicodeCommand>д</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyre  -->
-<commandDefinition>
-   <latexCommand>\cyre</latexCommand>
-   <unicodeCommand>е</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyryo  -->
-<commandDefinition>
-   <latexCommand>\cyryo</latexCommand>
-   <unicodeCommand>ё</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrzh  -->
-<commandDefinition>
-   <latexCommand>\cyrzh</latexCommand>
-   <unicodeCommand>ж</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrz  -->
-<commandDefinition>
-   <latexCommand>\cyrz</latexCommand>
-   <unicodeCommand>з</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyri  -->
-<commandDefinition>
-   <latexCommand>\cyri</latexCommand>
-   <unicodeCommand>и</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrishrt  -->
-<commandDefinition>
-   <latexCommand>\cyrishrt</latexCommand>
-   <unicodeCommand>й</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrk  -->
-<commandDefinition>
-   <latexCommand>\cyrk</latexCommand>
-   <unicodeCommand>к</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrl  -->
-<commandDefinition>
-   <latexCommand>\cyrl</latexCommand>
-   <unicodeCommand>л</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrm  -->
-<commandDefinition>
-   <latexCommand>\cyrm</latexCommand>
-   <unicodeCommand>м</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrn  -->
-<commandDefinition>
-   <latexCommand>\cyrn</latexCommand>
-   <unicodeCommand>н</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyro  -->
-<commandDefinition>
-   <latexCommand>\cyro</latexCommand>
-   <unicodeCommand>о</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrp  -->
-<commandDefinition>
-   <latexCommand>\cyrp</latexCommand>
-   <unicodeCommand>п</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrr  -->
-<commandDefinition>
-   <latexCommand>\cyrr</latexCommand>
-   <unicodeCommand>р</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrs  -->
-<commandDefinition>
-   <latexCommand>\cyrs</latexCommand>
-   <unicodeCommand>с</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrt  -->
-<commandDefinition>
-   <latexCommand>\cyrt</latexCommand>
-   <unicodeCommand>т</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyru  -->
-<commandDefinition>
-   <latexCommand>\cyru</latexCommand>
-   <unicodeCommand>у</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrf  -->
-<commandDefinition>
-   <latexCommand>\cyrf</latexCommand>
-   <unicodeCommand>ф</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrh  -->
-<commandDefinition>
-   <latexCommand>\cyrh</latexCommand>
-   <unicodeCommand>х</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrc  -->
-<commandDefinition>
-   <latexCommand>\cyrc</latexCommand>
-   <unicodeCommand>ц</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrch  -->
-<commandDefinition>
-   <latexCommand>\cyrch</latexCommand>
-   <unicodeCommand>ч</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrsh  -->
-<commandDefinition>
-   <latexCommand>\cyrsh</latexCommand>
-   <unicodeCommand>ш</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrshch  -->
-<commandDefinition>
-   <latexCommand>\cyrshch</latexCommand>
-   <unicodeCommand>щ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrhrdsn  -->
-<commandDefinition>
-   <latexCommand>\cyrhrdsn</latexCommand>
-   <unicodeCommand>ъ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrery  -->
-<commandDefinition>
-   <latexCommand>\cyrery</latexCommand>
-   <unicodeCommand>ы</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrsftsn  -->
-<commandDefinition>
-   <latexCommand>\cyrsftsn</latexCommand>
-   <unicodeCommand>ь</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrerev  -->
-<commandDefinition>
-   <latexCommand>\cyrerev</latexCommand>
-   <unicodeCommand>э</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyryu  -->
-<commandDefinition>
-   <latexCommand>\cyryu</latexCommand>
-   <unicodeCommand>ю</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrya  -->
-<commandDefinition>
-   <latexCommand>\cyrya</latexCommand>
-   <unicodeCommand>я</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRABHCH  -->
-<commandDefinition>
-   <latexCommand>\CYRABHCH</latexCommand>
-   <unicodeCommand>Ҽ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRABHCHDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRABHCHDSC</latexCommand>
-   <unicodeCommand>Ҿ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRZHDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRZHDSC</latexCommand>
-   <unicodeCommand>Җ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRABHDZE  -->
-<commandDefinition>
-   <latexCommand>\CYRABHDZE</latexCommand>
-   <unicodeCommand>Ӡ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRZDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRZDSC</latexCommand>
-   <unicodeCommand>Ҙ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \CYRKHK  -->
-<commandDefinition>
-   <latexCommand>\CYRKHK</latexCommand>
-   <unicodeCommand>Ӄ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRKHCRS  -->
-<commandDefinition>
-   <latexCommand>\CYRKHCRS</latexCommand>
-   <unicodeCommand>Ҟ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRKDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRKDSC</latexCommand>
-   <unicodeCommand>Қ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRKVCRS  -->
-<commandDefinition>
-   <latexCommand>\CYRKVCRS</latexCommand>
-   <unicodeCommand>Ҝ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRLJE  -->
-<commandDefinition>
-   <latexCommand>\CYRLJE</latexCommand>
-   <unicodeCommand>Љ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \CYRLDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRLDSC</latexCommand>
-   <unicodeCommand>Ӆ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRMDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRMDSC</latexCommand>
-   <unicodeCommand>Ӎ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRNDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRNDSC</latexCommand>
-   <unicodeCommand>Ң</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRNG  -->
-<commandDefinition>
-   <latexCommand>\CYRNG</latexCommand>
-   <unicodeCommand>Ҥ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRNJE  -->
-<commandDefinition>
-   <latexCommand>\CYRNJE</latexCommand>
-   <unicodeCommand>Њ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \CYRNHK  -->
-<commandDefinition>
-   <latexCommand>\CYRNHK</latexCommand>
-   <unicodeCommand>Ӈ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYROTLD  -->
-<commandDefinition>
-   <latexCommand>\CYROTLD</latexCommand>
-   <unicodeCommand>Ө</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRPHK  -->
-<commandDefinition>
-   <latexCommand>\CYRPHK</latexCommand>
-   <unicodeCommand>Ҧ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRRTICK  -->
-<commandDefinition>
-   <latexCommand>\CYRRTICK</latexCommand>
-   <unicodeCommand>Ҏ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRSDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRSDSC</latexCommand>
-   <unicodeCommand>Ҫ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRTDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRTDSC</latexCommand>
-   <unicodeCommand>Ҭ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRTSHE  -->
-<commandDefinition>
-   <latexCommand>\CYRTSHE</latexCommand>
-   <unicodeCommand>Ћ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRDJE  -->
-<commandDefinition>
-   <latexCommand>\CYRDJE</latexCommand>
-   <unicodeCommand>Ђ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRUSHRT  -->
-<commandDefinition>
-   <latexCommand>\CYRUSHRT</latexCommand>
-   <unicodeCommand>Ў</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRSHHA  -->
-<commandDefinition>
-   <latexCommand>\CYRSHHA</latexCommand>
-   <unicodeCommand>Һ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRGHK  -->
-<commandDefinition>
-   <latexCommand>\CYRGHK</latexCommand>
-   <unicodeCommand>Ҕ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRGUP  -->
-<commandDefinition>
-   <latexCommand>\CYRGUP</latexCommand>
-   <unicodeCommand>Ґ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRGHCRS  -->
-<commandDefinition>
-   <latexCommand>\CYRGHCRS</latexCommand>
-   <unicodeCommand>Ғ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRHDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRHDSC</latexCommand>
-   <unicodeCommand>Ҳ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRDZHE  -->
-<commandDefinition>
-   <latexCommand>\CYRDZHE</latexCommand>
-   <unicodeCommand>Џ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRDZE  -->
-<commandDefinition>
-   <latexCommand>\CYRDZE</latexCommand>
-   <unicodeCommand>Ѕ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRTETSE  -->
-<commandDefinition>
-   <latexCommand>\CYRTETSE</latexCommand>
-   <unicodeCommand>Ҵ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \CYRCHLDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRCHLDSC</latexCommand>
-   <unicodeCommand>Ӌ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRCHVCRS  -->
-<commandDefinition>
-   <latexCommand>\CYRCHVCRS</latexCommand>
-   <unicodeCommand>Ҹ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRCHRDSC  -->
-<commandDefinition>
-   <latexCommand>\CYRCHRDSC</latexCommand>
-   <unicodeCommand>Ҷ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \CYRSEMISFTSN  -->
-<commandDefinition>
-   <latexCommand>\CYRSEMISFTSN</latexCommand>
-   <unicodeCommand>Ҍ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRIE  -->
-<commandDefinition>
-   <latexCommand>\CYRIE</latexCommand>
-   <unicodeCommand>Є</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRSCHWA  -->
-<commandDefinition>
-   <latexCommand>\CYRSCHWA</latexCommand>
-   <unicodeCommand>Ә</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRII  -->
-<commandDefinition>
-   <latexCommand>\CYRII</latexCommand>
-   <unicodeCommand>І</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRJE  -->
-<commandDefinition>
-   <latexCommand>\CYRJE</latexCommand>
-   <unicodeCommand>Ј</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRYI  -->
-<commandDefinition>
-   <latexCommand>\CYRYI</latexCommand>
-   <unicodeCommand>Ї</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRY  -->
-<commandDefinition>
-   <latexCommand>\CYRY</latexCommand>
-   <unicodeCommand>Ү</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRYHCRS  -->
-<commandDefinition>
-   <latexCommand>\CYRYHCRS</latexCommand>
-   <unicodeCommand>Ұ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \CYRAE  -->
-<commandDefinition>
-   <latexCommand>\CYRAE</latexCommand>
-   <unicodeCommand>Ӕ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRABHHA  -->
-<commandDefinition>
-   <latexCommand>\CYRABHHA</latexCommand>
-   <unicodeCommand>Ҩ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \CYRpalochka  -->
-<commandDefinition>
-   <latexCommand>\CYRpalochka</latexCommand>
-   <unicodeCommand>Ӏ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrabhch  -->
-<commandDefinition>
-   <latexCommand>\cyrabhch</latexCommand>
-   <unicodeCommand>ҽ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrabhchdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrabhchdsc</latexCommand>
-   <unicodeCommand>ҿ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrzhdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrzhdsc</latexCommand>
-   <unicodeCommand>җ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrabhdze  -->
-<commandDefinition>
-   <latexCommand>\cyrabhdze</latexCommand>
-   <unicodeCommand>ӡ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrzdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrzdsc</latexCommand>
-   <unicodeCommand>ҙ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \cyrkhk  -->
-<commandDefinition>
-   <latexCommand>\cyrkhk</latexCommand>
-   <unicodeCommand>ӄ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrkhcrs  -->
-<commandDefinition>
-   <latexCommand>\cyrkhcrs</latexCommand>
-   <unicodeCommand>ҟ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrkdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrkdsc</latexCommand>
-   <unicodeCommand>қ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrkvcrs  -->
-<commandDefinition>
-   <latexCommand>\cyrkvcrs</latexCommand>
-   <unicodeCommand>ҝ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrlje  -->
-<commandDefinition>
-   <latexCommand>\cyrlje</latexCommand>
-   <unicodeCommand>љ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \cyrldsc  -->
-<commandDefinition>
-   <latexCommand>\cyrldsc</latexCommand>
-   <unicodeCommand>ӆ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrmdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrmdsc</latexCommand>
-   <unicodeCommand>ӎ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrndsc  -->
-<commandDefinition>
-   <latexCommand>\cyrndsc</latexCommand>
-   <unicodeCommand>ӊ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrng  -->
-<commandDefinition>
-   <latexCommand>\cyrng</latexCommand>
-   <unicodeCommand>ҥ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrnje  -->
-<commandDefinition>
-   <latexCommand>\cyrnje</latexCommand>
-   <unicodeCommand>њ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \cyrnhk  -->
-<commandDefinition>
-   <latexCommand>\cyrnhk</latexCommand>
-   <unicodeCommand>ӈ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrotld  -->
-<commandDefinition>
-   <latexCommand>\cyrotld</latexCommand>
-   <unicodeCommand>ө</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrphk  -->
-<commandDefinition>
-   <latexCommand>\cyrphk</latexCommand>
-   <unicodeCommand>ҧ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrrtick  -->
-<commandDefinition>
-   <latexCommand>\cyrrtick</latexCommand>
-   <unicodeCommand>ҏ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrsdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrsdsc</latexCommand>
-   <unicodeCommand>ҫ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrtdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrtdsc</latexCommand>
-   <unicodeCommand>ҭ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrtshe  -->
-<commandDefinition>
-   <latexCommand>\cyrtshe</latexCommand>
-   <unicodeCommand>ћ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrdje  -->
-<commandDefinition>
-   <latexCommand>\cyrdje</latexCommand>
-   <unicodeCommand>ђ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrushrt  -->
-<commandDefinition>
-   <latexCommand>\cyrushrt</latexCommand>
-   <unicodeCommand>ў</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrshha  -->
-<commandDefinition>
-   <latexCommand>\cyrshha</latexCommand>
-   <unicodeCommand>һ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrghk  -->
-<commandDefinition>
-   <latexCommand>\cyrghk</latexCommand>
-   <unicodeCommand>ҕ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrgup  -->
-<commandDefinition>
-   <latexCommand>\cyrgup</latexCommand>
-   <unicodeCommand>ґ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrghcrs  -->
-<commandDefinition>
-   <latexCommand>\cyrghcrs</latexCommand>
-   <unicodeCommand>ғ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrhdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrhdsc</latexCommand>
-   <unicodeCommand>ҳ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrdzhe  -->
-<commandDefinition>
-   <latexCommand>\cyrdzhe</latexCommand>
-   <unicodeCommand>џ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrdze  -->
-<commandDefinition>
-   <latexCommand>\cyrdze</latexCommand>
-   <unicodeCommand>ѕ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrtetse  -->
-<commandDefinition>
-   <latexCommand>\cyrtetse</latexCommand>
-   <unicodeCommand>ҵ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- arg  \cyrchldsc  -->
-<commandDefinition>
-   <latexCommand>\cyrchldsc</latexCommand>
-   <unicodeCommand>ӌ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2B</arguments>
-   </package>
-   
-</commandDefinition>
-
-<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrchvcrs  -->
-<commandDefinition>
-   <latexCommand>\cyrchvcrs</latexCommand>
-   <unicodeCommand>ҹ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrchrdsc  -->
-<commandDefinition>
-   <latexCommand>\cyrchrdsc</latexCommand>
-   <unicodeCommand>ҷ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrsemisftsn  -->
-<commandDefinition>
-   <latexCommand>\cyrsemisftsn</latexCommand>
-   <unicodeCommand>ҍ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrie  -->
-<commandDefinition>
-   <latexCommand>\cyrie</latexCommand>
-   <unicodeCommand>є</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrschwa  -->
-<commandDefinition>
-   <latexCommand>\cyrschwa</latexCommand>
-   <unicodeCommand>ә</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrii  -->
-<commandDefinition>
-   <latexCommand>\cyrii</latexCommand>
-   <unicodeCommand>і</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
-<!-- arg  \cyrje  -->
-<commandDefinition>
-   <latexCommand>\cyrje</latexCommand>
-   <unicodeCommand>ј</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyryi  -->
-<commandDefinition>
-   <latexCommand>\cyryi</latexCommand>
-   <unicodeCommand>ї</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyry  -->
-<commandDefinition>
-   <latexCommand>\cyry</latexCommand>
-   <unicodeCommand>ү</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyryhcrs  -->
-<commandDefinition>
-   <latexCommand>\cyryhcrs</latexCommand>
-   <unicodeCommand>ұ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- arg  \cyrae  -->
-<commandDefinition>
-   <latexCommand>\cyrae</latexCommand>
-   <unicodeCommand>ӕ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2A</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>ukrainian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \cyrabhha  -->
-<commandDefinition>
-   <latexCommand>\cyrabhha</latexCommand>
-   <unicodeCommand>ҩ</unicodeCommand>
-   
-   <package>
-      <name>fontenc</name>
-      <arguments>T2C</arguments>
-   </package>
-   
-   <package>
-      <name>babel</name>
-      <arguments>russian</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+	<formatVersion major="0" minor="22"/>
+
+	<symbolGroupName>user</symbolGroupName>
+
+	<preamble>
+		<class>standalone</class>
+		<arguments>10bp,margin=1bp</arguments>
+		<additional>\usepackage[T1]{fontenc}</additional>
+	</preamble>
+
+	<unicodeCommandPackages>
+		<package>
+			<name>inputenc</name>
+			<arguments>utf8</arguments>
+		</package>
+	</unicodeCommandPackages>
+
+	<!-- insert stuff here -->
+
+	<symbolGroupName>cyrillic</symbolGroupName>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRA -->
+	<commandDefinition>
+		<latexCommand>\CYRA</latexCommand>
+		<unicodeCommand>А</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRB -->
+	<commandDefinition>
+		<latexCommand>\CYRB</latexCommand>
+		<unicodeCommand>Б</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRV -->
+	<commandDefinition>
+		<latexCommand>\CYRV</latexCommand>
+		<unicodeCommand>В</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRG -->
+	<commandDefinition>
+		<latexCommand>\CYRG</latexCommand>
+		<unicodeCommand>Г</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRD -->
+	<commandDefinition>
+		<latexCommand>\CYRD</latexCommand>
+		<unicodeCommand>Д</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRE -->
+	<commandDefinition>
+		<latexCommand>\CYRE</latexCommand>
+		<unicodeCommand>Е</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRYO -->
+	<commandDefinition>
+		<latexCommand>\CYRYO</latexCommand>
+		<unicodeCommand>Ё</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRZH -->
+	<commandDefinition>
+		<latexCommand>\CYRZH</latexCommand>
+		<unicodeCommand>Ж</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRZ -->
+	<commandDefinition>
+		<latexCommand>\CYRZ</latexCommand>
+		<unicodeCommand>З</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRI -->
+	<commandDefinition>
+		<latexCommand>\CYRI</latexCommand>
+		<unicodeCommand>И</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRISHRT -->
+	<commandDefinition>
+		<latexCommand>\CYRISHRT</latexCommand>
+		<unicodeCommand>Й</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRK -->
+	<commandDefinition>
+		<latexCommand>\CYRK</latexCommand>
+		<unicodeCommand>К</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRL -->
+	<commandDefinition>
+		<latexCommand>\CYRL</latexCommand>
+		<unicodeCommand>Л</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRM -->
+	<commandDefinition>
+		<latexCommand>\CYRM</latexCommand>
+		<unicodeCommand>М</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRN -->
+	<commandDefinition>
+		<latexCommand>\CYRN</latexCommand>
+		<unicodeCommand>Н</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRO -->
+	<commandDefinition>
+		<latexCommand>\CYRO</latexCommand>
+		<unicodeCommand>О</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRP -->
+	<commandDefinition>
+		<latexCommand>\CYRP</latexCommand>
+		<unicodeCommand>П</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRR -->
+	<commandDefinition>
+		<latexCommand>\CYRR</latexCommand>
+		<unicodeCommand>Р</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRS -->
+	<commandDefinition>
+		<latexCommand>\CYRS</latexCommand>
+		<unicodeCommand>С</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRT -->
+	<commandDefinition>
+		<latexCommand>\CYRT</latexCommand>
+		<unicodeCommand>Т</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRU -->
+	<commandDefinition>
+		<latexCommand>\CYRU</latexCommand>
+		<unicodeCommand>У</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRF -->
+	<commandDefinition>
+		<latexCommand>\CYRF</latexCommand>
+		<unicodeCommand>Ф</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRH -->
+	<commandDefinition>
+		<latexCommand>\CYRH</latexCommand>
+		<unicodeCommand>Х</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRC -->
+	<commandDefinition>
+		<latexCommand>\CYRC</latexCommand>
+		<unicodeCommand>Ц</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRCH -->
+	<commandDefinition>
+		<latexCommand>\CYRCH</latexCommand>
+		<unicodeCommand>Ч</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRSH -->
+	<commandDefinition>
+		<latexCommand>\CYRSH</latexCommand>
+		<unicodeCommand>Ш</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRSHCH -->
+	<commandDefinition>
+		<latexCommand>\CYRSHCH</latexCommand>
+		<unicodeCommand>Щ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRHRDSN -->
+	<commandDefinition>
+		<latexCommand>\CYRHRDSN</latexCommand>
+		<unicodeCommand>Ъ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRERY -->
+	<commandDefinition>
+		<latexCommand>\CYRERY</latexCommand>
+		<unicodeCommand>Ы</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRSFTSN -->
+	<commandDefinition>
+		<latexCommand>\CYRSFTSN</latexCommand>
+		<unicodeCommand>Ь</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYREREV -->
+	<commandDefinition>
+		<latexCommand>\CYREREV</latexCommand>
+		<unicodeCommand>Э</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRYU -->
+	<commandDefinition>
+		<latexCommand>\CYRYU</latexCommand>
+		<unicodeCommand>Ю</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRYA -->
+	<commandDefinition>
+		<latexCommand>\CYRYA</latexCommand>
+		<unicodeCommand>Я</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyra -->
+	<commandDefinition>
+		<latexCommand>\cyra</latexCommand>
+		<unicodeCommand>а</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrb -->
+	<commandDefinition>
+		<latexCommand>\cyrb</latexCommand>
+		<unicodeCommand>б</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrv -->
+	<commandDefinition>
+		<latexCommand>\cyrv</latexCommand>
+		<unicodeCommand>в</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrg -->
+	<commandDefinition>
+		<latexCommand>\cyrg</latexCommand>
+		<unicodeCommand>г</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrd -->
+	<commandDefinition>
+		<latexCommand>\cyrd</latexCommand>
+		<unicodeCommand>д</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyre -->
+	<commandDefinition>
+		<latexCommand>\cyre</latexCommand>
+		<unicodeCommand>е</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyryo -->
+	<commandDefinition>
+		<latexCommand>\cyryo</latexCommand>
+		<unicodeCommand>ё</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrzh -->
+	<commandDefinition>
+		<latexCommand>\cyrzh</latexCommand>
+		<unicodeCommand>ж</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrz -->
+	<commandDefinition>
+		<latexCommand>\cyrz</latexCommand>
+		<unicodeCommand>з</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyri -->
+	<commandDefinition>
+		<latexCommand>\cyri</latexCommand>
+		<unicodeCommand>и</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrishrt -->
+	<commandDefinition>
+		<latexCommand>\cyrishrt</latexCommand>
+		<unicodeCommand>й</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrk -->
+	<commandDefinition>
+		<latexCommand>\cyrk</latexCommand>
+		<unicodeCommand>к</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrl -->
+	<commandDefinition>
+		<latexCommand>\cyrl</latexCommand>
+		<unicodeCommand>л</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrm -->
+	<commandDefinition>
+		<latexCommand>\cyrm</latexCommand>
+		<unicodeCommand>м</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrn -->
+	<commandDefinition>
+		<latexCommand>\cyrn</latexCommand>
+		<unicodeCommand>н</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyro -->
+	<commandDefinition>
+		<latexCommand>\cyro</latexCommand>
+		<unicodeCommand>о</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrp -->
+	<commandDefinition>
+		<latexCommand>\cyrp</latexCommand>
+		<unicodeCommand>п</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrr -->
+	<commandDefinition>
+		<latexCommand>\cyrr</latexCommand>
+		<unicodeCommand>р</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrs -->
+	<commandDefinition>
+		<latexCommand>\cyrs</latexCommand>
+		<unicodeCommand>с</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrt -->
+	<commandDefinition>
+		<latexCommand>\cyrt</latexCommand>
+		<unicodeCommand>т</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyru -->
+	<commandDefinition>
+		<latexCommand>\cyru</latexCommand>
+		<unicodeCommand>у</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrf -->
+	<commandDefinition>
+		<latexCommand>\cyrf</latexCommand>
+		<unicodeCommand>ф</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrh -->
+	<commandDefinition>
+		<latexCommand>\cyrh</latexCommand>
+		<unicodeCommand>х</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrc -->
+	<commandDefinition>
+		<latexCommand>\cyrc</latexCommand>
+		<unicodeCommand>ц</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrch -->
+	<commandDefinition>
+		<latexCommand>\cyrch</latexCommand>
+		<unicodeCommand>ч</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrsh -->
+	<commandDefinition>
+		<latexCommand>\cyrsh</latexCommand>
+		<unicodeCommand>ш</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrshch -->
+	<commandDefinition>
+		<latexCommand>\cyrshch</latexCommand>
+		<unicodeCommand>щ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrhrdsn -->
+	<commandDefinition>
+		<latexCommand>\cyrhrdsn</latexCommand>
+		<unicodeCommand>ъ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrery -->
+	<commandDefinition>
+		<latexCommand>\cyrery</latexCommand>
+		<unicodeCommand>ы</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrsftsn -->
+	<commandDefinition>
+		<latexCommand>\cyrsftsn</latexCommand>
+		<unicodeCommand>ь</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrerev -->
+	<commandDefinition>
+		<latexCommand>\cyrerev</latexCommand>
+		<unicodeCommand>э</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyryu -->
+	<commandDefinition>
+		<latexCommand>\cyryu</latexCommand>
+		<unicodeCommand>ю</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrya -->
+	<commandDefinition>
+		<latexCommand>\cyrya</latexCommand>
+		<unicodeCommand>я</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRABHCH -->
+	<commandDefinition>
+		<latexCommand>\CYRABHCH</latexCommand>
+		<unicodeCommand>Ҽ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRABHCHDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRABHCHDSC</latexCommand>
+		<unicodeCommand>Ҿ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRZHDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRZHDSC</latexCommand>
+		<unicodeCommand>Җ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \CYRABHDZE -->
+	<commandDefinition>
+		<latexCommand>\CYRABHDZE</latexCommand>
+		<unicodeCommand>Ӡ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRZDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRZDSC</latexCommand>
+		<unicodeCommand>Ҙ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \CYRKHK -->
+	<commandDefinition>
+		<latexCommand>\CYRKHK</latexCommand>
+		<unicodeCommand>Ӄ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \CYRKHCRS -->
+	<commandDefinition>
+		<latexCommand>\CYRKHCRS</latexCommand>
+		<unicodeCommand>Ҟ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \CYRKDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRKDSC</latexCommand>
+		<unicodeCommand>Қ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRKVCRS -->
+	<commandDefinition>
+		<latexCommand>\CYRKVCRS</latexCommand>
+		<unicodeCommand>Ҝ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRLJE -->
+	<commandDefinition>
+		<latexCommand>\CYRLJE</latexCommand>
+		<unicodeCommand>Љ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRLDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRLDSC</latexCommand>
+		<unicodeCommand>Ӆ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \CYRMDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRMDSC</latexCommand>
+		<unicodeCommand>Ӎ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \CYRNDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRNDSC</latexCommand>
+		<unicodeCommand>Ң</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRNG -->
+	<commandDefinition>
+		<latexCommand>\CYRNG</latexCommand>
+		<unicodeCommand>Ҥ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRNJE -->
+	<commandDefinition>
+		<latexCommand>\CYRNJE</latexCommand>
+		<unicodeCommand>Њ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \CYRNHK -->
+	<commandDefinition>
+		<latexCommand>\CYRNHK</latexCommand>
+		<unicodeCommand>Ӈ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYROTLD -->
+	<commandDefinition>
+		<latexCommand>\CYROTLD</latexCommand>
+		<unicodeCommand>Ө</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRPHK -->
+	<commandDefinition>
+		<latexCommand>\CYRPHK</latexCommand>
+		<unicodeCommand>Ҧ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRRTICK -->
+	<commandDefinition>
+		<latexCommand>\CYRRTICK</latexCommand>
+		<unicodeCommand>Ҏ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRSDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRSDSC</latexCommand>
+		<unicodeCommand>Ҫ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRTDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRTDSC</latexCommand>
+		<unicodeCommand>Ҭ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRTSHE -->
+	<commandDefinition>
+		<latexCommand>\CYRTSHE</latexCommand>
+		<unicodeCommand>Ћ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRDJE -->
+	<commandDefinition>
+		<latexCommand>\CYRDJE</latexCommand>
+		<unicodeCommand>Ђ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRUSHRT -->
+	<commandDefinition>
+		<latexCommand>\CYRUSHRT</latexCommand>
+		<unicodeCommand>Ў</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRSHHA -->
+	<commandDefinition>
+		<latexCommand>\CYRSHHA</latexCommand>
+		<unicodeCommand>Һ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \CYRGHK -->
+	<commandDefinition>
+		<latexCommand>\CYRGHK</latexCommand>
+		<unicodeCommand>Ҕ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRGUP -->
+	<commandDefinition>
+		<latexCommand>\CYRGUP</latexCommand>
+		<unicodeCommand>Ґ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRGHCRS -->
+	<commandDefinition>
+		<latexCommand>\CYRGHCRS</latexCommand>
+		<unicodeCommand>Ғ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRHDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRHDSC</latexCommand>
+		<unicodeCommand>Ҳ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRDZHE -->
+	<commandDefinition>
+		<latexCommand>\CYRDZHE</latexCommand>
+		<unicodeCommand>Џ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRDZE -->
+	<commandDefinition>
+		<latexCommand>\CYRDZE</latexCommand>
+		<unicodeCommand>Ѕ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRTETSE -->
+	<commandDefinition>
+		<latexCommand>\CYRTETSE</latexCommand>
+		<unicodeCommand>Ҵ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \CYRCHLDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRCHLDSC</latexCommand>
+		<unicodeCommand>Ӌ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRCHVCRS -->
+	<commandDefinition>
+		<latexCommand>\CYRCHVCRS</latexCommand>
+		<unicodeCommand>Ҹ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRCHRDSC -->
+	<commandDefinition>
+		<latexCommand>\CYRCHRDSC</latexCommand>
+		<unicodeCommand>Ҷ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \CYRSEMISFTSN -->
+	<commandDefinition>
+		<latexCommand>\CYRSEMISFTSN</latexCommand>
+		<unicodeCommand>Ҍ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRIE -->
+	<commandDefinition>
+		<latexCommand>\CYRIE</latexCommand>
+		<unicodeCommand>Є</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRSCHWA -->
+	<commandDefinition>
+		<latexCommand>\CYRSCHWA</latexCommand>
+		<unicodeCommand>Ә</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRII -->
+	<commandDefinition>
+		<latexCommand>\CYRII</latexCommand>
+		<unicodeCommand>І</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRJE -->
+	<commandDefinition>
+		<latexCommand>\CYRJE</latexCommand>
+		<unicodeCommand>Ј</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRYI -->
+	<commandDefinition>
+		<latexCommand>\CYRYI</latexCommand>
+		<unicodeCommand>Ї</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRY -->
+	<commandDefinition>
+		<latexCommand>\CYRY</latexCommand>
+		<unicodeCommand>Ү</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRYHCRS -->
+	<commandDefinition>
+		<latexCommand>\CYRYHCRS</latexCommand>
+		<unicodeCommand>Ұ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \CYRAE -->
+	<commandDefinition>
+		<latexCommand>\CYRAE</latexCommand>
+		<unicodeCommand>Ӕ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRABHHA -->
+	<commandDefinition>
+		<latexCommand>\CYRABHHA</latexCommand>
+		<unicodeCommand>Ҩ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \CYRpalochka -->
+	<commandDefinition>
+		<latexCommand>\CYRpalochka</latexCommand>
+		<unicodeCommand>Ӏ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrabhch -->
+	<commandDefinition>
+		<latexCommand>\cyrabhch</latexCommand>
+		<unicodeCommand>ҽ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrabhchdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrabhchdsc</latexCommand>
+		<unicodeCommand>ҿ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrzhdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrzhdsc</latexCommand>
+		<unicodeCommand>җ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrabhdze -->
+	<commandDefinition>
+		<latexCommand>\cyrabhdze</latexCommand>
+		<unicodeCommand>ӡ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrzdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrzdsc</latexCommand>
+		<unicodeCommand>ҙ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrkhk -->
+	<commandDefinition>
+		<latexCommand>\cyrkhk</latexCommand>
+		<unicodeCommand>ӄ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \cyrkhcrs -->
+	<commandDefinition>
+		<latexCommand>\cyrkhcrs</latexCommand>
+		<unicodeCommand>ҟ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \cyrkdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrkdsc</latexCommand>
+		<unicodeCommand>қ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrkvcrs -->
+	<commandDefinition>
+		<latexCommand>\cyrkvcrs</latexCommand>
+		<unicodeCommand>ҝ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrlje -->
+	<commandDefinition>
+		<latexCommand>\cyrlje</latexCommand>
+		<unicodeCommand>љ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrldsc -->
+	<commandDefinition>
+		<latexCommand>\cyrldsc</latexCommand>
+		<unicodeCommand>ӆ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \cyrmdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrmdsc</latexCommand>
+		<unicodeCommand>ӎ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \cyrndsc -->
+	<commandDefinition>
+		<latexCommand>\cyrndsc</latexCommand>
+		<unicodeCommand>ӊ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrng -->
+	<commandDefinition>
+		<latexCommand>\cyrng</latexCommand>
+		<unicodeCommand>ҥ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrnje -->
+	<commandDefinition>
+		<latexCommand>\cyrnje</latexCommand>
+		<unicodeCommand>њ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrnhk -->
+	<commandDefinition>
+		<latexCommand>\cyrnhk</latexCommand>
+		<unicodeCommand>ӈ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+		
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \cyrotld -->
+	<commandDefinition>
+		<latexCommand>\cyrotld</latexCommand>
+		<unicodeCommand>ө</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrphk -->
+	<commandDefinition>
+		<latexCommand>\cyrphk</latexCommand>
+		<unicodeCommand>ҧ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrrtick -->
+	<commandDefinition>
+		<latexCommand>\cyrrtick</latexCommand>
+		<unicodeCommand>ҏ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrsdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrsdsc</latexCommand>
+		<unicodeCommand>ҫ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrtdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrtdsc</latexCommand>
+		<unicodeCommand>ҭ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrtshe -->
+	<commandDefinition>
+		<latexCommand>\cyrtshe</latexCommand>
+		<unicodeCommand>ћ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrdje -->
+	<commandDefinition>
+		<latexCommand>\cyrdje</latexCommand>
+		<unicodeCommand>ђ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrushrt -->
+	<commandDefinition>
+		<latexCommand>\cyrushrt</latexCommand>
+		<unicodeCommand>ў</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrshha -->
+	<commandDefinition>
+		<latexCommand>\cyrshha</latexCommand>
+		<unicodeCommand>һ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \cyrghk -->
+	<commandDefinition>
+		<latexCommand>\cyrghk</latexCommand>
+		<unicodeCommand>ҕ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrgup -->
+	<commandDefinition>
+		<latexCommand>\cyrgup</latexCommand>
+		<unicodeCommand>ґ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrghcrs -->
+	<commandDefinition>
+		<latexCommand>\cyrghcrs</latexCommand>
+		<unicodeCommand>ғ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrhdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrhdsc</latexCommand>
+		<unicodeCommand>ҳ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrdzhe -->
+	<commandDefinition>
+		<latexCommand>\cyrdzhe</latexCommand>
+		<unicodeCommand>џ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrdze -->
+	<commandDefinition>
+		<latexCommand>\cyrdze</latexCommand>
+		<unicodeCommand>ѕ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrtetse -->
+	<commandDefinition>
+		<latexCommand>\cyrtetse</latexCommand>
+		<unicodeCommand>ҵ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \cyrchldsc -->
+	<commandDefinition>
+		<latexCommand>\cyrchldsc</latexCommand>
+		<unicodeCommand>ӌ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T2B</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc,fontenc,mathtext ,pkgsarg=koi8-r,T2B, ,savepkgs=inputenc,fontenc,mathtext ,savepkgsarg=koi8-r,T2B,-->
+	<!-- arg \cyrchvcrs -->
+	<commandDefinition>
+		<latexCommand>\cyrchvcrs</latexCommand>
+		<unicodeCommand>ҹ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrchrdsc -->
+	<commandDefinition>
+		<latexCommand>\cyrchrdsc</latexCommand>
+		<unicodeCommand>ҷ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrsemisftsn -->
+	<commandDefinition>
+		<latexCommand>\cyrsemisftsn</latexCommand>
+		<unicodeCommand>ҍ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrie -->
+	<commandDefinition>
+		<latexCommand>\cyrie</latexCommand>
+		<unicodeCommand>є</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrschwa -->
+	<commandDefinition>
+		<latexCommand>\cyrschwa</latexCommand>
+		<unicodeCommand>ә</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrii -->
+	<commandDefinition>
+		<latexCommand>\cyrii</latexCommand>
+		<unicodeCommand>і</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=russian,koi8-r,T2C, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=russian,koi8-r,T2C,-->
+	<!-- arg \cyrje -->
+	<commandDefinition>
+		<latexCommand>\cyrje</latexCommand>
+		<unicodeCommand>ј</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyryi -->
+	<commandDefinition>
+		<latexCommand>\cyryi</latexCommand>
+		<unicodeCommand>ї</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyry -->
+	<commandDefinition>
+		<latexCommand>\cyry</latexCommand>
+		<unicodeCommand>ү</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyryhcrs -->
+	<commandDefinition>
+		<latexCommand>\cyryhcrs</latexCommand>
+		<unicodeCommand>ұ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrae -->
+	<commandDefinition>
+		<latexCommand>\cyrae</latexCommand>
+		<unicodeCommand>ӕ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2A</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>ukrainian</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
+	<!-- arg \cyrabhha -->
+	<commandDefinition>
+		<latexCommand>\cyrabhha</latexCommand>
+		<unicodeCommand>ҩ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T2C</arguments>
+		</package>
+		<package>
+			<name>babel</name>
+			<arguments>russian</arguments>
+		</package>
+	</commandDefinition>
+
 </symbols>
-

@@ -3,1425 +3,2673 @@
 <!DOCTYPE KileSymbolSources>
 <symbols>
 
-   <formatVersion major="0" minor ="22" />
-
-   <symbolGroupName>user</symbolGroupName>
-
-   <preamble>
-      <class>article</class>
-      <arguments>12pt</arguments>
-      <additional>\pagestyle{empty}
-		  \setlength{\parindent}{0cm}
-		  \usepackage[T1]{fontenc}
-      </additional>
-   </preamble>
-
-   <unicodeCommandPackages>
-      <package>
-         <name>inputenc</name>
-         <arguments>utf8</arguments>
-      </package>
-   </unicodeCommandPackages>
-
-   <!-- insert stuff here    -->
-<symbolGroupName>special</symbolGroupName>
-
-<commandDefinition>
-   <latexCommand>\"{A}</latexCommand>
-   <unicodeCommand>Ä</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{A}  -->
-<commandDefinition>
-   <latexCommand>\H{A}</latexCommand>
-   <unicodeCommand>A̋</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{A}  -->
-<commandDefinition>
-   <latexCommand>\'{A}</latexCommand>
-   <unicodeCommand>Á</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{A}  -->
-<commandDefinition>
-   <latexCommand>\`{A}</latexCommand>
-   <unicodeCommand>À</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{A}  -->
-<commandDefinition>
-   <latexCommand>\~{A}</latexCommand>
-   <unicodeCommand>Ã</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{A}  -->
-<commandDefinition>
-   <latexCommand>\^{A}</latexCommand>
-   <unicodeCommand>Â</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{A}  -->
-<commandDefinition>
-   <latexCommand>\v{A}</latexCommand>
-   <unicodeCommand>Ǎ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{A}  -->
-<commandDefinition>
-   <latexCommand>\u{A}</latexCommand>
-   <unicodeCommand>Ă</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={A}  -->
-<commandDefinition>
-   <latexCommand>\={A}</latexCommand>
-   <unicodeCommand>Ā</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \AA{}  -->
-<commandDefinition>
-   <latexCommand>\AA{}</latexCommand>
-   <unicodeCommand>Å</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{A}  -->
-<commandDefinition>
-   <latexCommand>\k{A}</latexCommand>
-   <unicodeCommand>Ą</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \AE{}  -->
-<commandDefinition>
-   <latexCommand>\AE{}</latexCommand>
-   <unicodeCommand>Æ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{a}  -->
-<commandDefinition>
-   <latexCommand>\"{a}</latexCommand>
-   <unicodeCommand>ä</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{a}  -->
-<commandDefinition>
-   <latexCommand>\H{a}</latexCommand>
-   <unicodeCommand>a̋</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{a}  -->
-<commandDefinition>
-   <latexCommand>\'{a}</latexCommand>
-   <unicodeCommand>á</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{a}  -->
-<commandDefinition>
-   <latexCommand>\`{a}</latexCommand>
-   <unicodeCommand>à</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{a}  -->
-<commandDefinition>
-   <latexCommand>\~{a}</latexCommand>
-   <unicodeCommand>ã</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{a}  -->
-<commandDefinition>
-   <latexCommand>\^{a}</latexCommand>
-   <unicodeCommand>â</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{a}  -->
-<commandDefinition>
-   <latexCommand>\v{a}</latexCommand>
-   <unicodeCommand>ǎ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{a}  -->
-<commandDefinition>
-   <latexCommand>\u{a}</latexCommand>
-   <unicodeCommand>ă</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={a}  -->
-<commandDefinition>
-   <latexCommand>\={a}</latexCommand>
-   <unicodeCommand>ā</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \aa{}  -->
-<commandDefinition>
-   <latexCommand>\aa{}</latexCommand>
-   <unicodeCommand>å</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{a}  -->
-<commandDefinition>
-   <latexCommand>\k{a}</latexCommand>
-   <unicodeCommand>ą</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \ae{}  -->
-<commandDefinition>
-   <latexCommand>\ae{}</latexCommand>
-   <unicodeCommand>æ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{C}  -->
-<commandDefinition>
-   <latexCommand>\'{C}</latexCommand>
-   <unicodeCommand>Ć</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{C}  -->
-<commandDefinition>
-   <latexCommand>\u{C}</latexCommand>
-   <unicodeCommand>C̆</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{C}  -->
-<commandDefinition>
-   <latexCommand>\c{C}</latexCommand>
-   <unicodeCommand>Ç</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{c}  -->
-<commandDefinition>
-   <latexCommand>\'{c}</latexCommand>
-   <unicodeCommand>ć</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{c}  -->
-<commandDefinition>
-   <latexCommand>\u{c}</latexCommand>
-   <unicodeCommand>c̆</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{c}  -->
-<commandDefinition>
-   <latexCommand>\c{c}</latexCommand>
-   <unicodeCommand>ç</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{D}  -->
-<commandDefinition>
-   <latexCommand>\v{D}</latexCommand>
-   <unicodeCommand>Ď</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \DJ{}  -->
-<commandDefinition>
-   <latexCommand>\DJ{}</latexCommand>
-   <unicodeCommand>Đ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \DH{}  -->
-<commandDefinition>
-   <latexCommand>\DH{}</latexCommand>
-   <unicodeCommand>Ð</unicodeCommand>
-   <forcePNG>true</forcePNG>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{d}  -->
-<commandDefinition>
-   <latexCommand>\v{d}</latexCommand>
-   <unicodeCommand>ď</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \dj{}  -->
-<commandDefinition>
-   <latexCommand>\dj{}</latexCommand>
-   <unicodeCommand>đ</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \dh{}  -->
-<commandDefinition>
-   <latexCommand>\dh{}</latexCommand>
-   <unicodeCommand>ð</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{E}  -->
-<commandDefinition>
-   <latexCommand>\"{E}</latexCommand>
-   <unicodeCommand>Ë</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{E}  -->
-<commandDefinition>
-   <latexCommand>\H{E}</latexCommand>
-   <unicodeCommand>Ế</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \.{E}  -->
-<commandDefinition>
-   <latexCommand>\.{E}</latexCommand>
-   <unicodeCommand>Ė</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{E}  -->
-<commandDefinition>
-   <latexCommand>\'{E}</latexCommand>
-   <unicodeCommand>É</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{E}  -->
-<commandDefinition>
-   <latexCommand>\`{E}</latexCommand>
-   <unicodeCommand>È</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{E}  -->
-<commandDefinition>
-   <latexCommand>\^{E}</latexCommand>
-   <unicodeCommand>Ê</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{E}  -->
-<commandDefinition>
-   <latexCommand>\v{E}</latexCommand>
-   <unicodeCommand>Ě</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{E}  -->
-<commandDefinition>
-   <latexCommand>\u{E}</latexCommand>
-   <unicodeCommand>Ĕ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={E}  -->
-<commandDefinition>
-   <latexCommand>\={E}</latexCommand>
-   <unicodeCommand>Ē</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{E}  -->
-<commandDefinition>
-   <latexCommand>\k{E}</latexCommand>
-   <unicodeCommand>Ę</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{e}  -->
-<commandDefinition>
-   <latexCommand>\"{e}</latexCommand>
-   <unicodeCommand>ë</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{e}  -->
-<commandDefinition>
-   <latexCommand>\H{e}</latexCommand>
-   <unicodeCommand>ế</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \.{e}  -->
-<commandDefinition>
-   <latexCommand>\.{e}</latexCommand>
-   <unicodeCommand>ė</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{e}  -->
-<commandDefinition>
-   <latexCommand>\'{e}</latexCommand>
-   <unicodeCommand>é</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{e}  -->
-<commandDefinition>
-   <latexCommand>\`{e}</latexCommand>
-   <unicodeCommand>è</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{e}  -->
-<commandDefinition>
-   <latexCommand>\^{e}</latexCommand>
-   <unicodeCommand>ê</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{e}  -->
-<commandDefinition>
-   <latexCommand>\v{e}</latexCommand>
-   <unicodeCommand>ě</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{e}  -->
-<commandDefinition>
-   <latexCommand>\u{e}</latexCommand>
-   <unicodeCommand>ĕ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={e}  -->
-<commandDefinition>
-   <latexCommand>\={e}</latexCommand>
-   <unicodeCommand>ē</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{e}  -->
-<commandDefinition>
-   <latexCommand>\k{e}</latexCommand>
-   <unicodeCommand>ę</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{G}  -->
-<commandDefinition>
-   <latexCommand>\c{G}</latexCommand>
-   <unicodeCommand>Ģ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{G}  -->
-<commandDefinition>
-   <latexCommand>\'{G}</latexCommand>
-   <unicodeCommand>Ǵ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{g}  -->
-<commandDefinition>
-   <latexCommand>\c{g}</latexCommand>
-   <unicodeCommand>ģ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{g}  -->
-<commandDefinition>
-   <latexCommand>\'{g}</latexCommand>
-   <unicodeCommand>ǵ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{I}  -->
-<commandDefinition>
-   <latexCommand>\"{I}</latexCommand>
-   <unicodeCommand>Ï</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{I}  -->
-<commandDefinition>
-   <latexCommand>\H{I}</latexCommand>
-   <unicodeCommand>I̋</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{I}  -->
-<commandDefinition>
-   <latexCommand>\'{I}</latexCommand>
-   <unicodeCommand>Í</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{I}  -->
-<commandDefinition>
-   <latexCommand>\`{I}</latexCommand>
-   <unicodeCommand>Ì</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{I}  -->
-<commandDefinition>
-   <latexCommand>\~{I}</latexCommand>
-   <unicodeCommand>Ĩ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{I}  -->
-<commandDefinition>
-   <latexCommand>\^{I}</latexCommand>
-   <unicodeCommand>Î</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={I}  -->
-<commandDefinition>
-   <latexCommand>\={I}</latexCommand>
-   <unicodeCommand>Ī</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{I}  -->
-<commandDefinition>
-   <latexCommand>\k{I}</latexCommand>
-   <unicodeCommand>Į</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{\i}  -->
-<commandDefinition>
-   <latexCommand>\"{\i}</latexCommand>
-   <unicodeCommand>ï</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{\i}  -->
-<commandDefinition>
-   <latexCommand>\H{\i}</latexCommand>
-   <unicodeCommand>i̋</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{\i}  -->
-<commandDefinition>
-   <latexCommand>\'{\i}</latexCommand>
-   <unicodeCommand>í</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{\i}  -->
-<commandDefinition>
-   <latexCommand>\`{\i}</latexCommand>
-   <unicodeCommand>ì</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{\i}  -->
-<commandDefinition>
-   <latexCommand>\~{\i}</latexCommand>
-   <unicodeCommand>ĩ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{\i}  -->
-<commandDefinition>
-   <latexCommand>\^{\i}</latexCommand>
-   <unicodeCommand>î</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={\i}  -->
-<commandDefinition>
-   <latexCommand>\={\i}</latexCommand>
-   <unicodeCommand>ī</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{\i}  -->
-<commandDefinition>
-   <latexCommand>\k{\i}</latexCommand>
-   <unicodeCommand>į</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{K}  -->
-<commandDefinition>
-   <latexCommand>\c{K}</latexCommand>
-   <unicodeCommand>Ķ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{k}  -->
-<commandDefinition>
-   <latexCommand>\c{k}</latexCommand>
-   <unicodeCommand>ķ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{L}  -->
-<commandDefinition>
-   <latexCommand>\c{L}</latexCommand>
-   <unicodeCommand>Ļ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{L}  -->
-<commandDefinition>
-   <latexCommand>\'{L}</latexCommand>
-   <unicodeCommand>Ĺ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{L}  -->
-<commandDefinition>
-   <latexCommand>\u{L}</latexCommand>
-   <unicodeCommand>L̆</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{L}  -->
-<commandDefinition>
-   <latexCommand>\v{L}</latexCommand>
-   <unicodeCommand>Ľ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \L{}  -->
-<commandDefinition>
-   <latexCommand>\L{}</latexCommand>
-   <unicodeCommand>Ł</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{l}  -->
-<commandDefinition>
-   <latexCommand>\c{l}</latexCommand>
-   <unicodeCommand>ļ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{l}  -->
-<commandDefinition>
-   <latexCommand>\'{l}</latexCommand>
-   <unicodeCommand>ĺ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{l}  -->
-<commandDefinition>
-   <latexCommand>\u{l}</latexCommand>
-   <unicodeCommand>l̆</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{l}  -->
-<commandDefinition>
-   <latexCommand>\v{l}</latexCommand>
-   <unicodeCommand>ľ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \l{}  -->
-<commandDefinition>
-   <latexCommand>\l{}</latexCommand>
-   <unicodeCommand>ł</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{N}  -->
-<commandDefinition>
-   <latexCommand>\c{N}</latexCommand>
-   <unicodeCommand>Ņ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{N}  -->
-<commandDefinition>
-   <latexCommand>\'{N}</latexCommand>
-   <unicodeCommand>Ń</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{N}  -->
-<commandDefinition>
-   <latexCommand>\~{N}</latexCommand>
-   <unicodeCommand>Ñ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{N}  -->
-<commandDefinition>
-   <latexCommand>\v{N}</latexCommand>
-   <unicodeCommand>Ň</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{N}  -->
-<commandDefinition>
-   <latexCommand>\u{N}</latexCommand>
-   <unicodeCommand>N̆</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \NG{}  -->
-<commandDefinition>
-   <latexCommand>\NG{}</latexCommand>
-   <unicodeCommand>Ŋ</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{n}  -->
-<commandDefinition>
-   <latexCommand>\c{n}</latexCommand>
-   <unicodeCommand>ņ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{n}  -->
-<commandDefinition>
-   <latexCommand>\'{n}</latexCommand>
-   <unicodeCommand>ń</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{n}  -->
-<commandDefinition>
-   <latexCommand>\~{n}</latexCommand>
-   <unicodeCommand>ñ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{n}  -->
-<commandDefinition>
-   <latexCommand>\v{n}</latexCommand>
-   <unicodeCommand>ň</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{n}  -->
-<commandDefinition>
-   <latexCommand>\u{n}</latexCommand>
-   <unicodeCommand>n̆</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \ng{}  -->
-<commandDefinition>
-   <latexCommand>\ng{}</latexCommand>
-   <unicodeCommand>ŋ</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{O}  -->
-<commandDefinition>
-   <latexCommand>\"{O}</latexCommand>
-   <unicodeCommand>Ö</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{O}  -->
-<commandDefinition>
-   <latexCommand>\H{O}</latexCommand>
-   <unicodeCommand>Ő</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{O}  -->
-<commandDefinition>
-   <latexCommand>\'{O}</latexCommand>
-   <unicodeCommand>Ó</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{O}  -->
-<commandDefinition>
-   <latexCommand>\`{O}</latexCommand>
-   <unicodeCommand>Ò</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{O}  -->
-<commandDefinition>
-   <latexCommand>\~{O}</latexCommand>
-   <unicodeCommand>Õ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{O}  -->
-<commandDefinition>
-   <latexCommand>\^{O}</latexCommand>
-   <unicodeCommand>Ô</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{O}  -->
-<commandDefinition>
-   <latexCommand>\v{O}</latexCommand>
-   <unicodeCommand>Ǒ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{O}  -->
-<commandDefinition>
-   <latexCommand>\u{O}</latexCommand>
-   <unicodeCommand>Ŏ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={O}  -->
-<commandDefinition>
-   <latexCommand>\={O}</latexCommand>
-   <unicodeCommand>Ō</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \O{}  -->
-<commandDefinition>
-   <latexCommand>\O{}</latexCommand>
-   <unicodeCommand>Ø</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \OE{}  -->
-<commandDefinition>
-   <latexCommand>\OE{}</latexCommand>
-   <unicodeCommand>Œ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{O}  -->
-<commandDefinition>
-   <latexCommand>\k{O}</latexCommand>
-   <unicodeCommand>Ǫ</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{o}  -->
-<commandDefinition>
-   <latexCommand>\"{o}</latexCommand>
-   <unicodeCommand>ö</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{o}  -->
-<commandDefinition>
-   <latexCommand>\H{o}</latexCommand>
-   <unicodeCommand>ő</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{o}  -->
-<commandDefinition>
-   <latexCommand>\'{o}</latexCommand>
-   <unicodeCommand>ó</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{o}  -->
-<commandDefinition>
-   <latexCommand>\`{o}</latexCommand>
-   <unicodeCommand>ò</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{o}  -->
-<commandDefinition>
-   <latexCommand>\~{o}</latexCommand>
-   <unicodeCommand>õ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{o}  -->
-<commandDefinition>
-   <latexCommand>\^{o}</latexCommand>
-   <unicodeCommand>ô</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{o}  -->
-<commandDefinition>
-   <latexCommand>\v{o}</latexCommand>
-   <unicodeCommand>ǒ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \u{o}  -->
-<commandDefinition>
-   <latexCommand>\u{o}</latexCommand>
-   <unicodeCommand>ŏ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={o}  -->
-<commandDefinition>
-   <latexCommand>\={o}</latexCommand>
-   <unicodeCommand>ō</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \o{}  -->
-<commandDefinition>
-   <latexCommand>\o{}</latexCommand>
-   <unicodeCommand>ø</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \oe{}  -->
-<commandDefinition>
-   <latexCommand>\oe{}</latexCommand>
-   <unicodeCommand>œ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{o}  -->
-<commandDefinition>
-   <latexCommand>\k{o}</latexCommand>
-   <unicodeCommand>ǫ</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \TH{}  -->
-<commandDefinition>
-   <latexCommand>\TH{}</latexCommand>
-   <unicodeCommand>Þ</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \th{}  -->
-<commandDefinition>
-   <latexCommand>\th{}</latexCommand>
-   <unicodeCommand>þ</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{R}  -->
-<commandDefinition>
-   <latexCommand>\c{R}</latexCommand>
-   <unicodeCommand>Ŗ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{R}  -->
-<commandDefinition>
-   <latexCommand>\'{R}</latexCommand>
-   <unicodeCommand>Ŕ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{R}  -->
-<commandDefinition>
-   <latexCommand>\v{R}</latexCommand>
-   <unicodeCommand>Ř</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{r}  -->
-<commandDefinition>
-   <latexCommand>\c{r}</latexCommand>
-   <unicodeCommand>ŗ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{r}  -->
-<commandDefinition>
-   <latexCommand>\'{r}</latexCommand>
-   <unicodeCommand>ŕ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{r}  -->
-<commandDefinition>
-   <latexCommand>\v{r}</latexCommand>
-   <unicodeCommand>ř</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{S}  -->
-<commandDefinition>
-   <latexCommand>\c{S}</latexCommand>
-   <unicodeCommand>Ş</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \textcommabelow{S}  -->
-<commandDefinition>
-   <latexCommand>\textcommabelow{S}</latexCommand>
-   <unicodeCommand>Ș</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>latin10</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{S}  -->
-<commandDefinition>
-   <latexCommand>\'{S}</latexCommand>
-   <unicodeCommand>Ś</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{S}  -->
-<commandDefinition>
-   <latexCommand>\v{S}</latexCommand>
-   <unicodeCommand>Š</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{s}  -->
-<commandDefinition>
-   <latexCommand>\c{s}</latexCommand>
-   <unicodeCommand>ş</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \textcommabelow{s}  -->
-<commandDefinition>
-   <latexCommand>\textcommabelow{s}</latexCommand>
-   <unicodeCommand>ș</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>latin10</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{s}  -->
-<commandDefinition>
-   <latexCommand>\'{s}</latexCommand>
-   <unicodeCommand>ś</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{s}  -->
-<commandDefinition>
-   <latexCommand>\v{s}</latexCommand>
-   <unicodeCommand>š</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \ss{}  -->
-<commandDefinition>
-   <latexCommand>\ss{}</latexCommand>
-   <unicodeCommand>ß</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \SS{}  -->
-<commandDefinition>
-   <latexCommand>\SS{}</latexCommand>
-   <unicodeCommand>SS</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{T}  -->
-<commandDefinition>
-   <latexCommand>\c{T}</latexCommand>
-   <unicodeCommand>Ţ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \textcommabelow{T}  -->
-<commandDefinition>
-   <latexCommand>\textcommabelow{T}</latexCommand>
-   <unicodeCommand>Ț</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>latin10</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{T}  -->
-<commandDefinition>
-   <latexCommand>\v{T}</latexCommand>
-   <unicodeCommand>Ť</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \mbox{T\hspace{-.5em}-}  -->
-<commandDefinition>
-   <latexCommand>\mbox{T\hspace{-.5em}-}</latexCommand>
-   <unicodeCommand>Ŧ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \c{t}  -->
-<commandDefinition>
-   <latexCommand>\c{t}</latexCommand>
-   <unicodeCommand>ţ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \textcommabelow{t}  -->
-<commandDefinition>
-   <latexCommand>\textcommabelow{t}</latexCommand>
-   <unicodeCommand>ț</unicodeCommand>
-   <package>
-      <name>inputenc</name>
-      <arguments>latin10</arguments>
-   </package>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{t}  -->
-<commandDefinition>
-   <latexCommand>\v{t}</latexCommand>
-   <unicodeCommand>ť</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \mbox{t\hspace{-.35em}-}  -->
-<commandDefinition>
-   <latexCommand>\mbox{t\hspace{-.35em}-}</latexCommand>
-   <unicodeCommand>ŧ̌</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{U}  -->
-<commandDefinition>
-   <latexCommand>\"{U}</latexCommand>
-   <unicodeCommand>Ü</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{U}  -->
-<commandDefinition>
-   <latexCommand>\H{U}</latexCommand>
-   <unicodeCommand>Ű</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{U}  -->
-<commandDefinition>
-   <latexCommand>\'{U}</latexCommand>
-   <unicodeCommand>Ú</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{U}  -->
-<commandDefinition>
-   <latexCommand>\`{U}</latexCommand>
-   <unicodeCommand>Ù</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{U}  -->
-<commandDefinition>
-   <latexCommand>\~{U}</latexCommand>
-   <unicodeCommand>Ũ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{U}  -->
-<commandDefinition>
-   <latexCommand>\^{U}</latexCommand>
-   <unicodeCommand>Û</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={U}  -->
-<commandDefinition>
-   <latexCommand>\={U}</latexCommand>
-   <unicodeCommand>Ū</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \r{U}  -->
-<commandDefinition>
-   <latexCommand>\r{U}</latexCommand>
-   <unicodeCommand>Ů</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{U}  -->
-<commandDefinition>
-   <latexCommand>\k{U}</latexCommand>
-   <unicodeCommand>Ų</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{u}  -->
-<commandDefinition>
-   <latexCommand>\"{u}</latexCommand>
-   <unicodeCommand>ü</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \H{u}  -->
-<commandDefinition>
-   <latexCommand>\H{u}</latexCommand>
-   <unicodeCommand>ű</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{u}  -->
-<commandDefinition>
-   <latexCommand>\'{u}</latexCommand>
-   <unicodeCommand>ú</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \`{u}  -->
-<commandDefinition>
-   <latexCommand>\`{u}</latexCommand>
-   <unicodeCommand>ù</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \~{u}  -->
-<commandDefinition>
-   <latexCommand>\~{u}</latexCommand>
-   <unicodeCommand>ũ</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \^{u}  -->
-<commandDefinition>
-   <latexCommand>\^{u}</latexCommand>
-   <unicodeCommand>û</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \={u}  -->
-<commandDefinition>
-   <latexCommand>\={u}</latexCommand>
-   <unicodeCommand>ū</unicodeCommand>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \r{u}  -->
-<commandDefinition>
-   <latexCommand>\r{u}</latexCommand>
-   <unicodeCommand>ů</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \k{u}  -->
-<commandDefinition>
-   <latexCommand>\k{u}</latexCommand>
-   <unicodeCommand>ų</unicodeCommand>
-   <package>
-      <name>fontenc</name>
-      <arguments>T1</arguments>
-   </package>
-   <forcePNG>true</forcePNG>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{Y}  -->
-<commandDefinition>
-   <latexCommand>\"{Y}</latexCommand>
-   <unicodeCommand>Ÿ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{Y}  -->
-<commandDefinition>
-   <latexCommand>\'{Y}</latexCommand>
-   <unicodeCommand>Ý</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \"{y}  -->
-<commandDefinition>
-   <latexCommand>\"{y}</latexCommand>
-   <unicodeCommand>ÿ</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{y}  -->
-<commandDefinition>
-   <latexCommand>\'{y}</latexCommand>
-   <unicodeCommand>ý</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \.{Z}  -->
-<commandDefinition>
-   <latexCommand>\.{Z}</latexCommand>
-   <unicodeCommand>Ż</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{Z}  -->
-<commandDefinition>
-   <latexCommand>\'{Z}</latexCommand>
-   <unicodeCommand>Ź</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{Z}  -->
-<commandDefinition>
-   <latexCommand>\v{Z}</latexCommand>
-   <unicodeCommand>Ž</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \.{z}  -->
-<commandDefinition>
-   <latexCommand>\.{z}</latexCommand>
-   <unicodeCommand>ż</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \'{z}  -->
-<commandDefinition>
-   <latexCommand>\'{z}</latexCommand>
-   <unicodeCommand>ź</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- arg  \v{z}  -->
-<commandDefinition>
-   <latexCommand>\v{z}</latexCommand>
-   <unicodeCommand>ž</unicodeCommand>
-</commandDefinition>
-
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
-<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+	<formatVersion major="0" minor ="22" />
+
+	<symbolGroupName>user</symbolGroupName>
+
+	<preamble>
+		<class>standalone</class>
+		<arguments>10bp,margin=1bp</arguments>
+		<additional>\usepackage[T1]{fontenc}</additional>
+	</preamble>
+
+	<unicodeCommandPackages>
+		<package>
+			<name>inputenc</name>
+			<arguments>utf8</arguments>
+		</package>
+	</unicodeCommandPackages>
+
+	<!-- insert stuff here -->
+
+	<symbolGroupName>special</symbolGroupName>
+
+	<commandDefinition>
+		<latexCommand>\"{A}</latexCommand>
+		<unicodeCommand>Ä</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{A} -->
+	<commandDefinition>
+		<latexCommand>\H{A}</latexCommand>
+		<unicodeCommand>A̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{A} -->
+	<commandDefinition>
+		<latexCommand>\.{A}</latexCommand>
+		<unicodeCommand>Ȧ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{A} -->
+	<commandDefinition>
+		<latexCommand>\'{A}</latexCommand>
+		<unicodeCommand>Á</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{A} -->
+	<commandDefinition>
+		<latexCommand>\`{A}</latexCommand>
+		<unicodeCommand>À</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{A} -->
+	<commandDefinition>
+		<latexCommand>\~{A}</latexCommand>
+		<unicodeCommand>Ã</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{A} -->
+	<commandDefinition>
+		<latexCommand>\^{A}</latexCommand>
+		<unicodeCommand>Â</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{A} -->
+	<commandDefinition>
+		<latexCommand>\v{A}</latexCommand>
+		<unicodeCommand>Ǎ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{A} -->
+	<commandDefinition>
+		<latexCommand>\u{A}</latexCommand>
+		<unicodeCommand>Ă</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={A} -->
+	<commandDefinition>
+		<latexCommand>\={A}</latexCommand>
+		<unicodeCommand>Ā</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \AA{} -->
+	<commandDefinition>
+		<latexCommand>\AA{}</latexCommand>
+		<unicodeCommand>Å</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{A} -->
+	<commandDefinition>
+		<latexCommand>\k{A}</latexCommand>
+		<unicodeCommand>Ą</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{A} -->
+	<commandDefinition>
+		<latexCommand>\d{A}</latexCommand>
+		<unicodeCommand>Ạ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{a} -->
+	<commandDefinition>
+		<latexCommand>\"{a}</latexCommand>
+		<unicodeCommand>ä</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{a} -->
+	<commandDefinition>
+		<latexCommand>\H{a}</latexCommand>
+		<unicodeCommand>a̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{A} -->
+	<commandDefinition>
+		<latexCommand>\.{A}</latexCommand>
+		<unicodeCommand>ȧ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{a} -->
+	<commandDefinition>
+		<latexCommand>\'{a}</latexCommand>
+		<unicodeCommand>á</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{a} -->
+	<commandDefinition>
+		<latexCommand>\`{a}</latexCommand>
+		<unicodeCommand>à</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{a} -->
+	<commandDefinition>
+		<latexCommand>\~{a}</latexCommand>
+		<unicodeCommand>ã</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{a} -->
+	<commandDefinition>
+		<latexCommand>\^{a}</latexCommand>
+		<unicodeCommand>â</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{a} -->
+	<commandDefinition>
+		<latexCommand>\v{a}</latexCommand>
+		<unicodeCommand>ǎ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{a} -->
+	<commandDefinition>
+		<latexCommand>\u{a}</latexCommand>
+		<unicodeCommand>ă</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={a} -->
+	<commandDefinition>
+		<latexCommand>\={a}</latexCommand>
+		<unicodeCommand>ā</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \aa{} -->
+	<commandDefinition>
+		<latexCommand>\aa{}</latexCommand>
+		<unicodeCommand>å</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{a} -->
+	<commandDefinition>
+		<latexCommand>\k{a}</latexCommand>
+		<unicodeCommand>ą</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{a} -->
+	<commandDefinition>
+		<latexCommand>\d{a}</latexCommand>
+		<unicodeCommand>ạ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \AE{} -->
+	<commandDefinition>
+		<latexCommand>\AE{}</latexCommand>
+		<unicodeCommand>Æ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \ae{} -->
+	<commandDefinition>
+		<latexCommand>\ae{}</latexCommand>
+		<unicodeCommand>æ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{B} -->
+	<commandDefinition>
+		<latexCommand>\.{B}</latexCommand>
+		<unicodeCommand>Ḃ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{B} -->
+	<commandDefinition>
+		<latexCommand>\b{B}</latexCommand>
+		<unicodeCommand>Ḇ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{B} -->
+	<commandDefinition>
+		<latexCommand>\d{B}</latexCommand>
+		<unicodeCommand>Ḅ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{b} -->
+	<commandDefinition>
+		<latexCommand>\.{b}</latexCommand>
+		<unicodeCommand>ḃ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{b} -->
+	<commandDefinition>
+		<latexCommand>\b{b}</latexCommand>
+		<unicodeCommand>ḇ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{b} -->
+	<commandDefinition>
+		<latexCommand>\d{b}</latexCommand>
+		<unicodeCommand>ḅ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{C} -->
+	<commandDefinition>
+		<latexCommand>\.{C}</latexCommand>
+		<unicodeCommand>Ċ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{C} -->
+	<commandDefinition>
+		<latexCommand>\'{C}</latexCommand>
+		<unicodeCommand>Ć</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{C} -->
+	<commandDefinition>
+		<latexCommand>\^{C}</latexCommand>
+		<unicodeCommand>Ĉ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{C} -->
+	<commandDefinition>
+		<latexCommand>\v{C}</latexCommand>
+		<unicodeCommand>Č</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{C} -->
+	<commandDefinition>
+		<latexCommand>\u{C}</latexCommand>
+		<unicodeCommand>C̆</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{C} -->
+	<commandDefinition>
+		<latexCommand>\c{C}</latexCommand>
+		<unicodeCommand>Ç</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{c} -->
+	<commandDefinition>
+		<latexCommand>\.{c}</latexCommand>
+		<unicodeCommand>ċ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{c} -->
+	<commandDefinition>
+		<latexCommand>\'{c}</latexCommand>
+		<unicodeCommand>ć</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{c} -->
+	<commandDefinition>
+		<latexCommand>\^{c}</latexCommand>
+		<unicodeCommand>ĉ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{c} -->
+	<commandDefinition>
+		<latexCommand>\v{c}</latexCommand>
+		<unicodeCommand>č</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{c} -->
+	<commandDefinition>
+		<latexCommand>\u{c}</latexCommand>
+		<unicodeCommand>c̆</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{c} -->
+	<commandDefinition>
+		<latexCommand>\c{c}</latexCommand>
+		<unicodeCommand>ç</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{D} -->
+	<commandDefinition>
+		<latexCommand>\c{D}</latexCommand>
+		<unicodeCommand>Ḑ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{D} -->
+	<commandDefinition>
+		<latexCommand>\.{D}</latexCommand>
+		<unicodeCommand>Ḋ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{D} -->
+	<commandDefinition>
+		<latexCommand>\v{D}</latexCommand>
+		<unicodeCommand>Ď</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{D} -->
+	<commandDefinition>
+		<latexCommand>\b{D}</latexCommand>
+		<unicodeCommand>Ḏ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{D} -->
+	<commandDefinition>
+		<latexCommand>\d{D}</latexCommand>
+		<unicodeCommand>Ḍ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{d} -->
+	<commandDefinition>
+		<latexCommand>\c{d}</latexCommand>
+		<unicodeCommand>ḑ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{d} -->
+	<commandDefinition>
+		<latexCommand>\.{d}</latexCommand>
+		<unicodeCommand>ḋ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{d} -->
+	<commandDefinition>
+		<latexCommand>\v{d}</latexCommand>
+		<unicodeCommand>ď</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{d} -->
+	<commandDefinition>
+		<latexCommand>\b{d}</latexCommand>
+		<unicodeCommand>ḏ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{d} -->
+	<commandDefinition>
+		<latexCommand>\d{d}</latexCommand>
+		<unicodeCommand>ḍ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \DJ{} -->
+	<commandDefinition>
+		<latexCommand>\DJ{}</latexCommand>
+		<unicodeCommand>Đ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \dj{} -->
+	<commandDefinition>
+		<latexCommand>\dj{}</latexCommand>
+		<unicodeCommand>đ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \DH{} -->
+	<commandDefinition>
+		<latexCommand>\DH{}</latexCommand>
+		<unicodeCommand>Ð</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \dh{} -->
+	<commandDefinition>
+		<latexCommand>\dh{}</latexCommand>
+		<unicodeCommand>ð</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{E} -->
+	<commandDefinition>
+		<latexCommand>\"{E}</latexCommand>
+		<unicodeCommand>Ë</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{E} -->
+	<commandDefinition>
+		<latexCommand>\H{E}</latexCommand>
+		<unicodeCommand>E̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{E} -->
+	<commandDefinition>
+		<latexCommand>\c{E}</latexCommand>
+		<unicodeCommand>Ȩ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{E} -->
+	<commandDefinition>
+		<latexCommand>\.{E}</latexCommand>
+		<unicodeCommand>Ė</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{E} -->
+	<commandDefinition>
+		<latexCommand>\'{E}</latexCommand>
+		<unicodeCommand>É</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{E} -->
+	<commandDefinition>
+		<latexCommand>\`{E}</latexCommand>
+		<unicodeCommand>È</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{E} -->
+	<commandDefinition>
+		<latexCommand>\~{E}</latexCommand>
+		<unicodeCommand>Ẽ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{E} -->
+	<commandDefinition>
+		<latexCommand>\^{E}</latexCommand>
+		<unicodeCommand>Ê</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{E} -->
+	<commandDefinition>
+		<latexCommand>\v{E}</latexCommand>
+		<unicodeCommand>Ě</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{E} -->
+	<commandDefinition>
+		<latexCommand>\u{E}</latexCommand>
+		<unicodeCommand>Ĕ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={E} -->
+	<commandDefinition>
+		<latexCommand>\={E}</latexCommand>
+		<unicodeCommand>Ē</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{E} -->
+	<commandDefinition>
+		<latexCommand>\k{E}</latexCommand>
+		<unicodeCommand>Ę</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{E} -->
+	<commandDefinition>
+		<latexCommand>\d{E}</latexCommand>
+		<unicodeCommand>Ẹ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{e} -->
+	<commandDefinition>
+		<latexCommand>\"{e}</latexCommand>
+		<unicodeCommand>ë</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{e} -->
+	<commandDefinition>
+		<latexCommand>\H{e}</latexCommand>
+		<unicodeCommand>e̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{e} -->
+	<commandDefinition>
+		<latexCommand>\c{e}</latexCommand>
+		<unicodeCommand>ȩ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{e} -->
+	<commandDefinition>
+		<latexCommand>\.{e}</latexCommand>
+		<unicodeCommand>ė</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{e} -->
+	<commandDefinition>
+		<latexCommand>\'{e}</latexCommand>
+		<unicodeCommand>é</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{e} -->
+	<commandDefinition>
+		<latexCommand>\`{e}</latexCommand>
+		<unicodeCommand>è</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{e} -->
+	<commandDefinition>
+		<latexCommand>\~{e}</latexCommand>
+		<unicodeCommand>ẽ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{e} -->
+	<commandDefinition>
+		<latexCommand>\^{e}</latexCommand>
+		<unicodeCommand>ê</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{e} -->
+	<commandDefinition>
+		<latexCommand>\v{e}</latexCommand>
+		<unicodeCommand>ě</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{e} -->
+	<commandDefinition>
+		<latexCommand>\u{e}</latexCommand>
+		<unicodeCommand>ĕ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={e} -->
+	<commandDefinition>
+		<latexCommand>\={e}</latexCommand>
+		<unicodeCommand>ē</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{e} -->
+	<commandDefinition>
+		<latexCommand>\k{e}</latexCommand>
+		<unicodeCommand>ę</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{e} -->
+	<commandDefinition>
+		<latexCommand>\d{e}</latexCommand>
+		<unicodeCommand>ẹ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{F} -->
+	<commandDefinition>
+		<latexCommand>\.{F}</latexCommand>
+		<unicodeCommand>Ḟ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{f} -->
+	<commandDefinition>
+		<latexCommand>\.{f}</latexCommand>
+		<unicodeCommand>ḟ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{G} -->
+	<commandDefinition>
+		<latexCommand>\.{G}</latexCommand>
+		<unicodeCommand>Ġ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{G} -->
+	<commandDefinition>
+		<latexCommand>\c{G}</latexCommand>
+		<unicodeCommand>Ģ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{G} -->
+	<commandDefinition>
+		<latexCommand>\'{G}</latexCommand>
+		<unicodeCommand>Ǵ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{G} -->
+	<commandDefinition>
+		<latexCommand>\^{G}</latexCommand>
+		<unicodeCommand>Ĝ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{G} -->
+	<commandDefinition>
+		<latexCommand>\v{G}</latexCommand>
+		<unicodeCommand>Ǧ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{G} -->
+	<commandDefinition>
+		<latexCommand>\u{G}</latexCommand>
+		<unicodeCommand>Ğ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={G} -->
+	<commandDefinition>
+		<latexCommand>\={G}</latexCommand>
+		<unicodeCommand>Ḡ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{g} -->
+	<commandDefinition>
+		<latexCommand>\.{g}</latexCommand>
+		<unicodeCommand>ġ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{g} -->
+	<commandDefinition>
+		<latexCommand>\c{g}</latexCommand>
+		<unicodeCommand>ģ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{g} -->
+	<commandDefinition>
+		<latexCommand>\'{g}</latexCommand>
+		<unicodeCommand>ǵ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{g} -->
+	<commandDefinition>
+		<latexCommand>\^{g}</latexCommand>
+		<unicodeCommand>ĝ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{g} -->
+	<commandDefinition>
+		<latexCommand>\v{g}</latexCommand>
+		<unicodeCommand>ǧ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{g} -->
+	<commandDefinition>
+		<latexCommand>\u{g}</latexCommand>
+		<unicodeCommand>ğ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={g} -->
+	<commandDefinition>
+		<latexCommand>\={g}</latexCommand>
+		<unicodeCommand>ḡ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{H} -->
+	<commandDefinition>
+		<latexCommand>\"{H}</latexCommand>
+		<unicodeCommand>Ḧ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{H} -->
+	<commandDefinition>
+		<latexCommand>\c{H}</latexCommand>
+		<unicodeCommand>Ḩ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{H} -->
+	<commandDefinition>
+		<latexCommand>\.{H}</latexCommand>
+		<unicodeCommand>Ḣ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{H} -->
+	<commandDefinition>
+		<latexCommand>\^{H}</latexCommand>
+		<unicodeCommand>Ĥ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{H} -->
+	<commandDefinition>
+		<latexCommand>\v{H}</latexCommand>
+		<unicodeCommand>Ȟ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{H} -->
+	<commandDefinition>
+		<latexCommand>\b{H}</latexCommand>
+		<unicodeCommand>H̱</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{H} -->
+	<commandDefinition>
+		<latexCommand>\d{H}</latexCommand>
+		<unicodeCommand>Ḥ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fclfont ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \B{H} -->
+	<commandDefinition>
+		<latexCommand>\B{H}</latexCommand>
+		<unicodeCommand>Ħ</unicodeCommand>
+		<package>
+			<name>fclfont</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{h} -->
+	<commandDefinition>
+		<latexCommand>\"{h}</latexCommand>
+		<unicodeCommand>ḧ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{h} -->
+	<commandDefinition>
+		<latexCommand>\c{h}</latexCommand>
+		<unicodeCommand>ḩ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{h} -->
+	<commandDefinition>
+		<latexCommand>\.{h}</latexCommand>
+		<unicodeCommand>ḣ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{h} -->
+	<commandDefinition>
+		<latexCommand>\^{h}</latexCommand>
+		<unicodeCommand>ĥ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{h} -->
+	<commandDefinition>
+		<latexCommand>\v{h}</latexCommand>
+		<unicodeCommand>ȟ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{h} -->
+	<commandDefinition>
+		<latexCommand>\b{h}</latexCommand>
+		<unicodeCommand>ẖ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{h} -->
+	<commandDefinition>
+		<latexCommand>\d{h}</latexCommand>
+		<unicodeCommand>ḥ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fclfont ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \B{h} -->
+	<commandDefinition>
+		<latexCommand>\B{h}</latexCommand>
+		<unicodeCommand>ħ</unicodeCommand>
+		<package>
+			<name>fclfont</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{I} -->
+	<commandDefinition>
+		<latexCommand>\"{I}</latexCommand>
+		<unicodeCommand>Ï</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{I} -->
+	<commandDefinition>
+		<latexCommand>\.{I}</latexCommand>
+		<unicodeCommand>İ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{I} -->
+	<commandDefinition>
+		<latexCommand>\H{I}</latexCommand>
+		<unicodeCommand>I̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{I} -->
+	<commandDefinition>
+		<latexCommand>\'{I}</latexCommand>
+		<unicodeCommand>Í</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{I} -->
+	<commandDefinition>
+		<latexCommand>\`{I}</latexCommand>
+		<unicodeCommand>Ì</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{I} -->
+	<commandDefinition>
+		<latexCommand>\~{I}</latexCommand>
+		<unicodeCommand>Ĩ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{I} -->
+	<commandDefinition>
+		<latexCommand>\^{I}</latexCommand>
+		<unicodeCommand>Î</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{I} -->
+	<commandDefinition>
+		<latexCommand>\v{I}</latexCommand>
+		<unicodeCommand>Ǐ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{I} -->
+	<commandDefinition>
+		<latexCommand>\u{I}</latexCommand>
+		<unicodeCommand>Ĭ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={I} -->
+	<commandDefinition>
+		<latexCommand>\={I}</latexCommand>
+		<unicodeCommand>Ī</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{I} -->
+	<commandDefinition>
+		<latexCommand>\k{I}</latexCommand>
+		<unicodeCommand>Į</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{I} -->
+	<commandDefinition>
+		<latexCommand>\d{I}</latexCommand>
+		<unicodeCommand>Ị</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \i{} -->
+	<commandDefinition>
+		<latexCommand>\i{}</latexCommand>
+		<unicodeCommand>ı</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{\i} -->
+	<commandDefinition>
+		<latexCommand>\"{\i}</latexCommand>
+		<unicodeCommand>ï</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{\i} -->
+	<commandDefinition>
+		<latexCommand>\H{\i}</latexCommand>
+		<unicodeCommand>ı̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{\i} -->
+	<commandDefinition>
+		<latexCommand>\'{\i}</latexCommand>
+		<unicodeCommand>í</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{\i} -->
+	<commandDefinition>
+		<latexCommand>\`{\i}</latexCommand>
+		<unicodeCommand>ì</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{\i} -->
+	<commandDefinition>
+		<latexCommand>\~{\i}</latexCommand>
+		<unicodeCommand>ĩ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{\i} -->
+	<commandDefinition>
+		<latexCommand>\^{\i}</latexCommand>
+		<unicodeCommand>î</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{i} -->
+	<commandDefinition>
+		<latexCommand>\v{\i}</latexCommand>
+		<unicodeCommand>ǐ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{i} -->
+	<commandDefinition>
+		<latexCommand>\u{\i}</latexCommand>
+		<unicodeCommand>ĭ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={\i} -->
+	<commandDefinition>
+		<latexCommand>\={\i}</latexCommand>
+		<unicodeCommand>ī</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{i} -->
+	<commandDefinition>
+		<latexCommand>\k{i}</latexCommand>
+		<unicodeCommand>į</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{i} -->
+	<commandDefinition>
+		<latexCommand>\d{i}</latexCommand>
+		<unicodeCommand>ị</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \IJ{} -->
+	<commandDefinition>
+		<latexCommand>\IJ{}</latexCommand>
+		<unicodeCommand>Ĳ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \ij{} -->
+	<commandDefinition>
+		<latexCommand>\ij{}</latexCommand>
+		<unicodeCommand>ĳ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{J} -->
+	<commandDefinition>
+		<latexCommand>\^{J}</latexCommand>
+		<unicodeCommand>Ĵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{J} -->
+	<commandDefinition>
+		<latexCommand>\v{J}</latexCommand>
+		<unicodeCommand>J̌</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{j} -->
+	<commandDefinition>
+		<latexCommand>\^{\j}</latexCommand>
+		<unicodeCommand>ĵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{j} -->
+	<commandDefinition>
+		<latexCommand>\v{\j}</latexCommand>
+		<unicodeCommand>ǰ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{K} -->
+	<commandDefinition>
+		<latexCommand>\c{K}</latexCommand>
+		<unicodeCommand>Ķ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{K} -->
+	<commandDefinition>
+		<latexCommand>\'{K}</latexCommand>
+		<unicodeCommand>Ḱ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{K} -->
+	<commandDefinition>
+		<latexCommand>\v{K}</latexCommand>
+		<unicodeCommand>Ǩ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{K} -->
+	<commandDefinition>
+		<latexCommand>\b{K}</latexCommand>
+		<unicodeCommand>Ḵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{K} -->
+	<commandDefinition>
+		<latexCommand>\d{K}</latexCommand>
+		<unicodeCommand>Ḳ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{k} -->
+	<commandDefinition>
+		<latexCommand>\c{k}</latexCommand>
+		<unicodeCommand>ķ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{k} -->
+	<commandDefinition>
+		<latexCommand>\'{k}</latexCommand>
+		<unicodeCommand>ḱ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{k} -->
+	<commandDefinition>
+		<latexCommand>\v{k}</latexCommand>
+		<unicodeCommand>ǩ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{k} -->
+	<commandDefinition>
+		<latexCommand>\b{k}</latexCommand>
+		<unicodeCommand>ḵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{k} -->
+	<commandDefinition>
+		<latexCommand>\d{k}</latexCommand>
+		<unicodeCommand>ḳ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{L} -->
+	<commandDefinition>
+		<latexCommand>\c{L}</latexCommand>
+		<unicodeCommand>Ļ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{L} -->
+	<commandDefinition>
+		<latexCommand>\'{L}</latexCommand>
+		<unicodeCommand>Ĺ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{L} -->
+	<commandDefinition>
+		<latexCommand>\u{L}</latexCommand>
+		<unicodeCommand>L̆</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{L} -->
+	<commandDefinition>
+		<latexCommand>\v{L}</latexCommand>
+		<unicodeCommand>Ľ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \L{} -->
+	<commandDefinition>
+		<latexCommand>\L{}</latexCommand>
+		<unicodeCommand>Ł</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{L} -->
+	<commandDefinition>
+		<latexCommand>\b{L}</latexCommand>
+		<unicodeCommand>Ḻ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{L} -->
+	<commandDefinition>
+		<latexCommand>\d{L}</latexCommand>
+		<unicodeCommand>Ḷ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{l} -->
+	<commandDefinition>
+		<latexCommand>\c{l}</latexCommand>
+		<unicodeCommand>ļ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{l} -->
+	<commandDefinition>
+		<latexCommand>\'{l}</latexCommand>
+		<unicodeCommand>ĺ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{l} -->
+	<commandDefinition>
+		<latexCommand>\u{l}</latexCommand>
+		<unicodeCommand>l̆</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{l} -->
+	<commandDefinition>
+		<latexCommand>\v{l}</latexCommand>
+		<unicodeCommand>ľ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \l{} -->
+	<commandDefinition>
+		<latexCommand>\l{}</latexCommand>
+		<unicodeCommand>ł</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{l} -->
+	<commandDefinition>
+		<latexCommand>\b{l}</latexCommand>
+		<unicodeCommand>ḻ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{l} -->
+	<commandDefinition>
+		<latexCommand>\d{l}</latexCommand>
+		<unicodeCommand>ḷ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{M} -->
+	<commandDefinition>
+		<latexCommand>\H{M}</latexCommand>
+		<unicodeCommand>M̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{M} -->
+	<commandDefinition>
+		<latexCommand>\.{M}</latexCommand>
+		<unicodeCommand>Ṁ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{M} -->
+	<commandDefinition>
+		<latexCommand>\'{M}</latexCommand>
+		<unicodeCommand>Ḿ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{M} -->
+	<commandDefinition>
+		<latexCommand>\d{M}</latexCommand>
+		<unicodeCommand>Ṃ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{m} -->
+	<commandDefinition>
+		<latexCommand>\H{m}</latexCommand>
+		<unicodeCommand>m̋</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{m} -->
+	<commandDefinition>
+		<latexCommand>\.{m}</latexCommand>
+		<unicodeCommand>ṁ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{m} -->
+	<commandDefinition>
+		<latexCommand>\'{m}</latexCommand>
+		<unicodeCommand>ḿ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{m} -->
+	<commandDefinition>
+		<latexCommand>\d{m}</latexCommand>
+		<unicodeCommand>ṃ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{N} -->
+	<commandDefinition>
+		<latexCommand>\c{N}</latexCommand>
+		<unicodeCommand>Ņ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{N} -->
+	<commandDefinition>
+		<latexCommand>\.{N}</latexCommand>
+		<unicodeCommand>Ṅ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{N} -->
+	<commandDefinition>
+		<latexCommand>\'{N}</latexCommand>
+		<unicodeCommand>Ń</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{N} -->
+	<commandDefinition>
+		<latexCommand>\`{N}</latexCommand>
+		<unicodeCommand>Ǹ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{N} -->
+	<commandDefinition>
+		<latexCommand>\~{N}</latexCommand>
+		<unicodeCommand>Ñ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{N} -->
+	<commandDefinition>
+		<latexCommand>\v{N}</latexCommand>
+		<unicodeCommand>Ň</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{N} -->
+	<commandDefinition>
+		<latexCommand>\u{N}</latexCommand>
+		<unicodeCommand>N̆</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{N} -->
+	<commandDefinition>
+		<latexCommand>\b{N}</latexCommand>
+		<unicodeCommand>Ṉ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{N} -->
+	<commandDefinition>
+		<latexCommand>\d{N}</latexCommand>
+		<unicodeCommand>Ṇ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{n} -->
+	<commandDefinition>
+		<latexCommand>\c{n}</latexCommand>
+		<unicodeCommand>ņ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{n} -->
+	<commandDefinition>
+		<latexCommand>\.{n}</latexCommand>
+		<unicodeCommand>ṅ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{n} -->
+	<commandDefinition>
+		<latexCommand>\'{n}</latexCommand>
+		<unicodeCommand>ń</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{n} -->
+	<commandDefinition>
+		<latexCommand>\`{n}</latexCommand>
+		<unicodeCommand>ǹ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{n} -->
+	<commandDefinition>
+		<latexCommand>\~{n}</latexCommand>
+		<unicodeCommand>ñ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{n} -->
+	<commandDefinition>
+		<latexCommand>\v{n}</latexCommand>
+		<unicodeCommand>ň</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{n} -->
+	<commandDefinition>
+		<latexCommand>\u{n}</latexCommand>
+		<unicodeCommand>n̆</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{n} -->
+	<commandDefinition>
+		<latexCommand>\b{n}</latexCommand>
+		<unicodeCommand>ṉ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{n} -->
+	<commandDefinition>
+		<latexCommand>\d{n}</latexCommand>
+		<unicodeCommand>ṇ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \NG{} -->
+	<commandDefinition>
+		<latexCommand>\NG{}</latexCommand>
+		<unicodeCommand>Ŋ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \ng{} -->
+	<commandDefinition>
+		<latexCommand>\ng{}</latexCommand>
+		<unicodeCommand>ŋ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{O} -->
+	<commandDefinition>
+		<latexCommand>\"{O}</latexCommand>
+		<unicodeCommand>Ö</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{O} -->
+	<commandDefinition>
+		<latexCommand>\H{O}</latexCommand>
+		<unicodeCommand>Ő</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{O} -->
+	<commandDefinition>
+		<latexCommand>\.{O}</latexCommand>
+		<unicodeCommand>Ȯ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{O} -->
+	<commandDefinition>
+		<latexCommand>\'{O}</latexCommand>
+		<unicodeCommand>Ó</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{O} -->
+	<commandDefinition>
+		<latexCommand>\`{O}</latexCommand>
+		<unicodeCommand>Ò</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{O} -->
+	<commandDefinition>
+		<latexCommand>\~{O}</latexCommand>
+		<unicodeCommand>Õ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{O} -->
+	<commandDefinition>
+		<latexCommand>\^{O}</latexCommand>
+		<unicodeCommand>Ô</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{O} -->
+	<commandDefinition>
+		<latexCommand>\v{O}</latexCommand>
+		<unicodeCommand>Ǒ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{O} -->
+	<commandDefinition>
+		<latexCommand>\u{O}</latexCommand>
+		<unicodeCommand>Ŏ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={O} -->
+	<commandDefinition>
+		<latexCommand>\={O}</latexCommand>
+		<unicodeCommand>Ō</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \O{} -->
+	<commandDefinition>
+		<latexCommand>\O{}</latexCommand>
+		<unicodeCommand>Ø</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{O} -->
+	<commandDefinition>
+		<latexCommand>\k{O}</latexCommand>
+		<unicodeCommand>Ǫ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{O} -->
+	<commandDefinition>
+		<latexCommand>\d{O}</latexCommand>
+		<unicodeCommand>Ọ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{o} -->
+	<commandDefinition>
+		<latexCommand>\"{o}</latexCommand>
+		<unicodeCommand>ö</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{o} -->
+	<commandDefinition>
+		<latexCommand>\H{o}</latexCommand>
+		<unicodeCommand>ő</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{o} -->
+	<commandDefinition>
+		<latexCommand>\.{o}</latexCommand>
+		<unicodeCommand>ȯ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{o} -->
+	<commandDefinition>
+		<latexCommand>\'{o}</latexCommand>
+		<unicodeCommand>ó</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{o} -->
+	<commandDefinition>
+		<latexCommand>\`{o}</latexCommand>
+		<unicodeCommand>ò</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{o} -->
+	<commandDefinition>
+		<latexCommand>\~{o}</latexCommand>
+		<unicodeCommand>õ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{o} -->
+	<commandDefinition>
+		<latexCommand>\^{o}</latexCommand>
+		<unicodeCommand>ô</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{o} -->
+	<commandDefinition>
+		<latexCommand>\v{o}</latexCommand>
+		<unicodeCommand>ǒ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{o} -->
+	<commandDefinition>
+		<latexCommand>\u{o}</latexCommand>
+		<unicodeCommand>ŏ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={o} -->
+	<commandDefinition>
+		<latexCommand>\={o}</latexCommand>
+		<unicodeCommand>ō</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \o{} -->
+	<commandDefinition>
+		<latexCommand>\o{}</latexCommand>
+		<unicodeCommand>ø</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{o} -->
+	<commandDefinition>
+		<latexCommand>\k{o}</latexCommand>
+		<unicodeCommand>ǫ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{o} -->
+	<commandDefinition>
+		<latexCommand>\d{o}</latexCommand>
+		<unicodeCommand>ọ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \OE{} -->
+	<commandDefinition>
+		<latexCommand>\OE{}</latexCommand>
+		<unicodeCommand>Œ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \oe{} -->
+	<commandDefinition>
+		<latexCommand>\oe{}</latexCommand>
+		<unicodeCommand>œ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{P} -->
+	<commandDefinition>
+		<latexCommand>\.{P}</latexCommand>
+		<unicodeCommand>Ṗ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{P} -->
+	<commandDefinition>
+		<latexCommand>\'{P}</latexCommand>
+		<unicodeCommand>Ṕ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{p} -->
+	<commandDefinition>
+		<latexCommand>\.{p}</latexCommand>
+		<unicodeCommand>ṗ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{p} -->
+	<commandDefinition>
+		<latexCommand>\'{p}</latexCommand>
+		<unicodeCommand>ṕ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{R} -->
+	<commandDefinition>
+		<latexCommand>\c{R}</latexCommand>
+		<unicodeCommand>Ŗ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{R} -->
+	<commandDefinition>
+		<latexCommand>\.{R}</latexCommand>
+		<unicodeCommand>Ṙ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{R} -->
+	<commandDefinition>
+		<latexCommand>\'{R}</latexCommand>
+		<unicodeCommand>Ŕ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{R} -->
+	<commandDefinition>
+		<latexCommand>\v{R}</latexCommand>
+		<unicodeCommand>Ř</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{R} -->
+	<commandDefinition>
+		<latexCommand>\b{R}</latexCommand>
+		<unicodeCommand>Ṟ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{R} -->
+	<commandDefinition>
+		<latexCommand>\d{R}</latexCommand>
+		<unicodeCommand>Ṛ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{r} -->
+	<commandDefinition>
+		<latexCommand>\c{r}</latexCommand>
+		<unicodeCommand>ŗ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{r} -->
+	<commandDefinition>
+		<latexCommand>\.{r}</latexCommand>
+		<unicodeCommand>ṙ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{r} -->
+	<commandDefinition>
+		<latexCommand>\'{r}</latexCommand>
+		<unicodeCommand>ŕ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{r} -->
+	<commandDefinition>
+		<latexCommand>\v{r}</latexCommand>
+		<unicodeCommand>ř</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{r} -->
+	<commandDefinition>
+		<latexCommand>\b{r}</latexCommand>
+		<unicodeCommand>ṟ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{r} -->
+	<commandDefinition>
+		<latexCommand>\d{r}</latexCommand>
+		<unicodeCommand>ṛ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{S} -->
+	<commandDefinition>
+		<latexCommand>\c{S}</latexCommand>
+		<unicodeCommand>Ş</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{S} -->
+	<commandDefinition>
+		<latexCommand>\.{S}</latexCommand>
+		<unicodeCommand>Ṡ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \textcommabelow{S} -->
+	<commandDefinition>
+		<latexCommand>\textcommabelow{S}</latexCommand>
+		<unicodeCommand>Ș</unicodeCommand>
+		<package>
+			<name>inputenc</name>
+			<arguments>latin10</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{S} -->
+	<commandDefinition>
+		<latexCommand>\'{S}</latexCommand>
+		<unicodeCommand>Ś</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{S} -->
+	<commandDefinition>
+		<latexCommand>\^{S}</latexCommand>
+		<unicodeCommand>Ŝ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{S} -->
+	<commandDefinition>
+		<latexCommand>\v{S}</latexCommand>
+		<unicodeCommand>Š</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{S} -->
+	<commandDefinition>
+		<latexCommand>\d{S}</latexCommand>
+		<unicodeCommand>Ṣ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{s} -->
+	<commandDefinition>
+		<latexCommand>\c{s}</latexCommand>
+		<unicodeCommand>ş</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{s} -->
+	<commandDefinition>
+		<latexCommand>\.{s}</latexCommand>
+		<unicodeCommand>ṡ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \textcommabelow{s} -->
+	<commandDefinition>
+		<latexCommand>\textcommabelow{s}</latexCommand>
+		<unicodeCommand>ș</unicodeCommand>
+		<package>
+			<name>inputenc</name>
+			<arguments>latin10</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{s} -->
+	<commandDefinition>
+		<latexCommand>\'{s}</latexCommand>
+		<unicodeCommand>ś</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{s} -->
+	<commandDefinition>
+		<latexCommand>\^{s}</latexCommand>
+		<unicodeCommand>ŝ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{s} -->
+	<commandDefinition>
+		<latexCommand>\v{s}</latexCommand>
+		<unicodeCommand>š</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{s} -->
+	<commandDefinition>
+		<latexCommand>\d{s}</latexCommand>
+		<unicodeCommand>ṣ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \SS{} -->
+	<commandDefinition>
+		<latexCommand>\SS{}</latexCommand>
+		<unicodeCommand>SS</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \ss{} -->
+	<commandDefinition>
+		<latexCommand>\ss{}</latexCommand>
+		<unicodeCommand>ß</unicodeCommand>
+	</commandDefinition>
+
+		<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{T} -->
+	<commandDefinition>
+		<latexCommand>\"{T}</latexCommand>
+		<unicodeCommand>T̈</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{T} -->
+	<commandDefinition>
+		<latexCommand>\c{T}</latexCommand>
+		<unicodeCommand>Ţ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{T} -->
+	<commandDefinition>
+		<latexCommand>\.{T}</latexCommand>
+		<unicodeCommand>Ṫ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \textcommabelow{T} -->
+	<commandDefinition>
+		<latexCommand>\textcommabelow{T}</latexCommand>
+		<unicodeCommand>Ț</unicodeCommand>
+		<package>
+			<name>inputenc</name>
+			<arguments>latin10</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{T} -->
+	<commandDefinition>
+		<latexCommand>\v{T}</latexCommand>
+		<unicodeCommand>Ť</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{T} -->
+	<commandDefinition>
+		<latexCommand>\b{T}</latexCommand>
+		<unicodeCommand>Ṯ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{T} -->
+	<commandDefinition>
+		<latexCommand>\d{T}</latexCommand>
+		<unicodeCommand>Ṭ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fclfont ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \mbox{T\hspace{-.5em}-} -->
+	<commandDefinition>
+		<latexCommand>\B{T}</latexCommand>
+		<unicodeCommand>Ŧ</unicodeCommand>
+		<package>
+			<name>fclfont</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{t} -->
+	<commandDefinition>
+		<latexCommand>\"{t}</latexCommand>
+		<unicodeCommand>ẗ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \c{t} -->
+	<commandDefinition>
+		<latexCommand>\c{t}</latexCommand>
+		<unicodeCommand>ţ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{t} -->
+	<commandDefinition>
+		<latexCommand>\.{t}</latexCommand>
+		<unicodeCommand>ṫ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=inputenc ,pkgsarg=latin10 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \textcommabelow{t} -->
+	<commandDefinition>
+		<latexCommand>\textcommabelow{t}</latexCommand>
+		<unicodeCommand>ț</unicodeCommand>
+		<package>
+			<name>inputenc</name>
+			<arguments>latin10</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{t} -->
+	<commandDefinition>
+		<latexCommand>\v{t}</latexCommand>
+		<unicodeCommand>ť</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{t} -->
+	<commandDefinition>
+		<latexCommand>\b{t}</latexCommand>
+		<unicodeCommand>ṯ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{t} -->
+	<commandDefinition>
+		<latexCommand>\d{t}</latexCommand>
+		<unicodeCommand>ṭ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fclfont ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \mbox{t\hspace{-.35em}-} -->
+	<commandDefinition>
+		<latexCommand>\B{t}</latexCommand>
+		<unicodeCommand>ŧ</unicodeCommand>
+		<package>
+			<name>fclfont</name>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \TH{} -->
+	<commandDefinition>
+		<latexCommand>\TH{}</latexCommand>
+		<unicodeCommand>Þ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \th{} -->
+	<commandDefinition>
+		<latexCommand>\th{}</latexCommand>
+		<unicodeCommand>þ</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{U} -->
+	<commandDefinition>
+		<latexCommand>\"{U}</latexCommand>
+		<unicodeCommand>Ü</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{U} -->
+	<commandDefinition>
+		<latexCommand>\H{U}</latexCommand>
+		<unicodeCommand>Ű</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{U} -->
+	<commandDefinition>
+		<latexCommand>\'{U}</latexCommand>
+		<unicodeCommand>Ú</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{U} -->
+	<commandDefinition>
+		<latexCommand>\`{U}</latexCommand>
+		<unicodeCommand>Ù</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{U} -->
+	<commandDefinition>
+		<latexCommand>\~{U}</latexCommand>
+		<unicodeCommand>Ũ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{U} -->
+	<commandDefinition>
+		<latexCommand>\^{U}</latexCommand>
+		<unicodeCommand>Û</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{U} -->
+	<commandDefinition>
+		<latexCommand>\v{U}</latexCommand>
+		<unicodeCommand>Ǔ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{U} -->
+	<commandDefinition>
+		<latexCommand>\u{U}</latexCommand>
+		<unicodeCommand>Ŭ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={U} -->
+	<commandDefinition>
+		<latexCommand>\={U}</latexCommand>
+		<unicodeCommand>Ū</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \r{U} -->
+	<commandDefinition>
+		<latexCommand>\r{U}</latexCommand>
+		<unicodeCommand>Ů</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{U} -->
+	<commandDefinition>
+		<latexCommand>\k{U}</latexCommand>
+		<unicodeCommand>Ų</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{U} -->
+	<commandDefinition>
+		<latexCommand>\d{U}</latexCommand>
+		<unicodeCommand>Ụ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{u} -->
+	<commandDefinition>
+		<latexCommand>\"{u}</latexCommand>
+		<unicodeCommand>ü</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \H{u} -->
+	<commandDefinition>
+		<latexCommand>\H{u}</latexCommand>
+		<unicodeCommand>ű</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{u} -->
+	<commandDefinition>
+		<latexCommand>\'{u}</latexCommand>
+		<unicodeCommand>ú</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{u} -->
+	<commandDefinition>
+		<latexCommand>\`{u}</latexCommand>
+		<unicodeCommand>ù</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{u} -->
+	<commandDefinition>
+		<latexCommand>\~{u}</latexCommand>
+		<unicodeCommand>ũ</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{u} -->
+	<commandDefinition>
+		<latexCommand>\^{u}</latexCommand>
+		<unicodeCommand>û</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{u} -->
+	<commandDefinition>
+		<latexCommand>\v{u}</latexCommand>
+		<unicodeCommand>ǔ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \u{u} -->
+	<commandDefinition>
+		<latexCommand>\u{u}</latexCommand>
+		<unicodeCommand>ŭ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={u} -->
+	<commandDefinition>
+		<latexCommand>\={u}</latexCommand>
+		<unicodeCommand>ū</unicodeCommand>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \{} -->
+	<commandDefinition>
+		<latexCommand>\d{u}</latexCommand>
+		<unicodeCommand>ụ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \r{u} -->
+	<commandDefinition>
+		<latexCommand>\r{u}</latexCommand>
+		<unicodeCommand>ů</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs=fontenc ,pkgsarg=T1 ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \k{u} -->
+	<commandDefinition>
+		<latexCommand>\k{u}</latexCommand>
+		<unicodeCommand>ų</unicodeCommand>
+		<package>
+			<name>fontenc</name>
+			<arguments>T1</arguments>
+		</package>
+		<!-- <forcePNG>true</forcePNG> -->
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{V} -->
+	<commandDefinition>
+		<latexCommand>\~{V}</latexCommand>
+		<unicodeCommand>Ṽ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{V} -->
+	<commandDefinition>
+		<latexCommand>\d{V}</latexCommand>
+		<unicodeCommand>Ṿ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{v} -->
+	<commandDefinition>
+		<latexCommand>\~{v}</latexCommand>
+		<unicodeCommand>ṽ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{v} -->
+	<commandDefinition>
+		<latexCommand>\d{v}</latexCommand>
+		<unicodeCommand>ṿ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{W} -->
+	<commandDefinition>
+		<latexCommand>\"{W}</latexCommand>
+		<unicodeCommand>Ẅ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{W} -->
+	<commandDefinition>
+		<latexCommand>\.{W}</latexCommand>
+		<unicodeCommand>Ẇ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{W} -->
+	<commandDefinition>
+		<latexCommand>\'{W}</latexCommand>
+		<unicodeCommand>Ẃ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{W} -->
+	<commandDefinition>
+		<latexCommand>\`{W}</latexCommand>
+		<unicodeCommand>Ẁ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{W} -->
+	<commandDefinition>
+		<latexCommand>\^{W}</latexCommand>
+		<unicodeCommand>Ŵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \r{W} -->
+	<commandDefinition>
+		<latexCommand>\r{W}</latexCommand>
+		<unicodeCommand>W̊</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{W} -->
+	<commandDefinition>
+		<latexCommand>\d{W}</latexCommand>
+		<unicodeCommand>Ẉ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{w} -->
+	<commandDefinition>
+		<latexCommand>\"{w}</latexCommand>
+		<unicodeCommand>ẅ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{w} -->
+	<commandDefinition>
+		<latexCommand>\.{w}</latexCommand>
+		<unicodeCommand>ẇ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{w} -->
+	<commandDefinition>
+		<latexCommand>\'{w}</latexCommand>
+		<unicodeCommand>ẃ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{w} -->
+	<commandDefinition>
+		<latexCommand>\`{w}</latexCommand>
+		<unicodeCommand>ẁ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{w} -->
+	<commandDefinition>
+		<latexCommand>\^{w}</latexCommand>
+		<unicodeCommand>ŵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{w} -->
+	<commandDefinition>
+		<latexCommand>\d{w}</latexCommand>
+		<unicodeCommand>ẉ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \r{w} -->
+	<commandDefinition>
+		<latexCommand>\r{w}</latexCommand>
+		<unicodeCommand>ẘ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{X} -->
+	<commandDefinition>
+		<latexCommand>\"{X}</latexCommand>
+		<unicodeCommand>Ẍ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{X} -->
+	<commandDefinition>
+		<latexCommand>\.{X}</latexCommand>
+		<unicodeCommand>Ẋ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{x} -->
+	<commandDefinition>
+		<latexCommand>\"{x}</latexCommand>
+		<unicodeCommand>ẍ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{x} -->
+	<commandDefinition>
+		<latexCommand>\.{x}</latexCommand>
+		<unicodeCommand>ẋ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{Y} -->
+	<commandDefinition>
+		<latexCommand>\"{Y}</latexCommand>
+		<unicodeCommand>Ÿ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{Y} -->
+	<commandDefinition>
+		<latexCommand>\.{Y}</latexCommand>
+		<unicodeCommand>Ẏ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{Y} -->
+	<commandDefinition>
+		<latexCommand>\'{Y}</latexCommand>
+		<unicodeCommand>Ý</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{Y} -->
+	<commandDefinition>
+		<latexCommand>\`{Y}</latexCommand>
+		<unicodeCommand>Ỳ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{Y} -->
+	<commandDefinition>
+		<latexCommand>\~{Y}</latexCommand>
+		<unicodeCommand>Ỹ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{Y} -->
+	<commandDefinition>
+		<latexCommand>\^{Y}</latexCommand>
+		<unicodeCommand>Ŷ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={Y} -->
+	<commandDefinition>
+		<latexCommand>\={Y}</latexCommand>
+		<unicodeCommand>Ȳ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{} -->
+	<commandDefinition>
+		<latexCommand>\d{Y}</latexCommand>
+		<unicodeCommand>Ỵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \r{} -->
+	<commandDefinition>
+		<latexCommand>\r{Y}</latexCommand>
+		<unicodeCommand>Y̊</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \"{y} -->
+	<commandDefinition>
+		<latexCommand>\"{y}</latexCommand>
+		<unicodeCommand>ÿ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{y} -->
+	<commandDefinition>
+		<latexCommand>\.{y}</latexCommand>
+		<unicodeCommand>ẏ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{y} -->
+	<commandDefinition>
+		<latexCommand>\'{y}</latexCommand>
+		<unicodeCommand>ý</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \`{y} -->
+	<commandDefinition>
+		<latexCommand>\`{y}</latexCommand>
+		<unicodeCommand>ỳ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \~{y} -->
+	<commandDefinition>
+		<latexCommand>\~{y}</latexCommand>
+		<unicodeCommand>ỹ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{y} -->
+	<commandDefinition>
+		<latexCommand>\^{y}</latexCommand>
+		<unicodeCommand>ŷ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \={y} -->
+	<commandDefinition>
+		<latexCommand>\={y}</latexCommand>
+		<unicodeCommand>ȳ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{y} -->
+	<commandDefinition>
+		<latexCommand>\d{y}</latexCommand>
+		<unicodeCommand>ỵ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \r{y} -->
+	<commandDefinition>
+		<latexCommand>\r{y}</latexCommand>
+		<unicodeCommand>ẙ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{Z} -->
+	<commandDefinition>
+		<latexCommand>\.{Z}</latexCommand>
+		<unicodeCommand>Ż</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{Z} -->
+	<commandDefinition>
+		<latexCommand>\'{Z}</latexCommand>
+		<unicodeCommand>Ź</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{Z} -->
+	<commandDefinition>
+		<latexCommand>\^{Z}</latexCommand>
+		<unicodeCommand>Ẑ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{Z} -->
+	<commandDefinition>
+		<latexCommand>\v{Z}</latexCommand>
+		<unicodeCommand>Ž</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{Z} -->
+	<commandDefinition>
+		<latexCommand>\b{Z}</latexCommand>
+		<unicodeCommand>Ẕ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{Z} -->
+	<commandDefinition>
+		<latexCommand>\d{Z}</latexCommand>
+		<unicodeCommand>Ẓ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \.{z} -->
+	<commandDefinition>
+		<latexCommand>\.{z}</latexCommand>
+		<unicodeCommand>ż</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \'{z} -->
+	<commandDefinition>
+		<latexCommand>\'{z}</latexCommand>
+		<unicodeCommand>ź</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \^{z} -->
+	<commandDefinition>
+		<latexCommand>\^{z}</latexCommand>
+		<unicodeCommand>ẑ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \v{z} -->
+	<commandDefinition>
+		<latexCommand>\v{z}</latexCommand>
+		<unicodeCommand>ž</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \b{z} -->
+	<commandDefinition>
+		<latexCommand>\b{z}</latexCommand>
+		<unicodeCommand>ẕ</unicodeCommand>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg \d{z} -->
+	<commandDefinition>
+		<latexCommand>\d{z}</latexCommand>
+		<unicodeCommand>ẓ</unicodeCommand>
+	</commandDefinition>
+
 </symbols>
