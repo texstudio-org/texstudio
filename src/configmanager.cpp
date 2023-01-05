@@ -2776,7 +2776,7 @@ void ConfigManager::loadTranslations(QString locale)
 	QString txsTranslationFile = findResourceFile(txsSourceFile);
 
     if (txsTranslationFile.isEmpty()) {
-        txsSourceFile = "translations/texstudio_" + locale + ".qm";
+        txsSourceFile = "translation/texstudio_" + locale + ".qm";
         txsTranslationFile = findResourceFile(txsSourceFile);
     }
     QString qtSourceFile = "qt_" + locale + ".qm";
