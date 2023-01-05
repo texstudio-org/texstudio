@@ -2772,6 +2772,7 @@ void ConfigManager::loadTranslations(QString locale)
 		locale = QString(QLocale::system().name()).left(2);
 		if (locale.length() < 2) locale = "en";
 	}
+
 	QString txsTranslationFile = findResourceFile("texstudio_" + locale + ".qm");
 
     if (txsTranslationFile.isEmpty()) {
@@ -2779,7 +2780,7 @@ void ConfigManager::loadTranslations(QString locale)
     }
     bool result0=appTranslator->load(txsTranslationFile);
     bool result1=basicTranslator->load(findResourceFile("qt_" + locale + ".qm"));
-    if(!result0 || !result1 ){
+    if(locale!="en" && (!result0 || !result1) ){
         qDebug()<<"loading translations failed !";
     }
 }
