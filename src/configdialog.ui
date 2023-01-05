@@ -1653,9 +1653,6 @@ Then you can select a new shortcut by one of the following ways:
                   </item>
                   <item row="11" column="1">
                    <widget class="QComboBox" name="comboboxLineNumbers">
-                    <property name="" stdset="0">
-                     <bool>true</bool>
-                    </property>
                     <item>
                      <property name="text">
                       <string>No Line Numbers</string>
