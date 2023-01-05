@@ -1049,7 +1049,6 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 
 void LatexEditorView::setLinkOverlay(const LinkOverlay &overlay)
 {
-    qDebug()<<"set over"<<overlay.m_link;
 	if (linkOverlay.isValid()) {
 		if (overlay == linkOverlay) {
 			return; // same overlay
@@ -1067,7 +1066,6 @@ void LatexEditorView::setLinkOverlay(const LinkOverlay &overlay)
 
 void LatexEditorView::removeLinkOverlay()
 {
-    qDebug()<<"remove over";
 	if (linkOverlay.isValid()) {
 		linkOverlay.docLine.removeOverlay(linkOverlay.formatRange);
 		linkOverlay = LinkOverlay();

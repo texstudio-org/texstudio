@@ -85,14 +85,12 @@ SymbolItem loadSymbolFromSvg(QString fileName)
 	nl = root.elementsByTagName("desc");
 	if (!nl.isEmpty()) {
 		QDomNode n = nl.at(0);
-		item.packages = n.toElement().attribute("Packages");
-	}
-	nl = root.elementsByTagName("additionalInfo");
-
-	if (!nl.isEmpty()) {
-		QDomNode n = nl.at(0);
-		item.unicode = n.toElement().attribute("CommandUnicode");
-
+		QString pkg = n.toElement().attribute("Packages");
+		if (!pkg.isEmpty())
+			item.packages = pkg;
+		QString cmdUnicode = n.toElement().attribute("CommandUnicode");
+		if (!cmdUnicode.isEmpty())
+			item.unicode = cmdUnicode;
 	}
 
 	item.iconFile = fileName;
@@ -135,9 +133,19 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 				QString StrCode = listOfChars.value(i, "");
 				StrCode = StrCode.mid(2); // Remove U+
 				bool ok;
-				int code = StrCode.toInt(&ok);
-				if (ok)
-					helper += QChar(code);
+				int code = StrCode.toInt(&ok, 16);
+				if (ok) {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+					helper += QChar::fromUcs4(code);
+#else
+					if (code < 0x10000) {
+						helper += QChar(code); // single utf-16
+					} else if (code <= 0x10FFFF) {
+						helper += QChar((code >> 10) + 0xD7C0); // high surrogate, 1st utf-16
+						helper += QChar((code & 0x3FF) + 0xDC00); // low surrogate, 2nd utf-16
+					}
+#endif
+				}
 			}
 			symbolItem.unicode = helper;
 
