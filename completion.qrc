@@ -757,6 +757,7 @@
 <file>completion/class-jurabook.cwl</file>
 <file>completion/class-juraovw.cwl</file>
 <file>completion/class-juraurtl.cwl</file>
+<file>completion/class-jwjournal.cwl</file>
 <file>completion/class-kaobook.cwl</file>
 <file>completion/class-kaohandt.cwl</file>
 <file>completion/class-kdpcover.cwl</file>
@@ -1598,6 +1599,7 @@
 <file>completion/getitems.cwl</file>
 <file>completion/getmap.cwl</file>
 <file>completion/gettitlestring.cwl</file>
+<file>completion/gfdl.cwl</file>
 <file>completion/gfsartemisia.cwl</file>
 <file>completion/gfsartemisia-euler.cwl</file>
 <file>completion/gfsbaskerville.cwl</file>
@@ -2069,6 +2071,8 @@
 <file>completion/lua-check-hyphen.cwl</file>
 <file>completion/luacode.cwl</file>
 <file>completion/luacolor.cwl</file>
+<file>completion/luacomplex.cwl</file>
+<file>completion/luagcd.cwl</file>
 <file>completion/luahyphenrules.cwl</file>
 <file>completion/luaimageembed.cwl</file>
 <file>completion/luaindex.cwl</file>
@@ -2077,6 +2081,7 @@
 <file>completion/luakeys-debug.cwl</file>
 <file>completion/lualatex-truncate.cwl</file>
 <file>completion/luamathalign.cwl</file>
+<file>completion/luamaths.cwl</file>
 <file>completion/luamesh.cwl</file>
 <file>completion/luamodulartables.cwl</file>
 <file>completion/luamplib.cwl</file>
@@ -2086,6 +2091,7 @@
 <file>completion/luaprogtable.cwl</file>
 <file>completion/luaquotes.cwl</file>
 <file>completion/luarandom.cwl</file>
+<file>completion/luaset.cwl</file>
 <file>completion/luasseq.cwl</file>
 <file>completion/luatexbase.cwl</file>
 <file>completion/luatex.cwl</file>
@@ -2104,6 +2110,7 @@
 <file>completion/luatruthtable.cwl</file>
 <file>completion/lua-typo.cwl</file>
 <file>completion/lua-ul.cwl</file>
+<file>completion/lua-visual-debug.cwl</file>
 <file>completion/luavlna.cwl</file>
 <file>completion/lua-widow-control.cwl</file>
 <file>completion/lucbmath.cwl</file>
@@ -2191,6 +2198,7 @@
 <file>completion/mattens.cwl</file>
 <file>completion/mattex.cwl</file>
 <file>completion/maybemath.cwl</file>
+<file>completion/maze.cwl</file>
 <file>completion/mbboard.cwl</file>
 <file>completion/mboxfill.cwl</file>
 <file>completion/mcaption.cwl</file>
@@ -2426,6 +2434,7 @@
 <file>completion/Nouveaud.cwl</file>
 <file>completion/nowidow.cwl</file>
 <file>completion/nowtoaux.cwl</file>
+<file>completion/ntabbing.cwl</file>
 <file>completion/nth.cwl</file>
 <file>completion/ntheorem.cwl</file>
 <file>completion/nucleardata.cwl</file>
@@ -2934,6 +2943,7 @@
 <file>completion/rerunfilecheck.cwl</file>
 <file>completion/rescansync.cwl</file>
 <file>completion/resizegather.cwl</file>
+<file>completion/resmes.cwl</file>
 <file>completion/rest-api.cwl</file>
 <file>completion/returntogrid.cwl</file>
 <file>completion/revquantum.cwl</file>
