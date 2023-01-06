@@ -385,10 +385,10 @@ QPixmap ManhattanStyle::standardPixmap(StandardPixmap standardPixmap, const QSty
 		break;
 	*/
 	case QStyle::SP_TitleBarCloseButton: {
-		static const QPixmap closeButton(":/images/closebutton.png");
-		pixmap = closeButton;
-	}
-	break;
+			static const QPixmap closeButton(":/images/closebutton.png");
+			pixmap = closeButton;
+		}
+		break;
 	default:
 		pixmap = d->style->standardPixmap(standardPixmap, opt, widget);
 	}
@@ -475,212 +475,212 @@ void ManhattanStyle::drawPrimitive(PrimitiveElement element, const QStyleOption 
 
 	switch (element) {
 	case PE_PanelLineEdit: {
-		painter->save();
-		if (option->state & State_Enabled)
-			drawCornerImage(d->lineeditImage, painter, option->rect, 2, 2, 2, 2);
-		else
-			drawCornerImage(d->lineeditImage_disabled, painter, option->rect, 2, 2, 2, 2);
-
-		if (option->state & State_HasFocus || option->state & State_MouseOver) {
-			QColor hover = StyleHelper::baseColor();
-			if (state & State_HasFocus)
-				hover.setAlpha(100);
+			painter->save();
+			if (option->state & State_Enabled)
+				drawCornerImage(d->lineeditImage, painter, option->rect, 2, 2, 2, 2);
 			else
-				hover.setAlpha(50);
+				drawCornerImage(d->lineeditImage_disabled, painter, option->rect, 2, 2, 2, 2);
 
-			painter->setPen(QPen(hover, 1));
-			painter->drawRect(option->rect.adjusted(1, 1, -2 , -2));
+			if (option->state & State_HasFocus || option->state & State_MouseOver) {
+				QColor hover = StyleHelper::baseColor();
+				if (state & State_HasFocus)
+					hover.setAlpha(100);
+				else
+					hover.setAlpha(50);
+
+				painter->setPen(QPen(hover, 1));
+				painter->drawRect(option->rect.adjusted(1, 1, -2 , -2));
+			}
+			painter->restore();
 		}
-		painter->restore();
-	}
-	break;
+		break;
 
-    case PE_FrameStatusBarItem:
-        break;
+	case PE_FrameStatusBarItem:
+		break;
 
 	case PE_PanelButtonTool: {
-        Manhattan::Animation *anim = d->animator.widgetAnimation(widget);
-		if (!animating && anim) {
-			anim->paint(painter, option);
-		} else {
-			bool pressed = option->state & State_Sunken || option->state & State_On;
-			QColor shadow(0, 0, 0, 30);
-			painter->setPen(shadow);
-			if (pressed) {
-				QColor shade(0, 0, 0, 40);
-				painter->fillRect(rect, shade);
-				painter->drawLine(rect.topLeft() + QPoint(1, 0), rect.topRight() - QPoint(1, 0));
-				painter->drawLine(rect.topLeft(), rect.bottomLeft());
-				painter->drawLine(rect.topRight(), rect.bottomRight());
-				// painter->drawLine(rect.bottomLeft()  + QPoint(1, 0), rect.bottomRight()  - QPoint(1, 0));
-				QColor highlight(255, 255, 255, 30);
-				painter->setPen(highlight);
-			} else if (option->state & State_Enabled &&
-			           option->state & State_MouseOver) {
-				QColor lighter(255, 255, 255, 37);
-				painter->fillRect(rect, lighter);
+			Manhattan::Animation *anim = d->animator.widgetAnimation(widget);
+			if (!animating && anim) {
+				anim->paint(painter, option);
+			} else {
+				bool pressed = option->state & State_Sunken || option->state & State_On;
+				QColor shadow(0, 0, 0, 30);
+				painter->setPen(shadow);
+				if (pressed) {
+					QColor shade(0, 0, 0, 40);
+					painter->fillRect(rect, shade);
+					painter->drawLine(rect.topLeft() + QPoint(1, 0), rect.topRight() - QPoint(1, 0));
+					painter->drawLine(rect.topLeft(), rect.bottomLeft());
+					painter->drawLine(rect.topRight(), rect.bottomRight());
+					// painter->drawLine(rect.bottomLeft()  + QPoint(1, 0), rect.bottomRight()  - QPoint(1, 0));
+					QColor highlight(255, 255, 255, 30);
+					painter->setPen(highlight);
+				} else if (option->state & State_Enabled &&
+				           option->state & State_MouseOver) {
+					QColor lighter(255, 255, 255, 37);
+					painter->fillRect(rect, lighter);
+				}
 			}
 		}
-	}
-	break;
+		break;
 
 	case PE_PanelStatusBar: {
-		painter->save();
-		QLinearGradient grad(option->rect.topLeft(), QPoint(rect.center().x(), rect.bottom()));
-		QColor startColor = StyleHelper::shadowColor().darker(164);
-		QColor endColor = StyleHelper::baseColor().darker(130);
-		grad.setColorAt(0, startColor);
-		grad.setColorAt(1, endColor);
-		painter->fillRect(option->rect, grad);
-		painter->setPen(QColor(255, 255, 255, 60));
-		painter->drawLine(rect.topLeft() + QPoint(0, 1),
-		                  rect.topRight() + QPoint(0, 1));
-		painter->setPen(StyleHelper::borderColor().darker(110));
-		painter->drawLine(rect.topLeft(), rect.topRight());
-		painter->restore();
-	}
-	break;
+			painter->save();
+			QLinearGradient grad(option->rect.topLeft(), QPoint(rect.center().x(), rect.bottom()));
+			QColor startColor = StyleHelper::shadowColor().darker(164);
+			QColor endColor = StyleHelper::baseColor().darker(130);
+			grad.setColorAt(0, startColor);
+			grad.setColorAt(1, endColor);
+			painter->fillRect(option->rect, grad);
+			painter->setPen(QColor(255, 255, 255, 60));
+			painter->drawLine(rect.topLeft() + QPoint(0, 1),
+			                  rect.topRight() + QPoint(0, 1));
+			painter->setPen(StyleHelper::borderColor().darker(110));
+			painter->drawLine(rect.topLeft(), rect.topRight());
+			painter->restore();
+		}
+		break;
 
 	case PE_IndicatorToolBarSeparator: {
-		QColor separatorColor = StyleHelper::borderColor();
-		separatorColor.setAlpha(100);
-		painter->setPen(separatorColor);
-		const int margin = 3;
-		if (option->state & State_Horizontal) {
-			const int offset = rect.width() / 2;
-			painter->drawLine(rect.bottomLeft().x() + offset,
-			                  rect.bottomLeft().y() - margin,
-			                  rect.topLeft().x() + offset,
-			                  rect.topLeft().y() + margin);
-		} else { //Draw vertical separator
-			const int offset = rect.height() / 2;
-			painter->setPen(QPen(option->palette.window().color().darker(110)));
-			painter->drawLine(rect.topLeft().x() + margin ,
-			                  rect.topLeft().y() + offset,
-			                  rect.topRight().x() - margin,
-			                  rect.topRight().y() + offset);
+			QColor separatorColor = StyleHelper::borderColor();
+			separatorColor.setAlpha(100);
+			painter->setPen(separatorColor);
+			const int margin = 3;
+			if (option->state & State_Horizontal) {
+				const int offset = rect.width() / 2;
+				painter->drawLine(rect.bottomLeft().x() + offset,
+				                  rect.bottomLeft().y() - margin,
+				                  rect.topLeft().x() + offset,
+				                  rect.topLeft().y() + margin);
+			} else { //Draw vertical separator
+				const int offset = rect.height() / 2;
+				painter->setPen(QPen(option->palette.window().color().darker(110)));
+				painter->drawLine(rect.topLeft().x() + margin ,
+				                  rect.topLeft().y() + offset,
+				                  rect.topRight().x() - margin,
+				                  rect.topRight().y() + offset);
+			}
 		}
-	}
-	break;
+		break;
 
 	case PE_IndicatorToolBarHandle: {
-		bool horizontal = option->state & State_Horizontal;
-		painter->save();
-		QPainterPath path;
-		int x = option->rect.x() + (horizontal ? 2 : 6 );
-		int y = option->rect.y() + (horizontal ? 6 : 2 );
-		static const int RectHeight = 2;
-		if (horizontal) {
-			while (y < option->rect.height() - RectHeight - 6) {
-				path.moveTo(x, y);
-				path.addRect(x, y, RectHeight, RectHeight);
-				y += 6;
+			bool horizontal = option->state & State_Horizontal;
+			painter->save();
+			QPainterPath path;
+			int x = option->rect.x() + (horizontal ? 2 : 6 );
+			int y = option->rect.y() + (horizontal ? 6 : 2 );
+			static const int RectHeight = 2;
+			if (horizontal) {
+				while (y < option->rect.height() - RectHeight - 6) {
+					path.moveTo(x, y);
+					path.addRect(x, y, RectHeight, RectHeight);
+					y += 6;
+				}
+			} else {
+				while (x < option->rect.width() - RectHeight - 6) {
+					path.moveTo(x, y);
+					path.addRect(x, y, RectHeight, RectHeight);
+					x += 6;
+				}
 			}
-		} else {
-			while (x < option->rect.width() - RectHeight - 6) {
-				path.moveTo(x, y);
-				path.addRect(x, y, RectHeight, RectHeight);
-				x += 6;
-			}
+
+			painter->setPen(Qt::NoPen);
+			QColor dark = StyleHelper::borderColor();
+			dark.setAlphaF(0.4);
+
+			QColor light = StyleHelper::baseColor();
+			light.setAlphaF(0.4);
+
+			painter->fillPath(path, light);
+			painter->save();
+			painter->translate(1, 1);
+			painter->fillPath(path, dark);
+			painter->restore();
+			painter->translate(3, 3);
+			painter->fillPath(path, light);
+			painter->translate(1, 1);
+			painter->fillPath(path, dark);
+			painter->restore();
 		}
-
-		painter->setPen(Qt::NoPen);
-		QColor dark = StyleHelper::borderColor();
-		dark.setAlphaF(0.4);
-
-		QColor light = StyleHelper::baseColor();
-		light.setAlphaF(0.4);
-
-		painter->fillPath(path, light);
-		painter->save();
-		painter->translate(1, 1);
-		painter->fillPath(path, dark);
-		painter->restore();
-		painter->translate(3, 3);
-		painter->fillPath(path, light);
-		painter->translate(1, 1);
-		painter->fillPath(path, dark);
-		painter->restore();
-	}
-	break;
+		break;
 	case PE_IndicatorArrowUp:
 	case PE_IndicatorArrowDown:
 	case PE_IndicatorArrowRight:
 	case PE_IndicatorArrowLeft: {
-		// From windowsstyle but modified to enable AA
-		if (option->rect.width() <= 1 || option->rect.height() <= 1)
-			break;
-
-		QRect r = option->rect;
-		int size = qMin(r.height(), r.width());
-		QPixmap pixmap;
-        QString pixmapName=QString("%1-%2-%3-%4-%5-%6")
-                           .arg("$qt_ia").arg(metaObject()->className())
-                           .arg(uint(option->state)).arg(element)
-                           .arg(size).arg(option->palette.cacheKey());
-		if (!QPixmapCache::find(pixmapName, &pixmap)) {
-			int border = size / 5;
-			int sqsize = 2 * (size / 2);
-			QImage image(sqsize, sqsize, QImage::Format_ARGB32);
-			image.fill(Qt::transparent);
-			QPainter imagePainter(&image);
-			imagePainter.setRenderHint(QPainter::Antialiasing, true);
-			imagePainter.translate(0.5, 0.5);
-			QPolygon a;
-			switch (element) {
-			case PE_IndicatorArrowUp:
-				a.setPoints(3, border, sqsize / 2,  sqsize / 2, border,  sqsize - border, sqsize / 2);
+			// From windowsstyle but modified to enable AA
+			if (option->rect.width() <= 1 || option->rect.height() <= 1)
 				break;
-			case PE_IndicatorArrowDown:
-				a.setPoints(3, border, sqsize / 2,  sqsize / 2, sqsize - border,  sqsize - border, sqsize / 2);
-				break;
-			case PE_IndicatorArrowRight:
-				a.setPoints(3, sqsize - border, sqsize / 2,  sqsize / 2, border,  sqsize / 2, sqsize - border);
-				break;
-			case PE_IndicatorArrowLeft:
-				a.setPoints(3, border, sqsize / 2,  sqsize / 2, border,  sqsize / 2, sqsize - border);
-				break;
-			default:
-				break;
-			}
 
-			int bsx = 0;
-			int bsy = 0;
+			QRect r = option->rect;
+			int size = qMin(r.height(), r.width());
+			QPixmap pixmap;
+			QString pixmapName=QString("%1-%2-%3-%4-%5-%6")
+							   .arg("$qt_ia").arg(metaObject()->className())
+							   .arg(uint(option->state)).arg(element)
+							   .arg(size).arg(option->palette.cacheKey());
+			if (!QPixmapCache::find(pixmapName, &pixmap)) {
+				int border = size / 5;
+				int sqsize = 2 * (size / 2);
+				QImage image(sqsize, sqsize, QImage::Format_ARGB32);
+				image.fill(Qt::transparent);
+				QPainter imagePainter(&image);
+				imagePainter.setRenderHint(QPainter::Antialiasing, true);
+				imagePainter.translate(0.5, 0.5);
+				QPolygon a;
+				switch (element) {
+				case PE_IndicatorArrowUp:
+					a.setPoints(3, border, sqsize / 2,  sqsize / 2, border,  sqsize - border, sqsize / 2);
+					break;
+				case PE_IndicatorArrowDown:
+					a.setPoints(3, border, sqsize / 2,  sqsize / 2, sqsize - border,  sqsize - border, sqsize / 2);
+					break;
+				case PE_IndicatorArrowRight:
+					a.setPoints(3, sqsize - border, sqsize / 2,  sqsize / 2, border,  sqsize / 2, sqsize - border);
+					break;
+				case PE_IndicatorArrowLeft:
+					a.setPoints(3, border, sqsize / 2,  sqsize / 2, border,  sqsize / 2, sqsize - border);
+					break;
+				default:
+					break;
+				}
 
-			if (option->state & State_Sunken) {
-				bsx = pixelMetric(PM_ButtonShiftHorizontal);
-				bsy = pixelMetric(PM_ButtonShiftVertical);
-			}
+				int bsx = 0;
+				int bsy = 0;
 
-			QRect bounds = a.boundingRect();
-			int sx = sqsize / 2 - bounds.center().x() - 1;
-			int sy = sqsize / 2 - bounds.center().y() - 1;
-			imagePainter.translate(sx + bsx, sy + bsy);
+				if (option->state & State_Sunken) {
+					bsx = pixelMetric(PM_ButtonShiftHorizontal);
+					bsy = pixelMetric(PM_ButtonShiftVertical);
+				}
 
-			if (!(option->state & State_Enabled)) {
-				imagePainter.setBrush(option->palette.mid().color());
-				imagePainter.setPen(option->palette.mid().color());
-			} else {
-				QColor shadow(0, 0, 0, 100);
-				imagePainter.translate(0, 1);
-				imagePainter.setPen(shadow);
-				imagePainter.setBrush(shadow);
-				QColor foreGround(255, 255, 255, 210);
+				QRect bounds = a.boundingRect();
+				int sx = sqsize / 2 - bounds.center().x() - 1;
+				int sy = sqsize / 2 - bounds.center().y() - 1;
+				imagePainter.translate(sx + bsx, sy + bsy);
+
+				if (!(option->state & State_Enabled)) {
+					imagePainter.setBrush(option->palette.mid().color());
+					imagePainter.setPen(option->palette.mid().color());
+				} else {
+					QColor shadow(0, 0, 0, 100);
+					imagePainter.translate(0, 1);
+					imagePainter.setPen(shadow);
+					imagePainter.setBrush(shadow);
+					QColor foreGround(255, 255, 255, 210);
+					imagePainter.drawPolygon(a);
+					imagePainter.translate(0, -1);
+					imagePainter.setPen(foreGround);
+					imagePainter.setBrush(foreGround);
+				}
 				imagePainter.drawPolygon(a);
-				imagePainter.translate(0, -1);
-				imagePainter.setPen(foreGround);
-				imagePainter.setBrush(foreGround);
+				imagePainter.end();
+				pixmap = QPixmap::fromImage(image);
+				QPixmapCache::insert(pixmapName, pixmap);
 			}
-			imagePainter.drawPolygon(a);
-			imagePainter.end();
-			pixmap = QPixmap::fromImage(image);
-			QPixmapCache::insert(pixmapName, pixmap);
+			int xOffset = r.x() + (r.width() - size) / 2;
+			int yOffset = r.y() + (r.height() - size) / 2;
+			painter->drawPixmap(xOffset, yOffset, pixmap);
 		}
-		int xOffset = r.x() + (r.width() - size) / 2;
-		int yOffset = r.y() + (r.height() - size) / 2;
-		painter->drawPixmap(xOffset, yOffset, pixmap);
-	}
-	break;
+		break;
 
 	default:
 		d->style->drawPrimitive(element, option, painter, widget);
@@ -705,7 +705,7 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 			QStyleOptionMenuItem item = *mbi;
 			item.rect = mbi->rect;
 			QPalette pal = mbi->palette;
-            pal.setBrush(QPalette::ButtonText, dis ? Qt::gray : Qt::black);
+			pal.setBrush(QPalette::ButtonText, dis ? Qt::gray : Qt::black);
 			item.palette = pal;
 			QCommonStyle::drawControl(element, &item, painter, widget);
 			QRect r = option->rect;
@@ -819,68 +819,74 @@ void ManhattanStyle::drawControl(ControlElement element, const QStyleOption *opt
 	break;
 
 	case CE_MenuBarEmptyArea: {
-		StyleHelper::menuGradient(painter, option->rect, option->rect);
-		painter->save();
-		painter->setPen(StyleHelper::borderColor());
-		painter->drawLine(option->rect.bottomLeft(), option->rect.bottomRight());
-		painter->restore();
-	}
-	break;
+			StyleHelper::menuGradient(painter, option->rect, option->rect);
+			painter->save();
+			painter->setPen(StyleHelper::borderColor());
+			painter->drawLine(option->rect.bottomLeft(), option->rect.bottomRight());
+			painter->restore();
+		}
+		break;
 
 	case CE_ToolBar: {
-        QString key=QString("mh_toolbar %1 %2 %3").arg(option->rect.width()).arg(option->rect.height()).arg(StyleHelper::baseColor().rgb());
+			QString key=QString("mh_toolbar %1 %2 %3").arg(option->rect.width()).arg(option->rect.height()).arg(StyleHelper::baseColor().rgb());
 
-		QPixmap pixmap;
-		QPainter *p = painter;
-		QRect rect = option->rect;
-		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
-			pixmap = QPixmap(option->rect.size());
-			p = new QPainter(&pixmap);
-			rect = QRect(0, 0, option->rect.width(), option->rect.height());
-		}
-
-		bool horizontal = option->state & State_Horizontal;
-		// Map offset for global window gradient
-		QPoint offset = widget->window()->mapToGlobal(option->rect.topLeft()) -
-		                widget->mapToGlobal(option->rect.topLeft());
-		QRect gradientSpan;
-		if (widget) {
-			gradientSpan = QRect(offset, widget->window()->size());
-		}
-		if (horizontal)
-			StyleHelper::horizontalGradient(p, gradientSpan, rect);
-		else
-			StyleHelper::verticalGradient(p, gradientSpan, rect);
-
-		painter->setPen(StyleHelper::borderColor());
-
-		if (horizontal) {
-			// Note: This is a hack to determine if the
-			// toolbar should draw the top or bottom outline
-			// (needed for the find toolbar for instance)
-			QColor lighter(255, 255, 255, 40);
-			if (widget && widget->property("topBorder").toBool()) {
-				p->drawLine(rect.topLeft(), rect.topRight());
-				p->setPen(lighter);
-				p->drawLine(rect.topLeft() + QPoint(0, 1), rect.topRight() + QPoint(0, 1));
-			} else {
-				p->drawLine(rect.bottomLeft(), rect.bottomRight());
-				p->setPen(lighter);
-				p->drawLine(rect.topLeft(), rect.topRight());
+			QPixmap pixmap;
+			QPainter *p = painter;
+			QRect rect = option->rect;
+			if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
+				pixmap = QPixmap(option->rect.size());
+				p = new QPainter(&pixmap);
+				rect = QRect(0, 0, option->rect.width(), option->rect.height());
 			}
-		} else {
-			p->drawLine(rect.topLeft(), rect.bottomLeft());
-			p->drawLine(rect.topRight(), rect.bottomRight());
-		}
 
-		if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
-			painter->drawPixmap(rect.topLeft(), pixmap);
-			p->end();
-			delete p;
-			QPixmapCache::insert(key, pixmap);
+			bool horizontal = option->state & State_Horizontal;
+			// Map offset for global window gradient
+			QPoint offset = widget->window()->mapToGlobal(option->rect.topLeft()) -
+			                widget->mapToGlobal(option->rect.topLeft());
+			QRect gradientSpan;
+			if (widget) {
+				gradientSpan = QRect(offset, widget->window()->size());
+			}
+			if (horizontal)
+				StyleHelper::horizontalGradient(p, gradientSpan, rect);
+			else
+				StyleHelper::verticalGradient(p, gradientSpan, rect);
+
+			painter->setPen(StyleHelper::borderColor());
+
+			if (horizontal) {
+				// Note: This is a hack to determine if the
+				// toolbar should draw the top or bottom outline
+				// (needed for the find toolbar for instance)
+				QColor lighter(255, 255, 255, 40);
+				if (widget && widget->property("topBorder").toBool()) {
+					p->drawLine(rect.topLeft(), rect.topRight());
+					p->setPen(lighter);
+					p->drawLine(rect.topLeft() + QPoint(0, 1), rect.topRight() + QPoint(0, 1));
+				} else {
+					p->drawLine(rect.bottomLeft(), rect.bottomRight());
+					p->setPen(lighter);
+					p->drawLine(rect.topLeft(), rect.topRight());
+				}
+			} else {
+				p->drawLine(rect.topLeft(), rect.bottomLeft());
+				p->drawLine(rect.topRight(), rect.bottomRight());
+			}
+
+			if (StyleHelper::usePixmapCache() && !QPixmapCache::find(key, &pixmap)) {
+				painter->drawPixmap(rect.topLeft(), pixmap);
+				p->end();
+				delete p;
+				QPixmapCache::insert(key, pixmap);
+			}
 		}
-	}
-	break;
+		break;
+
+	case CE_ToolButtonLabel:
+		// Directly use QCommonStyle to circumvent funny painting in QMacStyle
+		// which ignores the palette and adds an alpha
+		QCommonStyle::drawControl(element, option, painter, widget);
+		break;
 
 	default:
 		d->style->drawControl(element, option, painter, widget);
