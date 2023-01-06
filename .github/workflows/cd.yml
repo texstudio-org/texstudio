@@ -164,26 +164,26 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        wget https://github.com/sunderme/homebrew-qt6/releases/download/${{ env.OSX_QT_VERION }}/QtBase-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        sudo tar xvf ./QtBase-${{ env.OSX_QT_VERION }}-Darwin.tar.xz -C /usr/local
-        rm QtBase-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERION }}/QtSvg-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        sudo tar xvf ./QtSvg-${{ env.OSX_QT_VERION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin --strip-components=1
-        rm QtSvg-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERION }}/Qt5Compat-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        sudo tar xvf ./Qt5Compat-${{ env.OSX_QT_VERION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin --strip-components=1
-        rm Qt5Compat-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERION }}/QtTools-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        sudo tar xvf ./QtTools-${{ env.OSX_QT_VERION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin --strip-components=1
-        rm QtTools-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERION }}/QtDeclarative-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        sudo tar xvf ./QtDeclarative-${{ env.OSX_QT_VERION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin --strip-components=1
-        rm QtDeclarative-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERION }}/poppler-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        sudo tar xvf ./poppler-${{ env.OSX_QT_VERION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin --strip-components=1
-        rm poppler-${{ env.OSX_QT_VERION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERION }}/QuaZip-1.3-Darwin.tar.xz
-        sudo tar xvf ./QuaZip-1.3-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin --strip-components=1
+        wget https://github.com/sunderme/homebrew-qt6/releases/download/${{ env.OSX_QT_VERSION }}/QtBase-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./QtBase-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local
+        rm QtBase-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm Qt5Compat-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm QtTools-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtDeclarative-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./QtDeclarative-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm QtDeclarative-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/poppler-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./poppler-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm poppler-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QuaZip-1.3-Darwin.tar.xz
+        sudo tar xvf ./QuaZip-1.3-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QuaZip-1.3-Darwin.tar.xz
         brew install cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 nspr nss openjpeg
         brew install ninja
@@ -192,7 +192,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin/bin/qt-cmake .. -G Ninja
+        /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/qt-cmake .. -G Ninja
 
     - name: Build
       run: |
@@ -209,7 +209,7 @@ jobs:
       id: package
       run: |
         cd build
-        /usr/local/QtBase-${{ env.OSX_QT_VERION }}-Darwin/bin/macdeployqt texstudio.app -dmg
+        /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app -dmg
         . ../.github/scripts/get-version.sh
         cp texstudio.dmg ../texstudio-${GIT_VERSION}-osx.dmg
         mv texstudio.dmg ../texstudio-osx-${VERSION_NAME}.dmg
