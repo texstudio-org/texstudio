@@ -1,9 +1,7 @@
 # beamer-rl class
-# Matthew Bertucci 2022/06/21 for v1.6
+# Matthew Bertucci 2023/01/02 for v1.7
 
 #include:luatex
-#include:kvoptions
-#include:kvsetkeys
 #include:ifluatex
 #include:class-beamer
 #include:babel
@@ -11,8 +9,57 @@
 #include:fontspec
 
 #keyvals:\documentclass/beamer-rl#c
-babel={%<babel options%>}
 arabic
+arabic={%<\babelprovide options%>}
+arabic-dz
+arabic-dz={%<\babelprovide options%>}
+arabic-tn
+arabic-tn={%<\babelprovide options%>}
+arabic-ma
+arabic-ma={%<\babelprovide options%>}
+arabic-eg
+arabic-eg={%<\babelprovide options%>}
+arabic-sa
+arabic-sa={%<\babelprovide options%>}
+arabic-iq
+arabic-iq={%<\babelprovide options%>}
+arabic-sy
+arabic-sy={%<\babelprovide options%>}
+arabic-lb
+arabic-lb={%<\babelprovide options%>}
+arabic-ps
+arabic-ps={%<\babelprovide options%>}
+arabic-jo
+arabic-jo={%<\babelprovide options%>}
+centralkurdish
+centralkurdish={%<\babelprovide options%>}
+hebrew
+hebrew={%<\babelprovide options%>}
+kashmiri
+kashmiri={%<\babelprovide options%>}
+mazanderani
+mazanderani={%<\babelprovide options%>}
+malayalam
+malayalam={%<\babelprovide options%>}
+northernkurdish-arab
+northernkurdish-arab={%<\babelprovide options%>}
+pashto
+pashto={%<\babelprovide options%>}
+persian
+persian={%<\babelprovide options%>}
+punjabi-arab
+punjabi-arab={%<\babelprovide options%>}
+syriac
+syriac={%<\babelprovide options%>}
+urdu
+urdu={%<\babelprovide options%>}
+uyghur
+uyghur={%<\babelprovide options%>}
+uzbek-arab
+uzbek-arab={%<\babelprovide options%>}
+yiddish
+yiddish={%<\babelprovide options%>}
+layout=#sectioning,counters,counters*,contents,footnotes,captions,columns,graphics,extras
 # options passed to beamer class
 usepdftitle#true,false
 envcountsect
@@ -59,14 +106,19 @@ utf8
 aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 #endkeyvals
 
+#ifOption:layout=footnotes
+\localfootnote{text}
+\mainfootnote{text}
+\localfootnotetext#*
+\mainfootnotetext#*
+#endif
+
 \blacktriangleright
 \blacktriangleleft
 \redefbeamertemplate{element}{option}#*
-\thebeginframepardir#*
 
 \begin{oldpgfpicture}#S
 \end{oldpgfpicture}#S
-\oldframe#S
 \oldpgfpicture#S
 \endoldpgfpicture#S
 \oldpgfuseshading#S

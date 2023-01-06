@@ -1,5 +1,5 @@
 # colorart class
-# Matthew Bertucci 2022/09/05 for release 2022/09/03
+# Matthew Bertucci 2023/01/02 for 2023/01/02 release
 
 #include:silence
 #include:geometry
@@ -259,3 +259,7 @@ biolinum
 #include:biolinum
 #include:mathastext
 #endif
+
+\IfPrintModeTF{true-code}{false-code}#*
+\IfPrintModeT{true-code}#*
+\IfPrintModeF{false-code}#*

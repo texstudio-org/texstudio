@@ -1,3 +1,7 @@
 # luakeys package
-# Matthew Bertucci 11/8/2021 for v0.3
+# Matthew Bertucci 2023/01/05 for v0.12.0
+
 #include:luatex
+
+\LuakeysGetPackageOptions#*
+\LuakeysGetClassOptions#*

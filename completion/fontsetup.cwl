@@ -1,5 +1,5 @@
 # fontsetup package
-# Matthew Bertucci 3/7/2022 for v1.3
+# Matthew Bertucci 2023/01/02 for v1.4
 
 #include:fontspec
 #include:unicode-math
@@ -65,8 +65,8 @@ xcharter
 #include:xcharter-otf
 #endif
 
-\quoteleft#S
-\quoteright#S
+\leftgrquotes#S
+\rightgrquotes#S
 
 \fontsetupdefault#S
 \fontsetupgfsartemisia#S

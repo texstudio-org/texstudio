@@ -1514,3 +1514,7 @@ xput:
 class-xput
 latex-document
 tex
+jwjournal:
+class-jwjournal
+latex-document
+tex

@@ -594,6 +594,7 @@ debug={%<options%>}
 \shbscode#*
 \showstream#*
 \stbscode#*
+\synctex#*
 \tagcode#*
 \tracingstacklevels#*
 

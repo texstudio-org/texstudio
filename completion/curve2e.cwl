@@ -1,11 +1,9 @@
 # curve2e package
-# Matthew Bertucci 2022/05/07 for v2.2.15
+# Matthew Bertucci 2023/01/05 for v2.2.22
 
 #include:graphicx
 #include:color
 #include:pict2e
-#include:xparse
-#include:xfp
 
 # all options passed to pict2e
 #keyvals:\usepackage/curve2e#c
@@ -71,6 +69,7 @@ hide
 \Integer{number}#*
 \IsPolar{arg1}#*
 \legenda(coordinates){formula}#/picture
+\legendbox#S
 \LIne(cmd)#*/picture
 \MakeVectorFrom%<〈numeric macro1〉〈numeric macro2〉%> to %<〈vector macro1〉%>
 \ModAndAngleOfVect%<〈vector〉%> to %<〈modulus macro〉%> and %<〈angle macro〉%>
@@ -122,6 +121,7 @@ hide
 \VectorArc(x1,y1)(x2,y2){angle}#/picture
 \VectorARC(x1,y1)(x2,y2){angle}#/picture
 \VVECTOR(x1,y1)(x2,y2)#/picture
+\VVectorArc(x1,y1)(x2,y2){angle}#*/picture
 \xmultiput(x,y)(Δx,Δy){copies}{object}#/picture
 \xmultiput[center](x,y)(Δx,Δy){copies}{object}#/picture
 \XpartOfVect%<〈vector〉%> to %<〈macro〉%>
