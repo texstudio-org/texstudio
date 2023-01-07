@@ -1,15 +1,15 @@
 # mismath package
-# Matthew Bertucci 2022/12/26 for v2.1
+# Matthew Bertucci 2023/01/06 for v2.2
 
 #include:amsmath
 #include:esvect
 #include:ifthen
 #include:xspace
 #include:mathtools
-#include:ibrackets
 
-# all options passed to amsmath
 #keyvals:\usepackage/mismath#c
+ibrackets
+# options passed to amsmath
 intlimits
 nointlimits
 sumlimits
@@ -26,6 +26,10 @@ alignedleftspaceyes
 alignedleftspaceno
 alignedleftspaceyesifneg
 #endkeyvals
+
+#ifOption:ibrackets
+#include:ibrackets
+#endif
 
 \enumber
 \inumber
