@@ -439,12 +439,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	/* true means a second run is suggested as packages are loadeed which change the outcome
 	 * e.g. definition of specialDef command, but packages are load at the end of this method.
 	 */
-	//qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
 
 	if (!parent->patchEnabled())
 		return false;
 
 	if (!baseStructure) return false;
+
+    //QElapsedTimer tm ;
+    //tm.start();
 
 	static QRegExp rxMagicTexComment("^%\\ ?!T[eE]X");
 	static QRegExp rxMagicBibComment("^%\\ ?!BIB");
@@ -1019,56 +1021,56 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 
 			///usepackage
-			if (lp.possibleCommands["%usepackage"].contains(cmd)) {
+            if (lp.possibleCommands["%usepackage"].contains(cmd)) {
                 if(firstArg.contains("\\")){
                     // argument contains backslash
                     // hence, invalid and to be ignored
                     continue;
                 }
-				completerNeedsUpdate = true;
-				QStringList packagesHelper = firstArg.split(",");
+                completerNeedsUpdate = true;
+                QStringList packagesHelper = firstArg.split(",");
 
-				if (cmd.endsWith("theme")) { // special treatment for \usetheme
-					QString preambel = cmd;
-					preambel.remove(0, 4);
-					preambel.prepend("beamer");
+                if (cmd.endsWith("theme")) { // special treatment for \usetheme
+                    QString preambel = cmd;
+                    preambel.remove(0, 4);
+                    preambel.prepend("beamer");
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
-				}
+                }
                 if (cmd=="\\usetikzlibrary") { // special treatment for \usetikzlibrary
                     QString preambel = "tikzlibrary";
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
                 }
-		if (cmd=="\\usepgfplotslibrary") { // special treatment for \usepgfplotslibrary
+                if (cmd=="\\usepgfplotslibrary") { // special treatment for \usepgfplotslibrary
                     QString preambel = "pgfplotslibrary";
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
                 }
-		if (cmd=="\\tcbuselibrary") { // special treatment for \tcbuselibrary
+                if (cmd=="\\tcbuselibrary") { // special treatment for \tcbuselibrary
                     QString preambel = "tcolorboxlibrary";
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
                 }
-		if (cmd=="\\UseTblrLibrary") { // special treatment for \UseTblrLibrary
+                if (cmd=="\\UseTblrLibrary") { // special treatment for \UseTblrLibrary
                     QString preambel = "tabularraylibrary";
                     packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
                 }
 
-				QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
-				if (cmd == "\\documentclass") {
-					//special treatment for documentclass, especially for the class options
-					// at the moment a change here soes not automatically lead to an update of corresponding definitions, here babel
-					mClassOptions = firstOptArg;
-				}
+                QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
+                if (cmd == "\\documentclass") {
+                    //special treatment for documentclass, especially for the class options
+                    // at the moment a change here soes not automatically lead to an update of corresponding definitions, here babel
+                    mClassOptions = firstOptArg;
+                }
 
-				if (firstArg == "babel") {
-					//special treatment for babel
-					if (firstOptArg.isEmpty()) {
-						firstOptArg = mClassOptions;
-					}
-					if (!firstOptArg.isEmpty()) {
-						packagesHelper << firstOptArg.split(",");
-					}
-				}
+                if (firstArg == "babel") {
+                    //special treatment for babel
+                    if (firstOptArg.isEmpty()) {
+                        firstOptArg = mClassOptions;
+                    }
+                    if (!firstOptArg.isEmpty()) {
+                        packagesHelper << firstOptArg.split(",");
+                    }
+                }
 
-				QStringList packages;
+                QStringList packages;
 				foreach (QString elem, packagesHelper) {
 					elem = elem.simplified();
 					if (lp.packageAliases.contains(elem))
@@ -1128,22 +1130,20 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 QString name=fn;
                 name.replace("\\string~",QDir::homePath());
                 QString fname = findFileName(name);
-				removedIncludes.removeAll(fname);
+                updateSyntaxCheck = (removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
 				mIncludedFilesList.insert(line(i).handle(), fname);
 				LatexDocument *dc = parent->findDocumentFromName(fname);
 				if (dc) {
 					childDocs.insert(dc);
-					dc->setMasterDocument(this, recheckLabels);
+                    dc->setMasterDocument(this, recheckLabels && updateSyntaxCheck);
 				} else {
 					lstFilesToLoad << fname;
 					//parent->addDocToLoad(fname);
 				}
-
 				newInclude->valid = !fname.isEmpty();
 				newInclude->setLine(line(i).handle(), i);
 				newInclude->columnNumber = cmdStart;
 				flatStructure << newInclude;
-				updateSyntaxCheck = true;
 				continue;
 			}
 
@@ -1156,23 +1156,21 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				QString file = fi.filePath();
 				newInclude->title = file;
 				QString fname = findFileName(file);
-				removedIncludes.removeAll(fname);
+                updateSyntaxCheck = (removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
                 mImportedFilesList.insert(line(i).handle(), fname);
 				LatexDocument *dc = parent->findDocumentFromName(fname);
 				if (dc) {
 					childDocs.insert(dc);
-					dc->setMasterDocument(this, recheckLabels);
+                    dc->setMasterDocument(this, recheckLabels && updateSyntaxCheck);
                     dc->importedFile=true;
 				} else {
 					lstFilesToLoad << fname;
 					//parent->addDocToLoad(fname);
 				}
-
 				newInclude->valid = !fname.isEmpty();
 				newInclude->setLine(line(i).handle(), i);
 				newInclude->columnNumber = cmdStart;
 				flatStructure << newInclude;
-				updateSyntaxCheck = true;
 				continue;
 			}
 
@@ -1335,13 +1333,13 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	foreach (QString fname, lstFilesToLoad) {
 		parent->addDocToLoad(fname);
 	}
-	//qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
 	if (reRunSuggested && !recheck){
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
 	}
 	if(!recheck){
 		reCheckSyntax(lineNrStart, newCount);
 	}
+    //qDebug()<<"fin"<<tm.elapsed();
 
 	return reRunSuggested;
 }
