@@ -568,6 +568,7 @@ Options:
 | TEXSTUDIO_ENABLE_CRASH_HANDLER | on | provide a crash handler |
 | TEXSTUDIO_BUILD_ADWAITA  | on | build adwaita style |
 | TEXSTUDIO_ENABLE_TESTS  | off | build self-tests |
+| TEXSTUDIO_ENABLE_DEBUG_LOGGER  | off | build debug logger |
 | TEXSTUDIO_ENABLE_MEDIAPLAYER | off | build with pdf multimedia support. Requires QtMultimedia |
 
 ### Updating translations

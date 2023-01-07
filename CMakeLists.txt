@@ -292,6 +292,12 @@ else()
 	message(STATUS "the video player in pdf files is disabled.")
 endif()
 
+option(TEXSTUDIO_ENABLE_DEBUG_LOGGER "Enable/Disable debug logger" OFF)
+if(${TEXSTUDIO_ENABLE_DEBUG_LOGGER})
+	message(STATUS "Debug logger is built.")
+	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DDEBUG_LOGGER)
+endif()
+
 # poppler
 
 find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR} Cpp)
