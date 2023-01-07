@@ -521,7 +521,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             }
             if(tkTop.type==Token::openBrace && tkTop.subtype!= Token::text && tkTop.subtype!= Token::none && tkTop.argLevel==0){
                 // redo with filtering out this offending
-                qDebug()<<"filer";
                 tkFilter=tkTop;
                 i=i-30;
                 lastHandle = line(i - 1).handle();
