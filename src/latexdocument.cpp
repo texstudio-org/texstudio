@@ -499,7 +499,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         QtConcurrent::blockingMap(l_dlh,Parsing::simpleLexLatexLine);
 	}
     int stoppedAtLine=-1;
-    Token tkFilter;
+    TokenList l_tkFilter;
     QDocumentLineHandle *lastHandle = line(linenr - 1).handle();
     if (lastHandle) {
         oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
@@ -513,31 +513,38 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             }
         }
         bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
+        bool leaveLoop=false;
         if(oldRemainder.size()>0){
-            Token tkTop=oldRemainder.top();
-            if(tkTop==tkFilter){
-                oldRemainder.pop(); // discard run-away argument
-                tkFilter=Token();
-                tkTop=Token();
-                continue;
-            }
             for(int k=0;k<oldRemainder.size();++k){
                 Token tk=oldRemainder.at(k);
-                if(tk.type==Token::openBrace && tkTop.subtype!= Token::text && tkTop.subtype!= Token::none && tkTop.argLevel==0){
-                    // redo with filtering out this offending
-                    // currently only one Token can be filtered, but it is possible to set-up more than one
-                    tkFilter=tk;
-                    i=i-30;
-                    lastHandle = line(i - 1).handle();
-                    if (lastHandle) {
-                        oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-                        oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
-                    }else{
-                        oldRemainder.clear();
-                        oldCommandStack.clear();
-                    }
-                    break;
+                int idx=l_tkFilter.indexOf(tk);
+                if(idx>=0){
+                    oldRemainder.remove(k); // discard run-away argument
+                    --k;
+                    l_tkFilter.remove(idx);
+                    leaveLoop=true;
                 }
+            }
+            if(leaveLoop) continue;
+
+            for(int k=0;k<oldRemainder.size();++k){
+                Token tk=oldRemainder.at(k);
+                if(tk.type==Token::openBrace && tk.subtype!= Token::text && tk.subtype!= Token::none && tk.argLevel==0){
+                    // redo with filtering out this offending
+                    l_tkFilter.append(tk);
+                }
+            }
+            if(!l_tkFilter.isEmpty()){
+                i=i-30;
+                lastHandle = line(i - 1).handle();
+                if (lastHandle) {
+                    oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+                    oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
+                }else{
+                    oldRemainder.clear();
+                    oldCommandStack.clear();
+                }
+                continue;
             }
         }
         if (remainderChanged && i + 1 == linenr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
