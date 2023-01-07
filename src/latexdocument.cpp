@@ -522,7 +522,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 if(idx>=0){
                     oldRemainder.remove(k); // discard run-away argument
                     --k;
-                    l_tkFilter.remove(idx);
+                    l_tkFilter.removeAt(idx);
                     leaveLoop=true;
                 }
             }
