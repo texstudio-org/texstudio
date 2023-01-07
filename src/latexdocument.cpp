@@ -519,17 +519,22 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 tkTop=Token();
                 continue;
             }
-            if(tkTop.type==Token::openBrace && tkTop.subtype!= Token::text && tkTop.subtype!= Token::none && tkTop.argLevel==0){
-                // redo with filtering out this offending
-                tkFilter=tkTop;
-                i=i-30;
-                lastHandle = line(i - 1).handle();
-                if (lastHandle) {
-                    oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-                    oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
-                }else{
-                    oldRemainder.clear();
-                    oldCommandStack.clear();
+            for(int k=0;k<oldRemainder.size();++k){
+                Token tk=oldRemainder.at(k);
+                if(tk.type==Token::openBrace && tkTop.subtype!= Token::text && tkTop.subtype!= Token::none && tkTop.argLevel==0){
+                    // redo with filtering out this offending
+                    // currently only one Token can be filtered, but it is possible to set-up more than one
+                    tkFilter=tk;
+                    i=i-30;
+                    lastHandle = line(i - 1).handle();
+                    if (lastHandle) {
+                        oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+                        oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
+                    }else{
+                        oldRemainder.clear();
+                        oldCommandStack.clear();
+                    }
+                    break;
                 }
             }
         }
