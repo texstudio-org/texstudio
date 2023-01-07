@@ -496,13 +496,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
         QtConcurrent::blockingMap(l_dlh,Parsing::simpleLexLatexLine);
 	}
-	QDocumentLineHandle *lastHandle = line(linenr - 1).handle();
-	if (lastHandle) {
-		oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-		oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
-	}
     int stoppedAtLine=-1;
-    for (int i = linenr; i < lineCount() && i < linenr + count; i++) {
+    Token tkFilter;
+    QDocumentLineHandle *lastHandle = line(linenr - 1).handle();
+    if (lastHandle) {
+        oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
+    }
+    for (int i = linenr; i < lineCount() && i < linenr + count; ++i) {
         if (line(i).text() == "\\begin{document}"){
             if(linenr==0 && count==lineCount() && !recheck) {
                 stoppedAtLine=i;
@@ -510,10 +511,33 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             }
         }
         bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
-		if (remainderChanged && i + 1 == linenr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
-			count++; // check also next line ...
-		}
-	}
+        if(oldRemainder.size()>0){
+            Token tkTop=oldRemainder.top();
+            if(tkTop==tkFilter){
+                oldRemainder.pop(); // discard run-away argument
+                tkFilter=Token();
+                tkTop=Token();
+                continue;
+            }
+            if(tkTop.type==Token::openBrace && tkTop.subtype!= Token::text && tkTop.subtype!= Token::none && tkTop.argLevel==0){
+                // redo with filtering out this offending
+                qDebug()<<"filer";
+                tkFilter=tkTop;
+                i=i-30;
+                lastHandle = line(i - 1).handle();
+                if (lastHandle) {
+                    oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+                    oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
+                }else{
+                    oldRemainder.clear();
+                    oldCommandStack.clear();
+                }
+            }
+        }
+        if (remainderChanged && i + 1 == linenr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
+            count++; // check also next line ...
+        }
+    }
 	if (linenr >= lineNrStart) {
 		newCount = linenr + count - lineNrStart;
 	}
