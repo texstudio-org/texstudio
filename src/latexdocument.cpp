@@ -12,6 +12,7 @@
 #include "configmanagerinterface.h"
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexparsing.h"
+#include "configmanager.h"
 #include <QtConcurrent>
 
 
@@ -525,7 +526,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     leaveLoop=true;
                 }
             }
-            if(leaveLoop) continue;
+            if(leaveLoop){
+                // store filtered as remainder into line
+                QDocumentLineHandle *dlh=line(i).handle();
+                dlh->lockForWrite();
+                dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(oldRemainder));
+                dlh->unlock();
+                continue;
+            }
 
             for(int k=0;k<oldRemainder.size();++k){
                 Token tk=oldRemainder.at(k);
@@ -535,7 +543,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 }
             }
             if(!l_tkFilter.isEmpty()){
-                i=i-30;
+                i=i-ConfigManager::RUNAWAYLIMIT;
                 lastHandle = line(i - 1).handle();
                 if (lastHandle) {
                     oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
