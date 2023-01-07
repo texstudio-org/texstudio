@@ -108,7 +108,7 @@ public:
 	Q_INVOKABLE QStringList refItems() const; ///< all references in this document
 	Q_INVOKABLE QStringList bibItems() const; ///< all bibitem defined in this document
 	Q_INVOKABLE QList<CodeSnippet> userCommandList() const; ///< all user commands defined in this document, sorted
-	Q_INVOKABLE CodeSnippetList additionalCommandsList();
+    Q_INVOKABLE CodeSnippetList additionalCommandsList(QStringList &loadedFiles);
 	void updateRefsLabels(const QString &ref);
     void recheckRefsLabels(QList<LatexDocument *> listOfDocs=QList<LatexDocument*>(), QStringList items=QStringList());
     static void updateRefHighlight(ReferencePairEx p);
@@ -293,6 +293,7 @@ public slots:
 signals:
     void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
 	void updateCompleter();
+    void updateCompleterCommands();
 	void updateBibTeXFiles();
 	void importPackage(QString name);
 	void spellingDictChanged(const QString &name);

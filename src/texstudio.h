@@ -559,6 +559,7 @@ protected slots:
 
     void updateCompleter(LatexEditorView *edView = nullptr);
 	void completerNeedsUpdate();
+    void completerCommandsNeedsUpdate();
 	void needUpdatedCompleter();
 
 	void outputPageChanged(const QString &id);
@@ -647,6 +648,8 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
 
 	bool mCompleterNeedsUpdate;
+    bool mCompleterCommandsNeedsUpdate=false;
+    CodeSnippetList mCompleterWords;
 
 	int currentLine;
 	QBrush oldBackground;
@@ -661,8 +664,6 @@ protected:
 	QStringList m_columnCutBuffer;
 
 	QTimer autosaveTimer,previewDelayTimer,previewFullCompileDelayTimer;
-
-	bool completionBaseCommandsUpdated;
 
 	QSet<int> previewQueue;
 	LatexEditorView *previewQueueOwner;

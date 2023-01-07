@@ -1321,6 +1321,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
         reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());     
         updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
+        if(reRunSuggested){
+            emit updateCompleterCommands();
+        }
 	}
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
@@ -2924,11 +2927,10 @@ QStringList LatexDocument::includedFilesAndParent()
 	return result;
 }
 
-CodeSnippetList LatexDocument::additionalCommandsList()
+CodeSnippetList LatexDocument::additionalCommandsList(QStringList &loadedFiles)
 {
 	LatexPackage pck;
-	QStringList loadedFiles, files;
-    files = mCWLFiles.values();
+    QStringList files = mCWLFiles.values();
 	gatherCompletionFiles(files, loadedFiles, pck, true);
 	return pck.completionWords;
 }

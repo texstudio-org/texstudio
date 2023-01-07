@@ -2007,6 +2007,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     connect(edit->editor->document(), SIGNAL(linesRemoved(QDocumentLineHandle*,int,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int,int)));
     //connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle*,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int)));
     connect(edit->document, SIGNAL(updateCompleter()), this, SLOT(completerNeedsUpdate()));
+    connect(edit->document, SIGNAL(updateCompleterCommands()), this, SLOT(completerCommandsNeedsUpdate()));
     connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
     connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
     connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
@@ -2324,7 +2325,14 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 void Texstudio::completerNeedsUpdate()
 {
-	mCompleterNeedsUpdate = true;
+    mCompleterNeedsUpdate = true;
+}
+/*!
+ * \brief used packages has changed, completer commands need update
+ */
+void Texstudio::completerCommandsNeedsUpdate()
+{
+    mCompleterCommandsNeedsUpdate = true;
 }
 
 void Texstudio::needUpdatedCompleter()
@@ -4260,8 +4268,7 @@ void Texstudio::readSettings(bool reread)
     scriptengine::buildManager = &buildManager;
     scriptengine::app = this;
     QSettings *config = configManager.readSettings(reread);
-    completionBaseCommandsUpdated = true;
-
+    mCompleterCommandsNeedsUpdate=true;
     config->beginGroup("texmaker");
 
     QRect screen = QGuiApplication::primaryScreen()->availableGeometry();
@@ -6781,7 +6788,7 @@ void Texstudio::generalOptions()
         //custom toolbar
         setupToolBars();
         //completion
-        completionBaseCommandsUpdated = true;
+        mCompleterCommandsNeedsUpdate=true;
         completerNeedsUpdate();
         completer->setConfig(configManager.completerConfig);
         //update changed line mark colors
@@ -7713,6 +7720,10 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 {
     CodeSnippetList words;
 
+    if(mCompleterCommandsNeedsUpdate){
+        mCompleterWords.clear();
+    }
+
     if (configManager.parseBibTeX) documents.updateBibFiles();
 
     if (!edView)
@@ -7722,6 +7733,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
     LatexParser ltxCommands = LatexParser::getInstance();
     LatexCompleterConfig *config = completer->getConfig();
 
+    QStringList loadedFiles; // keep track of loaded files to avoid duplicate loading
     if (edView && edView->document) {
         // determine from which docs data needs to be collected
         docs = edView->document->getListOfDocs();
@@ -7742,12 +7754,13 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                 }
             }
             words.unite(userList);
-            words.unite(doc->additionalCommandsList());
-
-            ltxCommands.append(doc->ltxCommands);
+            if(mCompleterCommandsNeedsUpdate){
+                mCompleterWords.unite(doc->additionalCommandsList(loadedFiles));
+                ltxCommands.append(doc->ltxCommands);
+            }
         }
+        mCompleterWords.unite(words);
     }
-
     // collect user commands and references
     std::set<QString> collected_labels;
     foreach (const LatexDocument *doc, docs) {
@@ -7757,15 +7770,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
         collected_labels.insert(lst.cbegin(),lst.cend());
     }
 
-    /*foreach (const QString &refCommand, latexParser.possibleCommands["%ref"]) {
-        QString temp = refCommand + "{%1}";
-        CodeSnippetList wordsList;
-        foreach (const QString &l, collected_labels)
-            wordsList.insert(temp.arg(l));
-
-
-        words.unite(wordsList);
-    }*/
     if (configManager.parseBibTeX) {
         std::set<QString> bibIds;
 
@@ -7794,38 +7798,36 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
     completer->setAdditionalWords(collected_labels, CT_LABELS);
 
-    completionBaseCommandsUpdated = false;
-
-
-    completer->setAdditionalWords(words, CT_COMMANDS);
-
-    // add keyval completion, add special lists
-    foreach (const QString &elem, ltxCommands.possibleCommands.keys()) {
-        if (elem.startsWith("key%")) {
-            QString name = elem.mid(4);
-            if (name.endsWith("#c"))
-                name.chop(2);
-            if (!name.isEmpty()) {
-                completer->setKeyValWords(name, ltxCommands.possibleCommands[elem]);
+    completer->setAdditionalWords(mCompleterWords, CT_COMMANDS);
+    if(mCompleterCommandsNeedsUpdate){
+        // add keyval completion, add special lists
+        foreach (const QString &elem, ltxCommands.possibleCommands.keys()) {
+            if (elem.startsWith("key%")) {
+                QString name = elem.mid(4);
+                if (name.endsWith("#c"))
+                    name.chop(2);
+                if (!name.isEmpty()) {
+                    completer->setKeyValWords(name, ltxCommands.possibleCommands[elem]);
+                }
+            }
+            if (elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem)) {
+                completer->setKeyValWords(elem, ltxCommands.possibleCommands[elem]);
             }
         }
-        if (elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem)) {
-            completer->setKeyValWords(elem, ltxCommands.possibleCommands[elem]);
+        // add context completion
+        if (config) {
+            foreach (const QString &elem, config->specialCompletionKeys) {
+                completer->setContextWords(ltxCommands.possibleCommands[elem], elem);
+            }
         }
     }
-    // add context completion
-    if (config) {
-        foreach (const QString &elem, config->specialCompletionKeys) {
-            completer->setContextWords(ltxCommands.possibleCommands[elem], elem);
-        }
-    }
-
 
     if (edView) edView->viewActivated();
 
     GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 
     mCompleterNeedsUpdate = false;
+    mCompleterCommandsNeedsUpdate = false;
 }
 
 void Texstudio::outputPageChanged(const QString &id)
