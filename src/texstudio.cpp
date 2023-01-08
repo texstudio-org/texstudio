@@ -1815,6 +1815,7 @@ void Texstudio::updateCaption()
 	}
 	QString finame = getCurrentFileName();
 	if (finame != "") configManager.lastDocument = finame;
+  setWindowFilePath(finame);
 }
 
 void Texstudio::updateMasterDocumentCaption()
