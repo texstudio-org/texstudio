@@ -1,12 +1,14 @@
 # scripture package
-# Matthew Bertucci 2022/11/04 for v1.2
+# Matthew Bertucci 2023/01/08 for v1.3
 
 \ch{chapter number}
 \ch*{chapter number}
 \extraskip
+\added{words%text}
 \name{divine name}
 \LORD
 \GOD
+\nofirstverse
 \nohang
 \redletteron
 \redletteroff
@@ -15,6 +17,9 @@
 \selah
 \scripturesetup{options%keyvals}
 \textright{text}
+\textscripture{quotation%text}
+\textscripture[reference]{quotation%text}
+\textscripture[reference][options%keyvals]{quotation%text}
 \vs{verse number}
 
 \begin{center}[options%keyvals]
@@ -36,8 +41,10 @@
 \begin{scripture}[reference][options%keyvals]
 \end{scripture}
 
-#keyvals:\usepackage/scripture#c,\scripturesetup,\begin{scripture}
+#keyvals:\usepackage/scripture#c,\scripturesetup,\textscripture,\begin{scripture}
 aboveskip=##L
+added/font=%<font commands%>
+added/format=%<macro%>
 belowskip=##L
 chapter/colour=#%color
 chapter/color=#%color
@@ -48,10 +55,14 @@ chapter/hide#true,false
 chapter/nodrop#true,false
 chapter/sep=##L
 chapter/show#true,false
+chapter/showverse#true,false
 colour=#%color
 color=#%color
 compact#true,false
 extraskip=##L
+inline
+inline/begin=%<code%>
+inline/end=%<code%>
 font=%<font commands%>
 indent#true,false
 language=%<language name%>
@@ -65,11 +76,12 @@ parskip=##L
 redletter#true,false
 redletter/colour=#%color
 redletter/color=#%color
+reference/align=#inline,left,right
 reference/colour=#%color
 reference/color=#%color
-reference/delim=%<delim%>
 reference/font=%<font commands%>
 reference/format=%<macro%>
+reference/newline
 reference/sep=##L
 rightmargin=##L
 selah/font=%<font commands%>
@@ -79,6 +91,9 @@ selah/text=%<text%>
 textright/sep=##L
 verse/colour=#%color
 verse/color=#%color
+verse/first#true,false
+verse/firstformat=%<macro%>
+verse/firstsep=##L
 verse/font=%<font commands%>
 verse/format=%<macro%>
 verse/hide#true,false
