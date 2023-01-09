@@ -5,6 +5,7 @@
 #keyvals:\usepackage/multirow#c
 debug
 longtable
+supertabular
 #endkeyvals
 
 \multirow{number of rows}{width or *}{text}
