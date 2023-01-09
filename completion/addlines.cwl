@@ -24,3 +24,5 @@ draft
 
 \removelines
 \removelines[lines]
+\removeline#S
+\removeline[lines]#S
