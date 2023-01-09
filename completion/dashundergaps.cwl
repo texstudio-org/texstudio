@@ -44,3 +44,9 @@ gap-extend-minimum=##L
 gap-extend-percent=
 widen#true,false
 #endkeyvals
+
+\thegapnumber#*
+\thetotalgapnumber#*
+
+\dashundergapsdate#S
+\dashundergapsversion#S
