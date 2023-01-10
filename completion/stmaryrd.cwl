@@ -118,6 +118,8 @@ Mapstochar
 arrownot
 mapsfromchar
 varcopyright
+longarrownot
+Longarrownot
 #endkeyvals
 
 ### Operators ###
@@ -253,6 +255,7 @@ varcopyright
 \Mapstochar#*m
 \arrownot#*m
 \mapsfromchar#*m
+\longarrownot#*m
+\Longarrownot#*m
 
 \varcopyright
-\copyright
