@@ -30,6 +30,7 @@
 #include <QGestureEvent>
 #include <QPinchGesture>
 #include <QTapGesture>
+#include <QTouchEvent>
 #include <QProgressDialog>
 #include <QPainterPath>
 #if QT_VERSION_MAJOR>5
@@ -293,6 +294,7 @@ protected:
 	virtual bool event(QEvent *event);
 
 	bool gestureEvent(QGestureEvent *event);
+	bool touchEvent(QTouchEvent *event);
 	void pinchEvent(QPinchGesture *gesture);
 	void tapEvent(QTapGesture *gesture);
 
@@ -334,6 +336,9 @@ private:
 	int docPages;
 	qreal			saveScaleFactor;
 	autoScaleOption	saveScaleOption;
+	
+	qreal pinchStartedScaleFactor;
+	bool pinchGestureDetected;
 
 	QAction	*ctxZoomInAction;
 	QAction	*ctxZoomOutAction;

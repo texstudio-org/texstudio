@@ -576,6 +576,8 @@ PDFWidget::PDFWidget(bool embedded)
 	, docPages(0)
 	, saveScaleFactor(1.0)
 	, saveScaleOption(kFitWidth)
+	, pinchStartedScaleFactor(1.0)
+	, pinchGestureDetected(false)
     , ctxZoomInAction(nullptr)
     , ctxZoomOutAction(nullptr)
     , shortcutUp(nullptr)
@@ -1430,9 +1432,61 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 
 bool PDFWidget::event(QEvent *event)
 {
+	#ifndef Q_OS_MAC
 	if (event->type() == QEvent::Gesture)
 		return gestureEvent(static_cast<QGestureEvent *>(event));
 	return QLabel::event(event);
+	#endif
+	
+	// pinch zoom fix for macOS
+	#ifdef Q_OS_MAC
+	switch (event->type()) {
+    	case QEvent::TouchBegin:
+    	case QEvent::TouchUpdate:
+    	case QEvent::TouchEnd:
+	      	return touchEvent(static_cast<QTouchEvent *>(event));
+    	case QEvent::Gesture:
+        	return gestureEvent(static_cast<QGestureEvent *>(event));
+    	default:
+        	return QLabel::event(event);
+	}
+	#endif
+}
+
+// used in pinch zoom fix for macOS
+bool PDFWidget::touchEvent(QTouchEvent *event)
+{
+    event->accept();
+    QTouchEvent *touchEvent = static_cast<QTouchEvent *>(event);
+
+    // exit if the user stopped touching
+    if (touchEvent->touchPointStates() & Qt::TouchPointReleased) {
+    	pinchGestureDetected = false;
+        return true;
+    }
+
+    // don't zoom if the user is not performing a pinch gesture
+	if (pinchGestureDetected == false) {
+		return true;
+	}
+	pinchGestureDetected = false;
+
+    QList<QTouchEvent::TouchPoint> touchPoints = touchEvent->touchPoints();
+    if (touchPoints.count() == 2) {
+        // determine scale factor
+        const QTouchEvent::TouchPoint &touchPoint0 = touchPoints.first();
+        const QTouchEvent::TouchPoint &touchPoint1 = touchPoints.last();
+        qreal currentScaleFactor =
+               QLineF(touchPoint0.pos(), touchPoint1.pos()).length()
+               / QLineF(touchPoint0.startPos(), touchPoint1.startPos()).length();
+
+        qreal xpos = (touchPoint0.pos().x() + touchPoint1.pos().x()) /2;
+        qreal ypos = (touchPoint0.pos().y() + touchPoint1.pos().y()) /2;
+
+        QPoint touchPos(xpos, ypos);
+        doZoom(touchPos, 0, pinchStartedScaleFactor*currentScaleFactor);
+    }
+    return true;
 }
 
 bool PDFWidget::gestureEvent(QGestureEvent *event)
@@ -1446,7 +1500,17 @@ bool PDFWidget::gestureEvent(QGestureEvent *event)
 
 void PDFWidget::pinchEvent(QPinchGesture *gesture)
 {
+	#ifndef Q_OS_MAC
 	doZoom(mapFromGlobal(gesture->centerPoint().toPoint()), 0, gesture->scaleFactor()*scaleFactor);
+	#endif
+
+	// pinch zoom fix for macOS
+	#ifdef Q_OS_MAC
+	if ((gesture->state() & Qt::GestureStarted)) {
+		pinchStartedScaleFactor = scaleFactor;
+	}
+	pinchGestureDetected = true;
+	#endif
 }
 
 void PDFWidget::tapEvent(QTapGesture *gesture)
