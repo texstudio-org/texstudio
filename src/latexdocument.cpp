@@ -1075,16 +1075,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     mClassOptions = firstOptArg;
                 }
 
-                if (firstArg == "babel") {
-                    //special treatment for babel
-                    if (firstOptArg.isEmpty()) {
-                        firstOptArg = mClassOptions;
-                    }
-                    if (!firstOptArg.isEmpty()) {
-                        packagesHelper << firstOptArg.split(",");
-                    }
-                }
-
                 QStringList packages;
 				foreach (QString elem, packagesHelper) {
 					elem = elem.simplified();
