@@ -42,6 +42,7 @@ refstring
 \LettrineDepth#*
 \theDefaultLines#*
 \theDefaultDepth#*
+\LettrineFont#*
 \LettrineFontHook#*
 \LettrineHeight#*
 \LettrineImage#*
@@ -51,6 +52,7 @@ refstring
 \ifLettrineOnGrid#*
 \LettrineOnGridtrue#*
 \LettrineOnGridfalse#*
+\LettrineOptionsFor{letter}{options}#*
 \ifLettrineRealHeight#*
 \LettrineRealHeightfalse#*
 \LettrineRealHeighttrue#*
