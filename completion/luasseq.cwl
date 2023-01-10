@@ -1,5 +1,5 @@
 # luasseq package
-# Matthew Bertucci 2/4/2022 for v2.1
+# Matthew Bertucci 2023/01/10 for v2023/01/10
 
 #include:luatex
 #include:calc
@@ -54,6 +54,8 @@ name=%<name%>
 
 \ssname{name}
 \ssgoto{name}
+\ssbeginprefixcontext
+\ssendprefixcontext
 \ssprefix{prefix}
 \ssresetprefix
 \ssabsgoto
