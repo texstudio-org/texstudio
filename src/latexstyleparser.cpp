@@ -391,10 +391,19 @@ bool LatexStyleParser::parseLineInput(QStringList &results, const QString &line,
 		return false;
 	}
 	QString name = rxInput.cap(1);
-	name = kpsewhich(name);
-	if (!name.isEmpty() && name != fileName) { // avoid indefinite loops
-		results << readPackage(name, parsedPackages);
-	}
+    // check if included is already known as cwl
+    QFileInfo fi(name);
+    QString baseName=fi.baseName();
+
+    if(fi.exists("cwl:"+baseName+".cwl")){
+        // refer to already provided cwl
+        results<<"#include:"+baseName;
+    }else{
+        name = kpsewhich(name);
+        if (!name.isEmpty() && name != fileName) { // avoid indefinite loops
+            results << readPackage(name, parsedPackages);
+        }
+    }
 	return true;
 }
 
