@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/01/03 for v2.1.4
+# Matthew Bertucci 2023/01/10 for v2.1.5
 
 #include:mathtools
 #include:xcolor
@@ -629,6 +629,20 @@ NbVal=%<nombre%>
 Sep=%<séparateur%>
 Tri=#non,croissant,decroissant
 Repetition#true,false
+#endkeyvals
+
+## Combinatoire ##
+\Arrangement{p}{n}
+\Arrangement[option%keyvals]{p}{n}
+\Arrangement*{p}{n}
+\Arrangement*[option%keyvals]{p}{n}
+\Combinaison{p}{n}
+\Combinaison[option%keyvals]{p}{n}
+\Combinaison*{p}{n}
+\Combinaison*[option%keyvals]{p}{n}
+
+#keyvals:\Arrangement,\Arrangement*,\Combinaison,\Combinaison*
+Formule#true,false
 #endkeyvals
 
 ## Conversions binaire/hexadécimal/décimal ##
