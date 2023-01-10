@@ -13,7 +13,7 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	ChangeAwareTabBar *tb = new ChangeAwareTabBar();
 	tb->setContextMenuPolicy(Qt::CustomContextMenu);
 	tb->setUsesScrollButtons(true);
-  tb->setAutoHide(true);
+    tb->setAutoHide(true);
 	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
     connect(tb, SIGNAL(currentTabAboutToChange(int,int)), this, SLOT(currentTabAboutToChange(int,int)));
 	connect(tb, SIGNAL(tabLeftClicked()), this, SIGNAL(activationRequested()));
@@ -106,6 +106,10 @@ void TxsTabWidget::setActive(bool active) {
 	} else {
 		setStyleSheet(baseStyle + " QTabBar {color: darkgrey;}");
 	}
+    if(active){
+        if(currentEditor())
+            currentEditor()->setFocus();
+    }
 }
 
 bool TxsTabWidget::isEmpty() const {
