@@ -1332,7 +1332,7 @@ label=%<label text%>
 labelposition=#none,topline,bottomline,all
 numbers=#none,left,right
 numbersep=##L
-firstnumber=#auto,last,integer
+firstnumber=%<auto|last|<integer>%>
 stepnumber=%<integer%>
 numberblanklines#true,false
 firstline=%<integer%>
@@ -1353,6 +1353,9 @@ codes*={%<code%>}
 defineactive={%<code%>}
 defineactive*={%<code%>}
 reflabel=##l
+fileext=%<extension%>
+vspace=##L
+listparameters={%<code%>}
 beameroverlays#true,false
 curlyquotes#true,false
 extra#true,false
