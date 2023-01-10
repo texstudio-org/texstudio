@@ -7,7 +7,7 @@
 #include:textcomp
 #include:lineno
 
-#keyvals:\Verb,\Verb*,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
+#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
 beameroverlays#true,false
 curlyquotes#true,false
 extra#true,false
@@ -67,6 +67,7 @@ breakbytokenanywhere#true,false
 commentchar=%<single char%>
 gobble=%<integer%>
 formatcom=%<commands%>
+formatcom*=%<commands%>
 fontfamily=%<family%>
 fontsize=%<size macro%>
 fontshape=%<shape%>
@@ -80,7 +81,7 @@ label=%<label text%>
 labelposition=#none,topline,bottomline,all
 numbers=#none,left,right
 numbersep=##L
-firstnumber=#auto,last,integer
+firstnumber=%<auto|last|<integer>%>
 stepnumber=%<integer%>
 numberblanklines#true,false
 firstline=%<integer%>
@@ -99,7 +100,11 @@ samepage#true,false
 codes={%<code%>}
 codes*={%<code%>}
 defineactive={%<code%>}
+defineactive*={%<code%>}
 reflabel=##l
+fileext=%<extension%>
+vspace=##L
+listparameters={%<code%>}
 #endkeyvals
 
 # the aftersave key also makes sense in \fvinlineset
