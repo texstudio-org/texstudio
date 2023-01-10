@@ -1370,6 +1370,14 @@ d
 \DeclareListFormat*{format}{code}#*
 \DeclareNameFormat[entrytype, ...]{format}{code}#*
 \DeclareNameFormat*{format}{code}#*
+\namepartprefix#*
+\namepartprefixi#*
+\namepartfamily#*
+\namepartfamilyi#*
+\namepartsuffix#*
+\namepartsuffixi#*
+\namepartgiven#*
+\namepartgiveni#*
 \DeclareListWrapperFormat[entrytype, ...]{format}{code}#*
 \DeclareListWrapperFormat*{format}{code}#*
 \DeclareNameWrapperFormat[entrytype, ...]{format}{code}#*
