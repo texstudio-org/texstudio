@@ -10755,6 +10755,10 @@ void Texstudio::checkCWLs()
 	foreach (QString s, cwls) {
 		res << QString("------------------- Package %1: ---------------------").arg(s);
 		LatexPackage package;
+        int p=s.indexOf('#');
+        if(p>-1 && !documents.cachedPackages.contains(s)){
+            s=s.mid(p+1);
+        }
 		if (!documents.cachedPackages.contains(s)) {
 			res << "Package not cached (normal for global packages)";
 			package = loadCwlFile(s);
