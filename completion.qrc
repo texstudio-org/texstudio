@@ -1951,6 +1951,7 @@
 <file>completion/layaureo.cwl</file>
 <file>completion/layout.cwl</file>
 <file>completion/layouts.cwl</file>
+<file>completion/lazylist.cwl</file>
 <file>completion/lccaps.cwl</file>
 <file>completion/lcd.cwl</file>
 <file>completion/lcg.cwl</file>
@@ -3016,6 +3017,7 @@
 <file>completion/scikgtex.cwl</file>
 <file>completion/sclang-prettifier.cwl</file>
 <file>completion/scontents.cwl</file>
+<file>completion/Scrabble.cwl</file>
 <file>completion/scraddr.cwl</file>
 <file>completion/scrambledenvs.cwl</file>
 <file>completion/scratch3.cwl</file>
