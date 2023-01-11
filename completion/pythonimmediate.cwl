@@ -1,13 +1,15 @@
 # pythonimmediate package
-# Matthew Bertucci 2022/12/23 for v0.0.0
+# Matthew Bertucci 2023/01/11 for v0.1.0
 
 #include:saveenv
 #include:currfile
 #include:precattl
 
 #keyvals:\usepackage/pythonimmediate#c
-outputdir=%<directory%>
-mode=#multiprocessing-network,unnamed-pipe
+args=%<Python args%>
+python-executable=%<path%>
+python-flags=%<flags%>
+child-process#true,false
 #endkeyvals
 
 \py{python expr%definition}
