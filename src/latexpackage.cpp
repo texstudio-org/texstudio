@@ -627,7 +627,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 }
 
 
-Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
+Token::TokenType tokenTypeFromCwlArg(QString arg, QString &definition)
 {
 	int i = arg.indexOf('%');
 	// type from suffix
@@ -694,6 +694,10 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if (arg == "labellist") return Token::labelRefList;
     if (arg == "verbatimSymbol") return Token::verbatimStart;
 	if (arg.contains("overlay specification")) return Token::overlay;
+    if (definition.contains('s')){
+        definition.remove('s'); // only valid for the first argument
+        return Token::defSpecialArg;
+    }
 	return Token::generalArg;
 }
 
