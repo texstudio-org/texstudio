@@ -219,6 +219,7 @@ There are a few argument names that have special meaning:
 -   `formula` or ends with `%formula`: The argument is always treated as
     if in math-mode. See chemformula.cwl for an example.
 -   ends with `%special`: special argument which relates to data defined via special definition, see classifier 's'. The database is the text before `%`.
+-   ends with `%specialDef`: special argument which defines data for a database, see classifier 's'.
 
 A %-suffix takes precedence over detection by name, i.e. an argument
 `file%text` will be treated as text not as file.
@@ -267,7 +268,7 @@ Examples:
 |  `\pageref{key}#r`                                 | declares a reference command which is used correctly for completion |
 |  `\vector(xslope,yslope){length}#*/picture`        | unusual command which is valid only in the picture environment |
 |  `\begin{align}#\math`                             | declares that the \"align\"-environment is handled like a math-env, concerning command validity and syntax highlighting! |
-|  `\definecolor{name}{model}{color-spec}#s#%color`  | adds `name` to the special list `%color` |
+|  `\definecolor{name%specialDef}{model}{color-spec}#s#%color`  | adds `name` to the special list `%color` |
 |  `\color{color%special}`                           | insert element from special list `%color` (here used as example) |
 |  `\myplot{file}{label}{params}#l`                  | defines the second argument as label. Note: the argument has to be named `label` for this to work. |
 |  `\myplot{file}{customname%labeldef}`              | defines the second argument as label, but you are free to choose the name `customname` which will be used as a placeholder in the completer. |

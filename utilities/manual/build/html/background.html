@@ -467,6 +467,7 @@ N needs to be present!)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">formula</span></code> or ends with <code class="docutils literal notranslate"><span class="pre">%formula</span></code>: The argument is always treated as
 if in math-mode. See chemformula.cwl for an example.</p></li>
 <li><p>ends with <code class="docutils literal notranslate"><span class="pre">%special</span></code>: special argument which relates to data defined via special definition, see classifier ‘s’. The database is the text before <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p></li>
+<li><p>ends with <code class="docutils literal notranslate"><span class="pre">%specialDef</span></code>: special argument which defines data for a database, see classifier ‘s’.</p></li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument
 <code class="docutils literal notranslate"><span class="pre">file%text</span></code> will be treated as text not as file.</p>
@@ -594,7 +595,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\begin{align}#\math</span></code></p></td>
 <td><p>declares that the “align”-environment is handled like a math-env, concerning command validity and syntax highlighting!</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\definecolor{name}{model}{color-spec}#s#%color</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\definecolor{name%specialDef}{model}{color-spec}#s#%color</span></code></p></td>
 <td><p>adds <code class="docutils literal notranslate"><span class="pre">name</span></code> to the special list <code class="docutils literal notranslate"><span class="pre">%color</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\color{color%special}</span></code></p></td>

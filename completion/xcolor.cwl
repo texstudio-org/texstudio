@@ -83,14 +83,14 @@ hideerrors
 \convertcolorsUtrue#*
 \convertcolorsUfalse#*
 
-\definecolor{name}{model-list}{spec-list}#s#%color
-\definecolor[type]{name}{model-list}{spec-list}#s#%color
-\providecolor{name}{model-list}{spec-list}#s#%color
-\providecolor[type]{name}{model-list}{spec-list}#s#%color
-\colorlet{name}{color}#s#%color
-\colorlet{name}[num-model]{color}#s#%color
-\colorlet[type]{name}{color}#s#%color
-\colorlet[type]{name}[num-model]{color}#s#%color
+\definecolor{name%specialDef}{model-list}{spec-list}#s#%color
+\definecolor[type]{name%specialDef}{model-list}{spec-list}#s#%color
+\providecolor{name%specialDef}{model-list}{spec-list}#s#%color
+\providecolor[type]{name%specialDef}{model-list}{spec-list}#s#%color
+\colorlet{name%specialDef}{color}#s#%color
+\colorlet{name%specialDef}[num-model]{color}#s#%color
+\colorlet[type]{name%specialDef}{color}#s#%color
+\colorlet[type]{name%specialDef}[num-model]{color}#s#%color
 
 \definecolorset[type]{model-list}{head}{tail}{set-spec}#*
 \providecolorset[type]{model-list}{head}{tail}{set-spec}#*

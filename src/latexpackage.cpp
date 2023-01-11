@@ -646,6 +646,9 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString &definition)
 		if ((suffix == "%envname") && definition.contains('N')) return Token::newTheorem;
 		if (suffix == "%ref") return Token::labelRef;
 		if (suffix == "%labeldef") return Token::label;
+        if (suffix == "%specialDef"){
+            return Token::defSpecialArg;
+        }
 		if (suffix == "%special") {
 			Token::TokenType type = Token::specialArg;
 			arg.chop(8);
@@ -694,10 +697,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString &definition)
 	if (arg == "labellist") return Token::labelRefList;
     if (arg == "verbatimSymbol") return Token::verbatimStart;
 	if (arg.contains("overlay specification")) return Token::overlay;
-    if (definition.contains('s')){
-        definition.remove('s'); // only valid for the first argument
-        return Token::defSpecialArg;
-    }
+
 	return Token::generalArg;
 }
 

@@ -1016,7 +1016,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 			/// specialDefinition ///
 			/// e.g. definecolor
-			if (ltxCommands.specialDefCommands.contains(cmd)) {
+            /*if (ltxCommands.specialDefCommands.contains(cmd)) {
 				if (!args.isEmpty() ) {
 					completerNeedsUpdate = true;
 					QString definition = ltxCommands.specialDefCommands.value(cmd);
@@ -1048,7 +1048,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 						break;
 					}
 				}
-			}
+            }*/
 
 			///usepackage
             if (lp.possibleCommands["%usepackage"].contains(cmd)) {
