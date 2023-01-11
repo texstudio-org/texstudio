@@ -3533,6 +3533,18 @@ editor
 \glossaryname#*
 #endif
 
+### pinyin.ldf v4.8.5 ###
+#ifOption:pinyin
+\captionspinyin#*
+\datepinyin#*
+\extraspinyin#*
+\noextraspinyin#*
+\mdqon#*
+\mdqoff#*
+#repl:"u ü
+#repl:"U Ü
+#endif
+
 ### polish.ldf v1.2l ###
 #ifOption:polish
 \captionspolish

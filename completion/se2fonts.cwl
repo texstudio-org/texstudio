@@ -1,12 +1,8 @@
 # se2fonts package
-# Matthew Bertucci 2022/11/08 for v1.3.0
+# Matthew Bertucci 2023/01/10 for v2.0.0
 
-#include:fontspec
 #include:unicode-math
-
-#keyvals:\usepackage/se2fonts#c
-fmode=#original,replacement,auto
-#endkeyvals
+#include:libertinus-otf
 
 \pdftexengine#*
 \xetexengine#*

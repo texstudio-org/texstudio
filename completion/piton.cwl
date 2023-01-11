@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/01/01 for v1.0
+# Matthew Bertucci 2023/01/07 for v1.1
 
 #include:l3keys2e
 #include:luatexbase
@@ -11,6 +11,7 @@ math-comments#true,false
 escape-inside=%<two-chars%>
 footnote
 footnotehyper
+beamer#true,false
 #endkeyvals
 
 #ifOption:footnote
@@ -91,6 +92,7 @@ Comment.Math=%<formatting%>
 InitialValues=%<formatting%>
 Name.Type=%<formatting%>
 Post.Function=%<formatting%>
+Beamer=%<formatting%>
 #endkeyvals
 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N

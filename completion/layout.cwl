@@ -44,3 +44,8 @@ reals
 \Type{arg1}{arg2}#*
 \oneinch#*
 \fheight#*
+\Interval#*
+\ExtraYPos#*
+\PositionX#*
+\PositionY#*
+\ArrowLength#*

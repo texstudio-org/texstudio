@@ -15,6 +15,7 @@ level=#L,M,Q,H
 version=
 tight
 padding
+draft
 #endkeyvals
 
 #keyvals:\qrcode,\qrset

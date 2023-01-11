@@ -14,9 +14,11 @@
 \Verb*[%<options%>]|%<code%>|
 \VerbatimFootnotes
 \DefineShortVerb{\%<character%>}
+\DefineShortVerb[%<options%>]{\%<character%>}
 \UndefineShortVerb{\%<character%>}
 # following two lines tell highlighter not to mark args as incorrect
 \DefineShortVerb{definition}#S
+\DefineShortVerb[options%keyvals]{definition}#S
 \UndefineShortVerb{definition}#S
 
 \begin{Verbatim}#V
@@ -85,7 +87,7 @@ aftersave={%<code%>}
 \begin{VerbatimOut}{file name}#V
 \end{VerbatimOut}
 
-#keyvals:\Verb,\Verb*,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput
+#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput
 commentchar=%<single char%>
 gobble=%<integer%>
 formatcom=%<commands%>

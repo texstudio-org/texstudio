@@ -1,10 +1,10 @@
 # se2colors package
-# Matthew Bertucci 2022/11/08 for v1.3.0
+# Matthew Bertucci 2023/01/10 for v2.0.0
 
 #include:xcolor
 
 #keyvals:\usepackage/se2colors#c
-cmode=#4C,cmyk,RGB,rgb,BW,gray
+cmode=#4C,cmyk,RGB,BW,gray
 #endkeyvals
 
 UPSE2-JUR#B

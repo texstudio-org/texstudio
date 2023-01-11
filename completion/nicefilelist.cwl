@@ -1,5 +1,5 @@
 # nicefilelist package
-# Matthew Bertucci 2022/12/10 for v0.8a
+# Matthew Bertucci 2023/01/08 for v0.9a
 
 #include:monofill
 #include:myfilist
@@ -7,10 +7,15 @@
 #keyvals:\usepackage/nicefilelist#c
 r
 wrap
+autolength
 #endkeyvals
 
 #ifOption:wrap
 #include:hardwrap
+#endif
+
+#ifOption:autolength
+#include:xstring
 #endif
 
 \NFLspaceI
@@ -25,3 +30,9 @@ wrap
 \MaxBaseEmptyList*[read-again-files]
 \maxBaseEmptyList{longest-name}#S
 \maxBaseEmptyList{longest-name}[read-again-files]#S
+\ifNFLwrap#S
+\NFLwraptrue#S
+\NFLwrapfalse#S
+\ifNFLautolength#S
+\NFLautolengthtrue#S
+\NFLautolengthfalse#S

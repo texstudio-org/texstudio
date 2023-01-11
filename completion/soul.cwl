@@ -7,6 +7,8 @@ capsdefault
 
 \so{text}
 \textso{text}#*
+\<#S
+\>#S
 \caps{text}
 \textcaps{text}#*
 \capsfont#*

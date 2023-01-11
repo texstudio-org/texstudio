@@ -1,8 +1,5 @@
 # langnames package
-# Matthew Bertucci 2022/09/16 for v2.0
-
-#include:expkv-opt
-#include:expkv-def
+# Matthew Bertucci 2023/01/09 for v2.1
 
 #keyvals:\usepackage/langnames#c
 glottolog

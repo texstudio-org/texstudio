@@ -62,24 +62,25 @@ brazilian
 \ShowCode{name}
 \ShowCode[options%keyvals]{name}
 
-#keyvals:\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\UseVerb,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput
+#keyvals:\ShowCode
 commentchar=%<single char%>
 gobble=%<integer%>
-formatcom=%<command%>
-fontfamily=
-fontsize=
-fontshape=
-fontseries=
+formatcom=%<commands%>
+formatcom*=%<commands%>
+fontfamily=%<family%>
+fontsize=%<size macro%>
+fontshape=%<shape%>
+fontseries=%<series%>
 frame=#none,leftline,topline,bottomline,lines,single
 framerule=##L
 framesep=##L
 rulecolor=%<color cmd%>
 fillcolor=%<color cmd%>
-label=
+label=%<label text%>
 labelposition=#none,topline,bottomline,all
 numbers=#none,left,right
 numbersep=##L
-firstnumber=#auto,last,integer
+firstnumber=%<auto|last|<integer>%>
 stepnumber=%<integer%>
 numberblanklines#true,false
 firstline=%<integer%>
@@ -88,14 +89,19 @@ showspaces#true,false
 showtabs#true,false
 obeytabs#true,false
 tabsize=%<integer%>
-baselinestretch=##L
+baselinestretch=%<factor%>
 commandchars=%<three chars%>
 xleftmargin=##L
 xrightmargin=##L
 resetmargins#true,false
 hfuzz=##L
 samepage#true,false
-codes=
-defineactive=
+codes={%<code%>}
+codes*={%<code%>}
+defineactive={%<code%>}
+defineactive*={%<code%>}
 reflabel=##l
+fileext=%<extension%>
+vspace=##L
+listparameters={%<code%>}
 #endkeyvals

@@ -27,6 +27,7 @@ notefont=%<font commands%>
 bodyfont=%<font commands%>
 headpunct=%<symbol%>
 notebraces=%<two chars%>
+break
 postheadspace=##L
 headformat=%<code%>
 headindent=##L

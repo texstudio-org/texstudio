@@ -202,6 +202,8 @@ defineactive={%<code%>}
 defineactive*={%<code%>}
 reflabel=##l
 fileext=%<extension%>
+vspace=##L
+listparameters={%<code%>}
 #endkeyvals
 
 #keyvals:\begin{ctexexam}
