@@ -411,7 +411,7 @@ pic text options={%<options%>}
 \wordgroup[options%keyvals]{row-offset}{word-offset-beg}{word-offset-end}{gid}
 \groupedge{from-gid}{to-gid}{label}{height}
 \groupedge[options%keyvals]{from-gid}{to-gid}{label}{height}
-\depstyle{style name}{options}#s#%depstyle
+\depstyle{style name%specialDef}{options}#s#%depstyle
 
 #keyvals:\begin{dependency}#c,\begin{deptext}#c,\depkeys#c,\depedge#c,\deproot#c,\wordgroup#c,\groupedge#c
 edge unit distance=##L

@@ -148,18 +148,18 @@ solution-heading=%<heading command%>
 %xsimexerparam
 #endkeyvals
 
-\DeclareExerciseParameter{parameter}#s#%xsimexerparam
-\DeclareExerciseParameter*{parameter}#s#%xsimexerparam
+\DeclareExerciseParameter{parameter%specialDef}#s#%xsimexerparam
+\DeclareExerciseParameter*{parameter%specialDef}#s#%xsimexerparam
 \SetExerciseParameter{type}{parameter}{value}
 \SetExerciseParameters{type}{parameters}
 
-\DeclareExerciseProperty{property}#s#%xsimexerprop
-\DeclareExerciseProperty*{property}#s#%xsimexerprop
-\DeclareExerciseProperty!{property}#s#%xsimexerprop
-\DeclareExerciseProperty-{property}#s#%xsimexerprop
-\DeclareExercisePropertyAlias{property1}{property2}#s#%xsimexerprop
+\DeclareExerciseProperty{property%specialDef}#s#%xsimexerprop
+\DeclareExerciseProperty*{property%specialDef}#s#%xsimexerprop
+\DeclareExerciseProperty!{property%specialDef}#s#%xsimexerprop
+\DeclareExerciseProperty-{property%specialDef}#s#%xsimexerprop
+\DeclareExercisePropertyAlias{property1%specialDef}{property2}#s#%xsimexerprop
 
-\DeclareExerciseGoal{goal}#s#%xsimexerprop
+\DeclareExerciseGoal{goal%specialDef}#s#%xsimexerprop
 \TotalExerciseTypeGoal{type}{goal}{singular}{plural}
 \TotalExerciseTypeGoals{type}{list of goals}{singular}{plural}
 \TotalExerciseGoal{goal}{singular}{plural}
@@ -180,8 +180,8 @@ solution-heading=%<heading command%>
 \addbonus{value}
 \addbonus*{value}
 
-\DeclareExerciseTagging{tag}#s#%xsimexertag
-\ProvideExerciseTagging{tag}#s#%xsimexertag
+\DeclareExerciseTagging{tag%specialDef}#s#%xsimexertag
+\ProvideExerciseTagging{tag%specialDef}#s#%xsimexertag
 
 \printexercise{type}{list of ids}
 \xprintexercise{type}{list of ids}

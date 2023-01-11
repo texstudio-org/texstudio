@@ -14,7 +14,7 @@ iconheight=##L
 targetwidth=##L
 targetheight=##L
 #endkeyvals
-\ddGameIcon{icon name}#s#%ddgameicon
+\ddGameIcon{icon name%specialDef}#s#%ddgameicon
 \ddTargetOfIcon{icon name%keyvals}{caption%text}
 #keyvals:\ddTargetOfIcon#c
 %ddgameicon

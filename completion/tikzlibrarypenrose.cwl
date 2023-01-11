@@ -71,7 +71,7 @@ clone Penrose side path={%<target%>}{%<source%>}
 clone Penrose tile path={%<target%>}{%<source%>}
 #endkeyvals
 
-\DefineTile{name}{sides}{coordinates}#s#%penrosetilename
+\DefineTile{name%specialDef}{sides}{coordinates}#s#%penrosetilename
 
 # not documented
 \SetPenrosePath{arg}#S

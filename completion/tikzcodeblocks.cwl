@@ -76,7 +76,7 @@ boden
 floor
 #endkeyvals
 
-\setcolor{name}{hex color code}#s#%color
+\setcolor{name%specialDef}{hex color code}#s#%color
 
 grundlagen-color#B
 eingaben-color#B

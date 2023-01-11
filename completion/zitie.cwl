@@ -92,8 +92,8 @@ validateglyph#true,false
 #endkeyvals
 
 \zitiestrokechars{pdf literal}{typeset material}
-\zitiecolorlet{name}{value}#s#%color
-\zitiecolorlet{name}[model]{value}
+\zitiecolorlet{name%specialDef}{value}#s#%color
+\zitiecolorlet{name%specialDef}[model]{value}
 \zitienewprocessorrule{processor}{rule}{replace}
 \zitienewprocessorrule[arg nums]{processor}{rule}{replace}
 \zitienewrule{processor}{rule}{replace}#*

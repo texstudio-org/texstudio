@@ -11,8 +11,8 @@ extramarks
 nopatches
 #endkeyvals
 
-\newpagestyle{name}{commands}#s#%titlepspagestyle
-\newpagestyle{name}[global-style]{commands}
+\newpagestyle{name%specialDef}{commands}#s#%titlepspagestyle
+\newpagestyle{name%specialDef}[global-style]{commands}
 \renewpagestyle{name}{commands}
 \renewpagestyle{name}[global-style]{commands}
 

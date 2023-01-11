@@ -6,8 +6,8 @@
 #include:ifxetex
 #include:eforms
 
-\rtpara{name}{richtext paragraph%text}#s#%rtpara
-\rtpara[options%keyvals]{name}{richtext paragraph%text}#s#%rtpara
+\rtpara{name%specialDef}{richtext paragraph%text}#s#%rtpara
+\rtpara[options%keyvals]{name%specialDef}{richtext paragraph%text}#s#%rtpara
 \span{options%keyvals}{richtext string%text}
 
 \useRV{name%keyvals}
@@ -25,14 +25,14 @@
 \RV{rich value}
 \DS{default style}
 \useDefaultDS
-\setDefaultStyle{name}{options%keyvals}#s#%rtdefaultstyle
+\setDefaultStyle{name%specialDef}{options%keyvals}#s#%rtdefaultstyle
 \useDS{name%keyvals}
 
 #keyvals:\useDS
 %rtdefaultstyle
 #endkeyvals
 
-\setRVVContent{name}{{name1}{name2}...}#s#%rvvcontent
+\setRVVContent{name%specialDef}{{name1}{name2}...}#s#%rvvcontent
 \useRVContent{name%keyvals}
 \useVContent{name%keyvals}
 

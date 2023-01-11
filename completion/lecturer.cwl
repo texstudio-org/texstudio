@@ -128,8 +128,8 @@ push
 none
 #endkeyvals
 
-\newcolor{name}{color model}{values}#s#%color
-\newcolor{name}{color model}[opacity]{values}#s#%color
+\newcolor{name%specialDef}{color model}{values}#s#%color
+\newcolor{name%specialDef}{color model}[opacity]{values}#s#%color
 black#B
 white#B
 red#B
@@ -140,7 +140,7 @@ magenta#B
 yellow#B
 \usecolor{color}
 
-\newshade{name}#s#%color
+\newshade{name%specialDef}#s#%color
 
 \newimage{name}{file}
 \newimage{name}[width,height]{file}

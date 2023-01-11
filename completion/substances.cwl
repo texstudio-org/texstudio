@@ -19,7 +19,7 @@ style=%<style name%>
 strict#true,false
 #endkeyvals
 
-\DeclareSubstance{id}{properties%keyvals}#s#%substancesid
+\DeclareSubstance{id%specialDef}{properties%keyvals}#s#%substancesid
 \LoadSubstances{database name}
 \SubstancesDatabase{name}#*
 
@@ -56,12 +56,12 @@ LD50=%<median lethal dose%>
 \SubstancesStyle*{style name}#*
 \LoadSubstancesStyle{style name}
 
-\DeclareSubstanceProperty{name}#s#%substancesfield
-\DeclareSubstanceProperty{name}[pre code]
-\DeclareSubstanceProperty{name}[pre code][post code]
-\DeclareSubstanceProperty*{name}#s#%substancesfield
-\DeclareSubstanceProperty*{name}[pre code]
-\DeclareSubstanceProperty*{name}[pre code][post code]
+\DeclareSubstanceProperty{name%specialDef}#s#%substancesfield
+\DeclareSubstanceProperty{name%specialDef}[pre code]
+\DeclareSubstanceProperty{name%specialDef}[pre code][post code]
+\DeclareSubstanceProperty*{name%specialDef}#s#%substancesfield
+\DeclareSubstanceProperty*{name%specialDef}[pre code]
+\DeclareSubstanceProperty*{name%specialDef}[pre code][post code]
 
 \chem{id%keyvals}
 \chem{id%keyvals}[property]

@@ -99,8 +99,8 @@ hyperref
 \UnicodeOptiontipafalse#*
 
 \XDeclareUnicodeOption{package%plain}{name}{activate}{on}{off}#*
-\DeclareUnicodeOption{name}#s#%unicodeoption
-\DeclareUnicodeOption[package%plain]{name}#s#%unicodeoption
+\DeclareUnicodeOption{name%specialDef}#s#%unicodeoption
+\DeclareUnicodeOption[package%plain]{name%specialDef}#s#%unicodeoption
 
 #keyvals:\SetUnicodeOption
 %unicodeoption

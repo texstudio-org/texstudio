@@ -10,8 +10,8 @@
 \cisterciansetup{options%keyvals}
 \cistercianredraw#*
 \cistercianredrawlazy#*
-\cistercianstyle{keyname}{options%keyvals}#s#%cisterciankey
-\cistercianstyle*{keyname}{options%keyvals}#s#%cisterciankey
+\cistercianstyle{keyname%specialDef}{options%keyvals}#s#%cisterciankey
+\cistercianstyle*{keyname%specialDef}{options%keyvals}#s#%cisterciankey
 
 #keyvals:\cisterciansetup,\cistercianstyle,\cistercianstyle*,\usepackage/xistercian#c
 width=##L

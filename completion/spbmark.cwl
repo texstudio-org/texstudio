@@ -42,7 +42,7 @@ all
 
 \defspbstyle{style name}{keyvals}
 \spbifmath{math code%formula}{text code}
-\spbshortkv{short opt}{keyval%keyvals}#s#%spbshortkv
+\spbshortkv{short opt%specialDef}{keyval%keyvals}#s#%spbshortkv
 
 #ifOption:math
 \sp{content}

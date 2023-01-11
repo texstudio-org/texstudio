@@ -394,7 +394,7 @@ indent=##L
 hang=##L
 #endkeyvals
 
-\NewTblrTheme{theme name}{specs}#s#%tblrtheme
+\NewTblrTheme{theme name%specialDef}{specs}#s#%tblrtheme
 
 \TblrNote{mark-symbol}
 \InsertTblrText{key%plain}#*

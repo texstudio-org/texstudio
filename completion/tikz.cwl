@@ -28,7 +28,7 @@
 \tikzchildanchor#*
 \tikzparentnode#*
 \tikzchildnode#*
-\tikzstyle{style} = [definition]#s#%tikzstyle
+\tikzstyle{style%specialDef} = [definition]#s#%tikzstyle
 \begin{tikzpicture}#\pictureHighlight
 \begin{tikzpicture}[options%keyvals]
 \end{tikzpicture}

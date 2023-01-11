@@ -35,7 +35,7 @@ sansboldbw
 
 \setuptablefontsize{name}{size definition}
 \tablefontsize{name}
-\setuptablecolor{color name}{definition}#s#%color
+\setuptablecolor{color name%specialDef}{definition}#s#%color
 \tablecolor{color}
 \tablealtcolored
 \disablealternatecolors
@@ -43,7 +43,7 @@ sansboldbw
 \coloredhline{color}#t
 \coloredvline{color}#t
 
-\setuptablestyle{style name}{definition}#s#%tablestyle
+\setuptablestyle{style name%specialDef}{definition}#s#%tablestyle
 \resettablestyle
 
 \tableitemize

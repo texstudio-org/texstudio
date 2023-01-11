@@ -53,8 +53,8 @@ lastmoveid
 lastmoveid=%<GameID%>
 #endkeyvals
 
-\xskaknewpgninfo{keyname}#s#%xskakkey
-\xskaknewpgninfo[default]{keyname}
+\xskaknewpgninfo{keyname%specialDef}#s#%xskakkey
+\xskaknewpgninfo[default]{keyname%specialDef}
 
 \xskakgetgame{type%keyvals}
 
