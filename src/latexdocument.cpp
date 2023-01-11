@@ -810,6 +810,17 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newTodo->setLine(line(i).handle(), i);
                 insertElement(todoList, posTodo++, newTodo);
 			}
+            // specialArg definition
+            if(tk.type == Token::defSpecialArg){
+                QString cmd=Parsing::getCommandFromToken(tk);
+                completerNeedsUpdate = true;
+                QString definition = ltxCommands.specialDefCommands.value(cmd);
+                QString elem = tk.getText();
+                mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), definition + "%" + elem));
+                if (!removedUserCommands.removeAll(elem)) {
+                    addedUserCommands << elem;
+                }
+            }
 
 			// work on general commands
 			if (tk.type != Token::command && tk.type != Token::commandUnknown)
@@ -1024,6 +1035,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					foreach (Token mTk, args) {
 						if (mTk.type != type)
 							continue;
+                        if(mTk.subtype == Token::defSpecialArg){
+                            // handled elsewhere
+                            break;
+                        }
 						QString elem = mTk.getText();
 						elem = elem.mid(1, elem.length() - 2); // strip braces
 						mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), definition + "%" + elem));
