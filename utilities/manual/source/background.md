@@ -218,6 +218,7 @@ There are a few argument names that have special meaning:
     `\verb{verbatimSymbol}#S` from latex-document.cwl in source code.
 -   `formula` or ends with `%formula`: The argument is always treated as
     if in math-mode. See chemformula.cwl for an example.
+-   ends with `%special`: special argument which relates to data defined via special definition, see classifier 's'. The database is the text before `%`.
 
 A %-suffix takes precedence over detection by name, i.e. an argument
 `file%text` will be treated as text not as file.
@@ -249,7 +250,7 @@ The following classifications are known to TXS:
 |  K               | this command declares a bracket-like command like \"\\big{\" |
 |  D               | this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix `%todo`. See todonotes.cwl for an example. |
 |  B               | this command declares a color (will be used for color completion only, no syntax checking) |
-|  s               | this command declares a special definition, the definition class is given after a \"\#\". The class name needs a preceding %. (e.g. %color), also see the examples below. |
+|  s               | this command declares a special definition, the definition class is given after a \"\#\". The class name needs a preceding %. (e.g. %color), also see the examples below. Data is inserted again in `%special` argument or via keyvals. |
 |  V               | this command declares a verbatim-like environment \"\\begin{Verbatim}\" |
 |  N               | this command declares a newtheorem-like command like \"\\newtheorem{envname}\" |
 |  L0 to L5        | this command declares a structure command. The level is between L0 (`\part`-like) down to L5 (`\subparagraph`-like). Structure commands are highlighted in the code, can be folded and appear in the structure outline. |
@@ -267,6 +268,7 @@ Examples:
 |  `\vector(xslope,yslope){length}#*/picture`        | unusual command which is valid only in the picture environment |
 |  `\begin{align}#\math`                             | declares that the \"align\"-environment is handled like a math-env, concerning command validity and syntax highlighting! |
 |  `\definecolor{name}{model}{color-spec}#s#%color`  | adds `name` to the special list `%color` |
+|  `\color{color%special}`                           | insert element from special list `%color` (here used as example) |
 |  `\myplot{file}{label}{params}#l`                  | defines the second argument as label. Note: the argument has to be named `label` for this to work. |
 |  `\myplot{file}{customname%labeldef}`              | defines the second argument as label, but you are free to choose the name `customname` which will be used as a placeholder in the completer. |
 |  `\myplot{file}{label1%labeldef}{label2%labeldef}` | defines the second and third arguments as labels. |

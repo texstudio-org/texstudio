@@ -466,6 +466,7 @@ N needs to be present!)</p></li>
 <code class="docutils literal notranslate"><span class="pre">\verb{verbatimSymbol}#S</span></code> from latex-document.cwl in source code.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">formula</span></code> or ends with <code class="docutils literal notranslate"><span class="pre">%formula</span></code>: The argument is always treated as
 if in math-mode. See chemformula.cwl for an example.</p></li>
+<li><p>ends with <code class="docutils literal notranslate"><span class="pre">%special</span></code>: special argument which relates to data defined via special definition, see classifier ‘s’. The database is the text before <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p></li>
 </ul>
 <p>A %-suffix takes precedence over detection by name, i.e. an argument
 <code class="docutils literal notranslate"><span class="pre">file%text</span></code> will be treated as text not as file.</p>
@@ -546,7 +547,7 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 <td><p>this command declares a color (will be used for color completion only, no syntax checking)</p></td>
 </tr>
 <tr class="row-odd"><td><p>s</p></td>
-<td><p>this command declares a special definition, the definition class is given after a “#”. The class name needs a preceding %. (e.g. %color), also see the examples below.</p></td>
+<td><p>this command declares a special definition, the definition class is given after a “#”. The class name needs a preceding %. (e.g. %color), also see the examples below. Data is inserted again in <code class="docutils literal notranslate"><span class="pre">%special</span></code> argument or via keyvals.</p></td>
 </tr>
 <tr class="row-even"><td><p>V</p></td>
 <td><p>this command declares a verbatim-like environment “\begin{Verbatim}”</p></td>
@@ -596,13 +597,16 @@ if in math-mode. See chemformula.cwl for an example.</p></li>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\definecolor{name}{model}{color-spec}#s#%color</span></code></p></td>
 <td><p>adds <code class="docutils literal notranslate"><span class="pre">name</span></code> to the special list <code class="docutils literal notranslate"><span class="pre">%color</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\myplot{file}{label}{params}#l</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\color{color%special}</span></code></p></td>
+<td><p>insert element from special list <code class="docutils literal notranslate"><span class="pre">%color</span></code> (here used as example)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\myplot{file}{label}{params}#l</span></code></p></td>
 <td><p>defines the second argument as label. Note: the argument has to be named <code class="docutils literal notranslate"><span class="pre">label</span></code> for this to work.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\myplot{file}{customname%labeldef}</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\myplot{file}{customname%labeldef}</span></code></p></td>
 <td><p>defines the second argument as label, but you are free to choose the name <code class="docutils literal notranslate"><span class="pre">customname</span></code> which will be used as a placeholder in the completer.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">\myplot{file}{label1%labeldef}{label2%labeldef}</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\myplot{file}{label1%labeldef}{label2%labeldef}</span></code></p></td>
 <td><p>defines the second and third arguments as labels.</p></td>
 </tr>
 </tbody>
