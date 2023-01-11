@@ -75,10 +75,10 @@ blockverticalspace=##L
 \noteroundedcorners#*
 \notelinewidth#*
 
-\definebackgroundstyle{name}{background commands}#s#%tikzposterbackgroundstyle
+\definebackgroundstyle{name%specialDef}{background commands}#s#%tikzposterbackgroundstyle
 \usebackgroundstyle{background style%keyvals}
 
-\definetitlestyle{name}{options%keyvals}{title commands}#s#%tikzpostertitlestyle
+\definetitlestyle{name%specialDef}{options%keyvals}{title commands}#s#%tikzpostertitlestyle
 \usetitlestyle{title style%keyvals}
 \usetitlestyle[options]{title style%keyvals}
 \maketitle[options%keyvals]
@@ -100,7 +100,7 @@ titletextscale=%<factor%>
 \end{settitle}#S
 \settitle{title code}#*
 
-\defineblockstyle{name}{options%keyvals}{commands}#s#%tikzposterblockstyle
+\defineblockstyle{name%specialDef}{options%keyvals}{commands}#s#%tikzposterblockstyle
 \useblockstyle{block style%keyvals}
 \useblockstyle[options]{block style%keyvals}
 \block{title}{text}
@@ -123,7 +123,7 @@ titleinnersep=##L
 bodyinnersep=##L
 #endkeyvals
 
-\defineinnerblockstyle{name}{options%keyvals}{commands}#s#%tikzposterinnerblockstyle
+\defineinnerblockstyle{name%specialDef}{options%keyvals}{commands}#s#%tikzposterinnerblockstyle
 \useinnerblockstyle{innerblock style%keyvals}
 \useinnerblockstyle[options]{innerblock style%keyvals}
 \innerblock{heading%text}{text}
@@ -159,7 +159,7 @@ fgcolor=#%color
 framecolor=#%color
 #endkeyvals
 
-\definenotestyle{name}{options%keyvals}{commands}#s#%tikzposternotestyle
+\definenotestyle{name%specialDef}{options%keyvals}{commands}#s#%tikzposternotestyle
 \usenotestyle{note style%keyvals}
 \usenotestyle[options]{note style%keyvals}
 \note{text}
@@ -178,14 +178,14 @@ linewidth=##L
 innersep=##L
 #endkeyvals
 
-\definecolorpalette{name}{definitions}#s#%tikzpostercolorpalette
+\definecolorpalette{name%specialDef}{definitions}#s#%tikzpostercolorpalette
 \usecolorpalette{color palette%keyvals}
 
-\definecolorstyle{name}{default palette}{definitions}#s#%tikzpostercolorstyle
+\definecolorstyle{name%specialDef}{default palette}{definitions}#s#%tikzpostercolorstyle
 \usecolorstyle{color style%keyvals}
 \usecolorstyle[options]{color style%keyvals}
 
-\definelayouttheme{name}{commands}#s#%tikzpostertheme
+\definelayouttheme{name%specialDef}{commands}#s#%tikzpostertheme
 \usetheme{theme%keyvals}
 
 \begin{columns}

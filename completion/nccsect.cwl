@@ -92,10 +92,10 @@ right
 \SetTOCStyle{declarations}
 \ChapterPrefixStyle{appearance list}
 
-\newplainsectionstyle{name}{indent}{left skip%l}{right skip%l}#s#%sectionstyle
-\newplainsectionstyle{name}{indent}[pos]{left skip%l}{right skip%l}#s#%sectionstyle
-\newhangsectionstyle{name}{min tag width%l}{left skip%l}{right skip%l}#s#%sectionstyle
-\newhangsectionstyle{name}{min tag width%l}[pos]{left skip%l}{right skip%l}#s#%sectionstyle
+\newplainsectionstyle{name%specialDef}{indent}{left skip%l}{right skip%l}#s#%sectionstyle
+\newplainsectionstyle{name%specialDef}{indent}[pos]{left skip%l}{right skip%l}#s#%sectionstyle
+\newhangsectionstyle{name%specialDef}{min tag width%l}{left skip%l}{right skip%l}#s#%sectionstyle
+\newhangsectionstyle{name%specialDef}{min tag width%l}[pos]{left skip%l}{right skip%l}#s#%sectionstyle
 
 \DeclareSection{level}{type}{prefix}{beforeskip%l}{afterskip%l}{style}
 \DeclareSection{level}{type}[indent%l]{prefix}{beforeskip%l}{afterskip%l}{style}

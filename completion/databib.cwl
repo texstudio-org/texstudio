@@ -7,8 +7,8 @@
 style=#plain,abbrv,alpha
 #endkeyvals
 
-\DTLloadbbl{db}{bib list}#s#%db
-\DTLloadbbl[bbl name]{db}{bib list}#s#%db
+\DTLloadbbl{db%specialDef}{bib list}#s#%db
+\DTLloadbbl[bbl name]{db%specialDef}{bib list}#s#%db
 \DTLbibliography{db%special}
 \DTLbibliography[conditions]{db%special}
 
@@ -66,7 +66,7 @@ style=#plain,abbrv,alpha
 \DTLcite{mbib}{citekey}#*
 \DTLcite[text]{mbib}{citekey}#*
 \DTLnocite{mbib}{citekey}#*
-\DTLloadmbbl{mbib}{db}{bib list}#s#%db
+\DTLloadmbbl{mbib}{db%specialDef}{bib list}#s#%db
 \DTLmbibliography{mbib}{db%special}#*
 \DTLmbibliography[condition]{mbib}{db%special}#*
 \DTLBIBdbname#*

@@ -22,8 +22,8 @@ separator=%<separator%>
 
 ### 6 Databases ###
 ## 6.1 Creating a New Database ##
-\DTLnewdb{db%special}#s#%db
-\DTLgnewdb{db}#s#%db
+\DTLnewdb{db%specialDef}#s#%db
+\DTLgnewdb{db%specialDef}#s#%db
 \DTLifdbempty{db%special}{true case}{false case}#*
 \DTLrowcount{db%special}
 \DTLcolumncount{db%special}
@@ -37,8 +37,8 @@ separator=%<separator%>
 \DTLaddcolumn{db%special}{dbkey}
 
 ## 6.2 Loading a Database from an External ASCII File ##
-\DTLloaddb{db}{filename}#s#%db
-\DTLloaddb[options%keyvals]{db}{filename}#s#%db
+\DTLloaddb{db%specialDef}{filename}#s#%db
+\DTLloaddb[options%keyvals]{db%specialDef}{filename}#s#%db
 #keyvals:\DTLloaddb,\DTLloadrawdb
 noheader#true,false
 keys={%<key1,key2,...%>}
@@ -54,8 +54,8 @@ omitlines=%<integer%>
 \DTLmaketabspace#*
 \DTLsetseparator{character}#*
 \DTLsetdelimiter{character}#*
-\DTLloadrawdb{db}{filename}#s#%db
-\DTLloadrawdb[options%keyvals]{db}{filename}#s#%db
+\DTLloadrawdb{db%specialDef}{filename}#s#%db
+\DTLloadrawdb[options%keyvals]{db%specialDef}{filename}#s#%db
 \DTLrawmap{string}{replacement}#*
 
 ## 6.3 Displaying the Contents of a Database ##

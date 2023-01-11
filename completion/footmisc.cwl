@@ -21,8 +21,8 @@ stable
 multiple
 #endkeyvals
 
-\DefineFNsymbols{set name}[style]{symbol list}#s#%fnsymbolset
-\DefineFNsymbols*{set name}[style]{symbol list}#s#%fnsymbolset
+\DefineFNsymbols{set name%specialDef}[style]{symbol list}#s#%fnsymbolset
+\DefineFNsymbols*{set name%specialDef}[style]{symbol list}#s#%fnsymbolset
 \setfnsymbol{set name%keyvals}
 #keyvals:\setfnsymbol#c
 bringhurst

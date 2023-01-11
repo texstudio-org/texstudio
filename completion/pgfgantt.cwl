@@ -47,7 +47,7 @@
 \newganttchartelement*{name}{new default keyvals}
 \ganttlink{start element name}{end element name}
 \ganttlink[options%keyvals]{start element name}{end element name}
-\newganttlinktype{type}{TikZ code}#s#%ganttlinktype
+\newganttlinktype{type%specialDef}{TikZ code}#s#%ganttlinktype
 \ganttsetstartanchor{anchor}
 \ganttsetendanchor{anchor}
 \xLeft
@@ -56,7 +56,7 @@
 \yLower
 \ganttlinklabel
 \ganttvalueof{key%plain}
-\newganttlinktypealias{new type}{existing type}#s#%ganttlinktype
+\newganttlinktypealias{new type%specialDef}{existing type}#s#%ganttlinktype
 \setganttlinklabel{type%keyvals}{label%text}
 #keyvals:\setganttlinklabel#c
 %ganttlinktype

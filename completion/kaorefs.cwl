@@ -224,22 +224,22 @@ catalan
 \exercisename#*
 
 # defines label page:<label> etc. so workaround used
-\labpage{pagelabel}#s#%kaopagelabel
-\labpart{partlabel}#s#%kaopartlabel
-\labch{chlabel}#s#%kaochapterlabel
-\labsec{seclabel}#s#%kaosectionlabel
-\labsubsec{subseclabel}#s#%kaosubsectionlabel
-\labfig{figlabel}#s#%kaofigurelabel
-\labtab{tablabel}#s#%kaotablelabel
-\labeq{eqlabel}#s#%kaoequationlabel
-\labdef{deflabel}#s#%kaodefinitionlabel
-\labassum{assumlabel}#s#%kaoassumptionlabel
-\labthm{thmlabel}#s#%kaotheoremlabel
-\labprop{proplabel}#s#%kaopropositionlabel
-\lablemma{lemmalabel}#s#%kaolemmalabel
-\labremark{remarklabel}#s#%kaoremarklabel
-\labexample{examplelabel}#s#%kaoexamplelabel
-\labexercise{exerciselabel}#s#%kaoexerciselabel
+\labpage{pagelabel%specialDef}#s#%kaopagelabel
+\labpart{partlabel%specialDef}#s#%kaopartlabel
+\labch{chlabel%specialDef}#s#%kaochapterlabel
+\labsec{seclabel%specialDef}#s#%kaosectionlabel
+\labsubsec{subseclabel%specialDef}#s#%kaosubsectionlabel
+\labfig{figlabel%specialDef}#s#%kaofigurelabel
+\labtab{tablabel%specialDef}#s#%kaotablelabel
+\labeq{eqlabel%specialDef}#s#%kaoequationlabel
+\labdef{deflabel%specialDef}#s#%kaodefinitionlabel
+\labassum{assumlabel%specialDef}#s#%kaoassumptionlabel
+\labthm{thmlabel%specialDef}#s#%kaotheoremlabel
+\labprop{proplabel%specialDef}#s#%kaopropositionlabel
+\lablemma{lemmalabel%specialDef}#s#%kaolemmalabel
+\labremark{remarklabel%specialDef}#s#%kaoremarklabel
+\labexample{examplelabel%specialDef}#s#%kaoexamplelabel
+\labexercise{exerciselabel%specialDef}#s#%kaoexerciselabel
 
 \refpage{pagelabel%keyvals}
 \vrefpage{pagelabel%keyvals}

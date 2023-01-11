@@ -139,7 +139,7 @@
 \cleardoubleevenplainpage
 \cleardoubleevenstandardpage
 #include:scrpage2
-\defpagestyle{pagestyle}{header}{footer}#s#%pagestyle
-\newpagestyle{pagestyle}{header}{footer}#s#%pagestyle
-\renewpagestyle{pagestyle}{header}{footer}#s#%pagestyle
-\providepagestyle{pagestyle}{header}{footer}#s#%pagestyle
+\defpagestyle{pagestyle%specialDef}{header}{footer}#s#%pagestyle
+\newpagestyle{pagestyle%specialDef}{header}{footer}#s#%pagestyle
+\renewpagestyle{pagestyle%specialDef}{header}{footer}#s#%pagestyle
+\providepagestyle{pagestyle%specialDef}{header}{footer}#s#%pagestyle

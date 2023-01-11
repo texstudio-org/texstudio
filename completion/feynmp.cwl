@@ -53,7 +53,7 @@ batch
 \fmfipath{METAPOST paths}
 \fmfiset{lval}{rval}
 \fmfiv{shape=val,opt=val,...}{v}
-\fmfkeep{name}#s#%fmfname
+\fmfkeep{name%specialDef}#s#%fmfname
 \fmflabel{label}{v}
 \fmfleft{v1,v2,...}
 \fmfleftn{v}{n}

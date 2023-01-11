@@ -36,10 +36,10 @@ DVIoutput#true,false
 config=%<file name%>
 #endkeyvals
 
-\DeclareMicrotypeSet{name}{fonts%keyvals}#s#%microtypeset
-\DeclareMicrotypeSet[features]{name}{fonts%keyvals}#s#%microtypeset
-\DeclareMicrotypeSet*{name}{fonts%keyvals}#s#%microtypeset
-\DeclareMicrotypeSet*[features]{name}{fonts%keyvals}#s#%microtypeset
+\DeclareMicrotypeSet{name%specialDef}{fonts%keyvals}#s#%microtypeset
+\DeclareMicrotypeSet[features]{name%specialDef}{fonts%keyvals}#s#%microtypeset
+\DeclareMicrotypeSet*{name%specialDef}{fonts%keyvals}#s#%microtypeset
+\DeclareMicrotypeSet*[features]{name%specialDef}{fonts%keyvals}#s#%microtypeset
 
 \UseMicrotypeSet{name}
 \UseMicrotypeSet[features]{name}

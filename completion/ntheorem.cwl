@@ -292,9 +292,9 @@ optname
 \addtheoremline*{name}{text}
 \addtotheoremfile{text}
 \addtotheoremfile[name]{text}
-\newtheoremstyle{name}{head}{opt-head}#s#%ntheoremstyle
+\newtheoremstyle{name%specialDef}{head}{opt-head}#s#%ntheoremstyle
 \renewtheoremstyle{name}{head}{opt-head}
-\newtheoremlisttype{name}{start}{line}{end}#s#%ntheoremlisttype
+\newtheoremlisttype{name%specialDef}{start}{line}{end}#s#%ntheoremlisttype
 \renewtheoremlisttype{name}{start}{line}{end}
 \qed
 \qedsymbol{symbol}

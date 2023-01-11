@@ -192,10 +192,10 @@ trimmingcolor=#%color
 \letnamebookcoverpart{new part}{defined part}
 \letnamebookcoverpart{new part}{defined part}[left,bottom,right,top]
 
-\newbookcovercomponenttype{new type}{formatting}#s#%bookcovertype
+\newbookcovercomponenttype{new type%specialDef}{formatting}#s#%bookcovertype
 \renewbookcovercomponenttype{defined type}{formatting}
-\newnamebookcovercomponenttype{new type}{defined type}#s#%bookcovertype
-\letnamebookcovercomponenttype{new type}{defined type}#s#%bookcovertype
+\newnamebookcovercomponenttype{new type%specialDef}{defined type}#s#%bookcovertype
+\letnamebookcovercomponenttype{new type%specialDef}{defined type}#s#%bookcovertype
 
 \makebookcover#*
 

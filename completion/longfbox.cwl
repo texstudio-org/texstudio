@@ -11,7 +11,7 @@
 \begin{longfbox}
 \begin{longfbox}[options%keyvals]
 \end{longfbox}
-\newfboxstyle{name}{options%keyvals}#s#%fboxstyle
+\newfboxstyle{name%specialDef}{options%keyvals}#s#%fboxstyle
 \fboxset{options%keyvals}
 
 #keyvals:\lfbox#c,\begin{longfbox}#c,\newfboxstyle#c,\fboxset#c
