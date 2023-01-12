@@ -337,8 +337,8 @@ private:
 	qreal			saveScaleFactor;
 	autoScaleOption	saveScaleOption;
 	
-	qreal pinchStartedScaleFactor;
-	bool pinchGestureDetected;
+	qreal pinchZoomXPos;
+	qreal pinchZoomYPos;
 
 	QAction	*ctxZoomInAction;
 	QAction	*ctxZoomOutAction;
