@@ -264,10 +264,10 @@ twolinemax=##L
 %jlreqpagestyle
 #endkeyvals
 
-\NewPageStyle{name}{options%keyvals}#s#%jlreqpagestyle
+\NewPageStyle{name%specialDef}{options%keyvals}#s#%jlreqpagestyle
 \RenewPageStyle{name}{options%keyvals}
-\ProvidePageStyle{name}{options%keyvals}#s#%jlreqpagestyle
-\DeclarePageStyle{name}{options%keyvals}#s#%jlreqpagestyle
+\ProvidePageStyle{name%specialDef}{options%keyvals}#s#%jlreqpagestyle
+\DeclarePageStyle{name%specialDef}{options%keyvals}#s#%jlreqpagestyle
 \ModifyPageStyle{pagestyle}{options%keyvals}
 
 #keyvals:\NewPageStyle#c,\RenewPageStyle#c,\ProvidePageStyle#c,\DeclarePageStyle#c,\ModifyPageStyle#c

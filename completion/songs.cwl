@@ -270,8 +270,8 @@ ititle={%<title%>}
 \versemark#*
 \chorusmark#*
 
-\newsongkey{keyname}{initcode}{setcode}#*s#%newsongkey
-\newsongkey{keyname}{initcode}[default]{setcode}#*
+\newsongkey{keyname%specialDef}{initcode}{setcode}#*s#%newsongkey
+\newsongkey{keyname%specialDef}{initcode}[default]{setcode}#*
 
 \chordlocals#*
 \shiftdblquotes{arg1}{arg2}{arg3}{arg4}#*

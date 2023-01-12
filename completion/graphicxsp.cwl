@@ -18,8 +18,8 @@ shownonames
 !shownonames
 #endkeyvals
 
-\embedEPS{name}{path%definition}#s#%EPSname
-\embedEPS[options%keyvals]{name}{path%definition}#s#%EPSname
+\embedEPS{name%specialDef}{path%definition}#s#%EPSname
+\embedEPS[options%keyvals]{name%specialDef}{path%definition}#s#%EPSname
 
 #keyvals:\embedEPS
 hiresbb

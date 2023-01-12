@@ -94,7 +94,7 @@ hideerrors
 
 \definecolorset[type]{model-list}{head}{tail}{set-spec}#*
 \providecolorset[type]{model-list}{head}{tail}{set-spec}#*
-\preparecolor[type]{name}{model-list}{spec-list}#*s#%color
+\preparecolor[type]{name%specialDef}{model-list}{spec-list}#*s#%color
 \preparecolorset[type]{model-list}{head}{tail}{set-spec}#*
 \ifdefinecolors#*
 \definecolorstrue#*

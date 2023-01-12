@@ -6,7 +6,7 @@ implicit
 noimplicit
 #endkeyvals
 
-\declarecompound{label}#s#%compound
+\declarecompound{label%specialDef}#s#%compound
 \declarecompound[name]{label}
 
 \compound{label1,label2,...%keyvals}

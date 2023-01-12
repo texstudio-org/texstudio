@@ -14,8 +14,8 @@ left indent=##L
 \multifootnotetext[labellist]{text}#r
 \multifootnote[labellist]{text}#r
 
-\multifootnotetag{list of tags}#s#%multifootnotetag
-\footnotetag{list of tags}#s#%multifootnotetag
+\multifootnotetag{list of tags%specialDef}#s#%multifootnotetag
+\footnotetag{list of tags%specialDef}#s#%multifootnotetag
 \multifootnotetagtext[tag%keyvals]{text}#r
 
 #keyvals:\multifootnotetagtext#c

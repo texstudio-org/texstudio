@@ -84,7 +84,7 @@ jalla
 %arbmark
 #endkeyvals
 
-\newarbmark{shorthand}{RTL codepoint}{LTR codepoint}#s#%arbmark
+\newarbmark{shorthand%specialDef}{RTL codepoint}{LTR codepoint}#s#%arbmark
 \ayah{3-digit number}
 \arbcolor{Arabic text%definition}
 \arbcolor[color]{Arabic text%definition}

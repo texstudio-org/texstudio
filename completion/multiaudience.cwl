@@ -6,7 +6,7 @@
 
 \CurrentAudience
 \DefCurrentAudience{audiences}
-\SetNewAudience{audience}#s#%audience
+\SetNewAudience{audience%specialDef}#s#%audience
 
 \begin{shownto}{audiences%keyvals}
 \end{shownto}

@@ -6,7 +6,7 @@
 
 \cuDate{YYYY-MM-DD}
 \cuDateJulian{date}
-\cuDefineDateFormat{name}{format}#s#%cudateformat
+\cuDefineDateFormat{name%specialDef}{format}#s#%cudateformat
 \cuYEAR#*
 \cuYEARAM#*
 \cuMONTH#*

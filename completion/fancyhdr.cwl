@@ -29,7 +29,7 @@ headings
 \fancyhfoffset{length}
 
 \fancypagestyle{style name}[base style]{definitions%text}
-\fancypagestyle{style name}{definitions%text}#s#%fancypagestyle
+\fancypagestyle{style name%specialDef}{definitions%text}#s#%fancypagestyle
 
 #keyvals:\pagestyle#c,\thispagestyle#c
 fancy

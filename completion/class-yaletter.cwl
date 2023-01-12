@@ -69,7 +69,7 @@ parindent=##L
 datafile=%<file%>
 #endkeyvals
 
-\defineletterhead{name}{code%text}#s#%yaletterhead
+\defineletterhead{name%specialDef}{code%text}#s#%yaletterhead
 \yauseletterhead{name%keyvals}
 #keyvals:\yauseletterhead#c
 %yaletterhead
@@ -90,7 +90,7 @@ datafile=%<file%>
 \yathedate
 \yalastpage
 
-\defineaddress{name}{short name%text}{code%text}#s#%yaaddress
+\defineaddress{name%specialDef}{short name%text}{code%text}#s#%yaaddress
 \yatoaddress{name%keyvals}
 \yareturnaddress{name%keyvals}
 \yafromaddress{name%keyvals}

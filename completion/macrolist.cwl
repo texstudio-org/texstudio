@@ -3,7 +3,7 @@
 
 #include:pgffor
 
-\macronewlist{listname}#s#%macrolist
+\macronewlist{listname%specialDef}#s#%macrolist
 \macrolistexists{listname%keyvals}{true}{false}
 \macrolistelement{listname%keyvals}{position}
 \macrolistindexof{listname%keyvals}{element}

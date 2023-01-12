@@ -10,11 +10,11 @@ cbgreek
 \BPChem{compound}
 \IUPAC{compound%definition}
 
-\CNlabel{label}#s#%bpchemlabel
-\CNlabelnoref{label}#s#%bpchemlabel
+\CNlabel{label%specialDef}#s#%bpchemlabel
+\CNlabelnoref{label%specialDef}#s#%bpchemlabel
 \CNref{label%keyvals}
-\CNlabelsub{label}{sublabel}#s#%bpchemlabel
-\CNlabelsubnoref{label}{sublabel}#s#%bpchemlabel
+\CNlabelsub{label%specialDef}{sublabel}#s#%bpchemlabel
+\CNlabelsubnoref{label%specialDef}{sublabel}#s#%bpchemlabel
 \CNrefsub{label%keyvals}
 
 #keyvals:\CNref#c,\CNrefsub#c

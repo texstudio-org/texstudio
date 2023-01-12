@@ -16,8 +16,8 @@
 \psSolid[object=%<name%>,%<options%>](x,y,z)
 \psSolid[options%keyvals](x,y,z)#S
 \codejps{jps code}
-\defFunction{name}(var){x}{y}{z}#s#%pstsolides3dfunc
-\defFunction[options%keyvals]{name}(var){x}{y}{z}#s#%pstsolides3dfunc
+\defFunction{name%specialDef}(var){x}{y}{z}#s#%pstsolides3dfunc
+\defFunction[options%keyvals]{name%specialDef}(var){x}{y}{z}#s#%pstsolides3dfunc
 \psSurface(xmin,ymin)(xmax,ymax){surface definition%definition}
 \psSurface[options%keyvals](xmin,ymin)(xmax,ymax){surface definition%definition}
 \psImplicitSurface[options%keyvals]

@@ -40,7 +40,7 @@ usenames
 \mathcolor[model]{color}{math}
 \pagecolor{color}
 \nopagecolor
-\definecolor{name}{model}{color-spec}#s#%color
+\definecolor{name%specialDef}{model}{color-spec}#s#%color
 \DefineNamedColor{type}{name}{model}{spec}#*
 \normalcolor
 \color[model]{color}

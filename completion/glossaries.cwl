@@ -1617,7 +1617,7 @@ footnote-sm-desc
 \glsupacrpluralsuffix#*
 \glstextup{text}#*
 \glsacspace{label}#*
-\newacronymstyle{name}{format def}{style defs}#*s#%acronymstyle
+\newacronymstyle{name%specialDef}{format def}{style defs}#*s#%acronymstyle
 \renewacronymstyle{name}{format def}{style defs}#*
 \GenericAcronymFields#*
 \glskeylisttok#*
@@ -1823,7 +1823,7 @@ types={%<glossary-list%>}
 
 ### 13 Glossary Styles ###
 \glsnamefont{text}#*
-\newglossarystyle{name}{definitions}#*s#%glossarystyle
+\newglossarystyle{name%specialDef}{definitions}#*s#%glossarystyle
 \renewglossarystyle{name}{definitions}#*
 \glsentryitem{label}#*r
 \glssubentryitem{label}#*r

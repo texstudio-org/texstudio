@@ -6,8 +6,8 @@
 #include:luatexbase
 #include:xparse
 
-\LPTNewTable{name}{num cols}{preamble}#s#%LPTtablename
-\LPTNewTable{name}{num cols}{preamble}[options%keyvals]#s#%LPTtablename
+\LPTNewTable{name%specialDef}{num cols}{preamble}#s#%LPTtablename
+\LPTNewTable{name%specialDef}{num cols}{preamble}[options%keyvals]#s#%LPTtablename
 
 #keyvals:\LPTNewTable
 backend=%<envname%>

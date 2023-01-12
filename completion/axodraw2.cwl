@@ -646,7 +646,7 @@ VeryLightBlue#B
 \eind#S
 \getaxohelp{csname}{spec}#*
 \getoneline{csname}{input stream num}#*
-\newcolor{color}{CMYK}#*s#%color
+\newcolor{color%specialDef}{CMYK}#*s#%color
 \pfontC#S
 \pfontN#S
 \putLen(x,y){text}#*

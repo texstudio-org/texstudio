@@ -263,10 +263,10 @@ overlayarg=%<overlay specification%>
 \SessionRoom{n}
 \MakeProgramline{n}
 
-\DefLecType{key%plain}{short form}{title%text}{session title%text}#s#%lectype
+\DefLecType{key%specialDef}{short form}{title%text}{session title%text}#s#%lectype
 
-\DefSemType{key%plain}{short form}{verbose form%text}#s#%semtype
-\DefSemType[options%keyvals]{key%plain}{short form}{verbose form%text}#s#%semtype
+\DefSemType{key%specialDef}{short form}{verbose form%text}#s#%semtype
+\DefSemType[options%keyvals]{key%specialDef}{short form}{verbose form%text}#s#%semtype
 
 #keyvals:\DefSemType
 next=%<key%>

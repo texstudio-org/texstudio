@@ -66,8 +66,8 @@ Heading*<%<level%>>
 ;=%<envname%>
 #endkeyvals
 
-\AsciiListRegisterEnv{envname}{begindef%definition}{enddef%definition}{itemdef%definition}#s#%asciiregisteredenv
-\AsciiListRegisterDescEnv{envname}#*s#%asciiregisteredenv
+\AsciiListRegisterEnv{envname%specialDef}{begindef%definition}{enddef%definition}{itemdef%definition}#s#%asciiregisteredenv
+\AsciiListRegisterDescEnv{envname%specialDef}#*s#%asciiregisteredenv
 \AsciiListEndArg{command}
 \AsciiListEndOArg{command}
 

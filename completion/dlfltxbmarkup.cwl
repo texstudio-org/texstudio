@@ -29,7 +29,7 @@ forcesidepar
 %felineKey
 #endkeyvals
 
-\felineKeyGenerator{key%plain}{description}{margin code}{index code}{text code}#s#%felineKey
+\felineKeyGenerator{key%specialDef}{description}{margin code}{index code}{text code}#s#%felineKey
 \cs{text%plain}
 \css{text%plain}
 \felineWriteInMargin{text}

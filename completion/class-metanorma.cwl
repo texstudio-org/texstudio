@@ -13,7 +13,7 @@
 # mdframed loaded with framemethod=TikZ option
 #include:tikz
 
-\set{attribute}{value}#s#%metanormaattribute
+\set{attribute%specialDef}{value}#s#%metanormaattribute
 \get{attribute%keyvals}
 
 #keyvals:\get#c

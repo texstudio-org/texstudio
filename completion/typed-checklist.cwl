@@ -74,7 +74,7 @@ label=##l
 \CheckListDefaultLabel{label}#*l
 \CheckListDisplayDeadline{status}{deadline}#*
 \CheckListHighlightDeadline{is-closed}{is-passed}{deadline}#*
-\CheckListAddEntryOption{name}{default}#*s#%checklistentryoption
+\CheckListAddEntryOption{name%specialDef}{default}#*s#%checklistentryoption
 
 \CheckListFilterClosed
 \CheckListFilterClosed[types]

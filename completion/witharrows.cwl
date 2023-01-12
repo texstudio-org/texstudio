@@ -115,7 +115,7 @@ down={%<options%>}
 \tagnextline#/DispWithArrows,DispWithArrows*
 \WithArrowsRightX#*
 
-\WithArrowsNewStyle{style name}{options%keyvals}#s#%witharrowsstyle
+\WithArrowsNewStyle{style name%specialDef}{options%keyvals}#s#%witharrowsstyle
 
 #ifOption:footnote
 #include:footnote

@@ -11,7 +11,7 @@ remark
 %theoremstyle
 #endkeyvals
 \swapnumbers
-\newtheoremstyle{style name}{space above}{space below}{body font}{indent amount}{head font}{head punct}{after head space}{head spec}#s#%theoremstyle
+\newtheoremstyle{style name%specialDef}{space above}{space below}{body font}{indent amount}{head font}{head punct}{after head space}{head spec}#s#%theoremstyle
 \thmname{arg}
 \thmnumber{arg}
 \thmnote{arg}

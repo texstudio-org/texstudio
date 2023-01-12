@@ -6,7 +6,7 @@
 \geometry{options%keyvals}
 \newgeometry{options%keyvals}
 \restoregeometry
-\savegeometry{name}#s#%geometry
+\savegeometry{name%specialDef}#s#%geometry
 \loadgeometry{name%keyvals}
 #keyvals:\loadgeometry
 %geometry

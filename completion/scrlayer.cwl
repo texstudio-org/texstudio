@@ -133,14 +133,14 @@ width=##L
 \putUR{content}#*
 \putC{content}#*
 
-\DeclarePageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
-\DeclarePageStyleByLayers[options%keyvals]{page style name}{layer list}#*
-\DeclareNewPageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
-\DeclareNewPageStyleByLayers[options%keyvals]{page style name}{layer list}#*
-\ProvidePageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
-\ProvidePageStyleByLayers[options%keyvals]{page style name}{layer list}#*
-\RedeclarePageStyleByLayers{pagestyle name}{layer list}#*s#%komapagestyle
-\RedeclarePageStyleByLayers[options%keyvals]{page style name}{layer list}#*
+\DeclarePageStyleByLayers{pagestyle name%specialDef}{layer list}#*s#%komapagestyle
+\DeclarePageStyleByLayers[options%keyvals]{page style name%specialDef}{layer list}#*
+\DeclareNewPageStyleByLayers{pagestyle name%specialDef}{layer list}#*s#%komapagestyle
+\DeclareNewPageStyleByLayers[options%keyvals]{page style name%specialDef}{layer list}#*
+\ProvidePageStyleByLayers{pagestyle name%specialDef}{layer list}#*s#%komapagestyle
+\ProvidePageStyleByLayers[options%keyvals]{page style name%specialDef}{layer list}#*
+\RedeclarePageStyleByLayers{pagestyle name%specialDef}{layer list}#*s#%komapagestyle
+\RedeclarePageStyleByLayers[options%keyvals]{page style name%specialDef}{layer list}#*
 
 #keyvals:\DeclarePageStyleByLayers#c,\DeclareNewPageStyleByLayers#c,\ProvidePageStyleByLayers#c,\RedeclarePageStyleByLayers#c,\ModifyLayerPageStyleOptions#c,\AddToLayerPageStyleOptions#c
 onselect=%<code%>
@@ -168,10 +168,10 @@ onforeground=%<code%>
 \UnifyLayersAtPageStyle{pagestyle name}#*
 \ModifyLayerPageStyleOptions{pagestyle name}{options%keyvals}#*
 \AddToLayerPageStyleOptions{pagestyle name}{options%keyvals}#*
-\DeclarePageStyleAlias{alias name}{original name}#*s#%komapagestyle
-\DeclareNewPageStyleAlias{alias name}{original name}#*s#%komapagestyle
-\ProvidePageStyleAlias{alias name}{original name}#*s#%komapagestyle
-\RedeclarePageStyleAlias{alias name}{original name}#*s#%komapagestyle
+\DeclarePageStyleAlias{alias name%specialDef}{original name}#*s#%komapagestyle
+\DeclareNewPageStyleAlias{alias name%specialDef}{original name}#*s#%komapagestyle
+\ProvidePageStyleAlias{alias name%specialDef}{original name}#*s#%komapagestyle
+\RedeclarePageStyleAlias{alias name%specialDef}{original name}#*s#%komapagestyle
 \DestroyPageStyleAlias{pagestyle name}#*
 \GetRealPageStyle{pagestyle name}#*
 \IfLayerPageStyleExists{pagestyle name}{then code}{else code}#*

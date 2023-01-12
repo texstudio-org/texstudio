@@ -140,7 +140,7 @@ mathlines
 \donote{label}{note%text}#r
 \<#S
 \>#S
-\pause{label}#s#%pauselabel
+\pause{label%specialDef}#s#%pauselabel
 \pause{label}<ellipsis>
 \resume{label%keyvals}
 #keyvals:\resume#c

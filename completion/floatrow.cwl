@@ -119,8 +119,8 @@ rawfloats
 \DeclareFloatStyle{name}{options%keyvals}
 \DeclareFloatFont{name}{code}
 \DeclareFloatVCode{name}{code}
-\DeclareColorBox{name}{code}#s#%colorbox
-\DeclareCBoxCorners{name}{llcorner}{lrcorner}{urcorner}{ulcorner}#s#%cboxcorners
+\DeclareColorBox{name%specialDef}{code}#s#%colorbox
+\DeclareCBoxCorners{name%specialDef}{llcorner}{lrcorner}{urcorner}{ulcorner}#s#%cboxcorners
 \DeclareObjectSet{name}{code}
 \DeclareMarginSet{name}{code}
 \setfloatmargins{left margin}{right margin}

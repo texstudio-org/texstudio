@@ -75,8 +75,8 @@ silent
 \rubyfamily
 #endif
 
-\ltjnewpreset{name}{specification%keyvals}#s#%luatexjapreset
-\ltjnewpreset*{name}{specification%keyvals}#s#%luatexjapreset
+\ltjnewpreset{name%specialDef}{specification%keyvals}#s#%luatexjapreset
+\ltjnewpreset*{name%specialDef}{specification%keyvals}#s#%luatexjapreset
 \ltjapplypreset{name%keyvals}
 
 #keyvals:\ltjnewpreset#c,\ltjnewpreset*#c

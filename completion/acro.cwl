@@ -387,9 +387,9 @@ templates/colspec={%<value%>}
 \DeclareAcroArticle{name}{default}#*
 \DeclareAcroTranslation{key%plain}{language-translation list}#*
 \AddAcroTranslations{key%plain}{language-translation list}#*
-\DeclareAcroProperty{name}#*s#%acroproperty
-\DeclareAcroProperty*{name}#*s#%acroproperty
-\DeclareAcroPropertyAlias{name1}{name2}#*s#%acroproperty
+\DeclareAcroProperty{name%specialDef}#*s#%acroproperty
+\DeclareAcroProperty*{name%specialDef}#*s#%acroproperty
+\DeclareAcroPropertyAlias{name1%specialDef}{name2}#*s#%acroproperty
 \MakeAcroPropertyAlias{name1}{name2}#*
 \NewAcroCommand{cmd}{xargs}{definition}#*d
 \RenewAcroCommand{cmd}{xargs}{definition}#*

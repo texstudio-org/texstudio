@@ -30,8 +30,8 @@ ulem={%<ulem options%>}
 xcolor={%<xcolor options%>}
 #endkeyvals
 
-\definechangesauthor[keyvals]{authorid}#s#%authorid
-\definechangesauthor{authorid}#s#%authorid
+\definechangesauthor[keyvals]{authorid%specialDef}#s#%authorid
+\definechangesauthor{authorid%specialDef}#s#%authorid
 #keyvals:\definechangesauthor
 name=%<name%>
 color=#%color

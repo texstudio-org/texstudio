@@ -989,7 +989,7 @@ right
 \m#*
 \mainmatter#*
 \mainmatter*#*
-\makechapterstyle{name}{style}#*s#%chapterstyle
+\makechapterstyle{name%specialDef}{style}#*s#%chapterstyle
 \makeevenfoot{pagestyle}{left}{center}{right}#*
 \makeevenhead{pagestyle}{left}{center}{right}#*
 \makefootmark{text}#*

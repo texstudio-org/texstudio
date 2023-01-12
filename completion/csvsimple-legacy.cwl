@@ -32,8 +32,8 @@
 
 \csvset{options%keyvals}
 
-\csvstyle{key name}{options%keyvals}#s#%csvstyle
-\csvnames{key name}{assignments%definition}#s#%csvstyle
+\csvstyle{key name%specialDef}{options%keyvals}#s#%csvstyle
+\csvnames{key name%specialDef}{assignments%definition}#s#%csvstyle
 \csvheadset{assignments%definition}
 
 \csviffirstrow{then}{else}

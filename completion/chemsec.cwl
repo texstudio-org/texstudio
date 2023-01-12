@@ -8,7 +8,7 @@ debug
 draft
 #endkeyvals
 
-\DefineChemical{key%plain}{name}{sub-label}#s#%chemseckey
+\DefineChemical{key%specialDef}{name}{sub-label}#s#%chemseckey
 
 \ChemCite{key%keyvals}
 \ChemFCite{key%keyvals}

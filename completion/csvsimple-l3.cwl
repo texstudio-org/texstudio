@@ -34,9 +34,9 @@
 
 \csvset{options%keyvals}
 
-\csvstyle{key name}{options%keyvals}#s#%csvstyle
-\csvnames{key name}{assignments%definition}#s#%csvstyle
-\csvfilterbool{key name}{boolean expr}#s#%csvstyle
+\csvstyle{key name%specialDef}{options%keyvals}#s#%csvstyle
+\csvnames{key name%specialDef}{assignments%definition}#s#%csvstyle
+\csvfilterbool{key name%specialDef}{boolean expr}#s#%csvstyle
 
 \ifcsvoddrow{then}{else}
 \ifcsvfirstrow{then}{else}

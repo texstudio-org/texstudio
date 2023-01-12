@@ -152,10 +152,10 @@ hideerrors
 \multirput[refpoint](x0,y0)(x1,y1){int}{stuff}
 \multirput[refpoint]{angle}(x0,y0)(x1,y1){int}{stuff}
 \multirput{angle}(x0,y0)(x1,y1){int}{stuff}
-\newcmykcolor{color}{num1 num2 num3 num4}#s#%color
+\newcmykcolor{color%specialDef}{num1 num2 num3 num4}#s#%color
 \newcmykcolorx#S
-\newgray{color}{num}#s#%color
-\newhsbcolor{color}{num1 num2 num3}#s#%color
+\newgray{color%specialDef}{num}#s#%color
+\newhsbcolor{color%specialDef}{num1 num2 num3}#s#%color
 \newhsbcolorx#S
 \newpath
 \newpsfontdot{arg1}[arg2]{arg3}{arg4}#*

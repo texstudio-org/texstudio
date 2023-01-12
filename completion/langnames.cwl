@@ -12,7 +12,7 @@ native
 \liso{ISO code%keyvals}
 \lfam{ISO code%keyvals}
 \langnative{ISO code%keyvals}
-\newlang{code}{name}{family}#s#%langnamescode
+\newlang{code%specialDef}{name}{family}#s#%langnamescode
 \renewlang{dataset}{code}{name}{family}
 \newlangnative{dataset}{code}{name}
 \changetoglottolog

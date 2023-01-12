@@ -5,7 +5,7 @@
 
 \C#m
 \C[family]#m
-\Cl{label}#s#%constantslabel
+\Cl{label%specialDef}#s#%constantslabel
 \Cl[family]{label}
 
 \Cr{label%keyvals}#m

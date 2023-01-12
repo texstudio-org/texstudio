@@ -64,7 +64,7 @@ description*
 \setlistdepth{integer}
 \AddEnumerateCounter{LaTeX-cmd}{internal-cmd}{widest label}#*
 \AddEnumerateCounter*{LaTeX-cmd}{internal-cmd}{integer}#*
-\SetEnumitemKey{key%plain}{replacement options%keyvals}#*s#%enumitemkey
+\SetEnumitemKey{key%specialDef}{replacement options%keyvals}#*s#%enumitemkey
 \SetEnumitemValue{key%plain}{string-value}{replacement}#*
 \SetEnumitemSize{name}{selector}#*
 \DrawEnumitemLabel#*

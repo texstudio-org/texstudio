@@ -22,14 +22,14 @@ br
 \pgfPTresetstyle
 \pgfPTbuildcell(rows,columns)[entries]
 \pgfPTresetcell
-\pgfPTbuildcellstyle{name}(rows,columns)[entries]#s#%pgfPTcellstyle
+\pgfPTbuildcellstyle{name%specialDef}(rows,columns)[entries]#s#%pgfPTcellstyle
 \pgfPTpreviewcell
 \pgfPTpreviewcell[scale]
 \pgfPTpreviewcellstyle{name}
 \pgfPTpreviewcellstyle[scale]{name}
-\pgfPTnewColorScheme{name}{r1/g1/b1,r2/g2/b2,...}#s#%pgfPTcolorscheme
+\pgfPTnewColorScheme{name%specialDef}{r1/g1/b1,r2/g2/b2,...}#s#%pgfPTcolorscheme
 \pgfPTnewColorScheme[r/g/b]{name}{r1/g1/b1,r2/g2/b2,...}
-\pgfPTnewZlist{name}{list}#s#%pgfPTZlist
+\pgfPTnewZlist{name%specialDef}{list}#s#%pgfPTZlist
 
 #keyvals:\pgfPT#c,\pgfPTstyle#c
 Z list=#all,s,p,d,f,sp,spd,lanthanoids,La,actinoids,Ac,G1*,G1,G2,G3,G4,G5,G6,G7,G8,G9,G10,G11,G12,G13,G14,G15,G16,G17,G18,P1,P2,P3,P4,P5,P6,P7,P6*,P7*,{%<csv list%>},%pgfPTZlist

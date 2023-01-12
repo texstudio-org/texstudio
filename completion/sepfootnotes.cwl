@@ -8,7 +8,7 @@ error
 global
 #endkeyvals
 
-\sepfootnotecontent{key%plain}{content%text}#s#%sepfootnotekey
+\sepfootnotecontent{key%specialDef}{content%text}#s#%sepfootnotekey
 \sepfootnote{key%keyvals}
 \sepfootnotemark{key%keyvals}
 \sepfootnotetext{key%keyvals}

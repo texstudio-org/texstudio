@@ -175,7 +175,7 @@ material={%<text%>}
 %userdatakey
 #endkeyvals
 
-\defexercisedata{key%plain}#s#%userdatakey
+\defexercisedata{key%specialDef}#s#%userdatakey
 \getexercisedata{key%keyvals}
 
 #keyvals:\getexercisedata
@@ -194,12 +194,12 @@ material
 
 \exercisedataempty{key%plain}{empty code}{filled code}
 
-\defsheetdata{key%plain}#s#%usersheetdatakey
+\defsheetdata{key%specialDef}#s#%usersheetdatakey
 \setsheetdata{keyvals}
 \getsheetdata{key%keyvals}
 \sheetdataempty{key%plain}{empty code}{filled code}
 
-\defproblemdata{key%plain}#s#%userproblemdatakey
+\defproblemdata{key%specialDef}#s#%userproblemdatakey
 \setproblemdata{keyvals}
 \getproblemdata{key%keyvals}
 \problemdataempty{key%plain}{empty code}{filled code}
@@ -207,7 +207,7 @@ material
 \writeexercisedata
 
 \showprobleminfo{keys%keyvals}
-\defprobleminfo{key%plain}{code}#s#%userprobleminfokey
+\defprobleminfo{key%specialDef}{code}#s#%userprobleminfokey
 
 \addprobleminfo{info}
 \addprobleminfo*{info}
@@ -434,9 +434,9 @@ solutionsep
 #endkeyvals
 #endif
 
-\defexercisestyle{style}{init}#s#%userexercisestyle
-\defexercisestylearg{style}{init}#s#%userexercisestyle
-\defexercisestylearg[default]{style}{init}#s#%userexercisestyle
+\defexercisestyle{style%specialDef}{init}#s#%userexercisestyle
+\defexercisestylearg{style%specialDef}{init}#s#%userexercisestyle
+\defexercisestylearg[default]{style%specialDef}{init}#s#%userexercisestyle
 
 \begin{printproblem}{keys%plain}#*
 \end{printproblem}#*

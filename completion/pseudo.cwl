@@ -13,7 +13,7 @@
 #include:tcolorboxlibraryhooks
 
 \pseudoset{options%keyvals}
-\pseudodefinestyle{name}{options%keyvals}#s#%pseudostyle
+\pseudodefinestyle{name%specialDef}{options%keyvals}#s#%pseudostyle
 
 \begin{pseudo}
 \begin{pseudo}[options%keyvals]

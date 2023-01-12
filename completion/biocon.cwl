@@ -58,8 +58,8 @@ ePlant
 eAnimal
 #endkeyvals
 
-\newtaxon{name}#s#%biocontaxon
-\newtaxastyle{name}{style}#s#%biocontaxastyle
+\newtaxon{name%specialDef}#s#%biocontaxon
+\newtaxastyle{name%specialDef}{style}#s#%biocontaxastyle
 
 \taxon{pre!name!post}
 \taxonfirst{pre!name!post}

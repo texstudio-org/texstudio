@@ -28,7 +28,7 @@
 \markdownInput[options%keyvals]{file}#i
 
 \markdownSetup{options%keyvals}
-\markdownSetupSnippet{name}{options%keyvals}#s#%markdownsnippet
+\markdownSetupSnippet{name%specialDef}{options%keyvals}#s#%markdownsnippet
 \markdownIfSnippetExists{name}{true}{false}#*
 
 #keyvals:\usepackage/markdown#c,\begin{markdown*}#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c

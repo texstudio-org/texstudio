@@ -33,7 +33,7 @@ text
 \setindexbooktitle{name}{title%plain}
 \addbiblebook{name}{title%plain}
 \brthreeabbrvname
-\newbiblerefstyle{style name}{commands}#s#%biblerefstyle
+\newbiblerefstyle{style name%specialDef}{commands}#s#%biblerefstyle
 
 \ibibleverse{book title}
 \ibibleverse{book title}(chapter:verse)

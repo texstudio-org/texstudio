@@ -1,7 +1,7 @@
 # forms16be package
 # Matthew Bertucci 2022/05/10 for v1.3
 
-\defUniStr{name}{string}#s#%unicodestr
+\defUniStr{name%specialDef}{string}#s#%unicodestr
 \unicodeStr(name%keyvals)
 #keyvals:\unicodeStr#c
 %unicodestr

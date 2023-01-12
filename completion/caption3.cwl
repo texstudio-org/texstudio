@@ -7,8 +7,8 @@
 \captionsetup{options%keyvals}
 \captionsetup*[float type]{options%keyvals}#*
 \captionsetup*{options%keyvals}#*
-\DeclareCaptionStyle{name}[additional options]{options%keyvals}#s#%captionstyle
-\DeclareCaptionStyle{name}{options%keyvals}#s#%captionstyle
+\DeclareCaptionStyle{name%specialDef}[additional options]{options%keyvals}#s#%captionstyle
+\DeclareCaptionStyle{name%specialDef}{options%keyvals}#s#%captionstyle
 
 #keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/caption#c,\DeclareCaptionStyle#c
 aboveskip=##L

@@ -13,7 +13,7 @@ showtrims
 
 \usefastocksize{width,height}
 \usefapapersize{width,height,lmargin,rmargin,tmargin,bmargin}
-\definefageometry{name}{layout}#s#%fageometry
+\definefageometry{name%specialDef}{layout}#s#%fageometry
 \definefageometry{name}{layout}[after]
 \definefageometry{name}[before]{layout}
 \definefageometry{name}[before]{layout}[after]

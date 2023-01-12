@@ -7,7 +7,7 @@
 \ExecuteOptionsBeamer{options}#*
 \DeclareOptionBeamer{option}{definition}#*
 \DeclareOptionBeamer{option}[default]{definition}#*
-\defbeameroption{option}{definition}#s#%beameroption
+\defbeameroption{option%specialDef}{definition}#s#%beameroption
 \setbeameroption{options%keyvals}
 
 #keyvals:\setbeameroption#c

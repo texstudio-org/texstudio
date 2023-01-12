@@ -10,9 +10,9 @@ opm=#0,1
 knockout
 #endkeyvals
 
-\definespotcolor{name}{PDF name}{CMYK-equivalent}#s#%color
-\definespotcolor{name}{PDF name}[model]{equivalent}#s#%color
-\definespotcolor{%<name%>}{%<PDF name%>}[alt=lab]{%<lab-values%>}#s#%color
+\definespotcolor{name%specialDef}{PDF name}{CMYK-equivalent}#s#%color
+\definespotcolor{name%specialDef}{PDF name}[model]{equivalent}#s#%color
+\definespotcolor{%<name%>}{%<PDF name%>}[alt=lab]{%<lab-values%>}#
 
 \definecolorspace{%<name%>}{mixed}{%<color-list%>}
 \definecolorspace*{%<name%>}{iccbased}{%<icc-file%>}
