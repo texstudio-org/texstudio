@@ -32,7 +32,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -116,7 +115,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="images.qrc">
+      <iconset resource="../images.qrc">
        <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
      </property>
     </widget>
@@ -124,7 +123,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections/>
 </ui>
