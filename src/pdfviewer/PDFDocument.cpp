@@ -488,7 +488,14 @@ PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> a
 		QMessageBox::warning(videoWidget, "", tr("File %1 does not exists").arg(url));
 		return;
 	}
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+	this->setSource(QUrl::fromLocalFile(url));
+	audioOutput = new QAudioOutput(parent, this);
+	this->setAudioOutput(audioOutput);
+#else
 	this->setMedia(QUrl::fromLocalFile(url));
+#endif
 
 	if(videoWidget) delete videoWidget;
 	videoWidget = new PDFVideoWidget(parent, this);
@@ -524,15 +531,24 @@ void PDFVideoWidget::contextMenuEvent(QContextMenuEvent *e)
 void PDFVideoWidget::mouseReleaseEvent(QMouseEvent *e)
 {
 	//qDebug() << "click: "<<isPaused() << " == !" << isPlaying() << " " << currentTime() << " / " << totalTime();
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+	if (movie->playbackState() == QMediaPlayer::PlayingState) movie->pause();
+#else
 	if (movie->state() == QMediaPlayer::PlayingState) movie->pause();
+#endif
 	else movie->realPlay();
 	e->accept();
 }
 
 void PDFMovie::realPlay()
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+	if (this->playbackState() == QMediaPlayer::PlayingState) return;
+	if (this->playbackState() == QMediaPlayer::PausedState && position() < duration()) this->play();
+#else
 	if (this->state() == QMediaPlayer::PlayingState) return;
 	if (this->state() == QMediaPlayer::PausedState && position() < duration()) this->play();
+#endif
 	else {
 		setPosition(0);
 		QTimer::singleShot(500, this, SLOT(play()));
