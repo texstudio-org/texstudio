@@ -79,7 +79,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Class Options</string>
+       <string>&amp;Class Options</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -162,9 +162,6 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="comboBoxInputEncoding"/>
-         </item>
          <item row="9" column="0">
           <widget class="QLabel" name="labelOptions">
            <property name="sizePolicy">
@@ -192,24 +189,6 @@
          <item row="1" column="1">
           <widget class="QComboBox" name="comboBoxSize"/>
          </item>
-         <item row="6" column="1">
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QCheckBox" name="checkBoxIDX">
-             <property name="text">
-              <string>makeidx Package</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="checkBoxGraphicx">
-             <property name="text">
-              <string>graphicx Package</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
          <item row="2" column="2">
           <widget class="QPushButton" name="pushButtonPaper">
            <property name="text">
@@ -235,16 +214,6 @@
          <item row="9" column="1">
           <widget class="QListWidget" name="listWidgetOptions"/>
          </item>
-         <item row="6" column="0">
-          <widget class="QCheckBox" name="checkBoxAMS">
-           <property name="text">
-            <string>AMS Packages</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="0">
           <widget class="QLabel" name="labelPaper">
            <property name="sizePolicy">
@@ -255,17 +224,6 @@
            </property>
            <property name="text">
             <string>Paper Size</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QPushButton" name="pushButtonInputEncoding">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../images.qrc">
-             <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
            </property>
           </widget>
          </item>
@@ -291,23 +249,10 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="labelInputEncoding">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Input encoding</string>
-           </property>
-          </widget>
-         </item>
          <item row="4" column="0">
           <widget class="QLabel" name="labelFontEncoding">
            <property name="text">
-            <string>Font encoding</string>
+            <string>Font Encoding</string>
            </property>
           </widget>
          </item>
@@ -329,9 +274,101 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabPackages">
+      <attribute name="title">
+       <string>&amp;Packages</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="HboxPackages">
+       <item>
+        <layout class="QGridLayout" name="GridPackages">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <item row="1" column="0">
+          <widget class="QTableWidget" name="tableWidgetPackages">
+           <column>
+            <property name="text">
+             <string>Package</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Description</string>
+            </property>
+           </column>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <layout class="QVBoxLayout">
+           <item>
+            <spacer>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButtonPackages">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../images.qrc">
+               <normaloff>:/images-ng/list-add.svgz</normaloff>:/images-ng/list-add.svgz</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="VerticalSizeHint">
+            <number>0</number>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tabGeometry">
       <attribute name="title">
-       <string>Geometry</string>
+       <string>&amp;Geometry</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>

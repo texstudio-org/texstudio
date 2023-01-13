@@ -32,9 +32,8 @@ public:
 	static QString font_encoding;
 
 private:
-	static QStringList otherClassList, otherPaperList, otherInputEncodingList, otherFontEncodingList, otherBabelOptionsList, otherOptionsList;
+	static QStringList otherClassList, otherPaperList, otherFontEncodingList, otherBabelOptionsList, otherOptionsList, packagesUsed, otherPackagesList;
 	static QString document_class, typeface_size, paper_size, babel_language, author;
-	static bool ams_packages, makeidx_package, graphicx_package;
 	static ConfigManagerInterface* configManagerInterface;
 
 public:
@@ -50,10 +49,11 @@ public slots:
 private slots:
 	void addUserClass();
 	void addUserPaper();
-	void addUserInputEncoding();
 	void addUserFontEncoding();
 	void addBabelOption();
 	void addUserOptions();
+	void addUserPackages();
+	void setFocusToTable(int idx);
 };
 
 

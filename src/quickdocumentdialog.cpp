@@ -29,9 +29,8 @@ qreal convertLatexLengthToMetre(const qreal &length, const QString &unit)
 }
 
 //options for the configmanager
-QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherInputEncodingList, QuickDocumentDialog::otherFontEncodingList, QuickDocumentDialog::otherBabelOptionsList, QuickDocumentDialog::otherOptionsList;
+QStringList QuickDocumentDialog::otherClassList, QuickDocumentDialog::otherPaperList, QuickDocumentDialog::otherFontEncodingList, QuickDocumentDialog::otherBabelOptionsList, QuickDocumentDialog::otherOptionsList, QuickDocumentDialog::packagesUsed, QuickDocumentDialog::otherPackagesList;
 QString QuickDocumentDialog::document_class, QuickDocumentDialog::typeface_size, QuickDocumentDialog::paper_size, QuickDocumentDialog::document_encoding, QuickDocumentDialog::font_encoding, QuickDocumentDialog::babel_language, QuickDocumentDialog::author;
-bool QuickDocumentDialog::ams_packages, QuickDocumentDialog::makeidx_package, QuickDocumentDialog::graphicx_package;
 double geometryPageWidth, geometryPageHeight, geometryMarginLeft, geometryMarginRight, geometryMarginTop, geometryMarginBottom;
 QString geometryPageWidthUnit, geometryPageHeightUnit, geometryMarginLeftUnit, geometryMarginRightUnit, geometryMarginTopUnit, geometryMarginBottomUnit;
 bool geometryPageWidthEnabled, geometryPageHeightEnabled, geometryMarginLeftEnabled, geometryMarginRightEnabled, geometryMarginTopEnabled, geometryMarginBottomEnabled;
@@ -52,12 +51,16 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString &name)
 	ui.comboBoxSize->addItem("11pt");
 	ui.comboBoxSize->addItem("12pt");
 	connect(ui.pushButtonPaper , SIGNAL(clicked()), SLOT(addUserPaper()));
-	connect(ui.pushButtonInputEncoding , SIGNAL(clicked()), SLOT(addUserInputEncoding()));
 	connect(ui.pushButtonFontEncoding , SIGNAL(clicked()), SLOT(addUserFontEncoding()));
 	connect(ui.pushButtonBabel, SIGNAL(clicked()), SLOT(addBabelOption()));
 	connect(ui.pushButtonOptions , SIGNAL(clicked()), SLOT(addUserOptions()));
 	ui.listWidgetOptions->setSelectionMode(QAbstractItemView::ExtendedSelection);
+	connect(ui.pushButtonPackages , SIGNAL(clicked()), SLOT(addUserPackages()));
 	setWindowTitle(tr("Quick Start"));
+
+	//Package Tab
+	ui.pushButtonPackages->setFocusPolicy(Qt::NoFocus);
+	connect(ui.tabWidget, SIGNAL(tabBarClicked(int)), SLOT(setFocusToTable(int)));
 
 	//Geometry package
 	connect(ui.spinBoxUnitGeometryPageWidth, SIGNAL(editTextChanged(QString)), SLOT(geometryUnitsChanged()));
@@ -101,22 +104,12 @@ QString QuickDocumentDialog::getNewDocumentText()
 	tag += opt + QString("]{");
 	tag += ui.comboBoxClass->currentText() + QString("}");
 	tag += QString("\n");
-	if (ui.comboBoxInputEncoding->currentText() != "NONE") {
-		tag += QString("\\usepackage[") + ui.comboBoxInputEncoding->currentText() + QString("]{inputenc}");
-		tag += QString("\n");
-	}
+	// always use utf8
+	tag += QString("\\usepackage[utf8]{inputenc}\n");
 	if (ui.comboBoxFontEncoding->currentText() != "NONE") {
 		tag += QString("\\usepackage[") + ui.comboBoxFontEncoding->currentText() + QString("]{fontenc}");
 		tag += QString("\n");
 	}
-	if (ui.comboBoxInputEncoding->currentText().startsWith("utf8x"))
-		tag += QString("\\usepackage{ucs}\n");
-	if (ui.checkBoxAMS->isChecked())
-		tag += QString("\\usepackage{amsmath}\n\\usepackage{amssymb}\n");
-	if (ui.checkBoxIDX->isChecked())
-		tag += QString("\\usepackage{makeidx}\n");
-	if (ui.checkBoxGraphicx->isChecked())
-		tag += QString("\\usepackage{graphicx}\n");
 
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
 	        ui.checkBoxGeometryPageHeight->isChecked() ||
@@ -137,6 +130,16 @@ QString QuickDocumentDialog::getNewDocumentText()
 	if (ui.comboBoxBabel->currentText() != "NONE")
       tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
 
+	QTableWidget *table = ui.tableWidgetPackages;
+	packagesUsed = QStringList();
+	for (int i=0; i < table->rowCount(); ++i) {
+		QTableWidgetItem *itemPkgName = table->item(i,0);
+		if (itemPkgName->checkState()==Qt::Checked) {
+			tag += QString("\\usepackage{%1}\n").arg(itemPkgName->text());
+			packagesUsed << itemPkgName->text();
+		}
+	}
+
 	if (ui.lineEditTitle->text() != "")
 		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
 	if (ui.lineEditAuthor->text() != "")
@@ -150,20 +153,18 @@ void QuickDocumentDialog::registerOptions(ConfigManagerInterface &configManager)
 {
 	configManager.registerOption("Tools/User Class", &otherClassList);
 	configManager.registerOption("Tools/User Paper", &otherPaperList);
-	configManager.registerOption("Tools/User Encoding", &otherInputEncodingList);
 	configManager.registerOption("Tools/User Font Encoding", &otherFontEncodingList);
 	configManager.registerOption("Tools/User Babel Options", &otherBabelOptionsList);
 	configManager.registerOption("Tools/User Options", &otherOptionsList);
+	configManager.registerOption("Tools/User Packages", &otherPackagesList);
 	configManager.registerOption("Quick/Class", &document_class, "article");
 	configManager.registerOption("Quick/Typeface", &typeface_size, "10pt");
 	configManager.registerOption("Quick/Papersize", &paper_size, "a4paper");
 	configManager.registerOption("Quick/Encoding", &document_encoding, "utf8");
 	configManager.registerOption("Quick/FontEncoding", &font_encoding, "T1");
 	configManager.registerOption("Quick/Babel", &babel_language, "NONE");
-	configManager.registerOption("Quick/AMS", &ams_packages, true);
-	configManager.registerOption("Quick/MakeIndex", &makeidx_package, false);
-	configManager.registerOption("Quick/graphicx", &graphicx_package, true);
 	configManager.registerOption("Quick/Author", &author, "");
+	configManager.registerOption("Quick/Packages Used", &packagesUsed, QStringList());
 
 	configManager.registerOption("Quick/Geometry Page Width", &geometryPageWidth, 0.0f);
 	configManager.registerOption("Quick/Geometry Page Height", &geometryPageHeight, 0.0f);
@@ -227,28 +228,6 @@ void QuickDocumentDialog::Init()
 	ui.comboBoxPaper->addItem("executivepaper");
 	if (!otherPaperList.isEmpty()) ui.comboBoxPaper->addItems(otherPaperList);
 
-	ui.comboBoxInputEncoding->clear();
-	ui.comboBoxInputEncoding->addItem("latin1");
-	ui.comboBoxInputEncoding->addItem("latin2");
-	ui.comboBoxInputEncoding->addItem("latin3");
-	ui.comboBoxInputEncoding->addItem("latin5");
-	ui.comboBoxInputEncoding->addItem("utf8");
-	ui.comboBoxInputEncoding->addItem("utf8x");
-	ui.comboBoxInputEncoding->addItem("ascii");
-	ui.comboBoxInputEncoding->addItem("decmulti");
-	ui.comboBoxInputEncoding->addItem("cp850");
-	ui.comboBoxInputEncoding->addItem("cp852");
-	ui.comboBoxInputEncoding->addItem("cp437");
-	ui.comboBoxInputEncoding->addItem("cp437de");
-	ui.comboBoxInputEncoding->addItem("cp865");
-	ui.comboBoxInputEncoding->addItem("applemac");
-	ui.comboBoxInputEncoding->addItem("next");
-	ui.comboBoxInputEncoding->addItem("ansinew");
-	ui.comboBoxInputEncoding->addItem("cp1252");
-	ui.comboBoxInputEncoding->addItem("cp1250");
-	ui.comboBoxInputEncoding->addItem("NONE");
-	if (!otherInputEncodingList.isEmpty()) ui.comboBoxInputEncoding->addItems(otherInputEncodingList);
-
 	ui.comboBoxFontEncoding->clear();
 	ui.comboBoxFontEncoding->addItem("OT1");
 	ui.comboBoxFontEncoding->addItem("OT2");
@@ -288,7 +267,7 @@ void QuickDocumentDialog::Init()
 	ui.comboBoxBabel->addItems(babelLanguages);
 	if (!otherBabelOptionsList.isEmpty()) ui.comboBoxBabel->addItems(otherBabelOptionsList);
 
-	ui.listWidgetOptions->clear();
+    ui.listWidgetOptions->clear();
     QListWidgetItem *item;
     QStringList options{"landscape","draft","final","oneside","twoside","openright","openany","onecolumn",
                        "twocolumn","titlepage","notitlepage","openbib","leqno","fleqn"};
@@ -303,15 +282,60 @@ void QuickDocumentDialog::Init()
         item->setCheckState(Qt::Unchecked);
     }
 
+	QTableWidget *table = ui.tableWidgetPackages;
+	table->clearContents();
+	table->horizontalHeader()->setStretchLastSection(true);
+	table->setSelectionMode(QAbstractItemView::NoSelection);
+//	table->setSelectionBehavior(QAbstractItemView::SelectRows);
+	table->verticalHeader()->hide();
+
+	//each QStringList holds 2 items: the name of the package, and a short package description. These constitute a row of the table of the packages tab
+	QList<QStringList> packages = QList<QStringList>()
+		<< QStringList( {"amssymb"     , tr("Mathematical symbols from AMS")} )
+		<< QStringList( {"graphicx"    , tr("Graphics package, easily include images (s. Insert Graphic Wizard)")} )
+		<< QStringList( {"hyperref"    , tr("Support for hyperlinks in your document")} )
+		<< QStringList( {"mathtools"   , tr("Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath")} )
+		<< QStringList( {"amsthm"      , tr("Define your theorem like env., has to be loaded after amsmath")} )
+		<< QStringList( {"nameref"     , tr("Reference to names of chapters, sections, ..., loaded by hyperref")} )
+		<< QStringList( {"thmtools"    , tr("Extention package to amsthm")} )
+		<< QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option use colors in tables")} )
+		;
+	//add user given packages
+	for (const QString& package:otherPackagesList){
+		packages << QStringList( { package, "" } );
+	}
+	//setup packages table 
+	table->setRowCount(packages.size());
+	int row=-1;
+	int tableHeight = table->horizontalHeader()->height() + 2;
+	for (const QStringList& data:packages){
+		++row;
+		QString pkgName = data[0],
+				pkgDescription = data[1];
+
+		QTableWidgetItem *itemPkgName = new QTableWidgetItem(pkgName);
+		QTableWidgetItem *itemPkgDescription = new QTableWidgetItem(pkgDescription);
+
+		itemPkgName->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+		itemPkgDescription->setFlags(Qt::ItemIsEnabled);
+
+		table->setItem(row,0,itemPkgName);
+		table->setItem(row,1,itemPkgDescription);
+		tableHeight += table->rowHeight(row);
+
+		bool found = packagesUsed.contains(pkgName);
+		itemPkgName->setCheckState( found ? Qt::Checked : Qt::Unchecked );
+	}
+	int height = ui.GridPackages->geometry().height();
+	// prevent ever increasing window height when constantly adding user defined packages
+	if (tableHeight < height || height == 0) ui.tableWidgetPackages->setMinimumHeight(tableHeight);
+	ui.tableWidgetPackages->setMaximumHeight(tableHeight);
+
 	configManagerInterface->linkOptionToDialogWidget(&document_class, ui.comboBoxClass);
 	configManagerInterface->linkOptionToDialogWidget(&typeface_size, ui.comboBoxSize);
 	configManagerInterface->linkOptionToDialogWidget(&paper_size, ui.comboBoxPaper);
-	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxInputEncoding);
 	configManagerInterface->linkOptionToDialogWidget(&font_encoding, ui.comboBoxFontEncoding);
 	configManagerInterface->linkOptionToDialogWidget(&babel_language, ui.comboBoxBabel);
-	configManagerInterface->linkOptionToDialogWidget(&ams_packages, ui.checkBoxAMS);
-	configManagerInterface->linkOptionToDialogWidget(&makeidx_package, ui.checkBoxIDX);
-	configManagerInterface->linkOptionToDialogWidget(&graphicx_package, ui.checkBoxGraphicx);
 	configManagerInterface->linkOptionToDialogWidget(&author, ui.lineEditAuthor);
 
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidth, ui.spinBoxGeometryPageWidth);
@@ -491,17 +515,6 @@ void QuickDocumentDialog::addUserPaper()
 	}
 }
 
-void QuickDocumentDialog::addUserInputEncoding()
-{
-	QString newoption;
-	UniversalInputDialog dialog;
-	dialog.addVariable(&newoption, tr("New:"));
-	if (dialog.exec() && !newoption.isEmpty()) {
-		otherInputEncodingList.append(newoption);
-		Init();
-	}
-}
-
 void QuickDocumentDialog::addUserFontEncoding()
 {
 	QString newoption;
@@ -533,4 +546,25 @@ void QuickDocumentDialog::addUserOptions()
 		otherOptionsList.append(newoption);
 		Init();
 	}
+}
+
+void QuickDocumentDialog::addUserPackages()
+{
+	QString newoption;
+	UniversalInputDialog dialog;
+	dialog.addVariable(&newoption, tr("New:"));
+	if (dialog.exec() && !newoption.isEmpty()) {
+		otherPackagesList.append(newoption);
+		Init();
+	}
+}
+
+void QuickDocumentDialog::setFocusToTable(int idx)
+{
+	int tabPos = ui.tabWidget->indexOf(ui.tabPackages);
+	if (idx == tabPos) {
+		ui.tableWidgetPackages->setFocus();
+		ui.tabWidget->setTabToolTip(tabPos, tr("All packages that have the checkbox checked will appear in a new document within \\usepackage commands after pressing OK."));
+	}
+	else ui.tabWidget->setTabToolTip(tabPos, "");
 }
