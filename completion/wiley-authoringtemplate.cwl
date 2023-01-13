@@ -1,5 +1,5 @@
 # wiley-authoringtemplate package
-# Matthew Bertucci 2022/10/11 for v3.0
+# Matthew Bertucci 2022/10/11 for v4.0
 
 #include:lipsum
 #include:ulem
