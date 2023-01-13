@@ -306,12 +306,11 @@ void QuickDocumentDialog::Init()
 	}
 	//setup packages table 
 	table->setRowCount(packages.size());
-	int row=-1;
-	int tableHeight = table->horizontalHeader()->height() + 2;
-	for (const QStringList& data:packages){
-		++row;
-		QString pkgName = data[0],
-				pkgDescription = data[1];
+    for (int row=0;row<packages.length();++row){
+        QStringList data=packages.value(row);
+
+        QString pkgName = data[0];
+        QString pkgDescription = data[1];
 
 		QTableWidgetItem *itemPkgName = new QTableWidgetItem(pkgName);
 		QTableWidgetItem *itemPkgDescription = new QTableWidgetItem(pkgDescription);
@@ -321,15 +320,10 @@ void QuickDocumentDialog::Init()
 
 		table->setItem(row,0,itemPkgName);
 		table->setItem(row,1,itemPkgDescription);
-		tableHeight += table->rowHeight(row);
 
 		bool found = packagesUsed.contains(pkgName);
 		itemPkgName->setCheckState( found ? Qt::Checked : Qt::Unchecked );
 	}
-	int height = ui.GridPackages->geometry().height();
-	// prevent ever increasing window height when constantly adding user defined packages
-	if (tableHeight < height || height == 0) ui.tableWidgetPackages->setMinimumHeight(tableHeight);
-	ui.tableWidgetPackages->setMaximumHeight(tableHeight);
 
 	configManagerInterface->linkOptionToDialogWidget(&document_class, ui.comboBoxClass);
 	configManagerInterface->linkOptionToDialogWidget(&typeface_size, ui.comboBoxSize);
