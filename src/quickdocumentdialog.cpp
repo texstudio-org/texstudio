@@ -283,30 +283,29 @@ void QuickDocumentDialog::Init()
     }
 
 	QTableWidget *table = ui.tableWidgetPackages;
-	table->clear();
-	table->setColumnCount(2);
-	table->setHorizontalHeaderLabels( QStringList( { tr("Package"), tr("Description") } ) );
+	table->clearContents();
 	table->horizontalHeader()->setStretchLastSection(true);
-	table->setSelectionMode(QAbstractItemView::ExtendedSelection);
-	table->setSelectionBehavior(QAbstractItemView::SelectRows);
+	table->setSelectionMode(QAbstractItemView::NoSelection);
+//	table->setSelectionBehavior(QAbstractItemView::SelectRows);
 	table->verticalHeader()->hide();
 
 	//each QStringList holds 2 items: the name of the package, and a short package description. These constitute a row of the table of the packages tab
 	QList<QStringList> packages = QList<QStringList>()
-		<< QStringList( {"amssymb"     , "Mathematical symbols from AMS"} )
-		<< QStringList( {"graphicx"    , "Graphics package, easily include images (s. Insert Graphic Wizard)"} )
-		<< QStringList( {"hyperref"    , "Support for hyperlinks in your document"} )
-		<< QStringList( {"mathtools"   , "Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath"} )
-		<< QStringList( {"amsthm"      , "Define your theorem like env., has to be loaded after amsmath"} )
-		<< QStringList( {"nameref"     , "Reference to names of chapters, sections, ..., loaded by hyperref"} )
-		<< QStringList( {"thmtools"    , "Extention package to amsthm"} )
-		<< QStringList( {"xcolor"      , "Sophisticated package for colors, with table option use colors in tables"} )
+		<< QStringList( {"amssymb"     , tr("Mathematical symbols from AMS")} )
+		<< QStringList( {"graphicx"    , tr("Graphics package, easily include images (s. Insert Graphic Wizard)")} )
+		<< QStringList( {"hyperref"    , tr("Support for hyperlinks in your document")} )
+		<< QStringList( {"mathtools"   , tr("Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath")} )
+		<< QStringList( {"amsthm"      , tr("Define your theorem like env., has to be loaded after amsmath")} )
+		<< QStringList( {"nameref"     , tr("Reference to names of chapters, sections, ..., loaded by hyperref")} )
+		<< QStringList( {"thmtools"    , tr("Extention package to amsthm")} )
+		<< QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option use colors in tables")} )
 		;
 	//add user given packages
 	for (const QString& package:otherPackagesList){
 		packages << QStringList( { package, "" } );
 	}
 	//setup packages table 
+	table->setRowCount(packages.size());
 	int row=-1;
 	int tableHeight = table->horizontalHeader()->height() + 2;
 	for (const QStringList& data:packages){
@@ -317,24 +316,20 @@ void QuickDocumentDialog::Init()
 		QTableWidgetItem *itemPkgName = new QTableWidgetItem(pkgName);
 		QTableWidgetItem *itemPkgDescription = new QTableWidgetItem(pkgDescription);
 
-		itemPkgName->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
-		itemPkgDescription->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+		itemPkgName->setFlags(Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
+		itemPkgDescription->setFlags(Qt::ItemIsEnabled);
 
-		table->setRowCount(row+1);
 		table->setItem(row,0,itemPkgName);
 		table->setItem(row,1,itemPkgDescription);
 		tableHeight += table->rowHeight(row);
 
 		bool found = packagesUsed.contains(pkgName);
 		itemPkgName->setCheckState( found ? Qt::Checked : Qt::Unchecked );
-		updateSelected(row);
 	}
 	int height = ui.GridPackages->geometry().height();
 	// prevent ever increasing window height when constantly adding user defined packages
 	if (tableHeight < height || height == 0) ui.tableWidgetPackages->setMinimumHeight(tableHeight);
 	ui.tableWidgetPackages->setMaximumHeight(tableHeight);
-	connect(ui.tableWidgetPackages, SIGNAL(itemSelectionChanged()), SLOT(updateCheckState()));
-	connect(ui.tableWidgetPackages, SIGNAL(cellClicked(int,int)), SLOT(updateSelected(int)));
 
 	configManagerInterface->linkOptionToDialogWidget(&document_class, ui.comboBoxClass);
 	configManagerInterface->linkOptionToDialogWidget(&typeface_size, ui.comboBoxSize);
@@ -563,38 +558,13 @@ void QuickDocumentDialog::addUserPackages()
 		Init();
 	}
 }
-//when package selections change
-void QuickDocumentDialog::updateCheckState()
-{
-	QTableWidget *table = ui.tableWidgetPackages;
-	for (int i=0; i < table->rowCount(); ++i) {
-		Qt::CheckState state = table->item(i,0)->checkState();
-		Qt::CheckState select = (table->item(i,0)->isSelected() ? Qt::Checked : Qt::Unchecked);
-		if (state != select) {
-			table->item(i,0)->setCheckState(select);
-		}
-	}
-}
-//when package checkState changes
-void QuickDocumentDialog::updateSelected(int row)
-{
-	QTableWidget *table = ui.tableWidgetPackages;
-	bool state = (table->item(row,0)->checkState()==Qt::Checked ? true : false);
-	bool select = table->item(row,0)->isSelected();
-
-	if (state != select) {
-		for (int i=0; i < table->columnCount(); ++i) {
-			table->item(row,i)->setSelected(state);
-		}
-	}
-}
 
 void QuickDocumentDialog::setFocusToTable(int idx)
 {
 	int tabPos = ui.tabWidget->indexOf(ui.tabPackages);
 	if (idx == tabPos) {
 		ui.tableWidgetPackages->setFocus();
-		ui.tabWidget->setTabToolTip(tabPos, tr("All packages that have the checkbox checked or are selected (Ctrl or Shift along with clicking or dragging\nthe mouse pointer) will appear in a new document within \\usepackage commands after pressing OK."));
+		ui.tabWidget->setTabToolTip(tabPos, tr("All packages that have the checkbox checked will appear in a new document within \\usepackage commands after pressing OK."));
 	}
 	else ui.tabWidget->setTabToolTip(tabPos, "");
 }

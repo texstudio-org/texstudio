@@ -53,8 +53,6 @@ private slots:
 	void addBabelOption();
 	void addUserOptions();
 	void addUserPackages();
-	void updateCheckState();
-	void updateSelected(int row);
 	void setFocusToTable(int idx);
 };
 

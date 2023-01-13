@@ -298,6 +298,16 @@
          </property>
          <item row="1" column="0">
           <widget class="QTableWidget" name="tableWidgetPackages">
+           <column>
+            <property name="text">
+             <string>Package</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Description</string>
+            </property>
+           </column>
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             </sizepolicy>
