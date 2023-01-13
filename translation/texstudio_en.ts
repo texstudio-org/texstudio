@@ -8059,7 +8059,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
-        <source>Extention package to amsthm</source>
+        <source>Extension package to amsthm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
