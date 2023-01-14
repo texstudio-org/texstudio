@@ -7985,17 +7985,17 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="82"/>
         <source>&amp;Class Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Osztály opciók</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="255"/>
         <source>Font Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Fontkódolás</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="279"/>
         <source>&amp;Packages</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Csomagok</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="303"/>
@@ -8010,7 +8010,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="371"/>
         <source>&amp;Geometry</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Geometria</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="399"/>
@@ -8116,42 +8116,42 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="294"/>
         <source>Mathematical symbols from AMS</source>
-        <translation type="unfinished"/>
+        <translation>Matematikai szimbólumok az AMS-től</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="295"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
-        <translation type="unfinished"/>
+        <translation>Grafikus csomag, könnyen beilleszthető képek (lásd Kép beillesztése varázsló)</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="296"/>
         <source>Support for hyperlinks in your document</source>
-        <translation type="unfinished"/>
+        <translation>Hiperhivatkozások támogatása a dokumentumban</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="297"/>
         <source>Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Bővítménycsomag az amsmath-hoz, beleértve az amsmath hibáinak javítását, és az amsmath betöltését</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="298"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Definiálja a tételszerű környezeteit, az amsmath után kell betölteni</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
-        <translation type="unfinished"/>
+        <translation>Hivatkozás a fejezetek, szakaszok, ... nevére, amelyet a hyperref töltött be</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
         <source>Extension package to amsthm</source>
-        <translation type="unfinished"/>
+        <translation>Bővítménycsomag az amsthm-hez</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Sophisticated package for colors, with table option use colors in tables</source>
-        <translation type="unfinished"/>
+        <translation>Kifinomult csomag színekhez, table opcióval, amely színeket használ táblázatokban</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="500"/>
@@ -8166,7 +8166,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="567"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
-        <translation type="unfinished"/>
+        <translation>Minden csomag, amelynél be van jelölve a jelölőnégyzet, megjelenik az új dokumentumban a \usepackage parancson belül, miután megnyomta az OK gombot.</translation>
     </message>
 </context>
 <context>
