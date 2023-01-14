@@ -1,5 +1,5 @@
 # letgut class
-# Matthew Bertucci 2022/10/04 for v0.9.4
+# Matthew Bertucci 2023/01/13 for v0.9.5
 
 #include:luatex
 #include:l3keys2e
@@ -14,7 +14,10 @@
 #include:etoc
 #include:enumitem
 #include:titlesec
+#include:xcolor
+# loads table option of xcolor
 #include:fourier-orns
+#include:pgfornament
 #include:placeins
 #include:fancyvrb
 #include:booktabs
@@ -22,9 +25,10 @@
 #include:mathtools
 #include:accsupp
 #include:siunitx
-#include:hologo
-#include:xcolor
-# loads table option of xcolor
+#include:bxtexlogo
+#include:tcolorbox
+#include:standalone
+#include:attachfile2
 #include:refcount
 #include:ninecolors
 #include:tabularray
@@ -36,15 +40,16 @@
 #include:floatrow
 #include:biblatex
 #include:acro
+#include:xurl
 #include:hyperref
 #include:hypcap
 #include:cleveref
 #include:letgut-banner
-#include:tcolorbox
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibrarybreakable
 #include:tcolorboxlibraryskins
 #include:tcolorboxlibraryhooks
+#include:tcolorboxlibrarydocumentation
 
 \letgutsetup{options%keyvals}
 
@@ -63,15 +68,19 @@ membership-reminder#true,false
 editorial#true,false
 informations#true,false
 detailedtoc#true,false
+source-files-attached#true,false
 #endkeyvals
 
 \inputarticle{file}#i
+\inputarticle*{file}#i
 
 \title[short title%text]{text}
 \subtitle{text}
 \subtitle[short subtitle%text]{text}
 
 \person{données}
+\person*{données}
+\author*{données}
 
 \package{package%plain}
 \package[URL]{package%plain}#U
@@ -101,6 +110,10 @@ detailedtoc#true,false
 
 \gutenberg
 \gut
+\assogut
+\Assogut
+\lettres
+\lettresgut
 \cahier
 \cahiers
 \Cahier#S
@@ -146,8 +159,169 @@ detailedtoc#true,false
 \terminal[prompt]{stdin%definition}{stdout%definition}
 \terminal[prompt][options%keyvals]{stdin%definition}{stdout%definition}
 
+\begin{ctannews}
+\end{ctannews}
+\item*
+\item*[label]
+\francophony
+
+\begin{bookreview}{caractéristiques%keyvals}
+\end{bookreview}
+
+#keyvals:\begin{bookreview}
+title=%<titre%>
+reviewer=%<rapporteur%>
+bibkey=%<clé%>
+frontcover=%<fichier%>
+price=%<prix%>
+#endkeyvals
+
+\letgutacro{COURT}{long}
+\letgutacro{COURT}{long}[traduction française]
+\letgutacro[options%keyvals]{COURT}{long}
+\letgutacro[options%keyvals]{COURT}{long}[traduction française]
+
+# options passed to \DeclareAcronym
+#keyvals:\letgutacro#c
+short={%<text%>}
+long={%<text%>}
+alt={%<text%>}
+extra={%<text%>}
+foreign={%<text%>}
+long-post={%<text%>}
+post={%<text%>}
+sort={%<text%>}
+tag={%<csv list%>}
+before-citation={%<csv list%>}
+index-sort={%<text%>}
+short-plural={%<text%>}
+short-plural-form={%<text%>}
+long-plural={%<text%>}
+long-plural-form={%<text%>}
+alt-plural={%<text%>}
+alt-plural-form={%<text%>}
+foreign-plural={%<text%>}
+foreign-plural-form={%<text%>}
+plural={%<text%>}
+plural-form={%<text%>}
+short-indefinite={%<text%>}
+long-indefinite={%<text%>}
+alt-indefinite={%<text%>}
+pdfstring=%<string%>
+pdfcomment={%<text%>}
+short-acc={%<text%>}
+long-acc={%<text%>}
+alt-acc={%<text%>}
+foreign-acc={%<text%>}
+foreign-acc-plural-form={%<text%>}
+extra-acc={%<text%>}
+single-acc={%<text%>}
+list-acc={%<text%>}
+list={%<text%>}
+foreign-babel=%<language%>
+foreign-locale=%<language%>
+preset=%<set name%>
+uselist={%<csv list of ids%>}
+case-sensitive#true,false
+case-insensitive#true,false
+first-style=#long-short,short-long,short,long,footnote
+subsequent-style=#long-short,short-long,short,long,footnote
+single-style=#long-short,short-long,short,long,footnote
+single={%<text%>}
+use-id-as-short#true,false
+cite=[%<prenote%>][%<postnote%>]{%<citation keys%>}
+index={%<text%>}
+index-sort={%<text%>}
+no-index#true,false
+format={%<code%>}
+short-format={%<code%>}
+long-format={%<code%>}
+first-long-format={%<code%>}
+alt-format={%<code%>}
+extra-format={%<code%>}
+foreign-format={%<code%>}
+single-format={%<code%>}
+list-format={%<code%>}
+#endkeyvals
+
+\separator
+\begin{announcement}{titre%text}
+\begin{announcement}[color]{titre%text}
+\end{announcement}
+\begin{rebus}
+\begin{rebus}[options%keyvals]
+\end{rebus}
+\solution
+\rebussolution
+\rebussolution[solution]
+\rebussolution[solution][numéro]
+\rebussolution[solution][numéro][options%keyvals]
+\alertbox{text}
+\alertbox[color]{text}
+
+letgut_pagecolor#B
+letgut_allcolors_links#B
+letgut_default_alert_box_color#B
+
+\letgutissn#*
+
+# acronyms
+\ctan#*
+\pdf#*
+\orcid#*
+\faq#*
+\svg#*
+\dns#*
+\vps#*
+\ldap#*
+\otf#*
+\doi#*
+\issn#*
+\tug#*
+\wcag#*
+\html#*
+\css#*
+\utf#*
+\pgf#*
+\gpl#*
+\ofl#*
+\dvi#*
+\ipa#*
+\tipa#*
+\xml#*
+\apa#*
+\os#*
+\bsd#*
+\imap#*
+\smtp#*
+\rtf#*
+\wysiwyg#*
+\iso#*
+\off#*
+\csv#*
+\yaml#*
+\uca#*
+\nfss#*
+\ascii#*
+\tds#*
+\smai#*
+\ag#*
+\ca#*
+\shs#*
+\irem#*
+\meef#*
+\ecm#*
+\grappa#*
+\bbb#*
+\cv#*
+\rgpd#*
+\ndlr#*
+\bts#*
+\apmep#*
+\pao#*
+
 # tcolorbox keys
-#keyvals:\begin{ltx-code},\begin{ltx-code-result},\begin{ltx-code-external-result},\terminal
+#keyvals:\begin{ltx-code},\begin{ltx-code-result},\begin{ltx-code-external-result},\terminal,\begin{rebus},\rebussolution
 ### << always available keys >> ###
 title=%<text%>
 notitle
@@ -384,6 +558,7 @@ every box on layer 1/.style={%<options%>}
 every box on layer 2/.style={%<options%>}
 every box on layer 3/.style={%<options%>}
 every box on layer 4/.style={%<options%>}
+every box on higher layers/.style={%<options%>}
 capture=#minipage,hbox,fitbox
 hbox
 minipage
@@ -474,6 +649,123 @@ skin first is subskin of={%<base skin%>}{%<options%>}
 skin middle is subskin of={%<base skin%>}{%<options%>}
 skin last is subskin of={%<base skin%>}{%<options%>}
 
+### << listings library keys >> ###
+listing options={%<listings options%>}
+no listing options
+listing style=%<style%>
+listing inputencoding=%<encoding%>
+listing remove caption#true,false
+every listing line=%<text%>
+every listing line*=%<text%>
+listing engine=#listings,minted
+listing file=%<file name%>
+listing and text
+text and listing
+listing only
+text only
+comment=%<text%>
+comment only
+image comment={%<graphics options%>}{%<file%>}
+tcbimage comment=%<file name%>
+pdf comment
+pdf comment=%<file name%>
+pdf extension=%<extension%>
+comment style={%<options%>}
+listing and comment
+comment and listing
+listing side text
+text side listing
+listing outside text
+text outside listing
+listing side comment
+comment side listing
+listing outside comment
+comment outside listing
+listing above text
+listing above* text
+text above listing
+text above* listing
+listing above comment
+listing above* comment
+comment above listing
+comment above* listing
+no process
+process code={%<code%>}
+run system command=%<system command%>
+compilable listing
+run pdflatex=%<arguments%>
+run pdflatex
+run xelatex=%<arguments%>
+run xelatex
+run lualatex=%<arguments%>
+run lualatex
+run makeindex=%<arguments%>
+run makeindex
+run bibtex=%<arguments%>
+run bibtex
+run biber=%<arguments%>
+run biber
+run arara=%<arguments%>
+run arara
+run latex=%<arguments%>
+run latex
+run dvips=%<arguments%>
+run dvips
+run ps2pdf=%<arguments%>
+run ps2pdf
+freeze file=%<file%>
+freeze none
+freeze extension=%<text%>
+freeze pdf
+freeze png
+freeze jpg
+
+### << breakable library keys >> ###
+breakable
+breakable=#true,false,unlimited
+unbreakable
+enforce breakable
+title after break=%<text%>
+notitle after break
+adjusted title after break=%<text%>
+lines before break=%<number%>
+break at=%<length1/length2/...%>
+enlargepage=%<length1/length2/...%>
+enlargepage flexible=##L
+compress page
+compress page=#all,baselineskip,none
+shrink break goal=##L
+use color stack#true,false
+toprule at break=##L
+bottomrule at break=##L
+topsep at break=##L
+bottomsep at break=##L
+pad before break=##L
+pad before break*=##L
+pad after break=##L
+pad at break=##L
+pad at break*=##L
+height fixed for=#none,first,middle,last,first and middle,middle and last,all
+vfill before first#true,false
+segmentation at break#true,false
+extras={%<options%>}
+no extras
+extras broken={%<options%>}
+extras unbroken={%<options%>}
+no extras unbroken
+extras first={%<options%>}
+no extras first
+extras middle={%<options%>}
+no extras middle
+extras last={%<options%>}
+no extras last
+extras unbroken and first={%<options%>}
+extras middle and last={%<options%>}
+extras unbroken and last={%<options%>}
+extras first and middle={%<options%>}
+extras title after break={%<options%>}
+no extras title after break
+
 ### << skins library keys >> ###
 frame style={%<TikZ options%>}
 frame style image=%<file name%>
@@ -490,9 +782,6 @@ title style image=%<file name%>
 title style tile={%<graphics options%>}{%<file%>}
 title hidden
 titlerule style={%<TikZ options%>}
-tcb fill frame
-tcb fill interior
-tcb fill title
 attach boxed title to top left
 attach boxed title to top left={%<boxtitle options%>}
 attach boxed title to top text left
@@ -709,52 +998,6 @@ beamer hidden/.style={%<options%>}
 alert=<%<overlay spec%>>
 beamer alerted/.style={%<options%>}
 
-### << breakable library keys >> ###
-breakable
-breakable=#true,false,unlimited
-unbreakable
-enforce breakable
-title after break=%<text%>
-notitle after break
-adjusted title after break=%<text%>
-lines before break=%<number%>
-break at=%<length1/length2/...%>
-enlargepage=%<length1/length2/...%>
-enlargepage flexible=##L
-compress page
-compress page=#all,baselineskip,none
-shrink break goal=##L
-use color stack#true,false
-toprule at break=##L
-bottomrule at break=##L
-topsep at break=##L
-bottomsep at break=##L
-pad before break=##L
-pad before break*=##L
-pad after break=##L
-pad at break=##L
-pad at break*=##L
-height fixed for=#none,first,middle,last,first and middle,middle and last,all
-vfill before first#true,false
-segmentation at break#true,false
-extras={%<options%>}
-no extras
-extras broken={%<options%>}
-extras unbroken={%<options%>}
-no extras unbroken
-extras first={%<options%>}
-no extras first
-extras middle={%<options%>}
-no extras middle
-extras last={%<options%>}
-no extras last
-extras unbroken and first={%<options%>}
-extras middle and last={%<options%>}
-extras unbroken and last={%<options%>}
-extras first and middle={%<options%>}
-extras title after break={%<options%>}
-no extras title after break
-
 ### << hooks library keys >> ###
 before title app={%<code%>}
 before title pre={%<code%>}
@@ -854,242 +1097,15 @@ listing options pre={%<options%>}
 minted options app={%<options%>}
 minted options pre={%<options%>}
 
-### << xparse library keys >> ###
-verbatim
-
-### << listings library keys >> ###
-listing options={%<listings options%>}
-no listing options
-listing style=%<style%>
-listing inputencoding=%<encoding%>
-listing remove caption#true,false
-every listing line=%<text%>
-every listing line*=%<text%>
-listing utf8=%<encoding%>
-minted language=%<programming lang%>
-minted options={%<minted options%>}
-default minted options={%<minted options%>}
-minted style=%<style%>
-listing engine=#listings,minted
-listing file=%<file name%>
-listing and text
-text and listing
-listing only
-text only
-comment=%<text%>
-comment only
-image comment={%<graphics options%>}{%<file%>}
-tcbimage comment=%<file name%>
-pdf comment
-pdf comment=%<file name%>
-pdf extension=%<extension%>
-comment style={%<options%>}
-listing and comment
-comment and listing
-listing side text
-text side listing
-listing outside text
-text outside listing
-listing side comment
-comment side listing
-listing outside comment
-comment outside listing
-listing above text
-listing above* text
-text above listing
-text above* listing
-listing above comment
-listing above* comment
-comment above listing
-comment above* listing
-no process
-process code={%<code%>}
-run system command=%<system command%>
-compilable listing
-run pdflatex=%<arguments%>
-run pdflatex
-run xelatex=%<arguments%>
-run xelatex
-run lualatex=%<arguments%>
-run lualatex
-run makeindex=%<arguments%>
-run makeindex
-run bibtex=%<arguments%>
-run bibtex
-run biber=%<arguments%>
-run biber
-run arara=%<arguments%>
-run arara
-run latex=%<arguments%>
-run latex
-run dvips=%<arguments%>
-run dvips
-run ps2pdf=%<arguments%>
-run ps2pdf
-freeze file=%<file%>
-freeze none
-freeze extension=%<text%>
-freeze pdf
-freeze png
-freeze jpg
-externalize listing=%<name%>
-externalize listing!=%<name%>
-
 ### << keys defined by letgut >> ###
 title addon=%<supplément au titre%>
 result width=##L
 reference text=%<texte%>
 #endkeyvals
 
-\begin{ctannews}
-\end{ctannews}
-\item*
-\item*[label]
-\francophony
-
-\begin{bookreview}{caractéristiques%keyvals}
-\end{bookreview}
-
-#keyvals:\begin{bookreview}
-title=%<titre%>
-reviewer=%<rapporteur%>
-bibkey=%<clé%>
-frontcover=%<fichier%>
-price=%<prix%>
+#keyvals:\begin{rebus}
+no solution
 #endkeyvals
-
-\letgutacro{COURT}{long}
-\letgutacro{COURT}{long}[traduction française]
-\letgutacro[options%keyvals]{COURT}{long}
-\letgutacro[options%keyvals]{COURT}{long}[traduction française]
-
-# options passed to \DeclareAcronym
-#keyvals:\letgutacro#c
-short={%<text%>}
-long={%<text%>}
-alt={%<text%>}
-extra={%<text%>}
-foreign={%<text%>}
-long-post={%<text%>}
-post={%<text%>}
-sort={%<text%>}
-tag={%<csv list%>}
-before-citation={%<csv list%>}
-index-sort={%<text%>}
-short-plural={%<text%>}
-short-plural-form={%<text%>}
-long-plural={%<text%>}
-long-plural-form={%<text%>}
-alt-plural={%<text%>}
-alt-plural-form={%<text%>}
-foreign-plural={%<text%>}
-foreign-plural-form={%<text%>}
-plural={%<text%>}
-plural-form={%<text%>}
-short-indefinite={%<text%>}
-long-indefinite={%<text%>}
-alt-indefinite={%<text%>}
-pdfstring=%<string%>
-pdfcomment={%<text%>}
-short-acc={%<text%>}
-long-acc={%<text%>}
-alt-acc={%<text%>}
-foreign-acc={%<text%>}
-foreign-acc-plural-form={%<text%>}
-extra-acc={%<text%>}
-single-acc={%<text%>}
-list-acc={%<text%>}
-list={%<text%>}
-foreign-babel=%<language%>
-foreign-locale=%<language%>
-preset=%<set name%>
-uselist={%<csv list of ids%>}
-case-sensitive#true,false
-case-insensitive#true,false
-first-style=#long-short,short-long,short,long,footnote
-subsequent-style=#long-short,short-long,short,long,footnote
-single-style=#long-short,short-long,short,long,footnote
-single={%<text%>}
-use-id-as-short#true,false
-cite=[%<prenote%>][%<postnote%>]{%<citation keys%>}
-index={%<text%>}
-index-sort={%<text%>}
-no-index#true,false
-format={%<code%>}
-short-format={%<code%>}
-long-format={%<code%>}
-first-long-format={%<code%>}
-alt-format={%<code%>}
-extra-format={%<code%>}
-foreign-format={%<code%>}
-single-format={%<code%>}
-list-format={%<code%>}
-#endkeyvals
-
-\separator
-\alertbox{text}
-\alertbox[color]{text}
-
-letgut_pagecolor#B
-letgut_allcolors_links#B
-letgut_default_alert_box_color#B
-
-\letgutissn#*
-
-# acronyms
-\ctan#*
-\pdf#*
-\orcid#*
-\faq#*
-\svg#*
-\dns#*
-\vps#*
-\ldap#*
-\otf#*
-\doi#*
-\issn#*
-\tug#*
-\wcag#*
-\html#*
-\css#*
-\utf#*
-\pgf#*
-\gpl#*
-\ofl#*
-\dvi#*
-\ipa#*
-\tipa#*
-\xml#*
-\apa#*
-\os#*
-\bsd#*
-\imap#*
-\smtp#*
-\rtf#*
-\wysiwyg#*
-\iso#*
-\off#*
-\csv#*
-\yaml#*
-\uca#*
-\nfss#*
-\ascii#*
-\tds#*
-\smai#*
-\ag#*
-\ca#*
-\shs#*
-\irem#*
-\meef#*
-\ecm#*
-\grappa#*
-\bbb#*
-\cv#*
-\rgpd#*
-\ndlr#*
-\bts#*
-\apmep#*
-\pao#*
 
 # from table option of xcolor
 #include:colortbl
@@ -1312,3 +1328,7 @@ SuppressWarning#true,false
 \englishhyphenmins#*
 \britishhyphenmins#*
 \americanhyphenmins#*
+
+# not documented
+\displaysolutions#*
+\listofcontributors#*
