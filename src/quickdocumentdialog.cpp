@@ -298,7 +298,7 @@ void QuickDocumentDialog::Init()
 		<< QStringList( {"amsthm"      , tr("Define your theorem like env., has to be loaded after amsmath")} )
 		<< QStringList( {"nameref"     , tr("Reference to names of chapters, sections, ..., loaded by hyperref")} )
         << QStringList( {"thmtools"    , tr("Extension package to amsthm")} )
-		<< QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option use colors in tables")} )
+        << QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option to use colors in tables")} )
 		;
 	//add user given packages
 	for (const QString& package:otherPackagesList){
