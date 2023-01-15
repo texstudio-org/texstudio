@@ -1,10 +1,9 @@
 # pgfrcs package
 # muzimuzhi, 7 Jul 2020, tikz-pgf 3.1.5b
-# Matthew Bertucci 11/16/2021 for v3.1.9a
+# Matthew Bertucci 2023/01/15 for v3.1.10
 
 # pgfrcs.sty
 # ├── pgfutil-common.tex
-# │   └── pgfutil-common-lists.tex
 # ├── pgfutil-latex.def
 # │   └── everyshi.sty
 # └── pgfrcs.code.tex
@@ -88,14 +87,6 @@ sorting
 \pgfutilsolvetwotwoleq{2x2 matrix entries}{2x1 matrix entries}#*
 \pgfutilsolvetwotwoleqfloat{2x2 matrix entries}{2x1 matrix entries}#*
 
-# from pgfutil-common-lists.tex
-\pgfapplistnewempty{applist name}#*
-\pgfapplistpushback %<item to append%>\to %<applist name%>#*
-\pgfapplistlet{cmd}=%<applist name%>#*
-\pgfprependlistnewempty{prelist name}#*
-\pgfprependlistpushfront %<item to prepend%>\to %<prelist name%>#*
-\pgfprependlistlet{cmd}=%<prelist name%>#*
-
 ## from pgfutil-latex.def
 #include:everyshi
 
@@ -110,7 +101,5 @@ sorting
 # from pgf.revision.tex
 \pgfrevision#*
 \pgfversion#*
-\pgfversiondatetime#*
-\pgfrevisiondatetime#*
 \pgfversiondate#*
 \pgfrevisiondate#*
