@@ -3,7 +3,7 @@
 # jsundermeyer@sf.net, 16 Jul 2014, 19 Sep 2015
 # Tim Hoffmann, 1 Dec 2016, 9 Feb 2017
 # muzimuzhi, 8 Jul 2020
-# Matthew Bertucci 12/1/2021 for v3.1.9a
+# Matthew Bertucci 2023/01/15 for v3.1.10
 
 # Dependency Tree:
 # pgfcore.sty
@@ -41,7 +41,7 @@
 #     ├── pgfcorearrows.code.tex
 #     ├── pgfcoreshade.code.tex
 #     ├── pgfcoreimage.code.tex
-#     │   └── pgfcoreexternal.code.tex
+#     ├── pgfcoreexternal.code.tex
 #     ├── pgfcorelayers.code.tex
 #     ├── pgfcoretransparency.code.tex
 #     ├── pgfcorepatterns.code.tex
