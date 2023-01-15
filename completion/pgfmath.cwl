@@ -1,5 +1,6 @@
 # pgfmath package
 # muzimuzhi 7 Jul 2020, tikz-pgf 3.1.5b
+# filetree updated 2023/01/15 for v3.1.10
 
 #include:pgfrcs
 #include:pgfkeys
@@ -10,18 +11,18 @@
 # ├── pgfkeys.sty
 # └── pgfmath.code.tex
 #     ├── pgfkeys.code.tex (already loaded by pgfkeys.sty)
+#     ├── pgfmathutil.code.tex
+#     ├── pgfmathparser.code.tex
+#     ├── pgfmathfunctions.code.tex
+#     ├── pgfmathfunctions.basic.code.tex
+#     ├── pgfmathfunctions.trigonometric.code.tex
+#     ├── pgfmathfunctions.random.code.tex
+#     ├── pgfmathfunctions.comparison.code.tex
+#     ├── pgfmathfunctions.base.code.tex
+#     ├── pgfmathfunctions.round.code.tex
+#     ├── pgfmathfunctions.misc.code.tex
+#     ├── pgfmathfunctions.integerarithmetics.code.tex
 #     ├── pgfmathcalc.code.tex
-#     │   ├── pgfmathutil.code.tex
-#     │   ├── pgfmathparser.code.tex
-#     │   └── pgfmathfunctions.code.tex
-#     │       ├── pgfmathfunctions.basic.code.tex
-#     │       ├── pgfmathfunctions.trigonometric.code.tex
-#     │       ├── pgfmathfunctions.random.code.tex
-#     │       ├── pgfmathfunctions.comparison.code.tex
-#     │       ├── pgfmathfunctions.base.code.tex
-#     │       ├── pgfmathfunctions.round.code.tex
-#     │       ├── pgfmathfunctions.misc.code.tex
-#     │       └── pgfmathfunctions.integerarithmetics.code.tex
 #     └── pgfmathfloat.code.tex
 
 \pgfmathloaded#S
