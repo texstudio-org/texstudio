@@ -1,5 +1,5 @@
 # pgfmanual package
-# Matthew Bertucci 2022/07/18 for v2019
+# Matthew Bertucci 2023/01/15 for v2023
 
 # must load pgf or tikz separately
 
@@ -233,6 +233,8 @@ animationgraphicbackground#B
 \end{purepgflibrary}
 \begin{tikzlibrary}{library}
 \end{tikzlibrary}
+\begin{pgfkeyslibrary}{library}
+\end{pgfkeyslibrary}
 \begin{filedescription}{file}
 \end{filedescription}
 \begin{packageoption}{option}
