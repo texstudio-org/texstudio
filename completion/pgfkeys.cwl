@@ -1,5 +1,6 @@
 # pgfkeys package
 # muzimuzhi, 7 Jul 2020, tikz-pgf 3.1.5b
+# updated 2023/01/15 for v3.1.10
 
 # from pgfkeys.code.tex
 \pgfkeyssetvalue{full key}{token text}#*
@@ -35,7 +36,13 @@
 \pgfkeysvaluerequired#*
 \pgfkeysaddhandleonlyexistingexception{handler key}#*
 
-# from pgfkeysfiltered.code.tex
+\usepgfkeyslibrary{library%keyvals}#*
+
+#keyvals:\usepgfkeyslibrary#c
+filtered
+#endkeyvals
+
+# from pgfkeyslibraryfiltered.code.tex
 # key filtering - setting filters
 \pgfkeysfiltered{key-value list}#*
 \pgfqkeysfiltered{default path}{key-value list}#*
