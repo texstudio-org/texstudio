@@ -1,5 +1,5 @@
 # diffcoeff package
-# Matthew Bertucci 2023/01/11 for v5.0
+# Matthew Bertucci 2023/01/11 for v5.1
 
 #include:xtemplate
 #include:mleftright
@@ -222,3 +222,7 @@ op-sub-nudge=##L
 \difstfrac[opt]*{arg1}{arg2}#S
 \difsafrac{arg1}{arg2}#S
 \difsafrac*{arg1}{arg2}#S
+
+# deprecated v4 commands
+\diffdef{name}{options}#S
+\dlp{arg}#Sm
