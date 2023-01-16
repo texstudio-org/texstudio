@@ -390,7 +390,7 @@
 \rule{width}{thickness%l}
 \SS
 \samepage#*
-\sbox{cmd}[text]
+\sbox{cmd}{text}
 \sc#*
 \scriptsize
 \scshape
