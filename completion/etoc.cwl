@@ -1,5 +1,5 @@
 # etoc package
-# Matthew Bertucci 2022/09/01 for v1.09f
+# Matthew Bertucci 2023/01/16 for v1.1b
 
 #include:multicol
 
@@ -80,10 +80,6 @@
 \etocthelinkednumber
 \etocthelinkedpage
 \etocthelink
-
-\etocsavedsectiontocline
-\etocsavedparttocline
-\etocsavedchaptertocline
 
 ## VI.Commands for the toc display style ##
 \etocsettocstyle{before code}{after code}
@@ -205,3 +201,8 @@
 \etocmarkboth{text}#*
 \etoctableofcontents#*
 \etocoriginaltableofcontents#S
+
+# deprecated
+\etocsavedsectiontocline#S
+\etocsavedparttocline#S
+\etocsavedchaptertocline#S
