@@ -4,9 +4,9 @@
 #keyvals:\usepackage/ksruby#c
 rubysep=%<dim%>%l
 rubysize=%<size%>
-rubyeachchar=#true,false
-rubywidth=#true,false
-rubyheight=#true,false
+rubyeachchar#true,false
+rubywidth#true,false
+rubyheight#true,false
 rubycenter=#c,l,r
 #endkeyvals
 
@@ -15,7 +15,7 @@ rubycenter=#c,l,r
 \ruby{%<below%>}{%<above%>
 \ruby*{%<below%>}{%<above%>}
 
-\ksrubycenterdefault{%<options%>%keyvals}
+\ksrubycenterdefault{%<options%>}
 \ksrubyheightdefault
 \ksrubyheightdefault[false]
 \ksrubywidthdefault

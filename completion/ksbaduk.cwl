@@ -15,10 +15,10 @@ tmarkfont=%<font%>
 #endkeyvals
 
 ## 2.2 Global options
-\BadukpanSize{%<number%>}%definition
-\BadukpanColor{%<color%>%color}%definition
-\BackgroundColor{%<color%>%color}%definition
-\NumberFont{%<font%>%font}%definition
+\BadukpanSize{%<number%>}
+\BadukpanColor{color}
+\BackgroundColor{color}
+\NumberFont{%<font%>%font}
 
 ## 2.3 Environment
 
@@ -27,40 +27,40 @@ tmarkfont=%<font%>
 \StopBaduk
 
 \begin{ksbadukpan}
-\begin{ksbadukpan}[%<options%>%keyvals][%<pos%>%keyvals]
+\begin{ksbadukpan}[%<options%>][%<pos%>]
 \end{ksbadukpan}
 
 ## 2.5 Stones without labels
 \Black{%<pos%>}#/ksbadukpan
-\BlackFirst{%<pos, pos, ...%>}#/ksbadukpan
-\Blacks{%<pos, pos, ...%>}#/ksbadukpan
+\BlackFirst{%<pos, ...%>}#/ksbadukpan
+\Blacks{%<pos, ...%>}#/ksbadukpan
 \White{%<pos%>}#/ksbadukpan
-\WhiteFirst{%<pos, pos, ...%>}#/ksbadukpan
-\Whites{%<pos, pos, ...%>}#/ksbadukpan
+\WhiteFirst{%<pos, ...%>}#/ksbadukpan
+\Whites{%<pos, ...%>}#/ksbadukpan
 
 ## 2.6 Stones with ordered labels
 \BlackN{%<pos%>}{%<number%>}#/ksbadukpan
-\BlackFirstN{%<pos, pos, ...%>}#/ksbadukpan
-\BlackFirstN*{%<pos, pos, ...%>}#/ksbadukpan
-\BlackFirstN{%<pos, pos, ...%>}[%<number%>]#/ksbadukpan
+\BlackFirstN{%<pos, ...%>}#/ksbadukpan
+\BlackFirstN*{%<pos, ...%>}#/ksbadukpan
+\BlackFirstN{%<pos, ...%>}[%<number%>]#/ksbadukpan
 \WhiteN{%<pos%>}{%<number%>}#/ksbadukpan
-\WhiteFirstN{%<pos, pos, ...%>}#/ksbadukpan
-\WhiteFirstN*{%<pos, pos, ...%>}#/ksbadukpan
-\WhiteFirstN{%<pos, pos, ...%>}[%<number%>]#/ksbadukpan
+\WhiteFirstN{%<pos, ...%>}#/ksbadukpan
+\WhiteFirstN*{%<pos, ...%>}#/ksbadukpan
+\WhiteFirstN{%<pos, ...%>}[%<number%>]#/ksbadukpan
 
 ## 2.7 Marking the stones
 \BlackM{%<pos%>}#/ksbadukpan
-\BlackMs{%<pos, pos, ...%>}#/ksbadukpan
+\BlackMs{%<pos, ...%>}#/ksbadukpan
 \BlackC{%<pos%>}#/ksbadukpan
-\BlackCs{%<pos, pos, ...%>}#/ksbadukpan
+\BlackCs{%<pos, ...%>}#/ksbadukpan
 \BlackD{%<pos%>}#/ksbadukpan
-\BlackDs{%<pos, pos, ...%>}#/ksbadukpan
+\BlackDs{%<pos, ...%>}#/ksbadukpan
 \WhiteM{%<pos%>}#/ksbadukpan
-\WhiteMs{%<pos, pos, ...%>}#/ksbadukpan
+\WhiteMs{%<pos, ...%>}#/ksbadukpan
 \WhiteC{%<pos%>}#/ksbadukpan
-\WhiteCs{%<pos, pos, ...%>}#/ksbadukpan
+\WhiteCs{%<pos, ...%>}#/ksbadukpan
 \WhiteD{%<pos%>}#/ksbadukpan
-\WhiteDs{%<pos, pos, ...%>}#/ksbadukpan
+\WhiteDs{%<pos, ...%>}#/ksbadukpan
 
 ## 2.8 Other commands
 \KSBadukContinue
@@ -70,7 +70,7 @@ tmarkfont=%<font%>
 ## 2.9 Clearing stones
 \RemoveStone{%<pos%>}#/ksbadukpan
 \RemoveStone[%<color%>%keyvals]{%<pos%>}#/ksbadukpan
-\RemoveStone{%<pos, pos, ...%>}#/ksbadukpan
+\RemoveStone{%<pos, ...%>}#/ksbadukpan
 
 #keyvals:\RemoveStone#c
 B
@@ -94,8 +94,8 @@ W
 
 ## 2.13 Text commands
 #ifOption:textcmds
-\WhiteNText{%<num%>}#/ksbadukpan
-\BlackNText{%<num%>}#/ksbadukpan
+\WhiteNText{%<number%>}#/ksbadukpan
+\BlackNText{%<number%>}#/ksbadukpan
 \WhiteMText#/ksbadukpan
 \BlackMText#/ksbadukpan
 \WhiteCText#/ksbadukpan

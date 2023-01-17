@@ -109,6 +109,7 @@ reset
 #endif
 
 #ifOption:hz
+#keyvals:\circnum#c,\circnumsetup#c
 shape=%<shape%>#circle,circ,rectangle,rect,oval,ball
 color=#%color
 bgcolor=#%color

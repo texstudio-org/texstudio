@@ -6,7 +6,7 @@ insbox
 #endkeyvals
 
 
-\kswrapfig[%<options%>%keyvals]{%<figure%>}{%<text%>}
+\kswrapfig[%<options%>]{%<figure%>}{%<text%>}
 #keyvals:\kswrapfig#c
 Pos=#r,l
 Width=%<dim%>%l
@@ -17,16 +17,16 @@ Lower=%<dim%>%l
 Caption={%<text%>}
 LastLineSkip=%<dim%>%l
 FirstLineSkip=%<dim%>%l
-List=%<env name%>#itemize,enumerate
+List=%<env name%>
 VAdjust=%<dim%>%l
-UseBox=%<bool%>#true,false
+UseBox#true,false
 #endkeyvals
 
-\kswrapfigline[%<options%>%keyvals]{%<figure%>}{%<text%>}
+\kswrapfigline[%<options%>]{%<figure%>}{%<text%>}
 #keyvals:\kswrapfigline#c
 Line=%<num lines%>
 Pos=#r,l,c
-CaptionName=#figure,table
+CaptionName=%<env name%>
 #endkeyvals
 
 #ifOption:usebox
@@ -36,3 +36,4 @@ r
 l
 c
 #endkeyvals
+#endif

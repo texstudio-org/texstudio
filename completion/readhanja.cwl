@@ -1,8 +1,8 @@
 # readhanja package
 # ponte-vecchio 2022-01-17 for v.0.9
 
-#include: luatex
-#include: fontspec
+#include:luatex
+#include:fontspec
 #keyvals:\usepackage/readhanja#c
 draft
 #endkeyvals
@@ -13,8 +13,8 @@ draft
 \readhanjahangulfont[font features]{font}[font features%keyvals]#*
 
 \readhanjaraise{%<dimen%>}
-\readhanjalocate{options%keyvals}
-\readhanjaunit{options%keyvals}
+\readhanjalocate{%<options%>}
+\readhanjaunit{%<options%>}
 \readhanjareading{%<hanja%>}{%<reading%>}
 \readhanjadictionary{%<hanja%>}{%<reading%>}
 

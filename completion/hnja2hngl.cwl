@@ -1,8 +1,8 @@
 # hnja2hngl package
 # ponte-vecchio 2023-01-17 for v1.2
 
-#include: ksruby
-#include: grruby
+#include:ksruby
+#include:grruby
 
 #keyvals:\usepackage/hnja2hngl#c
 grruby=false
@@ -16,8 +16,8 @@ grruby=false
 \rpSetReading{%<hanja=reading%>}#*
 \grrwhanja{%<hanja%>}#n
 \rwhanjachar{%<hanja%>}#n
-\rpRead{%<options%>%keyvals}#n
-\rpRead{%<options%>%keyvals}[%<hanja=reading%>]#n
+\rpRead{%<options%>}#n
+\rpRead{%<options%>}[%<hanja=reading%>]#n
 \viewCodePoint{%<unicode char%>}
 \viewCodePoint*{%<unicode char%>}
 \showReadings{%<hanja%>}#n

@@ -7,8 +7,7 @@ numbers
 #endkeyvals
 
 \jiwon
-\jiwon[%<num%>]
-\jiwon[%<char%>]
+\jiwon[%<num/char%>]
 \jiwon[%<num%>-%<num%>]
 \jiwondef{%<cmd%>}{%<jiwon no.%>}#d
 

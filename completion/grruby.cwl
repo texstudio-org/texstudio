@@ -3,15 +3,27 @@
 
 #keyvals:\usepackage/grruby#c
 rubystyle=#default,gromob,XXruby,ruby,progress,rup,lw,rw,user
-rubycolor=%<color%>#%color
-expos=#true,false
+rubycolor#%color
+expos#true,false
 pdflatex
 #endkeyvals
 
 \grfoo %<hangul%>(%<hanja%>)
 \grfoo %<hangul%>(%<hanja%>){%<footnote%>}
-\grrubystyle{%<options%>}#default,gromob,XXruby,ruby,progress,rup,lw,rw,user
-\grrubycolor{%<options%>%color}
+\grrubystyle{%<options%>}
+\grrubycolor{color}
+
+#keyvals:\grrubystyle#c
+default
+gromob
+XXruby
+ruby
+progress
+rup
+lw
+rw
+user
+#endkeyvals
 
 \begin{grruby}
 \end{grruby}
@@ -21,8 +33,13 @@ pdflatex
 
 #ifOption:expos=true
 \grexpos
-\grexpos[%<options%>]#true,false
+\grexpos[%<options%>]
 #endif
+
+#keyvals:\grexpos#c
+true
+false
+#endkeyvals
 
 #ifOption:rubystyle=user
 \grrubyUserDefined{%<hangul%>}{%<hanja%>}

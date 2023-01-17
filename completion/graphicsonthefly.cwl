@@ -1,7 +1,7 @@
 # graphicsonthefly package
 # ponte-vecchio 2023-01-17 for v0.9.6
 
-#include: graphicx
+#include:graphicx
 
 #keyvals:\usepackage/graphicsonthefly#c
 renewall
@@ -14,20 +14,20 @@ convert
 
 ## Animations
 #ifOption:all
-#include: animate
-\animatedgifonthefly[%<options%>%keyvals]{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
+#include:animate
+\animatedgifonthefly[%<options%>]{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
 \animatedgif{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
-\usegifonthefly[%<options%>%keyvals]{%<image name%>}{%<url%>}
+\usegifonthefly[%<options%>]{%<image name%>}{%<url%>}
 #endif
 
 #ifOption:animate
-#include: animate
-\animatedgifonthefly[%<options%>%keyvals]{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
+#include:animate
+\animatedgifonthefly[%<options%>]{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
 \animatedgif{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
-\usegifonthefly[%<options%>%keyvals]{%<image name%>}{%<url%>}
+\usegifonthefly[%<options%>]{%<image name%>}{%<url%>}
 #endif
 
-#keyvals:\animatedgifonthefly#c, \usegifonthefly#c
+#keyvals:\animatedgifonthefly#c,\usegifonthefly#c
 label=%<label%>
 type=%<file ext%>
 poster
@@ -69,12 +69,12 @@ timeline=%<file%>
 #endkeyvals
 
 \includegraphicsonthefly[%<options%>]{%<image name%>}{%<url%>}
-\includegraphicsonthefly*[%<options%>%keyvals]{%<image name%>}{%<url%>}
+\includegraphicsonthefly*[%<options%>]{%<image name%>}{%<url%>}
 \prepareimgonthefly{%<image name%>}{%<url%>}
 \prepareimgonthefly*{%<image name%>}{%<url%>}
-\useimageonthefly[%<options%>%keyvals]
+\useimageonthefly[%<options%>]
 
-#keyvals:\includegraphicsonthefly#c, \useimageonthefly#c
+#keyvals:\includegraphicsonthefly#c,\useimageonthefly#c
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>
 bbllx=

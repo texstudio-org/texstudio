@@ -7,7 +7,7 @@ manspace
 finhanja
 #endkeyvals
 
-#include: fontspec
+#include:fontspec
 
 ## 2.1 Numbers
 \NumHanja{%<number%>}
@@ -39,7 +39,7 @@ on
 \DigitHanja{%<number%>}
 \HanjaZero{%<char%>}
 \HanjaZeroFont{%<font%>}
-\TwentyHanjaChar[%<options%>%keyval]
+\TwentyHanjaChar[%<options%>]
 
 #keyvals\TwentyHanjaChar#c
 2
@@ -76,9 +76,9 @@ cho
 #endkeyvals
 
 ## 2.6 Counters
-\HANJA{%<counter%>}#d*
-\HANGUL{%<counter%>}#d*
-\HANJADIG{%<counter%>}#d*
+\HANJA{%<counter%>}#*
+\HANGUL{%<counter%>}#*
+\HANJADIG{%<counter%>}#*
 
 ## 2.7 Date-times in Hanja and Hangul
 \HanjaYear{%<year%>}

@@ -9,17 +9,17 @@ KNUgreen#B
 KNUwhite#B
 
 \KNUfakelogo{%<scale%>}
-\KNUfakelogo[%<options%>%keyvals]{%<scale%>}
-\KNUfakelogo*[%<options%>%keyvals]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
+\KNUfakelogo[%<options%>]{%<scale%>}
+\KNUfakelogo*[%<options%>]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
 \KNUfakelogoBlue{%<scale%>}
-\KNUfakelogoBlue[%<options%>%keyvals]{%<scale%>}
-\KNUfakelogoBlue*[%<options%>%keyvals]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
+\KNUfakelogoBlue[%<options%>]{%<scale%>}
+\KNUfakelogoBlue*[%<options%>]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
 \KNUfakelogoGreen{%<scale%>}
-\KNUfakelogoGreen[%<options%>%keyvals]{%<scale%>}
-\KNUfakelogoGreen*[%<options%>%keyvals]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
+\KNUfakelogoGreen[%<options%>]{%<scale%>}
+\KNUfakelogoGreen*[%<options%>]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
 \KNUfakelogoBlack{%<scale%>}
-\KNUfakelogoBlack[%<options%>%keyvals]{%<scale%>}
-\KNUfakelogoBlack*[%<options%>%keyvals]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
+\KNUfakelogoBlack[%<options%>]{%<scale%>}
+\KNUfakelogoBlack*[%<options%>]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
 
 \KNUfakelogoColor[%<option%>%keyvals]{%<scale%>}{%<inner circ colour%>%color}[%<inner text colour%>%color][%<outer text colour%>%color]{%<outer ring colour%>%color}
 \KNUfakelogoColor*[%<option%>%keyvals]{%<scale%>}{%<bg and inner colour%>%color}[%<inner text  colour%>%color][%<outer text/ring colour%>%color](%<SW coordinate%>)(%<NE coordinate%>)

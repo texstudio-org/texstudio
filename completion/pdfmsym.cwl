@@ -156,41 +156,6 @@
 \prood#m
 
 # 3. Defining your own symbols
-### Pre-defined lineheads
-\@rarrow#*
-\@larrow#*
-\@rharp#*
-\@lharp#*
-\@rdharp#*
-\@rlharp#*
-\@mapcap#*
-\@rsarrow#*
-\@lsarrow#*
-\@backhook#*
-\@fronthook#*
-\@doublerarrow#*
-\@doublelarrow#*
-\@circlecap#*
-\@Rarrow#*
-\@Larrow#*
-\@Linecap#*
-\@Rightcirclecap#*
-\@Leftcirclecap#*
-\@Rightsquarecap#*
-\@Leftsquarecap#*
-\@Rightribboncap#*
-\@Leftribboncap#*
-
 ## 3.1 Macros
-\@linehead@type{%<pdf code%>}{%<width%>}#*
-\@vecc@def{%<vector name%>}%<left cap%>%<right cap%>#*
-\@undervecc@def{%<vector name%>}%<left cap%>%<right cap%>#*
-\@arrow@def{%<arrow name%>}%<left cap%>%<right cap%>#*
-\@Arrow@def{%<arrow name%>}%<left cap%>%<right cap%>%<height disp%>#*
-\@wide@accent{%<pdf code%>}#*
-\pdf@drawing@macro{%<name%>}{%<pdf code%>}{%<width%>}{%<height%>}{%<depth%>}{%<h. skew%>}#*
-\pdf@drawing@math@macro{%<name%>}{%<pdf code%>}{%<width%>}{%<height%>}{%<depth%>}{%<skew%>}%<style scaling%>#*
 \putsym{%<main symbol%>}{%<secondary symbol%>}#*
-\@skewedlim@op{%<operator%>}{%<sup1%>}{%<sub1%>}{%<sup2%>}{%<sub2%>}{%<sup3%>}{%<sub3%>}{%<default limit%>}#*
 \putexsym{%<symbol%>}%<left cap%>%<right cap%>{%<height displacement%>}{%<skew%>}#*
-\@wide@operator{%<name%>}%<ope#*rator%>%<first cut%>%<second cut%>

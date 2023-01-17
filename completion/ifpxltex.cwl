@@ -1,7 +1,7 @@
 # ifpxltex package
 # ponte-vecchio 2023-01-17 for v0.0012
 
-#include: hologo
+#include:hologo
 
 \pxlThisTeX
 \pxlThisTeX[%<engine%>%keyvals]
@@ -28,21 +28,9 @@ XeLaTeX
 XeTeX
 #endkeyvals
 
-#keyvals:\IfpxlTeX#c, \IfpxlTeXpxl*#c, \pxlRequireTeX#c
+#keyvals:\IfpxlTeX#c,\IfpxlTeXpxl*#c,\pxlRequireTeX#c
 p
 x
 l
-l,p
-l,x
-p,l
-p,x
-x,l
-x,p
-l,p,x
-l,x,p
-p,l,x
-p,x,l
-x,l,p
-x,p,l
 #endkeyvals
 
