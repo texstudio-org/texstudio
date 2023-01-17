@@ -1,6 +1,6 @@
 # bidi package
 # hadi_sfr (info@hadisafari.ir)
-# updated 2022/11/06 for v39.2
+# updated 2023/01/17 for v39.7
 
 #include:xetex
 #include:iftex
@@ -31,7 +31,7 @@ perpagefootnote
 \twocolumnfootnotes
 \threecolumnfootnotes
 \fourcolumnfootnotes
-\fivecolumnfootnotes
+\fivecolumnfootnotes#*
 \sixcolumnfootnotes#*
 \sevencolumnfootnotes#*
 \eightcolumnfootnotes#*
@@ -42,6 +42,17 @@ perpagefootnote
 \paragraphfootnotes
 \setLTRparagraphfootnotes
 \setRTLparagraphfootnotes
+\TwoColumnFootnotes
+\ThreeColumnFootnotes
+\FourColumnFootnotes
+\FiveColumnFootnotes#*
+\SixColumnFootnotes#*
+\SevenColumnFootnotes#*
+\EightColumnFootnotes#*
+\NineColumnFootnotes#*
+\TenColumnFootnotes#*
+\ParagraphFootnotes
+\NormalRTLParaLTRFootnotes#*
 # not documented
 \AddExtraParaSkip{arg}#*
 \extrafeetendmini#*
@@ -76,7 +87,7 @@ perpagefootnote
 \twocolumnfootnotes
 \threecolumnfootnotes
 \fourcolumnfootnotes
-\fivecolumnfootnotes
+\fivecolumnfootnotes#*
 \sixcolumnfootnotes#*
 \sevencolumnfootnotes#*
 \eightcolumnfootnotes#*
@@ -87,6 +98,17 @@ perpagefootnote
 \paragraphfootnotes
 \setLTRparagraphfootnotes
 \setRTLparagraphfootnotes
+\TwoColumnFootnotes
+\ThreeColumnFootnotes
+\FourColumnFootnotes
+\FiveColumnFootnotes#*
+\SixColumnFootnotes#*
+\SevenColumnFootnotes#*
+\EightColumnFootnotes#*
+\NineColumnFootnotes#*
+\TenColumnFootnotes#*
+\ParagraphFootnotes
+\NormalRTLParaLTRFootnotes#*
 # not documented
 \AddExtraParaSkip{arg}#*
 \extrafeetendmini#*
