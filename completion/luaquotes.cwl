@@ -1,5 +1,5 @@
 # luaquotes package
-# Matthew Bertucci 2022/12/12 for v1.2.2
+# Matthew Bertucci 2023/01/16 for v1.3.0
 
 #include:iftex
 #include:luacode
@@ -49,10 +49,20 @@ degm
 \abbrevsingleon#*
 \dedoublequotesoff#*
 \dedoublequoteson#*
+\degmdoublequotesoff#*
+\degmdoublequoteson#*
+\degmsinglequotelinestartoff#*
+\degmsinglequotelinestarton#*
+\degmsinglequotescloseoff#*
+\degmsinglequotescloseon#*
 \desinglequotelinestartoff#*
 \desinglequotelinestarton#*
 \desinglequotescloseoff#*
 \desinglequotescloseon#*
+\desinglequotespcloseoff#*
+\desinglequotespcloseon#*
+\desinglequotespoff#*
+\desinglequotespon#*
 \doublequotesoff#*
 \doublequoteson#*
 \frdoublequotesoff#*
@@ -61,16 +71,17 @@ degm
 \frsinglequotelinestarton#*
 \frsinglequotescloseoff#*
 \frsinglequotescloseon#*
+\frsinglequotespcloseoff#*
+\frsinglequotespcloseon#*
+\frsinglequotespoff#*
+\frsinglequotespon#*
+\sglmtlp#*
+\sglmtrp#*
 \singlequotelinestartoff#*
 \singlequotelinestarton#*
 \singlequotesoff#*
 \singlequoteson#*
-\degmdoublequoteson
-\degmdoublequotesoff
-\degmsinglequotelinestarton
-\degmsinglequotelinestartoff
-\degmsinglequotescloseon
-\degmsinglequotescloseoff
-
+\singlequotespoff#*
+\singlequotespon#*
 
 \luaquotesversionnumber#S

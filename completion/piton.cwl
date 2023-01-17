@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/01/07 for v1.1
+# Matthew Bertucci 2023/01/16 for v1.2
 
 #include:l3keys2e
 #include:luatexbase
@@ -56,6 +56,9 @@ slim#true,false
 left-margin=##L
 tab-size=%<integer%>
 show-spaces
+show-spaces-in-strings
+break-lines-in-Piton
+break-lines-in-piton
 break-lines
 indent-broken-lines
 end-of-broken-line=%<symbol%>

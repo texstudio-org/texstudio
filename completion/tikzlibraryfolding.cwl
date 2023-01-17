@@ -1,5 +1,5 @@
 # folding tikzlibrary
-# 2022/11/21 for v3.1.9a
+# 2023/01/15 for v3.1.10
 
 #keyvals:\begin{tikzpicture}#c,\tikz#c,\begin{scope}#c,\tikzset#c,\scoped#c,\pic#c
 folding line length=##L
@@ -26,3 +26,6 @@ numbered faces
 \tikzfoldingtruncatedcuboctahedron#S
 \tikzfoldingsnubcube#S
 \tikzfoldingicosidodecahedron#S
+\tikzfoldingrhombicdodecahedron#S
+\tikzfoldinggoldenrhombicdodecahedron#S
+\tikzfoldingrhombictricontahedron#S

@@ -1,24 +1,33 @@
 # typewriter package
-# Matthew Bertucci 10/20/2021 for v1.1
+# Matthew Bertucci 2023/01/16 for v1.2
 
 #include:luaotfload
 
-\ttgreyone
-\ttgreytwo
+\ttgreybolda
+\ttgreyboldb
 \ttrotatebold
 \ttdownbold
 \ttrightbold
-\ttdownshifttwo
+\ttoverprintbolda
+\ttoverprintboldb
+\ttoverprintboldc
+
+\ttgreynormala
+\ttgreynormalb
 \ttrotatenormal
 \ttrightnormal
 \ttdownnormal
+\ttoverprintnormal
 
-\cmuntt
+\ttbasefont
+\ttfontsize
+
+\cmuntt#*
 \cmunttid#*
-\myfont#*
-\myfonts#*
-\mybfont#*
-\mybfonts#*
+\myfont#S
+\myfonts#S
+\mybfont#S
+\mybfonts#S
 
 \xUnicodeMathSymbol{char number}{cmd}{type}{description}#*d
 \xxUnicodeMathSymbol{char number}{cmd}{definition}#*d
@@ -151,4 +160,8 @@
 \eighthnote#m
 \neuter#m
 
-\oldhrule#*
+# deprecated
+\oldhrule#S
+\ttgreyone#S
+\ttgreytwo#S
+\ttdownshifttwo#S

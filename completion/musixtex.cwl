@@ -1,5 +1,5 @@
 # musixtex package
-# Matthew Bertucci 2022/10/06 for v1.35
+# Matthew Bertucci 2023/01/13 for v1.36
 
 # from musixltx.tex
 \begin{music}
@@ -164,6 +164,12 @@
 \Fermatadown{pitch}
 \Fermataup{pitch}
 \fermataup{pitch}
+\fetafont#S
+\fetalargefont#S
+\fetaLargefont#S
+\fetanorfont#S
+\fetasmallfont#S
+\fetatinyfont#S
 \ff
 \fff
 \ffff
@@ -841,7 +847,7 @@
 \hardnotes{arg1}#S
 \hchar{arg1}{arg2}#S
 \hcharnote#S
-\hlthick#S
+\hlthick#*
 \hslurd#S
 \hslurdd#S
 \hslurdeleven#S
