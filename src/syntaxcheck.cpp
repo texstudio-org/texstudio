@@ -138,6 +138,7 @@ void SyntaxCheck::run()
                 }
                 int fmt= elem.type == ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat;
                 fmt= elem.type == ERR_highlight ? elem.format : fmt;
+                qDebug()<<elem.range.first<< elem.range.second<< fmt;
                 newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, fmt));
             }
             // add comment hightlight if present
@@ -1280,7 +1281,11 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 if(altEnvs.contains(key)){
                     Error elem;
                     int start= it->dlh==dlh ? it->startingColumn : 0;
-                    elem.range = QPair<int, int>(start, commentStart>=0 ? commentStart-start : line.length()-start);
+                    int length= it->endingColumn-start;
+                    if(length<0){
+                            length= commentStart>=0 ? commentStart-start : line.length()-start;
+                    }
+                    elem.range = QPair<int, int>(start, length);
                     elem.type = ERR_highlight;
                     elem.format=mFormatList.value(key);
                     newRanges.prepend(elem);  // draw this first and then other on top (e.g. keyword highlighting) !
