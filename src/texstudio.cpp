@@ -6328,7 +6328,7 @@ void Texstudio::convertToPlainText(){
 			inlines << LineInfo(doc->line(i).handle());
 		else if (inlines.count()){
 			//convert to plain text after each paragraph and at the end
-			QList<TokenizedBlock> blocks = tokenizeWords(&LatexParser::getInstance(), inlines);
+			QList<TokenizedBlock> blocks = tokenizeWords(LatexParser::getInstancePtr(), inlines);
 			foreach (const TokenizedBlock &tb, blocks)
 				plaintext += tb.toString() + "\n\n";
 			inlines.clear();
@@ -6375,11 +6375,7 @@ void Texstudio::generateRandomText()
 		UtilsUi::txsWarning(tr("The random text generator constructs new texts from existing words, so you have to open some text files"));
 		return;
 	}
-
-	QStringList allLines;
-	foreach (LatexEditorView *edView, editors->editors())
-		allLines << edView->editor->document()->textLines();
-	RandomTextGenerator generator(this, allLines);
+	RandomTextGenerator generator(this, &documents);
 	generator.exec();
 }
 

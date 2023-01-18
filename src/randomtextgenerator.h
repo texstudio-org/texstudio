@@ -2,11 +2,12 @@
 #define Header_RandomText_Generator
 
 #include "mostQtHeaders.h"
-#include "qdocument.h"
+class LatexDocuments;
 
 namespace Ui {
 class RandomTextGenerator;
 }
+
 
 
 class RandomTextGenerator : public QDialog
@@ -15,7 +16,7 @@ class RandomTextGenerator : public QDialog
 	Q_DISABLE_COPY(RandomTextGenerator)
 
 public:
-	explicit RandomTextGenerator(QWidget *parent = 0, const QStringList &textLines = QStringList());
+	explicit RandomTextGenerator(QWidget *parent = 0, LatexDocuments* documents = 0);
 	virtual ~RandomTextGenerator();
 
 protected:
@@ -24,8 +25,8 @@ protected:
 private:
 	Ui::RandomTextGenerator *ui;
 	QString chars;
-	QList<QString> words;
-	QStringList lines;
+	QStringList words;
+	LatexDocuments *documents;
 
 	QString text;
 	QTextStream textStream;
