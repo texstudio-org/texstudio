@@ -957,6 +957,7 @@
 <file>completion/class-willowtreebook.cwl</file>
 <file>completion/class-xdupgthesis.cwl</file>
 <file>completion/class-xduugthesis.cwl</file>
+<file>completion/class-xduugtp.cwl</file>
 <file>completion/class-xebaposter.cwl</file>
 <file>completion/class-xepersian-magazine.cwl</file>
 <file>completion/class-xput.cwl</file>
@@ -1017,6 +1018,7 @@
 <file>completion/colorinfo.cwl</file>
 <file>completion/colorist.cwl</file>
 <file>completion/colorist-fancy.cwl</file>
+<file>completion/colorjamo.cwl</file>
 <file>completion/colorpalette.cwl</file>
 <file>completion/colorspace.cwl</file>
 <file>completion/colortbl.cwl</file>
@@ -1661,6 +1663,7 @@
 <file>completion/graphfig.cwl</file>
 <file>completion/graphicscache.cwl</file>
 <file>completion/graphics.cwl</file>
+<file>completion/graphicsonthefly.cwl</file>
 <file>completion/graphicxbox.cwl</file>
 <file>completion/graphicx.cwl</file>
 <file>completion/graphicxpsd.cwl</file>
@@ -1683,6 +1686,7 @@
 <file>completion/gridslides.cwl</file>
 <file>completion/grid-system.cwl</file>
 <file>completion/grmath.cwl</file>
+<file>completion/grruby.cwl</file>
 <file>completion/grundgesetze.cwl</file>
 <file>completion/grverb.cwl</file>
 <file>completion/GS1.cwl</file>
@@ -1699,6 +1703,8 @@
 <file>completion/handoutWithNotes.cwl</file>
 <file>completion/hang.cwl</file>
 <file>completion/hanging.cwl</file>
+<file>completion/hangulfontset.cwl</file>
+<file>completion/hanjacnt.cwl</file>
 <file>completion/hanzibox.cwl</file>
 <file>completion/hardwrap.cwl</file>
 <file>completion/harmony.cwl</file>
@@ -1746,6 +1752,7 @@
 <file>completion/HindMadurai.cwl</file>
 <file>completion/hlist.cwl</file>
 <file>completion/hmtrump.cwl</file>
+<file>completion/hnja2hngl.cwl</file>
 <file>completion/hobete.cwl</file>
 <file>completion/hologo.cwl</file>
 <file>completion/holtpolt.cwl</file>
@@ -1797,6 +1804,7 @@
 <file>completion/ifpdf.cwl</file>
 <file>completion/ifplatform.cwl</file>
 <file>completion/ifptex.cwl</file>
+<file>completion/ifpxltex.cwl</file>
 <file>completion/ifsym.cwl</file>
 <file>completion/iftex.cwl</file>
 <file>completion/ifthen.cwl</file>
@@ -1857,6 +1865,7 @@
 <file>completion/jamtimes.cwl</file>
 <file>completion/JeuxCartes.cwl</file>
 <file>completion/jigsaw.cwl</file>
+<file>completion/jiwonlipsum.cwl</file>
 <file>completion/jkmath.cwl</file>
 <file>completion/jlreq-deluxe.cwl</file>
 <file>completion/jlreq-trimmarks.cwl</file>
@@ -1900,6 +1909,8 @@
 <file>completion/kix.cwl</file>
 <file>completion/knitting.cwl</file>
 <file>completion/knowledge.cwl</file>
+<file>completion/knufakelogo.cwl</file>
+<file>completion/kocircnum.cwl</file>
 <file>completion/kolabels-utf.cwl</file>
 <file>completion/komacv-addons.cwl</file>
 <file>completion/komacv-lco.cwl</file>
@@ -1915,6 +1926,14 @@
 <file>completion/kpfonts.cwl</file>
 <file>completion/kpfonts-otf.cwl</file>
 <file>completion/Kramer.cwl</file>
+<file>completion/ksbaduk.cwl</file>
+<file>completion/ksforloop.cwl</file>
+<file>completion/kshcrkey.cwl</file>
+<file>completion/ksjosaref.cwl</file>
+<file>completion/ksmisc.cwl</file>
+<file>completion/ksruby.cwl</file>
+<file>completion/kstextks.cwl</file>
+<file>completion/kswrapfig.cwl</file>
 <file>completion/kurdishlipsum.cwl</file>
 <file>completion/kurier.cwl</file>
 <file>completion/kvmap.cwl</file>
@@ -2548,6 +2567,7 @@
 <file>completion/pdflscape.cwl</file>
 <file>completion/pdfmanagement-testphase.cwl</file>
 <file>completion/pdfmarginpar.cwl</file>
+<file>completion/pdfmsym.cwl</file>
 <file>completion/pdfoverlay.cwl</file>
 <file>completion/pdfpagediff.cwl</file>
 <file>completion/pdfpages.cwl</file>
@@ -2916,6 +2936,7 @@
 <file>completion/rcsinfo.cwl</file>
 <file>completion/rcs-multi.cwl</file>
 <file>completion/readarray.cwl</file>
+<file>completion/readhanja.cwl</file>
 <file>completion/readprov.cwl</file>
 <file>completion/realboxes.cwl</file>
 <file>completion/realhats.cwl</file>
@@ -3930,6 +3951,7 @@
 <file>completion/Zallman.cwl</file>
 <file>completion/zb-basics.cwl</file>
 <file>completion/zebra-goodies.cwl</file>
+<file>completion/zennote.cwl</file>
 <file>completion/zhlineskip.cwl</file>
 <file>completion/zhlipsum.cwl</file>
 <file>completion/zhnumber.cwl</file>
