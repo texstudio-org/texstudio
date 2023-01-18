@@ -502,6 +502,7 @@ protected slots:
 
 	void webPublish();
 	void webPublishSource();
+	void convertToPlainText();
 	void analyseText();
 	void analyseTextFormDestroyed();
 	void generateRandomText();
