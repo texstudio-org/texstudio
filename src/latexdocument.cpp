@@ -544,7 +544,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             }
             if(!l_tkFilter.isEmpty()){
                 i=i-ConfigManager::RUNAWAYLIMIT;
-                lastHandle = line(i - 1).handle();
+                lastHandle = line(i).handle();
                 if (lastHandle) {
                     oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
                     oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
