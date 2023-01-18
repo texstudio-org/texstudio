@@ -6,6 +6,7 @@ DEPENDPATH += $$PWD
 
 HEADERS += \
     $$PWD/argumentlist.h \
+    $$PWD/latex2text.h \
     $$PWD/latextokens.h \
     $$PWD/latexparser.h \
     $$PWD/latexparsing.h \
@@ -14,6 +15,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/argumentlist.cpp \
+    $$PWD/latex2text.cpp \
     $$PWD/latextokens.cpp \
     $$PWD/latexparser.cpp \
     $$PWD/latexparsing.cpp \

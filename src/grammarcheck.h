@@ -3,7 +3,7 @@
 
 #include "mostQtHeaders.h"
 
-#include "latexparser/latexparser.h"
+#include "latexparser/latex2text.h"
 #include "configmanagerinterface.h"
 
 
@@ -12,10 +12,6 @@
 class QDocumentLineHandle;
 class LatexDocument;
 
-struct LineInfo {
-    QDocumentLineHandle* line;
-	QString text;
-};
 
 enum GrammarErrorType { GET_UNKNOWN = 0, GET_WORD_REPETITION, GET_LONG_RANGE_WORD_REPETITION, GET_BAD_WORD, GET_BACKEND, GET_BACKEND_SPECIAL1, GET_BACKEND_SPECIAL2, GET_BACKEND_SPECIAL3, GET_BACKEND_SPECIAL4};
 
@@ -38,10 +34,8 @@ struct LineResult {
 	QList<GrammarError> errors;
 };
 
-Q_DECLARE_METATYPE(LineInfo)
 Q_DECLARE_METATYPE(GrammarError)
 Q_DECLARE_METATYPE(GrammarErrorType)
-Q_DECLARE_METATYPE(QList<LineInfo>)
 Q_DECLARE_METATYPE(QList<GrammarError>)
 
 struct LanguageGrammarData {
