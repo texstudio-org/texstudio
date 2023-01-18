@@ -241,7 +241,6 @@ void GrammarCheck::process(int reqId)
 		if (tb.words.isEmpty() || !backend->isAvailable() ) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			QString joined = tb.toString();
-			qDebug() << joined;
 			backend->check(crTicket, b, crLanguage, joined);
 		}
 	}
