@@ -121,6 +121,7 @@ public:
 	QTranslator *basicTranslator;
 
 	//editor
+	bool onlyMonospacedFonts;
 	LatexEditorViewConfig *const editorConfig;
 	//completion
 	LatexCompleterConfig *const completerConfig;

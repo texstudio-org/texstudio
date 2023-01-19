@@ -565,6 +565,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Auto Replace Commands", &CodeSnippet::autoReplaceCommands, true, &pseudoDialog->checkBoxAutoReplaceCommands);
 
 
+	registerOption("Editor/OnlyMonospacedFonts", &onlyMonospacedFonts, false, &pseudoDialog->checkBoxShowOnlyMonospacedFonts);
 	registerOption("Editor/Font Family", &editorConfig->fontFamily, "", &pseudoDialog->comboBoxFont);
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
 	registerOption("Editor/Line Spacing Percent", &editorConfig->lineSpacingPercent, 100, &pseudoDialog->spinBoxLineSpacingPercent);
