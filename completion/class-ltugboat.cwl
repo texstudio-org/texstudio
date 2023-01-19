@@ -397,7 +397,7 @@ runningoff
 \tubcaptionleftglue#*
 \TUBdefaulteTeX#*
 \tubdoiprefix#*
-\tubdots#*
+\tubdots
 \TUBedit{text}#*
 \TUBfilename{arg1}{arg2}#*
 \tubfinaloptionfalse#*
