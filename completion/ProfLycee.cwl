@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/01/10 for v2.1.5
+# Matthew Bertucci 2023/01/18 for v2.1.6
 
 #include:mathtools
 #include:xcolor
@@ -19,7 +19,7 @@
 #include:simplekv
 #include:listofitems
 #include:tabularray
-#include:hvlogos
+#include:hologo
 #include:fancyvrb
 #include:siunitx
 #include:fontawesome5
