@@ -9,9 +9,13 @@ numbers
 \jiwon
 \jiwon[%<num/char%>]
 \jiwon[%<num%>-%<num%>]
-\jiwondef{%<cmd%>}{%<jiwon no.%>}#d
+\jiwon*#*
+\jiwon*[%<num/char%>]#*
+\jiwon*[%<num%>-%<num%>]#*
+\jiwondef{cmd}{jiwon no.}#d
 
-#ifOption:numbers
 \jiwonparnumberon
 \jiwonparnumberoff
-#endif
+
+# not documented
+\jiwonbase#S
