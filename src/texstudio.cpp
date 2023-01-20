@@ -1812,11 +1812,11 @@ void Texstudio::updateCaption()
 	updateUndoRedoStatus();
 	cursorPositionChanged();
 	if (documents.singleMode()) {
-		if (currentEditorView()) completerNeedsUpdate();
+        if (currentEditorView()) completerCommandsNeedsUpdate();
 	}
 	QString finame = getCurrentFileName();
 	if (finame != "") configManager.lastDocument = finame;
-  setWindowFilePath(finame);
+    setWindowFilePath(finame);
 }
 
 void Texstudio::updateMasterDocumentCaption()
@@ -2008,8 +2008,8 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     //connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit,SLOT(documentContentChanged(int,int))); now directly called by patchStructure
     connect(edit->editor->document(), SIGNAL(linesRemoved(QDocumentLineHandle*,int,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int,int)));
     //connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle*,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int)));
-    connect(edit->document, SIGNAL(updateCompleter()), this, SLOT(completerNeedsUpdate()));
-    connect(edit->document, SIGNAL(updateCompleterCommands()), this, SLOT(completerCommandsNeedsUpdate()));
+    connect(edit->document, &LatexDocument::updateCompleter, this, &Texstudio::completerNeedsUpdate);
+    connect(edit->document, &LatexDocument::updateCompleterCommands, this, &Texstudio::completerCommandsNeedsUpdate);
     connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
     connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
     connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
@@ -2335,6 +2335,7 @@ void Texstudio::completerNeedsUpdate()
 void Texstudio::completerCommandsNeedsUpdate()
 {
     mCompleterCommandsNeedsUpdate = true;
+    mCompleterNeedsUpdate = true;
 }
 
 void Texstudio::needUpdatedCompleter()

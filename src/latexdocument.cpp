@@ -1326,7 +1326,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
         reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());     
         updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
-        if(reRunSuggested){
+        if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty()){
             emit updateCompleterCommands();
         }
 	}
