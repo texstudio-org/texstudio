@@ -9,7 +9,7 @@ draft
 
 \readhanjahangulfont{font}
 \readhanjahangulfont[font features]{font}#*
-\readhanjahangulfont{font}[font features]
+\readhanjahangulfont{font}[font features%keyvals]
 \readhanjahangulfont[font features]{font}[font features%keyvals]#*
 
 \readhanjaraise{%<dimen%>}
@@ -18,7 +18,7 @@ draft
 \readhanjareading{%<hanja%>}{%<reading%>}
 \readhanjadictionary{%<hanja%>}{%<reading%>}
 
-\begin{readhanja}#%text
+\begin{readhanja}
 \end{readhanja}
 
 #keyvals:\readhanjalocate#c
@@ -102,3 +102,6 @@ VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ord
 WordSpace=%<number%>
 Renderer=%<renderer%>
 #endkeyvals
+
+# not documented
+\readhanjatohangul#S
