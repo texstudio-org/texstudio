@@ -1,7 +1,6 @@
 # hnja2hngl package
 # ponte-vecchio 2023-01-17 for v1.2
 
-#include:ksruby
 #include:grruby
 
 #keyvals:\usepackage/hnja2hngl#c
@@ -22,9 +21,12 @@ grruby=false
 \viewCodePoint*{%<unicode char%>}
 \showReadings{%<hanja%>}#n
 
-#keyvals\rpRead#c
+#keyvals:\rpRead#c
 comma
 para
 at
 period
 #endkeyvals
+
+\hnjahnglpkgdate#S
+\hnjahnglpkgversion#S
