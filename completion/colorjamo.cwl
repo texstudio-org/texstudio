@@ -10,3 +10,11 @@
 \jamocolorjung{%<hex color%>}#*
 \jamocolorjong{%<hex color%>}#*
 \jamotransparency{%<opacity%>}#*
+
+# not documented
+\colorchoattr#S
+\colorjungattr#S
+\colorjongattr#S
+\jamoopacity{opacity}#S
+\jamoopacityid#S
+\opacityjamoattr#S
