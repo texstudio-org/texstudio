@@ -1,11 +1,15 @@
 # kshcrkey package
 # ponte-vecchio 2023-01-17 for v0.3
 
-\hcrkey{%<keyname%>%keyvals}
-\hcrkeys[%<separator%>]{%<key, ...%>%keyvals}
-\hcrkeyfontname{%<fontname%>}#d
+#include:etoolbox
+#include:fontspec
+#include:graphicx
 
-#keyvals:\hcrkey#c
+\hcrkey{keyname%keyvals}
+\hcrkeys[separator]{key, ...%keyvals}
+\hcrkeyfontname
+
+#keyvals:\hcrkey#c,\hcrkeys#c
 ## Special Keys
 ESC
 Alt
