@@ -1670,6 +1670,16 @@ Then you can select a new shortcut by one of the following ways:
                     </item>
                    </widget>
                   </item>
+                  <item row="11" column="2">
+                   <widget class="QCheckBox" name="checkBoxLineNumbersFirst">
+                    <property name="toolTip">
+                     <string>This moves the column with the line numbers from the right to the left of the column with the line marks.</string>
+                    </property>
+                    <property name="text">
+                     <string>Line numbers to the left of line markers</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="15" column="0" colspan="2">
                    <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
                     <property name="text">

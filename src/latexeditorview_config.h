@@ -18,6 +18,7 @@ public:
 	bool showWhitespace;
 	int tabStop;
 	int showlinemultiples;
+	bool lineNumbersFirst;
 	int cursorSurroundLines;
 	bool boldCursor;
 	bool centerDocumentInEditor;

@@ -515,6 +515,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Parentheses Matching", &editorConfig->parenmatch, true); //TODO: checkbox?
 	registerOption("Editor/Parentheses Completion", &editorConfig->parenComplete, true, &pseudoDialog->checkBoxAutoCompleteParens);
 	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, 0);
+	registerOption("Editor/Line Numbers First", &editorConfig->lineNumbersFirst, false, &pseudoDialog->checkBoxLineNumbersFirst);
 	registerOption("Editor/Cursor Surrounding Lines", &editorConfig->cursorSurroundLines, 5);
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
     registerOption("Editor/CenterDocumentInEditor", &editorConfig->centerDocumentInEditor, false, &pseudoDialog->checkBoxCenterDocumentInEditor);
