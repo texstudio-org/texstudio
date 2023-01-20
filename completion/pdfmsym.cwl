@@ -159,3 +159,11 @@
 ## 3.1 Macros
 \putsym{%<main symbol%>}{%<secondary symbol%>}#*
 \putexsym{%<symbol%>}%<left cap%>%<right cap%>{%<height displacement%>}{%<skew%>}#*
+\iNint{N}#m
+
+# not documented
+\pdfMsym#S
+\pdfmsymsettransforms
+\pdfMsymversion#S
+\smallcircle#S
+\strudelccode#S
