@@ -1,5 +1,4 @@
 # ksmisc package
-# ponte-vecchio 2023-01-17
+# ponte-vecchio 2023-01-17 for v0.2
 
-#include:ksjosaref
-#include:kstextks
+#include:ksforloop
