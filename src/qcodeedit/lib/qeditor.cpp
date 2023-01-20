@@ -4645,9 +4645,11 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	#ifdef Q_OS_MAC
         addEditOperation(NextPlaceHolderOrWord, Qt::AltModifier, Qt::Key_Right);
         addEditOperation(PreviousPlaceHolderOrWord, Qt::AltModifier, Qt::Key_Left);
+        addEditOperation(Cut, QKeySequence::Cut);
 	#else
 		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
+        addEditOperation(Cut, Qt::ControlModifier,Qt::Key_X); // don't use keysequence cut as shift+del is used somewhere else
 	#endif
 		registerEditOperation(NextPlaceHolderOrChar);
 		registerEditOperation(PreviousPlaceHolderOrChar);
@@ -4659,7 +4661,6 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(Redo, QKeySequence::Redo);
 		addEditOperation(Copy, QKeySequence::Copy);
 		addEditOperation(Paste, QKeySequence::Paste);
-		addEditOperation(Cut, QKeySequence::Cut);
 		addEditOperation(Print, QKeySequence::Print);
 		addEditOperation(SelectAll, QKeySequence::SelectAll);
 		addEditOperation(Find, QKeySequence::Find);
