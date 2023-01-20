@@ -1222,6 +1222,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "htmlexport", tr("C&onvert to Html..."), SLOT(webPublish()));
 	newManagedAction(menu, "htmlsourceexport", tr("C&onvert Source to Html..."), SLOT(webPublishSource()));
 	menu->addSeparator();
+	newManagedAction(menu, "textexport", tr("Convert to Abridged Plaintext"), SLOT(convertToPlainText()));
 	newManagedAction(menu, "analysetext", tr("A&nalyse Text..."), SLOT(analyseText()));
 	newManagedAction(menu, "generaterandomtext", tr("Generate &Random Text..."), SLOT(generateRandomText()));
 	menu->addSeparator();
@@ -1811,11 +1812,11 @@ void Texstudio::updateCaption()
 	updateUndoRedoStatus();
 	cursorPositionChanged();
 	if (documents.singleMode()) {
-		if (currentEditorView()) completerNeedsUpdate();
+        if (currentEditorView()) completerCommandsNeedsUpdate();
 	}
 	QString finame = getCurrentFileName();
 	if (finame != "") configManager.lastDocument = finame;
-  setWindowFilePath(finame);
+    setWindowFilePath(finame);
 }
 
 void Texstudio::updateMasterDocumentCaption()
@@ -2007,8 +2008,8 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     //connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit,SLOT(documentContentChanged(int,int))); now directly called by patchStructure
     connect(edit->editor->document(), SIGNAL(linesRemoved(QDocumentLineHandle*,int,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int,int)));
     //connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle*,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int)));
-    connect(edit->document, SIGNAL(updateCompleter()), this, SLOT(completerNeedsUpdate()));
-    connect(edit->document, SIGNAL(updateCompleterCommands()), this, SLOT(completerCommandsNeedsUpdate()));
+    connect(edit->document, &LatexDocument::updateCompleter, this, &Texstudio::completerNeedsUpdate);
+    connect(edit->document, &LatexDocument::updateCompleterCommands, this, &Texstudio::completerCommandsNeedsUpdate);
     connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
     connect(edit->document, SIGNAL(importPackage(QString)), this, SLOT(importPackage(QString)));
     connect(edit->document, SIGNAL(bookmarkLineUpdated(int)), bookmarks, SLOT(updateLineWithBookmark(int)));
@@ -2334,6 +2335,7 @@ void Texstudio::completerNeedsUpdate()
 void Texstudio::completerCommandsNeedsUpdate()
 {
     mCompleterCommandsNeedsUpdate = true;
+    mCompleterNeedsUpdate = true;
 }
 
 void Texstudio::needUpdatedCompleter()
@@ -6315,6 +6317,28 @@ void Texstudio::webPublishSource()
 	htmll->resize(300,300);*/
 }
 /*!
+ * Remove latex commands
+ */
+void Texstudio::convertToPlainText(){
+	if (!currentEditorView()) return;
+	QList<LineInfo> inlines;
+	QString plaintext;
+	LatexDocument* doc = currentEditorView()->document;
+	for (int i=0;i<=doc->lines();i++) {
+		if (i != doc->lines() && doc->line(i).firstChar() != -1)
+			inlines << LineInfo(doc->line(i).handle());
+		else if (inlines.count()){
+			//convert to plain text after each paragraph and at the end
+			QList<TokenizedBlock> blocks = tokenizeWords(LatexParser::getInstancePtr(), inlines);
+			foreach (const TokenizedBlock &tb, blocks)
+				plaintext += tb.toString() + "\n\n";
+			inlines.clear();
+		}
+	}
+	fileNew();
+	currentEditor()->setText(plaintext, false);
+}
+/*!
  * \brief open analyse text dialog
  * Makes use of TextAnalysisDialog
  */
@@ -6352,11 +6376,7 @@ void Texstudio::generateRandomText()
 		UtilsUi::txsWarning(tr("The random text generator constructs new texts from existing words, so you have to open some text files"));
 		return;
 	}
-
-	QStringList allLines;
-	foreach (LatexEditorView *edView, editors->editors())
-		allLines << edView->editor->document()->textLines();
-	RandomTextGenerator generator(this, allLines);
+	RandomTextGenerator generator(this, &documents);
 	generator.exec();
 }
 

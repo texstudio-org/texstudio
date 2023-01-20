@@ -138,7 +138,6 @@ void SyntaxCheck::run()
                 }
                 int fmt= elem.type == ERR_spelling ? SpellerUtility::spellcheckErrorFormat : syntaxErrorFormat;
                 fmt= elem.type == ERR_highlight ? elem.format : fmt;
-                qDebug()<<elem.range.first<< elem.range.second<< fmt;
                 newLine.dlh->addOverlayNoLock(QFormatRange(elem.range.first, elem.range.second, fmt));
             }
             // add comment hightlight if present

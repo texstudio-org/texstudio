@@ -1,9 +1,11 @@
 #include "grammarcheck.h"
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexreader.h"
+#include "latexparser/latex2text.h"
 #include "QThread"
 #include <QJsonDocument>
 #include <QJsonArray>
+
 
 GrammarError::GrammarError(): offset(0), length(0), error(GET_UNKNOWN) {}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error, const QString &message): offset(offset), length(length), error(error), message(message) {}
@@ -131,11 +133,6 @@ QSet<QString> readWordList(const QString &file)
 	return res;
 }
 
-struct TokenizedBlock {
-	QStringList words;
-	QList<int> indices, endindices, lines;
-	//int firstLineNr;
-};
 
 struct CheckRequest {
 	bool pending;
@@ -197,37 +194,6 @@ void GrammarCheck::processLoop()
 	pendingProcessing = false;
 }
 
-const QString uselessPunctation = "!:?,.;-"; //useful: \"(
-const QString punctuationNotPreceededBySpace = "!:?,.;)\u00A0";  // \u00A0 is non-breaking space: assuming it is not surrounded by natural space (wouldn't make sense)
-const QString punctuationNotFollowedBySpace = "(\"\u00A0";
-
-
-/* Determine if words[i] should be preceeded by a space in the context of words.
- * If not continue.
- * If i > words.length() break;
- * This does always increase i by one. (Note: the checks below are written based on i++)
- * This is used in loops for selectively joining words with spaces. */
-
-
-#define PRECEED_WITH_SPACES(i,words)                                      \
-                                                                        \
-    (i)++;                                                              \
-                                                                        \
-    if((i) >= words.length())                                           \
-        break;                                                          \
-                                                                        \
-    if(words[i].length() == 1                                           \
-        && punctuationNotPreceededBySpace.contains(words[i][0]))        \
-            continue;                                                   \
-                                                                        \
-    if(words[(i) - 1].length() == 1                                     \
-        && punctuationNotFollowedBySpace.contains(words[(i) - 1][0]))   \
-            continue;                                                   \
-                                                                        \
-    if(words[(i) - 1].length() == 2 && words[(i) - 1][1] == '.'         \
-        && words[i].length() == 2 && words[i][1] == '.')                \
-            continue;
-
 
 
 void GrammarCheck::process(int reqId)
@@ -258,115 +224,7 @@ void GrammarCheck::process(int reqId)
 		}
 	}
 
-	//gather words
-	int nonTextIndex = 0;
-	QList<TokenizedBlock> blocks;
-	blocks << TokenizedBlock();
-	//blocks.last().firstLineNr = cr.firstLineNr;
-	int floatingBlocks = 0;
-	int firstLineNr = cr.firstLineNr;
-	for (int l = 0; l < cr.inlines.size(); l++, firstLineNr++) {
-		TokenizedBlock &tb = blocks.last();
-		LatexReader lr(*latexParser, cr.inlines[l].text);
-		int type;
-		while ((type = lr.nextWord(false))) {
-			if (type == LatexReader::NW_ENVIRONMENT) {
-				if (lr.word == "figure") { //config.floatingEnvs.contains(lr.word)) {
-					if (lr.lastCommand == "\\begin") {
-						floatingBlocks ++;
-					} else if (lr.lastCommand == "\\end") {
-						floatingBlocks --;
-					}
-				}
-				continue;
-			}
-
-			if (type == LatexReader::NW_COMMENT) break;
-			if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) {
-				//reference, label, citation
-				tb.words << QString("keyxyz%1").arg(nonTextIndex++);
-				tb.indices << lr.wordStartIndex;
-				tb.endindices << lr.index;
-				tb.lines << l;
-				continue;
-			}
-
-			if (latexParser->structureCommandLevel(lr.lastCommand) >= 0) {
-				//don't check captions
-				QStringList temp;
-				QList<int> starts;
-				LatexParser::resolveCommandOptions(lr.line, lr.wordStartIndex - 1, temp, &starts);
-				for (int j = 0; j < starts.count() && j < 2; j++) {
-					lr.index = starts.at(j) + temp.at(j).length() - 1;
-					if (temp.at(j).startsWith("{")) break;
-				}
-				tb.words << ".";
-				tb.indices << lr.wordStartIndex;
-				tb.endindices << 1;
-				tb.lines << l;
-				continue;
-			}
-
-
-			if (type == LatexReader::NW_TEXT) tb.words << lr.word;
-			else if (type == LatexReader::NW_PUNCTATION) {
-				if ((lr.word == "-") && !tb.words.isEmpty()) {
-					//- can either mean a word-separator or a sentence -- separator
-					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
-					if (lr.wordStartIndex == tb.endindices.last()) {
-                        tb.words.last() += lr.word;
-						tb.endindices.last()++;
-
-						int tempIndex = lr.index;
-						int type = lr.nextWord(false);
-						if (type == LatexReader::NW_COMMENT) break;
-						if (tempIndex != lr.wordStartIndex) {
-							lr.index = tempIndex;
-							continue;
-						}
-						tb.words.last() += lr.word;
-						tb.endindices.last() = lr.index;
-						continue;
-					}
-				} else if (lr.word == "\"") {
-					lr.word = "'";  // replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
-				} else if (lr.word == "~") {
-					lr.word =  "\u00A0";  // rewrite LaTeX non-breaking space to unicode non-braking space
-				} else if (punctuationNotPreceededBySpace.contains(lr.word) && !tb.words.isEmpty() && tb.words.last() == "\u00A0") {
-					// rewrite non-breaking space followed by punctuation to punctuation only. e.g. "figure~\ref{abc}." -> "figure."
-					// \ref{} is dropped by the reader and an erronous would leave "figure\u00A0."
-					// As a heuristic no space before punctuation takes precedence over non-breaking space.
-					// This is the best we can do for now. A complete handling of all cases is only possible with a full tokenization.
-					tb.words.last() = lr.word;
-					tb.endindices.last() = lr.index;
-					continue;
-				}
-				tb.words << lr.word;
-			}
-
-			tb.indices << lr.wordStartIndex;
-			tb.endindices << lr.index;
-			tb.lines << l;
-
-		}
-
-
-		while (floatingBlocks > blocks.size() - 1) blocks << TokenizedBlock();
-		while (floatingBlocks >= 0 && floatingBlocks < blocks.size() - 1)
-			cr.blocks << blocks.takeLast();
-	}
-	while (blocks.size()) cr.blocks << blocks.takeLast();
-
-
-	for (int b = 0; b < cr.blocks.size(); b++) {
-		TokenizedBlock &tb = cr.blocks[b];
-		while (!tb.words.isEmpty() && tb.words.first().length() == 1 && uselessPunctation.contains(tb.words.first()[0])) {
-			tb.words.removeFirst();
-			tb.indices.removeFirst();
-			tb.endindices.removeFirst();
-			tb.lines.removeFirst();
-		}
-	}
+	cr.blocks = tokenizeWords(latexParser, cr.inlines);
 
     LTStatus newstatus = backend->isWorking() ? LTS_Working : LTS_Error;
 	if (newstatus != ltstatus) {
@@ -375,23 +233,14 @@ void GrammarCheck::process(int reqId)
 	}
 
 	QList<TokenizedBlock> crBlocks = cr.blocks; //cr itself might become invalid during the following loop
-    uint crTicket = cr.ticket;
+	uint crTicket = cr.ticket;
 	QString crLanguage = cr.language;
 
 	for (int b = 0; b < crBlocks.size(); b++) {
 		const TokenizedBlock &tb = crBlocks.at(b);
-        if (tb.words.isEmpty() || !backend->isAvailable() ) backendChecked(crTicket, b, QList<GrammarError>(), true);
+		if (tb.words.isEmpty() || !backend->isAvailable() ) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
-			const QStringList &words = tb.words;
-            QString joined;
-			int expectedLength = 0;
-			foreach (const QString & s, words) expectedLength += s.length();
-            joined.reserve(expectedLength + words.length());
-            for (int i = 0;;) {
-                joined += words[i];
-                PRECEED_WITH_SPACES(i, words)
-                joined += " ";
-			}
+			QString joined = tb.toString();
 			backend->check(crTicket, b, crLanguage, joined);
 		}
 	}
@@ -504,35 +353,12 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 
 
 	//map indices to latex lines and indices
-	int curWord = 0, curOffset = 0;
-	int err = 0;
-	while (err < backendErrors.size()) {
-		if (backendErrors[err].offset >= curOffset + words[curWord].length()) {
-			curOffset += words[curWord].length();
-            PRECEED_WITH_SPACES(curWord, words)
-			curOffset++; //space
-		} else { //if (backendErrors[err].offset >= curOffset) {
-			int trueIndex = tb.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
-			int trueLength = -1;
-			int offsetEnd = backendErrors[err].offset + backendErrors[err].length;
-			int tempOffset = curOffset;
-			for (int w = curWord; ; ) {
-				tempOffset += words[w].length();
-				if (tempOffset >=  offsetEnd) {
-					if (tb.lines[curWord] == tb.lines[w]) {
-						int trueOffsetEnd = tb.endindices[w] - qMax(0, tempOffset - offsetEnd);
-						trueLength = trueOffsetEnd - trueIndex;
-					}
-					break;
-				}
-                PRECEED_WITH_SPACES(w, words)
-				tempOffset++; //space
-			}
-			if (trueLength == -1)
-				trueLength = cr.inlines[tb.lines[curWord]].text.length() - trueIndex;
-			cr.errors[tb.lines[curWord]] << GrammarError(trueIndex, trueLength, backendErrors[err]);
-			err++;
-		}
+	TokenizedBlock::StringOffsetIterator tbit(tb, cr.inlines);
+	for (int err=0;err < backendErrors.size(); err++) {
+		int lineIndex, trueOffset, trueLength;
+		if (!tbit.map(backendErrors[err].offset, backendErrors[err].length, &lineIndex, &trueOffset, &trueLength))
+			break;
+		cr.errors[lineIndex] << GrammarError(trueOffset, trueLength, backendErrors[err]);
 	}
 
 	if (cr.handledBlocks == cr.blocks.size()) {
@@ -945,4 +771,3 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
     }
 }
 
-#undef PRECEED_WITH_SPACES

@@ -1,12 +1,15 @@
 #include "randomtextgenerator.h"
-#include "latexparser/latexreader.h"
+#include "latexparser/latex2text.h"
 #include "utilsUI.h"
 #include "ui_randomtextgenerator.h"
 #include "utilsUI.h"
+#include "latexdocument.h"
+#include "qdocument.h"
 
-RandomTextGenerator::RandomTextGenerator(QWidget *parent, const QStringList &textLines):
+
+RandomTextGenerator::RandomTextGenerator(QWidget *parent, LatexDocuments* documents):
 	QDialog(parent),
-	ui(new Ui::RandomTextGenerator), lines(textLines)
+    ui(new Ui::RandomTextGenerator), documents(documents)
 {
 	ui->setupUi(this);
 	UtilsUi::resizeInFontHeight(this, 41, 39);
@@ -43,7 +46,7 @@ void RandomTextGenerator::generateText()
 {
 	//---------------------------reading all words and characters in words-------------------
 	if (words.empty()) {
-		if (lines.empty()) {
+		if (documents->documents.empty()) {
 			ui->outputEdit->setText(tr("No data given"));
 			return;
 		}
@@ -53,38 +56,36 @@ void RandomTextGenerator::generateText()
 		chars.clear();
 		bool upcase = ui->upperCaseCheckBox->isChecked();
 		bool punctation = ui->punctationCheckBox->isChecked();
-		foreach (const QString &line, lines) {
-			QString outWord;
-			static const QString Punctation = ".,:;!?";
+		static const QString Punctation = ".,:;!?";
+		foreach (QDocument* doc, documents->documents) {
+			QList<LineInfo> inlines;
+			for (int i=0;i<doc->lineCount();i++){
 
-			if (ui->latexInput->isChecked()) {
-				int index = 0;
-				int wordStartIndex = 0;
-				int lastIndex = 0;
-				LatexReader lr(line);
-				while (lr.nextTextWord()) {
-					if (upcase) outWord = outWord.toUpper();
-					if (punctation) {
-						for (int i = lastIndex; i < wordStartIndex; i++)
-							if (Punctation.indexOf(line[i]) >= 0) {
-								outWord += line[i];
-							}
-					}
-					words << outWord;
-					chars += outWord + " ";
-					lastIndex = index;
-				}
-			} else {
+				if (ui->latexInput->isChecked()) {
+					inlines << LineInfo(doc->line(i).handle());
+				} else {
+					QString line = doc->line(i).text();
 #if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
-                QStringList newl = line.split(punctation ? QRegularExpression("\\s+") : QRegularExpression("[~!@#$%^&*()_+{}|:\"\\<>?,./;[-= \t'+]"), Qt::SkipEmptyParts);
+					QStringList newl = line.split(punctation ? QRegularExpression("\\s+") : QRegularExpression("[-~!@#$%^&*()_+{}|:\"\\<>?,./;\[= \t'+]"), Qt::SkipEmptyParts);
 #else
-				QStringList newl = line.split(punctation ? QRegExp("\\s+") : QRegExp("[~!@#$%^&*()_+{}|:\"\\<>?,./;[-= \t'+]"), QString::SkipEmptyParts);
+					QStringList newl = line.split(punctation ? QRegExp("\\s+") : QRegExp("[~!@#$%^&*()_+{}|:\"\\<>?,./;[-= \t'+]"), QString::SkipEmptyParts);
 #endif
-				if (upcase) for (int i = 0; i < newl.size(); i++) newl[i] = newl[i].toUpper();
-				words << newl;
+					words << newl;
+				}
+			}
+			if (ui->latexInput->isChecked()) {
+				QList<TokenizedBlock> blocks = tokenizeWords(LatexParser::getInstancePtr(), inlines);
+				foreach (const TokenizedBlock& tb, blocks)
+					words << tb.words;
 			}
 		}
-		//lines.clear();
+		if (ui->latexInput->isChecked() && !punctation) {
+			for (int i = 0; i < words.size(); i++)
+				foreach (QChar c, Punctation)
+					words[i] = words[i].replace(c, QString(""));
+		}
+		if (upcase) for (int i = 0; i < words.size(); i++) words[i] = words[i].toUpper();
+		chars = words.join(" ");
 		if (words.empty()) {
 			ui->outputEdit->setText(tr("The current document contains no words, but we need some phrases as a base to create the random text from"));
 			return;

@@ -2112,33 +2112,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 		for (int i = linenr - lookBehind; i < editor->document()->lineCount(); i++) {
 			QDocumentLine line = editor->document()->line(i);
 			if (!line.isValid()) break;
-			LineInfo temp;
-			temp.line = line.handle();
-			temp.text = line.text();
-            // blank irrelevant content, i.e. commands, non-text, comments, verbatim
-            QDocumentLineHandle *dlh = line.handle();
-            TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-            if(tl.isEmpty()){
-                // special treatment of in verbatim env, as no tokens are generated
-                temp.text.fill(' ',temp.text.length());
-            }
-            foreach(const Token &tk,tl){
-                if(tk.type==Token::word && (tk.subtype==Token::none||tk.subtype==Token::text))
-                    continue;
-                if(tk.type==Token::punctuation && (tk.subtype==Token::none||tk.subtype==Token::text))
-                    continue;
-                if(tk.type==Token::symbol && (tk.subtype==Token::none||tk.subtype==Token::text))
-                    continue; // don't blank symbol like '~'
-                if(tk.type==Token::braces && tk.subtype==Token::text){
-                    //remove braces around text argument
-                    temp.text.replace(tk.start,1,QString(' '));
-                    temp.text.replace(tk.start+tk.length-1,1,QString(' '));
-                    continue;
-                }
-                temp.text.replace(tk.start,tk.length,QString(tk.length,' '));
-            }
-
-			changedLines << temp;
+			changedLines << LineInfo(line.handle());
 			if (line.firstChar() == -1) {
                 emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
 				truefirst += changedLines.size();
