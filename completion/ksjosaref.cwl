@@ -1,22 +1,32 @@
 # ksjosaref package
 # ponte-vecchio 2023-01-17 for v0.3
 
+#include:amsmath
+#include:refcount
+
 #keyvals:\usepackage/ksjosaref#c
 refcmd
 #endkeyvals
-\josaref[%<type%>][%<delim%>]{%<ref%>%keyvals}#r
 
-#ifOption:refcmd
-\ref[%<type%>][%<delim%>]{%<ref%>%keyvals}#r
-\pageref{%<ref%>%keyvals}#r
-\eqref{%<ref%>%keyvals}#r
-\josarefcmds#d
-\nojosarefcmds#d
-#endif
+\josaref{label}#r
+\josaref[type]{label}#r
+\josaref[type][delim%keyvals]{label}#r
 
-#keyvals:\josaref#
+#keyvals:\josaref#c
 paren
 bracket
-left=#[, (, \{, <
-right=#], ), \}, >
+left=%<delim%>
+right=%<delim%>
 #endkeyvals
+
+#ifOption:refcmd
+\ref[type]{label}#r
+\ref[type][delim]{label}#r
+#endif
+
+\josarefcmds
+\nojosarefcmds
+
+# deprecated
+\josapageref{label}#Sr
+\josaeqref{label}#Sr
