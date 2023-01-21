@@ -1929,6 +1929,7 @@
 <file>completion/ksbaduk.cwl</file>
 <file>completion/ksforloop.cwl</file>
 <file>completion/kshcrkey.cwl</file>
+<file>completion/ksinsbox.cwl</file>
 <file>completion/ksjosaref.cwl</file>
 <file>completion/ksmisc.cwl</file>
 <file>completion/ksruby.cwl</file>
@@ -2515,6 +2516,7 @@
 <file>completion/oubraces.cwl</file>
 <file>completion/outlines.cwl</file>
 <file>completion/outlining.cwl</file>
+<file>completion/overarrows.cwl</file>
 <file>completion/overcite.cwl</file>
 <file>completion/overlays.cwl</file>
 <file>completion/overlock.cwl</file>
@@ -2723,6 +2725,7 @@
 <file>completion/ppt-slides.cwl</file>
 <file>completion/precattl.cwl</file>
 <file>completion/prelim2e.cwl</file>
+<file>completion/preparefont.cwl</file>
 <file>completion/prerex.cwl</file>
 <file>completion/pressrelease-symbols.cwl</file>
 <file>completion/prettyref.cwl</file>
@@ -3731,6 +3734,7 @@
 <file>completion/underscore.cwl</file>
 <file>completion/undertilde.cwl</file>
 <file>completion/undolabl.cwl</file>
+<file>completion/unfontsxe.cwl</file>
 <file>completion/uni8.cwl</file>
 <file>completion/unicode-alphabets.cwl</file>
 <file>completion/unicodefonttable.cwl</file>
@@ -3843,6 +3847,7 @@
 <file>completion/wrapfig2.cwl</file>
 <file>completion/wrapfig.cwl</file>
 <file>completion/wrapstuff.cwl</file>
+<file>completion/WriteOnGrid.cwl</file>
 <file>completion/wtref.cwl</file>
 <file>completion/xargs.cwl</file>
 <file>completion/xassoccnt.cwl</file>
