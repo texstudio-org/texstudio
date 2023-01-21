@@ -1389,7 +1389,6 @@ void ConfigManager::saveMacros()
 bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 {
 	ConfigDialog *confDlg = new ConfigDialog(parentToDialog);
-	UtilsUi::resizeInFontHeight(confDlg, 86, 52);
 
     if(showConfigMaximized){
         confDlg->showMaximized();
@@ -1641,6 +1640,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	//EXECUTE IT
 	bool executed = confDlg->exec();
+	confDlg->moveIfExceedsScreen();
 	configRiddled = confDlg->riddled;
 
 	//handle changes

@@ -102,7 +102,8 @@ public:
 	QList<QMenu *> standardToolbarMenus;
 
 	void setBuildManger(BuildManager *buildManager) { mBuildManager = buildManager; }
-
+	void moveIfExceedsScreen();
+	
 	bool riddled;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
