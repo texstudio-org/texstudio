@@ -1,6 +1,7 @@
 # graphicsonthefly package
 # ponte-vecchio 2023-01-17 for v0.9.6
 
+#include:ifplatform
 #include:graphicx
 
 #keyvals:\usepackage/graphicsonthefly#c
@@ -15,19 +16,27 @@ convert
 ## Animations
 #ifOption:all
 #include:animate
-\animatedgifonthefly[%<options%>]{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
-\animatedgif{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
-\usegifonthefly[%<options%>]{%<image name%>}{%<url%>}
+\animatedgifonthefly[options%keyvals]{fps}{image name}{start}{end}{URL}#U
+\animatedgifonthefly*[options%keyvals]{fps}{image name}{start}{end}{URL}#*U
+\animatedgif[options%keyvals]{fps}{image name}{start}{end}#U
+\usegifonthefly[%<options%>]{%<fps,start,end%>}
+# alias of \animatedgifonthefly
+\animategraphicsonthefly[options%keyvals]{fps}{image name}{start}{end}{URL}#SU
+\animategraphicsonthefly*[options%keyvals]{fps}{image name}{start}{end}{URL}#SU
 #endif
 
 #ifOption:animate
 #include:animate
-\animatedgifonthefly[%<options%>]{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
-\animatedgif{%<fps%>}{%<image name%>}{%<start%>}{%<end%>}{%<url%>}
-\usegifonthefly[%<options%>]{%<image name%>}{%<url%>}
+\animatedgifonthefly[options%keyvals]{fps}{image name}{start}{end}{URL}#U
+\animatedgifonthefly*[options%keyvals]{fps}{image name}{start}{end}{URL}#*U
+\animatedgif[options%keyvals]{fps}{image name}{start}{end}#U
+\usegifonthefly[%<options%>]{%<fps,start,end%>}
+# alias of \animatedgifonthefly
+\animategraphicsonthefly[options%keyvals]{fps}{image name}{start}{end}{URL}#SU
+\animategraphicsonthefly*[options%keyvals]{fps}{image name}{start}{end}{URL}#SU
 #endif
 
-#keyvals:\animatedgifonthefly#c,\usegifonthefly#c
+#keyvals:\animatedgifonthefly#c,\animatedgifonthefly*#c,\animatedgif#c,\usegifonthefly#c,\animategraphicsonthefly#c,\animategraphicsonthefly*#c
 label=%<label%>
 type=%<file ext%>
 poster
@@ -68,13 +77,15 @@ end={%<end code%>}
 timeline=%<file%>
 #endkeyvals
 
-\includegraphicsonthefly[%<options%>]{%<image name%>}{%<url%>}
-\includegraphicsonthefly*[%<options%>]{%<image name%>}{%<url%>}
-\prepareimgonthefly{%<image name%>}{%<url%>}
-\prepareimgonthefly*{%<image name%>}{%<url%>}
-\useimageonthefly[%<options%>]
+\includegraphicsonthefly{image name}{URL}#U
+\includegraphicsonthefly[options%keyvals]{image name}{URL}#U
+\includegraphicsonthefly*{image name}{URL}#U
+\includegraphicsonthefly*[options%keyvals]{image name}{URL}#U
+\prepareimgonthefly{image name}{URL}#U
+\prepareimgonthefly*{image name}{URL}#U
+\useimgonthefly[%<options%>]
 
-#keyvals:\includegraphicsonthefly#c,\useimageonthefly#c
+#keyvals:\includegraphicsonthefly#c,\includegraphicsonthefly*#c,\useimgonthefly#c
 alt={%<alt text%>}
 bb=%<llx lly urx ury%>
 bbllx=
@@ -105,3 +116,9 @@ page=%<page number%>
 interpolate#true,false
 decodearray={%<color array%>}
 #endkeyvals
+
+# not documented
+\CoalesceOption#S
+\ConvertCommand#S
+\RemoveCommand#S
+\WgetCommand#S

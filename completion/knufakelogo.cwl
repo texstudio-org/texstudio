@@ -2,9 +2,13 @@
 # ponte-vecchio 2023-01-17 for v0.92
 
 #include:tikz
+#include:tikzlibrarycalc
+#include:tikzlibraryintersections
+#include:tikzlibrarydecorations.text
 
 KNUblack#B
 KNUblue#B
+KNUgray#B
 KNUgreen#B
 KNUwhite#B
 
@@ -21,8 +25,9 @@ KNUwhite#B
 \KNUfakelogoBlack[%<options%>]{%<scale%>}
 \KNUfakelogoBlack*[%<options%>]{%<scale%>}(%<SW coor%>)(%<NE coor%>)
 
-\KNUfakelogoColor[%<option%>%keyvals]{%<scale%>}{%<inner circ colour%>%color}[%<inner text colour%>%color][%<outer text colour%>%color]{%<outer ring colour%>%color}
-\KNUfakelogoColor*[%<option%>%keyvals]{%<scale%>}{%<bg and inner colour%>%color}[%<inner text  colour%>%color][%<outer text/ring colour%>%color](%<SW coordinate%>)(%<NE coordinate%>)
+\KNUfakelogoColor{%<scale%>}{%<inner circ colour%>}{%<outer ring colour%>}
+\KNUfakelogoColor[%<options%>]{%<scale%>}{%<inner circ colour%>}[%<inner text colour%>][%<outer text colour%>]{%<outer ring colour%>}
+\KNUfakelogoColor*[%<options%>]{%<scale%>}{%<bg and inner colour%>}[%<inner text  colour%>][%<outer text/ring colour%>](%<SW coordinate%>)(%<NE coordinate%>)
 
 #keyvals:\KNUfakelogo#c,\KNUfakelogoBlue#c,\KNUfakelogoGreen#c,\KNUfakelogoBlack#c,\KNUfakelogoColor#c
 ## coordinate systems
@@ -185,3 +190,32 @@ cm={%<a,b,c,d,coord%>}
 reset cm
 transform canvas={%<options%>}
 #endkeyvals
+
+# not documented
+\begin{KNUfakeLogoBlackENV}#S
+\begin{KNUfakeLogoBlueENV}#S
+\begin{KNUfakeLogoColorENV}#S
+\begin{KNUfakeLogoENV}#S
+\begin{KNUfakeLogoGreenENV}#S
+\end{KNUfakeLogoBlackENV}#S
+\end{KNUfakeLogoBlueENV}#S
+\end{KNUfakeLogoColorENV}#S
+\end{KNUfakeLogoENV}#S
+\end{KNUfakeLogoGreenENV}#S
+\KBOX#S
+\KCIRCLE#S
+\KFILL#S
+\KNU#S
+\KNUdef#S
+\KNUeng#S
+\KNUengfont#S
+\KNUko#S
+\KNUkor#S
+\KNUkorfont#S
+\KNUkorsize#S
+\KNUmainfont#S
+\KNUmainsize#S
+\KNUyearfont#S
+\KROOF#S
+\KTEXT#S
+\KWHITE#S

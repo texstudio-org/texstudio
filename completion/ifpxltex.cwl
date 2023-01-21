@@ -4,15 +4,16 @@
 #include:hologo
 
 \pxlThisTeX
-\pxlThisTeX[%<engine%>%keyvals]
+\pxlThisTeX[engine%keyvals]
 \pxlThisLaTeX
 \pxlThisPLaTeX
 
-\IfpxlTeX{%<engine%>%keyvals}{%<true%>}{%<false%>}
-\IfpxlTeX*[%<T/F%>]{%<engine%>%keyvals}{%<code%>}#*
+\IfpxlTeX{engine%keyvals}{true}{false}
+\IfpxlTeX*{engine%keyvals}{code}#*
+\IfpxlTeX*[T/F]{engine%keyvals}{code}#*
 \IfpxlTeXpxl{%<pdftex cmd%>}{%<xetex cmd%>}{%<luatex cmd%>}
-\IfpxlTeXpxl*{%<engine%>%keyvals}{%<engine%>%keyvals}{%<engine 1 cmd%>}{%<engine 2 cmd%>}#*
-\pxlRequireTeX{%<engine%>%keyvals}
+\IfpxlTeXpxl*{engine1%keyvals}{engine2%keyvals}{engine1 cmd}{engine2 cmd}#*
+\pxlRequireTeX{engine%keyvals}
 
 #keyvals:\pxlThisTeX#c
 eTeX
@@ -28,9 +29,8 @@ XeLaTeX
 XeTeX
 #endkeyvals
 
-#keyvals:\IfpxlTeX#c,\IfpxlTeXpxl*#c,\pxlRequireTeX#c
+#keyvals:\IfpxlTeX#c,\IfpxlTeX*#c,\IfpxlTeXpxl*#c,\pxlRequireTeX#c
 p
 x
 l
 #endkeyvals
-

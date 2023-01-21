@@ -1,18 +1,17 @@
 # kstextks package
 # ponte-vecchio 2023-01-17
 
+#include:fontspec
+#include:amsmath
+
 #keyvals:\usepackage/kstextks#c
 hcr
 symfont=%<font%>
 units
-useonly={%\\textks<name%>}
+useonly={%<name1,...%>}
 #endkeyvals
 
-#ifOption:units
-\textksdegree
-#endif
-
-\kssim#m
+\kssim
 \textkssharp#n
 \textksamp#n
 \textksasterisk#n
@@ -126,6 +125,8 @@ useonly={%\\textks<name%>}
 \textksdegreefahrenheit#n
 \textksmalesign#n
 \textksfemalesign#n
+
+#ifOption:units
 \textksdegree#n
 \textksminute#n
 \textkssecond#n
@@ -168,3 +169,7 @@ useonly={%\\textks<name%>}
 \textksmegahertz#n
 \textksgigahertz#n
 \textksterahertz#n
+#endif
+
+# not documented
+\DisplayAllSymbols#S

@@ -1,8 +1,10 @@
 # ksruby package
 # ponte-vecchio 2023-01-17 for v0.0.2
 
+#include:stackengine
+
 #keyvals:\usepackage/ksruby#c
-rubysep=%<dim%>%l
+rubysep=##L
 rubysize=%<size%>
 rubyeachchar#true,false
 rubywidth#true,false
@@ -12,7 +14,7 @@ rubycenter=#c,l,r
 
 \ksruby{%<below%>}{%<above%>}
 \ksruby*{%<below%>}{%<above%>}
-\ruby{%<below%>}{%<above%>
+\ruby{%<below%>}{%<above%>}
 \ruby*{%<below%>}{%<above%>}
 
 \ksrubycenterdefault{%<options%>}
@@ -22,12 +24,12 @@ rubycenter=#c,l,r
 \ksrubywidthdefault[false]
 \ksrubyeachchardefault
 \ksrubyeachchardefault[false]
-\ksrubysep{%<dim%>%l}
+\ksrubysep{dim%l}
 \ksrubysize{%<size%>}
 
 \ksrubyextra{%<cmds%>}
 
-#keyvals:ksrubycenter#c
+#keyvals:\ksrubycenter#c
 c
 l
 r

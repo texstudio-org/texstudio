@@ -1,19 +1,31 @@
 # exesheet package
-# Matthew Bertucci 1/12/2021 for v1.3
+# Matthew Bertucci 2023/01/18 for v2.0
 
+#include:kvoptions
 #include:ifthen
+#include:geometry
 #include:xcolor
 #include:enumitem
-# enumitem loaded with shortlabels option
+# loads shortlabels option of enumitem
 #include:tasks
 #include:versions
-#include:geometry
 #include:fancybox
 #include:translations
+#include:ragged2e
 
-#keyvals:\usepackage/exesheet#c
-notoc
-nosetlist
+\exesheetset{options%keyvals}
+
+#keyvals:\exesheetset,\usepackage/exesheet#c
+exetoc#true,false
+setlist#true,false
+output=#questions,answers,both
+display=#none,pts,notes
+answerspace#true,false
+marginpos=#left,right,inner,outer
+marginwidth=#standard,expand,unset
+noteragged=#left,right,center,justify,twoside
+checkpts#true,false
+correct=#true,false,conditional
 #endkeyvals
 
 \exercise#L3
@@ -22,16 +34,16 @@ nosetlist
 \labelexercise#*
 \theexercise#*
 \labelexercisestyle#*
-\exercise*{label%text}
-\exercise*[text]{label%text}
+\exercise*{label%text}#L3
+\exercise*[text]{label%text}#L3
 \subpart#L4
 \subpart[text]#L4
 \thesubpart#*
 \subpartname#*
 \labelsubpart#*
 \labelsubpartstyle#*
-\subpart*{label%text}
-\subpart*[text]{label%text}
+\subpart*{label%text}#L4
+\subpart*[text]{label%text}#L4
 \annex
 \annex[text]
 \annexname#*
@@ -41,11 +53,6 @@ nosetlist
 \exlabel#*
 \exsepmark#*
 \exe*
-\points{number}
-\pointsname#*
-\pointname#*
-\pointsstyle#*
-\pointscolor#*
 
 \begin{exenumerate}
 \begin{exenumerate}[options%keyvals]
@@ -63,7 +70,7 @@ nosetlist
 \begin{colsitem*}[options%keyvals]{cols}
 \end{colsitem*}
 
-#keyvals:\begin{exenumerate}#c,\begin{colsenum}#c,\begin{colsenum*}#c,\begin{colsitem}#c,\begin{colsitem*}
+#keyvals:\begin{exenumerate}#c,\begin{colsenum}#c,\begin{colsenum*}#c,\begin{colsitem}#c,\begin{colsitem*}#c
 topsep=##L
 partopsep=##L
 parsep=##L
@@ -112,6 +119,7 @@ itemjoin=%<string%>
 itemjoin*=%<string%>
 afterlabel=%<string%>
 mode=#unboxed,boxed
+%enumitemkey
 #endkeyvals
 
 \begin{tablenum1}
@@ -155,43 +163,64 @@ debug#true,false
 \begin{answers*}
 \end{answers*}
 
-\questionsonly
-\answersonly
-
 \correctionstyle#*
 correctioncolor#B
 \correctionname#*
 
-\question{question%text}{answer%text}
-
+\question{question%text}
+\answer{answer%text}
+\answerspace{height}
+\points{number}
+\pointsname#*
+\pointname#*
+\pointsstyle#*
+pointscolor#B
 \pts{number}
 \ptsname#*
 \ptname#*
 ptscolor#B
 \ptsstyle#*
-\displaypts
+
 \totalexe{number}
 \note{comment%text}
 \note[points]{comment%text}
 \note*{points}
 markingcolor#B
-\markingstyle#B
-\ptsboxlength#B
+\markingstyle#*
+\ptsboxlength#*
 notecolor#B
-\notestyle#B
-\noteragged#B
-\displaypoints
-\displaynotes
-\displaynotes[align cmd]
-\displaynotesright
-\displaynotesright[align cmd]
+\notestyle#*
 \totalpoints{number}
+\totalsheet{number}
 
 # from shortlabels option of enumitem
-#keyvals:\begin{enumerate}#c,\begin{itemize}#c,\begin{description}#c,\begin{enumerate*}#c,\begin{itemize*}#c,\begin{description*}#c,\begin{exenumerate}#c
+#keyvals:\begin{enumerate}#c,\begin{itemize}#c,\begin{description}#c,\begin{enumerate*}#c,\begin{itemize*}#c,\begin{description*}#c,\begin{exenumerate}#c,\begin{colsenum}#c,\begin{colsenum*}#c
 A
 a
 I
 i
 1
 #endkeyvals
+
+# not documented
+\gaddtolength{register}{length}#S
+\gsetlength{register}{length}#S
+\largemarginwidthfactor#S
+\leftnotemarginwidth{length}#S
+\noteragged#S
+\noteraggedleft#S
+\noteraggedright#S
+\ptsmark#S
+\rightnotemarginwidth{length}#S
+\standardfrenchlists#S
+\standardmarginwidthfactor#S
+
+# deprecated
+\questionsonly#S
+\answersonly#S
+\displaypts#S
+\displaypoints#S
+\displaynotes#S
+\displaynotes[align cmd]#S
+\displaynotesright#S
+\displaynotesright[align cmd]#S

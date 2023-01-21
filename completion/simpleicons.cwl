@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/01/01 for v8.2.0
+# Matthew Bertucci 2023/01/20 for v8.3.0
 
 #include:ifxetex
 #include:ifluatex
@@ -81,6 +81,7 @@ airtable
 ajv
 alacritty
 albertheijn
+alchemy
 aldinord
 aldisud
 alfaromeo
@@ -137,6 +138,7 @@ angularjs
 angularuniversal
 anilist
 ansible
+answer
 ansys
 anta
 antdesign
@@ -302,6 +304,7 @@ blueprint
 bluetooth
 bmcsoftware
 bmw
+boardgamegeek
 boehringeringelheim
 boeing
 bookalope
@@ -371,6 +374,7 @@ centos
 ceph
 cesium
 chai
+chainguard
 chainlink
 chakraui
 chartdotjs
@@ -490,6 +494,7 @@ cratedb
 crayon
 createreactapp
 creativecommons
+creativetechnology
 credly
 crehana
 criticalrole
@@ -659,6 +664,7 @@ engadget
 enpass
 enterprisedb
 envato
+envoyproxy
 epel
 epicgames
 epson
@@ -749,6 +755,7 @@ flood
 fluentbit
 fluentd
 flutter
+fluxus
 flyway
 fmod
 fnac
@@ -1350,6 +1357,7 @@ momenteo
 monero
 moneygram
 mongodb
+monica
 monkeytie
 monogames
 monoprix
@@ -2100,6 +2108,7 @@ testin
 testinglibrary
 tether
 textpattern
+tga
 thealgorithms
 theconversation
 theirishtimes
@@ -2132,6 +2141,7 @@ tinyletter
 tistory
 tmobile
 tmux
+tnt
 todoist
 toggl
 tokyometro
@@ -2292,6 +2302,7 @@ warp
 wasmcloud
 wasmer
 wattpad
+wayland
 waze
 wearos
 weasyl
@@ -2438,4 +2449,4 @@ zyte
 \simpleiconsmapSeven#S
 \simpleiconsmapEight#S
 \simpleiconsmapNine#S
-\simpleiconsmapZero#S
+\simpleiconsmapOneZero#S

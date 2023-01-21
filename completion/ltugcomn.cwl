@@ -1,5 +1,5 @@
 # ltugcomn package
-# Matthew Bertucci 2022/05/21 for v2.27
+# Matthew Bertucci 2023/01/17 for v2.28
 
 #include:mflogo
 
@@ -24,7 +24,7 @@
 \BibTeX
 \bigissdt#*
 \BlackBoxes
-\booktitle{text}
+\booktitle{text}#S
 \botsmash
 \boxcs{csname}
 \BSD
@@ -77,6 +77,7 @@
 \IDE
 \IEEE
 \ifPrelimDraft
+\ifTBunicodeengine#*
 \ifTestIf#*
 \ifundefined{csname}
 \Input{file}#*i
@@ -165,7 +166,8 @@
 \pcTeX
 \PDF
 \pdflatex
-\pdftex
+\pdfTeX
+\pdftex#*
 \PGF
 \PHP
 \PiC
@@ -214,6 +216,7 @@
 \TANGLE
 \TB
 \TBdriver#*
+\TBecircacute#*
 \TBEnableRemarks#*
 \tbgobbledash#*
 \tbhurl{URL}#U
@@ -221,11 +224,15 @@
 \TBremark{text}#*
 \tbsurl{URL}#U
 \tbsurlfootnote{URL}#U
+\TBunicodeenginefalse#S
+\TBunicodeenginetrue#S
+\tburl{URL}#U
+\tburlfootnote{URL}#U
 \tbUTF
 \TestBox#*
 \TestCount#*
-\TestIffalse#*
-\TestIftrue#*
+\TestIffalse#S
+\TestIftrue#S
 \TeXhax
 \TeXMaG
 \textSMC{text}#*
@@ -242,6 +249,7 @@
 \thinskip#*
 \TIFF
 \TikZ
+\titleref{text}
 \topsmash
 \TP
 \ttn
@@ -249,11 +257,13 @@
 \TUB
 \tubbraced{text%plain}
 \TUBdefaulteTeX#*
+\tubdots
 \TUBedit{text}#*
 \TUBfilename{arg1}{arg2}#*
 \tubhideheight{height}#*
 \tubissue{volume}(issue)
 \tubjustifiedpar
+\tubline{text}#*
 \tubreflect{text}#*
 \tubsentencespace
 \tubsmallerskip#*

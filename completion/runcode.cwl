@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2022/08/24 for v1.7
+# Matthew Bertucci 2023/01/19 for v1.8
 
 #include:morewrites
 #include:tcolorbox
@@ -17,6 +17,9 @@
 run
 cache
 nominted
+minted
+listings
+fvextra
 reducedspace
 nohup
 R
@@ -25,6 +28,10 @@ matlab
 python
 stopserver
 #endkeyvals
+
+#ifOption:listings
+#include:listings
+#endif
 
 \runExtCode{program}{source file}{output file}
 \runExtCode{program}{source file}{output file}[run|cache]
@@ -99,24 +106,24 @@ inline
 \begin{codelisting}#*V
 \begin{codelisting}[number]#*V
 \end{codelisting}#*
-\checkZeroBytes{arg}#*
-\runcmd#*
-\setvalue{cmd}{def}#*d
-\thecodeOutput#*
-\thecodelisting#*
-\generated#*
+\checkZeroBytes{arg}#S
+\runcmd#S
+\setvalue{cmd}{def}#Sd
+\thecodeOutput#S
+\thecodelisting#S
+\generated#S
 \tempfile#S
 \tmpname#S
 bg#B
-\ifruncode#*
-\runcodetrue#*
-\runcodefalse#*
-\ifminted#*
-\mintedtrue#*
-\mintedfalse#*
-\ifreducedspace#*
-\reducedspacetrue#*
-\reducedspacefalse#*
-\ifnotnohup#*
-\notnohuptrue#*
-\notnohupfalse#*
+\ifruncode#S
+\runcodetrue#S
+\runcodefalse#S
+\ifminted#S
+\mintedtrue#S
+\mintedfalse#S
+\ifreducedspace#S
+\reducedspacetrue#S
+\reducedspacefalse#S
+\ifnotnohup#S
+\notnohuptrue#S
+\notnohupfalse#S

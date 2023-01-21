@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 2022/05/21 for v2.27
+# Matthew Bertucci 2023/01/17 for v2.28
 
 #include:mflogo
 
@@ -71,7 +71,7 @@ runningoff
 \BibTeX
 \bigissdt#*
 \BlackBoxes
-\booktitle{text}
+\booktitle{text}#S
 \botregister
 \botsmash
 \boxcs{csname}
@@ -149,6 +149,7 @@ runningoff
 \ifpreprint#*
 \ifSecTitle#*
 \ifshortAuthor#*
+\ifTBunicodeengine#*
 \ifTestIf#*
 \iftubfinaloption#*
 \iftubomitdoioption#*
@@ -229,8 +230,8 @@ runningoff
 \nohyphens#*
 \nomarkfootnote{commands}{text}#*
 \NoParIndent
-\normalparindent#*
 \NormalParIndent
+\normalparindent#*
 \normalspaces
 \now
 \Now
@@ -259,7 +260,8 @@ runningoff
 \pcTeX
 \PDF
 \pdflatex
-\pdftex
+\pdfTeX
+\pdftex#*
 \personalURL{URL}#U
 \PGF
 \phone#*
@@ -333,6 +335,7 @@ runningoff
 \TANGLE
 \TB
 \TBdriver#*
+\TBecircacute#*
 \TBEnableRemarks#*
 \TBError{text}#*
 \tbgobbledash#*
@@ -344,6 +347,10 @@ runningoff
 \tbsurl{URL}#U
 \tbsurlfootnote{URL}#U
 \TBtocsectionfont#*
+\TBunicodeenginefalse#S
+\TBunicodeenginetrue#S
+\tburl{URL}#U
+\tburlfootnote{URL}#U
 \tbUTF
 \TBWarning{text}#*
 \TBWarningNL{text}#*
@@ -376,6 +383,7 @@ runningoff
 \thinskip#*
 \TIFF
 \TikZ
+\titleref{text}
 \topregister
 \topsmash
 \TP
@@ -389,6 +397,7 @@ runningoff
 \tubcaptionleftglue#*
 \TUBdefaulteTeX#*
 \tubdoiprefix#*
+\tubdots
 \TUBedit{text}#*
 \TUBfilename{arg1}{arg2}#*
 \tubfinaloptionfalse#*
@@ -397,6 +406,7 @@ runningoff
 \tubhideheight{height}#*
 \tubissue{volume}(issue)
 \tubjustifiedpar
+\tubline{text}#*
 \tubmakecaptionbox{arg1}{arg2}#*
 \tubmultipleaffilauthor#*
 \tubmultipleaffilnet#*
@@ -406,6 +416,7 @@ runningoff
 \tubraggedfoot#*
 \tubreflect{text}#*
 \tubrunningauthor#*
+\tubsecfmt#*
 \tubsechook#*
 \tubsecondcolstartfalse#*
 \tubsecondcolstarttrue#*

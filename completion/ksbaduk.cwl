@@ -1,7 +1,9 @@
 # ksbaduk package
 # ponte-vecchio 2023-01-17 for v0.6.4
 
-#keyvals:\usepackage/ksbaduk#c
+#include:tikz
+
+#keyvals:\usepackage/ksbaduk#c,\begin{ksbadukpan}#c
 ball
 plain
 badukpancolor=#%color
@@ -18,12 +20,11 @@ tmarkfont=%<font%>
 \BadukpanSize{%<number%>}
 \BadukpanColor{color}
 \BackgroundColor{color}
-\NumberFont{%<font%>%font}
+\NumberFont{%<font%>}
 
 ## 2.3 Environment
-
 \StartBaduk
-\StartBadukClip{%<pos%>%position}
+\StartBadukClip{%<pos%>}
 \StopBaduk
 
 \begin{ksbadukpan}
@@ -61,6 +62,8 @@ tmarkfont=%<font%>
 \WhiteCs{%<pos, ...%>}#/ksbadukpan
 \WhiteD{%<pos%>}#/ksbadukpan
 \WhiteDs{%<pos, ...%>}#/ksbadukpan
+\Blanket{%<pos%>}{%<text%>}#/ksbadukpan
+\TextMark{%<pos%>}{%<text%>}#/ksbadukpan
 
 ## 2.8 Other commands
 \KSBadukContinue
@@ -69,7 +72,7 @@ tmarkfont=%<font%>
 
 ## 2.9 Clearing stones
 \RemoveStone{%<pos%>}#/ksbadukpan
-\RemoveStone[%<color%>%keyvals]{%<pos%>}#/ksbadukpan
+\RemoveStone[B|W%keyvals]{pos}#/ksbadukpan
 \RemoveStone{%<pos, ...%>}#/ksbadukpan
 
 #keyvals:\RemoveStone#c
@@ -101,3 +104,18 @@ W
 \WhiteCText#/ksbadukpan
 \BlackCText#/ksbadukpan
 #endif
+
+# not documented
+\Bb#S
+\BlackFirstNumber{arg1}{arg2}#S
+\DeleteSavedKSGo{game name}#S
+\GobanColor{color}#S
+\GobanSize{size}#S
+\KSGoContinue#S
+\LoadKSGo{game name}#S
+\SaveKSGo{game name}#S
+\StartGo#S
+\StartGoClip{pos}#S
+\StopGo#S
+\Wb#S
+\WhiteFirstNumber{arg1}{arg2}#S

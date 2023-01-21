@@ -4,18 +4,18 @@
 #include:ifluatex
 #include:luatexbase
 
-\luadirect{code%definition}
-\luaexec{code%definition}
+\luadirect{lua code%definition}
+\luaexec{lua code%definition}
 
 \begin{luacode}
 \end{luacode}
 \begin{luacode*}
 \end{luacode*}
 
-\luacode#*
-\endluacode#*
-\luacodestar#*
-\endluacodestar#*
+\luacode#S
+\endluacode#S
+\luacodestar#S
+\endluacodestar#S
 \luastring{string}#*
 \luastringN{string}#*
 \luastringO{string}#*
