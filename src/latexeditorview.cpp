@@ -661,6 +661,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 	editor->setProperty("latexEditor", QVariant::fromValue<LatexEditorView *>(this));
 
 	lineMarkPanel = new QLineMarkPanel;
+    lineMarkPanel->setCursor(Qt::PointingHandCursor);
 	lineMarkPanelAction = codeeditor->addPanel(lineMarkPanel, QCodeEdit::West, false);
 	lineNumberPanel = new QLineNumberPanel;
     lineNumberPanelAction = codeeditor->addPanel(lineNumberPanel, QCodeEdit::West, false);
