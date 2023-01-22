@@ -317,7 +317,7 @@ arguments are not available and no completion hints are given.
 
 TeXstudio allows the user to adapt the menu, see [how to configure the Menu](configuration.md#configuring-the-menu-advanced-option).
 
-One way of doing this is by loading a definition file via the script command `loadManageMenu`. Its format is described here.
+One way of doing this is by loading a definition file via the script command `loadManagedMenu`. Its format is described here.
 
 The definition file is an xml file, general description of xml can be found on the internet.
 
@@ -337,13 +337,13 @@ The following shows an example which redefines the "\documentclass" entry in the
 - `<TexMakerXUI>...</TexMakerXUI>`: mandatory tag to enclose the actual menu definition
 - `<menu ...>...</menu>`: define a menu/submenu. All its entries need to be set between the tags.
   - `id` attribute: unique identifier. "main/latex" is the "LaTeX" menu. The slash `/` is the hierarchy separator. Deeper hierarchies can be directly addressed. A new `id` adds entries instead of redefining them.
-  - `text` attribute: The text that is shown an the menu name.`&amp;` marks the following character as character shortcut to reach that menu.
-- `<insert ...>`:insert a menu entry
-  - `id` attribute: unique identifier. Here,for example "part". A new `id` adds entries instead of redefining them.
-  - `text` attribute: The text that is shown an the menu name.`&amp;` marks the following character as character shortcut to reach that entry.
+  - `text` attribute: The text that is shown an the menu name. `&amp;` marks the following character as character shortcut to reach that menu.
+- `<insert ...>`: insert a menu entry
+  - `id` attribute: unique identifier. Here, for example "part". A new `id` adds entries instead of redefining them.
+  - `text` attribute: The text that is shown an the menu name. `&amp;` marks the following character as character shortcut to reach that entry.
   - `insert` attribute: text to insert. This is a normal txs macro, so a script with the header `%SCRIPT` works as well.
-  - `icon` attribute (optional): icon file to show as icon. Usually txs internal files. Can be omitted !
-  - `shortcut` attribute (optional): define a short cut,e.g. `shortcut="Ctrl+Shift+T"`
+  - `icon` attribute (optional): icon file to show as icon. Usually txs internal files.
+  - `shortcut` attribute (optional): define a short cut, e.g. `shortcut="Ctrl+Shift+T"`
   - `info`attribute (optional): define a tooltip which describes the functionality of this entry.
 
 The "LaTeX" and "Math" menu are mainly defined by using this method. The source can be found [here](https://github.com/texstudio-org/texstudio/blob/master/uiconfig.xml).
