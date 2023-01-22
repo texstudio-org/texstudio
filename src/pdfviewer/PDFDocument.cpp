@@ -355,23 +355,53 @@ void PDFDraggableTool::drawCircleGradient(QPainter& painter, const QRect& outlin
 void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
+	painter.setRenderHint(QPainter::Antialiasing);
 	drawFrame(&painter);
+
 	QRect tmpRect(event->rect().x()*overScale, event->rect().y()*overScale, event->rect().width()*overScale, event->rect().height()*overScale);
-	int side = qMin(width(), height()) ;
-	QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
+	const int side = qMin(width(), height()) ;
 
-	if(globalConfig->magnifierShape==PDFDocumentConfig::CircleWithShadow){
-		// circular magnifier, add transparent shadow
-		const int padding=10;
-		drawCircleGradient(painter, outline, QColor(Qt::black), padding);
+	// Define a path that specifies the border of the magnifier.
+	// This path is also later reused to draw the actual border.
+	QPainterPath borderPath;
+	if(globalConfig->magnifierShape == PDFDocumentConfig::CircleWithShadow) {
+		// circular magnifier with transparent shadow
+		const int shadowWidth=13;
+		const int magnifierWidth = side - 2*shadowWidth + 2;
 
-		outline.adjust(padding,padding,-padding,-padding);
-		QRegion maskedRegion(outline, QRegion::Ellipse);
-		painter.setClipRegion(maskedRegion);
+		// draw transparent shadow
+		QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
+		drawCircleGradient(painter, outline, QColor(Qt::black), shadowWidth);
+
+		borderPath.addRoundedRect(
+			width()/2 - side/2 + shadowWidth - 2, 
+			height()/2 - side/2 + shadowWidth - 5, // magnifier moved upwards for 3D effect
+			magnifierWidth, 
+			magnifierWidth, 
+			magnifierWidth/2, 
+			magnifierWidth/2
+		);
+
+	} else if(globalConfig->magnifierShape == PDFDocumentConfig::Circle) {
+		// circular magnifier without shadow
+		const int magnifierWidth = side - 4;
+
+		borderPath.addRoundedRect(
+			width()/2 - side/2 + 2, 
+			height()/2 - side/2 + 2, 
+			magnifierWidth, 
+			magnifierWidth, 
+			magnifierWidth/2, 
+			magnifierWidth/2
+		);
+
+	} else {
+		// rectangular magnifier
+		borderPath.addRect(1, 1, width() - 2, height() - 2);
 	}
 
-	// draw highlight if necessary
-
+	// draw contents inside the magnifier
+	painter.setClipPath(borderPath);
 	painter.drawPixmap(event->rect(), getConvertedImage(), tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
 
 	// draw highlight if necessary
@@ -381,7 +411,6 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 		if(page == parent->highlightPage){
 		    if (!parent->highlightPath.isEmpty()) {
 			    painter.save();
-			    painter.setRenderHint(QPainter::Antialiasing);
 			    painter.translate(-kMagFactor  * pos()- mouseTranslate -imageLoc );
 			    painter.scale(imageDpi/72.0, imageDpi/72.0);
 			    painter.setPen(QColor(0, 0, 0, 0));
@@ -396,24 +425,16 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	    }
 	}
 
+	// draw a border around the magnifier
 	if (globalConfig->magnifierBorder) {
-		painter.setPen(QPalette().mid().color());
-		switch (globalConfig->magnifierShape) {
-        case PDFDocumentConfig::CircleWithShadow: { //circular
-		        //int side = qMin(width(), height()) ;
-		        //painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
-		        painter.drawEllipse(outline);
-			break;
+		if(globalConfig->magnifierShape == PDFDocumentConfig::CircleWithShadow) {
+			painter.setPen(QPen(QPalette().shadow().color(), 2)); // black outline
+		} else {
+			painter.setPen(QPen(QPalette().mid().color(), 2)); // gray outline
 		}
-        case PDFDocumentConfig::Circle: { //circular without shadow
-		        int side = qMin(width(), height()) ;
-			painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
-			break;
-		}
-		default:
-			painter.drawRect(0, 0, width() - 1, height() - 1); //rectangular
-		}
+		painter.drawPath(borderPath);
 	}
+
 }
 
 /* lazy evaluation of image convertion */
