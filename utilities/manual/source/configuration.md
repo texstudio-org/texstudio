@@ -805,7 +805,7 @@ which should be added to the existing menu structure:
     app.loadManagedMenu('C:/..../menu.xml');
 ```
 
-The loaded file should contain an XML structure which is described in [Menu Definitions]{background.md#menu-definitions}.
+Use macro trigger `?txs-start`. The loaded file should contain an XML structure which is described in [Menu Definitions]{background.md#menu-definitions}.
 
 ## Configuring the Toolbar (Advanced option)
 
