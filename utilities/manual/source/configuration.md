@@ -805,7 +805,7 @@ These definitions may extend current menus, but it may also redefine them:
     app.loadManagedMenu('C:/..../menu.xml');
 ```
 
-Use macro trigger `?txs-start`.
+Use macro trigger `?txs-start` in order to automatically load this menu definition at start-up.
 
 ## Configuring the Toolbar (Advanced option)
 
