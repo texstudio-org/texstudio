@@ -656,6 +656,43 @@ arguments are not available and no completion hints are given.</p>
 </ul>
 </section>
 </section>
+<section id="menu-definitions">
+<h2>Menu Definitions<a class="headerlink" href="#menu-definitions" title="Permalink to this heading">#</a></h2>
+<p>TeXstudio allows the user to adapt the menu, see <a class="reference internal" href="configuration.html#configuring-the-menu-advanced-option"><span class="std std-doc">how to configure the Menu</span></a>.</p>
+<p>One way of doing this is by loading a definition file via the script command <code class="docutils literal notranslate"><span class="pre">loadManagedMenu</span></code>. Its format is described here.</p>
+<p>The definition file is an xml file, general description of xml can be found on the internet.</p>
+<p>The following shows an example which redefines the “\documentclass” entry in the latex menu and the “part” entry in the submenu “Sectioning”.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;TexMakerXUI&gt;</span>
+<span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;main/latex&quot;</span> <span class="na">text=</span><span class="s">&quot;&amp;amp;LaTeX&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&quot;documentclass&quot;</span> <span class="na">text=</span><span class="s">&quot;\documentclass (redefined)&quot;</span> <span class="na">insert=</span><span class="s">&quot;Redefined&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;sectioning&quot;</span> <span class="na">text=</span><span class="s">&quot;&amp;amp;Sectioning&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&quot;part&quot;</span> <span class="na">text=</span><span class="s">&quot;part (redefined)&quot;</span> <span class="na">insert=</span><span class="s">&quot;Redefined part&quot;</span> <span class="na">icon=</span><span class="s">&quot;part&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/menu&gt;</span>
+<span class="nt">&lt;/menu&gt;</span>
+<span class="nt">&lt;/TexMakerXUI&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;TexMakerXUI&gt;...&lt;/TexMakerXUI&gt;</span></code>: mandatory tag to enclose the actual menu definition</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;menu</span> <span class="pre">...&gt;...&lt;/menu&gt;</span></code>: define a menu/submenu. All its entries need to be set between the tags.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> attribute: unique identifier. “main/latex” is the “LaTeX” menu. The slash <code class="docutils literal notranslate"><span class="pre">/</span></code> is the hierarchy separator. Deeper hierarchies can be directly addressed. A new <code class="docutils literal notranslate"><span class="pre">id</span></code> adds entries instead of redefining them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> attribute: The text that is shown as the menu name. <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code> marks the following character as character shortcut to reach that menu.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;insert</span> <span class="pre">...&gt;</span></code>: insert a menu entry</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> attribute: unique identifier. Here, for example “part”. A new <code class="docutils literal notranslate"><span class="pre">id</span></code> adds entries instead of redefining them.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> attribute: The text that is shown as the menu entry name. <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code> marks the following character as character shortcut to reach that entry.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert</span></code> attribute: text to insert. This is a normal txs macro, so a script with the header <code class="docutils literal notranslate"><span class="pre">%SCRIPT</span></code> works as well.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">icon</span></code> attribute (optional): icon file to show as icon. Usually txs internal files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shortcut</span></code> attribute (optional): define a short cut, e.g. <code class="docutils literal notranslate"><span class="pre">shortcut=&quot;Ctrl+Shift+T&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">info</span></code>attribute (optional): define a tooltip which describes the functionality of this entry.</p></li>
+</ul>
+</li>
+</ul>
+<p>The “LaTeX” and “Math” menu are mainly defined by using this method. The source can be found <a class="reference external" href="https://github.com/texstudio-org/texstudio/blob/master/uiconfig.xml">here</a>.</p>
+</section>
 <section id="the-document-template-format">
 <h2>The Document Template Format<a class="headerlink" href="#the-document-template-format" title="Permalink to this heading">#</a></h2>
 <p>In its simplest form, a template is only a .tex file. Multi-file
@@ -1021,6 +1058,7 @@ build&gt;cmake --build . -t texstudio<span class="nb">_</span>lupdate
 <li><a class="reference internal" href="#cwl-file-placement">cwl file placement</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#menu-definitions">Menu Definitions</a></li>
 <li><a class="reference internal" href="#the-document-template-format">The Document Template Format</a></li>
 <li><a class="reference internal" href="#creating-table-templates">Creating table templates</a></li>
 <li><a class="reference internal" href="#style-sheets">Style Sheets</a></li>

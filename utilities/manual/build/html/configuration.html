@@ -1055,6 +1055,13 @@ can be renamed and a new Latex-Code, or in case of the tools menu, new tool comm
 <p class="admonition-title">Warning</p>
 <p>Changes to the Slots are discouraged unless you really know what you are doing. No support for changes here is given.</p>
 </div>
+<p>In <a class="reference internal" href="advanced.html#script-macros"><span class="std std-doc">script macros</span></a>, the command <code class="docutils literal notranslate"><span class="pre">app.loadManagedMenu()</span></code> loads a file that contains your additional <a class="reference internal" href="background.html#menu-definitions"><span class="std std-doc">definitions</span></a> for menus.
+These definitions may extend current menus, but it may also redefine them:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
+<span class="w">    </span><span class="nx">app</span><span class="p">.</span><span class="nx">loadManagedMenu</span><span class="p">(</span><span class="s1">&#39;C:/..../menu.xml&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Use macro trigger <code class="docutils literal notranslate"><span class="pre">?txs-start</span></code> in order to automatically load this menu definition at start-up.</p>
 </section>
 <section id="configuring-the-toolbar-advanced-option">
 <h2>Configuring the Toolbar (Advanced option)<a class="headerlink" href="#configuring-the-toolbar-advanced-option" title="Permalink to this heading">#</a></h2>

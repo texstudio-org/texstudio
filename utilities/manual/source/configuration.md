@@ -797,6 +797,16 @@ The "show all" check box allows to see the complete menu structure of the main w
 Changes to the Slots are discouraged unless you really know what you are doing. No support for changes here is given.
 ```
 
+In [script macros](advanced.md#script-macros), the command `app.loadManagedMenu()` loads a file that contains your additional [definitions](background.md#menu-definitions) for menus.
+These definitions may extend current menus, but it may also redefine them:
+
+```javascript
+    %SCRIPT
+    app.loadManagedMenu('C:/..../menu.xml');
+```
+
+Use macro trigger `?txs-start` in order to automatically load this menu definition at start-up.
+
 ## Configuring the Toolbar (Advanced option)
 
 TeXstudio can adapt all toolbars with actions from the menus. A "user toolbar" is empty by default and may be used as desired.
