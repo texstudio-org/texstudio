@@ -82,6 +82,41 @@ Note: The most common tests are run automatically, if there were changes
 to the executable (i.e. TXS has been compiled since the last run).
 Furthermore all tests are run once a week.
 
+## Menu Definitions
+
+Menu definitions are used to set-up menus. You can [configure the Menu]{configuration.md#configuring-the-menu-(advanced-option)} to
+have menus defined by you. Of course the existing standard menu is defined in this way. The definition is located in the source
+file `texstudio/uiconfig.xml`. This shows an excerpt:
+
+```xml
+<TexMakerXUI>
+<menu id="main/latex" text="&amp;LaTeX">
+  <insert id="documentclass" text="\documentclass" insert="\documentclass[%&lt;options%|%>]{%&lt;class%>}"/>
+  <insert id="usepackage" text="\usepackage{}" insert="\usepackage[%&lt;options%>]{%&lt;package%|%>}"/>
+  ...
+  
+  <menu id="sectioning" text="&amp;Sectioning">
+    <insert id="part" text="part" insert="\part{%&lt;title%>}" icon="part"/>
+    <insert id="chapter" text="chapter" insert="\chapter{%&lt;title%>}" icon="chapter"/>
+    ...
+  </menu>
+
+  ...
+
+</menu>
+</TexMakerXUI>
+```
+
+The `\<TexMakerXUI\>` tag is mandatory and contains one ore more `\<menu\>` tags. Each menu must have a unique `id` attribute. The
+menu with id \"main/latex\" is the \"LaTeX\" menu (s. text attribute) in the menu bar of TeXstudio, while the menu with id
+\"sectioning\" is a submenu of the LaTeX menu. The character & marks the character which can be used for quick access to the menu.
+
+Most menus not only have submenus but also have items you can select. These are defined with `\<insert\>` tags. As with the menu tags
+these must have a unique id and a text attribute. In addition we have an `insert` attribute which holds the text to be inserted in the
+editor when this item is selected. You may add the `info` attribute which holds text that can be presented by TeXstudio here and then.
+
+Be aware that TeXstudio adds some of its menus in a different way.
+
 ## Description of the cwl format
 
 cwl stands for completion word list and is a file format originally used
