@@ -117,11 +117,6 @@ editor when this item is selected. You may add the `info` attribute which holds 
 
 Be aware that TeXstudio adds some of its menus in a different way.
 
-```note
-Watch out for menu definitions on [texstudio-macro]{https://github.com/texstudio-org/texstudio-macro} which can be downloaded with
-the macro editor.
-```
-
 ## Description of the cwl format
 
 cwl stands for completion word list and is a file format originally used
