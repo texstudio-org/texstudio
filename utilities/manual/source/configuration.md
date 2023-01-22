@@ -798,7 +798,7 @@ Changes to the Slots are discouraged unless you really know what you are doing. 
 ```
 
 In [script macros](advanced.md#script-macros), the command `app.loadManagedMenu()` loads a file that contains your additional [definitions](background.md#menu-definitions) for menus.
-These definition may extend current menu, but also redefine them:
+These definitions may extend current menus, but it may also redefine them:
 
 ```javascript
     %SCRIPT
