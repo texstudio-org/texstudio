@@ -1639,8 +1639,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	connect(confDlg->ui.horizontalSliderSymbol, SIGNAL(valueChanged(int)), SIGNAL(symbolGridIconSizeChanged(int)));
 
 	//EXECUTE IT
+	confDlg->showAndLimitSize();
 	bool executed = confDlg->exec();
-	confDlg->moveIfExceedsScreen();
 	configRiddled = confDlg->riddled;
 
 	//handle changes

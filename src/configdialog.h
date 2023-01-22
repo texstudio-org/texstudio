@@ -102,7 +102,7 @@ public:
 	QList<QMenu *> standardToolbarMenus;
 
 	void setBuildManger(BuildManager *buildManager) { mBuildManager = buildManager; }
-	void moveIfExceedsScreen();
+	void showAndLimitSize();
 	
 	bool riddled;
 public slots:
