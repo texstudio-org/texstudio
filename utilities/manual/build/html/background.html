@@ -677,13 +677,13 @@ arguments are not available and no completion hints are given.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;menu</span> <span class="pre">...&gt;...&lt;/menu&gt;</span></code>: define a menu/submenu. All its entries need to be set between the tags.</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> attribute: unique identifier. “main/latex” is the “LaTeX” menu. The slash <code class="docutils literal notranslate"><span class="pre">/</span></code> is the hierarchy separator. Deeper hierarchies can be directly addressed. A new <code class="docutils literal notranslate"><span class="pre">id</span></code> adds entries instead of redefining them.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> attribute: The text that is shown an the menu name. <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code> marks the following character as character shortcut to reach that menu.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> attribute: The text that is shown as the menu name. <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code> marks the following character as character shortcut to reach that menu.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;insert</span> <span class="pre">...&gt;</span></code>: insert a menu entry</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> attribute: unique identifier. Here, for example “part”. A new <code class="docutils literal notranslate"><span class="pre">id</span></code> adds entries instead of redefining them.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> attribute: The text that is shown an the menu name. <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code> marks the following character as character shortcut to reach that entry.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> attribute: The text that is shown as the menu entry name. <code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code> marks the following character as character shortcut to reach that entry.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">insert</span></code> attribute: text to insert. This is a normal txs macro, so a script with the header <code class="docutils literal notranslate"><span class="pre">%SCRIPT</span></code> works as well.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">icon</span></code> attribute (optional): icon file to show as icon. Usually txs internal files.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">shortcut</span></code> attribute (optional): define a short cut, e.g. <code class="docutils literal notranslate"><span class="pre">shortcut=&quot;Ctrl+Shift+T&quot;</span></code></p></li>

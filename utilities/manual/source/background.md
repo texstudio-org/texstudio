@@ -337,10 +337,10 @@ The following shows an example which redefines the "\documentclass" entry in the
 - `<TexMakerXUI>...</TexMakerXUI>`: mandatory tag to enclose the actual menu definition
 - `<menu ...>...</menu>`: define a menu/submenu. All its entries need to be set between the tags.
   - `id` attribute: unique identifier. "main/latex" is the "LaTeX" menu. The slash `/` is the hierarchy separator. Deeper hierarchies can be directly addressed. A new `id` adds entries instead of redefining them.
-  - `text` attribute: The text that is shown an the menu name. `&amp;` marks the following character as character shortcut to reach that menu.
+  - `text` attribute: The text that is shown as the menu name. `&amp;` marks the following character as character shortcut to reach that menu.
 - `<insert ...>`: insert a menu entry
   - `id` attribute: unique identifier. Here, for example "part". A new `id` adds entries instead of redefining them.
-  - `text` attribute: The text that is shown an the menu name. `&amp;` marks the following character as character shortcut to reach that entry.
+  - `text` attribute: The text that is shown as the menu entry name. `&amp;` marks the following character as character shortcut to reach that entry.
   - `insert` attribute: text to insert. This is a normal txs macro, so a script with the header `%SCRIPT` works as well.
   - `icon` attribute (optional): icon file to show as icon. Usually txs internal files.
   - `shortcut` attribute (optional): define a short cut, e.g. `shortcut="Ctrl+Shift+T"`
