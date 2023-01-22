@@ -797,15 +797,15 @@ The "show all" check box allows to see the complete menu structure of the main w
 Changes to the Slots are discouraged unless you really know what you are doing. No support for changes here is given.
 ```
 
-You can use command `app.loadManagedMenu()` in [script macros](advanced.md#script-macros) to load a file that contains your definitions for menus
-which should be added to the existing menu structure:
+In [script macros](advanced.md#script-macros), the command `app.loadManagedMenu()` loads a file that contains your additional [definitions](background.md#menu-definitions) for menus.
+These definition may extend current menu, but also redefine them:
 
 ```javascript
     %SCRIPT
     app.loadManagedMenu('C:/..../menu.xml');
 ```
 
-Use macro trigger `?txs-start`. The loaded file should contain an XML structure which is described in [Menu Definitions]{background.md#menu-definitions}.
+Use macro trigger `?txs-start`.
 
 ## Configuring the Toolbar (Advanced option)
 
