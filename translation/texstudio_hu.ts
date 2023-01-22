@@ -8151,7 +8151,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
-        <translation>Igényes csomag színekhez, table opcióval a színek táblázatokban való használatához</translation>
+        <translation>Csomag színekhez, table opcióval a színek táblázatokban való használatához</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="494"/>
