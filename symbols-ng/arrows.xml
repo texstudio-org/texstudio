@@ -152,6 +152,7 @@
 	<!-- arg  \textdownarrow -->
 	<commandDefinition>
 		<latexCommand>\textdownarrow</latexCommand>
+		<unicodeCommand>↓</unicodeCommand>
 		<package>
 			<name>textcomp</name>
 		</package>
@@ -161,6 +162,7 @@
 	<!-- arg  \textuparrow -->
 	<commandDefinition>
 		<latexCommand>\textuparrow</latexCommand>
+		<unicodeCommand>↑</unicodeCommand>
 		<package>
 			<name>textcomp</name>
 		</package>
@@ -170,6 +172,7 @@
 	<!-- arg  \textleftarrow -->
 	<commandDefinition>
 		<latexCommand>\textleftarrow</latexCommand>
+		<unicodeCommand>←</unicodeCommand>
 		<package>
 			<name>textcomp</name>
 		</package>
@@ -179,6 +182,7 @@
 	<!-- arg  \textrightarrow -->
 	<commandDefinition>
 		<latexCommand>\textrightarrow</latexCommand>
+		<unicodeCommand>→</unicodeCommand>
 		<package>
 			<name>textcomp</name>
 		</package>

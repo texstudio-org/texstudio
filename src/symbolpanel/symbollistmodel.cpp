@@ -13,7 +13,7 @@
  */
 
 SymbolListModel::SymbolListModel(QVariantMap usageCountMap, QStringList favoriteList) :
-    m_darkMode(false)
+	m_darkMode(false)
 {
 	foreach (const QString &key, usageCountMap.keys()) {
 		usageCount.insert(key, usageCountMap.value(key).toInt());
@@ -123,7 +123,7 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 			symbolItem.packages = img.text("Packages");
 			symbolItem.unicode = img.text("CommandUnicode");
 			symbolItem.iconFile = fileName;
-            symbolItem.icon = QIcon(fileName);
+			symbolItem.icon = QIcon(fileName);
 		}
 		if (!symbolItem.unicode.isEmpty()) {
 			// convert to real unicode
@@ -147,8 +147,8 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 #endif
 				}
 			}
+			helper.replace("<", "&lt;");
 			symbolItem.unicode = helper;
-
 		}
 
 		symbolItem.category = category;
@@ -246,7 +246,7 @@ void SymbolListModel::incrementUsage(const QString &id)
  */
 void SymbolListModel::setDarkmode(bool active)
 {
-    m_darkMode=active;
+	m_darkMode=active;
 }
 /*!
  * \brief add symbol with id to favourite list

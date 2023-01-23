@@ -303,7 +303,7 @@
 	<!-- arg math \Delta -->
 	<commandDefinition>
 		<latexCommand>\Delta</latexCommand>
-		<unicodeCommand>∆</unicodeCommand>
+		<unicodeCommand>Δ</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -346,7 +346,7 @@
 	<!-- arg math \Theta -->
 	<commandDefinition>
 		<latexCommand>\Theta</latexCommand>
-		<unicodeCommand>𝛳</unicodeCommand>
+		<unicodeCommand>Θ</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -443,7 +443,7 @@
 	<!-- arg math \Pi -->
 	<commandDefinition>
 		<latexCommand>\Pi</latexCommand>
-		<unicodeCommand>∏</unicodeCommand>
+		<unicodeCommand>Π</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -470,7 +470,7 @@
 	<!-- arg math \Sigma -->
 	<commandDefinition>
 		<latexCommand>\Sigma</latexCommand>
-		<unicodeCommand>∑</unicodeCommand>
+		<unicodeCommand>Σ</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -497,7 +497,7 @@
 	<!-- arg math \Upsilon -->
 	<commandDefinition>
 		<latexCommand>\Upsilon</latexCommand>
-		<unicodeCommand>ϒ</unicodeCommand>
+		<unicodeCommand>Υ</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -562,7 +562,7 @@
 	<!-- arg math \Omega -->
 	<commandDefinition>
 		<latexCommand>\Omega</latexCommand>
-		<unicodeCommand>Ω</unicodeCommand>
+		<unicodeCommand>Ω</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
