@@ -215,7 +215,6 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 		}
 		return true;
 	}
-    qDebug()<<event->key();
     if (!event->text().isEmpty() || event->key()==Qt::Key_Tab) {
 		if (!editor->flag(QEditor::Overwrite) && runMacros(event, editor))
 			return true;
