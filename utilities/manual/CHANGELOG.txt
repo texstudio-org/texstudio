@@ -14,7 +14,9 @@ TeXstudio 4.5.1
 - preview/clear preview now use position of context menu as reference (#2794)
 - add a Package Tab to the QuickStart Wizard (#2831)
 - Editor option 'Show Only Monospaced Fonts' is now persistent (#788)
-- Fix size of config dialog on low res screens (#995)
+- fix size of config dialog on low res screens (#995)
+- add script command loadManagedMenu, s. new section "Menu Definitions" in the manual (#2816)
+- switch to pointer cursor over bookmark column of editors (#2220)
 
 TeXstudio 4.4.1
 -----------------
