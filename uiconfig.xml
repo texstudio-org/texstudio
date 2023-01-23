@@ -246,7 +246,7 @@
 
 <menu id="main/math" text="&amp;Math">
   
-  <insert id="mathmode" text="Inline math mode $...$" insert="$%|$" info="The math environment can be used in both paragraph and LR mode" icon="mathmode" shortcut="Ctrl+Shift+M"/>
+  <insert id="mathmode" text="Inline math mode $...$" insert="$%&lt; %>$" info="The math environment can be used in both paragraph and LR mode" icon="mathmode" shortcut="Ctrl+Shift+M"/>
   <insert id="latexmathmode" text="LaTeX inline math mode \(...\)" insert="\( %| \)" info="The LaTeX math environment can be used in both paragraph and LR mode"/>
   <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
   <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript" shortcut="Ctrl+Shift+D"/>  
