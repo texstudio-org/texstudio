@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2022/12/26 for v3.84
+# tbraun 4.11.2008; Matthew Bertucci 2023/01/23 for v3.85
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -94,7 +94,7 @@ CharacterVariant={%<glyph num list%>:%<variety num%>}
 CharacterWidth=#Proportional,Full,Half,Thurd,Quarter,AlternateProportional,AlternateHalf,ResetAll
 Color=#%color
 Colour=#%color
-Contextuals=#Swash,Alternate,WordInitial,WordFinal,LineFinal,Inner,ResetAll
+Contextuals=#Swash,SwashOff,Alternate,AlternateOff,WordInitial,WordInitialOff,WordFinal,WordFinalOff,LineFinal,LineFinalOff,Inner,InnerOff,ResetAll
 Diacritics=#MarkToBase,MarkToMark,AboveBase,BelowBase,ResetAll
 Extension=%<extension%>
 FakeBold=%<number%>
@@ -115,6 +115,7 @@ Ligatures=#Required,Common,Contextual,Rare,Discretionary,Historic,TeX
 LocalForms=#On,Off,Reset
 NFSSFamily=%<font family%>
 Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle,OldStyleOff,Proportional,ProportionalOff,Monospaced,MonospacedOff,SlashedZero,SlashedZeroOff,Arabic,ArabicOff,ResetAll
+Opacity=%<factor%>
 OpticalSize=%<size%>
 Ornament=
 Path=%<file path%>
@@ -129,7 +130,7 @@ SlantedFeatures={%<features%>}
 SlantedFont=%<font name%>
 SmallCapsFeatures={%<features%>}
 SmallCapsFont=%<font name%>
-Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,HorizontalKana,VerticalKana,ResetAll
+Style=#Alternate,Italic,Ruby,Swash,Cursive,Historic,Titling,Uppercase,HorizontalKana,VerticalKana,ResetAll
 StylisticAlternates=%<feature%>
 StylisticSet=%<set number%>
 SwashFeatures={%<features%>}
@@ -147,7 +148,7 @@ Renderer=%<renderer%>
 \setlocalecaption{language}{caption_name}{string}#*
 \babelprovide[options%keyvals]{language}
 
-#keyvals:\babelprovide
+#keyvals:\babelprovide#c
 import
 import=%<language tag%>
 captions=%<language tag%>
@@ -160,7 +161,7 @@ Alph=%<counter%>
 onchar=#ids,fonts,letters
 intraspace=%<base shrink stretch%>
 intrapenalty=%<penalty%>
-transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,diaeresis.hyphen,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,kashida.plain,transliteration.gajica
+transforms=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
 justification=#kashida,elongated,unhyphenated,padding
 linebreaking=#kashida,elongated,unhyphenated,padding
 mapfont=
@@ -220,12 +221,39 @@ extension.u.tag.bcp47
 \end{hyphenrules}
 \babelpatterns{patterns}#*
 \babelpatterns[lang1,lang2,...]{patterns}#*
+
 \babelposthyphenation{hypenrules-name}{lua-pattern}{replacement}#*
 \babelposthyphenation[options%keyvals]{hypenrules-name}{lua-pattern}{replacement}#*
 \babelprehyphenation{locale-name}{lua-pattern}{replacement}#*
 \babelprehyphenation[options%keyvals]{locale-name}{lua-pattern}{replacement}#*
+
 #keyvals:\babelposthyphenation#c,\babelprehyphenation#c
-attribute=
+label=#transliteration.dad,digraphs.ligatures,hyphen.repeat,oneletter.nobreak,prehyphen.nobreak,diaeresis.hyphen,transliteration.omega,sigma.final,transliteration.hk,punctuation.space,digraphs.hyphen,danda.nobreak,letters.noj,letters.uv,transliteration.iast,transliteration.gajica,kashida.plain
+fonts=%<tag1 tag2 ...%>
+attribute=%<attribute%>
+#endkeyvals
+
+\enablelocaletransform{transform%keyvals}
+\disablelocaletransform{transform%keyvals}
+
+#keyvals:\enablelocaletransform,\disablelocaletransform
+transliteration.dad
+digraphs.ligatures
+hyphen.repeat
+oneletter.nobreak
+prehyphen.nobreak
+diaeresis.hyphen
+transliteration.omega
+sigma.final
+transliteration.hk
+punctuation.space
+digraphs.hyphen
+danda.nobreak
+letters.noj
+letters.uv
+transliteration.iast
+transliteration.gajica
+kashida.plain
 #endkeyvals
 
 \ensureascii{text}#*
