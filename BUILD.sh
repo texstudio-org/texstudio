@@ -79,7 +79,7 @@ if [ "$OPTION_DEBUG_LOGGER" = yes ]; then TXSCOMPILEOPTIONS="$TXSCOMPILEOPTIONS 
 echo "Starting compilation"
 if (test -d "./build") then echo "remove previous build folder";rm -rf ./build; fi
 mkdir build
-cmake PREFIX=$PREFIX $TXSCOMPILEOPTIONS . -B ./build
+cmake -Wno-dev PREFIX=$PREFIX $TXSCOMPILEOPTIONS . -B ./build
 cmake --build ./build --parallel
 echo "Compilation done"
 if [ "$DO_INSTALL" = yes ]; then
