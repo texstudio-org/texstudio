@@ -1,5 +1,5 @@
 # expkv package
-# Matthew Bertucci 2023/01/23 for v2023/01/23
+# Matthew Bertucci 2023/01/23 for v2.0
 
 #keyvals:\usepackage/expkv#c
 all
