@@ -1510,8 +1510,8 @@ jourcl:
 class-jourcl
 latex-document
 tex
-xput:
-class-xput
+pagelayout:
+class-pagelayout
 latex-document
 tex
 jwjournal:
