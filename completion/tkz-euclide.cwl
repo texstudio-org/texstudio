@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 2023/01/23 for v5.00c
+# Matthew Bertucci 2023/01/24 for v5.01c
 
 #include:tikz
 #include:tikzlibraryangles
@@ -30,9 +30,6 @@ lua
 # from tkz-tools-lua-angles.tex
 \tkzmathanglebetweenpoints{arg1}{arg2}#*
 # from tkz-tools-lua-math.tex
-\cpxNew{arg1}{arg2}#*
-\cpxPrint{arg}#*
-\cpxAdd{arg1}{arg2}{arg3}#*
 \tkzSqrt{arg}#*
 \tkzExp{arg}#*
 \tkzLog{arg}#*
@@ -1418,7 +1415,8 @@ noydraw#true,false
 
 # from tkz-obj-eu-points-spc.tex
 \tkzDefBCPoint(point1=num1,point2=num2,...)#*
-\tkzDefCentroid(point1,point2,...)#*
+\tkzDivHarmonic(pt1,pt2,pt3)#*
+\tkzDivHarmonic[options%keyvals](pt1,pt2,pt3)#*
 \tkzOrthoCenter(point1,point2,point3)#*
 \tkzDefOrthoCenter(point1,point2,point3)#*
 \tkzCentroid(point1,point2,point3)#*
