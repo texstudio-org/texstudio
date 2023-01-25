@@ -511,6 +511,8 @@ PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> a
 	}
 #if QT_VERSION_MAJOR>=6
     setSource(QUrl::fromLocalFile(url));
+    audioOutput = new QAudioOutput;
+    this->setAudioOutput(audioOutput);
 #else
 	this->setMedia(QUrl::fromLocalFile(url));
 #endif
@@ -581,6 +583,11 @@ void PDFMovie::realPlay()
 void PDFMovie::setVolumeDialog()
 {
 #if QT_VERSION_MAJOR>=6
+    float vol = audioOutput->volume();
+    UniversalInputDialog uid;
+    uid.addVariable(&vol, tr("Volume:"));
+    if (!uid.exec()) return;
+    audioOutput->setVolume(vol);
 #else
     float vol = volume();
     UniversalInputDialog uid;

@@ -155,6 +155,7 @@ private:
 	QRectF boundary;
 	int page;
 	PDFVideoWidget *videoWidget = nullptr;
+    QAudioOutput *audioOutput = nullptr;
 };
 #endif
 
