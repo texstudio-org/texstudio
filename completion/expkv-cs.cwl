@@ -1,9 +1,9 @@
 # expkv-cs package
-# Matthew Bertucci 11/3/2021 for v1.1a
+# Matthew Bertucci 2023/01/23 for v1.3
 
-#include:expkv
+#include:expkv-pop
 
-## 1.1 Define Macros and Primary Keys ##
+## Define Macros and Primary Keys ##
 \ekvcSplit{cmd}{primary keys}{definition}#*d
 \ekvcSplitAndForward{cmd}{after}{primary keys}#*d
 \ekvcSplitAndUse{cmd}{primary keys}#*d
@@ -15,27 +15,29 @@
 \ekvcValueSplit{key%plain}{key list}{next}#*
 \ekvcValueSplitFast{key%plain}{key list}{next}#*
 
-## 1.2 Secondary Key ##
+## Secondary Key ##
 \ekvcSecondaryKeys{cmd}{keyvals}#*d
 
-## 1.3 Changing the Initial Values ##
+## Changing the Initial Values ##
 \ekvcChange{cmd}{keyvals}#*d
 
-## 1.5 Flags ##
-\ekvcFlagNew%<<flag>%>#*
+## Flags ##
+\ekvcFlagNew%<⟨flag⟩%>#*
 \ekvcFlagNew{cmd}#Sd
-\ekvcFlagHeight%<<flag>%>#*
-\ekvcFlagRaise%<<flag>%>#*
-\ekvcFlagSetTrue%<<flag>%>#*
-\ekvcFlagSetFalse%<<flag>%>#*
-\ekvcFlagIf%<<flag>%>{%<true%>}{%<false%>}#*
-\ekvcFlagIfRaised%<<flag>%>{%<true%>}{%<false%>}#*
-\ekvcFlagReset%<<flag>%>#*
-\ekvcFlagGetHeight%<<flag>%>{%<next%>}#*
+\ekvcFlagHeight%<⟨flag⟩%>#*
+\ekvcFlagRaise%<⟨flag⟩%>#*
+\ekvcFlagSetTrue%<⟨flag⟩%>#*
+\ekvcFlagSetFalse%<⟨flag⟩%>#*
+\ekvcFlagIf%<⟨flag⟩%>{%<true%>}{%<false%>}#*
+\ekvcFlagIfRaised%<⟨flag⟩%>{%<true%>}{%<false%>}#*
+\ekvcFlagReset%<⟨flag⟩%>#*
+\ekvcFlagResetGlobal%<⟨flag⟩%>#*
+\ekvcFlagGetHeight%<⟨flag⟩%>{%<next%>}#*
 \ekvcFlagGetHeights{flag-list}{next}#*
 
-## 1.7 Freedom for Keys! ##
+## Freedom for Keys! ##
 \ekvcPass{cmd}{key%plain}{value}#*
 
+## Useless Macros ##
 \ekvcDate#S
 \ekvcVersion#S

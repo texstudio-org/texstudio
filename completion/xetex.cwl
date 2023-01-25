@@ -142,5 +142,6 @@
 \XeTeXrevision#*
 
 # other (not in ref guide)
+\creationdate#*
 \XeTeXhyphenatablelength#*
 \XeTeXinterwordspaceshaping#*

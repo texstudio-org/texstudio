@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2022/12/23 for v2.19.0-0-g80fcf20
+# Matthew Bertucci 2023/01/23 for v2.20.0
 
 #include:paralist
 #include:amsmath
@@ -7,6 +7,7 @@
 #include:csvsimple
 #include:fancyvrb
 #include:graphicx
+#include:ltxcmds
 #include:gobble
 #include:url
 #include:etoolbox
@@ -216,7 +217,9 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererAmpersand#*
 \markdownRendererAmpersandPrototype#*
 \markdownRendererAttributeClassName#*
+\markdownRendererAttributeClassNamePrototype#*
 \markdownRendererAttributeIdentifier#*
+\markdownRendererAttributeIdentifierPrototype#*
 \markdownRendererAttributeKeyValue#*
 \markdownRendererBackslash#*
 \markdownRendererBackslashPrototype#*
@@ -290,7 +293,9 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererHash#*
 \markdownRendererHashPrototype#*
 \markdownRendererHeaderAttributeContextBegin#*
+\markdownRendererHeaderAttributeContextBeginPrototype#*
 \markdownRendererHeaderAttributeContextEnd#*
+\markdownRendererHeaderAttributeContextEndPrototype#*
 \markdownRendererHeadingFive#*
 \markdownRendererHeadingFivePrototype{arg1}#*
 \markdownRendererHeadingFour#*
@@ -368,6 +373,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererPercentSignPrototype#*
 \markdownRendererPipe#*
 \markdownRendererPipePrototype#*
+\markdownRendererReplacementCharacter#*
+\markdownRendererReplacementCharacterPrototype#*
 \markdownRendererRightBrace#*
 \markdownRendererRightBracePrototype#*
 \markdownRendererStrikeThrough#*

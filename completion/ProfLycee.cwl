@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/01/18 for v2.1.6
+# Matthew Bertucci 2023/01/24 for v2.1.7
 
 #include:mathtools
 #include:xcolor
@@ -304,6 +304,7 @@ Epaisseur=%<épaisseur%>
 Aff#true,false
 Plein#true,false
 Cube#true,false
+Math#true,false
 #endkeyvals
 
 ## Tétraèdre « simple » ##
@@ -320,6 +321,7 @@ Sommets=%<A1§...§A8%>
 Epaisseur=%<épaisseur%>
 Aff#true,false
 Plein#true,false
+Math#true,false
 #endkeyvals
 
 ## Cercle trigo ##

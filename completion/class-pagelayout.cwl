@@ -1,5 +1,5 @@
-# xput class
-# Matthew Bertucci 2023/01/04 for v1.0.2
+# pagelayout class
+# Matthew Bertucci 2023/01/24 for v1.0.3
 
 #include:pgfopts
 #include:tikz
@@ -7,7 +7,7 @@
 #include:tcolorboxlibrarymagazine
 #include:class-standalone
 
-#keyvals:\documentclass/xput#c
+#keyvals:\documentclass/pagelayout#c
 pagewidth=##L
 pageheight=##L
 bleed=##L
@@ -301,4 +301,4 @@ downsample threshold=%<number%>
 \sectioncalled#S
 \setcolor{color}#S
 \setgraphpaper{arg}#S
-\Xputversion#S
+\pagelayoutversion#S

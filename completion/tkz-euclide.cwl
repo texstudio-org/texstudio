@@ -1,5 +1,5 @@
 # tkz-euclide package
-# Matthew Bertucci 2022/09/23 for v4.25c
+# Matthew Bertucci 2023/01/24 for v5.01c
 
 #include:tikz
 #include:tikzlibraryangles
@@ -20,6 +20,22 @@
 #include:tikzlibrarythrough
 #include:xfp
 #include:xpatch
+
+#keyvals:\usepackage/tkz-euclide#c
+lua
+#endkeyvals
+
+#ifOption:lua
+#include:luacode
+# from tkz-tools-lua-angles.tex
+\tkzmathanglebetweenpoints{arg1}{arg2}#*
+# from tkz-tools-lua-math.tex
+\tkzSqrt{arg}#*
+\tkzExp{arg}#*
+\tkzLog{arg}#*
+\tkzSin{arg}#*
+\tkzCos{arg}#*
+#endif
 
 ### II. Setting ###
 
@@ -1129,6 +1145,7 @@ delta=%<number%>
 
 # from tkz-tools-eu-math.tex
 \tkzpointnormalised{arg}#*
+\tkzmathrotatepointaround{arg1}{arg2}{arg3}#*
 
 # from tkz-tools-eu-utilities.tex
 \extractxy{arg}#*
@@ -1214,7 +1231,7 @@ tickrt=##L
 \tkzClipOutPolytrue#*
 \tkzClipOutPolyfalse#*
 
-# from tkz-obj-eu-draw-circles.tex
+# from tkz-draw-eu-circles.tex
 \tkzSetUpCircle[options]#*
 \iftkzClipOutCircle#*
 \tkzClipOutCircletrue#*
@@ -1274,7 +1291,7 @@ line width=##L
 \tkzDefTangentialTriangle[options](point1,point2,point3)(ref1,ref2)#*
 \tkzDefSymmedialTriangle[options](point1,point2,point3)(ref1,ref2)#*
 
-# from tkz-obj-eu-draw-points.tex
+# from tkz-draw-eu-points.tex
 \tkzPointShowCoord(point)#*
 \tkzPointShowCoord[options%keyvals](point)#*
 \tkzShowPointCoord(point)#*
@@ -1282,7 +1299,6 @@ line width=##L
 
 # from tkz-obj-eu-circles.tex
 \tkzDefCircleR(point1,point2)#*
-\tkzDefCircleThrough(point1,point2)#*
 \tkzDefCircleD(point1,point2)#*
 \tkzDefCircumCircle(point1,point2,point3)#*
 \tkzDefInCircle(point1,point2,point3)#*
@@ -1297,7 +1313,7 @@ line width=##L
 \tkzDefOrthoThroughCircle(point1,point2,point3,point4)#*
 \tkzDefSpiekerCircle(point1,point2,point3)#*
 
-# from tkz-obj-eu-sectors.tex
+# from tkz-draw-eu-sectors.tex
 \tkzDrawSectorRAngles[options](point1,point2)(point3)#*
 \tkzDrawSectorN[options](point1,point2)(point3)#*
 \tkzDrawSectorRotate[options](point1,point2)(point3)#*
@@ -1341,7 +1357,7 @@ noydraw#true,false
 
 \tkzGetPointxy(arg1){arg2}#*
 
-# from tkz-obj-eu-draw-angles.tex
+# from tkz-draw-eu-angles.tex
 \tkzDrawArcTowards[options](point1,point2)(point3)#*
 \tkzDrawArcRotate[options](point1,point2)(point3)#*
 \tkzDrawArcAngles[options](point1,point2)(point3)#*
@@ -1365,7 +1381,7 @@ noydraw#true,false
 \tkzVecKOrthNorm[options](point1,point2)#*
 \tkzVecKNorm[options](point1,point2)#*
 
-# from tkz-obj-eu-show.tex
+# from tkz-draw-eu-show.tex
 \tkzShowMediatorLine[opts](arg)#*
 \tkzShowLLLine[opts](arg1)(arg2)#*
 \tkzShowOrthLine[opts](arg1)(arg2)#*
@@ -1399,7 +1415,8 @@ noydraw#true,false
 
 # from tkz-obj-eu-points-spc.tex
 \tkzDefBCPoint(point1=num1,point2=num2,...)#*
-\tkzDefCentroid(point1,point2,...)#*
+\tkzDivHarmonic(pt1,pt2,pt3)#*
+\tkzDivHarmonic[options%keyvals](pt1,pt2,pt3)#*
 \tkzOrthoCenter(point1,point2,point3)#*
 \tkzDefOrthoCenter(point1,point2,point3)#*
 \tkzCentroid(point1,point2,point3)#*
@@ -1447,7 +1464,7 @@ noydraw#true,false
 # from tkz-obj-eu-base.tex
 \tkzAddName[options]{name}#*
 
-# from tkz-obj-eu-protractor.tex
+# from tkz-draw-eu-protractor.tex
 \FullProtractor#*
 \FullProtractorReturn#*
 

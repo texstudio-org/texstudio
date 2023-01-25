@@ -151,6 +151,7 @@ nofoot#true,false
 noheadfoot#true,false
 footnotesep=##L
 marginparwidth=##L
+marginpar=##L
 marginparsep=##L
 nomarginpar#true,false
 columnsep=##L
