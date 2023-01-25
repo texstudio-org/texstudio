@@ -509,7 +509,11 @@ PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> a
 		QMessageBox::warning(videoWidget, "", tr("File %1 does not exists").arg(url));
 		return;
 	}
+#if QT_VERSION_MAJOR>=6
+    setSource(QUrl::fromLocalFile(url));
+#else
 	this->setMedia(QUrl::fromLocalFile(url));
+#endif
 
 	if(videoWidget) delete videoWidget;
 	videoWidget = new PDFVideoWidget(parent, this);
@@ -545,28 +549,45 @@ void PDFVideoWidget::contextMenuEvent(QContextMenuEvent *e)
 void PDFVideoWidget::mouseReleaseEvent(QMouseEvent *e)
 {
 	//qDebug() << "click: "<<isPaused() << " == !" << isPlaying() << " " << currentTime() << " / " << totalTime();
-	if (movie->state() == QMediaPlayer::PlayingState) movie->pause();
-	else movie->realPlay();
+#if QT_VERSION_MAJOR>=6
+    if (movie->playbackState() == QMediaPlayer::PlayingState) movie->pause();
+    else movie->realPlay();
+#else
+    if (movie->state() == QMediaPlayer::PlayingState) movie->pause();
+    else movie->realPlay();
+#endif
 	e->accept();
 }
 
 void PDFMovie::realPlay()
 {
-	if (this->state() == QMediaPlayer::PlayingState) return;
+#if QT_VERSION_MAJOR>=6
+    if (this->playbackState() == QMediaPlayer::PlayingState) return;
+    if (this->playbackState() == QMediaPlayer::PausedState && position() < duration()) this->play();
+    else {
+        setPosition(0);
+        QTimer::singleShot(500, this, SLOT(play()));
+    }
+#else
+    if (this->state() == QMediaPlayer::PlayingState) return;
 	if (this->state() == QMediaPlayer::PausedState && position() < duration()) this->play();
 	else {
 		setPosition(0);
 		QTimer::singleShot(500, this, SLOT(play()));
 	}
+#endif
 }
 
 void PDFMovie::setVolumeDialog()
 {
-	float vol = volume();
-	UniversalInputDialog uid;
-	uid.addVariable(&vol, tr("Volume:"));
-	if (!uid.exec()) return;
-	setVolume(vol);
+#if QT_VERSION_MAJOR>=6
+#else
+    float vol = volume();
+    UniversalInputDialog uid;
+    uid.addVariable(&vol, tr("Volume:"));
+    if (!uid.exec()) return;
+    setVolume(vol);
+#endif
 }
 
 void PDFMovie::seekDialog()
