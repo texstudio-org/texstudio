@@ -1,5 +1,5 @@
 # frenchmath package
-# Matthew Bertucci 2022/12/26 for v2.3
+# Matthew Bertucci 2023/01/23 for v2.4
 
 #include:ifthen
 #include:mathrsfs
@@ -8,12 +8,14 @@
 #include:xspace
 #include:ibrackets
 #include:ncccomma
+#include:iftex
 
 #keyvals:\usepackage/frenchmath#c
 capsit
 lgrmath
 upgreek
 Upgreek
+noibrackets
 #endkeyvals
 
 #ifOption:lgrmath

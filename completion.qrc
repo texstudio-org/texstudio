@@ -833,6 +833,7 @@
 <file>completion/class-oblivoir.cwl</file>
 <file>completion/class-octavo.cwl</file>
 <file>completion/class-oup-authoring-template.cwl</file>
+<file>completion/class-pagelayout.cwl</file>
 <file>completion/class-papertex.cwl</file>
 <file>completion/class-pdfArticle.cwl</file>
 <file>completion/class-petiteannonce.cwl</file>
@@ -960,7 +961,6 @@
 <file>completion/class-xduugtp.cwl</file>
 <file>completion/class-xebaposter.cwl</file>
 <file>completion/class-xepersian-magazine.cwl</file>
-<file>completion/class-xput.cwl</file>
 <file>completion/class-yaletter.cwl</file>
 <file>completion/class-ycbook.cwl</file>
 <file>completion/class-ydoc.cwl</file>
@@ -1409,6 +1409,7 @@
 <file>completion/expkv.cwl</file>
 <file>completion/expkv-def.cwl</file>
 <file>completion/expkv-opt.cwl</file>
+<file>completion/expkv-pop.cwl</file>
 <file>completion/expl3.cwl</file>
 <file>completion/export.cwl</file>
 <file>completion/exp-testopt.cwl</file>
