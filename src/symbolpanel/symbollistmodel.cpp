@@ -86,10 +86,10 @@ SymbolItem loadSymbolFromSvg(QString fileName)
 	if (!nl.isEmpty()) {
 		QDomNode n = nl.at(0);
 		QString pkg = n.toElement().attribute("Packages");
-		if (!pkg.isEmpty())
+		if (!pkg.isEmpty() && pkg != "")
 			item.packages = pkg;
 		QString cmdUnicode = n.toElement().attribute("CommandUnicode");
-		if (!cmdUnicode.isEmpty())
+		if (!cmdUnicode.isEmpty() && cmdUnicode!="")
 			item.unicode = cmdUnicode;
 	}
 
@@ -329,8 +329,7 @@ QString SymbolListModel::getTooltip(const SymbolItem &item) const
 {
 	QStringList args, pkgs;
 
-	QString label = item.command;
-	label.replace("<", "&lt;");
+	QString label = item.command.toHtmlEscaped();
 	label = tr("Command: ") + "<b>" + label + "</b>";
 
 	QRegExp rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
@@ -356,11 +355,8 @@ QString SymbolListModel::getTooltip(const SymbolItem &item) const
 				label = label + pkgs[j] ;
 		}
 	}
-	if (!item.unicode.isEmpty()) {
-		QString unicodeChar = item.unicode;
-		unicodeChar.replace("<", "&lt;");
-		label += "<br>" + tr("Unicode Character: ") + unicodeChar;
-	}
+	if (!item.unicode.isEmpty())
+		label += "<br>" + tr("Unicode Character: ") + item.unicode.toHtmlEscaped();
 	return label;
 }
 
