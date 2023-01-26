@@ -1874,7 +1874,7 @@ Dado que o Unicode não tem suporte nativo no LaTeX, tem de incluir os pacotes a
     <message>
         <location filename="../src/configdialog.ui" line="1378"/>
         <source>Note: The change of symbols can be monitored live</source>
-        <translation type="unfinished"/>
+        <translation>Nota: a mudança de símbolos pode ser monitorada em tempo real</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2547"/>
@@ -3194,7 +3194,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="34"/>
         <source>The main American Mathematical Society packages</source>
-        <translation type="unfinished"/>
+        <translation>Os principais pacotes da American Mathematical Society</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="35"/>
@@ -3204,17 +3204,17 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation type="unfinished"/>
+        <translation>Texto é permitido somente entre \begin{document} e \end{document}.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>The \title command declares text to be the title.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \title declara o texto para ser o título.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \author{nomes} declara o(s) autor(es), onde *nomes* é uma lista (possivelmente unitária) de autores separados pelo comando \and.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
@@ -3840,12 +3840,12 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Turn on review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Ligar comentários de revisão no pdf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>Turn off review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Desligar comentários de revisão no pdf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
@@ -4060,7 +4060,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>regular whitespace</source>
-        <translation type="unfinished"/>
+        <translation>espaço regular</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
@@ -4928,7 +4928,7 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="391"/>
         <source>Save Image As...</source>
-        <translation type="unfinished"/>
+        <translation>Salvar imagem como...</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="450"/>
@@ -7953,173 +7953,173 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
 <context>
     <name>QuickDocumentDialog</name>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="62"/>
+        <location filename="../src/quickdocumentdialog.ui" line="682"/>
         <source>OK</source>
         <translation>Aceitar</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="69"/>
+        <location filename="../src/quickdocumentdialog.ui" line="689"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="111"/>
+        <location filename="../src/quickdocumentdialog.ui" line="65"/>
         <source>Title</source>
         <translation>Título</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="121"/>
+        <location filename="../src/quickdocumentdialog.ui" line="75"/>
         <source>Babel</source>
         <translation>Babel</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="137"/>
+        <location filename="../src/quickdocumentdialog.ui" line="91"/>
         <source>Document Class</source>
         <translation>Classe do documento</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="161"/>
+        <location filename="../src/quickdocumentdialog.ui" line="115"/>
         <source>Typeface Size</source>
         <translation>Tamanho da letra</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="174"/>
+        <location filename="../src/quickdocumentdialog.ui" line="128"/>
         <source>Other Options</source>
         <translation>Outras opções</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="226"/>
+        <location filename="../src/quickdocumentdialog.ui" line="180"/>
         <source>Paper Size</source>
         <translation>Tamanho do papel</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="248"/>
+        <location filename="../src/quickdocumentdialog.ui" line="202"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="82"/>
+        <location filename="../src/quickdocumentdialog.ui" line="36"/>
         <source>&amp;Class Options</source>
-        <translation type="unfinished"/>
+        <translation>Opções da &amp;Classe</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="255"/>
+        <location filename="../src/quickdocumentdialog.ui" line="209"/>
         <source>Font Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificação de Fonte</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="279"/>
+        <location filename="../src/quickdocumentdialog.ui" line="233"/>
         <source>&amp;Packages</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pacotes</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="303"/>
+        <location filename="../src/quickdocumentdialog.ui" line="251"/>
         <source>Package</source>
         <translation>Pacote</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="308"/>
+        <location filename="../src/quickdocumentdialog.ui" line="256"/>
         <source>Description</source>
         <translation>Descrição</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="371"/>
+        <location filename="../src/quickdocumentdialog.ui" line="278"/>
         <source>&amp;Geometry</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Geometria</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="399"/>
+        <location filename="../src/quickdocumentdialog.ui" line="306"/>
         <source>Page</source>
         <translation>Página</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="405"/>
+        <location filename="../src/quickdocumentdialog.ui" line="312"/>
         <source>Width:</source>
         <translation>Largura:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="415"/>
-        <location filename="../src/quickdocumentdialog.ui" line="429"/>
-        <location filename="../src/quickdocumentdialog.ui" line="461"/>
-        <location filename="../src/quickdocumentdialog.ui" line="492"/>
-        <location filename="../src/quickdocumentdialog.ui" line="528"/>
-        <location filename="../src/quickdocumentdialog.ui" line="545"/>
-        <location filename="../src/quickdocumentdialog.ui" line="583"/>
+        <location filename="../src/quickdocumentdialog.ui" line="322"/>
+        <location filename="../src/quickdocumentdialog.ui" line="336"/>
+        <location filename="../src/quickdocumentdialog.ui" line="368"/>
+        <location filename="../src/quickdocumentdialog.ui" line="399"/>
+        <location filename="../src/quickdocumentdialog.ui" line="435"/>
+        <location filename="../src/quickdocumentdialog.ui" line="452"/>
+        <location filename="../src/quickdocumentdialog.ui" line="490"/>
+        <location filename="../src/quickdocumentdialog.ui" line="507"/>
+        <location filename="../src/quickdocumentdialog.ui" line="538"/>
+        <location filename="../src/quickdocumentdialog.ui" line="555"/>
         <location filename="../src/quickdocumentdialog.ui" line="600"/>
-        <location filename="../src/quickdocumentdialog.ui" line="631"/>
-        <location filename="../src/quickdocumentdialog.ui" line="648"/>
-        <location filename="../src/quickdocumentdialog.ui" line="693"/>
-        <location filename="../src/quickdocumentdialog.ui" line="710"/>
+        <location filename="../src/quickdocumentdialog.ui" line="617"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="434"/>
-        <location filename="../src/quickdocumentdialog.ui" line="466"/>
-        <location filename="../src/quickdocumentdialog.ui" line="550"/>
-        <location filename="../src/quickdocumentdialog.ui" line="605"/>
-        <location filename="../src/quickdocumentdialog.ui" line="653"/>
-        <location filename="../src/quickdocumentdialog.ui" line="715"/>
+        <location filename="../src/quickdocumentdialog.ui" line="341"/>
+        <location filename="../src/quickdocumentdialog.ui" line="373"/>
+        <location filename="../src/quickdocumentdialog.ui" line="457"/>
+        <location filename="../src/quickdocumentdialog.ui" line="512"/>
+        <location filename="../src/quickdocumentdialog.ui" line="560"/>
+        <location filename="../src/quickdocumentdialog.ui" line="622"/>
         <source>cm</source>
         <translation>cm</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="439"/>
-        <location filename="../src/quickdocumentdialog.ui" line="471"/>
-        <location filename="../src/quickdocumentdialog.ui" line="555"/>
-        <location filename="../src/quickdocumentdialog.ui" line="610"/>
-        <location filename="../src/quickdocumentdialog.ui" line="658"/>
-        <location filename="../src/quickdocumentdialog.ui" line="720"/>
+        <location filename="../src/quickdocumentdialog.ui" line="346"/>
+        <location filename="../src/quickdocumentdialog.ui" line="378"/>
+        <location filename="../src/quickdocumentdialog.ui" line="462"/>
+        <location filename="../src/quickdocumentdialog.ui" line="517"/>
+        <location filename="../src/quickdocumentdialog.ui" line="565"/>
+        <location filename="../src/quickdocumentdialog.ui" line="627"/>
         <source>pt</source>
         <translation>pt</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="444"/>
-        <location filename="../src/quickdocumentdialog.ui" line="476"/>
-        <location filename="../src/quickdocumentdialog.ui" line="560"/>
-        <location filename="../src/quickdocumentdialog.ui" line="615"/>
-        <location filename="../src/quickdocumentdialog.ui" line="663"/>
-        <location filename="../src/quickdocumentdialog.ui" line="725"/>
+        <location filename="../src/quickdocumentdialog.ui" line="351"/>
+        <location filename="../src/quickdocumentdialog.ui" line="383"/>
+        <location filename="../src/quickdocumentdialog.ui" line="467"/>
+        <location filename="../src/quickdocumentdialog.ui" line="522"/>
+        <location filename="../src/quickdocumentdialog.ui" line="570"/>
+        <location filename="../src/quickdocumentdialog.ui" line="632"/>
         <source>bp</source>
         <translation>bp</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="449"/>
-        <location filename="../src/quickdocumentdialog.ui" line="481"/>
-        <location filename="../src/quickdocumentdialog.ui" line="565"/>
-        <location filename="../src/quickdocumentdialog.ui" line="620"/>
-        <location filename="../src/quickdocumentdialog.ui" line="668"/>
-        <location filename="../src/quickdocumentdialog.ui" line="730"/>
+        <location filename="../src/quickdocumentdialog.ui" line="356"/>
+        <location filename="../src/quickdocumentdialog.ui" line="388"/>
+        <location filename="../src/quickdocumentdialog.ui" line="472"/>
+        <location filename="../src/quickdocumentdialog.ui" line="527"/>
+        <location filename="../src/quickdocumentdialog.ui" line="575"/>
+        <location filename="../src/quickdocumentdialog.ui" line="637"/>
         <source>in</source>
         <translation>pol</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="502"/>
+        <location filename="../src/quickdocumentdialog.ui" line="409"/>
         <source>Height:</source>
         <translation>Altura:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="512"/>
+        <location filename="../src/quickdocumentdialog.ui" line="419"/>
         <source>Margins</source>
         <translation>Margens</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="518"/>
+        <location filename="../src/quickdocumentdialog.ui" line="425"/>
         <source>Left:</source>
         <translation>Esquerda:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="573"/>
+        <location filename="../src/quickdocumentdialog.ui" line="480"/>
         <source>Right:</source>
         <translation>Direita:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="676"/>
+        <location filename="../src/quickdocumentdialog.ui" line="583"/>
         <source>Top:</source>
         <translation>Superior:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="683"/>
+        <location filename="../src/quickdocumentdialog.ui" line="590"/>
         <source>Bottom:</source>
         <translation>Inferior:</translation>
     </message>
@@ -8131,7 +8131,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="294"/>
         <source>Mathematical symbols from AMS</source>
-        <translation type="unfinished"/>
+        <translation>Símbolos matemáticos da AMS</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="295"/>
@@ -8161,25 +8161,25 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
         <source>Extension package to amsthm</source>
-        <translation type="unfinished"/>
+        <translation>Pacote de extensão ao amsthm</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
-        <source>Sophisticated package for colors, with table option use colors in tables</source>
+        <source>Sophisticated package for colors, with table option to use colors in tables</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="500"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="511"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="522"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="533"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="544"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="555"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="494"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="505"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="516"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="527"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="538"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="549"/>
         <source>New:</source>
         <translation>Novo:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="567"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="561"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
         <translation type="unfinished"/>
     </message>
@@ -9113,7 +9113,7 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="129"/>
         <source>Online Repository</source>
-        <translation type="unfinished"/>
+        <translation>Repositório Online</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="137"/>
@@ -10020,7 +10020,7 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1072"/>
         <source>Preview Dis&amp;play Mode</source>
-        <translation type="unfinished"/>
+        <translation>Visualizar Modo Dis&amp;play</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1074"/>
