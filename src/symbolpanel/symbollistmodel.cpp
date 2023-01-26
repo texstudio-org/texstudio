@@ -147,7 +147,6 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 #endif
 				}
 			}
-			helper.replace("<", "&lt;");
 			symbolItem.unicode = helper;
 		}
 
@@ -357,8 +356,11 @@ QString SymbolListModel::getTooltip(const SymbolItem &item) const
 				label = label + pkgs[j] ;
 		}
 	}
-	if (!item.unicode.isEmpty())
-		label += "<br>" + tr("Unicode Character: ") + item.unicode;
+	if (!item.unicode.isEmpty()) {
+		QString unicodeChar = item.unicode;
+		unicodeChar.replace("<", "&lt;");
+		label += "<br>" + tr("Unicode Character: ") + unicodeChar;
+	}
 	return label;
 }
 
