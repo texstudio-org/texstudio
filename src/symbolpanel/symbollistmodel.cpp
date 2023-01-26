@@ -86,10 +86,10 @@ SymbolItem loadSymbolFromSvg(QString fileName)
 	if (!nl.isEmpty()) {
 		QDomNode n = nl.at(0);
 		QString pkg = n.toElement().attribute("Packages");
-		if (!pkg.isEmpty() && pkg != "")
+		if (!pkg.isEmpty())
 			item.packages = pkg;
 		QString cmdUnicode = n.toElement().attribute("CommandUnicode");
-		if (!cmdUnicode.isEmpty() && cmdUnicode!="")
+		if (!cmdUnicode.isEmpty())
 			item.unicode = cmdUnicode;
 	}
 
