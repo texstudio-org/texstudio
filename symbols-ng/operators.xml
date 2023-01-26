@@ -59,7 +59,7 @@
 	<!-- arg math \ast -->
 	<commandDefinition>
 		<latexCommand>\ast</latexCommand>
-		<unicodeCommand>*</unicodeCommand>
+		<unicodeCommand>∗</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -510,7 +510,7 @@
 	<!-- arg math \doublebarwedge -->
 	<commandDefinition>
 		<latexCommand>\doublebarwedge</latexCommand>
-		<unicodeCommand>⌆</unicodeCommand>
+		<unicodeCommand>⩞</unicodeCommand>
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>

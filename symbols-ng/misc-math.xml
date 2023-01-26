@@ -42,6 +42,7 @@
 	<!-- arg math \ldotp -->
 	<commandDefinition>
 		<latexCommand>\ldotp</latexCommand>
+		<unicodeCommand>.</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -117,7 +118,7 @@
 	<!-- arg math \backslash -->
 	<commandDefinition>
 		<latexCommand>\backslash</latexCommand>
-		<unicodeCommand>\</unicodeCommand>
+		<unicodeCommand>⧵</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -125,7 +126,7 @@
 	<!-- arg math \diagdown -->
 	<commandDefinition>
 		<latexCommand>\diagdown</latexCommand>
-		<unicodeCommand>∖</unicodeCommand>
+		<unicodeCommand>⟍</unicodeCommand>
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>
@@ -136,7 +137,7 @@
 	<!-- arg math \diagup -->
 	<commandDefinition>
 		<latexCommand>\diagup</latexCommand>
-		<unicodeCommand>∕</unicodeCommand>
+		<unicodeCommand>⟋</unicodeCommand>
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>
@@ -155,7 +156,7 @@
 	<!-- arg math \emptyset -->
 	<commandDefinition>
 		<latexCommand>\emptyset</latexCommand>
-		<unicodeCommand>∅</unicodeCommand>
+		<unicodeCommand>∅︀</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -163,7 +164,7 @@
 	<!-- arg math \varnothing -->
 	<commandDefinition>
 		<latexCommand>\varnothing</latexCommand>
-		<unicodeCommand>⌀</unicodeCommand>
+		<unicodeCommand>∅</unicodeCommand>
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>
@@ -288,38 +289,22 @@
 		</package>
 	</commandDefinition>
 
-	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
-	<!-- arg math \diamondsuit -->
-	<commandDefinition>
-		<latexCommand>\diamondsuit</latexCommand>
-		<unicodeCommand>♢</unicodeCommand>
-		<mathMode>true</mathMode>
-	</commandDefinition>
-
 	<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
 	<!-- arg math \lozenge -->
 	<commandDefinition>
 		<latexCommand>\lozenge</latexCommand>
-		<unicodeCommand>⬨</unicodeCommand>
+		<unicodeCommand>◊</unicodeCommand>
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>
 		</package>
 	</commandDefinition>
 
-	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
-	<!-- arg math \heartsuit -->
-	<commandDefinition>
-		<latexCommand>\heartsuit</latexCommand>
-		<unicodeCommand>♡</unicodeCommand>
-		<mathMode>true</mathMode>
-	</commandDefinition>
-
 	<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg= -->
 	<!-- arg math \blacksquare -->
 	<commandDefinition>
 		<latexCommand>\blacksquare</latexCommand>
-		<unicodeCommand>⬛</unicodeCommand>
+		<unicodeCommand>◼︎</unicodeCommand>
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>
@@ -368,6 +353,22 @@
 		<package>
 			<name>amssymb</name>
 		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg math \diamondsuit -->
+	<commandDefinition>
+		<latexCommand>\diamondsuit</latexCommand>
+		<unicodeCommand>♢</unicodeCommand>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- arg math \heartsuit -->
+	<commandDefinition>
+		<latexCommand>\heartsuit</latexCommand>
+		<unicodeCommand>♡</unicodeCommand>
+		<mathMode>true</mathMode>
 	</commandDefinition>
 
 	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
@@ -560,7 +561,7 @@
 	<!-- arg math \circledR -->
 	<commandDefinition>
 		<latexCommand>\circledR</latexCommand>
-		<unicodeCommand>®</unicodeCommand>
+		<unicodeCommand>Ⓡ</unicodeCommand>
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>

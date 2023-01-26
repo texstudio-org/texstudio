@@ -66,7 +66,7 @@
 
 	<commandDefinition>
 		<latexCommand>\clock</latexCommand>
-		<unicodeCommand>⏲</unicodeCommand>
+		<unicodeCommand>🕒</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -122,7 +122,7 @@
 
 	<commandDefinition>
 		<latexCommand>\AC</latexCommand>
-		<unicodeCommand>⁓</unicodeCommand>
+		<unicodeCommand>∿</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -257,7 +257,7 @@
 
 	<commandDefinition>
 		<latexCommand>\kreuz</latexCommand>
-		<unicodeCommand>🕂</unicodeCommand>
+		<unicodeCommand>☩</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -305,7 +305,7 @@
 
 	<commandDefinition>
 		<latexCommand>\bell</latexCommand>
-		<unicodeCommand>🕭</unicodeCommand>
+		<unicodeCommand>🔔</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -345,7 +345,7 @@
 
 	<commandDefinition>
 		<latexCommand>\twonotes</latexCommand>
-		<unicodeCommand>🎝</unicodeCommand>
+		<unicodeCommand>♫</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -575,7 +575,7 @@
 
 	<commandDefinition>
 		<latexCommand>\aries</latexCommand>
-		<unicodeCommand>♈</unicodeCommand>
+		<unicodeCommand>♈︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -583,7 +583,7 @@
 
 	<commandDefinition>
 		<latexCommand>\taurus</latexCommand>
-		<unicodeCommand>♉</unicodeCommand>
+		<unicodeCommand>♉︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -591,7 +591,7 @@
 
 	<commandDefinition>
 		<latexCommand>\gemini</latexCommand>
-		<unicodeCommand>♊</unicodeCommand>
+		<unicodeCommand>♊︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -599,7 +599,7 @@
 
 	<commandDefinition>
 		<latexCommand>\cancer</latexCommand>
-		<unicodeCommand>♋</unicodeCommand>
+		<unicodeCommand>♋︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -607,7 +607,7 @@
 
 	<commandDefinition>
 		<latexCommand>\leo</latexCommand>
-		<unicodeCommand>♌</unicodeCommand>
+		<unicodeCommand>♌︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -615,7 +615,7 @@
 
 	<commandDefinition>
 		<latexCommand>\virgo</latexCommand>
-		<unicodeCommand>♍</unicodeCommand>
+		<unicodeCommand>♍︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -623,7 +623,7 @@
 
 	<commandDefinition>
 		<latexCommand>\libra</latexCommand>
-		<unicodeCommand>♎</unicodeCommand>
+		<unicodeCommand>♎︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -631,7 +631,7 @@
 
 	<commandDefinition>
 		<latexCommand>\scorpio</latexCommand>
-		<unicodeCommand>♏</unicodeCommand>
+		<unicodeCommand>♏︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -639,7 +639,7 @@
 
 	<commandDefinition>
 		<latexCommand>\sagittarius</latexCommand>
-		<unicodeCommand>♐</unicodeCommand>
+		<unicodeCommand>♐︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -647,7 +647,7 @@
 
 	<commandDefinition>
 		<latexCommand>\capricornus</latexCommand>
-		<unicodeCommand>♑</unicodeCommand>
+		<unicodeCommand>♑︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -655,7 +655,7 @@
 
 	<commandDefinition>
 		<latexCommand>\aquarius</latexCommand>
-		<unicodeCommand>♒</unicodeCommand>
+		<unicodeCommand>♒︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -663,7 +663,7 @@
 
 	<commandDefinition>
 		<latexCommand>\pisces</latexCommand>
-		<unicodeCommand>♓</unicodeCommand>
+		<unicodeCommand>♓︎</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -687,7 +687,6 @@
 
 	<commandDefinition>
 		<latexCommand>\APLstar</latexCommand>
-		<unicodeCommand>＊</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -807,7 +806,8 @@
 
 	<commandDefinition>
 		<latexCommand>\APLnot{}</latexCommand>
-		<unicodeCommand>∼</unicodeCommand>
+		<unicodeCommand>&#x334;</unicodeCommand>
+		<imageCommand>\APLnot{\phantom{\APLdown}}</imageCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -815,7 +815,8 @@
 
 	<commandDefinition>
 		<latexCommand>\APLcirc{}</latexCommand>
-		<unicodeCommand>○</unicodeCommand>
+		<unicodeCommand>&#x20D8;</unicodeCommand>
+		<imageCommand>\APLcirc{\phantom{\APLbox}}</imageCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -823,7 +824,8 @@
 
 	<commandDefinition>
 		<latexCommand>\APLvert{}</latexCommand>
-		<unicodeCommand>∣</unicodeCommand>
+		<unicodeCommand>&#x20D2;</unicodeCommand>
+		<imageCommand>\APLvert{\phantom{\Circle}}</imageCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -925,7 +927,7 @@
 
 	<commandDefinition>
 		<latexCommand>\mho</latexCommand>
-		<unicodeCommand></unicodeCommand>
+		<unicodeCommand>℧</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>
@@ -996,24 +998,6 @@
 	</commandDefinition>
 
 	<commandDefinition>
-		<latexCommand>\unlhd</latexCommand>
-		<unicodeCommand>⊴</unicodeCommand>
-		<package>
-			<name>wasysym</name>
-		</package>
-		<mathMode>true</mathMode>
-	</commandDefinition>
-
-	<commandDefinition>
-		<latexCommand>\LHD</latexCommand>
-		<unicodeCommand>◄</unicodeCommand>
-		<package>
-			<name>wasysym</name>
-		</package>
-		<mathMode>true</mathMode>
-	</commandDefinition>
-
-	<commandDefinition>
 		<latexCommand>\rhd</latexCommand>
 		<unicodeCommand>⊳</unicodeCommand>
 		<package>
@@ -1023,8 +1007,26 @@
 	</commandDefinition>
 
 	<commandDefinition>
+		<latexCommand>\unlhd</latexCommand>
+		<unicodeCommand>⊴</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
 		<latexCommand>\unrhd</latexCommand>
 		<unicodeCommand>⊵</unicodeCommand>
+		<package>
+			<name>wasysym</name>
+		</package>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<commandDefinition>
+		<latexCommand>\LHD</latexCommand>
+		<unicodeCommand>◄</unicodeCommand>
 		<package>
 			<name>wasysym</name>
 		</package>

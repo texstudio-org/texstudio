@@ -13,7 +13,7 @@
  */
 
 SymbolListModel::SymbolListModel(QVariantMap usageCountMap, QStringList favoriteList) :
-    m_darkMode(false)
+	m_darkMode(false)
 {
 	foreach (const QString &key, usageCountMap.keys()) {
 		usageCount.insert(key, usageCountMap.value(key).toInt());
@@ -123,7 +123,7 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 			symbolItem.packages = img.text("Packages");
 			symbolItem.unicode = img.text("CommandUnicode");
 			symbolItem.iconFile = fileName;
-            symbolItem.icon = QIcon(fileName);
+			symbolItem.icon = QIcon(fileName);
 		}
 		if (!symbolItem.unicode.isEmpty()) {
 			// convert to real unicode
@@ -148,7 +148,6 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 				}
 			}
 			symbolItem.unicode = helper;
-
 		}
 
 		symbolItem.category = category;
@@ -246,7 +245,7 @@ void SymbolListModel::incrementUsage(const QString &id)
  */
 void SymbolListModel::setDarkmode(bool active)
 {
-    m_darkMode=active;
+	m_darkMode=active;
 }
 /*!
  * \brief add symbol with id to favourite list
@@ -330,8 +329,7 @@ QString SymbolListModel::getTooltip(const SymbolItem &item) const
 {
 	QStringList args, pkgs;
 
-	QString label = item.command;
-	label.replace("<", "&lt;");
+	QString label = item.command.toHtmlEscaped();
 	label = tr("Command: ") + "<b>" + label + "</b>";
 
 	QRegExp rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
@@ -358,7 +356,7 @@ QString SymbolListModel::getTooltip(const SymbolItem &item) const
 		}
 	}
 	if (!item.unicode.isEmpty())
-		label += "<br>" + tr("Unicode Character: ") + item.unicode;
+		label += "<br>" + tr("Unicode Character: ") + item.unicode.toHtmlEscaped();
 	return label;
 }
 

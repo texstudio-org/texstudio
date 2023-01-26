@@ -172,7 +172,7 @@
 	<!-- arg math \{ -->
 	<commandDefinition>
 		<latexCommand>\{</latexCommand>
-		<unicodeCommand>\{</unicodeCommand>
+		<unicodeCommand>{</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -180,7 +180,7 @@
 	<!-- arg math \} -->
 	<commandDefinition>
 		<latexCommand>\}</latexCommand>
-		<unicodeCommand>\}</unicodeCommand>
+		<unicodeCommand>}</unicodeCommand>
 		<mathMode>true</mathMode>
 	</commandDefinition>
 
@@ -240,74 +240,6 @@
 		<!-- <forcePNG>true</forcePNG> -->
 	</commandDefinition>
 
-	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
-	<!-- optarg math \arrowvert \left \arrowvert \right. -->
-	<commandDefinition>
-		<latexCommand>\arrowvert</latexCommand>
-		<imageCommand>\left \arrowvert \right.</imageCommand>
-		<unicodeCommand>│</unicodeCommand>
-		<mathMode>true</mathMode>
-	</commandDefinition>
-
-	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
-	<!-- optarg math \Arrowvert \left \Arrowvert \right. -->
-	<commandDefinition>
-		<latexCommand>\Arrowvert</latexCommand>
-		<imageCommand>\left \Arrowvert \right.</imageCommand>
-		<unicodeCommand>║</unicodeCommand>
-		<mathMode>true</mathMode>
-	</commandDefinition>
-
-	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
-	<!-- optarg math \bracevert \left \bracevert \right. -->
-	<commandDefinition>
-		<latexCommand>\bracevert</latexCommand>
-		<imageCommand>\left \bracevert \right.</imageCommand>
-		<mathMode>true</mathMode>
-	</commandDefinition>
-
-	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
-	<!-- arg math \lvert -->
-	<commandDefinition>
-		<latexCommand>\lvert</latexCommand>
-		<unicodeCommand>⎸</unicodeCommand>
-		<mathMode>true</mathMode>
-		<package>
-			<name>amsmath</name>
-		</package>
-	</commandDefinition>
-
-	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
-	<!-- arg math \rvert -->
-	<commandDefinition>
-		<latexCommand>\rvert</latexCommand>
-		<unicodeCommand>⎹</unicodeCommand>
-		<mathMode>true</mathMode>
-		<package>
-			<name>amsmath</name>
-		</package>
-	</commandDefinition>
-
-	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
-	<!-- arg math \lVert -->
-	<commandDefinition>
-		<latexCommand>\lVert</latexCommand>
-		<mathMode>true</mathMode>
-		<package>
-			<name>amsmath</name>
-		</package>
-	</commandDefinition>
-
-	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
-	<!-- arg math \rVert -->
-	<commandDefinition>
-		<latexCommand>\rVert</latexCommand>
-		<mathMode>true</mathMode>
-		<package>
-			<name>amsmath</name>
-		</package>
-	</commandDefinition>
-
 	<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg= -->
 	<!-- arg math \ulcorner -->
 	<commandDefinition>
@@ -349,6 +281,77 @@
 		<mathMode>true</mathMode>
 		<package>
 			<name>amssymb</name>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- optarg math \arrowvert \left \arrowvert \right. -->
+	<commandDefinition>
+		<latexCommand>\arrowvert</latexCommand>
+		<imageCommand>\left \arrowvert \right.</imageCommand>
+		<unicodeCommand>│</unicodeCommand>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- optarg math \Arrowvert \left \Arrowvert \right. -->
+	<commandDefinition>
+		<latexCommand>\Arrowvert</latexCommand>
+		<imageCommand>\left \Arrowvert \right.</imageCommand>
+		<unicodeCommand>║</unicodeCommand>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg= -->
+	<!-- optarg math \bracevert \left \bracevert \right. -->
+	<commandDefinition>
+		<latexCommand>\bracevert</latexCommand>
+		<imageCommand>\left \bracevert \right.</imageCommand>
+		<unicodeCommand>┃</unicodeCommand>
+		<mathMode>true</mathMode>
+	</commandDefinition>
+
+	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
+	<!-- arg math \lvert -->
+	<commandDefinition>
+		<latexCommand>\lvert</latexCommand>
+		<unicodeCommand>⎸</unicodeCommand>
+		<mathMode>true</mathMode>
+		<package>
+			<name>amsmath</name>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
+	<!-- arg math \rvert -->
+	<commandDefinition>
+		<latexCommand>\rvert</latexCommand>
+		<unicodeCommand>⎹</unicodeCommand>
+		<mathMode>true</mathMode>
+		<package>
+			<name>amsmath</name>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
+	<!-- arg math \lVert -->
+	<commandDefinition>
+		<latexCommand>\lVert</latexCommand>
+		<unicodeCommand>⎸⎸</unicodeCommand>
+		<mathMode>true</mathMode>
+		<package>
+			<name>amsmath</name>
+		</package>
+	</commandDefinition>
+
+	<!-- pkgs=amsmath ,pkgsarg= ,savepkgs=amsmath ,savepkgsarg= -->
+	<!-- arg math \rVert -->
+	<commandDefinition>
+		<latexCommand>\rVert</latexCommand>
+		<unicodeCommand>⎹⎹</unicodeCommand>
+		<mathMode>true</mathMode>
+		<package>
+			<name>amsmath</name>
 		</package>
 	</commandDefinition>
 
