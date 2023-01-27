@@ -37,8 +37,8 @@ separator=%<separator%>
 \DTLaddcolumn{db%special}{dbkey}
 
 ## 6.2 Loading a Database from an External ASCII File ##
-\DTLloaddb{db%specialDef}{filename}#s#%db
-\DTLloaddb[options%keyvals]{db%specialDef}{filename}#s#%db
+\DTLloaddb{db%specialDef}{filename%file}#s#%db
+\DTLloaddb[options%keyvals]{db%specialDef}{filename%file}#s#%db
 #keyvals:\DTLloaddb,\DTLloadrawdb
 noheader#true,false
 keys={%<key1,key2,...%>}
@@ -54,8 +54,8 @@ omitlines=%<integer%>
 \DTLmaketabspace#*
 \DTLsetseparator{character}#*
 \DTLsetdelimiter{character}#*
-\DTLloadrawdb{db%specialDef}{filename}#s#%db
-\DTLloadrawdb[options%keyvals]{db%specialDef}{filename}#s#%db
+\DTLloadrawdb{db%specialDef}{filename%file}#s#%db
+\DTLloadrawdb[options%keyvals]{db%specialDef}{filename%file}#s#%db
 \DTLrawmap{string}{replacement}#*
 
 ## 6.3 Displaying the Contents of a Database ##
@@ -173,7 +173,7 @@ lastfoot={%<text%>}
 \DTLsavetexdb{db%special}{filename}
 \DTLsaverawdb{db%special}{filename}
 \DTLprotectedsaverawdb{db%special}{filename}
-\DTLloaddbtex{cmd}{filename}#*d
+\DTLloaddbtex{cmd}{filename%file}#*d
 \dtllastloadeddb#*
 
 ## 6.10 Deleting or Clearing a Database ##
