@@ -188,7 +188,7 @@ There are a few argument names that have special meaning:
     option e.g. \\abc{size%l}
 -   `cols` and `preamble`: columns definition in tabular, etc., e.g.
     \\begin{tabular}{cols}
--   `file`: file name
+-   `file` or ends with `%file`: file name
 -   `URL`: URL
 -   `options`: package options, e.g. \\usepackage\[options\]
 -   `imagefile`: file name of an image

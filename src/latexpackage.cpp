@@ -638,6 +638,7 @@ Token::TokenType tokenTypeFromCwlArg(QString arg, QString &definition)
 		if (suffix == "%title") return Token::title;
 		if (suffix == "%short title") return Token::shorttitle;
 		if (suffix == "%todo") return Token::todo;
+        if (suffix == "%file") return Token::file;
 		if (suffix == "%l") return Token::width;
 		if (suffix == "%cmd") return Token::def;
         if (suffix == "%definition") return Token::definition;
