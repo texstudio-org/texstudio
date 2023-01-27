@@ -544,6 +544,7 @@ PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> a
 PDFMovie::~PDFMovie()
 {
     delete audioOutput;
+    delete videoWidget;
 }
 
 void PDFMovie::place()
