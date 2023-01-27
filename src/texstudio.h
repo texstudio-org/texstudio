@@ -113,6 +113,8 @@ protected:
     Q_INVOKABLE QAction *insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "");
     Q_INVOKABLE void loadManagedMenu(const QString &fn);
 
+    Q_INVOKABLE void setupToolBars();
+
 	void addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile);
     void addMacrosAsTagList();
 
@@ -125,7 +127,6 @@ private:
 	void generateAddtionalTranslations();
 	void setupMenus();
 	void setupDockWidgets();
-	void setupToolBars();
 	void createStatusBar();
 	bool activateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
 	bool saveAllFilesForClosing(); ///< checks for unsaved files and asks the user if they should be saved
