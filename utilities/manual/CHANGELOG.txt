@@ -17,6 +17,7 @@ TeXstudio 4.5.1
 - fix size of config dialog on low res screens (#995)
 - add script command loadManagedMenu, s. new section "Menu Definitions" in the manual (#2816)
 - switch to pointer cursor over bookmark column of editors (#2220)
+- add shadow option for rectangular magnifier in pdf viewer config (#2885)
 
 TeXstudio 4.4.1
 -----------------
