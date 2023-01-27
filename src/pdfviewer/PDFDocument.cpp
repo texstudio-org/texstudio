@@ -1150,7 +1150,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
         movie->realPlay();
 #else
 		Q_UNUSED(page)
-		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option MEDIAPLAYER=true");
+        UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option -DTEXSTUDIO_ENABLE_MEDIAPLAYER=on (cmake)");
 #endif
 		break;
 	}
