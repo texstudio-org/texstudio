@@ -795,49 +795,52 @@ menus</p></li>
 <tr class="row-odd"><td><p>app.loadManagedMenu(filename)</p></td>
 <td><p>load menu structure from an xml-file, same format as uiconfig.xml</p></td>
 </tr>
-<tr class="row-even"><td><p>app.createUI(file, [parent])</p></td>
+<tr class="row-even"><td><p>app.setupToolBars()</p></td>
+<td><p>recreate toolbars. Call this if a newly created menu is used in the toolbar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>app.createUI(file, [parent])</p></td>
 <td><p>Loads a certain ui file and creates a QWidget* from it</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.createUIFromString(string, [parent])</p></td>
+<tr class="row-even"><td><p>app.createUIFromString(string, [parent])</p></td>
 <td><p>Creates a QWidget* described in the string</p></td>
 </tr>
-<tr class="row-even"><td><p>app.slowOperationStarted()/slowOperationEnded()</p></td>
+<tr class="row-odd"><td><p>app.slowOperationStarted()/slowOperationEnded()</p></td>
 <td><p>Notify txs about the start/end of a slow operation to temporary disable the endless loop detection.</p></td>
 </tr>
-<tr class="row-odd"><td><p>app.simulateKeyPress(shortcut)</p></td>
+<tr class="row-even"><td><p>app.simulateKeyPress(shortcut)</p></td>
 <td><p>Trigger a KeyPress event for the given shortcut, e.g. <code class="docutils literal notranslate"><span class="pre">app.simulateKeyPress(&quot;Shift+Up&quot;)</span></code>. <em>Note</em>: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text.</p></td>
 </tr>
-<tr class="row-even"><td><p>new UniversalInputDialog()</p></td>
+<tr class="row-odd"><td><p>new UniversalInputDialog()</p></td>
 <td><p>Creates a new dialog</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.add(defaultValue, [description, [id]])</p></td>
+<tr class="row-even"><td><p>dialog.add(defaultValue, [description, [id]])</p></td>
 <td><p>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</p></td>
 </tr>
-<tr class="row-even"><td><p>dialog.get(nr/id)</p></td>
+<tr class="row-odd"><td><p>dialog.get(nr/id)</p></td>
 <td><p>Returns the current value of the nr-th added variable or the variable with a certain id.</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.getAll()</p></td>
+<tr class="row-even"><td><p>dialog.getAll()</p></td>
 <td><p>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</p></td>
 </tr>
-<tr class="row-even"><td><p>dialog.exec()</p></td>
+<tr class="row-odd"><td><p>dialog.exec()</p></td>
 <td><p>Displays the dialog. Returns 1 if the user accepted the dialog, 0 if it was canceled.</p></td>
 </tr>
-<tr class="row-odd"><td><p>dialog.show()</p></td>
+<tr class="row-even"><td><p>dialog.show()</p></td>
 <td><p>Displays the dialog asynchronously.</p></td>
 </tr>
-<tr class="row-even"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
+<tr class="row-odd"><td><p><s>UniversalInputDialog([[defaultValue_0, description_0, id_0],[defaultValue_1, description_1, id_1], …])</s></p></td>
 <td><p>Not working in txs 4.0.0. <s>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</s></p></td>
 </tr>
-<tr class="row-odd"><td><p>fileChooser.exec()</p></td>
+<tr class="row-even"><td><p>fileChooser.exec()</p></td>
 <td><p>show dialog and wait until it is closed again</p></td>
 </tr>
-<tr class="row-even"><td><p>fileChooser.setDir(dir)</p></td>
+<tr class="row-odd"><td><p>fileChooser.setDir(dir)</p></td>
 <td><p>set directory in the dialog to <em>dir</em></p></td>
 </tr>
-<tr class="row-odd"><td><p>fileChooser.setFilter(filter)</p></td>
+<tr class="row-even"><td><p>fileChooser.setFilter(filter)</p></td>
 <td><p>set file filter to <em>filter</em>, using the QT-format, see above</p></td>
 </tr>
-<tr class="row-even"><td><p>fileChooser.fileName()</p></td>
+<tr class="row-odd"><td><p>fileChooser.fileName()</p></td>
 <td><p>return selected filename (after exec)</p></td>
 </tr>
 </tbody>

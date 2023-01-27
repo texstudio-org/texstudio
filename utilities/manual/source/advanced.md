@@ -364,6 +364,7 @@ The following table gives an overview on the provided commands.
 | app.newManagedAction(menu, id, caption) | Creates a new action and returns it<br><br>-   menu: Parent menu<br>-   id: Id of the new action (the final, unique id will be *menu id/action id*)<br>-   caption: Visible text<br><br>You can use action.triggered.connect(function(){ \... }); to link a function to the returned action (for details see the [qt signal/slot](https://doc.qt.io/qt-6/signalsandslots.html) documentation). |
 | app.getManagedAction(\[id\]) | Returns a [QAction](https://doc.qt.io/qt-6/qaction.html) with a certain id (all ids have the form main/menu1/menu2/\.../menuN/action, with usually one menu, e.g. \"main/edit/undo\", see texstudio.cpp) |
 | app.loadManagedMenu(filename) | load menu structure from an xml-file, same format as uiconfig.xml |
+| app.setupToolBars() | recreate toolbars. Call this if a newly created menu is used in the toolbar.  |
 | app.createUI(file, \[parent\]) | Loads a certain ui file and creates a QWidget\* from it |
 | app.createUIFromString(string, \[parent\]) | Creates a QWidget\* described in the string |
 | app.slowOperationStarted()/slowOperationEnded() | Notify txs about the start/end of a slow operation to temporary disable the endless loop detection. |
