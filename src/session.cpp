@@ -2,6 +2,9 @@
 #include "configmanager.h"
 #include "smallUsefulFunctions.h"
 
+#include <QJsonDocument>
+#include <QJsonArray>
+
 Session::Session(const Session &s)
 {
 	m_files.append(s.m_files);

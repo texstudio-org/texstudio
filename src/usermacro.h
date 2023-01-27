@@ -2,13 +2,10 @@
 #define Header_UserMacro
 
 #include "mostQtHeaders.h"
-#include "latexdocument.h"
-#include <QJsonDocument>
-#include <QJsonArray>
 
 class QLanguageDefinition;
 class QLanguageFactory;
-//class LatexDocument;
+class LatexDocument;
 
 
 class Macro

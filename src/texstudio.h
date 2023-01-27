@@ -26,6 +26,7 @@
 #include "latexdocument.h"
 #include "latexeditorview.h"
 #include "latexcompleter.h"
+#include "usermacro.h"
 #include "xmltagslistwidget.h"
 #include "spellerdialog.h"
 #include "textanalysis.h"

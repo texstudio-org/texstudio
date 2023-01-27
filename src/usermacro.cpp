@@ -4,6 +4,9 @@
 #include "qformatscheme.h"
 #include "qlanguagefactory.h"
 #include "qdocument.h"
+#include "latexdocument.h"
+#include <QJsonDocument>
+#include <QJsonArray>
 
 Macro::Macro() : type(Snippet), triggerLookBehind(false), document(nullptr)
 {

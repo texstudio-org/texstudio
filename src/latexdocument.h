@@ -7,7 +7,7 @@
 #include "codesnippet.h"
 #include "bibtexparser.h"
 #include "latexparser.h"
-#include "usermacro.h"
+//#include "usermacro.h"
 #include "syntaxcheck.h"
 #include "grammarcheck.h"
 #include "latexpackage.h"
