@@ -1147,7 +1147,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 		movie = new PDFMovie(this, qSharedPointerDynamicCast<Poppler::MovieAnnotation>(annotation), page);
 		movie->place();
 		movie->show();
-		movie->play();
+        movie->realPlay();
 #else
 		Q_UNUSED(page)
 		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option MEDIAPLAYER=true");
