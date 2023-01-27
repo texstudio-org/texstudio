@@ -67,7 +67,7 @@ class PDFDraggableTool : public QLabel
 public:
 	PDFDraggableTool(QWidget* parent): QLabel(parent) {}
 	virtual void reshape() = 0;
-	void drawCircleGradient(QPainter& painter, const QRect& outline, QColor color, int padding);
+	void drawGradient(QPainter& painter, const QRect& outline, QColor color, int padding, int magnifierShape);
 };
 
 class PDFMagnifier : public PDFDraggableTool

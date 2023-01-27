@@ -25,8 +25,9 @@ struct PDFDocumentConfig {
 	double zoomStepFactor;
 
     int magnifierSize;
-    enum MagnifierShape {Rect,CircleWithShadow,Circle};
+    enum MagnifierShape {Rectangle,Circle};
     MagnifierShape magnifierShape;
+	bool magnifierShadow;
 	bool magnifierBorder;
 
 	int laserPointerSize;

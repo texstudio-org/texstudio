@@ -4314,17 +4314,12 @@ them here.</string>
                    <widget class="QComboBox" name="comboBoxPreviewMagnifierShape">
                     <item>
                      <property name="text">
-                      <string>Square</string>
+                      <string>Rectangle</string>
                      </property>
                     </item>
                     <item>
                      <property name="text">
                       <string>Circle</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Circle without shadow</string>
                      </property>
                     </item>
                    </widget>
@@ -4376,11 +4371,35 @@ them here.</string>
                    </widget>
                   </item>
                   <item row="7" column="1">
-                   <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
-                    <property name="text">
-                     <string>Border</string>
-                    </property>
-                   </widget>
+                   <layout class="QHBoxLayout" name="HBoxLayout_magnifier">
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
+                      <property name="text">
+                       <string>Border</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxPreviewMagnifierShadow">
+                      <property name="text">
+                       <string>Shadow</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
                   <item row="1" column="1">
                    <widget class="QComboBox" name="comboBoxPreviewScale">

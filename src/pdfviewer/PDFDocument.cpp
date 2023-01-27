@@ -318,15 +318,14 @@ void PDFMagnifier::reshape()
 	if (!globalConfig || globalConfig->magnifierShape == oldshape) return;
 
 	switch (globalConfig->magnifierShape) {
-    case 2: [[clang::fallthrough]];
 	case 1: { //circular
-	        int side = qMin(width(), height());
+		int side = qMin(width(), height());
 		QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
 		setMask(maskedRegion);
 		break;
 	}
-	default:
-		setMask(QRect(0, 0, width(), height())); //rectangular
+	default: //rectangular
+		setMask(QRect(0, 0, width(), height()));
 	}
 }
 
@@ -341,15 +340,23 @@ void PDFMagnifier::setImage(const QPixmap &img, int pageNr)
 	update();
 }
 
-void PDFDraggableTool::drawCircleGradient(QPainter& painter, const QRect& outline, QColor color, int padding)
+void PDFDraggableTool::drawGradient(QPainter& painter, const QRect& outline, QColor color, int padding, int magnifierShape)
 {
-	QRadialGradient gradient(outline.center(), outline.width() / 2.0 , outline.center());
-	color.setAlpha(0);
-	gradient.setColorAt(1.0, color);
-	color.setAlpha(64);
-	gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
-
-	painter.fillRect(outline, gradient);
+	if(magnifierShape == PDFDocumentConfig::Circle) {
+		QRadialGradient gradient(outline.center(), outline.width() / 2.0 , outline.center());
+		color.setAlpha(0);
+		gradient.setColorAt(1.0, color);
+		color.setAlpha(64);
+		gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
+		painter.fillRect(outline, gradient);
+	} else { // rectangle
+		QLinearGradient gradient(outline.bottomRight(), outline.topRight());
+		color.setAlpha(0);
+		gradient.setColorAt(1.0, color);
+		color.setAlpha(64);
+		gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
+		painter.fillRect(outline, gradient);
+	}
 }
 
 void PDFMagnifier::paintEvent(QPaintEvent *event)
@@ -364,40 +371,51 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	// Define a path that specifies the border of the magnifier.
 	// This path is also later reused to draw the actual border.
 	QPainterPath borderPath;
-	if(globalConfig->magnifierShape == PDFDocumentConfig::CircleWithShadow) {
-		// circular magnifier with transparent shadow
-		const int shadowWidth=13;
-		const int magnifierWidth = side - 2*shadowWidth + 2;
-
-		// draw transparent shadow
-		QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
-		drawCircleGradient(painter, outline, QColor(Qt::black), shadowWidth);
-
-		borderPath.addRoundedRect(
-			width()/2 - side/2 + shadowWidth - 2, 
-			height()/2 - side/2 + shadowWidth - 5, // magnifier moved upwards for 3D effect
-			magnifierWidth, 
-			magnifierWidth, 
-			magnifierWidth/2, 
-			magnifierWidth/2
-		);
-
-	} else if(globalConfig->magnifierShape == PDFDocumentConfig::Circle) {
-		// circular magnifier without shadow
-		const int magnifierWidth = side - 4;
-
-		borderPath.addRoundedRect(
-			width()/2 - side/2 + 2, 
-			height()/2 - side/2 + 2, 
-			magnifierWidth, 
-			magnifierWidth, 
-			magnifierWidth/2, 
-			magnifierWidth/2
-		);
-
+	if(globalConfig->magnifierShadow) {
+		if(globalConfig->magnifierShape == PDFDocumentConfig::Circle) {
+			// circular magnifier with transparent shadow
+			const int shadowWidth=13;
+			const int magnifierWidth = side - 2*shadowWidth + 2;
+	
+			// draw transparent shadow
+			QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
+			drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
+	
+			borderPath.addRoundedRect(
+				width()/2 - side/2 + shadowWidth - 2, 
+				height()/2 - side/2 + shadowWidth - 5, // magnifier moved upwards for 3D effect
+				magnifierWidth, 
+				magnifierWidth, 
+				magnifierWidth/2, 
+				magnifierWidth/2
+			);
+		} else {
+			// rectangular magnifier with transparent shadow
+			const int shadowWidth = 5;
+	
+			// draw transparent shadow
+			QRect outline(1, 1, width() - 2, height() - 2);
+			drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
+	
+			borderPath.addRect(1 + shadowWidth/2, 1 + shadowWidth, width() - 1.3*shadowWidth - 2, height() - 1.8*shadowWidth - 2);
+		}
 	} else {
-		// rectangular magnifier
-		borderPath.addRect(1, 1, width() - 2, height() - 2);
+		if(globalConfig->magnifierShape == PDFDocumentConfig::Circle) {
+			// circular magnifier without shadow
+			const int magnifierWidth = side - 4;
+	
+			borderPath.addRoundedRect(
+				width()/2 - side/2 + 2, 
+				height()/2 - side/2 + 2, 
+				magnifierWidth, 
+				magnifierWidth, 
+				magnifierWidth/2, 
+				magnifierWidth/2
+			);
+		} else {
+			// rectangular magnifier without shadow
+			borderPath.addRect(1, 1, width() - 2, height() - 2);
+		}
 	}
 
 	// draw contents inside the magnifier
@@ -427,7 +445,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 
 	// draw a border around the magnifier
 	if (globalConfig->magnifierBorder) {
-		if(globalConfig->magnifierShape == PDFDocumentConfig::CircleWithShadow) {
+		if(globalConfig->magnifierShadow) {
 			painter.setPen(QPen(QPalette().shadow().color(), 2)); // black outline
 		} else {
 			painter.setPen(QPen(QPalette().mid().color(), 2)); // gray outline
@@ -472,7 +490,7 @@ void PDFLaserPointer::paintEvent(QPaintEvent *event)
 	int side = qMin(width(), height()) ;
 	QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 
-	drawCircleGradient(painter, outline, QColor(globalConfig ? globalConfig->laserPointerColor : "#ff0000"), 5);
+	drawGradient(painter, outline, QColor(globalConfig ? globalConfig->laserPointerColor : "#ff0000"), 5, PDFDocumentConfig::Circle);
 }
 
 #ifdef MEDIAPLAYER
@@ -691,6 +709,12 @@ PDFWidget::PDFWidget(bool embedded)
 	case 4:
 		fitTextWidth(true);
 		break;
+	}
+
+	if (globalConfig->magnifierShape != PDFDocumentConfig::Rectangle && globalConfig->magnifierShape != PDFDocumentConfig::Circle) {
+		//map outdated heighest index 2 (circle without a shadow) to 1 (circle) and no shadow
+		globalConfig->magnifierShape = PDFDocumentConfig::Circle;
+		globalConfig->magnifierShadow = false;
 	}
 
     if (magnifierCursor == nullptr) {
