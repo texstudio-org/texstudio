@@ -38,13 +38,11 @@ usenames
 #endkeyvals
 
 \begin{textopo}
-\begin{textopo}[parameter-file]
-\begin{textopo}[file]#Si
+\begin{textopo}[parameter-file%file]
 \end{textopo}
 
 \begin{helicalwheel}{helix-list}
-\begin{helicalwheel}[parameter-file]{helix-list}
-\begin{helicalwheel}[file]{helix-list}#Si
+\begin{helicalwheel}[parameter-file%file]{helix-list}
 \end{helicalwheel}
 
 \getsequence{PHD}{%<PHD-file%>}
