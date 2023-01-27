@@ -739,17 +739,17 @@ Please change your configuration and define command lists only at &apos;Options 
         <translation>TeXstudio 설정</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4852"/>
+        <location filename="../src/configdialog.ui" line="4878"/>
         <source>Show Advanced Options</source>
         <translation>고급 옵션 표시</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4878"/>
+        <location filename="../src/configdialog.ui" line="4904"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4888"/>
+        <location filename="../src/configdialog.ui" line="4914"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
@@ -773,7 +773,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="282"/>
         <location filename="../src/configdialog.ui" line="1807"/>
-        <location filename="../src/configdialog.ui" line="4779"/>
+        <location filename="../src/configdialog.ui" line="4805"/>
         <source>Font Size:</source>
         <translation>글꼴 크기:</translation>
     </message>
@@ -799,7 +799,7 @@ Please change your configuration and define command lists only at &apos;Options 
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="181"/>
-        <location filename="../src/configdialog.ui" line="4751"/>
+        <location filename="../src/configdialog.ui" line="4777"/>
         <source>Color Scheme:</source>
         <translation>색깔 설정:</translation>
     </message>
@@ -1247,7 +1247,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1628"/>
         <location filename="../src/configdialog.cpp" line="535"/>
-        <location filename="../src/configmanager.cpp" line="1518"/>
+        <location filename="../src/configmanager.cpp" line="1519"/>
         <source>Editor</source>
         <translation>편집기</translation>
     </message>
@@ -1278,7 +1278,7 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1710"/>
-        <location filename="../src/configdialog.ui" line="4765"/>
+        <location filename="../src/configdialog.ui" line="4791"/>
         <source>Font Family:</source>
         <translation>글꼴:</translation>
     </message>
@@ -1319,8 +1319,8 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1788"/>
-        <location filename="../src/configdialog.ui" line="4064"/>
-        <location filename="../src/configdialog.ui" line="4161"/>
+        <location filename="../src/configdialog.ui" line="4067"/>
+        <location filename="../src/configdialog.ui" line="4164"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -2486,109 +2486,114 @@ them here.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4015"/>
+        <location filename="../src/configdialog.ui" line="4002"/>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4018"/>
         <source>Replace beamer class by article</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4028"/>
+        <location filename="../src/configdialog.ui" line="4031"/>
         <source>Precompile Preamble</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4041"/>
+        <location filename="../src/configdialog.ui" line="4044"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4051"/>
-        <location filename="../src/configdialog.ui" line="4174"/>
+        <location filename="../src/configdialog.ui" line="4054"/>
+        <location filename="../src/configdialog.ui" line="4177"/>
         <source>Scaling:</source>
         <translation>크기 조정:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4146"/>
+        <location filename="../src/configdialog.ui" line="4149"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Internal PDF Viewer</source>
         <translation>내장 PDF 뷰어</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4297"/>
+        <location filename="../src/configdialog.ui" line="4300"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>RGBA 값을 16진수 형식으로 지정합니다. 기술적 문제로 인하여 강조 표시가 글자 위에 그려지기 때문에 투명도 값이 필요합니다.</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4300"/>
+        <location filename="../src/configdialog.ui" line="4303"/>
         <source>\#HHHHHHHH;_</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4386"/>
+        <location filename="../src/configdialog.ui" line="4317"/>
+        <source>Rectangle</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4385"/>
+        <source>Shadow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/configdialog.ui" line="4408"/>
         <source>Original Size</source>
         <translation>원본 크기</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4391"/>
+        <location filename="../src/configdialog.ui" line="4413"/>
         <source>Fit to Window Width</source>
         <translation>너비 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4396"/>
+        <location filename="../src/configdialog.ui" line="4418"/>
         <source>Fit to Window Size</source>
         <translation>창 크기 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4401"/>
+        <location filename="../src/configdialog.ui" line="4423"/>
         <source>Scaled Size</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4406"/>
+        <location filename="../src/configdialog.ui" line="4428"/>
         <source>Fit to Text Width</source>
         <translation>텍스트 너비 맞춤</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4230"/>
+        <location filename="../src/configdialog.ui" line="4233"/>
         <source>Infinite</source>
         <translation>무한대</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4496"/>
+        <location filename="../src/configdialog.ui" line="4518"/>
         <source>Scale Option:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4533"/>
+        <location filename="../src/configdialog.ui" line="4555"/>
         <source>Magnifier Size:</source>
         <translation>돋보기 크기:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4249"/>
+        <location filename="../src/configdialog.ui" line="4252"/>
         <source> dpi</source>
         <translation> dpi</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4314"/>
-        <source>Square</source>
-        <translation>사각형</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4319"/>
+        <location filename="../src/configdialog.ui" line="4322"/>
         <source>Circle</source>
         <translation>원형</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4324"/>
-        <source>Circle without shadow</source>
-        <translation>그림자가 없는 원형</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4287"/>
+        <location filename="../src/configdialog.ui" line="4290"/>
         <source>Highlight Duration</source>
         <translation>강조 표시 지속 시간</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4486"/>
+        <location filename="../src/configdialog.ui" line="4508"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation type="unfinished"/>
     </message>
@@ -2598,48 +2603,48 @@ them here.</source>
         <translation>테두리</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4503"/>
+        <location filename="../src/configdialog.ui" line="4525"/>
         <source>Magnifier Shape:</source>
         <translation>돋보기 모양:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4540"/>
+        <location filename="../src/configdialog.ui" line="4562"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4345"/>
+        <location filename="../src/configdialog.ui" line="4343"/>
         <source>Highlight Color</source>
         <translation>강조 표시 색</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4259"/>
+        <location filename="../src/configdialog.ui" line="4262"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4269"/>
+        <location filename="../src/configdialog.ui" line="4272"/>
         <source>Buffered</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4274"/>
+        <location filename="../src/configdialog.ui" line="4277"/>
         <source>Direct</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4279"/>
+        <location filename="../src/configdialog.ui" line="4282"/>
         <source>Hybrid</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4198"/>
+        <location filename="../src/configdialog.ui" line="4201"/>
         <source>Cache Size:</source>
         <translation>캐시 크기:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4456"/>
-        <location filename="../src/configdialog.ui" line="4510"/>
+        <location filename="../src/configdialog.ui" line="4478"/>
+        <location filename="../src/configdialog.ui" line="4532"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
@@ -2647,118 +2652,119 @@ Note: Changing this setting will only affect documents that are opened afterward
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4208"/>
+        <location filename="../src/configdialog.ui" line="4211"/>
+        <location filename="../src/configdialog.ui" line="4576"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4436"/>
+        <location filename="../src/configdialog.ui" line="4458"/>
         <source>Synchronized Files Types:</source>
         <translation>동기화할 파일 형식:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4462"/>
+        <location filename="../src/configdialog.ui" line="4484"/>
         <source>Render Backend:</source>
         <translation>렌더링 백엔드:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4181"/>
+        <location filename="../src/configdialog.ui" line="4184"/>
         <source>Load Strategy:</source>
         <translation>로딩 방법:</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4414"/>
+        <location filename="../src/configdialog.ui" line="4436"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4479"/>
+        <location filename="../src/configdialog.ui" line="4501"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4446"/>
+        <location filename="../src/configdialog.ui" line="4468"/>
         <source>Paper Color</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4355"/>
+        <location filename="../src/configdialog.ui" line="4353"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4191"/>
+        <location filename="../src/configdialog.ui" line="4194"/>
         <source>Auto-recompile document on changes</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4472"/>
+        <location filename="../src/configdialog.ui" line="4494"/>
         <source>Presentation Laser Pointer Size:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4547"/>
+        <location filename="../src/configdialog.ui" line="4569"/>
         <source>Presentation Laser Pointer Color:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4633"/>
+        <location filename="../src/configdialog.ui" line="4659"/>
         <source>Use SVN</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4638"/>
+        <location filename="../src/configdialog.ui" line="4664"/>
         <source>Use GIT</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4646"/>
+        <location filename="../src/configdialog.ui" line="4672"/>
         <source>Select how txs checks in saved files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4650"/>
+        <location filename="../src/configdialog.ui" line="4676"/>
         <source>No automatic check-in after save</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4655"/>
+        <location filename="../src/configdialog.ui" line="4681"/>
         <source>Check-in after File/Save only</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4660"/>
+        <location filename="../src/configdialog.ui" line="4686"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4668"/>
+        <location filename="../src/configdialog.ui" line="4694"/>
         <source>Use SVN/GIT revisions to undo before last saved version</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4675"/>
+        <location filename="../src/configdialog.ui" line="4701"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4678"/>
+        <location filename="../src/configdialog.ui" line="4704"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4687"/>
+        <location filename="../src/configdialog.ui" line="4713"/>
         <source>SVN Directory Search Depth: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4745"/>
+        <location filename="../src/configdialog.ui" line="4771"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal Terminal</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4796"/>
+        <location filename="../src/configdialog.ui" line="4822"/>
         <source>Shell:</source>
         <translation type="unfinished"/>
     </message>
@@ -2923,7 +2929,7 @@ to set the key anyway?</source>
         <translation>맞춤법 및 문법 검사</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4626"/>
+        <location filename="../src/configdialog.ui" line="4652"/>
         <location filename="../src/configdialog.cpp" line="542"/>
         <source>SVN/GIT</source>
         <translation type="unfinished"/>
@@ -2934,111 +2940,111 @@ to set the key anyway?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="716"/>
+        <location filename="../src/configdialog.cpp" line="723"/>
         <source>Select thesaurus database</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="721"/>
+        <location filename="../src/configdialog.cpp" line="728"/>
         <source>Select the grammar word lists dir</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="726"/>
+        <location filename="../src/configdialog.cpp" line="733"/>
         <source>Select the LanguageTool jar</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="731"/>
+        <location filename="../src/configdialog.cpp" line="738"/>
         <source>Select java</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="744"/>
+        <location filename="../src/configdialog.cpp" line="751"/>
         <source>Select dictionary directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="749"/>
+        <location filename="../src/configdialog.cpp" line="756"/>
         <source>Search Path for Logs</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="754"/>
+        <location filename="../src/configdialog.cpp" line="761"/>
         <source>Search Path .bib Files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="759"/>
+        <location filename="../src/configdialog.cpp" line="766"/>
         <source>Search Path for Images</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="764"/>
+        <location filename="../src/configdialog.cpp" line="771"/>
         <source>Search Path for PDFs</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="769"/>
+        <location filename="../src/configdialog.cpp" line="776"/>
         <source>Search Path for Commands</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="815"/>
+        <location filename="../src/configdialog.cpp" line="822"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;알 수 없음&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1070"/>
+        <location filename="../src/configdialog.cpp" line="1077"/>
         <source>Load Other Icon</source>
         <translation>다른 아이콘 불러오기</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1071"/>
+        <location filename="../src/configdialog.cpp" line="1078"/>
         <source>Insert Separator</source>
         <translation>구분 기호 삽입</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1079"/>
+        <location filename="../src/configdialog.cpp" line="1086"/>
         <source>You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1082"/>
+        <location filename="../src/configdialog.cpp" line="1089"/>
         <source>Select a File</source>
         <translation>파일 선택</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1082"/>
+        <location filename="../src/configdialog.cpp" line="1089"/>
         <source>Images</source>
         <translation>이미지</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1140"/>
+        <location filename="../src/configdialog.cpp" line="1147"/>
         <source>Import Dictionary</source>
         <translation>사전 가져오기</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1140"/>
+        <location filename="../src/configdialog.cpp" line="1147"/>
         <source>OpenOffice Dictionary</source>
         <translation>OpenOffice 사전</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1151"/>
+        <location filename="../src/configdialog.cpp" line="1158"/>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configdialog.cpp" line="1229"/>
+        <location filename="../src/configdialog.cpp" line="1236"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1519"/>
+        <location filename="../src/configmanager.cpp" line="1520"/>
         <source>Basic Key Mapping</source>
         <translation type="unfinished"/>
     </message>
@@ -4067,164 +4073,164 @@ options again to only view the most common settings.</source>
         <translation>pageref - 페이지번호</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1083"/>
-        <location filename="../src/configmanager.cpp" line="1089"/>
-        <location filename="../src/configmanager.cpp" line="1105"/>
-        <location filename="../src/configmanager.cpp" line="1110"/>
+        <location filename="../src/configmanager.cpp" line="1085"/>
+        <location filename="../src/configmanager.cpp" line="1091"/>
+        <location filename="../src/configmanager.cpp" line="1107"/>
+        <location filename="../src/configmanager.cpp" line="1112"/>
         <source>Key replacement: %1 %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1083"/>
-        <location filename="../src/configmanager.cpp" line="1105"/>
+        <location filename="../src/configmanager.cpp" line="1085"/>
+        <location filename="../src/configmanager.cpp" line="1107"/>
         <source>before word</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1089"/>
-        <location filename="../src/configmanager.cpp" line="1110"/>
+        <location filename="../src/configmanager.cpp" line="1091"/>
+        <location filename="../src/configmanager.cpp" line="1112"/>
         <source>after word</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1438"/>
         <location filename="../src/configmanager.cpp" line="1439"/>
-        <location filename="../src/configmanager.cpp" line="1617"/>
-        <location filename="../src/configmanager.cpp" line="1623"/>
-        <location filename="../src/configmanager.cpp" line="1899"/>
-        <location filename="../src/configmanager.cpp" line="1907"/>
+        <location filename="../src/configmanager.cpp" line="1440"/>
+        <location filename="../src/configmanager.cpp" line="1618"/>
+        <location filename="../src/configmanager.cpp" line="1624"/>
+        <location filename="../src/configmanager.cpp" line="1901"/>
+        <location filename="../src/configmanager.cpp" line="1909"/>
         <source>default</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1496"/>
+        <location filename="../src/configmanager.cpp" line="1497"/>
         <source>Menus</source>
         <translation>메뉴</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1504"/>
+        <location filename="../src/configmanager.cpp" line="1505"/>
         <source>Menus PDF-Viewer</source>
         <translation>PDF 뷰어 메뉴</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1540"/>
-        <location filename="../src/configmanager.cpp" line="2753"/>
+        <location filename="../src/configmanager.cpp" line="1541"/>
+        <location filename="../src/configmanager.cpp" line="2755"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;없음&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1586"/>
+        <location filename="../src/configmanager.cpp" line="1587"/>
         <source>Insert New Menu Item (before)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1589"/>
+        <location filename="../src/configmanager.cpp" line="1590"/>
         <source>Insert New Sub Menu (before)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1592"/>
+        <location filename="../src/configmanager.cpp" line="1593"/>
         <source>Revert/Remove User Menu Item</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1610"/>
+        <location filename="../src/configmanager.cpp" line="1611"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/수식 메뉴</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1611"/>
+        <location filename="../src/configmanager.cpp" line="1612"/>
         <source>All menus</source>
         <translation>모든 메뉴</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1612"/>
+        <location filename="../src/configmanager.cpp" line="1613"/>
         <source>Special Tags</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1694"/>
+        <location filename="../src/configmanager.cpp" line="1696"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1953"/>
+        <location filename="../src/configmanager.cpp" line="1955"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>내장 pdf 뷰어의 모든 기능을 사용하려면 synctex을 활성화해야 합니다. synctex을 활성화하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1968"/>
+        <location filename="../src/configmanager.cpp" line="1970"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>최근 &apos;최상위 문서&apos; %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1971"/>
+        <location filename="../src/configmanager.cpp" line="1973"/>
         <source>Recent File %1</source>
         <translation>최근 파일 %1</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1972"/>
+        <location filename="../src/configmanager.cpp" line="1974"/>
         <source>Clear file list</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1973"/>
+        <location filename="../src/configmanager.cpp" line="1975"/>
         <source>File list</source>
         <translation>파일 목록</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1974"/>
+        <location filename="../src/configmanager.cpp" line="1976"/>
         <source>Open first non-open file</source>
         <translation>열려 있지 않은 첫 파일 열기 (&amp;*)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1975"/>
+        <location filename="../src/configmanager.cpp" line="1977"/>
         <source>&amp;* Open all files</source>
         <translation>모든 파일 열기 (&amp;*)</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="1985"/>
+        <location filename="../src/configmanager.cpp" line="1987"/>
         <source>Root Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2754"/>
+        <location filename="../src/configmanager.cpp" line="2756"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;기본값&gt;</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3003"/>
+        <location filename="../src/configmanager.cpp" line="3005"/>
         <source>Configure</source>
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3010"/>
+        <location filename="../src/configmanager.cpp" line="3012"/>
         <source>Select Program</source>
         <translation>프로그램 선택</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3017"/>
+        <location filename="../src/configmanager.cpp" line="3019"/>
         <source>Restore Default</source>
         <translation>기본값 복원</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3064"/>
+        <location filename="../src/configmanager.cpp" line="3066"/>
         <source>Repeat contained compilation commands</source>
         <translation>자동 들여쓰기와 내어쓰기</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3112"/>
+        <location filename="../src/configmanager.cpp" line="3114"/>
         <source>Add</source>
         <translation>추가</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3175"/>
+        <location filename="../src/configmanager.cpp" line="3177"/>
         <source>Browse program</source>
         <translation>프로그램 찾아보기</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="3514"/>
+        <location filename="../src/configmanager.cpp" line="3516"/>
         <source>text is restored after restart</source>
         <translation type="unfinished"/>
     </message>
@@ -4508,23 +4514,23 @@ Are you sure you want to undo all changes?</source>
 <context>
     <name>GrammarCheck</name>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="476"/>
+        <location filename="../src/grammarcheck.cpp" line="325"/>
         <source>Word repetition</source>
         <translation>동어 반복</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="486"/>
+        <location filename="../src/grammarcheck.cpp" line="335"/>
         <source>Word repetition. Distance %1</source>
         <translation>동어 반복, 거리 %1</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="488"/>
+        <location filename="../src/grammarcheck.cpp" line="337"/>
         <source>Long range word repetition. Distance %1</source>
         <translation>넓은 범위의 동어 반복, 거리 %1</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="498"/>
-        <location filename="../src/grammarcheck.cpp" line="500"/>
+        <location filename="../src/grammarcheck.cpp" line="347"/>
+        <location filename="../src/grammarcheck.cpp" line="349"/>
         <source>Bad word</source>
         <translation type="unfinished"/>
     </message>
@@ -4872,203 +4878,203 @@ The wizard does not support command </source>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="310"/>
+        <location filename="../src/latexeditorview.cpp" line="314"/>
         <source>Could not open url:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="390"/>
+        <location filename="../src/latexeditorview.cpp" line="394"/>
         <source>Copy Image</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="391"/>
+        <location filename="../src/latexeditorview.cpp" line="395"/>
         <source>Save Image As...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="450"/>
+        <location filename="../src/latexeditorview.cpp" line="454"/>
         <source>Spelling</source>
         <translation>철자</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="464"/>
+        <location filename="../src/latexeditorview.cpp" line="468"/>
         <source>New BibTeX Entry %1</source>
         <translation>새 BibTex 항목 %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="490"/>
+        <location filename="../src/latexeditorview.cpp" line="494"/>
         <source>Open %1</source>
         <translation>%1 열기</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="497"/>
+        <location filename="../src/latexeditorview.cpp" line="501"/>
         <source>Open Bibliography</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="506"/>
-        <location filename="../src/latexeditorview.cpp" line="522"/>
-        <location filename="../src/latexeditorview.cpp" line="535"/>
+        <location filename="../src/latexeditorview.cpp" line="510"/>
+        <location filename="../src/latexeditorview.cpp" line="526"/>
+        <location filename="../src/latexeditorview.cpp" line="539"/>
         <source>Open package documentation</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="543"/>
+        <location filename="../src/latexeditorview.cpp" line="547"/>
         <source>Go to Definition</source>
         <translation>정의로 이동</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="549"/>
+        <location filename="../src/latexeditorview.cpp" line="553"/>
         <source>Find Usages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="556"/>
+        <location filename="../src/latexeditorview.cpp" line="560"/>
         <source>Thesaurus...</source>
         <translation>유의어 사전...</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="583"/>
+        <location filename="../src/latexeditorview.cpp" line="587"/>
         <source>use yours</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="587"/>
+        <location filename="../src/latexeditorview.cpp" line="591"/>
         <source>use other&apos;s</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="607"/>
+        <location filename="../src/latexeditorview.cpp" line="611"/>
         <source>Go to PDF</source>
         <translation>PDF로 이동</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="1188"/>
+        <location filename="../src/latexeditorview.cpp" line="1193"/>
         <source>untitled</source>
         <translation>제목 없음</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2371"/>
+        <location filename="../src/latexeditorview.cpp" line="2350"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2404"/>
+        <location filename="../src/latexeditorview.cpp" line="2383"/>
         <source>Add to Dictionary</source>
         <translation>사전에 추가</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2406"/>
+        <location filename="../src/latexeditorview.cpp" line="2385"/>
         <source>Ignore all</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2671"/>
+        <location filename="../src/latexeditorview.cpp" line="2650"/>
         <source>label missing!</source>
         <translation>라벨 없음!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2673"/>
-        <location filename="../src/latexeditorview.cpp" line="2691"/>
+        <location filename="../src/latexeditorview.cpp" line="2652"/>
+        <location filename="../src/latexeditorview.cpp" line="2670"/>
         <source>label defined multiple times!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2681"/>
-        <location filename="../src/latexeditorview.cpp" line="2753"/>
+        <location filename="../src/latexeditorview.cpp" line="2660"/>
+        <location filename="../src/latexeditorview.cpp" line="2732"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;파일 이름: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2694"/>
+        <location filename="../src/latexeditorview.cpp" line="2673"/>
         <source>%n reference(s) to this label</source>
         <translation><numerusform>%n곳에서 이 레이블 참조</numerusform></translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2699"/>
+        <location filename="../src/latexeditorview.cpp" line="2678"/>
         <source>Class</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2699"/>
+        <location filename="../src/latexeditorview.cpp" line="2678"/>
         <source>Package</source>
         <translation>패키지</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2703"/>
+        <location filename="../src/latexeditorview.cpp" line="2682"/>
         <source>Beamer Theme</source>
         <translation>Beamer 테마</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2712"/>
+        <location filename="../src/latexeditorview.cpp" line="2691"/>
         <source>not found</source>
         <translation>을 찾을 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2728"/>
+        <location filename="../src/latexeditorview.cpp" line="2707"/>
         <source>Citation correct (reading ...)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2734"/>
+        <location filename="../src/latexeditorview.cpp" line="2713"/>
         <source>Citation missing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2737"/>
+        <location filename="../src/latexeditorview.cpp" line="2716"/>
         <source>Warning:</source>
         <translation>경고:</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2737"/>
+        <location filename="../src/latexeditorview.cpp" line="2716"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>BibTeX ID가 공백으로 끝납니다. BibTeX은 끝의 공백을 무시하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3163"/>
+        <location filename="../src/latexeditorview.cpp" line="3142"/>
         <source>Save Preview Image</source>
         <translation>미리보기 이미지 저장</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3163"/>
+        <location filename="../src/latexeditorview.cpp" line="3142"/>
         <source>Images</source>
         <translation>이미지</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3297"/>
+        <location filename="../src/latexeditorview.cpp" line="3276"/>
         <source>Remove Bookmark</source>
         <translation>책갈피 제거</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3305"/>
+        <location filename="../src/latexeditorview.cpp" line="3284"/>
         <source>Unnamed Bookmark</source>
         <translation>이름 없는 책갈피</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3311"/>
+        <location filename="../src/latexeditorview.cpp" line="3290"/>
         <source>Bookmark</source>
         <translation>책갈피</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3338"/>
+        <location filename="../src/latexeditorview.cpp" line="3317"/>
         <source>Collapse All</source>
         <translation>모두 접기</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3342"/>
+        <location filename="../src/latexeditorview.cpp" line="3321"/>
         <source>Collapse Level %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3347"/>
+        <location filename="../src/latexeditorview.cpp" line="3326"/>
         <source>Expand All</source>
         <translation>모두 펼치기</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3351"/>
+        <location filename="../src/latexeditorview.cpp" line="3330"/>
         <source>Expand Level %1</source>
         <translation type="unfinished"/>
     </message>
@@ -5553,438 +5559,438 @@ Do you want to overwrite it?</source>
 <context>
     <name>PDFDocument</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2745"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2819"/>
         <source>Toolbar</source>
         <translation>도구 모음</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2799"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2873"/>
         <source>&amp;File</source>
         <translation>파일 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2800"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2874"/>
         <source>&amp;Edit</source>
         <translation>편집 (&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2801"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2875"/>
         <source>&amp;View</source>
         <translation>보기 (&amp;V)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2802"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2876"/>
         <source>Grid</source>
         <translation>격자</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2803"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2877"/>
         <source>&amp;Window</source>
         <translation>창 (&amp;W)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2804"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2878"/>
         <source>&amp;Configure</source>
         <translation>설정 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2805"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2879"/>
         <source>&amp;Help</source>
         <translation>도움말 (&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2811"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2885"/>
         <source>User &amp;Manual...</source>
         <translation>사용자 매뉴얼 (&amp;M)...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2814"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2888"/>
         <source>About</source>
         <translation>정보</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2815"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2889"/>
         <source>&amp;Open...</source>
         <translation>열기 (&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2816"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2890"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation>나누기 &amp;&amp; 합치기...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2817"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2891"/>
         <source>&amp;Close</source>
         <translation>닫기 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2819"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2893"/>
         <source>&amp;Quit TeXstudio</source>
         <translation>TeXstudio 종료 (&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2820"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2894"/>
         <source>&amp;Configure TeXstudio</source>
         <translation>TeXstudio 설정 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2822"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2896"/>
         <source>Scrolling follows cursor</source>
         <translation>커서를 따라 스크롤</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2824"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2898"/>
         <source>Cursor follows scrolling</source>
         <translation>스크롤에 따라 커서 이동</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2826"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2900"/>
         <source>Synchronize multiple views</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2828"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2902"/>
         <source>Ignore for synchronization</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2831"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2905"/>
         <source>Invert Colors</source>
         <translation>색상 반전</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2833"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2907"/>
         <source>Grayscale</source>
         <translation>회색조</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2836"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2910"/>
         <source>&amp;Magnify</source>
         <translation>확대 (&amp;M)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2837"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2911"/>
         <source>&amp;Scroll</source>
         <translation>스크롤 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2839"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2913"/>
         <source>&amp;First Page</source>
         <translation>첫 페이지 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2840"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2914"/>
         <source>Back</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2841"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2915"/>
         <source>&amp;Previous Page</source>
         <translation>이전 페이지 (&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2842"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2916"/>
         <source>&amp;Next Page</source>
         <translation>다음 페이지 (&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2843"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2917"/>
         <source>Forward</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2844"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2918"/>
         <source>&amp;Last Page</source>
         <translation>마지막 페이지 (&amp;L)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2846"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2920"/>
         <source>&amp;Go to Page...</source>
         <translation>페이지로 이동 (&amp;G)...</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2848"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2922"/>
         <source>Zoom &amp;In</source>
         <translation>확대 (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2849"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2923"/>
         <source>Zoom &amp;Out</source>
         <translation>축소 (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2850"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2924"/>
         <source>&amp;Actual Size</source>
         <translation>실제 크기 (&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2851"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2925"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>너비 맞춤 (&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2853"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2927"/>
         <source>Fit to &amp;Text Width</source>
         <translation>텍스트 너비 맞춤 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2855"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2929"/>
         <source>Fit to &amp;Window</source>
         <translation>창에 맞춤 (&amp;W)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2857"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2931"/>
         <source>&amp;Continuous</source>
         <translation>연속 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2862"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2936"/>
         <source>Full &amp;Screen</source>
         <translation>전체 화면 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2863"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2937"/>
         <source>Presentation</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2864"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2938"/>
         <source>External Viewer</source>
         <translation>외부 뷰어</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2865"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2939"/>
         <source>Enlarge Viewer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2866"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2940"/>
         <source>Shrink Viewer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2867"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2941"/>
         <source>Windowed/Embedded</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2868"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2942"/>
         <source>Auto-hide Toolbar</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2884"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2958"/>
         <source>Custom...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2889"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2963"/>
         <source>Single Page Step</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2892"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2894"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2966"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2968"/>
         <source>&amp;Close something</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2897"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2971"/>
         <source>Stac&amp;k</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2898"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2972"/>
         <source>&amp;Tile</source>
         <translation>타일 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2899"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2973"/>
         <source>&amp;Side by Side</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2901"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2975"/>
         <source>&amp;Go to Source</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2902"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2976"/>
         <source>Focus Editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2904"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
         <source>New Window</source>
         <translation>새 창</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2905"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2979"/>
         <source>&amp;Find</source>
         <translation>찾기 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2906"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2980"/>
         <source>Find &amp;again</source>
         <translation>다시 찾기 (&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2908"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
         <source>Quick Build</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2942"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
         <source>Show</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2970"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3044"/>
         <source>Windowed Viewer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2973"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3047"/>
         <source>Embedded Viewer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3036"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3110"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>의</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3059"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3133"/>
         <source>Scale</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3077"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3151"/>
         <source>Zoom Out</source>
         <translation>축소하기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3161"/>
         <source>Zoom</source>
         <translation>줌</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3096"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3170"/>
         <source>Zoom In</source>
         <translation>확대하기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3124"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3127"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3198"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3201"/>
         <source>Annotations</source>
         <translation>주석</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3265"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3339"/>
         <source>Page Down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3269"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3343"/>
         <source>Page Up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3459"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3533"/>
         <source>Retry</source>
         <translation>다시 시도</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3462"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4616"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3536"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4690"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3465"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3539"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3479"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3553"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3482"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3556"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3485"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3559"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3488"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3562"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3491"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3565"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3493"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3567"/>
         <source>PDF password</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3493"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3567"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3850"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3924"/>
         <source>Searching for</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3962"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4036"/>
         <source>No SyncTeX data available</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3964"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4038"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4055"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4129"/>
         <source>%1[*] - %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4137"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4211"/>
         <source>Page %1 of %2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4138"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4212"/>
         <source>Pages %1 to %2 of %3</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4163"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4237"/>
         <source>Open PDF</source>
         <translation>PDF 열기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4438"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4512"/>
         <source>Print</source>
         <translation>출력하기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4617"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4691"/>
         <source>Close Message</source>
         <translation type="unfinished"/>
     </message>
@@ -6048,17 +6054,18 @@ You can now enter the password:</source>
 <context>
     <name>PDFMovie</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="488"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="527"/>
         <source>File %1 does not exists</source>
         <translation>파일 %1이(가) 존재하지 않습니다</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="546"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="607"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="613"/>
         <source>Volume:</source>
         <translation>음량:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="555"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="623"/>
         <source>Time:</source>
         <translation>시간:</translation>
     </message>
@@ -6176,27 +6183,27 @@ You can now enter the password:</source>
 <context>
     <name>PDFVideoWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="465"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="504"/>
         <source>&amp;Play</source>
         <translation>재생 (&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="466"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="505"/>
         <source>P&amp;ause</source>
         <translation>일시 정지(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="467"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="506"/>
         <source>&amp;Stop</source>
         <translation>정지 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="469"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="508"/>
         <source>S&amp;eek</source>
         <translation>탐색 (&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="470"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="509"/>
         <source>Set &amp;volume</source>
         <translation>음량 설정 (&amp;V)</translation>
     </message>
@@ -6204,67 +6211,67 @@ You can now enter the password:</source>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="653"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="727"/>
         <source>Zoom In</source>
         <translation>확대하기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="655"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="729"/>
         <source>Zoom Out</source>
         <translation>축소하기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="658"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="732"/>
         <source>Actual Size</source>
         <translation>실제 크기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="661"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="735"/>
         <source>Fit to Width</source>
         <translation>폭맞춤</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="664"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="738"/>
         <source>Fit to Window</source>
         <translation>창맞춤</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1269"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1343"/>
         <source>Opening external files is currently only supported for PDFs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1288"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1362"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1288"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1362"/>
         <source>Could not open link:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1404"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1478"/>
         <source>Go to Source</source>
         <translation>코드의 해당 부분으로 가기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2209"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2283"/>
         <source>Go to Page</source>
         <translation>페이지의 해당 부분으로 가기</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2210"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2284"/>
         <source>Page number:</source>
         <translation>쪽번호:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2600"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2674"/>
         <source>Calculating text width</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2600"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2674"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
@@ -6732,289 +6739,289 @@ Notes:
         <translation>유닉스</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4691"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4692"/>
         <source>None</source>
         <translation>없음</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4692"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4693"/>
         <source>Invalid</source>
         <translation>유효하지 않음</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4694"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4710"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4726"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4695"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4711"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4727"/>
         <source>Internal</source>
         <translation>내부</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4696"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4697"/>
         <source>Move cursor up</source>
         <translation>커서를 위로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4697"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4698"/>
         <source>Move cursor down</source>
         <translation>커서를 아래로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4698"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4699"/>
         <source>Move cursor left (1 character)</source>
         <translation>커서를 왼쪽으로 이동(1글자)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4699"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4700"/>
         <source>Move cursor right (1 character)</source>
         <translation>커서를 오른쪽으로 이동(1글자)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4700"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4701"/>
         <source>Move cursor left (1 word)</source>
         <translation>커서를 왼쪽으로 이동(1단어)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4701"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4702"/>
         <source>Move cursor right (1 word)</source>
         <translation>커서를 오른쪽으로 이동(1단어)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4702"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4703"/>
         <source>Move cursor to line start</source>
         <translation>커서를 줄의 시작 부분으로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4703"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4704"/>
         <source>Move cursor to line end</source>
         <translation>커서를 줄의 끝부분으로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4704"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4705"/>
         <source>Move cursor to document start</source>
         <translation>커서를 문서의 시작부로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4705"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4706"/>
         <source>Move cursor to document end</source>
         <translation>커서를 문서의 끝부분으로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4707"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4708"/>
         <source>Move cursor one page up</source>
         <translation>커서를 한 페이지 위로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4708"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4709"/>
         <source>Move cursor one page down</source>
         <translation>커서를 한 페이지 아래로 이동</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4712"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4713"/>
         <source>Select up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4713"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4714"/>
         <source>Select down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4714"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4715"/>
         <source>Select left (1 character)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4715"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4716"/>
         <source>Select right (1 character)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4716"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4717"/>
         <source>Select left (1 word)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4717"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4718"/>
         <source>Select right (1 word)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4718"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4719"/>
         <source>Select to line start</source>
         <translation>줄의 시작부터 여기까지 선택</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4719"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4720"/>
         <source>Select to line end</source>
         <translation>여기부터 줄의 끝까지 선택</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4720"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4721"/>
         <source>Select to document start</source>
         <translation>문서의 시작부터 여기까지 선택</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4721"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4722"/>
         <source>Select to document end</source>
         <translation>여기부터 문서의 끝까지 선택</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4723"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4724"/>
         <source>Select page up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4724"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4725"/>
         <source>Select page down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4728"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4729"/>
         <source>Delete left character</source>
         <translation>왼쪽의 문자 삭제</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4729"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4730"/>
         <source>Delete right character</source>
         <translation>오른쪽의 문자 삭제</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4730"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4731"/>
         <source>Delete left word</source>
         <translation>왼쪽의 단어 삭제</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4731"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4732"/>
         <source>Delete right word</source>
         <translation>오른쪽의 단어 삭제</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4732"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4733"/>
         <source>New line</source>
         <translation>줄바꿈</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4734"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4735"/>
         <source>Change overwrite mode</source>
         <translation>덮어쓰기 모드 바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4735"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
         <source>Undo</source>
         <translation>실행 취소</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
         <source>Redo</source>
         <translation>다시 실행</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4738"/>
         <source>Copy</source>
         <translation>복사</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4738"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4739"/>
         <source>Paste</source>
         <translation>붙여넣기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4739"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4740"/>
         <source>Cut</source>
         <translation>자르기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4740"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4741"/>
         <source>Print</source>
         <translation>출력하기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4741"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4742"/>
         <source>Select all</source>
         <translation>전체 선택</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4742"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4743"/>
         <source>Find</source>
         <translation>찾기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4743"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4744"/>
         <source>Find next</source>
         <translation>다음 찾기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4744"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4745"/>
         <source>Find previous</source>
         <translation>이전 찾기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4745"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4746"/>
         <source>Replace</source>
         <translation>바꾸기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4747"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4748"/>
         <source>Create cursor mirror up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4748"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4749"/>
         <source>Create cursor mirror down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4749"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4750"/>
         <source>Next placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4750"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4751"/>
         <source>Previous placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4751"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4752"/>
         <source>Next placeholder or one word right</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4752"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
         <source>Previous placeholder or one word left</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
         <source>Next placeholder or character</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
         <source>Previous placeholder or character</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4756"/>
         <source>Tab or Indent selection</source>
         <translation>선택 영역 들여쓰기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4756"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
         <source>Insert tab</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4758"/>
         <source>Indent selection</source>
         <translation>선택 영역 들여쓰기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4758"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
         <source>Unindent selection</source>
         <translation>선택 영역 내어쓰기</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
         <source>Unknown</source>
         <translation>알 수 없음</translation>
     </message>
@@ -7866,173 +7873,173 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>QuickDocumentDialog</name>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="62"/>
+        <location filename="../src/quickdocumentdialog.ui" line="682"/>
         <source>OK</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="69"/>
+        <location filename="../src/quickdocumentdialog.ui" line="689"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="111"/>
+        <location filename="../src/quickdocumentdialog.ui" line="65"/>
         <source>Title</source>
         <translation>제목</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="121"/>
+        <location filename="../src/quickdocumentdialog.ui" line="75"/>
         <source>Babel</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="137"/>
+        <location filename="../src/quickdocumentdialog.ui" line="91"/>
         <source>Document Class</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="161"/>
+        <location filename="../src/quickdocumentdialog.ui" line="115"/>
         <source>Typeface Size</source>
         <translation>글꼴 크기</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="174"/>
+        <location filename="../src/quickdocumentdialog.ui" line="128"/>
         <source>Other Options</source>
         <translation>다른 옵션</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="226"/>
+        <location filename="../src/quickdocumentdialog.ui" line="180"/>
         <source>Paper Size</source>
         <translation>용지 크기</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="248"/>
+        <location filename="../src/quickdocumentdialog.ui" line="202"/>
         <source>Author</source>
         <translation>저자</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="82"/>
+        <location filename="../src/quickdocumentdialog.ui" line="36"/>
         <source>&amp;Class Options</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="255"/>
+        <location filename="../src/quickdocumentdialog.ui" line="209"/>
         <source>Font Encoding</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="279"/>
+        <location filename="../src/quickdocumentdialog.ui" line="233"/>
         <source>&amp;Packages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="303"/>
+        <location filename="../src/quickdocumentdialog.ui" line="251"/>
         <source>Package</source>
         <translation>패키지</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="308"/>
+        <location filename="../src/quickdocumentdialog.ui" line="256"/>
         <source>Description</source>
         <translation>설명</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="371"/>
+        <location filename="../src/quickdocumentdialog.ui" line="278"/>
         <source>&amp;Geometry</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="399"/>
+        <location filename="../src/quickdocumentdialog.ui" line="306"/>
         <source>Page</source>
         <translation>페이지</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="405"/>
+        <location filename="../src/quickdocumentdialog.ui" line="312"/>
         <source>Width:</source>
         <translation>너비:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="415"/>
-        <location filename="../src/quickdocumentdialog.ui" line="429"/>
-        <location filename="../src/quickdocumentdialog.ui" line="461"/>
-        <location filename="../src/quickdocumentdialog.ui" line="492"/>
-        <location filename="../src/quickdocumentdialog.ui" line="528"/>
-        <location filename="../src/quickdocumentdialog.ui" line="545"/>
-        <location filename="../src/quickdocumentdialog.ui" line="583"/>
+        <location filename="../src/quickdocumentdialog.ui" line="322"/>
+        <location filename="../src/quickdocumentdialog.ui" line="336"/>
+        <location filename="../src/quickdocumentdialog.ui" line="368"/>
+        <location filename="../src/quickdocumentdialog.ui" line="399"/>
+        <location filename="../src/quickdocumentdialog.ui" line="435"/>
+        <location filename="../src/quickdocumentdialog.ui" line="452"/>
+        <location filename="../src/quickdocumentdialog.ui" line="490"/>
+        <location filename="../src/quickdocumentdialog.ui" line="507"/>
+        <location filename="../src/quickdocumentdialog.ui" line="538"/>
+        <location filename="../src/quickdocumentdialog.ui" line="555"/>
         <location filename="../src/quickdocumentdialog.ui" line="600"/>
-        <location filename="../src/quickdocumentdialog.ui" line="631"/>
-        <location filename="../src/quickdocumentdialog.ui" line="648"/>
-        <location filename="../src/quickdocumentdialog.ui" line="693"/>
-        <location filename="../src/quickdocumentdialog.ui" line="710"/>
+        <location filename="../src/quickdocumentdialog.ui" line="617"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="434"/>
-        <location filename="../src/quickdocumentdialog.ui" line="466"/>
-        <location filename="../src/quickdocumentdialog.ui" line="550"/>
-        <location filename="../src/quickdocumentdialog.ui" line="605"/>
-        <location filename="../src/quickdocumentdialog.ui" line="653"/>
-        <location filename="../src/quickdocumentdialog.ui" line="715"/>
+        <location filename="../src/quickdocumentdialog.ui" line="341"/>
+        <location filename="../src/quickdocumentdialog.ui" line="373"/>
+        <location filename="../src/quickdocumentdialog.ui" line="457"/>
+        <location filename="../src/quickdocumentdialog.ui" line="512"/>
+        <location filename="../src/quickdocumentdialog.ui" line="560"/>
+        <location filename="../src/quickdocumentdialog.ui" line="622"/>
         <source>cm</source>
         <translation>cm</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="439"/>
-        <location filename="../src/quickdocumentdialog.ui" line="471"/>
-        <location filename="../src/quickdocumentdialog.ui" line="555"/>
-        <location filename="../src/quickdocumentdialog.ui" line="610"/>
-        <location filename="../src/quickdocumentdialog.ui" line="658"/>
-        <location filename="../src/quickdocumentdialog.ui" line="720"/>
+        <location filename="../src/quickdocumentdialog.ui" line="346"/>
+        <location filename="../src/quickdocumentdialog.ui" line="378"/>
+        <location filename="../src/quickdocumentdialog.ui" line="462"/>
+        <location filename="../src/quickdocumentdialog.ui" line="517"/>
+        <location filename="../src/quickdocumentdialog.ui" line="565"/>
+        <location filename="../src/quickdocumentdialog.ui" line="627"/>
         <source>pt</source>
         <translation>pt</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="444"/>
-        <location filename="../src/quickdocumentdialog.ui" line="476"/>
-        <location filename="../src/quickdocumentdialog.ui" line="560"/>
-        <location filename="../src/quickdocumentdialog.ui" line="615"/>
-        <location filename="../src/quickdocumentdialog.ui" line="663"/>
-        <location filename="../src/quickdocumentdialog.ui" line="725"/>
+        <location filename="../src/quickdocumentdialog.ui" line="351"/>
+        <location filename="../src/quickdocumentdialog.ui" line="383"/>
+        <location filename="../src/quickdocumentdialog.ui" line="467"/>
+        <location filename="../src/quickdocumentdialog.ui" line="522"/>
+        <location filename="../src/quickdocumentdialog.ui" line="570"/>
+        <location filename="../src/quickdocumentdialog.ui" line="632"/>
         <source>bp</source>
         <translation>bp</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="449"/>
-        <location filename="../src/quickdocumentdialog.ui" line="481"/>
-        <location filename="../src/quickdocumentdialog.ui" line="565"/>
-        <location filename="../src/quickdocumentdialog.ui" line="620"/>
-        <location filename="../src/quickdocumentdialog.ui" line="668"/>
-        <location filename="../src/quickdocumentdialog.ui" line="730"/>
+        <location filename="../src/quickdocumentdialog.ui" line="356"/>
+        <location filename="../src/quickdocumentdialog.ui" line="388"/>
+        <location filename="../src/quickdocumentdialog.ui" line="472"/>
+        <location filename="../src/quickdocumentdialog.ui" line="527"/>
+        <location filename="../src/quickdocumentdialog.ui" line="575"/>
+        <location filename="../src/quickdocumentdialog.ui" line="637"/>
         <source>in</source>
         <translation>in</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="502"/>
+        <location filename="../src/quickdocumentdialog.ui" line="409"/>
         <source>Height:</source>
         <translation>높이:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="512"/>
+        <location filename="../src/quickdocumentdialog.ui" line="419"/>
         <source>Margins</source>
         <translation>여백</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="518"/>
+        <location filename="../src/quickdocumentdialog.ui" line="425"/>
         <source>Left:</source>
         <translation>왼쪽:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="573"/>
+        <location filename="../src/quickdocumentdialog.ui" line="480"/>
         <source>Right:</source>
         <translation>오른쪽:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="676"/>
+        <location filename="../src/quickdocumentdialog.ui" line="583"/>
         <source>Top:</source>
         <translation>위쪽:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="683"/>
+        <location filename="../src/quickdocumentdialog.ui" line="590"/>
         <source>Bottom:</source>
         <translation>아래쪽:</translation>
     </message>
@@ -8078,21 +8085,21 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
-        <source>Sophisticated package for colors, with table option use colors in tables</source>
+        <source>Sophisticated package for colors, with table option to use colors in tables</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="500"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="511"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="522"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="533"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="544"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="555"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="494"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="505"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="516"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="527"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="538"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="549"/>
         <source>New:</source>
         <translation>새로 만들기:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="567"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="561"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
         <translation type="unfinished"/>
     </message>
@@ -8181,40 +8188,40 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>다음으로 저장:</translation>
     </message>
     <message>
-        <location filename="../src/randomtextgenerator.cpp" line="47"/>
+        <location filename="../src/randomtextgenerator.cpp" line="50"/>
         <source>No data given</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/randomtextgenerator.cpp" line="50"/>
+        <location filename="../src/randomtextgenerator.cpp" line="53"/>
         <source>Reading all words
 (This will take a while but only on the first generation)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/randomtextgenerator.cpp" line="89"/>
+        <location filename="../src/randomtextgenerator.cpp" line="90"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/randomtextgenerator.cpp" line="113"/>
+        <location filename="../src/randomtextgenerator.cpp" line="114"/>
         <source>You didn&apos;t select an order!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/randomtextgenerator.cpp" line="116"/>
-        <location filename="../src/randomtextgenerator.cpp" line="132"/>
-        <location filename="../src/randomtextgenerator.cpp" line="234"/>
+        <location filename="../src/randomtextgenerator.cpp" line="117"/>
+        <location filename="../src/randomtextgenerator.cpp" line="133"/>
+        <location filename="../src/randomtextgenerator.cpp" line="235"/>
         <source>Generating random text...</source>
         <translation>무작위 텍스트를 생성하는 중...</translation>
     </message>
     <message>
-        <location filename="../src/randomtextgenerator.cpp" line="128"/>
+        <location filename="../src/randomtextgenerator.cpp" line="129"/>
         <source>Couldn&apos;t create file %1</source>
         <translation>파일 %1을(를) 생성할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../src/randomtextgenerator.cpp" line="219"/>
+        <location filename="../src/randomtextgenerator.cpp" line="220"/>
         <source>Finished generation</source>
         <translation>생성 완료</translation>
     </message>
@@ -8460,22 +8467,22 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>SymbolListModel</name>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="335"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="333"/>
         <source>Command: </source>
         <translation>명령어: </translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="348"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="346"/>
         <source>Package: </source>
         <translation>패키지: </translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="350"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="348"/>
         <source>Packages: </source>
         <translation>패키지: </translation>
     </message>
     <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="361"/>
+        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="359"/>
         <source>Unicode Character: </source>
         <translation>유니코드 문자: </translation>
     </message>
@@ -9263,13 +9270,13 @@ failed.</source>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="../src/configmanager.cpp" line="2129"/>
+        <location filename="../src/configmanager.cpp" line="2131"/>
         <source>Edit &amp;Macros...</source>
         <translation>매크로 편집 (&amp;M)...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="364"/>
-        <location filename="../src/texstudio.cpp" line="6196"/>
+        <location filename="../src/texstudio.cpp" line="6198"/>
         <source>Ready</source>
         <translation type="unfinished"/>
     </message>
@@ -9310,8 +9317,8 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="441"/>
-        <location filename="../src/texstudio.cpp" line="9638"/>
-        <location filename="../src/texstudio.cpp" line="9645"/>
+        <location filename="../src/texstudio.cpp" line="9658"/>
+        <location filename="../src/texstudio.cpp" line="9665"/>
         <source>All files</source>
         <translation>모든 파일</translation>
     </message>
@@ -9561,7 +9568,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="918"/>
-        <location filename="../src/texstudio.cpp" line="9839"/>
+        <location filename="../src/texstudio.cpp" line="9859"/>
         <source>&amp;Close</source>
         <translation>닫기 (&amp;C)</translation>
     </message>
@@ -9798,9 +9805,9 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="988"/>
-        <location filename="../src/texstudio.cpp" line="7642"/>
-        <location filename="../src/texstudio.cpp" line="7667"/>
+        <location filename="../src/texstudio.cpp" line="7662"/>
         <location filename="../src/texstudio.cpp" line="7687"/>
+        <location filename="../src/texstudio.cpp" line="7707"/>
         <source>Line</source>
         <translation>줄</translation>
     </message>
@@ -10176,13 +10183,13 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1177"/>
-        <location filename="../src/texstudio.cpp" line="1328"/>
+        <location filename="../src/texstudio.cpp" line="1329"/>
         <source>&amp;View</source>
         <translation>보기 (&amp;V)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1178"/>
-        <location filename="../src/texstudio.cpp" line="1275"/>
+        <location filename="../src/texstudio.cpp" line="1276"/>
         <source>&amp;Bibliography</source>
         <translation>참고 문헌 (&amp;B)</translation>
     </message>
@@ -10209,7 +10216,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1186"/>
-        <location filename="../src/texstudio.cpp" line="1235"/>
+        <location filename="../src/texstudio.cpp" line="1236"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
@@ -10331,627 +10338,632 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1225"/>
+        <source>Convert to Abridged Plaintext</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1226"/>
         <source>A&amp;nalyse Text...</source>
         <translation>텍스트 분석 (&amp;N)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1226"/>
+        <location filename="../src/texstudio.cpp" line="1227"/>
         <source>Generate &amp;Random Text...</source>
         <translation>무작위 텍스트 생성 (&amp;R)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1228"/>
+        <location filename="../src/texstudio.cpp" line="1229"/>
         <source>Check Spelling...</source>
         <translation>철자 검사...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1229"/>
+        <location filename="../src/texstudio.cpp" line="1230"/>
         <source>Thesaurus...</source>
         <translation>유의어 사전...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1230"/>
+        <location filename="../src/texstudio.cpp" line="1231"/>
         <source>Find Word Repetitions...</source>
         <translation>동어 반복 찾기...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1238"/>
         <source>Insert \ref to Next Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1238"/>
+        <location filename="../src/texstudio.cpp" line="1239"/>
         <source>Insert \ref to Previous Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
+        <location filename="../src/texstudio.cpp" line="1240"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/texstudio.cpp" line="1241"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>행 추가</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1241"/>
+        <location filename="../src/texstudio.cpp" line="1242"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>열 추가</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1242"/>
+        <location filename="../src/texstudio.cpp" line="1243"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>행 삭제</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1243"/>
+        <location filename="../src/texstudio.cpp" line="1244"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>열 삭제</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/texstudio.cpp" line="1245"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>열 잘라내기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/texstudio.cpp" line="1246"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>열 붙여넣기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1246"/>
+        <location filename="../src/texstudio.cpp" line="1247"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>\hline 삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1247"/>
+        <location filename="../src/texstudio.cpp" line="1248"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>\hline 삭제</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1248"/>
+        <location filename="../src/texstudio.cpp" line="1249"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1249"/>
+        <location filename="../src/texstudio.cpp" line="1250"/>
         <source>Align Columns</source>
         <translation>열 정렬</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1250"/>
+        <location filename="../src/texstudio.cpp" line="1251"/>
         <source>Add magic comments ...</source>
         <translation>Magic comment 추가...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1251"/>
+        <location filename="../src/texstudio.cpp" line="1252"/>
         <source>Insert root document name as TeX comment</source>
         <translation>최상위 문서 이름을 TeX 주석으로 삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1252"/>
-        <location filename="../src/texstudio.cpp" line="1629"/>
+        <location filename="../src/texstudio.cpp" line="1253"/>
+        <location filename="../src/texstudio.cpp" line="1630"/>
         <source>Insert language as TeX comment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1253"/>
+        <location filename="../src/texstudio.cpp" line="1254"/>
         <source>Insert document coding as TeX comment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1254"/>
+        <location filename="../src/texstudio.cpp" line="1255"/>
         <source>Insert program as TeX comment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1255"/>
+        <location filename="../src/texstudio.cpp" line="1256"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1257"/>
+        <location filename="../src/texstudio.cpp" line="1258"/>
         <source>&amp;Math</source>
         <translation>수식 (&amp;M)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1261"/>
+        <location filename="../src/texstudio.cpp" line="1262"/>
         <source>&amp;Wizards</source>
         <translation>마법사 (&amp;W)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1262"/>
+        <location filename="../src/texstudio.cpp" line="1263"/>
         <source>Quick &amp;Start...</source>
         <translation>빠른 시작 (&amp;S)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1263"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1264"/>
+        <location filename="../src/texstudio.cpp" line="1265"/>
         <source>Quick &amp;Letter...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1267"/>
+        <location filename="../src/texstudio.cpp" line="1268"/>
         <source>Quick &amp;Tabular...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1268"/>
+        <location filename="../src/texstudio.cpp" line="1269"/>
         <source>Quick T&amp;abbing...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1269"/>
+        <location filename="../src/texstudio.cpp" line="1270"/>
         <source>Quick &amp;Array...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/texstudio.cpp" line="1271"/>
         <source>Insert &amp;Graphic...</source>
         <translation>그래픽 삽입 (&amp;G)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1272"/>
+        <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Math Assistant...</source>
         <translation>수식 도우미...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1300"/>
+        <location filename="../src/texstudio.cpp" line="1301"/>
         <source>&amp;Clean</source>
         <translation>파일 정리 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1302"/>
+        <location filename="../src/texstudio.cpp" line="1303"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>참고문헌 삽입 (&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1304"/>
+        <location filename="../src/texstudio.cpp" line="1305"/>
         <source>Type</source>
         <translation>종류</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1308"/>
-        <location filename="../src/texstudio.cpp" line="1318"/>
+        <location filename="../src/texstudio.cpp" line="1309"/>
+        <location filename="../src/texstudio.cpp" line="1319"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1313"/>
-        <location filename="../src/texstudio.cpp" line="1319"/>
+        <location filename="../src/texstudio.cpp" line="1314"/>
+        <location filename="../src/texstudio.cpp" line="1320"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1323"/>
+        <location filename="../src/texstudio.cpp" line="1324"/>
         <source>Ma&amp;cros</source>
         <translation>Ma&amp;cros</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1329"/>
+        <location filename="../src/texstudio.cpp" line="1330"/>
         <source>Previous Document</source>
         <translation>이전 문서</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1330"/>
+        <location filename="../src/texstudio.cpp" line="1331"/>
         <source>Next Document</source>
         <translation>다음 문서</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1331"/>
+        <location filename="../src/texstudio.cpp" line="1332"/>
         <source>Open Documents</source>
         <translation>문서 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1332"/>
+        <location filename="../src/texstudio.cpp" line="1333"/>
         <source>List Of Open Documents</source>
         <translation>열린 문서 목록</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1333"/>
+        <location filename="../src/texstudio.cpp" line="1334"/>
         <source>List Of Hidden Documents</source>
         <translation>숨겨진 문서 목록</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1335"/>
+        <location filename="../src/texstudio.cpp" line="1336"/>
         <source>Focus Editor</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1336"/>
+        <location filename="../src/texstudio.cpp" line="1337"/>
         <source>Focus Viewer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1339"/>
+        <location filename="../src/texstudio.cpp" line="1340"/>
         <source>Show</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1342"/>
+        <location filename="../src/texstudio.cpp" line="1343"/>
         <source>Statusbar</source>
         <translation>상태 표시줄</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1346"/>
+        <location filename="../src/texstudio.cpp" line="1347"/>
         <source>Show embedded PDF large</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1347"/>
+        <location filename="../src/texstudio.cpp" line="1348"/>
         <source>Show embedded PDF small</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1349"/>
+        <location filename="../src/texstudio.cpp" line="1350"/>
         <source>Close Element</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1352"/>
-        <source>Collapse</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="1353"/>
-        <location filename="../src/texstudio.cpp" line="1358"/>
-        <source>Everything</source>
+        <source>Collapse</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1354"/>
         <location filename="../src/texstudio.cpp" line="1359"/>
+        <source>Everything</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1355"/>
+        <location filename="../src/texstudio.cpp" line="1360"/>
         <source>Nearest Block</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1356"/>
-        <location filename="../src/texstudio.cpp" line="1361"/>
+        <location filename="../src/texstudio.cpp" line="1357"/>
+        <location filename="../src/texstudio.cpp" line="1362"/>
         <source>Level %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1357"/>
+        <location filename="../src/texstudio.cpp" line="1358"/>
         <source>Expand</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1363"/>
+        <location filename="../src/texstudio.cpp" line="1364"/>
         <source>Grammar errors</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1366"/>
+        <location filename="../src/texstudio.cpp" line="1367"/>
         <source>Word Repetition</source>
         <translation>동어 반복</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1367"/>
+        <location filename="../src/texstudio.cpp" line="1368"/>
         <source>Long-range Word Repetition</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1368"/>
+        <location filename="../src/texstudio.cpp" line="1369"/>
         <source>Bad words</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1369"/>
+        <location filename="../src/texstudio.cpp" line="1370"/>
         <source>Grammar Mistake</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1371"/>
+        <location filename="../src/texstudio.cpp" line="1372"/>
         <source>Grammar Mistake Special %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1380"/>
+        <location filename="../src/texstudio.cpp" line="1381"/>
         <source>Editor Zoom</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1381"/>
+        <location filename="../src/texstudio.cpp" line="1382"/>
         <source>Zoom In</source>
         <translation>확대하기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1382"/>
+        <location filename="../src/texstudio.cpp" line="1383"/>
         <source>Zoom Out</source>
         <translation>축소하기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1383"/>
+        <location filename="../src/texstudio.cpp" line="1384"/>
         <source>Reset Zoom</source>
         <translation>확대/축소 설정 초기화</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1385"/>
+        <location filename="../src/texstudio.cpp" line="1386"/>
         <source>Full &amp;Screen</source>
         <translation>전체 화면 (&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1392"/>
+        <location filename="../src/texstudio.cpp" line="1393"/>
         <source>Highlighting</source>
         <translation>구문 강조</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1416"/>
+        <location filename="../src/texstudio.cpp" line="1417"/>
         <source>&amp;Options</source>
         <translation>옵션 (&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1417"/>
+        <location filename="../src/texstudio.cpp" line="1418"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>TeXstudio 설정 (&amp;C)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1420"/>
+        <location filename="../src/texstudio.cpp" line="1421"/>
         <source>Load &amp;Profile...</source>
         <translation>프로파일 불러오기 (&amp;P)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1421"/>
+        <location filename="../src/texstudio.cpp" line="1422"/>
         <source>S&amp;ave Profile...</source>
         <translation>프로파일 저장 (&amp;S)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1422"/>
+        <location filename="../src/texstudio.cpp" line="1423"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>현재 설정 저장 (&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1423"/>
+        <location filename="../src/texstudio.cpp" line="1424"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>기본 설정으로 되돌리기 (&amp;D)...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1426"/>
+        <location filename="../src/texstudio.cpp" line="1427"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1429"/>
+        <location filename="../src/texstudio.cpp" line="1430"/>
         <source>Detect &amp;Automatically</source>
         <translation>자동 감지 (&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1437"/>
+        <location filename="../src/texstudio.cpp" line="1438"/>
         <source>Set Current Document As Explicit Root</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1440"/>
+        <location filename="../src/texstudio.cpp" line="1441"/>
         <source>&amp;Help</source>
         <translation>도움말 (&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1441"/>
+        <location filename="../src/texstudio.cpp" line="1442"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeX 설명서...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1442"/>
+        <location filename="../src/texstudio.cpp" line="1443"/>
         <source>User Manual...</source>
         <translation>사용자 설명서...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1443"/>
+        <location filename="../src/texstudio.cpp" line="1444"/>
         <source>Packages Help...</source>
         <translation>패키지 도움말...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1446"/>
+        <location filename="../src/texstudio.cpp" line="1447"/>
         <source>Check LaTeX Installation</source>
         <translation>LaTeX 설치 확인</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1447"/>
+        <location filename="../src/texstudio.cpp" line="1448"/>
         <source>Check Active Completion Files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1448"/>
+        <location filename="../src/texstudio.cpp" line="1449"/>
         <source>Check LanguageTool</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="1450"/>
         <source>Bugs Report/Feature Request</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1450"/>
+        <location filename="../src/texstudio.cpp" line="1451"/>
         <source>About TeXstudio...</source>
         <translation>TeXstudio에 관하여...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1612"/>
-        <location filename="../src/texstudio.cpp" line="5710"/>
+        <location filename="../src/texstudio.cpp" line="1613"/>
+        <location filename="../src/texstudio.cpp" line="5712"/>
         <source>show more entries ...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1620"/>
+        <location filename="../src/texstudio.cpp" line="1621"/>
         <source>Default</source>
         <translation>기본값</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1654"/>
+        <location filename="../src/texstudio.cpp" line="1655"/>
         <source>Connected to LanguageTool at %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1658"/>
+        <location filename="../src/texstudio.cpp" line="1659"/>
         <source>No LanguageTool server found at %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1662"/>
+        <location filename="../src/texstudio.cpp" line="1663"/>
         <source>LanguageTool status unknown</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1666"/>
+        <location filename="../src/texstudio.cpp" line="1667"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1727"/>
+        <location filename="../src/texstudio.cpp" line="1728"/>
         <source>Language</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1739"/>
         <location filename="../src/texstudio.cpp" line="1740"/>
-        <location filename="../src/texstudio.cpp" line="5740"/>
-        <location filename="../src/texstudio.cpp" line="5743"/>
-        <location filename="../src/texstudio.cpp" line="5744"/>
+        <location filename="../src/texstudio.cpp" line="1741"/>
+        <location filename="../src/texstudio.cpp" line="5742"/>
+        <location filename="../src/texstudio.cpp" line="5745"/>
+        <location filename="../src/texstudio.cpp" line="5746"/>
         <source>Encoding</source>
         <translation>인코딩</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1762"/>
+        <location filename="../src/texstudio.cpp" line="1763"/>
         <source>More Encodings...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1770"/>
+        <location filename="../src/texstudio.cpp" line="1771"/>
         <source>Insert encoding as TeX comment</source>
         <translation>인코딩을 TeX 주석으로 삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1784"/>
+        <location filename="../src/texstudio.cpp" line="1785"/>
         <source>Go to bookmark</source>
         <translation>책갈피로 이동</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1826"/>
+        <location filename="../src/texstudio.cpp" line="1827"/>
         <source>Automatic</source>
         <translation>자동</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1827"/>
+        <location filename="../src/texstudio.cpp" line="1828"/>
         <source>Automatic root document detection active</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1832"/>
+        <location filename="../src/texstudio.cpp" line="1833"/>
         <source>&amp;Explicit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1833"/>
+        <location filename="../src/texstudio.cpp" line="1834"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1834"/>
+        <location filename="../src/texstudio.cpp" line="1835"/>
         <source>Explict root document:
 %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2132"/>
+        <location filename="../src/texstudio.cpp" line="2133"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2214"/>
-        <location filename="../src/texstudio.cpp" line="4058"/>
-        <location filename="../src/texstudio.cpp" line="5793"/>
-        <location filename="../src/texstudio.cpp" line="5845"/>
-        <location filename="../src/texstudio.cpp" line="6394"/>
-        <location filename="../src/texstudio.cpp" line="6575"/>
-        <location filename="../src/texstudio.cpp" line="6577"/>
-        <location filename="../src/texstudio.cpp" line="6587"/>
-        <location filename="../src/texstudio.cpp" line="6589"/>
-        <location filename="../src/texstudio.cpp" line="10320"/>
+        <location filename="../src/texstudio.cpp" line="2215"/>
+        <location filename="../src/texstudio.cpp" line="4060"/>
+        <location filename="../src/texstudio.cpp" line="5795"/>
+        <location filename="../src/texstudio.cpp" line="5847"/>
+        <location filename="../src/texstudio.cpp" line="6414"/>
+        <location filename="../src/texstudio.cpp" line="6595"/>
+        <location filename="../src/texstudio.cpp" line="6597"/>
+        <location filename="../src/texstudio.cpp" line="6607"/>
+        <location filename="../src/texstudio.cpp" line="6609"/>
+        <location filename="../src/texstudio.cpp" line="10340"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2214"/>
+        <location filename="../src/texstudio.cpp" line="2215"/>
         <source>You do not have read permission to the file %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2272"/>
+        <location filename="../src/texstudio.cpp" line="2273"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2278"/>
+        <location filename="../src/texstudio.cpp" line="2279"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2412"/>
+        <location filename="../src/texstudio.cpp" line="2414"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2500"/>
+        <location filename="../src/texstudio.cpp" line="2502"/>
         <source>Could not write template data:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2532"/>
+        <location filename="../src/texstudio.cpp" line="2534"/>
         <source>Could not write template meta data:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2583"/>
-        <location filename="../src/texstudio.cpp" line="2647"/>
+        <location filename="../src/texstudio.cpp" line="2585"/>
+        <location filename="../src/texstudio.cpp" line="2649"/>
         <source>File not found:</source>
         <translation>파일을 찾을 수 없음:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2587"/>
-        <location filename="../src/texstudio.cpp" line="2651"/>
+        <location filename="../src/texstudio.cpp" line="2589"/>
+        <location filename="../src/texstudio.cpp" line="2653"/>
         <source>You do not have read permission to this file:</source>
         <translation>이 파일을 읽을 권한이 없습니다:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2768"/>
-        <location filename="../src/texstudio.cpp" line="10150"/>
+        <location filename="../src/texstudio.cpp" line="2770"/>
+        <location filename="../src/texstudio.cpp" line="10170"/>
         <source>Open Files</source>
         <translation>파일 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2802"/>
-        <location filename="../src/texstudio.cpp" line="2809"/>
+        <location filename="../src/texstudio.cpp" line="2804"/>
+        <location filename="../src/texstudio.cpp" line="2811"/>
         <source>Loading of last session failed.</source>
         <translation>이전 세션을 불러오는 데 실패했습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2875"/>
+        <location filename="../src/texstudio.cpp" line="2877"/>
         <source>Save As</source>
         <translation>다른 이름으로 저장</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2892"/>
+        <location filename="../src/texstudio.cpp" line="2894"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -10960,270 +10972,270 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2910"/>
+        <location filename="../src/texstudio.cpp" line="2912"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>다른 이름으로 저장하는 과정에서 소스 파일의 이름이 바뀌었기 때문에 PDF와 TeX 소스를 동기화할 수 없습니다. 이를 해결하려면 소스를 다시 컴파일해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3010"/>
+        <location filename="../src/texstudio.cpp" line="3012"/>
         <source>Rename/Move</source>
         <translation>이름 바꾸기/이동</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3010"/>
-        <location filename="../src/texstudio.cpp" line="11544"/>
+        <location filename="../src/texstudio.cpp" line="3012"/>
+        <location filename="../src/texstudio.cpp" line="11564"/>
         <source>Copy</source>
         <translation>복사</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3025"/>
+        <location filename="../src/texstudio.cpp" line="3027"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>정말 파일 &quot;%1&quot;을(를) 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3034"/>
+        <location filename="../src/texstudio.cpp" line="3036"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3061"/>
+        <location filename="../src/texstudio.cpp" line="3063"/>
         <source>Numeric permissions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3062"/>
+        <location filename="../src/texstudio.cpp" line="3064"/>
         <source>Verbose permissions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3177"/>
+        <location filename="../src/texstudio.cpp" line="3179"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>문서 &quot;%1&quot;이(가) 저장되지 않았습니다. 닫기 전에 저장하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3179"/>
+        <location filename="../src/texstudio.cpp" line="3181"/>
         <source>Save and Close</source>
         <translation>저장하고 닫기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3179"/>
+        <location filename="../src/texstudio.cpp" line="3181"/>
         <source>Close without Saving</source>
         <translation>저장하지 않고 닫기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3179"/>
+        <location filename="../src/texstudio.cpp" line="3181"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3263"/>
-        <location filename="../src/texstudio.cpp" line="3322"/>
-        <location filename="../src/texstudio.cpp" line="3402"/>
+        <location filename="../src/texstudio.cpp" line="3265"/>
+        <location filename="../src/texstudio.cpp" line="3324"/>
+        <location filename="../src/texstudio.cpp" line="3404"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>파일 &quot;%1&quot;이(가) 더 이상 존재하지 않습니다. 이 파일을 최근 파일 목록에서 제거하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3415"/>
+        <location filename="../src/texstudio.cpp" line="3417"/>
         <source>Loading of session failed.</source>
         <translation>세션을 불러오는 데 실패했습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3432"/>
+        <location filename="../src/texstudio.cpp" line="3434"/>
         <source>Load Session</source>
         <translation>세션 불러오기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3432"/>
-        <location filename="../src/texstudio.cpp" line="3450"/>
+        <location filename="../src/texstudio.cpp" line="3434"/>
+        <location filename="../src/texstudio.cpp" line="3452"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudio 세션</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3450"/>
+        <location filename="../src/texstudio.cpp" line="3452"/>
         <source>Save Session</source>
         <translation>세션 저장</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3456"/>
+        <location filename="../src/texstudio.cpp" line="3458"/>
         <source>Saving of session failed.</source>
         <translation>세션을 저장하는 데 실패했습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3545"/>
+        <location filename="../src/texstudio.cpp" line="3547"/>
         <source>The following files could not be loaded:</source>
         <translation>다음 파일을 불러올 수 없습니다:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3697"/>
+        <location filename="../src/texstudio.cpp" line="3699"/>
         <source>Image Formats (%1)</source>
         <translation>이미지 형식 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3699"/>
+        <location filename="../src/texstudio.cpp" line="3701"/>
         <source>Save Image</source>
         <translation>이미지 저장</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3704"/>
+        <location filename="../src/texstudio.cpp" line="3706"/>
         <source>Could not save the image file.</source>
         <translation>이미지 파일을 저장 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3792"/>
+        <location filename="../src/texstudio.cpp" line="3794"/>
         <source>Ascending</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3792"/>
+        <location filename="../src/texstudio.cpp" line="3794"/>
         <source>Descending</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3792"/>
+        <location filename="../src/texstudio.cpp" line="3794"/>
         <source>No Sorting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3792"/>
+        <location filename="../src/texstudio.cpp" line="3794"/>
         <source>Random (Shuffle)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3798"/>
+        <location filename="../src/texstudio.cpp" line="3800"/>
         <source>Sorting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3799"/>
+        <location filename="../src/texstudio.cpp" line="3801"/>
         <source>Complete Lines</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3800"/>
+        <location filename="../src/texstudio.cpp" line="3802"/>
         <source>Case Sensitive</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3801"/>
+        <location filename="../src/texstudio.cpp" line="3803"/>
         <source>Remove Duplicates</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4025"/>
+        <location filename="../src/texstudio.cpp" line="4027"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4026"/>
+        <location filename="../src/texstudio.cpp" line="4028"/>
         <source>Smart scope selecting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4027"/>
+        <location filename="../src/texstudio.cpp" line="4029"/>
         <source>Join lines before wrapping</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4041"/>
-        <location filename="../src/texstudio.cpp" line="6289"/>
-        <location filename="../src/texstudio.cpp" line="6324"/>
+        <location filename="../src/texstudio.cpp" line="4043"/>
+        <location filename="../src/texstudio.cpp" line="6291"/>
+        <location filename="../src/texstudio.cpp" line="6348"/>
         <source>No document open</source>
         <translation>열린 문서 없음</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4047"/>
+        <location filename="../src/texstudio.cpp" line="4049"/>
         <source>No dictionary available.</source>
         <translation>사전을 사용할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4058"/>
+        <location filename="../src/texstudio.cpp" line="4060"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>유의어 데이터베이스를 불러올 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4460"/>
+        <location filename="../src/texstudio.cpp" line="4462"/>
         <source>Storing session failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4460"/>
+        <location filename="../src/texstudio.cpp" line="4462"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4555"/>
+        <location filename="../src/texstudio.cpp" line="4557"/>
         <source>Unable to write to settings file %1</source>
         <translation>설정 파일 %1에 쓸 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5414"/>
+        <location filename="../src/texstudio.cpp" line="5416"/>
         <source>Quick Start</source>
         <translation>빠른 시작</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5436"/>
+        <location filename="../src/texstudio.cpp" line="5438"/>
         <source>Quick Beamer Presentation</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5473"/>
+        <location filename="../src/texstudio.cpp" line="5475"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;현재 파일&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5505"/>
+        <location filename="../src/texstudio.cpp" line="5507"/>
         <source>Type: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5547"/>
+        <location filename="../src/texstudio.cpp" line="5549"/>
         <source>Edit User &amp;Tags</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5611"/>
+        <location filename="../src/texstudio.cpp" line="5613"/>
         <source>Labels:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5697"/>
+        <location filename="../src/texstudio.cpp" line="5699"/>
         <source>show less entries ...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5738"/>
+        <location filename="../src/texstudio.cpp" line="5740"/>
         <source>Encoding Aliases: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5793"/>
+        <location filename="../src/texstudio.cpp" line="5795"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5800"/>
+        <location filename="../src/texstudio.cpp" line="5802"/>
         <source>Can&apos;t detect the file name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5839"/>
+        <location filename="../src/texstudio.cpp" line="5841"/>
         <source>  Running this command: </source>
         <translation>  이 명령어를 실행하고 있습니다: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5845"/>
+        <location filename="../src/texstudio.cpp" line="5847"/>
         <source>could not start the command</source>
         <translation>명령을 실행할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5969"/>
+        <location filename="../src/texstudio.cpp" line="5971"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5989"/>
+        <location filename="../src/texstudio.cpp" line="5991"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11234,227 +11246,227 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5995"/>
+        <location filename="../src/texstudio.cpp" line="5997"/>
         <source>(a) allow for this document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5996"/>
+        <location filename="../src/texstudio.cpp" line="5998"/>
         <source>(b) allow for all documents</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5997"/>
+        <location filename="../src/texstudio.cpp" line="5999"/>
         <source>(c) use the default command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6073"/>
+        <location filename="../src/texstudio.cpp" line="6075"/>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6108"/>
+        <location filename="../src/texstudio.cpp" line="6110"/>
         <source>%!TeX program used: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6111"/>
+        <location filename="../src/texstudio.cpp" line="6113"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6172"/>
+        <location filename="../src/texstudio.cpp" line="6174"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>쓰기가 불가능한 경로에서 컴파일할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6174"/>
+        <location filename="../src/texstudio.cpp" line="6176"/>
         <source>Could not start %1.</source>
         <translation>%1을(를) 시작할 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6203"/>
+        <location filename="../src/texstudio.cpp" line="6205"/>
         <source>Error:</source>
         <translation>오류:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6279"/>
+        <location filename="../src/texstudio.cpp" line="6281"/>
         <source>No open project or tex file to clean.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6328"/>
+        <location filename="../src/texstudio.cpp" line="6352"/>
         <source>Text Analysis</source>
         <translation>텍스트 분석</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6352"/>
+        <location filename="../src/texstudio.cpp" line="6376"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6394"/>
+        <location filename="../src/texstudio.cpp" line="6414"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6575"/>
-        <location filename="../src/texstudio.cpp" line="6587"/>
+        <location filename="../src/texstudio.cpp" line="6595"/>
+        <location filename="../src/texstudio.cpp" line="6607"/>
         <source>File not found</source>
         <translation>파일을 찾을 수 없음</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6577"/>
-        <location filename="../src/texstudio.cpp" line="6589"/>
+        <location filename="../src/texstudio.cpp" line="6597"/>
+        <location filename="../src/texstudio.cpp" line="6609"/>
         <source>Could not open browser</source>
         <translation>탐색기를 열 수 없음</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7189"/>
+        <location filename="../src/texstudio.cpp" line="7209"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7645"/>
+        <location filename="../src/texstudio.cpp" line="7665"/>
         <source>Label</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7647"/>
-        <location filename="../src/texstudio.cpp" line="7669"/>
+        <location filename="../src/texstudio.cpp" line="7667"/>
+        <location filename="../src/texstudio.cpp" line="7689"/>
         <source>Beyond end of document.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7650"/>
-        <location filename="../src/texstudio.cpp" line="7671"/>
+        <location filename="../src/texstudio.cpp" line="7670"/>
+        <location filename="../src/texstudio.cpp" line="7691"/>
         <source>In Appendix.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7689"/>
+        <location filename="../src/texstudio.cpp" line="7709"/>
         <source>File not found.</source>
         <translation>파일을 찾을 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7704"/>
+        <location filename="../src/texstudio.cpp" line="7724"/>
         <source> (Line %1)</source>
         <translation> (줄 %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8950"/>
+        <location filename="../src/texstudio.cpp" line="8970"/>
         <source>commit comment:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="8953"/>
+        <location filename="../src/texstudio.cpp" line="8973"/>
         <source>check in whole directory ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9307"/>
+        <location filename="../src/texstudio.cpp" line="9327"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9602"/>
+        <location filename="../src/texstudio.cpp" line="9622"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>파일 &quot;%1&quot;을(를) 열 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9604"/>
+        <location filename="../src/texstudio.cpp" line="9624"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>파일 &quot;%1&quot;이(가) 존재하지 않습니다.
 파일을 만드시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9638"/>
+        <location filename="../src/texstudio.cpp" line="9658"/>
         <source>Save Profile</source>
         <translation>프로파일 저장</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9638"/>
-        <location filename="../src/texstudio.cpp" line="9645"/>
+        <location filename="../src/texstudio.cpp" line="9658"/>
+        <location filename="../src/texstudio.cpp" line="9665"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9645"/>
+        <location filename="../src/texstudio.cpp" line="9665"/>
         <source>Load Profile</source>
         <translation>프로파일 불러오기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9698"/>
+        <location filename="../src/texstudio.cpp" line="9718"/>
         <source>Failed to read profile file %1.</source>
         <translation>프로파일 파일 %1을(를) 불러오는 데 실패하였습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9821"/>
+        <location filename="../src/texstudio.cpp" line="9841"/>
         <source>Problem</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9821"/>
+        <location filename="../src/texstudio.cpp" line="9841"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9826"/>
+        <location filename="../src/texstudio.cpp" line="9846"/>
         <source>Find Word Repetitions</source>
         <translation>동어 반복 찾기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9835"/>
+        <location filename="../src/texstudio.cpp" line="9855"/>
         <source>&amp;Find Next</source>
         <translation>다음 찾기 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9837"/>
+        <location filename="../src/texstudio.cpp" line="9857"/>
         <source>&amp;Find Previous</source>
         <translation>이전 찾기 (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9888"/>
+        <location filename="../src/texstudio.cpp" line="9908"/>
         <source>Reached beginning of text.</source>
         <translation>텍스트의 시작에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9888"/>
+        <location filename="../src/texstudio.cpp" line="9908"/>
         <source>Reached end of text.</source>
         <translation>텍스트의 끝에 도달했습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10150"/>
-        <location filename="../src/texstudio.cpp" line="10360"/>
-        <location filename="../src/texstudio.cpp" line="10363"/>
+        <location filename="../src/texstudio.cpp" line="10170"/>
+        <location filename="../src/texstudio.cpp" line="10380"/>
+        <location filename="../src/texstudio.cpp" line="10383"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX 파일 (*.tex);;모든 파일 (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10320"/>
+        <location filename="../src/texstudio.cpp" line="10340"/>
         <source>You do not have read permission to this file.</source>
         <translation>이 파일을 읽을 권한이 없습니다.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10360"/>
+        <location filename="../src/texstudio.cpp" line="10380"/>
         <source>Open Compare File</source>
         <translation>비교할 파일 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10363"/>
+        <location filename="../src/texstudio.cpp" line="10383"/>
         <source>Open Base File</source>
         <translation>비교 기준 파일 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10444"/>
+        <location filename="../src/texstudio.cpp" line="10464"/>
         <source>SVN Conflict!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10445"/>
+        <location filename="../src/texstudio.cpp" line="10465"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11462,14 +11474,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10542"/>
-        <location filename="../src/texstudio.cpp" line="10633"/>
-        <location filename="../src/texstudio.cpp" line="10639"/>
+        <location filename="../src/texstudio.cpp" line="10562"/>
+        <location filename="../src/texstudio.cpp" line="10653"/>
+        <location filename="../src/texstudio.cpp" line="10659"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10546"/>
+        <location filename="../src/texstudio.cpp" line="10566"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11478,271 +11490,271 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10549"/>
+        <location filename="../src/texstudio.cpp" line="10569"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10550"/>
+        <location filename="../src/texstudio.cpp" line="10570"/>
         <source>Yes, try to recover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10551"/>
-        <location filename="../src/texstudio.cpp" line="10556"/>
-        <location filename="../src/texstudio.cpp" line="10635"/>
+        <location filename="../src/texstudio.cpp" line="10571"/>
+        <location filename="../src/texstudio.cpp" line="10576"/>
+        <location filename="../src/texstudio.cpp" line="10655"/>
         <source>No, kill the program</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10553"/>
+        <location filename="../src/texstudio.cpp" line="10573"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10554"/>
+        <location filename="../src/texstudio.cpp" line="10574"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10555"/>
+        <location filename="../src/texstudio.cpp" line="10575"/>
         <source>Yes, continue the loop</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10634"/>
+        <location filename="../src/texstudio.cpp" line="10654"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10635"/>
+        <location filename="../src/texstudio.cpp" line="10655"/>
         <source>Yes</source>
         <translation>예</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10639"/>
+        <location filename="../src/texstudio.cpp" line="10659"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10671"/>
+        <location filename="../src/texstudio.cpp" line="10691"/>
         <source>System Report</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10811"/>
+        <location filename="../src/texstudio.cpp" line="10831"/>
         <source>LT Report</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10837"/>
+        <location filename="../src/texstudio.cpp" line="10857"/>
         <source>process failed to start
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10840"/>
+        <location filename="../src/texstudio.cpp" line="10860"/>
         <source>process crashed
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10850"/>
+        <location filename="../src/texstudio.cpp" line="10870"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>실시간 검사가 활성화되었습니다.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10852"/>
+        <location filename="../src/texstudio.cpp" line="10872"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>실시간 검사가 비활성화되었습니다!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10855"/>
+        <location filename="../src/texstudio.cpp" line="10875"/>
         <source>Grammar checking is enabled.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10857"/>
+        <location filename="../src/texstudio.cpp" line="10877"/>
         <source>Grammar checking is disabled!!!
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10860"/>
+        <location filename="../src/texstudio.cpp" line="10880"/>
         <source>Tries to start automatically.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10862"/>
+        <location filename="../src/texstudio.cpp" line="10882"/>
         <source>Autostart disabled.
 
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10867"/>
+        <location filename="../src/texstudio.cpp" line="10887"/>
         <source>LT current status: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10870"/>
+        <location filename="../src/texstudio.cpp" line="10890"/>
         <source>working</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10873"/>
+        <location filename="../src/texstudio.cpp" line="10893"/>
         <source>error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10877"/>
+        <location filename="../src/texstudio.cpp" line="10897"/>
         <source>unknown</source>
         <translation>알 수 없음</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10880"/>
+        <location filename="../src/texstudio.cpp" line="10900"/>
         <source>LT-URL: %1
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11190"/>
+        <location filename="../src/texstudio.cpp" line="11210"/>
         <source>Error when communicating with LT: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11280"/>
-        <location filename="../src/texstudio.cpp" line="12079"/>
+        <location filename="../src/texstudio.cpp" line="11300"/>
+        <location filename="../src/texstudio.cpp" line="12099"/>
         <source>TODO</source>
         <translation>할것</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11395"/>
-        <location filename="../src/texstudio.cpp" line="11403"/>
-        <location filename="../src/texstudio.cpp" line="11433"/>
+        <location filename="../src/texstudio.cpp" line="11415"/>
+        <location filename="../src/texstudio.cpp" line="11423"/>
+        <location filename="../src/texstudio.cpp" line="11453"/>
         <source>Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11486"/>
+        <location filename="../src/texstudio.cpp" line="11506"/>
         <source>Close document</source>
         <translation>문서 닫기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11487"/>
+        <location filename="../src/texstudio.cpp" line="11507"/>
         <source>Set as explicit root document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11488"/>
+        <location filename="../src/texstudio.cpp" line="11508"/>
         <source>Open all related documents</source>
         <translation>연관된 모든 문서 열기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11489"/>
+        <location filename="../src/texstudio.cpp" line="11509"/>
         <source>Close all related documents</source>
         <translation>연관된 모든 문서 닫기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11491"/>
+        <location filename="../src/texstudio.cpp" line="11511"/>
         <source>Remove explicit root document role</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11493"/>
+        <location filename="../src/texstudio.cpp" line="11513"/>
         <source>Show all open documents in this tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11495"/>
+        <location filename="../src/texstudio.cpp" line="11515"/>
         <source>Show only current document in this tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11508"/>
+        <location filename="../src/texstudio.cpp" line="11528"/>
         <source>Copy filename</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11509"/>
+        <location filename="../src/texstudio.cpp" line="11529"/>
         <source>Copy file path</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11516"/>
+        <location filename="../src/texstudio.cpp" line="11536"/>
         <source>Insert</source>
         <translation>삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11517"/>
-        <location filename="../src/texstudio.cpp" line="11518"/>
+        <location filename="../src/texstudio.cpp" line="11537"/>
+        <location filename="../src/texstudio.cpp" line="11538"/>
         <source>Insert as %1</source>
         <translation>%1(으)로 삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11520"/>
+        <location filename="../src/texstudio.cpp" line="11540"/>
         <source>Find Usages</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11531"/>
+        <location filename="../src/texstudio.cpp" line="11551"/>
         <source>Insert Label</source>
         <translation>레이블 삽입</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11535"/>
+        <location filename="../src/texstudio.cpp" line="11555"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11539"/>
+        <location filename="../src/texstudio.cpp" line="11559"/>
         <source>Create Label</source>
         <translation>레이블 만들기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11543"/>
+        <location filename="../src/texstudio.cpp" line="11563"/>
         <source>Cut</source>
         <translation>자르기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11545"/>
+        <location filename="../src/texstudio.cpp" line="11565"/>
         <source>Paste Before</source>
         <translation>앞에 붙여넣기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11546"/>
+        <location filename="../src/texstudio.cpp" line="11566"/>
         <source>Paste After</source>
         <translation>뒤에 붙여넣게</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11548"/>
+        <location filename="../src/texstudio.cpp" line="11568"/>
         <source>Indent Section</source>
         <translation>선택 영역 들여쓰기</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11549"/>
+        <location filename="../src/texstudio.cpp" line="11569"/>
         <source>Unindent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11502"/>
-        <location filename="../src/texstudio.cpp" line="11552"/>
+        <location filename="../src/texstudio.cpp" line="11522"/>
+        <location filename="../src/texstudio.cpp" line="11572"/>
         <source>Expand Subitems</source>
         <translation type="unfinished"/>
     </message>
@@ -11752,34 +11764,34 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11503"/>
-        <location filename="../src/texstudio.cpp" line="11553"/>
+        <location filename="../src/texstudio.cpp" line="11523"/>
+        <location filename="../src/texstudio.cpp" line="11573"/>
         <source>Collapse Subitems</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11565"/>
+        <location filename="../src/texstudio.cpp" line="11585"/>
         <source>Open Document</source>
         <translation>열린 문서</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11566"/>
-        <location filename="../src/texstudio.cpp" line="11573"/>
+        <location filename="../src/texstudio.cpp" line="11586"/>
+        <location filename="../src/texstudio.cpp" line="11593"/>
         <source>Go to Definition</source>
         <translation>정의로 이동</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12063"/>
+        <location filename="../src/texstudio.cpp" line="12083"/>
         <source>BIBLIOGRAPHY</source>
         <translation>참고문헌</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12071"/>
+        <location filename="../src/texstudio.cpp" line="12091"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MAGIC_COMMENTS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12087"/>
+        <location filename="../src/texstudio.cpp" line="12107"/>
         <source>LABELS</source>
         <translation>라벨</translation>
     </message>
