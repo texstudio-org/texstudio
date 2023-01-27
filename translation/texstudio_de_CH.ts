@@ -2547,12 +2547,12 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4317"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>Rechteck</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4385"/>
         <source>Shadow</source>
-        <translation type="unfinished"/>
+        <translation>Schatten</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4408"/>
@@ -10426,7 +10426,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1225"/>
         <source>Convert to Abridged Plaintext</source>
-        <translation type="unfinished"/>
+        <translation>Nach gekürzten Klartext konvertieren</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1226"/>
