@@ -3,8 +3,7 @@
 
 #include:ifthen
 
-\ForEachAddress{address-file}{commands}
-\ForEachAddress{file}{commands}#Si
+\ForEachAddress{address-file%file}{commands}
 
 \Title
 \Opening
