@@ -3092,7 +3092,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                    <string>Size of the command set tabs at the bottom or top of the completer</string>
                   </property>
                   <property name="suffix">
-                   <string notr="true"> %</string>
+                   <string notr="true">%</string>
                   </property>
                   <property name="maximum">
                    <number>10000</number>
@@ -3998,6 +3998,9 @@ them here.</string>
                   </item>
                   <item row="4" column="1">
                    <widget class="QSpinBox" name="spinBoxAutoPreviewDelay">
+                    <property name="suffix">
+                     <string> ms</string>
+                    </property>
                     <property name="minimum">
                      <number>40</number>
                     </property>
@@ -4549,7 +4552,11 @@ Note: Changing this setting will only affect documents that are opened afterward
                    </widget>
                   </item>
                   <item row="8" column="1">
-                   <widget class="QSpinBox" name="spinBoxPreviewLaserPointerSize"/>
+                   <widget class="QSpinBox" name="spinBoxPreviewLaserPointerSize">
+                    <property name="suffix">
+                     <string> px</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="9" column="1">
                    <widget class="QLineEdit" name="lineEditLaserPointerColor"/>
