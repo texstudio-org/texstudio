@@ -342,6 +342,8 @@ void PDFMagnifier::setImage(const QPixmap &img, int pageNr)
 
 void PDFDraggableTool::drawGradient(QPainter& painter, const QRect& outline, QColor color, int padding, int magnifierShape)
 {
+	painter.save();
+
 	if(magnifierShape == PDFDocumentConfig::Circle) {
 		QRadialGradient gradient(outline.center(), outline.width() / 2.0 , outline.center());
 		color.setAlpha(0);
@@ -350,13 +352,82 @@ void PDFDraggableTool::drawGradient(QPainter& painter, const QRect& outline, QCo
 		gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
 		painter.fillRect(outline, gradient);
 	} else { // rectangle
-		QLinearGradient gradient(outline.bottomRight(), outline.topRight());
-		color.setAlpha(0);
-		gradient.setColorAt(1.0, color);
 		color.setAlpha(64);
-		gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
-		painter.fillRect(outline, gradient);
+
+		// A rectangular shadow is constructed by drawing
+		// four quarter circles at the corners, and 
+		// linking them with four rectangles.
+
+		// limit draw region at the four edges to construct
+		// quarter circles from the drawn full circles
+		QPainterPath edgePath;
+		edgePath.addRect(0, 0, padding, padding);
+		edgePath.addRect(0, outline.height() - padding, padding, padding);
+		edgePath.addRect(outline.width() - padding, 0, padding, padding);
+		edgePath.addRect(outline.width() - padding, outline.height() - padding, padding, padding);
+		painter.setClipPath(edgePath);
+
+		// draw the four circles
+		QRadialGradient circle1(padding,padding,padding,padding,padding);
+		circle1.setColorAt(0, color);
+		circle1.setColorAt(1, QColor("transparent"));
+		painter.fillRect(outline, circle1);
+
+		QRadialGradient circle2(padding,outline.height() - padding,padding,padding,outline.height() - padding);
+		circle2.setColorAt(0, color);
+		circle2.setColorAt(1, QColor("transparent"));
+		painter.fillRect(outline, circle2);
+
+		QRadialGradient circle3(outline.width() - padding,padding,padding,outline.width() - padding,padding);
+		circle3.setColorAt(0, color);
+		circle3.setColorAt(1, QColor("transparent"));
+		painter.fillRect(outline, circle3);
+
+		QRadialGradient circle4(outline.width() - padding,outline.height() - padding,padding,outline.width() - padding,outline.height() - padding);
+		circle4.setColorAt(0, color);
+		circle4.setColorAt(1, QColor("transparent"));
+		painter.fillRect(outline, circle4);
+
+
+		// now the four rectangular sides of the shadow are drawn:
+		QLinearGradient sideGradient;
+		sideGradient.setColorAt(0, color);
+		sideGradient.setColorAt(1, QColor("transparent"));
+
+		// draw the top rectangle
+		edgePath.clear();
+		edgePath.addRect(padding, 0, outline.width() - 2*padding, padding);
+		sideGradient.setStart(0, padding);
+		sideGradient.setFinalStop(0, 0);
+		painter.setClipPath(edgePath);
+		painter.fillRect(outline, sideGradient);
+
+		// draw the bottom rectangle
+		edgePath.clear();
+		edgePath.addRect(padding, outline.height() - padding, outline.width() - 2*padding, padding);
+		sideGradient.setStart(0, outline.height() - padding);
+		sideGradient.setFinalStop(0, outline.height());
+		painter.setClipPath(edgePath);
+		painter.fillRect(outline, sideGradient);
+
+		// draw the left rectangle
+		edgePath.clear();
+		edgePath.addRect(0, padding, padding, outline.height() - 2*padding);
+		sideGradient.setStart(padding, 0);
+		sideGradient.setFinalStop(0, 0);
+		painter.setClipPath(edgePath);
+		painter.fillRect(outline, sideGradient);
+
+		// draw the right rectangle
+		edgePath.clear();
+		edgePath.addRect(outline.width() - padding, padding, padding, outline.height() - 2*padding);
+		sideGradient.setStart(outline.width()-padding, 0);
+		sideGradient.setFinalStop(outline.width(), 0);
+		painter.setClipPath(edgePath);
+		painter.fillRect(outline, sideGradient);
 	}
+
+	painter.restore();
 }
 
 void PDFMagnifier::paintEvent(QPaintEvent *event)
@@ -391,13 +462,14 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 			);
 		} else {
 			// rectangular magnifier with transparent shadow
-			const int shadowWidth = 5;
+			const int shadowWidth = 10;
 	
 			// draw transparent shadow
-			QRect outline(1, 1, width() - 2, height() - 2);
+			QRect outline(0, 0, width(), height());
 			drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
 	
-			borderPath.addRect(1 + shadowWidth/2, 1 + shadowWidth, width() - 1.3*shadowWidth - 2, height() - 1.8*shadowWidth - 2);
+			borderPath.addRect(shadowWidth, shadowWidth, width() - 2*shadowWidth, height() - 2*shadowWidth);
+
 		}
 	} else {
 		if(globalConfig->magnifierShape == PDFDocumentConfig::Circle) {
