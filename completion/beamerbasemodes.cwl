@@ -12,7 +12,7 @@
 \includeslide{label name}
 \includeslide[options%keyvals]{label name}
 
-\setjobnamebeamerversion{filename without extension%definition}
+\setjobnamebeamerversion{filename without extension%file}
 
 \thebeamerpauses#*
 \jobnamebeamerversion#*
