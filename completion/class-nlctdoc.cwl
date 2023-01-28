@@ -145,10 +145,10 @@ defbackground#B
 \toTop
 \oldlabel{label}#*l
 \sectionref{text}
-\xrsectionref{filename}{arg}{text}
-\qtdocref{filename}{text}
-\docref{filename}{text}
-\altdocref{filename1}{filename2}{text}
+\xrsectionref{filename%file}{arg}{text}
+\qtdocref{filename%file}{text}
+\docref{filename%file}{text}
+\altdocref{filename1%file}{filename2%file}{text}
 \urlref{URL}{text}#U
 \urlfootref{URL}{text}#U
 \submenu{text}
