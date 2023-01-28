@@ -31,8 +31,7 @@ jobs:
             mingw-w64-ucrt-x86_64-qt6-tools mingw-w64-ucrt-x86_64-poppler-qt6 
             mingw-w64-ucrt-x86_64-nsis mingw-w64-ucrt-x86_64-quazip-qt6 
             mingw-w64-ucrt-x86_64-hunspell mingw-w64-ucrt-x86_64-qt6-translations 
-            mingw-w64-ucrt-x86_64-libbz2
-            mingw-w64-ucrt-x86_64-python-mingw-ldd zip unzip
+            mingw-w64-ucrt-x86_64-python-mingw-ldd zip unzip libbz2
 
       - name: Fetch tag annotations
         run: git fetch --tags --force
