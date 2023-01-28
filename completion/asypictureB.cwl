@@ -52,9 +52,9 @@ decodearray={%<color array%>}
 \RequireAsyRecompile
 \AsyCompileIfNecessary
 
-\ASYPICcomparefiles{file1}{file2}#*
-\copyfile{file1}{file2}#*
-\deletefile{file}#*
+\ASYPICcomparefiles{file1%file}{file2%file}#*
+\copyfile{file1%file}{file2%file}#*
+\deletefile{file%file}#*
 \numlinesout#S
 \oldnum#S
 \unknownkey#S
