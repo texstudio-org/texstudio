@@ -11,6 +11,7 @@ nopartial
 \resetdfont{math font cmd%cmd}
 \letdif{cmd}{csname}#d
 \letdif*{cmd}{csname}#d
+\partialnondif#*m
 \newdif{cmd}{def}#d
 \newdif*{cmd}{def}#d
 \renewdif{cmd}{def}#d
