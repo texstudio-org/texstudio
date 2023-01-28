@@ -280,7 +280,7 @@ babamspl
 \ifbtxprintISBN{code}#*
 \ifbtxprintISSN{code}#*
 \ifnumber{arg}{true}{false}#*
-\inputbdf{language}{.bdf file}#*
+\inputbdf{language}{.bdf file%file}#*
 \providebibliographyfont*{element}{font command}#*
 \providebibliographyfont{element}{font command}#*
 \thebtxromaniannumeral#*
