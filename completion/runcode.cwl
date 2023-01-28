@@ -33,14 +33,12 @@ stopserver
 #include:listings
 #endif
 
-\runExtCode{program}{source file}{output file}
-\runExtCode{program}{source file}{output file}[run|cache]
-\runExtCode{program}{file}{output file}#Si
+\runExtCode{program}{source file%file}{output file}
+\runExtCode{program}{source file%file}{output file}[run|cache]
 
-\showCode{lang}{source file}
-\showCode{lang}{source file}[first line]
-\showCode{lang}{source file}[first line][last line]
-\showCode{lang}{file}#Si
+\showCode{lang}{source file%file}
+\showCode{lang}{source file%file}[first line]
+\showCode{lang}{source file%file}[first line][last line]
 
 \includeOutput{output file}
 \includeOutput{output file}[type%keyvals]
@@ -53,48 +51,40 @@ inline
 \inln{program}{code%definition}
 \inln{program}{code%definition}[vbox|inline]
 
-\runJulia{source file}{output file}
-\runJulia{source file}{output file}[run|cache]
-\runJulia[server spec]{source file}{output file}
-\runJulia[server spec]{source file}{output file}[run|cache]
-\runJulia{file}{output file}#Si
-\runJulia[server spec]{file}{output file}#Si
+\runJulia{source file%file}{output file}
+\runJulia{source file%file}{output file}[run|cache]
+\runJulia[server spec]{source file%file}{output file}
+\runJulia[server spec]{source file%file}{output file}[run|cache]
 
 \inlnJulia{code%definition}
 \inlnJulia{code%definition}[vbox|inline]
 \inlnJulia[server spec]{code%definition}
 \inlnJulia[server spec]{code%definition}[vbox|inline]
 
-\runMatlab{source file}{output file}
-\runMatlab{source file}{output file}[run|cache]
-\runMatlab[server spec]{source file}{output file}
-\runMatlab[server spec]{source file}{output file}[run|cache]
-\runMatlab{file}{output file}#Si
-\runMatlab[server spec]{file}{output file}#Si
+\runMatlab{source file%file}{output file}
+\runMatlab{source file%file}{output file}[run|cache]
+\runMatlab[server spec]{source file%file}{output file}
+\runMatlab[server spec]{source file%file}{output file}[run|cache]
 
 \inlnMatlab{code%definition}
 \inlnMatlab{code%definition}[vbox|inline]
 \inlnMatlab[server spec]{code%definition}
 \inlnMatlab[server spec]{code%definition}[vbox|inline]
 
-\runR{source file}{output file}
-\runR{source file}{output file}[run|cache]
-\runR[server spec]{source file}{output file}
-\runR[server spec]{source file}{output file}[run|cache]
-\runR{file}{output file}#Si
-\runR[server spec]{file}{output file}#Si
+\runR{source file%file}{output file}
+\runR{source file%file}{output file}[run|cache]
+\runR[server spec]{source file%file}{output file}
+\runR[server spec]{source file%file}{output file}[run|cache]
 
 \inlnR{code%definition}
 \inlnR{code%definition}[vbox|inline]
 \inlnR[server spec]{code%definition}
 \inlnR[server spec]{code%definition}[vbox|inline]
 
-\runPython{source file}{output file}
-\runPython{source file}{output file}[run|cache]
-\runPython[server spec]{source file}{output file}
-\runPython[server spec]{source file}{output file}[run|cache]
-\runPython{file}{output file}#Si
-\runPython[server spec]{file}{output file}#Si
+\runPython{source file%file}{output file}
+\runPython{source file%file}{output file}[run|cache]
+\runPython[server spec]{source file%file}{output file}
+\runPython[server spec]{source file%file}{output file}[run|cache]
 
 \inlnPython{code%definition}
 \inlnPython{code%definition}[vbox|inline]

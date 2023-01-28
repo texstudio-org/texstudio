@@ -64,7 +64,7 @@ br=
 
 \AQms(height,depth)#*/alterqcm
 
-\InputQuestionList{filepath}{prefix}{num1,num2,...}#/alterqcm
+\InputQuestionList{filepath%file}{prefix}{num1,num2,...}#/alterqcm
 
 \AQannexe{start}{end}{number of props}
 \AQannexe[options%keyvals]{start}{end}{number of props}

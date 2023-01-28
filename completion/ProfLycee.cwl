@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/01/24 for v2.1.7
+# Matthew Bertucci 2023/01/25 for v2.1.8
 
 #include:mathtools
 #include:xcolor
@@ -9,7 +9,6 @@
 #include:pgf
 #include:pgffor
 #include:ifthen
-#include:xparse
 #include:xkeyval
 #include:xstring
 #include:xintexpr
@@ -23,7 +22,6 @@
 #include:fancyvrb
 #include:siunitx
 #include:fontawesome5
-#include:csvsimple-l3
 #include:tikzlibrarycalc
 #include:tikzlibrarydecorations
 #include:tikzlibrarydecorations.pathreplacing
@@ -41,7 +39,6 @@
 nonshellescape
 build
 pythontex
-csvii
 #endkeyvals
 
 #ifOption:pythontex
@@ -764,20 +761,6 @@ d#true,false
 Crochets#true,false
 #endkeyvals
 
-## PixelART via un fichier csv, en TikZ ##
-\PixelArtTikz{file}#i
-\PixelArtTikz[options%keyvals]{file}#i
-
-#keyvals:\PixelArtTikz
-Codes=%<chaîne%>
-Couleurs={%<couleur1,couleur2,...%>}
-Symboles={%<symbol1,symbol2,...%>}
-Correction#true,false
-Symb#true,false
-BordCases#true,false
-Style=%<font commands%>
-#endkeyvals
-
 ## SudoMaths, en TikZ ##
 \SudoMaths{liste}
 \SudoMaths[options%keyvals]{liste}
@@ -1093,10 +1076,6 @@ vertcapyt#B
 \NBdepart#S
 \nbgrp#S
 \numerateur#S
-\PATchiffres#S
-\PATcouleurs#S
-\PATlettres#S
-\PATtaille#S
 \PaveA#S
 \PaveB#S
 \PaveC#S
@@ -1121,10 +1100,6 @@ vertcapyt#B
 \PFTetraPf#S
 \PFTetraSommets#S
 \PFTetraThick#S
-\pixchf#S
-\pixcnt#S
-\pixcol#S
-\pixpos#S
 \PLAPeptrait#S
 \PLAPespfeuille#S
 \PLAPespniv#S

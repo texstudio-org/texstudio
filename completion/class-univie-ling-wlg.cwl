@@ -1,5 +1,5 @@
 # univie-ling-wlg class
-# Matthew Bertucci 2022/10/21 for v.2.1
+# Matthew Bertucci 2023/01/27 for v.2.2
 
 #include:class-scrartcl
 #include:cochineal
@@ -36,6 +36,7 @@ expertfonts#true,false
 titlepage=#none,specialprint,issue
 preprint#true,false
 peerrev#true,false
+type=#paper,review
 draftmark=#true,false,firstpage
 #endkeyvals
 

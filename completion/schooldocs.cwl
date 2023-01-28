@@ -1,5 +1,5 @@
 # schooldocs package
-# Matthew Bertucci 1/12/2021 for v1.1
+# Matthew Bertucci 2023/01/26 for v1.2
 
 #include:geometry
 #include:fancyhdr
@@ -8,9 +8,6 @@
 #include:fancybox
 #include:xcolor
 #include:translations
-
-\pagestyle{style%keyvals}
-\thispagestyle{style%keyvals}
 
 #keyvals:\pagestyle#c,\thispagestyle#c
 classic
@@ -43,6 +40,7 @@ headingcolor#B
 \smalltitledatestyle#*
 \titleflush#*
 \titletopskip#*
+\smalltitletopskip#*
 \titlebottomskip#*
 \titlesep#*
 \seprulewidth#*

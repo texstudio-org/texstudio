@@ -9,10 +9,8 @@ enquotefilenames
 #endkeyvals
 
 \setOutputDir{directory%definition}
-\VerbatimCopy{input file}{output file}#i
-\VerbatimCopy{file}{file}#Si
+\VerbatimCopy{input file%file}{output file%file}#i
 
-\OldsetOutputDir{directory%definition}#*
-\OldVerbatimCopy{input file}{output file}#*i
-\OldVerbatimCopy{file}{file}#Si
+\OldsetOutputDir{directory%definition}#S
+\OldVerbatimCopy{input file%file}{output file%file}#Si
 \VCverbaction{arg1}{arg2}#*

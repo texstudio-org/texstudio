@@ -97,10 +97,8 @@ reprint={%<keyvals%>}
 translation={%<keyvals%>}
 #endkeyvals
 
-\bibselect{.ltb files}
-\bibselect{file}#Si
-\bibselect*{.ltb files}
-\bibselect*{file}#Si
+\bibselect{.ltb files%file}
+\bibselect*{.ltb files%file}
 
 \resetbiblist{widest label}
 \bibname

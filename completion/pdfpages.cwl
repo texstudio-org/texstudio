@@ -20,8 +20,8 @@ nodemo
 enable-survey
 #endkeyvals
 
-\includepdf[options%keyvals]{filename%definition}
-\includepdf{filename%definition}
+\includepdf[options%keyvals]{filename%file}
+\includepdf{filename%file}
 \includepdfmerge[options%keyvals]{file-list%definition}
 \includepdfmerge{file-list%definition}
 \includepdfset{global options%keyvals}

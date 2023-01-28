@@ -121,10 +121,8 @@ fillstyle=%<style%>
 linecolor=#%color
 #endkeyvals
 
-\fileplotThreeD{datafile}#i
-\fileplotThreeD{file}#Si
-\fileplotThreeD[options%keyvals]{datafile}#i
-\fileplotThreeD[options%keyvals]{file}#Si
+\fileplotThreeD{datafile%file}#i
+\fileplotThreeD[options%keyvals]{datafile%file}#i
 \dataplotThreeD{data object}
 \dataplotThreeD[options%keyvals]{data object}
 \listplotThreeD{data object}
