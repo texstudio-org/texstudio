@@ -12,14 +12,14 @@
 #include:hyperref
 #include:hycolor
 
-\attachfile{file}#i
-\attachfile[options%keyvals]{file}#i
+\attachfile{file}
+\attachfile[options%keyvals]{file}
 \noattachfile
 \noattachfile[options%keyvals]
 \notextattachfile{text}
 \notextattachfile[options%keyvals]{text}
-\textattachfile{file}{text}#i
-\textattachfile[options%keyvals]{file}{text}#i
+\textattachfile{file}{text}
+\textattachfile[options%keyvals]{file}{text}
 \attachfilesetup{options%keyvals}
 
 #keyvals:\usepackage/attachfile2#c,\attachfile,\attachfilesetup,\noattachfile,\notextattachfile,\textattachfile
