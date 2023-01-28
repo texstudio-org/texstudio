@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="34"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio usa iconos de Crystal Project (LGPL), el tema de iconos Oxygen (CC-BY-SA 3.0) y el tema de iconos Colibre (CC0) de LibreOffice.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="35"/>
@@ -1839,32 +1839,32 @@ que renderizar los caracteres. Dado que unicode no es compatible de forma nativa
     <message>
         <location filename="../src/configdialog.ui" line="329"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Tema de icono:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="337"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="342"/>
         <source>Oxygen Modern</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen Modern</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="347"/>
         <source>Oxygen Classic</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen Classic</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="373"/>
         <source>Max. Recent Root Documents:</source>
-        <translation type="unfinished"/>
+        <translation>Numero máximo de documentos raíz recientes:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="436"/>
         <source>Always Show Structure of Root Document</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar siempre estructura del documento raíz</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="687"/>
@@ -1874,7 +1874,7 @@ que renderizar los caracteres. Dado que unicode no es compatible de forma nativa
     <message>
         <location filename="../src/configdialog.ui" line="1378"/>
         <source>Note: The change of symbols can be monitored live</source>
-        <translation type="unfinished"/>
+        <translation>Nota: El cambio de símbolos puede ser monitorizado en vivo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2547"/>
@@ -2210,7 +2210,7 @@ aquí.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3230"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Lista de filtros debajo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3341"/>
@@ -2506,7 +2506,7 @@ aquí.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4002"/>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4018"/>
@@ -2548,12 +2548,12 @@ aquí.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4317"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>Rectángulo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4385"/>
         <source>Shadow</source>
-        <translation type="unfinished"/>
+        <translation>Sombra</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4408"/>

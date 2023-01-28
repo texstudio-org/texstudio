@@ -1874,7 +1874,7 @@ Dado que o Unicode não tem suporte nativo no LaTeX, tem de incluir os pacotes a
     <message>
         <location filename="../src/configdialog.ui" line="1378"/>
         <source>Note: The change of symbols can be monitored live</source>
-        <translation>Nota: a mudança de símbolos pode ser monitorada em tempo real</translation>
+        <translation>Nota: a mudança de símbolos pode ser monitorizada em tempo real</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2547"/>
@@ -2505,7 +2505,7 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4002"/>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4018"/>
@@ -2547,12 +2547,12 @@ específicos, pode forçar o seu uso activando-os aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4317"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>Rectângulo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4385"/>
         <source>Shadow</source>
-        <translation type="unfinished"/>
+        <translation>Sombra</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4408"/>
@@ -3175,7 +3175,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="18"/>
         <source>&amp;Horizontal Spacing</source>
-        <translation>Espaçamento &amp;Horizontal</translation>
+        <translation>Espaçamento &amp;horizontal</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
@@ -3210,32 +3210,32 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation>Texto é permitido somente entre \begin{document} e \end{document}.</translation>
+        <translation>Só é permitido texto entre \begin{document} e \end{document}.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>The \title command declares text to be the title.</source>
-        <translation>O comando \title declara o texto para ser o título.</translation>
+        <translation>O comando \title declara o texto para utilizar como título.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation>O comando \author{nomes} declara o(s) autor(es), onde *nomes* é uma lista (possivelmente unitária) de autores separados pelo comando \and.</translation>
+        <translation>O comando \author declara o(s) autor(es), onde *nomes* é uma lista de autores separados por comandos \and.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>If used, the \date command declares the date, either with explicit arg for explicit date or with empty arg for no date. If not used, the current date will automatically be inserted by \maketitle.</source>
-        <translation type="unfinished"/>
+        <translation>Se utilizado, o comando \date declara a data, seja com argumento específico para data específica, seja sem argumento para data em branco. Se não, \maketitle insere automaticamente a data actual.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando gera um título numa página de título separada, %n- excepto na classe article, onde o título normalmente fica ao cimo da primeira página.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>Put this command where you want the table of contents to go</source>
-        <translation>Inserir este comando onde deseja o sumário</translation>
+        <translation>Insira este comando onde deseja o índice</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
@@ -3370,7 +3370,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>The itemize environment produces a &apos;bulleted&apos; list.%nEach item of an itemized list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>O ambiente itemize produz uma lista com marcas. %nCada item da lista começa com um comando \item</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
@@ -3380,7 +3380,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>O ambiente enumerate produz uma lista numerada. %nCada item da lista começa com um comando \item</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
@@ -3395,7 +3395,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>O argumento {label} é um texto inserido numa caixa para formar um rótulo. %nO argumento {spacing} contém comandos para alterar os parâmetros de espaçamento da lista. %nCada item da lista começa com um comando \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
@@ -3560,7 +3560,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="107"/>
         <source>\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \&gt;  \&gt; more \\%n\end{tabbing}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabbing}%ntext \= mais texto \= ainda mais texto \= texto final \\%nsegunda linha \&gt;  \&gt; mais \\%n\end{tabbing}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="108"/>
@@ -3570,12 +3570,12 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="109"/>
         <source>\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabular}[pos]{cols}%ncoluna 1 entrada &amp; coluna 2 entrada ... &amp; coluna n entrada \\%n...%n\end{tabular}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="110"/>
         <source>\multicolumn{cols}{pos}{text}%ncol, specifies the number of columns to span.%npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.%ntext specifies what text is to make up the entry.</source>
-        <translation type="unfinished"/>
+        <translation>\multicolumn{cols}{pos}{text}%ncol, especifica o número de colunas a utilizar.%npos especifica o formato da entrada: c para centrada, l para esquerda, r para direita.%ntext especifica que texto é criado para a entrada.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
@@ -3585,98 +3585,98 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>The \vline command draws a vertical line extending the full height and depth of its row.</source>
-        <translation>O comando \vline desenha uma linha vertical que se estende da profundidade até a altura total da linha.</translation>
+        <translation>O comando \vline desenha uma linha vertical da altura total da sua linha.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>The command \space gives you a space where you can&apos;t enter a space character.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \space insere um espaço onde não seja possível fazê-lo com o teclado.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \enspace insere um espaço horizontal de 1/2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>O comando \quad insere um espaço horizontal de 1em (sendo 1em a largura de M).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>The \qquad command inserts a horizontal space of 2em.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \qquad insere um espaço horizontal de 2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>The command \thinspace produces unbreakable and unstretchable space of 1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>O comando \thinspace insere um espaço não separável e não dimensionável de 1/6em (igual a \, em modo math).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>The command \negthinspace produces unbreakable and unstretchable space of -1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>O comando \negthinspace insere um espaço não separável e não dimensionável de -1/6em (igual a \, em modo math).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>The \hspace command inserts an amount of skip of horizontal space.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \hspace insere um determinado montante de espaço horizontal.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>The \hfill command inserts a rubber length which has no natural space but that can stretch horizontally as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \hfill insere um comprimento de borracha que não tem espaço natural mas pode esticar horizontalmente até ao necessário.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>The \hrulefill command produces an infinite horizontal rubber length that LaTeX fills with a rule (that is, a line), instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \hrulefill produz um tamanho de borracha infinito que o LaTeX enche com uma régua (uma linha), em vez de espaço em branco.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with dots, instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \dotfill produz um tamanho de borracha infinito que o LaTeX enche com pontos, em vez de espaço em branco.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation type="unfinished"/>
+        <translation>O comando \newpage termina a página actual.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>The \linebreak command tells LaTeX to break the current line at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \linebreak indica ao LaTeX que quebre a linha actual no ponto do comando.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>The \pagebreak command tells LaTeX to break the current page at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \pagebreak indica ao LaTeX que quebre a página actual no ponto do comando.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \bigskip adiciona um &quot;grande&quot; espaço vertical.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \medskip adiciona um espaço vertical &quot;médio&quot;.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \smallskip adiciona um espaço vertical &quot;pequeno&quot;.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>The \vspace command inserts an amount of skip (positive, zero or negative) of vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \vspace insere um montante de espaço de salto vertical (positivo, zero ou negativo).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>The \vfill command inserts a rubber length which has no natural space but that can stretch vertically as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \vfill insere um tamanho de borracha sem espaço natural, mas que pode esticar verticalmente até ao necessário.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
@@ -3686,7 +3686,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>The \newline command breaks the line right where it is.</source>
-        <translation type="unfinished"/>
+        <translation>O comando \newline quebra a linha onde estiver.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
@@ -3816,92 +3816,92 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command.</source>
-        <translation type="unfinished"/>
+        <translation>O ambiente descriprion produz uma lista rotulada. %nCada item da lista começa com um comando \item[label].</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\alert{texto} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{texto}{comentário} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\add{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\add{texto} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\remove{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\remove{texto} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\replace{texto}{substituto} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Turn on review comments in pdf</source>
-        <translation>Ligar comentários de revisão no pdf</translation>
+        <translation>Activar comentários de revisão no pdf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>Turn off review comments in pdf</source>
-        <translation>Desligar comentários de revisão no pdf</translation>
+        <translation>Desactivar comentários de revisão no pdf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
-        <translation type="unfinished"/>
+        <translation>\label{tecla}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
-        <translation type="unfinished"/>
+        <translation>Este comando gera uma citação embebida à referência associada com a entrada ref no ficheiro bib.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
-        <translation type="unfinished"/>
+        <translation>\footnote[número]{texto}%nO comando \footnote coloca o texto de rodapé numerado ao fundo da página actual.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation type="unfinished"/>
+        <translation>O argumento de \bibliographystyle refere-se a um ficheiro style.bst, que define o aspecto das suas citações.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
-        <translation type="unfinished"/>
+        <translation>\addbibresource{fichbib} especifica a localização de um ficheiro de recursos para biblatex, tal como um ficheiro .bib. O nome do ficheiro deve conter a extensão (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). Só pode adicionar um ficheiro por comando \addbibresource{ } (não são permitidas listas). Mas pode usar múltiplos comandos.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>The math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>O ambiente math pode ser utilizado em modos parágrafo e LR.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>The LaTeX math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>O ambiente math LaTeX pode ser utilizado em modos parágrafo e LR.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>The displaymath environment can be used only in paragraph mode</source>
-        <translation type="unfinished"/>
+        <translation>O ambiente displaymath só pode ser utilizado em modo parágrafo.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{array}{col1col2...coln}%ncoluna 1 entrada &amp; coluna 2 entrada ... &amp; coluna n entrada \\%n...%n\end{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>The equation environment centres your equation on the page and places the equation number in the right margin.</source>
-        <translation type="unfinished"/>
+        <translation>O ambiente equation centra a sua equação na página e coloca o número da equação na margem direita.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="179"/>
@@ -4026,7 +4026,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>Negative thin space</source>
-        <translation>Pequeno espaço negativo</translation>
+        <translation>Espaço negativo pequeno</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
@@ -4066,7 +4066,7 @@ novo para ver só as definições mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>regular whitespace</source>
-        <translation>espaço regular</translation>
+        <translation>espaço normal</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
@@ -4929,12 +4929,12 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="394"/>
         <source>Copy Image</source>
-        <translation>Copiar Imagem</translation>
+        <translation>Copiar imagem</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="395"/>
         <source>Save Image As...</source>
-        <translation>Salvar imagem como...</translation>
+        <translation>Gravar imagem como...</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="454"/>
@@ -7861,7 +7861,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="863"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation> (col. %1)</translation>
     </message>
 </context>
 <context>
@@ -8007,12 +8007,12 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="36"/>
         <source>&amp;Class Options</source>
-        <translation>Opções da &amp;Classe</translation>
+        <translation>Opções da &amp;classe</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="209"/>
         <source>Font Encoding</source>
-        <translation>Codificação de Fonte</translation>
+        <translation>Codificação da letra</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="233"/>
@@ -8143,27 +8143,27 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="295"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
-        <translation>Pacote gráfico, insere imagens facilmente (ver Assistente Inserir Figura)</translation>
+        <translation>Pacote gráfico, insere imagens facilmente (ver Assistente Inserir imagem)</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="296"/>
         <source>Support for hyperlinks in your document</source>
-        <translation>Suporte a hiperlinks no documento.</translation>
+        <translation>Suporte a hiperligações no documento.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="297"/>
         <source>Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath</source>
-        <translation>Extensão ao amsmath, inclui correção de bugs e carrega amsmath</translation>
+        <translation>Extensão ao amsmath com correcções de erros, carrega o amsmath</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="298"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation>Define ambientes teorema, e deve ser carregado após amsmath</translation>
+        <translation>Define o seu ambiente theorem, deve ser carregado após amsmath</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
-        <translation>Referência a nomes de Capítulos, Seções, etc. Carregado pelo hyperref.</translation>
+        <translation>Referência a nomes de capítulos, secções, etc., carregado por hyperref.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
@@ -8173,7 +8173,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
-        <translation>Pacote sofisticado para cores, com opção para cores em tabelas.</translation>
+        <translation>Pacote sofisticado para cores, com opção para utilizar cores em tabelas.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="494"/>
@@ -8188,7 +8188,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="561"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
-        <translation>Ao pressionar OK, os pacotes selecionados aparecerão em um novo documento no comando \usepackage.</translation>
+        <translation>Todos os pacotes marcados aparecerão automaticamente num novo documento nos comandos \usepackage ao clicar em Aceitar, </translation>
     </message>
 </context>
 <context>
@@ -9120,13 +9120,13 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="129"/>
         <source>Online Repository</source>
-        <translation>Repositório Online</translation>
+        <translation>Repositório em linha</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="137"/>
         <location filename="../src/templateselector.cpp" line="317"/>
         <source>&lt;loading...&gt;</source>
-        <translation>&lt;carregando...&gt;</translation>
+        <translation>&lt;a carregar...&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="455"/>
@@ -10027,7 +10027,7 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1072"/>
         <source>Preview Dis&amp;play Mode</source>
-        <translation>Visualizar Modo Dis&amp;play</translation>
+        <translation>Modo de ante&amp;visão</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1074"/>
@@ -10437,7 +10437,7 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1225"/>
         <source>Convert to Abridged Plaintext</source>
-        <translation type="unfinished"/>
+        <translation>Converter para Abridged Plaintext</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1226"/>
@@ -12678,7 +12678,7 @@ Pode utilizar o valor especial ?txs-start para iniciar o script no arranque do t
     <message>
         <location filename="../src/usermenudialog.cpp" line="547"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation> (col. %1)</translation>
     </message>
 </context>
 <context>
