@@ -786,19 +786,20 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 					REQUIRE(combo);
 
 					QStringList actionTexts;
+					QStringList actionInfos;
 					QList<QIcon> actionIcons;
 					int defaultIndex = -1;
-					foreach (const QAction *act, menu->actions())
+					foreach (const QAction *act, menu->actions()) {
 						if (!act->isSeparator()) {
 							actionTexts.append(act->text());
+							actionInfos.append(act->toolTip());
 							actionIcons.append(act->icon());
 							if (menuName == "main/view/documents" && edView == act->data().value<LatexEditorView *>()) {
 								defaultIndex = actionTexts.length() - 1;
 							}
 						}
-
-					//qDebug() << "**" << actionTexts;
-					UtilsUi::createComboToolButton(tb.toolbar, actionTexts, actionIcons, -1, this, SLOT(callToolButtonAction()), defaultIndex, combo);
+					}
+					UtilsUi::createComboToolButton(tb.toolbar, actionTexts, actionInfos, actionIcons, -1, this, SLOT(callToolButtonAction()), defaultIndex, combo);
 
 					if (menuName == "main/view/documents") {
 						// workaround to select the current document
@@ -807,18 +808,9 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 						// TODO: should this menu be provided by Editors?
 						LatexEditorView *edView = currentEditorView();
 						foreach (QAction* act, menu->actions()) {
-							qDebug() << act->data().value<LatexEditorView *>() << combo;
 							if (edView == act->data().value<LatexEditorView *>()) {
 								int i = menu->actions().indexOf(act);
-								qDebug() << i << combo->menu()->actions().length();
 								if (i < 0 || i>= combo->menu()->actions().length()) continue;
-								foreach (QAction *act, menu->actions()) {
-									qDebug() << "menu" << act->text();
-								}
-								foreach (QAction *act, combo->menu()->actions()) {
-									qDebug() << "cmb" << act->text();
-								}
-
 								combo->setDefaultAction(combo->menu()->actions()[i]);
 							}
 						}
@@ -1546,7 +1538,7 @@ void Texstudio::setupToolBars()
 					tagsWidget->populate();
 				QStringList list = tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep + 1));
 				if (list.isEmpty()) continue;
-				QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, QList<QIcon>(), 0, this, SLOT(insertXmlTagFromToolButtonAction()));
+				QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, QStringList(), QList<QIcon>(), 0, this, SLOT(insertXmlTagFromToolButtonAction()));
 				combo->setProperty("tagsID", actionName);
 				mtb.toolbar->addWidget(combo);
 			} else {
@@ -1567,14 +1559,16 @@ void Texstudio::setupToolBars()
 					//Case 4: A submenu mapped on a toolbutton
 					configManager.watchedMenus << actionName;
 					QStringList list;
+					QStringList infos;
 					QList<QIcon> icons;
 					foreach (const QAction *act, menu->actions())
 						if (!act->isSeparator()) {
 							list.append(act->text());
+							infos.append(act->toolTip());
 							icons.append(act->icon());
 						}
 					//TODO: Is the callToolButtonAction()-slot really needed? Can't we just add the menu itself as the menu of the qtoolbutton, without creating a copy? (should be much faster)
-					QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, icons, 0, this, SLOT(callToolButtonAction()));
+					QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, infos, icons, 0, this, SLOT(callToolButtonAction()));
 					combo->setProperty("menuID", actionName);
 					mtb.toolbar->addWidget(combo);
 				}

@@ -18,7 +18,7 @@ void txsWarning(const QString &message, bool &noWarnAgain);
 void txsCritical(const QString &message);
 
 //setup toolbutton as substitute for const combobox
-QToolButton* createComboToolButton(QWidget *parent, const QStringList &list, const QList<QIcon> &icons, int height, const QObject *receiver, const char *member, int defaultIndex = -1, QToolButton *combo = nullptr);
+QToolButton* createComboToolButton(QWidget *parent, const QStringList &list, const QStringList &infos, const QList<QIcon> &icons, int height, const QObject *receiver, const char *member, int defaultIndex = -1, QToolButton *combo = nullptr);
 
 //find the tool button which contains a given action
 QToolButton *comboToolButtonFromAction(QAction *action);
