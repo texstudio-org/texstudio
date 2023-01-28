@@ -408,7 +408,7 @@ TransDur=%<seconds%>
 Speed=#Slow,Medium,Fast
 PageDur=%<seconds%>
 #endkeyvals
-\addtoOptAttachments{list-of-files}
+\addtoOptAttachments{list-of-files%file}
 \prjinput{file}#i
 \prjinclude{file}#i
 \prjInputUser{file}#*i
