@@ -16,8 +16,8 @@
 \begin{demohigh}[options%keyvals]
 \end{demohigh}
 \CodeHigh{options%keyvals}
-\dochighinput{file}#i
-\dochighinput[options%keyvals]{file}#i
+\dochighinput{file}
+\dochighinput[options%keyvals]{file}
 
 \NewCodeHighEnv{envname}{options%keyvals}#N
 \NewCodeHighInput{command}{options%keyvals}#d
