@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/01/02 for v0.99-z-d
+# Matthew Bertucci 2023/01/28 for v0.99-z-e
 
 #include:verbatim
 #include:mathtools
@@ -997,6 +997,7 @@ CouleurTrace=#%color
 NomCourbe=%<nom%>
 LabelC=%<nombre%>
 Traces={%<MP code%>}
+Vide#true,false
 #endkeyvals
 
 ## La distributivité ##
@@ -1088,6 +1089,7 @@ Exact#true,false
 #keyvals:\Calculatrice
 Ecran#true,false
 NbLignes=%<integer%>
+Largeur=%<nombre%>
 #endkeyvals
 
 ## Le tableur ##
@@ -1264,11 +1266,13 @@ Pas=%<integer%>
 Debut=%<integer%>
 Fin=%<integer%>
 EcartVertical=%<nombre%>
-Echelle=%<factor%>
 Droites#true,false
 DemiDroites#true,false
+Traces={%<code%>}
+Echelle=%<factor%>
 Solution#true,false
 LignesIdentiques#true,false
+OrigineVariable#true,false
 #endkeyvals
 
 ## Colorilude ##
@@ -1610,6 +1614,46 @@ Rayon=##L
 Taille=%<nombre%>
 Solution#true,false
 Couleur=#%color
+#endkeyvals
+
+## Puzzle Pyramide ##
+\PuzzlePyramide{c1§c2§...}
+\PuzzlePyramide[clés%keyvals]{c1§c2§...}
+
+#keyvals:\PuzzlePyramide
+Etages=%<integer%>
+Largeur=##L
+NbLignes=%<integer%>
+Solution#true,false
+Graine=%<nombre%>
+Questions#true,false
+#endkeyvals
+
+## Message Caché ##
+\MessageCache{q1/r1§q2/r2§...}{message%text}
+\MessageCache[clés%keyvals]{q1/r1§q2/r2§...}{message%text}
+
+#keyvals:\MessageCache
+TLargeur=%<nombre%>
+THauteur=%<nombre%>
+Largeur=##L
+Hauteur=##L
+Plateau#true,false
+#endkeyvals
+
+## Ronde infernale ##
+\RondeInfernale
+\RondeInfernale[clés%keyvals]
+
+#keyvals:\RondeInfernale
+Rectangle#true,false
+Rayon=##L
+Etapes=%<nombre%>
+Relatifs#true,false
+Vide#true,false
+Cle="%<valeur%>"
+ListeOperations={%<opérations%>}
+ListeNombres={%<nombres%>}
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -1957,6 +2001,7 @@ Teal#B
 \BuildPixelArt{arg1}{arg2}{arg3}{arg4}#S
 \buildreperenew#S
 \BuildRLE{arg}#S
+\BuildRondeInfernale{arg1}{arg2}#S
 \buildtabfonction#S
 \buildtabpropor#S
 \Buildtabpropor#S
@@ -2339,7 +2384,7 @@ Teal#B
 \MPCatmull{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPCinq{arg1}{arg2}{arg3}#S
 \MPCourbe{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPCourbePoints{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPCourbeNew{arg}#S
 \MPDessineFrise{arg}#S
 \MPEchelleProbaUn{arg1}{arg2}{arg3}{arg4}#S
 \MPEnigmeAireA#S
@@ -2549,6 +2594,8 @@ Teal#B
 \PfCfooStat#S
 \PfCfrac{arg1}{arg2}#S
 \PfCGraineAlea#S
+\PfCHiddenHeight#S
+\PfCHiddenWidth#S
 \PfCKakuro#S
 \PfCKenKen#S
 \PfCLargeurJury#S
@@ -2590,6 +2637,7 @@ Teal#B
 \PfCPCfaa#S
 \PfCPCfoo#S
 \PfCPremiereColonneDecimale#S
+\PfCPuzzleP#S
 \PfCPythaUnit#S
 \PfCQtroisk#S
 \PfCQuartileTrois#S
@@ -2652,6 +2700,7 @@ Teal#B
 \premierun#S
 \PtAlea#S
 \pupils#*
+\PuzzlePyramideListeLettres#S
 \QCMPfC{arg1}{arg2}#S
 \QFDaily#S
 \QFDecimal#S
@@ -2757,6 +2806,7 @@ Teal#B
 \Test#S
 \Testa#S
 \Testb#S
+\TestNombrePremier{arg}#S
 \TexteOrigine#S
 \TexteReference#S
 \theaddxlop#S
@@ -2775,6 +2825,8 @@ Teal#B
 \theNbRelie#S
 \thePfCCompteLignes#S
 \thePfCnexo#S
+\thePfCPuzzlePavcpt#S
+\thePfCPuzzlePcpt#S
 \thePfCShikakuNom#S
 \thePfCTortue#S
 \theQuestionQCM#S
@@ -2838,8 +2890,7 @@ Teal#B
 \TotalLaby#S
 \TotalP#S
 \toto#S
-\TraceDessinGradue{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\TraceDessinGradueMul{arg1}{arg2}{arg3}#S
+\TraceDessinGradueComplet{arg1}{arg2}{arg3}#S
 \TraceDoubleSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceEchiquierColoreColorilude#S
 \TraceEchiquierColorilude#S
@@ -2859,7 +2910,6 @@ Teal#B
 \Tuile{arg1}{arg2}{arg3}{arg4}#S
 \untest#S
 \UpdateCoul{arg1}#S
-\UpdateDefDroites{arg1}#S
 \UpdateDefLignes{arg1}#S
 \UpdateLegende{arg}#S
 \UpdateLignes{arg1}#S
