@@ -482,6 +482,7 @@
 <file>completion/calculus.cwl</file>
 <file>completion/calligra.cwl</file>
 <file>completion/callouts.cwl</file>
+<file>completion/cals.cwl</file>
 <file>completion/cancel.cwl</file>
 <file>completion/canoniclayout.cwl</file>
 <file>completion/cantarell.cwl</file>
@@ -943,6 +944,7 @@
 <file>completion/class-univie-ling-expose.cwl</file>
 <file>completion/class-univie-ling-handout.cwl</file>
 <file>completion/class-univie-ling-paper.cwl</file>
+<file>completion/class-univie-ling-poster.cwl</file>
 <file>completion/class-univie-ling-thesis.cwl</file>
 <file>completion/class-univie-ling-wlg.cwl</file>
 <file>completion/class-upmethodology-document.cwl</file>
@@ -998,6 +1000,7 @@
 <file>completion/cntdwn.cwl</file>
 <file>completion/cntformats.cwl</file>
 <file>completion/cochineal.cwl</file>
+<file>completion/codeanatomy.cwl</file>
 <file>completion/codebox.cwl</file>
 <file>completion/codehigh.cwl</file>
 <file>completion/codesection.cwl</file>
@@ -2649,6 +2652,7 @@
 <file>completion/phfthm.cwl</file>
 <file>completion/philex.cwl</file>
 <file>completion/philokalia.cwl</file>
+<file>completion/phoenician.cwl</file>
 <file>completion/phonenumbers.cwl</file>
 <file>completion/phonetic.cwl</file>
 <file>completion/phonrule.cwl</file>
@@ -2668,6 +2672,7 @@
 <file>completion/pinyin.cwl</file>
 <file>completion/piton.cwl</file>
 <file>completion/pixelart.cwl</file>
+<file>completion/PixelArtTikz.cwl</file>
 <file>completion/pkgloader.cwl</file>
 <file>completion/placeat.cwl</file>
 <file>completion/placeins.cwl</file>
@@ -3314,6 +3319,7 @@
 <file>completion/tagpair.cwl</file>
 <file>completion/tagpdf.cwl</file>
 <file>completion/tameflts.cwl</file>
+<file>completion/TangramTikz.cwl</file>
 <file>completion/tascmac.cwl</file>
 <file>completion/tasks.cwl</file>
 <file>completion/tcolorbox.cwl</file>
