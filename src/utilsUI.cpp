@@ -118,7 +118,7 @@ void txsCritical(const QString &message)
 	QMessageBox::critical(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
 
-QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, const QList<QIcon> &icons, int height, const QObject *receiver, const char *member, int defaultIndex, QToolButton *combo)
+QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, const QStringList &infos, const QList<QIcon> &icons, int height, const QObject *receiver, const char *member, int defaultIndex, QToolButton *combo)
 {
 	Q_UNUSED(icons)
 	const QFontMetrics &fm = parent->fontMetrics();
@@ -143,12 +143,14 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 		combo->removeAction(mAction);
 
 	QMenu *mMenu = new QMenu(combo);
+	mMenu->setToolTipsVisible(true);
 	int max = 0;
 	bool defaultSet = false;
 	for (int i = 0; i < list.length(); i++) {
 		QString text = list[i];
 		//QIcon icon = (i<icons.length()) ? icons[i] : QIcon();
 		QAction *mAction = mMenu->addAction(text, receiver, member);
+		if (infos.count()>0) mAction->setToolTip(infos[i]);
 		max = qMax(max, getFmWidth(fm, text + "        "));
 		if (i == defaultIndex) {
 			combo->setDefaultAction(mAction);
