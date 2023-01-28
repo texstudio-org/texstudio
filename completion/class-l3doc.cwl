@@ -153,7 +153,7 @@ verb
 \testfile*#*
 \MacroLongFont#*
 
-\TestFiles{list of files}
+\TestFiles{list of files%file}
 \UnitTested
 \TestMissing{explanation%text}
 
