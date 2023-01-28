@@ -395,7 +395,7 @@ void PDFDraggableTool::drawGradient(QPainter& painter, const QRect& outline, QCo
 		sideGradient.setColorAt(1, QColor("transparent"));
 
 		// draw the top rectangle
-		edgePath.clear();
+		edgePath = QPainterPath();
 		edgePath.addRect(padding, 0, outline.width() - 2*padding, padding);
 		sideGradient.setStart(0, padding);
 		sideGradient.setFinalStop(0, 0);
@@ -403,7 +403,7 @@ void PDFDraggableTool::drawGradient(QPainter& painter, const QRect& outline, QCo
 		painter.fillRect(outline, sideGradient);
 
 		// draw the bottom rectangle
-		edgePath.clear();
+		edgePath = QPainterPath();
 		edgePath.addRect(padding, outline.height() - padding, outline.width() - 2*padding, padding);
 		sideGradient.setStart(0, outline.height() - padding);
 		sideGradient.setFinalStop(0, outline.height());
@@ -411,7 +411,7 @@ void PDFDraggableTool::drawGradient(QPainter& painter, const QRect& outline, QCo
 		painter.fillRect(outline, sideGradient);
 
 		// draw the left rectangle
-		edgePath.clear();
+		edgePath = QPainterPath();
 		edgePath.addRect(0, padding, padding, outline.height() - 2*padding);
 		sideGradient.setStart(padding, 0);
 		sideGradient.setFinalStop(0, 0);
@@ -419,12 +419,18 @@ void PDFDraggableTool::drawGradient(QPainter& painter, const QRect& outline, QCo
 		painter.fillRect(outline, sideGradient);
 
 		// draw the right rectangle
-		edgePath.clear();
+		edgePath = QPainterPath();
 		edgePath.addRect(outline.width() - padding, padding, padding, outline.height() - 2*padding);
 		sideGradient.setStart(outline.width()-padding, 0);
 		sideGradient.setFinalStop(outline.width(), 0);
 		painter.setClipPath(edgePath);
 		painter.fillRect(outline, sideGradient);
+
+		// fill background
+		edgePath = QPainterPath();
+		edgePath.addRect(padding, padding, outline.width() - 2*padding, outline.height() - 2*padding);
+		painter.setClipPath(edgePath);
+		painter.fillRect(outline, color);
 	}
 
 	painter.restore();
@@ -462,13 +468,13 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 			);
 		} else {
 			// rectangular magnifier with transparent shadow
-			const int shadowWidth = 10;
+			const int shadowWidth = 7;
 	
 			// draw transparent shadow
 			QRect outline(0, 0, width(), height());
 			drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
 	
-			borderPath.addRect(shadowWidth, shadowWidth, width() - 2*shadowWidth, height() - 2*shadowWidth);
+			borderPath.addRect(5, 5, width() - shadowWidth - 6, height() - shadowWidth - 6);
 
 		}
 	} else {
@@ -615,8 +621,8 @@ PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> a
 
 PDFMovie::~PDFMovie()
 {
-    delete audioOutput;
-    delete videoWidget;
+	delete audioOutput;
+	delete videoWidget;
 }
 
 void PDFMovie::place()
@@ -1219,10 +1225,10 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 		movie = new PDFMovie(this, qSharedPointerDynamicCast<Poppler::MovieAnnotation>(annotation), page);
 		movie->place();
 		movie->show();
-        movie->realPlay();
+		movie->realPlay();
 #else
 		Q_UNUSED(page)
-        UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option -DTEXSTUDIO_ENABLE_MEDIAPLAYER=on (cmake)");
+		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option -DTEXSTUDIO_ENABLE_MEDIAPLAYER=on (cmake)");
 #endif
 		break;
 	}
