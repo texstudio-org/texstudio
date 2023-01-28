@@ -129,7 +129,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 		geometryOptions.remove(0, 2);
 		tag += "\\usepackage[" + geometryOptions + "]{geometry}\n";
 	}
-	if (babel) tag += QString("\\usepackage{babel}  % language support\n");
+	if (babel) tag += QString("\\usepackage{babel}\n");
 
 	QTableWidget *table = ui.tableWidgetPackages;
 	packagesUsed = QStringList();
