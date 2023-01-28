@@ -365,9 +365,9 @@ roundprintedlengthsto=%<number%>
 \pdfboxesset{bleedboxwidth}{bleedboxheight}
 \pdfcommentcell[options%keyvals]{comment%text}
 \pdfcommentcell{comment%text}
-\pdfpagecount{.pdf file}
+\pdfpagecount{.pdf file%file}
 \pdfpagelayout
-\pdfspinewidth{paper-thickness}{cover-thickness}{.pdf file}
+\pdfspinewidth{paper-thickness}{cover-thickness}{.pdf file%file}
 \rcaptioncell[options%keyvals]{caption%text}
 \rcaptioncell{caption%text}
 \ReInitPages
