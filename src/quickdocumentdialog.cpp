@@ -93,8 +93,10 @@ QuickDocumentDialog::~QuickDocumentDialog()
 
 QString QuickDocumentDialog::getNewDocumentText()
 {
+	bool babel = ui.comboBoxBabel->currentText() != "NONE";
 	QString opt = "";
 	QString tag = QString("\\documentclass[");
+	if (babel) tag += ui.comboBoxBabel->currentText() + QString(",");
 	tag += ui.comboBoxSize->currentText() + QString(",");
 	tag += ui.comboBoxPaper->currentText();
     for (int i = 0; i < ui.listWidgetOptions->count(); ++i) {
@@ -127,8 +129,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 		geometryOptions.remove(0, 2);
 		tag += "\\usepackage[" + geometryOptions + "]{geometry}\n";
 	}
-	if (ui.comboBoxBabel->currentText() != "NONE")
-      tag += QString("\\usepackage[%1]{babel}\n").arg(ui.comboBoxBabel->currentText());
+	if (babel) tag += QString("\\usepackage{babel}  % language support\n");
 
 	QTableWidget *table = ui.tableWidgetPackages;
 	packagesUsed = QStringList();
