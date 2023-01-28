@@ -33,7 +33,7 @@ date={%<YYYY-MM-DD%>}
 #endkeyvals
 
 \makecover
-\makecover[pdf file]
+\makecover[pdf file%file]
 
 \xingkai#*
 \zhkai#*
