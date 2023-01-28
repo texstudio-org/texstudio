@@ -58,7 +58,7 @@ hyperlatex
 \meta{arg}
 \newprogram{cmd}{initial}#d
 \newprogram{cmd}{initial}[subsequent]#d
-\ProcessDTXFile{file name}
+\ProcessDTXFile{file name%file}
 \JusTLoaDInformatioN#S
 \AddToCheckSum{number}
 \BibTeX
