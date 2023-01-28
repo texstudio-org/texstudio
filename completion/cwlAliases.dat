@@ -1522,3 +1522,7 @@ xduugtp:
 class-xduugtp
 latex-document
 tex
+univie-ling-poster:
+class-univie-ling-poster
+latex-document
+tex
