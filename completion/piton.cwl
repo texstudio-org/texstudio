@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/01/16 for v1.2
+# Matthew Bertucci 2023/01/29 for v1.3
 
 #include:l3keys2e
 #include:luatexbase
@@ -31,9 +31,14 @@ beamer#true,false
 \piton{code%definition}
 \begin{Piton}#V
 \end{Piton}
+# beamer only
+\begin{Piton}<overlay spec>#*V
 
 \PitonInputFile{file}#i
 \PitonInputFile[options%keyvals]{file}#i
+# beamer only
+\PitonInputFile<overlay spec>{file}#*i
+\PitonInputFile<overlay spec>[options%keyvals]{file}#*i
 
 #keyvals:\PitonInputFile
 first-line=%<integer%>
@@ -52,6 +57,7 @@ resume
 splittable
 splittable=%<integer%>
 background-color=#%color
+prompt-background-color
 slim#true,false
 left-margin=##L
 tab-size=%<integer%>
