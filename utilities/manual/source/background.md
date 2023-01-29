@@ -589,7 +589,7 @@ More details on building TeXstudio can be found in the [wiki](https://github.com
 
 
 `cmake` detects the presence of optional dependencies and builds accordingly.
-The following optional dependencies are listed below.
+The optional dependencies are listed below.
 | dependency | feature when present | when not present |
 | --- | --- | --- |
 | poppler-qt | internal pdf viewer | no pdf viewer |
@@ -610,8 +610,8 @@ Options:
 | TEXSTUDIO_ENABLE_MEDIAPLAYER | off | build with pdf multimedia support. Requires QtMultimedia |
 
 ### Updating translations
-With `cmake` the command `lupdate` does not work diretcly.
-Instead when building for qt6 a debug build (`DCMAKE_BUILD_TYPE=Debug`), a traget `texstudio_lupdate` is defined which needs to be called.
+With `cmake` the command `lupdate` does not work directly.
+Instead when building for qt6 a debug build (`DCMAKE_BUILD_TYPE=Debug`), a target `texstudio_lupdate` is defined which needs to be called.
 ```
 build>qt-cmake .. -DCMAKE_BUILD_TYPE=Debug
 build>cmake --build . -t texstudio_lupdate
