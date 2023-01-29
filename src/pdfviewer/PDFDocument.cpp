@@ -474,7 +474,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 			QRect outline(0, 0, width(), height());
 			drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
 	
-			borderPath.addRect(5, 5, width() - shadowWidth - 6, height() - shadowWidth - 6);
+			borderPath.addRect(5, 5, width() - shadowWidth - 3, height() - shadowWidth - 6);
 
 		}
 	} else {
