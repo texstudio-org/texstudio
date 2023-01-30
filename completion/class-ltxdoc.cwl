@@ -43,3 +43,7 @@ openbib
 \currentfile#*
 \filekey#*
 \filesep#*
+\LuaTeX
+\cls{class}
+\pkg{package}
+\enquote{text}
