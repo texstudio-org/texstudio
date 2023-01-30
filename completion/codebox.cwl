@@ -23,10 +23,10 @@
 \begin{codebox*}[options%keyvals]{title%text}#V
 \end{codebox*}
 
-\codefile{title%text}{file}#i
-\codefile[options%keyvals]{title%text}{file}#i
-\codefile*{title%text}{file}#i
-\codefile*[options%keyvals]{title%text}{file}#i
+\codefile{title%text}{file}
+\codefile[options%keyvals]{title%text}{file}
+\codefile*{title%text}{file}
+\codefile*[options%keyvals]{title%text}{file}
 
 \begin{codeview}{title%text}#V
 \begin{codeview}[options%keyvals]{title%text}#V
@@ -35,10 +35,10 @@
 \begin{codeview*}[options%keyvals]{title%text}#V
 \end{codeview*}
 
-\cvfile{title%text}{file}#i
-\cvfile[options%keyvals]{title%text}{file}#i
-\cvfile*{title%text}{file}#i
-\cvfile*[options%keyvals]{title%text}{file}#i
+\cvfile{title%text}{file}
+\cvfile[options%keyvals]{title%text}{file}
+\cvfile*{title%text}{file}
+\cvfile*[options%keyvals]{title%text}{file}
 
 \codeset{options%keyvals}
 

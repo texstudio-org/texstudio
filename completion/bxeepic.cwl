@@ -70,7 +70,7 @@ hide
 \begin{drawjoin}[stretch]#/picture
 \end{drawjoin}#/picture
 \picsquare
-\putfile{file}{object}#i
+\putfile{file}{object}
 \dashjoin#S
 \dottedjoin#S
 \drawjoin#S

@@ -1,8 +1,8 @@
 # moodle package
-# Matthew Bertucci 2022/06/11 for v0.9
+# Matthew Bertucci 2023/01/29 for v1.0
 
-#include:environ
 #include:xkeyval
+#include:environ
 #include:amssymb
 #include:iftex
 #include:etoolbox
@@ -10,6 +10,7 @@
 #include:array
 #include:ifplatform
 #include:shellesc
+#include:readprov
 #include:fancybox
 #include:getitems
 
@@ -24,6 +25,11 @@ section
 section*
 subsection
 subsection*
+feedbackleft
+feedbackright
+samepage
+LMS=%<major.minor%>
+pluginfile
 #endkeyvals
 
 #ifOption:handout
@@ -95,6 +101,7 @@ tags={%<tag1,tag2,...%>}
 shuffle#true,false
 numbering=#alph,Alph,arabic,roman,Roman,none
 single#true,false
+sanction=%<number%>
 multiple#true,false
 allornothing#true,false
 tolerance=%<value%>
@@ -132,16 +139,15 @@ ppi=%<pixels per inch%>
 \SVGtoPDFcommand{executable filename}
 \optiSVGcommand{executable filename}
 
-\verbatiminput{file}#i
-\VerbatimInput{file}#i
-\VerbatimInput[options%keyvals]{file}#i
-\BVerbatimInput{file}#i
-\BVerbatimInput[options%keyvals]{file}#i
-\LVerbatimInput{file}#i
-\LVerbatimInput[options%keyvals]{file}#i
-\inputminted{language}{file}#i
-\inputminted[options%keyvals]{languag
-e}{file}#i
+\verbatiminput{file}
+\VerbatimInput{file}
+\VerbatimInput[options%keyvals]{file}
+\BVerbatimInput{file}
+\BVerbatimInput[options%keyvals]{file}
+\LVerbatimInput{file}
+\LVerbatimInput[options%keyvals]{file}
+\inputminted{language}{file}
+\inputminted[options%keyvals]{language}{file}
 
 #keyvals:\VerbatimInput,\BVerbatimInput,\LVerbatimInput,\inputminted
 gobble=%<integer%>
@@ -156,11 +162,15 @@ highlightlines={%<line ranges%>}
 style=%<style name%>
 #endkeyvals
 
+\moodledate#S
+\moodleversion#S
+
 # not documented
 \ConvertToBaseLXIV{arg1}{arg2}#S
 \DeclareGraphicsAlien{arg1}{arg2}{arg3}#S
 \DeclareMediaFormat{arg1}{arg2}{arg3}#S
 \DeleteFilecommand#S
+\DevNullcommand#S
 \ExportTikz#S
 \OptimizeExport#S
 \OutputFile#S
@@ -185,6 +195,7 @@ style=%<style name%>
 \inlinemathrightdelim{arg1}#S
 \jobnamewithsuffixtomacro{arg1}{arg2}#S
 \mathtext#S
+\MoveFilecommand#S
 \newxml#S
 \normalcatcodes#S
 \oldhref#S
@@ -195,6 +206,7 @@ style=%<style name%>
 \otherampersand#S
 \othercaret#S
 \otherdollar#S
+\otherequal#S
 \otherhash#S
 \otherlbrace#S
 \otherlbracket#S

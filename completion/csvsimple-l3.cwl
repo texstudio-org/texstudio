@@ -1,8 +1,8 @@
 # csvsimple-l3 package
 # Matthew Bertucci 2/3/2022 for v2.3.0
 
-\csvreader{file}{assignments%definition}{command list%definition}#i
-\csvreader[options%keyvals]{file}{assignments%definition}{command list%definition}#i
+\csvreader{file}{assignments%definition}{command list%definition}
+\csvreader[options%keyvals]{file}{assignments%definition}{command list%definition}
 
 \csvcoli#*
 \csvcolii#*
@@ -12,25 +12,25 @@
 
 \csvloop{options%keyvals}
 
-\csvautotabular{file}#i
-\csvautotabular[options%keyvals]{file}#i
-\csvautotabular*{file}#i
-\csvautotabular*[options%keyvals]{file}#i
+\csvautotabular{file}
+\csvautotabular[options%keyvals]{file}
+\csvautotabular*{file}
+\csvautotabular*[options%keyvals]{file}
 
-\csvautolongtable{file}#i
-\csvautolongtable[options%keyvals]{file}#i
-\csvautolongtable*{file}#i
-\csvautolongtable*[options%keyvals]{file}#i
+\csvautolongtable{file}
+\csvautolongtable[options%keyvals]{file}
+\csvautolongtable*{file}
+\csvautolongtable*[options%keyvals]{file}
 
-\csvautobooktabular{file}#i
-\csvautobooktabular[options%keyvals]{file}#i
-\csvautobooktabular*{file}#i
-\csvautobooktabular*[options%keyvals]{file}#i
+\csvautobooktabular{file}
+\csvautobooktabular[options%keyvals]{file}
+\csvautobooktabular*{file}
+\csvautobooktabular*[options%keyvals]{file}
 
-\csvautobooklongtable{file}#i
-\csvautobooklongtable[options%keyvals]{file}#i
-\csvautobooklongtable*{file}#i
-\csvautobooklongtable*[options%keyvals]{file}#i
+\csvautobooklongtable{file}
+\csvautobooklongtable[options%keyvals]{file}
+\csvautobooklongtable*{file}
+\csvautobooklongtable*[options%keyvals]{file}
 
 \csvset{options%keyvals}
 
@@ -48,7 +48,7 @@
 \thecsvcolumncount
 \thecsvinputline
 
-\csvsortingrule{name}{file}#i
+\csvsortingrule{name}{file}
 \csvdatacollection
 \csvexpval%<\macro%>
 \csvexpnot%<\macro%>

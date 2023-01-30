@@ -33,7 +33,7 @@
 \begin{drawjoin}[stretch]#/picture
 \end{drawjoin}#/picture
 \picsquare
-\putfile{file}{object}#i
+\putfile{file}{object}
 \sqrtandstuff{Δx}{Δy}{dotgap}#*
 
 \dashjoin#S

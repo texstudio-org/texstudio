@@ -105,7 +105,7 @@ hideerrors
 #endif
 
 \distance{number}
-\auvimm{text}{media file}
+\auvimm{text}{media file%file}
 \fromlinktext{text}{link label}
 \totargettext{text}{link label}
 \slidetitlecolor{color}

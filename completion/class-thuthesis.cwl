@@ -263,7 +263,7 @@ file=%<PDF file%>
 \cls{class}
 \cs{csname}
 \env{envname}
-\file{filename%URL}
+\file{filename%file}
 \pkg{package}
 \square
 

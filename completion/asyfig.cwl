@@ -17,6 +17,6 @@
 process=#all,none,auto
 #endkeyvals
 
-\asyfig{file}#i
-\asyfig*{file}#i
+\asyfig{file}
+\asyfig*{file}
 \asypath{path%URL}

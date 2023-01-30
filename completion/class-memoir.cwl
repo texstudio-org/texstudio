@@ -254,8 +254,8 @@ twoside
 \bottomrule#*
 \bottomsectionpenalty#*
 \bottomsectionskip
-\boxedverbatiminput{file}#i
-\boxedverbatiminput*{file}#i
+\boxedverbatiminput{file}
+\boxedverbatiminput*{file}
 \boxverbflag#*
 \Bref{key}#r
 \bs#*
@@ -1913,8 +1913,8 @@ none
 \verb#*
 \verbatimbreakchar#*
 \verbatimindent
-\verbatiminput{file}#i
-\verbatiminput*{file}#i
+\verbatiminput{file}
+\verbatiminput*{file}
 \verbfootnote#*
 \verselinebreak#*
 \verselinebreak[length]#*

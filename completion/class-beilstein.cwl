@@ -63,8 +63,8 @@ fnpara#true,false
 \end{funding}
 \begin{suppinfo}
 \end{suppinfo}
-\sifile{file}{format}{short desc%text}#i
-\sifile[long desc%text]{file}{format}{short desc%text}#i
+\sifile{file}{format}{short desc%text}
+\sifile[long desc%text]{file}{format}{short desc%text}
 \begin{scheme}
 \end{scheme}
 \sglcolfigure{imagefile}#g

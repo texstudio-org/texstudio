@@ -22,9 +22,9 @@
 \begin{terminal*}[options%keyvals][comments%text]{title%text}#V
 \end{terminal*}
 
-\termfile{title%text}{file}#i
-\termfile[options%keyvals]{title%text}{file}#i
-\termfile*[options%keyvals][comments%text]{title%text}{file}#i
+\termfile{title%text}{file}
+\termfile[options%keyvals]{title%text}{file}
+\termfile*[options%keyvals][comments%text]{title%text}{file}
 
 \termset{options%keyvals}
 
