@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2022/06/21 for v0.31
+# Matthew Bertucci 2023/01/29 for v0.32
 
 #include:shellesc
 #include:xkeyval
@@ -19,12 +19,12 @@
 checkCode
 #endkeyvals
 
-\begin{externalDocument}{filename%definition}
-\begin{externalDocument}[options%keyvals]{filename%definition}
+\begin{externalDocument}{filename%file}
+\begin{externalDocument}[options%keyvals]{filename%file}
 \end{externalDocument}
 
-\runExtCmd{command with arguments%definition}{filename%definition}
-\runExtCmd[options%keyvals]{command with arguments%definition}{filename%definition}
+\runExtCmd{command with arguments%definition}{filename%file}
+\runExtCmd[options%keyvals]{command with arguments%definition}{filename%file}
 
 \hvExternSetKeys{options%keyvals}
 
@@ -49,6 +49,7 @@ mpwidth=##L
 mpsep=##L
 mpvalign=#t,c,b
 ext=%<file ext%>
+redirect#true,false
 usefancyvrb#true,false
 showFilename#true,false
 outerFN#true,false
@@ -79,10 +80,13 @@ belowbodyskip=##L
 belowskip=##L
 #endkeyvals
 
-\PreambleVerbatim{file}#i
-\PreambleVerbatim[options%keyvals]{file}#i
-\BodyVerbatim{file}#i
-\BodyVerbatim[options%keyvals]{file}#i
+\defMarkerType{name}{start-main}{stop-main}{start-preamble}{stop-preamble}
+\ResetKeys
+
+\PreambleVerbatim{file}#*
+\PreambleVerbatim[options%keyvals]{file}#*
+\BodyVerbatim{file}#*
+\BodyVerbatim[options%keyvals]{file}#*
 
 # fancyvrb options
 #keyvals:\PreambleVerbatim,\BodyVerbatim
@@ -129,10 +133,10 @@ vspace=##L
 listparameters={%<code%>}
 #endkeyvals
 
-\PreambleListing{file}#i
-\PreambleListing[options%keyvals]{file}#i
-\BodyListing{file}#i
-\BodyListing[options%keyvals]{file}#i
+\PreambleListing{file}#*
+\PreambleListing[options%keyvals]{file}#*
+\BodyListing{file}#*
+\BodyListing[options%keyvals]{file}#*
 
 # listings options
 #keyvals:\PreambleListing,\BodyListing
@@ -325,13 +329,16 @@ keywordcommentsemicolon={%<keywords%>}{%<keywords%>}{%<keywords%>}
 podcomment#true,false
 #endkeyvals
 
-\defMarkerType{name}{start-main}{stop-main}{start-preamble}{stop-preamble}
-\ResetKeys
-
 \hvExternLineWidth#*
-\perCent#*
-\DoubleperCent#*
-\NumChar#*
-\DoubleNumChar#*
-\hvExternDateiname#*
+\perCent#S
+\DoubleperCent#S
+\NumChar#S
+\DoubleNumChar#S
+\hvExternDateiname#S
 \hvexternFileversion#S
+\begin{WriteVerb}#SV
+\end{WriteVerb}#S
+\BeginPSTcode#S
+\EndPSTcode#S
+\begin{createPNGfromPSTricks}#S
+\end{createPNGfromPSTricks}#S

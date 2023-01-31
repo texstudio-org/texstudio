@@ -12,8 +12,8 @@
 #include:transparent
 #include:pgfplotstable
 
-\milog{file}#i
-\milog[options%keyvals]{file}#i
+\milog{CSV file%file}
+\milog[options%keyvals]{CSV file%file}
 \Formular
 \milogsetup{options%keyvals}
 

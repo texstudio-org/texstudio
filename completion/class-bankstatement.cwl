@@ -14,8 +14,8 @@
 #include:ifthen
 #include:siunitx
 
-\bankstatement{csv file}
-\bankstatement[options%keyvals]{csv file}
+\bankstatement{csv file%file}
+\bankstatement[options%keyvals]{csv file%file}
 
 #keyvals:\bankstatement
 title=%<title%>

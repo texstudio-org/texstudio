@@ -3,25 +3,25 @@
 
 #include:ifthen
 
-\cfpart{title}{folder%URL}{file%URL}#L0
-\cfpart[short title]{title}{folder%URL}{file%URL}#L0
-\cfpart*{title}{folder%URL}{file%URL}#L0
-\cfpart*[short title]{title}{folder%URL}{file%URL}#L0
+\cfpart{title}{folder%file}{file%file}#L0
+\cfpart[short title]{title}{folder%file}{file%file}#L0
+\cfpart*{title}{folder%file}{file%file}#L0
+\cfpart*[short title]{title}{folder%file}{file%file}#L0
 
-\cfchapter{title}{folder%URL}{file%URL}#L1
-\cfchapter[short title]{title}{folder%URL}{file%URL}#L1
-\cfchapter*{title}{folder%URL}{file%URL}#L1
-\cfchapter*[short title]{title}{folder%URL}{file%URL}#L1
+\cfchapter{title}{folder%file}{file%file}#L1
+\cfchapter[short title]{title}{folder%file}{file%file}#L1
+\cfchapter*{title}{folder%file}{file%file}#L1
+\cfchapter*[short title]{title}{folder%file}{file%file}#L1
 
-\cfsection{title}{folder%URL}{file%URL}#L2
-\cfsection[short title]{title}{folder%URL}{file%URL}#L2
-\cfsection*{title}{folder%URL}{file%URL}#L2
-\cfsection*[short title]{title}{folder%URL}{file%URL}#L2
+\cfsection{title}{folder%file}{file%file}#L2
+\cfsection[short title]{title}{folder%file}{file%file}#L2
+\cfsection*{title}{folder%file}{file%file}#L2
+\cfsection*[short title]{title}{folder%file}{file%file}#L2
 
-\cfsubsection{title}{folder%URL}{file%URL}#L3
-\cfsubsection[short title]{title}{folder%URL}{file%URL}#L3
-\cfsubsection*{title}{folder%URL}{file%URL}#L3
-\cfsubsection*[short title]{title}{folder%URL}{file%URL}#L3
+\cfsubsection{title}{folder%file}{file%file}#L3
+\cfsubsection[short title]{title}{folder%file}{file%file}#L3
+\cfsubsection*{title}{folder%file}{file%file}#L3
+\cfsubsection*[short title]{title}{folder%file}{file%file}#L3
 
 \cfinput{file}#*i
 \cfcurrentfolder#*
@@ -31,28 +31,28 @@
 \cfcurrentfolderlistings#*
 \cfinputalgorithms{file}#*i
 \cfcurrentfolderalgorithms#*
-\cffolderfigure{folder%URL}{file%URL}#*
-\cfaddFolder{cmd ext}{folder%URL}#*
+\cffolderfigure{folder%file}{file%file}#*
+\cfaddFolder{cmd ext}{folder%file}#*
 
-\cfpartstar{title}{folder%URL}{file%URL}#*L0
-\cfpartstar[short title]{title}{folder%URL}{file%URL}#*L0
-\cfchapterstar{title}{folder%URL}{file%URL}#*L1
-\cfchapterstar[short title]{title}{folder%URL}{file%URL}#*L1
-\cfsectionstar{title}{folder%URL}{file%URL}#*L2
-\cfsectionstar[short title]{title}{folder%URL}{file%URL}#*L2
-\cfsubsectionstar{title}{folder%URL}{file%URL}#*L3
-\cfsubsectionstar[short title]{title}{folder%URL}{file%URL}#*L3
+\cfpartstar{title}{folder%file}{file%file}#*L0
+\cfpartstar[short title]{title}{folder%file}{file%file}#*L0
+\cfchapterstar{title}{folder%file}{file%file}#*L1
+\cfchapterstar[short title]{title}{folder%file}{file%file}#*L1
+\cfsectionstar{title}{folder%file}{file%file}#*L2
+\cfsectionstar[short title]{title}{folder%file}{file%file}#*L2
+\cfsubsectionstar{title}{folder%file}{file%file}#*L3
+\cfsubsectionstar[short title]{title}{folder%file}{file%file}#*L3
 
-\cfpartstd{title}{folder%URL}{file%URL}#*L0
-\cfpartstd[short title]{title}{folder%URL}{file%URL}#*L0
-\cfchapterstd{title}{folder%URL}{file%URL}#*L1
-\cfchapterstd[short title]{title}{folder%URL}{file%URL}#*L1
-\cfsectionstd{title}{folder%URL}{file%URL}#*L2
-\cfsectionstd[short title]{title}{folder%URL}{file%URL}#*L2
-\cfsubsectionstd{title}{folder%URL}{file%URL}#*L3
-\cfsubsectionstd[short title]{title}{folder%URL}{file%URL}#*L3
+\cfpartstd{title}{folder%file}{file%file}#*L0
+\cfpartstd[short title]{title}{folder%file}{file%file}#*L0
+\cfchapterstd{title}{folder%file}{file%file}#*L1
+\cfchapterstd[short title]{title}{folder%file}{file%file}#*L1
+\cfsectionstd{title}{folder%file}{file%file}#*L2
+\cfsectionstd[short title]{title}{folder%file}{file%file}#*L2
+\cfsubsectionstd{title}{folder%file}{file%file}#*L3
+\cfsubsectionstd[short title]{title}{folder%file}{file%file}#*L3
 
-\cffolderinput{folder%URL}{file%URL}#*
+\cffolderinput{folder%file}{file%file}#*
 
 \cfincludegraphics{imagefile}#*g
 \cfincludegraphics[options%keyvals]{imagefile}#*g

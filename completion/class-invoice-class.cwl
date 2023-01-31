@@ -11,7 +11,7 @@
 #include:fancyhdr
 
 \ConfigPrefix{file prefix}
-\InputFile{file}#i
+\InputFile{CSV file%file}
 \waybill{number}
 \shippingdate{date}
 \toaddress{address%text}

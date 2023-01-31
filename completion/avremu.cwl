@@ -16,11 +16,11 @@ debug#true,false
 # no new user commands
 
 ## from avr.binary
-\avrloadc{file}#i
-\avrloadc[compiler options]{file}#i
-\avrcompile{file}#*i
-\avrcompile[compiler options]{file}#*i
-\avrloadihex{file}#i
+\avrloadc{file}
+\avrloadc[compiler options]{file}
+\avrcompile{file}#*
+\avrcompile[compiler options]{file}#*
+\avrloadihex{file}
 
 ## from avr.bitops
 # no new user commands

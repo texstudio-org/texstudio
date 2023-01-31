@@ -1,5 +1,5 @@
 # hvfloat package
-# Matthew Bertucci 2022/11/21 for v2.44
+# Matthew Bertucci 2023/01/29 for v2.45
 
 #include:caption
 #include:varwidth
@@ -73,6 +73,7 @@ FULLPAGE#true,false
 doublePage#true,false
 doublePAGE#true,false
 doubleFULLPAGE#true,false
+forceLeft#true,false
 vFill#true,false
 sameHeight#true,false
 multiFloat#true,false

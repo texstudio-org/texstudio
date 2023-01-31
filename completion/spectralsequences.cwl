@@ -1,10 +1,9 @@
 # spectralsequences package
-# Matthew Bertucci 12/28/2021 for v1.3.0
+# Matthew Bertucci 2023/01/29 for v1.3.3
 
-#include:etoolbox
 #include:tikz
+#include:etoolbox
 #include:verbatim
-#include:xparse
 #include:tikzlibraryquotes
 #include:tikzlibraryfit
 #include:tikzlibrarypositioning

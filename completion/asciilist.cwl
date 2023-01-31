@@ -10,8 +10,8 @@
 
 \AsciiListFromFile{item chars}{file}#i
 \AsciiListFromFile[environments%keyvals]{item chars}{file}#i
-\AsciiListFromFiles{item chars}{file list}#i
-\AsciiListFromFiles[environments%keyvals]{item chars}{file list}#i
+\AsciiListFromFiles{item chars}{file list%file}#i
+\AsciiListFromFiles[environments%keyvals]{item chars}{file list%file}#i
 
 #keyvals:\begin{AsciiList}#c,\AsciiListFromFile#c,\AsciiListFromFiles#c,\AsciiListSetEnvironments#c,\NewAsciiListEnv#c
 chapter
@@ -53,8 +53,8 @@ Heading*<%<level%>>
 
 \AsciiDocListFromFile{file}#i
 \AsciiDocListFromFile[char1=env1,...%keyvals]{file}#i
-\AsciiDocListFromFiles{file}#i
-\AsciiDocListFromFiles[char1=env1,...%keyvals]{file}#i
+\AsciiDocListFromFiles{file list%file}#i
+\AsciiDocListFromFiles[char1=env1,...%keyvals]{file list%file}#i
 
 #keyvals:\begin{AsciiDocList}#c,\AsciiDocListFromFile#c,\AsciiDocListFromFiles#c,\AsciiDocListSetEnvironments#c,\NewAsciiDocListEnv#c
 *=%<envname%>

@@ -4,7 +4,7 @@
 #include:solvesudoku
 
 \generategrid
-\generategrid[file]#i
+\generategrid[file]
 \genfile
 \prevfile
 \currfile
