@@ -2366,6 +2366,7 @@
 <file>completion/na-border.cwl</file>
 <file>completion/nag.cwl</file>
 <file>completion/nahuatl.cwl</file>
+<file>completion/naive-ebnf.cwl</file>
 <file>completion/nameauth.cwl</file>
 <file>completion/namedef.cwl</file>
 <file>completion/namedtensor.cwl</file>
@@ -3682,6 +3683,7 @@
 <file>completion/tracklang-scripts.cwl</file>
 <file>completion/trajan.cwl</file>
 <file>completion/tram.cwl</file>
+<file>completion/tramlines.cwl</file>
 <file>completion/translations.cwl</file>
 <file>completion/translator.cwl</file>
 <file>completion/transparent.cwl</file>
