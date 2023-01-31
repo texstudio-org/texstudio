@@ -11,11 +11,12 @@ show only slides with notes
 #endkeyvals
 
 \note{note text%text}
-\note[options%keyvals]{note text%text}
 \note<overlay specification>{note text%text}
-\note<overlay specification>[options%keyvals]{note text%text}
+\note[options%keyvals]{note text%text}
+\note[options%keyvals]<overlay specification>{note text%text}
 
 #keyvals:\note
+item
 itemize
 enumerate
 #endkeyvals
