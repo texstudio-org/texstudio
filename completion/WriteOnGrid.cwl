@@ -1,5 +1,5 @@
 # WriteOnGrid package
-# Matthew Bertucci 2023/01/20 for v0.1.1
+# Matthew Bertucci 2023/01/31 for v0.1.2
 
 #include:xcolor
 # loads table and svgnames options of xcolor
@@ -8,6 +8,10 @@
 #include:xstring
 #include:tikzlibrarycalc
 #include:tikzlibrarypositioning
+
+TyrianPurple#B
+\ColSeyes
+\ColRuled
 
 \begin{EnvGrid}[keyvals]
 \begin{EnvGrid}[keyvals]<color>
@@ -37,6 +41,9 @@ Scale=%<factor%>
 \PassLine
 
 # French versions of commands
+\CoulSeyes
+\CoulRuled
+
 \begin{EnvQuadrillage}[clés%keyvals]
 \begin{EnvQuadrillage}[clés%keyvals]<color>
 \end{EnvQuadrillage}
@@ -143,6 +150,7 @@ Largeur=%<nombre%>
 
 #keyvals:\begin{PleinePageRuled}
 Couleur=#%color
+CouleurMarge=#%color
 NumLignes#true,false
 #endkeyvals
 
@@ -195,6 +203,7 @@ Largeur=%<nombre%>
 \QuadNbLig#S
 \QuadType#S
 \RuledFullCoul#S
+\RuledFullCoulMarge#S
 \RuledLigne#S
 \RuledLigneCouleur#S
 \RuledLigneEchelle#S
