@@ -254,6 +254,8 @@
   <insert id="frac" text="Fraction - \frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
   <insert id="dfrac" text="Fraction - \dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" info="\dfrac is an amsmath package shorthand for \displaystyle\frac..." icon="dfrac" shortcut="Ctrl+Shift+F"/>  
   <insert id="sqrt" text="Square Root - \sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
+  <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
+  <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
   <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
 
   
