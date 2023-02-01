@@ -1874,7 +1874,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="1378"/>
         <source>Note: The change of symbols can be monitored live</source>
-        <translation type="unfinished"/>
+        <translation>Примітка: за зміною символів можна спостерігати напряму</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2547"/>
@@ -2506,7 +2506,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4002"/>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>мс</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4018"/>
@@ -2548,12 +2548,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4317"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>Прямокутник</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4385"/>
         <source>Shadow</source>
-        <translation type="unfinished"/>
+        <translation>Тінь</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4408"/>
@@ -3202,7 +3202,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="34"/>
         <source>The main American Mathematical Society packages</source>
-        <translation type="unfinished"/>
+        <translation>Основні пакети Американського математичного товариства</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="35"/>
@@ -3212,32 +3212,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation type="unfinished"/>
+        <translation>Текст дозволений тільки між \begin{document} та \end{document}.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>The \title command declares text to be the title.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \title оголошує текст заголовком.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \author оголошує автора(ів), де names — це список авторів, розділених командами \and.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>If used, the \date command declares the date, either with explicit arg for explicit date or with empty arg for no date. If not used, the current date will automatically be inserted by \maketitle.</source>
-        <translation type="unfinished"/>
+        <translation>Якщо використовується, команда \date оголошує дату з явним аргументом для явної дати, або з порожнім аргументом у разі відсутності дати. Якщо не використовувати, поточну дату буде автоматично вставлено через \maketitle.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
         <source>This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page.</source>
-        <translation type="unfinished"/>
+        <translation>Ця команда створює заголовок на окремій титульній сторінці - за винятком класу article, де заголовок зазвичай розміщується у верхній частині першої сторінки.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>Put this command where you want the table of contents to go</source>
-        <translation type="unfinished"/>
+        <translation>Розмістіть цю команду там, де ви хочете розмістити зміст</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
@@ -3372,7 +3372,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>The itemize environment produces a &apos;bulleted&apos; list.%nEach item of an itemized list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище itemize створює маркований список.%nКожен елемент цього списку починається з команди \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
@@ -3382,7 +3382,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище enumerate створює нумерований список.%nКожен елемент цього списку починається з команди \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
@@ -3397,12 +3397,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="74"/>
         <source>The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command.</source>
-        <translation type="unfinished"/>
+        <translation>Аргумент {label} — це фрагмент тексту, який вставляється в поле для формування мітки.%nАргумент {spacing} містить команди для зміни параметрів інтервалів у списку.%nКожен елемент списку починається командою \item .</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="75"/>
         <source>\item[label] Hello</source>
-        <translation type="unfinished"/>
+        <translation>\item[label] Привіт</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="76"/>
@@ -3562,7 +3562,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="107"/>
         <source>\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \&gt;  \&gt; more \\%n\end{tabbing}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabbing}%ntext \= більше тексту text \= ще більше тексту \= останній текст \\%nдругий рядок \&gt;  \&gt; більше \\%n\end{tabbing}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="108"/>
@@ -3572,113 +3572,113 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="109"/>
         <source>\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabular}[pos]{cols}%nелемент 1-го стовпця&amp; елемент 2-го стовпця ... &amp; елемент 1nго стовпця \\%n...%n\end{tabular}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="110"/>
         <source>\multicolumn{cols}{pos}{text}%ncol, specifies the number of columns to span.%npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.%ntext specifies what text is to make up the entry.</source>
-        <translation type="unfinished"/>
+        <translation>\multicolumn{cols}{pos}{text}%ncol, вказує кількість стовпчиків для охоплення.%npos визначає форматування запису: c для центру, l для вирівнювання зліва, r для вирівнянювання справа.%ntext вказує, з якого тексту складається запис.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>The \hline command draws a horizontal line the width of the table.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \hline малює горизонтальну лінію по ширині таблиці.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
         <source>The \vline command draws a vertical line extending the full height and depth of its row.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \vline малює вертикальну лінію на всю висоту та глибину рядка.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="113"/>
         <source>The command \space gives you a space where you can&apos;t enter a space character.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \space дає вам пробіл, де ви не можете ввести пробіл.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \enspace вставляє горизонтальний пробіл на 1/2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <location filename="../src/additionaltranslations.cpp" line="213"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>Команда \quad вставляє горизонтальний пробіл на 1em (1em — це ширина літери M).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>The \qquad command inserts a horizontal space of 2em.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \qquad вставляє горизонтальний пробіл на 2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>The command \thinspace produces unbreakable and unstretchable space of 1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>Команда \thinspace створює нерозривний і нерозтяжний пробіл розміром 1/6em (те саме, що \, у математичному режимі).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
         <source>The command \negthinspace produces unbreakable and unstretchable space of -1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>Команда \negthinspace створює нерозривний і нерозтяжний пробіл розміром -1/6em (те саме, що \, у математичному режимі).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="119"/>
         <source>The \hspace command inserts an amount of skip of horizontal space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \hspace вставляє горизонтальний пробіл вказаної ширини.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="120"/>
         <source>The \hfill command inserts a rubber length which has no natural space but that can stretch horizontally as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \hfill вставляє пробіл ґумової довжини, яка не має природного простору, але може розтягуватися горизонтально настільки, наскільки це необхідно.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="121"/>
         <source>The \hrulefill command produces an infinite horizontal rubber length that LaTeX fills with a rule (that is, a line), instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \hrulefill створює нескінченну горизонтальну довжину, яку LaTeX заповнює шпоном (тобто рядком) замість пробілу.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="122"/>
         <source>The \dotfill command produces an infinite horizontal rubber length that LaTeX fills with dots, instead of white space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \dotfill створює нескінченну горизонтальну ґумову довжину, яку LaTeX заповнює крапками замість пробілу.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation type="unfinished"/>
+        <translation>Команда \newpage завершує поточну сторінку</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
         <source>The \linebreak command tells LaTeX to break the current line at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \linebreak повідомляє LaTeX, щоб потрібно розірвати поточний рядок на місці команди.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>The \pagebreak command tells LaTeX to break the current page at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \pagebreak повідомляє LaTeX, що потрібно розірвати поточну сторінку на місці команди.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \bigskip додає «великий» вертикальний пробіл.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \medskip додає «середній» вертикальний пробіл.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \smallskip додає «малий» вертикальний пробіл.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>The \vspace command inserts an amount of skip (positive, zero or negative) of vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \vspace вставляє зазначену кількість пробілу (додатну, нульову чи від’ємну) вертикально.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>The \vfill command inserts a rubber length which has no natural space but that can stretch vertically as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \vfill вставляє ґумову довжину, яка не має природного простору, але може розтягуватися вертикально настільки, наскільки це необхідно.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
@@ -3688,7 +3688,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>The \newline command breaks the line right where it is.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \newline розриває рядок там, де вона міститься.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
@@ -3818,92 +3818,92 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище description створює список із мітками.%nКожен елемент списку починається командою \item[label].</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\alert{текст} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{текст}{коментар} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\add{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\add{текст} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\remove{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\remove{текст} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\replace{текст}{заміна} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Turn on review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Увімкнути коментарі до рецензій у pdf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>Turn off review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Вимкнути коментарі до рецензій у pdf</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
-        <translation type="unfinished"/>
+        <translation>\label{ключ}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
-        <translation type="unfinished"/>
+        <translation>Ця команда генерує текстове посилання на посилання, пов’язане із записом ref у файлі bib</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
-        <translation type="unfinished"/>
+        <translation>\footnote[номер]{текст}%nКоманда \footnote розміщує пронумерований текст виноски внизу поточної сторінки.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation type="unfinished"/>
+        <translation>Аргумент \bibliographystyle посилається на файл style.bst, який визначає, як виглядатимуть ваші цитати</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
-        <translation type="unfinished"/>
+        <translation>\addbibresource{bibfile} вказує розташування файлу ресурсів для biblatex, наприклад файлу .bib. Ім’я файлу має містити розширення (наприклад, &apos;\addbibresource{mybibliography.bib}&apos;). Ви можете додати лише один файл на команду \addbibresource{} (списки, розділені комами, заборонені). Але ви можете використовувати кілька команд.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>The math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>Математичне середовище можна використовувати як у режимі абзацу, так і в режимі LR</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>The LaTeX math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>Математичне середовище LaTeX можна використовувати як у режимі абзацу, так і в режимі LR</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>The displaymath environment can be used only in paragraph mode</source>
-        <translation type="unfinished"/>
+        <translation>Середовище displaymath можна використовувати лише в режимі абзацу</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{array}{col1col2...coln}%nелемент 1-го стовпця&amp; елемент 2-го стовпця ... &amp; елемент 1nго стовпця \\%n...%n\end{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>The equation environment centres your equation on the page and places the equation number in the right margin.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище equation розміщує ваше рівняння по центру сторінки та розміщує номер рівняння на правому полі.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="179"/>
@@ -4028,7 +4028,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>Negative thin space</source>
-        <translation type="unfinished"/>
+        <translation>Від&apos;ємний малий пробіл</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
@@ -4038,7 +4038,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>3/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>3/18 від \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
@@ -4048,7 +4048,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="207"/>
         <source>4/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>4/18 від \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="208"/>
@@ -4058,7 +4058,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="209"/>
         <source>5/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>5/18 від \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="210"/>
@@ -4068,7 +4068,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="211"/>
         <source>regular whitespace</source>
-        <translation type="unfinished"/>
+        <translation>звичайний пробіл</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
@@ -4083,7 +4083,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="215"/>
         <source>Twice the size of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>Подвійний розмір від \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="216"/>
@@ -4931,12 +4931,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="394"/>
         <source>Copy Image</source>
-        <translation type="unfinished"/>
+        <translation>Копіювати зображення</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="395"/>
         <source>Save Image As...</source>
-        <translation type="unfinished"/>
+        <translation>Зберегти зображення як</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="454"/>
@@ -7865,7 +7865,7 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="863"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation> (стовп. %1)</translation>
     </message>
 </context>
 <context>
@@ -8011,17 +8011,17 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="36"/>
         <source>&amp;Class Options</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Параметри класу</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="209"/>
         <source>Font Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Кодування шрифту</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="233"/>
         <source>&amp;Packages</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Пакети</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="251"/>
@@ -8036,7 +8036,7 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="278"/>
         <source>&amp;Geometry</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Геометрія</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="306"/>
@@ -8142,42 +8142,42 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="294"/>
         <source>Mathematical symbols from AMS</source>
-        <translation type="unfinished"/>
+        <translation>Математичні символи від АМТ</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="295"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
-        <translation type="unfinished"/>
+        <translation>Пакет графіки легко вставляє зображення (див. Майстер вставки графіки)</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="296"/>
         <source>Support for hyperlinks in your document</source>
-        <translation type="unfinished"/>
+        <translation>Підтримка гіперпосилань у вашому документі</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="297"/>
         <source>Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Пакет розширення для amsmath містить виправлення помилок в amsmath, завантажує amsmath</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="298"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Визначайте свою теорему як середовище, потрібно завантажити після amsmath</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
-        <translation type="unfinished"/>
+        <translation>Посилання на назви глав, розділів, ..., завантажених через hyperref</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
         <source>Extension package to amsthm</source>
-        <translation type="unfinished"/>
+        <translation>Пакет розширення до amsthm</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
-        <translation type="unfinished"/>
+        <translation>Хитромудрий пакет для кольорів з параметром table для використання кольорів у таблицях</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="494"/>
@@ -8192,7 +8192,7 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="561"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
-        <translation type="unfinished"/>
+        <translation>Усі пакунки, для яких встановлено прапорець, з’являться в новому документі в командах \usepackage після натискання кнопки Гаразд.</translation>
     </message>
 </context>
 <context>
@@ -9123,13 +9123,13 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="129"/>
         <source>Online Repository</source>
-        <translation type="unfinished"/>
+        <translation>Онлайн сховище</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="137"/>
         <location filename="../src/templateselector.cpp" line="317"/>
         <source>&lt;loading...&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;завантажується...&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="455"/>
@@ -10030,7 +10030,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1072"/>
         <source>Preview Dis&amp;play Mode</source>
-        <translation type="unfinished"/>
+        <translation>Режим &amp;попереднього перегляду</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1074"/>
@@ -10440,7 +10440,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1225"/>
         <source>Convert to Abridged Plaintext</source>
-        <translation type="unfinished"/>
+        <translation>Перетворити на скорочений відкритий текст</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1226"/>
@@ -12680,7 +12680,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="547"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation> (стовп. %1)</translation>
     </message>
 </context>
 <context>

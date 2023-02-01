@@ -9466,7 +9466,7 @@ n&apos;a pas pu être supprimé.</translation>
         <location filename="../src/texstudio.cpp" line="694"/>
         <location filename="../src/texstudio.cpp" line="695"/>
         <source>TOC</source>
-        <translation>TdM</translation>
+        <translation>Table des matières</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="715"/>
@@ -10231,7 +10231,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1159"/>
         <source>update TOC</source>
-        <translation>mise à jour de la TdM</translation>
+        <translation>mise à jour de la table des matières</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1160"/>
