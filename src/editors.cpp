@@ -84,13 +84,8 @@ void Editors::insertEditor(LatexEditorView *edView, int index, bool asCurrent)
 		// index out of range: append
 	}
 
-	// append to last non-empty group
-	for (int group = tabGroups.length() - 1; group >= 0; group--) {
-		if (!tabGroups[group]->isEmpty() || group == 0) {
-			insertEditor(edView, tabGroups[group], -1, asCurrent);
-			break;
-		}
-	}
+	// append to current tab bar
+	insertEditor(edView, currentTabWidget(), -1, asCurrent);
 }
 
 void Editors::moveEditor(LatexEditorView *edView, Editors::Position pos)
