@@ -4,4 +4,4 @@
 #include:scrextend
 #include:scrlogo
 
-\generatefontfile{file name}
+\generatefontfile{file name%file}
