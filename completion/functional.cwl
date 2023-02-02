@@ -1097,13 +1097,13 @@ tracing#true,false
 \fileIfExistInputF {file name} {false code}
 \fileIfExistInputF{file}{false code}#Si
 \fileGet {%<file name%>} {%<setup%>} %<\tlvar%>
-\fileGet{file name}{setup}{cmd}#Sd
+\fileGet{file name%file}{setup}{cmd}#Sd
 \fileGetT {%<file name%>} {%<setup%>} %<\tlvar%> {%<true code%>}
-\fileGetT{file name}{setup}{cmd}{true code}#Sd
+\fileGetT{file name%file}{setup}{cmd}{true code}#Sd
 \fileGetF {%<file name%>} {%<setup%>} %<\tlvar%> {%<false code%>}
-\fileGetF{file name}{setup}{cmd}{false code}#Sd
+\fileGetF{file name%file}{setup}{cmd}{false code}#Sd
 \fileGetTF {%<file name%>} {%<setup%>} %<\tlvar%> {%<true code%>} {%<false code%>}
-\fileGetTF{file name}{setup}{cmd}{true code}{false code}#Sd
+\fileGetTF{file name%file}{setup}{cmd}{true code}{false code}#Sd
 \fileIfExist {%<file name%>}
 \fileIfExistT {%<file name%>} {%<true code%>}
 \fileIfExistF {%<file name%>} {%<false code%>}
