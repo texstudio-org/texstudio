@@ -36,8 +36,8 @@
 \end{latexcode}
 \printCodeFromFile{last line}{file}
 \printCodeFromFile[first line]{last line}{file}
-\labelfile{file path/name}
-\file{file path/name}
+\labelfile{file path/name%file}
+\file{file path/name%file}
 
 \thelstFirstLine#*
 \thelstLastLine#*
