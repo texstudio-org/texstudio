@@ -17,7 +17,7 @@
 \InRange{dimen1%l}{dimen2%l}
 \NearTo{dimen%l}
 \NearTo[opt dimen%l]{dimen%l}
-\SaveValueFile{file name}
+\SaveValueFile{file name%file}
 \CloseValueFile
 \SaveValue{cmd}{arg}#d
 \SaveValue{cmd}*{arg}#d
