@@ -103,7 +103,7 @@
 \RTCfiledate#*
 \RTCfileversion#*
 \rubiktwocube#*
-\SaveTwoState{filename}
+\SaveTwoState{filename%file}
 \SquaretD#*
 \SquaretDp#*
 \SquaretL#*
