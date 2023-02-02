@@ -54,7 +54,7 @@ sentence-end*=%<tokens%>
 sentence-after*=%<tokens%>
 #endkeyvals
 
-\SetLipsumText{lipsum text definition filename}#*
+\SetLipsumText{lipsum text definition filename%file}#*
 \SetLipsumDefault{num}#*
 \SetLipsumDefault{%<num%>-%<num%>}#*
 \LipsumPar{num}#*
