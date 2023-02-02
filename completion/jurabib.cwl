@@ -79,7 +79,7 @@ citetoend#true,false
 \nobibliography{bib file}
 \noibidem
 \noidem
-\bibAnnotePath{file-path%definition}
+\bibAnnotePath{file-path%file}
 \biburlfont{choice%keyvals}
 #keyvals:\biburlfont
 tt
