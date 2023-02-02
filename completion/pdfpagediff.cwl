@@ -6,8 +6,8 @@
 #include:color
 #include:substr
 
-\layerPages{file1%URL}{file2%URL}
-\layerPages[page numbers]{file1%URL}{file2%URL}
+\layerPages{file1%file}{file2%file}
+\layerPages[page numbers]{file1%file}{file2%file}
 \FirstDoc{text}
 \SecondDoc{text}
 
