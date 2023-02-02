@@ -12,7 +12,7 @@
 \RubikRotation[integer]{sequence}
 \RubikRotation{sequence}
 \Rubikrotation#S
-\SaveRubikState{filename}
+\SaveRubikState{filename%file}
 \ShowErrors
 \ShowRubikErrors#S
 \next#S
