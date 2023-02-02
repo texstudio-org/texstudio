@@ -586,6 +586,7 @@
 <file>completion/class-a0poster.cwl</file>
 <file>completion/class-aalok.cwl</file>
 <file>completion/class-abntex2.cwl</file>
+<file>completion/class-abntexto.cwl</file>
 <file>completion/class-achemso.cwl</file>
 <file>completion/class-acmart.cwl</file>
 <file>completion/class-acm-book.cwl</file>
@@ -3622,6 +3623,7 @@
 <file>completion/tikz-trackschematic.cwl</file>
 <file>completion/tikz-truchet.cwl</file>
 <file>completion/tikz-uml.cwl</file>
+<file>completion/tikzviolinplots.cwl</file>
 <file>completion/tile-graphic.cwl</file>
 <file>completion/time.cwl</file>
 <file>completion/timing-diagrams.cwl</file>
