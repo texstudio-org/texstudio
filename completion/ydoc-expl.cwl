@@ -23,6 +23,6 @@
 \makeOther{arg}#*
 \inLine#*
 \lastLine#*
-\includefiles{in file}{out file}#i
+\includefiles{in file%file}{out file}#i
 \copyline#*
 \percentcharnum#*
