@@ -3,5 +3,5 @@
 
 #include:tcolorbox
 
-\jupynotex{file}#i
-\jupynotex[cells]{file}#i
+\jupynotex{file}
+\jupynotex[cells]{file}
