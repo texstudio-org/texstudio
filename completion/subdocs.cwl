@@ -3,8 +3,8 @@
 
 #include:keyval
 
-\subdocuments{file list}#i
-\subdocuments[options%keyvals]{file list}#i
+\subdocuments{file list%file}#i
+\subdocuments[options%keyvals]{file list%file}#i
 
 #keyvals:\subdocuments
 clear=#single,double
