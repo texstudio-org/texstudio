@@ -37,5 +37,5 @@ framecolor=#%color
 #endkeyvals
 
 \pstlabel{x-label}{y-label}
-\pstfileplot{file}#i
-\pstfileplot[pstricks options]{file}#i
+\pstfileplot{file}
+\pstfileplot[pstricks options]{file}
