@@ -9,8 +9,8 @@
 
 \pygment{language}{code%definition}
 
-\includecode{file}#i
-\includecode[language]{file}#i
+\includecode{file}
+\includecode[language]{file}
 
 \begin{pygmented}{language}#V
 \end{pygmented}
