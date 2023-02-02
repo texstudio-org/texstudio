@@ -84,7 +84,7 @@ nousedefaultargs
 \setprobargs{label}{args}#*
 \SetStartMonth{n}
 \SetStartYear{year}
-\SetUsedFileName{file name}
+\SetUsedFileName{file name%file}
 \showanswers
 \showanswersfalse#*
 \showanswerstrue#*
