@@ -9,8 +9,8 @@
 \begin{myverbbox}{token%cmd}#d\verbatim
 \begin{myverbbox}[pre-commands]{token%cmd}#d\verbatim
 \end{myverbbox}
-\verbfilebox{file}#i
-\verbfilebox[pre-commands]{file}#i
+\verbfilebox{file}
+\verbfilebox[pre-commands]{file}
 \theverbbox
 \theverbbox[t]%|
 \boxtopsep#*
@@ -20,5 +20,5 @@
 \begin{verbnobox}#V
 \begin{verbnobox}[pre-commands]#V
 \end{verbnobox}
-\verbfilenobox{file}#i
-\verbfilenobox[pre-commands]{file}#i
+\verbfilenobox{file}
+\verbfilenobox[pre-commands]{file}
