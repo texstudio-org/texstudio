@@ -1,5 +1,5 @@
 # automultiplechoice package
-# Matthew Bertucci 2022/10/04 for v1.5.2
+# Matthew Bertucci 2022/10/04 for v1.6.0
 
 #include:xcolor
 #include:fancyhdr
@@ -161,6 +161,7 @@ survey
 \AMCotextReserved#*
 \AMCoutsideLabelFormat{text}#*
 \AMCpageref{label}#r
+\AMCpostNquest#L
 \AMCpostOquest#L
 \AMCquestionNumberfalse
 \AMCquestionNumbertrue#*
@@ -286,6 +287,7 @@ exact=%<num%>
 scoreapprox=%<num%>
 approx=%<num%>
 scorewrong=%<num%>
+ignoreblank#true,false
 keepas=%<text%>
 alsocorrect=%<text%>
 #endkeyvals
