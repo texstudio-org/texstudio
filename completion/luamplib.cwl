@@ -25,8 +25,8 @@
 \mpdim{dimen%l}
 \mpcolor{color}
 \mplibnumbersystem{type%keyvals}
-\mplibmakenocache{file1,file2,...%definition}
-\mplibcancelnocache{file1,file2,...%definition}
+\mplibmakenocache{file1,file2,...%file}
+\mplibcancelnocache{file1,file2,...%file}
 \mplibcachedir{directory path%definition}
 \mplibtextextlabel{choice%keyvals}
 \mplibcodeinherit{choice%keyvals}
