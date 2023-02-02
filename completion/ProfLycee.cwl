@@ -230,10 +230,10 @@ HautRes=%<hauteur%>
 \begin{CodePythonLst}*[largeur%l]{tcolorbox options}#V
 \end{CodePythonLst}
 
-\CodePythonLstFichier{tcolorbox options}{file}#i
-\CodePythonLstFichier[largeur%l]{tcolorbox options}{file}#i
-\CodePythonLstFichier*{tcolorbox options}{file}#i
-\CodePythonLstFichier*[largeur%l]{tcolorbox options}{file}#i
+\CodePythonLstFichier{tcolorbox options}{file}
+\CodePythonLstFichier[largeur%l]{tcolorbox options}{file}
+\CodePythonLstFichier*{tcolorbox options}{file}
+\CodePythonLstFichier*[largeur%l]{tcolorbox options}{file}
 
 ## Code Python via le package piton ##
 \begin{CodePiton}#V
