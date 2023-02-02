@@ -1292,8 +1292,8 @@ Resultats#true,false
 \ColoriludeListeCouleur{abbrev1 couleur1 abbrev2 couleur2...}
 
 ## Pixel Art ##
-\PixelArt{file}#i
-\PixelArt[clés%keyvals]{file}#i
+\PixelArt{.csv file%file}
+\PixelArt[clés%keyvals]{.csv file%file}
 
 #keyvals:\PixelArt
 Largeur=%<integer%>
