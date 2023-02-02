@@ -10,8 +10,8 @@
 \begin{TeXtoEPS}
 \end{TeXtoEPS}
 
-\PSTtoEPS{file%definition}{graphics objects}
-\PSTtoEPS[options%keyvals]{file%definition}{graphics objects}
+\PSTtoEPS{file%file}{graphics objects}
+\PSTtoEPS[options%keyvals]{file%file}{graphics objects}
 
 #keyvals:\PSTtoEPS
 bbllx=##L
