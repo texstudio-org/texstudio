@@ -22,12 +22,12 @@ tcolorbox
 \begin{tblsframed}{title%text}[width]
 \begin{tblsframed}{title%text}[width][color]
 \end{tblsframed}
-\begin{tblsfilledsymbol}{title%text}{PDF file}
-\begin{tblsfilledsymbol}{title%text}[color]{PDF file}
+\begin{tblsfilledsymbol}{title%text}{PDF file%file}
+\begin{tblsfilledsymbol}{title%text}[color]{PDF file%file}
 \end{tblsfilledsymbol}
-\begin{tblsframedsymbol}{title%text}{PDF file}
-\begin{tblsframedsymbol}{title%text}[color]{PDF file}
-\begin{tblsframedsymbol}{title%text}[color][width]{PDF file}
+\begin{tblsframedsymbol}{title%text}{PDF file%file}
+\begin{tblsframedsymbol}{title%text}[color]{PDF file%file}
+\begin{tblsframedsymbol}{title%text}[color][width]{PDF file%file}
 \end{tblsframedsymbol}
 
 #ifOption:mdframed
