@@ -524,6 +524,7 @@ protected slots:
 	/////
 	void latexHelp(); ///< open latex help document
 	void userManualHelp(); ///< open txs user manual
+	void changeLogHelp(); ///< open change log
 	void texdocHelp();
 	void helpAbout(); ///< open about dialog
 

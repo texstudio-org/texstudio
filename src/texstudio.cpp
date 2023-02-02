@@ -1433,6 +1433,7 @@ void Texstudio::setupMenus()
 	menu = newManagedMenu("main/help", tr("&Help"));
 	newManagedAction(menu, "latexreference", tr("LaTeX Reference..."), SLOT(latexHelp()), 0, "help-contents");
 	newManagedAction(menu, "usermanual", tr("User Manual..."), SLOT(userManualHelp()), 0, "help-contents");
+	newManagedAction(menu, "changelog", tr("Change Log..."), SLOT(changeLogHelp()), 0, "help-contents");
 	newManagedAction(menu, "texdocdialog", tr("Packages Help..."), SLOT(texdocHelp()));
 
 	menu->addSeparator();
@@ -6597,6 +6598,14 @@ void Texstudio::latexHelp()
 void Texstudio::userManualHelp()
 {
     QString latexHelp = findResourceFile("getting_started.html");
+	if (latexHelp == "")
+		QMessageBox::warning(this, tr("Error"), tr("File not found"));
+	else if (!QDesktopServices::openUrl("file:///" + latexHelp))
+		QMessageBox::warning(this, tr("Error"), tr("Could not open browser"));
+}
+void Texstudio::changeLogHelp()
+{
+    QString latexHelp = findResourceFile("CHANGELOG.txt");
 	if (latexHelp == "")
 		QMessageBox::warning(this, tr("Error"), tr("File not found"));
 	else if (!QDesktopServices::openUrl("file:///" + latexHelp))
