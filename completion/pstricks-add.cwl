@@ -75,8 +75,8 @@
 \psLeftSumValue
 \pslineByHand(%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>
 \pslineByHand[%<options%>](%<x1,y1%>)(%<x2,y2%>)%<...(xN,yN)%>
-\psMatrixPlot[options%keyvals]{rows}{columns}{file}#i
-\psMatrixPlot{rows}{columns}{file}#i
+\psMatrixPlot[options%keyvals]{rows}{columns}{data file%file}
+\psMatrixPlot{rows}{columns}{data file%file}
 \psMiddleSumValue
 \psOlympicRings(x,y)
 \psOlympicRings[options%keyvals](x,y)
@@ -120,8 +120,8 @@
 \psStep[options%keyvals](x,y){n}{function%definition}
 \psTangentLine(x1,y1)(x2,y2)(x3,y3){x}{dx}
 \psTangentLine[options%keyvals](x1,y1)(x2,y2)(x3,y3){x}{dx}
-\pstContour[options%keyvals]{file}#i
-\pstContour{file}#i
+\pstContour[options%keyvals]{data file%file}
+\pstContour{data file%file}
 \pstricksaddFV#S
 \PSTricksAddLoaded#S
 \psVector(%<x1,y1%>)%<...(xN,yN)%>
