@@ -21,11 +21,11 @@ debug
 mfpreadlog
 #endkeyvals
 
-\getmfpicoffset{imagefile%definition}
+\getmfpicoffset{imagefile%file}
 \mfpdraftfont#*
 \mfpicllx#*
 \mfpiclly#*
-\preparemfpicgraphic{imagefile%definition}
+\preparemfpicgraphic{imagefile%file}
 \setmfpicgraphic{imagefile}#g
 
 # from mfpic.tex
@@ -148,8 +148,8 @@ mfpreadlog
 \dashlineset
 \dashpattern{name}{len1,...,len2k}
 \dashspace#*L
-\datafile[spec]{file}#i
-\datafile{file}#i
+\datafile[spec]{file}
+\datafile{file}
 \datapointsonly
 \defaultplot{method%keyvals}
 \DEgraph[%<spec%>]{%<x0,y0,∆s,N%>}{%<f(x,y)%>}
@@ -339,7 +339,7 @@ mfpreadlog
 \noship#*
 \notruebbox
 \numericarray{var}{list of numbers}
-\opengraphsfile{file%definition}
+\opengraphsfile{file%file}
 \overlaylabels
 \pairarray{var}{list of points}
 \parafcn[%<spec%>]{%<tmin,tmax,∆t%>}{%<pair function%>}
@@ -358,8 +358,8 @@ mfpreadlog
 \piewedge{number}
 \plot[size,space]{symbol%keyvals}
 \plot{symbol%keyvals}
-\plotdata[spec]{file}#i
-\plotdata{file}#i
+\plotdata[spec]{file}
+\plotdata{file}
 \plotnodes[size%l]{symbol%keyvals}
 \plotnodes{symbol%keyvals}
 \plotsymbol[size%l]{symbol%keyvals}{p0,p1,...}
@@ -432,7 +432,7 @@ mfpreadlog
 \setaxismargins{num1}{num2}{num3}{num4}
 \setaxismarks{axis}{pos}
 \setbordermarks{lpos}{bpos}{rpos}{tpos}
-\setfilename{file%definition}{number}
+\setfilename{file%file}{number}
 \setfilenametemplate{template%definition}
 \setmfboolean{name%definition}{value}
 \setmfcolor{name%definition}{value}
