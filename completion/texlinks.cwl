@@ -72,9 +72,9 @@ blog
 \usetugctan
 \usedantectani
 \usesciservctan
-\CTANfileref{cmd}{path%URL}{file name}#*
-\mirrorctanfileref{path%URL}{file name}
-\ctanfileref{path%URL}{file name}
+\CTANfileref{cmd}{path%URL}{file name%file}#*
+\mirrorctanfileref{path%URL}{file name%file}
+\ctanfileref{path%URL}{file name%file}
 \dirctanref{path%URL}{text%plain}#*
 \catalogueref{path%URL}{text%plain}
 \cataloguestartref{text%plain}
