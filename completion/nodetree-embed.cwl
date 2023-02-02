@@ -10,6 +10,7 @@
 #include:kvoptions
 
 \NodetreeSet{options%keyvals}
+\nodetreeset{options%keyvals}#S
 
 \begin{NodetreeEmbedView}
 \begin{NodetreeEmbedView}[options%keyvals]
@@ -21,10 +22,10 @@
 
 \NodetreeEmbedCmd{TeX markup}
 \NodetreeEmbedCmd[options%keyvals]{TeX markup}
-\NodetreeEmbedInput{file}#*
-\NodetreeEmbedInput[options%keyvals]{file}#*
-\nodetreeterminalemulator{file}#*i
-\nodetreeterminalemulator[options%keyvals]{file}#*i
+\NodetreeEmbedInput{file}#i
+\NodetreeEmbedInput[options%keyvals]{file}#i
+\nodetreeterminalemulator{file}#Si
+\nodetreeterminalemulator[options%keyvals]{file}#Si
 
 #keyvals:\usepackage/nodetree-embed#c,\NodetreeSet,\begin{NodetreeEmbedView},\begin{NodetreeEmbedEnv},\NodetreeEmbedCmd,\NodetreeEmbedInput,\nodetreeterminalemulator
 channel=%<output channel%>
@@ -41,7 +42,7 @@ showmarkup#true,false
 #endkeyvals
 
 \NodetreeSetOption[option%keyvals]{value}
-\nodetreeoption[option%keyvals]{value}#*
+\nodetreeoption[option%keyvals]{value}#S
 \NodetreeResetOption{option%keyvals}
 
 #keyvals:\NodetreeSetOption,\nodetreeoption,\NodetreeResetOption
@@ -59,11 +60,11 @@ showmarkup
 #endkeyvals
 
 \NodetreeReset
-\nodetreereset#*
+\nodetreereset#S
 \NodetreeRegisterCallback{callbacks}
-\nodetreeregister{callbacks}#*
+\nodetreeregister{callbacks}#S
 \NodetreeUnregisterCallback{callbacks}
-\nodetreeunregister{callbacks}#*
+\nodetreeunregister{callbacks}#S
 
 NTEblack#B
 NTEred#B
