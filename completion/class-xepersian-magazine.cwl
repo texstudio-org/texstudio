@@ -44,7 +44,7 @@ a3paper
 \end{article}
 \authorandplace{author}{place%text}
 \timestamp{time}
-\image{imagefile}{description%text}
+\image{imagefile}{description%text}#g
 \columntitle{type%keyvals}{text}
 \expandedtitle{type%keyvals}{text}
 #keyvals:\columntitle,\expandedtitle
