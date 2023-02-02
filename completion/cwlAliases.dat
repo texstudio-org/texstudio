@@ -1526,3 +1526,7 @@ univie-ling-poster:
 class-univie-ling-poster
 latex-document
 tex
+abntexto:
+class-abntexto
+latex-document
+tex
