@@ -45,7 +45,7 @@ hidescale
 #endkeyvals
 
 \begin{egpfile}
-\begin{egpfile}[gnuplot file%definition]
+\begin{egpfile}[gnuplot file%file]
 \end{egpfile}
 \begin{egpcmds}
 \end{egpcmds}
@@ -116,7 +116,7 @@ decodearray={%<color array%>}
 \egpcomment#*
 
 \egpfile#S
-\egpfile[gnuplot file%definition]#S
+\egpfile[gnuplot file%file]#S
 \endegpfile#S
 \egpcmds#S
 \endegpcmds#S
