@@ -8013,7 +8013,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Belgenize Babel paketi ile dil desteği ekler</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
@@ -12665,7 +12665,7 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
     <message>
         <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Makroları içe aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="424"/>

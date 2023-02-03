@@ -8011,7 +8011,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Ajoute un support linguistique à votre document avec le package babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
@@ -12672,7 +12672,7 @@ Il est possible d&apos;utiliser la valeur spéciale ?txs-start pour démarrer ce
     <message>
         <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Import de macros</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="424"/>

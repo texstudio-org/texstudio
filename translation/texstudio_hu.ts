@@ -7997,7 +7997,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Nyelvi támogatást ad a dokumentumhoz a babel csomaggal</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
@@ -12651,7 +12651,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Makrók importálása</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="424"/>

@@ -8016,7 +8016,7 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Додає підтримку різних мов до вашого документа з пакета Babel </translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
@@ -12675,7 +12675,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Імпортувати макроси</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="424"/>

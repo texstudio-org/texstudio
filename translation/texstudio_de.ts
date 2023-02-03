@@ -2597,7 +2597,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4252"/>
         <source> dpi</source>
-        <translation>dpi</translation>
+        <translation> dpi</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4322"/>
@@ -2695,7 +2695,7 @@ Achtung: Eine Änderung dieser Einstellung macht sich erst bei Dokumenten bemerk
     <message>
         <location filename="../src/configdialog.ui" line="4436"/>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4501"/>
@@ -3216,7 +3216,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation>Der \author Befehl deklariert die Autoren, wobei Namen eine Liste ist, die durch den \and Befehl getrennt werden.</translation>
+        <translation>Der \author Befehl definiert eine Liste, in der die Autoren, getrennt durch den \and Befehl, angegeben werden.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>

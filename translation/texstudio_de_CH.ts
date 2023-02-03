@@ -8008,7 +8008,7 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Fügt Sprachenunterstützung mit dem Babel-Paket hinzu</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>

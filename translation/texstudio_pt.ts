@@ -8012,7 +8012,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Adiciona suporte a idiomas no seu documento com o pacote Babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
@@ -12673,7 +12673,7 @@ Pode utilizar o valor especial ?txs-start para iniciar o script no arranque do t
     <message>
         <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Importar macros</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="424"/>
