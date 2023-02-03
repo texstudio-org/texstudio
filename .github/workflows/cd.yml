@@ -9,6 +9,7 @@ permissions:
 env:
   OSX_QT_VERSION: 6.4.2
   OSX_POPPLER_VERSION: 23.02.0
+  OSX_QUAZIP_VERSION: 1.4
 
 jobs:
   build-win10:
@@ -182,9 +183,9 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/poppler-${{ env.OSX_POPPLER_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./poppler-${{ env.OSX_POPPLER_VERSION}}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm poppler-${{ env.OSX_POPPLER_VERSION }}-Darwin.tar.xz
-        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QuaZip-1.4-Darwin.tar.xz
-        sudo tar xvf ./QuaZip-1.3-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
-        rm QuaZip-1.3-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz
+        sudo tar xvf ./QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
+        rm QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz
         brew install cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 nspr nss openjpeg
         brew install ninja
 
