@@ -26,7 +26,7 @@ style=mypython
 style=mypythoninline
 #endkeyvals
 
-\inputpython{file}{start num}{end num}#i
+\inputpython{file}{start num}{end num}
 \begin{python}#V
 \end{python}
 \pyth|%<text%>|

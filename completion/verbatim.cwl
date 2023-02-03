@@ -3,5 +3,5 @@
 
 \begin{comment}#V
 \end{comment}
-\verbatiminput{file}#i
-\verbatiminput*{file}#i
+\verbatiminput{file}
+\verbatiminput*{file}

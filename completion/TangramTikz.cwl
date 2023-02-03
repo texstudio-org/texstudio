@@ -1,5 +1,5 @@
 # TangramTikz package
-# Matthew Bertucci 2023/01/26 for v0.1.0
+# Matthew Bertucci 2023/01/31 for v0.1.2
 
 #include:tikz
 #include:simplekv
@@ -104,6 +104,46 @@ TangSol={%<color%>}
 \TangramDog[TikZ options]#S
 \TangramDog*#S
 \TangramDog*[TikZ options]#S
+\TangramRabbit#S
+\TangramRabbit[TikZ options]#S
+\TangramRabbit*#S
+\TangramRabbit*[TikZ options]#S
+\TangramPlane#S
+\TangramPlane[TikZ options]#S
+\TangramPlane*#S
+\TangramPlane*[TikZ options]#S
+\TangramRooster#S
+\TangramRooster[TikZ options]#S
+\TangramRooster*#S
+\TangramRooster*[TikZ options]#S
+\TangramJogger#S
+\TangramJogger[TikZ options]#S
+\TangramJogger*#S
+\TangramJogger*[TikZ options]#S
+\TangramDancer#S
+\TangramDancer[TikZ options]#S
+\TangramDancer*#S
+\TangramDancer*[TikZ options]#S
+\TangramCamel#S
+\TangramCamel[TikZ options]#S
+\TangramCamel*#S
+\TangramCamel*[TikZ options]#S
+\TangramFlamingo#S
+\TangramFlamingo[TikZ options]#S
+\TangramFlamingo*#S
+\TangramFlamingo*[TikZ options]#S
+\TangramHeart#S
+\TangramHeart[TikZ options]#S
+\TangramHeart*#S
+\TangramHeart*[TikZ options]#S
+\TangramGiraffe#S
+\TangramGiraffe[TikZ options]#S
+\TangramGiraffe*#S
+\TangramGiraffe*[TikZ options]#S
+\TangramHorse#S
+\TangramHorse[TikZ options]#S
+\TangramHorse*#S
+\TangramHorse*[TikZ options]#S
 \TangramTikzCreateEN{cmd}#S
 \TangramTikzCreateFR{cmd}#S
 \TangCouleurs#S

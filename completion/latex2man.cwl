@@ -31,7 +31,7 @@ nofancy
 \oArg{option}
 \oOptArg{option}{argument}
 \oOptoArg{option}{argument}
-\File{file%definition}
+\File{file%file}
 \Prog{program}
 \Cmd{command%plain}{chapter}
 \Bar

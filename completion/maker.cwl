@@ -13,7 +13,7 @@ processing
 #endkeyvals
 
 #ifOption:arduino
-\ArduinoSketch{file}{caption%text}#i
+\ArduinoSketch{file}{caption%text}
 \begin{ArduinoSketchBox}{title%text}#V
 \begin{ArduinoSketchBox}[tcolorbox options]{title%text}#V
 \end{ArduinoSketchBox}
@@ -21,7 +21,7 @@ processing
 #endif
 
 #ifOption:processing
-\ProcessingSketch{file}{caption%text}#i
+\ProcessingSketch{file}{caption%text}
 \begin{ProcessingSketchBox}{title%text}#V
 \begin{ProcessingSketchBox}[tcolorbox options]{title%text}#V
 \end{ProcessingSketchBox}

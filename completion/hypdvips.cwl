@@ -31,8 +31,8 @@ smallfootnotes#true,false
 tocbr#true,false
 #endkeyvals
 
-\attachfile{file}#i
-\attachfile[options%keyvals]{file}#i
+\attachfile{file}
+\attachfile[options%keyvals]{file}
 
 #keyvals:\attachfile
 anncreated=%<LaTeX time%>
@@ -78,8 +78,8 @@ color={%<<r> <g> <b>%>}
 \footnotebordercolor{R G B}
 \tablenotebordercolor{R G B}
 
-\embedfile{file}#i
-\embedfile[options%keyvals]{file}#i
+\embedfile{file}
+\embedfile[options%keyvals]{file}
 
 #keyvals:\embedfile
 checksum=%<checksum%>
@@ -95,7 +95,7 @@ size=%<number%>
 #endkeyvals
 
 \evenboxesstring{text%plain}
-\file{file}{description}#i
+\file{file}{description}
 
 \goto{text}
 \goto[options%keyvals]{text}

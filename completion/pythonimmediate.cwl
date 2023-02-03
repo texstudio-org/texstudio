@@ -15,7 +15,7 @@ child-process#true,false
 \py{python expr%definition}
 \pyc{python code%definition}
 \pycq{python code%definition}
-\pyfile{file}#i
+\pyfile{file}
 
 \begin{pycode}#V
 \end{pycode}

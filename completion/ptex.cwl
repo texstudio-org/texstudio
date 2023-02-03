@@ -74,8 +74,8 @@
 \pdflastxpos#*
 \pdflastypos#*
 \pdfcreationdate#*
-\pdffilemoddate%<⟨filename⟩%>#*
-\pdffilesize%<⟨filename⟩%>#*
+\pdffilemoddate{file}#*
+\pdffilesize{file}#*
 \pdffiledump%<offset length ⟨filename⟩%>#*
 \pdfshellescape#*
 \pdfmdfivesum{text%plain}#*

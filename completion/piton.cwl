@@ -34,11 +34,11 @@ beamer#true,false
 # beamer only
 \begin{Piton}<overlay spec>#*V
 
-\PitonInputFile{file}#i
-\PitonInputFile[options%keyvals]{file}#i
+\PitonInputFile{file}
+\PitonInputFile[options%keyvals]{file}
 # beamer only
-\PitonInputFile<overlay spec>{file}#*i
-\PitonInputFile<overlay spec>[options%keyvals]{file}#*i
+\PitonInputFile<overlay spec>{file}#*
+\PitonInputFile<overlay spec>[options%keyvals]{file}#*
 
 #keyvals:\PitonInputFile
 first-line=%<integer%>

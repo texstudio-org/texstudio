@@ -9,8 +9,8 @@
 #include:kvdefinekeys
 #include:pdfescape
 
-\embedfile{file}#i
-\embedfile[options%keyvals]{file}#i
+\embedfile{file}
+\embedfile[options%keyvals]{file}
 \embedfilesetup{options%keyvals}
 
 #keyvals:\embedfile#c,\embedfilesetup#c

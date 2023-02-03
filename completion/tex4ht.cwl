@@ -41,7 +41,7 @@
 \NewConfigure{name}{definition}
 \NewLogicalBlock{name}
 \NewSection{cmd}{mark-for-toc}#d
-\NextPictureFile{filename}
+\NextPictureFile{filename%file}
 \NoFonts
 \NoLink{section-name}
 \PauseCutAt{section-type}

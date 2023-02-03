@@ -5,8 +5,8 @@
 #include:hyperref
 #include:pgfkeys
 
-\pdfpcmovie{poster material}{file}#i
-\pdfpcmovie[options%keyvals]{poster material}{file}#i
+\pdfpcmovie{poster material}{file}
+\pdfpcmovie[options%keyvals]{poster material}{file}
 
 #keyvals:\pdfpcmovie
 width=##L

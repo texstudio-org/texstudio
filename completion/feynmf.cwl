@@ -8,7 +8,7 @@ nonstop
 batch
 #endkeyvals
 
-\begin{fmffile}{METAFONT-file}
+\begin{fmffile}{METAFONT-file%file}
 \end{fmffile}
 \begin{fmfchar}(width,height)#*
 \end{fmfchar}#*

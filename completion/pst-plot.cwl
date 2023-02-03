@@ -25,8 +25,8 @@
 \end{psgraph}
 \end{psgraph*}#*
 \endpsgraph#*
-\fileplot[options%keyvals]{file}#i
-\fileplot{file}#i
+\fileplot[options%keyvals]{file}
+\fileplot{file}
 \ifSpecialLabelsDone#*
 \listplot[options%keyvals]{list}
 \listplot{data}
@@ -48,8 +48,8 @@
 \psCoordinates[options%keyvals](x,y)
 \psdataplot[options%keyvals]{macro}#*
 \psdataplot{macro}#*
-\psfileplot[options%keyvals]{file}#*i
-\psfileplot{file}#*i
+\psfileplot[options%keyvals]{file}#*
+\psfileplot{file}#*
 \psFixpoint[%<options%>]{%<x0%>}{%<f(x)%>}{%<n%>}
 \psFixpoint{%<x0%>}{%<f(x)%>}{%<n%>}
 \psgraph(x0,y0)(x1,y1)(x2,y2){xlength%l}{ylength%l}#*
@@ -86,8 +86,8 @@
 \psplotstyle#*
 \psPutXLabel{arg}#*
 \psPutYLabel{arg}#*
-\psreadDataColumn[options%keyvals]{colNo}{delim}{macro%cmd}{file%definition}#d
-\psreadDataColumn{colNo}{delim}{macro%cmd}{file%definition}#d
+\psreadDataColumn[options%keyvals]{colNo}{delim}{macro%cmd}{file%file}#d
+\psreadDataColumn{colNo}{delim}{macro%cmd}{file%file}#d
 \psResetPlotValues#*
 \psrotatebox{angle}{contents}#*
 \PSTplotLoaded#S
@@ -115,8 +115,8 @@
 \psyTick[options%keyvals]{rotation}(y value){label}
 \psyTick{rotation}(y value){label}
 \psyticklinestyle#*
-\readdata{macro%cmd}{file%definition}#d
-\readdata[options%keyvals]{macro%cmd}{file%definition}#d
+\readdata{macro%cmd}{file%file}#d
+\readdata[options%keyvals]{macro%cmd}{file%file}#d
 \savedata{macro%cmd}[data]#d
 \setDefaulthLabels#*
 \setDefaultvLabels#*

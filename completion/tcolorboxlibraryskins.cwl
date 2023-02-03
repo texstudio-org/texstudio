@@ -31,8 +31,8 @@ tcb fill title
 \tcbincludegraphics{imagefile}#g
 \tcbincludegraphics[options%keyvals]{imagefile}#g
 \imagename
-\tcbincludepdf{file}#i
-\tcbincludepdf[options%keyvals]{file}#i
+\tcbincludepdf{file}
+\tcbincludepdf[options%keyvals]{file}
 \imagepage
 \pdfpages
 

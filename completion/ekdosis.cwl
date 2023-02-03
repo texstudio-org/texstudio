@@ -373,7 +373,7 @@ mark=%<signpost%>
 
 ## TEI xml Output ##
 # Requesting TEI xml Output #
-\SetTEIFileName{file name%definition}
+\SetTEIFileName{file name%file}
 
 # General Principles #
 \SetTEIxmlExport{options%keyvals}
@@ -399,7 +399,7 @@ autopar#true,false
 \teidirect[XML attributes]{XML element}{code}
 
 # References to Cited Works #
-\AddxmlBibResource{file name%definition}
+\AddxmlBibResource{file name%file}
 
 ## not in main documentation ##
 \EkdosisColStart#*

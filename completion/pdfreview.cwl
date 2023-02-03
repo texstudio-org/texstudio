@@ -54,7 +54,7 @@ t
 \bnote{height}{text}
 \cnote{height}{text}
 \tnote{height}{text}
-\sourcedoc{file%definition}
+\sourcedoc{file%file}
 \pagegrid
 \pagegrid[TikZ settings]
 \pagegrid[TikZ settings][steps]

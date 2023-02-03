@@ -41,7 +41,7 @@ hidescale
 #endkeyvals
 
 \begin{empfile}
-\begin{empfile}[METAPOST file%definition]
+\begin{empfile}[METAPOST file%file]
 \end{empfile}
 \begin{emp}(width,height)
 \begin{emp}[name](width,height)
@@ -67,7 +67,7 @@ hidescale
 \RCS{arg1}{arg2}#S
 \endRCS#S
 \empfile#S
-\empfile[METAPOST file%definition]#S
+\empfile[METAPOST file%file]#S
 \endempfile#S
 \emp(width,height)#S
 \emp[name](width,height)#S

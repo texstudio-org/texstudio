@@ -23,8 +23,8 @@ wolfram
 text
 #endkeyvals
 
-\wolframgraphics{code%definition}{file}#i
-\wolframgraphics[format%keyvals]{code%definition}{file}#i
+\wolframgraphics{code%definition}{file}
+\wolframgraphics[format%keyvals]{code%definition}{file}
 
 #keyvals:\wolframgraphics
 pdf

@@ -1,5 +1,5 @@
 # pseudo package
-# Matthew Bertucci 2022/07/16 for v1.2
+# Matthew Bertucci 2023/01/30 for v1.2.2
 
 #include:expl3
 #include:xparse
@@ -61,6 +61,9 @@ indent-mark-color=#%color
 indent-mark-shift=##L
 indent-mark-width=##L
 indent-text=%<text%>
+init=%<commands%>
+init-append=%<commands%>
+init-prepend=%<commands%>
 kw
 kwfont=%<command%>
 label=%<commands%>

@@ -20,8 +20,8 @@ force
 \begin{pygmented}[options%keyvals]#V
 \end{pygmented}
 
-\inputpygmented{file}#i
-\inputpygmented[options%keyvals]{file}#i
+\inputpygmented{file}
+\inputpygmented[options%keyvals]{file}
 
 \pyginline|%<code%>|
 \pyginline[%<options%>]|%<code%>|

@@ -31,7 +31,7 @@
 \qtdnverb{verbatimSymbol}#S
 
 \newlet#*
-\newlet{cmd}{def}#dS
+\newlet{cmd}{def}#Sd
 \CatCode\%<<char>%>#*
 \MakeActiveLetHere\%<<char><cmd>%>#*
 \do#*
@@ -55,7 +55,7 @@
 \niceverbNoVerbList#*
 \AddToMacro{cmd}{macros}#*
 \AddToNoVerbList{macros}#*
-\AutoCmdInput{file}#*i
+\AutoCmdInput{file}#*
 \MetaVar%<<var-id>%>#*
 \HashVerb%<<digit>%>#*
 \RQsansserif#*

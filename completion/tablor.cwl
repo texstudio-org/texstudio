@@ -71,7 +71,7 @@ windows
 
 \dresse{color}{nom}#*
 \dressetoile{color}{nom}#*
-\executGiacmp{file}#*i
+\executGiacmp{file}#*
 \couleurtab#*
 \cp#*
 \cat#*

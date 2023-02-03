@@ -3,8 +3,8 @@
 
 #include:printsudoku
 
-\sudokusolve{file}#i
-\getproblem{file}#i
+\sudokusolve{file}
+\getproblem{file}
 \reduceallcells
 \keepreducing
 \writegame

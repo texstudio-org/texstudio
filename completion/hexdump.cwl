@@ -10,5 +10,5 @@
 \dumptocname{name%text}
 \listofdumps
 \dcaption{text}
-\inputdump{file}{caption%text}#i
-\inputdump[pos]{file}{caption%text}#i
+\inputdump{file}{caption%text}
+\inputdump[pos]{file}{caption%text}

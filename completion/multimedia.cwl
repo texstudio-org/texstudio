@@ -42,8 +42,8 @@ start=%<time%>s
 stop
 #endkeyvals
 
-\sound[options%keyvals]{sound poster text}{sound filename}
-\sound{sound poster text}{sound filename}
+\sound[options%keyvals]{sound poster text}{sound filename%file}
+\sound{sound poster text}{sound filename%file}
 #keyvals:\sound
 autostart
 automute

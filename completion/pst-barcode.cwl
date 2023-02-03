@@ -5,8 +5,8 @@
 #include:pst-xkey
 #include:marginnote
 
-\psbarcode{text or filename}{PS options}{barcode type}
-\psbarcode[options%keyvals]{text or filename}{PS options}{barcode type}
+\psbarcode{text or filename%file}{PS options}{barcode type}
+\psbarcode[options%keyvals]{text or filename%file}{PS options}{barcode type}
 
 #keyvals:\psbarcode#c
 fontstyle=%<font commands%>

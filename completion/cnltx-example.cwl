@@ -67,10 +67,10 @@
 \inputexample[options%keyvals]{file}#i
 \inputsidebyside{file}#i
 \inputsidebyside[options%keyvals]{file}#i
-\inputsourcecode{file}#i
-\inputsourcecode[options%keyvals]{file}#i
-\implementation{file}#i
-\implementation[options%keyvals]{file}#i
+\inputsourcecode{file}
+\inputsourcecode[options%keyvals]{file}
+\implementation{file}
+\implementation[options%keyvals]{file}
 
 #keyvals:\implementation
 inputpath=%<path%>

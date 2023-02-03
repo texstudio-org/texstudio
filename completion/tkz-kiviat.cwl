@@ -18,7 +18,7 @@ label style=
 #endkeyvals
 
 \tkzKiviatLine[options%keyvals]{num1,num2,...}#/tikzpicture
-\tkzKiviatLineFromFile[options%keyvals]{file1}{file2}#/tikzpicture
+\tkzKiviatLineFromFile[options%keyvals]{file1%file}{file2%file}#/tikzpicture
 
 #keyvals:\tkzKiviatLine#c,\tkzKiviatLineFromFile#c
 fill=

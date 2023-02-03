@@ -5,8 +5,8 @@
 #include:verbatim
 #include:here
 
-\VautoSubF{startline}{endline}{file}{caption}{label}#i
-\VautoSubF[lines-numbered]{startline}{endline}{file}{caption}{label}#i
+\VautoSubF{startline}{endline}{file}{caption}{label}
+\VautoSubF[lines-numbered]{startline}{endline}{file}{caption}{label}
 \VautoSfFont{font commands}
 \VautoSfFont[linenum-font-commands]{font-commands}
 \VautoPl{placement}

@@ -27,7 +27,7 @@
 \AfterPackage{package}[label]{commands}#*
 \AfterPackage*{package}{commands}#*
 \AfterPackage*{package}[label]{commands}#*
-\ReplaceInput{original file}{replacement file}#*
+\ReplaceInput{original file%file}{replacement file%file}#*
 \ReplaceClass{original class}{replacement class}#*
 \ReplacePackage{original package}{replacement package}#*
 \UnReplaceInput{file}#*

@@ -284,8 +284,8 @@ verbatim
 \begin{pygments}[fancyvrb settings%keyvals]{lexer}#V
 \end{pygments}
 
-\inputpygments{lexer}{file}#i
-\inputpygments[fancyvrb settings%keyvals]{lexer}{file}#i
+\inputpygments{lexer}{file}
+\inputpygments[fancyvrb settings%keyvals]{lexer}{file}
 
 \setpygmentsfv{fancyvrb settings%keyvals}
 \setpygmentsfv[lexer]{fancyvrb settings%keyvals}

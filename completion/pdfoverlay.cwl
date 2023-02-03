@@ -3,7 +3,7 @@
 
 #include:graphicx
 
-\pdfoverlaySetPDF{pdf file%definition}
+\pdfoverlaySetPDF{pdf file%file}
 
 \pdfoverlaySetGraphicsOptions{options%keyvals}
 

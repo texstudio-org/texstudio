@@ -85,7 +85,7 @@ italic
 #endkeyvals
 
 \CharmLine{integer list}
-\CharmFile{filename}
+\CharmFile{filename%file}
 
 \RuleThicknessFactor{integer}
 \IntegralItalicFactor{integer}

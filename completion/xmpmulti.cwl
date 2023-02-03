@@ -3,9 +3,9 @@
 
 #include:keyval
 
-\multiinclude[<default overlay specification>][options%keyvals]{base file name}
-\multiinclude[<default overlay specification>]{base file name}
-\multiinclude{base file name}
+\multiinclude[<default overlay specification>][options%keyvals]{base file name%file}
+\multiinclude[<default overlay specification>]{base file name%file}
+\multiinclude{base file name%file}
 
 # Currently, TeXstudio's syntax recognition is based on argument position.
 # Once this restriction is removed, uncomment the next line.
