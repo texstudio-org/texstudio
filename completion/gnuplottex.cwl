@@ -20,8 +20,8 @@ subfolder
 \begin{gnuplot}[options%keyvals]
 \end{gnuplot}
 
-\gnuplotloadfile{file}#i
-\gnuplotloadfile[options%keyvals]{file}#i
+\gnuplotloadfile{file}
+\gnuplotloadfile[options%keyvals]{file}
 
 #keyvals:\begin{gnuplot},\gnuplotloadfile
 scale=%<factor%>

@@ -1097,8 +1097,8 @@ units
 \pgfplotscreatecolormap{name}{color spec}#*
 \pgfplotscolormapsetadditionalintervalwidth{colormap}{interval width}#*
 \pgfplotscolormapifisuniform{colormap}{true}{false}#*
-\pgfplotscolormaptodatafile{colormap}{data file}#*
-\pgfplotscolormaptodatafile[options%keyvals]{colormap}{data file}#*
+\pgfplotscolormaptodatafile{colormap}{data file%file}#*
+\pgfplotscolormaptodatafile[options%keyvals]{colormap}{data file%file}#*
 #keyvals:\pgfplotscolormaptodatafile
 output each nth=%<integer%>
 output format=#csv,native

@@ -29,8 +29,8 @@ multicoltemplate=#%<template name%>,{%<code%>}
 \end{AddRow}
 \AddString{text}{position}
 \AddNumber{number}{position}
-\loadodsfile{file}#i
-\loadodsfile[options%keyvals]{file}#i
+\loadodsfile{file}
+\loadodsfile[options%keyvals]{file}
 \savespreadsheet
 \OdsNl#*
 \OdsLastNl#*

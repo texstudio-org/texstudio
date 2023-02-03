@@ -32,12 +32,12 @@ only named
 \tikzexternalrealjob
 \tikzexternalcheckshellescape#*
 \tikzsetexternalprefix{prefix}
-\tikzsetnextfilename{file name}
+\tikzsetnextfilename{file name%file}
 \tikzsetfigurename{name}
 \tikzappendtofigurename{suffix}
-\tikzpicturedependsonfile{file name}
+\tikzpicturedependsonfile{file name%file}
 \tikzexternalimgextension#*
-\tikzexternalfiledependsonfile{external graphics}{file name}
+\tikzexternalfiledependsonfile{external graphics}{file name%file}
 \tikzexternaldisable
 \tikzexternalenable
 \tikzifexternalizing{true code}{false code}

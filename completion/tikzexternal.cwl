@@ -5,7 +5,7 @@
 
 \tikzexternalize
 \tikzexternalize[options%keyvals]
-\tikzsetnextfilename{file name}
+\tikzsetnextfilename{file name%file}
 \tikzsetexternalprefix{prefix}
 \tikzsetfigurename{name}
 \tikzappendtofigurename{suffix}

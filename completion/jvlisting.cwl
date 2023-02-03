@@ -3,7 +3,7 @@
 
 \begin{listing}#V
 \end{listing}
-\filelisting{file}#i
+\filelisting{file}
 \NewListingEnvironment{envname}{args}{before code}{init code}{line cmd}{after code}#N
 \NewFileListingCommand{cmd}{args}{before code}{init code}{line cmd}{after code}#d
 

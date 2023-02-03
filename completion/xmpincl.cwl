@@ -4,4 +4,4 @@
 #include:ifpdf
 #include:ifthen
 
-\includexmp{file}#i
+\includexmp{file}

@@ -38,8 +38,8 @@ nodvipsnames
 usenames
 #endkeyvals
 
-\begin{texshade}{alignment-file}
-\begin{texshade}[parameter-file]{alignment-file}
+\begin{texshade}{alignment-file%file}
+\begin{texshade}[parameter-file%file]{alignment-file%file}
 \end{texshade}
 
 \alignment{position%keyvals}
@@ -87,7 +87,7 @@ usenames
 \emphdefault{style%keyvals}
 \emphregion{seqref}{selection}
 \englishlanguage
-\exportconsensus[filename]{seqref}
+\exportconsensus[filename%file]{seqref}
 \exportconsensus{seqref}
 \feature{position%keyvals}{seqref}{selection}{labelstyle}{text}
 \featurenamecolor{ttttop...bbbbottom}{color}
@@ -180,7 +180,7 @@ usenames
 \gapchar{symbol}
 \gappenalty{value}
 \gaprule{thickness%l}
-\geneticcode{filename}
+\geneticcode{filename%file}
 \germanlanguage
 \hideallmatchpositions
 \hideconsensus
@@ -208,17 +208,17 @@ usenames
 \hideseqs
 \hidesequencelogo
 \hidesubfamilylogo
-\includeDSSP[make new]{seqref}{file}#i
-\includeDSSP{seqref}{file}#i
-\includeHMMTOP[make new]{seqref}{file}#i
-\includeHMMTOP{seqref}{file}#i
-\includePHDsec[make new]{seqref}{file}#i
-\includePHDsec{seqref}{file}#i
-\includePHDtopo[make new]{seqref}{file}#i
-\includePHDtopo{seqref}{file}#i
-\includeSTRIDE[make new]{seqref}{file}#i
-\includeSTRIDE{seqref}{file}#i
-\includeTCoffee{file}#i
+\includeDSSP[make new]{seqref}{file}
+\includeDSSP{seqref}{file}
+\includeHMMTOP[make new]{seqref}{file}
+\includeHMMTOP{seqref}{file}
+\includePHDsec[make new]{seqref}{file}
+\includePHDsec{seqref}{file}
+\includePHDtopo[make new]{seqref}{file}
+\includePHDtopo{seqref}{file}
+\includeSTRIDE[make new]{seqref}{file}
+\includeSTRIDE{seqref}{file}
+\includeTCoffee{file}
 \killseq{seq1,seq2,...}
 \legendbf
 \legendcolor{color}
@@ -415,8 +415,8 @@ usenames
 \startnumber[start..stop]{seqref}{start-number}
 \startnumber{seqref}{start-number}
 \stopchar{symbol}
-\structurememe[seqref]{filename}
-\structurememe{filename}
+\structurememe[seqref]{filename%file}
+\structurememe{filename%file}
 \TeXshade
 \threshold[percentage]{percentage}
 \threshold{percentage}

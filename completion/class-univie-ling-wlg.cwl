@@ -93,8 +93,8 @@ issueeditor#true,false
 \footnumwidth#*
 \frontmatter
 \impressum#*
-\includefinalpaper[options%keyvals]{file}#i
-\includefinalpaper{file}#i
+\includefinalpaper[options%keyvals]{file}
+\includefinalpaper{file}
 \issue{number}{year}
 \issueeditors{names}
 \issuesubtitle{text}

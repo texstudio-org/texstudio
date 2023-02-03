@@ -120,11 +120,11 @@ thicknessVoronoi=##L
 
 \luameshmpcolorVoronoi
 
-\drawGmsh{file}#i
-\drawGmsh[options%keyvals]{file}#i
+\drawGmsh{file}
+\drawGmsh[options%keyvals]{file}
 
-\drawGmshinc{file}{code before}{code after}#i
-\drawGmshinc[options%keyvals]{file}{code before}{code after}#i
+\drawGmshinc{file}{code before}{code after}
+\drawGmshinc[options%keyvals]{file}{code before}{code after}
 
 #keyvals:\drawGmsh,\drawGmshinc
 color=#%color
@@ -135,11 +135,11 @@ scale=##L
 thickness=##L
 #endkeyvals
 
-\gmshVoronoi{file}#i
-\gmshVoronoi[options%keyvals]{file}#i
+\gmshVoronoi{file}
+\gmshVoronoi[options%keyvals]{file}
 
-\gmshVoronoiinc{file}{code before}{code after}#i
-\gmshVoronoiinc[options%keyvals]{file}{code before}{code after}#i
+\gmshVoronoiinc{file}{code before}{code after}
+\gmshVoronoiinc[options%keyvals]{file}{code before}{code after}
 
 #keyvals:\gmshVoronoi,\gmshVoronoiinc
 color=#%color

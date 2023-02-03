@@ -34,8 +34,8 @@ attachfiles
 3Drender=#Solid,SolidWireframe,Transparent,TransparentWireframe,BoundingBox,TransparentBoundingBox,TransparentBoundingBoxOutline,Wireframe,ShadedWireframe,HiddenWireframe,Vertices,ShadedVertices,SolidOutline,Illustration,ShadedIllustration
 #endkeyvals
 
-\includemedia{poster text%text}{file or URL}#i
-\includemedia[options%keyvals]{poster text%text}{file or URL}#i
+\includemedia{poster text%text}{file or URL%file}
+\includemedia[options%keyvals]{poster text%text}{file or URL%file}
 
 \addmediapath{directory}
 

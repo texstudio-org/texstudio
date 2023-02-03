@@ -70,8 +70,8 @@ tex
 \end{mglsetup}
 \mglplot{MGL code}
 \mglplot[options%keyvals]{MGL code}
-\mglgraphics{file}#i
-\mglgraphics[options%keyvals]{file}#i
+\mglgraphics{file}
+\mglgraphics[options%keyvals]{file}
 
 #keyvals:\begin{mgl},\begin{mglcode},\mglplot,\mglgraphics
 bb=%<llx lly urx ury%>
@@ -143,10 +143,10 @@ label=%<name%>
 \begin{mglcomment}
 \end{mglcomment}
 
-\mglinclude{file}#i
-\mglinclude[options%keyvals]{file}#i
-\mglinclude*{file}#i
-\mglinclude*[options%keyvals]{file}#i
+\mglinclude{file}
+\mglinclude[options%keyvals]{file}
+\mglinclude*{file}
+\mglinclude*[options%keyvals]{file}
 
 #keyvals:\mglinclude,\mglinclude*
 lineno#true,false

@@ -14,15 +14,15 @@ csvii
 #include:csvsimple-l3
 
 # French commands
-\PixelArtTikz{file}#i
-\PixelArtTikz[options%keyvals]{file}#i
-\PixelArtTikz[options%keyvals]<TikZ options>{file}#i
-\PixelArtTikz*{file}#i
-\PixelArtTikz*[options%keyvals]{file}#i
+\PixelArtTikz{file}
+\PixelArtTikz[options%keyvals]{file}
+\PixelArtTikz[options%keyvals]<TikZ options>{file}
+\PixelArtTikz*{file}
+\PixelArtTikz*[options%keyvals]{file}
 
-\begin{EnvPixelArtTikz}{file}#i\pictureHighlight
-\begin{EnvPixelArtTikz}[options%keyvals]{file}#i
-\begin{EnvPixelArtTikz}[options%keyvals]<TikZ options>{file}#i
+\begin{EnvPixelArtTikz}{file}#\pictureHighlight
+\begin{EnvPixelArtTikz}[options%keyvals]{file}
+\begin{EnvPixelArtTikz}[options%keyvals]<TikZ options>{file}
 \end{EnvPixelArtTikz}
 
 #keyvals:\PixelArtTikz,\PixelArtTikz*,\begin{EnvPixelArtTikz}
@@ -37,15 +37,15 @@ Unite=%<nombre%>
 #endkeyvals
 
 # English commands
-\PixlArtTikz{file}#*i
-\PixlArtTikz[options%keyvals]{file}#*i
-\PixlArtTikz[options%keyvals]<TikZ options>{file}#*i
-\PixlArtTikz*{file}#*i
-\PixlArtTikz*[options%keyvals]{file}#*i
+\PixlArtTikz{file}#*
+\PixlArtTikz[options%keyvals]{file}#*
+\PixlArtTikz[options%keyvals]<TikZ options>{file}#*
+\PixlArtTikz*{file}#*
+\PixlArtTikz*[options%keyvals]{file}#*
 
-\begin{EnvPixlArtTikz}{file}#*i\pictureHighlight
-\begin{EnvPixlArtTikz}[options%keyvals]{file}#*i
-\begin{EnvPixlArtTikz}[options%keyvals]<TikZ options>{file}#*i
+\begin{EnvPixlArtTikz}{file}#*\pictureHighlight
+\begin{EnvPixlArtTikz}[options%keyvals]{file}#*
+\begin{EnvPixlArtTikz}[options%keyvals]<TikZ options>{file}#*
 \end{EnvPixlArtTikz}#*
 
 #keyvals:\PixlArtTikz,\PixlArtTikz*,\begin{EnvPixlArtTikz}

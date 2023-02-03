@@ -83,8 +83,8 @@ BaseJobname=%<jobname%>
 \theFootnoteDepth
 \IndexPageSeparator
 \IndexRangeSeparator
-\CSSFilename{filename.css%definition}
-\MathJaxFilename{filename%definition}
+\CSSFilename{filename.css%file}
+\MathJaxFilename{filename%file}
 \HTMLLanguage{language tag}
 \HTMLTitle{title%text}
 \HTMLTitleBeforeSection

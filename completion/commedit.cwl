@@ -5,7 +5,7 @@
 #include:everyshi
 #include:graphicx
 
-\begin{commeditPreamble}{filename}
+\begin{commeditPreamble}{filename%file}
 \end{commeditPreamble}
 \commentscolskip#*
 \commentscolwidth#*

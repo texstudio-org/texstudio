@@ -18,9 +18,9 @@ verbose#true,false
 \pyq{code%definition}
 \pyc{code%definition}
 \pycq{code%definition}
-\pyfile{file}#i
-\pyfileq{file}#i
-\pyfilerepl{file}#i
+\pyfile{file}
+\pyfileq{file}
+\pyfilerepl{file}
 \pysession{session}
 \pyoption{option%keyvals}{value}
 #keyvals:\pyoption

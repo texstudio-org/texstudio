@@ -232,7 +232,7 @@ name
 string
 #endkeyvals
 \GreHeader{header name}{header value}#*
-\gresetgregpath{file path%definition}
+\gresetgregpath{file path%file}
 \gresetcompilegabc{choice%keyvals}
 #keyvals:\gresetcompilegabc
 force

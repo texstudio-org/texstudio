@@ -79,8 +79,7 @@ param
 \end{test}
 \begin{questions}
 \end{questions}
-\esercizi{file1,file2,...}
-\esercizi{file}#Si
+\esercizi{file1,file2,...%file}#i
 \begin{esdb}{db name}
 \end{esdb}
 \selectrandomlyn{exercise number}{file}#i

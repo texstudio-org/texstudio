@@ -479,8 +479,8 @@ debug={%<options%>}
 \pdfescapestring{string}#*
 \pdffakespace#*
 \pdffiledump#*
-\pdffilemoddate#*
-\pdffilesize#*
+\pdffilemoddate{file}#*
+\pdffilesize{file}#*
 \pdffirstlineheight#*
 \pdffontattr#*
 \pdffontexpand#*

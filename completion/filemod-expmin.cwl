@@ -3,4 +3,4 @@
 
 \filemodNumdate{file}#*
 \filemodNumtime{file}#*
-\filemodCmp{file1}{file2}{clause1}{clause2}#*
+\filemodCmp{file1%file}{file2%file}{clause1}{clause2}#*

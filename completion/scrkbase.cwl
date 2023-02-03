@@ -10,10 +10,10 @@
 \KOMAoptions{option list%keyvals}
 \KOMAoption{option}{value list}
 
-\KOMAoptionsOf{file with ext}#*
-\KOMAoptionsOf[prefix]{file with ext}#*
-\KOMAoptionOf{file with ext}{option}#*
-\KOMAoptionsOf[prefix]{file with ext}{option}#*
+\KOMAoptionsOf{file with ext%file}#*
+\KOMAoptionsOf[prefix]{file with ext%file}#*
+\KOMAoptionOf{file with ext%file}{option}#*
+\KOMAoptionsOf[prefix]{file with ext%file}{option}#*
 \AfterKOMAoptions#*
 
 \IfExistskomafont{element}{then code}{else code}#*

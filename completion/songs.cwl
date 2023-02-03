@@ -138,9 +138,9 @@ ititle={%<title%>}
 \songchapter{title}#L1
 
 ## Indexes ##
-\newindex{id}{filename}
-\newauthorindex{id}{filename}
-\newscripindex{id}{filename}
+\newindex{id}{filename%file}
+\newauthorindex{id}{filename%file}
+\newscripindex{id}{filename%file}
 \showindex{title%text}{id}
 \showindex[columns]{title%text}{id}
 \indexentry{lyrics%text}

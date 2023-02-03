@@ -23,8 +23,8 @@
 \dspTaps[options%keyvals]{data}
 \dspTapsAt{start}{data}
 \dspTapsAt[options%keyvals]{start}{data}
-\dspTapsFile{file}#i
-\dspTapsFile[options%keyvals]{file}#i
+\dspTapsFile{file}
+\dspTapsFile[options%keyvals]{file}
 \dspSignal{PS code}
 \dspSignal[options%keyvals]{PS code}
 \dspSignalOpt{init}{PS code}
@@ -33,8 +33,8 @@
 \dspFunc[options%keyvals]{PS code}
 \dspFuncData{data}
 \dspFuncData[options%keyvals]{data}
-\dspFuncFile{file}#i
-\dspFuncFile[options%keyvals]{file}#i
+\dspFuncFile{file}
+\dspFuncFile[options%keyvals]{file}
 \dspDiracs{pos1 label1 pos2 label2 ...}
 \dspDiracs[options%keyvals]{pos1 label1 pos2 label2 ...}
 \dspPeriodize

@@ -13,7 +13,7 @@ printing#true,false
 numbering#true,false
 #endkeyvals
 
-\handout{file path}
+\handout{file path%file}
 
 \thehandoutnumber#*
 \handoutnumber{arg}#*

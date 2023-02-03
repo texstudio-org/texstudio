@@ -23,7 +23,7 @@ notimes
 \begin{vdmrt}[options%keyvals]#V
 \end{vdmrt}
 
-#keyvals:\begin{vdmsl}
+#keyvals:\begin{vdmsl},\begin{vdmpp},\begin{vdmrt}
 inputpath=%<path%>
 aboveskip=##L
 belowskip=##L

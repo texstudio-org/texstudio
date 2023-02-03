@@ -78,9 +78,9 @@ decodearray={%<color array%>}
 \begin{fmp}
 \end{fmp}
 
-\fmpsourcefilename{filename%definition}
-\fmpscriptfilename{filename%definition}
-\fmpfigurebasename{filename%definition}
+\fmpsourcefilename{filename%file}
+\fmpscriptfilename{filename%file}
+\fmpfigurebasename{filename%file}
 
 \fmpsourcepreamble{preamble%definition}
 \fmpaddtosourcepreamble{code%definition}

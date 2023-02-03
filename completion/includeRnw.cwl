@@ -14,8 +14,8 @@ texenv
 classicenv#true,false
 #endkeyvals
 
-\includeRnw{file}#i
-\includeRnw[options%keyvals]{file}#i
+\includeRnw{file}
+\includeRnw[options%keyvals]{file}
 
 #keyvals:\includeRnw
 h

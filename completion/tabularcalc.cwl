@@ -30,7 +30,7 @@ fixFPpow
 \tcprintroundresult{precision}#*
 \tcprintroundresult*{precision}#*
 \tcprintroundvalue{precision}#*
-\tcwritetofile{filename}
+\tcwritetofile{filename%file}
 \tccol#*
 \tclin#*
 \tabularcalcversion#S

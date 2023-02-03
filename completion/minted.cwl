@@ -56,8 +56,8 @@ outputdir=%<directory%>
 \mintinline{%<language%>}|%<code%>|#M
 ##\mintinline[%<options%>]{%<language%>}{%<code%>}#M
 \mintinline[%<options%>]{%<language%>}|%<code%>|#M
-\inputminted{language}{file}#i
-\inputminted[options%keyvals]{language}{file}#i
+\inputminted{language}{file}
+\inputminted[options%keyvals]{language}{file}
 \usemintedstyle{pygments style}#*
 \usemintedstyle[language]{pygments style}#*
 \setminted{options%keyvals}

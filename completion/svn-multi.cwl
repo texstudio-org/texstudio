@@ -25,15 +25,15 @@ autokw=#false,true,all,ext
 #include:graphics
 #include:pgf
 \svngraphicsgroup{graphic group name}
-\svnignoregraphic{file path/name}
-\svnconsidergraphic{file path/name}
+\svnignoregraphic{file path/name%file}
+\svnconsidergraphic{file path/name%file}
 #endif
 
 #ifOption:graphics
 #include:graphics
 \svngraphicsgroup{graphic group name}
-\svnignoregraphic{file path/name}
-\svnconsidergraphic{file path/name}
+\svnignoregraphic{file path/name%file}
+\svnconsidergraphic{file path/name%file}
 #endif
 
 #ifOption:pgfimages
@@ -144,7 +144,7 @@ autokw=#false,true,all,ext
 \svntabglobal#*
 \svntabgroup{group name}
 \svntabsubgroup{nesting level}{subgroup name}
-\svntabfile{nesting level}{file path/name}
+\svntabfile{nesting level}{file path/name%file}
 \svntabrev{revision number}
 \svntabauthor{author}
 \svntabdate{{%<year%>}{%<month%>}{%<day%>}{%<hour%>}{%<minute%>}{%<second%>}{%<TZ hour%>}{%<TZ minute%>}}

@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2023/01/23 for v2.20.0
+# Matthew Bertucci 2023/02/02 for v2.20.0
 
 #include:paralist
 #include:amsmath
@@ -61,8 +61,10 @@ extensions=%<file names%>
 expectJekyllData#true,false
 fancyLists#true,false
 fencedCode#true,false
+fencedCodeAttributes#true,false
 fencedDivs#true,false
 jekyllData#true,false
+lineBlocks#true,false
 hardLineBreaks#true,false
 hashEnumerators#true,false
 headerAttributes#true,false
@@ -111,6 +113,13 @@ jekyllDataRenderers={%<keyvals%>}
 
 #ifOption:theme=witiko/markdown/techdoc
 #include:varioref
+#endif
+
+#ifOption:lineBlocks
+#include:verse
+#endif
+#ifOption:lineBlocks=true
+#include:verse
 #endif
 
 \ifmarkdownLaTeXLoaded#S
@@ -284,6 +293,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererFancyOlItemPrototype#*
 \markdownRendererFancyOlItemWithNumber#*
 \markdownRendererFancyOlItemWithNumberPrototype#*
+\markdownRendererFencedCodeAttributeContextBegin#*
+\markdownRendererFencedCodeAttributeContextBeginPrototype#*
+\markdownRendererFencedCodeAttributeContextEnd#*
+\markdownRendererFencedCodeAttributeContextEndPrototype#*
 \markdownRendererFencedDivAttributeContextBegin#*
 \markdownRendererFencedDivAttributeContextBeginPrototype#*
 \markdownRendererFencedDivAttributeContextEnd#*
@@ -346,6 +359,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererJekyllDataStringPrototype{arg1}{arg2}#*
 \markdownRendererLeftBrace#*
 \markdownRendererLeftBracePrototype#*
+\markdownRendererLineBlockBegin#*
+\markdownRendererLineBlockBeginPrototype#*
+\markdownRendererLineBlockEnd#*
+\markdownRendererLineBlockEndPrototype#*
 \markdownRendererLineBreak#*
 \markdownRendererLineBreakPrototype#*
 \markdownRendererLink#*

@@ -933,8 +933,8 @@ vecsep=##L
 \ShowMathFonts#*
 \setSYdimens#*
 \setEXdimens#*
-\loadsubfile{file}#*i
-\readsufile{file}#*i
+\loadsubfile{file}#*
+\readsufile{file}#*
 \rmdefaultB#*
 \DeclareMathSymbolCtr{cmd}{type}{sym-font}{slot}#*d
 \ifiscseq{arg}{true}{false}#*

@@ -62,10 +62,10 @@ raw=%<PDF code%>
 \urlaction{name}{URL}
 \javascriptaction{name}{JavaScript code}
 
-\embeddedfile{object name}{file}#i
-\embeddedfile[description]{object name}{file}#i
-\embeddedfile{object name}[alt filename]{file}#i
-\embeddedfile[description]{object name}[alt filename]{file}#i
+\embeddedfile{object name}{file}
+\embeddedfile[description]{object name}{file}
+\embeddedfile{object name}[alt filename]{file}
+\embeddedfile[description]{object name}[alt filename]{file}
 
 \openfilelink{file}{text}
 \openfilelink[options%keyvals]{file}{text}

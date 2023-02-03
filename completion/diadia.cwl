@@ -30,8 +30,8 @@ columnseprule=##L
 columnseprulecolor=%<color command%>
 #endkeyvals
 
-\diadiatab{pgfplotstable options}{file}#i
-\diadiatab[options%keyvals]{pgfplotstable options}{file}#i
+\diadiatab{pgfplotstable options}{file}
+\diadiatab[options%keyvals]{pgfplotstable options}{file}
 
 #keyvals:\diadiatab#c
 tabstyle=#simple,advanced
@@ -47,8 +47,8 @@ plotstyle=#none,bloodsugar,bloodpressure,insulin,weight,cu,pulse,hbaonec
 plotclosedcycle#true,false
 #endkeyvals
 
-\diadiaaddplot{addplot options}{key mappings}{file}#i
-\diadiaaddplot*{addplot options}{key mappings}{file}#i
+\diadiaaddplot{addplot options}{key mappings}{file}
+\diadiaaddplot*{addplot options}{key mappings}{file}
 \legend{list}
 
 \annotation{x}{y}{annotation%text}

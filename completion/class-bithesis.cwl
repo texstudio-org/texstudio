@@ -1,7 +1,6 @@
 # bithesis class
-# Matthew Bertucci 2022/12/04 for v3.2.0
+# Matthew Bertucci 2023/02/02 for v3.3.0
 
-#include:expl3
 #include:l3keys2e
 #include:class-ctexbook
 #include:geometry
@@ -34,6 +33,7 @@
 #keyvals:\documentclass/bithesis#c
 type=#bachelor,bachelor_translation,bachelor_english,master,doctor
 blindPeerReview#true,false
+quirks#true,false
 twoside#true,false
 #endkeyvals
 

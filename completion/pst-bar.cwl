@@ -5,8 +5,8 @@
 #include:pst-plot
 #include:pst-xkey
 
-\readpsbardata{macro%cmd}{filename%definition}#d
-\readpsbardata[options%keyvals]{macro%cmd}{filename%definition}#d
+\readpsbardata{macro%cmd}{filename%file}#d
+\readpsbardata[options%keyvals]{macro%cmd}{filename%file}#d
 
 #keyvals:\readpsbardata#c
 header#true,false

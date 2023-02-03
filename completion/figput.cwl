@@ -19,4 +19,4 @@
 \SetOuterMargin{length}
 \NeverSkip
 \AllowSkip
-\LoadFigureCode{file}#i
+\LoadFigureCode{file}

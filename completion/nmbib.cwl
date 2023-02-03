@@ -44,7 +44,7 @@ mcite
 \timelinebibname#*
 \sequencebibname#*
 \authorsbibname#*
-\multibibliographyfilename{type%keyvals}{filename%definition}#*
+\multibibliographyfilename{type%keyvals}{filename%file}#*
 \nmbibBasetype{type%keyvals}#*
 \nmbibSetCiteall{pattern}#*
 \nmbibKEY#*

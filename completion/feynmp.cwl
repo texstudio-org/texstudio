@@ -10,7 +10,7 @@ nonstop
 batch
 #endkeyvals
 
-\begin{fmffile}{METAPOST-file}
+\begin{fmffile}{METAPOST-file%file}
 \end{fmffile}
 \begin{fmfchar}(width,height)#*
 \end{fmfchar}#*
