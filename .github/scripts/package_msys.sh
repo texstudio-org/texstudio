@@ -31,7 +31,8 @@ echo "copy directories"
 mkdir -p ./package-zip/translations
 cp -r ../translation/* ./package-zip/translations
 cp -r ../templates package-zip
-cp -r ../utilities/manual package-zip/help
+cp -r ../utilities/manual/build package-zip/help/build
+cp ../utilities/manual/CHANGELOG.txt package-zip/help
 cp ../utilities/latex2e.css package-zip/help
 cp ../utilities/latex2e.html package-zip/help
 cp -r ../utilities/dictionaries package-zip/dictionaries
