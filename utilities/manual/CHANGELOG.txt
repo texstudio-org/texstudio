@@ -1,3 +1,7 @@
+TeXstudio 4.5.2
+-----------------
+- 
+
 TeXstudio 4.5.1
 -----------------
 - Provide online template repository
