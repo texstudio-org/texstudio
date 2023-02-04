@@ -110,6 +110,7 @@ again covered=%<once more list%>
 \textup<overlay specification>{text}
 \hypertarget<overlay specification>{target name}{anchor text%text}
 \hyperlink<overlay specification>{target name}{link text%text}
+\hyperlink{target name}{link text%text}<overlay specification>
 \emph<overlay specification>{text}
 
 \begin{overlayarea}{area width%l}{area height%l}
