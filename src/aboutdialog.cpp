@@ -11,13 +11,18 @@
 
 #include "aboutdialog.h"
 #include "utilsVersion.h"
+#include "utilsSystem.h"
 
 AboutDialog::AboutDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
 	ui.textBrowser->setOpenExternalLinks(true);
-    ui.textBrowser->setHtml(QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + "<br>" +
+	ui.textBrowser->setOpenLinks(false);
+	QString logfile = findResourceFile("CHANGELOG.txt");
+	if (logfile != "") logfile = " <a href=\"file:///" + logfile + "\">" + tr("Release Notes") + "</a>";
+	connect(ui.textBrowser, SIGNAL(anchorClicked(QUrl)), this, SLOT(anchorClicked(QUrl)));
+	ui.textBrowser->setHtml(QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + logfile + "<br>" +
                             tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion(),QT_VERSION_STR,COMPILED_DEBUG_OR_RELEASE) + "<br><br>" +
 	                        "Copyright (c)<br>" +
 	                        TEXSTUDIO + ": Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>" +
@@ -58,4 +63,9 @@ void AboutDialog::largeLogo()
 	dlg->layout()->addWidget(label);
 	dlg->setWindowTitle("TeXstudio");
 	dlg->exec();
+}
+
+void AboutDialog::anchorClicked(QUrl url)
+{
+	QDesktopServices::openUrl(url);
 }
