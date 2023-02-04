@@ -135,9 +135,8 @@
 \pgfmathgeneratepseudorandomnumber#*
 \pgfmathrnd#*
 \pgfmathrand#*
-\pgfmathrandom{maximum int}#*
-\pgfmathrandom{minimum int}{maximum int}#*
-\pgfmathrandominteger{cmd}{minimum}{maximum}#*d
+\pgfmathrandom{%<[[min int,] max int]%>}#*
+\pgfmathrandominteger{cmd}{min}{max}#*d
 \pgfmathdeclarerandomlist{list name}{list of items}#*
 \pgfmathrandomitem{cmd}{list name}#*d
 
