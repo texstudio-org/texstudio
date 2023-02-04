@@ -94,6 +94,7 @@ if(APPLE)
         texstudio.icns
         utilities/latex2e.html
         utilities/latex2e.css
+		utilities/list.png
         ${templates}
         ${dictionaries}
         ${translation}
@@ -463,6 +464,7 @@ if(UNIX)
 	install(FILES utilities/manual/build/html/searchindex.js DESTINATION share/texstudio)
 	install(FILES utilities/latex2e.html DESTINATION share/texstudio)
 	install(FILES utilities/latex2e.css DESTINATION share/texstudio)
+	install(FILES utilities/list.png DESTINATION share/texstudio)
 	install(FILES utilities/AUTHORS DESTINATION share/texstudio)
 	install(FILES utilities/COPYING DESTINATION share/texstudio)
 	install(FILES utilities/manual/CHANGELOG.txt DESTINATION share/texstudio)
