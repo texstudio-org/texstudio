@@ -204,7 +204,9 @@ unix:!macx {
     }
     INSTALLS += applicationmenu
     INSTALLS += icon
+!haiku {
     include(src/xkb/xkb.pri)
+    }
 }
 
 # ##########UNIX + MACX###############
