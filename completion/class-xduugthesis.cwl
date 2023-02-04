@@ -1,5 +1,5 @@
 # xduugthesis class
-# Matthew Bertucci 2023/01/28 for v4.3.0.0
+# Matthew Bertucci 2023/02/03 for v4.4.0.0
 
 #include:expl3
 #include:xparse
@@ -33,6 +33,7 @@ style/unicode-math={%<unicode-math宏包选项%>}
 style/font-type=#font,file
 style/font-path={%<路径%>}
 style/en-cjk-font#true,false
+style/title-bold-math#true,false
 style/language=#zh,en
 style/bib-backend=#bibtex,biblatex
 style/biblatex-option={%<biblatex宏包选项%>}
