@@ -19,6 +19,7 @@ TeXstudio 4.5.1
 - switch to pointer cursor over bookmark column of editors (#2220)
 - add shadow option for rectangular magnifier in pdf viewer config (#2885)
 - in split view mode add editor to split view where current editor is (#2838)
+- open this file (CHANGELOG.txt) in About dialog (Help menu) with a link (#2918)
 
 TeXstudio 4.4.1
 -----------------
