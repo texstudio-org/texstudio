@@ -182,6 +182,7 @@ File ..\utilities\AUTHORS
 File ..\utilities\COPYING
 File ..\utilities\latex2e.html
 File ..\utilities\latex2e.css
+File ..\utilities\list.png
 File ..\utilities\license.txt
 File /r ..\utilities\manual\build\html\*
 
