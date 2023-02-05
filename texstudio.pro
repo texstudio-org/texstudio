@@ -330,7 +330,7 @@ unix {
         utilities/dictionaries/th_de_DE_v2.dat \
         utilities/AUTHORS \
         utilities/COPYING \
-        utilities/manual/CHANGELOG.txt
+        utilities/manual/CHANGELOG.md
     manual.files = \
         utilities/manual/build/html/*.html
         utilities/manual/build/html/searchindex.js

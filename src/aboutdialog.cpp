@@ -11,13 +11,16 @@
 
 #include "aboutdialog.h"
 #include "utilsVersion.h"
+#include "utilsSystem.h"
 
 AboutDialog::AboutDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
+    QString changelogPath = findResourceFile("CHANGELOG.md");
 	ui.textBrowser->setOpenExternalLinks(true);
     ui.textBrowser->setHtml(QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + "<br>" +
+                            "<a href=\"file://"+changelogPath+"\">Changelog</a><br>" +
                             tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion(),QT_VERSION_STR,COMPILED_DEBUG_OR_RELEASE) + "<br><br>" +
 	                        "Copyright (c)<br>" +
 	                        TEXSTUDIO + ": Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann<br>" +

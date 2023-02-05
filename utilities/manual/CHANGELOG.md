@@ -1,6 +1,6 @@
 TeXstudio 4.5.2
 -----------------
-- 
+- Show changelog in about dialog
 
 TeXstudio 4.5.1
 -----------------
