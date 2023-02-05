@@ -6,31 +6,31 @@
 ## TeXstudio 4.5.1
 
 - Provide online template repository
-- change preview target in IDEFIX menu (#2760)
+- change preview target in IDEFIX menu ([#2760](https://github.com/texstudio-org/texstudio/issues/2760))
 - use QtMultimedia instead of phonon to show movies in pdf (non-default)
 - regex in search panel is syntax checked and marked if wrong
-- latex menu for horizontal spacing (#2687)
-- config dialog with resizable splitter (#2707)
-- insert inline math mode as $$ (#2719)
-- add editor action "Move all (others) to other view" (#2713)
-- show macro name in completer list (#2679)
-- show macro trigger and shortcut in configuration window (#2635)
-- fix wrong side panel title when changing grid size in config (#2743)
-- preview/clear preview now use position of context menu as reference (#2794)
-- add a Package Tab to the QuickStart Wizard (#2831)
-- Editor option 'Show Only Monospaced Fonts' is now persistent (#788)
-- fix size of config dialog on low res screens (#995)
-- add script command loadManagedMenu, s. new section "Menu Definitions" in the manual (#2816)
-- switch to pointer cursor over bookmark column of editors (#2220)
-- add shadow option for rectangular magnifier in pdf viewer config (#2885)
-- in split view mode add editor to split view where current editor is (#2838)
+- latex menu for horizontal spacing ([#2687](https://github.com/texstudio-org/texstudio/issues/2687))
+- config dialog with resizable splitter ([#2707](https://github.com/texstudio-org/texstudio/issues/2707))
+- insert inline math mode as $$ ([#2719](https://github.com/texstudio-org/texstudio/issues/2719))
+- add editor action "Move all (others) to other view" ([#2713](https://github.com/texstudio-org/texstudio/issues/2713))
+- show macro name in completer list ([#2679](https://github.com/texstudio-org/texstudio/issues/2679))
+- show macro trigger and shortcut in configuration window ([#2635](https://github.com/texstudio-org/texstudio/issues/2635))
+- fix wrong side panel title when changing grid size in config ([#2743](https://github.com/texstudio-org/texstudio/issues/2743))
+- preview/clear preview now use position of context menu as reference [(#2794](https://github.com/texstudio-org/texstudio/issues/2794))
+- add a Package Tab to the QuickStart Wizard ([#2831](https://github.com/texstudio-org/texstudio/issues/2831))
+- Editor option 'Show Only Monospaced Fonts' is now persistent ([#788](https://github.com/texstudio-org/texstudio/issues/788))
+- fix size of config dialog on low res screens ([#995](https://github.com/texstudio-org/texstudio/issues/995))
+- add script command loadManagedMenu, s. new section "Menu Definitions" in the manual ([#2816](https://github.com/texstudio-org/texstudio/issues/2816))
+- switch to pointer cursor over bookmark column of editors ([#2220](https://github.com/texstudio-org/texstudio/issues/2220))
+- add shadow option for rectangular magnifier in pdf viewer config ([#2885](https://github.com/texstudio-org/texstudio/issues/2885))
+- in split view mode add editor to split view where current editor is ([#2838](https://github.com/texstudio-org/texstudio/issues/2838))
 
 ## TeXstudio 4.4.1
 
 - fix file association on OSX
 - allow ignore all in spell checker dialog
 - fix language code for LanguageTool
-- fix cancel file close (#2705)
+- fix cancel file close ([#2705](https://github.com/texstudio-org/texstudio/issues/2705))
 - fix missing icons in latex/math menu
 
 ## TeXstudio 4.4.0
@@ -46,32 +46,32 @@
 
 ## TeXstudio 4.3.1
 
-- fix loading files various times if relative path is used for \include (#2533)
-- fix custom verbatim highlighting (#2528)
-- fix label highlighting (#2512)
-- fix version checking (#2527)
+- fix loading files various times if relative path is used for \include ([#2533](https://github.com/texstudio-org/texstudio/issues/2533))
+- fix custom verbatim highlighting ([#2528](https://github.com/texstudio-org/texstudio/issues/2528))
+- fix label highlighting ([#2512](https://github.com/texstudio-org/texstudio/issues/2512))
+- fix version checking ([#2527](https://github.com/texstudio-org/texstudio/issues/2527))
 
 ## TeXstudio 4.3.0
 
 - show most used command at first place in completer
 - more cwls
-- get position into clipboard in pdf on ctrl+shift+click (#2623)
-- set grid column of first page in pdf viewer with a mouse click (#2190)
+- get position into clipboard in pdf on ctrl+shift+click ([#2324](https://github.com/texstudio-org/texstudio/issues/2324))
+- set grid column of first page in pdf viewer with a mouse click ([#2190](https://github.com/texstudio-org/texstudio/issues/2190))
 - copy/paste table content into table/matrix wizard
-- move to next/previous word now stops at every delimiter (no skip over several brackets) #2311
+- move to next/previous word now stops at every delimiter (no skip over several brackets) [#2311](https://github.com/texstudio-org/texstudio/issues/2311)
 - build qt6/win for win10+
 - small bug fixes
 
 ## TeXstudio 4.2.3
 
-- fix unable to save under special circumstances (#2124)
-- fix stuck to save unsaved document (only in explicit root mode and with a new unsaved document,#2153) 
+- fix unable to save under special circumstances ([#2124](https://github.com/texstudio-org/texstudio/issues/2124))
+- fix stuck to save unsaved document (only in explicit root mode and with a new unsaved document,[#2153](https://github.com/texstudio-org/texstudio/issues/2153)) 
 - xindex engine added
-- fix math highlighting in keyvals (#2138)
+- fix math highlighting in keyvals ([#2138](https://github.com/texstudio-org/texstudio/issues/2138))
 - add context menu in embbeded pdf viewer to invert pdf colors
 - remember window state (maximized/normal) of config dialog
 - fix (and speed-up) miktex package detection
-- fix handling apostrophed words better in spellchecker (#2179)
+- fix handling apostrophed words better in spellchecker ([#2179](https://github.com/texstudio-org/texstudio/issues/2179))
 - regular expression in extended search behave the same as in normal search
 - more cwls
 
@@ -79,13 +79,13 @@
 ## TeXstudio 4.2.2
 
 - more cwls
-- fix crash, #2094, #2084, #2109
+- fix crash, [#2093](https://github.com/texstudio-org/texstudio/issues/2093), [#2084](https://github.com/texstudio-org/texstudio/issues/2084), [#2109](https://github.com/texstudio-org/texstudio/issues/2109)
 - use picture highlighting for tikz env and similar
 
 ## TeXstudio 4.2.1
 
 - fix placeholder issues
-- fix handling mirrored placeolder, like in issue #2063
+- fix handling mirrored placeholder, like in issue [#2063](https://github.com/texstudio-org/texstudio/issues/2063)
 - handle NewDocumentsCommand better for completer
 - enable "open in explorer" again
 - fix building for poppler >=22.x 
@@ -94,7 +94,7 @@
 ## TeXstudio 4.2.0
 
 - more cwls
-- fix key handling for some special keyboard set-ups (#2011)
+- fix key handling for some special keyboard set-ups ([#2011](https://github.com/texstudio-org/texstudio/issues/2011))
 - fix user menu handling
 - filter available dictionaries in status/language selection
 - change placeHolder behavior: autoremove when content in placeholder is changed, don't use placeholder for cutBuffer
@@ -116,14 +116,14 @@
 ## TeXstudio 4.1.0
 
 - change session format to json in order to circumvent OSX/Qt6 issue
-- fix input box for chinese (#1896)
-- fix update of pdf fit to text width (#1935)
+- fix input box for Chinese ([#1896](https://github.com/texstudio-org/texstudio/issues/1896))
+- fix update of pdf fit to text width ([#1935](https://github.com/texstudio-org/texstudio/issues/1935))
 - make edview accessible from js
 
 ## TeXstudio 4.0.4
 
 - use QT6.2.1 on OSX, fix crash when checking for updates, fix restoring last session
-- better pdf font substitution on windows (#1812)
+- better pdf font substitution on windows ([#1812](https://github.com/texstudio-org/texstudio/issues/1812))
 - fix placing cursor for large fonts (#1908)
 - more cwls
 
@@ -136,9 +136,9 @@
 
 ## TeXstudio 4.0.2
 
-- fix structure view (inlcudes and cursor marking, #1828) 
-- fix completer tooltip on bibids (#1835)
-- OSX: fix "slanted" cursor (#1836)
+- fix structure view (includes and cursor marking, [#1828](https://github.com/texstudio-org/texstudio/issues/1828)) 
+- fix completer tooltip on bibids ([#1835](https://github.com/texstudio-org/texstudio/issues/1835))
+- OSX: fix "slanted" cursor ([#1836](https://github.com/texstudio-org/texstudio/issues/1836))
 - more cwls
 
 
@@ -146,7 +146,7 @@
 
 - add more cwls
 - fix pdfviewer page display
-- build OSX with QT6.2, fix special charcters entry (alt+n + n , etc.) (#1770)
+- build OSX with QT6.2, fix special characters entry (alt+n + n , etc.) ([#1770](https://github.com/texstudio-org/texstudio/issues/1770))
 - activate crash handler on win again
 - fix strcuture detection for included files
  
@@ -160,7 +160,7 @@
 - handle text (e.g. \text{text}) in mathenv as text with spell checking
 - performance improvement for large files with large number of labels and/or large number of includes
 - fix that search options are persistant
-- automatic structure scrolling can be turned off (#1742)
+- automatic structure scrolling can be turned off ([#1742](https://github.com/texstudio-org/texstudio/issues/1742))
 - some bug fixes
 
 
@@ -925,7 +925,6 @@ before changing to windowed mode (Bug #1876)
 - updated LaTeX reference manual
 - several bugfixes
 
-------
 ## TeXstudio 2.7.0
 
 - added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)
@@ -1015,7 +1014,7 @@ before changing to windowed mode (Bug #1876)
 
 
 ## TeXstudio 2.5.2  SVN 3707
---
+
 - new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable
 - add support to display CJK and Cyrillic in PDF viewer
 - increased maximum possible tab width to 32
@@ -1029,7 +1028,7 @@ before changing to windowed mode (Bug #1876)
 
 
 ## TeXstudio 2.5.1  SVN 3445
---
+
 - improved fold panel
 - new template system
 - added support for forward/backward mouse buttons in editor and viewer
@@ -1102,6 +1101,7 @@ ref/commands overview
 
 
 ## TexMakerX 2.1  SVN 1772
+
 - improved latex syntax checking: auto detect used packages and more reliable
 - auto detect master/include relations, no master document should be needed anymore
 - extended internal pdf viewer, multiple pages and new features
