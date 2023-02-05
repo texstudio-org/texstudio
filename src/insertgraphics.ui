@@ -312,7 +312,7 @@
           </property>
           <property name="icon">
            <iconset resource="../texstudio.qrc">
-            <normaloff>:/images/up-arrow-circle-silver.png</normaloff>:/images/up-arrow-circle-silver.png</iconset>
+            <normaloff>:/images/up-arrow-circle-silver.svg</normaloff>:/images/up-arrow-circle-silver.svg</iconset>
           </property>
          </widget>
         </item>

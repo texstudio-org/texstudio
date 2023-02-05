@@ -281,7 +281,8 @@ QString getRealIconFile(const QString &icon)
 
         iconNames << ":/symbols-ng/icons/" + icon + suffix + ".svg";
         iconNames << ":/symbols-ng/icons/" + icon + suffix + ".png";
-        iconNames << ":/images/" + icon + ".png";
+        iconNames << ":/images/" + icon + ".svg";
+		iconNames << ":/images/" + icon + ".png";
 
 		// fallback
 		iconNames
