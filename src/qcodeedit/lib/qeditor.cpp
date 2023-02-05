@@ -2857,6 +2857,7 @@ void QEditor::toggleCommentSelection()
 
 	QString commentMark = m_definition->singleLineComment();
 	bool allCommented = true;
+    bool cursorExpanded = false;
 
     if(cursors().size()==1 && !m_cursor.hasSelection() && m_cursor.line().hasFlag(QDocumentLine::CollapsedBlockStart)){
         // folded block, executed at only visible line
@@ -2867,6 +2868,7 @@ void QEditor::toggleCommentSelection()
             if(ln.hasFlag(QDocumentLine::CollapsedBlockEnd)){
                 m_cursor.setAnchorLineNumber(lineNr);
                 m_cursor.setAnchorColumnNumber(ln.length());
+                cursorExpanded=true;
                 break;
             }
         }
@@ -2896,6 +2898,9 @@ void QEditor::toggleCommentSelection()
 	} else {
 		commentSelection();
 	}
+    if(cursorExpanded){
+        m_cursor.select(m_cursor.startLineNumber(),m_cursor.startColumnNumber());
+    }
 }
 
 /*!
