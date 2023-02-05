@@ -95,7 +95,7 @@ if(APPLE)
         utilities/latex2e.html
         utilities/latex2e.css
 		utilities/list.png
-		utilities/manual/CHANGELOG.md
+		utilities/manual/source/CHANGELOG.md
         ${templates}
         ${dictionaries}
         ${translation}
@@ -468,5 +468,5 @@ if(UNIX)
 	install(FILES utilities/list.png DESTINATION share/texstudio)
 	install(FILES utilities/AUTHORS DESTINATION share/texstudio)
 	install(FILES utilities/COPYING DESTINATION share/texstudio)
-	install(FILES utilities/manual/CHANGELOG.md DESTINATION share/texstudio)
+	install(FILES utilities/manual/source/CHANGELOG.md DESTINATION share/texstudio)
 endif()
