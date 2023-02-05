@@ -925,7 +925,6 @@ before changing to windowed mode (Bug #1876)
 - updated LaTeX reference manual
 - several bugfixes
 
-------
 ## TeXstudio 2.7.0
 
 - added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)
@@ -1015,7 +1014,7 @@ before changing to windowed mode (Bug #1876)
 
 
 ## TeXstudio 2.5.2  SVN 3707
---
+
 - new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable
 - add support to display CJK and Cyrillic in PDF viewer
 - increased maximum possible tab width to 32
@@ -1029,7 +1028,7 @@ before changing to windowed mode (Bug #1876)
 
 
 ## TeXstudio 2.5.1  SVN 3445
---
+
 - improved fold panel
 - new template system
 - added support for forward/backward mouse buttons in editor and viewer
@@ -1102,6 +1101,7 @@ ref/commands overview
 
 
 ## TexMakerX 2.1  SVN 1772
+
 - improved latex syntax checking: auto detect used packages and more reliable
 - auto detect master/include relations, no master document should be needed anymore
 - extended internal pdf viewer, multiple pages and new features
