@@ -1,9 +1,10 @@
-TeXstudio 4.5.2
------------------
+# CHANGELOG
+## TeXstudio 4.5.2
+
 - Show changelog in about dialog
 
-TeXstudio 4.5.1
------------------
+## TeXstudio 4.5.1
+
 - Provide online template repository
 - change preview target in IDEFIX menu (#2760)
 - use QtMultimedia instead of phonon to show movies in pdf (non-default)
@@ -24,16 +25,16 @@ TeXstudio 4.5.1
 - add shadow option for rectangular magnifier in pdf viewer config (#2885)
 - in split view mode add editor to split view where current editor is (#2838)
 
-TeXstudio 4.4.1
------------------
+## TeXstudio 4.4.1
+
 - fix file association on OSX
 - allow ignore all in spell checker dialog
 - fix language code for LanguageTool
 - fix cancel file close (#2705)
 - fix missing icons in latex/math menu
 
-TeXstudio 4.4.0
------------------
+## TeXstudio 4.4.0
+
 - new icon theme Colibri (by geolta)
 - modernized manual
 - faster removing of multiple lines
@@ -43,15 +44,15 @@ TeXstudio 4.4.0
 - hide/filter configuration completer list
 - bug fixes
 
-TeXstudio 4.3.1
------------------
+## TeXstudio 4.3.1
+
 - fix loading files various times if relative path is used for \include (#2533)
 - fix custom verbatim highlighting (#2528)
 - fix label highlighting (#2512)
 - fix version checking (#2527)
 
-TeXstudio 4.3.0
------------------
+## TeXstudio 4.3.0
+
 - show most used command at first place in completer
 - more cwls
 - get position into clipboard in pdf on ctrl+shift+click (#2623)
@@ -61,8 +62,8 @@ TeXstudio 4.3.0
 - build qt6/win for win10+
 - small bug fixes
 
-TeXstudio 4.2.3
------------------
+## TeXstudio 4.2.3
+
 - fix unable to save under special circumstances (#2124)
 - fix stuck to save unsaved document (only in explicit root mode and with a new unsaved document,#2153) 
 - xindex engine added
@@ -75,14 +76,14 @@ TeXstudio 4.2.3
 - more cwls
 
 
-TeXstudio 4.2.2
------------------
+## TeXstudio 4.2.2
+
 - more cwls
 - fix crash, #2094, #2084, #2109
 - use picture highlighting for tikz env and similar
 
-TeXstudio 4.2.1
------------------
+## TeXstudio 4.2.1
+
 - fix placeholder issues
 - fix handling mirrored placeolder, like in issue #2063
 - handle NewDocumentsCommand better for completer
@@ -90,16 +91,16 @@ TeXstudio 4.2.1
 - fix building for poppler >=22.x 
 - more cwls
 
-TeXstudio 4.2.0
------------------
+## TeXstudio 4.2.0
+
 - more cwls
 - fix key handling for some special keyboard set-ups (#2011)
 - fix user menu handling
 - filter available dictionaries in status/language selection
 - change placeHolder behavior: autoremove when content in placeholder is changed, don't use placeholder for cutBuffer
 
-TeXstudio 4.1.2
------------------
+## TeXstudio 4.1.2
+
 - allow resizing the different sections in the symbol widget 
 - fix automatic session restore on OSX/Qt6
 - scale inline preview if visible linewidth is too small
@@ -107,42 +108,42 @@ TeXstudio 4.1.2
 - added cwls
 - Use Qt 6.2.2 on OSX (fixes ctrl+letter shortcut issue on OSX)
 
-TeXstudio 4.1.1
------------------
+## TeXstudio 4.1.1
+
 - fix weird OSX issue that cursor keys were not working
 - allow maximise config dialog 
 
-TeXstudio 4.1.0
------------------
+## TeXstudio 4.1.0
+
 - change session format to json in order to circumvent OSX/Qt6 issue
 - fix input box for chinese (#1896)
 - fix update of pdf fit to text width (#1935)
 - make edview accessible from js
 
-TeXstudio 4.0.4
------------------
+## TeXstudio 4.0.4
+
 - use QT6.2.1 on OSX, fix crash when checking for updates, fix restoring last session
 - better pdf font substitution on windows (#1812)
 - fix placing cursor for large fonts (#1908)
 - more cwls
 
-TeXstudio 4.0.3
------------------
+## TeXstudio 4.0.3
+
 - fix linewidth calculation in Qt6
 - fix crash on load/new doc (under unknown,system specific circumstances)
 - remove placeholder quicker
 - more cwls 
 
-TeXstudio 4.0.2
------------------
+## TeXstudio 4.0.2
+
 - fix structure view (inlcudes and cursor marking, #1828) 
 - fix completer tooltip on bibids (#1835)
 - OSX: fix "slanted" cursor (#1836)
 - more cwls
 
 
-TeXstudio 4.0.1
------------------
+## TeXstudio 4.0.1
+
 - add more cwls
 - fix pdfviewer page display
 - build OSX with QT6.2, fix special charcters entry (alt+n + n , etc.) (#1770)
@@ -150,8 +151,8 @@ TeXstudio 4.0.1
 - fix strcuture detection for included files
  
 
-TeXstudio 4.0.0
------------------
+## TeXstudio 4.0.0
+
 - adapt to Qt6/poppler-qt6
 - OSX/win build provided with Qt6
 - remodel structure handling in order to avoid (rare) crashes
@@ -163,8 +164,8 @@ TeXstudio 4.0.0
 - some bug fixes
 
 
-TeXstudio 3.1.2
------------------
+## TeXstudio 3.1.2
+
 - completed global TOC (background color coded, can be adjusted in config)
 - fontawesome5 symbol pane
 - another dark theme style (Orion Dark)
@@ -177,18 +178,18 @@ TeXstudio 3.1.2
 
 
 
-TeXstudio 3.1.1
------------------
+## TeXstudio 3.1.1
+
 - fix crashes concerning opening included files
 - let global TOC update as you type
 
-TeXstudio 3.1.0
------------------
+## TeXstudio 3.1.0
+
 - fix changing GUI language
 - global TOC added which needs to be updated for now (WIP)
 
-TeXstudio 3.0.5
------------------
+## TeXstudio 3.0.5
+
 - fix crash when deleting all elements of a build chain (#1415)
 - fix large tooltips on win with ADWAITA style
 - number of pdf rendering threads limited to 8 (or to set value, see #1463)
@@ -199,17 +200,17 @@ TeXstudio 3.0.5
 - fix replace in global search
 
 
-TeXstudio 3.0.4
------------------
+## TeXstudio 3.0.4
+
 - fix RTL presentation when zoomed (#1404)
 - fix pdf toolbar size setting
 
-TeXstudio 3.0.3
------------------
+## TeXstudio 3.0.3
+
 - fix OSX build
 
-TeXstudio 3.0.2
------------------
+## TeXstudio 3.0.2
+
 - handle \tabularnewline correctly (#1373)
 - fix text insertion on selected text (#1359&#1354)
 - changed behaviour for cut buffer and Ctrl+e (insert env)  (#1342)
@@ -217,59 +218,59 @@ TeXstudio 3.0.2
 - win build now uses 64 bit and can handle larger documents
 - larger number of default dictionaries added
 
-TeXstudio 3.0.1
------------------
+## TeXstudio 3.0.1
+
 - fix glitch in modern style (#1238 , triangle missing)
 - fix equation preview (#1234)
 - fix commands with quotes (#1225 & #1169)
 - fix syntax marker in darkmode (#1224)
 
-TeXstudio 3.0.0
------------------
+## TeXstudio 3.0.0
+
 - speed up document parsing, should result in faster document load times
 - spell checking is done asynchronously
 - custom verbatim/math env highlighting abandoned for a cwl based approach
 - better dark-mode support 
 - qt4 support abandoned
 
-TeXstudio 2.12.22
-----------------
+## TeXstudio 2.12.22
+
 - fixes garbled symbols in OSX
 - fix crash when changing magic language comment 
 - fix pdf search path handling.
 
-TeXstudio 2.12.20
-----------------
+## TeXstudio 2.12.20
+
 - fixes a problem with replacing when search highlight is activated.
 
-TeXstudio 2.12.18
-----------------
+## TeXstudio 2.12.18
+
 - bug fixes
 - some cwl added
 - correct handling of \string~ in filenames in \include
 - search can handle more regexp (greedy/lazy) since it has been changed to QRegularExpression on QT5 (no change on QT4)
 
-TeXstudio 2.12.16
-----------------
+## TeXstudio 2.12.16
+
 - bug fixes
 - somes fixes for tool-tip preview by MeanSquaredError
 
-TeXstudio 2.12.14
-----------------
+## TeXstudio 2.12.14
+
 - fix bug that not all available GUI languages are shown
 - tweak fuzzy completer
 - fix template presentation
 
-TeXstudio 2.12.12
-----------------
+## TeXstudio 2.12.12
+
 - improve macro handling, provide gui that directly downloads macros from github.com/texstudio-org/texstudio-macro
 - add fuzzy completion mode
 - add cwls
 - fix rare bug that the character appear reverse order
 - bug fixes
 
-TeXstudio 2.12.10
-----------------
+## TeXstudio 2.12.10
+
 - improvement recognized latex commands and packages for completion/syntax checking
 - complete package names when they contain minus
 - do not clean .git subfolder with auxiliary files
@@ -278,8 +279,8 @@ TeXstudio 2.12.10
 - fix structure view with Qt >5.10
 - bug fixes
 
-TeXstudio 2.12.8
-----------------
+## TeXstudio 2.12.8
+
 - improved tokenizer for syntax checking and completion
 - pressing Ctrl+F while the editor search has focus opens the extended search, i.e., you'll get extended search by pressing Ctrl+F twice
 - automatically insert math delimiters ($) when inserting a math command outside of a math env (can be turned off, default on)
@@ -296,8 +297,8 @@ TeXstudio 2.12.8
 - build for OSX High Sierra
 - various other fixes
 
-TeXstudio 2.12.6
-----------------
+## TeXstudio 2.12.6
+
 - use Breeze window theme on KDE Plasma 5 (thanks to Alexander Wilms)
 - support single-finger panning gesture on most config dialog components
 - support single-finger panning touch gesture on log viewer
@@ -344,8 +345,8 @@ TeXstudio 2.12.6
 - fix column detection for tabu/longtabu
 
 
-TeXstudio 2.12.4
-----------------
+## TeXstudio 2.12.4
+
 - detect definition of tex counts using \newcount
 - improve config dialog layout
 - make todo comment detection configurable
@@ -386,8 +387,8 @@ TeXstudio 2.12.4
 - add turkish translation
 
 
-TeXstudio 2.12.2
-----------------
+## TeXstudio 2.12.2
+
 - PDF shortcuts are now changeable
 - Support LanguageTool json API (needed for LanguageTool > 3.5)
 - slightly improved layout of config dialog
@@ -399,8 +400,8 @@ TeXstudio 2.12.2
 - fix: avoid problems if check latex is called without open documents
 
 
-TeXstudio 2.12.0
-----------------
+## TeXstudio 2.12.0
+
 - improved user interface: optimized layout, some new icons, some changes of color
 - warn if file-saving fails
 - cwl-based highlighting of todo-like commands
@@ -453,8 +454,8 @@ TeXstudio 2.12.0
 - improved some cwl files
 
 
-TeXstudio 2.11.2
-----------------
+## TeXstudio 2.11.2
+
 - major performance speedup, in case some default section commands were not defined in any used package
 - speed up pasting into large documents (factor 100x)
 - add comment toggle
@@ -501,8 +502,8 @@ before changing to windowed mode (Bug #1876)
 - updated some cwl files
 
 
-TeXstudio 2.11.0
-----------------
+## TeXstudio 2.11.0
+
 - support two editors next to each other
 - new tabular wizard
 - support multi-line commands
@@ -575,8 +576,8 @@ TeXstudio 2.11.0
 - improved generation of label texts
 
 
-TeXstudio 2.10.8
-----------------
+## TeXstudio 2.10.8
+
 - automatically expand search result if all matches are within one file
 - detection of magic comment % !TeX is more permissive concerning case sensistivity
 - fix crash when using \subparagraph
@@ -585,8 +586,8 @@ TeXstudio 2.10.8
 - update latex reference manual (Oct 2015)
 
 
-TeXstudio 2.10.6
-----------------
+## TeXstudio 2.10.6
+
 - add option to choose the poppler render backend
 - prevention of file corruption if saving fails for some reason
 - global search button in search toolbar now updates the results instead of show/hide
@@ -622,8 +623,8 @@ TeXstudio 2.10.6
 - updates to cwl files
 
 
-TeXstudio 2.10.4
-----------------
+## TeXstudio 2.10.4
+
 - adapt to changed TeXlive paths on Mac OS X El Capitan (path detection and change notification)
 - more granular selection of update notifications: stable / release candidate /development
 - image as an alternative caching format (better rendering results for some cases)
@@ -659,8 +660,8 @@ TeXstudio 2.10.4
 - some updates to cwl files
 
 
-TeXstudio 2.10.2
-----------------
+## TeXstudio 2.10.2
+
 - fix recognition of environments defined via \newtheorem
 - fix disabling of syntax check
 - fix copying from message panel using shortcut Ctrl+C
@@ -671,8 +672,8 @@ TeXstudio 2.10.2
 - update French, German and Spanish translations
 
 
-TeXstudio 2.10.0
-----------------
+## TeXstudio 2.10.0
+
 - new and improved LaTeX parser, the last command argument can now span over several lines
 - change: consolidated default shortcuts of tools
 - rename "master document" -> "explicit root document" and clean up switching logic
@@ -745,13 +746,13 @@ TeXstudio 2.10.0
 - added spanish dictionary
 
 
-TeXstudio 2.9.4
----------------
+## TeXstudio 2.9.4
+
 - fix: bug concerning overwritten shortcuts on Linux and OSX
 
 
-TeXstudio 2.9.2
----------------
+## TeXstudio 2.9.2
+
 - allow word wrapping at all CJK characters
 - simplified latexmk call (thanks to YoungFrog)
 - fix: incorrect interpretation of dir/file arguments in import commands
@@ -763,8 +764,8 @@ TeXstudio 2.9.2
 - fix: positioning of completer tooltip when using multiple screens
 
 
-TeXstudio 2.9.0
----------------
+## TeXstudio 2.9.0
+
 - link overlays for urls
 - close editor tab by pressing middle mouse button
 - more standard shortcuts (in particular for OS X)
@@ -820,8 +821,8 @@ TeXstudio 2.9.0
 - removed: case insensitive completion (due to complexity/performance issues)
 
 
-TeXstudio 2.8.8
----------------
+## TeXstudio 2.8.8
+
 - basic Asymptote highlighting
 - improved parsing of command options
 - notify that syncing between PDF and .tex won't work anymore after "File Save As..." (need to recompile)
@@ -840,8 +841,8 @@ TeXstudio 2.8.8
 - some updates to the manual
 
 
-TeXstudio 2.8.6
----------------
+## TeXstudio 2.8.6
+
 - tab key inserts tab or indents, depending on cursor selection
 - error table can be filtered and sorted
 - tooltips on package names show a short description of the package
@@ -868,8 +869,8 @@ TeXstudio 2.8.6
 - updated cwls: yathesis, marvosym, microtype, pifont, glossaries
 
 
-TeXstudio 2.8.4
----------------
+## TeXstudio 2.8.4
+
 - improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible
 - support command detection for \DeclareRobustCommand
 - persistently store fit and center options of preview panel
@@ -893,8 +894,8 @@ TeXstudio 2.8.4
 - fix incorrect search highlight region in PDF viewer with Qt5
 
 
-TeXstudio 2.8.2
----------------
+## TeXstudio 2.8.2
+
 - color completion
 - some more predefined completions for tikz
 - region preview with pdflatex and the embedded viewer (activate in options)
@@ -907,8 +908,8 @@ TeXstudio 2.8.2
 - several bugfixes
 
 
-TeXstudio 2.8.0
----------------
+## TeXstudio 2.8.0
+
 - completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)
 - search and replace over several documents improved
 - improved parser for log files (better detection of filenames)
@@ -924,9 +925,9 @@ TeXstudio 2.8.0
 - updated LaTeX reference manual
 - several bugfixes
 
+------
+## TeXstudio 2.7.0
 
-TeXstudio 2.7.0
----------------
 - added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)
 - added list of recent sessions
 - speedup of saving for large documents
@@ -947,16 +948,16 @@ TeXstudio 2.7.0
 - several bugfixes
 
 
-TeXstudio 2.6.6
----------------
+## TeXstudio 2.6.6
+
 - fix home/end keys with embedded viewer
 - fix macro abbreviation
 - fix log entry locations not updated in editor
 - signed windows installer
 
 
-TeXstudio 2.6.4
----------------
+## TeXstudio 2.6.4
+
 - package scanner: queries the tex istallation for installed packages and highlights missing packages
 - package completion
 - basic annotation support in internal pdf viewer
@@ -973,8 +974,8 @@ TeXstudio 2.6.4
 - bug fixes, e.g. tooltip does not disappear instantly anymore
 
 
-TeXstudio 2.6.2
----------------
+## TeXstudio 2.6.2
+
 - structure tree view: context menu entries to recursively collapse/expand the structure
 - improved hard line wrap with joining lines
 - View -> Focus Viewer now also works for the windowed viewer
@@ -991,8 +992,8 @@ TeXstudio 2.6.2
 - more small corrections and improvements
 
 
-TeXstudio 2.6.0
----------------
+## TeXstudio 2.6.0
+
 - Retina Mac support
 - switched to svg icons
 - folded lines are now stored in the session
@@ -1013,8 +1014,8 @@ TeXstudio 2.6.0
 - lots of small corrections and improvements
 
 
-TeXstudio 2.5.2  SVN 3707
--------------------------
+## TeXstudio 2.5.2  SVN 3707
+--
 - new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable
 - add support to display CJK and Cyrillic in PDF viewer
 - increased maximum possible tab width to 32
@@ -1027,8 +1028,8 @@ TeXstudio 2.5.2  SVN 3707
 - several small corrections
 
 
-TeXstudio 2.5.1  SVN 3445
--------------------------
+## TeXstudio 2.5.1  SVN 3445
+--
 - improved fold panel
 - new template system
 - added support for forward/backward mouse buttons in editor and viewer
@@ -1040,8 +1041,8 @@ ref/commands overview
 - several bug fixes (pdf scrolling range, user template path, OSX-related bugs, ...)
 
 
-TeXstudio 2.5  SVN 3378
------------------------
+## TeXstudio 2.5  SVN 3378
+
 - cursor history (go back/forward)
 - references, packages and included file names become links on Ctrl+MouseOver
 - insertion of handwritten equations (Windows 7 only, using TexTablet)
@@ -1055,8 +1056,8 @@ TeXstudio 2.5  SVN 3378
 - several bug fixes (crashes, compilation, focus, ...)
 
 
-TeXstudio 2.4  SVN 3255
------------------------
+## TeXstudio 2.4  SVN 3255
+
 - new build system which allows easier combination of several commands
 - support many new tools: xelatex, lualatex, biber, latexmk, texindy
 - embedded pdf viewer
@@ -1074,8 +1075,8 @@ TeXstudio 2.4  SVN 3255
 - several bug fixes
 
 
-TeXstudio 2.3  SVN 2459
------------------------
+## TeXstudio 2.3  SVN 2459
+
 - list of commands accepting \ref/\cite-references can be changed
 - remember search history
 - support for different dictionaries per document
@@ -1087,8 +1088,8 @@ TeXstudio 2.3  SVN 2459
 - more methods available for scripting
 - several bug fixes (especially crashes in the pdf viewer/syntax check/structure view) and minor improvements
 
-TeXstudio 2.2  SVN 2143
------------------------
+## TeXstudio 2.2  SVN 2143
+
 - pdf viewer can show multiple pages in continuous fashion
 - pdf viewer works non-blocking (multi-threaded)
 - preview works with included files
@@ -1100,8 +1101,7 @@ TeXstudio 2.2  SVN 2143
 - as always, bug fixes and small improvements
 
 
-TexMakerX 2.1  SVN 1772
------------------------
+## TexMakerX 2.1  SVN 1772
 - improved latex syntax checking: auto detect used packages and more reliable
 - auto detect master/include relations, no master document should be needed anymore
 - extended internal pdf viewer, multiple pages and new features
@@ -1110,8 +1110,8 @@ TexMakerX 2.1  SVN 1772
 - as always, bug fixes and small improvements
 
 
-TexMakerX 2.0  SVN 1495
------------------------
+## TexMakerX 2.0  SVN 1495
+
 - integrated pdf viewer with forward/reverse search based on Texworks
 - online latex syntax checking like spell checking(for simple errors)
 - support to manipulate tables (add/remove lines,columns or \hline)
@@ -1124,8 +1124,8 @@ TexMakerX 2.0  SVN 1495
 - as always, bug fixes and small improvements
 
 
-TexMakerX 1.9.9a
-----------------
+## TexMakerX 1.9.9a
+
 - some performance issues on mac have been addressed. It should feel faster for long sible lines on mac.
 - more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking
 - command replacement in completed commands was added
@@ -1139,8 +1139,8 @@ TexMakerX 1.9.9a
 - lots of bugs removed after user feedback
 
 
-TexMakerX 1.9.9
----------------
+## TexMakerX 1.9.9
+
 - added interactive structure view update
 - added basic scripting
 - added automatically SVN commits
@@ -1153,8 +1153,8 @@ TexMakerX 1.9.9
 - several other fixes
 
 
-TexMakerX 1.9.3
----------------
+## TexMakerX 1.9.3
+
 - added a find in open files dialog
 - added automatic bibtex calling
 - added a syntax for the current file in commands as ?c:ame
@@ -1166,8 +1166,8 @@ TexMakerX 1.9.3
 - fixed KDE dark theme
 
 
-TexMakerX 1.9.2
----------------
+## TexMakerX 1.9.2
+
 - added experimental latex preview
 - added random text generator
 - added integrated synonym dictionary (using openOffice databases, default en, de, fr)
@@ -1182,8 +1182,8 @@ TexMakerX 1.9.2
 - see usermanual_en.html for a more detailed description
 
 
-TexMakerX 1.9
--------------
+## TexMakerX 1.9
+
 - first steps for dynamic syntax highlighting: references in in commands like \label or \ref are checked and are marked especially if the reference does not exist (in case of referencing) or if it has been defined multiple times
 - extended word completion system to use "kile"-word lists (*.cwl)
 - key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells
@@ -1203,8 +1203,8 @@ TexMakerX 1.9
 - lots of bug fixes
 
 
-TexMakerX 1.8.1
----------------
+## TexMakerX 1.8.1
+
 - added Windows DDE support
 - added free menu key board mapping (also shift+insert key bindings)
 - added word completion
@@ -1215,8 +1215,8 @@ TexMakerX 1.8.1
 - more bug fixes
 
 
-TexMakerX 1.8
--------------
+## TexMakerX 1.8
+
 - forking from Texmaker
 - editor based on qcodeedit (code folding, better bookmarks, incremental search, ...)
 - interactive spell checking, spell checker based on hunspell-1.2.8 (fixing bug)
@@ -1228,8 +1228,8 @@ TexMakerX 1.8
 - maintaining author changed, new name, new homepage: texmakerx.sourceforge.net
 
 
-Texmaker 1.8
-------------
+## Texmaker 1.8
+
 - texmaker can now be only started once per user : inverse search will no more launch a new instance of texmaker
 - the spell checker is now based on hunspell-1.2.4
 - the latex errors detection has been improved
@@ -1238,15 +1238,15 @@ Texmaker 1.8
 - "\end{...}" is now added automatically after "\begin{...}" while using autocompletion
 
 
-Texmaker 1.7.1
---------------
+## Texmaker 1.7.1
+
 Bugs fixed :
 - no more crash with the "Previous LaTeX error" command and the syntax highlighting
 - the "find" command starts at cursor and not at the beginning of the document
 
 
-Texmaker 1.7
-------------
+## Texmaker 1.7
+
 - New search widget
 - Spell checking is now based on hunspell and uses OpenOffice.org dictionaries.
 - New LaTeX log errors detection
@@ -1254,8 +1254,8 @@ Texmaker 1.7
 - Code completion
 
 
-Texmaker 1.6
-------------
+## Texmaker 1.6
+
 - spell checking bug has been fixed (when misspelled and original word has not the same size)
 - some keyboard accelerators has been changed (trouble with non latin1 keyboard configuration). Users can now changed some keyboard shortcuts ("latex" and "math" menus)
 - german, russian and chinese translations has been added
@@ -1267,8 +1267,8 @@ texmaker file [-master] [-line xxx]
 - the config file is now in the ini format
 
 
-Texmaker 1.5
-------------
+## Texmaker 1.5
+
 - a "most used symbols" panel has been added
 - the math mode "$$...$$" is replaced by "\[ \]"
 - keyboard accelerators has been added in the "latex" and "math" menus
@@ -1280,8 +1280,8 @@ Texmaker 1.5
 - minor bugfixes (dialogs layout, french translation...)
 
 
-Texmaker 1.4
-------------
+## Texmaker 1.4
+
 - Spell checking has been added (aspell is required)
 - Support for the main pstricks commands has been added
 - The html conversion tool is now available on windows (only ghostscript is required)
@@ -1291,14 +1291,14 @@ Texmaker 1.4
 - minor bugfixes (replace dialog, close event...)
 
 
-Texmaker 1.3
-------------
+## Texmaker 1.3
+
 - Texmaker is now a pure QT4 program (qt >= 4.1 is required). The qt3 support library is no more required. The editor is now based on the qt4 QtextEdit object and the symbols icon view is an qt4 QTableWidget object.
 - For each file, three bookmarks can be used to speed up navigation.
 
 
-Texmaker 1.2
-------------
+## Texmaker 1.2
+
 - Don't use anymore double-clic to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.
 - Don't use anymore / to separate commands (quick build and users commands) but | to avoid confusion with the directories separator.
 - A selected icon is no more highlighted (trouble on windows and macosx - the selected icon was masked).
