@@ -3,15 +3,13 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
 <meta property="og:title" content="Background information" />
-  
 <meta property="og:type" content="website" />
-  
 <meta property="og:url" content="background.html" />
-  
+<meta property="og:site_name" content="TeXstudio" />
 <meta property="og:description" content="About documents separated in several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the dete..." />
-  <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Configuring TeXstudio" href="configuration.html" />
+<meta name="description" content="About documents separated in several files: LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the dete..." />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="CHANGELOG" href="CHANGELOG.html" /><link rel="prev" title="Configuring TeXstudio" href="configuration.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
         <title>Background information - TeXstudio 4.5.2 documentation</title>
@@ -176,6 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring TeXstudio</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Background information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">CHANGELOG</a></li>
 </ul>
 
 </div>
@@ -663,11 +662,11 @@ arguments are not available and no completion hints are given.</p>
 <p>The definition file is an xml file, general description of xml can be found on the internet.</p>
 <p>The following shows an example which redefines the “\documentclass” entry in the latex menu and the “part” entry in the submenu “Sectioning”.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;TexMakerXUI&gt;</span>
-<span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;main/latex&quot;</span> <span class="na">text=</span><span class="s">&quot;&amp;amp;LaTeX&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&quot;documentclass&quot;</span> <span class="na">text=</span><span class="s">&quot;\documentclass (redefined)&quot;</span> <span class="na">insert=</span><span class="s">&quot;Redefined&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;menu</span> <span class="na">id=</span><span class="s">&quot;sectioning&quot;</span> <span class="na">text=</span><span class="s">&quot;&amp;amp;Sectioning&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&quot;part&quot;</span> <span class="na">text=</span><span class="s">&quot;part (redefined)&quot;</span> <span class="na">insert=</span><span class="s">&quot;Redefined part&quot;</span> <span class="na">icon=</span><span class="s">&quot;part&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/menu&gt;</span>
+<span class="nt">&lt;menu</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;main/latex&quot;</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;&amp;amp;LaTeX&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;insert</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;documentclass&quot;</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;\documentclass (redefined)&quot;</span><span class="w"> </span><span class="na">insert=</span><span class="s">&quot;Redefined&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;menu</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;sectioning&quot;</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;&amp;amp;Sectioning&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;insert</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;part&quot;</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;part (redefined)&quot;</span><span class="w"> </span><span class="na">insert=</span><span class="s">&quot;Redefined part&quot;</span><span class="w"> </span><span class="na">icon=</span><span class="s">&quot;part&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/menu&gt;</span>
 <span class="nt">&lt;/menu&gt;</span>
 <span class="nt">&lt;/TexMakerXUI&gt;</span>
 </pre></div>
@@ -701,15 +700,15 @@ Optionally, meta data can be stored in JSON format in a separate file
 with the same name, but extension “.json” instead of “.tex” or
 “.zip”. Currently the following entries are supported in the meta
 data:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
-<span class="s2">&quot;Name&quot;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Book&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Author&quot;</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;TXS built-in&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Date&quot;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;04.01.2013&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Version&quot;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.1&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Description&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Default LaTeX class for books using separate files for each chapter.&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;License&quot;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Public Domain&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;FilesToOpen&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;./TeX_files/chapter01.tex;main.tex&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;Name&quot;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Book&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Author&quot;</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;TXS built-in&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Date&quot;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;04.01.2013&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Version&quot;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.1&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Description&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Default LaTeX class for books using separate files for each chapter.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;License&quot;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Public Domain&quot;</span><span class="p">,</span>
+<span class="s2">&quot;FilesToOpen&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;./TeX_files/chapter01.tex;main.tex&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>FilesToOpen only has an effect for multi-file documents. You may add a
@@ -726,13 +725,13 @@ can be stored in a <code class="docutils literal notranslate"><span class="pre">
 <code class="docutils literal notranslate"><span class="pre">var</span> <span class="pre">metaData</span> <span class="pre">=</span> <span class="pre">{</span></code> has to start on the first line of the file. Currently
 only string values are accepted. It is possible to use html tags for
 formatting. Example:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">metaData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="s2">&quot;Name&quot;</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Colored rows&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Description&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Formats the table using alternate colors for rows. &lt;br&gt; &lt;code&gt;\usepackage[table]{xcolor}&lt;/code&gt; is necessary.&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Author&quot;</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jan Sundermeyer&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Date&quot;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;4.9.2011&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="s2">&quot;Version&quot;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">metaData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="s2">&quot;Name&quot;</span><span class="w">       </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Colored rows&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Description&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Formats the table using alternate colors for rows. &lt;br&gt; &lt;code&gt;\usepackage[table]{xcolor}&lt;/code&gt; is necessary.&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Author&quot;</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jan Sundermeyer&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Date&quot;</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;4.9.2011&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Version&quot;</span><span class="w">     </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The template itself is a javascript (see above) with some predefined
@@ -750,57 +749,57 @@ columns which contains the cell content as string</p></li>
 </ul>
 <p>To see the principle of work, the source for the “plain_tabular”
 template is given here.</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span><span class="w"> </span><span class="c1">//define this function to make source more readable</span><span class="w"></span>
-<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">println</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span><span class="w"> </span><span class="c1">//define this function to make source more readable</span><span class="w"></span>
-<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="o">+</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">var</span><span class="w"> </span><span class="nx">arDef</span><span class="o">=</span><span class="nx">def</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// split the table definition (ll -&gt; &#39;l&#39; &#39;l&#39;)</span><span class="w"></span>
-<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\begin{tabular}{&quot;</span><span class="o">+</span><span class="nx">arDef</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;}&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//print table env</span><span class="w"></span>
-<span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">tab</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span><span class="w">  </span><span class="c1">// loop through all rows of the table</span><span class="w"></span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">line</span><span class="o">=</span><span class="nx">tab</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><span class="w">  </span><span class="c1">// line is a list of all columns of row[i]</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">j</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">j</span><span class="o">++</span><span class="p">){</span><span class="w"> </span><span class="c1">// loop through all columns of a row</span><span class="w"></span>
-<span class="w">        </span><span class="nx">print</span><span class="p">(</span><span class="nx">line</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span><span class="w"> </span><span class="c1">// print cell</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// if not last columns</span><span class="w"></span>
-<span class="w">            </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// print &amp;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\\\&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// close row with \\, note that js demands for backslashes in the string</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\end{tabular}&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// close environment</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span><span class="w"> </span><span class="c1">//define this function to make source more readable</span>
+<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">println</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span><span class="w"> </span><span class="c1">//define this function to make source more readable</span>
+<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="o">+</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">arDef</span><span class="o">=</span><span class="nx">def</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// split the table definition (ll -&gt; &#39;l&#39; &#39;l&#39;)</span>
+<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\begin{tabular}{&quot;</span><span class="o">+</span><span class="nx">arDef</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;}&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">//print table env</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">tab</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span><span class="w">  </span><span class="c1">// loop through all rows of the table</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">line</span><span class="o">=</span><span class="nx">tab</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><span class="w">  </span><span class="c1">// line is a list of all columns of row[i]</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">j</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">j</span><span class="o">++</span><span class="p">){</span><span class="w"> </span><span class="c1">// loop through all columns of a row</span>
+<span class="w">        </span><span class="nx">print</span><span class="p">(</span><span class="nx">line</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span><span class="w"> </span><span class="c1">// print cell</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// if not last columns</span>
+<span class="w">            </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// print &amp;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\\\&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// close row with \\, note that js demands for backslashes in the string</span>
+<span class="p">}</span>
+<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\end{tabular}&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// close environment</span>
 </pre></div>
 </div>
 <p>As can be seen in the example, the table has to be rebuilt completely,
 thus allowing new formatting. A second example gives a slightly more
 elaborate table (fullyframed_firstBold):</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span><span class="w"></span>
-<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">function</span><span class="w"> </span><span class="nx">println</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span><span class="w"></span>
-<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="o">+</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="k">if</span><span class="p">(</span><span class="nx">env</span><span class="o">==</span><span class="s2">&quot;tabularx&quot;</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\begin{tabularx}{\\linewidth}{|&quot;</span><span class="o">+</span><span class="nx">defSplit</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;|}&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\begin{&quot;</span><span class="o">+</span><span class="nx">env</span><span class="o">+</span><span class="s2">&quot;}{|&quot;</span><span class="o">+</span><span class="nx">defSplit</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;|}&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\hline&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">tab</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">line</span><span class="o">=</span><span class="nx">tab</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">j</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">j</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
-<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">col</span><span class="o">=</span><span class="nx">line</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span><span class="w"></span>
-<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">mt</span><span class="o">=</span><span class="nx">col</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^\\textbf/</span><span class="p">);</span><span class="w"></span>
-<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">==</span><span class="mf">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nx">mt</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;\\textbf{&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="nx">print</span><span class="p">(</span><span class="nx">line</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span><span class="w"></span>
-<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">==</span><span class="mf">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nx">mt</span><span class="p">)</span><span class="w"></span>
-<span class="w">                    </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\\\ \\hline&quot;</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\end{&quot;</span><span class="o">+</span><span class="nx">env</span><span class="o">+</span><span class="s2">&quot;}&quot;</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">print</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">println</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+<span class="nx">cursor</span><span class="p">.</span><span class="nx">insertText</span><span class="p">(</span><span class="nx">str</span><span class="o">+</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">env</span><span class="o">==</span><span class="s2">&quot;tabularx&quot;</span><span class="p">){</span>
+<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\begin{tabularx}{\\linewidth}{|&quot;</span><span class="o">+</span><span class="nx">defSplit</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;|}&quot;</span><span class="p">)</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\begin{&quot;</span><span class="o">+</span><span class="nx">env</span><span class="o">+</span><span class="s2">&quot;}{|&quot;</span><span class="o">+</span><span class="nx">defSplit</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;|}&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\hline&quot;</span><span class="p">)</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">tab</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">line</span><span class="o">=</span><span class="nx">tab</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">j</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">col</span><span class="o">=</span><span class="nx">line</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+<span class="w">                </span><span class="kd">var</span><span class="w"> </span><span class="nx">mt</span><span class="o">=</span><span class="nx">col</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/^\\textbf/</span><span class="p">);</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">==</span><span class="mf">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nx">mt</span><span class="p">)</span>
+<span class="w">                    </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;\\textbf{&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">print</span><span class="p">(</span><span class="nx">line</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">==</span><span class="mf">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nx">mt</span><span class="p">)</span>
+<span class="w">                    </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">j</span><span class="o">&lt;</span><span class="nx">line</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">print</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\\\ \\hline&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">println</span><span class="p">(</span><span class="s2">&quot;\\end{&quot;</span><span class="o">+</span><span class="nx">env</span><span class="o">+</span><span class="s2">&quot;}&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -998,7 +997,15 @@ build&gt;cmake --build . -t texstudio<span class="nb">_</span>lupdate
       <footer>
         
         <div class="related-pages">
-          
+          <a class="next-page" href="CHANGELOG.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">CHANGELOG</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
           <a class="prev-page" href="configuration.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">

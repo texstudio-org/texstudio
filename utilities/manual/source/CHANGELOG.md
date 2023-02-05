@@ -1,5 +1,5 @@
 # CHANGELOG
-## TeXstudio 4.5.2
+## TeXstudio development (4.5.2)
 
 - Show changelog in about dialog
 

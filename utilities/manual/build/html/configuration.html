@@ -3,15 +3,13 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
 <meta property="og:title" content="Configuring TeXstudio" />
-  
 <meta property="og:type" content="website" />
-  
 <meta property="og:url" content="configuration.html" />
-  
+<meta property="og:site_name" content="TeXstudio" />
 <meta property="og:description" content="TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see here, others are available with the “Configure TeXstudio” command in the “Options” me..." />
-  <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Background information" href="background.html" /><link rel="prev" title="Advanced features" href="advanced.html" />
+<meta name="description" content="TeXstudio can be adapted in a wide range. Some options are directly available in the GUI via context menus, see here, others are available with the “Configure TeXstudio” command in the “Options” me..." />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Background information" href="background.html" /><link rel="prev" title="Advanced features" href="advanced.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
         <title>Configuring TeXstudio - TeXstudio 4.5.2 documentation</title>
@@ -176,6 +174,7 @@
 <li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Configuring TeXstudio</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CHANGELOG.html">CHANGELOG</a></li>
 </ul>
 
 </div>
@@ -1057,8 +1056,8 @@ can be renamed and a new Latex-Code, or in case of the tools menu, new tool comm
 </div>
 <p>In <a class="reference internal" href="advanced.html#script-macros"><span class="std std-doc">script macros</span></a>, the command <code class="docutils literal notranslate"><span class="pre">app.loadManagedMenu()</span></code> loads a file that contains your additional <a class="reference internal" href="background.html#menu-definitions"><span class="std std-doc">definitions</span></a> for menus.
 These definitions may extend current menus, but it may also redefine them:</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="o">%</span><span class="nx">SCRIPT</span><span class="w"></span>
-<span class="w">    </span><span class="nx">app</span><span class="p">.</span><span class="nx">loadManagedMenu</span><span class="p">(</span><span class="s1">&#39;C:/..../menu.xml&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="o">%</span><span class="nx">SCRIPT</span>
+<span class="w">    </span><span class="nx">app</span><span class="p">.</span><span class="nx">loadManagedMenu</span><span class="p">(</span><span class="s1">&#39;C:/..../menu.xml&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Use macro trigger <code class="docutils literal notranslate"><span class="pre">?txs-start</span></code> in order to automatically load this menu definition at start-up.</p>
