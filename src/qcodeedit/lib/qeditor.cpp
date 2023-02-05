@@ -2858,21 +2858,36 @@ void QEditor::toggleCommentSelection()
 	QString commentMark = m_definition->singleLineComment();
 	bool allCommented = true;
 
-	foreach (const QDocumentCursor &cursor, cursors()) {
+    if(cursors().size()==1 && !m_cursor.hasSelection() && m_cursor.line().hasFlag(QDocumentLine::CollapsedBlockStart)){
+        // folded block, executed at only visible line
+        // select whole block
+        int lineNr=m_cursor.lineNumber();
+        for(;lineNr<m_doc->lineCount();++lineNr){
+            QDocumentLine ln=m_doc->line(lineNr);
+            if(ln.hasFlag(QDocumentLine::CollapsedBlockEnd)){
+                m_cursor.setAnchorLineNumber(lineNr);
+                m_cursor.setAnchorColumnNumber(ln.length());
+                break;
+            }
+        }
+    }
+
+    foreach (QDocumentCursor cursor, cursors()) {
 		if (cursor.hasSelection()) {
 			QDocumentCursor cur = cursor.selectionStart();
             for (int i = cursor.startLineNumber(); i <= cursor.endLineNumber() ; ++i) {
-                if (!cur.line().startsWith(commentMark) && (i<cursor.endLineNumber() || !cur.line().text().isEmpty())) { //special treatmenat of last line if empty
+                QDocumentLine ln=m_doc->line(i);
+                if (!ln.startsWith(commentMark) && (i<cursor.endLineNumber() || !cur.line().text().isEmpty())) { //special treatmenat of last line if empty
 					allCommented = false;
 					break;
 				}
-				cur.movePosition(1, QDocumentCursor::NextLine);
 			}
 		} else {
-			if (!cursor.line().startsWith(commentMark)) {
-				allCommented = false;
-			}
-		}
+            // single line
+            if (!cursor.line().startsWith(commentMark)) {
+                allCommented = false;
+            }
+        }
 		if (!allCommented) break;
 	}
 
