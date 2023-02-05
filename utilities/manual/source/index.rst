@@ -17,4 +17,5 @@ Welcome to TeXstudio Manual's documentation!
    ./advanced.md
    ./configuration.md
    ./background.md
-
+   ./CHANGELOG.md
+   
