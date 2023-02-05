@@ -2862,10 +2862,17 @@ void QEditor::toggleCommentSelection()
     if(cursors().size()==1 && !m_cursor.hasSelection() && m_cursor.line().hasFlag(QDocumentLine::CollapsedBlockStart)){
         // folded block, executed at only visible line
         // select whole block
-        int lineNr=m_cursor.lineNumber();
+        int lineNr=m_cursor.lineNumber()+1;
+        int nestingLevel=1;
         for(;lineNr<m_doc->lineCount();++lineNr){
             QDocumentLine ln=m_doc->line(lineNr);
             if(ln.hasFlag(QDocumentLine::CollapsedBlockEnd)){
+                --nestingLevel;
+            }
+            if(ln.hasFlag(QDocumentLine::CollapsedBlockStart)){
+                ++nestingLevel;
+            }
+            if(nestingLevel==0){
                 m_cursor.setAnchorLineNumber(lineNr);
                 m_cursor.setAnchorColumnNumber(ln.length());
                 cursorExpanded=true;
