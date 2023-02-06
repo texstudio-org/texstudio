@@ -21,6 +21,9 @@ AboutDialog::AboutDialog(QWidget *parent)
     if(changelogPath.isEmpty()){
         changelogPath="https://texstudio-org.github.io/CHANGELOG.html";
     }else{
+        if(!changelogPath.startsWith("/")){
+            changelogPath="/"+changelogPath;
+        }
         changelogPath="file://"+changelogPath;
     }
 	ui.textBrowser->setOpenExternalLinks(true);
