@@ -1,0 +1,1787 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta property="og:title" content="CHANGELOG" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="CHANGELOG.html" />
+<meta property="og:site_name" content="TeXstudio" />
+<meta property="og:description" content="TeXstudio development (4.5.2): Show changelog in about dialog. TeXstudio 4.5.1: Provide online template repository, change preview target in IDEFIX menu (#2760), use QtMultimedia instead of phonon ..." />
+<meta name="description" content="TeXstudio development (4.5.2): Show changelog in about dialog. TeXstudio 4.5.1: Provide online template repository, change preview target in IDEFIX menu (#2760), use QtMultimedia instead of phonon ..." />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Background information" href="background.html" />
+
+    <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+        <title>CHANGELOG - TeXstudio 4.5.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">TeXstudio 4.5.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">TeXstudio 4.5.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="editing.html">Editing a TeX document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiling.html">Compiling a document</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viewing.html">Viewing a document (pdf)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuring TeXstudio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background information</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">CHANGELOG</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="changelog">
+<h1>CHANGELOG<a class="headerlink" href="#changelog" title="Permalink to this heading">#</a></h1>
+<section id="texstudio-development-4-5-2">
+<h2>TeXstudio development (4.5.2)<a class="headerlink" href="#texstudio-development-4-5-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Show changelog in about dialog</p></li>
+</ul>
+</section>
+<section id="texstudio-4-5-1">
+<h2>TeXstudio 4.5.1<a class="headerlink" href="#texstudio-4-5-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Provide online template repository</p></li>
+<li><p>change preview target in IDEFIX menu (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2760">#2760</a>)</p></li>
+<li><p>use QtMultimedia instead of phonon to show movies in pdf (non-default)</p></li>
+<li><p>regex in search panel is syntax checked and marked if wrong</p></li>
+<li><p>latex menu for horizontal spacing (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2687">#2687</a>)</p></li>
+<li><p>config dialog with resizable splitter (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2707">#2707</a>)</p></li>
+<li><p>insert inline math mode as $$ (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2719">#2719</a>)</p></li>
+<li><p>add editor action “Move all (others) to other view” (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2713">#2713</a>)</p></li>
+<li><p>show macro name in completer list (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2679">#2679</a>)</p></li>
+<li><p>show macro trigger and shortcut in configuration window (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2635">#2635</a>)</p></li>
+<li><p>fix wrong side panel title when changing grid size in config (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2743">#2743</a>)</p></li>
+<li><p>preview/clear preview now use position of context menu as reference <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2794">(#2794</a>)</p></li>
+<li><p>add a Package Tab to the QuickStart Wizard (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2831">#2831</a>)</p></li>
+<li><p>Editor option ‘Show Only Monospaced Fonts’ is now persistent (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/788">#788</a>)</p></li>
+<li><p>fix size of config dialog on low res screens (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/995">#995</a>)</p></li>
+<li><p>add script command loadManagedMenu, s. new section “Menu Definitions” in the manual (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2816">#2816</a>)</p></li>
+<li><p>switch to pointer cursor over bookmark column of editors (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2220">#2220</a>)</p></li>
+<li><p>add shadow option for rectangular magnifier in pdf viewer config (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2885">#2885</a>)</p></li>
+<li><p>in split view mode add editor to split view where current editor is (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2838">#2838</a>)</p></li>
+</ul>
+</section>
+<section id="texstudio-4-4-1">
+<h2>TeXstudio 4.4.1<a class="headerlink" href="#texstudio-4-4-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix file association on OSX</p></li>
+<li><p>allow ignore all in spell checker dialog</p></li>
+<li><p>fix language code for LanguageTool</p></li>
+<li><p>fix cancel file close (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2705">#2705</a>)</p></li>
+<li><p>fix missing icons in latex/math menu</p></li>
+</ul>
+</section>
+<section id="texstudio-4-4-0">
+<h2>TeXstudio 4.4.0<a class="headerlink" href="#texstudio-4-4-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>new icon theme Colibri (by geolta)</p></li>
+<li><p>modernized manual</p></li>
+<li><p>faster removing of multiple lines</p></li>
+<li><p>end multi cursor mode with esc</p></li>
+<li><p><strong>no</strong> win/qt5 build</p></li>
+<li><p>switch to CMAKE build system (qmake deprecated)</p></li>
+<li><p>hide/filter configuration completer list</p></li>
+<li><p>bug fixes</p></li>
+</ul>
+</section>
+<section id="texstudio-4-3-1">
+<h2>TeXstudio 4.3.1<a class="headerlink" href="#texstudio-4-3-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix loading files various times if relative path is used for \include (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2533">#2533</a>)</p></li>
+<li><p>fix custom verbatim highlighting (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2528">#2528</a>)</p></li>
+<li><p>fix label highlighting (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2512">#2512</a>)</p></li>
+<li><p>fix version checking (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2527">#2527</a>)</p></li>
+</ul>
+</section>
+<section id="texstudio-4-3-0">
+<h2>TeXstudio 4.3.0<a class="headerlink" href="#texstudio-4-3-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>show most used command at first place in completer</p></li>
+<li><p>more cwls</p></li>
+<li><p>get position into clipboard in pdf on ctrl+shift+click (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2324">#2324</a>)</p></li>
+<li><p>set grid column of first page in pdf viewer with a mouse click (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2190">#2190</a>)</p></li>
+<li><p>copy/paste table content into table/matrix wizard</p></li>
+<li><p>move to next/previous word now stops at every delimiter (no skip over several brackets) <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2311">#2311</a></p></li>
+<li><p>build qt6/win for win10+</p></li>
+<li><p>small bug fixes</p></li>
+</ul>
+</section>
+<section id="texstudio-4-2-3">
+<h2>TeXstudio 4.2.3<a class="headerlink" href="#texstudio-4-2-3" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix unable to save under special circumstances (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2124">#2124</a>)</p></li>
+<li><p>fix stuck to save unsaved document (only in explicit root mode and with a new unsaved document,<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2153">#2153</a>)</p></li>
+<li><p>xindex engine added</p></li>
+<li><p>fix math highlighting in keyvals (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2138">#2138</a>)</p></li>
+<li><p>add context menu in embbeded pdf viewer to invert pdf colors</p></li>
+<li><p>remember window state (maximized/normal) of config dialog</p></li>
+<li><p>fix (and speed-up) miktex package detection</p></li>
+<li><p>fix handling apostrophed words better in spellchecker (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2179">#2179</a>)</p></li>
+<li><p>regular expression in extended search behave the same as in normal search</p></li>
+<li><p>more cwls</p></li>
+</ul>
+</section>
+<section id="texstudio-4-2-2">
+<h2>TeXstudio 4.2.2<a class="headerlink" href="#texstudio-4-2-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>more cwls</p></li>
+<li><p>fix crash, <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2093">#2093</a>, <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2084">#2084</a>, <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2109">#2109</a></p></li>
+<li><p>use picture highlighting for tikz env and similar</p></li>
+</ul>
+</section>
+<section id="texstudio-4-2-1">
+<h2>TeXstudio 4.2.1<a class="headerlink" href="#texstudio-4-2-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix placeholder issues</p></li>
+<li><p>fix handling mirrored placeholder, like in issue <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2063">#2063</a></p></li>
+<li><p>handle NewDocumentsCommand better for completer</p></li>
+<li><p>enable “open in explorer” again</p></li>
+<li><p>fix building for poppler &gt;=22.x</p></li>
+<li><p>more cwls</p></li>
+</ul>
+</section>
+<section id="texstudio-4-2-0">
+<h2>TeXstudio 4.2.0<a class="headerlink" href="#texstudio-4-2-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>more cwls</p></li>
+<li><p>fix key handling for some special keyboard set-ups (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2011">#2011</a>)</p></li>
+<li><p>fix user menu handling</p></li>
+<li><p>filter available dictionaries in status/language selection</p></li>
+<li><p>change placeHolder behavior: autoremove when content in placeholder is changed, don’t use placeholder for cutBuffer</p></li>
+</ul>
+</section>
+<section id="texstudio-4-1-2">
+<h2>TeXstudio 4.1.2<a class="headerlink" href="#texstudio-4-1-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>allow resizing the different sections in the symbol widget</p></li>
+<li><p>fix automatic session restore on OSX/Qt6</p></li>
+<li><p>scale inline preview if visible linewidth is too small</p></li>
+<li><p>fix latex package name parsing on Qt5 builds</p></li>
+<li><p>added cwls</p></li>
+<li><p>Use Qt 6.2.2 on OSX (fixes ctrl+letter shortcut issue on OSX)</p></li>
+</ul>
+</section>
+<section id="texstudio-4-1-1">
+<h2>TeXstudio 4.1.1<a class="headerlink" href="#texstudio-4-1-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix weird OSX issue that cursor keys were not working</p></li>
+<li><p>allow maximise config dialog</p></li>
+</ul>
+</section>
+<section id="texstudio-4-1-0">
+<h2>TeXstudio 4.1.0<a class="headerlink" href="#texstudio-4-1-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>change session format to json in order to circumvent OSX/Qt6 issue</p></li>
+<li><p>fix input box for Chinese (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1896">#1896</a>)</p></li>
+<li><p>fix update of pdf fit to text width (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1935">#1935</a>)</p></li>
+<li><p>make edview accessible from js</p></li>
+</ul>
+</section>
+<section id="texstudio-4-0-4">
+<h2>TeXstudio 4.0.4<a class="headerlink" href="#texstudio-4-0-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>use QT6.2.1 on OSX, fix crash when checking for updates, fix restoring last session</p></li>
+<li><p>better pdf font substitution on windows (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1812">#1812</a>)</p></li>
+<li><p>fix placing cursor for large fonts (#1908)</p></li>
+<li><p>more cwls</p></li>
+</ul>
+</section>
+<section id="texstudio-4-0-3">
+<h2>TeXstudio 4.0.3<a class="headerlink" href="#texstudio-4-0-3" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix linewidth calculation in Qt6</p></li>
+<li><p>fix crash on load/new doc (under unknown,system specific circumstances)</p></li>
+<li><p>remove placeholder quicker</p></li>
+<li><p>more cwls</p></li>
+</ul>
+</section>
+<section id="texstudio-4-0-2">
+<h2>TeXstudio 4.0.2<a class="headerlink" href="#texstudio-4-0-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix structure view (includes and cursor marking, <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1828">#1828</a>)</p></li>
+<li><p>fix completer tooltip on bibids (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1835">#1835</a>)</p></li>
+<li><p>OSX: fix “slanted” cursor (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1836">#1836</a>)</p></li>
+<li><p>more cwls</p></li>
+</ul>
+</section>
+<section id="texstudio-4-0-1">
+<h2>TeXstudio 4.0.1<a class="headerlink" href="#texstudio-4-0-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>add more cwls</p></li>
+<li><p>fix pdfviewer page display</p></li>
+<li><p>build OSX with QT6.2, fix special characters entry (alt+n + n , etc.) (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1770">#1770</a>)</p></li>
+<li><p>activate crash handler on win again</p></li>
+<li><p>fix strcuture detection for included files</p></li>
+</ul>
+</section>
+<section id="texstudio-4-0-0">
+<h2>TeXstudio 4.0.0<a class="headerlink" href="#texstudio-4-0-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>adapt to Qt6/poppler-qt6</p></li>
+<li><p>OSX/win build provided with Qt6</p></li>
+<li><p>remodel structure handling in order to avoid (rare) crashes</p></li>
+<li><p>more and updated completion word lists thanks to mbertucci47</p></li>
+<li><p>handle text (e.g. \text{text}) in mathenv as text with spell checking</p></li>
+<li><p>performance improvement for large files with large number of labels and/or large number of includes</p></li>
+<li><p>fix that search options are persistant</p></li>
+<li><p>automatic structure scrolling can be turned off (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/1742">#1742</a>)</p></li>
+<li><p>some bug fixes</p></li>
+</ul>
+</section>
+<section id="texstudio-3-1-2">
+<h2>TeXstudio 3.1.2<a class="headerlink" href="#texstudio-3-1-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>completed global TOC (background color coded, can be adjusted in config)</p></li>
+<li><p>fontawesome5 symbol pane</p></li>
+<li><p>another dark theme style (Orion Dark)</p></li>
+<li><p>slightly modernised windows installer</p></li>
+<li><p>smaller windows binaries</p></li>
+<li><p>fix menu changes by user</p></li>
+<li><p>fix root document detection when symbolic links of symbolic links are involved (#1505)</p></li>
+<li><p>fix disabled parentheses autocompletion after certain completer actions (#1347)</p></li>
+<li><p>results from styleparser gets immediately updated</p></li>
+</ul>
+</section>
+<section id="texstudio-3-1-1">
+<h2>TeXstudio 3.1.1<a class="headerlink" href="#texstudio-3-1-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix crashes concerning opening included files</p></li>
+<li><p>let global TOC update as you type</p></li>
+</ul>
+</section>
+<section id="texstudio-3-1-0">
+<h2>TeXstudio 3.1.0<a class="headerlink" href="#texstudio-3-1-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix changing GUI language</p></li>
+<li><p>global TOC added which needs to be updated for now (WIP)</p></li>
+</ul>
+</section>
+<section id="texstudio-3-0-5">
+<h2>TeXstudio 3.0.5<a class="headerlink" href="#texstudio-3-0-5" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix crash when deleting all elements of a build chain (#1415)</p></li>
+<li><p>fix large tooltips on win with ADWAITA style</p></li>
+<li><p>number of pdf rendering threads limited to 8 (or to set value, see #1463)</p></li>
+<li><p>add command line option –texpath to force a tex path</p></li>
+<li><p>fix touchpad scroll in x direction</p></li>
+<li><p>fix a seldom crash</p></li>
+<li><p>adapt speller dialog to find the same errors as the online checker</p></li>
+<li><p>fix replace in global search</p></li>
+</ul>
+</section>
+<section id="texstudio-3-0-4">
+<h2>TeXstudio 3.0.4<a class="headerlink" href="#texstudio-3-0-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix RTL presentation when zoomed (#1404)</p></li>
+<li><p>fix pdf toolbar size setting</p></li>
+</ul>
+</section>
+<section id="texstudio-3-0-3">
+<h2>TeXstudio 3.0.3<a class="headerlink" href="#texstudio-3-0-3" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix OSX build</p></li>
+</ul>
+</section>
+<section id="texstudio-3-0-2">
+<h2>TeXstudio 3.0.2<a class="headerlink" href="#texstudio-3-0-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>handle \tabularnewline correctly (#1373)</p></li>
+<li><p>fix text insertion on selected text (#1359&amp;#1354)</p></li>
+<li><p>changed behaviour for cut buffer and Ctrl+e (insert env)  (#1342)</p></li>
+<li><p>texdoc added as selectable command</p></li>
+<li><p>win build now uses 64 bit and can handle larger documents</p></li>
+<li><p>larger number of default dictionaries added</p></li>
+</ul>
+</section>
+<section id="texstudio-3-0-1">
+<h2>TeXstudio 3.0.1<a class="headerlink" href="#texstudio-3-0-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix glitch in modern style (#1238 , triangle missing)</p></li>
+<li><p>fix equation preview (#1234)</p></li>
+<li><p>fix commands with quotes (#1225 &amp; #1169)</p></li>
+<li><p>fix syntax marker in darkmode (#1224)</p></li>
+</ul>
+</section>
+<section id="texstudio-3-0-0">
+<h2>TeXstudio 3.0.0<a class="headerlink" href="#texstudio-3-0-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>speed up document parsing, should result in faster document load times</p></li>
+<li><p>spell checking is done asynchronously</p></li>
+<li><p>custom verbatim/math env highlighting abandoned for a cwl based approach</p></li>
+<li><p>better dark-mode support</p></li>
+<li><p>qt4 support abandoned</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-22">
+<h2>TeXstudio 2.12.22<a class="headerlink" href="#texstudio-2-12-22" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fixes garbled symbols in OSX</p></li>
+<li><p>fix crash when changing magic language comment</p></li>
+<li><p>fix pdf search path handling.</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-20">
+<h2>TeXstudio 2.12.20<a class="headerlink" href="#texstudio-2-12-20" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fixes a problem with replacing when search highlight is activated.</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-18">
+<h2>TeXstudio 2.12.18<a class="headerlink" href="#texstudio-2-12-18" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>bug fixes</p></li>
+<li><p>some cwl added</p></li>
+<li><p>correct handling of \string~ in filenames in \include</p></li>
+<li><p>search can handle more regexp (greedy/lazy) since it has been changed to QRegularExpression on QT5 (no change on QT4)</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-16">
+<h2>TeXstudio 2.12.16<a class="headerlink" href="#texstudio-2-12-16" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>bug fixes</p></li>
+<li><p>somes fixes for tool-tip preview by MeanSquaredError</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-14">
+<h2>TeXstudio 2.12.14<a class="headerlink" href="#texstudio-2-12-14" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix bug that not all available GUI languages are shown</p></li>
+<li><p>tweak fuzzy completer</p></li>
+<li><p>fix template presentation</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-12">
+<h2>TeXstudio 2.12.12<a class="headerlink" href="#texstudio-2-12-12" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>improve macro handling, provide gui that directly downloads macros from github.com/texstudio-org/texstudio-macro</p></li>
+<li><p>add fuzzy completion mode</p></li>
+<li><p>add cwls</p></li>
+<li><p>fix rare bug that the character appear reverse order</p></li>
+<li><p>bug fixes</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-10">
+<h2>TeXstudio 2.12.10<a class="headerlink" href="#texstudio-2-12-10" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>improvement recognized latex commands and packages for completion/syntax checking</p></li>
+<li><p>complete package names when they contain minus</p></li>
+<li><p>do not clean .git subfolder with auxiliary files</p></li>
+<li><p>pdf viewer: improved previous page jumping, fix embedded movie boxes (when compiled with phonon)</p></li>
+<li><p>option to use qt file dialog rather than system file dialog</p></li>
+<li><p>fix structure view with Qt &gt;5.10</p></li>
+<li><p>bug fixes</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-8">
+<h2>TeXstudio 2.12.8<a class="headerlink" href="#texstudio-2-12-8" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>improved tokenizer for syntax checking and completion</p></li>
+<li><p>pressing Ctrl+F while the editor search has focus opens the extended search, i.e., you’ll get extended search by pressing Ctrl+F twice</p></li>
+<li><p>automatically insert math delimiters ($) when inserting a math command outside of a math env (can be turned off, default on)</p></li>
+<li><p>change copy behavior of multiple cursors from selection order to line order</p></li>
+<li><p>file list is now a transparent popup window: closes when clicked outside</p></li>
+<li><p>combine file conflict and show diff dialog</p></li>
+<li><p>fix file watcher not recognizing multiple changes to a file in quick succession</p></li>
+<li><p>improved detection of package names when opening texdoc</p></li>
+<li><p>new symbol panel layout</p></li>
+<li><p>some touch scrolling on certain panels</p></li>
+<li><p>updated synctex and poppler libraries for pdf viewer</p></li>
+<li><p>fix undo when a snippet is inserted and a selection is inserted as well</p></li>
+<li><p>fix some parts of the editor background may not be drawn in the correct color</p></li>
+<li><p>build for OSX High Sierra</p></li>
+<li><p>various other fixes</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-6">
+<h2>TeXstudio 2.12.6<a class="headerlink" href="#texstudio-2-12-6" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>use Breeze window theme on KDE Plasma 5 (thanks to Alexander Wilms)</p></li>
+<li><p>support single-finger panning gesture on most config dialog components</p></li>
+<li><p>support single-finger panning touch gesture on log viewer</p></li>
+<li><p>pdf viewer scroll tool: support single-finger panning gesture</p></li>
+<li><p>center width-constrained documents in the editor (optional)</p></li>
+<li><p>add document tab context menu entries “Close” and “Close All Other Documents”</p></li>
+<li><p>improved layout of config build page</p></li>
+<li><p>add system check for language tool</p></li>
+<li><p>change search defaults to case-insensitive (feature-requests#1254)</p></li>
+<li><p>tags for beamer</p></li>
+<li><p>change preview default to embedded pdf</p></li>
+<li><p>handle preview failures more gracefully, i.e. no warning pop-ups</p></li>
+<li><p>repect preview settings (panel,etc) also for hover preview</p></li>
+<li><p>show hover preview as tooltip in case of inline-mode</p></li>
+<li><p>warn if compiler commands are actually a command list</p></li>
+<li><p>several improvements to the latex parser</p></li>
+<li><p>notify that a restart is required when switching between modern and classic style</p></li>
+<li><p>improved LanguageTool communication: better error handling</p></li>
+<li><p>add reset to default button for some LT settings</p></li>
+<li><p>add 200ms delay before showing auto-hidden viewer toolbar to prevent flicker</p></li>
+<li><p>eye candy for pdf circular magnifier (adapted code from texworks)</p></li>
+<li><p>show pdf highlight in magnifier</p></li>
+<li><p>capslock does not close completer any more</p></li>
+<li><p>alternative approach for determine directories from complete texts</p></li>
+<li><p>use cache for previews</p></li>
+<li><p>auto open completer when starting to type in references, packages etc.</p></li>
+<li><p>scripting: editor.cutBuffer</p></li>
+<li><p>subframetitle in structure view</p></li>
+<li><p>enable inputMethod (e.g. ^) in completer</p></li>
+<li><p>change default for complete non-text chacters to off, as it tends to cause unexpected behaviour</p></li>
+<li><p>fix word separation with punctuation</p></li>
+<li><p>fix: remove incorrect warning “Unknown magic comment” for “% !TeX TS-program = “</p></li>
+<li><p>fix: avoid compile fail if magic comment program is spelled wrongly</p></li>
+<li><p>fix: duplicate lines in autogenerated cwl files</p></li>
+<li><p>fix multi line argument interpretation</p></li>
+<li><p>fix pdfviewer in enlarged mode</p></li>
+<li><p>fix editing of basic shortcuts</p></li>
+<li><p>fix number in length keyVals</p></li>
+<li><p>fix flickering in structure view</p></li>
+<li><p>fix crash with qimage cache</p></li>
+<li><p>fix crash when restoring centralVSplitterState (bug 2175)</p></li>
+<li><p>fix highlighting of current entry in structure</p></li>
+<li><p>fix Open Terminal not working on windows QTBUG-57687 (bug 2178)</p></li>
+<li><p>fix column detection for tabu/longtabu</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-4">
+<h2>TeXstudio 2.12.4<a class="headerlink" href="#texstudio-2-12-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>detect definition of tex counts using \newcount</p></li>
+<li><p>improve config dialog layout</p></li>
+<li><p>make todo comment detection configurable</p></li>
+<li><p>show frame titles in structure view</p></li>
+<li><p>support table alignment in IEEEeqnarray, xtabular and mpxtabular</p></li>
+<li><p>table alignment: fix aligning of empty cols</p></li>
+<li><p>table alignment: place \ if last columns is empty</p></li>
+<li><p>warn if \begin{column} is used outside columns-env</p></li>
+<li><p>workaround for not interpreting $ inside sweave \Sexpr{}</p></li>
+<li><p>option to deactivate interperation of command definition in magic comments</p></li>
+<li><p>remove pdf viewer subtypes from “Default Viewer” config. PDF viewer subtypes should be selected in “PDF Viewer”.</p></li>
+<li><p>increase the maximal resolution for pdf rendering (bug 2003)</p></li>
+<li><p>toolbar for embedded viewer can not turned-off anymore</p></li>
+<li><p>show shortcuts in tooltips (can be deactivated in the options)</p></li>
+<li><p>pass non-breaking space to grammar check (fixes bug 2040)</p></li>
+<li><p>\item completion no adds a space (feature request 994)</p></li>
+<li><p>fix highlighting of current section in structure (bug 2103)</p></li>
+<li><p>fix delays when typing _abc</p></li>
+<li><p>fix bug in log parser: wrong filename if empty brackets () occur in text</p></li>
+<li><p>fix word repetition erro on non-breaking space (~)</p></li>
+<li><p>fix file detection in latex/include file</p></li>
+<li><p>fix width of side panel not saved (bug 2083)</p></li>
+<li><p>fix ampersand in in recent session names</p></li>
+<li><p>fix parsing of \RequirePackage in style files if the argument is completed on the same line</p></li>
+<li><p>fix misinterpretation of closing brace if extra opening brace is used over multilines</p></li>
+<li><p>fix jumping to first page when changing magnifier/hand in pdfviewer</p></li>
+<li><p>fix spelling error on words followed by</p></li>
+<li><p>show option –version when calling with –help</p></li>
+<li><p>fix link to LibreOffice dictionaries</p></li>
+<li><p>fix crash on pressing Esc in options</p></li>
+<li><p>fix entering persian half-space letter</p></li>
+<li><p>fix \maketitle completion</p></li>
+<li><p>fix shortcut context on OSX</p></li>
+<li><p>fix robustcommand definition</p></li>
+<li><p>use $* instead of $&#64; in BUILD.sh (bug 2042)</p></li>
+<li><p>add needspace.cwl</p></li>
+<li><p>update some cwls</p></li>
+<li><p>add turkish translation</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-2">
+<h2>TeXstudio 2.12.2<a class="headerlink" href="#texstudio-2-12-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>PDF shortcuts are now changeable</p></li>
+<li><p>Support LanguageTool json API (needed for LanguageTool &gt; 3.5)</p></li>
+<li><p>slightly improved layout of config dialog</p></li>
+<li><p>improved detection of stdout and stderr redirection (bug 2019)</p></li>
+<li><p>fix: duplicate side panel icons (bug 2016)</p></li>
+<li><p>fix: togglefullscreen from maximised and in reverse (bug 2021)</p></li>
+<li><p>fix: don’t try to call bibtex/biber if there are no bibtex-files (bug 2025)</p></li>
+<li><p>fix: detection of programs (bug 2037)</p></li>
+<li><p>fix: avoid problems if check latex is called without open documents</p></li>
+</ul>
+</section>
+<section id="texstudio-2-12-0">
+<h2>TeXstudio 2.12.0<a class="headerlink" href="#texstudio-2-12-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>improved user interface: optimized layout, some new icons, some changes of color</p></li>
+<li><p>warn if file-saving fails</p></li>
+<li><p>cwl-based highlighting of todo-like commands</p></li>
+<li><p>partly support \todo commands spanning multiple lines (starting line is considered for highlighting and structure entry)</p></li>
+<li><p>partly support highlighting of multi-line titles: first line is highlighted</p></li>
+<li><p>move cursor to context in line when clicking on log entry</p></li>
+<li><p>add “Move all to other view” to editor tabs context menu</p></li>
+<li><p>add shortcut Ctrl+Alt+X to open the current pdf in the external viewer</p></li>
+<li><p>open the annotation dialog by double-clicking on an annotation in the list</p></li>
+<li><p>indicate LanguageTool server in tooltip</p></li>
+<li><p>indicate cursor RTL state in status bar</p></li>
+<li><p>build commands can be edited in non-advanced mode</p></li>
+<li><p>auto user commands on single argument math commands e.g. \overbrace{abc}</p></li>
+<li><p>support \input of PGF/TikZ files in graphics wizard</p></li>
+<li><p>support fix %BEGIN_FOLD in .rnw files</p></li>
+<li><p>improved highlighting for pweave and sweave</p></li>
+<li><p>improved tooltips on structure entries</p></li>
+<li><p>improved text completion: support compound words, apostrophe, subscript in braces, words with underscores</p></li>
+<li><p>Parenthesis -&gt; Select Inner/Outer work also when the cursor is not next to a parenthesis but inside</p></li>
+<li><p>don’t clear highlights of search in pdf after timeout</p></li>
+<li><p>revert to pre 2.11.0 save method on windows because the new QSaveFile has problems with Dropbox folders</p></li>
+<li><p>option to disable safe writing of files (using QSaveFile) - non-Windows only</p></li>
+<li><p>option to disable showing logfile/error list in case of compile errors</p></li>
+<li><p>option to deactivate all reactions to external file changes</p></li>
+<li><p>option to control the triple click behavior</p></li>
+<li><p>additional shortcuts with Tab, Backspace, Del in shortcut options</p></li>
+<li><p>portable version does now store all settings in a subfolder “config”</p></li>
+<li><p>improved automatic handling of hg version information (relevant when building from source tar)</p></li>
+<li><p>improved handling of cwl dublets</p></li>
+<li><p>use Ctrl+Space for completion on OS X (was Cmd+Space which conflicts with Spotlight search)</p></li>
+<li><p>deprecate command line option –ini-file FILE in favor of –config DIR</p></li>
+<li><p>deprecate command line option –master in favor of –root</p></li>
+<li><p>remove View -&gt; Align Windows (obsolete because of the embedded viewer)</p></li>
+<li><p>remove old toolbox style of side panel</p></li>
+<li><p>fix crash (newenv without any arguments)</p></li>
+<li><p>fix freeze when parsing incorrect \texorpdfstring with incorrect arguments (bug 1948)</p></li>
+<li><p>fix label detection in glossaries.cwl (bug 1963)</p></li>
+<li><p>fix: automatically run bibliography if there is no bbl file</p></li>
+<li><p>fix: “Close last open environment” works now also for environments opened on the same line (bug 1957)</p></li>
+<li><p>fix: hg version comparison assumed ‘larger’ if the version could not be determined</p></li>
+<li><p>fix: do not lose focus to editor for “Find in PDF”</p></li>
+<li><p>fix grammar check on words in text arguments</p></li>
+<li><p>fix addchap/addpart entries not recognized as structure elements</p></li>
+<li><p>fix incorrect double-click and drag behavior (bug 1936)</p></li>
+<li><p>fix issues with not-updated bookmarks (bug 1950)</p></li>
+<li><p>fix math hover preview in subfile</p></li>
+<li><p>fix “Tab or Indent Selection”</p></li>
+<li><p>fix detection of MikTeX 64bit</p></li>
+<li><p>fix build with phonon</p></li>
+<li><p>improved some cwl files</p></li>
+</ul>
+</section>
+<section id="texstudio-2-11-2">
+<h2>TeXstudio 2.11.2<a class="headerlink" href="#texstudio-2-11-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>major performance speedup, in case some default section commands were not defined in any used package</p></li>
+<li><p>speed up pasting into large documents (factor 100x)</p></li>
+<li><p>add comment toggle</p></li>
+<li><p>improved search panel layout</p></li>
+<li><p>improved bracket detection for \todo highlighting (bug 1789)</p></li>
+<li><p>improved parsing of section titles (bug 1817)</p></li>
+<li><p>added shorter auto-save intervals (1 min, 2 min)</p></li>
+<li><p>detection of user-local installation of MikTeX</p></li>
+<li><p>cwl-format: suffix %plain disables possible semantics associated with an argument name</p></li>
+<li><p>cwl-format: suffix %labeldef for definition of labels</p></li>
+<li><p>cwl-format: %suffix notation takes precedence over detection by argument name</p></li>
+<li><p>cwl-format: allow ‘key’ to be used in label if #l is set</p></li>
+<li><p>replace babel german by ngerman in presentation wizard</p></li>
+<li><p>highlight cursorEnums in script</p></li>
+<li><p>support reading an application style sheet from stylesheet.qss</p></li>
+<li><p>fix crash on qt4 if update check is successful</p></li>
+<li><p>fix: auto-indent</p></li>
+<li><p>fix: make insertion of tabs work with cursor mirrors (bug 1788)</p></li>
+<li><p>fix: verbatim setting for \verb|abc| (bug 1795)</p></li>
+<li><p>fix: update of save icon after SaveAll (bug 1808)</p></li>
+<li><p>fix: dictionaries in extracted .oxt files not recognized (bug 1804)</p></li>
+<li><p>fix: replace with regexp containing lookahead (bug 1779)</p></li>
+<li><p>fix: keep indentation when using the graphics wizard (1816)</p></li>
+<li><p>fix: quote replacement on formerly hidden child documents (1827)</p></li>
+<li><p>fix: do not interpret double backslash within braces as column end in tabular environment (bug 1831)</p></li>
+<li><p>fix: show a warning if file could not be saved</p></li>
+<li><p>fix: correctly handle optional arguments in command definitions</p></li>
+<li><p>fix: handling of \let arguments</p></li>
+<li><p>fix: spellchecking of words with apostrophe</p></li>
+<li><p>fix: visibility of option for system theme icons on Linux</p></li>
+<li><p>fix: scripting: cursor.movePostition(n, Left/Right) across empty lines and beyond end of file</p></li>
+<li><p>fix: running scripts from the macro window</p></li>
+<li><p>fix: mixture of zoom and scroll on ctrl+mouse wheel (bug 1847)</p></li>
+<li><p>fix: scrreprt detection</p></li>
+<li><p>fix: editor font rendering in case of UI scaling (note: this fix is partial and does currently only apply if Options -&gt; Advanced Editor -&gt; Disable Line Cache is chosen)</p></li>
+<li><p>fix: argument scanning when option contain key/val pairs</p></li>
+<li><p>fix: editor hiding when updating a windowed pdf viewer which was enlarged
+before changing to windowed mode (Bug #1876)</p></li>
+<li><p>fix: repetition checking for words followed by colon (bug 1884)</p></li>
+<li><p>fix: position of completer when completion words become very large</p></li>
+<li><p>fix: freeze while typing \texorpdfstring (bug 1898)</p></li>
+<li><p>fix: script error on editor.search with options and callback (bug 1899)</p></li>
+<li><p>fix: regExp replace in multi doc search</p></li>
+<li><p>updated some cwl files</p></li>
+</ul>
+</section>
+<section id="texstudio-2-11-0">
+<h2>TeXstudio 2.11.0<a class="headerlink" href="#texstudio-2-11-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>support two editors next to each other</p></li>
+<li><p>new tabular wizard</p></li>
+<li><p>support multi-line commands</p></li>
+<li><p>add scrollbar marks for search and bookmarks</p></li>
+<li><p>add command option –no-session</p></li>
+<li><p>add manual to mac OS X app bundle data</p></li>
+<li><p>improve table manipulation of tabu/longtabu</p></li>
+<li><p>select words by doubleclick + hold + mousemove</p></li>
+<li><p>restructure cwl search paths to settings/completion/user :/completion settings/completion/autogenerated</p></li>
+<li><p>safer way of obtaining the PATH on OS X</p></li>
+<li><p>add option for image tooltip</p></li>
+<li><p>do not show explicit hyphens in section titles of the structure view</p></li>
+<li><p>do not parse for structure in non-LaTeX-like languages</p></li>
+<li><p>make preview work with \input in preamble (files get rewritten to absolute paths for the temporary compilation)</p></li>
+<li><p>use QSaveFile for file saving instead of our custom file saving strategy if available (Qt5 only)</p></li>
+<li><p>eneable left/right shortcuts for embedded viewer</p></li>
+<li><p>remove multiple default values for latexmk (fixes bug 1694)</p></li>
+<li><p>support environment variables in additional search paths</p></li>
+<li><p>support [txs-app-dir] and [txs-settings-dir] in additional search paths for log and pdf</p></li>
+<li><p>add statusbar icon for LanguageTool</p></li>
+<li><p>make LanguageTool arguments configurable</p></li>
+<li><p>add align cursor mirrors options</p></li>
+<li><p>make pasting into cursor mirrors a single undo block</p></li>
+<li><p>do not remove cursor mirrors on undo</p></li>
+<li><p>select text of current item in Packages Help to allow easier overwriting (feature request 1063)</p></li>
+<li><p>select search/replace texts when switchting there using Tab / Backtab (feature request 1064)</p></li>
+<li><p>added optional workingDirectory argument to script function system()</p></li>
+<li><p>added editor-&gt;insertSnippet() to scripting environment</p></li>
+<li><p>added option to choose log encoding</p></li>
+<li><p>make icons greyscale for viewer sync buttons if they are not activated</p></li>
+<li><p>added a table template</p></li>
+<li><p>added some elements to math/latex menus</p></li>
+<li><p>unix: allow defining a datadir different from PREFIX/share</p></li>
+<li><p>add the option to use system hunspell and quazip</p></li>
+<li><p>add images to windows installer</p></li>
+<li><p>document advanced code snippet properties in the manual</p></li>
+<li><p>don’t show dialog for creating a file if it could not be opened but exists</p></li>
+<li><p>use Freedesktop Icon Naming Specification for standard icons</p></li>
+<li><p>add qt5 autodetection to BUILD.sh</p></li>
+<li><p>fix duplicated line endings for larger files (chunked loading)</p></li>
+<li><p>fix: windows environment variables may contain brackets: PROGRAMFILES(X86)</p></li>
+<li><p>fix env closing with $,$$,etc.</p></li>
+<li><p>fix: go to PDF for temporarily compiled documents</p></li>
+<li><p>fix finding root document when explicit root doc is set</p></li>
+<li><p>fix spell check when word ends with point</p></li>
+<li><p>fix argument detection: optional arguments may appear after mandatory ones</p></li>
+<li><p>fix: correctly generate environment definition from \newenvironment in case of a default argument</p></li>
+<li><p>fix crash in keyVal syntax check when the document was deleted in the meantime</p></li>
+<li><p>fix: clear replace highlights when search term is changed</p></li>
+<li><p>fix: cancel in marco dialog (bug 1662)</p></li>
+<li><p>fixed interpretation of % !BIB program = … (bug 1667)</p></li>
+<li><p>fix AltGr+F not typing [ on Croatian keyboard</p></li>
+<li><p>fix cursor jumping to end of file when trying to jump from a non-matched bracket (bug 1668)</p></li>
+<li><p>fix pasting columns over an existing selection (bug 1726)</p></li>
+<li><p>fix broken language triggers (bug 1735)</p></li>
+<li><p>fix quote replacements</p></li>
+<li><p>fix line breaks for cursor mirrors</p></li>
+<li><p>fix auto paren completion for cursor mirrors</p></li>
+<li><p>fix line operations to work with cursor mirrors</p></li>
+<li><p>fix sychronize text of placeholder mirror when inserting an environment on a selection (Ctrl+E)</p></li>
+<li><p>fix font in pdf viewer status bar did not scale</p></li>
+<li><p>fix loading of badword lists</p></li>
+<li><p>fix LanguageTool startup</p></li>
+<li><p>fix overlapping in unicodeinsert on osx</p></li>
+<li><p>fix: pinyin input of punctuation (bug 1770)</p></li>
+<li><p>fix: retain spaces when sending text to LanguageTool</p></li>
+<li><p>fix: don’t translate Ctrl+Alt+Left as the translation breaks the shortcut</p></li>
+<li><p>several updates to cwl files</p></li>
+<li><p>update poppler for windows to 0.39.0</p></li>
+<li><p>improved generation of label texts</p></li>
+</ul>
+</section>
+<section id="texstudio-2-10-8">
+<h2>TeXstudio 2.10.8<a class="headerlink" href="#texstudio-2-10-8" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>automatically expand search result if all matches are within one file</p></li>
+<li><p>detection of magic comment % !TeX is more permissive concerning case sensistivity</p></li>
+<li><p>fix crash when using \subparagraph</p></li>
+<li><p>fix symbolgrid widget on OSX</p></li>
+<li><p>fix ?save-file trigger not working</p></li>
+<li><p>update latex reference manual (Oct 2015)</p></li>
+</ul>
+</section>
+<section id="texstudio-2-10-6">
+<h2>TeXstudio 2.10.6<a class="headerlink" href="#texstudio-2-10-6" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>add option to choose the poppler render backend</p></li>
+<li><p>prevention of file corruption if saving fails for some reason</p></li>
+<li><p>global search button in search toolbar now updates the results instead of show/hide</p></li>
+<li><p>option to store absolute paths in session files</p></li>
+<li><p>use short title for sections in structure view (if available)</p></li>
+<li><p>structure commands can now be defined in cwl</p></li>
+<li><p>support memoir class</p></li>
+<li><p>support right-click + wheel for zooming in internal pdf viewer</p></li>
+<li><p>add –version and –help option to OS X and Linux command line (not possible for Win)</p></li>
+<li><p>fix: detection of new texlive paths on OS X El Capitan</p></li>
+<li><p>fix: messages could be hidden by splash screen on OSX</p></li>
+<li><p>fix: make glossary entries available as labels again</p></li>
+<li><p>fix: format math environment as math</p></li>
+<li><p>fix: $$ as math start</p></li>
+<li><p>fix: spell checking for hyphen/abbreviations</p></li>
+<li><p>fix: ignore leading/trailing quotes for spell check</p></li>
+<li><p>fix: workaround for single code language identifiers in LanguageTool</p></li>
+<li><p>fix: layout switching between uncertain and ltr (rtl) language parts</p></li>
+<li><p>fix: do not use shortcut Ctrl+Alt+F with Turkish locale</p></li>
+<li><p>fix: included badWords files were not found</p></li>
+<li><p>fix: pdf cache limit was not respected correctly</p></li>
+<li><p>fix: scale statusbar icons with secondary toolbar</p></li>
+<li><p>fix: crash of “Open package documentation” in certain situations</p></li>
+<li><p>fix: certain errors in log file were only detected as warnings</p></li>
+<li><p>fix: single starred lines in log file were falsely detected as warning</p></li>
+<li><p>fix: no syntax checking on non-LaTeX documents</p></li>
+<li><p>fix: context help for \documentclass</p></li>
+<li><p>fix: treat minted as verboten environment</p></li>
+<li><p>fix: correctly handle files with uppercase extension .TEX as tex files</p></li>
+<li><p>fix: workaround for pasting from LibreOffice (priorize text over image)</p></li>
+<li><p>updates to translations</p></li>
+<li><p>updates to the manual</p></li>
+<li><p>updates to cwl files</p></li>
+</ul>
+</section>
+<section id="texstudio-2-10-4">
+<h2>TeXstudio 2.10.4<a class="headerlink" href="#texstudio-2-10-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>adapt to changed TeXlive paths on Mac OS X El Capitan (path detection and change notification)</p></li>
+<li><p>more granular selection of update notifications: stable / release candidate /development</p></li>
+<li><p>image as an alternative caching format (better rendering results for some cases)</p></li>
+<li><p>import fedora patch: more general commands for external viewers on linux</p></li>
+<li><p>respect clipboard priority if there are multiple possible mime-types that could be pasted</p></li>
+<li><p>support \newif, \newfontfamily, \newfontface as definition commands</p></li>
+<li><p>ignore keyboard layout change if the current language context is ambiguous</p></li>
+<li><p>folding of square brackets</p></li>
+<li><p>option for scaling of the segment preview</p></li>
+<li><p>some code optimizations for speedup</p></li>
+<li><p>fix: setting root in structureview per contextmenu</p></li>
+<li><p>fix: problem with open braces and bibliography/label</p></li>
+<li><p>fix: environ dependent syntax check</p></li>
+<li><p>fix: using $$ for mathstart</p></li>
+<li><p>fix: mirror cursor in insert env</p></li>
+<li><p>fix: problem with unclosed square brackets</p></li>
+<li><p>fix: assert failure when cursor column is too high in word moving mode</p></li>
+<li><p>fix: rtl detection lagging behind the actual text</p></li>
+<li><p>fix: spell checking in command arguments and section titles</p></li>
+<li><p>fix: cursor position for tabwidth == 1</p></li>
+<li><p>fix: multiple “View” calls to Acrobat (Reader) did not work</p></li>
+<li><p>fix: bibids in the completer</p></li>
+<li><p>fix: tooltip preview of $</p></li>
+<li><p>fix: loading of profile in portable mode</p></li>
+<li><p>fix: palette and application style were not necessarily updated correctly when loading a profile</p></li>
+<li><p>fix: tooltip width prediction for rich text tooltips</p></li>
+<li><p>fix: false positive detection and replacement of literal quotes on windows</p></li>
+<li><p>fix: sizes for segment preview respect hiDpi displays</p></li>
+<li><p>fix: pdflatex segment preview on windows was always shown on first line</p></li>
+<li><p>fix: cleanup of pdfs generated by segment preview in temp folder</p></li>
+<li><p>added greek translation and updated several other languages</p></li>
+<li><p>some updates to the manual</p></li>
+<li><p>some updates to cwl files</p></li>
+</ul>
+</section>
+<section id="texstudio-2-10-2">
+<h2>TeXstudio 2.10.2<a class="headerlink" href="#texstudio-2-10-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix recognition of environments defined via \newtheorem</p></li>
+<li><p>fix disabling of syntax check</p></li>
+<li><p>fix copying from message panel using shortcut Ctrl+C</p></li>
+<li><p>fix last page in pdf split</p></li>
+<li><p>fix detection of \ref commands</p></li>
+<li><p>fix crash when pasting multi-line commands</p></li>
+<li><p>fix crash when changing the icon size</p></li>
+<li><p>update French, German and Spanish translations</p></li>
+</ul>
+</section>
+<section id="texstudio-2-10-0">
+<h2>TeXstudio 2.10.0<a class="headerlink" href="#texstudio-2-10-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>new and improved LaTeX parser, the last command argument can now span over several lines</p></li>
+<li><p>change: consolidated default shortcuts of tools</p></li>
+<li><p>rename “master document” -&gt; “explicit root document” and clean up switching logic</p></li>
+<li><p>generalized TODO comment detection: any multiple-capital-letter word is recognized as todo-style comment (e.g. “% FIXME”, “% ASK”)</p></li>
+<li><p>improved search results window</p></li>
+<li><p>search and replace for labels</p></li>
+<li><p>viewer does now support gestures: pinch to zoom, tap to “Go to source”</p></li>
+<li><p>added: Tools -&gt; Open Terminal</p></li>
+<li><p>added an option filter to the config dialog</p></li>
+<li><p>CSV export for text analysis</p></li>
+<li><p>open password protected pdfs</p></li>
+<li><p>support Inkscape .pdf_tex files</p></li>
+<li><p>check for proper LaTeX configuration at startup (currently only pdflatex)</p></li>
+<li><p>improved cursor mirror selections: allow multiple, disjoint rectangular blocks, single mirrors can be removed</p></li>
+<li><p>support usage of environment variables in commands</p></li>
+<li><p>remember visibility of toolbar and annotation panel in PDF viewer</p></li>
+<li><p>add option Editor -&gt; Replace Tabs in Text by Spaces</p></li>
+<li><p>added Options -&gt; Restore Default Settings</p></li>
+<li><p>context menu items to open/close all files of a project</p></li>
+<li><p>user-visible list of hidden documents</p></li>
+<li><p>added –foreground and –no-foreground options to pdf viewer</p></li>
+<li><p>make format for magicComment editable in Options -&gt; Highlighting</p></li>
+<li><p>added line operation “Delete from start of line”, more constent naming of line operations, adaption for OSX default shortcuts</p></li>
+<li><p>improved support for output redirection of commands</p></li>
+<li><p>support shell-style literal quotes (”) in commands</p></li>
+<li><p>new selection actions “Expand Selection to Word”, “Expand Selection to Line”</p></li>
+<li><p>send country code to languagetool</p></li>
+<li><p>added (?not-highlighted-as:…) scope for macro trigger</p></li>
+<li><p>new function for scripting: simulateKeyPress()</p></li>
+<li><p>automatic LRT&lt;-&gt;RTL language/keyboard layout switching</p></li>
+<li><p>more fine-grained options for checkin after save</p></li>
+<li><p>more standard behavior for F3 (Find Next instead of Continue Find)</p></li>
+<li><p>paste image data from clipboard (e.g. screenshot)</p></li>
+<li><p>automatic keyboard layout switching depending on context</p></li>
+<li><p>show \frametitle in structure view</p></li>
+<li><p>mark changed files in structure view</p></li>
+<li><p>improved UI scaling</p></li>
+<li><p>improved path detection on OS X</p></li>
+<li><p>improved highlighting for user scripts</p></li>
+<li><p>improved insertion of \item</p></li>
+<li><p>improved double/triple-click-and-drag selection for words/lines</p></li>
+<li><p>temporary highlight target text of go to definition</p></li>
+<li><p>update checker respects system proxy configuration</p></li>
+<li><p>checks and warnings for dictionary import</p></li>
+<li><p>filter out Ctrl+Alt+… shortcuts definitions for some keyboard locales on windows if the shortcut would overwrite a regular character shortcut</p></li>
+<li><p>remember changed highlighting for recent files</p></li>
+<li><p>change: double-clicking on a command now also selects the leading backslash (configurable in the options)</p></li>
+<li><p>fix: comment definition for sweave format</p></li>
+<li><p>fix: possible crash in text width calculation</p></li>
+<li><p>fix: detection of log files for filenames containing dots</p></li>
+<li><p>fix: comment insertion for Sweave/Rweave</p></li>
+<li><p>fix: eraseLine() left an empty line if the final line was included in the selection</p></li>
+<li><p>fix: empty context menu entry for word repetitions</p></li>
+<li><p>fix: detection of some CJK characters when wrapping</p></li>
+<li><p>fix: don’t show structure commands without arguments in the structure outline</p></li>
+<li><p>fix: ampersands were not highlighted if followed by a non-space char</p></li>
+<li><p>fix: bug that commands may become empty after editing</p></li>
+<li><p>fix: assignment of some standard backspace shortcuts on OS X</p></li>
+<li><p>fix: allow normal format in highlighted-as trigger</p></li>
+<li><p>fix: missing auto-completion for ( when the following text already contains ( )</p></li>
+<li><p>fix: incorrect error message when trying to access miktex texdoc in case MIKTEX_VIEW_* environment variables are set</p></li>
+<li><p>fix: bug in filename detection of inverse search</p></li>
+<li><p>fix: Fit to Textwidth had a horizontal offset in some cases</p></li>
+<li><p>fix: some size issues with editor zoom</p></li>
+<li><p>fix: comment shortcut for asymptote and lua files</p></li>
+<li><p>update: documentation</p></li>
+<li><p>update: LaTeX reference manual (May 2015)</p></li>
+<li><p>update: windows libraries of poppler to 0.32.0</p></li>
+<li><p>added/updated a number of cwl files</p></li>
+<li><p>added spanish dictionary</p></li>
+</ul>
+</section>
+<section id="texstudio-2-9-4">
+<h2>TeXstudio 2.9.4<a class="headerlink" href="#texstudio-2-9-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix: bug concerning overwritten shortcuts on Linux and OSX</p></li>
+</ul>
+</section>
+<section id="texstudio-2-9-2">
+<h2>TeXstudio 2.9.2<a class="headerlink" href="#texstudio-2-9-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>allow word wrapping at all CJK characters</p></li>
+<li><p>simplified latexmk call (thanks to YoungFrog)</p></li>
+<li><p>fix: incorrect interpretation of dir/file arguments in import commands</p></li>
+<li><p>fix: crash when hidden implicit master document is deleted</p></li>
+<li><p>fix: incorrect merging of absolute files with additional search paths</p></li>
+<li><p>fix: make pkg-config work on osx again</p></li>
+<li><p>fix: crash when reopening hidden document in singleDocMode</p></li>
+<li><p>fix: basic shortcuts (like “Left”) might be overwritten when using TXS in certain languages (Japanese, Italian, …)</p></li>
+<li><p>fix: positioning of completer tooltip when using multiple screens</p></li>
+</ul>
+</section>
+<section id="texstudio-2-9-0">
+<h2>TeXstudio 2.9.0<a class="headerlink" href="#texstudio-2-9-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>link overlays for urls</p></li>
+<li><p>close editor tab by pressing middle mouse button</p></li>
+<li><p>more standard shortcuts (in particular for OS X)</p></li>
+<li><p>support optional filename argument in txs:///view-pdf-internal</p></li>
+<li><p>add “expand/collapse all documents” to context menu of structure</p></li>
+<li><p>add tabulary support</p></li>
+<li><p>open correct log file if output filenames are changed due to “%&amp; -job-name=targetfile” (note: changed pdf filename not yet supported)</p></li>
+<li><p>user-defined icons are now portable: if possible icon paths are stored relative to settings dir or application dir</p></li>
+<li><p>windowed pdf viewer now supports –no-focus argument</p></li>
+<li><p>improved detection of label name for “Insert \ref to Next Label”</p></li>
+<li><p>improved context detection for preview (multi-line math, cursor inside multi-char delimiter)</p></li>
+<li><p>improved search for texdoc location</p></li>
+<li><p>improved log parsing including support for LaTeX3 warnings and errors</p></li>
+<li><p>resize with soft line warp: keep vertical cursor position constant</p></li>
+<li><p>support .tikz files (treated like .tex files)</p></li>
+<li><p>new options: Advanced Editor -&gt; Structure Panel (“Show elements in comments”, “Mark structure elements beyond \end{document}” and “Mark structure elements in appendix”)</p></li>
+<li><p>new option: mouse wheel zoom also controls the log editor (patch by Paulo Silva)</p></li>
+<li><p>new option: encoding of bib files</p></li>
+<li><p>new options: some GUI elements are now scalable (for better hi-res display support)</p></li>
+<li><p>some cleanup in the options dialog</p></li>
+<li><p>change: LaTeX templates need to have “% !TXS template” on the first line if placeholders should be interpreted, otherwise files are loaded as plain LaTeX</p></li>
+<li><p>fix: maintain expansion of the Structure View in more situations</p></li>
+<li><p>fix: caseSensistivity for global search</p></li>
+<li><p>fix: sync scrolling in enlarged embedded pdf viewer</p></li>
+<li><p>fix: interpretation of % !BIB program = biber</p></li>
+<li><p>fix: fit to text width in multi-page grid of pdf viewer</p></li>
+<li><p>fix: unsaved documents could create false entries when saving a session</p></li>
+<li><p>fix: forgotten editor shortcuts</p></li>
+<li><p>fix: linecache on retina display</p></li>
+<li><p>fix: on OS X: the dictionary default is path relative to app</p></li>
+<li><p>fix: compilation on freebsd /patch by Abilio)</p></li>
+<li><p>fix: display user command icon (patch by Paulo Silva)</p></li>
+<li><p>fix: svn auto-checkin was not executed after some types of save operations</p></li>
+<li><p>fix: link-click on bib file also searches in additionalBibPaths</p></li>
+<li><p>fix: some sections were incorrectly marked as “beyond end of document”</p></li>
+<li><p>fix: crash when file is removed and silent reload is activated</p></li>
+<li><p>fix: failed “! TeX encoding” detection due to bug in line end detection</p></li>
+<li><p>fix: ignore hyph_*.dic files when looking for hunspell dictionaries</p></li>
+<li><p>fix: trigger ?load-file for files opened with the session at startup</p></li>
+<li><p>fix: update encoding in status bar when a % !TeX encoding = … magic comment is typed</p></li>
+<li><p>fix: issue with opening some template zip files by updating QuaZip to 0.7.1</p></li>
+<li><p>fix: parsing of synctex file with nested sheets</p></li>
+<li><p>fix: crash when undoing insertion of magic comments</p></li>
+<li><p>fix: make symbol grid visible on dark-themed desktops</p></li>
+<li><p>fix: handle multiple existing assignments when checking the change of a shortcut</p></li>
+<li><p>fix: broken folding of %BEGIN_FOLD if the special math-close-comment %$ was used in the folded area</p></li>
+<li><p>fix: incorrect wrapping if chinese punctuation characters are on the line</p></li>
+<li><p>completer is disabled in overwrite mode (because it does not work correctly while overwriting)</p></li>
+<li><p>fix: incorrect behavior of input method with forward selections</p></li>
+<li><p>fix: texdoc usage on OS X</p></li>
+<li><p>fix: rendering of 1x1 non-continouos pdf page on retina display</p></li>
+<li><p>fix: some missing symbols</p></li>
+<li><p>removed: case insensitive completion (due to complexity/performance issues)</p></li>
+</ul>
+</section>
+<section id="texstudio-2-8-8">
+<h2>TeXstudio 2.8.8<a class="headerlink" href="#texstudio-2-8-8" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>basic Asymptote highlighting</p></li>
+<li><p>improved parsing of command options</p></li>
+<li><p>notify that syncing between PDF and .tex won’t work anymore after “File Save As…” (need to recompile)</p></li>
+<li><p>improved startup speed compared to 2.8.6</p></li>
+<li><p>fix: crash in column handling of table parser</p></li>
+<li><p>fix: crash in math preview generation</p></li>
+<li><p>fix: txs finds resource in app if it is not installed under /Applications… (OSX)</p></li>
+<li><p>fix: open completer on typing comma only when the context suggests it</p></li>
+<li><p>fix: tab replacement was only performed for tabOrIndent if there was a selection</p></li>
+<li><p>fix: shortcut saving, so that added shortcuts (editor) are saved</p></li>
+<li><p>fix: too large symbol on non-retina screen with retina notebook</p></li>
+<li><p>fix: shortcut Shift+Backspace works like Backspace (Win+Linux)</p></li>
+<li><p>fix: indentation increasing if pasting with newline at and and cursor is at line start</p></li>
+<li><p>fix: replacing a selection by itself should not change anything (fixes indentation issues for some cases of selection-self-replacement)</p></li>
+<li><p>fix: rendering results may be slightly differerent depending on the usage of the line cache.</p></li>
+<li><p>some updates to the manual</p></li>
+</ul>
+</section>
+<section id="texstudio-2-8-6">
+<h2>TeXstudio 2.8.6<a class="headerlink" href="#texstudio-2-8-6" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>tab key inserts tab or indents, depending on cursor selection</p></li>
+<li><p>error table can be filtered and sorted</p></li>
+<li><p>tooltips on package names show a short description of the package</p></li>
+<li><p>support [txs-app-dir] and [txs-settings-dir] in commands (allows portable paths when using MikTeX portable and TXS portable on an USB stick)</p></li>
+<li><p>enable the possibility to remove shortcuts from qeditor</p></li>
+<li><p>sort shortcuts for editor in order of operation name</p></li>
+<li><p>more robust text width calculation in pdf</p></li>
+<li><p>mark section beyond end of document with orange background</p></li>
+<li><p>removed pdf printing (did never work well. Please use an external PDF viewer of your choice for printing.)</p></li>
+<li><p>detect fonts containing ligatures</p></li>
+<li><p>maintain cursor position (line and column) when using “Align Columns” for tables</p></li>
+<li><p>fix: remember removed shortcuts e.g. tab for insertSelection</p></li>
+<li><p>fix: completer opening in special cases for keyval completion</p></li>
+<li><p>fix: find next in pdf viewer</p></li>
+<li><p>fix: do not interpret % in verbatim as comment</p></li>
+<li><p>fix: user command names might be lost</p></li>
+<li><p>fix: update of monchrome/color settings in pdf viewer</p></li>
+<li><p>fix: help not working on OS X</p></li>
+<li><p>fix: make case conversion work for systems with old Qt 4.6</p></li>
+<li><p>fix: case conversion work also for cursor mirrors</p></li>
+<li><p>fix: broken cursor position for wrapped RTL text</p></li>
+<li><p>fix: crash when switching between qt and normal rendering</p></li>
+<li><p>fix: text background was not always drawn with the correct background color</p></li>
+<li><p>updated cwls: yathesis, marvosym, microtype, pifont, glossaries</p></li>
+</ul>
+</section>
+<section id="texstudio-2-8-4">
+<h2>TeXstudio 2.8.4<a class="headerlink" href="#texstudio-2-8-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>improved syncing to PDF: don’t scroll PDF to top of page if the highlighted area is already visible</p></li>
+<li><p>support command detection for \DeclareRobustCommand</p></li>
+<li><p>persistently store fit and center options of preview panel</p></li>
+<li><p>support more environments for table auto-formatting</p></li>
+<li><p>remember scope when deleting auxiliary files</p></li>
+<li><p>improved handling of incomplete options in the syntax checker</p></li>
+<li><p>new/improved cwls: mathtools, circuitikz</p></li>
+<li><p>fix: crash with RTL text input</p></li>
+<li><p>fix: some shortcuts couldn’t be assigned on OSX</p></li>
+<li><p>fix: multi-cursor edits are now grouped into a single undo action</p></li>
+<li><p>fix: lost scroll position when previewing large images</p></li>
+<li><p>fix: assignment of multiple shortcuts to editor operations</p></li>
+<li><p>fix: unindent per shortcut without selection</p></li>
+<li><p>fix: more consistent behavior for PgUp/PgDown in PDF viewer</p></li>
+<li><p>fix: immediately generate cursor mirrors when inserting via the menu</p></li>
+<li><p>fix: commands defined in one file included by many documents were only known in the completion list  of one them</p></li>
+<li><p>fix: compile option without poppler</p></li>
+<li><p>fix: crash with \newcommands{xyz}{123456789}</p></li>
+<li><p>fix: %BEGIN_FOLD could not be folded</p></li>
+<li><p>fix: apply grayscale and invert color settings also to magnifier</p></li>
+<li><p>fix incorrect search highlight region in PDF viewer with Qt5</p></li>
+</ul>
+</section>
+<section id="texstudio-2-8-2">
+<h2>TeXstudio 2.8.2<a class="headerlink" href="#texstudio-2-8-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>color completion</p></li>
+<li><p>some more predefined completions for tikz</p></li>
+<li><p>region preview with pdflatex and the embedded viewer (activate in options)</p></li>
+<li><p>more consistent visual for search/region preview range</p></li>
+<li><p>PDF can be shown in grayscale (as a preview how a grayscale print would look like)</p></li>
+<li><p>improved input method support</p></li>
+<li><p>improved \todo highlighting</p></li>
+<li><p>texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize</p></li>
+<li><p>portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version</p></li>
+<li><p>several bugfixes</p></li>
+</ul>
+</section>
+<section id="texstudio-2-8-0">
+<h2>TeXstudio 2.8.0<a class="headerlink" href="#texstudio-2-8-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)</p></li>
+<li><p>search and replace over several documents improved</p></li>
+<li><p>improved parser for log files (better detection of filenames)</p></li>
+<li><p>todo-style commands (e.g. <code>\todo{}</code>) are added to the list of todos</p></li>
+<li><p>better compliance with standard shortcuts on OSX</p></li>
+<li><p>the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini “Editor/ContextMenuKeyboardModifiers”</p></li>
+<li><p>use Consolas as default editor font on Windows if available</p></li>
+<li><p>improved auto-hide toolbars feature in embedded viewer</p></li>
+<li><p>users can overwrite the default language definitions and add own ones</p></li>
+<li><p>makeglossaries support</p></li>
+<li><p>allow quoted filenames in include-like commands to support filenames and directories containing spaces</p></li>
+<li><p>windows version compiles now with Qt5</p></li>
+<li><p>updated LaTeX reference manual</p></li>
+<li><p>several bugfixes</p></li>
+</ul>
+</section>
+<section id="texstudio-2-7-0">
+<h2>TeXstudio 2.7.0<a class="headerlink" href="#texstudio-2-7-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>added Edit -&gt; Text Operations (To Lowercase / To Uppercase / To Titlecase)</p></li>
+<li><p>added list of recent sessions</p></li>
+<li><p>speedup of saving for large documents</p></li>
+<li><p>added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)</p></li>
+<li><p>added button to stop a running compilation</p></li>
+<li><p>the dictionary search path can now contain of multiple directories</p></li>
+<li><p>Dictionaries in the OpenOffice/LibreOffice Extension format (*.oxt) can now be imported</p></li>
+<li><p>Updated the latex reference manual to to a recent version</p></li>
+<li><p>new option for maximum image tooltip width</p></li>
+<li><p>new option “Reference commands in context menu”</p></li>
+<li><p>new options for additional search paths in editor logic</p></li>
+<li><p>new option for automatic encoding detection: make latex and character based detection selectable separately</p></li>
+<li><p>new options for pdf highlight color and duration</p></li>
+<li><p>find dialog: search in all loaded documents i.e. also in hidden</p></li>
+<li><p>improved synchronization PDF -&gt; source</p></li>
+<li><p>support “% !BIB = biber” syntax for compatibility with TeXShop and TeXWorks</p></li>
+<li><p>added several new cwl files</p></li>
+<li><p>several bugfixes</p></li>
+</ul>
+</section>
+<section id="texstudio-2-6-6">
+<h2>TeXstudio 2.6.6<a class="headerlink" href="#texstudio-2-6-6" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>fix home/end keys with embedded viewer</p></li>
+<li><p>fix macro abbreviation</p></li>
+<li><p>fix log entry locations not updated in editor</p></li>
+<li><p>signed windows installer</p></li>
+</ul>
+</section>
+<section id="texstudio-2-6-4">
+<h2>TeXstudio 2.6.4<a class="headerlink" href="#texstudio-2-6-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>package scanner: queries the tex istallation for installed packages and highlights missing packages</p></li>
+<li><p>package completion</p></li>
+<li><p>basic annotation support in internal pdf viewer</p></li>
+<li><p>improved render speed, especially on mac</p></li>
+<li><p>speed-up loading of hidden documents (option: automatically load included files)</p></li>
+<li><p>speed-up command completion window, especially citations</p></li>
+<li><p>improved log panel</p></li>
+<li><p>improved dtx highlighting</p></li>
+<li><p>added support for LilyPond book (.lytex)</p></li>
+<li><p>Edit -&gt; Line operations now also work with selections</p></li>
+<li><p>updated hunspell library to 1.3.2</p></li>
+<li><p>fix: input method bug</p></li>
+<li><p>fix: shortcuts containing arrow keys did not work in japanese</p></li>
+<li><p>bug fixes, e.g. tooltip does not disappear instantly anymore</p></li>
+</ul>
+</section>
+<section id="texstudio-2-6-2">
+<h2>TeXstudio 2.6.2<a class="headerlink" href="#texstudio-2-6-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>structure tree view: context menu entries to recursively collapse/expand the structure</p></li>
+<li><p>improved hard line wrap with joining lines</p></li>
+<li><p>View -&gt; Focus Viewer now also works for the windowed viewer</p></li>
+<li><p>better detection of LagnuageTool</p></li>
+<li><p>similarity dictionary</p></li>
+<li><p>“Align Table Columns” now works also for tabu/longtabu</p></li>
+<li><p>updated poppler library, now displays PDF annotations like highlight and underline</p></li>
+<li><p>updated to Qt 4.8.5 (Windows installer)</p></li>
+<li><p>fix: user templates are editable again</p></li>
+<li><p>fix: broken SVN Undo</p></li>
+<li><p>fix: bug when typing ‘}’ in RTL languages</p></li>
+<li><p>fix: pinyin input method problem on mac</p></li>
+<li><p>fix: Opening package documentation in non-PDF formats</p></li>
+<li><p>more small corrections and improvements</p></li>
+</ul>
+</section>
+<section id="texstudio-2-6-0">
+<h2>TeXstudio 2.6.0<a class="headerlink" href="#texstudio-2-6-0" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Retina Mac support</p></li>
+<li><p>switched to svg icons</p></li>
+<li><p>folded lines are now stored in the session</p></li>
+<li><p>option to load package documentation into internal embedded pdf viewer</p></li>
+<li><p>option to silently reload files on external changes</p></li>
+<li><p>make %todo as well as %TODO marker for “to-do” list</p></li>
+<li><p>“Align Table Columns” now works on many more environments such as
+matrix, align. align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*</p></li>
+<li><p>template resources are now configured via template_resources.xml (allows to customize resource locations)</p></li>
+<li><p>template json files are now UTF-8</p></li>
+<li><p>basic Pweave highlighting</p></li>
+<li><p>arbitrary dictionary names are now possible in % !TeX spellcheck = … magic comment</p></li>
+<li><p>new macro trigger depending on the current syntax highlighting</p></li>
+<li><p>allow to suppress tests in debug mode by preprocessor define NO-TESTS</p></li>
+<li><p>fix some issues with RTL languages</p></li>
+<li><p>fix animated scrolling</p></li>
+<li><p>a number of new completion files included</p></li>
+<li><p>lots of small corrections and improvements</p></li>
+</ul>
+</section>
+<section id="texstudio-2-5-2-svn-3707">
+<h2>TeXstudio 2.5.2  SVN 3707<a class="headerlink" href="#texstudio-2-5-2-svn-3707" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>new %BEGIN_FOLD … %END_FOLD comment to mark arbitrary regions as foldable</p></li>
+<li><p>add support to display CJK and Cyrillic in PDF viewer</p></li>
+<li><p>increased maximum possible tab width to 32</p></li>
+<li><p>fix basic input method support</p></li>
+<li><p>fix missing templates on linux and Mac OS X</p></li>
+<li><p>fix vanishing menu bar on Mac OS X</p></li>
+<li><p>fix crash when saving as an already open file</p></li>
+<li><p>fix viewer might change size because of long status messages</p></li>
+<li><p>changed shortcuts for next/prev document to Ctrl+PgDown/Up</p></li>
+<li><p>several small corrections</p></li>
+</ul>
+</section>
+<section id="texstudio-2-5-1-svn-3445">
+<h2>TeXstudio 2.5.1  SVN 3445<a class="headerlink" href="#texstudio-2-5-1-svn-3445" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>improved fold panel</p></li>
+<li><p>new template system</p></li>
+<li><p>added support for forward/backward mouse buttons in editor and viewer</p></li>
+<li><p>context menu for inline preview (allows copying of preview image)</p></li>
+<li><p>option to load all included files in order to have a complete
+ref/commands overview</p></li>
+<li><p>added “Open”-context menu entry and link overlay for \bibliography{} commands</p></li>
+<li><p>show image preview on hover over graphic name</p></li>
+<li><p>several bug fixes (pdf scrolling range, user template path, OSX-related bugs, …)</p></li>
+</ul>
+</section>
+<section id="texstudio-2-5-svn-3378">
+<h2>TeXstudio 2.5  SVN 3378<a class="headerlink" href="#texstudio-2-5-svn-3378" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>cursor history (go back/forward)</p></li>
+<li><p>references, packages and included file names become links on Ctrl+MouseOver</p></li>
+<li><p>insertion of handwritten equations (Windows 7 only, using TexTablet)</p></li>
+<li><p>improved table-code formatting, including options to specify the desired format</p></li>
+<li><p>metadata support in LaTeX templates and table templates</p></li>
+<li><p>checking for the correct version of the runtime library</p></li>
+<li><p>more context menus (fold panel, bookmark panel)</p></li>
+<li><p>optionally more bold cursor for better visibility</p></li>
+<li><p>line operations: move up/down, duplicate</p></li>
+<li><p>windows installer: add possibility to associate .tex files with TXS</p></li>
+<li><p>several bug fixes (crashes, compilation, focus, …)</p></li>
+</ul>
+</section>
+<section id="texstudio-2-4-svn-3255">
+<h2>TeXstudio 2.4  SVN 3255<a class="headerlink" href="#texstudio-2-4-svn-3255" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>new build system which allows easier combination of several commands</p></li>
+<li><p>support many new tools: xelatex, lualatex, biber, latexmk, texindy</p></li>
+<li><p>embedded pdf viewer</p></li>
+<li><p>bookmark manager and persistent bookmarks</p></li>
+<li><p>inline grammar checking using LanguageTool</p></li>
+<li><p>basic syntax highlighting for lua and for dtx files</p></li>
+<li><p>biblatex support</p></li>
+<li><p>citation API to insert citations from other applications (JabRef plugin available)</p></li>
+<li><p>table autoformatting</p></li>
+<li><p>improved appearance</p></li>
+<li><p>update checker</p></li>
+<li><p>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</p></li>
+<li><p>crash protection</p></li>
+<li><p>many small improvements</p></li>
+<li><p>several bug fixes</p></li>
+</ul>
+</section>
+<section id="texstudio-2-3-svn-2459">
+<h2>TeXstudio 2.3  SVN 2459<a class="headerlink" href="#texstudio-2-3-svn-2459" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>list of commands accepting \ref/\cite-references can be changed</p></li>
+<li><p>remember search history</p></li>
+<li><p>support for different dictionaries per document</p></li>
+<li><p>find-invalid-bracket feature</p></li>
+<li><p>almost word level inverse pdf search</p></li>
+<li><p>complete file names in graphic including macros</p></li>
+<li><p>improved graphics insertion (new assistant allows editing of existing code, insert by drag-and-drop and copy/paste)</p></li>
+<li><p>improved BibTeX auto calling</p></li>
+<li><p>more methods available for scripting</p></li>
+<li><p>several bug fixes (especially crashes in the pdf viewer/syntax check/structure view) and minor improvements</p></li>
+</ul>
+</section>
+<section id="texstudio-2-2-svn-2143">
+<h2>TeXstudio 2.2  SVN 2143<a class="headerlink" href="#texstudio-2-2-svn-2143" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>pdf viewer can show multiple pages in continuous fashion</p></li>
+<li><p>pdf viewer works non-blocking (multi-threaded)</p></li>
+<li><p>preview works with included files</p></li>
+<li><p>key replacements can trigger arbitrary user macros</p></li>
+<li><p>double quote replacement can easily be selected from predefined list</p></li>
+<li><p>completer distinguishes between usual, most often used and all possible commands</p></li>
+<li><p>saving/loading profiles working</p></li>
+<li><p>more environments are syntax highlighted</p></li>
+<li><p>as always, bug fixes and small improvements</p></li>
+</ul>
+</section>
+<section id="texmakerx-2-1-svn-1772">
+<h2>TexMakerX 2.1  SVN 1772<a class="headerlink" href="#texmakerx-2-1-svn-1772" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>improved latex syntax checking: auto detect used packages and more reliable</p></li>
+<li><p>auto detect master/include relations, no master document should be needed anymore</p></li>
+<li><p>extended internal pdf viewer, multiple pages and new features</p></li>
+<li><p>preview of selection is much faster and shown directly in the text</p></li>
+<li><p>easy parenthesis selection</p></li>
+<li><p>as always, bug fixes and small improvements</p></li>
+</ul>
+</section>
+<section id="texmakerx-2-0-svn-1495">
+<h2>TexMakerX 2.0  SVN 1495<a class="headerlink" href="#texmakerx-2-0-svn-1495" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>integrated pdf viewer with forward/reverse search based on Texworks</p></li>
+<li><p>online latex syntax checking like spell checking(for simple errors)</p></li>
+<li><p>support to manipulate tables (add/remove lines,columns or \hline)</p></li>
+<li><p>inserted brackets are automatically closed</p></li>
+<li><p>option to limit line length with hard wraps</p></li>
+<li><p>word repetitions are marked as possible style error</p></li>
+<li><p>faster search, highlight matches as default</p></li>
+<li><p>basic editor key mapping become customizable</p></li>
+<li><p>unicode insertion dialog</p></li>
+<li><p>as always, bug fixes and small improvements</p></li>
+</ul>
+</section>
+<section id="texmakerx-1-9-9a">
+<h2>TexMakerX 1.9.9a<a class="headerlink" href="#texmakerx-1-9-9a" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>some performance issues on mac have been addressed. It should feel faster for long sible lines on mac.</p></li>
+<li><p>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p></li>
+<li><p>command replacement in completed commands was added</p></li>
+<li><p>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p></li>
+<li><p>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p></li>
+<li><p>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p></li>
+<li><p>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p></li>
+<li><p>delete word, a command or an environment by typing ALT-del</p></li>
+<li><p>spell checking is only done in known text commands</p></li>
+<li><p>some dialogs adapted to cope better with small screen sizes</p></li>
+<li><p>lots of bugs removed after user feedback</p></li>
+</ul>
+</section>
+<section id="texmakerx-1-9-9">
+<h2>TexMakerX 1.9.9<a class="headerlink" href="#texmakerx-1-9-9" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>added interactive structure view update</p></li>
+<li><p>added basic scripting</p></li>
+<li><p>added automatically SVN commits</p></li>
+<li><p>added customizable toolbars, environment highlighting and LaTeX menus</p></li>
+<li><p>faster search (= optimized highlighting)</p></li>
+<li><p>extended DDE syntax to start services which aren’t running</p></li>
+<li><p>if a called latex hangs it can be killed with escape after 2 seconds</p></li>
+<li><p>fixed folding</p></li>
+<li><p>fixed single instance mode on mac (by replacing dsingleapplication with qtsingleapplication)</p></li>
+<li><p>several other fixes</p></li>
+</ul>
+</section>
+<section id="texmakerx-1-9-3">
+<h2>TexMakerX 1.9.3<a class="headerlink" href="#texmakerx-1-9-3" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>added a find in open files dialog</p></li>
+<li><p>added automatic bibtex calling</p></li>
+<li><p>added a syntax for the current file in commands as ?c:ame</p></li>
+<li><p>thesaurus is loaded in the background at start up (=&gt;faster first synonym lookup)</p></li>
+<li><p>fixed crash of DDE</p></li>
+<li><p>fixed “keep indentation” mode for code snippets</p></li>
+<li><p>fixed slowdown on mac</p></li>
+<li><p>fixed relative paths in included files bug</p></li>
+<li><p>fixed KDE dark theme</p></li>
+</ul>
+</section>
+<section id="texmakerx-1-9-2">
+<h2>TexMakerX 1.9.2<a class="headerlink" href="#texmakerx-1-9-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>added experimental latex preview</p></li>
+<li><p>added random text generator</p></li>
+<li><p>added integrated synonym dictionary (using openOffice databases, default en, de, fr)</p></li>
+<li><p>added interactive checking of correct \ref to \label matching</p></li>
+<li><p>added BibTeX parser, interactive checking of correct \cite commands and bibtex insert dialog</p></li>
+<li><p>added templates</p></li>
+<li><p>added tabbed log panel</p></li>
+<li><p>extended completer word list using kile cwl files</p></li>
+<li><p>imported more math symbols (+730) from kile</p></li>
+<li><p>imported changes of texmaker 1.8.1-&gt;1.9.2 (favourite symbols, new color scheme, a)</p></li>
+<li><p>fixed several bugs</p></li>
+<li><p>see usermanual_en.html for a more detailed description</p></li>
+</ul>
+</section>
+<section id="texmakerx-1-9">
+<h2>TexMakerX 1.9<a class="headerlink" href="#texmakerx-1-9" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>first steps for dynamic syntax highlighting: references in in commands like \label or \ref are checked and are marked especially if the reference does not exist (in case of referencing) or if it has been defined multiple times</p></li>
+<li><p>extended word completion system to use “kile”-word lists (*.cwl)</p></li>
+<li><p>key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells</p></li>
+<li><p>complete normal texttext by proposing earlier used text parts</p></li>
+<li><p>“User Tags”\94 (user defined text blocks) can be inserted by using user defined abbreviations which replaced in the completion process</p></li>
+<li><p>user defined latex commands are automatically scanned and can be used for command completion</p></li>
+<li><p>new documents can be created by using templates</p></li>
+<li><p>extended and improved symbol panel</p></li>
+<li><p>symbol list selector moved to the left edge to give more room for the symbols (like in Texmaker)</p></li>
+<li><p>tooltip help: LaTeX help on commands, document context on references</p></li>
+<li><p>preview for selected text in the status panel or as tool tip</p></li>
+<li><p>status/log/error panel can also be used in a tabbed manner</p></li>
+<li><p>online spell checking suppressed on (some) latex command options like \ref{label} and some more</p></li>
+<li><p>fix: online spell checker handles escaped chars like \93a or \94{a} now correctly</p></li>
+<li><p>context menu of the structure view: selecting a complete section or indenting a section</p></li>
+<li><p>added a thesaurus was added</p></li>
+<li><p>lots of bug fixes</p></li>
+</ul>
+</section>
+<section id="texmakerx-1-8-1">
+<h2>TexMakerX 1.8.1<a class="headerlink" href="#texmakerx-1-8-1" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>added Windows DDE support</p></li>
+<li><p>added free menu key board mapping (also shift+insert key bindings)</p></li>
+<li><p>added word completion</p></li>
+<li><p>added error highlighting</p></li>
+<li><p>improved text analysis (phrases), recent file menu</p></li>
+<li><p>fixed MAC support (compiling, line endings)</p></li>
+<li><p>fixed possible crash with multiple instances and spellchecking</p></li>
+<li><p>more bug fixes</p></li>
+</ul>
+</section>
+<section id="texmakerx-1-8">
+<h2>TexMakerX 1.8<a class="headerlink" href="#texmakerx-1-8" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>forking from Texmaker</p></li>
+<li><p>editor based on qcodeedit (code folding, better bookmarks, incremental search, …)</p></li>
+<li><p>interactive spell checking, spell checker based on hunspell-1.2.8 (fixing bug)</p></li>
+<li><p>code completion adding descriptive texts</p></li>
+<li><p>automatic detection of file encoding</p></li>
+<li><p>–start-always command line option added</p></li>
+<li><p>stdout is now listed in the list</p></li>
+<li><p>text analysis</p></li>
+<li><p>maintaining author changed, new name, new homepage: texmakerx.sourceforge.net</p></li>
+</ul>
+</section>
+<section id="texmaker-1-8">
+<h2>Texmaker 1.8<a class="headerlink" href="#texmaker-1-8" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>texmaker can now be only started once per user : inverse search will no more launch a new instance of texmaker</p></li>
+<li><p>the spell checker is now based on hunspell-1.2.4</p></li>
+<li><p>the latex errors detection has been improved</p></li>
+<li><p>the background color of the selected symbol is now always the same (to be sure that the symbol is always visible)</p></li>
+<li><p>parentheses matching is back</p></li>
+<li><p>“\end{…}” is now added automatically after “\begin{…}” while using autocompletion</p></li>
+</ul>
+</section>
+<section id="texmaker-1-7-1">
+<h2>Texmaker 1.7.1<a class="headerlink" href="#texmaker-1-7-1" title="Permalink to this heading">#</a></h2>
+<p>Bugs fixed :</p>
+<ul class="simple">
+<li><p>no more crash with the “Previous LaTeX error” command and the syntax highlighting</p></li>
+<li><p>the “find” command starts at cursor and not at the beginning of the document</p></li>
+</ul>
+</section>
+<section id="texmaker-1-7">
+<h2>Texmaker 1.7<a class="headerlink" href="#texmaker-1-7" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>New search widget</p></li>
+<li><p>Spell checking is now based on hunspell and uses OpenOffice.org dictionaries.</p></li>
+<li><p>New LaTeX log errors detection</p></li>
+<li><p>Indentation “memory”</p></li>
+<li><p>Code completion</p></li>
+</ul>
+</section>
+<section id="texmaker-1-6">
+<h2>Texmaker 1.6<a class="headerlink" href="#texmaker-1-6" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>spell checking bug has been fixed (when misspelled and original word has not the same size)</p></li>
+<li><p>some keyboard accelerators has been changed (trouble with non latin1 keyboard configuration). Users can now changed some keyboard shortcuts (“latex” and “math” menus)</p></li>
+<li><p>german, russian and chinese translations has been added</p></li>
+<li><p>external browser is now used for the documentation</p></li>
+<li><p>a “-master” option to the program command line has been added. The new synopsis is :
+texmaker file [-master] [-line xxx]</p></li>
+<li><p>the documentation has been completed</p></li>
+<li><p>parentheses matching is now disabled</p></li>
+<li><p>the config file is now in the ini format</p></li>
+</ul>
+</section>
+<section id="texmaker-1-5">
+<h2>Texmaker 1.5<a class="headerlink" href="#texmaker-1-5" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>a “most used symbols” panel has been added</p></li>
+<li><p>the math mode “$$…$$” is replaced by “[ ]”</p></li>
+<li><p>keyboard accelerators has been added in the “latex” and “math” menus</p></li>
+<li><p>the current line number can be added to the latex related commands</p></li>
+<li><p>the colors for the syntax highlighting can now be modified</p></li>
+<li><p>a summary of the latex errors and warnings is displayed before the full log file</p></li>
+<li><p>compilation trouble with Qt&gt;=4.2 has been fixed</p></li>
+<li><p>support for “QFileOpenEvent” has been added (for macosx)</p></li>
+<li><p>minor bugfixes (dialogs layout, french translation…)</p></li>
+</ul>
+</section>
+<section id="texmaker-1-4">
+<h2>Texmaker 1.4<a class="headerlink" href="#texmaker-1-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Spell checking has been added (aspell is required)</p></li>
+<li><p>Support for the main pstricks commands has been added</p></li>
+<li><p>The html conversion tool is now available on windows (only ghostscript is required)</p></li>
+<li><p>The editor checks now the braces</p></li>
+<li><p>The syntax highlighter can now detect the math mode “[ ]”</p></li>
+<li><p>Tex files can now be dragged from a file manager to texmaker</p></li>
+<li><p>minor bugfixes (replace dialog, close event…)</p></li>
+</ul>
+</section>
+<section id="texmaker-1-3">
+<h2>Texmaker 1.3<a class="headerlink" href="#texmaker-1-3" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Texmaker is now a pure QT4 program (qt &gt;= 4.1 is required). The qt3 support library is no more required. The editor is now based on the qt4 QtextEdit object and the symbols icon view is an qt4 QTableWidget object.</p></li>
+<li><p>For each file, three bookmarks can be used to speed up navigation.</p></li>
+</ul>
+</section>
+<section id="texmaker-1-2">
+<h2>Texmaker 1.2<a class="headerlink" href="#texmaker-1-2" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Don’t use anymore double-clic to open a file from the structure view (Qt-4.0.0 bug). A simple clic must be used now.</p></li>
+<li><p>Don’t use anymore / to separate commands (quick build and users commands) but | to avoid confusion with the directories separator.</p></li>
+<li><p>A selected icon is no more highlighted (trouble on windows and macosx - the selected icon was masked).</p></li>
+<li><p>Added the option ‘-line’ for the application.
+New synopsis for texmaker : texmaker document.tex [-line xxx]
+Can be used for inverse search.</p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="background.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Background information</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, TeXstudio Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">CHANGELOG</a><ul>
+<li><a class="reference internal" href="#texstudio-development-4-5-2">TeXstudio development (4.5.2)</a></li>
+<li><a class="reference internal" href="#texstudio-4-5-1">TeXstudio 4.5.1</a></li>
+<li><a class="reference internal" href="#texstudio-4-4-1">TeXstudio 4.4.1</a></li>
+<li><a class="reference internal" href="#texstudio-4-4-0">TeXstudio 4.4.0</a></li>
+<li><a class="reference internal" href="#texstudio-4-3-1">TeXstudio 4.3.1</a></li>
+<li><a class="reference internal" href="#texstudio-4-3-0">TeXstudio 4.3.0</a></li>
+<li><a class="reference internal" href="#texstudio-4-2-3">TeXstudio 4.2.3</a></li>
+<li><a class="reference internal" href="#texstudio-4-2-2">TeXstudio 4.2.2</a></li>
+<li><a class="reference internal" href="#texstudio-4-2-1">TeXstudio 4.2.1</a></li>
+<li><a class="reference internal" href="#texstudio-4-2-0">TeXstudio 4.2.0</a></li>
+<li><a class="reference internal" href="#texstudio-4-1-2">TeXstudio 4.1.2</a></li>
+<li><a class="reference internal" href="#texstudio-4-1-1">TeXstudio 4.1.1</a></li>
+<li><a class="reference internal" href="#texstudio-4-1-0">TeXstudio 4.1.0</a></li>
+<li><a class="reference internal" href="#texstudio-4-0-4">TeXstudio 4.0.4</a></li>
+<li><a class="reference internal" href="#texstudio-4-0-3">TeXstudio 4.0.3</a></li>
+<li><a class="reference internal" href="#texstudio-4-0-2">TeXstudio 4.0.2</a></li>
+<li><a class="reference internal" href="#texstudio-4-0-1">TeXstudio 4.0.1</a></li>
+<li><a class="reference internal" href="#texstudio-4-0-0">TeXstudio 4.0.0</a></li>
+<li><a class="reference internal" href="#texstudio-3-1-2">TeXstudio 3.1.2</a></li>
+<li><a class="reference internal" href="#texstudio-3-1-1">TeXstudio 3.1.1</a></li>
+<li><a class="reference internal" href="#texstudio-3-1-0">TeXstudio 3.1.0</a></li>
+<li><a class="reference internal" href="#texstudio-3-0-5">TeXstudio 3.0.5</a></li>
+<li><a class="reference internal" href="#texstudio-3-0-4">TeXstudio 3.0.4</a></li>
+<li><a class="reference internal" href="#texstudio-3-0-3">TeXstudio 3.0.3</a></li>
+<li><a class="reference internal" href="#texstudio-3-0-2">TeXstudio 3.0.2</a></li>
+<li><a class="reference internal" href="#texstudio-3-0-1">TeXstudio 3.0.1</a></li>
+<li><a class="reference internal" href="#texstudio-3-0-0">TeXstudio 3.0.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-22">TeXstudio 2.12.22</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-20">TeXstudio 2.12.20</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-18">TeXstudio 2.12.18</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-16">TeXstudio 2.12.16</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-14">TeXstudio 2.12.14</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-12">TeXstudio 2.12.12</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-10">TeXstudio 2.12.10</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-8">TeXstudio 2.12.8</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-6">TeXstudio 2.12.6</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-4">TeXstudio 2.12.4</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-2">TeXstudio 2.12.2</a></li>
+<li><a class="reference internal" href="#texstudio-2-12-0">TeXstudio 2.12.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-11-2">TeXstudio 2.11.2</a></li>
+<li><a class="reference internal" href="#texstudio-2-11-0">TeXstudio 2.11.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-10-8">TeXstudio 2.10.8</a></li>
+<li><a class="reference internal" href="#texstudio-2-10-6">TeXstudio 2.10.6</a></li>
+<li><a class="reference internal" href="#texstudio-2-10-4">TeXstudio 2.10.4</a></li>
+<li><a class="reference internal" href="#texstudio-2-10-2">TeXstudio 2.10.2</a></li>
+<li><a class="reference internal" href="#texstudio-2-10-0">TeXstudio 2.10.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-9-4">TeXstudio 2.9.4</a></li>
+<li><a class="reference internal" href="#texstudio-2-9-2">TeXstudio 2.9.2</a></li>
+<li><a class="reference internal" href="#texstudio-2-9-0">TeXstudio 2.9.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-8-8">TeXstudio 2.8.8</a></li>
+<li><a class="reference internal" href="#texstudio-2-8-6">TeXstudio 2.8.6</a></li>
+<li><a class="reference internal" href="#texstudio-2-8-4">TeXstudio 2.8.4</a></li>
+<li><a class="reference internal" href="#texstudio-2-8-2">TeXstudio 2.8.2</a></li>
+<li><a class="reference internal" href="#texstudio-2-8-0">TeXstudio 2.8.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-7-0">TeXstudio 2.7.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-6-6">TeXstudio 2.6.6</a></li>
+<li><a class="reference internal" href="#texstudio-2-6-4">TeXstudio 2.6.4</a></li>
+<li><a class="reference internal" href="#texstudio-2-6-2">TeXstudio 2.6.2</a></li>
+<li><a class="reference internal" href="#texstudio-2-6-0">TeXstudio 2.6.0</a></li>
+<li><a class="reference internal" href="#texstudio-2-5-2-svn-3707">TeXstudio 2.5.2  SVN 3707</a></li>
+<li><a class="reference internal" href="#texstudio-2-5-1-svn-3445">TeXstudio 2.5.1  SVN 3445</a></li>
+<li><a class="reference internal" href="#texstudio-2-5-svn-3378">TeXstudio 2.5  SVN 3378</a></li>
+<li><a class="reference internal" href="#texstudio-2-4-svn-3255">TeXstudio 2.4  SVN 3255</a></li>
+<li><a class="reference internal" href="#texstudio-2-3-svn-2459">TeXstudio 2.3  SVN 2459</a></li>
+<li><a class="reference internal" href="#texstudio-2-2-svn-2143">TeXstudio 2.2  SVN 2143</a></li>
+<li><a class="reference internal" href="#texmakerx-2-1-svn-1772">TexMakerX 2.1  SVN 1772</a></li>
+<li><a class="reference internal" href="#texmakerx-2-0-svn-1495">TexMakerX 2.0  SVN 1495</a></li>
+<li><a class="reference internal" href="#texmakerx-1-9-9a">TexMakerX 1.9.9a</a></li>
+<li><a class="reference internal" href="#texmakerx-1-9-9">TexMakerX 1.9.9</a></li>
+<li><a class="reference internal" href="#texmakerx-1-9-3">TexMakerX 1.9.3</a></li>
+<li><a class="reference internal" href="#texmakerx-1-9-2">TexMakerX 1.9.2</a></li>
+<li><a class="reference internal" href="#texmakerx-1-9">TexMakerX 1.9</a></li>
+<li><a class="reference internal" href="#texmakerx-1-8-1">TexMakerX 1.8.1</a></li>
+<li><a class="reference internal" href="#texmakerx-1-8">TexMakerX 1.8</a></li>
+<li><a class="reference internal" href="#texmaker-1-8">Texmaker 1.8</a></li>
+<li><a class="reference internal" href="#texmaker-1-7-1">Texmaker 1.7.1</a></li>
+<li><a class="reference internal" href="#texmaker-1-7">Texmaker 1.7</a></li>
+<li><a class="reference internal" href="#texmaker-1-6">Texmaker 1.6</a></li>
+<li><a class="reference internal" href="#texmaker-1-5">Texmaker 1.5</a></li>
+<li><a class="reference internal" href="#texmaker-1-4">Texmaker 1.4</a></li>
+<li><a class="reference internal" href="#texmaker-1-3">Texmaker 1.3</a></li>
+<li><a class="reference internal" href="#texmaker-1-2">Texmaker 1.2</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    </body>
+</html>
