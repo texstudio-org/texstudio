@@ -21,7 +21,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     if(changelogPath.isEmpty()){
         changelogPath="https://texstudio-org.github.io/CHANGELOG.html";
     }else{
-        changelogPath="file://"+changelogPath;
+        changelogPath="file:///"+changelogPath;
     }
 	ui.textBrowser->setOpenExternalLinks(true);
     ui.textBrowser->setHtml(QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + "<br>" +
