@@ -608,6 +608,7 @@ Options:
 | TEXSTUDIO_ENABLE_TESTS  | off | build self-tests |
 | TEXSTUDIO_ENABLE_DEBUG_LOGGER  | off | build debug logger |
 | TEXSTUDIO_ENABLE_MEDIAPLAYER | off | build with pdf multimedia support. Requires QtMultimedia |
+| APPDATA | on | on linux, install texstudio.metainfo.xml |
 
 ### Updating translations
 With `cmake` the command `lupdate` does not work directly.
