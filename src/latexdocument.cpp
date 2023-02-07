@@ -1347,8 +1347,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	    this->updateLtxCommands(true);
 	}
     //update view (unless patchStructure is run again anyway)
-    if (edView && !reRunSuggested)
+    if (edView && (!reRunSuggested ||recheck)){
 		edView->documentContentChanged(linenr, count);
+    }
 #ifndef QT_NO_DEBUG
 	if (!isHidden())
 		checkForLeak();
