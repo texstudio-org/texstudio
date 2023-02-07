@@ -57,10 +57,10 @@ performing highlighting or completion.
 | option | description |
 | ----------------- | ------------------------------------- |
 | `--config DIR`    | use the specified settings directory. |
-| `--ini-file FILE` | *deprecated*:use `--config` instead. |
+| `--ini-file FILE` | *deprecated*: use `--config` instead. |
 | `--texpath`       |  option to specify a path to search for the TeX binaries |
 | `--root`          |  defines the document as *explicit root document* (formerly called *master document*). |
-| `--master`        | *deprecated*:use `--root` instead. |
+| `--master`        | *deprecated*: use `--root` instead. |
 | `--line xx[:cc]`  | position the cursor at line LINE and column COL, e.g. \"\--line 2:5\" will jump to column 5 in line 2. |
 | `--insert-cite citation` | pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \\mycite{key} or just the key. In the latter case, it is expanded to \\cite{key}. Also comma separated key-lists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted. |
 | `--start-always`   | start a new instance, even if TXS is already running. This allows using of multiple instances. |
