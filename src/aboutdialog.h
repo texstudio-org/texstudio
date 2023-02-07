@@ -24,7 +24,11 @@ public:
     AboutDialog(QWidget *parent = nullptr); ///< set-up about dialog
 	~AboutDialog();
 	Ui::AboutDialog ui;
+private:
+    QString htmlAbout;
 private slots:
+    void anchorClicked(const QUrl &link);
+    void backward();
 	void largeLogo(); ///< show enlarged logo, triggered via context menu on image in about-dialog
 };
 

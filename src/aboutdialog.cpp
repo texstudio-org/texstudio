@@ -26,8 +26,7 @@ AboutDialog::AboutDialog(QWidget *parent)
         }
         changelogPath="file://"+changelogPath;
     }
-	ui.textBrowser->setOpenExternalLinks(true);
-    ui.textBrowser->setHtml(QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + "<br>" +
+    htmlAbout = (QString("<b>%1 %2</b> (git %3)").arg(TEXSTUDIO,TXSVERSION,TEXSTUDIO_GIT_REVISION ? TEXSTUDIO_GIT_REVISION : "n/a") + "<br>" +
                             tr("Using Qt Version %1, compiled with Qt %2 %3").arg(qVersion(),QT_VERSION_STR,COMPILED_DEBUG_OR_RELEASE) + "<br>" +
                             "<a href=\""+changelogPath+"\">"+tr("Changelog")+"</a><br><br>" +
 	                        "Copyright (c)<br>" +
@@ -49,6 +48,9 @@ AboutDialog::AboutDialog(QWidget *parent)
                             tr("Thanks to ") + QString::fromUtf8("Frédéric Devernay, Denis Bitouzé, Vesselin Atanasov, Yukai Chou, Jean-Côme Charpentier, Luis Silvestre, Enrico Vittorini, Aleksandr Zolotarev, David Sichau, Grigory Mozhaev, mattgk, A. Weder, Pavel Fric, András Somogyi, István Blahota, Edson Henriques, Grant McLean, Tom Jampen, Kostas Oikinimou, Lion Guillaume, ranks.nl, AI Corleone, Diego Andrés Jarrín, Matthias Pospiech, Zulkifli Hidayat, Christian Spieß, Robert Diaz, Kirill Müller, Atsushi Nakajima Yuriy Kolerov, Victor Kozyakin, Mattia Meneguzzo, Andriy Bandura, Carlos Eduardo Valencia Urbina, Koutheir Attouchi, Stefan Kraus, Bjoern Menke, Charles Brunet, François Gannaz, Marek Kurdej, Paulo Silva, Thiago de Melo, YoungFrog, Klaus Schneider-Zapp, Jakob Nixdorf, Thomas Leitz, Quoc Ho, Matthew Bertucci, geolta.<br><br>") +
                             tr("Project home site:") + " <a href=\"https://texstudio.org/\">https://texstudio.org/</a><br><br>" +
 	                        tr("This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation."));
+    ui.textBrowser->setHtml(htmlAbout);
+	ui.textBrowser->setOpenExternalLinks(true);
+    connect(ui.textBrowser, SIGNAL(anchorClicked(const QUrl&)), this, SLOT(anchorClicked(const QUrl&)));
 	QAction *act = new QAction("large", this);
 	connect(act, SIGNAL(triggered()), SLOT(largeLogo()));
 	ui.label->addAction(act);
@@ -57,6 +59,21 @@ AboutDialog::AboutDialog(QWidget *parent)
 
 AboutDialog::~AboutDialog()
 {
+}
+
+void AboutDialog::anchorClicked(const QUrl &link)
+{
+    ui.okButton->setText(tr("Back"));
+    ui.okButton->disconnect(SIGNAL(clicked(bool)));
+    connect(ui.okButton, SIGNAL(clicked(bool)), this, SLOT(backward()));
+}
+
+void AboutDialog::backward()
+{
+    ui.okButton->setText(tr("OK"));
+    ui.okButton->disconnect(SIGNAL(clicked(bool)));
+    connect(ui.okButton, SIGNAL(clicked(bool)), this, SLOT(accept()));
+    ui.textBrowser->setHtml(htmlAbout);
 }
 
 void AboutDialog::largeLogo()
