@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="40"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation>这个软件根据自由软件基金会第二版发布的通用公共许可证授权给用户。</translation>
+        <translation>本软件根据自由软件基金会发布的 GNU 通用公共许可协议第二版（GPLv2）授权给用户。</translation>
     </message>
 </context>
 <context>
@@ -1839,7 +1839,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="329"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>图标主题：</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="337"/>
@@ -3145,7 +3145,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Functions</source>
-        <translation>数学功能(&amp;F)</translation>
+        <translation>数学函数(&amp;F)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="29"/>
@@ -3155,7 +3155,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="31"/>
         <source>Math &amp;Accents</source>
-        <translation>数学重音(&amp;A)</translation>
+        <translation>数学标注(&amp;A)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="32"/>
@@ -3175,7 +3175,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="18"/>
         <source>&amp;Horizontal Spacing</source>
-        <translation type="unfinished"/>
+        <translation>水平间距(&amp;H)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
@@ -3190,12 +3190,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math &amp;Definitions</source>
-        <translation type="unfinished"/>
+        <translation>数学定义(&amp;D)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
         <source>Math &amp;Stacking Symbols</source>
-        <translation type="unfinished"/>
+        <translation>数学堆叠符号(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="34"/>
@@ -4219,7 +4219,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1987"/>
         <source>Root Document: </source>
-        <translation type="unfinished"/>
+        <translation>主文档:</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2756"/>
@@ -9560,7 +9560,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="883"/>
         <source>Save renamed/&amp;moved file...</source>
-        <translation>重命名保存/移动文件</translation>
+        <translation>重命名保存/移动文件(&amp;M)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="884"/>
@@ -9575,7 +9575,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="886"/>
         <source>Set &amp;permissions...</source>
-        <translation>设置 &amp;权限...</translation>
+        <translation>设置权限(&amp;P)...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="888"/>
@@ -9716,7 +9716,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="891"/>
         <source>Copy root filename to clipboard</source>
-        <translation type="unfinished"/>
+        <translation>复制主文档名到剪切板</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="929"/>
@@ -10025,7 +10025,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1064"/>
         <source>Preview Dis&amp;play Mode</source>
-        <translation type="unfinished"/>
+        <translation>预览显示模式(&amp;P)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1066"/>
@@ -10425,12 +10425,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1214"/>
         <source>C&amp;onvert to Html...</source>
-        <translation>转换为 html (&amp;O)...</translation>
+        <translation>转换为 HTML 文件(&amp;O)...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1215"/>
         <source>C&amp;onvert Source to Html...</source>
-        <translation>转换为 html (&amp;O)...</translation>
+        <translation>转换为 HTML 代码(&amp;O)...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1217"/>
@@ -10586,7 +10586,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1256"/>
         <source>Quick &amp;Beamer Presentation...</source>
-        <translation>快速Beamer演示...</translation>
+        <translation>Beamer演示向导(&amp;B)...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1257"/>
@@ -10596,12 +10596,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1260"/>
         <source>Quick &amp;Tabular...</source>
-        <translation>表格(&amp;tabular)向导...</translation>
+        <translation>Tabular表格向导(&amp;T)...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1261"/>
         <source>Quick T&amp;abbing...</source>
-        <translation>表格(T&amp;abbing)向导...</translation>
+        <translation>Tabbing表格向导(&amp;A)...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1262"/>
