@@ -2660,6 +2660,7 @@
 <file>completion/phonrule.cwl</file>
 <file>completion/photo.cwl</file>
 <file>completion/physconst.cwl</file>
+<file>completion/physics2.cwl</file>
 <file>completion/physics.cwl</file>
 <file>completion/physunits.cwl</file>
 <file>completion/piano.cwl</file>
@@ -2977,6 +2978,7 @@
 <file>completion/rescansync.cwl</file>
 <file>completion/resizegather.cwl</file>
 <file>completion/resmes.cwl</file>
+<file>completion/ResolSysteme.cwl</file>
 <file>completion/rest-api.cwl</file>
 <file>completion/returntogrid.cwl</file>
 <file>completion/revquantum.cwl</file>
