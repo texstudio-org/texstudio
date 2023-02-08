@@ -1,5 +1,5 @@
 # lua-typo package
-# Matthew Bertucci 9/28/2021 for v0.50
+# Matthew Bertucci 2023/02/04 for v0.60
 
 #include:luatexbase
 #include:luacode
@@ -36,6 +36,6 @@ FootnoteSplit#true,false
 \luatypoMinFull#*
 \luatypoMinPart#*
 
-\luatypoOneChar{language}{string}
-\luatypoTwoChars{language}{string}
+\luatypoOneChar{language}{list of words}
+\luatypoTwoChars{language}{list of words}
 \luatypoSetColor{number}{color}

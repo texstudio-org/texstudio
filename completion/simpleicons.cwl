@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/01/20 for v8.3.0
+# Matthew Bertucci 2023/02/03 for v8.4.0
 
 #include:ifxetex
 #include:ifluatex
@@ -522,6 +522,7 @@ dacia
 daf
 dailymotion
 daimler
+daisyui
 dapr
 darkreader
 dart
@@ -1058,6 +1059,7 @@ istio
 itchdotio
 iterm2
 itunes
+itvx
 iveco
 jabber
 jaguar
@@ -2145,6 +2147,7 @@ tnt
 todoist
 toggl
 tokyometro
+toml
 tomorrowland
 topcoder
 toptal
@@ -2236,6 +2239,7 @@ v2ex
 v8
 vaadin
 vagrant
+vala
 valorant
 valve
 vapor

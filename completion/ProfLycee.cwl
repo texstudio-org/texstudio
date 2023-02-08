@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/01/25 for v2.1.8
+# Matthew Bertucci 2023/02/04 for v2.1.9
 
 #include:mathtools
 #include:xcolor
@@ -716,7 +716,13 @@ Mathpunct#true,false
 
 ## Petits schémas pour le signe d’une fonction affine ou d’un trinôme ##
 \MiniSchemaSignes
-\MiniSchemaSignes[options%keyvals]
+\MiniSchemaSignes<TikZ options>#*
+\MiniSchemaSignes[options%keyvals]#*
+\MiniSchemaSignes[options%keyvals]<TikZ options>
+\MiniSchemaSignes*
+\MiniSchemaSignes*<TikZ options>#*
+\MiniSchemaSignes*[options%keyvals]#*
+\MiniSchemaSignes*[options%keyvals]<TikZ options>
 
 \MiniSchemaSignesTkzTab{numligne}
 \MiniSchemaSignesTkzTab{numligne}[echelle]
@@ -725,7 +731,7 @@ Mathpunct#true,false
 \MiniSchemaSignesTkzTab[options%keyvals]{numligne}[echelle]
 \MiniSchemaSignesTkzTab[options%keyvals]{numligne}[echelle][décalage horizontal]
 
-#keyvals:\aidesignePL,\aidesignetkztabPL
+#keyvals:\MiniSchemaSignes,\MiniSchemaSignes*,\MiniSchemaSignesTkzTab
 Code=
 Couleur=#%color
 Racines=%<racines%>
