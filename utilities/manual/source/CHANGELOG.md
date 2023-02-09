@@ -2,6 +2,7 @@
 ## TeXstudio development (4.5.2)
 
 - Show changelog in about dialog
+- add Special option to Adv. Editor for Overscrolling Last Line to Top ([#2944](https://github.com/texstudio-org/texstudio/issues/2944))
 
 ## TeXstudio 4.5.1
 
