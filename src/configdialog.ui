@@ -2391,7 +2391,25 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     <property name="text">
                      <string>Vertical Overscroll (Scroll below end of file)</string>
                     </property>
+                    <property name="toolTip">
+                     <string>When you check this option then the editor can be scrolled down until the last line of text reaches the middle of the editor.
+If you check this option and the next one then scrolling ends when the last line of text is at top of the editor.</string>
+                    </property>
                    </widget>
+                  </item>
+                  <item row="6" column="0" colspan="2">
+                   <layout class="QVBoxLayout" name="verticalLayout_19">
+                    <property name="leftMargin">
+                     <number>16</number>
+                    </property>
+                    <item>
+                     <widget class="QCheckBox" name="checkBoxOverScrollToTop">
+                      <property name="text">
+                       <string>Last Line Scrollable to Top</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </item>
                   <item row="11" column="1" colspan="2">
                    <widget class="QComboBox" name="comboBoxTripleClickSelection">

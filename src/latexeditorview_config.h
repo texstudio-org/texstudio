@@ -34,7 +34,7 @@ public:
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
 	bool allowDragAndDrop;
-	bool mouseWheelZoom, smoothScrolling, verticalOverScroll;
+	bool mouseWheelZoom, smoothScrolling, verticalOverScroll, overScrollToTop;
 
 	bool hackAutoChoose, hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache, hackDisableAccentWorkaround, hackQImageCache;
 	int hackRenderingMode; //0: normal, 1: qt (missing), 2: single letter

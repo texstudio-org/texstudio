@@ -96,6 +96,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			SmoothScrolling     = 0x00004000,
 			MouseWheelZoom      = 0x00008000,
 			VerticalOverScroll  = 0x04000000,
+			OverScrollToTop     = 0x08000000,
 
 			ReplaceIndentTabs		= 0x00010000,
 			ReplaceTextTabs			= 0x00020000,

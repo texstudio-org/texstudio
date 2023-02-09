@@ -802,7 +802,7 @@ void QEditor::setFlag(EditFlag f, bool b)
 		// TODO : only update cpos if cursor used to be visible?
 		ensureCursorVisible();
 	}
-	if (changed && f == VerticalOverScroll)
+	if (changed && (f == VerticalOverScroll || f == OverScrollToTop))
 		setVerticalScrollBarMaximum();
 
 }
@@ -3074,12 +3074,24 @@ void QEditor::setVerticalScrollBarMaximum()
 	if (!m_doc) return;
 	const QSize viewportSize = viewport()->size();
 	int viewportHeight = viewportSize.height();
-	if (flag(VerticalOverScroll))
-		viewportHeight /= 2;
-    const qreal ls = m_doc->getLineSpacing();
+	const qreal ls = m_doc->getLineSpacing();
 	QScrollBar* vsb = verticalScrollBar();
-    vsb->setMaximum(qMax(0., 1. + (m_doc->height() - viewportHeight) / ls));
-    vsb->setPageStep(qCeil(1.* viewportSize.height() / ls));
+
+	if (flag(VerticalOverScroll)) {
+		if (flag(OverScrollToTop)) {
+			// allow last line scroll to top
+			vsb->setMaximum(qMax(0, qRound(m_doc->height() / ls - 1)));
+		} else {
+			// allow last line scroll to mid of editor
+			vsb->setMaximum(qMax(0, qRound((m_doc->height() - viewportHeight / 2) / ls)));
+		}
+	} else {
+		// disallow overscroll
+		vsb->setMaximum(qMax(0, qRound((m_doc->height() - viewportHeight) / ls)));
+	}
+// The viewport shows a number of complete lines and a part of the last line. If this part is at
+// least 70% of the line spacing then this line is part of the page step.
+    vsb->setPageStep(qFloor(viewportSize.height() / ls + 0.3));
 }
 
 /*!
