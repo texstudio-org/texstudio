@@ -2227,9 +2227,9 @@ Then you can select a new shortcut by one of the following ways:
                    </widget>
                   </item>
                   <item row="7" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
+                   <widget class="QCheckBox" name="checkBoxSmoothScrolling">
                     <property name="text">
-                     <string>Overwrite Opening Bracket Followed by a Placeholder</string>
+                     <string>Smooth Scrolling</string>
                     </property>
                    </widget>
                   </item>
@@ -2241,9 +2241,9 @@ Then you can select a new shortcut by one of the following ways:
                    </widget>
                   </item>
                   <item row="4" column="0">
-                   <widget class="QCheckBox" name="checkBoxMouseWheelZoom">
+                   <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
                     <property name="text">
-                     <string>Mouse Wheel Zoom</string>
+                     <string>Overwrite Opening Bracket Followed by a Placeholder</string>
                     </property>
                    </widget>
                   </item>
@@ -2350,9 +2350,9 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                    </widget>
                   </item>
                   <item row="8" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
+                   <widget class="QCheckBox" name="checkBoxMouseWheelZoom">
                     <property name="text">
-                     <string>Overwrite Closing Bracket Following a Placeholder</string>
+                     <string>Mouse Wheel Zoom</string>
                     </property>
                    </widget>
                   </item>
@@ -2387,9 +2387,9 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                    </widget>
                   </item>
                   <item row="6" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxAllowDragAndDrop">
+                   <widget class="QCheckBox" name="checkBoxVerticalOverScroll">
                     <property name="text">
-                     <string>Allow Drag and Drop</string>
+                     <string>Vertical Overscroll (Scroll below end of file)</string>
                     </property>
                    </widget>
                   </item>
@@ -2433,9 +2433,9 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                    </widget>
                   </item>
                   <item row="5" column="0">
-                   <widget class="QCheckBox" name="checkBoxSmoothScrolling">
+                   <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
                     <property name="text">
-                     <string>Smooth Scrolling</string>
+                     <string>Overwrite Closing Bracket Following a Placeholder</string>
                     </property>
                    </widget>
                   </item>
@@ -2519,16 +2519,16 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                    </widget>
                   </item>
                   <item row="9" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
+                   <widget class="QCheckBox" name="checkBoxAllowDragAndDrop">
                     <property name="text">
-                     <string>Double-Click Selection: Include Leading Backslash</string>
+                     <string>Allow Drag and Drop</string>
                     </property>
                    </widget>
                   </item>
                   <item row="10" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxVerticalOverScroll">
+                   <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
                     <property name="text">
-                     <string>Vertical Overscroll (Scroll below end of file)</string>
+                     <string>Double-Click Selection: Include Leading Backslash</string>
                     </property>
                    </widget>
                   </item>
