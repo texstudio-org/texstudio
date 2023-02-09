@@ -2219,7 +2219,7 @@ Then you can select a new shortcut by one of the following ways:
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="2" colspan="2">
+                  <item row="2" column="2" colspan="2">
                    <widget class="QCheckBox" name="checkBoxImageToolTip">
                     <property name="text">
                      <string>Show image tooltip on image files</string>
@@ -2240,7 +2240,7 @@ Then you can select a new shortcut by one of the following ways:
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="0">
+                  <item row="3" column="0">
                    <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
                     <property name="text">
                      <string>Overwrite Opening Bracket Followed by a Placeholder</string>
@@ -2379,14 +2379,14 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                   <item row="23" column="1" colspan="2">
                    <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
                   </item>
-                  <item row="5" column="2" colspan="2">
+                  <item row="4" column="2" colspan="2">
                    <widget class="QCheckBox" name="checkBoxTexDocInternal">
                     <property name="text">
                      <string>Show help on commands in internal pdf viewer (texdoc)</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="0" colspan="2">
+                  <item row="5" column="0" colspan="2">
                    <widget class="QCheckBox" name="checkBoxVerticalOverScroll">
                     <property name="text">
                      <string>Vertical Overscroll (Scroll below end of file)</string>
@@ -2432,7 +2432,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="0">
+                  <item row="4" column="0">
                    <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
                     <property name="text">
                      <string>Overwrite Closing Bracket Following a Placeholder</string>
@@ -2490,7 +2490,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     </item>
                    </widget>
                   </item>
-                  <item row="4" column="2" colspan="2">
+                  <item row="3" column="2" colspan="2">
                    <widget class="QCheckBox" name="checkBoxToolTipHelp2">
                     <property name="text">
                      <string>Show help as tooltip on text in editor</string>
@@ -2511,7 +2511,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="2" column="0">
                    <widget class="QCheckBox" name="checkBoxAutoCompleteParens">
                     <property name="text">
                      <string>Auto Complete Parentheses</string>
