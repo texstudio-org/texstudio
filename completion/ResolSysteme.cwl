@@ -1,5 +1,5 @@
 # ResolSysteme package
-# Matthew Bertucci 2023/02/07 for v0.1.1
+# Matthew Bertucci 2023/02/08 for v0.1.2
 
 #include:nicematrix
 #include:ifthen
@@ -42,6 +42,11 @@ pyluatex
 \ConvVersFrac*{calcul}
 \ConvVersFrac*[option de formatage%keyvals]{calcul}
 
+\AffMatrice(matrice)
+\AffMatrice[option de formatage%keyvals](matrice)
+\AffMatrice*(matrice)
+\AffMatrice*[option de formatage%keyvals](matrice)
+
 \DetMatrice(matrice)
 \DetMatrice[option de formatage%keyvals](matrice)
 \DetMatrice*(matrice)
@@ -65,7 +70,7 @@ pyluatex
 \SolutionSysteme*[opt de formatage%keyvals](matriceA)(matriceB)
 \SolutionSysteme*[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
 
-#keyvals:\ConvVersFrac,\ConvVersFrac*,\DetMatrice,\DetMatrice*,\DetMatricePY,\DetMatricePY*,\MatriceInverse,\MatriceInverse*,\MatriceInversePY,\MatriceInversePY*,\SolutionSysteme,\SolutionSysteme*,\SolutionSystemePY,\SolutionSystemePY*
+#keyvals:\ConvVersFrac,\ConvVersFrac*,\AffMatrice,\AffMatrice*,\DetMatrice,\DetMatrice*,\DetMatricePY,\DetMatricePY*,\MatriceInverse,\MatriceInverse*,\MatriceInversePY,\MatriceInversePY*,\SolutionSysteme,\SolutionSysteme*,\SolutionSystemePY,\SolutionSystemePY*
 t
 d
 n

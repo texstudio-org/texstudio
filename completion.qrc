@@ -3022,6 +3022,7 @@
 <file>completion/rustic.cwl</file>
 <file>completion/rviewport.cwl</file>
 <file>completion/rvwrite.cwl</file>
+<file>completion/sacsymb.cwl</file>
 <file>completion/sagetex.cwl</file>
 <file>completion/sankey.cwl</file>
 <file>completion/Sanremo.cwl</file>

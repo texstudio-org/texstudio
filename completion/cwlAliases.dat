@@ -1530,3 +1530,7 @@ abntexto:
 class-abntexto
 latex-document
 tex
+altacv:
+class-altacv
+latex-document
+tex
