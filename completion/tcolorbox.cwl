@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2022/06/26 for v5.1.1
+# Matthew Bertucci updated 2023/02/10 for v6.0.0
 
 #include:environ
 #include:etoolbox
@@ -132,45 +132,61 @@ library/all
 \tcbox{box content%text}
 \tcbox[options%keyvals]{box content%text}
 \newtcolorbox{envname}{options%keyvals}#N
-\newtcolorbox[init options]{envname}[args][default]{options%keyvals}#N
+\newtcolorbox{envname}[args]{options%keyvals}#N
+\newtcolorbox{envname}[args][default]{options%keyvals}#N
+\newtcolorbox[init options]{envname}{options%keyvals}#N
+\newtcolorbox[init options]{envname}[args]{options%keyvals}#*N
+\newtcolorbox[init options]{envname}[args][default]{options%keyvals}#*N
 \renewtcolorbox{envname}{options%keyvals}
-\renewtcolorbox[init options]{envname}[args][default]{options%keyvals}
+\renewtcolorbox{envname}[args]{options%keyvals}
+\renewtcolorbox{envname}[args][default]{options%keyvals}
+\renewtcolorbox[init options]{envname}{options%keyvals}
+\renewtcolorbox[init options]{envname}[args]{options%keyvals}#*
+\renewtcolorbox[init options]{envname}[args][default]{options%keyvals}#*
 \DeclareTColorBox{envname}{xargs}{options%keyvals}#N
-\DeclareTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
+\DeclareTColorBox[init options]{envname}{xargs}{options%keyvals}#N
 \NewTColorBox{envname}{xargs}{options%keyvals}#N
-\NewTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
-\RenewTColorBox{envname}{xargs}{options%keyvals}#N
-\RenewTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
+\NewTColorBox[init options]{envname}{xargs}{options%keyvals}#N
+\RenewTColorBox{envname}{xargs}{options%keyvals}
+\RenewTColorBox[init options]{envname}{xargs}{options%keyvals}
 \ProvideTColorBox{envname}{xargs}{options%keyvals}#N
-\ProvideTColorBox[init options]{envname}{xargs}{options%keyvals}#*N
+\ProvideTColorBox[init options]{envname}{xargs}{options%keyvals}#N
 \DeclareTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
-\DeclareTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\DeclareTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#d
 \NewTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
-\NewTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
-\RenewTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
-\RenewTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\NewTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#d
+\RenewTotalTColorBox{cmd}{xargs}{options%keyvals}{content}
+\RenewTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}
 \ProvideTotalTColorBox{cmd}{xargs}{options%keyvals}{content}#d
-\ProvideTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\ProvideTotalTColorBox[init options]{cmd}{xargs}{options%keyvals}{content}#d
 \newtcbox{cmd}{options%keyvals}#d
-\newtcbox[init options]{cmd}[args][default]{options%keyvals}#d
-\renewtcbox{cmd}{options%keyvals}#d
-\renewtcbox[init options]{cmd}[args][default]{options%keyvals}#d
+\newtcbox{cmd}[args]{options%keyvals}#d
+\newtcbox{cmd}[args][default]{options%keyvals}#d
+\newtcbox[init options]{cmd}{options%keyvals}#d
+\newtcbox[init options]{cmd}[args]{options%keyvals}#*d
+\newtcbox[init options]{cmd}[args][default]{options%keyvals}#*d
+\renewtcbox{cmd}{options%keyvals}
+\renewtcbox{cmd}[args]{options%keyvals}
+\renewtcbox{cmd}[args][default]{options%keyvals}
+\renewtcbox[init options]{cmd}{options%keyvals}
+\renewtcbox[init options]{cmd}[args]{options%keyvals}#*
+\renewtcbox[init options]{cmd}[args][default]{options%keyvals}#*
 \DeclareTCBox{cmd}{xargs}{options%keyvals}#d
-\DeclareTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
+\DeclareTCBox[init options]{cmd}{xargs}{options%keyvals}#d
 \NewTCBox{cmd}{xargs}{options%keyvals}#d
-\NewTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
-\RenewTCBox{cmd}{xargs}{options%keyvals}#d
-\RenewTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
+\NewTCBox[init options]{cmd}{xargs}{options%keyvals}#d
+\RenewTCBox{cmd}{xargs}{options%keyvals}
+\RenewTCBox[init options]{cmd}{xargs}{options%keyvals}
 \ProvideTCBox{cmd}{xargs}{options%keyvals}#d
-\ProvideTCBox[init options]{cmd}{xargs}{options%keyvals}#*d
+\ProvideTCBox[init options]{cmd}{xargs}{options%keyvals}#d
 \DeclareTotalTCBox{cmd}{xargs}{options%keyvals}{content}#d
-\DeclareTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content}#*d
+\DeclareTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content}#d
 \NewTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}#d
-\NewTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
-\RenewTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}#d
-\RenewTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
+\NewTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#d
+\RenewTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}
+\RenewTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}
 \ProvideTotalTCBox{cmd}{xargs}{options%keyvals}{content%text}#d
-\ProvideTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#*d
+\ProvideTotalTCBox[init options]{cmd}{xargs}{options%keyvals}{content%text}#d
 \tcboxverb{verbatim box content%definition}
 \tcboxverb[options%keyvals]{verbatim box content%definition}
 \tcolorboxenvironment{envname}{options%keyvals}
@@ -252,7 +268,7 @@ tcbcoltitle#B
 # << Option Keys >> - always available
 # ------------------------------
 
-#keyvals:\tcbset,\begin{tcolorbox},\tcbsetforeverylayer,\tcbox,\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,\tcolorboxenvironment,\tcbsubtitle,\tcbsidebyside,\tcbsubskin,\tcbincludegraphics,\tcbincludepdf,\begin{tcbraster},\begin{tcbitemize},\tcbitem,\begin{tcboxedraster},\begin{tcboxeditemize},\begin{tcblisting},\tcbinputlisting,\newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,\newtcbtheorem,\renewtcbtheorem,\tcboxmath,\tcbhighmath,\usetcboxarray,\consumetcboxarray,\posterbox,\begin{posterboxenv},\tcboxfit,\newtcboxfit,\renewtcboxfit,\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit,\tcboxverb,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*},\tcbdocmarginnote
+#keyvals:\tcbset,\begin{tcolorbox},\tcbsetforeverylayer,\tcbox,\newtcolorbox,\renewtcolorbox,\newtcbox,\renewtcbox,\tcolorboxenvironment,\tcbsubtitle,\tcbsidebyside,\tcbsubskin,\tcbincludegraphics,\tcbincludepdf,\begin{tcbraster},\begin{tcbitemize},\tcbitem,\begin{tcboxedraster},\begin{tcboxeditemize},\begin{tcblisting},\tcbinputlisting,\newtcblisting,\renewtcblisting,\newtcbinputlisting,\renewtcbinputlisting,\NewTcbTheorem,\newtcbtheorem,\RenewTcbTheorem,\renewtcbtheorem,\ProvideTcbTheorem,\DeclareTcbTheorem,\tcboxmath,\tcbhighmath,\usetcboxarray,\consumetcboxarray,\posterbox,\begin{posterboxenv},\tcboxfit,\newtcboxfit,\renewtcboxfit,\DeclareTColorBox,\NewTColorBox,\RenewTColorBox,\ProvideTColorBox,\DeclareTotalTColorBox,\NewTotalTColorBox,\RenewTotalTColorBox,\ProvideTotalTColorBox,\DeclareTCBox,\NewTCBox,\RenewTCBox,\ProvideTCBox,\DeclareTotalTCBox,\NewTotalTCBox,\RenewTotalTCBox,\ProvideTotalTCBox,\DeclareTCBListing,\NewTCBListing,\RenewTCBListing,\ProvideTCBListing,\DeclareTCBInputListing,\NewTCBInputListing,\RenewTCBInputListing,\ProvideTCBInputListing,\DeclareTCBoxFit,\NewTCBoxFit,\RenewTCBoxFit,\ProvideTCBoxFit,\DeclareTotalTCBoxFit,\NewTotalTCBoxFit,\RenewTotalTCBoxFit,\ProvideTotalTCBoxFit,\tcboxverb,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*},\tcbdocmarginnote
 title=%<text%>
 notitle
 adjusted title=%<text%>
@@ -285,8 +301,12 @@ fontlower=%<text%>
 fonttitle=%<text%>
 halign=#justify,left,flush left,right,flush right,center,flush center
 halign upper=#justify,left,flush left,right,flush right,center,flush center
+halign code={%<code%>}
+halign upper code={%<code%>}
 halign lower=#justify,left,flush left,right,flush right,center,flush center
+halign lower code={%<code%>}
 halign title=#justify,left,flush left,right,flush right,center,flush center
+halign title code={%<code%>}
 flushleft upper
 center upper
 flushright upper
@@ -374,7 +394,9 @@ minimum for current equal height group=##L
 use height from group
 use height from group=%<id%>
 before title={%<code%>}
+before title*={%<code%>}
 after title={%<code%>}
+after title*={%<code%>}
 before upper={%<code%>}
 before upper*={%<code%>}
 after upper={%<code%>}
@@ -497,16 +519,16 @@ hyphenationfix#true,false
 tempfile=%<file name%>
 phantom={%<code%>}
 nophantom
+label is label
+label is zlabel
 label=##l
 phantomlabel=##l
-label type=%<type%>
-no label type
 step=%<counter%>
 step and label={%<counter%>}{%<marker%>}
-list entry=%<text%>
-list text=%<text%>
-add to list={%<list%>}{%<type%>}
+label type=%<type%>
+no label type
 nameref=%<text%>
+short title=%<text%>
 hypertarget=%<marker%>
 bookmark=%<text%>
 bookmark*={%<options%>}{%<text%>}
@@ -542,6 +564,9 @@ void
 nirvana
 blend before title=#colon,dash,colon hang,dash hang
 blend before title code={%<code%>}
+list entry=%<text%>
+list text=%<text%>
+add to list={%<list%>}{%<type%>}
 sidebyside#true,false
 sidebyside align=#center,top,bottom,center seam,top seam,bottom seam
 sidebyside gap=##L
@@ -552,6 +577,7 @@ righthand ratio=%<fraction%>
 sidebyside adapt=#none,left,right,both
 sidebyside switch#true,false
 verbatim ignore percent#true,false
+verbatim ignore indention at end#true,false
 record=%<content%>
 no recording
 skin=%<name%>
