@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2022/12/03 for v1.09
+# Matthew Bertucci 2023/02/10 for v1.10
 
 #include:plaintex
 #include:luatex
@@ -84,6 +84,11 @@
 \eqstyle{code}
 \loadboldmath{[bold-font-file]} \to {[normal-font-file]}
 \addUmathfont{cmd}{[normal-font]}{features}{[bold-font]}{features}{factor}#d
+\themathcodeclass%<⟨math-char⟩%>
+\themathcodefam%<⟨math-char⟩%>
+\themathcodechar%<⟨math-char⟩%>
+\thedelcodefam%<⟨math-char⟩%>
+\thedelcodechar%<⟨math-char⟩%>
 \mathchars %<\famname ⟨list of sequences⟩%> ;
 
 ## Typical elements of the document ##
@@ -232,7 +237,7 @@
 \picwidth
 \picheight
 \picdir={%<directory%>}
-\inkinspic{%<filename%>.pdf}
+\inkinspic{%<filename%>.pdf%file}
 \pdfscale{horizontal-factor}{vertical-factor}
 \pdfrotate{degrees}
 \transformbox{transformation}{text}
@@ -354,7 +359,7 @@
 \author %<⟨authors⟩%>
 \subject %<⟨subject⟩%>
 \address
-\load[file]#i
+\load[filename-list%file]
 \lorem[%<number%>]
 \lorem[%<from%>-%<to%>]
 \lipsum[%<number%>]#*
@@ -375,6 +380,7 @@
 \aheadto%<\macro%>{%<text%>}
 \basefilename %<⟨filename⟩%>
 \bp{dimen expression}
+\bp[digits]{dimen expression}
 \casesof %<⟨token⟩ ⟨list of cases⟩%>
 \cs{string}
 \cstochar%<⟨\sequence⟩%>
@@ -383,6 +389,7 @@
 \eoldef{cmd}#Sd
 \eqbox[label]{text}
 \expr{expression}
+\expr[digits]{expression}
 \fontdef%<\macro%>{%<font spec%>}
 \fontdef{cmd}#Sd
 \fontlet%<\macro1%>=%<\macro2%>
@@ -398,6 +405,7 @@
 \isempty
 \istoksempty
 \isequal
+\iskv{key%plain}
 \ismacro
 \isdefined
 \isinlist
@@ -405,6 +413,9 @@
 \isfont
 \isnextchar %<⟨char⟩%>{%<text1%>}{%<text2%>}
 \kv{key%plain}
+\kvdict={%<name%>}
+\kvx{key%plain}{code}
+\nokvx{code}
 \nospaceafter %<\macro%>
 \nospacefuturelet
 \nospacefuturelet{cmd}#Sd
@@ -417,7 +428,7 @@
 \posg[label]
 \private
 \public
-\readkv%<\macro%>
+\readkv{%<list%>}
 \replstring%<\macro%>{%<stringA%>}{%<stringB%>}
 \sdef{string%definition}{def}#S
 \sdef{%<string%>}%<⟨parameters⟩%>{%<body%>}
@@ -624,6 +635,71 @@
 \secccc#S
 \ulinkcolor#S
 \vitt{file}#Si
+
+# loaded by \load[math]
+\bigp#*m
+\Bigp#*m
+\biggp#*m
+\Biggp#*m
+\autop#*m
+\normalp#*m
+\smartdots#*
+\smartvert#*
+\N#*m
+\Z#*m
+\Q#*m
+\R#*m
+\C#*m
+\sgn#*m
+\argmin#*m
+\argmax#*m
+\grad#*m
+\rank#*m
+\tr#*m
+\diag#*m
+\Span#*m
+\Rng#*m
+\Null#*m
+\Ker#*m
+\Res#*m
+\tg#*m
+\cotg#*m
+\arctg#*m
+\arccotg#*m
+\frac{numerator}{denominator}#*m
+\dfrac{numerator}{denominator}#*m
+\tfrac{numerator}{denominator}#*m
+\eqsystem{equations}#*m
+\eqsystem[settings]{equations}#*m
+\eqskip#*
+\eqsep#*
+\eqfil#*
+\toright#*m
+\toleft#*m
+\subeqmark %<suffix%>#*m
+\scriptspaces{s-rel}{s-bin}{ss-rel}{ss-bin}#*
+\bfserif#*
+\rmchars{list}#*
+\vargreek{list}#*
+\textvariables#*
+\textdigits#*
+\textmoremath#*
+\replacemissingchars %<\family%>#*
+\mathset{options%keyvals}#*
+#keyvals:\mathset
+dots
+vert
+bfserif
+rmchar={%<list%>}
+vargreek={%<list%>}
+text={%<list%>}
+#endkeyvals
+
+# loaded by \load[mte]
+\enablemte#*
+\disablemte#*
+\setfpfactor %<⟨factor⟩⟨space⟩%>#*
+\setfxfactor %<⟨factor⟩⟨space⟩%>#*
 
 # availability depends on font
 \Adventor#S
