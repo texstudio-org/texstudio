@@ -1,14 +1,26 @@
 # mismath package
-# Matthew Bertucci 2023/01/06 for v2.2
+# Matthew Bertucci 2023/02/10 for v2.3
 
+#include:kvoptions
 #include:amsmath
-#include:esvect
-#include:ifthen
-#include:xspace
 #include:mathtools
+#include:esvect
+#include:xspace
+
+\mismathset{options%keyvals}
+
+#keyvals:\mismathset,\usepackage/mismath#c
+enumber#true,false
+inumber#true,false
+jnumber#true,false
+pinumber=%<csname%>
+arrowvect#true,false
+boldvect#true,false
+PEupright#true,false
+ibrackets#true,false
+#endkeyvals
 
 #keyvals:\usepackage/mismath#c
-ibrackets
 # options passed to amsmath
 intlimits
 nointlimits
@@ -30,12 +42,9 @@ alignedleftspaceyesifneg
 #ifOption:ibrackets
 #include:ibrackets
 #endif
-
-\enumber
-\inumber
-\jnumber
-\pinumber
-\pinumber[csname]
+#ifOption:ibrackets=true
+#include:ibrackets
+#endif
 
 \abs{arg}#m
 \adj#m
@@ -43,15 +52,15 @@ alignedleftspaceyesifneg
 \arcosh#m
 \arcoth#m
 \arcsch#m
-\arrowvect#*
+\arrowvect
 \arsech#m
 \arsinh#m
 \artanh#m
 \Aut#m
 \bigO#m
 \bigo#m
-\boldvect{arg}#m
-\boldvectcommand{arg}#*
+\boldvect
+\boldvectcommand#*
 \C#m
 \codim#m
 \Conv#m
@@ -65,7 +74,7 @@ alignedleftspaceyesifneg
 \divg#m
 \dlim#m
 \dprod#m
-\ds#m
+\ds
 \dsum#m
 \e#m
 \E#m
@@ -95,13 +104,11 @@ alignedleftspaceyesifneg
 \N#m
 \norm{arg}#m
 \oldIm#*m
-\oldi#*
-\oldj#*
+\oldi#S
+\oldj#S
 \oldRe#*m
 \P#m
-\Par#m
-\Par#m
-\PEupright#*
+\Par
 \pow{expr}{exponent}#m
 \probastyle#*
 \Q#m
@@ -134,3 +141,11 @@ alignedleftspaceyesifneg
 \end{mathcols}#m
 \changecol#/mathcols
 \bslash#*
+
+# deprecated
+\enumber#S
+\inumber#S
+\jnumber#S
+\pinumber#S
+\pinumber[csname]#S
+\PEupright#S
