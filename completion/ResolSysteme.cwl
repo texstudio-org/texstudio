@@ -1,5 +1,5 @@
 # ResolSysteme package
-# Matthew Bertucci 2023/02/08 for v0.1.2
+# Matthew Bertucci 2023/02/10 for v0.1.3
 
 #include:nicematrix
 #include:ifthen
@@ -15,6 +15,14 @@ pyluatex
 #endkeyvals
 
 #ifOption:pyluatex
+\MatricePuissancePY(matrice)(puissance)
+\MatricePuissancePY<options nicematrix>(matrice)(puissance)
+\MatricePuissancePY[option de formatage%keyvals](matrice)(puissance)
+\MatricePuissancePY[option de formatage%keyvals]<options nicematrix>(matrice)(puissance)
+\MatricePuissancePY*(matrice)(puissance)
+\MatricePuissancePY*<options nicematrix>(matrice)(puissance)
+\MatricePuissancePY*[option de formatage%keyvals](matrice)(puissance)
+\MatricePuissancePY*[option de formatage%keyvals]<options nicematrix>(matrice)(puissance)
 \DetMatricePY(matrice)
 \DetMatricePY[option de formatage%keyvals](matrice)
 \DetMatricePY*(matrice)
@@ -47,6 +55,24 @@ pyluatex
 \AffMatrice*(matrice)
 \AffMatrice*[option de formatage%keyvals](matrice)
 
+\ProduitMatrices(matriceA)(matriceB)
+\ProduitMatrices<opts nicematrix>(matriceA)(matriceB)
+\ProduitMatrices[opt de formatage%keyvals](matriceA)(matriceB)
+\ProduitMatrices[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
+\ProduitMatrices*(matriceA)(matriceB)
+\ProduitMatrices*<opts nicematrix>(matriceA)(matriceB)
+\ProduitMatrices*[opt de formatage%keyvals](matriceA)(matriceB)
+\ProduitMatrices*[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
+
+\CarreMatrice(matrice)
+\CarreMatrice<options nicematrix>(matrice)
+\CarreMatrice[option de formatage%keyvals](matrice)
+\CarreMatrice[option de formatage%keyvals]<options nicematrix>(matrice)
+\CarreMatrice*(matrice)
+\CarreMatrice*<options nicematrix>(matrice)
+\CarreMatrice*[option de formatage%keyvals](matrice)
+\CarreMatrice*[option de formatage%keyvals]<options nicematrix>(matrice)
+
 \DetMatrice(matrice)
 \DetMatrice[option de formatage%keyvals](matrice)
 \DetMatrice*(matrice)
@@ -70,7 +96,7 @@ pyluatex
 \SolutionSysteme*[opt de formatage%keyvals](matriceA)(matriceB)
 \SolutionSysteme*[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
 
-#keyvals:\ConvVersFrac,\ConvVersFrac*,\AffMatrice,\AffMatrice*,\DetMatrice,\DetMatrice*,\DetMatricePY,\DetMatricePY*,\MatriceInverse,\MatriceInverse*,\MatriceInversePY,\MatriceInversePY*,\SolutionSysteme,\SolutionSysteme*,\SolutionSystemePY,\SolutionSystemePY*
+#keyvals:\ConvVersFrac,\ConvVersFrac*,\AffMatrice,\AffMatrice*,\ProduitMatrices,\ProduitMatrices*,\CarreMatrice,\CarreMatrice*,\MatricePuissancePY,\MatricePuissancePY*,\DetMatrice,\DetMatrice*,\DetMatricePY,\DetMatricePY*,\MatriceInverse,\MatriceInverse*,\MatriceInversePY,\MatriceInversePY*,\SolutionSysteme,\SolutionSysteme*,\SolutionSystemePY,\SolutionSystemePY*
 t
 d
 n
