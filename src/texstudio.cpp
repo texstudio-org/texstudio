@@ -11212,16 +11212,19 @@ void Texstudio::LTErrorMessage(QString message){
 void Texstudio::paletteChanged(const QPalette &palette){
     bool oldDarkMode=darkMode;
     bool newDarkMode=systemUsesDarkMode(palette);
-    if(newDarkMode != oldDarkMode && !configManager.useTexmakerPalette){
-        darkMode=newDarkMode;
-        // load appropriate syntax highlighting scheme
-        QSettings *config=configManager.getSettings();
-        config->beginGroup(darkMode ? "formatsDark" : "formats");
-        m_formats = new QFormatFactory(darkMode ? ":/qxs/defaultFormatsDark.qxf" : ":/qxs/defaultFormats.qxf", this); //load default formats from resource file
-        m_formats->load(*config, true); //load customized formats
-        QDocument::setDefaultFormatScheme(m_formats);
-        //m_formats->modified=true;
-        config->endGroup();
+    if(newDarkMode != oldDarkMode){
+        if(!configManager.useTexmakerPalette){
+            darkMode=newDarkMode;
+            // load appropriate syntax highlighting scheme
+            QSettings *config=configManager.getSettings();
+            config->beginGroup(darkMode ? "formatsDark" : "formats");
+            m_formats = new QFormatFactory(darkMode ? ":/qxs/defaultFormatsDark.qxf" : ":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+            m_formats->load(*config, true); //load customized formats
+            QDocument::setDefaultFormatScheme(m_formats);
+            //m_formats->modified=true;
+            config->endGroup();
+        }
+        setupMenus(); // reload actions for new icons !
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
