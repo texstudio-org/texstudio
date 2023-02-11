@@ -345,6 +345,8 @@
 <file>images-ng/colibre/dfrac.svg</file>
 <file>images-ng/colibre/dialog-error_dm.svg</file>
 <file>images-ng/colibre/dialog-error.svg</file>
+<file>images-ng/colibre/doc_dm.svg</file>
+<file>images-ng/colibre/doc.svg</file>
 <file>images-ng/colibre/document-close_dm.svg</file>
 <file>images-ng/colibre/document-close.svg</file>
 <file>images-ng/colibre/document-locked_dm.svg</file>
@@ -355,6 +357,8 @@
 <file>images-ng/colibre/document-open.svg</file>
 <file>images-ng/colibre/document-save_dm.svg</file>
 <file>images-ng/colibre/document-save.svg</file>
+<file>images-ng/colibre/down-arrow-circle-silver_dm.svg</file>
+<file>images-ng/colibre/down-arrow-circle-silver.svg</file>
 <file>images-ng/colibre/down_dm.svg</file>
 <file>images-ng/colibre/down.svg</file>
 <file>images-ng/colibre/edit-copy_dm.svg</file>
@@ -449,6 +453,8 @@
 <file>images-ng/colibre/home.svg</file>
 <file>images-ng/colibre/image_dm.svg</file>
 <file>images-ng/colibre/image.svg</file>
+<file>images-ng/colibre/include_dm.svg</file>
+<file>images-ng/colibre/include.svg</file>
 <file>images-ng/colibre/italic_dm.svg</file>
 <file>images-ng/colibre/italic.svg</file>
 <file>images-ng/colibre/item_dm.svg</file>
@@ -497,6 +503,8 @@
 <file>images-ng/colibre/magnifier-button.svg</file>
 <file>images-ng/colibre/magnifier_dm.svg</file>
 <file>images-ng/colibre/magnifier.svg</file>
+<file>images-ng/colibre/masterdoc_dm.svg</file>
+<file>images-ng/colibre/masterdoc.svg</file>
 <file>images-ng/colibre/math_dm.svg</file>
 <file>images-ng/colibre/mathmode_dm.svg</file>
 <file>images-ng/colibre/mathmode.svg</file>
@@ -585,6 +593,8 @@
 <file>images-ng/colibre/toc.svg</file>
 <file>images-ng/colibre/underline_dm.svg</file>
 <file>images-ng/colibre/underline.svg</file>
+<file>images-ng/colibre/up-arrow-circle-silver_dm.svg</file>
+<file>images-ng/colibre/up-arrow-circle-silver.svg</file>
 <file>images-ng/colibre/up_dm.svg</file>
 <file>images-ng/colibre/up.svg</file>
 <file>images-ng/colibre/user_dm.svg</file>
