@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/02/08 for v2.5.0
+# Matthew Bertucci 2023/02/11 for v2.5.2
 
 #include:mathtools
 #include:xcolor
@@ -20,6 +20,7 @@
 #include:tabularray
 #include:hologo
 #include:fancyvrb
+#include:nicefrac
 #include:siunitx
 #include:fontawesome5
 #include:tikzlibrarycalc
@@ -647,8 +648,18 @@ AfficheDelimiteurs#true,false
 #endkeyvals
 
 ## Fractions, ensembles ##
-\ConversionFraction{fraction expr}
-\ConversionFraction[d ou t]{fraction expr}
+\ConversionFraction{calcul}
+\ConversionFraction[option de formatage%keyvals]{calcul}
+\ConversionFraction*{calcul}
+\ConversionFraction*[option de formatage%keyvals]{calcul}
+
+#keyvals:\ConversionFraction,\ConversionFraction*
+t
+d
+n
+dec
+dec=%<k%>
+#endkeyvals
 
 \EcritureEnsemble{a1/a2/...}
 \EcritureEnsemble[options%keyvals]{a1/a2/...}
