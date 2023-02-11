@@ -681,7 +681,7 @@ void Texstudio::setupDockWidgets()
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         structureTreeWidget->installEventFilter(this);
         leftPanel->addWidget(structureTreeWidget, "structureTreeWidget", tr("Structure"), getRealIconFile("structure"));
-    } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
+    } else leftPanel->setWidgetText(structureTreeWidget, tr("Structure"));
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
@@ -11225,6 +11225,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
             config->endGroup();
         }
         setupMenus(); // reload actions for new icons !
+        setupDockWidgets();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
