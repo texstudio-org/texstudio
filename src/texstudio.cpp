@@ -593,7 +593,10 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
         connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertXmlTag(QListWidgetItem*)));
 		leftPanel->addWidget(list, id, text, iconName);
 		//(*list)->setProperty("mType",2);
-	} else leftPanel->setWidgetText(list, text);
+    } else {
+        leftPanel->setWidgetText(list, text);
+        leftPanel->setWidgetIcon(list,iconName);
+    }
 }
 
 /*!
@@ -624,8 +627,12 @@ void Texstudio::addMacrosAsTagList()
     }
     UtilsUi::enableTouchScrolling(list);
     connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertFromTagList(QListWidgetItem*)),Qt::UniqueConnection);
-    if(addToPanel)
+    if(addToPanel){
         leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
+    }else{
+        leftPanel->setWidgetText(list,tr("Macros"));
+        leftPanel->setWidgetIcon(list,getRealIconFile("executeMacro"));
+    }
 }
 
 /*! set-up side- and bottom-panel
@@ -681,7 +688,10 @@ void Texstudio::setupDockWidgets()
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         structureTreeWidget->installEventFilter(this);
         leftPanel->addWidget(structureTreeWidget, "structureTreeWidget", tr("Structure"), getRealIconFile("structure"));
-    } else leftPanel->setWidgetText(structureTreeWidget, tr("Structure"));
+    } else {
+        leftPanel->setWidgetText(structureTreeWidget, tr("Structure"));
+        leftPanel->setWidgetIcon(structureTreeWidget, getRealIconFile("structure"));
+    }
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
         connect(topTOCTreeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)), this, SLOT(gotoLine(QTreeWidgetItem*,int)));
@@ -692,14 +702,21 @@ void Texstudio::setupDockWidgets()
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         topTOCTreeWidget->installEventFilter(this);
         leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("toc"));
-    } else leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
+    } else {
+        leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
+        leftPanel->setWidgetIcon(topTOCTreeWidget, getRealIconFile("toc"));
+    }
     if (!leftPanel->widget("bookmarks")) {
         QListWidget *bookmarksWidget = bookmarks->widget();
         bookmarks->setDarkMode(darkMode);
         connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
         connect(bookmarks, SIGNAL(gotoLineRequest(int,int,LatexEditorView*)), this, SLOT(gotoLine(int,int,LatexEditorView*)));
         leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
-    } else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
+    } else {
+        leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
+        leftPanel->setWidgetIcon("bookmarks", getRealIconFile("bookmarks"));
+        bookmarks->setDarkMode(darkMode);
+    }
 
     if (!leftPanel->widget("symbols")) {
         symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
@@ -707,7 +724,10 @@ void Texstudio::setupDockWidgets()
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
         connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
         leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
-    } else leftPanel->setWidgetText("symbols", tr("Symbols"));
+    } else {
+        leftPanel->setWidgetText("symbols", tr("Symbols"));
+        leftPanel->setWidgetIcon("symbols", getRealIconFile("symbols"));
+    }
 
     addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
     addTagList("pstricks", getRealIconFile("pstricks"), tr("PSTricks Commands"), "pstricks_tags.xml");
@@ -739,7 +759,7 @@ void Texstudio::setupDockWidgets()
 
     // OUTPUT WIDGETS
     if (!outputView) {
-			  outputView = new OutputViewWidget(this, configManager.terminalConfig);
+        outputView = new OutputViewWidget(this, configManager.terminalConfig);
         outputView->setObjectName("OutputView");
         centralVSplitter->addWidget(outputView);
         outputView->toggleViewAction()->setChecked(configManager.getOption("GUI/outputView/visible", true).toBool());
