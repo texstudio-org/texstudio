@@ -1,5 +1,5 @@
 # circuitikz package
-# updated 2022/12/11 for v1.6.0
+# updated 2023/02/11 for v1.6.1
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -138,6 +138,8 @@ example
 \drawmeteringcircle#*
 \pgfcircdeclarejumper{name}{link arc height}#*
 \tunablewidth#S
+\pgfcircdeclaresolderjumper{name}{0|1}#*
+\pgfcircdeclaredoublesolderjumper{name}{0|1}{0|1}#*
 
 # from pgfcirctripoles.tex
 \pgfcircdeclarelogicport{name}{number}{code}#*
