@@ -3072,14 +3072,17 @@ void QEditor::selectOccurence(bool backward, bool keepMirrors, bool all)
 void QEditor::setVerticalScrollBarMaximum()
 {
 	if (!m_doc) return;
-	const QSize viewportSize = viewport()->size();
-	int viewportHeight = viewportSize.height();
-	if (flag(VerticalOverScroll))
-		viewportHeight /= 2;
-    const qreal ls = m_doc->getLineSpacing();
+	const qreal ls = m_doc->getLineSpacing();
+	const int totalLines = qRound(m_doc->height() / ls);
+	const int viewLines = qFloor(viewport()->size().height() / ls);
 	QScrollBar* vsb = verticalScrollBar();
-    vsb->setMaximum(qMax(0., 1. + (m_doc->height() - viewportHeight) / ls));
-    vsb->setPageStep(qCeil(1.* viewportSize.height() / ls));
+
+	if (flag(VerticalOverScroll)) {
+		vsb->setMaximum(totalLines - 1);    // allow last line scroll to top
+	} else {
+		vsb->setMaximum(qMax(0, totalLines - viewLines));    // disallow overscroll
+	}
+    vsb->setPageStep(viewLines);
 }
 
 /*!
