@@ -329,8 +329,8 @@ bool LatexStyleParser::parseLineLet(QStringList &results, const QString &line)
 
 bool LatexStyleParser::parseLineCommand(QStringList &results, const QString &line)
 {
-	static const QRegExp rxComBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
-	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
+    static const QRegExp rxComBrace("\\\\(newcommand|providecommand|DeclareRobustCommand|algnewcommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
+    static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand|algnewcommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]*)\\])?");
 	const QRegExp *pRx;
 
 	if (rxComBrace.indexIn(line) != -1) {
