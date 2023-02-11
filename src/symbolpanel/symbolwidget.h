@@ -18,6 +18,7 @@ public:
 	const SymbolListModel * model() const { return symbolListModel; }
     void restoreSplitter(const QByteArray &ba);
     void saveSplitterState(QByteArray &ba);
+    void reloadData();
 
 signals:
 	void insertSymbol(const QString &text);

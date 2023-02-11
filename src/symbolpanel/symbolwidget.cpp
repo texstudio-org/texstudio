@@ -211,6 +211,16 @@ void SymbolWidget::saveSplitterState(QByteArray &ba)
 {
     ba=splitter->saveState();
 }
+/*!
+ * \brief reload data
+ * Necessary to adapt to changed palette, i.e. switch light/dark mode
+ */
+void SymbolWidget::reloadData()
+{
+    foreach (const QString &category, categories) {
+        symbolListModel->load(category);
+    }
+}
 
 void SymbolWidget::setCategoryFilterFromAction()
 {

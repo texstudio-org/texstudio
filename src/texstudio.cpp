@@ -727,6 +727,8 @@ void Texstudio::setupDockWidgets()
     } else {
         leftPanel->setWidgetText("symbols", tr("Symbols"));
         leftPanel->setWidgetIcon("symbols", getRealIconFile("symbols"));
+        symbolListModel->setDarkmode(darkMode);
+        symbolWidget->reloadData();
     }
 
     addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
