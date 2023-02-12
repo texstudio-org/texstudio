@@ -11471,7 +11471,7 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
                 item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
                 item->setText(0,elem->title);
                 item->setToolTip(0,tr("Document: ")+docName);
-                item->setIcon(0,QIcon(":/images/include.png"));
+                item->setIcon(0,getRealIcon("include"));
                 if(configManager.globalTOCbackgroundOptions>0){
                     item->setBackground(0,colors[currentColor]);
                 }
@@ -12011,9 +12011,9 @@ void Texstudio::updateStructureLocally(){
             if(found && i<j){
                 QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
                 if(contextEntry->document==master){
-                    item->setIcon(0,QIcon(":/images/masterdoc.png"));
+                    item->setIcon(0,getRealIcon("masterdoc"));
                 }else{
-                    item->setIcon(0,QIcon(":/images/doc.png"));
+                    item->setIcon(0,getRealIcon("doc"));
                 }
                 structureTreeWidget->insertTopLevelItem(i,item);
             }
@@ -12025,9 +12025,9 @@ void Texstudio::updateStructureLocally(){
                 item->setText(0,doc->getFileInfo().fileName());
                 item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
                 if(doc==master){
-                    item->setIcon(0,QIcon(":/images/masterdoc.png"));
+                    item->setIcon(0,getRealIcon("masterdoc"));
                 }else{
-                    item->setIcon(0,QIcon(":/images/doc.png"));
+                    item->setIcon(0,getRealIcon("doc"));
                 }
                 structureTreeWidget->insertTopLevelItem(i,item);
                 if(doc==documents.getCurrentDocument()){
@@ -12082,9 +12082,9 @@ void Texstudio::updateStructureLocally(){
     root->setText(0,doc->getFileInfo().fileName());
     root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
     if(doc==master){
-        root->setIcon(0,QIcon(":/images/masterdoc.png"));
+        root->setIcon(0,getRealIcon("masterdoc"));
     }else{
-        root->setIcon(0,QIcon(":/images/doc.png"));
+        root->setIcon(0,getRealIcon("doc"));
     }
     QFont font=root->font(0);
     font.setBold(true);
@@ -12197,7 +12197,7 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
             if(!elem->valid){
                 item->setForeground(0,Qt::red);
             }
-            item->setIcon(0,QIcon(":/images/include.png"));
+            item->setIcon(0,getRealIcon("include"));
             if(configManager.indentIncludesInStructure){
                 rootVector[latexParser.MAX_STRUCTURE_LEVEL-1]->addChild(item);
             }else{

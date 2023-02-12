@@ -241,20 +241,20 @@ offered:
 
 | Function | Description |
 | --- | ------ |
-| ![](images/table_addRow.png) | Add Row after the current row  |
-| ![](images/table_remRow.png) |  removes the table row in which the cursor |
-| ![](images/table_addCol.png) | add a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column. |
-| ![](images/table_pasteCol.png) | paste a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column. |
-| ![](images/table_remCol.png) | remove current column |
-| ![](images/table_cutCol.png) | remove current column and store in clipboard. Use with *paste column* |
-| ![](images/table_alignCol.png) | Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source. |
+| ![](../../../images-ng/colibre/addRow.svg) | Add Row after the current row  |
+| ![](../../../images-ng/colibre/remRow.svg) |  removes the table row in which the cursor |
+| ![](../../../images-ng/colibre/addCol.svg) | add a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column. |
+| ![](../../../images-ng/colibre/pasteCol.svg) | paste a column in the complete table after current cursor position. If the cursor is positioned at start of line,first column,the column is added as new first column. |
+| ![](../../../images-ng/colibre/remCol.svg) | remove current column |
+| ![](../../../images-ng/colibre/cutCol.svg) | remove current column and store in clipboard. Use with *paste column* |
+| ![](../../../images-ng/colibre/alignCols.svg) | Aligns the column separators (ampersand) by introducing whitespace. The text in the cells is aligned according to the specification in the table header. This helps reading the table source. |
 
 The following functions are only accessible via the "Latex/Table Manipulation" menu.
 
 -   Add/Remove \\hline: add/remove `\hline` in all rows following the
     current row. If already a command `\hline` is present, no second
     command is placed.
--   Remodel the table after a template,see [below](#using-table-templates). 
+-   Remodel the table after a template,see [below](#using-table-templates).
 
 TeXstudio also allows block cursors. Press `Ctrl+Alt`
 and drag the cursor with the mouse. The [block cursor](#block-cursor) works like a set of
@@ -318,7 +318,7 @@ TeXstudio offers various ways to insert picture into the LaTeX code.
 
 ### Inserting picture via menu
 
-To insert a picture in your document, just use the 
+To insert a picture in your document, just use the
 command in the "LaTeX/include/\\includegraphics{file}" menu. Then, click on the \"browser\" button in
 the dialog to select the graphic file.
 
@@ -379,7 +379,7 @@ Here all the references may be changed by changing "Replace by" and clicking "Re
 
 ```{note}
 If references in hidden documents are changed, they will be saved automatically when a compilation run is started. Otherwise you will be asked if you want to save when closing TeXstudio or closing all files which belong to that document.
-``` 
+```
 
 
 ## Inserting math formula
@@ -406,7 +406,7 @@ You can also define the format of your mathematical text via the
 
 For the \"array\" environments, a wizard (like the \"Tabular\" wizard)
 is available in the \"Wizard\" menu. With this wizard, you can select
-the environment : array, matrix, pmatrix\.... 
+the environment : array, matrix, pmatrix\....
 
 The cells can be edited directly.
 
@@ -534,7 +534,7 @@ The abbreviation may start with a backslash (`\`) allowing autostart of the comp
 TeXstudio checks the spelling as you type.
 Right-click on the word to
 open a menu with a list of possible corrections. In this context menu
-you can also add the word to the ignore list. 
+you can also add the word to the ignore list.
 
 ![Spelling error](images/spelling_error.png)
 ```{note}
@@ -610,18 +610,18 @@ As any editor, TeXstudio offers to search (and replace) text within an open file
 The search is performed in a search panel below the actual text, activated either with `Ctrl+F` or edit/searching/find. Options can be chosen by enabling/disabling the option next to the search text box.
 
 | Icon | function |
-| --   | -------- |
-| ![](../../../images/qcodeedit/down.png) | find next |
-| ![](../../../images/qcodeedit/up.png)   | find previous |
-| ![](../../../images-ng/count.svg)   | count matches |
-| ![](../../../images-ng/case.svg) | select case sensitivity (activated, case sensitive) |
-| ![](../../../images-ng/word.svg)   | find only complete words |
-| ![](../../../images-ng/regex.svg)   | use regular expression, see below |
-| ![](../../../images-ng/highlight.svg)   | highlight all matches |
-| ![](../../../images-ng/cursor.svg)   | start search from cursor/start of document |
-| ![](../../../images-ng/selection.svg)   | limit search on previous selected text |
-| ![](../../../images-ng/all.svg)   | filter search results like 'all','math",'non-math',etc. |
-| ![](../../../images-ng/extend.svg)   | extended search, see [here](#extended-search) |
+| ---- | -------- |
+| ![](../../../images-ng/colibre/down.svg) | find next |
+| ![](../../../images-ng/colibre/up.svg)   | find previous |
+| ![](../../../images-ng/colibre/count.svg)   | count matches |
+| ![](../../../images-ng/colibre/case.svg) | select case sensitivity (activated, case sensitive) |
+| ![](../../../images-ng/colibre/word.svg)   | find only complete words |
+| ![](../../../images-ng/colibre/regex.svg)   | use regular expression, see below |
+| ![](../../../images-ng/colibre/highlight.svg)   | highlight all matches |
+| ![](../../../images-ng/colibre/cursor.svg)   | start search from cursor/start of document |
+| ![](../../../images-ng/colibre/selection.svg)   | limit search on previous selected text |
+| ![](../../../images-ng/colibre/all.svg)   | filter search results like 'all','math",'non-math',etc. |
+| ![](../../../images-ng/colibre/extend.svg)   | extended search, see [here](#extended-search) |
 
 Regular expression follows perl regex syntax, see also [Perl's regular expression documentation](http://perldoc.perl.org/perlre.html) and [Perl's regular expression tutorial](http://perldoc.perl.org/perlretut.html).
 
@@ -629,12 +629,12 @@ Regular expression follows perl regex syntax, see also [Perl's regular expressio
 The search-panel extends to offer a replacement when pressing `Ctrl+R` or edit/Searching/replace.
 
 | Icon | function |
-| --   | -------- |
-| ![](../../../images-ng/replacedown.svg) | replace and find next |
-| ![](../../../images-ng/replaceup.svg)   | replace and find previous |
-| ![](../../../images-ng/replaceall.svg)   | replace all remaining matches |
-| ![](../../../images-ng/prompt.svg) | ask every time before replacing |
-| ![](../../../images-ng/escape.svg)   | use escaped number to insert found groups, see perl regex above |
+| ---- | -------- |
+| ![](../../../images-ng/colibre/replacedown.svg) | replace and find next |
+| ![](../../../images-ng/colibre/replaceup.svg)   | replace and find previous |
+| ![](../../../images-ng/colibre/replaceall.svg)   | replace all remaining matches |
+| ![](../../../images-ng/colibre/prompt.svg) | ask every time before replacing |
+| ![](../../../images-ng/colibre/escape.svg)   | use escaped number to insert found groups, see perl regex above |
 
 ![search panel](images/searchpanel.png)
 
@@ -682,7 +682,7 @@ TeXstudio supports block cursors (or multiple cursors).
 Cursors can be added by `Ctrl+Alt`+left click.
 ALternatively pressing `Ctrl+alt+Up/down` also add block cursors.
 The cursors can jointly move, add and remove text and select characters.
-Pressing `esc` or clicking into the text ends the block cursor mode. 
+Pressing `esc` or clicking into the text ends the block cursor mode.
 
 ![block cursor](images/blockCursor.png)
 
