@@ -1,10 +1,9 @@
 # langsci-affiliations package
-# Matthew Bertucci 3/22/2022 for v1.0.4
-
-#include:xparse
+# Matthew Bertucci 2023/02/12 for v1.1
 
 \ResolveAffiliations{author}
 \ResolveAffiliations[options%keyvals]{author}
+\LinkToORCIDinAffiliations{arg}
 \CountAuthorsFromAffiliations{author}
 \CountAuthorsFromAffiliations[options%keyvals]{author}
 \SetupAffiliations{options%keyvals}
@@ -12,6 +11,7 @@
 #keyvals:\ResolveAffiliations,\CountAuthorsFromAffiliations,\SetupAffiliations
 mark style=#alphabetic,numeric,circled,none
 output affiliation#true,false
+orcid placement=
 output in groups#true,false
 separator between two=%<separator%>
 separator between multiple=%<separator%>
