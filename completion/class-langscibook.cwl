@@ -40,6 +40,7 @@
 #include:caption
 #include:index
 #include:hyperref
+#include:bookmark
 #include:chngcntr
 # inputs langsci-series.def
 
@@ -73,11 +74,14 @@ smallfont
 spinewidth=##L
 syriacfont
 tblseight
+infn
 uniformtopskip
 #endkeyvals
 
 #ifOption:arabicfont
+#include:langsci-bidi
 \arabicfont
+\textarab{text%plain}
 #endif
 
 #ifOption:babelshorthands
@@ -542,6 +546,8 @@ SuppressWarning#true,false
 \lsCollectionPaperHeaderTitle#*
 \lsCollectionPaperLastPage#*
 \lsCollectionTitle#*
+\lsConditionalSetupForPaper#*
+\lsConditionalSetupForPaper[bib resource]#*
 \lsCopyright#*
 \lsCoverAuthorFont#*
 \lsCoverBlockColor#*
