@@ -11,7 +11,8 @@ uppercase
 anycase
 #endkeyvals
 
-\declaretheoremstyle{style name}
+# no sense in declaring theorem style without options, hence #*
+\declaretheoremstyle{style name}#*
 \declaretheoremstyle[options%keyvals]{style name}
 
 \declaretheorem{envname}#N
