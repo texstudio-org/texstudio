@@ -699,6 +699,8 @@
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-FUpowerdot.cwl</file>
 <file>completion/class-gammas.cwl</file>
+<file>completion/class-g-brief.cwl</file>
+<file>completion/class-g-brief2.cwl</file>
 <file>completion/class-geradwp.cwl</file>
 <file>completion/class-grant-afosr.cwl</file>
 <file>completion/class-grant-aro.cwl</file>
@@ -1386,6 +1388,7 @@
 <file>completion/eulervm.cwl</file>
 <file>completion/euroitc.cwl</file>
 <file>completion/europasscv-bibliography.cwl</file>
+<file>completion/europs.cwl</file>
 <file>completion/eurosym.cwl</file>
 <file>completion/euscript.cwl</file>
 <file>completion/everyhook.cwl</file>
@@ -2106,6 +2109,7 @@
 <file>completion/luakeys.cwl</file>
 <file>completion/luakeys-debug.cwl</file>
 <file>completion/lualatex-truncate.cwl</file>
+<file>completion/lualinalg.cwl</file>
 <file>completion/luamathalign.cwl</file>
 <file>completion/luamaths.cwl</file>
 <file>completion/luamesh.cwl</file>
