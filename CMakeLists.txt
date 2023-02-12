@@ -10,8 +10,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
 
 
-add_compile_options(-Wno-deprecated-declarations)
-
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(GitInfo)
@@ -31,9 +29,12 @@ include(cmake/project_version.cmake)
 if(MSVC)
 	set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -D_CRT_SECURE_NO_WARNINGS -D_UNICODE -DUNICODE)
 	add_compile_options(/wd4267 /wd4244)
+        add_compile_options($<$<CXX_COMPILER_ID:MSVC>:/MP>)
+else()
+        add_compile_options(-Wno-deprecated-declarations)
 endif()
 
-if(WIN32)
+if(WIN32 AND NOT MSVC)
 	add_compile_options(-fpermissive)
 endif()
 
@@ -323,9 +324,9 @@ target_link_libraries(texstudio PRIVATE
     Qt${QT_VERSION_MAJOR}::Concurrent
     Qt${QT_VERSION_MAJOR}::UiTools
 )
-if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0")
-    target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
-endif()
+#if(CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0")
+#    target_precompile_headers(texstudio PUBLIC src/mostQtHeaders.h)
+#endif()
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     target_link_libraries(texstudio PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
 endif()
