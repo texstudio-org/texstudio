@@ -4,7 +4,7 @@
 #include "configmanager.h"
 #include "utilsUI.h"
 
-QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,bcf,ilg,toc,ind,out,blg,fdb_latexmk,fls,run.xml";
+QString CleanDialog::defaultExtensions = "aux,bbl,bcf,bit,blg,dvi,fdb_latexmk,fls,glo,idx,ilg,ind,lof,log,lot,out,run.xml,synctex.gz,toc";
 QString CleanDialog::currentExtensions = CleanDialog::defaultExtensions;
 int CleanDialog::scopeID = 0;
 
