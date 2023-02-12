@@ -77,10 +77,10 @@ noinlinepar
 \phonrule{left}{right}{arg}
 \featurebox{content%text}
 \connect{node1}{node2}
-\thelsConnectTempGroup#*
+\thelsConnectTempGroup#S
 \ConnectTail{text%plain}
 \ConnectTail{text%plain}[counter]
-\lsConnectTempPosition#*
+\lsConnectTempPosition#S
 \ConnectHead{text%plain}
 \ConnectHead{text%plain}[counter]
 \ConnectHead[dist%l]{text%plain}
@@ -126,3 +126,4 @@ noinlinepar
 \db
 \AffiliationsWithoutIndexing
 \AffiliationsWithIndexing
+\licencebox{factor}{text}#*
