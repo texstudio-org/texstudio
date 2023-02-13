@@ -1,17 +1,17 @@
 # authorarchive package
-# Matthew Bertucci 4/27/2022 for v1.2.1
+# Matthew Bertucci 2023/02/10 for v1.3.0
 
 #include:ifthen
 #include:enumitem
 # enumitem loaded with inline option
-#include:graphicx
+#include:orcidlink
 #include:eso-pic
 #include:intopdf
 #include:kvoptions
 #include:hyperref
 #include:calc
 #include:qrcode
-#include:hvlogos
+#include:etoolbox
 #include:lastpage
 
 \authorsetup{option%keyvals}
@@ -43,6 +43,7 @@ orcidicon#true,false
 \authorcrfont#*
 \authorat{text}#*
 \authorwidth{width}#*
+\BibTeX
 
 # from inline option of enumitem
 \begin{enumerate*}

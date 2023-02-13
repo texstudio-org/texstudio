@@ -1,5 +1,5 @@
 # pxpic package
-# Matthew Bertucci 11/2/2021 for v1.2
+# Matthew Bertucci 2023/02/12 for v1.4
 
 #include:xcolor
 #include:expkv
@@ -13,8 +13,12 @@ colors=%<color list%>
 colours=%<color list%>
 color-list=%<choice%>
 colour-list=%<choice%>
+exp=#full,none
+expansion=#full,none
+file#true,false
 gap-hack=##L
 ht=##L
+lines=#group,space,csv
 mode=#px,named,rgb,cmy,cmyk,hsb,Hsb,tHsb,gray,RGB,HTML,HSB,Gray,wave
 size=##L
 skip=##L

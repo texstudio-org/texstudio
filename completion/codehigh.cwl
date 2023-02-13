@@ -1,8 +1,7 @@
 # codehigh package
-# Matthew Bertucci 2022/04/30 for v2022E
+# Matthew Bertucci 2023/02/10 for v2023A
 
 #include:expl3
-#include:l3benchmark
 #include:catchfile
 #include:xcolor
 #include:ninecolors
@@ -18,6 +17,7 @@
 \CodeHigh{options%keyvals}
 \dochighinput{file}
 \dochighinput[options%keyvals]{file}
+\fakeverb{verbatim content%definition}
 
 \NewCodeHighEnv{envname}{options%keyvals}#N
 \NewCodeHighInput{command}{options%keyvals}#d

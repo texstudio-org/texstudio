@@ -1,5 +1,5 @@
 # langscibook class
-# Matthew Bertucci 3/22/2022 for release 2022-02-16
+# Matthew Bertucci 2023/02/12 for v2023-02-08
 
 #include:xetex
 #include:silence
@@ -40,6 +40,7 @@
 #include:caption
 #include:index
 #include:hyperref
+#include:bookmark
 #include:chngcntr
 # inputs langsci-series.def
 
@@ -73,11 +74,14 @@ smallfont
 spinewidth=##L
 syriacfont
 tblseight
+infn
 uniformtopskip
 #endkeyvals
 
 #ifOption:arabicfont
+#include:langsci-bidi
 \arabicfont
+\textarab{text%plain}
 #endif
 
 #ifOption:babelshorthands
@@ -542,6 +546,8 @@ SuppressWarning#true,false
 \lsCollectionPaperHeaderTitle#*
 \lsCollectionPaperLastPage#*
 \lsCollectionTitle#*
+\lsConditionalSetupForPaper#*
+\lsConditionalSetupForPaper[bib resource]#*
 \lsCopyright#*
 \lsCoverAuthorFont#*
 \lsCoverBlockColor#*
@@ -823,6 +829,7 @@ langscicol20#B
 \citepalias{bibid}
 
 # from langsci-series.def
+\ahl#*
 \algad#*
 \calseries#*
 \cam#*
@@ -835,6 +842,7 @@ langscicol20#B
 \eotms#*
 \eotmsig#*
 \eurosla#*
+\ela#*
 \guidelines#*
 \hpls#*
 \loc#*
@@ -846,6 +854,7 @@ langscicol20#B
 \nc#*
 \ogl#*
 \ogs#*
+\orl#*
 \osl#*
 \pmwe#*
 \rcg#*

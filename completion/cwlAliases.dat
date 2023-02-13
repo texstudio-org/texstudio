@@ -1534,3 +1534,11 @@ altacv:
 class-altacv
 latex-document
 tex
+g-brief:
+class-g-brief
+latex-document
+tex
+g-brief2:
+class-g-brief2
+latex-document
+tex

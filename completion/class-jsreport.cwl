@@ -1,5 +1,5 @@
 # jsreport class
-# Matthew Bertucci 2022/07/22 for v2021/06/28
+# Matthew Bertucci 2023/02/12 for v2023/02/12
 
 #include:platex
 #include:jslogo
@@ -64,6 +64,7 @@ draft
 final
 mingoth
 jis
+platex
 uplatex
 autodetect
 papersize
