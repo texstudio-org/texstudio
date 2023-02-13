@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/01/23 for v3.85
+# tbraun 4.11.2008; Matthew Bertucci 2023/02/13 for v3.86
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -266,6 +266,7 @@ kashida.plain
 #endif
 
 \babelsublr{text}#*
+\localerestoredirs#*
 \BabelPatchSection{section-name}#*
 \BabelFootnote{cmd}{language}{before}{after}#*d
 
@@ -302,6 +303,7 @@ kashida.plain
 bidi.mapdigits=#on,off
 bidi.mirroring=#on,off
 bidi.text=#on,off
+bidi.math=#on,off
 linebreak.sea=#on,off
 linebreak.cjk=#on,off
 justify.arabic=#on,off
