@@ -284,7 +284,7 @@ upperbox=#visible,invisible
 visible
 invisible
 saveto=%<file name%>
-lowerbox=#visible,invisible,ignore
+lowerbox=#visible,invisible,ignored
 savelowerto=%<file name%>
 lower separated#true,false
 savedelimiter=%<name%>
