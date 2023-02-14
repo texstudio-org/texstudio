@@ -1,14 +1,17 @@
 # scsnowman package
-# Matthew Bertucci 8/12/2021
+# Matthew Bertucci 2023/02/14 for v1.3b
 
 #include:tikz
+#include:keyval
 
 \scsnowman
 \scsnowman[options%keyvals]
 \scsnowmandefault{keyvals}
+\scsnowmannumeral{number}
+\scsnowmannumeral[options%keyvals]{number}
 
-#keyvals:\scsnowman,\scsnowmandefault
-scale=
+#keyvals:\scsnowman#c,\scsnowmandefault#c,\scsnowmannumeral#c
+scale=%<factor%>
 adjustbaseline#true,false
 body
 body=#%color
@@ -40,10 +43,18 @@ mikan=#%color
 leaf=#%color
 #endkeyvals
 
-\usescsnowmanlibrary{filename}
+\usescsnowmanlibrary{library%file}
 
 \makeitemsnowman#*
 \makeitemother#*
 \makeqedsnowman#*
 \makeqedother#*
-\scsnowmannumeral{number}#*
+
+#keyvals:\pagenumbering#c
+enumsnowman
+#endkeyvals
+
+# not documented
+\enumsnowman{arg}#S
+\makedocumentsnowman#S
+\scsnowmanNumeral{arg1}{arg2}#S
