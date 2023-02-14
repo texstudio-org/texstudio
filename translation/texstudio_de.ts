@@ -12307,7 +12307,8 @@ If not, end characters are ignored.</source>
         <location filename="../src/txstabwidget.cpp" line="279"/>
         <source>
 included document in %1</source>
-        <translation>eingebunden in Dokument %1</translation>
+        <translation>
+eingebunden in Dokument %1</translation>
     </message>
 </context>
 <context>
