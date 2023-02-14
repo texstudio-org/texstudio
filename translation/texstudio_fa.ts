@@ -238,7 +238,7 @@
         <location filename="../src/bibtexdialog.cpp" line="60"/>
         <location filename="../src/bibtexdialog.cpp" line="321"/>
         <source>&amp;Unpublished</source>
-        <translation type="unfinished"/>
+        <translation>&amp;چاپ نشده</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="63"/>
