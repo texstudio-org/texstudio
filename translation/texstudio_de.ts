@@ -4215,7 +4215,7 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     <message>
         <location filename="../src/configmanager.cpp" line="1987"/>
         <source>Root Document: </source>
-        <translation>Root Dokument:</translation>
+        <translation>Root Dokument: </translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2756"/>
@@ -11767,7 +11767,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/texstudio.cpp" line="11417"/>
         <location filename="../src/texstudio.cpp" line="11447"/>
         <source>Document: </source>
-        <translation>Dokument:</translation>
+        <translation>Dokument: </translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11500"/>

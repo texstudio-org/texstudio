@@ -6222,7 +6222,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1422"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>باز کردن فایل های خارجی هم اکنون تنها برای فرمت PDF پشتیبانی می شود.</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1441"/>
@@ -6232,7 +6232,7 @@ You can now enter the password:</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1441"/>
         <source>Could not open link:</source>
-        <translation type="unfinished"/>
+        <translation>امکان باز کردن لینک وجود ندارد:</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="1557"/>
@@ -6412,7 +6412,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="862"/>
         <source>Do you want to continue replacing from the beginning?</source>
-        <translation type="unfinished"/>
+        <translation>آیا می خواهید جایگزینی را از ابتدا انجام دهید؟</translation>
     </message>
 </context>
 <context>
@@ -6839,12 +6839,12 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4721"/>
         <source>Select to document start</source>
-        <translation type="unfinished"/>
+        <translation>تا ابتدا پرونده را انتخواب کن</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4722"/>
         <source>Select to document end</source>
-        <translation type="unfinished"/>
+        <translation>تا انتها پرونده را انتخواب کن</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4724"/>
