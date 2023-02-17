@@ -1,5 +1,5 @@
 # algpseudocodex package
-# Matthew Bertucci 11/3/2021 for v1.0
+# Matthew Bertucci 2023/02/17 for v1.1.0
 
 #include:kvoptions
 #include:algorithmicx
@@ -7,6 +7,7 @@
 #include:fifo-stack
 #include:varwidth
 #include:tabto
+#include:totcount
 #include:tikz
 #include:tikzlibrarycalc
 #include:tikzlibraryfit
