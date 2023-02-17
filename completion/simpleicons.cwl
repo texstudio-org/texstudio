@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/02/03 for v8.4.0
+# Matthew Bertucci 2023/02/17 for v8.5.0
 
 #include:ifxetex
 #include:ifluatex
@@ -1299,6 +1299,7 @@ medium
 meetup
 mega
 mendeley
+mercadopago
 mercedes
 merck
 mercurial
