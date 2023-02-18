@@ -1,5 +1,5 @@
 # ResolSysteme package
-# Matthew Bertucci 2023/02/10 for v0.1.3
+# Matthew Bertucci 2023/02/13 for v0.1.4
 
 #include:nicematrix
 #include:ifthen
@@ -15,6 +15,14 @@ pyluatex
 #endkeyvals
 
 #ifOption:pyluatex
+\ProduitMatricesPY(matriceA)(matriceB)
+\ProduitMatricesPY<opts nicematrix>(matriceA)(matriceB)
+\ProduitMatricesPY[opt de formatage%keyvals](matriceA)(matriceB)
+\ProduitMatricesPY[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
+\ProduitMatricesPY*(matriceA)(matriceB)
+\ProduitMatricesPY*<opts nicematrix>(matriceA)(matriceB)
+\ProduitMatricesPY*[opt de formatage%keyvals](matriceA)(matriceB)
+\ProduitMatricesPY*[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
 \MatricePuissancePY(matrice)(puissance)
 \MatricePuissancePY<options nicematrix>(matrice)(puissance)
 \MatricePuissancePY[option de formatage%keyvals](matrice)(puissance)
@@ -35,6 +43,10 @@ pyluatex
 \MatriceInversePY*<options nicematrix>(matrice)
 \MatriceInversePY*[option de formatage%keyvals](matrice)
 \MatriceInversePY*[option de formatage%keyvals]<options nicematrix>(matrice)
+\EtatProbPY(état init)(mat de trans)(étape)
+\EtatProbPY<options nicematrix>(état init)(mat de trans)(étape)
+\EtatProbPY[option de formatage%keyvals](état init)(mat de trans)(étape)
+\EtatProbPY[option de formatage%keyvals]<options nicematrix>(état init)(mat de trans)(étape)
 \SolutionSystemePY(matriceA)(matriceB)
 \SolutionSystemePY<opts nicematrix>(matriceA)(matriceB)
 \SolutionSystemePY[opt de formatage%keyvals](matriceA)(matriceB)
@@ -43,6 +55,10 @@ pyluatex
 \SolutionSystemePY*<opts nicematrix>(matriceA)(matriceB)
 \SolutionSystemePY*[opt de formatage%keyvals](matriceA)(matriceB)
 \SolutionSystemePY*[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
+\EtatStablePY(matrice)
+\EtatStablePY<opts nicematrix>(matrice)
+\EtatStablePY[opt de formatage%keyvals](matrice)
+\EtatStablePY[opt de formatage%keyvals]<opts nicematrix>(matrice)
 #endif
 
 \ConvVersFrac{calcul}
@@ -87,6 +103,11 @@ pyluatex
 \MatriceInverse*[option de formatage%keyvals](matrice)
 \MatriceInverse*[option de formatage%keyvals]<options nicematrix>(matrice)
 
+\AffEtatProb(matrice ligne)
+\AffEtatProb<options nicematrix>(matrice ligne)
+\AffEtatProb[option de formatage%keyvals](matrice ligne)
+\AffEtatProb[option de formatage%keyvals]<options nicematrix>(matrice ligne)
+
 \SolutionSysteme(matriceA)(matriceB)
 \SolutionSysteme<opts nicematrix>(matriceA)(matriceB)
 \SolutionSysteme[opt de formatage%keyvals](matriceA)(matriceB)
@@ -96,7 +117,12 @@ pyluatex
 \SolutionSysteme*[opt de formatage%keyvals](matriceA)(matriceB)
 \SolutionSysteme*[opt de formatage%keyvals]<opts nicematrix>(matriceA)(matriceB)
 
-#keyvals:\ConvVersFrac,\ConvVersFrac*,\AffMatrice,\AffMatrice*,\ProduitMatrices,\ProduitMatrices*,\CarreMatrice,\CarreMatrice*,\MatricePuissancePY,\MatricePuissancePY*,\DetMatrice,\DetMatrice*,\DetMatricePY,\DetMatricePY*,\MatriceInverse,\MatriceInverse*,\MatriceInversePY,\MatriceInversePY*,\SolutionSysteme,\SolutionSysteme*,\SolutionSystemePY,\SolutionSystemePY*
+\EtatStable(matrice)
+\EtatStable<opts nicematrix>(matrice)
+\EtatStable[opt de formatage%keyvals](matrice)
+\EtatStable[opt de formatage%keyvals]<opts nicematrix>(matrice)
+
+#keyvals:\ConvVersFrac,\ConvVersFrac*,\AffMatrice,\AffMatrice*,\ProduitMatrices,\ProduitMatrices*,\ProduitMatricesPY,\ProduitMatricesPY*,\CarreMatrice,\CarreMatrice*,\MatricePuissancePY,\MatricePuissancePY*,\DetMatrice,\DetMatrice*,\DetMatricePY,\DetMatricePY*,\MatriceInverse,\MatriceInverse*,\MatriceInversePY,\MatriceInversePY*,\AffEtatProb,\EtatProbPY,\SolutionSysteme,\SolutionSysteme*,\SolutionSystemePY,\SolutionSystemePY*,\EtatStable,\EtatStablePY
 t
 d
 n

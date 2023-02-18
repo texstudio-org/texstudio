@@ -1,5 +1,5 @@
 # luacomplex package
-# Matthew Bertucci 2022/12/28 for v1.0
+# Matthew Bertucci 2023/02/14 for v1.2
 
 #include:xkeyval
 #include:amsmath
@@ -18,3 +18,4 @@
 \cpxMod{name}{orig-name}
 \cpxPrinArg{name}{orig-name}
 \cpxOp{name}{expression%definition}
+\imgUnit

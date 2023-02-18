@@ -1,8 +1,6 @@
 # changelog package
-# Matthew Bertucci 11/16/2021 for v2.4.0
+# Matthew Bertucci 2023/02/17 for v2.5.0
 
-#include:xparse
-#include:xkeyval
 #include:translations
 
 \begin{changelog}
@@ -28,12 +26,14 @@ v=%<version%>
 author=%<author%>
 date=%<date%>
 yanked#true,false
+remark=%<text%>
+remarks={%<text1,text2,...%>}
 simple#true,false
 short#true,false
 #endkeyvals
 
 #keyvals:\shortversion
-changes=%<changes text%>
+changes=%<change text%>
 #endkeyvals
 
 \added
@@ -44,9 +44,11 @@ changes=%<changes text%>
 \security
 \misc
 
-\changelogyanked
+\newchangelogsection{command}{description%text}#d
 
 \begin{changelogdescription}#*
 \end{changelogdescription}#*
 \begin{changelogitemize}#*
 \end{changelogitemize}#*
+\changelogyanked#*
+\changelogremark{remark%text}#*

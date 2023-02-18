@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/01/29 for v1.3
+# Matthew Bertucci 2023/02/14 for v1.4
 
 #include:l3keys2e
 #include:luatexbase
@@ -48,16 +48,18 @@ last-line=%<integer%>
 \PitonOptions{options%keyvals}
 
 #keyvals:\PitonOptions
+language=%<language%>
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
 line-numbers
 all-line-numbers
 resume
+identifiers={%<names={<name1>,<name2>,...},style=<instructions>%>}
 splittable
 splittable=%<integer%>
 background-color=#%color
-prompt-background-color
+prompt-background-color=#%color
 slim#true,false
 left-margin=##L
 tab-size=%<integer%>
@@ -99,14 +101,50 @@ Dict.Value=%<formatting%>
 Interpol.Inside=%<formatting%>
 Comment.Math=%<formatting%>
 InitialValues=%<formatting%>
+TypeParameter=%<formatting%>
 Name.Type=%<formatting%>
-Post.Function=%<formatting%>
-Beamer=%<formatting%>
+Identifier=%<formatting%>
+ParseAgain.noCR=%<formatting%>
+ParseAgain=%<formatting%>
+Prompt=%<formatting%>
+#endkeyvals
+
+\PitonStyle{style%keyvals}{text%plain}
+
+#keyvals:\PitonStyle
+Number
+String.Short
+String.Long
+String
+String.Doc
+String.Interpol
+Operator
+Operator.Word
+Name.Builtin
+Name.Function
+Name.Decorator
+Name.Namespace
+Name.Class
+Exception
+Comment
+Comment.LaTeX
+Keyword.Constant
+Keyword
+# not documented
+FormattingType
+Dict.Value
+Interpol.Inside
+Comment.Math
+InitialValues
+TypeParameter
+Name.Type
+Identifier
+ParseAgain.noCR
+ParseAgain
+Prompt
 #endkeyvals
 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
-# not documented
-\PitonStyle{arg}#*
 \myfiledate#S
 \myfileversion#S

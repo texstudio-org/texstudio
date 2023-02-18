@@ -1,5 +1,5 @@
 # hgb package
-# Matthew Bertucci 2022/07/01
+# Matthew Bertucci 2023/02/13
 
 #include:xifthen
 #include:lmodern
@@ -31,6 +31,9 @@
 #include:enumitem
 #include:tocbasic
 #include:pdfpages
+#include:booktabs
+#include:longtable
+#include:multirow
 
 #keyvals:\usepackage/hgb#c
 english
@@ -44,6 +47,8 @@ noUpdateCheck
 #include:csquotes
 #endif
 
+\begin{block}
+\end{block}
 \begin{english}
 \end{english}
 \begin{FileList}{path%URL}
@@ -56,7 +61,9 @@ noUpdateCheck
 \end{nowidows}
 
 \calibrationbox{width in mm}{height in mm}
+\email{email%URL}#U
 \fitem{path%URL}
+\getcurrentlabel
 \hgbAge#*
 \hgbDate#*
 \hgbWarnOldPackage{number}#*
@@ -94,10 +101,10 @@ noUpdateCheck
 \TH#n
 
 # from english option of babel
-\captionsenglish
-\dateenglish
-\extrasenglish
-\noextrasenglish
+\captionsenglish#*
+\dateenglish#*
+\extrasenglish#*
+\noextrasenglish#*
 \englishhyphenmins#*
 \britishhyphenmins#*
 \americanhyphenmins#*

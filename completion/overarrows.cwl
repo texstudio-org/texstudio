@@ -1,5 +1,5 @@
 # overarrows package
-# Matthew Bertucci 2023/01/18 for v1.0
+# Matthew Bertucci 2023/02/16 for v1.1
 
 #include:amsmath
 #include:etoolbox
@@ -21,6 +21,8 @@ old-arrows
 tikz
 pstarrows
 subscripts
+subother
+subactive
 debug
 overrightarrow
 underrightarrow
@@ -299,6 +301,7 @@ fill macro={%<definition%>}
 \overarrowsmallerthickness#L
 \esvectvv{arg}#*
 \esvectvv*{arg}{sub}#*
+\SetOverArrowsSubscriptCommand{command}#*
 \SetOverArrowsMethod{name}{keys def}#*
 \SetOverArrowsMethod{name}[pre code]{keys def}#*
 \SetOverArrowsMethod[stack mechanism]{name}{keys def}#*
