@@ -1510,6 +1510,7 @@
 <file>completion/flowfram.cwl</file>
 <file>completion/fltpage.cwl</file>
 <file>completion/fltpoint.cwl</file>
+<file>completion/fltrace.cwl</file>
 <file>completion/flushend.cwl</file>
 <file>completion/fmp.cwl</file>
 <file>completion/fmtcount.cwl</file>
@@ -2601,6 +2602,7 @@
 <file>completion/person.cwl</file>
 <file>completion/pfarrei.cwl</file>
 <file>completion/pfdicons.cwl</file>
+<file>completion/pfltrace.cwl</file>
 <file>completion/pgfcalendar.cwl</file>
 <file>completion/pgfcalendar-ext.cwl</file>
 <file>completion/pgfcore.cwl</file>
@@ -2958,6 +2960,7 @@
 <file>completion/realhats.cwl</file>
 <file>completion/realscripts.cwl</file>
 <file>completion/realtranspose.cwl</file>
+<file>completion/recorder-fingering.cwl</file>
 <file>completion/rec-thy.cwl</file>
 <file>completion/rectopma.cwl</file>
 <file>completion/recycle.cwl</file>
