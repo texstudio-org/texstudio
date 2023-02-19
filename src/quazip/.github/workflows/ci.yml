@@ -1,0 +1,134 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+name: CI
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+
+  build:
+    runs-on: ubuntu-${{ matrix.ubuntu_version }}
+    name: Ubuntu-${{ matrix.ubuntu_version }}-Qt-${{ matrix.qt_version }}-shared-${{ matrix.shared }}
+    strategy:
+      fail-fast: false
+      matrix:
+        ubuntu_version: [20.04, 22.04]
+        qt_version: [5.12.12, 5.15.2, 6.4.0]
+        shared: [ON, OFF]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+                
+    - name: Install Qt6
+      if: "startsWith(matrix.qt_version, '6.')"
+      uses: jurplel/install-qt-action@v3
+      with:
+          version: ${{ matrix.qt_version }}
+          cache: 'true'
+          cache-key-prefix: ${{ runner.os }}-Qt-Cache-${{ matrix.qt_version }}
+          dir: ${{ github.workspace }}/Qt
+          modules: 'qt5compat'
+
+    - name: Install Qt5
+      if: "startsWith(matrix.qt_version, '5.')"
+      uses: jurplel/install-qt-action@v3
+      with:
+          version: ${{ matrix.qt_version }}
+          cache: 'true'
+          cache-key-prefix: ${{ runner.os }}-Qt-Cache-${{ matrix.qt_version }}
+          dir: ${{ github.workspace }}/Qt
+
+    - name: Install libraries
+      run: |
+        sudo apt-get update &&
+        sudo apt-get install -y --no-install-recommends \
+          zlib1g-dev libbz2-dev
+
+    - name: Configure CMake
+      run: cmake -DCMAKE_BUILD_TYPE="${{env.BUILD_TYPE}}" -DBUILD_SHARED_LIBS=${{ matrix.shared }} -DQUAZIP_ENABLE_TESTS=ON -B "${{github.workspace}}/build"
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Run tests
+      working-directory: ${{github.workspace}}/build
+      run: "ctest --verbose"
+
+  macos:
+    runs-on: macos-${{ matrix.macos_version }}
+    name: macos-${{ matrix.macos_version }}-Qt-${{ matrix.qt_version }}-shared-${{ matrix.shared }}
+    strategy:
+      fail-fast: false
+      matrix:
+        macos_version: [11, 12]
+        qt_version: [5.15.2, 6.4.0]
+        shared: [ON, OFF]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Qt6
+        if: "startsWith(matrix.qt_version, '6.')"
+        uses: jurplel/install-qt-action@v3
+        with:
+            version: ${{ matrix.qt_version }}
+            cache: 'true'
+            cache-key-prefix: ${{ runner.os }}-Qt-Cache-${{ matrix.qt_version }}
+            dir: ${{ github.workspace }}/Qt
+            modules: 'qt5compat'
+
+      - name: Install Qt5
+        if: "startsWith(matrix.qt_version, '5.')"
+        uses: jurplel/install-qt-action@v3
+        with:
+            version: ${{ matrix.qt_version }}
+            cache: 'true'
+            cache-key-prefix: ${{ runner.os }}-Qt-Cache-${{ matrix.qt_version }}
+            dir: ${{ github.workspace }}/Qt
+
+      - name: Configure CMake
+        run: cmake -DCMAKE_BUILD_TYPE="${{env.BUILD_TYPE}}" -DBUILD_SHARED_LIBS=${{ matrix.shared }}  -DQUAZIP_ENABLE_TESTS=ON -B "${{github.workspace}}/build"
+        
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+      - name: Run tests
+        working-directory: ${{github.workspace}}/build
+        run: "ctest --verbose"
+
+  alpine:
+    name: "cmake on ${{ matrix.runner }}"
+    runs-on: "ubuntu-20.04"
+    container:
+      image: "${{ matrix.runner }}"
+    strategy:
+      matrix:
+        runner:
+          - "alpine:3.11"  # cmake 3.15, qt 5.12
+          - "alpine:3.12"  # cmake 3.17, qt 5.14
+    env:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Show OS info
+        run: cat /etc/os-release
+      - uses: actions/checkout@v2
+      - name: Install qt and build tools
+        run: apk add --update g++ make cmake qt5-qtbase-dev
+      - name: Show cmake version
+        run: cmake --version
+      - name: Run cmake
+        run: cmake -S . -B build -DQUAZIP_ENABLE_TESTS=ON
+      - name: Build quazip
+        run: cd build && VERBOSE=1 make -j8
+      - name: Build tests
+        run: cd build/qztest && VERBOSE=1 make -j8
+      - name: Run tests
+        run: build/qztest/qztest

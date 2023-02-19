@@ -53,7 +53,7 @@ extern "C" {
 #endif
 
 #ifndef _ZLIB_H
-#include "zlib.h"
+#include <zlib.h>
 #endif
 
 #ifndef  _ZLIBIOAPI_H
@@ -87,6 +87,7 @@ typedef voidp unzFile;
 
 #define UNZ_AUTO_CLOSE 0x01u
 #define UNZ_DEFAULT_FLAGS UNZ_AUTO_CLOSE
+#define UNZ_ENCODING_UTF8 0x0800u
 
 /* tm_unz contain date/time info */
 typedef struct tm_unz_s
@@ -205,7 +206,7 @@ extern unzFile ZEXPORT unzOpen2_64 OF((voidpf file,
 
 
 /*
- * Exported by Sergey A. Tachenov to implement some QuaZIP features. This
+ * Exported by Sergey A. Tachenov to implement some QuaZip features. This
  * function MAY change signature in order to implement even more features.
  * You have been warned!
  * */
@@ -227,6 +228,8 @@ extern int ZEXPORT unzGetGlobalInfo OF((unzFile file,
 
 extern int ZEXPORT unzGetGlobalInfo64 OF((unzFile file,
                                         unz_global_info64 *pglobal_info));
+
+extern int ZEXPORT unzGetFileFlags OF((unzFile file, unsigned* pflags));
 /*
   Write info about the ZipFile in the *pglobal_info structure.
   No preparation of the structure is needed

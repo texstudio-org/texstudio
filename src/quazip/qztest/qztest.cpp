@@ -1,20 +1,20 @@
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP test suite.
+This file is part of QuaZip test suite.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -33,13 +33,14 @@ see quazip/(un)zip.h files for details. Basically it's the zlib license.
 #include "testquazipnewinfo.h"
 #include "testquazipfileinfo.h"
 
-#include <quazip/quazip.h>
-#include <quazip/quazipfile.h>
+#include <quazip.h>
+#include <quazipfile.h>
+#include <quazip_qt_compat.h>
 
-#include <QCoreApplication>
-#include <QDir>
-#include <QFileInfo>
-#include <QTextStream>
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDir>
+#include <QtCore/QFileInfo>
+#include <QtCore/QTextStream>
 
 #include <QtTest/QtTest>
 
@@ -71,7 +72,7 @@ bool createTestFiles(const QStringList &fileNames, int size, const QString &dir)
             }
             if (size == -1) {
                 QTextStream testStream(&testFile);
-                testStream << "This is a test file named " << fileName << endl;
+                testStream << "This is a test file named " << fileName << quazip_endl;
             } else {
                 for (int i = 0; i < size; ++i) {
                     testFile.putChar(static_cast<char>('0' + i % 10));
@@ -145,9 +146,8 @@ bool createTestArchive(QuaZip &zip, const QString &zipName,
     zip.close();
     if (zipName.startsWith("<")) { // something like "<QIODevice pointer>"
         return true;
-    } else {
-        return QFileInfo(zipName).exists();
     }
+    return QFileInfo(zipName).exists();
 }
 
 bool createTestArchive(const QString &zipName,

@@ -1,20 +1,20 @@
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP.
+This file is part of QuaZip.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -22,9 +22,10 @@ Original ZIP package is copyrighted by Gilles Vollant and contributors,
 see quazip/(un)zip.h files for details. Basically it's the zlib license.
 */
 
-#include <QFileInfo>
+#include <QtCore/QFileInfo>
 
 #include "quazipnewinfo.h"
+#include "quazip_qt_compat.h"
 
 #include <string.h>
 
@@ -100,7 +101,7 @@ QuaZipNewInfo::QuaZipNewInfo(const QString& name, const QString& file):
     dateTime = QDateTime::currentDateTime();
   } else {
     dateTime = lm;
-    QuaZipNewInfo_setPermissions(this, info.permissions(), info.isDir(), info.isSymLink());
+    QuaZipNewInfo_setPermissions(this, info.permissions(), info.isDir(), quazip_is_symlink(info));
   }
 }
 
@@ -116,12 +117,12 @@ void QuaZipNewInfo::setFilePermissions(const QString &file)
 {
     QFileInfo info = QFileInfo(file);
     QFile::Permissions perm = info.permissions();
-    QuaZipNewInfo_setPermissions(this, perm, info.isDir(), info.isSymLink());
+    QuaZipNewInfo_setPermissions(this, perm, info.isDir(), quazip_is_symlink(info));
 }
 
 void QuaZipNewInfo::setPermissions(QFile::Permissions permissions)
 {
-    QuaZipNewInfo_setPermissions(this, permissions, name.endsWith('/'));
+    QuaZipNewInfo_setPermissions(this, permissions, name.endsWith(QLatin1String("/")));
 }
 
 void QuaZipNewInfo::setFileNTFSTimes(const QString &fileName)
@@ -134,13 +135,7 @@ void QuaZipNewInfo::setFileNTFSTimes(const QString &fileName)
     }
     setFileNTFSmTime(fi.lastModified());
     setFileNTFSaTime(fi.lastRead());
-    setFileNTFScTime(
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-	    fi.birthTime()
-#else
-	    fi.created()
-#endif
-    );
+    setFileNTFScTime(quazip_ctime(fi));
 }
 
 static void setNTFSTime(QByteArray &extra, const QDateTime &time, int position,
@@ -182,14 +177,12 @@ static void setNTFSTime(QByteArray &extra, const QDateTime &time, int position,
                     timesPos = i - 4; // the beginning of the NTFS times tag
                     ntfsTimesLength = tagsize;
                     break;
-                } else {
-                    i += tagsize;
                 }
+                i += tagsize;
             }
             break; // I ain't going to search for yet another NTFS record!
-        } else {
-            i += length;
         }
+        i += length;
     }
     if (ntfsPos == -1) {
         // No NTFS record, need to create one.
@@ -253,16 +246,7 @@ static void setNTFSTime(QByteArray &extra, const QDateTime &time, int position,
         extra[timesPos + 2] = static_cast<char>(ntfsTimesLength);
         extra[timesPos + 3] = static_cast<char>(ntfsTimesLength >> 8);
     }
-    QDateTime base(QDate(1601, 1, 1), QTime(0, 0), Qt::UTC);
-#if (QT_VERSION >= 0x040700)
-    quint64 ticks = base.msecsTo(time) * 10000 + fineTicks;
-#else
-    QDateTime utc = time.toUTC();
-    quint64 ticks = (static_cast<qint64>(base.date().daysTo(utc.date()))
-            * Q_INT64_C(86400000)
-            + static_cast<qint64>(base.time().msecsTo(utc.time())))
-        * Q_INT64_C(10000) + fineTicks;
-#endif
+    quint64 ticks = quazip_ntfs_ticks(time, fineTicks);
     extra[timesPos + 4 + position] = static_cast<char>(ticks);
     extra[timesPos + 5 + position] = static_cast<char>(ticks >> 8);
     extra[timesPos + 6 + position] = static_cast<char>(ticks >> 16);

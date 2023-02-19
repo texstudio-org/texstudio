@@ -1,20 +1,20 @@
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP.
+This file is part of QuaZip.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -23,6 +23,8 @@ see quazip/(un)zip.h files for details. Basically it's the zlib license.
 */
 
 #include "quazipfileinfo.h"
+
+#include <QtCore/QDataStream>
 
 static QFile::Permissions permissionsFromExternalAttr(quint32 externalAttr) {
     quint32 uPerm = (externalAttr & 0xFFFF0000u) >> 16;
@@ -59,6 +61,12 @@ QFile::Permissions QuaZipFileInfo64::getPermissions() const
     return permissionsFromExternalAttr(externalAttr);
 }
 
+bool QuaZipFileInfo64::isSymbolicLink() const
+{
+    quint32 uPerm = (externalAttr & 0xFFFF0000u) >> 16;
+    return (uPerm & 0170000) == 0120000;
+}
+
 bool QuaZipFileInfo64::toQuaZipFileInfo(QuaZipFileInfo &info) const
 {
     bool noOverflow = true;
@@ -93,69 +101,32 @@ static QDateTime getNTFSTime(const QByteArray &extra, int position,
                              int *fineTicks)
 {
     QDateTime dateTime;
-    for (int i = 0; i <= extra.size() - 4; ) {
-        unsigned type = static_cast<unsigned>(static_cast<unsigned char>(
-                                                  extra.at(i)))
-                | (static_cast<unsigned>(static_cast<unsigned char>(
-                                                  extra.at(i + 1))) << 8);
-        i += 2;
-        unsigned length = static_cast<unsigned>(static_cast<unsigned char>(
-                                                  extra.at(i)))
-                | (static_cast<unsigned>(static_cast<unsigned char>(
-                                                  extra.at(i + 1))) << 8);
-        i += 2;
-        if (type == QUAZIP_EXTRA_NTFS_MAGIC && length >= 32) {
-            i += 4; // reserved
-            while (i <= extra.size() - 4) {
-                unsigned tag = static_cast<unsigned>(
-                            static_cast<unsigned char>(extra.at(i)))
-                        | (static_cast<unsigned>(
-                               static_cast<unsigned char>(extra.at(i + 1)))
-                           << 8);
-                i += 2;
-                int tagsize = static_cast<unsigned>(
-                            static_cast<unsigned char>(extra.at(i)))
-                        | (static_cast<unsigned>(
-                               static_cast<unsigned char>(extra.at(i + 1)))
-                           << 8);
-                i += 2;
-                if (tag == QUAZIP_EXTRA_NTFS_TIME_MAGIC
-                        && tagsize >= position + 8) {
-                    i += position;
-                    quint64 mtime = static_cast<quint64>(
-                                static_cast<unsigned char>(extra.at(i)))
-                        | (static_cast<quint64>(static_cast<unsigned char>(
-                                                 extra.at(i + 1))) << 8)
-                        | (static_cast<quint64>(static_cast<unsigned char>(
-                                                 extra.at(i + 2))) << 16)
-                        | (static_cast<quint64>(static_cast<unsigned char>(
-                                                 extra.at(i + 3))) << 24)
-                        | (static_cast<quint64>(static_cast<unsigned char>(
-                                                 extra.at(i + 4))) << 32)
-                        | (static_cast<quint64>(static_cast<unsigned char>(
-                                                 extra.at(i + 5))) << 40)
-                        | (static_cast<quint64>(static_cast<unsigned char>(
-                                                 extra.at(i + 6))) << 48)
-                        | (static_cast<quint64>(static_cast<unsigned char>(
-                                                 extra.at(i + 7))) << 56);
-                    // the NTFS time is measured from 1601 for whatever reason
-                    QDateTime base(QDate(1601, 1, 1), QTime(0, 0), Qt::UTC);
-                    dateTime = base.addMSecs(mtime / 10000);
-                    if (fineTicks != NULL) {
-                        *fineTicks = static_cast<int>(mtime % 10000);
-                    }
-                    i += tagsize - position;
-                } else {
-                    i += tagsize;
-                }
-
-            }
-        } else {
-            i += length;
-        }
-    }
-    if (fineTicks != NULL && dateTime.isNull()) {
-        *fineTicks = 0;
+    QuaExtraFieldHash extraHash = QuaZipFileInfo64::parseExtraField(extra);
+    QList<QByteArray> ntfsExtraFields = extraHash[QUAZIP_EXTRA_NTFS_MAGIC];
+    if (ntfsExtraFields.isEmpty())
+        return dateTime;
+    QByteArray ntfsExtraField = ntfsExtraFields.at(0);
+    if (ntfsExtraField.length() <= 4)
+        return dateTime;
+    QByteArray ntfsAttributes = ntfsExtraField.mid(4);
+    QuaExtraFieldHash ntfsHash = QuaZipFileInfo64::parseExtraField(ntfsAttributes);
+    QList<QByteArray> ntfsTimeAttributes = ntfsHash[QUAZIP_EXTRA_NTFS_TIME_MAGIC];
+    if (ntfsTimeAttributes.isEmpty())
+        return dateTime;
+    QByteArray ntfsTimes = ntfsTimeAttributes.at(0);
+    if (ntfsTimes.size() < 24)
+        return dateTime;
+    QDataStream timeReader(ntfsTimes);
+    timeReader.setByteOrder(QDataStream::LittleEndian);
+    timeReader.device()->seek(position);
+    quint64 time;
+    timeReader >> time;
+    if (time == 0)
+        return dateTime;
+    QDateTime base(QDate(1601, 1, 1), QTime(0, 0), Qt::UTC);
+    dateTime = base.addMSecs(time / 10000);
+    if (fineTicks != nullptr) {
+        *fineTicks = static_cast<int>(time % 10000);
     }
     return dateTime;
 }
@@ -173,4 +144,61 @@ QDateTime QuaZipFileInfo64::getNTFSaTime(int *fineTicks) const
 QDateTime QuaZipFileInfo64::getNTFScTime(int *fineTicks) const
 {
     return getNTFSTime(extra, 16, fineTicks);
+}
+
+QDateTime QuaZipFileInfo64::getExtTime(const QByteArray &extra, int flag)
+{
+    QDateTime dateTime;
+    QuaExtraFieldHash extraHash = QuaZipFileInfo64::parseExtraField(extra);
+    QList<QByteArray> extTimeFields = extraHash[QUAZIP_EXTRA_EXT_TIME_MAGIC];
+    if (extTimeFields.isEmpty())
+        return dateTime;
+    QByteArray extTimeField = extTimeFields.at(0);
+    if (extTimeField.length() < 1)
+        return dateTime;
+    QDataStream input(extTimeField);
+    input.setByteOrder(QDataStream::LittleEndian);
+    quint8 flags;
+    input >> flags;
+    int flagsRemaining = flags;
+    while (!input.atEnd()) {
+        int nextFlag = flagsRemaining & -flagsRemaining;
+        flagsRemaining &= flagsRemaining - 1;
+        qint32 time;
+        input >> time;
+        if (nextFlag == flag) {
+            QDateTime base(QDate(1970, 1, 1), QTime(0, 0), Qt::UTC);
+            dateTime = base.addSecs(time);
+            return dateTime;
+        }
+    }
+    return dateTime;
+}
+
+QDateTime QuaZipFileInfo64::getExtModTime() const
+{
+    return getExtTime(extra, 1);
+}
+
+QuaExtraFieldHash QuaZipFileInfo64::parseExtraField(const QByteArray &extraField)
+{
+    QDataStream input(extraField);
+    input.setByteOrder(QDataStream::LittleEndian);
+    QHash<quint16, QList<QByteArray> > result;
+    while (!input.atEnd()) {
+        quint16 id, size;
+        input >> id;
+        if (input.status() == QDataStream::ReadPastEnd)
+            return result;
+        input >> size;
+        if (input.status() == QDataStream::ReadPastEnd)
+            return result;
+        QByteArray data;
+        data.resize(size);
+        int read = input.readRawData(data.data(), data.size());
+        if (read < data.size())
+            return result;
+        result[id] << data;
+    }
+    return result;
 }

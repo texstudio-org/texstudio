@@ -1,13 +1,12 @@
 #ifndef TESTQUAZIPNEWINFO_H
 #define TESTQUAZIPNEWINFO_H
 
-#include <QObject>
+#include <QtCore/QObject>
 
 class TestQuaZipNewInfo : public QObject
 {
+using QObject::QObject;
     Q_OBJECT
-public:
-    explicit TestQuaZipNewInfo(QObject *parent = 0);
 private slots:
     void setFileNTFSTimes();
 };

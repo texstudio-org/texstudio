@@ -1,23 +1,23 @@
-#ifndef Header_Qua_Zip_FileInfo
-#define Header_Qua_Zip_FileInfo
+#ifndef QUA_ZIPFILEINFO_H
+#define QUA_ZIPFILEINFO_H
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP.
+This file is part of QuaZip.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -25,11 +25,15 @@ Original ZIP package is copyrighted by Gilles Vollant and contributors,
 see quazip/(un)zip.h files for details. Basically it's the zlib license.
 */
 
-#include <QByteArray>
-#include <QDateTime>
-#include <QFile>
+#include <QtCore/QByteArray>
+#include <QtCore/QDateTime>
+#include <QtCore/QFile>
+#include <QtCore/QHash>
 
 #include "quazip_global.h"
+
+/// The typedef to store extra field parse results
+typedef QHash<quint16, QList<QByteArray> > QuaExtraFieldHash;
 
 /// Information about a file inside archive.
 /**
@@ -120,6 +124,12 @@ struct QUAZIP_EXPORT QuaZipFileInfo64 {
     QFile::Permissions.
     */
   QFile::Permissions getPermissions() const;
+  /// Checks whether the file is a symbolic link.
+  /**
+    Returns true iff the highest 16 bits of the external attributes
+    indicate that the file is a symbolic link according to Unix file mode.
+   */
+  bool isSymbolicLink() const;
   /// Converts to QuaZipFileInfo
   /**
     If any of the fields are greater than 0xFFFFFFFFu, they are set to
@@ -136,7 +146,7 @@ struct QUAZIP_EXPORT QuaZipFileInfo64 {
   /**
    * The getNTFS*Time() functions only work if there is an NTFS extra field
    * present. Otherwise, they all return invalid null timestamps.
-   * @param fineTicks If not NULL, the fractional part of milliseconds returned
+   * @param fineTicks If not null, the fractional part of milliseconds returned
    *                  there, measured in 100-nanosecond ticks. Will be set to
    *                  zero if there is no NTFS extra field.
    * @sa dateTime
@@ -144,12 +154,12 @@ struct QUAZIP_EXPORT QuaZipFileInfo64 {
    * @sa getNTFScTime()
    * @return The NTFS modification time, UTC
    */
-  QDateTime getNTFSmTime(int *fineTicks = NULL) const;
+  QDateTime getNTFSmTime(int *fineTicks = nullptr) const;
   /// Returns the NTFS access time
   /**
    * The getNTFS*Time() functions only work if there is an NTFS extra field
    * present. Otherwise, they all return invalid null timestamps.
-   * @param fineTicks If not NULL, the fractional part of milliseconds returned
+   * @param fineTicks If not null, the fractional part of milliseconds returned
    *                  there, measured in 100-nanosecond ticks. Will be set to
    *                  zero if there is no NTFS extra field.
    * @sa dateTime
@@ -157,12 +167,12 @@ struct QUAZIP_EXPORT QuaZipFileInfo64 {
    * @sa getNTFScTime()
    * @return The NTFS access time, UTC
    */
-  QDateTime getNTFSaTime(int *fineTicks = NULL) const;
+  QDateTime getNTFSaTime(int *fineTicks = nullptr) const;
   /// Returns the NTFS creation time
   /**
    * The getNTFS*Time() functions only work if there is an NTFS extra field
    * present. Otherwise, they all return invalid null timestamps.
-   * @param fineTicks If not NULL, the fractional part of milliseconds returned
+   * @param fineTicks If not null, the fractional part of milliseconds returned
    *                  there, measured in 100-nanosecond ticks. Will be set to
    *                  zero if there is no NTFS extra field.
    * @sa dateTime
@@ -170,9 +180,53 @@ struct QUAZIP_EXPORT QuaZipFileInfo64 {
    * @sa getNTFSaTime()
    * @return The NTFS creation time, UTC
    */
-  QDateTime getNTFScTime(int *fineTicks = NULL) const;
+  QDateTime getNTFScTime(int *fineTicks = nullptr) const;
+  /// Returns the extended modification timestamp
+  /**
+   * The getExt*Time() functions only work if there is an extended timestamp
+   * extra field (ID 0x5455) present. Otherwise, they all return invalid null
+   * timestamps.
+   *
+   * QuaZipFileInfo64 only contains the modification time because it's extracted
+   * from @ref extra, which contains the global extra field, and access and
+   * creation time are in the local header which can be accessed through
+   * @ref QuaZipFile.
+   *
+   * @sa dateTime
+   * @sa QuaZipFile::getExtModTime()
+   * @sa QuaZipFile::getExtAcTime()
+   * @sa QuaZipFile::getExtCrTime()
+   * @return The extended modification time, UTC
+   */
+  QDateTime getExtModTime() const;
   /// Checks whether the file is encrypted.
   bool isEncrypted() const {return (flags & 1) != 0;}
+  /// Parses extra field
+  /**
+   * The returned hash table contains a list of data blocks for every header ID
+   * in the provided extra field. The number of data blocks in a hash table value
+   * equals to the number of occurrences of the appropriate header id. In most cases,
+   * a block with a specific header ID only occurs once, and therefore the returned
+   * hash table will contain a list consisting of a single element for that header ID.
+   *
+   * @param extraField extra field to parse
+   * @return header id to list of data block hash
+   */
+  static QuaExtraFieldHash parseExtraField(const QByteArray &extraField);
+  /// Extracts extended time from the extra field
+  /**
+   * Utility function used by various getExt*Time() functions, but can be used directly
+   * if the extra field is obtained elsewhere (from a third party library, for example).
+   *
+   * @param extra the extra field for a file
+   * @param flag 1 - modification time, 2 - access time, 4 - creation time
+   * @return the extracted time or null QDateTime if not present
+   * @sa getExtModTime()
+   * @sa QuaZipFile::getExtModTime()
+   * @sa QuaZipFile::getExtAcTime()
+   * @sa QuaZipFile::getExtCrTime()
+   */
+  static QDateTime getExtTime(const QByteArray &extra, int flag);
 };
 
 #endif

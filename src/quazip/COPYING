@@ -1,5 +1,22 @@
-The QuaZIP library is licensed under the GNU Lesser General Public
+This file contains information about licensing information for the
+QuaZip library. It is the definitive source of such information, and
+takes priority over any copyright notices that might be found in the
+source code. All of those copyright notices are there just to reference
+this file, which they all should do, except the notices in the original
+ZIP/UNZIP package (MiniZip), which is included in the QuaZip library in
+a modified state, as its license permits.
+
+If some source file contains a copyright notice that neither marks that
+file as clearly belonging to the MiniZip project nor references this
+file, then it's a bug and should be reported to
+https://github.com/stachenov/quazip/issues
+
+The QuaZip library is licensed under the GNU Lesser General Public
 License V2.1 plus a static linking exception.
+
+The original ZIP/UNZIP package (MiniZip) is copyrighted by Gilles
+Vollant and contributors, see quazip/(un)zip.h files for details.
+Basically it's the zlib license.
 
 STATIC LINKING EXCEPTION
 

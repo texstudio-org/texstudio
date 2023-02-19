@@ -1,20 +1,20 @@
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP.
+This file is part of QuaZip.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -22,7 +22,7 @@ Original ZIP package is copyrighted by Gilles Vollant and contributors,
 see quazip/(un)zip.h files for details. Basically it's the zlib license.
 */
 
-#include <QFile>
+#include <QtCore/QFile>
 
 #include "quagzipfile.h"
 
@@ -31,10 +31,10 @@ class QuaGzipFilePrivate {
     friend class QuaGzipFile;
     QString fileName;
     gzFile gzd;
-    inline QuaGzipFilePrivate(): gzd(NULL) {}
-    inline QuaGzipFilePrivate(const QString &fileName):
-        fileName(fileName), gzd(NULL) {}
-    template<typename FileId> bool open(FileId id,
+    inline QuaGzipFilePrivate(): gzd(nullptr) {}
+    inline QuaGzipFilePrivate(const QString &fileName): 
+        fileName(fileName), gzd(nullptr) {}
+    template<typename FileId> bool open(FileId id, 
         QIODevice::OpenMode mode, QString &error);
     gzFile open(int fd, const char *modeString);
     gzFile open(const QString &name, const char *modeString);
@@ -51,7 +51,7 @@ gzFile QuaGzipFilePrivate::open(int fd, const char *modeString)
 }
 
 template<typename FileId>
-bool QuaGzipFilePrivate::open(FileId id, QIODevice::OpenMode mode,
+bool QuaGzipFilePrivate::open(FileId id, QIODevice::OpenMode mode, 
                               QString &error)
 {
     char modeString[2];
@@ -66,7 +66,8 @@ bool QuaGzipFilePrivate::open(FileId id, QIODevice::OpenMode mode,
         error = QuaGzipFile::tr("Opening gzip for both reading"
             " and writing is not supported");
         return false;
-    } else if ((mode & QIODevice::ReadOnly) != 0) {
+    }
+    if ((mode & QIODevice::ReadOnly) != 0) {
         modeString[0] = 'r';
     } else if ((mode & QIODevice::WriteOnly) != 0) {
         modeString[0] = 'w';
@@ -76,7 +77,7 @@ bool QuaGzipFilePrivate::open(FileId id, QIODevice::OpenMode mode,
         return false;
     }
     gzd = open(id, modeString);
-    if (gzd == NULL) {
+    if (gzd == nullptr) {
         error = QuaGzipFile::tr("Could not gzopen() file");
         return false;
     }
@@ -157,16 +158,15 @@ void QuaGzipFile::close()
 
 qint64 QuaGzipFile::readData(char *data, qint64 maxSize)
 {
-    return gzread(d->gzd, (voidp)data, (unsigned)maxSize);
+    return gzread(d->gzd, (voidp)data, static_cast<unsigned>(maxSize));
 }
 
 qint64 QuaGzipFile::writeData(const char *data, qint64 maxSize)
 {
     if (maxSize == 0)
         return 0;
-    int written = gzwrite(d->gzd, (voidp)data, (unsigned)maxSize);
+    int written = gzwrite(d->gzd, (voidp)data, static_cast<unsigned>(maxSize));
     if (written == 0)
         return -1;
-    else
-        return written;
+    return written;
 }

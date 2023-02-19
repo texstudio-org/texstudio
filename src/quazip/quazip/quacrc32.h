@@ -1,23 +1,23 @@
-#ifndef Header_Qua_CRC32
-#define Header_Qua_CRC32
+#ifndef QUACRC32_H
+#define QUACRC32_H
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP.
+This file is part of QuaZip.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -37,11 +37,11 @@ class QUAZIP_EXPORT QuaCrc32 : public QuaChecksum32 {
 public:
 	QuaCrc32();
 
-	quint32 calculate(const QByteArray &data);
+	quint32 calculate(const QByteArray &data) override;
 
-	void reset();
-	void update(const QByteArray &buf);
-	quint32 value();
+	void reset() override;
+	void update(const QByteArray &buf) override;
+	quint32 value() override;
 
 private:
 	quint32 checksum;

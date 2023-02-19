@@ -1,23 +1,23 @@
-#ifndef Header_Qua_Zip_File
-#define Header_Qua_Zip_File
+#ifndef QUA_ZIPFILE_H
+#define QUA_ZIPFILE_H
 
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP.
+This file is part of QuaZip.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -25,7 +25,7 @@ Original ZIP package is copyrighted by Gilles Vollant, see
 quazip/(un)zip.h files for details, basically it's zlib license.
  **/
 
-#include <QIODevice>
+#include <QtCore/QIODevice>
 
 #include "quazip_global.h"
 #include "quazip.h"
@@ -39,7 +39,7 @@ class QuaZipFilePrivate;
  * interface to the ZIP/UNZIP package, but also integrates it with Qt by
  * subclassing QIODevice. This makes possible to access files inside ZIP
  * archive using QTextStream or QDataStream, for example. Actually, this
- * is the main purpose of the whole QuaZIP library.
+ * is the main purpose of the whole QuaZip library.
  *
  * You can either use existing QuaZip instance to create instance of
  * this class or pass ZIP archive file name to this class, in which case
@@ -81,9 +81,9 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
     QuaZipFile& operator=(const QuaZipFile& that);
   protected:
     /// Implementation of the QIODevice::readData().
-    qint64 readData(char *data, qint64 maxSize);
+    qint64 readData(char *data, qint64 maxSize) override;
     /// Implementation of the QIODevice::writeData().
-    qint64 writeData(const char *data, qint64 maxSize);
+    qint64 writeData(const char *data, qint64 maxSize) override;
   public:
     /// Constructs a QuaZipFile instance.
     /** You should use setZipName() and setFileName() or setZip() before
@@ -107,7 +107,7 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * QuaZipFile constructed by this constructor can be used for read
      * only access. Use QuaZipFile(QuaZip*,QObject*) for writing.
      **/
-    QuaZipFile(const QString& zipName, QObject *parent =NULL);
+    QuaZipFile(const QString& zipName, QObject *parent =nullptr);
     /// Constructs a QuaZipFile instance.
     /** \a parent argument specifies this object's parent object, \a
      * zipName specifies ZIP archive file name and \a fileName and \a cs
@@ -119,7 +119,7 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * \sa QuaZip::setCurrentFile()
      **/
     QuaZipFile(const QString& zipName, const QString& fileName,
-        QuaZip::CaseSensitivity cs =QuaZip::csDefault, QObject *parent =NULL);
+        QuaZip::CaseSensitivity cs =QuaZip::csDefault, QObject *parent =nullptr);
     /// Constructs a QuaZipFile instance.
     /** \a parent argument specifies this object's parent object.
      *
@@ -169,12 +169,12 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * zip.close();
      * \endcode
      **/
-    QuaZipFile(QuaZip *zip, QObject *parent =NULL);
+    QuaZipFile(QuaZip *zip, QObject *parent =nullptr);
     /// Destroys a QuaZipFile instance.
     /** Closes file if open, destructs internal QuaZip object (if it
      * exists and \em is internal, of course).
      **/
-    virtual ~QuaZipFile();
+    ~QuaZipFile() override;
     /// Returns the ZIP archive file name.
     /** If this object was created by passing QuaZip pointer to the
      * constructor, this function will return that QuaZip's file name
@@ -201,7 +201,7 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * Returns null string if there is no file name set yet. This is the
      * case when this QuaZipFile operates on the existing QuaZip object
      * (constructor QuaZipFile(QuaZip*,QObject*) or setZip() was used).
-     * 
+     *
      * \sa getActualFileName
      **/
     QString getFileName() const;
@@ -289,14 +289,14 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * QuaZipFile does not support unbuffered reading. So do not pass
      * QIODevice::Unbuffered flag in \a mode, or open will fail.
      **/
-    virtual bool open(OpenMode mode);
+    bool open(OpenMode mode) override;
     /// Opens a file for reading.
     /** \overload
      * Argument \a password specifies a password to decrypt the file. If
      * it is NULL then this function behaves just like open(OpenMode).
      **/
     inline bool open(OpenMode mode, const char *password)
-    {return open(mode, NULL, NULL, false, password);}
+    {return open(mode, nullptr, nullptr, false, password);}
     /// Opens a file for reading.
     /** \overload
      * Argument \a password specifies a password to decrypt the file.
@@ -309,7 +309,7 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * \a method should not be \c NULL. \a level can be \c NULL if you
      * don't want to know the compression level.
      **/
-    bool open(OpenMode mode, int *method, int *level, bool raw, const char *password =NULL);
+    bool open(OpenMode mode, int *method, int *level, bool raw, const char *password =nullptr);
     /// Opens a file for writing.
     /** \a info argument specifies information about file. It should at
      * least specify a correct file name. Also, it is a good idea to
@@ -323,7 +323,8 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * use the raw mode (see below).
      *
      * Arguments \a method and \a level specify compression method and
-     * level. The only method supported is Z_DEFLATED, but you may also
+     * level. The only compression methods supported are
+     * Z_DEFLATED and Z_BZIP2ED. But you may also
      * specify 0 for no compression. If all of the files in the archive
      * use both method 0 and either level 0 is explicitly specified or
      * data descriptor writing is disabled with
@@ -332,6 +333,10 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * format version, should you need that. Except for this, \a level
      * has no other effects with method 0.
      *
+     * If the method is \a Z_BZIP2ED, then the level must be specified
+     * explicitly (1 to 9), as the bzip2 backend doesn't support
+     * \a Z_DEFAULT_COMPRESSION.
+     *
      * If \a raw is \c true, no compression is performed. In this case,
      * \a crc and uncompressedSize field of the \a info are required.
      *
@@ -339,11 +344,11 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * algorithms tuning. See deflateInit2() in zlib.
      **/
     bool open(OpenMode mode, const QuaZipNewInfo& info,
-        const char *password =NULL, quint32 crc =0,
+        const char *password =nullptr, quint32 crc =0,
         int method =Z_DEFLATED, int level =Z_DEFAULT_COMPRESSION, bool raw =false,
         int windowBits =-MAX_WBITS, int memLevel =DEF_MEM_LEVEL, int strategy =Z_DEFAULT_STRATEGY);
     /// Returns \c true, but \ref quazipfile-sequential "beware"!
-    virtual bool isSequential()const;
+    bool isSequential()const override;
     /// Returns current position in the file.
     /** Implementation of the QIODevice::pos(). When reading, this
      * function is a wrapper to the ZIP/UNZIP unztell(), therefore it is
@@ -366,7 +371,7 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * Error code returned by getZipError() is not affected by this
      * function call.
      **/
-    virtual qint64 pos()const;
+    qint64 pos()const override;
     /// Returns \c true if the end of file was reached.
     /** This function returns \c false in the case of error. This means
      * that you called this function on either not open file, or a file
@@ -384,7 +389,7 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * Error code returned by getZipError() is not affected by this
      * function call.
      **/
-    virtual bool atEnd()const;
+    bool atEnd()const override;
     /// Returns file size.
     /** This function returns csize() if the file is open for reading in
      * raw mode, usize() if it is open for reading in normal mode and
@@ -398,7 +403,7 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
      * name would be very misguiding otherwise, so just keep in mind
      * this inconsistence.
      **/
-    virtual qint64 size()const;
+    qint64 size()const override;
     /// Returns compressed file size.
     /** Equivalent to calling getFileInfo() and then getting
      * compressedSize field, but more convenient and faster.
@@ -446,11 +451,63 @@ class QUAZIP_EXPORT QuaZipFile: public QIODevice {
     /// Closes the file.
     /** Call getZipError() to determine if the close was successful.
      **/
-    virtual void close();
+    void close() override;
     /// Returns the error code returned by the last ZIP/UNZIP API call.
     int getZipError() const;
     /// Returns the number of bytes available for reading.
-    virtual qint64 bytesAvailable() const;
+    qint64 bytesAvailable() const override;
+    /// Returns the local extra field
+    /**
+      There are two (optional) local extra fields associated with a file.
+      One is located in the central header and is available along
+      with the rest of the file information in @ref QuaZipFileInfo64::extra.
+      Another is located before the file itself,
+      and is returned by this function. The file must be open first.
+
+      @return the local extra field, or an empty array if there is none
+        (or file is not open)
+      */
+    QByteArray getLocalExtraField();
+    /// Returns the extended modification timestamp
+    /**
+    * The getExt*Time() functions only work if there is an extended timestamp
+    * extra field (ID 0x5455) present. Otherwise, they all return invalid null
+    * timestamps.
+    *
+    * Modification time, but not other times, can also be accessed through
+    * @ref QuaZipFileInfo64 without the need to open the file first.
+    *
+    * @sa dateTime
+    * @sa QuaZipFileInfo64::getExtModTime()
+    * @sa getExtAcTime()
+    * @sa getExtCrTime()
+    * @return The extended modification time, UTC
+    */
+    QDateTime getExtModTime();
+    /// Returns the extended access timestamp
+    /**
+    * The getExt*Time() functions only work if there is an extended timestamp
+    * extra field (ID 0x5455) present. Otherwise, they all return invalid null
+    * timestamps.
+    * @sa dateTime
+    * @sa QuaZipFileInfo64::getExtModTime()
+    * @sa getExtModTime()
+    * @sa getExtCrTime()
+    * @return The extended access time, UTC
+    */
+    QDateTime getExtAcTime();
+    /// Returns the extended creation timestamp
+    /**
+    * The getExt*Time() functions only work if there is an extended timestamp
+    * extra field (ID 0x5455) present. Otherwise, they all return invalid null
+    * timestamps.
+    * @sa dateTime
+    * @sa QuaZipFileInfo64::getExtModTime()
+    * @sa getExtModTime()
+    * @sa getExtAcTime()
+    * @return The extended creation time, UTC
+    */
+    QDateTime getExtCrTime();
 };
 
 #endif

@@ -1,20 +1,20 @@
 /*
 Copyright (C) 2005-2014 Sergey A. Tachenov
 
-This file is part of QuaZIP test suite.
+This file is part of QuaZip test suite.
 
-QuaZIP is free software: you can redistribute it and/or modify
+QuaZip is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
 (at your option) any later version.
 
-QuaZIP is distributed in the hope that it will be useful,
+QuaZip is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
-along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+along with QuaZip.  If not, see <http://www.gnu.org/licenses/>.
 
 See COPYING file for the full LGPL text.
 
@@ -26,13 +26,14 @@ see quazip/(un)zip.h files for details. Basically it's the zlib license.
 
 #include "qztest.h"
 
-#include <quazip/JlCompress.h>
-#include <quazip/quazipfile.h>
-#include <quazip/quazip.h>
+#include <JlCompress.h>
+#include <quazipfile.h>
+#include <quazip.h>
+#include <quazip_qt_compat.h>
 
-#include <QFile>
-#include <QString>
-#include <QStringList>
+#include <QtCore/QFile>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
 
 #include <QtTest/QtTest>
 
@@ -42,25 +43,41 @@ void TestQuaZipFile::zipUnzip_data()
     QTest::addColumn<QStringList>("fileNames");
     QTest::addColumn<QByteArray>("fileNameCodec");
     QTest::addColumn<QByteArray>("password");
+    QTest::addColumn<int>("method");
+    QTest::addColumn<int>("level");
     QTest::addColumn<bool>("zip64");
+    QTest::addColumn<bool>("utf8");
     QTest::addColumn<int>("size");
     QTest::newRow("simple") << "simple.zip" << (
             QStringList() << "test0.txt" << "testdir1/test1.txt"
             << "testdir2/test2.txt" << "testdir2/subdir/test2sub.txt")
-        << QByteArray() << QByteArray() << false << -1;
+        << QByteArray() << QByteArray() << Z_DEFLATED << Z_DEFAULT_COMPRESSION << false << false << -1;
+ #ifdef HAVE_BZIP2
+    QTest::newRow("bzip") << "bzip.zip" << (
+            QStringList() << "testb0.txt" << "testdirb/testb.txt"
+            << "testdir2b/test2b.txt" << "testdir2b/subdir/test2bsub.txt")
+        << QByteArray() << QByteArray() << Z_BZIP2ED << 9 << false << false << -1;
+#endif
     QTest::newRow("Cyrillic") << "cyrillic.zip" << (
             QStringList()
             << QString::fromUtf8("русское имя файла с пробелами.txt"))
-        << QByteArray("IBM866") << QByteArray() << false << -1;
+        << QByteArray("IBM866") << QByteArray() << Z_DEFLATED << Z_DEFAULT_COMPRESSION << false << false << -1;
+    QTest::newRow("Unicode") << "unicode.zip" << (
+            QStringList()
+            << QString::fromUtf8("Українське сало.txt")
+            << QString::fromUtf8("Vin français.txt")
+            << QString::fromUtf8("日本の寿司.txt")
+            << QString::fromUtf8("ქართული ხაჭაპური.txt"))
+        << QByteArray("") << QByteArray() << Z_DEFLATED << Z_DEFAULT_COMPRESSION << false << true << -1;
     QTest::newRow("password") << "password.zip" << (
             QStringList() << "test.txt")
-        << QByteArray() << QByteArray("PassPass") << false << -1;
+        << QByteArray() << QByteArray("PassPass") << Z_DEFLATED << Z_DEFAULT_COMPRESSION << false << false << -1;
     QTest::newRow("zip64") << "zip64.zip" << (
             QStringList() << "test64.txt")
-        << QByteArray() << QByteArray() << true << -1;
+        << QByteArray() << QByteArray() << Z_DEFLATED << Z_DEFAULT_COMPRESSION << true << false << -1;
     QTest::newRow("large enough to flush") << "flush.zip" << (
             QStringList() << "flush.txt")
-        << QByteArray() << QByteArray() << true << 65536 * 2;
+        << QByteArray() << QByteArray() << Z_DEFLATED << Z_DEFAULT_COMPRESSION << true << false << 65536 * 2;
 }
 
 void TestQuaZipFile::zipUnzip()
@@ -69,7 +86,10 @@ void TestQuaZipFile::zipUnzip()
     QFETCH(QStringList, fileNames);
     QFETCH(QByteArray, fileNameCodec);
     QFETCH(QByteArray, password);
+    QFETCH(int, method);
+    QFETCH(int, level);
     QFETCH(bool, zip64);
+    QFETCH(bool, utf8);
     QFETCH(int, size);
     QFile testFile(zipName);
     if (testFile.exists()) {
@@ -82,10 +102,11 @@ void TestQuaZipFile::zipUnzip()
     }
     QuaZip testZip(&testFile);
     testZip.setZip64Enabled(zip64);
+    testZip.setUtf8Enabled(utf8);
     if (!fileNameCodec.isEmpty())
         testZip.setFileNameCodec(fileNameCodec);
     QVERIFY(testZip.open(QuaZip::mdCreate));
-    QString comment = "Test comment";
+    QString comment = utf8 ? "test テスト ჩეკი" : "Test comment";
     testZip.setComment(comment);
     foreach (QString fileName, fileNames) {
         QFile inFile("tmp/" + fileName);
@@ -94,9 +115,19 @@ void TestQuaZipFile::zipUnzip()
             QFAIL("Couldn't open input file");
         }
         QuaZipFile outFile(&testZip);
-        QVERIFY(outFile.open(QIODevice::WriteOnly, QuaZipNewInfo(fileName,
-                        inFile.fileName()),
-                password.isEmpty() ? NULL : password.constData()));
+        if (
+            !outFile.open(
+                QIODevice::WriteOnly,
+                QuaZipNewInfo(fileName, inFile.fileName()),
+                password.isEmpty() ? NULL : password.constData(),
+                0,
+                method,
+                level
+            )
+        ) {
+            qDebug("outFile.open() backend error, code %d", outFile.getZipError());
+            QFAIL("outFile.open() returned FALSE");
+        }
         for (qint64 pos = 0, len = inFile.size(); pos < len; ) {
             char buf[4096];
             qint64 readSize = qMin(static_cast<qint64>(4096), len - pos);
@@ -297,11 +328,11 @@ void TestQuaZipFile::posWrite()
         QCOMPARE(zipFile.pos(), (qint64) 1);
         QByteArray buffer(size / 2 - 1, '\0');
         for (int i = 0; i < buffer.size(); ++i)
-            buffer[i] = static_cast<char>(qrand());
+            buffer[i] = static_cast<char>(i);
         zipFile.write(buffer);
         QCOMPARE(zipFile.pos(), qint64(size / 2));
         for (int i = 0; i < size - size / 2; ++i) {
-            zipFile.putChar(static_cast<char>(qrand()));
+            zipFile.putChar(static_cast<char>(i));
         }
         QCOMPARE(zipFile.pos(), qint64(size));
     }
@@ -456,9 +487,8 @@ void TestQuaZipFile::setFileAttrs()
                 QFile::WriteOther | QFile::ReadOther | QFile::ExeOther;
         QCOMPARE(info.getPermissions() & usedPermissions,
                  srcInfo.permissions() & usedPermissions);
-        // I really hope Qt 6 will use quint64 for time_t!
-        quint64 newTime = info.dateTime.toTime_t();
-        quint64 oldTime = srcInfo.lastModified().toTime_t();
+        qint64 newTime = quazip_to_time64_t(info.dateTime);
+        qint64 oldTime = quazip_to_time64_t(srcInfo.lastModified());
         // ZIP uses weird format with 2 second precision
         QCOMPARE(newTime / 2, oldTime / 2);
         readFileAttrs.close();
