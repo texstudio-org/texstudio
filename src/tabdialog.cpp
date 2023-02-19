@@ -230,7 +230,72 @@ QStringList TabDialog::getRequiredPackages(const QString &text)
 	if (text.contains("arraybackslash")) {
 		requiredPackages << "array";
 	}
-	return requiredPackages;
+    return requiredPackages;
+}
+/*!
+ * \brief split instered text from spreadsheet into table wizard
+ * "\n" row separator
+ * "\t" col delimiter
+ * \param pasted_text
+ */
+void TabDialog::insertTextIntoTable(QString pasted_text)
+{
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+        QList<QString> rows = pasted_text.split('\n', Qt::SkipEmptyParts);
+#else
+        QList<QString> rows = pasted_text.split('\n', QString::SkipEmptyParts);
+#endif
+
+        // Get indexes of currently selected cells.
+        int starting_row = 0;
+        int starting_col = 0;
+        QItemSelectionModel *selection_model = ui.tableWidget->selectionModel();
+        if (selection_model)
+        {
+            QModelIndexList indexList = selection_model->selectedIndexes();
+            if (indexList.count() > 0)
+            {
+                starting_row = selection_model->selectedIndexes().begin()->row();
+                starting_col = selection_model->selectedIndexes().begin()->column();
+            }
+        }
+
+        int cur_row = starting_row;
+        int cur_col = starting_col;
+        for(const QString &row : rows)
+        {
+            if (cur_row >= ui.tableWidget->rowCount())
+            {
+                ui.tableWidget->setRowCount(ui.tableWidget->rowCount() + 1);
+                ui.spinBoxRows->setValue(ui.spinBoxRows->value() + 1);
+            }
+
+            QList<QString> cols = row.split('\t');
+            for(const QString &col : cols)
+            {
+                if (cur_col >= ui.tableWidget->columnCount())
+                {
+                    ui.tableWidget->setColumnCount(ui.tableWidget->columnCount() + 1);
+                    ui.spinBoxColumns->setValue(ui.spinBoxColumns->value() + 1);
+                }
+
+                QTableWidgetItem *item = ui.tableWidget->item(cur_row, cur_col);
+                if (item) // Checks if item is a null pointer (item doesn't exist)
+                {
+                    item->setText(col);
+                    ++cur_col;
+                }
+                else
+                {
+                    // Adds new item if copied size is larger than table size.
+                    QTableWidgetItem *newItem = new QTableWidgetItem();
+                    newItem->setText(col);
+                    ui.tableWidget->setItem(cur_row, cur_col, newItem);
+                }
+            }
+            ++cur_row;
+            cur_col = starting_col;
+        }
 }
 
 void TabDialog::NewRows(int num)
@@ -549,63 +614,7 @@ void TabDialog::keyPressEvent(QKeyEvent *event)
     {
         QClipboard *clipboard = QGuiApplication::clipboard();
         QString pasted_text = clipboard->text();
-
-#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
-        QList<QString> rows = pasted_text.split('\n', Qt::SkipEmptyParts);
-#else
-        QList<QString> rows = pasted_text.split('\n', QString::SkipEmptyParts);
-#endif
-
-        // Get indexes of currently selected cells.
-        int starting_row = 0;
-        int starting_col = 0;
-        QItemSelectionModel *selection_model = ui.tableWidget->selectionModel();
-        if (selection_model)
-        {
-            QModelIndexList indexList = selection_model->selectedIndexes();
-            if (indexList.count() > 0)
-            {
-                starting_row = selection_model->selectedIndexes().begin()->row();
-                starting_col = selection_model->selectedIndexes().begin()->column();
-            }
-        }
-
-        int cur_row = starting_row;
-        int cur_col = starting_col;
-        for(const QString &row : rows)
-        {
-            if (cur_row >= ui.tableWidget->rowCount())
-            {
-                ui.tableWidget->setRowCount(ui.tableWidget->rowCount() + 1);
-                ui.spinBoxRows->setValue(ui.spinBoxRows->value() + 1);
-            }
-
-            QList<QString> cols = row.split('\t');
-            for(const QString &col : cols)
-            {
-                if (cur_col >= ui.tableWidget->columnCount())
-                {
-                    ui.tableWidget->setColumnCount(ui.tableWidget->columnCount() + 1);
-                    ui.spinBoxColumns->setValue(ui.spinBoxColumns->value() + 1);
-                }
-
-                QTableWidgetItem *item = ui.tableWidget->item(cur_row, cur_col);
-                if (item) // Checks if item is a null pointer (item doesn't exist)
-                {
-                    item->setText(col);
-                    ++cur_col;
-                }
-                else
-                {
-                    // Adds new item if copied size is larger than table size.
-                    QTableWidgetItem *newItem = new QTableWidgetItem();
-                    newItem->setText(col);
-                    ui.tableWidget->setItem(cur_row, cur_col, newItem);
-                }
-            }
-            ++cur_row;
-            cur_col = starting_col;
-        }
+        insertTextIntoTable(pasted_text);
     }
 
     // Table Delete Cells

@@ -3677,7 +3677,7 @@ void Texstudio::editPaste()
             currentEditorView()->editor->insertFromMimeData(&md);
         }else{
             // no table defined, call wizard
-            quickTabular();
+            quickTabular(d);
         }
 		return;
 	}
@@ -5249,10 +5249,13 @@ void Texstudio::insertBib()
 	                       "TeXstudio inserts automatically the base name of the TeX file");
 }
 
-void Texstudio::quickTabular()
+void Texstudio::quickTabular(const QMimeData *d)
 {
 	if ( !currentEditorView() )	return;
 	TabDialog *tabDialog = new TabDialog(this, "Tabular");
+    if(d && d->hasFormat("text/plain")){
+        tabDialog->insertTextIntoTable(d->text());
+    }
 	if ( tabDialog->exec() ) {
 		QString latexText = tabDialog->getLatexText();
 		QSet<QString> usedPackages = currentEditorView()->document->usedPackages();

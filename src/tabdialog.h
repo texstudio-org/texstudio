@@ -40,6 +40,7 @@ public:
     static QStringList getRequiredPackages(const QString &text);
     QList<colData> colDataList;
     QList<liData> liDataList;
+    void insertTextIntoTable(QString txt);
 private slots:
     void NewRows(int num);
     void NewColumns(int num);

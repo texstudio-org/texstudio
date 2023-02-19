@@ -459,7 +459,7 @@ protected slots:
     void addMagicBibliography();
     void addMagicProgram();
 
-	void quickTabular(); ///< start quick tabular wizard
+    void quickTabular(const QMimeData *d=nullptr); ///< start quick tabular wizard
 	void quickArray(); ///< start quick array wizard
 	void quickTabbing(); ///< start quick tabbing wizard
 	void quickLetter(); ///< start quick leter wizard
