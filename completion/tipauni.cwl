@@ -1,5 +1,5 @@
 # tipauni package
-# Matthew Bertucci 2022/11/01 for v0.6.1
+# Matthew Bertucci 2023/02/13 for v0.7a
 
 #include:fontspec
 #include:xparse
@@ -91,6 +91,14 @@ incompatible
 \textrhoticity
 \textcorner
 \textesh
+\textdzlig
+\textdyoghlig
+\texttslig
+\textteshlig
+\textdblig
+\textqplig
+\texthvlig
+\texttctclig
 \stdlnetiebar{arg}
 \textsubring{arg}
 \textsupring{arg}

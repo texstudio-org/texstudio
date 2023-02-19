@@ -1,5 +1,5 @@
 # TangramTikz package
-# Matthew Bertucci 2023/01/31 for v0.1.2
+# Matthew Bertucci 2023/02/17 for v0.1.3
 
 #include:tikz
 #include:simplekv
@@ -144,6 +144,14 @@ TangSol={%<color%>}
 \TangramHorse[TikZ options]#S
 \TangramHorse*#S
 \TangramHorse*[TikZ options]#S
+\TangramGoat#S
+\TangramGoat[TikZ options]#S
+\TangramGoat*#S
+\TangramGoat*[Tikz options]#S
+\TangramLion#S
+\TangramLion[TikZ options]#S
+\TangramLion*#S
+\TangramLion*[Tikz options]#S
 \TangramTikzCreateEN{cmd}#S
 \TangramTikzCreateFR{cmd}#S
 \TangCouleurs#S

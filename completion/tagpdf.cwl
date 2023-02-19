@@ -1,10 +1,7 @@
 # tagpdf package
-# Matthew Bertucci 2022/08/08 for v0.96
+# Matthew Bertucci 2023/02/15 for v0.98d
 
 #include:pdfmanagement-testphase
-#include:l3ref-tmp
-#include:tagpdf-mc-code-generic
-#include:tagpdf-mc-code-lua
 
 #keyvals:\usepackage/tagpdf#c
 luamode
@@ -32,6 +29,13 @@ paratag=%<string%>
 tabsorder=#row,column,structure,none
 tagunmarked#true,false
 uncompress
+#endkeyvals
+
+\tagtool{keyvals}
+
+#keyvals:\tagtool
+para#true,false
+paratag=%<string%>
 #endkeyvals
 
 \tagmcbegin{keyvals}
@@ -69,6 +73,7 @@ AF=%<object%>
 root-AF=%<object%>
 AFinline=%<text%>
 AFinline-o=%<text%>
+texsource=%<text%>
 lang=%<lang id%>
 ref=%<label1,label2,...%>}
 E=%<text%>

@@ -1,5 +1,5 @@
 # annotate-equations package
-# Matthew Bertucci 4/1/2022 for v0.1.0
+# Matthew Bertucci 2023/02/16 for v0.2.0
 
 #include:ifluatex
 #include:tikz
@@ -37,7 +37,8 @@ label below
 \EAwesteast#*
 \EAxshift#*
 \eqnannotateCurrentNode#*
-\eqnannotationtext{text}#*
+\eqnannotationfont#*
+\eqnannotationstrut#*
 \eqncolor{color}{math}#*m
 \eqnhighlight{color}{math}#*m
 \eqnhighlightcolorbox{color}{math}#*m
@@ -55,23 +56,3 @@ label below
 \swapWestEast{anchor}#*
 \theeqnannotatenode#*
 \usevalue{node name}#*
-
-#keyvals:\tikzset#c,\begin{tikzpicture}#c,\node#c
-check picture id
-if picture id={%<name%>}{%<true%>}{%<false%>}
-if tikzmark on current page={%<name%>}{%<true%>}{%<false%>}
-if tikzmark on page={%<name%>}{%<page%>}{%<true%>}{%<false%>}
-maybe define node=
-next page vector
-next page=#above,below,left,right,ignore
-restore nodes from file=%<file name%>
-restore nodes from list=%<name%>
-save node
-save nodes to file
-save picture id=%<name%>
-set node group=%<name%>
-set saved nodes file name=%<file name%>
-tikzmark prefix=%<prefix%>
-tikzmark suffix=%<suffix%>
-transform saved nodes
-#endkeyvals
