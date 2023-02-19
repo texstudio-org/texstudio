@@ -5943,6 +5943,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 		} else {
 			QString txt;
 
+
 			if ( d->hasFormat("text/plain") )
 				txt = d->text();
 			else if ( d->hasFormat("text/html") )

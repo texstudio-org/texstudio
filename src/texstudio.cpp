@@ -3665,7 +3665,20 @@ void Texstudio::editPaste()
 	const QMimeData *d = QApplication::clipboard()->mimeData();
     if ((d->hasFormat("application/x-openoffice-embed-source-xml;windows_formatname=\"Star Embed Source (XML)\"")||d->hasFormat("application/x-qt-windows-mime;value=\"Star Embed Source (XML)\"")) && d->hasFormat("text/plain")) {
 		// workaround for LibreOffice (im "application/x-qt-image" has a higher priority for them than "text/plain")
-		currentEditorView()->paste();
+        QDocumentCursor cur = currentEditorView()->editor->cursor();
+        if (LatexTables::inTableEnv(cur)){
+            // table is defined
+            // Insert with "&" as separator
+            QString txt = d->text();
+            txt = txt.replace("\t", " & ");
+            txt = txt.replace("\n", " \\\\\n");
+            QMimeData md;
+            md.setText(txt);
+            currentEditorView()->editor->insertFromMimeData(&md);
+        }else{
+            // no table defined, call wizard
+            quickTabular();
+        }
 		return;
 	}
 
