@@ -2771,17 +2771,25 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem *item)
 void ConfigManager::loadTranslations(QString locale)
 {
 	if (locale == "") {
-		locale = QString(QLocale::system().name()).left(2);
-		if (locale.length() < 2) locale = "en";
+        locale = QString(QLocale::system().name());
+        // try full locale
+        QString txsSourceFile = "texstudio_" + locale + ".qm";
+        QString txsTranslationFile = findResourceFile(txsSourceFile,false,QStringList(),{"translation"});
+        if(txsTranslationFile.isEmpty()){
+            // fallback to basic locale
+            locale = QString(QLocale::system().name()).left(2);
+        }
+        if (locale.length() < 2) locale = "en";
 	}
 	QString txsSourceFile = "texstudio_" + locale + ".qm";
-	QString txsTranslationFile = findResourceFile(txsSourceFile);
-    if (txsTranslationFile.isEmpty()) {
-        txsSourceFile = "translation/texstudio_" + locale + ".qm";
-        txsTranslationFile = findResourceFile(txsSourceFile);
-    }
+    QString txsTranslationFile = findResourceFile(txsSourceFile,false,QStringList(),{"translation"});
     QString qtSourceFile = "qt_" + locale + ".qm";
-    QString qtTranslationFile = findResourceFile(qtSourceFile);
+    QString qtTranslationFile = findResourceFile(qtSourceFile,false,QStringList(),{"translation"});
+    if(qtTranslationFile.isEmpty() && locale.length()>2){
+        // fallback to basic locale
+        qtSourceFile = "qt_" + locale.left(2) + ".qm";
+        qtTranslationFile = findResourceFile(qtSourceFile,false,QStringList(),{"translation"});
+    }
     bool result0=appTranslator->load(txsTranslationFile);
     bool result1=basicTranslator->load(qtTranslationFile);
     if(locale!="en" && (!result0 || !result1) ){
