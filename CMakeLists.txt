@@ -382,6 +382,13 @@ else()
 		target_link_libraries(texstudio PUBLIC QuaZip::QuaZip)
 	endif()
 endif()
+
+find_package(ZLIB REQUIRED)
+if(ZLIB_FOUND)
+	target_include_directories(texstudio PUBLIC ${ZLIB_INCLUDE_DIR})
+	target_link_libraries(texstudio PUBLIC ${ZLIB_LIBRARIES})
+endif()
+
 if(UNIX AND NOT APPLE)
 	find_package(X11 REQUIRED)
 	target_include_directories(texstudio PUBLIC ${X11_INCLUDE_DIRS})
