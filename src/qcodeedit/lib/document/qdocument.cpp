@@ -1545,6 +1545,10 @@ int QDocument::lineNumber(qreal ypos, int *wrap) const
 {
     int ln = qRound(ypos / m_impl->m_lineSpacing -0.45);
 
+    if(ln>lines()){
+        ln=lines();
+    }
+
 	return m_impl->textLine(ln, wrap);
 }
 
@@ -1738,20 +1742,21 @@ QDocumentConstIterator QDocument::iterator(const QDocumentLine& l) const
 */
 void QDocument::cursorForDocumentPosition(const QPointF& p, int& line, int& column, bool disallowPositionBeyondLine) const
 {
-	if ( !m_impl )
-		return;
+    if ( !m_impl )
+        return;
 
-	int wrap = 0;
-	line = lineNumber(p.y(), &wrap);
-	QDocumentLine l = this->line(line);
+    int wrap = 0;
+    line = lineNumber(p.y(), &wrap);
 
-	if ( !l.isValid() )
-		return;
+    QDocumentLine l = this->line(line);
 
-	//qDebug("%i %i", line, wrap);
+    if ( !l.isValid() )
+        return;
+
+    //qDebug("%i %i", line, wrap);
     column = l.documentOffsetToCursor(p.x(), 1. * wrap * QDocumentPrivate::m_lineSpacing,disallowPositionBeyondLine);
 
-	//qDebug("(%i, %i) -> (%i [+%i], %i)", p.x(), p.y(), line, wrap, column);
+    //qDebug("(%i, %i) -> (%i [+%i], %i)", p.x(), p.y(), line, wrap, column);
 }
 
 /*!
