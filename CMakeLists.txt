@@ -308,7 +308,7 @@ endif()
 
 # poppler
 
-#find_package(Poppler QUIET COMPONENTS Qt${QT_VERSION_MAJOR} Cpp)
+find_package(PkgConfig)
 pkg_check_modules(POPPLER QUIET IMPORTED_TARGET poppler-cpp poppler-qt${QT_VERSION_MAJOR})
 if(NOT POPPLER_FOUND)
         message(STATUS "Poppler not found, internal pdf previewer disabled.")
