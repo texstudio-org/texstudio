@@ -1543,13 +1543,13 @@ QDocumentLine QDocument::line(int line) const
 */
 int QDocument::lineNumber(qreal ypos, int *wrap) const
 {
+    const int totalLines = qRound(height() / m_impl->m_lineSpacing);
     int ln = qRound(ypos / m_impl->m_lineSpacing -0.45);
-
-    if(ln>lines()){
-        ln=lines();
+    if(ln>=totalLines){
+        ln=totalLines-1;
     }
 
-	return m_impl->textLine(ln, wrap);
+    return m_impl->textLine(ln, wrap);
 }
 
 /*!
