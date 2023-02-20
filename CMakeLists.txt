@@ -158,11 +158,12 @@ add_subdirectory(src/latexparser)
 add_subdirectory(src/symbolpanel)
 
 #qtermwidget
-#find_package(QTermWidget5 QUIET)
-find_package(QTermWidget QUIET)
-if(QTERMWIDGET_FOUND AND ${QT_VERSION_MAJOR} LESS_EQUAL 5 )
-   message(STATUS "Using QTermWidget5")
-   set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DINTERNAL_TERMINAL)
+if(${QT_VERSION_MAJOR} LESS_EQUAL 5)
+    find_package(QTermWidget QUIET)
+    if(QTERMWIDGET_FOUND)
+        message(STATUS "Using QTermWidget5")
+        set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DINTERNAL_TERMINAL)
+    endif()
 endif()
 
 # QuaZIP
