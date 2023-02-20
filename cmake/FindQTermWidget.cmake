@@ -43,5 +43,5 @@ find_library(QTERMWIDGET_LIBRARIES NAMES qtermwidget5 ${QTERMWIDGET_PKG_LIBRARIE
 )
 
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(QtermWidget DEFAULT_MSG QTERMWIDGET_LIBRARIES QTERMWIDGET_INCLUDE_DIR)
+find_package_handle_standard_args(QTermWidget DEFAULT_MSG QTERMWIDGET_LIBRARIES QTERMWIDGET_INCLUDE_DIR)
 mark_as_advanced(QTERMWIDGET_INCLUDE_DIR QTERMWIDGET_LIBRARIES)

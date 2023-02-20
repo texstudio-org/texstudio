@@ -160,7 +160,7 @@ add_subdirectory(src/symbolpanel)
 #qtermwidget
 if(${QT_VERSION_MAJOR} LESS_EQUAL 5)
     find_package(QTermWidget QUIET)
-    if(QTERMWIDGET_FOUND)
+    if(QTermWidget_FOUND)
         message(STATUS "Using QTermWidget5")
         set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DINTERNAL_TERMINAL)
     endif()
