@@ -1,8 +1,6 @@
 # xduugtp class
-# Matthew Bertucci 2023/02/03 for v4.4.0.0
+# Matthew Bertucci 2023/02/20 for v5.0.0.0
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:class-ctexart
 #include:xeCJK
@@ -47,8 +45,8 @@ style/caption-format=#plain,hang
 style/ft-caption-format=#plain,hang
 style/ft-caption-align=#left,centering,centering-left
 style/table-small-font#true,false
-style/algorithm-small-caption#true,false
-style/algorithm-small-font#true,false
+style/alg-small-caption#true,false
+style/alg-small-font#true,false
 style/alg-caption-format=#plain,hang
 style/alg-caption-align=#left,centering,centering-left
 add-alg-rule-vspace#true,false
@@ -66,7 +64,7 @@ info/department={%<院系名称%>}
 info/major={%<专业名称/一级学科名称%>}
 info/author={%<作者姓名%>}
 info/supervisor={%<导师姓名%>}
-info/supervisor-enterprise={%<界%>}
+info/supv-ent={%<界%>}
 info/class={%<院内导师姓名%>}
 info/submit-date={%<yyyy-mm-dd%>}
 info/sign={%<文件路径1,文件路径2%>}
