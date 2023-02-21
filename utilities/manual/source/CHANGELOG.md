@@ -1,5 +1,5 @@
 # CHANGELOG
-## TeXstudio development (4.5.2)
+## TeXstudio 4.5.2
 
 - fix skipping scroll when pointer was moved outside the text pane ([#2614](https://github.com/texstudio-org/texstudio/issues/2614))
 - Show changelog in about dialog and manual
