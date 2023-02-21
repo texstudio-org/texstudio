@@ -1,6 +1,7 @@
 # CHANGELOG
 ## TeXstudio development (4.5.2)
 
+- fix skipping scroll when pointer was moved outside the text pane ([#2614](https://github.com/texstudio-org/texstudio/issues/2614))
 - Show changelog in about dialog and manual
 - change Adv. Editor option "Vertical Overscroll" to scroll last line to top ([#2944](https://github.com/texstudio-org/texstudio/issues/2944))
 
