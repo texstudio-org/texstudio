@@ -1,5 +1,5 @@
 # xdufont package
-# Matthew Bertucci 2023/01/28 for v4.3.0.0
+# Matthew Bertucci 2023/02/21 for v5.1.0.0
 
 #include:expl3
 #include:xparse
@@ -11,7 +11,7 @@
 
 #keyvals:\xdusetup#c
 style={%<keyvals%>}
-style/cjk-font=#adobe,fandol,founder,sinotype,win,none
+style/cjk-font=#adobe,fandol,founder,hanyi,sinotype,win,none
 style/cjk-fake-bold=%<伪粗体粗细程度%>
 style/cjk-fake-slant=%<伪斜体倾斜程度%>
 style/latin-font=#tac,tacn,thcs,gyre,none
