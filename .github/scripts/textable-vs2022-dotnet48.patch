@@ -1,0 +1,184 @@
+From 30118e3b4fae04c49835a828e4b245ae783f62ea Mon Sep 17 00:00:00 2001
+From: minnyres <liuthgw23@gmail.com>
+Date: Tue, 6 Dec 2022 16:36:45 +0800
+Subject: [PATCH] Update solution to vs2022
+
+1. add gitignore file
+2. add build target x64 and arm64
+3. upgrade .net framework version to 4.8
+---
+ .gitignore                       |  5 ++++
+ LatexTablet.net.sln              | 29 +++++++++++++++---
+ LatexTablet.net/TexTablet.csproj | 51 ++++++++++++++++++++++++++++++--
+ LatexTablet.net/app.config       |  3 ++
+ 4 files changed, 82 insertions(+), 6 deletions(-)
+ create mode 100644 .gitignore
+ create mode 100644 LatexTablet.net/app.config
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..e5fc141
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,5 @@
++/.vs/
++/Backup/
++/LatexTablet.net/bin/
++/LatexTablet.net/obj/
++/UpgradeLog.htm
+\ No newline at end of file
+diff --git a/LatexTablet.net.sln b/LatexTablet.net.sln
+index 5c14975..6c58555 100644
+--- a/LatexTablet.net.sln
++++ b/LatexTablet.net.sln
+@@ -1,6 +1,8 @@
+ ﻿
+-Microsoft Visual Studio Solution File, Format Version 10.00
+-# Visual Studio 2008
++Microsoft Visual Studio Solution File, Format Version 12.00
++# Visual Studio Version 17
++VisualStudioVersion = 17.4.33122.133
++MinimumVisualStudioVersion = 10.0.40219.1
+ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TexTablet", "LatexTablet.net\TexTablet.csproj", "{4C4F5DB1-8E32-410D-99A9-01B31687EF29}"
+ EndProject
+ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TexTabletSetup", "TexTabletSetup\TexTabletSetup.vdproj", "{7EDFF80C-F682-419E-8456-1C95C97EA257}"
+@@ -8,17 +10,36 @@ EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+ 		Debug|Any CPU = Debug|Any CPU
++		Debug|ARM64 = Debug|ARM64
++		Debug|x64 = Debug|x64
+ 		Release|Any CPU = Release|Any CPU
++		Release|ARM64 = Release|ARM64
++		Release|x64 = Release|x64
+ 	EndGlobalSection
+ 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+-		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+-		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|Any CPU.ActiveCfg = Release|Any CPU
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|Any CPU.Build.0 = Release|Any CPU
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|ARM64.ActiveCfg = Debug|ARM64
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|ARM64.Build.0 = Debug|ARM64
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|x64.ActiveCfg = Release|x64
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Debug|x64.Build.0 = Release|x64
+ 		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+ 		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Release|Any CPU.Build.0 = Release|Any CPU
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Release|ARM64.ActiveCfg = Release|ARM64
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Release|ARM64.Build.0 = Release|ARM64
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Release|x64.ActiveCfg = Release|x64
++		{4C4F5DB1-8E32-410D-99A9-01B31687EF29}.Release|x64.Build.0 = Release|x64
+ 		{7EDFF80C-F682-419E-8456-1C95C97EA257}.Debug|Any CPU.ActiveCfg = Debug
++		{7EDFF80C-F682-419E-8456-1C95C97EA257}.Debug|ARM64.ActiveCfg = Debug
++		{7EDFF80C-F682-419E-8456-1C95C97EA257}.Debug|x64.ActiveCfg = Debug
+ 		{7EDFF80C-F682-419E-8456-1C95C97EA257}.Release|Any CPU.ActiveCfg = Release
++		{7EDFF80C-F682-419E-8456-1C95C97EA257}.Release|ARM64.ActiveCfg = Release
++		{7EDFF80C-F682-419E-8456-1C95C97EA257}.Release|x64.ActiveCfg = Release
+ 	EndGlobalSection
+ 	GlobalSection(SolutionProperties) = preSolution
+ 		HideSolutionNode = FALSE
+ 	EndGlobalSection
++	GlobalSection(ExtensibilityGlobals) = postSolution
++		SolutionGuid = {30BFD17B-73DE-4F91-B46D-08EC615F3402}
++	EndGlobalSection
+ EndGlobal
+diff --git a/LatexTablet.net/TexTablet.csproj b/LatexTablet.net/TexTablet.csproj
+index df34e3f..fb159c3 100644
+--- a/LatexTablet.net/TexTablet.csproj
++++ b/LatexTablet.net/TexTablet.csproj
+@@ -1,5 +1,5 @@
+ ﻿<?xml version="1.0" encoding="utf-8"?>
+-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <PropertyGroup>
+     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+@@ -10,11 +10,17 @@
+     <AppDesignerFolder>Properties</AppDesignerFolder>
+     <RootNamespace>LatexTablet.net</RootNamespace>
+     <AssemblyName>TeXTablet</AssemblyName>
+-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
++    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+     <FileAlignment>512</FileAlignment>
+     <StartupObject>
+     </StartupObject>
+     <ApplicationIcon>TexTablet.ico</ApplicationIcon>
++    <FileUpgradeFlags>
++    </FileUpgradeFlags>
++    <UpgradeBackupLocation>
++    </UpgradeBackupLocation>
++    <OldToolsVersion>3.5</OldToolsVersion>
++    <TargetFrameworkProfile />
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+     <DebugSymbols>true</DebugSymbols>
+@@ -24,6 +30,7 @@
+     <DefineConstants>DEBUG;TRACE</DefineConstants>
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
++    <Prefer32Bit>false</Prefer32Bit>
+   </PropertyGroup>
+   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+     <DebugType>pdbonly</DebugType>
+@@ -32,6 +39,43 @@
+     <DefineConstants>TRACE</DefineConstants>
+     <ErrorReport>prompt</ErrorReport>
+     <WarningLevel>4</WarningLevel>
++    <Prefer32Bit>false</Prefer32Bit>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
++    <DebugSymbols>true</DebugSymbols>
++    <OutputPath>bin\ARM64\Debug\</OutputPath>
++    <DefineConstants>DEBUG;TRACE</DefineConstants>
++    <DebugType>full</DebugType>
++    <PlatformTarget>ARM64</PlatformTarget>
++    <LangVersion>7.3</LangVersion>
++    <ErrorReport>prompt</ErrorReport>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
++    <OutputPath>bin\ARM64\Release\</OutputPath>
++    <DefineConstants>TRACE</DefineConstants>
++    <Optimize>true</Optimize>
++    <DebugType>pdbonly</DebugType>
++    <PlatformTarget>ARM64</PlatformTarget>
++    <LangVersion>7.3</LangVersion>
++    <ErrorReport>prompt</ErrorReport>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
++    <DebugSymbols>true</DebugSymbols>
++    <OutputPath>bin\x64\Debug\</OutputPath>
++    <DefineConstants>DEBUG;TRACE</DefineConstants>
++    <DebugType>full</DebugType>
++    <PlatformTarget>x64</PlatformTarget>
++    <LangVersion>7.3</LangVersion>
++    <ErrorReport>prompt</ErrorReport>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
++    <OutputPath>bin\x64\Release\</OutputPath>
++    <DefineConstants>TRACE</DefineConstants>
++    <Optimize>true</Optimize>
++    <DebugType>pdbonly</DebugType>
++    <PlatformTarget>x64</PlatformTarget>
++    <LangVersion>7.3</LangVersion>
++    <ErrorReport>prompt</ErrorReport>
+   </PropertyGroup>
+   <ItemGroup>
+     <Reference Include="System" />
+@@ -66,6 +110,9 @@
+   <ItemGroup>
+     <Content Include="TexTablet.ico" />
+   </ItemGroup>
++  <ItemGroup>
++    <None Include="app.config" />
++  </ItemGroup>
+   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+        Other similar extension points exist, see Microsoft.Common.targets.
+diff --git a/LatexTablet.net/app.config b/LatexTablet.net/app.config
+new file mode 100644
+index 0000000..3e0e37c
+--- /dev/null
++++ b/LatexTablet.net/app.config
+@@ -0,0 +1,3 @@
++<?xml version="1.0" encoding="utf-8"?>
++<configuration>
++<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8"/></startup></configuration>

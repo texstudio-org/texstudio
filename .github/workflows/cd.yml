@@ -87,6 +87,149 @@ jobs:
 
 ###################################
 
+  build-windows-arm64:
+    name: windows on arm64 build (cross compile with MSVC)
+    if: github.event_name == 'push'
+    runs-on: windows-latest
+    env:
+      qt_version: "6.4.1"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch tag annotations
+        run: git fetch --tags --force
+
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MSYS
+          update: true
+          install: | 
+            git zip
+
+      - name: Set up MSVC develop environment
+        uses: ilammy/msvc-dev-cmd@v1.4.1
+        with:
+          arch: amd64_arm64
+
+      - name: Build dependencies with vcpkg
+        uses: johnwason/vcpkg-action@v3
+        with:
+          pkgs: zlib tiff openjpeg libpng liblzma libjpeg-turbo libiconv freetype bzip2 brotli lcms boost-winapi boost-type-traits boost-type-traits boost-throw-exception boost-static-assert boost-preprocessor boost-predef boost-move boost-intrusive boost-integer boost-detail boost-core boost-container-hash boost-container boost-config boost-assert
+          triplet: arm64-windows
+          revision: '2022.11.14'
+          
+      - name: Install Qt (host x64)
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==2.1.*'
+          version: '${{ env.qt_version }}'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_64'
+          modules: 'qt5compat'
+          dir: '${{ github.workspace }}'
+          set-env: 'false'
+
+      - name: Install Qt (arm64)
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==2.1.*'
+          version: '${{ env.qt_version }}'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_arm64'
+          modules: 'qtimageformats qt5compat'
+          dir: '${{ github.workspace }}'
+          set-env: 'false'
+
+      - name: Build TexTablet
+        run: |
+          git clone https://github.com/stevenlovegrove/TexTablet.git
+          cd TexTablet
+          git apply ../.github/scripts/textable-vs2022-dotnet48.patch
+          MSBuild /property:Configuration=Release /property:Platform=ARM64
+
+      - name: Build poppler
+        run: |
+          $work_dir = '${{ github.workspace }}'
+          $pattern = '[\\]'
+          $work_dir = $work_dir -replace $pattern, '/'
+          $poppler_ver = "22.11.0"
+          $poppler_url = "https://poppler.freedesktop.org/poppler-$poppler_ver.tar.xz"
+          Invoke-WebRequest -Uri $poppler_url -OutFile poppler-$poppler_ver.tar.xz
+          7z.exe x poppler-$poppler_ver.tar.xz
+          tar -xf poppler-$poppler_ver.tar
+          Set-Location poppler-$poppler_ver
+          cmake -G "Ninja" -DCMAKE_INSTALL_PREFIX="$work_dir/poppler" -DCMAKE_BUILD_TYPE=Release -DENABLE_QT5=OFF -DENABLE_QT6=ON -DCMAKE_TOOLCHAIN_FILE="$work_dir/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=arm64-windows -DCMAKE_PREFIX_PATH="$work_dir/Qt/${{ env.qt_version }}/msvc2019_arm64" -DQT_HOST_PATH="$work_dir/Qt/${{ env.qt_version }}/msvc2019_64" .
+          cmake --build .
+          cmake --install .
+
+      - name: Install poppler-data
+        run: |
+          $poppler_data_ver = "0.4.11"
+          $poppler_data_url = "https://poppler.freedesktop.org/poppler-data-$poppler_data_ver.tar.gz"
+          Invoke-WebRequest -Uri $poppler_data_url -OutFile poppler-data-$poppler_data_ver.tar.gz
+          tar -xf poppler-data-$poppler_data_ver.tar.gz
+          Set-Location poppler-data-$poppler_data_ver
+          cmake -G "Ninja" -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/poppler -DCMAKE_BUILD_TYPE=Release 
+          cmake --build .
+          cmake --install .
+
+      - name: Configure TeXstudio
+        run: |
+          $work_dir = '${{ github.workspace }}'
+          $pattern = '[\\]'
+          $work_dir = $work_dir -replace $pattern, '/'
+          Set-Content -Path ".\CMakeLists.txt" -Value (get-content -Path ".\CMakeLists.txt" | Select-String -Pattern 'Wno-deprecated-declarations' -NotMatch)
+          mkdir ./build
+          Set-Location ./build
+          cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$work_dir/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=arm64-windows -DCMAKE_PREFIX_PATH="$work_dir/Qt/${{ env.qt_version }}/msvc2019_arm64;$work_dir/poppler" -DQT_HOST_PATH="$work_dir/Qt/${{ env.qt_version }}/msvc2019_64" ..
+
+      - name: Configure version
+        shell: msys2 {0}
+        run: | 
+          cd build  
+          . ../.github/scripts/get-version.sh
+          sed -i ../win.rc -Ee "s/0,[0,]+/$(tr <<<"$TXS_VERSION" . ,),0/"
+          sed -i ../win.rc -e "s/git[\]0/$VERSION_NAME/"
+          . ../git_revision.sh
+
+      - name: Build TeXstudio
+        run: |
+          Set-Location build
+          cmake --build .
+
+      - name: Package
+        id: package
+        shell: msys2 {0}
+        run: |
+          export qt_ver=${{ env.qt_version }}
+          cd build
+          . ../.github/scripts/get-version.sh
+          cd ..
+          . ./.github/scripts/package_win_arm64.sh
+          echo "VERSION_NAME=${VERSION_NAME}">> $GITHUB_OUTPUT
+          echo "TXS_VERSION=${TXS_VERSION}">> $GITHUB_OUTPUT
+          echo "GIT_VERSION=${GIT_VERSION}">> $GITHUB_OUTPUT
+
+      - name: Upload zip to GitHub Artifacts
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with:
+          name: texstudio-win-arm64-qt6-zip
+          path: ./package-zip/texstudio-win-arm64-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
+
+      - name: Upload release file(s)
+        uses: actions/upload-artifact@v3
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          name: release
+          path: |
+            texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-arm64-portable-qt6.zip
+
+###################################
+
   build-linux-release:
     name: linux appimage
     if: github.event_name == 'push'
