@@ -5355,6 +5355,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                     if (indentCount >= 0){
                         indent=QString(indentCount,'\t');
                     }else{
+                        if(indentCount<-1){
                         //remove indent from constIndent
                         indent.clear();
                         if(!constIndent.isEmpty()){
@@ -5366,6 +5367,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                                 // remove tabStop spaces
                                 constIndent.remove(0,m_doc->tabStop());
                             }
+                        }
                         }
                     }
 
