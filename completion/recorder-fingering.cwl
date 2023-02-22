@@ -1,5 +1,5 @@
 # recorder-fingering package
-# Matthew Bertucci 2023/02/17 for v1.0
+# Matthew Bertucci 2023/02/21 for v1.1b
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -21,6 +21,12 @@
 #keyvals:\Sopranino,\Soprano,\Alto,\Tenor,\Bass,\fingeringSetup
 thumboffset#true,false
 width=##L
+LHRHdivider#true,false
+LHRHspace=##L
+trilldir=#L,R,LR
+Lpointer=%<symbol%>
+Rpointer=%<symbol%>
+trill={%<list of holes%>}
 #endkeyvals
 
 \NewFfingering{notename}{fingering vector}

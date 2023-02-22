@@ -1,5 +1,5 @@
 # pgf-PeriodicTable package
-# Matthew Bertucci 2022/11/09 for v1.0.1
+# Matthew Bertucci 2023/02/21 for v2.0.0
 
 #include:tikz
 #include:tikzlibraryfadings
@@ -255,6 +255,77 @@ solido#B
 liquido#B
 gasoso#B
 sintetico#B
+
+\usepgfPTlibrary{library%keyvals}
+
+#keyvals:\usepgfPTlibrary#c
+colorschemes
+#endkeyvals
+
+### no way to conditionally load library commands so they're just listed here
+
+# from colorschemes pgfPT library
+\pgfPTGroupColors{new colorscheme name}{options%keyvals}
+\pgfPTGroupColors[default color]{new colorscheme name}{options%keyvals}
+
+#keyvals:\pgfPTGroupColors#c
+G1=#%color
+G2=#%color
+G3=#%color
+G4=#%color
+G5=#%color
+G6=#%color
+G7=#%color
+G8=#%color
+G9=#%color
+G10=#%color
+G11=#%color
+G12=#%color
+G13=#%color
+G14=#%color
+G15=#%color
+G16=#%color
+G17=#%color
+G18=#%color
+left color=#%color
+middle color=#%color
+right color=#%color
+gradient={%<keyvals%>}
+H=#%color
+La=#%color
+Lanta=#%color
+Ac=#%color
+Actin=#%color
+period blending={%<keyvals%>}
+#endkeyvals
+
+\pgfPTPeriodColors{new colorscheme name}{options%keyvals}
+\pgfPTPeriodColors[default color]{new colorscheme name}{options%keyvals}
+
+#keyvals:\pgfPTPeriodColors#c
+P1=#%color
+P2=#%color
+P3=#%color
+P4=#%color
+P5=#%color
+P6=#%color
+P7=#%color
+top color=#%color
+middle color=#%color
+bottom color=#%color
+gradient={%<keyvals%>}
+H=#%color
+La=#%color
+Lanta=#%color
+Ac=#%color
+Actin=#%color
+group blending={%<keyvals%>}
+#endkeyvals
+
+\pgfPTCScombine{colorscheme1,colorscheme2,new colorscheme name}
+\pgfPTCScombine[proportion,mode]{colorscheme1,colorscheme2,new colorscheme name}
+\pgfPTCSwrite{list of colorschemes}
+\pgfPTCSwrite[filename%file]{list of colorschemes}
 
 # from T1 option of fontenc
 \DH#n

@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2023/02/02 for v3.3.0
+# Matthew Bertucci 2023/02/20 for v3.4.0
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -101,6 +101,8 @@ appendices/TOCTitle=%<字符串%>
 publications={%<键值列表%>}
 publications/sorting#true,false
 publications/omit#true,false
+publications/maxbibnames=%<正整数%>
+publications/minbibnames=%<正整数%>
 misc={%<键值列表%>}
 misc/arialFont=%<字符串%>
 #endkeyvals
