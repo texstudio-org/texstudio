@@ -2703,6 +2703,7 @@
 <file>completion/pmboxdraw.cwl</file>
 <file>completion/pmdb.cwl</file>
 <file>completion/pmhanguljamo.cwl</file>
+<file>completion/pmhanguljamo-frkim.cwl</file>
 <file>completion/pm-isomath.cwl</file>
 <file>completion/poemscol.cwl</file>
 <file>completion/poetrytex.cwl</file>
