@@ -1,26 +1,15 @@
 # mismath package
-# Matthew Bertucci 2023/02/10 for v2.3
+# Matthew Bertucci 2023/02/20 for v2.4
 
-#include:kvoptions
 #include:amsmath
 #include:mathtools
 #include:esvect
+#include:ifthen
 #include:xspace
-
-\mismathset{options%keyvals}
-
-#keyvals:\mismathset,\usepackage/mismath#c
-enumber#true,false
-inumber#true,false
-jnumber#true,false
-pinumber=%<csname%>
-arrowvect#true,false
-boldvect#true,false
-PEupright#true,false
-ibrackets#true,false
-#endkeyvals
+#include:iftex
 
 #keyvals:\usepackage/mismath#c
+ibrackets
 # options passed to amsmath
 intlimits
 nointlimits
@@ -40,9 +29,6 @@ alignedleftspaceyesifneg
 #endkeyvals
 
 #ifOption:ibrackets
-#include:ibrackets
-#endif
-#ifOption:ibrackets=true
 #include:ibrackets
 #endif
 
@@ -98,8 +84,13 @@ alignedleftspaceyesifneg
 \lcm#m
 \lfrac{numerator}{denominator}#m
 \lito#m
+\MathIt{char}
+\MathNormal{chars}
+\MathNumbers{chars}
+\MathProba{chars}
 \mathset{text%plain}#*
-\mathup{arg}#m
+\MathUp{char}
+\mathup{text%plain}#m
 \mul#m
 \N#m
 \norm{arg}#m
@@ -109,6 +100,9 @@ alignedleftspaceyesifneg
 \oldRe#*m
 \P#m
 \Par
+\pinormal#*m
+\pinumber#m
+\pinumber[csname]#m
 \pow{expr}{exponent}#m
 \probastyle#*
 \Q#m
@@ -146,6 +140,4 @@ alignedleftspaceyesifneg
 \enumber#S
 \inumber#S
 \jnumber#S
-\pinumber#S
-\pinumber[csname]#S
 \PEupright#S
