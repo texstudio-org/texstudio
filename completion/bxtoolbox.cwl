@@ -1,13 +1,13 @@
 # bxtoolbox package
-# Matthew Bertucci 2022/05/31 for v1.2
+# Matthew Bertucci 2023/02/23 for v1.2a
 
 \bxRequireDefinition{file}#*i
 
 # from bxtoolbox.def
 #include:etoolbox
 \ifbxOk#*
-\bxOktrue#*
-\bxOkfalse#*
+\bxOktrue#S
+\bxOkfalse#S
 \bxRes#*
 \bxIfcsundefX{csname}{true}{false}#*
 \bxCsuseX{csname}#*
@@ -19,6 +19,7 @@
 \ifbxinXeTeX#*
 \ifbxinpTeX#*
 \ifbxinupTeX#*
+\ifbxinnativeupTeX#*
 \ifbxinjTeX#*
 \bxIfineTeX{true}{false}#*
 \bxIfinpdfTeX{true}{false}#*
@@ -28,6 +29,7 @@
 \bxIfinXeTeX{true}{false}#*
 \bxIfinpTeX{true}{false}#*
 \bxIfinupTeX{true}{false}#*
+\bxIfinnativeupTeX{true}{false}#*
 \bxIfinjTeX{true}{false}#*
 \bxPreamble#*
 \bxConstIfToken{boolean1}{boolean2}#*
@@ -92,7 +94,6 @@
 \bxCsshow{csname}#*
 
 # from bxtoolbox-ext.def
-\ififbxOk#*
 \bxResDim#*
 \bxDebug{text}#*
 \bxShowbool{name}#*
@@ -110,11 +111,11 @@
 \bxProcessOptions#*
 \bxProcessOptions*#*
 \ifbxHasUcsChar#*
-\bxHasUcsChartrue#*
-\bxHasUcsCharfalse#*
+\bxHasUcsChartrue#S
+\bxHasUcsCharfalse#S
 \ifbxHasAlUcsChar#*
-\bxHasAlUcsChartrue#*
-\bxHasAlUcsCharfalse#*
+\bxHasAlUcsChartrue#S
+\bxHasAlUcsCharfalse#S
 \bxToChar{number}#*
 \bxToJaChar{number}#*
 \bxToUcsChar#*
