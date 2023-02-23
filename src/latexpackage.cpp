@@ -150,11 +150,14 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				QStringList l_cmds=keyvals.split(',');
 				QString key;
 				CommandDescription cd = extractCommandDefKeyVal(line, key);
-				for(const QString &elem:l_cmds){
+                for(QString elem:l_cmds){
 					package.possibleCommands["key%" + elem] << line;
 					if (cd.args > 0) {
 						if (key.endsWith("="))
 							key.chop(1);
+                        if(elem.endsWith("#c")){
+                            elem.chop(2);
+                        }
 						package.commandDescriptions.insert(elem + "/" + key, cd);
 					}
 				}
