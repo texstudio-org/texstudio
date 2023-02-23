@@ -1,5 +1,5 @@
 # otf package
-# Matthew Bertucci 2022/07/22 for v1.7b8
+# Matthew Bertucci 2023/02/23 for v1.7b8
 
 #include:platex
 #include:keyval
@@ -13,6 +13,7 @@ expert
 deluxe
 multi
 burasage
+platex
 uplatex
 autodetect
 jis2004
