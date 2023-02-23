@@ -6910,12 +6910,14 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \authornumcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#C
 #endif
 
-### biblatex-german-legal v002 ###
+### biblatex-german-legal v003 ###
 #ifOption:style=german-legal-book
 #include:xpatch
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 edsuper#true,false
+switchprefix#true,false
 #endkeyvals
+\commentator{bibid}#C
 # loads ext-authortitle.bbx and ext-authortitle.cbx
 \mkoutercitedelims{arg}#*
 \mkinnercitedelims{arg}#*
