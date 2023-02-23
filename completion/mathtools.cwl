@@ -224,7 +224,7 @@ rl
 \intertext{text}#m
 \DeclarePairedDelimiter{cmd}{left delim%formula}{right delim%formula}#nd
 \DeclarePairedDelimiterX{cmd}[args]{left delim%formula}{right delim%formula}{body%formula}#nd
-\DeclarePairedDelimiterXPP{cmd}[args]{pre code}{left delim%formula}{right delim%formula}{post code%formula}{body%formula}#nd
+\DeclarePairedDelimiterXPP{cmd}[args]{pre code%formula}{left delim%formula}{right delim%formula}{post code%formula}{body%formula}#nd
 
 \reDeclarePairedDelimiterInnerWrapper{macro name}{star option%keyvals}{code}#m
 #keyvals:\reDeclarePairedDelimiterInnerWrapper
