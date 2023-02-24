@@ -1,5 +1,5 @@
 # mismath package
-# Matthew Bertucci 2023/02/20 for v2.4
+# Matthew Bertucci 2023/02/24 for v2.5
 
 #include:amsmath
 #include:mathtools
@@ -34,6 +34,7 @@ alignedleftspaceyesifneg
 
 \abs{arg}#m
 \adj#m
+\apply{arg1}{arg2}#S
 \arccot#m
 \arcosh#m
 \arcoth#m
@@ -84,6 +85,8 @@ alignedleftspaceyesifneg
 \lcm#m
 \lfrac{numerator}{denominator}#m
 \lito#m
+\mathbfsfit{text%plain}#m
+\MathFamily{char}{num}#*
 \MathIt{char}
 \MathNormal{chars}
 \MathNumbers{chars}
