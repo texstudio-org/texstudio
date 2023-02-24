@@ -1,5 +1,5 @@
 # ifptex package
-# Matthew Bertucci 4/16/2022 for v2.2
+# Matthew Bertucci 2023/02/23 for v2.2a
 
 #include:iftex
 
@@ -17,6 +17,8 @@
 \ifstrictupTeX#*
 \ifstrictptexng
 \ifstrictpTeXng#*
+\ifstrictplatex
+\ifstrictuplatex
 
 \RequirepTeX
 \RequireStrictpTeX
@@ -25,6 +27,8 @@
 \RequireNativeupTeX
 \RequirepTeXng
 \RequireStrictpTeXng
+\RequireStrictpLaTeX
+\RequireStrictupLaTeX
 
 \upTeXguessedversion
 \RequireupTeXAtLeast{version}
