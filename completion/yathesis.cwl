@@ -16,11 +16,9 @@
 #include:epigraph
 #include:etoc
 #include:etoolbox
-#include:filehook
 #include:fncychap
 #include:geometry
 #include:graphicx
-#include:hopatch
 #include:hypcap
 #include:ifdraft
 #include:iflang
