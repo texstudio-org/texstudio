@@ -1,5 +1,5 @@
 # pmhanguljamo-frkim package
-# Matthew Bertucci 2023/02/20 for v0.5
+# Matthew Bertucci 2023/02/25 for v1.0.1
 
 #include:l3keys2e
 
@@ -30,6 +30,7 @@ frcccmds
 \setpmhangulfont{font name}
 \setpmhangulfont{font name}[font features]
 \setpmhangulfont[font features]{font name}#S
+\AddRule{cho|jung|jong}{keyvals}
 
 #ifOption:frcccmds
 \frccg
