@@ -1,8 +1,5 @@
 # footnoterange package
-# Matthew Bertucci 11/29/2021 for v1.0c
-
-#include:ltxcmds
-#include:letltxmacro
+# Matthew Bertucci 2023/02/25 for v1.1a
 
 \begin{footnoterange}
 \end{footnoterange}
