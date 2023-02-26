@@ -1,5 +1,5 @@
 # TangramTikz package
-# Matthew Bertucci 2023/02/20 for v0.1.4
+# Matthew Bertucci 2023/02/26 for v0.1.5
 
 #include:tikz
 #include:simplekv
@@ -168,6 +168,22 @@ TangSol={%<color%>}
 \TangramUfo[TikZ options]#S
 \TangramUfo*#S
 \TangramUfo*[TikZ options]#S
+\TangramChicken#S
+\TangramChicken[TikZ options]#S
+\TangramChicken*#S
+\TangramChicken*[TikZ options]#S
+\TangramTurtle#S
+\TangramTurtle[TikZ options]#S
+\TangramTurtle*#S
+\TangramTurtle*[TikZ options]#S
+\TangramCrab#S
+\TangramCrab[TikZ options]#S
+\TangramCrab*#S
+\TangramCrab*[TikZ options]#S
+\TangramSnail#S
+\TangramSnail[TikZ options]#S
+\TangramSnail*#S
+\TangramSnail*[TikZ options]#S
 \TangramTikzCreateEN{cmd}#S
 \TangramTikzCreateFR{cmd}#S
 \TangCouleurs#S
