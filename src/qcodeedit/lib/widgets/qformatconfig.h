@@ -64,6 +64,7 @@ class QCE_EXPORT QFormatConfig : public QWidget, private Ui::FormatConfig
 	protected:
 		virtual void hideEvent(QHideEvent *e);
 		virtual void showEvent(QShowEvent *e);
+        virtual bool eventFilter(QObject *obj, QEvent *event);
 		
 	private slots:
 		void on_m_selector_currentIndexChanged(int idx);

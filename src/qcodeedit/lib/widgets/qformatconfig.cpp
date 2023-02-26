@@ -415,6 +415,8 @@ void QFormatConfig::cancel()
 				int ind=fcmb->findText(fmt.fontFamily);
 				if(ind>-1) fcmb->setCurrentIndex(ind);
 				else fcmb->setCurrentIndex(0);
+                fcmb->installEventFilter(this);
+                fcmb->setFocusPolicy(Qt::StrongFocus);
 				//int ind=fcmb->findText(fmt.fontFamily);
 				//if(ind>-1) fcmb->setCurrentIndex(ind);
 				//else fcmb->setCurrentIndex(0);
@@ -427,6 +429,8 @@ void QFormatConfig::cancel()
 				fcmb->setToolTip(m_table->horizontalHeaderItem(10)->toolTip());
 
 				QDoubleSpinBox* sb = new QDoubleSpinBox();
+                sb->installEventFilter(this);
+                sb->setFocusPolicy(Qt::StrongFocus);
 				sb->setMaximum(100000);
 				sb->setMinimum(1);
 				sb->setDecimals(0);
@@ -439,6 +443,8 @@ void QFormatConfig::cancel()
 				m_table->setCellWidget(r, 11, sb);
 
 				QSpinBox *psb = new QSpinBox();
+                psb->installEventFilter(this);
+                psb->setFocusPolicy(Qt::StrongFocus);
 				psb->setMaximum(100);
 				psb->setMinimum(-1);
 				psb->setAlignment(Qt::AlignRight);
@@ -608,7 +614,20 @@ void QFormatConfig::showEvent(QShowEvent *e){
 	if (m_currentScheme || m_schemes.isEmpty()) 
 		return;
 
-	setCurrentScheme(m_schemes.first());
+    setCurrentScheme(m_schemes.first());
+}
+
+bool QFormatConfig::eventFilter(QObject *obj, QEvent *event)
+{
+    if ( event->type() == QEvent::Wheel) {
+        auto *wdg=qobject_cast<QWidget*>( obj );
+        if( wdg && !wdg->hasFocus() )
+        {
+            event->ignore();
+            return true;
+        }
+    }
+    return QObject::eventFilter( obj, event );
 }
 
 void QFormatConfig::on_m_selector_currentIndexChanged(int)
