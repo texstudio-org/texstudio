@@ -549,6 +549,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 		CONTENTS_DISABLED
 #endif
 	);
+    // tweak all comboboxes in adv. editor pane to not change on scroll wheel as it messes with scrolling through the pane (#2977)
+    tweakFocusSettings(ui.scrollAreaWidgetContents_2->children());
 
 	Q_ASSERT(ui.pagesWidget->count() == ui.contentsWidget->count());
 
@@ -848,7 +850,32 @@ void ConfigDialog::hideShowAdvancedOptions(QWidget *w, bool on)
 			}
 		}
 		hideShowAdvancedOptions(w, on);
-	}
+    }
+}
+/*!
+ * \brief change focus and eventfilter to avoid accidental scrollen
+ * See #2977
+ * \param objList
+ */
+void ConfigDialog::tweakFocusSettings(QObjectList objList)
+{
+    for(auto *elem:objList){
+        QComboBox *cb=qobject_cast<QComboBox *>(elem);
+        if(cb){
+            cb->setFocusPolicy(Qt::StrongFocus);
+            cb->installEventFilter(this);
+        }
+        QSpinBox *sb=qobject_cast<QSpinBox *>(elem);
+        if(sb){
+            sb->setFocusPolicy(Qt::StrongFocus);
+            sb->installEventFilter(this);
+        }
+        auto *gb=qobject_cast<QGroupBox *>(elem);
+        if(gb){
+            // look into sub-boxes
+            tweakFocusSettings(gb->children());
+        }
+    }
 }
 
 void ConfigDialog::advancedOptionsToggled(bool on)
@@ -1201,7 +1228,27 @@ void ConfigDialog::populateComboBoxFont(bool onlyMonospaced)
 	}
 	// restore font setting if possible
 	int idx = ui.comboBoxFont->findText(currentFont);
-	if (idx >= 0) ui.comboBoxFont->setCurrentIndex(idx);
+    if (idx >= 0) ui.comboBoxFont->setCurrentIndex(idx);
+}
+/*!
+ * \brief eventFilter for combobbox
+ * This filters wheel eents on unfocused combobox to avoid unwanted change on scrolling
+ * See #2977
+ * \param obj
+ * \param event
+ * \return
+ */
+bool ConfigDialog::eventFilter(QObject *obj, QEvent *event)
+{
+    if ( event->type() == QEvent::Wheel) {
+        auto *wdg=qobject_cast<QWidget*>( obj );
+        if( wdg && !wdg->hasFocus() )
+        {
+            event->ignore();
+            return true;
+        }
+    }
+    return QObject::eventFilter( obj, event );
 }
 
 #ifdef INTERNAL_TERMINAL

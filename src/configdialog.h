@@ -150,13 +150,15 @@ private:
 	void populateTerminalColorSchemes();
 	void populateTerminalComboBoxFont(bool onlyMonospaced);
 #endif
-
+protected:
+    bool eventFilter(QObject *obj,QEvent *event);
 private:
 	enum ContentsType {CONTENTS_BASIC, CONTENTS_ADVANCED, CONTENTS_DISABLED};
 
 	QListWidgetItem *createIcon(const QString &caption, const QIcon &icon, ContentsType contentsType = CONTENTS_BASIC);
 	bool askRiddle();
 	void hideShowAdvancedOptions(QWidget *w, bool on);
+    void tweakFocusSettings(QObjectList objList);
 	static bool metaFilterRecurseWidget(const QString &filter, QWidget *widget);
 	static bool metaFilterRecurseLayout(const QString &filter, QLayout *layout);
 	static int lastUsedPage;
