@@ -2981,6 +2981,8 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit *>(cmdWidget);
 	} else {
 		cmdWidget = new QComboBox(parent);
+        cmdWidget->setFocusPolicy(Qt::StrongFocus);
+        cmdWidget->installEventFilter(this);
 		cmdWidget->setObjectName(cmd.id);
 		if (!configShowAdvancedOptions && simpleMetaOptions.contains(cmd.id) && cmd.metaSuggestionList.contains(cmd.getPrettyCommand())) {
 			foreach (QString elem, cmd.simpleDescriptionList) {
@@ -3157,7 +3159,27 @@ void ConfigManager::setLastRowMoveDownEnable(bool enable)
 			li->widget()->setEnabled(enable);
 			break;
 		}
-	}
+    }
+}
+/*!
+ * \brief eventFilter for combobbox
+ * This filters wheel eents on unfocused combobox to avoid unwanted change on scrolling
+ * See #2977
+ * \param obj
+ * \param event
+ * \return
+ */
+bool ConfigManager::eventFilter(QObject *obj, QEvent *event)
+{
+    if ( event->type() == QEvent::Wheel) {
+        auto *wdg=qobject_cast<QWidget*>( obj );
+        if( wdg && !wdg->hasFocus() )
+        {
+            event->ignore();
+            return true;
+        }
+    }
+    return QObject::eventFilter( obj, event );
 }
 
 void ConfigManager::browseCommand()
