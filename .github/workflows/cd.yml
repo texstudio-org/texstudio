@@ -187,7 +187,7 @@ jobs:
         sudo tar xvf ./QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz -C /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin --strip-components=1
         rm QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz
         brew install cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 nspr nss openjpeg
-        brew install ninja
+        brew install ninja pkg-config
 
     - name: Configure
       run: |
