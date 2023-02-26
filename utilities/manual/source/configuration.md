@@ -550,7 +550,7 @@ systems.
 If you need shell functionality, you have to explicitly run a shell. You
 can either do this directly in the user command:
 
-    sh -c "/path/to/testscript foo > bar"Configuring
+    sh -c "/path/to/testscript foo > bar"
 
 or on Windows:
 
