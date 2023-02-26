@@ -1,5 +1,5 @@
 # fduthesis class
-# Matthew Bertucci 2022/09/05 for v0.8
+# Matthew Bertucci 2023/02/26 for v0.9
 
 #include:xtemplate
 #include:l3keys2e
@@ -86,6 +86,9 @@ theorem/counter=%<counter%>
 \begin{notation}#\tabular
 \begin{notation}[cols]#\tabular
 \end{notation}
+
+\begin{acknowledgements}
+\end{acknowledgements}
 
 \begin{axiom}
 \begin{axiom}[subheading%text]
