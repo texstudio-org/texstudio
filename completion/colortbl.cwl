@@ -6,6 +6,7 @@
 #include:color
 
 #keyvals:\usepackage/colortbl#c
+# options passed to color package
 monochrome
 debugshow
 setpagesize
