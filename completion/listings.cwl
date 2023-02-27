@@ -1,5 +1,5 @@
 # mode: listings.sty
-# dani/2006-02-18; Matthew Bertucci 2021-08-28 for v1.8d
+# dani/2006-02-18; Matthew Bertucci 2023-02-27 for v1.9
 
 #include:keyval
 
@@ -78,6 +78,7 @@ Euphoria
 Fortran
 [03]Fortran
 [08]Fortran
+[18]Fortran
 [77]Fortran
 [90]Fortran
 [95]Fortran
@@ -89,17 +90,14 @@ hansl
 Haskell
 HTML
 IDL
-[empty]IDL
 [CORBA]IDL
 inform
 Java
-[empty]Java
 [AspectJ]Java
 JVMIS
 ksh
 Lingo
 Lisp
-[empty]Lisp
 [Auto]Lisp
 LLVM
 Logo
@@ -109,7 +107,6 @@ Lua
 [5.2]Lua
 [5.3]Lua
 make
-[empty]make
 [gnu]make
 Mathematica
 [1.0]Mathematica
@@ -117,6 +114,7 @@ Mathematica
 [3.0]Mathematica
 [5.2]Mathematica
 Matlab
+[5.1]Matlab
 Mercury
 MetaPost
 Miranda
@@ -149,12 +147,10 @@ Python
 R
 Reduce
 Rexx
-[empty]Rexx
 [VM/XA]Rexx
 RSL
 Ruby
 S
-[empty]S
 [PLUS]S
 SAS
 Scala
@@ -170,7 +166,6 @@ SPARQL
 SQL
 Swift
 tcl
-[empty]tcl
 [tk]tcl
 TeX
 [AlLaTeX]TeX
@@ -181,7 +176,6 @@ TeX
 VBScript
 Verilog
 VHDL
-[empty]VHDL
 [AMS]VHDL
 VRML
 [97]VRML
