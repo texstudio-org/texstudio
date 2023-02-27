@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/02/20 for v6.14
+# Matthew Bertucci 2023/02/26 for v6.15
 
 #include:amsmath
 #include:array
@@ -210,6 +210,7 @@ C
 tikz={%<TikZ options%>}
 name=%<name%>
 respect-arraystretch
+transparent
 #endkeyvals
 
 \Hline#t
