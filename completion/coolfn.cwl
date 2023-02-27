@@ -1,8 +1,9 @@
 # coolfn package
-# Matthew Bertucci 2022/10/07 for v1.0.0
+# Matthew Bertucci 2023/02/27 for v1.1.0
 
 #include:calc
 #include:hanging
+#include:footmisc
 
 \fnindent
 
