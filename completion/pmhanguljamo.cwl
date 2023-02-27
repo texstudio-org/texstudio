@@ -1,5 +1,5 @@
 # pmhanguljamo package
-# Matthew Bertucci 2023/02/20 for v1.0
+# Matthew Bertucci 2023/02/25 for v1.0.1
 
 #include:l3keys2e
 
@@ -46,6 +46,7 @@ frcccmds
 \frkhangulfont#*
 \frkhangulfontfeature#*
 \activatefrcccmds
+\AddRule{cho|jung|jong}{keyvals}
 # for when \activatefrcccmds called without frcccmds option given
 \frccg#S
 \frccG#S

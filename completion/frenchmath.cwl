@@ -1,7 +1,6 @@
 # frenchmath package
-# Matthew Bertucci 2023/01/23 for v2.4
+# Matthew Bertucci 2023/02/25 for v2.5
 
-#include:ifthen
 #include:mathrsfs
 #include:amssymb
 #include:amsopn
@@ -115,3 +114,19 @@ noibrackets
 \th
 \cosec#m
 \cosech#m
+
+\ifcapsit#S
+\capsittrue#S
+\capsitfalse#S
+\iflgrmath#S
+\lgrmathtrue#S
+\lgrmathfalse#S
+\ifupgreek#S
+\upgreektrue#S
+\upgreekfalse#S
+\ifUpgreek#S
+\Upgreektrue#S
+\Upgreekfalse#S
+\ifnoibrackets#S
+\noibracketstrue#S
+\noibracketsfalse#S

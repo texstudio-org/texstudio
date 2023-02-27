@@ -440,7 +440,7 @@ debug={%<options%>}
 \stockheight#*L
 \stockwidth#*L
 
-# pdftex v3.141592653-2.6-1.40.25
+# pdftex 2023-02-11
 \efcode#*
 \expanded#*
 \ifincsname#*
@@ -565,6 +565,7 @@ debug={%<options%>}
 \pdfsnaprefpoint#*
 \pdfsnapy#*
 \pdfsnapycomp#*
+\pdfspacefont#*
 \pdfstartlink#*
 \pdfstartthread#*
 \pdfstrcmp{string1}{string2}#*

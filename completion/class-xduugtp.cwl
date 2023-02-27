@@ -1,5 +1,5 @@
 # xduugtp class
-# Matthew Bertucci 2023/02/21 for v5.1.0.0
+# Matthew Bertucci 2023/02/23 for v5.4.0.1
 
 #include:l3keys2e
 #include:class-ctexart
@@ -21,7 +21,7 @@ style={%<keyvals%>}
 style/cjk-font=#adobe,fandol,founder,hanyi,sinotype,win,none
 style/cjk-fake-bold=%<伪粗体粗细程度%>
 style/cjk-fake-slant=%<伪斜体倾斜程度%>
-style/latin-font=#tac,tacn,thcs,gyre,none
+style/latin-font=#gyre,tac,tacn,tcc,thcs,tll,none
 style/latin-sans-scale=#upper,lower,off
 style/latin-mono-scale=#upper,lower,off
 style/math-font=#asana,cambria,cm,concrete,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,stix2,stix,xcharter,xits,bonum,dejavu,pagella,schola,termes,none

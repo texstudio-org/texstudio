@@ -1,5 +1,5 @@
 # JeuxCartes package
-# Matthew Bertucci 2022/12/26 for v0.2.0
+# Matthew Bertucci 2023/02/26 for v0.2.3
 
 #include:graphicx
 #include:xcolor
@@ -21,7 +21,7 @@
 
 #keyvals:\AffCarteJeu
 Hauteur=%<nombre%>
-TypeJeu=#Poker,Pokerv2,Pokerv3,Tarot,Uno
+TypeJeu=#Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno
 Rotation=%<degrees%>
 AlignementV=%<factor%>
 Tikz#true,false
@@ -35,7 +35,7 @@ TikzAutonome#true,false
 
 #keyvals:\AffCartesJeu
 Hauteur=%<nombre%>
-TypeJeu=#Poker,Pokerv2,Pokerv3,Tarot,Uno
+TypeJeu=#Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno
 #endkeyvals
 
 \MainCartesJeu{liste de cartes}
@@ -43,12 +43,13 @@ TypeJeu=#Poker,Pokerv2,Pokerv3,Tarot,Uno
 
 #keyvals:\MainCartesJeu
 Hauteur=%<nombre%>
-TypeJeu=#Poker,Pokerv2,Pokerv3,Tarot,Uno
+TypeJeu=#Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Uno
 EspH=%<coefficient%>
 EspV=%<coefficient%>
 Eventail#true,false
 Rotation=%<degrees%>
 AlignementV=%<factor%>
+Inverse#true,false
 #endkeyvals
 
 \MainCartesJeuAleatoire{nombre de cartes}
@@ -56,12 +57,13 @@ AlignementV=%<factor%>
 
 #keyvals:\MainCartesJeuAleatoire
 Hauteur=%<nombre%>
-TypeJeu=#Poker,Pokerv2,Pokerv3,Tarot,Belote,Belotev2,Belotev3,Bataille,Bataillev2,Bataillev3,Rami,Ramiv2,Ramiv3,Uno
+TypeJeu=#Poker,Pokerv2,Pokerv3,Pokerv4,Pokerv5,Tarot,Belote,Belotev2,Belotev3,Belotev4,Belotev5,Bataille,Bataillev2,Bataillev3,Bataillev4,Bataillev5,Rami,Ramiv2,Ramiv3,Ramiv4,Ramiv5,Uno
 EspH=%<coefficient%>
 EspV=%<coefficient%>
 Eventail#true,false
 Rotation=%<degrees%>
 AlignementV=%<factor%>
+Inverse#true,false
 #endkeyvals
 
 \AffMiniCarteJeu{carte}

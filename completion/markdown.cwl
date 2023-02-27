@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2023/02/02 for v2.20.0
+# Matthew Bertucci 2023/02/22 for v2.21.0
 
 #include:paralist
 #include:amsmath
@@ -65,7 +65,6 @@ fencedCodeAttributes#true,false
 fencedDivs#true,false
 jekyllData#true,false
 lineBlocks#true,false
-hardLineBreaks#true,false
 hashEnumerators#true,false
 headerAttributes#true,false
 html#true,false
@@ -87,6 +86,7 @@ superscripts#true,false
 tableCaptions#true,false
 taskLists#true,false
 texComments#true,false
+texMathDollars#true,false
 tightLists#true,false
 underscores#true,false
 stripPercentSigns#true,false
@@ -255,6 +255,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererContentBlockOnlineImagePrototype#*
 \markdownRendererContentBlockOnlineImagePrototype{arg1}{arg2}{arg3}{arg4}#*
 \markdownRendererContentBlockPrototype{arg1}{arg2}{arg3}{arg4}#*
+\markdownRendererDisplayMath#*
+\markdownRendererDisplayMathPrototype#*
 \markdownRendererDlBegin#*
 \markdownRendererDlBeginPrototype#*
 \markdownRendererDlBeginTight#*
@@ -326,6 +328,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererInlineHtmlComment#*
 \markdownRendererInlineHtmlCommentPrototype{arg1}#*
 \markdownRendererInlineHtmlTag#*
+\markdownRendererInlineMath#*
+\markdownRendererInlineMathPrototype#*
 \markdownRendererInputBlockHtmlElement#*
 \markdownRendererInputFencedCode#*
 \markdownRendererInputFencedCodePrototype{arg1}{arg2}#*
@@ -363,8 +367,8 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererLineBlockBeginPrototype#*
 \markdownRendererLineBlockEnd#*
 \markdownRendererLineBlockEndPrototype#*
-\markdownRendererLineBreak#*
-\markdownRendererLineBreakPrototype#*
+\markdownRendererHardLineBreak#*
+\markdownRendererHardLineBreakPrototype#*
 \markdownRendererLink#*
 \markdownRendererLinkPrototype#*
 \markdownRendererLinkPrototype{arg1}{arg2}{arg3}{arg4}#*
@@ -394,6 +398,10 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererReplacementCharacterPrototype#*
 \markdownRendererRightBrace#*
 \markdownRendererRightBracePrototype#*
+\markdownRendererSectionBegin#*
+\markdownRendererSectionBeginPrototype#*
+\markdownRendererSectionEnd#*
+\markdownRendererSectionEndPrototype#*
 \markdownRendererStrikeThrough#*
 \markdownRendererStrikeThroughPrototype#*
 \markdownRendererStrongEmphasis#*

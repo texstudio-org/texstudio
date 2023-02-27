@@ -1,5 +1,5 @@
 # pxbabel package
-# Matthew Bertucci 2022/07/22 for v1.3
+# Matthew Bertucci 2023/02/26 for v1.4
 
 #include:pxbase
 #include:ifptex
@@ -25,10 +25,7 @@ switchfont
 noswitchfont
 stdjaencoding
 nostdjaencoding
-forcedeluxemulti
-noforcedeluxemulti
-patchutfcmds
-nopatchutfcmds
+deluxemulti#true,false
 #endkeyvals
 
 \cjklanguagename{lang-id}
@@ -91,6 +88,7 @@ nopatchutfcmds
 \standardjaencoding
 
 \pxBDHookEncSwitchOTF#*
+\pxEncSwitchOTF#*
 
 # loads english option of babel by default
 \captionsenglish#*

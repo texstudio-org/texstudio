@@ -1,5 +1,5 @@
 # novel class
-# Matthew Bertucci 12/10/2021 for v1.52
+# Matthew Bertucci 2023/02/24 for v1.80
 
 # Code broken into several sty files which are accounted
 # for here rather than having their own cwls.
@@ -44,9 +44,9 @@ closecrop
 xml
 coverart
 mtoff
-polyoff
 test
 unblock
+revert
 #endkeyvals
 
 \thepdfminorversion#S
@@ -94,7 +94,6 @@ unblock
 \WithinMainmatterfalse#*
 \mainmatter
 \backmatter
-\Backmatter#S
 \HUGE
 \frontmatter
 \chapter{title%text}#*
@@ -315,7 +314,6 @@ depth=%<integer%>
 \SetChapterStart#S
 \SetChapterStartHeight{lines}
 \SetScenebreakIndent{true or false}
-\IndentAfterScenebreak#*
 \scenebreak
 \sceneline
 \scenestars
@@ -345,6 +343,9 @@ r
 \cleartorecto
 \cleartoend
 \thisline#*
+
+# deprecated
+\IndentAfterScenebreak#S
 
 ## from novel-Images.sty ##
 #include:luacode
@@ -398,24 +399,6 @@ I
 \ResetFootnoteSymbol#*
 \ResetFootnote#*
 \nentext{arg1}{arg2}#*
-
-## from novel-Obsolete.sty ##
-\BlockImage#S
-\ObsoleteRework#S
-\ReworkMargins#S
-\ReworkPriority#S
-\ReworkTrimSize#S
-\SetCropmarkGap#S
-\SetFlexResolution#S
-\TestCoverImage#S
-\acronym#S
-\crush#S
-\pushtextdown#S
-\specialblankline#S
-\squeeze#S
-\thecurrentlinegap#S
-\begin{linegap}#S
-\end{linegap}#S
 
 ## from novel-CalculateLayout.sty ##
 # no user commands

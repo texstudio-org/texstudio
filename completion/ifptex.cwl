@@ -1,22 +1,25 @@
 # ifptex package
-# Matthew Bertucci 4/16/2022 for v2.2
+# Matthew Bertucci 2023/02/24 for v2.2b
 
 #include:iftex
 
 \ifptex
-\ifpTeX#*
+\ifpTeX#S
 \ifuptex
-\ifupTeX#*
+\ifupTeX#S
 \ifnativeuptex
-\ifnativeupTeX#*
+\ifnativeupTeX#S
 \ifptexng
-\ifpTeXng#*
+\ifpTeXng#S
 \ifstrictptex
-\ifstrictpTeX#*
+\ifstrictpTeX#S
 \ifstrictuptex
-\ifstrictupTeX#*
+\ifstrictupTeX#S
 \ifstrictptexng
-\ifstrictpTeXng#*
+\ifstrictpTeXng#S
+\ifstrictplatex
+\ifstrictuplatex
+\ifporuplatex
 
 \RequirepTeX
 \RequireStrictpTeX
@@ -25,6 +28,9 @@
 \RequireNativeupTeX
 \RequirepTeXng
 \RequireStrictpTeXng
+\RequireStrictpLaTeX
+\RequireStrictupLaTeX
+\RequirepOrupLaTeX
 
 \upTeXguessedversion
 \RequireupTeXAtLeast{version}
