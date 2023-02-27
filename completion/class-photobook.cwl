@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2022/09/17 for v0.1
+# Matthew Bertucci 2023/02/27 for v0.1.7
 
 #include:kvoptions
 #include:class-book
@@ -20,6 +20,7 @@
 #include:numprint
 #include:trimclip
 #include:xcolor
+#include:pagecolor
 #include:colorspace
 #include:graphicx
 #include:adjustbox
