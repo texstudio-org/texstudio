@@ -1,5 +1,5 @@
 # textalpha package
-# Matthew Bertucci 9/22/2021 for v2.0
+# Matthew Bertucci 2023/02/28 for v2.2
 
 #keyvals:\usepackage/textalpha#c
 normalize-symbols
@@ -77,14 +77,17 @@ keep-semicolon
 \textDigamma#n
 \textdexiakeraia#n
 \textaristerikeraia#n
+\textmicro#n
 \textvarsigma#*n
 \textstigmagreek#*n
 \textkoppagreek#*n
+\textKoppagreek#*n
 \textStigmagreek#*n
 \textSampigreek#*n
 \textsampigreek#*n
 \textdigammagreek#*n
 \textDigammagreek#*n
+\textmugreek#*n
 \textnumeralsigngreek#*n
 \textnumeralsignlowergreek#*n
 \accdialytika{arg}#n
