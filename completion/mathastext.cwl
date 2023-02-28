@@ -20,7 +20,6 @@ noparenthesis
 nopunctuation
 noequal
 noexclam
-noasterisk
 asterisk
 nospecials
 basic
