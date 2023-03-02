@@ -1,9 +1,7 @@
 # ob-mathleading package
-# Matthew Bertucci 2022/05/05 for v0.1
+# Matthew Bertucci 2023/03/02 for v0.2
 
-#include:expl3
 #include:amsmath
-#include:xparse
 #include:etoolbox
 #include:l3keys2e
 
@@ -12,6 +10,7 @@ default#true,false
 mathleading=%<value%>
 exception={%<envname1,envname2,...%>}
 noallowdisplaybreaks#true,false
+badm#true,false
 #endkeyvals
 
 \obmathleading{value}
