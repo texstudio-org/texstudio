@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/02/27 for v0.1.7
+# Matthew Bertucci 2023/03/01 for v0.1.8
 
 #include:kvoptions
 #include:class-book
@@ -172,6 +172,20 @@ roundprintedlengthsto=%<number%>
 \bleedblockwidth#L
 \blockheight#L
 \blockwidth#L
+\BookAuthors
+\BookEdition
+\BookFonts
+\BookFullInfoPage
+\BookFullInfoPage[text]
+\BookInfo
+\BookInfoPage
+\BookInfoPage[text]
+\BookSoftwareInfoPage
+\BookSoftwareInfoPage[text]
+\BookTitle
+\BookVersion
+\BookYear
+\ByNotice
 \captionblockcell[options%keyvals]{caption%text}
 \captionblockcell{caption%text}
 \captioncell[options%keyvals]{caption%text}
@@ -194,6 +208,7 @@ roundprintedlengthsto=%<number%>
 \clearfoldoutfold#L
 \clearimage#L
 \cleartoleftpage
+\CopyrightNotice
 \coverboardgrow#L
 \coverflap#L
 \defaultfoldout
@@ -345,14 +360,17 @@ roundprintedlengthsto=%<number%>
 \ImageSpreadT{caption%text}{imagefile}#g
 \ImageSpreadTCaption{text}
 \InitPages
+\ISBN
 \jacketflap#L
 \jacketflapback#L
 \jacketflapfront#L
 \jacketwrap#L
 \keywords{keywords%text}
 \layoutmode
+\License
 \maxdim{dimen1%l}{dimen2%l}
 \mindim{dimen1%l}{dimen2%l}
+\OtherSoftware
 \pageblockheight#L
 \pageblockwidth#L
 \pagefold
@@ -403,9 +421,12 @@ roundprintedlengthsto=%<number%>
 \ResettableMacro{name}{code}
 \savecell[valign]{name}{width}{height}{content%text}
 \savecell{name}{width}{height}{content%text}
+\SoftwareInfo
+\SoftwareNotice
 \spinefold#L
 \spinewidth#L
 \subject{subject%text}
+\ThanksTo
 \tweakimageoffsetleft{length}
 \tweakimageoffsettop{length}
 \tweakimagescale{factor}
@@ -692,6 +713,7 @@ process
 \ifsoftcoverlayout#*
 \jacketlayoutfalse#S
 \jacketlayouttrue#S
+\LATEX#*
 \pagefoldpanelslen#S
 \ResetFoldMarks#*
 \restorepdfboxes#*
@@ -702,4 +724,5 @@ process
 \softcoverlayouttrue#S
 \storepdfboxes#*
 \storepdfboxes[opt]#*
+\TEX#*
 \thefoldoutpanel#*
