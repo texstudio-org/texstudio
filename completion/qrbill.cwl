@@ -32,6 +32,10 @@ replace-umlauts#true,false
 vrule=#true,false,symbol
 #endkeyvals
 
+#ifOption:qrmode=lua
+#include:luatex
+#endif
+
 #ifOption:separate=symbol
 #include:marvosym
 #endif
