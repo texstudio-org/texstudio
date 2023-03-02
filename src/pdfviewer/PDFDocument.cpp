@@ -1849,6 +1849,7 @@ void listAnnotationDetails(const Poppler::Annotation *an)
 void PDFWidget::updateCursor(const QPoint &pos)
 {
 	if (document.isNull()) return;
+	if (usingTool != kNone) return;
 
 	QPointF scaledPos;
 	int pageNr;
