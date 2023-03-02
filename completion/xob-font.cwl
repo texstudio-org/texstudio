@@ -1,7 +1,6 @@
 # xob-font package
-# Matthew Bertucci 2022/05/05 for v0.9.6
+# Matthew Bertucci 2022/05/05 for v0.9.7
 
-#include:xparse
 #include:etoolbox
 #include:fontspec
 #include:kotex
@@ -53,6 +52,8 @@ hcr
 \setobmonofont[basename](Regular)
 \setobmonofont[basename](Regular)(Bold)#*
 \setobmonofont[basename](Regular)(Bold)(Italic)
+
+\compressbnms
 
 # not documented
 \setmonoscale{factor}#*
