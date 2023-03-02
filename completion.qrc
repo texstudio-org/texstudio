@@ -1488,6 +1488,7 @@
 <file>completion/firamath-otf.cwl</file>
 <file>completion/FiraMono.cwl</file>
 <file>completion/FiraSans.cwl</file>
+<file>completion/fistrum.cwl</file>
 <file>completion/fitbox.cwl</file>
 <file>completion/fitr.cwl</file>
 <file>completion/fixdif.cwl</file>
@@ -2723,6 +2724,7 @@
 <file>completion/polytable.cwl</file>
 <file>completion/poormanlog.cwl</file>
 <file>completion/popupmenu.cwl</file>
+<file>completion/postage.cwl</file>
 <file>completion/poster.cwl</file>
 <file>completion/postnotes.cwl</file>
 <file>completion/powerdot-aggie.cwl</file>
@@ -3655,6 +3657,7 @@
 <file>completion/tipx.cwl</file>
 <file>completion/tiscreen.cwl</file>
 <file>completion/titlecaps.cwl</file>
+<file>completion/titlefoot.cwl</file>
 <file>completion/titlepic.cwl</file>
 <file>completion/titleps.cwl</file>
 <file>completion/titleref.cwl</file>
