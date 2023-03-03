@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/02/17 for v8.5.0
+# Matthew Bertucci 2023/03/03 for v8.6.0
 
 #include:ifxetex
 #include:ifluatex
@@ -79,6 +79,7 @@ airplayaudio
 airplayvideo
 airtable
 ajv
+akamai
 alacritty
 albertheijn
 alchemy
@@ -1442,6 +1443,7 @@ notepadplusplus
 notion
 notist
 nounproject
+novu
 now
 npm
 nrwl
