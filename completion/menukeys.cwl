@@ -1,9 +1,9 @@
 # menukeys package
 # sdm
 # muzimuzhi/28 Aug 2019 for menukeys v1.5
+# updated 3 Mar 2023 for v1.6.2
 
 #include:adjustbox
-#include:catoptions
 #include:etoolbox
 #include:kvoptions
 #include:relsize
@@ -12,7 +12,6 @@
 #include:tikzlibraryshapes.symbols
 #include:tikzlibraryshadows
 #include:xcolor
-#include:xparse
 #include:xstring
 
 #keyvals:\usepackage/menukeys#c
@@ -54,8 +53,8 @@ os=#mac,win
 \copymenustyle{copy}{original}#*
 \changemenuelement{name}{element%keyvals}{definition}#*
 \changemenuelement*{name}{element%keyvals}{definition}#*
-\changemenucolortheme{name}{color theme}
-#keyvals:\changemenuelement
+\changemenucolortheme{name}{color theme}#*
+#keyvals:\changemenuelement,\changemenuelement*
 single
 first
 middle
@@ -78,9 +77,9 @@ txt
 #endkeyvals
 
 # menu macros
-\newmenumacro{macro}[input sep]{style%keyvals}#*
+\newmenumacro{macro%cmd}[input sep]{style%keyvals}#*d
 \renewmenumacro{macro}[input sep]{style%keyvals}#*
-\providemenumacro{macro}[input sep]{style%keyvals}#*
+\providemenumacro{macro%cmd}[input sep]{style%keyvals}#*d
 ## keys
 \shift
 \capslock
@@ -103,11 +102,11 @@ txt
 \arrowkeydown
 \arrowkeyright
 \arrowkeyleft
-\arrowkey{direction#keyvals}
+\arrowkey{direction%keyvals}
 \ctrlname#*
 \delname#*
 \spacename#*
-#keyvals:\arrowkey
+#keyvals:\arrowkey#c
 ^
 v
 >
