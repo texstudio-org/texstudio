@@ -5,6 +5,15 @@
 #include:setspace
 #include:calc
 #include:xspace
+#include:centeredline
+
+#keyvals:\usepackage/spacingtricks#c
+pifont
+#endkeyvals
+
+#ifOption:pifont
+#include:pifont
+#endif
 
 \centered{text}
 \footnotespace#*
@@ -35,3 +44,10 @@
 \dualboxes[pos]{left}{right}
 \dualboxes*{left}{right}
 \dualboxes*[pos]{left}{right}
+\begin{juxtapose}
+\begin{juxtapose}[left-ratio]
+\end{juxtapose}
+\otherside
+\juxtopskip#*
+\juxbottomskip#*
+\juxsepspace#*

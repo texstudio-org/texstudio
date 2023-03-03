@@ -1,8 +1,6 @@
 # tabularray package
-# Matthew Bertucci 2022/11/02 for v2022D
+# Matthew Bertucci 2023/02/28 for v2023A
 
-#include:expl3
-#include:xparse
 #include:ninecolors
 
 \begin{tblr}{preamble}#\tabular
@@ -73,7 +71,6 @@ vline{%<j%>}={%<index%>}{%<cols%>}{%<styles%>}
 vline
 hline{%<i%>}={%<index%>}{%<cols%>}{%<styles%>}
 hline
-verb
 measure=#vbox
 baseline=#t,T,m,b,B,%<row number%>
 delimiter={%<keyvals%>}
@@ -351,6 +348,7 @@ contfoot-text
 contfoot
 conthead-text
 conthead
+conthead-pre
 caption-tag
 caption-sep
 caption-text
@@ -450,4 +448,5 @@ zref
 \lTblrCaptionTl#S
 \lTblrEntryTl#S
 \lTblrLabelTl#S
+\lTblrMeasuringBool#*
 \lTblrRefMoreClist#S

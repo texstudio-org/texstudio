@@ -1,5 +1,5 @@
 # lstdoc package
-# Matthew Bertucci 2022/06/20 for v1.8d
+# Matthew Bertucci 2023/02/27 for v1.9
 
 #include:listings
 #include:fancyvrb
@@ -67,7 +67,6 @@
 \end{lstxsample}
 \lstref{label}#r
 \ikeyname{key%plain}
-\ekeyname{key%plain}
 \rkeyname{key%plain}
 \icmdname{cmd}
 \rcmdname{cmd}
