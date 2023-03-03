@@ -337,6 +337,7 @@ int Token::innerLength() const
  */
 QString Token::getText() const
 {
+    if(!dlh) return "";
 	dlh->lockForRead();
 	QString result = dlh->text().mid(start, length);
 	dlh->unlock();
