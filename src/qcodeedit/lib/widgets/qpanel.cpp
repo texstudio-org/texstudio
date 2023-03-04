@@ -245,7 +245,13 @@ void QPanel::mouseReleaseEvent(QMouseEvent *e)
 	if ( forward(e) )
 		e->accept();
 	else
-		QWidget::mouseReleaseEvent(e);
+        QWidget::mouseReleaseEvent(e);
+}
+
+void QPanel::wheelEvent(QWheelEvent *e)
+{
+    if( !editor()) return;
+    m_editor->wheelEvent(e);
 }
 
 /*!

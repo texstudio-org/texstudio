@@ -65,6 +65,7 @@ class QCE_EXPORT QPanel : public QWidget
 		virtual void mouseMoveEvent(QMouseEvent *e);
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual void mouseReleaseEvent(QMouseEvent *e);
+        virtual void wheelEvent(QWheelEvent *e);
 		
 		virtual void showEvent(QShowEvent *e);
 		virtual void hideEvent(QHideEvent *e);
