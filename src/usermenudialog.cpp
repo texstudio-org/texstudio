@@ -26,7 +26,7 @@
 #include "utilsUI.h"
 
 UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory *languageFactory)
-    : QDialog(parent), languages(languageFactory)
+    : QDialog(parent,Qt::Dialog|Qt::WindowMinMaxButtonsHint|Qt::WindowCloseButtonHint), languages(languageFactory)
 {
 	setWindowTitle(name);
 	ui.setupUi(this);
