@@ -132,6 +132,7 @@ void UserMenuDialog::addMacro(const Macro &m,bool insertRow)
     auto *item=new QTreeWidgetItem();
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
     item->setText(0,m.name);
+    item->setToolTip(0,m.sourceinfo);
     item->setText(1,m.shortcut());
     item->setText(2,m.trigger);
     item->setText(3,m.abbrev);
@@ -314,6 +315,8 @@ void UserMenuDialog::slotAdd()
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
     item->setText(0,"");
     Macro m;
+    m.sourceinfo = tr("new");
+    item->setToolTip(0,m.sourceinfo);
     item->setData(0,Qt::UserRole,QVariant::fromValue(m));
     ui.treeWidget->addTopLevelItem(item);
     ui.treeWidget->setCurrentItem(item);

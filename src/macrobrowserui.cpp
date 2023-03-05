@@ -65,7 +65,7 @@ QList<Macro> MacroBrowserUI::getSelectedMacros()
                 QString macroJson=cache.value(url);
                 if(!macroJson.isEmpty()){
                     Macro m;
-                    m.loadFromText(macroJson);
+                    m.loadFromText(macroJson,url);
                     lst << m;
                 }
             }

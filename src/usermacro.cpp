@@ -273,10 +273,10 @@ bool Macro::load(const QString &fileName){
     in.setCodec("UTF-8");
 #endif
     QString text=in.readAll();
-    return loadFromText(text);
+    return loadFromText(text,fileName);
 }
 
-bool Macro::loadFromText(const QString &text)
+bool Macro::loadFromText(const QString &text, const QString &sourceInfo)
 {
     QHash<QString,QString>rawData;
     QJsonParseError parseError;
@@ -308,6 +308,7 @@ bool Macro::loadFromText(const QString &text)
                 rawData.insert(key,text);
             }
         }
+        rawData.insert(QString("sourceinfo"),sourceInfo);
     }else{
         //old format
         qDebug()<<"support for old macro format was removed!";
@@ -321,6 +322,7 @@ bool Macro::loadFromText(const QString &text)
     m_shortcut=rawData.value("shortcut");
     menu=rawData.value("menu");
     description=rawData.value("description");
+	sourceinfo=rawData.value("sourceinfo");
     return true;
 }
 

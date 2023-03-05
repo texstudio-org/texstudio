@@ -27,7 +27,7 @@ public:
 
 	static Macro fromTypedTag(const QString &typedTag);
 
-    QString name, abbrev,description,menu;
+    QString name, abbrev,description, sourceinfo, menu;
 	Type type;
 	QString trigger;
     QRegularExpression triggerRegex;
@@ -54,7 +54,7 @@ public:
 	bool isActiveForFormat(int format) const;
 
     bool load(const QString &fileName);
-    bool loadFromText(const QString &text);
+    bool loadFromText(const QString &text, const QString &sourceInfo);
     bool save(const QString &fileName) const;
 
 	LatexDocument *document;
