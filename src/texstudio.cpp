@@ -4573,7 +4573,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 void Texstudio::restoreDefaultSettings()
 {
-	if (!UtilsUi::txsConfirmWarning("This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.\n\nDo you want to continue?")) {
+	if (!UtilsUi::txsConfirmWarning(tr("This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.\n\nDo you want to continue?"))) {
 		return;
 	}
 	if (canCloseNow(false)) {
