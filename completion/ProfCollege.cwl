@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/01/28 for v0.99-z-e
+# Matthew Bertucci 2023/03/06 for v0.99-z-f
 
 #include:verbatim
 #include:mathtools
@@ -50,6 +50,7 @@
 
 #keyvals:\usepackage/ProfCollege#c
 nonshellescape
+nonamssymb
 #endkeyvals
 
 ## L'écriture de grandeurs ##
@@ -161,6 +162,7 @@ Cube#true,false
 Capacite#true,false
 Gramme#true,false
 Litre#true,false
+Octet#true,false
 Escalier#true,false
 Entiers#true,false
 Millions#true,false
@@ -717,6 +719,7 @@ Epaisseur=%<factor%>
 Complete#true,false
 SansZero#true,false
 Remediation#true,false
+Longueur=##L
 #endkeyvals
 
 ## La simplification d’écritures fractionnaires ##
@@ -1023,6 +1026,7 @@ CouleurAide=#%color
 Cours#true,false
 Tuile#true,false
 Vide#true,false
+Reperes#true,false
 Impression#true,false
 RAZ#true,false
 Somme#true,false
@@ -1590,6 +1594,8 @@ Modele=#A,B,C,D,E,F
 Etape=%<nombre%>
 Echelle=##L
 Couleur=#%color
+Solution#true,false
+Graine=%<nombre%>
 #endkeyvals
 
 ## Tectonic ##
@@ -1654,6 +1660,76 @@ Vide#true,false
 Cle="%<valeur%>"
 ListeOperations={%<opérations%>}
 ListeNombres={%<nombres%>}
+#endkeyvals
+
+## Le Futoshiki ##
+\Futoshiki{description de jeu}
+\Futoshiki[clés%keyvals]{description de jeu}
+
+#keyvals:\Futoshiki
+Largeur=##L
+Solution#true,false
+CouleurSolution=#%color
+CouleurCase=#%color
+StyleTexte=%<font commands%>
+#endkeyvals
+
+## Garam ##
+\Garam{c11/o11/O11,c12/o12/O12,...}
+\Garam[clés%keyvals]{c11/o11/O11,c12/o12/O12,...}
+
+#keyvals:\Garam
+Taille=%<nombre%>
+Largeur=##L
+Solution#true,false
+CouleurSolution=#%color
+#endkeyvals
+
+## SquarO ##
+\SquarO
+\SquarO[clés%keyvals]
+
+#keyvals:\SquarO
+Longueur=%<nombre%>
+Largeur=%<nombre%>
+Echelle=##L
+Solution#true,false
+Nom=%<nom%>
+Graine=%<nombre%>
+#endkeyvals
+
+## Grades ##
+\Grades
+\Grades[clés%keyvals]
+
+#keyvals:\Grades
+Longueur=%<nombre%>
+Largeur=%<nombre%>
+Echelle=##L
+Solution#true,false
+Graine=%<nombre%>
+#endkeyvals
+
+## MidPoint ##
+\MidPoint
+\MidPoint[clés%keyvals]
+
+#keyvals:\MidPoint
+Hard#true,false
+Solution#true,false
+Graine=%<nombre%>
+#endkeyvals
+
+## Kakurasu ##
+\Kakurasu
+\Kakurasu[clés%keyvals]
+
+#keyvals:\Kakurasu
+Longueur=%<nombre%>
+Largeur=%<nombre%>
+Echelle=##L
+Solution#true,false
+Graine=%<nombre%>
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -2967,3 +3043,20 @@ Teal#B
 \yyy#S
 \zzpar#S
 \zzz#S
+\BuildKakurasu#S
+\BuildMidPoint#S
+\BuildGrades#S
+\BuildSquaro#S
+\PfCSquaroNom#S
+\BuildSquaroSolution#S
+\PfCGaramHeight#S
+\PfCListeGaram#S
+\PfCListeGaramlen#S
+\PfCFutoHeight#S
+\PfCTailleFuto#S
+\ListeFuto#S
+\PfCFutoStyleTexte#S
+\PfCLongueurP#S
+\LabyLongCM#S
+\begin{MyboxJQAr}#S
+\end{MyboxJQAr}#S
