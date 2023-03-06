@@ -1,5 +1,5 @@
 # causets package
-# Matthew Bertucci 2022/05/23 for v1.3
+# Matthew Bertucci 2023/03/06 for v1.4
 
 #include:tikz
 # loads arrows.meta tikzlibrary
@@ -21,6 +21,7 @@ caps
 arrows
 continuous
 spatial
+external
 permutation
 labeled
 unlabeled
@@ -29,6 +30,10 @@ uunlabeled
 vlabeled
 vunlabeled
 #endkeyvals
+
+#ifOption:external
+#include:tikzlibraryexternal
+#endif
 
 \tikzcausetsset{options%keyvals}
 
@@ -61,12 +66,10 @@ vunlabeled
 
 \causetFence{number}
 \causetFence[options%keyvals]{number}
-\causetClosedFence{number}
-\causetClosedFence[options%keyvals]{number}
-\causetCrown
-\causetCrown[options%keyvals]
+\causetCrown{number}
+\causetCrown[options%keyvals]{number}
 
-#keyvals:\tikzcausetsset#c,\pcauset#c,\pcausetP#c,\pcausetL#c,\pcausetX#c,\rcauset#c,\rcausetP#c,\rcausetL#c,\rcausetX#c,\causet#c,\causetP#c,\causetL#c,\causetX#c,\causetFence#c,\causetClosedFence#c,\causetCrown#c
+#keyvals:\tikzcausetsset#c,\pcauset#c,\pcausetP#c,\pcausetL#c,\pcausetX#c,\rcauset#c,\rcausetP#c,\rcausetL#c,\rcausetX#c,\causet#c,\causetP#c,\causetL#c,\causetX#c,\causetFence#c,\causetCrown#c
 all labels={%<TikZ keys%>}
 arrow links
 baseline=##L
@@ -76,6 +79,7 @@ broken link gap=##L
 brokenly linked
 cap links
 continuously linked
+event=%<value%>
 event color=#%color
 event outline=##L
 event size=##L
@@ -85,6 +89,7 @@ grid color=#%color
 grid line width=##L
 grid={%<TikZ keys%>}
 huge
+label=%<text%>
 label color=#%color
 labeled
 labels={%<TikZ keys%>}
@@ -96,15 +101,20 @@ link resumes={%<TikZ keys%>}
 link starts={%<TikZ keys%>}
 link width=##L
 links={%<TikZ keys%>}
+name=%<name%>
+name external#true,false
+name prefix=%<prefix%>
 neon colors
 normal
 offset=%<integer%>
+padding=##L
 permutation
 region color=#%color
 region line width=##L
 region={%<TikZ keys%>}
 replaced events={%<TikZ keys%>}
 replaced labels={%<TikZ keys%>}
+set prefix=%<prefix%>
 show permutation
 small
 spatial link color=#%color
@@ -131,27 +141,30 @@ vlabels={%<TikZ keys%>}
 \causetLinkWidth#*
 \causetBrokenLinkGap#*
 
-\ifcausetsDrawPermutation#*
+\ifcausetsDrawPermutation#S
 \causetsDrawPermutationtrue#*
 \causetsDrawPermutationfalse#*
-\ifcausetsDrawLinks#*
+\ifcausetsDrawLinks#S
 \causetsDrawLinkstrue#*
 \causetsDrawLinksfalse#*
-\ifcausetsBreakLinks#*
+\ifcausetsBreakLinks#S
 \causetsBreakLinkstrue#*
 \causetsBreakLinksfalse#*
-\ifcausetsDrawSpatialLinks#*
+\ifcausetsDrawSpatialLinks#S
 \causetsDrawSpatialLinkstrue#*
 \causetsDrawSpatialLinksfalse#*
-\ifcausetsDrawLabels#*
+\ifcausetsDrawLabels#S
 \causetsDrawLabelstrue#*
 \causetsDrawLabelsfalse#*
-\ifcausetsDrawULabels#*
+\ifcausetsDrawULabels#S
 \causetsDrawULabelstrue#*
 \causetsDrawULabelsfalse#*
-\ifcausetsDrawVLabels#*
+\ifcausetsDrawVLabels#S
 \causetsDrawVLabelstrue#*
 \causetsDrawVLabelsfalse#*
+\ifcausetsNameExternal#S
+\causetsNameExternaltrue#*
+\causetsNameExternalfalse#*
 
 \causetfile{imagefile}#g
 \causetfile[options%keyvals]{imagefile}#g
@@ -188,7 +201,6 @@ interpolate#true,false
 decodearray={%<color array%>}
 #endkeyvals
 
-\causetspath#*
 \drawpcauset{permutation}#*
 \drawrcauset{permutation}{event pairs}#*
 \drawcauset{permutation}{event pairs}#*
