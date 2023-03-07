@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>Journal des modifications</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
@@ -3706,7 +3706,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement gather* est un environnement gather non numéroté.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
@@ -3776,32 +3776,32 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>The equation environment centers one equation on the page and places the equation number in the margin.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement equation centre une équation sur la page et place le numéro de l&apos;équation dans la marge.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement align aligne verticalement plusieurs équations, possiblement dans plusieurs colonnes d&apos;équations. Utilisez le signe &amp; pour l&apos;alignement et la division en colonnes.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement alignat est une variante de l&apos;environnement align et permet de spécifier explicitement l&apos;espace entre les colonnes de l&apos;équation. Par exemple, utiliser &amp;\quad&amp; comme séparateur de colonnes. Donnez le nombre de colonnes en paramètre.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement flalign est un environnement d&apos;alignement qui étire l&apos;espace entre les colonnes d&apos;équation autant que possible, en laissant juste assez d&apos;espace à la marge pour le numéro de l&apos;équation.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>The gather environment is used for multiple centered equations separated by \\, each having an equation number.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement gather est utilisé pour plusieurs équations centrées séparées par \\, chacune ayant un numéro d&apos;équation.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>The multline environment is a variation of the equation environment used for equations that don&apos;t fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement multline est une variante de l&apos;environnement equation utilisé pour les équations qui ne tiennent pas sur une seule ligne. Utilisez \\ là où vous souhaitez les changements de lignes. Les lignes entre la première et la dernière seront centrées.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -3816,7 +3816,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement equation* est un environnement equation non numéroté.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="185"/>
@@ -3831,7 +3831,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement align* est un environnement align non numéroté.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="187"/>
@@ -3846,7 +3846,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement alignat* est un environnement alignat non numéroté.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="189"/>
@@ -3861,7 +3861,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement flalign* est un environnement flalign non numéroté.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="191"/>
@@ -3956,22 +3956,22 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>Fraction - \frac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fraction - \frac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>Fraction - \dfrac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Grande fraction - \dfrac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>\dfrac is an amsmath package shorthand for \displaystyle\frac...</source>
-        <translation type="unfinished"/>
+        <translation>\dfrac est un raccourci du package amsmath pour \displaystyle\frac...</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Square Root - \sqrt{}</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Racine carrée - \sqrt{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="170"/>
@@ -3986,7 +3986,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement multline* est un environnement multline non numéroté.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
@@ -11373,7 +11373,9 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Cela réinitialisera tous les paramètres à leurs valeurs par défaut. À la fin, TeXstudio sera fermé. Veuillez ensuite manuellement redémarrer TeXstudio.
+
+Voulez-vous continuer ?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4586"/>

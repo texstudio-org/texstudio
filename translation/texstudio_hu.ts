@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>Verziótörténet</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
@@ -3698,7 +3698,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
-        <translation type="unfinished"/>
+        <translation>A gather* környezet egy számozatlan gather környezet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
@@ -3768,22 +3768,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>The equation environment centers one equation on the page and places the equation number in the margin.</source>
-        <translation type="unfinished"/>
+        <translation>Az equation környezet az egyenletet középre, az egyenletszámot pedig a margóra helyezi az oldalon.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns.</source>
-        <translation type="unfinished"/>
+        <translation>Az align környezet több egyenletet függőlegesen igazít. Ezt több egyenletoszlopban is megteheti. Használja az &amp; jelet az igazításhoz és az oszlopokra való felosztáshoz.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Az alignat környezet az align környezet egy változata, amely lehetővé teszi az egyenletoszlopok közötti tér explicit megadását. Pl. használja a &amp;\quad&amp; kódot oszlop elválasztóként. Paraméterként adja meg az oszlopok számát.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number.</source>
-        <translation type="unfinished"/>
+        <translation>A flalign környezet olyan align környezet, amely a lehető legnagyobb mértékben megnyújtja az egyenlet oszlopai közötti teret, és elegendő helyet hagy a margón az egyenletszámnak.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
@@ -3948,12 +3948,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>Fraction - \frac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Tört - \frac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>Fraction - \dfrac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Tört - \dfrac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
@@ -3963,7 +3963,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Square Root - \sqrt{}</source>
-        <translation type="unfinished"/>
+        <translation>Négyzetgyök - \sqrt{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="170"/>
@@ -5720,7 +5720,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2960"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Segítség</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2962"/>
@@ -11358,7 +11358,9 @@ El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Ez az összes beállítást visszaállítja az alapértelmezett értékre. A végén a TeXstudio bezár. Kérjük, indítsa el ezután manuálisan újra a TeXstudiót.
+
+Akarod folytatni?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4586"/>
