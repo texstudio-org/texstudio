@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 27.06.2022 for v3.18
+# Matthew Bertucci 06.03.2023 for v3.19
 
 #include:pdftexcmds
 #include:etoolbox
@@ -1638,6 +1638,8 @@ filter=
 \DeclareLabeldate[entrytype list]{specification}#*
 \DeclareExtradate{specification}#*
 \scope{code}#*
+\DeclareExtradateContext{specification}#*
+\DeclareExtradateContext[entrytype list]{specification}#*
 \DeclareLabeltitle{specification}#*
 \DeclareLabeltitle[entrytype list]{specification}#*
 
@@ -2073,6 +2075,7 @@ override#true,false
 \currentname#*
 
 \AtBeginRefsection{code}#*
+\AtNextRefsection{code}#*
 \AtBeginBibliography{code}#*
 \AtBeginShorthands{code}#*
 \AtBeginBiblist{biblistname}{code}#*
