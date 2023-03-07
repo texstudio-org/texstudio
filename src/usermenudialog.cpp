@@ -58,6 +58,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	ui.tagEdit->setLayout(new QVBoxLayout());
 	codeedit = new QCodeEdit(ui.tagEdit);
 	codeedit->editor()->setFlag(QEditor::AdjustIndent, false);
+	codeedit->editor()->setDisplayModifyTime(false);
 	codeedit->editor()->document()->setCenterDocumentInEditor(false);
 	languages->setLanguage(codeedit->editor(), "");
 	//QLineMarkPanel* lineMarkPanel=new QLineMarkPanel;
