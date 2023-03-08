@@ -699,8 +699,8 @@
 <file>completion/class-FUbeamer.cwl</file>
 <file>completion/class-FUpowerdot.cwl</file>
 <file>completion/class-gammas.cwl</file>
-<file>completion/class-g-brief.cwl</file>
 <file>completion/class-g-brief2.cwl</file>
+<file>completion/class-g-brief.cwl</file>
 <file>completion/class-geradwp.cwl</file>
 <file>completion/class-grant-afosr.cwl</file>
 <file>completion/class-grant-aro.cwl</file>
@@ -2527,6 +2527,7 @@
 <file>completion/othelloboard.cwl</file>
 <file>completion/ot-tableau.cwl</file>
 <file>completion/oubraces.cwl</file>
+<file>completion/OutilsGeomTikz.cwl</file>
 <file>completion/outlines.cwl</file>
 <file>completion/outlining.cwl</file>
 <file>completion/overarrows.cwl</file>
@@ -2700,9 +2701,9 @@
 <file>completion/plex-otf.cwl</file>
 <file>completion/plex-sans.cwl</file>
 <file>completion/plex-serif.cwl</file>
-<file>completion/plext.cwl</file>
 <file>completion/plextarray.cwl</file>
 <file>completion/plextcolortbl.cwl</file>
+<file>completion/plext.cwl</file>
 <file>completion/plextdelarray.cwl</file>
 <file>completion/plimsoll.cwl</file>
 <file>completion/plprefix.cwl</file>
