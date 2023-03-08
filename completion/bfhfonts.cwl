@@ -1,8 +1,9 @@
 # bfhfonts package
-# Matthew Bertucci 2/12/2022 for v2.0.0
+# Matthew Bertucci 2023/03/07 for v2.1.5
 
 #include:iftex
 #include:anyfontsize
+#include:amssymb
 #include:nunito
 #include:sourceserifpro
 #include:fontenc
