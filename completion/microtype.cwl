@@ -1,7 +1,7 @@
 # microtype.cwl
 # Edson 27-12-2010
 # doncherry/2014-10-03 for microtype v. 2.5a
-# Matthew Bertucci 3/8/2022 for microtype v3.0c
+# Matthew Bertucci 2023/03/07 for microtype v3.1
 
 #include:keyval
 #include:etoolbox
@@ -16,8 +16,8 @@ tracking=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,bas
 kerning=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont,%microtypeset
 spacing=#true,false,all,alltext,allmath,alltext-nott,allmath-nott,basictext,basicmath,smallcaps,footnotesize,scriptsize,normalfont,%microtypeset
 factor=%<integer%>
-patch=#all,none,item,toc,footnote,eqnum
-nopatch=#all,none,item,toc,footnote,eqnum
+patch=#all,none,item,toc,footnote,verbatim,eqnum
+nopatch=#all,none,item,toc,footnote,verbatim,eqnum
 unit=%<dimension%>
 auto#true,false
 stretch=%<integer%>
@@ -121,6 +121,7 @@ unit=
 \DeclareMicrotypeVariants*{suffixes}
 \DeclareMicrotypeAlias{font}{alias}
 \LoadMicrotypeFile{font}
+\DeclareMicrotypeFilePrefix{prefix}
 
 \microtypecontext{context%keyvals}
 \begin{microtypecontext}{context%keyvals}
