@@ -1,5 +1,5 @@
 # minimalist package
-# Matthew Bertucci 2023/01/02 for 2023/01/02 release
+# Matthew Bertucci 2023/03/07 for release 2023/03/07
 
 #include:amsmath
 #include:lineno
@@ -12,7 +12,12 @@ draft#true,false
 fast#true,false
 title in boldface#true,false
 title in scshape#true,false
+title in sffamily#true,false
+use sffamily
+use scshape
 classical#true,false
+flow#true,false
+stream#true,false
 runin#true,false
 nothms#true,false
 nothmnum#true,false
@@ -24,6 +29,7 @@ simple name#true,false
 no preset names#true,false
 regionalref#true,false
 originalref#true,false
+colored proof
 Chinese
 TChinese
 English
