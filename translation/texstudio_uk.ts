@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>Журнал змін</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
@@ -3708,7 +3708,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище gather* - це ненумерований різновид gather.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
@@ -3778,32 +3778,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>The equation environment centers one equation on the page and places the equation number in the margin.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище equation розміщує по центру одне рівняння на сторінці та ставить його номер на полях.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище align вертикально вирівнює кілька рівнянь. Ви можете зробити через окремі стовпчики рівнянь. Використовуйте знак &amp; для вирівнювання та розбиття на стовпці.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище alignat є різновидом середовища align і дозволяє явно вказати відстань між стовпцями рівняння. Наприклад, використовуйте &amp;\quad&amp; як роздільник стовпців. Вкажіть кількість стовпців як параметр.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище flalign — це середовище вирівнювання, яке максимально розтягує простір між стовпцями рівняння, залишаючи на полях достатньо місця для номера рівняння.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>The gather environment is used for multiple centered equations separated by \\, each having an equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище gather використовується для кількох рівнянь, розташованих по центру, розділених \\, кожне з яких має номер рівняння.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>The multline environment is a variation of the equation environment used for equations that don&apos;t fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище multline — це різновид середовища equation, яке використовується для рівнянь, що не вміщуються в один рядок. Використовуйте \\, щоб розділити рядки. Рядки між першим та останнім будуть вирівняні по центру.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -3818,7 +3818,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище equation*  - це ненумерований різновид equation.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="185"/>
@@ -3833,7 +3833,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище align* - це ненумерований різновид align.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="187"/>
@@ -3848,7 +3848,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище alignat* - це ненумерований різновид alignat.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="189"/>
@@ -3863,7 +3863,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище flalign* - це ненумерований різновид flalign.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="191"/>
@@ -3958,22 +3958,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>Fraction - \frac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Дріб - \frac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>Fraction - \dfrac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Дріб - \dfrac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>\dfrac is an amsmath package shorthand for \displaystyle\frac...</source>
-        <translation type="unfinished"/>
+        <translation>\dfrac - це скорочення з пакунка amsmath для \displaystyle\frac...</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Square Root - \sqrt{}</source>
-        <translation type="unfinished"/>
+        <translation>Квадратний корінь - \sqrt{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="170"/>
@@ -3988,7 +3988,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище multline* - це ненумерований різновид multline.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
@@ -3998,7 +3998,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище cases забезпечує структуру, яка зображається як фігурна дужка зліва до масиву рядків із двома стовпцями, вирівняними за лівим краєм.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
@@ -4008,7 +4008,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments.</source>
-        <translation type="unfinished"/>
+        <translation>Середовище split подібне до середовища multline, але допускає вертикальне вирівнювання за допомогою знаків &amp;. Не забезпечує номер рівнянь. Використовуйте всередині зображених середовищ.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
@@ -5732,7 +5732,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2960"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Довідка</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2962"/>
@@ -11379,7 +11379,9 @@ this other file before you can overwrite it.</source>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Ця дія очистить усі налаштування до усталених. Насамкінець TeXstudio буде закрито. Після цього запустіть TeXstudio вручну..
+
+Волієте продовжити?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4586"/>

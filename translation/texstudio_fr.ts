@@ -3996,7 +3996,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement cases fournit une structure qui s&apos;affiche sous la forme d&apos;une accolade à gauche s&apos;étendant verticalement sur toute la hauteur d&apos;un tableau de lignes à deux colonnes alignées à gauche.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
@@ -4006,7 +4006,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;environnement split est similaire à l&apos;environnement multline mais permet l&apos;alignement vertical en utilisant les signes &amp;. Il n&apos;y a pas de numéro d&apos;équation. À utiliser dans les environnements mathématiques (hors-texte).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
@@ -5728,7 +5728,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2960"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Aide</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2962"/>

@@ -3788,12 +3788,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>The gather environment is used for multiple centered equations separated by \\, each having an equation number.</source>
-        <translation type="unfinished"/>
+        <translation>A gather környezet több, \\ karakterrel elválasztott középre helyezett egyenlethez használatos, amelyek mindegyikének egy egyenletszáma van.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>The multline environment is a variation of the equation environment used for equations that don&apos;t fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered.</source>
-        <translation type="unfinished"/>
+        <translation>A multline környezet az equation környezet egy változata, amelyet olyan egyenletekhez használnak, amelyek nem férnek el egy sorba. Használja a \\ kódot a sorok felosztásához. Az első és az utolsó közötti sorok középre kerülnek.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -3808,7 +3808,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
-        <translation type="unfinished"/>
+        <translation>Az equation* környezet egy számozatlan equation környezet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="185"/>
@@ -3823,7 +3823,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
-        <translation type="unfinished"/>
+        <translation>Az  align* környezet egy számozatlan align környezet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="187"/>
@@ -3838,7 +3838,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
-        <translation type="unfinished"/>
+        <translation>Az alignat* környezet egy számozatlan alignat környezet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="189"/>
@@ -3853,7 +3853,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
-        <translation type="unfinished"/>
+        <translation>A flalign* környezet egy számozatlan flalign környezet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="191"/>
@@ -3958,7 +3958,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>\dfrac is an amsmath package shorthand for \displaystyle\frac...</source>
-        <translation type="unfinished"/>
+        <translation>\dfrac rövidítése a \displaystyle\frac parancsnak az amsmath csomagban</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
@@ -3978,7 +3978,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
-        <translation type="unfinished"/>
+        <translation>A multline* környezet egy számozatlan multline környezet.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
@@ -3988,7 +3988,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns.</source>
-        <translation type="unfinished"/>
+        <translation>A cases környezet olyan struktúrát biztosít, amely kapcsos zárójelként jelenik meg egy sortömbhöz, két balra igazított oszloppal.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
@@ -3998,7 +3998,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments.</source>
-        <translation type="unfinished"/>
+        <translation>A split környezet hasonló a multline környezethez, de lehetővé teszi a függőleges igazítást a &amp; jelek használatával. Nincs egyenletszám. Használja kiemelt matematikai környezetben.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>

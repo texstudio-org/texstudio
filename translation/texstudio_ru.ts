@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>История изменений</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
@@ -3660,32 +3660,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="125"/>
         <source>The \pagebreak command tells LaTeX to break the current page at the point of the command.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \pagebreak приказывает LaTeX’у сделать разрыв страницы в месте, где стоит команда (по возможности с вертикальным растяжением).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \bigskip добавляет большой вертикальный пробел.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \bigskip добавляет средний вертикальный пробел.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \bigskip добавляет маленький вертикальный пробел.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
         <source>The \vspace command inserts an amount of skip (positive, zero or negative) of vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \vspace добавляет вертикальный пробел заданной высоты (положительной или даже отрицательной).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="130"/>
         <source>The \vfill command inserts a rubber length which has no natural space but that can stretch vertically as far as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \vfill добавляет адаптивно растяжимый вертикальный пробел («клей»), который заполняет всё отведённое ему пространство в рамках текущего блока (например страницы).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="131"/>
@@ -3695,7 +3695,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="132"/>
         <source>The \newline command breaks the line right where it is.</source>
-        <translation type="unfinished"/>
+        <translation>Команда \newline разрывает строку в том месте, где она стоит.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="135"/>
@@ -3710,7 +3710,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение gather* работает, как ненумерованное gather.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
@@ -3780,12 +3780,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>The equation environment centers one equation on the page and places the equation number in the margin.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение equation центрирует уравнение горизонтально на строке и добавляет его номер с краю.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение align позволяет выровнять несколько уравнений одно под другим. Можно задавать несколько табуляторов, по которым будет производиться выравнивание, — используйте для этого знак амперсанда &amp;.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
@@ -3910,17 +3910,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
         <source>Turn on review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Включить комментарии-примечания в PDF</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="143"/>
         <source>Turn off review comments in pdf</source>
-        <translation type="unfinished"/>
+        <translation>Выключить комментарии-примечания в PDF</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="145"/>
         <source>\label{key}</source>
-        <translation type="unfinished"/>
+        <translation>\label{метка}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
@@ -3930,7 +3930,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
         <source>\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page.</source>
-        <translation type="unfinished"/>
+        <translation>\footnote[номер]{текст}%nКоманда \footnote создаёт нумерованную сноску с текстом в низу страницы.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
@@ -3945,12 +3945,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>The math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>Окружение math можно использовать как в абзацной, так и ограниченной горизонтальной (LR, «слева направо в одну строку») моде. </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>The LaTeX math environment can be used in both paragraph and LR mode</source>
-        <translation type="unfinished"/>
+        <translation>Окружение LaTeX’а math можно использовать как в абзацной, так и ограниченной горизонтальной (LR, «слева направо в одну строку») моде. </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
@@ -3960,17 +3960,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>Fraction - \frac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Дробь — \frac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>Fraction - \dfrac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Большая дробь — \dfrac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>\dfrac is an amsmath package shorthand for \displaystyle\frac...</source>
-        <translation type="unfinished"/>
+        <translation>\dfrac — это команда из пакета amsmath, соответствующая полноразмерной дроби \displaystyle\frac.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
@@ -7961,7 +7961,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="863"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation>(стлб. %1)</translation>
     </message>
 </context>
 <context>
@@ -8273,7 +8273,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Extension package to amsthm</source>
-        <translation type="unfinished"/>
+        <translation>Пакет, расширяющий возможности amsthm</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="302"/>
@@ -9223,13 +9223,13 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="129"/>
         <source>Online Repository</source>
-        <translation type="unfinished"/>
+        <translation>Онлайн-репозиторий</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="137"/>
         <location filename="../src/templateselector.cpp" line="317"/>
         <source>&lt;loading...&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;загрузка...&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="455"/>
@@ -10131,7 +10131,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1086"/>
         <source>Preview Dis&amp;play Mode</source>
-        <translation type="unfinished"/>
+        <translation>Режим &amp;показа предпросмотра</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1088"/>
@@ -10541,7 +10541,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1239"/>
         <source>Convert to Abridged Plaintext</source>
-        <translation type="unfinished"/>
+        <translation>Сконвертировать в ограниченный неформатированный текст</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1240"/>
@@ -12773,7 +12773,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="412"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Импортировать макросы</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="424"/>
@@ -12783,7 +12783,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="547"/>
         <source> (col. %1)</source>
-        <translation type="unfinished"/>
+        <translation>(стлб. %1)</translation>
     </message>
 </context>
 <context>
