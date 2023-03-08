@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/02/26 for v6.15
+# Matthew Bertucci 2023/03/07 for v6.16
 
 #include:amsmath
 #include:array
@@ -354,6 +354,7 @@ hlines
 hlines=
 hvlines
 name=%<name%>
+code=%<code%>
 #endkeyvals
 
 \OverBrace{i-j}{k-l}{label}#t
