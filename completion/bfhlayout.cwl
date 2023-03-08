@@ -1,5 +1,5 @@
 # bfhlayout package
-# Matthew Bertucci 2022/06/04 for v2.1.2
+# Matthew Bertucci 2023/03/07 for v2.1.5
 
 #include:l3keys2e
 #include:geometry
@@ -12,7 +12,6 @@
 #include:translations
 #include:scrlayer-scrpage
 #include:amsmath
-#include:amssymb
 #include:bfhfonts
 #include:graphicx
 #include:bfhlogo

@@ -1,5 +1,5 @@
 # xduugtp class
-# Matthew Bertucci 2023/02/23 for v5.4.0.1
+# Matthew Bertucci 2023/03/05 for v6.1.0.1
 
 #include:l3keys2e
 #include:class-ctexart
@@ -44,6 +44,8 @@ style/caption-label-sep={%<间距%>}
 style/caption-format=#plain,hang
 style/ft-caption-format=#plain,hang
 style/ft-caption-align=#left,centering,centering-left
+style/figure-align=#left,centering,right
+style/table-align=#left,centering,right
 style/table-small-font#true,false
 style/alg-small-caption#true,false
 style/alg-small-font#true,false

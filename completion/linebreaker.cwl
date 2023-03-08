@@ -1,5 +1,5 @@
 # linebreaker package
-# Matthew Bertucci 2/20/2022 for v0.1
+# Matthew Bertucci 2023/03/07 for v0.1b
 
 #include:luatexbase
 
@@ -7,8 +7,9 @@
 
 #keyvals:\linebreakersetup
 maxcycles=%<number%>
-maxemergencystretch=%<number%>
+maxemergencystretch=##L
 maxtolerance=%<number%>
+cubic
 debug
 #endkeyvals
 

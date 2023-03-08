@@ -1,5 +1,5 @@
 # colorist-fancy package
-# Matthew Bertucci 2022/09/05 for release 2022/09/03
+# Matthew Bertucci 2023/03/07 for release 2023/03/07
 
 #include:anyfontsize
 #include:tikz
@@ -13,6 +13,7 @@
 #include:ulem
 #include:titletoc
 #include:enumitem
+# loads inline option of enumitem
 #include:imakeidx
 #include:silence
 #include:projlib-draft
@@ -51,6 +52,17 @@
 maintheme#B
 forestgreen#B
 lightorange#B
+
+# from inline option of enumitem
+\begin{enumerate*}
+\begin{enumerate*}[options%keyvals]
+\end{enumerate*}
+\begin{itemize*}
+\begin{itemize*}[options%keyvals]
+\end{itemize*}
+\begin{description*}
+\begin{description*}[options%keyvals]
+\end{description*}
 
 # from amsfashion option of projlib-author
 #include:projlib-language
