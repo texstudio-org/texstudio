@@ -1,5 +1,5 @@
 # minimalist-plain package
-# Matthew Bertucci 2023/01/02 for 2023/01/02 release
+# Matthew Bertucci 2023/03/07 for release 2023/03/07
 
 #include:relsize
 #include:anyfontsize
@@ -14,6 +14,7 @@
 #include:ulem
 #include:titletoc
 #include:enumitem
+# loads inline option of enumitem
 #include:imakeidx
 #include:silence
 #include:projlib-draft
@@ -45,6 +46,17 @@
 \IndexDotfill#*
 \IndexLinebreak#*
 \IndexHeading{text}#*
+
+# from inline option of enumitem
+\begin{enumerate*}
+\begin{enumerate*}[options%keyvals]
+\end{enumerate*}
+\begin{itemize*}
+\begin{itemize*}[options%keyvals]
+\end{itemize*}
+\begin{description*}
+\begin{description*}[options%keyvals]
+\end{description*}
 
 # from amsfashion option of projlib-author
 #include:projlib-language
