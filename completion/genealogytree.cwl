@@ -1,8 +1,6 @@
 # genealogytree package
-# Matthew Bertucci 3/19/2022 for v2.2.0
+# Matthew Bertucci 2023/03/09 for v2.3.0
 
-#include:expl3
-#include:xparse
 #include:tcolorbox
 #include:tcolorboxlibraryskins
 #include:tcolorboxlibraryfitting
@@ -641,6 +639,8 @@ yshift=##L
 
 \gtrloadlanguage{list of languages%keyvals}
 #keyvals:\gtrSymbolsFullLegend#c,\gtrSymbolsLegend#c,\gtrloadlanguage#c
+catalan
+chinese
 danish
 dutch
 english
@@ -1037,7 +1037,7 @@ symlang/Neuter=%<text%>
 
 ### 10 Language and Text Settings ###
 ## 10.1 Preamble Settings ##
-language=#danish,dutch,english,french,german,german-german,german-austrian,italian,portuguese,spanish,swedish
+language=#catalan,chinese,danish,dutch,english,french,german,german-german,german-austrian,italian,portuguese,spanish,swedish
 
 ### 11 Debugging: Library debug ###
 ## 11.4 Show Information ##
