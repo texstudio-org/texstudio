@@ -1,9 +1,7 @@
 # athnum package
-# Matthew Bertucci 9/22/2021 for v1.1
+# Matthew Bertucci 2023/03/09 for v2.0
 
 \athnum{number}
 
-\PiDelta#*
-\PiEta#*
-\PiChi#*
-\PiMu#*
+\greekfontencoding#*
+\ensuregreek{text}
