@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2023/02/10 for v1.10
+# Matthew Bertucci 2023/03/09 for v1.11
 
 #include:plaintex
 #include:luatex
@@ -26,6 +26,7 @@
 
 ## Fonts ##
 \fontfam[family-name]
+\fontfamsub[family][by-family]
 \caps
 \cond
 \bi
@@ -236,6 +237,7 @@
 \picw=%<⟨dimen⟩%>
 \picwidth
 \picheight
+\picparams={%<parameters%>}
 \picdir={%<directory%>}
 \inkinspic{%<filename%>.pdf%file}
 \pdfscale{horizontal-factor}{vertical-factor}
@@ -507,15 +509,17 @@
 \ignoreslash#*
 \ignslash#*
 \iindex{word}
+\ilistskipamount
 \initunifonts#*
 \inlinkcolor#*
 \itemnum
+\itemskipamount
 \layernum
 \layers %<⟨number⟩%>
 \letfont{cmd}#Sd
 \link[type:spec]{color}{text}#S
 \lipsumtext[number]#*
-\listskipamount
+\listskipamount#S
 \localcolor
 \mathcodes %<⟨family⟩%> {%<list-of-pairs%>}
 \mathsboff
@@ -538,6 +542,7 @@
 \nolanginput{lang-tag}
 \nolocalcolor
 \normalcatcodes
+\olistskipamount
 \openref
 \OPmac#*
 \OPmacversion#S
