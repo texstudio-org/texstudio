@@ -1,8 +1,7 @@
 # oblivoir class
-# Matthew Bertucci 2022/05/05 for v3.1.5
+# Matthew Bertucci 2023/03/09 for v3.2.1
 
 #include:xkeyval
-#include:xparse
 #include:iftex
 
 # options not listed here are in oblivoir-xl.cwl
@@ -15,8 +14,8 @@ xcolor={%<xcolor options%>}
 #endkeyvals
 
 \ifLuaOrXeTeX#*
-\LuaOrXeTeXtrue#*
-\LuaOrXeTeXfalse#*
+\LuaOrXeTeXtrue#S
+\LuaOrXeTeXfalse#S
 
 ## Loads oblivoir-xl.cls if xelatex or lualatex, oblivoir-utf.cls otherwise.
 ## Since cwl can't detect engine, default here to oblivoir-xl
@@ -52,9 +51,12 @@ xcolor={%<xcolor options%>}
 
 #ifOption:polyglossia
 #include:polyglossia
-#include:xparse
 \sethangulfont{font name}
 \sethangulfont{font name}[font features]
 \hangulfont#*
 \hangulfonttt#*
+#endif
+
+#ifOption:babelhangul
+#include:babel
 #endif
