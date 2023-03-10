@@ -1,5 +1,5 @@
 # frenchmath package
-# Matthew Bertucci 2023/02/25 for v2.5
+# Matthew Bertucci 2023/03/10 for v2.6
 
 #include:mathrsfs
 #include:amssymb
@@ -85,7 +85,7 @@ noibrackets
 \itvarphi#*m
 #endif
 
-\curs{text%plain}
+\curs{text%plain}#m
 \ssi
 \Oij
 \Oijk
