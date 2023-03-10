@@ -37,6 +37,10 @@
 		<start parenthesis="comment:open" fold="1" >@comment$s*{</start>
 		<stop parenthesis="comment:close" fold="1" >}</stop>
 	</context>
+	<context id="comment/single" format="comment" stayOnLine="true" >
+		<start>%</start>
+		<stop exclusive="false">\n</stop>
+	</context>
 	
 	<word id="keywords/single" format="extra-keyword">@[a-zA-Z]+</word>
 	
