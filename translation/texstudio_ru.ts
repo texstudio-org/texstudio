@@ -3790,22 +3790,22 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение alignat — это модифицированный align, который позволяет явно задавать расстояние между столбцами в уравнениях. Например, можно использовать &amp;\quad&amp; в качестве табулятора. В качестве параметра укажите количество столбцов.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение flalign — это модифицированный align, который максимально растягивает расстояние между столбцами в уравнениях, оставляя с краю ровно столько места, сколько необходимо для нумерации уравнения.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>The gather environment is used for multiple centered equations separated by \\, each having an equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение gather используется для написания нескольких центрированных уравнений, разделённых \\, чтобы у каждого уравнения был прописан номер.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>The multline environment is a variation of the equation environment used for equations that don&apos;t fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение multline — это модифицированый equation, чтобы набирать уравнения, не умещающиеся в одну строку, с разбивкой на несколько строк. Используйте \\ для перехода на новую строку. Верхняя строка выравнивается по левому краю, нижная — по правому, остальные центрируются.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -3820,7 +3820,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение equation* — это equation без номера уравнения.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="185"/>
@@ -3835,7 +3835,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение align* — это align без номеров уравнений.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="187"/>
@@ -3850,7 +3850,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение alignat* — это alignat без номеров уравнений.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="189"/>
@@ -3865,7 +3865,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение flalign* — это flalign без номеров уравнений.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="191"/>
@@ -3880,32 +3880,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение description создаёт список с метками.%nКаждый элемент списка начинается с \item[метка].</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
         <source>\alert{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\alert{текст} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="138"/>
         <source>\comment{text}{comment} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\comment{текст}{комментарий} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="139"/>
         <source>\add{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\add{текст} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="140"/>
         <source>\remove{text} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\remove{текст} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="141"/>
         <source>\replace{text}{replacement} (easyReview)</source>
-        <translation type="unfinished"/>
+        <translation>\replace{текст}{замена} (easyReview)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="142"/>
@@ -3925,7 +3925,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
-        <translation type="unfinished"/>
+        <translation>Эта команда создаёт внутритекстовую ссылку на источник, относящийся к ref-записи в BIB-файле.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
@@ -3935,12 +3935,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation type="unfinished"/>
+        <translation>Аргументом команды \bibliographystyle должно быть имя файла НазваниеСтиля.bst, который содержит определения стиля оформления библиографических ссылок.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="152"/>
         <source>\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. &apos;\addbibresource{mybibliography.bib}&apos;). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands.</source>
-        <translation type="unfinished"/>
+        <translation>\addbibresource{ИмяBIBфайла} задаёт путь к файлу, содержащий библиографические источники и определения BiBLaTeX’а (обычно .bib-файл). Имя файла должно быть с расширением (напр. «\addbibresource{moj_spisok.bib}»). Одна команда \addbibresource{} принимает на вход только одно имя файла (не несколько через запятую, поэтому каждый следующий источник необходимо добавлять повторной командой.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
@@ -3955,7 +3955,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
         <source>The displaymath environment can be used only in paragraph mode</source>
-        <translation type="unfinished"/>
+        <translation>Окружение displaymath можно использовать только в абзацной моде.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
@@ -3975,12 +3975,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Square Root - \sqrt{}</source>
-        <translation type="unfinished"/>
+        <translation>Корень — \sqrt{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="170"/>
         <source>\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{array}{стлб1стлб2...стлбN}%nтекст в 1-м столбце &amp; текст во 2-м столбце ... &amp; текст в n-м столбца \\%n...%n\end{array}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="193"/>
@@ -3990,7 +3990,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение multline* — это ненумерованное окружение multline.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
@@ -4000,7 +4000,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение cases создаёт структуру: фигурная скобка слева и массив с двумя столбцами и произвольным количеством строк, выровненных по левому краю.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
@@ -4010,7 +4010,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments.</source>
-        <translation type="unfinished"/>
+        <translation>Окружение split похоже на окружение multline, однако позволяет использовать вертикальное выравнивание по символу &amp;. Номер уравнения не добавляется. Это окружение используется внутри выключных окружений.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
@@ -4120,7 +4120,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>Negative thin space</source>
-        <translation type="unfinished"/>
+        <translation>отрицательный тонкий пробел</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="221"/>
@@ -4130,7 +4130,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="222"/>
         <source>3/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>3/18 ширины \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="223"/>
@@ -4140,7 +4140,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="224"/>
         <source>4/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>4/18 ширины \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="225"/>
@@ -4150,7 +4150,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="226"/>
         <source>5/18 of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>5/18 ширины \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="227"/>
@@ -4160,7 +4160,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="228"/>
         <source>regular whitespace</source>
-        <translation type="unfinished"/>
+        <translation>обычный пробел</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="229"/>
@@ -4175,7 +4175,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="232"/>
         <source>Twice the size of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>Две ширины \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="233"/>
@@ -5023,12 +5023,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="394"/>
         <source>Copy Image</source>
-        <translation type="unfinished"/>
+        <translation>Копировать изображение</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="395"/>
         <source>Save Image As...</source>
-        <translation type="unfinished"/>
+        <translation>Сохранить изображение как...</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="454"/>
@@ -5734,7 +5734,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2960"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Помощь</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2962"/>
@@ -8102,7 +8102,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="36"/>
         <source>&amp;Class Options</source>
-        <translation type="unfinished"/>
+        <translation>Опции &amp;класса</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="75"/>
@@ -8112,17 +8112,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Добавляет поддержку языка (переносы, макросы) в документ через пакет babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
         <source>Font Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Кодировка шрифта</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="236"/>
         <source>&amp;Packages</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Пакеты</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="254"/>
@@ -8137,7 +8137,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="281"/>
         <source>&amp;Geometry</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Геометрия</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="309"/>
@@ -8243,32 +8243,32 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="295"/>
         <source>Mathematical symbols from AMS</source>
-        <translation type="unfinished"/>
+        <translation>Математические символы, определённые AMS</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="296"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
-        <translation type="unfinished"/>
+        <translation>Пакет graphics для лёгкой вставки изображений (см. «Мастер вставки изображений»)</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="297"/>
         <source>Support for hyperlinks in your document</source>
-        <translation type="unfinished"/>
+        <translation>Поддержка гиперссылок в документе</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="298"/>
         <source>Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Пакет, расширяющий возможности amsmath и содержащий исправления багов в нём; загружает amsmath.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Возможность задавать окружения по образу и подобию теорем. Необходимо загружать после amsmath.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
-        <translation type="unfinished"/>
+        <translation>Ссылки на названия разделов, глав и т. д. Загружается hyperref’ом.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
@@ -8278,7 +8278,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="302"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
-        <translation type="unfinished"/>
+        <translation>Богатый возможностями пакет для набора цветных элементов и опцией [table] для цветных таблиц.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="495"/>
@@ -8293,7 +8293,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="562"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
-        <translation type="unfinished"/>
+        <translation>Все пакеты, отмеченные галочкой, будут добавлены в новый документ по нажатии кнопки OK посредством команды \usepackage.</translation>
     </message>
 </context>
 <context>
@@ -11379,7 +11379,9 @@ this other file before you can overwrite it.</source>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Все настройки будут сброшены на значения по умолчанию, а TeXStudio будет закрыт. Пожалуйста, запустите после этого TeXstudio вручную заново.
+
+Продолжить?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4586"/>

@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>Değişiklik günlüğü</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
@@ -3191,7 +3191,7 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math &amp;Equations</source>
-        <translation>Metematik &amp;denklemleri</translation>
+        <translation>Matematik &amp;denklemleri</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="28"/>
@@ -3707,7 +3707,7 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
-        <translation type="unfinished"/>
+        <translation>Gather* ortamı numaralandırılmamış bir araya getirme ortamıdır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
@@ -3772,112 +3772,112 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>env equation</source>
-        <translation>env denklemi</translation>
+        <translation>Equation ortamı</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>The equation environment centers one equation on the page and places the equation number in the margin.</source>
-        <translation type="unfinished"/>
+        <translation>Equation ortamı, bir denklemi sayfada ortalar ve kenar boşluğunda denklem numarasını ekler.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns.</source>
-        <translation type="unfinished"/>
+        <translation>Align ortamı, birden çok denklemi dikey olarak hizalar. Bunu birkaç denklem sütununda yapabilirsiniz. Hizalama ve sütunlara ayırma için &amp; işaretini kullanın.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Alignat ortamı, hizalama ortamının bir türüdür ve denklem sütunları arasındaki boşluğun açıkça belirtilmesine izin verir. Örneğin. sütun ayırıcı olarak &amp;\quad&amp; kullanın. Sütun sayısını parametre olarak verin.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Flaign ortamı, denklem sütunları arasındaki boşluğu olabildiğince genişleten ve kenarda denklem numarası için yeterli boşluk bırakan bir hizalama ortamıdır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>The gather environment is used for multiple centered equations separated by \\, each having an equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Gather ortamı, her birinde bir denklem numarası olan ve \\ ile ayrılmış birden fazla ortalanmış denklem için kullanılır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>The multline environment is a variation of the equation environment used for equations that don&apos;t fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered.</source>
-        <translation type="unfinished"/>
+        <translation>Multiline ortamı, bir satıra sığmayan denklemler için kullanılan bir denklem ortamı türüdür. Satırları ayırmak için \\ kullanın. İlk ve sonuncu arasındaki çizgiler ortalanır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
         <source>env equation* (amsmath)</source>
-        <translation>env denklemi* (amsmath)</translation>
+        <translation>Equation ortamı* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="173"/>
         <source>env align (amsmath)</source>
-        <translation>env hizası (amsmath)</translation>
+        <translation>Align ortamı (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
-        <translation type="unfinished"/>
+        <translation>Equation* ortamı numaralandırılmamış bir denklem ortamıdır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="185"/>
         <source>env align* (amsmath)</source>
-        <translation>env hizası* (amsmath)</translation>
+        <translation>Align ortamı* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="175"/>
         <source>env alignat (amsmath)</source>
-        <translation>env alignat (amsmath)</translation>
+        <translation>Alignat ortamı (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
-        <translation type="unfinished"/>
+        <translation>Align* ortamı numaralandırılmamış bir hizalama ortamıdır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="187"/>
         <source>env alignat* (amsmath)</source>
-        <translation>env alignat* (amsmath)</translation>
+        <translation>Alignat ortamı* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="177"/>
         <source>env flalign (amsmath)</source>
-        <translation>env flalign (amsmath)</translation>
+        <translation>Flalign ortamı (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
-        <translation type="unfinished"/>
+        <translation>Alignat* ortamı numaralandırılmamış bir alignat ortamıdır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="189"/>
         <source>env flalign* (amsmath)</source>
-        <translation>env flalign* (amsmath)</translation>
+        <translation>Flalign ortamı* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="179"/>
         <source>env gather (amsmath)</source>
-        <translation>env gather (amsmath)</translation>
+        <translation>Gather ortamı (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
-        <translation type="unfinished"/>
+        <translation>Flalign* ortamı numaralandırılmamış bir flalign ortamıdır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="191"/>
         <source>env gather* (amsmath)</source>
-        <translation>env gather* (amsmath)</translation>
+        <translation>Gather ortamı* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="181"/>
         <source>env multline (amsmath)</source>
-        <translation>env multline (amsmath)</translation>
+        <translation>Multline ortamı (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="72"/>
         <source>The description environment produces a labelled list.%nEach item of the list begins with an \item[label] command.</source>
-        <translation>Açıklama ortamı etiketli bir liste oluşturur.%nListenin her ögesi bir \item[label] komutuyla başlar.</translation>
+        <translation>Description ortamı etiketli bir liste oluşturur.%nListenin her ögesi bir \item[label] komutuyla başlar.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="137"/>
@@ -3942,12 +3942,12 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
         <source>The math environment can be used in both paragraph and LR mode</source>
-        <translation>Matematik ortamı hem paragraf hem de LR kipinde kullanılabilir</translation>
+        <translation>Math ortamı hem paragraf hem de LR kipinde kullanılabilir</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
         <source>The LaTeX math environment can be used in both paragraph and LR mode</source>
-        <translation>LaTeX matematik ortamı hem paragraf hem de LR kipinde kullanılabilir</translation>
+        <translation>LaTeX math ortamı hem paragraf hem de LR kipinde kullanılabilir</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="158"/>
@@ -3957,22 +3957,22 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>Fraction - \frac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Kesir - \frac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>Fraction - \dfrac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Kesir - \dfrac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>\dfrac is an amsmath package shorthand for \displaystyle\frac...</source>
-        <translation type="unfinished"/>
+        <translation>\dfrac, \displaystyle\frac... için bir amsmath kısaltmasıdır</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Square Root - \sqrt{}</source>
-        <translation type="unfinished"/>
+        <translation>Kare kök - \sqrt{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="170"/>
@@ -3982,72 +3982,72 @@ görüntülemek için gelişmiş seçenekleri devre dışı bırakın.</translat
     <message>
         <location filename="../src/additionaltranslations.cpp" line="193"/>
         <source>env multline* (amsmath)</source>
-        <translation>env multline* (amsmath)</translation>
+        <translation>Multline ortamı* (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
-        <translation type="unfinished"/>
+        <translation>Multiline* ortamı numaralandırılmamış bir çok satır ortamıdır.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
         <source>env cases (amsmath)</source>
-        <translation>env cases (amsmath)</translation>
+        <translation>Cases ortamı (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns.</source>
-        <translation type="unfinished"/>
+        <translation>Cases ortamı, sola hizalanmış iki sütundan oluşan bir satır dizisinin solunda bir ayraç olarak görüntülenen bir yapı sağlar.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>env split (amsmath)</source>
-        <translation>env split (amsmath)</translation>
+        <translation>Split ortamı (amsmath)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments.</source>
-        <translation type="unfinished"/>
+        <translation>Split ortamı, çok satırlı ortama benzer, ancak &amp; işaretlerini kullanarak dikey hizalama yapılmasına izin verir. Denklem numarası yoktur. Görüntülenen ortamlarda kullanın.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
         <source>env Corollary (ntheorem)</source>
-        <translation>env Sonucu (ntheorem)</translation>
+        <translation>Corollary ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="200"/>
         <source>env Definition (ntheorem)</source>
-        <translation>env Tanımı (ntheorem)</translation>
+        <translation>Definition ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="201"/>
         <source>env Example (ntheorem)</source>
-        <translation>env Örneği (ntheorem)</translation>
+        <translation>Example ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="202"/>
         <source>env Lemma (ntheorem)</source>
-        <translation>env Ön kabulu (ntheorem)</translation>
+        <translation>Lemma ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="203"/>
         <source>env Proof (ntheorem)</source>
-        <translation>env İspatı (ntheorem)</translation>
+        <translation>Proof ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="204"/>
         <source>env Proposition (ntheorem)</source>
-        <translation>env Önermesi (ntheorem)</translation>
+        <translation>Proposition ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="205"/>
         <source>env Remark (ntheorem)</source>
-        <translation>env Notu (ntheorem)</translation>
+        <translation>Remark ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="206"/>
         <source>env Theorem (ntheorem)</source>
-        <translation>env Teoremi (ntheorem)</translation>
+        <translation>Theorem ortamı (ntheorem)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="207"/>
@@ -4711,7 +4711,7 @@ Tüm değişiklikleri geri almak istediğinize emin misiniz?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="219"/>
         <source>Place in Figure Environment</source>
-        <translation>Şekil ortamına yerleştir</translation>
+        <translation>Figure ortamına yerleştir</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="228"/>
@@ -5731,7 +5731,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2960"/>
         <source>Help</source>
-        <translation type="unfinished"/>
+        <translation>Yardım</translation>
     </message>
     <message>
         <location filename="../src/pdfviewer/PDFDocument.cpp" line="2962"/>
@@ -8259,7 +8259,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation>Teoreminizi env. gibi tanımlayın, amsmath eklentisinden sonra yüklenmelidir</translation>
+        <translation>Teoreminizi ortam olarak tanımlayın, amsmath eklentisinden sonra yüklenmelidir</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
@@ -8823,17 +8823,17 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/syntaxcheck.cpp" line="223"/>
         <source>tabular command outside tabular env</source>
-        <translation>tablo komutu tablo sekme ortamının dışında</translation>
+        <translation>tabular komutu tablo sekme ortamının dışında</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="224"/>
         <source>math command outside math env</source>
-        <translation>matematik komutu matematik ortamının dışında</translation>
+        <translation>math komutu matematik ortamının dışında</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="225"/>
         <source>tabbing command outside tabbing env</source>
-        <translation>sekme komutu sekme ortamının dışında</translation>
+        <translation>tabbing komutu sekme ortamının dışında</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="226"/>
@@ -11374,7 +11374,9 @@ dosyayı kaydetmeniz ya da kapatmanız gerekiyor.</translation>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Bu işlem, tüm ayarları varsayılan değerlerine sıfırlar. Tamamlandığında TeXstudio kapatılır. Ardından TeXstudio uygulamasını el ile yeniden başlatabilirsiniz.
+
+İlerlemek istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4586"/>

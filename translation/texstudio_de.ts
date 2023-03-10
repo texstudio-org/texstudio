@@ -3772,12 +3772,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>The equation environment centers one equation on the page and places the equation number in the margin.</source>
-        <translation type="unfinished"/>
+        <translation>Die Equation-Umgebung zentriert die Gleichung und platziert die Gleichungsnummer rechts am Rand.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
         <source>The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns.</source>
-        <translation type="unfinished"/>
+        <translation>Die align Umgebung richtet mehrere Gleichung senkrecht zueinander aus. Dies kann in mehreren Spalten erfolgen. Nutze das &amp;-Zeichen als Trenner für verschiedene Spalten.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
@@ -3792,7 +3792,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
         <source>The gather environment is used for multiple centered equations separated by \\, each having an equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Die gather-Umgebung wird benutzt für mehrere zentrierte Gleichungen die durch \\ getrennt werden, jede mit eigener Nummer.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
@@ -3812,7 +3812,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="184"/>
         <source>The equation* environment is an unnumbered equation environment.</source>
-        <translation type="unfinished"/>
+        <translation>Die equation* Umgebung ist eine unnummerierte equation Umgebung.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="185"/>
@@ -3827,7 +3827,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="186"/>
         <source>The align* environment is an unnumbered align environment.</source>
-        <translation type="unfinished"/>
+        <translation>Die align* Umgebung ist eine unnummerierte align Umgebung.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="187"/>
@@ -3842,7 +3842,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="188"/>
         <source>The alignat* environment is an unnumbered alignat environment.</source>
-        <translation type="unfinished"/>
+        <translation>Die alignat* Umgebung ist eine unnummerierte alignat Umgebung.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="189"/>
@@ -3857,7 +3857,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="190"/>
         <source>The flalign* environment is an unnumbered flalign environment.</source>
-        <translation type="unfinished"/>
+        <translation>Die flalign* Umgebung ist eine unnummerierte flalign Umgebung.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="191"/>
@@ -3962,7 +3962,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>\dfrac is an amsmath package shorthand for \displaystyle\frac...</source>
-        <translation type="unfinished"/>
+        <translation>\dfrac ist eine Abkürzung des amsmath Paketes für \displaystyle\frac...</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
@@ -3982,7 +3982,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="194"/>
         <source>The multline* environment is an unnumbered multline environment.</source>
-        <translation type="unfinished"/>
+        <translation>Die multiline* Umgebung ist eine unnummerierte multiline Umgebung.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
