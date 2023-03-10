@@ -1,5 +1,5 @@
 # memhangul-x package
-# Matthew Bertucci 2022/05/05 for v11.12
+# Matthew Bertucci 2023/03/09 for v23.03
 
 ## default to luatex
 #include:luatexko
@@ -25,6 +25,8 @@ arabicfront
 hangulpagestyle
 pdfbookmark
 polyglossia
+babelhangul
+babelvacant
 gremph
 itemph
 latinquote
@@ -45,11 +47,14 @@ usedotemph
 
 #ifOption:polyglossia
 #include:polyglossia
-#include:xparse
 \sethangulfont{font name}
 \sethangulfont{font name}[font features]
 \hangulfont#*
 \hangulfonttt#*
+#endif
+
+#ifOption:babelhangul
+#include:babel
 #endif
 
 #ifOption:interworddefault
