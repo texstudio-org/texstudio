@@ -3787,7 +3787,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
         <source>The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number.</source>
-        <translation type="unfinished"/>
+        <translation>Die flalign Umgebung ist eine algin Umgebung, die den Zwischenraum zwischen den Gleichungsspalten maximal ausdehnt, so dass gerade die Gleichungsnummer am Rand hineinpasst.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="180"/>
@@ -3797,7 +3797,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="182"/>
         <source>The multline environment is a variation of the equation environment used for equations that don&apos;t fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered.</source>
-        <translation type="unfinished"/>
+        <translation>Die multiline Umgebung ist eine Variante der equation Umgebung für Gleichungen, die nicht in eine Zeile passen. Nutze \\ um eine Zeile umzubrechen. Zeilen zwischen der ersten und letzten werden zentriert.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -3992,7 +3992,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="196"/>
         <source>The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns.</source>
-        <translation type="unfinished"/>
+        <translation>Die cases Umgebung zeigt eine geschweifte Klammer links von einem Feld von Zeilen, die aus zwei links ausgerichteten Spalten bestehen</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
@@ -4002,7 +4002,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="198"/>
         <source>The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments.</source>
-        <translation type="unfinished"/>
+        <translation>Die split Umgebung ist ähnlich wie die multiline Umgebung, aber sie erlaubt das vertikale Ausrichten am &amp; Zeichen. Es gibt keine Gleichungsnummer. Muss innerhalb einer Matheumgebung verwendet werden.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
