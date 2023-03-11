@@ -3782,7 +3782,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="176"/>
         <source>The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Die alignat Umgebung ist eine Variante der align Umgebung und erlaubt die explizite Spezifikation der Lücke zwischen Gleichungsspalten. Zum Beispiel &amp;\quad&amp; als Spaltentrenner. Die Zahl der Spalten muss angegeben werden. </translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="178"/>
