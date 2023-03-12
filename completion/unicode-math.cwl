@@ -27,7 +27,7 @@
 \setmathfontface{cmd}[font features]{font}[font features%keyvals]#*d
 \setoperatorfont{cmd}
 \NewNegationCommand{symbol or cmd%cmd}{definition}#*d
-\RenewNegationCommand{symbol or cmd%cmd}{definition}#*d
+\RenewNegationCommand{symbol or cmd%cmd}{definition}#*
 
 #keyvals:\unimathsetup#c,\setmathfont#c,\setmathfontface#c,\usepackage/unicode-math#c
 normal-style=#ISO,TeX,french,upright,literal
