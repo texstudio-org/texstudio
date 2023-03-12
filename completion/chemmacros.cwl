@@ -42,7 +42,7 @@ modules={%<list of modules%>}
 \p{anything}
 
 \NewChemEqConstant{cmd}{name}{subscript}#*d
-\RenewChemEqConstant{cmd}{name}{default appearance}#*d
+\RenewChemEqConstant{cmd}{name}{default appearance}#*
 \DeclareChemEqConstant{cmd}{name}{default appearance}#*d
 \ProvideChemEqConstant{cmd}{name}{default appearance}#*d
 
@@ -78,11 +78,11 @@ eq-constant={%<text%>}
 \fdelm
 
 \NewChemCharge{cmd}{charge symbol}#*d
-\RenewChemCharge{cmd}{charge symbol}#*d
+\RenewChemCharge{cmd}{charge symbol}#*
 \DeclareChemCharge{cmd}{charge symbol}#*d
 \ProvideChemCharge{cmd}{charge symbol}#*d
 \NewChemPartialCharge{cmd}{charge symbol}#*d
-\RenewChemPartialCharge{cmd}{charge symbol}#*d
+\RenewChemPartialCharge{cmd}{charge symbol}#*
 \DeclareChemPartialCharge{cmd}{charge symbol}#*d
 \ProvideChemPartialCharge{cmd}{charge symbol}#*d
 
@@ -150,7 +150,7 @@ format={%<format%>}
 
 \NewChemIUPAC{cmd}{declaration}#*d
 \ProvideChemIUPAC{cmd}{declaration}#*d
-\RenewChemIUPAC{cmd}{declaration}#*d
+\RenewChemIUPAC{cmd}{declaration}#*
 \DeclareChemIUPAC{cmd}{declaration}#*d
 \LetChemIUPAC{cmd1%cmd}{cmd2}#*d
 \NewChemIUPACShorthand{shorthand token}{cs}#*
@@ -160,7 +160,7 @@ format={%<format%>}
 \RemoveChemIUPACShorthand{shorthand token}{cs}#*
 \NewChemLatin{cmd}{phrase}#*d
 \DeclareChemLatin{cmd}{phrase}#*d
-\RenewChemLatin{cmd}{phrase}#*d
+\RenewChemLatin{cmd}{phrase}#*
 \ProvideChemLatin{cmd}{phrase}#*d
 
 #keyvals:\chemsetup#c
@@ -191,11 +191,11 @@ latin-format={%<definition%>}
 \ba
 
 \NewChemParticle{cmd}{formula%plain}#*d
-\RenewChemParticle{cmd}{formula%plain}#*d
+\RenewChemParticle{cmd}{formula%plain}#*
 \DeclareChemParticle{cmd}{formula%plain}#*d
 \ProvideChemParticle{cmd}{formula%plain}#*d
 \NewChemNucleophile{cmd}{formula%plain}#*d
-\RenewChemNucleophile{cmd}{formula%plain}#*d
+\RenewChemNucleophile{cmd}{formula%plain}#*
 \DeclareChemNucleophile{cmd}{formula%plain}#*d
 \ProvideChemNucleophile{cmd}{formula%plain}#*d
 
@@ -214,7 +214,7 @@ space=##L
 
 \NewChemPhase{cmd}{symbol}#*d
 \DeclareChemPhase{cmd}{symbol}#*d
-\RenewChemPhase{cmd}{symbol}#*d
+\RenewChemPhase{cmd}{symbol}#*
 \ProvideChemPhase{cmd}{symbol}#*d
 
 #keyvals:\chemsetup#c
@@ -343,8 +343,8 @@ superscript=
 
 \NewChemReaction{envname}{math envname}#*N
 \NewChemReaction{envname}[args]{math envname}#*N
-\RenewChemReaction{envname}{math envname}#*N
-\RenewChemReaction{envname}[args]{math envname}#*N
+\RenewChemReaction{envname}{math envname}#*
+\RenewChemReaction{envname}[args]{math envname}#*
 \DeclareChemReaction{envname}{math envname}#*N
 \DeclareChemReaction{envname}[args]{math envname}#*N
 \ProvideChemReaction{envname}{math envname}#*N
@@ -516,7 +516,7 @@ float-method=#KOMA,memoir,tocbasic,newfloat,floatrow,float,traditional
 
 \NewChemNMR{cmd}{isotope,atom}#*d
 \DeclareChemNMR{cmd}{isotope,atom}#*d
-\RenewChemNMR{cmd}{isotope,atom}#*d
+\RenewChemNMR{cmd}{isotope,atom}#*
 \ProvideChemNMR{cmd}{isotope,atom}#*d
 
 #keyvals:\chemsetup#c
@@ -572,7 +572,7 @@ use-equal#true,false
 \gibbs*{value}
 
 \NewChemState{cmd}{options%keyvals}#*d
-\RenewChemState{cmd}{options%keyvals}#*d
+\RenewChemState{cmd}{options%keyvals}#*
 \DeclareChemState{cmd}{options%keyvals}#*d
 \ProvideChemState{cmd}{options%keyvals}#*d
 

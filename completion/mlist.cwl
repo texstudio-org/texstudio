@@ -32,8 +32,8 @@
 
 \newmlist{macro%cmd}#d
 \newmlist{macro%cmd}[options%keyvals]#d
-\renewmlist{macro%cmd}#d
-\renewmlist{macro%cmd}[options%keyvals]#d
+\renewmlist{macro%cmd}
+\renewmlist{macro%cmd}[options%keyvals]
 
 \mlistsetup{options%keyvals}
 

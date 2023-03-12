@@ -57,8 +57,8 @@ framemethod=#default,tex,latex,none,0,tikx,pgf,1,pstricks,ps,postscript,2
 
 \newmdenv{envname}#N
 \newmdenv[options%keyvals]{envname}#N
-\renewmdenv{envname}#N
-\renewmdenv[options%keyvals]{envname}#N
+\renewmdenv{envname}
+\renewmdenv[options%keyvals]{envname}
 \surroundwithmdframed{env}
 \surroundwithmdframed[options%keyvals]{env}
 \mdflength{options%keyvals}#*

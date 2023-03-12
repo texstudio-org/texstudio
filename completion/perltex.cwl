@@ -16,12 +16,12 @@ optional
 \perlnewcommand*{command}[args]{definition}#d
 \perlnewcommand*{command}[args][default]{definition}#d
 
-\perlrenewcommand{command}{definition}#d
-\perlrenewcommand{command}[args]{definition}#d
-\perlrenewcommand{command}[args][default]{definition}#d
-\perlrenewcommand*{command}{definition}#d
-\perlrenewcommand*{command}[args]{definition}#d
-\perlrenewcommand*{command}[args][default]{definition}#d
+\perlrenewcommand{command}{definition}
+\perlrenewcommand{command}[args]{definition}
+\perlrenewcommand{command}[args][default]{definition}
+\perlrenewcommand*{command}{definition}
+\perlrenewcommand*{command}[args]{definition}
+\perlrenewcommand*{command}[args][default]{definition}
 
 \perlnewenvironment{envname}[args][default]{begdef}{enddef}#N
 \perlnewenvironment{envname}[args]{begdef}{enddef}#N
@@ -30,11 +30,11 @@ optional
 \perlnewenvironment*{envname}[args]{begdef}{enddef}#N
 \perlnewenvironment*{envname}{begdef}{enddef}#N
 
-\perlrenewenvironment{envname}[args][default]{begdef}{enddef}#N
-\perlrenewenvironment{envname}[args]{begdef}{enddef}#N
-\perlrenewenvironment{envname}{begdef}{enddef}#N
-\perlrenewenvironment*{envname}[args][default]{begdef}{enddef}#N
-\perlrenewenvironment*{envname}[args]{begdef}{enddef}#N
-\perlrenewenvironment*{envname}{begdef}{enddef}#N
+\perlrenewenvironment{envname}[args][default]{begdef}{enddef}
+\perlrenewenvironment{envname}[args]{begdef}{enddef}
+\perlrenewenvironment{envname}{begdef}{enddef}
+\perlrenewenvironment*{envname}[args][default]{begdef}{enddef}
+\perlrenewenvironment*{envname}[args]{begdef}{enddef}
+\perlrenewenvironment*{envname}{begdef}{enddef}
 
 \perldo{perl code%definition}

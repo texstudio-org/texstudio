@@ -3,7 +3,6 @@
 
 #include:l3keys2e
 #include:etoolbox
-#include:xparse
 #include:currfile
 
 #keyvals:\usepackage/knowledge#c
@@ -282,38 +281,38 @@ no index
 
 \knowledgenewrobustcmd{cmd}[args]{def}#*d
 \knowledgenewcommand{cmd}[args]{def}#*d
-\knowledgerenewcommand{cmd}[args]{def}#*d
+\knowledgerenewcommand{cmd}[args]{def}#*
 \KnowledgeNewDocumentCommand{cmd}{xargs}{def}#*d
-\KnowledgeRenewDocumentCommand{cmd}{xargs}{def}#*d
+\KnowledgeRenewDocumentCommand{cmd}{xargs}{def}#*
 \KnowledgeProvideDocumentCommand{cmd}{xargs}{def}#*d
 \KnowledgeDeclareDocumentCommand{cmd}{xargs}{def}#*d
 \knowledgedeclarecommand{cmd}[args]{def}#*d
 \knowledgenewmathcommand{cmd}[args]{def}#*d
 \knowledgenewtextcommand{cmd}[args]{def}#*d
-\knowledgerenewmathcommand{cmd}[args]{def}#*d
-\knowledgerenewtextcommand{cmd}[args]{def}#*d
+\knowledgerenewmathcommand{cmd}[args]{def}#*
+\knowledgerenewtextcommand{cmd}[args]{def}#*
 \knowledgedeclaremathcommand{cmd}[args]{def}#*d
 \knowledgedeclaretextcommand{cmd}[args]{def}#*d
 \KnowledgeNewDocumentMathCommand{cmd}{xargs}{def}#*d
 \KnowledgeNewDocumentTextCommand{cmd}{xargs}{def}#*d
-\KnowledgeRenewDocumentMathCommand{cmd}{xargs}{def}#*d
-\KnowledgeRenewDocumentTextCommand{cmd}{xargs}{def}#*d
+\KnowledgeRenewDocumentMathCommand{cmd}{xargs}{def}#*
+\KnowledgeRenewDocumentTextCommand{cmd}{xargs}{def}#*
 \KnowledgeProvideDocumentMathCommand{cmd}{xargs}{def}#*d
 \KnowledgeProvideDocumentTextCommand{cmd}{xargs}{def}#*d
 \KnowledgeDeclareDocumentMathCommand{cmd}{xargs}{def}#*d
 \KnowledgeDeclareDocumentTextCommand{cmd}{xargs}{def}#*d
 \knowledgenewcommandPIE{cmd}[args]{def}#*d
-\knowledgerenewcommandPIE{cmd}[args]{def}#*d
+\knowledgerenewcommandPIE{cmd}[args]{def}#*
 \knowledgedeclarecommandPIE{cmd}[args]{def}#*d
 \knowledgenewmathcommandPIE{cmd}[args]{def}#*d
-\knowledgerenewmathcommandPIE{cmd}[args]{def}#*d
+\knowledgerenewmathcommandPIE{cmd}[args]{def}#*
 \knowledgedeclaremathcommandPIE{cmd}[args]{def}#*d
 \KnowledgeNewDocumentCommandPIE{cmd}{xargs}{def}#*d
-\KnowledgeRenewDocumentCommandPIE{cmd}{xargs}{def}#*d
+\KnowledgeRenewDocumentCommandPIE{cmd}{xargs}{def}#*
 \KnowledgeDeclareDocumentCommandPIE{cmd}{xargs}{def}#*d
 \KnowledgeProvideDocumentCommandPIE{cmd}{xargs}{def}#*d
 \KnowledgeNewDocumentMathCommandPIE{cmd}{xargs}{def}#*d
-\KnowledgeRenewDocumentMathCommandPIE{cmd}{xargs}{def}#*d
+\KnowledgeRenewDocumentMathCommandPIE{cmd}{xargs}{def}#*
 \KnowledgeDeclareDocumentMathCommandPIE{cmd}{xargs}{def}#*d
 \KnowledgeProvideDocumentMathCommandPIE{cmd}{xargs}{def}#*d
 

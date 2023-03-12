@@ -42,7 +42,7 @@ i
 \begin{description}[options%keyvals]
 
 \newlist{name%envname}{type%keyvals}{max-depth}#N
-\renewlist{name%envname}{type%keyvals}{max-depth}#N
+\renewlist{name%envname}{type%keyvals}{max-depth}
 #keyvals:\newlist#c,\renewlist#c
 enumerate
 itemize

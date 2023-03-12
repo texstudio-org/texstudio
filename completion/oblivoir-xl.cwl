@@ -1,5 +1,5 @@
 # oblivoir-xl class
-# Matthew Bertucci 2022/05/05 for v0.8.8
+# Matthew Bertucci 2023/03/09 for v3.2.1
 
 #include:class-memoir
 #include:ifluatex
@@ -48,6 +48,8 @@ obspace
 oldhangul
 openright
 polyglossia
+babelhangul
+babelvacant
 preload={%<package1,package2,...%>}
 preloadoption={%<package options%>}
 quotespacing

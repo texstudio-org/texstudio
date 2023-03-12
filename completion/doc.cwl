@@ -57,8 +57,8 @@ noprint
 
 \NewDocElement{element}{envname}#N
 \NewDocElement[options%keyvals]{element}{envname}#N
-\RenewDocElement{element}{envname}#N
-\RenewDocElement[options%keyvals]{element}{envname}#N
+\RenewDocElement{element}{envname}
+\RenewDocElement[options%keyvals]{element}{envname}
 
 #keyvals:\NewDocElement#c,\RenewDocElement#c
 macrolike#true,false

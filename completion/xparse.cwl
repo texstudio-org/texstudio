@@ -1,14 +1,14 @@
 #include:expl3
 \NewDocumentCommand{cmd}{xargs}{def}#d
-\RenewDocumentCommand{cmd}{xargs}{def}#d
+\RenewDocumentCommand{cmd}{xargs}{def}
 \ProvideDocumentCommand{cmd}{xargs}{def}#d
 \DeclareDocumentCommand{cmd}{xargs}{def}#d
 \NewDocumentEnvironment{envname}{xargs}{begindef}{enddef}#N
-\RenewDocumentEnvironment{envname}{xargs}{begindef}{enddef}#N
+\RenewDocumentEnvironment{envname}{xargs}{begindef}{enddef}
 \ProvideDocumentEnvironment{envname}{xargs}{begindef}{enddef}#N
 \DeclareDocumentEnvironment{envname}{xargs}{begindef}{enddef}#N
 \NewExpandableDocumentCommand{cmd}{xargs}{def}#d
-\RenewExpandableDocumentCommand{cmd}{xargs}{def}#d
+\RenewExpandableDocumentCommand{cmd}{xargs}{def}
 \ProvideExpandableDocumentCommand{cmd}{xargs}{def}#d
 \DeclareExpandableDocumentCommand{cmd}{xargs}{def}#d
 \IfNoValueTF{arg}{-NoValue-Code}{ValueCode}

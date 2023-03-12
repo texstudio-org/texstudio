@@ -24,8 +24,8 @@
 \settasks{keyvals}
 \NewTasksEnvironment{envname}#N
 \NewTasksEnvironment[keyvals]{envname}[separator](cols)#N
-\RenewTasksEnvironment{envname}#N
-\RenewTasksEnvironment[keyvals]{envname}[separator](cols)#N
+\RenewTasksEnvironment{envname}
+\RenewTasksEnvironment[keyvals]{envname}[separator](cols)
 
 #keyvals:\begin{tasks},\settasks,\NewTasksEnvironment,\RenewTasksEnvironment
 style=#itemize,enumerate

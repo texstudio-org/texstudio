@@ -1,5 +1,5 @@
 # oblivoir-misc package
-# Matthew Bertucci 2022/05/05 for v0.3
+# Matthew Bertucci 2023/03/09 for v0.4
 
 #include:etoolbox
 
@@ -9,3 +9,8 @@
 \obhlheight#*
 \obhlcolor#*
 \setpagenode#*
+
+\begin{hverse}
+\begin{hverse}[code]
+\end{hverse}
+\stanzaskip#*

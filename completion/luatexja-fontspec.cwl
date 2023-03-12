@@ -31,8 +31,8 @@ silent
 \setmonojfont[font features%keyvals]{font}
 \newjfontfamily{cmd}{font}#d
 \newjfontfamily{cmd}[font features%keyvals]{font}#d
-\renewjfontfamily{cmd}{font}#d
-\renewjfontfamily{cmd}[font features%keyvals]{font}#d
+\renewjfontfamily{cmd}{font}
+\renewjfontfamily{cmd}[font features%keyvals]{font}
 \setjfontfamily{cmd}{font}#d
 \setjfontfamily{cmd}[font features%keyvals]{font}#d
 \newjfontface{cmd}{font}#d

@@ -2075,7 +2075,7 @@ SuppressWarning#true,false
 #repl:"> »
 #endif
 
-### greek.ldf v1.10 (and options greek.polutoniko and greek.ancient) ###
+### greek.ldf v1.12 (and options greek.polutoniko and greek.ancient) ###
 #ifOption:greek
 \captionsgreek
 \dategreek
@@ -2084,10 +2084,18 @@ SuppressWarning#true,false
 \greekscript
 \greektext
 \ensuregreek{text}
-\textgreek{text}
+\lgrfont{text}
+\textgreek{text}#*
 \greeknumeral{number}
 \Greeknumeral{number}
+\greeknumeralsix#*
+\greeknumeralSix#*
+\greeknumeralninety#*
+\greeknumeralNinety#*
 \greekfontencoding#*
+\BabelGreekRestoreFontEncoding#*
+\BabelGreekPreviousFontEncoding#*
+\EnsureStandardFontEncoding#*
 \textol{text}#*
 \outlfamily#*
 \greekhyphenmins#*

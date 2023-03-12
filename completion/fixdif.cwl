@@ -14,7 +14,7 @@ nopartial
 \partialnondif#*m
 \newdif{cmd}{def}#d
 \newdif*{cmd}{def}#d
-\renewdif{cmd}{def}#d
-\renewdif*{cmd}{def}#d
+\renewdif{cmd}{def}
+\renewdif*{cmd}{def}
 \mathdif{symbol}#m
 \mathdif*{symbol}#m

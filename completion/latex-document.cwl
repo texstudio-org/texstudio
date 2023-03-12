@@ -358,7 +358,6 @@
 \part[short title]{title}#L0
 \partname
 \part{title}#L0
-\pdfinfo{info}
 \plus
 \poptabs#T
 \pounds
@@ -544,18 +543,18 @@
 \newenvironment*{envname}[args][default]{begdef}{enddef}#N
 \newenvironment*{envname}[args]{begdef}{enddef}#N
 \newenvironment*{envname}{begdef}{enddef}#N
-\renewcommand{cmd}[args][default]{def}#d
-\renewcommand{cmd}[args]{def}#d
-\renewcommand{cmd}{def}#d
-\renewcommand*{cmd}[args][default]{def}#d
-\renewcommand*{cmd}[args]{def}#d
-\renewcommand*{cmd}{def}#d
-\renewenvironment{envname}[args][default]{begdef}{enddef}#N
-\renewenvironment{envname}[args]{begdef}{enddef}#N
-\renewenvironment{envname}{begdef}{enddef}#N
-\renewenvironment*{envname}[args][default]{begdef}{enddef}#N
-\renewenvironment*{envname}[args]{begdef}{enddef}#N
-\renewenvironment*{envname}{begdef}{enddef}#N
+\renewcommand{cmd}[args][default]{def}
+\renewcommand{cmd}[args]{def}
+\renewcommand{cmd}{def}
+\renewcommand*{cmd}[args][default]{def}
+\renewcommand*{cmd}[args]{def}
+\renewcommand*{cmd}{def}
+\renewenvironment{envname}[args][default]{begdef}{enddef}
+\renewenvironment{envname}[args]{begdef}{enddef}
+\renewenvironment{envname}{begdef}{enddef}
+\renewenvironment*{envname}[args][default]{begdef}{enddef}
+\renewenvironment*{envname}[args]{begdef}{enddef}
+\renewenvironment*{envname}{begdef}{enddef}
 # combinations
 \left#mK
 \left(#m

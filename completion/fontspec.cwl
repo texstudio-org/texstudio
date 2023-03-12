@@ -53,10 +53,10 @@ silent
 \setfontfamily{cmd}[font features]{font}#*d
 \setfontfamily{cmd}{font}[font features%keyvals]#d
 \setfontfamily{cmd}[font features]{font}[font features%keyvals]#*d
-\renewfontfamily{cmd}{font}#d
-\renewfontfamily{cmd}[font features]{font}#*d
-\renewfontfamily{cmd}{font}[font features%keyvals]#d
-\renewfontfamily{cmd}[font features]{font}[font features%keyvals]#*d
+\renewfontfamily{cmd}{font}
+\renewfontfamily{cmd}[font features]{font}#*
+\renewfontfamily{cmd}{font}[font features%keyvals]
+\renewfontfamily{cmd}[font features]{font}[font features%keyvals]#*
 \providefontfamily{cmd}{font}#d
 \providefontfamily{cmd}[font features]{font}#*d
 \providefontfamily{cmd}{font}[font features%keyvals]#d
@@ -79,10 +79,10 @@ silent
 \setfontface{cmd}[font features]{font}#*d
 \setfontface{cmd}{font}[font features%keyvals]#d
 \setfontface{cmd}[font features]{font}[font features%keyvals]#*d
-\renewfontface{cmd}{font}#d
-\renewfontface{cmd}[font features]{font}#*d
-\renewfontface{cmd}{font}[font features%keyvals]#d
-\renewfontface{cmd}[font features]{font}[font features%keyvals]#*d
+\renewfontface{cmd}{font}
+\renewfontface{cmd}[font features]{font}#*
+\renewfontface{cmd}{font}[font features%keyvals]
+\renewfontface{cmd}[font features]{font}[font features%keyvals]#*
 \providefontface{cmd}{font}#d
 \providefontface{cmd}[font features]{font}#*d
 \providefontface{cmd}{font}[font features%keyvals]#d

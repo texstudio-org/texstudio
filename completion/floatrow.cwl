@@ -170,11 +170,11 @@ relatedcapstyle=#yes,no
 \end{subfloatrow*}#*
 
 \newdimentocommand{dimen macro}{cmd}{def}#*d
-\renewdimentocommand{dimen macro}{cmd}{def}#*d
+\renewdimentocommand{dimen macro}{cmd}{def}#*
 \newskiptocommand{skip macro}{cmd}{def}#*d
-\renewskiptocommand{skip macro}{cmd}{def}#*d
+\renewskiptocommand{skip macro}{cmd}{def}#*
 \newlengthtocommand{length macro}{cmd}{def}#*d
-\renewlengthtocommand{length macro}{cmd}{def}#*d
+\renewlengthtocommand{length macro}{cmd}{def}#*
 
 \DefaultCommonHeight#*
 \CommonHeight#*

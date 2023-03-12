@@ -30,10 +30,10 @@ titles
 \namedlegend[short title]{title%text}
 \newfixedcaption{command}{env}#*d
 \newfixedcaption[cap-command]{command}{env}#*d
-\renewfixedcaption{command}{env}#*d
-\newfixedcaption[cap-command]{command}{env}#*d
+\renewfixedcaption{command}{env}#*
+\renewfixedcaption[cap-command]{command}{env}#*
 \providefixedcaption{command}{env}#*d
-\newfixedcaption[cap-command]{command}{env}#*d
+\providefixedcaption[cap-command]{command}{env}#*d
 \bitwonumcaption{short1%text}{long1%text}{name}{short2%text}{long2%text}
 \bitwonumcaption[label]{short1%text}{long1%text}{name}{short2%text}{long2%text}#l
 \bionenumcaption{short1%text}{long1%text}{name}{short2%text}{long2%text}

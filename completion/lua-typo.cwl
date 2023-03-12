@@ -1,5 +1,5 @@
 # lua-typo package
-# Matthew Bertucci 2023/02/12 for v0.61
+# Matthew Bertucci 2023/03/09 for v0.65
 
 #include:luatexbase
 #include:luacode
@@ -25,6 +25,7 @@ EOLShortWords#true,false
 FirstWordMatch#true,false
 LastWordMatch#true,false
 FootnoteSplit#true,false
+ShortFinalWord#true,false
 #endkeyvals
 
 \luatypoLLminWD#*
@@ -35,6 +36,7 @@ FootnoteSplit#true,false
 \luatypoPageMin#*
 \luatypoMinFull#*
 \luatypoMinPart#*
+\luatypoMinLen#*
 
 \luatypoOneChar{language}{list of words}
 \luatypoTwoChars{language}{list of words}
