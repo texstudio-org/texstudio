@@ -1,5 +1,5 @@
 # bicaption package
-# Matthew Bertucci 2022/05/24 for v1.3
+# Matthew Bertucci 2023/03/12 for v1.6
 
 #include:caption
 
@@ -76,8 +76,12 @@ config=%<file name%>
 #endkeyvals
 
 \captionsetup[float type][biling selection]{options%keyvals}
+\bicaptionsetup[float type]{lang1 options%keyvals}{lang2 options}
+\bicaptionsetup{lang1 options%keyvals}{lang2 options}
+\bicaptionsetup*[float type]{lang1 options%keyvals}{lang2 options}#*
+\bicaptionsetup*{lang1 options%keyvals}{lang2 options}#*
 
-#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/bicaption#c,\DeclareCaptionStyle#c
+#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/bicaption#c,\DeclareCaptionStyle#c,\bicaptionsetup#c,\bicaptionsetup*#c
 lang=%<language%>
 bi-lang=#both,first,second
 bi-slc#true,false
