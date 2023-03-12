@@ -9,8 +9,8 @@
 
 \newabbr{cmd}{definition}#d
 \newabbr*{cmd}{definition}#d
-\renewabbr{cmd}{definition}#d
-\renewabbr*{cmd}{definition}#d
+\renewabbr{cmd}{definition}
+\renewabbr*{cmd}{definition}
 \defabbr{cmd}{definition}#d
 \defabbr*{cmd}{definition}#d
 
