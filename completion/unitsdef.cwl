@@ -54,9 +54,9 @@ noconfig
 \unitSIdef#*
 
 \newunit{\unitmacro%cmd}{unitsign}#d
-\renewunit{\unitmacro%cmd}{unitsign}#d
+\renewunit{\unitmacro%cmd}{unitsign}
 \newnosepunit{\unitmacro%cmd}{unitsign}#d
-\renewnosepunit{\unitmacro%cmd}{unitsign}#d
+\renewnosepunit{\unitmacro%cmd}{unitsign}
 \per{numerator}{denominator}
 \unittimes
 \unitsep
