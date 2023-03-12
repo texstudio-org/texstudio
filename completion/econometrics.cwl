@@ -2,7 +2,7 @@
 # Matthew Bertucci 1/31/2022 for v1.0
 
 \newoperator{cmd}{text%plain}{after code}#d
-\renewoperator{cmd}{text%plain}{after code}#d
+\renewoperator{cmd}{text%plain}{after code}
 
 \SC#m
 \SN#m
