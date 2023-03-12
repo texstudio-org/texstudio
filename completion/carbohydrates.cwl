@@ -11,8 +11,8 @@
 
 \newaldose{cmd}{spec}#d
 \newaldose{cmd}[options%keyvals]{spec}#d
-\renewaldose{cmd}{spec}#d
-\renewaldose{cmd}[options%keyvals]{spec}#d
+\renewaldose{cmd}{spec}
+\renewaldose{cmd}[options%keyvals]{spec}
 
 \allose
 \allose[options%keyvals]
