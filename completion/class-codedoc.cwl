@@ -109,8 +109,8 @@ tracing2
 \CodeOutput
 \NewExample{envname}{code input}{code output}{immediate execution}#N
 \NewExample[options%keyvals]{envname}{code input}{code output}{immediate execution}#N
-\RenewExample{envname}{code input}{code output}{immediate execution}#N
-\RenewExample[options%keyvals]{envname}{code input}{code output}{immediate execution}#N
+\RenewExample{envname}{code input}{code output}{immediate execution}
+\RenewExample[options%keyvals]{envname}{code input}{code output}{immediate execution}
 #keyvals:\NewExample,\RenewExample
 numbered
 continuous
