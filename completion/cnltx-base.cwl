@@ -27,7 +27,7 @@ set-trail-punct={%<punctuation marks%>}
 \DeclareCounterRepresentation{cmd}{definition}#d
 \newcounterrepresentation{cmd}{definition}#d
 \providecounterrepresentation{cmd}{definition}#d
-\renewcounterrepresentation{cmd}{definition}#d
+\renewcounterrepresentation{cmd}{definition}
 
 \newexpandablecmd{cmd}{definition}#*d
 \newexpandablecmd{cmd}[args]{definition}#*d
@@ -35,12 +35,12 @@ set-trail-punct={%<punctuation marks%>}
 \newexpandablecmd*{cmd}{definition}#*d
 \newexpandablecmd*{cmd}[args]{definition}#*d
 \newexpandablecmd*{cmd}[args][default]{definition}#*d
-\renewexpandablecmd{cmd}{definition}#*d
-\renewexpandablecmd{cmd}[args]{definition}#*d
-\renewexpandablecmd{cmd}[args][default]{definition}#*d
-\renewexpandablecmd*{cmd}{definition}#*d
-\renewexpandablecmd*{cmd}[args]{definition}#*d
-\renewexpandablecmd*{cmd}[args][default]{definition}#*d
+\renewexpandablecmd{cmd}{definition}#*
+\renewexpandablecmd{cmd}[args]{definition}#*
+\renewexpandablecmd{cmd}[args][default]{definition}#*
+\renewexpandablecmd*{cmd}{definition}#*
+\renewexpandablecmd*{cmd}[args]{definition}#*
+\renewexpandablecmd*{cmd}[args][default]{definition}#*
 \provideexpandablecmd{cmd}{definition}#*d
 \provideexpandablecmd{cmd}[args]{definition}#*d
 \provideexpandablecmd{cmd}[args][default]{definition}#*d
