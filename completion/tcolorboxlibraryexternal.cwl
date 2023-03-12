@@ -16,9 +16,9 @@
 \end{extikzpicture}
 \tcbifexternal{true}{false}
 \newtcbexternalizeenvironment{newenv%envname}{env}{options%keyvals}{begin}{end}#N
-\renewtcbexternalizeenvironment{newenv%envname}{env}{options%keyvals}{begin}{end}#
+\renewtcbexternalizeenvironment{newenv%envname}{env}{options%keyvals}{begin}{end}
 \newtcbexternalizetcolorbox{newenv%envname}{env}{options%keyvals}{begin end options}#N
-\renewtcbexternalizetcolorbox{newenv%envname}{env}{options%keyvals}{begin end options}#N
+\renewtcbexternalizetcolorbox{newenv%envname}{env}{options%keyvals}{begin end options}
 
 #keyvals:\begin{tcbexternal},\begin{extcolorbox},\begin{extikzpicture},\newtcbexternalizeenvironment,\renewtcbexternalizeenvironment,\newtcbexternalizetcolorbox,\renewtcbexternalizetcolorbox
 runner=%<file name%>
