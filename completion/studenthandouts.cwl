@@ -44,6 +44,6 @@ noblanks
 \gnewcommand{cmd}{def}#*d
 \gnewcommand{cmd}[args]{def}#*d
 \gnewcommand{cmd}[args][default]{def}#*d
-\grenewcommand{cmd}{def}#*d
-\grenewcommand{cmd}[args]{def}#*d
-\grenewcommand{cmd}[args][default]{def}#*d
+\grenewcommand{cmd}{def}#*
+\grenewcommand{cmd}[args]{def}#*
+\grenewcommand{cmd}[args][default]{def}#*
