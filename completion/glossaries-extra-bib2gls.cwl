@@ -84,9 +84,9 @@ local#true,false
 \glsxtrprovidecommand{cmd}{definition}#*d
 \glsxtrprovidecommand{cmd}[args]{definition}#*d
 \glsxtrprovidecommand{cmd}[args][default]{definition}#*d
-\glsrenewcommand{cmd}{definition}#*d
-\glsrenewcommand{cmd}[args]{definition}#*d
-\glsrenewcommand{cmd}[args][default]{definition}#*d
+\glsrenewcommand{cmd}{definition}#*
+\glsrenewcommand{cmd}[args]{definition}#*
+\glsrenewcommand{cmd}[args][default]{definition}#*
 \GlsXtrIndexCounterLink{text}{label}#*
 \GlsXtrDualBackLink{text}{label}#*r
 \GlsXtrDualField#*
