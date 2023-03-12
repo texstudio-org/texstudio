@@ -14,9 +14,9 @@ add code={%<code before%>}{%<code after%>}
 \newmultienvironment{envname}[args]{env,env=arg,...}#N
 \newmultienvironment{envname}[args][default]{env,env=arg,...}#N
 
-\renewmultienvironment{envname}{env,env=arg,...}#N
-\renewmultienvironment{envname}[args]{env,env=arg,...}#N
-\renewmultienvironment{envname}[args][default]{env,env=arg,...}#N
+\renewmultienvironment{envname}{env,env=arg,...}
+\renewmultienvironment{envname}[args]{env,env=arg,...}
+\renewmultienvironment{envname}[args][default]{env,env=arg,...}
 
 \providemultienvironment{envname}{env,env=arg,...}#N
 \providemultienvironment{envname}[args]{env,env=arg,...}#N
