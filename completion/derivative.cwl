@@ -240,11 +240,11 @@ scale-auto=#leftright,mleftright
 
 ## Defining variants (section 4)
 \NewDerivative{cmd}{infinitesimal%formula}[keyvals]#nd
-\RenewDerivative{cmd}{infinitesimal%formula}[keyvals]#nd
+\RenewDerivative{cmd}{infinitesimal%formula}[keyvals]#n
 \ProvideDerivative{cmd}{infinitesimal%formula}[keyvals]#nd
 \DeclareDerivative{cmd}{infinitesimal%formula}[keyvals]#nd
 \NewDifferential{cmd}{infinitesimal%formula}[keyvals]#nd
-\RenewDifferential{cmd}{infinitesimal%formula}[keyvals]#nd
+\RenewDifferential{cmd}{infinitesimal%formula}[keyvals]#n
 \ProvideDifferential{cmd}{infinitesimal%formula}[keyvals]#nd
 \DeclareDifferential{cmd}{infinitesimal%formula}[keyvals]#nd
 
