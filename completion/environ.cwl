@@ -5,12 +5,12 @@
 
 \NewEnviron{envname}{definition}#N
 \NewEnviron{envname}[args]{definition}#N
-\NewEnviron{envname}[args][optarg]{definition}#N
-\NewEnviron{envname}[args][optarg]{definition}[final code]#*N
-\RenewEnviron{envname}{definition}#N
-\RenewEnviron{envname}[args]{definition}#N
-\RenewEnviron{envname}[args][optarg]{definition}#N
-\RenewEnviron{envname}[args][optarg]{definition}[final code]#*N
+\NewEnviron{envname}[args][default]{definition}#N
+\NewEnviron{envname}[args][default]{definition}[final code]#*N
+\RenewEnviron{envname}{definition}
+\RenewEnviron{envname}[args]{definition}
+\RenewEnviron{envname}[args][default]{definition}
+\RenewEnviron{envname}[args][default]{definition}[final code]#*
 \BODY
 \environfinalcode{code}
 \environbodyname{cmd}#d
