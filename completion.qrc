@@ -58,6 +58,7 @@
 <file>completion/afterpage.cwl</file>
 <file>completion/ajmacros.cwl</file>
 <file>completion/akshar.cwl</file>
+<file>completion/alchemist.cwl</file>
 <file>completion/Alegreya.cwl</file>
 <file>completion/AlegreyaSans.cwl</file>
 <file>completion/alertmessage.cwl</file>
@@ -725,6 +726,7 @@
 <file>completion/class-hgbarticle.cwl</file>
 <file>completion/class-hgbreport.cwl</file>
 <file>completion/class-hgbthesis.cwl</file>
+<file>completion/class-hitec.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
