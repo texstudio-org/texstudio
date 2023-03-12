@@ -39,12 +39,12 @@
 \newconditioncommand*{cmd}{definition}#d
 \newconditioncommand*{cmd}[args]{definition}#d
 \newconditioncommand*{cmd}[args][default]{definition}#d
-\renewconditioncommand{cmd}{definition}#d
-\renewconditioncommand{cmd}[args]{definition}#d
-\renewconditioncommand{cmd}[args][default]{definition}#d
-\renewconditioncommand*{cmd}{definition}#d
-\renewconditioncommand*{cmd}[args]{definition}#d
-\renewconditioncommand*{cmd}[args][default]{definition}#d
+\renewconditioncommand{cmd}{definition}
+\renewconditioncommand{cmd}[args]{definition}
+\renewconditioncommand{cmd}[args][default]{definition}
+\renewconditioncommand*{cmd}{definition}
+\renewconditioncommand*{cmd}[args]{definition}
+\renewconditioncommand*{cmd}[args][default]{definition}
 \provideconditioncommand{cmd}{definition}#d
 \provideconditioncommand{cmd}[args]{definition}#d
 \provideconditioncommand{cmd}[args][default]{definition}#d
@@ -61,10 +61,10 @@
 \neweconditioncommand{cmd}[args]{definition}#d
 \neweconditioncommand*{cmd}{definition}#d
 \neweconditioncommand*{cmd}[args]{definition}#d
-\reneweconditioncommand{cmd}{definition}#d
-\reneweconditioncommand{cmd}[args]{definition}#d
-\reneweconditioncommand*{cmd}{definition}#d
-\reneweconditioncommand*{cmd}[args]{definition}#d
+\reneweconditioncommand{cmd}{definition}
+\reneweconditioncommand{cmd}[args]{definition}
+\reneweconditioncommand*{cmd}{definition}
+\reneweconditioncommand*{cmd}[args]{definition}
 \provideeconditioncommand{cmd}{definition}#d
 \provideeconditioncommand{cmd}[args]{definition}#d
 \provideeconditioncommand*{cmd}{definition}#d
@@ -75,10 +75,10 @@
 \declareeconditioncommand*{cmd}[args]{definition}#d
 
 \NewConditionCommand{cmd}{xargs}{definition}#d
-\RenewConditionCommand{cmd}{xargs}{definition}#d
+\RenewConditionCommand{cmd}{xargs}{definition}
 \ProvideConditionCommand{cmd}{xargs}{definition}#d
 \DeclareConditionCommand{cmd}{xargs}{definition}#d
 \NewExpandableConditionCommand{cmd}{xargs}{definition}#d
-\RenewExpandableConditionCommand{cmd}{xargs}{definition}#d
+\RenewExpandableConditionCommand{cmd}{xargs}{definition}
 \ProvideExpandableConditionCommand{cmd}{xargs}{definition}#d
 \DeclareExpandableConditionCommand{cmd}{xargs}{definition}#d
