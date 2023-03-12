@@ -1542,3 +1542,7 @@ g-brief2:
 class-g-brief2
 latex-document
 tex
+hitec:
+class-hitec
+latex-document
+tex
