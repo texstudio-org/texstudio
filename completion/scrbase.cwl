@@ -122,8 +122,8 @@
 \providecaptionname*{language list}{term%cmd}{definition}#*d
 \newcaptionname{language list}{term%cmd}{definition}#*d
 \newcaptionname*{language list}{term%cmd}{definition}#*d
-\renewcaptionname{language list}{term%cmd}{definition}#*d
-\renewcaptionname*{language list}{term%cmd}{definition}#*d
+\renewcaptionname{language list}{term%cmd}{definition}#*
+\renewcaptionname*{language list}{term%cmd}{definition}#*
 
 # deprecated
 \ifnotundefined#S
