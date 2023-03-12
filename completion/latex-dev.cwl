@@ -243,10 +243,10 @@
 \ReadonlyShipoutCounter#*
 \RemoveFromHook{hook}#*
 \RemoveFromHook{hook}[label]#*
-\RenewCommandCopy{cmd}{def}#d
-\RenewDocumentCommand{cmd}{xargs}{def}#d
-\RenewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
-\RenewExpandableDocumentCommand{cmd}{xargs}{def}#*d
+\RenewCommandCopy{cmd}{def}
+\RenewDocumentCommand{cmd}{xargs}{def}
+\RenewDocumentEnvironment{envname}{xargs}{begdef}{enddef}
+\RenewExpandableDocumentCommand{cmd}{xargs}{def}#*
 \RequirePackage[options%keyvals]{package}#*u
 \RequirePackage[options%keyvals]{package}[release]#*u
 \RequirePackage{package}#u
@@ -500,6 +500,7 @@ debug={%<options%>}
 \pdfincludechars#*
 \pdfinclusioncopyfonts#*
 \pdfinclusionerrorlevel#*
+\pdfinfo{info}
 \pdfinfoomitdate#*
 \pdfinsertht#*
 \pdfinterwordspaceoff#*
