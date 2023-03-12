@@ -2,7 +2,7 @@
 # Axel Sommerfeldt 04/16/2013
 # muzimuzhi/1 Sep 2019, subcaption v1.2
 # muzimuzhi/1 Nov 2019, subcaption v1.3
-# Matthew Bertucci 24 May 2022 for v1.5
+# Matthew Bertucci 12 March 2023, subcaption v1.6
 # URL: https://ctan.org/pkg/subcaption
 
 #include:caption
@@ -79,7 +79,12 @@ compatibility#true,false
 config=%<file name%>
 #endkeyvals
 
-#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/subcaption#c,\DeclareCaptionStyle#c
+\subcaptionsetup[float type]{options%keyvals}
+\subcaptionsetup{options%keyvals}
+\subcaptionsetup*[float type]{options%keyvals}#*
+\subcaptionsetup*{options%keyvals}#*
+
+#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/subcaption#c,\DeclareCaptionStyle#c,\subcaptionsetup#c,\subcaptionsetup*#c
 # options added or changed in subcaption package
 labelformat=#original,empty,simple,brace,parens,autodot,unnumbered,subsimple,subparens
 subrefformat=#original,empty,simple,brace,parens,autodot,unnumbered,subsimple,subparens
