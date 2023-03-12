@@ -230,9 +230,9 @@ hyperref
 #endif
 
 \newtheorem*{envname}{caption}#N
-\renewtheorem{envname}[numbered like]{caption}#N
-\renewtheorem{envname}{caption}#N
-\renewtheorem{envname}{caption}[within]#N
+\renewtheorem{envname}[numbered like]{caption}
+\renewtheorem{envname}{caption}
+\renewtheorem{envname}{caption}[within]
 
 \theoremstyle{style%keyvals}
 #keyvals:\theoremstyle#c
