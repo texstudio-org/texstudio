@@ -1,7 +1,6 @@
 # nwejmart class
 # Matthew Bertucci 4/11/2022 for v1.0.4
 
-#include:xparse
 #include:l3keys2e
 #include:etoolbox
 #include:class-book
@@ -563,8 +562,8 @@ title-plural=%<forme plurielle du titre récurrent%>
 
 \newenumeration{envname}#N
 \newenumeration[options%keyvals]{envname}#N
-\renewenumeration{envname}#N
-\renewenumeration[options%keyvals]{envname}#N
+\renewenumeration{envname}
+\renewenumeration[options%keyvals]{envname}
 
 #keyvals:\newenumeration,\renewenumeration
 label=%<label%>
