@@ -196,7 +196,7 @@ rl
 \end{lgathered}
 \end{rgathered}
 \newgathered{envname}{pre line}{post line}{after}#N
-\renewgathered{envname}{pre line}{post line}{after}#N
+\renewgathered{envname}{pre line}{post line}{after}
 \begin{multlined}#m
 \begin{multlined}[pos][width]#m
 \end{multlined}
@@ -267,7 +267,7 @@ nostarscaled
 \xmathstrut{increase}#m
 \xmathstrut[depth increase]{increase}#m
 \newcases{envname}{sep}{preamble}{left}{right}#*N
-\renewcases{envname}{sep}{preamble}{left}{right}#*N
+\renewcases{envname}{sep}{preamble}{left}{right}#*
 \upbracketfill{arg1}{arg2}#S
 \upbracketend{arg1}{arg2}#S
 \downbracketfill{arg1}{arg2}#S
