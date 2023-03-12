@@ -77,10 +77,10 @@ dvipdfmx
 \provideadjustimage{cmd}[num][default]{options%keyvals}#*d
 \declareadjustimage{cmd}{options%keyvals}#*d
 \declareadjustimage{cmd}[num][default]{options%keyvals}#*d
-\NewAdjustImage{cmd}{xparse arg spec}{options%keyvals}#*d
-\RenewAdjustImage{cmd}{xparse arg spec}{options%keyvals}#*d
-\ProvideAdjustImage{cmd}{xparse arg spec}{options%keyvals}#*d
-\DeclareAdjustImage{cmd}{xparse arg spec}{options%keyvals}#*d
+\NewAdjustImage{cmd}{xargs}{options%keyvals}#*d
+\RenewAdjustImage{cmd}{xargs}{options%keyvals}#*
+\ProvideAdjustImage{cmd}{xargs}{options%keyvals}#*d
+\DeclareAdjustImage{cmd}{xargs}{options%keyvals}#*d
 
 \adjustboxset{options%keyvals}
 \adjustboxset*{options%keyvals}
