@@ -86,9 +86,9 @@
 \newqpoly{Function%cmd}{a}{b}{c}#d
 \newcpoly{Function%cmd}{a}{b}{c}{d}#d
 
-\renewlpoly{Function%cmd}{a}{b}#d
-\renewqpoly{Function%cmd}{a}{b}{c}#d
-\renewcpoly{Function%cmd}{a}{b}{c}{d}#d
+\renewlpoly{Function%cmd}{a}{b}
+\renewqpoly{Function%cmd}{a}{b}{c}
+\renewcpoly{Function%cmd}{a}{b}{c}{d}
 
 \ensurelpoly{Function%cmd}{a}{b}#d
 \ensureqpoly{Function%cmd}{a}{b}{c}#d
@@ -115,7 +115,7 @@
 \newfunction{%<\Function%>}{%<instructions to compute \y and \Dy from \t%>}
 \newfunction{cmd}{def}#Sd
 \renewfunction{%<\Function%>}{%<instructions to compute \y and \Dy from \t%>}
-\renewfunction{cmd}{def}#Sd
+\renewfunction{cmd}{def}#S
 \ensurefunction{%<\Function%>}{%<instructions to compute \y and \Dy from \t%>}
 \ensurefunction{cmd}{def}#Sd
 \forcefunction{%<\Function%>}{%<instructions to compute \y and \Dy from \t%>}
@@ -124,7 +124,7 @@
 \newvectorfunction{%<\Function%>}{%<instructions to compute \x,\y,\Dx and \Dy from \t%>}
 \newvectorfunction{cmd}{def}#Sd
 \renewvectorfunction{%<\Function%>}{%<instructions to compute \x,\y,\Dx and \Dy from \t%>}
-\renewvectorfunction{cmd}{def}#Sd
+\renewvectorfunction{cmd}{def}#S
 \ensurevectorfunction{%<\Function%>}{%<instructions to compute \x,\y,\Dx and \Dy from \t%>}
 \ensurevectorfunction{cmd}{def}#Sd
 \forcevectorfunction{%<\Function%>}{%<instructions to compute \x,\y,\Dx and \Dy from \t%>}
@@ -133,7 +133,7 @@
 \newpolarfunction{%<\Function%>}{%<instructions to compute \r and \Dr from \t%>}
 \newpolarfunction{cmd}{def}#Sd
 \renewpolarfunction{%<\Function%>}{%<instructions to compute \r and \Dr from \t%>}
-\renewpolarfunction{cmd}{def}#Sd
+\renewpolarfunction{cmd}{def}#S
 \ensurepolarfunction{%<\Function%>}{%<instructions to compute \r and \Dr from \t%>}
 \ensurepolarfunction{cmd}{def}#Sd
 \forcepolarfunction{%<\Function%>}{%<instructions to compute \r and \Dr from \t%>}
