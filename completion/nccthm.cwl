@@ -46,12 +46,12 @@ margin
 \newtheorem{envname}[counter]{title%text}[type]#N
 \newtheorem*{envname}{title%text}#N
 \newtheorem*{envname}{title%text}[type]#N
-\renewtheorem{envname}{title%text}#N
-\renewtheorem{envname}[counter]{title%text}#N
-\renewtheorem{envname}{title%text}[type]#N
-\renewtheorem{envname}[counter]{title%text}[type]#N
-\renewtheorem*{envname}{title%text}#N
-\renewtheorem*{envname}{title%text}[type]#N
+\renewtheorem{envname}{title%text}
+\renewtheorem{envname}[counter]{title%text}
+\renewtheorem{envname}{title%text}[type]
+\renewtheorem{envname}[counter]{title%text}[type]
+\renewtheorem*{envname}{title%text}
+\renewtheorem*{envname}{title%text}[type]
 
 \TheoremBreakStyle
 \TheoremNoBreakStyle
