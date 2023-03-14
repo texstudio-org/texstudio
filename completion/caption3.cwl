@@ -1,5 +1,5 @@
 # caption3 package
-# Matthew Bertucci 2022/05/24 for v2.3b
+# Matthew Bertucci 2023/03/12 for v2.4
 
 #include:keyval
 
@@ -10,7 +10,7 @@
 \DeclareCaptionStyle{name%specialDef}[additional options]{options%keyvals}#s#%captionstyle
 \DeclareCaptionStyle{name%specialDef}{options%keyvals}#s#%captionstyle
 
-#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/caption#c,\DeclareCaptionStyle#c
+#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/caption#c,\DeclareCaptionStyle#c,\bicaptionsetup#c,\bicaptionsetup*#c,\subcaptionsetup#c,\subcaptionsetup*#c
 aboveskip=##L
 belowskip=##L
 box=#empty,none,parbox,colorbox

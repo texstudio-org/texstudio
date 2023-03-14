@@ -1546,3 +1546,11 @@ hitec:
 class-hitec
 latex-document
 tex
+chletter:
+class-chletter
+latex-document
+tex
+hletter:
+class-hletter
+latex-document
+tex

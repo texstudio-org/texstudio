@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/02/11 for v2.5.2
+# Matthew Bertucci 2023/03/12 for v2.5.4
 
 #include:mathtools
 #include:xcolor
@@ -585,8 +585,12 @@ Repetition#true,false
 \Combinaison[option%keyvals]{p}{n}
 \Combinaison*{p}{n}
 \Combinaison*[option%keyvals]{p}{n}
+\CalculAnp{p}{n}
+\CalculCnp{p}{n}
 
 #keyvals:\Arrangement,\Arrangement*,\Combinaison,\Combinaison*
+Notation#true,false
+NotationAncien#true,false
 Formule#true,false
 #endkeyvals
 

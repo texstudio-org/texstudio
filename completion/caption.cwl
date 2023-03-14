@@ -1,13 +1,13 @@
 # caption.cwl
 # Edson 2010
-# Matthew Bertucci updated 2022/05/24 for v3.6b
+# Matthew Bertucci updated 2023/03/12 for v3.6j
 
 #include:caption3
 #include:ltcaption
 
 # note that most package options defined in caption3, listed in caption3.cwl
 
-#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/caption#c,\DeclareCaptionStyle#c
+#keyvals:\captionsetup#c,\captionsetup*#c,\usepackage/caption#c,\DeclareCaptionStyle#c,\bicaptionsetup#c,\bicaptionsetup*#c,\subcaptionsetup#c,\subcaptionsetup*#c
 list-entry=#default,list-entry,entry
 hypcap#true,false
 hypcapspace=##L
