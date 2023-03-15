@@ -5167,47 +5167,47 @@ The wizard does not support command </source>
         <translation>BibTeX كىملىكى بوشلۇق بىلەن ئاخىرلىشىدۇ. ئىز قوغلاش بوشلۇقى BibTeX تەرىپىدىن نەزەردىن ساقىت قىلىنمايدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3142"/>
+        <location filename="../src/latexeditorview.cpp" line="3144"/>
         <source>Save Preview Image</source>
         <translation>ئالدىن كۆرۈش سۈرىتىنى ساقلاش</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3142"/>
+        <location filename="../src/latexeditorview.cpp" line="3144"/>
         <source>Images</source>
         <translation>سۈرەت</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3276"/>
+        <location filename="../src/latexeditorview.cpp" line="3278"/>
         <source>Remove Bookmark</source>
         <translation>خەتكۈچنى چىقرۋىتىش</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3284"/>
+        <location filename="../src/latexeditorview.cpp" line="3286"/>
         <source>Unnamed Bookmark</source>
         <translation>نامسىز خەتكۈچ</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3290"/>
+        <location filename="../src/latexeditorview.cpp" line="3292"/>
         <source>Bookmark</source>
         <translation>خەتكۈچ</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3317"/>
+        <location filename="../src/latexeditorview.cpp" line="3319"/>
         <source>Collapse All</source>
         <translation>ھەممىنى يىمىرىڭ</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3321"/>
+        <location filename="../src/latexeditorview.cpp" line="3323"/>
         <source>Collapse Level %1</source>
         <translation>يىمىرىش دەرىجىسى %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3326"/>
+        <location filename="../src/latexeditorview.cpp" line="3328"/>
         <source>Expand All</source>
         <translation>ھەممىنى ياي</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3330"/>
+        <location filename="../src/latexeditorview.cpp" line="3332"/>
         <source>Expand Level %1</source>
         <translation>يېيىش دەرجىسى %1</translation>
     </message>
@@ -6910,289 +6910,299 @@ TeXstudio نىڭ سىرتىدا ئۆزگەرتىلدى. دىسكىدىن قاي�
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4722"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4724"/>
         <source>None</source>
         <translation>قۇرۇق</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4723"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4725"/>
         <source>Invalid</source>
         <translation>ئۈنۈمسىز</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4725"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4741"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4727"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4744"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
         <source>Internal</source>
         <translation>ئىچكى</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4727"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4729"/>
         <source>Move cursor up</source>
         <translation>نۇرنى ئۈستىگە</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4728"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4730"/>
         <source>Move cursor down</source>
         <translation>نۇرنى ئاستىغا</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4729"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4731"/>
         <source>Move cursor left (1 character)</source>
         <translation>نۇرنى سولغا (1 ھەرپ)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4730"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4732"/>
         <source>Move cursor right (1 character)</source>
         <translation>نۇرنى ئوڭغا (1 ھەرپ)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4731"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4733"/>
         <source>Move cursor left (1 word)</source>
         <translation>نۇرنى سولغا (1 سۆز)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4732"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4734"/>
         <source>Move cursor right (1 word)</source>
         <translation>نۇرنى ئوڭغا (1 سۆز)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4733"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4735"/>
         <source>Move cursor to line start</source>
         <translation>نۇرنى قۇر بېشىغا</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4734"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
+        <source>Move cursor to first character in line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
         <source>Move cursor to line end</source>
         <translation>نۇرنى قۇر ئاخېرىغا</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4735"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4738"/>
         <source>Move cursor to document start</source>
         <translation>نۇرنى ھۆججەت بېشىغا</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4739"/>
         <source>Move cursor to document end</source>
         <translation>نۇرنى ھۆججەت قۇيرۇقىغا</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4738"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4741"/>
         <source>Move cursor one page up</source>
         <translation>نۇرنى بەت بېشىغا</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4739"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4742"/>
         <source>Move cursor one page down</source>
         <translation>نۇرنى بەت تېگىگە</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4743"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4746"/>
         <source>Select up</source>
         <translation>ئۈستىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4744"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4747"/>
         <source>Select down</source>
         <translation>ئاستىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4745"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4748"/>
         <source>Select left (1 character)</source>
         <translation>سولنى تاللاش (1 ھەرپ)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4746"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4749"/>
         <source>Select right (1 character)</source>
         <translation>ئوڭنى تاللاش (1 ھەرپ)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4747"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4750"/>
         <source>Select left (1 word)</source>
         <translation>سولنى تاللاش (1 سۆز)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4748"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4751"/>
         <source>Select right (1 word)</source>
         <translation>ئوڭنى تاللاش (1 سۆز)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4749"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4752"/>
         <source>Select to line start</source>
         <translation>قۇر بېشىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4750"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
+        <source>Select to first character in line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
         <source>Select to line end</source>
         <translation>قۇر ئاخېرىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4751"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
         <source>Select to document start</source>
         <translation>ھۆججەت بېشىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4752"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4756"/>
         <source>Select to document end</source>
         <translation>ھۆججەت قۇيرۇقىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4758"/>
         <source>Select page up</source>
         <translation>بەت ئۈستىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
         <source>Select page down</source>
         <translation>بەت ئاخېرىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4763"/>
         <source>Delete left character</source>
         <translation>سولدىكى ھەرپنى يۇيۇش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4764"/>
         <source>Delete right character</source>
         <translation>ئوڭدىكى ھەرىپنى يۇيۇش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
         <source>Delete left word</source>
         <translation>سولدىكى سۆزنى يۇيۇش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
         <source>Delete right word</source>
         <translation>ئوڭدىكى سۆزنى يۇيۇش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4763"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
         <source>New line</source>
         <translation>يېڭى قۇر</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
         <source>Change overwrite mode</source>
         <translation>قاپلاش ھالىتىنى ئۆزگەرتىش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4770"/>
         <source>Undo</source>
         <translation>يېنىۋىلىش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
         <source>Redo</source>
         <translation>قايتا</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
         <source>Copy</source>
         <translation>نۇسخىلاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
         <source>Paste</source>
         <translation>چاپلاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4770"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
         <source>Cut</source>
         <translation>كىسىش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4775"/>
         <source>Print</source>
         <translation>پىرىنتىرلاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
         <source>Select all</source>
         <translation>ھەممىنى تاللاش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
         <source>Find</source>
         <translation>ئىزدەش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
         <source>Find next</source>
         <translation>كېيىنكىنى ئىزدە</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4775"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
         <source>Find previous</source>
         <translation>ئالدىنقىنى ئىزدە</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
         <source>Replace</source>
         <translation>ئالماشتۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
         <source>Create cursor mirror up</source>
         <translation>نۇر بەلگىسىنى ئۈستى ئەينەك قىل</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
         <source>Create cursor mirror down</source>
         <translation>نۇر بەلگىسىنى ئاستى ئەينەك قىل</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
         <source>Next placeholder</source>
         <translation>كېيىنكى ئورۇنچى</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
         <source>Previous placeholder</source>
         <translation>ئالدىنقى ئورۇنچى</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
         <source>Next placeholder or one word right</source>
         <translation>كېيىنكى ئورۇنچى ۋە ئوڭدىكى بىر سۆز</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
         <source>Previous placeholder or one word left</source>
         <translation>ئالدىنقى ئورۇنچى ياكى سول بىر سۆز</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
         <source>Next placeholder or character</source>
         <translation>كېيىنكى ئورۇنچى ياكى ھەرپ</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
         <source>Previous placeholder or character</source>
         <translation>ئالدىنقى ئورۇنچى ياكى ھەرپ</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
         <source>Tab or Indent selection</source>
         <translation>تەب ياكى تاريىيىش تاللانمىسى</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
         <source>Insert tab</source>
         <translation>tab قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
         <source>Indent selection</source>
         <translation>تارىيىش تاللانمىسى</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
         <source>Unindent selection</source>
         <translation>تارايماسلىق تاللانمىسى</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
         <source>Unknown</source>
         <translation>نامەلۇم</translation>
     </message>
@@ -8053,16 +8063,6 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>QuickDocumentDialog</name>
     <message>
-        <location filename="../src/quickdocumentdialog.ui" line="685"/>
-        <source>OK</source>
-        <translation>تامام</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="692"/>
-        <source>Cancel</source>
-        <translation>بىكارلاش</translation>
-    </message>
-    <message>
         <location filename="../src/quickdocumentdialog.ui" line="65"/>
         <source>Title</source>
         <translation>ماۋزۇ</translation>
@@ -8234,57 +8234,57 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <translation>باشلاش</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="295"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="294"/>
         <source>Mathematical symbols from AMS</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="296"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="295"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="297"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="296"/>
         <source>Support for hyperlinks in your document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="298"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="297"/>
         <source>Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="299"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="298"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="300"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="301"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="300"/>
         <source>Extension package to amsthm</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="302"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="495"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="506"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="517"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="528"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="539"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="550"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="494"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="505"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="516"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="527"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="538"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="549"/>
         <source>New:</source>
         <translation>يېڭى:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="562"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="560"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
         <translation type="unfinished"/>
     </message>
@@ -12752,33 +12752,33 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <translation>Shift+F12</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="328"/>
+        <location filename="../src/usermenudialog.cpp" line="329"/>
         <source>Folder is not empty.</source>
         <translation>ھۆججەت قىسقۇچ قۇرۇق ئەمەس.</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="333"/>
+        <location filename="../src/usermenudialog.cpp" line="334"/>
         <source>Do you really want to delete the current macro?</source>
         <translation>نۆۋەتتىكى ماكرونى ئۆچۈرمەكچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="412"/>
-        <location filename="../src/usermenudialog.cpp" line="424"/>
+        <location filename="../src/usermenudialog.cpp" line="413"/>
+        <location filename="../src/usermenudialog.cpp" line="425"/>
         <source>txs macro files (*.txsMacro)</source>
         <translation>txs ماكرو ھۆججىتى (*.txsMacro)</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="412"/>
+        <location filename="../src/usermenudialog.cpp" line="413"/>
         <source>Import macros</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="424"/>
+        <location filename="../src/usermenudialog.cpp" line="425"/>
         <source>Export macro</source>
         <translation>ماكرو ئېكسپورتلاش</translation>
     </message>
     <message>
-        <location filename="../src/usermenudialog.cpp" line="547"/>
+        <location filename="../src/usermenudialog.cpp" line="548"/>
         <source> (col. %1)</source>
         <translation type="unfinished"/>
     </message>
