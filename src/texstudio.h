@@ -322,7 +322,7 @@ private slots:
 	void fileUpdate(QString filename = "");
 	void fileUpdateCWD(QString filename = "");
 	void checkinAfterSave(QString filename, int checkIn = 0);
-	void checkin(QString fn, QString text = "txs auto checkin", bool blocking = false);
+    void checkin(QString fn, QString text = "txs auto checkin", bool push = false);
 	bool svnadd(QString fn, int stage = 0);
 	void svnUndo(bool redo = false);
 	void svnPatch(QEditor *ed, QString diff);

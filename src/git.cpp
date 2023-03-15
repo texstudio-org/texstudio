@@ -38,6 +38,14 @@ void GIT::commit(QString filename, QString message)
 {
     runGit("commit", "-m " + enquoteStr(message) + " " + quote(filename));
 }
+/*!
+ * \brief GIT push
+ * \param filename
+ */
+void GIT::push(QString filename)
+{
+    runGit("push", quote(filename),"");
+}
 
 /*!
  * \brief get GIT status filename

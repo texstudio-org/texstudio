@@ -19,6 +19,7 @@ public:
 	static QString makeCmd(QString action, QString args);
 
     void commit(QString filename, QString message);
+    void push(QString filename);
     Status status(QString filename);
     QStringList log(QString filename);
     void createRepository(QString filename);

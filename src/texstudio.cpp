@@ -9001,8 +9001,11 @@ void Texstudio::fileCheckin(QString filename)
 	QString text;
 	dialog.addTextEdit(&text, tr("commit comment:"));
     bool wholeDirectory=false;
+    bool push=false;
     if(configManager.useVCS==0){ // SVN only
         dialog.addVariable(&wholeDirectory, tr("check in whole directory ?"));
+    }else{
+        dialog.addVariable(&push, tr("Push to repository ?"));
     }
 	if (dialog.exec() == QDialog::Accepted) {
 		fileSave(true);
@@ -9011,7 +9014,7 @@ void Texstudio::fileCheckin(QString filename)
 		}
 		//checkin(fn,text);
 		if (svnadd(fn)) {
-			checkin(fn, text, configManager.svnKeywordSubstitution);
+            checkin(fn, text,push);
 		} else {
             if(configManager.useVCS==0){
                 svn.createRepository(fn);
@@ -9019,7 +9022,7 @@ void Texstudio::fileCheckin(QString filename)
                 git.createRepository(fn);
             }
 			svnadd(fn);
-			checkin(fn, text, configManager.svnKeywordSubstitution);
+            checkin(fn, text);
 		}
 	}
 }
@@ -9121,7 +9124,7 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 	if (checkIn == 0) { // from fileSaveAs
 		if (configManager.autoCheckinAfterSaveLevel > 1) {
 			if (svnadd(filename)) {
-				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+                checkin(filename, "txs auto checkin");
 			} else {
 				//create simple repository
                 if(configManager.useVCS==0){
@@ -9130,7 +9133,7 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
                     git.createRepository(filename);
                 }
 				svnadd(filename);
-				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+                checkin(filename, "txs auto checkin");
 			}
 			// set SVN Properties if desired
 			if (configManager.svnKeywordSubstitution) {
@@ -9140,13 +9143,16 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 	}
 }
 
-void Texstudio::checkin(QString fn, QString text, bool blocking)
+void Texstudio::checkin(QString fn, QString text, bool push)
 {
-	Q_UNUSED(blocking)
     if(configManager.useVCS==0){
         svn.commit(fn, text);
     }else{
         git.commit(fn, text);
+        if(push){
+            QFileInfo fi(fn);
+            git.push(fi.absolutePath());
+        }
     }
 	LatexEditorView *edView = getEditorViewFromFileName(fn);
 	if (edView)
