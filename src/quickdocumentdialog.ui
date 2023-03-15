@@ -31,7 +31,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabClass">
       <attribute name="title">
        <string>&amp;Class Options</string>
       </attribute>
@@ -680,16 +680,12 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
-        <string>OK</string>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
       </widget>
      </item>
@@ -698,16 +694,27 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>okButton</tabstop>
-  <tabstop>cancelButton</tabstop>
+  <tabstop>comboBoxClass</tabstop>
+  <tabstop>pushButtonClass</tabstop>
+  <tabstop>comboBoxSize</tabstop>
+  <tabstop>comboBoxPaper</tabstop>
+  <tabstop>pushButtonPaper</tabstop>
+  <tabstop>comboBoxFontEncoding</tabstop>
+  <tabstop>pushButtonFontEncoding</tabstop>
+  <tabstop>comboBoxBabel</tabstop>
+  <tabstop>pushButtonBabel</tabstop>
+  <tabstop>lineEditTitle</tabstop>
+  <tabstop>lineEditAuthor</tabstop>
+  <tabstop>listWidgetOptions</tabstop>
+  <tabstop>pushButtonOptions</tabstop>
  </tabstops>
  <resources>
   <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>
-   <sender>okButton</sender>
-   <signal>clicked()</signal>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
    <receiver>QuickDocumentDialog</receiver>
    <slot>accept()</slot>
    <hints>
@@ -722,8 +729,8 @@
    </hints>
   </connection>
   <connection>
-   <sender>cancelButton</sender>
-   <signal>clicked()</signal>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
    <receiver>QuickDocumentDialog</receiver>
    <slot>reject()</slot>
    <hints>
