@@ -1,11 +1,12 @@
 # schulma-klausur class
-# Matthew Bertucci 2022/08/14 for v1.3
+# Matthew Bertucci 202303/15 for v1.4
 
 #include:etoolbox
 #include:schulma
 #include:schulma-physik
 #include:class-scrartcl
 #include:scrlayer-scrpage
+#include:pdfpages
 #include:geometry
 #include:comment
 #include:beamerarticle
@@ -118,7 +119,9 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 \Bearbeitungszeit{Zeit in Minuten}
 \Hilfsmittel{Hilfsmittel%text}
 \Loesungsdatum{Datum}
+\Formeldokument{Seitenzahlen}
 \Gruppen{Text für GruppeA%text}{Text für GruppeB%text}
+\Gruppen*{Text für GruppeA%text}{Text für GruppeB%text}
 \Aufgabentitel{Bezeichnung%text}
 \Notenspiegel{kommaseparierte Notenliste}
 \Notenpunktspiegel{kommaseparierte Notenliste}
