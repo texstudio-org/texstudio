@@ -4564,9 +4564,11 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
     addEditOperation(SelectCursorLeft, QKeySequence::SelectPreviousChar);
     addEditOperation(SelectCursorRight, QKeySequence::SelectNextChar);
 
-    addEditOperation(CursorStartOfLine, QKeySequence::MoveToStartOfLine);
+    addEditOperation(CursorStartOfLineText, QKeySequence::MoveToStartOfLine);
+    registerEditOperation(CursorStartOfLine);
     addEditOperation(CursorEndOfLine, QKeySequence::MoveToEndOfLine);
-    addEditOperation(SelectCursorStartOfLine, QKeySequence::SelectStartOfLine);
+    addEditOperation(SelectCursorStartOfLineText, QKeySequence::SelectStartOfLine);
+    registerEditOperation(SelectCursorStartOfLine);
     addEditOperation(SelectCursorEndOfLine, QKeySequence::SelectEndOfLine);
 
     addEditOperation(CursorStartOfDocument, QKeySequence::MoveToStartOfDocument);
@@ -4731,6 +4733,7 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case CursorWordLeft: return tr("Move cursor left (1 word)");
 	case CursorWordRight: return tr("Move cursor right (1 word)");
 	case CursorStartOfLine: return tr("Move cursor to line start");
+    case CursorStartOfLineText: return tr("Move cursor to first character in line");
 	case CursorEndOfLine: return tr("Move cursor to line end");
 	case CursorStartOfDocument: return tr("Move cursor to document start");
 	case CursorEndOfDocument: return tr("Move cursor to document end");
@@ -4747,6 +4750,7 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case SelectCursorWordLeft: return tr("Select left (1 word)");
 	case SelectCursorWordRight: return tr("Select right (1 word)");
 	case SelectCursorStartOfLine: return tr("Select to line start");
+    case SelectCursorStartOfLineText: return tr("Select to first character in line");
 	case SelectCursorEndOfLine: return tr("Select to line end");
 	case SelectCursorStartOfDocument: return tr("Select to document start");
 	case SelectCursorEndOfDocument: return tr("Select to document end");
@@ -4852,6 +4856,9 @@ void QEditor::cursorMoveOperation(QDocumentCursor &cursor, EditOperation eop){
 	case CursorStartOfLine: case SelectCursorStartOfLine:
 		op = QDocumentCursor::StartOfLine;
 		break;
+    case CursorStartOfLineText: case SelectCursorStartOfLineText:
+        op = QDocumentCursor::StartOfLineText;
+        break;
 	case CursorEndOfLine: case SelectCursorEndOfLine:
 		op = QDocumentCursor::EndOfLine;
 		break;

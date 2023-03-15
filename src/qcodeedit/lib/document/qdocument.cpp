@@ -5091,7 +5091,31 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			break;
 		}
+        case QDocumentCursor::StartOfLineText :
+            // jump in front of first charatcter in line
+            // if already there or only spaces before, jump to start of line
+            if ( atStart() )
+                return false;
 
+            l = m_doc->line(line);
+
+            if(l.text().left(offset).trimmed().isEmpty()){
+                offset=0;
+            }else{
+                int end=offset;
+                offset=0;
+                while(offset<end && l.text().at(offset).isSpace()){
+                    ++offset;
+                }
+                if(offset==end){
+                    // in case no letter was found
+                    offset=0;
+                }
+            }
+
+            refreshColumnMemory();
+
+            break;
 		case QDocumentCursor::Start :
 			if ( atStart() )
 				return false;
