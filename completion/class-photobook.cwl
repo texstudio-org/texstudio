@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/03/01 for v0.1.8
+# Matthew Bertucci 2023/03/15 for v0.1.13
 
 #include:kvoptions
 #include:class-book
@@ -390,6 +390,7 @@ roundprintedlengthsto=%<number%>
 \rcaptioncell[options%keyvals]{caption%text}
 \rcaptioncell{caption%text}
 \ReInitPages
+\ChangeLayout{mode%keyvals}
 \resetImageHalfPageLCaption
 \resetImageHalfPageRCaption
 \resetImagePageCaption
@@ -682,6 +683,13 @@ gstore depth=%<length register%>
 gstore totalheight=%<length register%>
 gstore sizes=
 process
+#endkeyvals
+
+#keyvals:\ChangeLayout
+block
+endpaper
+cover
+jacket
 #endkeyvals
 
 # not documented
