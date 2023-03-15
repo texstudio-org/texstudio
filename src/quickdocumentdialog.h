@@ -53,7 +53,7 @@ private slots:
 	void addBabelOption();
 	void addUserOptions();
 	void addUserPackages();
-	void setFocusToTable(int idx);
+	void setPkgTabToolTip(int idx);
 };
 
 
