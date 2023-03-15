@@ -6962,7 +6962,7 @@ Achtung:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
         <source>Move cursor to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Bewege Cursor zum ersten Zeichen oder Zeilenanfang</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
@@ -7027,7 +7027,7 @@ Achtung:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
         <source>Select to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Selektiere bis zum ersten Zeichen oder Zeilenanfang</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>

@@ -6967,7 +6967,7 @@ Notas:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
         <source>Move cursor to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Mover cursor para o 1º carácter da linha</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
@@ -7032,7 +7032,7 @@ Notas:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
         <source>Select to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar até ao 1º carácter na linha</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>

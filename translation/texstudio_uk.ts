@@ -6970,7 +6970,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
         <source>Move cursor to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Перемістити курсор до першого символу в рядку</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
@@ -7035,7 +7035,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
         <source>Select to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Виділити до першого символу в рядку</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
