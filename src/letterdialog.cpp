@@ -18,7 +18,7 @@ LetterDialog::LetterDialog(QWidget *parent, const char *name)
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
-	UtilsUi::resizeInFontHeight(this, 28, 14);
+	UtilsUi::resizeInFontHeight(this, 24, 7);
 
 	ui.comboBoxPt->insertItem(0, "10pt");
 	ui.comboBoxPt->insertItem(1, "11pt");
