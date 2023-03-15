@@ -1,9 +1,17 @@
 # schulma-physik package
-# Matthew Bertucci 2/16/2022 for v1.2
+# Matthew Bertucci 2023/03/15 for v1.4
 
 #include:siunitx
 #include:tikz
 #include:tikzlibrarycircuits.ee.IEC
+
+#keyvals:\usepackage/schulma-physik#c
+circuitikz
+#endkeyvals
+
+#ifOption:circuitikz
+#include:circuitikz
+#endif
 
 \Massstab{Zahl1}{Einheit1%formula}{Zahl2}{Einheit2%formula}
 \tqty{Zahl}{Einheit%formula}
@@ -19,26 +27,13 @@
 \MFK
 \MFK*
 \Messschieber{Messwert}
+\Messschieber[cm|inch|cm+inch]{Messwert}
 \Messschraube{Messwert}
+\Kraftmesser{Messwert}{Maximalausschlag}
 
 #keyvals:\node#c
-bulb
-resistor
-capacitor
-inductor
-diode
-diode=light emitting
 spannungsquelle
-battery
-battery=adjustable
-contact
-amperemeter
-voltmeter
 messgeraet
-#endkeyvals
-
-#keyvals:\begin{tikzpicture}#c
-circuit ee IEC
 #endkeyvals
 
 # deprecated
