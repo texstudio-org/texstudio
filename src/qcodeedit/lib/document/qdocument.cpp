@@ -5099,10 +5099,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
             l = m_doc->line(line);
 
-            if(l.text().left(offset).trimmed().isEmpty()){
+            if(l.text().left(offset).trimmed().isEmpty() && (l.text().size()<=offset || !l.text().at(offset).isSpace())){
                 offset=0;
             }else{
-                int end=offset;
+                int end=l.length();
                 offset=0;
                 while(offset<end && l.text().at(offset).isSpace()){
                     ++offset;
