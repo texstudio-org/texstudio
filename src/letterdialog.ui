@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0" >
  <class>LetterDialog</class>
  <widget class="QDialog" name="LetterDialog" >
@@ -17,7 +18,7 @@
     <number>6</number>
    </property>
    <item row="0" column="0" >
-    <layout class="QGridLayout" >
+    <layout class="QGridLayout" columnstretch="0,1">
      <property name="margin" >
       <number>0</number>
      </property>
