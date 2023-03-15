@@ -140,9 +140,8 @@ QString QuickDocumentDialog::getNewDocumentText()
 		}
 	}
 
-	bool titleEmpty = ui.lineEditTitle->text() == "";
 	QString makeTitle;
-	if (!titleEmpty) {
+	if (ui.lineEditTitle->text() != "") {
 		makeTitle = "\\maketitle\n";
 		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
 		if (ui.lineEditAuthor->text() != "")
