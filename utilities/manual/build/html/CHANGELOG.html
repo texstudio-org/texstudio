@@ -7,8 +7,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="CHANGELOG.html" />
 <meta property="og:site_name" content="TeXstudio" />
-<meta property="og:description" content="TeXstudio 4.5.2: fix skipping scroll when pointer was moved outside the text pane (#2614), Show changelog in about dialog and manual, pasting from LibreOffice Calc uses ‘&’ and ‘' as delimiters. If..." />
-<meta name="description" content="TeXstudio 4.5.2: fix skipping scroll when pointer was moved outside the text pane (#2614), Show changelog in about dialog and manual, pasting from LibreOffice Calc uses ‘&’ and ‘' as delimiters. If..." />
+<meta property="og:description" content="TeXstudio 4.5.2: allow wheel usage over linenumber/linemark/fold panel of editors, fix skipping scroll when pointer was moved outside the text pane (#2614), add Min/Max/Close buttons to Macro Edito..." />
+<meta name="description" content="TeXstudio 4.5.2: allow wheel usage over linenumber/linemark/fold panel of editors, fix skipping scroll when pointer was moved outside the text pane (#2614), add Min/Max/Close buttons to Macro Edito..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Background information" href="background.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
@@ -214,10 +214,25 @@
 <section id="texstudio-4-5-2">
 <h2>TeXstudio 4.5.2<a class="headerlink" href="#texstudio-4-5-2" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
+<li><p>allow wheel usage over linenumber/linemark/fold panel of editors</p></li>
 <li><p>fix skipping scroll when pointer was moved outside the text pane (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2614">#2614</a>)</p></li>
-<li><p>Show changelog in about dialog and manual</p></li>
+<li><p>add Min/Max/Close buttons to Macro Editor dialog (<a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/2987">2987</a>)</p></li>
+<li><p>fix text in status bar of Macro Editor wiggling around after 10s and 50s (<a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3001">3001</a>)</p></li>
+<li><p>Show changelog in about dialog and <a class="reference external" href="https://texstudio-org.github.io/CHANGELOG.html">manual</a></p></li>
 <li><p>pasting from LibreOffice Calc uses ‘&amp;’ and ‘' as delimiters. If pasted where no table is defined, the table wizard is called.</p></li>
 <li><p>change Adv. Editor option “Vertical Overscroll” to scroll last line to top (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2944">#2944</a>)</p></li>
+<li><p>when the mouse cursor hovers over a spin/combo box, the wheel scrolls through the configuration page instead of changing values (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2977">#2977</a>)</p></li>
+<li><p>support toggling comment on folded lines (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2912">#2912</a>)</p></li>
+<li><p>don’t show pointing hand cursor over hyperlinks when magnifier is activ (<a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/2982">#2982</a>)</p></li>
+<li><p>improve usage of tab key and enter key in QuickStart Wizard (<a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3014">#3014</a>)</p></li>
+<li><p>add \maketitle to the document created by QuickStart Wizard if appropriate (<a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3015">#3015</a>)</p></li>
+<li><p>pos1 (home) key now sets cursor to start or to first non-blank character of editor lines (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3012">#3012</a>)</p></li>
+<li><p>fix a crash in a special case (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2985">#2985</a>)</p></li>
+<li><p>updated LaTeX2e manual (help menu) and added missing image</p></li>
+<li><p>allow git push when using git checkin dialog</p></li>
+<li><p>many new and updated cwls</p></li>
+<li><p>updated translations</p></li>
+<li><p>improved cmake build</p></li>
 </ul>
 </section>
 <section id="texstudio-4-5-1">
@@ -233,6 +248,7 @@
 <li><p>add editor action “Move all (others) to other view” (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2713">#2713</a>)</p></li>
 <li><p>show macro name in completer list (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2679">#2679</a>)</p></li>
 <li><p>show macro trigger and shortcut in configuration window (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2635">#2635</a>)</p></li>
+<li><p>support import of several macros at once (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2911">#2911</a>)</p></li>
 <li><p>fix wrong side panel title when changing grid size in config (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2743">#2743</a>)</p></li>
 <li><p>preview/clear preview now use position of context menu as reference <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2794">(#2794</a>)</p></li>
 <li><p>add a Package Tab to the QuickStart Wizard (<a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/2831">#2831</a>)</p></li>

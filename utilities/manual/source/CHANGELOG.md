@@ -16,6 +16,7 @@
 - pos1 (home) key now sets cursor to start or to first non-blank character of editor lines ([#3012](https://github.com/texstudio-org/texstudio/issues/3012))
 - fix a crash in a special case ([#2985](https://github.com/texstudio-org/texstudio/issues/2985))
 - updated LaTeX2e manual (help menu) and added missing image
+- allow git push when using git checkin dialog
 - many new and updated cwls
 - updated translations
 - improved cmake build
