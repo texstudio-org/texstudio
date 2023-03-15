@@ -13,8 +13,8 @@
 - don't show pointing hand cursor over hyperlinks when magnifier is activ ([#2982](https://github.com/texstudio-org/texstudio/pull/2982))
 - improve usage of tab key and enter key in QuickStart Wizard ([#3014](https://github.com/texstudio-org/texstudio/pull/3014))
 - add \maketitle to the document created by QuickStart Wizard if appropriate ([#3015](https://github.com/texstudio-org/texstudio/pull/3015))
+- pos1 (home) key now sets cursor to start or to first non-blank character of editor lines ([#3012](https://github.com/texstudio-org/texstudio/issues/3012))
 - fix a crash in a special case ([#2985](https://github.com/texstudio-org/texstudio/issues/2985))
-- pos1 (home) key now sets cursor to start or to first non-blank character of a line ([#3012](https://github.com/texstudio-org/texstudio/issues/3012))
 - updated LaTeX2e manual (help menu) and added missing image
 - many new and updated cwls
 - updated translations
