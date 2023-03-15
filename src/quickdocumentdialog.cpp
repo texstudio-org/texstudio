@@ -140,12 +140,15 @@ QString QuickDocumentDialog::getNewDocumentText()
 		}
 	}
 
-	if (ui.lineEditTitle->text() != "")
+	QString makeTitle;
+	if (ui.lineEditTitle->text() != "") {
+		makeTitle = "\\maketitle\n";
 		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
-	if (ui.lineEditAuthor->text() != "")
-      tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
+		if (ui.lineEditAuthor->text() != "")
+			tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
+	}
 
-	tag += QString("\\begin{document}\n%|\n\\end{document}");
+	tag += "\\begin{document}\n" + makeTitle + "%|\n\\end{document}";
 	return tag;
 }
 
