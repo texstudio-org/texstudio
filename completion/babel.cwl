@@ -3131,7 +3131,7 @@ SuppressWarning#true,false
 reset=#none,section,chapter,page,page-resume,page-cont
 resume
 indent=#article-nosp,article-sp,hulist
-ruler=#none,one-line,fourth,choose
+rule=#none,one-line,fourth,choose
 marksize=max-normal
 mark=#arabic,stars,stars-max
 mpmark=#arabic,stars,stars-max
@@ -3221,7 +3221,7 @@ editor
 reset=#none,section,chapter,page,page-resume,page-cont
 resume
 indent=#article-nosp,article-sp,hulist
-ruler=#none,one-line,fourth,choose
+rule=#none,one-line,fourth,choose
 marksize=max-normal
 mark=#arabic,stars,stars-max
 mpmark=#arabic,stars,stars-max
