@@ -234,6 +234,7 @@ void TemplateSelector::onRequestCompleted()
         if(url.endsWith("json")){
             QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
             OnlineFileTemplate *tmpl=new OnlineFileTemplate(jsonDoc);
+            tmpl->setURL(rootItem->data(0,TexRole).toString());
 
             TemplateHandle th=TemplateHandle(tmpl);
             rootItem->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
@@ -256,10 +257,10 @@ void TemplateSelector::onRequestCompleted()
             path+="png";
             saveToCache(ba,path);
         }
-        if(url.endsWith("tex")){
+        if(url.endsWith("tex")||url.endsWith("zip")){
             QString path=rootItem->data(0, PathRole).toString();
             path.chop(4);
-            path+="tex";
+            path+=url.right(3);
             const QString fn=appendPath(m_cachingDir,path);
             saveToCache(ba,path);
             TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
@@ -296,7 +297,7 @@ void TemplateSelector::onRequestCompleted()
                     auto *item=rootItem->child(i);
                     item->setData(0,PreviewRole,dd["download_url"].toString());
                 }
-                if(name.endsWith(".tex")){
+                if(name.endsWith(".tex")||name.endsWith(".zip")){
                     // add to last item
                     // naming scheme needs to be followed and then abc.json is before abc.png ...
                     // i.e. this needs to be improved.
@@ -329,6 +330,7 @@ void TemplateSelector::onCachedRequestCompleted(const QByteArray &ba,QTreeWidget
     if(url.endsWith("json")){
         QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
         OnlineFileTemplate *tmpl=new OnlineFileTemplate(jsonDoc);
+        tmpl->setURL(rootItem->data(0,TexRole).toString());
 
         TemplateHandle th=TemplateHandle(tmpl);
         rootItem->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
@@ -346,10 +348,10 @@ void TemplateSelector::onCachedRequestCompleted(const QByteArray &ba,QTreeWidget
         tpl->setPreviewImage(QPixmap::fromImage(img));
         showInfo(rootItem,nullptr);
     }
-    if(url.endsWith("tex")){
+    if(url.endsWith("tex")||url.endsWith("zip")){
         QString path=rootItem->data(0, PathRole).toString();
         path.chop(4);
-        path+="tex";
+        path+=url.right(3);
         const QString fn=appendPath(m_cachingDir,path);
         TemplateHandle th=rootItem->data(0, TemplateHandleRole).value<TemplateHandle>();
         OnlineFileTemplate *tpl=static_cast<OnlineFileTemplate *>(th.getHandle());

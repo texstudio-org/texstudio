@@ -77,6 +77,8 @@ public:
     virtual QPixmap previewImage() const { return m_preview; }
     virtual QString file() const { return m_url; }
     virtual bool isEditable() const { return false; }
+    virtual bool isMultifile() const { return file().endsWith(".zip"); }
+    virtual QStringList filesToOpen() const;
 
     void setPreviewImage(QPixmap img) {m_preview=img;}
     void setURL(const QString& name) {m_url=name;}

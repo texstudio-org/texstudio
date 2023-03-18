@@ -241,3 +241,14 @@ OnlineFileTemplate::OnlineFileTemplate(QJsonDocument jsonDoc)
     m_jsonDoc=jsonDoc;
     m_dd=m_jsonDoc.object();
 }
+
+QStringList OnlineFileTemplate::filesToOpen() const
+{
+    QStringList files;
+    foreach (const QString & f, m_dd["FilesToOpen"].toString().split(";")) {
+        QString ft(f.trimmed());
+        if (!ft.isEmpty())
+            files << ft;
+    }
+    return files;
+}
