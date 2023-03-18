@@ -2921,7 +2921,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="528"/>
         <source>General</source>
-        <translation>Общие</translation>
+        <translation>Общие настройки</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="529"/>
@@ -2942,12 +2942,12 @@ to set the key anyway?</source>
         <location filename="../src/configdialog.ui" line="1369"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>GUI Scaling</source>
-        <translation>Масштабирование интерфейса</translation>
+        <translation>Масштабир интерфейса</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="536"/>
         <source>Adv. Editor</source>
-        <translation>Редактор (доп.)</translation>
+        <translation>Редактор (дополн.)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="537"/>
@@ -2957,7 +2957,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="539"/>
         <source>Language Checking</source>
-        <translation>Проверка языка</translation>
+        <translation>Проверка орфографии</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4652"/>
@@ -9473,7 +9473,7 @@ failed.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="2131"/>
         <source>Edit &amp;Macros...</source>
-        <translation>Изменить &amp;макрос...</translation>
+        <translation>Редактировать &amp;макросы...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="364"/>
@@ -10336,7 +10336,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1173"/>
         <source>update TOC</source>
-        <translation>обновить оглавление</translation>
+        <translation>Обновить оглавление</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1174"/>
