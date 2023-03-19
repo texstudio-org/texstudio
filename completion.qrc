@@ -1464,6 +1464,7 @@
 <file>completion/fcprefix.cwl</file>
 <file>completion/fdsymbol.cwl</file>
 <file>completion/fdulogo.cwl</file>
+<file>completion/FenetreCas.cwl</file>
 <file>completion/fenixpar.cwl</file>
 <file>completion/fenixtok.cwl</file>
 <file>completion/fetamont.cwl</file>
@@ -2625,6 +2626,7 @@
 <file>completion/pgf.cwl</file>
 <file>completion/pgf-filehook.cwl</file>
 <file>completion/pgffor.cwl</file>
+<file>completion/pgffor-ext.cwl</file>
 <file>completion/pgfgantt.cwl</file>
 <file>completion/pgf-interference.cwl</file>
 <file>completion/pgfkeys.cwl</file>
@@ -3541,8 +3543,11 @@
 <file>completion/tikzlibraryext.calendar-plus.cwl</file>
 <file>completion/tikzlibraryexternal.cwl</file>
 <file>completion/tikzlibraryext.misc.cwl</file>
+<file>completion/tikzlibraryext.node-families.cwl</file>
 <file>completion/tikzlibraryext.node-families.shapes.geometric.cwl</file>
+<file>completion/tikzlibraryext.nodes.cwl</file>
 <file>completion/tikzlibraryext.paths.arcto.cwl</file>
+<file>completion/tikzlibraryext.paths.timer.cwl</file>
 <file>completion/tikzlibraryext.patterns.images.cwl</file>
 <file>completion/tikzlibraryext.positioning-plus.cwl</file>
 <file>completion/tikzlibraryext.scalepicture.cwl</file>
