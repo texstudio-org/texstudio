@@ -1,5 +1,5 @@
 # ext.misc tikzlibrary
-# 2022/12/09 for v0.4.2
+# 2023/03/19 for v0.5.0
 
 # loads ext.pgfkeys-plus pgfkeyslibrary
 
@@ -18,3 +18,9 @@ full arc=%<number%>
 \pgfmathqanglebetween{"p"}#*
 \pgfmathdistancebetween{"p1"}{"p2"}#*
 \pgfmathqdistancebetween{"p"}#*
+
+# from pgffor-ext.code.tex
+#keyvals:\foreach#c
+no separator
+normal list
+#endkeyvals
