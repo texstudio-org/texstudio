@@ -17,6 +17,7 @@
 - fix a crash in a special case ([#2985](https://github.com/texstudio-org/texstudio/issues/2985))
 - updated LaTeX2e manual (help menu) and added missing image
 - allow git push when using git checkin dialog
+- enable multi-file templates in online template repository
 - many new and updated cwls
 - updated translations
 - improved cmake build
