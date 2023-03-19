@@ -148,13 +148,18 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 	bool defaultSet = false;
 	for (int i = 0; i < list.length(); i++) {
 		QString text = list[i];
-		//QIcon icon = (i<icons.length()) ? icons[i] : QIcon();
-		QAction *mAction = mMenu->addAction(text, receiver, member);
-		if (infos.count()>0) mAction->setToolTip(infos[i]);
-		max = qMax(max, getFmWidth(fm, text + "        "));
-		if (i == defaultIndex) {
-			combo->setDefaultAction(mAction);
-			defaultSet = true;
+		if (text!="") {
+			QAction *mAction = mMenu->addAction(text, receiver, member);
+			if (infos.count()>i) mAction->setToolTip(infos[i]);
+			if (icons.count()>i) mAction->setIcon(icons[i]);
+			max = qMax(max, getFmWidth(fm, text + "        "));
+			if (i == defaultIndex) {
+				combo->setDefaultAction(mAction);
+				defaultSet = true;
+			}
+		}
+		else {
+			QAction *mAction = mMenu->addSeparator();
 		}
 	}
 	if (!defaultSet) {
