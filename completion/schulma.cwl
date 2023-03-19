@@ -1,11 +1,15 @@
 # schulma package
-# Matthew Bertucci 2/16/2022 for v1.2
+# Matthew Bertucci 2023/03/15 for v1.4
 
 #include:mathtools
 #include:autoaligne
 #include:icomma
 #include:pgfplots
 #include:tikzlibraryshapes.misc
+
+#keyvals:\usepackage/schulma#c
+ohne-icomma
+#endkeyvals
 
 \begin{Kosy}#\pictureHighlight
 \begin{Kosy}[pgfplots options%keyvals]
