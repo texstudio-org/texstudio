@@ -3,8 +3,8 @@
 
 - allow wheel usage over linenumber/linemark/fold panel of editors
 - fix skipping scroll when pointer was moved outside the text pane ([#2614](https://github.com/texstudio-org/texstudio/issues/2614))
-- add Min/Max/Close buttons to Macro Editor dialog ([2987](https://github.com/texstudio-org/texstudio/pull/2987))
-- fix text in status bar of Macro Editor wiggling around after 10s and 50s ([3001](https://github.com/texstudio-org/texstudio/pull/3001))
+- add Min/Max/Close buttons to Macro Editor dialog ([#2987](https://github.com/texstudio-org/texstudio/pull/2987))
+- fix text in status bar of Macro Editor wiggling around after 10s and 50s ([#3001](https://github.com/texstudio-org/texstudio/pull/3001))
 - Show changelog in about dialog and [manual](https://texstudio-org.github.io/CHANGELOG.html)
 - pasting from LibreOffice Calc uses '&' and '\\' as delimiters. If pasted where no table is defined, the table wizard is called.
 - change Adv. Editor option "Vertical Overscroll" to scroll last line to top ([#2944](https://github.com/texstudio-org/texstudio/issues/2944))
@@ -16,8 +16,8 @@
 - pos1 (home) key now sets cursor to start or to first non-blank character of editor lines ([#3012](https://github.com/texstudio-org/texstudio/issues/3012))
 - fix a crash in a special case ([#2985](https://github.com/texstudio-org/texstudio/issues/2985))
 - updated LaTeX2e manual (help menu) and added missing image
-- allow git push when using git checkin dialog
 - enable multi-file templates in online template repository
+- allow git push when using git checkin dialog ([#3005](https://github.com/texstudio-org/texstudio/issues/3005))
 - many new and updated cwls
 - updated translations
 - improved cmake build
