@@ -3696,9 +3696,49 @@ options again to only view the most common settings.</source>
         <translation>\includegraphics{fájlnév}</translation>
     </message>
     <message>
+        <location filename="../src/additionaltranslations.cpp" line="172"/>
+        <source>Single equation centered in a row</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="174"/>
+        <source>Multiple equations aligned within columns</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="176"/>
+        <source>Multiple equations aligned within columns with customizable column spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="178"/>
+        <source>Multiple equations aligned within columns having column spacing to fill full line</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="180"/>
+        <source>Multiple equations centered in rows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="182"/>
+        <source>Single equation split into multiple lines</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/additionaltranslations.cpp" line="192"/>
         <source>The gather* environment is an unnumbered gather environment.</source>
         <translation>A gather* környezet egy számozatlan gather környezet.</translation>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="196"/>
+        <source>Distinction of cases (within other math env)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/additionaltranslations.cpp" line="198"/>
+        <source>Single equation split into multiple aligned lines (within other math env)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="134"/>
@@ -3764,36 +3804,6 @@ options again to only view the most common settings.</source>
         <location filename="../src/additionaltranslations.cpp" line="171"/>
         <source>env equation</source>
         <translation>equation</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="172"/>
-        <source>The equation environment centers one equation on the page and places the equation number in the margin.</source>
-        <translation>Az equation környezet az egyenletet középre, az egyenletszámot pedig a margóra helyezi az oldalon.</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="174"/>
-        <source>The align environment vertically aligns multiple equations. You can do so in several equation columns. Use &amp; sign for alignment and splitting into columns.</source>
-        <translation>Az align környezet több egyenletet függőlegesen igazít. Ezt több egyenletoszlopban is megteheti. Használja az &amp; jelet az igazításhoz és az oszlopokra való felosztáshoz.</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="176"/>
-        <source>The alignat environment is a variation of the align environment and allows to explicitly specify the space between equation columns. For ex. use &amp;\quad&amp; as column separator. Give the number of columns as a parameter.</source>
-        <translation>Az alignat környezet az align környezet egy változata, amely lehetővé teszi az egyenletoszlopok közötti tér explicit megadását. Pl. használja a &amp;\quad&amp; kódot oszlop elválasztóként. Paraméterként adja meg az oszlopok számát.</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="178"/>
-        <source>The flalign environment is an align environment that stretches space between equation columns as much as possible, leaving just enough space at the margin for the equation number.</source>
-        <translation>A flalign környezet olyan align környezet, amely a lehető legnagyobb mértékben megnyújtja az egyenlet oszlopai közötti teret, és elegendő helyet hagy a margón az egyenletszámnak.</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="180"/>
-        <source>The gather environment is used for multiple centered equations separated by \\, each having an equation number.</source>
-        <translation>A gather környezet több, \\ karakterrel elválasztott középre helyezett egyenlethez használatos, amelyek mindegyikének egy egyenletszáma van.</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="182"/>
-        <source>The multline environment is a variation of the equation environment used for equations that don&apos;t fit on one line. Use \\ to split lines. Lines between the first and the last one will be centered.</source>
-        <translation>A multline környezet az equation környezet egy változata, amelyet olyan egyenletekhez használnak, amelyek nem férnek el egy sorba. Használja a \\ kódot a sorok felosztásához. Az első és az utolsó közötti sorok középre kerülnek.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="183"/>
@@ -3986,19 +3996,9 @@ options again to only view the most common settings.</source>
         <translation>cases (amsmath)</translation>
     </message>
     <message>
-        <location filename="../src/additionaltranslations.cpp" line="196"/>
-        <source>The cases environment provides a strucure that displays as a brace left to an array of lines with two left-aligned columns.</source>
-        <translation>A cases környezet olyan struktúrát biztosít, amely kapcsos zárójelként jelenik meg egy sortömbhöz, két balra igazított oszloppal.</translation>
-    </message>
-    <message>
         <location filename="../src/additionaltranslations.cpp" line="197"/>
         <source>env split (amsmath)</source>
         <translation>split (amsmath)</translation>
-    </message>
-    <message>
-        <location filename="../src/additionaltranslations.cpp" line="198"/>
-        <source>The split environment is similar to the multline environment but allows vertical alignment using &amp; signs. There is no eqn number. Use inside displayed environments.</source>
-        <translation>A split környezet hasonló a multline környezethez, de lehetővé teszi a függőleges igazítást a &amp; jelek használatával. Nincs egyenletszám. Használja kiemelt matematikai környezetben.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="199"/>
@@ -5317,32 +5317,32 @@ A varázsló nem támogatja a parancsot</translation>
 <context>
     <name>LetterDialog</name>
     <message>
-        <location filename="../src/letterdialog.ui" line="41"/>
+        <location filename="../src/letterdialog.ui" line="42"/>
         <source>Typeface Size</source>
         <translation>Betűméret</translation>
     </message>
     <message>
-        <location filename="../src/letterdialog.ui" line="56"/>
+        <location filename="../src/letterdialog.ui" line="57"/>
         <source>Encoding</source>
         <translation>Kódolás</translation>
     </message>
     <message>
-        <location filename="../src/letterdialog.ui" line="63"/>
+        <location filename="../src/letterdialog.ui" line="64"/>
         <source>AMS Packages</source>
         <translation>AMS csomagok</translation>
     </message>
     <message>
-        <location filename="../src/letterdialog.ui" line="84"/>
+        <location filename="../src/letterdialog.ui" line="85"/>
         <source>Paper Size</source>
         <translation>Papírméret</translation>
     </message>
     <message>
-        <location filename="../src/letterdialog.ui" line="114"/>
+        <location filename="../src/letterdialog.ui" line="115"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/letterdialog.ui" line="121"/>
+        <location filename="../src/letterdialog.ui" line="122"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
@@ -5718,410 +5718,405 @@ Do you want to overwrite it?</source>
         <translation>&amp;Beállítások</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2960"/>
-        <source>Help</source>
-        <translation>Segítség</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2962"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2959"/>
         <source>&amp;Help</source>
         <translation>Sú&amp;gó</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2969"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2965"/>
         <source>User &amp;Manual...</source>
         <translation>&amp;Felhasználói kézikönyv…</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2972"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2968"/>
         <source>About</source>
         <translation>Névjegy</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2973"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2969"/>
         <source>&amp;Open...</source>
         <translation>&amp;Megnyitás…</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2974"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2970"/>
         <source>Split &amp;&amp; Merge...</source>
         <translation>Felosztás és &amp;egyesítés…</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2975"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2971"/>
         <source>&amp;Close</source>
         <translation>&amp;Bezárás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2977"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2973"/>
         <source>&amp;Quit TeXstudio</source>
         <translation>&amp;Kilépés a TeXstudióból</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2974"/>
         <source>&amp;Configure TeXstudio</source>
         <translation>&amp;A TeXstudio beállításai</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2980"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2976"/>
         <source>Scrolling follows cursor</source>
         <translation>A görgetés követi a kurzort</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
         <source>Cursor follows scrolling</source>
         <translation>A kurzor követi a görgetést</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2984"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2980"/>
         <source>Synchronize multiple views</source>
         <translation>Több nézet szinkronizálása</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2986"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
         <source>Ignore for synchronization</source>
         <translation>Mellőzés szinkronizáláskor</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2989"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2985"/>
         <source>Invert Colors</source>
         <translation>Inverz színek</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2991"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2987"/>
         <source>Grayscale</source>
         <translation>Szürkeárnyalatos</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2994"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2990"/>
         <source>&amp;Magnify</source>
         <translation>&amp;Nagyítás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2995"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2991"/>
         <source>&amp;Scroll</source>
         <translation>&amp;Görgetés</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2997"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2993"/>
         <source>&amp;First Page</source>
         <translation>&amp;Első oldal</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2998"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2994"/>
         <source>Back</source>
         <translation>Vissza</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2999"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2995"/>
         <source>&amp;Previous Page</source>
         <translation>E&amp;lőző oldal</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3000"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2996"/>
         <source>&amp;Next Page</source>
         <translation>&amp;Következő oldal</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3001"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2997"/>
         <source>Forward</source>
         <translation>Előre</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3002"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2998"/>
         <source>&amp;Last Page</source>
         <translation>&amp;Utolsó oldal</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3004"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3000"/>
         <source>&amp;Go to Page...</source>
         <translation>U&amp;grás az oldalra…</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3006"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3002"/>
         <source>Zoom &amp;In</source>
         <translation>&amp;Nagyítás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3003"/>
         <source>Zoom &amp;Out</source>
         <translation>K&amp;icsinyítés</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3008"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3004"/>
         <source>&amp;Actual Size</source>
         <translation>&amp;Tényleges méret</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3009"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3005"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Tel&amp;jes szélesség</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3011"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
         <source>Fit to &amp;Text Width</source>
         <translation>Teljes &amp;szélesség</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3013"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3009"/>
         <source>Fit to &amp;Window</source>
         <translation>Ké&amp;pernyőhöz igazítás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3015"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3011"/>
         <source>&amp;Continuous</source>
         <translation>&amp;Folytonos</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3020"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
         <source>Full &amp;Screen</source>
         <translation>Telje&amp;s képernyő</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3021"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3017"/>
         <source>Presentation</source>
         <translation>Bemutató</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3022"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3018"/>
         <source>External Viewer</source>
         <translation>Külső megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3023"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3019"/>
         <source>Enlarge Viewer</source>
         <translation>Néző nagyítása</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3020"/>
         <source>Shrink Viewer</source>
         <translation>Néző kicsinyítése</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3025"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3021"/>
         <source>Windowed/Embedded</source>
         <translation>Ablakban/Beágyazott</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3026"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3022"/>
         <source>Auto-hide Toolbar</source>
         <translation>Eszköztár automatikus elrejtése</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3042"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3038"/>
         <source>Custom...</source>
         <translation>Egyéni…</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3047"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3043"/>
         <source>Single Page Step</source>
         <translation>Lapozás oldalanként</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3052"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3046"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
         <source>&amp;Close something</source>
         <translation>&amp;Bezárás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3055"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3051"/>
         <source>Stac&amp;k</source>
         <translation>&amp;Verem</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3056"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3052"/>
         <source>&amp;Tile</source>
         <translation>&amp;Csempe</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3057"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
         <source>&amp;Side by Side</source>
         <translation>&amp;Egymás mellett</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3059"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3055"/>
         <source>&amp;Go to Source</source>
         <translation>&amp;Ugrás a forrásra</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3060"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3056"/>
         <source>Focus Editor</source>
         <translation>Fókuszban a szerkesztő</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3062"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3058"/>
         <source>New Window</source>
         <translation>Új ablak</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3063"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3059"/>
         <source>&amp;Find</source>
         <translation>K&amp;eresés</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3064"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3060"/>
         <source>Find &amp;again</source>
         <translation>Keresés &amp;újra</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3066"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3062"/>
         <source>Quick Build</source>
         <translation>Gyors fordítás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3100"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3096"/>
         <source>Show</source>
         <translation>Megjelenítés</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3128"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3124"/>
         <source>Windowed Viewer</source>
         <translation>Megjelenítő ablakban</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3131"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3127"/>
         <source>Embedded Viewer</source>
         <translation>Beágyazott megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3194"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3190"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>/</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3217"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3213"/>
         <source>Scale</source>
         <translation>Méret</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3235"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3231"/>
         <source>Zoom Out</source>
         <translation>Kicsinyítés</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3245"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3241"/>
         <source>Zoom</source>
         <translation>Átméretezés</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3254"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3250"/>
         <source>Zoom In</source>
         <translation>Nagyítás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3282"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3285"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3278"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3281"/>
         <source>Annotations</source>
         <translation>Magyarázatok</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3423"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3419"/>
         <source>Page Down</source>
         <translation>Page Down</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3427"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3423"/>
         <source>Page Up</source>
         <translation>Page Up</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3617"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3613"/>
         <source>Retry</source>
         <translation>Újra</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3620"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4774"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3616"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4770"/>
         <source>Close</source>
         <translation>Bezárás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3623"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3619"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
 nem tűnik igazi PDF dokumentumnak. A fájl vagy sérült, vagy még csak most jön létre. Újrapróbálkozás két másodpercenként.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3637"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3633"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>A(z) „%1” nevű fájl nem található, talán törölve lett.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3640"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3636"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Nem sikerült betölteni a(z) „%1” fájlt, talán nem szabványos PDF dokumentum.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3643"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3639"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>Nem sikerült betölteni a(z) „%1” fájlt hibás memóriafoglalás miatt, talán nem szabványos PDF dokumentum.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3646"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3642"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>Egy kivétel miatt nem sikerült betölteni a(z) „%1” fájlt, talán nem szabványos PDF dokumentum.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3649"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3645"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>A(z) „%1” PDF-fájl zárolt.</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3651"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3647"/>
         <source>PDF password</source>
         <translation>PDF jelszó</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3651"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3647"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>A(z) „%1” PDF-fájl zárolt.
 Most megadhatja a jelszót:</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4008"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4004"/>
         <source>Searching for</source>
         <translation>Keresés</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4120"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4116"/>
         <source>No SyncTeX data available</source>
         <translation>Nincs megfelelő SyncTeX adat</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4122"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4118"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: „%1”</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4213"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4209"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4295"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4291"/>
         <source>Page %1 of %2</source>
         <translation>%1 / %2 oldal</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4296"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4292"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>%1 - %2 / %3 oldal</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4321"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4317"/>
         <source>Open PDF</source>
         <translation>PDF megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4596"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4592"/>
         <source>Print</source>
         <translation>Nyomtatás</translation>
     </message>
     <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4775"/>
+        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4771"/>
         <source>Close Message</source>
         <translation>Üzenet bezárása</translation>
     </message>
@@ -6491,7 +6486,7 @@ Most megadhatja a jelszót:</translation>
         <translation>Megjegyezze a választást?</translation>
     </message>
     <message>
-        <location filename="../src/utilsUI.cpp" line="162"/>
+        <location filename="../src/utilsUI.cpp" line="167"/>
         <source>none</source>
         <translation>nincs</translation>
     </message>
@@ -8221,57 +8216,57 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <translation>Gyors kezdés</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="294"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="297"/>
         <source>Mathematical symbols from AMS</source>
         <translation>Matematikai szimbólumok az AMS-től</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="295"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="298"/>
         <source>Graphics package, easily include images (s. Insert Graphic Wizard)</source>
         <translation>Grafikus csomag, könnyen beilleszthető képek (lásd Kép beillesztése varázsló)</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="296"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Support for hyperlinks in your document</source>
         <translation>Hiperhivatkozások támogatása a dokumentumban</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="297"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="300"/>
         <source>Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath</source>
         <translation>Bővítménycsomag az amsmath-hoz, beleértve az amsmath hibáinak javítását, és az amsmath betöltését</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="298"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
         <translation>Definiálja a tételszerű környezeteit, az amsmath után kell betölteni</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="299"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="302"/>
         <source>Reference to names of chapters, sections, ..., loaded by hyperref</source>
         <translation>Hivatkozás a fejezetek, szakaszok, ... nevére, amelyet a hyperref töltött be</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="300"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="303"/>
         <source>Extension package to amsthm</source>
         <translation>Bővítménycsomag az amsthm-hez</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="301"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="304"/>
         <source>Sophisticated package for colors, with table option to use colors in tables</source>
         <translation>Csomag színekhez, table opcióval a színek táblázatokban való használatához</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="494"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="505"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="516"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="527"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="538"/>
-        <location filename="../src/quickdocumentdialog.cpp" line="549"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="497"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="508"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="519"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="530"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="541"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="552"/>
         <source>New:</source>
         <translation>Új:</translation>
     </message>
     <message>
-        <location filename="../src/quickdocumentdialog.cpp" line="560"/>
+        <location filename="../src/quickdocumentdialog.cpp" line="563"/>
         <source>All packages that have the checkbox checked will appear in a new document within \usepackage commands after pressing OK.</source>
         <translation>Minden csomag, amelynél be van jelölve a jelölőnégyzet, megjelenik az új dokumentumban a \usepackage parancson belül, miután megnyomta az OK gombot.</translation>
     </message>
@@ -9208,80 +9203,80 @@ fájlt nem lehet eltávolítani.</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="137"/>
-        <location filename="../src/templateselector.cpp" line="317"/>
+        <location filename="../src/templateselector.cpp" line="318"/>
         <source>&lt;loading...&gt;</source>
         <translation>&lt;betöltés...&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="455"/>
+        <location filename="../src/templateselector.cpp" line="457"/>
         <source>Select Target Folder</source>
         <translation>Célkönyvtár kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="485"/>
+        <location filename="../src/templateselector.cpp" line="487"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;Nincs név&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="488"/>
+        <location filename="../src/templateselector.cpp" line="490"/>
         <source>Date</source>
         <translation>Dátum</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="489"/>
+        <location filename="../src/templateselector.cpp" line="491"/>
         <source>Version</source>
         <translation>Verzió</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="490"/>
+        <location filename="../src/templateselector.cpp" line="492"/>
         <source>License</source>
         <translation>Licenc</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="533"/>
+        <location filename="../src/templateselector.cpp" line="535"/>
         <source>Edit Template</source>
         <translation>Sablon szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="534"/>
+        <location filename="../src/templateselector.cpp" line="536"/>
         <source>Edit Template Info</source>
         <translation>Sablon-információ szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="535"/>
+        <location filename="../src/templateselector.cpp" line="537"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="538"/>
+        <location filename="../src/templateselector.cpp" line="540"/>
         <source>Open Template Location</source>
         <translation>Sablon megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="552"/>
-        <location filename="../src/templateselector.cpp" line="563"/>
-        <location filename="../src/templateselector.cpp" line="574"/>
+        <location filename="../src/templateselector.cpp" line="554"/>
+        <location filename="../src/templateselector.cpp" line="565"/>
+        <location filename="../src/templateselector.cpp" line="576"/>
         <source>This template cannot be edited.</source>
         <translation>Ez a sablon nem szerkeszthető.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="579"/>
+        <location filename="../src/templateselector.cpp" line="581"/>
         <source>Please Confirm</source>
         <translation>Kérem erősítse meg</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="579"/>
+        <location filename="../src/templateselector.cpp" line="581"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Biztosan törli a sablont?</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="586"/>
-        <location filename="../src/templateselector.cpp" line="591"/>
+        <location filename="../src/templateselector.cpp" line="588"/>
+        <location filename="../src/templateselector.cpp" line="593"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Nincs jogosultsága törölni a fájlt.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="601"/>
+        <location filename="../src/templateselector.cpp" line="603"/>
         <source>Could not open location:</source>
         <translation>Nem nyitható meg:</translation>
     </message>
@@ -9458,7 +9453,7 @@ fájlt nem lehet eltávolítani.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="364"/>
-        <location filename="../src/texstudio.cpp" line="6230"/>
+        <location filename="../src/texstudio.cpp" line="6240"/>
         <source>Ready</source>
         <translation>Kész</translation>
     </message>
@@ -9499,8 +9494,8 @@ fájlt nem lehet eltávolítani.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="441"/>
-        <location filename="../src/texstudio.cpp" line="9690"/>
-        <location filename="../src/texstudio.cpp" line="9697"/>
+        <location filename="../src/texstudio.cpp" line="9706"/>
+        <location filename="../src/texstudio.cpp" line="9713"/>
         <source>All files</source>
         <translation>Minden fájl</translation>
     </message>
@@ -9575,1534 +9570,1534 @@ fájlt nem lehet eltávolítani.</translation>
         <translation>XY parancsok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="878"/>
+        <location filename="../src/texstudio.cpp" line="883"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="880"/>
+        <location filename="../src/texstudio.cpp" line="885"/>
         <source>&amp;New</source>
         <translation>Ú&amp;j</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="881"/>
+        <location filename="../src/texstudio.cpp" line="886"/>
         <source>New From &amp;Template...</source>
         <translation>Új, &amp;sablonból...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="882"/>
+        <location filename="../src/texstudio.cpp" line="887"/>
         <source>&amp;Open...</source>
         <translation>&amp;Megnyitás...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="884"/>
+        <location filename="../src/texstudio.cpp" line="889"/>
         <source>Open &amp;Recent</source>
         <translation>&amp;Korábban szerkesztett dokumentum megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="886"/>
+        <location filename="../src/texstudio.cpp" line="891"/>
         <source>Session</source>
         <translation>Munkamenet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="887"/>
+        <location filename="../src/texstudio.cpp" line="892"/>
         <source>Load Session...</source>
         <translation>Munkamenet betöltése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="888"/>
+        <location filename="../src/texstudio.cpp" line="893"/>
         <source>Save Session...</source>
         <translation>Munkamenet mentése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="889"/>
+        <location filename="../src/texstudio.cpp" line="894"/>
         <source>Restore Previous Session</source>
         <translation>Előző munkamenet helyreállítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="898"/>
+        <location filename="../src/texstudio.cpp" line="903"/>
         <source>&amp;Save</source>
         <translation>Me&amp;ntés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="899"/>
+        <location filename="../src/texstudio.cpp" line="904"/>
         <source>Save &amp;As...</source>
         <translation>M&amp;entés másként...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="900"/>
+        <location filename="../src/texstudio.cpp" line="905"/>
         <source>Save A&amp;ll</source>
         <translation>Összes men&amp;tése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="901"/>
+        <location filename="../src/texstudio.cpp" line="906"/>
         <source>&amp;Make Template...</source>
         <translation>Sablon &amp;készítése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="904"/>
+        <location filename="../src/texstudio.cpp" line="909"/>
         <source>Fifi&amp;x</source>
         <translation>Fifi&amp;x</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="905"/>
+        <location filename="../src/texstudio.cpp" line="910"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>Átnevezett/&amp;áthelyezett fájl mentése…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="906"/>
+        <location filename="../src/texstudio.cpp" line="911"/>
         <source>Save copied file...</source>
         <translation>Másolt fájl mentése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="907"/>
+        <location filename="../src/texstudio.cpp" line="912"/>
         <source>&amp;Delete file</source>
         <translation>Fájl &amp;törlése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="908"/>
+        <location filename="../src/texstudio.cpp" line="913"/>
         <source>Set &amp;permissions...</source>
         <translation>&amp;Jogosultságok állítása...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="910"/>
+        <location filename="../src/texstudio.cpp" line="915"/>
         <source>&amp;Revert to saved...</source>
         <translation>&amp;Helyreállított mentése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="912"/>
+        <location filename="../src/texstudio.cpp" line="917"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>Fájlnév vágólapra &amp;másolása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="915"/>
+        <location filename="../src/texstudio.cpp" line="920"/>
         <source>S&amp;VN/GIT...</source>
         <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="916"/>
+        <location filename="../src/texstudio.cpp" line="921"/>
         <source>Check &amp;in...</source>
         <translation>S&amp;VN feltöltése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="917"/>
+        <location filename="../src/texstudio.cpp" line="922"/>
         <source>SVN &amp;update...</source>
         <translation>SVN &amp;frissítés...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="918"/>
+        <location filename="../src/texstudio.cpp" line="923"/>
         <source>SVN update &amp;work directory</source>
         <translation>&amp;SVN frissítési- és munkakönyvtár</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="919"/>
+        <location filename="../src/texstudio.cpp" line="924"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>&amp;Régi kiadások megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
+        <location filename="../src/texstudio.cpp" line="925"/>
         <source>Lock &amp;PDF</source>
         <translation>&amp;PDF bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="921"/>
+        <location filename="../src/texstudio.cpp" line="926"/>
         <source>Check in P&amp;DF</source>
         <translation>Ellenőrzés P&amp;DF-ben</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="922"/>
+        <location filename="../src/texstudio.cpp" line="927"/>
         <source>Show difference between two files</source>
         <translation>Megmutatja a különbséget két fájl között</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="923"/>
+        <location filename="../src/texstudio.cpp" line="928"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Megmutatja a különbséget az alapfájllal kapcsolatban lévő két fájl között</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="924"/>
+        <location filename="../src/texstudio.cpp" line="929"/>
         <source>Check SVN Conflict</source>
         <translation>SVN ütközés ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="925"/>
+        <location filename="../src/texstudio.cpp" line="930"/>
         <source>Try to merge differences</source>
         <translation>Megpróbálja kiküszöbölni a különbségeket</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="926"/>
+        <location filename="../src/texstudio.cpp" line="931"/>
         <source>Remove Difference-Markers</source>
         <translation>Különbségjelek eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="927"/>
+        <location filename="../src/texstudio.cpp" line="932"/>
         <source>Declare Conflict Resolved</source>
         <translation>Ütközés feloldva</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="928"/>
+        <location filename="../src/texstudio.cpp" line="933"/>
         <source>Jump to next difference</source>
         <translation>Ugrás a következő különbségre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="929"/>
+        <location filename="../src/texstudio.cpp" line="934"/>
         <source>Jump to previous difference</source>
         <translation>Ugrás az előző különbségre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="932"/>
-        <location filename="../src/texstudio.cpp" line="9891"/>
+        <location filename="../src/texstudio.cpp" line="937"/>
+        <location filename="../src/texstudio.cpp" line="9907"/>
         <source>&amp;Close</source>
         <translation>&amp;Bezárás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="933"/>
+        <location filename="../src/texstudio.cpp" line="938"/>
         <source>Clos&amp;e All</source>
         <translation>Minden be&amp;zárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="936"/>
+        <location filename="../src/texstudio.cpp" line="941"/>
         <source>Print Source Code...</source>
         <translation>Forráskód nyomtatása...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="939"/>
+        <location filename="../src/texstudio.cpp" line="944"/>
         <source>Exit</source>
         <translation>Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="942"/>
+        <location filename="../src/texstudio.cpp" line="947"/>
         <source>&amp;Edit</source>
         <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="943"/>
+        <location filename="../src/texstudio.cpp" line="948"/>
         <source>&amp;Undo</source>
         <translation>&amp;Visszavonás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="944"/>
+        <location filename="../src/texstudio.cpp" line="949"/>
         <source>&amp;Redo</source>
         <translation>Ú&amp;jbóli végrehajtás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/texstudio.cpp" line="951"/>
         <source>Debug undo stack</source>
         <translation>Hibakeresés visszavonása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="950"/>
+        <location filename="../src/texstudio.cpp" line="955"/>
         <source>&amp;Copy</source>
         <translation>&amp;Másolás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="949"/>
+        <location filename="../src/texstudio.cpp" line="954"/>
         <source>C&amp;ut</source>
         <translation>&amp;Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="913"/>
+        <location filename="../src/texstudio.cpp" line="918"/>
         <source>Copy root filename to clipboard</source>
         <translation>Gyökér fájlnév vágólapra másolása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="951"/>
+        <location filename="../src/texstudio.cpp" line="956"/>
         <source>&amp;Paste</source>
         <translation>&amp;Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="953"/>
+        <location filename="../src/texstudio.cpp" line="958"/>
         <source>&amp;Selection</source>
         <translation>&amp;Kiválasztás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="954"/>
+        <location filename="../src/texstudio.cpp" line="959"/>
         <source>Select &amp;All</source>
         <translation>Ö&amp;sszes kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="955"/>
+        <location filename="../src/texstudio.cpp" line="960"/>
         <source>Select All &amp;Occurrences</source>
         <translation>Összes &amp;előfordulás kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="956"/>
+        <location filename="../src/texstudio.cpp" line="961"/>
         <source>Select &amp;Prev Occurrence</source>
         <translation>Előző előfordulás kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
+        <location filename="../src/texstudio.cpp" line="962"/>
         <source>Select &amp;Next Occurrence</source>
         <translation>Következő előfordulás kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="958"/>
+        <location filename="../src/texstudio.cpp" line="963"/>
         <source>Also Select Prev Occurrence</source>
         <translation>Előző előfordulás kijelölése is</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="959"/>
+        <location filename="../src/texstudio.cpp" line="964"/>
         <source>Also Select Next Occurrence</source>
         <translation>Következő előfordulás kijelölése is</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="960"/>
+        <location filename="../src/texstudio.cpp" line="965"/>
         <source>Expand Selection to Word</source>
         <translation>Kijelölés bővítése a szóra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="961"/>
+        <location filename="../src/texstudio.cpp" line="966"/>
         <source>Expand Selection to Line</source>
         <translation>Kijelölés bővítése a sorra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
+        <location filename="../src/texstudio.cpp" line="968"/>
         <source>&amp;Line Operations</source>
         <translation>&amp;Sor műveletek</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="964"/>
+        <location filename="../src/texstudio.cpp" line="969"/>
         <source>Delete &amp;Line</source>
         <translation>Sor &amp;törlése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="967"/>
-        <location filename="../src/texstudio.cpp" line="969"/>
+        <location filename="../src/texstudio.cpp" line="972"/>
+        <location filename="../src/texstudio.cpp" line="974"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>Törlés a sor &amp;végéig</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="971"/>
+        <location filename="../src/texstudio.cpp" line="976"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>Törlés a sor &amp;elejétől</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="972"/>
+        <location filename="../src/texstudio.cpp" line="977"/>
         <source>Move Line &amp;Up</source>
         <translation>Sor &amp;felfelé mozgatása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
+        <location filename="../src/texstudio.cpp" line="978"/>
         <source>Move Line &amp;Down</source>
         <translation>Sor &amp;lefelé mozgatása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="974"/>
+        <location filename="../src/texstudio.cpp" line="979"/>
         <source>Du&amp;plicate Line</source>
         <translation>Sor meg&amp;kettőzése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="975"/>
+        <location filename="../src/texstudio.cpp" line="980"/>
         <source>S&amp;ort Lines</source>
         <translation>S&amp;orok rendezése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="976"/>
+        <location filename="../src/texstudio.cpp" line="981"/>
         <source>&amp;Align Cursors</source>
         <translation>Kurzorok &amp;igazítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/texstudio.cpp" line="983"/>
         <source>&amp;Text Operations</source>
         <translation>&amp;Szövegműveletek</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="979"/>
+        <location filename="../src/texstudio.cpp" line="984"/>
         <source>To Lowercase</source>
         <translation>Kisbetűsre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="980"/>
+        <location filename="../src/texstudio.cpp" line="985"/>
         <source>To Uppercase</source>
         <translation>Nagybetűsre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="981"/>
+        <location filename="../src/texstudio.cpp" line="986"/>
         <source>To Titlecase (strict)</source>
         <translation>Címmé (szigorú)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="982"/>
+        <location filename="../src/texstudio.cpp" line="987"/>
         <source>To Titlecase (smart)</source>
         <translation>Címmé (megengedő)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="986"/>
+        <location filename="../src/texstudio.cpp" line="991"/>
         <source>&amp;Searching</source>
         <translation>&amp;Keresés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="987"/>
+        <location filename="../src/texstudio.cpp" line="992"/>
         <source>&amp;Find</source>
         <translation>K&amp;eresés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/texstudio.cpp" line="993"/>
         <source>Find &amp;Next</source>
         <translation>Köve&amp;tkező</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/texstudio.cpp" line="994"/>
         <source>Find &amp;Prev</source>
         <translation>&amp;Előző keresése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="990"/>
+        <location filename="../src/texstudio.cpp" line="995"/>
         <source>Continue F&amp;ind</source>
         <translation>K&amp;eresés folytatása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="991"/>
+        <location filename="../src/texstudio.cpp" line="996"/>
         <source>&amp;Count</source>
         <translation>&amp;Számlálás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="992"/>
+        <location filename="../src/texstudio.cpp" line="997"/>
         <source>&amp;Select all matches...</source>
         <translation>M&amp;inden találat kiválasztása...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="994"/>
+        <location filename="../src/texstudio.cpp" line="999"/>
         <source>&amp;Replace</source>
         <translation>&amp;Csere</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="995"/>
+        <location filename="../src/texstudio.cpp" line="1000"/>
         <source>Replace Next</source>
         <translation>Következő cseréje</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="996"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
         <source>Replace Prev</source>
         <translation>Előző cseréje</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
+        <location filename="../src/texstudio.cpp" line="1002"/>
         <source>Replace &amp;All</source>
         <translation>Mindent &amp;cserél</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="1005"/>
         <source>Go to</source>
         <translation>Ugrás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1002"/>
-        <location filename="../src/texstudio.cpp" line="7694"/>
-        <location filename="../src/texstudio.cpp" line="7719"/>
-        <location filename="../src/texstudio.cpp" line="7739"/>
+        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/texstudio.cpp" line="7704"/>
+        <location filename="../src/texstudio.cpp" line="7729"/>
+        <location filename="../src/texstudio.cpp" line="7749"/>
         <source>Line</source>
         <translation>Sor</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1003"/>
+        <location filename="../src/texstudio.cpp" line="1008"/>
         <source>Previous Change</source>
         <translation>Legutóbbi változtatás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1005"/>
-        <location filename="../src/texstudio.cpp" line="1007"/>
+        <location filename="../src/texstudio.cpp" line="1010"/>
+        <location filename="../src/texstudio.cpp" line="1012"/>
         <source>Next Change</source>
         <translation>Következő változtatás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
+        <location filename="../src/texstudio.cpp" line="1015"/>
         <source>Previous mark</source>
         <translation>Előző jelölés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1011"/>
+        <location filename="../src/texstudio.cpp" line="1016"/>
         <source>Next mark</source>
         <translation>Következő jelölés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1014"/>
+        <location filename="../src/texstudio.cpp" line="1019"/>
         <source>Go Back</source>
         <translation>Vissza</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1015"/>
+        <location filename="../src/texstudio.cpp" line="1020"/>
         <source>Go Forward</source>
         <translation>Előre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1018"/>
+        <location filename="../src/texstudio.cpp" line="1023"/>
         <source>Goto Bookmark</source>
         <translation>Ugrás könyvjelzőre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1031"/>
-        <location filename="../src/texstudio.cpp" line="1040"/>
-        <location filename="../src/texstudio.cpp" line="1044"/>
+        <location filename="../src/texstudio.cpp" line="1036"/>
+        <location filename="../src/texstudio.cpp" line="1045"/>
+        <location filename="../src/texstudio.cpp" line="1049"/>
         <source>Bookmark %1</source>
         <translation>Könyvjelző %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1035"/>
+        <location filename="../src/texstudio.cpp" line="1040"/>
         <source>Toggle Bookmark</source>
         <translation>Könyvjelző kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1038"/>
-        <location filename="../src/texstudio.cpp" line="1042"/>
+        <location filename="../src/texstudio.cpp" line="1043"/>
+        <location filename="../src/texstudio.cpp" line="1047"/>
         <source>Unnamed Bookmark</source>
         <translation>Névtelen könyvjelző</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1049"/>
+        <location filename="../src/texstudio.cpp" line="1054"/>
         <source>Line Ending</source>
         <translation>Sorvég</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1051"/>
+        <location filename="../src/texstudio.cpp" line="1056"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1055"/>
+        <location filename="../src/texstudio.cpp" line="1060"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1059"/>
+        <location filename="../src/texstudio.cpp" line="1064"/>
         <source>Old Mac (CR)</source>
         <translation>Régi Mac (CR)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1065"/>
+        <location filename="../src/texstudio.cpp" line="1070"/>
         <source>Setup Encoding...</source>
         <translation>Kódolás beállítása...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1067"/>
-        <location filename="../src/texstudio.cpp" line="1069"/>
+        <location filename="../src/texstudio.cpp" line="1072"/>
+        <location filename="../src/texstudio.cpp" line="1074"/>
         <source>Insert Unicode Character...</source>
         <translation>Unicode karakter beszúrása…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1075"/>
+        <location filename="../src/texstudio.cpp" line="1080"/>
         <source>&amp;Idefix</source>
         <translation>Elő&amp;készítés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1076"/>
+        <location filename="../src/texstudio.cpp" line="1081"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Szó/&amp;Parancs/Környezet törlése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1079"/>
+        <location filename="../src/texstudio.cpp" line="1084"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Beillesztés &amp;LaTeX-ként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1080"/>
+        <location filename="../src/texstudio.cpp" line="1085"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>LaTeX-&amp;ké alakítás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1083"/>
+        <location filename="../src/texstudio.cpp" line="1088"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>K&amp;iválasztott/zárójelezett rész előnézete</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1084"/>
+        <location filename="../src/texstudio.cpp" line="1089"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>&amp;Azonnali előnézet törlése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1086"/>
+        <location filename="../src/texstudio.cpp" line="1091"/>
         <source>Preview Dis&amp;play Mode</source>
         <translation>Meg&amp;jelenítési mód előnézete</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1088"/>
+        <location filename="../src/texstudio.cpp" line="1093"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Előnézet megjelenítése buboréksúgóként, ha a panel rejtve van</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1092"/>
+        <location filename="../src/texstudio.cpp" line="1097"/>
         <source>Always show preview in preview panel</source>
         <translation>Mindig mutasson előnézetet az előnézet panelen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1096"/>
+        <location filename="../src/texstudio.cpp" line="1101"/>
         <source>Always show preview as tool tip</source>
         <translation>Mindig mutasson előnézetet tippként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1100"/>
+        <location filename="../src/texstudio.cpp" line="1105"/>
         <source>Always show both</source>
         <translation>Mindig mutassa mindkettőt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1104"/>
+        <location filename="../src/texstudio.cpp" line="1109"/>
         <source>Inline</source>
         <translation>Sorban</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1110"/>
+        <location filename="../src/texstudio.cpp" line="1115"/>
         <source>Show in embedded viewer</source>
         <translation>Beágyazott megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1119"/>
+        <location filename="../src/texstudio.cpp" line="1124"/>
         <source>Toggle &amp;Comment</source>
         <translation>&amp;Megjegyzés kapcsoló</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/texstudio.cpp" line="1125"/>
         <source>&amp;Comment</source>
         <translation>Meg&amp;jegyzés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1121"/>
+        <location filename="../src/texstudio.cpp" line="1126"/>
         <source>&amp;Uncomment</source>
         <translation>Megjeg&amp;yzés eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1122"/>
+        <location filename="../src/texstudio.cpp" line="1127"/>
         <source>&amp;Indent</source>
         <translation>&amp;Behúzás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1123"/>
+        <location filename="../src/texstudio.cpp" line="1128"/>
         <source>Unin&amp;dent</source>
         <translation>B&amp;ehúzás megszüntetése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1124"/>
+        <location filename="../src/texstudio.cpp" line="1129"/>
         <source>Hard Line &amp;Break...</source>
         <translation>S&amp;ortörés...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1125"/>
+        <location filename="../src/texstudio.cpp" line="1130"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>Ismétel&amp;t sortörés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1128"/>
+        <location filename="../src/texstudio.cpp" line="1133"/>
         <source>&amp;Go to</source>
         <translation>&amp;Ugrás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1130"/>
+        <location filename="../src/texstudio.cpp" line="1135"/>
         <source>Previous Error</source>
         <translation>Előző hiba</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1130"/>
-        <location filename="../src/texstudio.cpp" line="1131"/>
+        <location filename="../src/texstudio.cpp" line="1135"/>
+        <location filename="../src/texstudio.cpp" line="1136"/>
         <source>No LaTeX errors detected !</source>
         <translation>Nincs LaTeX hiba!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1131"/>
+        <location filename="../src/texstudio.cpp" line="1136"/>
         <source>Next Error</source>
         <translation>Következő hiba</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1132"/>
+        <location filename="../src/texstudio.cpp" line="1137"/>
         <source>Previous Warning</source>
         <translation>Előző figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1132"/>
-        <location filename="../src/texstudio.cpp" line="1133"/>
+        <location filename="../src/texstudio.cpp" line="1137"/>
+        <location filename="../src/texstudio.cpp" line="1138"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Nincs LaTeX figyelmeztetés!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1133"/>
+        <location filename="../src/texstudio.cpp" line="1138"/>
         <source>Next Warning</source>
         <translation>Következő figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1134"/>
+        <location filename="../src/texstudio.cpp" line="1139"/>
         <source>Previous Bad Box</source>
         <translation>Előző rossz szövegdoboz</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1134"/>
-        <location filename="../src/texstudio.cpp" line="1135"/>
+        <location filename="../src/texstudio.cpp" line="1139"/>
+        <location filename="../src/texstudio.cpp" line="1140"/>
         <source>No bad boxes detected !</source>
         <translation>Nincsenek rossz szövegdobozok!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1135"/>
+        <location filename="../src/texstudio.cpp" line="1140"/>
         <source>Next Bad Box</source>
         <translation>Következő rossz szövegdoboz</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1138"/>
+        <location filename="../src/texstudio.cpp" line="1143"/>
         <source>Definition</source>
         <translation>Definíció</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1141"/>
+        <location filename="../src/texstudio.cpp" line="1146"/>
         <source>Re&amp;name Environment</source>
         <translation>Környezet átne&amp;vezése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1143"/>
+        <location filename="../src/texstudio.cpp" line="1148"/>
         <source>Parenthesis</source>
         <translation>Zárójel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1145"/>
-        <location filename="../src/texstudio.cpp" line="1155"/>
+        <location filename="../src/texstudio.cpp" line="1150"/>
+        <location filename="../src/texstudio.cpp" line="1160"/>
         <source>Jump to Match</source>
         <translation>Ugrás az egyezéshez</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1146"/>
-        <location filename="../src/texstudio.cpp" line="1156"/>
+        <location filename="../src/texstudio.cpp" line="1151"/>
+        <location filename="../src/texstudio.cpp" line="1161"/>
         <source>Select Inner</source>
         <translation>Belső kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1147"/>
-        <location filename="../src/texstudio.cpp" line="1157"/>
+        <location filename="../src/texstudio.cpp" line="1152"/>
+        <location filename="../src/texstudio.cpp" line="1162"/>
         <source>Select Outer</source>
         <translation>Külső kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1148"/>
-        <location filename="../src/texstudio.cpp" line="1158"/>
+        <location filename="../src/texstudio.cpp" line="1153"/>
+        <location filename="../src/texstudio.cpp" line="1163"/>
         <source>Select Command</source>
         <translation>Parancs kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1149"/>
-        <location filename="../src/texstudio.cpp" line="1159"/>
+        <location filename="../src/texstudio.cpp" line="1154"/>
+        <location filename="../src/texstudio.cpp" line="1164"/>
         <source>Select Line</source>
         <translation>Sor kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1150"/>
-        <location filename="../src/texstudio.cpp" line="1160"/>
+        <location filename="../src/texstudio.cpp" line="1155"/>
+        <location filename="../src/texstudio.cpp" line="1165"/>
         <source>Select Inverting</source>
         <translation>Invertálás kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1153"/>
-        <location filename="../src/texstudio.cpp" line="1163"/>
+        <location filename="../src/texstudio.cpp" line="1158"/>
+        <location filename="../src/texstudio.cpp" line="1168"/>
         <source>Find Mismatch</source>
         <translation>Különbség keresése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1166"/>
+        <location filename="../src/texstudio.cpp" line="1171"/>
         <source>Complete</source>
         <translation>Kiegészítés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1167"/>
+        <location filename="../src/texstudio.cpp" line="1172"/>
         <source>Normal</source>
         <translation>Normál</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1168"/>
+        <location filename="../src/texstudio.cpp" line="1173"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ Kiegészítés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1169"/>
+        <location filename="../src/texstudio.cpp" line="1174"/>
         <source>Normal Text</source>
         <translation>Normál szöveg</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1170"/>
+        <location filename="../src/texstudio.cpp" line="1175"/>
         <source>Close latest open environment</source>
         <translation>Utoljára megnyitott környezet bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1173"/>
+        <location filename="../src/texstudio.cpp" line="1178"/>
         <source>update TOC</source>
         <translation>Tartalomjegyzék frissítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1174"/>
+        <location filename="../src/texstudio.cpp" line="1179"/>
         <source>Refresh Structure</source>
         <translation>Struktúra frissítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1175"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
         <source>Refresh Language Model</source>
         <translation>Nyelvi modell frissítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1176"/>
+        <location filename="../src/texstudio.cpp" line="1181"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation>A kiemeléshez és tördeléshez használt dinamikus nyelvi modell erőltetett frissítése. Valószínűleg ezt nem kell meghívnia, mert a frissítés általában automatikus.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/texstudio.cpp" line="1182"/>
         <source>Remove Placeholders</source>
         <translation>Helykitöltők eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1178"/>
+        <location filename="../src/texstudio.cpp" line="1183"/>
         <source>Remove Current Placeholder</source>
         <translation>Aktuális helykitöltő eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1183"/>
+        <location filename="../src/texstudio.cpp" line="1188"/>
         <source>&amp;Tools</source>
         <translation>&amp;Eszközök</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1185"/>
+        <location filename="../src/texstudio.cpp" line="1190"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Fordítás és megjelenítés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1186"/>
+        <location filename="../src/texstudio.cpp" line="1191"/>
         <source>&amp;Compile</source>
         <translation>&amp;Fordítás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1187"/>
+        <location filename="../src/texstudio.cpp" line="1192"/>
         <source>Stop Compile</source>
         <translation>Fordítás megállítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1191"/>
-        <location filename="../src/texstudio.cpp" line="1343"/>
+        <location filename="../src/texstudio.cpp" line="1196"/>
+        <location filename="../src/texstudio.cpp" line="1348"/>
         <source>&amp;View</source>
         <translation>&amp;Nézet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1192"/>
-        <location filename="../src/texstudio.cpp" line="1290"/>
+        <location filename="../src/texstudio.cpp" line="1197"/>
+        <location filename="../src/texstudio.cpp" line="1295"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliográfia</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/texstudio.cpp" line="1198"/>
         <source>&amp;Glossary</source>
         <translation>Szó&amp;jegyzék</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1194"/>
+        <location filename="../src/texstudio.cpp" line="1199"/>
         <source>&amp;Index</source>
         <translation>&amp;Index</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1197"/>
+        <location filename="../src/texstudio.cpp" line="1202"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>&amp;Parancsok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1198"/>
+        <location filename="../src/texstudio.cpp" line="1203"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1200"/>
-        <location filename="../src/texstudio.cpp" line="1250"/>
+        <location filename="../src/texstudio.cpp" line="1205"/>
+        <location filename="../src/texstudio.cpp" line="1255"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1201"/>
+        <location filename="../src/texstudio.cpp" line="1206"/>
         <source>&amp;PDFLaTeX</source>
         <translation>PDFLaTe&amp;X</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1205"/>
+        <location filename="../src/texstudio.cpp" line="1210"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
+        <location filename="../src/texstudio.cpp" line="1211"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1207"/>
+        <location filename="../src/texstudio.cpp" line="1212"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DVI-&gt;PD&amp;F</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1209"/>
+        <location filename="../src/texstudio.cpp" line="1214"/>
         <source>View &amp;DVI</source>
         <translation>&amp;Dvi megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1210"/>
+        <location filename="../src/texstudio.cpp" line="1215"/>
         <source>Vie&amp;w PS</source>
         <translation>&amp;Ps megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1211"/>
+        <location filename="../src/texstudio.cpp" line="1216"/>
         <source>View PD&amp;F</source>
         <translation>PDF meg&amp;jelenítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1213"/>
+        <location filename="../src/texstudio.cpp" line="1218"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1214"/>
+        <location filename="../src/texstudio.cpp" line="1219"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1215"/>
+        <location filename="../src/texstudio.cpp" line="1220"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
+        <location filename="../src/texstudio.cpp" line="1222"/>
         <source>&amp;MakeIndex</source>
         <translation>Ma&amp;keIndex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1218"/>
+        <location filename="../src/texstudio.cpp" line="1223"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1219"/>
+        <location filename="../src/texstudio.cpp" line="1224"/>
         <source>&amp;Xindex</source>
         <translation>&amp;Xindex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1220"/>
+        <location filename="../src/texstudio.cpp" line="1225"/>
         <source>&amp;Makeglossaries</source>
         <translation>S&amp;zójegyzékkészítés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1222"/>
+        <location filename="../src/texstudio.cpp" line="1227"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1223"/>
+        <location filename="../src/texstudio.cpp" line="1228"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1225"/>
+        <location filename="../src/texstudio.cpp" line="1230"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>Fel&amp;használó</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1228"/>
+        <location filename="../src/texstudio.cpp" line="1233"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>&amp;Segédfájlok törlése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1229"/>
+        <location filename="../src/texstudio.cpp" line="1234"/>
         <source>Open External &amp;Terminal</source>
         <translation>Külső &amp;terminál megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1231"/>
+        <location filename="../src/texstudio.cpp" line="1236"/>
         <source>View &amp;Log</source>
         <translation>&amp;Napló megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1232"/>
+        <location filename="../src/texstudio.cpp" line="1237"/>
         <source>Show Log Markers</source>
         <translation>Naplójelek megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1236"/>
+        <location filename="../src/texstudio.cpp" line="1241"/>
         <source>C&amp;onvert to Html...</source>
         <translation>K&amp;onvertálás Html-re...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1242"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>Fo&amp;rrás konvertálása Html-re...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
+        <location filename="../src/texstudio.cpp" line="1244"/>
         <source>Convert to Abridged Plaintext</source>
         <translation>Átalakítás rövidített egyszerű szöveggé</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/texstudio.cpp" line="1245"/>
         <source>A&amp;nalyse Text...</source>
         <translation>Szöveg &amp;elemzése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1241"/>
+        <location filename="../src/texstudio.cpp" line="1246"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Véletlen szöveg létre&amp;hozása...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1243"/>
+        <location filename="../src/texstudio.cpp" line="1248"/>
         <source>Check Spelling...</source>
         <translation>Helyesírás-ellenőrzés...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/texstudio.cpp" line="1249"/>
         <source>Thesaurus...</source>
         <translation>Tezaurusz...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/texstudio.cpp" line="1250"/>
         <source>Find Word Repetitions...</source>
         <translation>Szóismétlések keresése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1252"/>
+        <location filename="../src/texstudio.cpp" line="1257"/>
         <source>Insert \ref to Next Label</source>
         <translation>\ref beillesztése a következő címkére</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1253"/>
+        <location filename="../src/texstudio.cpp" line="1258"/>
         <source>Insert \ref to Previous Label</source>
         <translation>\ref beillesztése az előző címkére</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1254"/>
+        <location filename="../src/texstudio.cpp" line="1259"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>Táblázatok módosítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1255"/>
+        <location filename="../src/texstudio.cpp" line="1260"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>Sor hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1256"/>
+        <location filename="../src/texstudio.cpp" line="1261"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>Oszlop hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1257"/>
+        <location filename="../src/texstudio.cpp" line="1262"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>Sor törlése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1258"/>
+        <location filename="../src/texstudio.cpp" line="1263"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>Oszlop törlése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1259"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>Oszlop kivágása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1260"/>
+        <location filename="../src/texstudio.cpp" line="1265"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Oszlop beillesztése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1261"/>
+        <location filename="../src/texstudio.cpp" line="1266"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>\hline hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1262"/>
+        <location filename="../src/texstudio.cpp" line="1267"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>\hline eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1263"/>
+        <location filename="../src/texstudio.cpp" line="1268"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>Táblázat újramodellezése sablon alapján</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1264"/>
+        <location filename="../src/texstudio.cpp" line="1269"/>
         <source>Align Columns</source>
         <translation>Oszlopok elrendezése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1265"/>
+        <location filename="../src/texstudio.cpp" line="1270"/>
         <source>Add magic comments ...</source>
         <translation>Mágikus megjegyzések hozzáadása ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1266"/>
+        <location filename="../src/texstudio.cpp" line="1271"/>
         <source>Insert root document name as TeX comment</source>
         <translation>Gyökér dokumentum nevének beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1267"/>
-        <location filename="../src/texstudio.cpp" line="1646"/>
+        <location filename="../src/texstudio.cpp" line="1272"/>
+        <location filename="../src/texstudio.cpp" line="1656"/>
         <source>Insert language as TeX comment</source>
         <translation>Nyelv beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1268"/>
+        <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Insert document coding as TeX comment</source>
         <translation>Dokumentum kódolás beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1269"/>
+        <location filename="../src/texstudio.cpp" line="1274"/>
         <source>Insert program as TeX comment</source>
         <translation>Program beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation>Bibliográfiai eszköz beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1272"/>
+        <location filename="../src/texstudio.cpp" line="1277"/>
         <source>&amp;Math</source>
         <translation>&amp;Matematika</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1276"/>
+        <location filename="../src/texstudio.cpp" line="1281"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Varázslók</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1277"/>
+        <location filename="../src/texstudio.cpp" line="1282"/>
         <source>Quick &amp;Start...</source>
         <translation>&amp;Gyors kezdés...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1278"/>
+        <location filename="../src/texstudio.cpp" line="1283"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>Gyors &amp;beamer prezentáció...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1279"/>
+        <location filename="../src/texstudio.cpp" line="1284"/>
         <source>Quick &amp;Letter...</source>
         <translation>G&amp;yors levél...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1282"/>
+        <location filename="../src/texstudio.cpp" line="1287"/>
         <source>Quick &amp;Tabular...</source>
         <translation>Gy&amp;ors táblázat...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1283"/>
+        <location filename="../src/texstudio.cpp" line="1288"/>
         <source>Quick T&amp;abbing...</source>
         <translation>Gyo&amp;rs tagolás...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1284"/>
+        <location filename="../src/texstudio.cpp" line="1289"/>
         <source>Quick &amp;Array...</source>
         <translation>Gyor&amp;s tömb...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1285"/>
+        <location filename="../src/texstudio.cpp" line="1290"/>
         <source>Insert &amp;Graphic...</source>
         <translation>&amp;Kép beillesztése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1287"/>
+        <location filename="../src/texstudio.cpp" line="1292"/>
         <source>Math Assistant...</source>
         <translation>Matematikai segéd...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1315"/>
+        <location filename="../src/texstudio.cpp" line="1320"/>
         <source>&amp;Clean</source>
         <translation>&amp;Tisztítás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1317"/>
+        <location filename="../src/texstudio.cpp" line="1322"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>&amp;Bibliográfiai bejegyzés beszúrása...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1319"/>
+        <location filename="../src/texstudio.cpp" line="1324"/>
         <source>Type</source>
         <translation>Típus</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1323"/>
-        <location filename="../src/texstudio.cpp" line="1333"/>
+        <location filename="../src/texstudio.cpp" line="1328"/>
+        <location filename="../src/texstudio.cpp" line="1338"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1328"/>
-        <location filename="../src/texstudio.cpp" line="1334"/>
+        <location filename="../src/texstudio.cpp" line="1333"/>
+        <location filename="../src/texstudio.cpp" line="1339"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1338"/>
+        <location filename="../src/texstudio.cpp" line="1343"/>
         <source>Ma&amp;cros</source>
         <translation>&amp;Makrók</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1344"/>
+        <location filename="../src/texstudio.cpp" line="1349"/>
         <source>Previous Document</source>
         <translation>Előző dokumentum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1345"/>
+        <location filename="../src/texstudio.cpp" line="1350"/>
         <source>Next Document</source>
         <translation>Következő dokumentum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1346"/>
+        <location filename="../src/texstudio.cpp" line="1351"/>
         <source>Open Documents</source>
         <translation>Dokumentumok megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1347"/>
+        <location filename="../src/texstudio.cpp" line="1352"/>
         <source>List Of Open Documents</source>
         <translation>Megnyitott dokumentumok listája</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1348"/>
+        <location filename="../src/texstudio.cpp" line="1353"/>
         <source>List Of Hidden Documents</source>
         <translation>Rejtett dokumentumok listája</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1350"/>
+        <location filename="../src/texstudio.cpp" line="1355"/>
         <source>Focus Editor</source>
         <translation>Fókuszban a szerkesztő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1351"/>
+        <location filename="../src/texstudio.cpp" line="1356"/>
         <source>Focus Viewer</source>
         <translation>Fókuszban a megjelenítő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1354"/>
+        <location filename="../src/texstudio.cpp" line="1359"/>
         <source>Show</source>
         <translation>Megjelenítés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1357"/>
+        <location filename="../src/texstudio.cpp" line="1362"/>
         <source>Statusbar</source>
         <translation>Állapotsáv</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1361"/>
+        <location filename="../src/texstudio.cpp" line="1366"/>
         <source>Show embedded PDF large</source>
         <translation>Beépített PDF néző, nagy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1362"/>
+        <location filename="../src/texstudio.cpp" line="1367"/>
         <source>Show embedded PDF small</source>
         <translation>Beépített PDF néző, kicsi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1364"/>
+        <location filename="../src/texstudio.cpp" line="1369"/>
         <source>Close Element</source>
         <translation>Elem bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1367"/>
+        <location filename="../src/texstudio.cpp" line="1372"/>
         <source>Collapse</source>
         <translation>Összecsukás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1368"/>
         <location filename="../src/texstudio.cpp" line="1373"/>
+        <location filename="../src/texstudio.cpp" line="1378"/>
         <source>Everything</source>
         <translation>Minden</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1369"/>
         <location filename="../src/texstudio.cpp" line="1374"/>
+        <location filename="../src/texstudio.cpp" line="1379"/>
         <source>Nearest Block</source>
         <translation>Legközelebbi blokk</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1371"/>
         <location filename="../src/texstudio.cpp" line="1376"/>
+        <location filename="../src/texstudio.cpp" line="1381"/>
         <source>Level %1</source>
         <translation>%1. szint</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1372"/>
+        <location filename="../src/texstudio.cpp" line="1377"/>
         <source>Expand</source>
         <translation>Szétnyitás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1378"/>
+        <location filename="../src/texstudio.cpp" line="1383"/>
         <source>Grammar errors</source>
         <translation>Nyelvtani hibák</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1381"/>
+        <location filename="../src/texstudio.cpp" line="1386"/>
         <source>Word Repetition</source>
         <translation>Szóismétlés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1382"/>
+        <location filename="../src/texstudio.cpp" line="1387"/>
         <source>Long-range Word Repetition</source>
         <translation>Távoli szóismétlés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1383"/>
+        <location filename="../src/texstudio.cpp" line="1388"/>
         <source>Bad words</source>
         <translation>Rossz szavak</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1384"/>
+        <location filename="../src/texstudio.cpp" line="1389"/>
         <source>Grammar Mistake</source>
         <translation>Nyelvtani hiba</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1386"/>
+        <location filename="../src/texstudio.cpp" line="1391"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Nyelvtani hiba %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1395"/>
+        <location filename="../src/texstudio.cpp" line="1400"/>
         <source>Editor Zoom</source>
         <translation>Szerkesztő nagyítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1396"/>
+        <location filename="../src/texstudio.cpp" line="1401"/>
         <source>Zoom In</source>
         <translation>Nagyítás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1397"/>
+        <location filename="../src/texstudio.cpp" line="1402"/>
         <source>Zoom Out</source>
         <translation>Kicsinyítés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1398"/>
+        <location filename="../src/texstudio.cpp" line="1403"/>
         <source>Reset Zoom</source>
         <translation>Alaphelyzet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1400"/>
+        <location filename="../src/texstudio.cpp" line="1405"/>
         <source>Full &amp;Screen</source>
         <translation>Telje&amp;s képernyő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1407"/>
+        <location filename="../src/texstudio.cpp" line="1412"/>
         <source>Highlighting</source>
         <translation>Kiemelés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1431"/>
+        <location filename="../src/texstudio.cpp" line="1436"/>
         <source>&amp;Options</source>
         <translation>Beállí&amp;tások</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1432"/>
+        <location filename="../src/texstudio.cpp" line="1437"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;A TeXstudio beállításai...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1435"/>
+        <location filename="../src/texstudio.cpp" line="1440"/>
         <source>Load &amp;Profile...</source>
         <translation>&amp;Profil betöltése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1436"/>
+        <location filename="../src/texstudio.cpp" line="1441"/>
         <source>S&amp;ave Profile...</source>
         <translation>&amp;Profil mentése...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1437"/>
+        <location filename="../src/texstudio.cpp" line="1442"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>&amp;Jelenlegi beállítások mentése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1438"/>
+        <location filename="../src/texstudio.cpp" line="1443"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>&amp;Alapértelmezett beállítások visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1441"/>
+        <location filename="../src/texstudio.cpp" line="1446"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>Gyökérdokumentum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1444"/>
+        <location filename="../src/texstudio.cpp" line="1449"/>
         <source>Detect &amp;Automatically</source>
         <translation>&amp;Automatikus észlelés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1452"/>
+        <location filename="../src/texstudio.cpp" line="1457"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>Jelenlegi dokumentum beállítása explicit gyökérként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1455"/>
+        <location filename="../src/texstudio.cpp" line="1460"/>
         <source>&amp;Help</source>
         <translation>Sú&amp;gó</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1456"/>
+        <location filename="../src/texstudio.cpp" line="1461"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeX referencia...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1457"/>
+        <location filename="../src/texstudio.cpp" line="1462"/>
         <source>User Manual...</source>
         <translation>Felhasználói kézikönyv...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1458"/>
+        <location filename="../src/texstudio.cpp" line="1463"/>
         <source>Packages Help...</source>
         <translation>Csomagleírások...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1461"/>
+        <location filename="../src/texstudio.cpp" line="1466"/>
         <source>Check LaTeX Installation</source>
         <translation>LaTeX-telepítés ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1462"/>
+        <location filename="../src/texstudio.cpp" line="1467"/>
         <source>Check Active Completion Files</source>
         <translation>Aktív kiegészítő fájlok ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1463"/>
+        <location filename="../src/texstudio.cpp" line="1468"/>
         <source>Check LanguageTool</source>
         <translation>LanguageTool ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1464"/>
+        <location filename="../src/texstudio.cpp" line="1469"/>
         <source>Bugs Report/Feature Request</source>
         <translation>Hibabejelentés / Funkcióbővítés kérése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1465"/>
+        <location filename="../src/texstudio.cpp" line="1470"/>
         <source>About TeXstudio...</source>
         <translation>A TeXstudio névjegye...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1629"/>
-        <location filename="../src/texstudio.cpp" line="5744"/>
+        <location filename="../src/texstudio.cpp" line="1639"/>
+        <location filename="../src/texstudio.cpp" line="5754"/>
         <source>show more entries ...</source>
         <translation>mutassa a többit ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1637"/>
+        <location filename="../src/texstudio.cpp" line="1647"/>
         <source>Default</source>
         <translation>Alapértelmezett</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1671"/>
+        <location filename="../src/texstudio.cpp" line="1681"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>Kapcsolódva a LanguageToolhoz itt: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1675"/>
+        <location filename="../src/texstudio.cpp" line="1685"/>
         <source>No LanguageTool server found at %1</source>
         <translation>Nem található LanguageTool kiszolgáló itt: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1679"/>
+        <location filename="../src/texstudio.cpp" line="1689"/>
         <source>LanguageTool status unknown</source>
         <translation>LanguageTool státusza ismeretlen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1683"/>
+        <location filename="../src/texstudio.cpp" line="1693"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation>A soron belüli nyelvi ellenőrzést kikapcsolta a felhasználó!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1744"/>
+        <location filename="../src/texstudio.cpp" line="1754"/>
         <source>Language</source>
         <translation>Nyelv</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1756"/>
-        <location filename="../src/texstudio.cpp" line="1757"/>
-        <location filename="../src/texstudio.cpp" line="5774"/>
-        <location filename="../src/texstudio.cpp" line="5777"/>
-        <location filename="../src/texstudio.cpp" line="5778"/>
+        <location filename="../src/texstudio.cpp" line="1766"/>
+        <location filename="../src/texstudio.cpp" line="1767"/>
+        <location filename="../src/texstudio.cpp" line="5784"/>
+        <location filename="../src/texstudio.cpp" line="5787"/>
+        <location filename="../src/texstudio.cpp" line="5788"/>
         <source>Encoding</source>
         <translation>Kódolás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1779"/>
+        <location filename="../src/texstudio.cpp" line="1789"/>
         <source>More Encodings...</source>
         <translation>További kódolások...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1787"/>
+        <location filename="../src/texstudio.cpp" line="1797"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Kódolás beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1801"/>
+        <location filename="../src/texstudio.cpp" line="1811"/>
         <source>Go to bookmark</source>
         <translation>Ugrás könyvjelzőre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1843"/>
+        <location filename="../src/texstudio.cpp" line="1853"/>
         <source>Automatic</source>
         <translation>Automatikus</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1844"/>
+        <location filename="../src/texstudio.cpp" line="1854"/>
         <source>Automatic root document detection active</source>
         <translation>Automatikus gyökérdokumentum észlelés aktív</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1849"/>
+        <location filename="../src/texstudio.cpp" line="1859"/>
         <source>&amp;Explicit</source>
         <translation>&amp;Explicit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1850"/>
+        <location filename="../src/texstudio.cpp" line="1860"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Gyökér</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1851"/>
+        <location filename="../src/texstudio.cpp" line="1861"/>
         <source>Explict root document:
 %1</source>
         <translation>Explicit gyökérdokumentum:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2149"/>
+        <location filename="../src/texstudio.cpp" line="2159"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Hibát akar keresni egy SyncTeX fájlban?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2231"/>
-        <location filename="../src/texstudio.cpp" line="4089"/>
-        <location filename="../src/texstudio.cpp" line="5827"/>
-        <location filename="../src/texstudio.cpp" line="5879"/>
-        <location filename="../src/texstudio.cpp" line="6446"/>
-        <location filename="../src/texstudio.cpp" line="6627"/>
-        <location filename="../src/texstudio.cpp" line="6629"/>
+        <location filename="../src/texstudio.cpp" line="2241"/>
+        <location filename="../src/texstudio.cpp" line="4099"/>
+        <location filename="../src/texstudio.cpp" line="5837"/>
+        <location filename="../src/texstudio.cpp" line="5889"/>
+        <location filename="../src/texstudio.cpp" line="6456"/>
+        <location filename="../src/texstudio.cpp" line="6637"/>
         <location filename="../src/texstudio.cpp" line="6639"/>
-        <location filename="../src/texstudio.cpp" line="6641"/>
-        <location filename="../src/texstudio.cpp" line="10372"/>
+        <location filename="../src/texstudio.cpp" line="6649"/>
+        <location filename="../src/texstudio.cpp" line="6651"/>
+        <location filename="../src/texstudio.cpp" line="10388"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2231"/>
+        <location filename="../src/texstudio.cpp" line="2241"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Nincs jogosultsága olvasni a(z) %1 fájlt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2289"/>
+        <location filename="../src/texstudio.cpp" line="2299"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Úgy tűnik, a(z) &quot;%1&quot; fájl a(z) &quot;%2&quot; fájl helyreállított változata.
 Kicseréljük vele?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2295"/>
+        <location filename="../src/texstudio.cpp" line="2305"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>A(z) &quot;%1&quot; helyreállított fájl betöltése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2430"/>
+        <location filename="../src/texstudio.cpp" line="2440"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -11111,46 +11106,46 @@ Kérem, telepítse a megfelelő lib fájlokat (pl. dll vagy .so fájlokat)
 Ellenkező esetben hibákat vagy a program összeomlását tapasztalhatja.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2518"/>
+        <location filename="../src/texstudio.cpp" line="2528"/>
         <source>Could not write template data:</source>
         <translation>Nem írhatóak a sablonadatok:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2550"/>
+        <location filename="../src/texstudio.cpp" line="2560"/>
         <source>Could not write template meta data:</source>
         <translation>A sablon meta adata nem írható:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2601"/>
-        <location filename="../src/texstudio.cpp" line="2665"/>
+        <location filename="../src/texstudio.cpp" line="2611"/>
+        <location filename="../src/texstudio.cpp" line="2675"/>
         <source>File not found:</source>
         <translation>A fájl nem található:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2605"/>
-        <location filename="../src/texstudio.cpp" line="2669"/>
+        <location filename="../src/texstudio.cpp" line="2615"/>
+        <location filename="../src/texstudio.cpp" line="2679"/>
         <source>You do not have read permission to this file:</source>
         <translation>Nincs jogosultsága olvasni az alábbi fájlt:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2786"/>
-        <location filename="../src/texstudio.cpp" line="10202"/>
+        <location filename="../src/texstudio.cpp" line="2796"/>
+        <location filename="../src/texstudio.cpp" line="10218"/>
         <source>Open Files</source>
         <translation>Fájlok megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2820"/>
-        <location filename="../src/texstudio.cpp" line="2827"/>
+        <location filename="../src/texstudio.cpp" line="2830"/>
+        <location filename="../src/texstudio.cpp" line="2837"/>
         <source>Loading of last session failed.</source>
         <translation>Utolsó munkamenet betöltése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2893"/>
+        <location filename="../src/texstudio.cpp" line="2903"/>
         <source>Save As</source>
         <translation>Mentés másként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2910"/>
+        <location filename="../src/texstudio.cpp" line="2920"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -11163,198 +11158,198 @@ módosult változata már meg van nyitva a TeXStudióban.
 El kellene menteni vagy be kellene zárni a másik fájlt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2928"/>
+        <location filename="../src/texstudio.cpp" line="2938"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Ezt a pdf fájlt nem lehet többé szinkronizálni a tex forrásával, mert az át lett nevezve egy &quot;Mentés másként&quot; művelet során. Az átnevezett tex fájlt fordítsa le és annak eretményét nézze.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3028"/>
+        <location filename="../src/texstudio.cpp" line="3038"/>
         <source>Rename/Move</source>
         <translation>Átnevezés/áthelyezés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3028"/>
-        <location filename="../src/texstudio.cpp" line="11600"/>
+        <location filename="../src/texstudio.cpp" line="3038"/>
+        <location filename="../src/texstudio.cpp" line="11616"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3043"/>
+        <location filename="../src/texstudio.cpp" line="3053"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Biztosan törölni akarja a(z) &quot;%1&quot; fájlt?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3052"/>
+        <location filename="../src/texstudio.cpp" line="3062"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Biztosan helyre akarja állítanit a(z) &quot;%1&quot; fájlt?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3079"/>
+        <location filename="../src/texstudio.cpp" line="3089"/>
         <source>Numeric permissions</source>
         <translation>Numerikus jogosultságok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3080"/>
+        <location filename="../src/texstudio.cpp" line="3090"/>
         <source>Verbose permissions</source>
         <translation>Jogosultságok részletezése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3195"/>
+        <location filename="../src/texstudio.cpp" line="3205"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>A(z) &quot;%1&quot; dokumentum mentetlen munkát tartalmaz. Szeretné menteni bezárás előtt?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3197"/>
+        <location filename="../src/texstudio.cpp" line="3207"/>
         <source>Save and Close</source>
         <translation>Mentés és bezárás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3197"/>
+        <location filename="../src/texstudio.cpp" line="3207"/>
         <source>Close without Saving</source>
         <translation>Bezárás mentés nélkül</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3197"/>
+        <location filename="../src/texstudio.cpp" line="3207"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3281"/>
-        <location filename="../src/texstudio.cpp" line="3340"/>
-        <location filename="../src/texstudio.cpp" line="3420"/>
+        <location filename="../src/texstudio.cpp" line="3291"/>
+        <location filename="../src/texstudio.cpp" line="3350"/>
+        <location filename="../src/texstudio.cpp" line="3430"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>A(z) &quot;%1&quot; fájl nem létezik. Törölni akarja a nevét az aktuális fájlok listájából?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3433"/>
+        <location filename="../src/texstudio.cpp" line="3443"/>
         <source>Loading of session failed.</source>
         <translation>Munkamenet betöltése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3450"/>
+        <location filename="../src/texstudio.cpp" line="3460"/>
         <source>Load Session</source>
         <translation>Munkamenet betöltése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3450"/>
-        <location filename="../src/texstudio.cpp" line="3468"/>
+        <location filename="../src/texstudio.cpp" line="3460"/>
+        <location filename="../src/texstudio.cpp" line="3478"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudio munkafolyamat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3468"/>
+        <location filename="../src/texstudio.cpp" line="3478"/>
         <source>Save Session</source>
         <translation>Munkamenet mentése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3474"/>
+        <location filename="../src/texstudio.cpp" line="3484"/>
         <source>Saving of session failed.</source>
         <translation>Munkamenet mentése meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3563"/>
+        <location filename="../src/texstudio.cpp" line="3573"/>
         <source>The following files could not be loaded:</source>
         <translation>Az alábbi fájlokat nem lehetett beolvasni:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3728"/>
+        <location filename="../src/texstudio.cpp" line="3738"/>
         <source>Image Formats (%1)</source>
         <translation>Képformátumok (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3730"/>
+        <location filename="../src/texstudio.cpp" line="3740"/>
         <source>Save Image</source>
         <translation>Kép mentése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3735"/>
+        <location filename="../src/texstudio.cpp" line="3745"/>
         <source>Could not save the image file.</source>
         <translation>A képfájl nem menthető.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3823"/>
+        <location filename="../src/texstudio.cpp" line="3833"/>
         <source>Ascending</source>
         <translation>Növekvő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3823"/>
+        <location filename="../src/texstudio.cpp" line="3833"/>
         <source>Descending</source>
         <translation>Csökkenő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3823"/>
+        <location filename="../src/texstudio.cpp" line="3833"/>
         <source>No Sorting</source>
         <translation>Nincs rendezés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3823"/>
+        <location filename="../src/texstudio.cpp" line="3833"/>
         <source>Random (Shuffle)</source>
         <translation>Véletlenszerű (keverés)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3829"/>
+        <location filename="../src/texstudio.cpp" line="3839"/>
         <source>Sorting</source>
         <translation>Rendezés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3830"/>
+        <location filename="../src/texstudio.cpp" line="3840"/>
         <source>Complete Lines</source>
         <translation>Teljes sorok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3831"/>
+        <location filename="../src/texstudio.cpp" line="3841"/>
         <source>Case Sensitive</source>
         <translation>Kis/nagybetű érzékeny</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3832"/>
+        <location filename="../src/texstudio.cpp" line="3842"/>
         <source>Remove Duplicates</source>
         <translation>Azonos sorok eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4056"/>
+        <location filename="../src/texstudio.cpp" line="4066"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Sortörés ennyi karakter után:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4057"/>
+        <location filename="../src/texstudio.cpp" line="4067"/>
         <source>Smart scope selecting</source>
         <translation>Hatékony hatókör-kiválasztás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4058"/>
+        <location filename="../src/texstudio.cpp" line="4068"/>
         <source>Join lines before wrapping</source>
         <translation>Sorok összefűzése törés előtt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4072"/>
-        <location filename="../src/texstudio.cpp" line="6323"/>
-        <location filename="../src/texstudio.cpp" line="6380"/>
+        <location filename="../src/texstudio.cpp" line="4082"/>
+        <location filename="../src/texstudio.cpp" line="6333"/>
+        <location filename="../src/texstudio.cpp" line="6390"/>
         <source>No document open</source>
         <translation>Nincs dokumentum megnyitva</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4078"/>
+        <location filename="../src/texstudio.cpp" line="4088"/>
         <source>No dictionary available.</source>
         <translation>Nincs elérhető szótár.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4089"/>
+        <location filename="../src/texstudio.cpp" line="4099"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Tezaurusz betöltése nem lehetséges</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4491"/>
+        <location filename="../src/texstudio.cpp" line="4501"/>
         <source>Storing session failed</source>
         <translation>A munkamenet tárolása nem sikerült</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4491"/>
+        <location filename="../src/texstudio.cpp" line="4501"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>Munkamenet információinak tárolása nem sikerült ide: %1. A fájl létezik, de nem írható. </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4576"/>
+        <location filename="../src/texstudio.cpp" line="4586"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
@@ -11363,80 +11358,80 @@ Do you want to continue?</source>
 Akarod folytatni?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4586"/>
+        <location filename="../src/texstudio.cpp" line="4596"/>
         <source>Unable to write to settings file %1</source>
         <translation>A(z) %1 beállításfájl nem írható</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5448"/>
+        <location filename="../src/texstudio.cpp" line="5458"/>
         <source>Quick Start</source>
         <translation>Gyors kezdés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5470"/>
+        <location filename="../src/texstudio.cpp" line="5480"/>
         <source>Quick Beamer Presentation</source>
         <translation>Gyors beamer prezentáció</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5507"/>
+        <location filename="../src/texstudio.cpp" line="5517"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Jelenlegi fájl&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5539"/>
+        <location filename="../src/texstudio.cpp" line="5549"/>
         <source>Type: %1</source>
         <translation>Típus: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5581"/>
+        <location filename="../src/texstudio.cpp" line="5591"/>
         <source>Edit User &amp;Tags</source>
         <translation>&amp;Felhasználói elemek szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5645"/>
+        <location filename="../src/texstudio.cpp" line="5655"/>
         <source>Labels:</source>
         <translation>Címkék:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5731"/>
+        <location filename="../src/texstudio.cpp" line="5741"/>
         <source>show less entries ...</source>
         <translation>mutasson kevesebbet ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5772"/>
+        <location filename="../src/texstudio.cpp" line="5782"/>
         <source>Encoding Aliases: </source>
         <translation>Aliasok kódolása:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5827"/>
+        <location filename="../src/texstudio.cpp" line="5837"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5834"/>
+        <location filename="../src/texstudio.cpp" line="5844"/>
         <source>Can&apos;t detect the file name</source>
         <translation>A fájlnév nem állapítható meg</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5873"/>
+        <location filename="../src/texstudio.cpp" line="5883"/>
         <source>  Running this command: </source>
         <translation>A következő parancs futtatása: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5879"/>
+        <location filename="../src/texstudio.cpp" line="5889"/>
         <source>could not start the command</source>
         <translation>A parancs nem hajtható végre</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6003"/>
+        <location filename="../src/texstudio.cpp" line="6013"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Belső pdf-megjelenítőt szeretett volna használni, de az Ön által használt TeXstudio változat anélkül lett fordítva.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6023"/>
+        <location filename="../src/texstudio.cpp" line="6033"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11453,226 +11448,231 @@ Beleegyezik a cserébe?
 (c) Nem, nem akarom használni a(z) &quot;%3&quot; parancsot az alapértelmezett &quot;%2&quot; parancs helyett.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6029"/>
+        <location filename="../src/texstudio.cpp" line="6039"/>
         <source>(a) allow for this document</source>
         <translation>(a) engedélyezés erre a dokumentumra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6030"/>
+        <location filename="../src/texstudio.cpp" line="6040"/>
         <source>(b) allow for all documents</source>
         <translation>(b) engedélyezés minden dokumentumra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6031"/>
+        <location filename="../src/texstudio.cpp" line="6041"/>
         <source>(c) use the default command</source>
         <translation>(c) alapértelmezett parancs használata</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6107"/>
+        <location filename="../src/texstudio.cpp" line="6117"/>
         <source>Unknown internal command: %1</source>
         <translation>Ismeretlen parancs: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6142"/>
+        <location filename="../src/texstudio.cpp" line="6152"/>
         <source>%!TeX program used: %1</source>
         <translation>Használt %!TeX program: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6145"/>
+        <location filename="../src/texstudio.cpp" line="6155"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>Nem felismert %!TeX program! (%1). Alapértelmezett használata.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6206"/>
+        <location filename="../src/texstudio.cpp" line="6216"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>A dokumentum nem fordítható írásvédett könyvtárban.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6208"/>
+        <location filename="../src/texstudio.cpp" line="6218"/>
         <source>Could not start %1.</source>
         <translation>%1 nem indítható el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6237"/>
+        <location filename="../src/texstudio.cpp" line="6247"/>
         <source>Error:</source>
         <translation>Hiba:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6313"/>
+        <location filename="../src/texstudio.cpp" line="6323"/>
         <source>No open project or tex file to clean.</source>
         <translation>Nincs tisztítandó nyitott projekt vagy tex fájl.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6384"/>
+        <location filename="../src/texstudio.cpp" line="6394"/>
         <source>Text Analysis</source>
         <translation>Szövegelemzés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6408"/>
+        <location filename="../src/texstudio.cpp" line="6418"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>A véletlen szöveg-generátor új szövegeket hoz létre létező szavakból, úgyhogy meg kell nyitni néhány szövegfájlt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6446"/>
+        <location filename="../src/texstudio.cpp" line="6456"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>A fájlt menteni és fordítani kell a napló megtekintése előtt</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6627"/>
-        <location filename="../src/texstudio.cpp" line="6639"/>
+        <location filename="../src/texstudio.cpp" line="6637"/>
+        <location filename="../src/texstudio.cpp" line="6649"/>
         <source>File not found</source>
         <translation>A fájl nem található</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6629"/>
-        <location filename="../src/texstudio.cpp" line="6641"/>
+        <location filename="../src/texstudio.cpp" line="6639"/>
+        <location filename="../src/texstudio.cpp" line="6651"/>
         <source>Could not open browser</source>
         <translation>A böngésző nem futtatható</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7241"/>
+        <location filename="../src/texstudio.cpp" line="7251"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Mentenie kell a fájlt, mielőtt beállíthatja gyökérdokumentumnak.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7697"/>
+        <location filename="../src/texstudio.cpp" line="7707"/>
         <source>Label</source>
         <translation>Címke</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7699"/>
-        <location filename="../src/texstudio.cpp" line="7721"/>
+        <location filename="../src/texstudio.cpp" line="7709"/>
+        <location filename="../src/texstudio.cpp" line="7731"/>
         <source>Beyond end of document.</source>
         <translation>A dokumentum vége után.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7702"/>
-        <location filename="../src/texstudio.cpp" line="7723"/>
+        <location filename="../src/texstudio.cpp" line="7712"/>
+        <location filename="../src/texstudio.cpp" line="7733"/>
         <source>In Appendix.</source>
         <translation>A függelékben.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7741"/>
+        <location filename="../src/texstudio.cpp" line="7751"/>
         <source>File not found.</source>
         <translation>A fájl nem található.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7756"/>
+        <location filename="../src/texstudio.cpp" line="7766"/>
         <source> (Line %1)</source>
         <translation> (%1. sor)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9002"/>
+        <location filename="../src/texstudio.cpp" line="9012"/>
         <source>commit comment:</source>
         <translation>Megjegyzés bevitele:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9005"/>
+        <location filename="../src/texstudio.cpp" line="9016"/>
         <source>check in whole directory ?</source>
         <translation>Az egész könyvtárban legyen az ellenőrzés?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9359"/>
+        <location filename="../src/texstudio.cpp" line="9018"/>
+        <source>Push to repository ?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="9375"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Figyelem! A párbeszédablak automatikusan bezáródik, ha a szöveget kézzel szerkeszti!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9654"/>
+        <location filename="../src/texstudio.cpp" line="9670"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>A(z) &quot;%1&quot; fájl megnyitása sikertelen.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9656"/>
+        <location filename="../src/texstudio.cpp" line="9672"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>A(z) &quot;%1&quot; fájl nem létezik. Létre szeretné hozni?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9690"/>
+        <location filename="../src/texstudio.cpp" line="9706"/>
         <source>Save Profile</source>
         <translation>Profil mentése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9690"/>
-        <location filename="../src/texstudio.cpp" line="9697"/>
+        <location filename="../src/texstudio.cpp" line="9706"/>
+        <location filename="../src/texstudio.cpp" line="9713"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXL profil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9697"/>
+        <location filename="../src/texstudio.cpp" line="9713"/>
         <source>Load Profile</source>
         <translation>Profil betöltése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9750"/>
+        <location filename="../src/texstudio.cpp" line="9766"/>
         <source>Failed to read profile file %1.</source>
         <translation>A(z) %1 profil fájl beolvasása meghiúsult.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9873"/>
+        <location filename="../src/texstudio.cpp" line="9889"/>
         <source>Problem</source>
         <translation>Probléma</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9873"/>
+        <location filename="../src/texstudio.cpp" line="9889"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Szóismétlés keresése csak aktivált azonnali helyesírás-ellenőrzéssel működik!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9878"/>
+        <location filename="../src/texstudio.cpp" line="9894"/>
         <source>Find Word Repetitions</source>
         <translation>Szóismétlés keresése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9887"/>
+        <location filename="../src/texstudio.cpp" line="9903"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Következő</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9889"/>
+        <location filename="../src/texstudio.cpp" line="9905"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;Előző</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9940"/>
+        <location filename="../src/texstudio.cpp" line="9956"/>
         <source>Reached beginning of text.</source>
         <translation>Elértem a szöveg elejét.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9940"/>
+        <location filename="../src/texstudio.cpp" line="9956"/>
         <source>Reached end of text.</source>
         <translation>Elértem a szöveg végét.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10202"/>
-        <location filename="../src/texstudio.cpp" line="10412"/>
-        <location filename="../src/texstudio.cpp" line="10415"/>
+        <location filename="../src/texstudio.cpp" line="10218"/>
+        <location filename="../src/texstudio.cpp" line="10428"/>
+        <location filename="../src/texstudio.cpp" line="10431"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX fájlok (*.tex);;Minden fájl (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10372"/>
+        <location filename="../src/texstudio.cpp" line="10388"/>
         <source>You do not have read permission to this file.</source>
         <translation>Nincs olvasási jogosultsága a fájlra.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10412"/>
+        <location filename="../src/texstudio.cpp" line="10428"/>
         <source>Open Compare File</source>
         <translation>Ellenőrző fájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10415"/>
+        <location filename="../src/texstudio.cpp" line="10431"/>
         <source>Open Base File</source>
         <translation>Alapfájl megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10496"/>
+        <location filename="../src/texstudio.cpp" line="10512"/>
         <source>SVN Conflict!</source>
         <translation>SVN ütközés!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10497"/>
+        <location filename="../src/texstudio.cpp" line="10513"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11683,14 +11683,14 @@ Egyébként nyomja meg a „Mégse” gombot.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10594"/>
-        <location filename="../src/texstudio.cpp" line="10685"/>
-        <location filename="../src/texstudio.cpp" line="10691"/>
+        <location filename="../src/texstudio.cpp" line="10610"/>
+        <location filename="../src/texstudio.cpp" line="10701"/>
+        <location filename="../src/texstudio.cpp" line="10707"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio vészhelyzet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10598"/>
+        <location filename="../src/texstudio.cpp" line="10614"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11703,7 +11703,7 @@ Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10601"/>
+        <location filename="../src/texstudio.cpp" line="10617"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11712,19 +11712,19 @@ Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
 %2Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10602"/>
+        <location filename="../src/texstudio.cpp" line="10618"/>
         <source>Yes, try to recover</source>
         <translation>Igen, megkíséreltem a helyreállítást</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10603"/>
-        <location filename="../src/texstudio.cpp" line="10608"/>
-        <location filename="../src/texstudio.cpp" line="10687"/>
+        <location filename="../src/texstudio.cpp" line="10619"/>
+        <location filename="../src/texstudio.cpp" line="10624"/>
+        <location filename="../src/texstudio.cpp" line="10703"/>
         <source>No, kill the program</source>
         <translation>Nem, megszakítom a program futását</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10605"/>
+        <location filename="../src/texstudio.cpp" line="10621"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -11733,17 +11733,17 @@ Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
 %1 Biztosan folytatni akarja a program futtatását? Adatok veszhetnek el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10606"/>
+        <location filename="../src/texstudio.cpp" line="10622"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Igen, megszakítom a ciklust és megkíséreltem a helyreállítást</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10607"/>
+        <location filename="../src/texstudio.cpp" line="10623"/>
         <source>Yes, continue the loop</source>
         <translation>Igen, folytatom a ciklust</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10686"/>
+        <location filename="../src/texstudio.cpp" line="10702"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11752,55 +11752,55 @@ A szál leállt.
 Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10687"/>
+        <location filename="../src/texstudio.cpp" line="10703"/>
         <source>Yes</source>
         <translation>Igen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10691"/>
+        <location filename="../src/texstudio.cpp" line="10707"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Megkíséreltem megszakítani a program futását, de semmi nem történt.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10723"/>
+        <location filename="../src/texstudio.cpp" line="10739"/>
         <source>System Report</source>
         <translation>Rendszerüzenet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10863"/>
+        <location filename="../src/texstudio.cpp" line="10879"/>
         <source>LT Report</source>
         <translation>LT jelentés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10889"/>
+        <location filename="../src/texstudio.cpp" line="10905"/>
         <source>process failed to start
 </source>
         <translation>a folyamat nem tudott elindulni
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10892"/>
+        <location filename="../src/texstudio.cpp" line="10908"/>
         <source>process crashed
 </source>
         <translation>a folyamat összeomlott
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10902"/>
+        <location filename="../src/texstudio.cpp" line="10918"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Valós idejű ellenőrzés engedélyezett.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10904"/>
+        <location filename="../src/texstudio.cpp" line="10920"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Valós idejű ellenőrzés kikapcsolva!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10907"/>
+        <location filename="../src/texstudio.cpp" line="10923"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -11809,7 +11809,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10909"/>
+        <location filename="../src/texstudio.cpp" line="10925"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -11818,7 +11818,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10912"/>
+        <location filename="../src/texstudio.cpp" line="10928"/>
         <source>Tries to start automatically.
 
 </source>
@@ -11827,7 +11827,7 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10914"/>
+        <location filename="../src/texstudio.cpp" line="10930"/>
         <source>Autostart disabled.
 
 </source>
@@ -11836,192 +11836,192 @@ Biztosan futtatni akarja a TeXstudiót? Adatok veszhetnek el.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10919"/>
+        <location filename="../src/texstudio.cpp" line="10935"/>
         <source>LT current status: </source>
         <translation>LT jelenlegi állapota:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10922"/>
+        <location filename="../src/texstudio.cpp" line="10938"/>
         <source>working</source>
         <translation>működik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10925"/>
+        <location filename="../src/texstudio.cpp" line="10941"/>
         <source>error</source>
         <translation>hiba</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10929"/>
+        <location filename="../src/texstudio.cpp" line="10945"/>
         <source>unknown</source>
         <translation>Ismeretlen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10932"/>
+        <location filename="../src/texstudio.cpp" line="10948"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11242"/>
+        <location filename="../src/texstudio.cpp" line="11258"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Hiba az LT kommunikációban: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11336"/>
-        <location filename="../src/texstudio.cpp" line="12135"/>
+        <location filename="../src/texstudio.cpp" line="11352"/>
+        <location filename="../src/texstudio.cpp" line="12151"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11451"/>
-        <location filename="../src/texstudio.cpp" line="11459"/>
-        <location filename="../src/texstudio.cpp" line="11489"/>
+        <location filename="../src/texstudio.cpp" line="11467"/>
+        <location filename="../src/texstudio.cpp" line="11475"/>
+        <location filename="../src/texstudio.cpp" line="11505"/>
         <source>Document: </source>
         <translation>Dokumentum:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11542"/>
+        <location filename="../src/texstudio.cpp" line="11558"/>
         <source>Close document</source>
         <translation>Dokumentum bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11543"/>
+        <location filename="../src/texstudio.cpp" line="11559"/>
         <source>Set as explicit root document</source>
         <translation>Beállítás explicit gyökérdokumentumként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11544"/>
+        <location filename="../src/texstudio.cpp" line="11560"/>
         <source>Open all related documents</source>
         <translation>Minden kapcsolódó dokumentum megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11545"/>
+        <location filename="../src/texstudio.cpp" line="11561"/>
         <source>Close all related documents</source>
         <translation>Minden kapcsolódó dokumentum bezárása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11547"/>
+        <location filename="../src/texstudio.cpp" line="11563"/>
         <source>Remove explicit root document role</source>
         <translation>Explicit gyökérdokumentum szerep elvétele</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11549"/>
+        <location filename="../src/texstudio.cpp" line="11565"/>
         <source>Show all open documents in this tree</source>
         <translation>Megmutat minden megnyitott dokumentumot ebből a fából</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11551"/>
+        <location filename="../src/texstudio.cpp" line="11567"/>
         <source>Show only current document in this tree</source>
         <translation>Csak az aktuális dokumentumot mutatja ebből a fából</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11564"/>
+        <location filename="../src/texstudio.cpp" line="11580"/>
         <source>Copy filename</source>
         <translation>Fájlnév másolása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11565"/>
+        <location filename="../src/texstudio.cpp" line="11581"/>
         <source>Copy file path</source>
         <translation>Fájlelérési út másolása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11572"/>
+        <location filename="../src/texstudio.cpp" line="11588"/>
         <source>Insert</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11573"/>
-        <location filename="../src/texstudio.cpp" line="11574"/>
+        <location filename="../src/texstudio.cpp" line="11589"/>
+        <location filename="../src/texstudio.cpp" line="11590"/>
         <source>Insert as %1</source>
         <translation>Beillesztés %1-ként</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11576"/>
+        <location filename="../src/texstudio.cpp" line="11592"/>
         <source>Find Usages</source>
         <translation>Használatok keresése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11587"/>
+        <location filename="../src/texstudio.cpp" line="11603"/>
         <source>Insert Label</source>
         <translation>Címke beszúrása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11591"/>
+        <location filename="../src/texstudio.cpp" line="11607"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>%1 beszúrása címkére</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11595"/>
+        <location filename="../src/texstudio.cpp" line="11611"/>
         <source>Create Label</source>
         <translation>Címke készítése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11599"/>
+        <location filename="../src/texstudio.cpp" line="11615"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11601"/>
+        <location filename="../src/texstudio.cpp" line="11617"/>
         <source>Paste Before</source>
         <translation>Beillesztés elé</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11602"/>
+        <location filename="../src/texstudio.cpp" line="11618"/>
         <source>Paste After</source>
         <translation>Beillesztés utána</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11604"/>
+        <location filename="../src/texstudio.cpp" line="11620"/>
         <source>Indent Section</source>
         <translation>Fejezet behúzása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11605"/>
+        <location filename="../src/texstudio.cpp" line="11621"/>
         <source>Unindent Section</source>
         <translation>Fejezet behúzásának megszüntetése</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11558"/>
-        <location filename="../src/texstudio.cpp" line="11608"/>
+        <location filename="../src/texstudio.cpp" line="11574"/>
+        <location filename="../src/texstudio.cpp" line="11624"/>
         <source>Expand Subitems</source>
         <translation>Almenük kinyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="965"/>
+        <location filename="../src/texstudio.cpp" line="970"/>
         <source>C&amp;ut Line or Selection</source>
         <translation>Sor kivágása vagy kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11559"/>
-        <location filename="../src/texstudio.cpp" line="11609"/>
+        <location filename="../src/texstudio.cpp" line="11575"/>
+        <location filename="../src/texstudio.cpp" line="11625"/>
         <source>Collapse Subitems</source>
         <translation>Almenük összecsukása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11621"/>
+        <location filename="../src/texstudio.cpp" line="11637"/>
         <source>Open Document</source>
         <translation>Dokumentum megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11622"/>
-        <location filename="../src/texstudio.cpp" line="11629"/>
+        <location filename="../src/texstudio.cpp" line="11638"/>
+        <location filename="../src/texstudio.cpp" line="11645"/>
         <source>Go to Definition</source>
         <translation>Ugrás a definícióra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12119"/>
+        <location filename="../src/texstudio.cpp" line="12135"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRÁFIA</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12127"/>
+        <location filename="../src/texstudio.cpp" line="12143"/>
         <source>MAGIC_COMMENTS</source>
         <translation>MÁGIKUS_MEGJEGYZÉSEK</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12143"/>
+        <location filename="../src/texstudio.cpp" line="12159"/>
         <source>LABELS</source>
         <translation>CÍMKÉK</translation>
     </message>
