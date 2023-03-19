@@ -221,7 +221,7 @@ inserted as:
 
 ```{note}
 TeXstudio needs that the env-name starts with \"%\", though that
-character is not placed on insertion.
+character is not placed on insertion. Do not provide more data than this.
 ```
 
 ### Script Macros
