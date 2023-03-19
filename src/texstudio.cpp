@@ -820,6 +820,11 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 								defaultIndex = actionTexts.length() - 1;
 							}
 						}
+						else {
+							actionTexts.append("");
+							actionInfos.append("");
+							actionIcons.append(QIcon());
+						}
 					}
 					UtilsUi::createComboToolButton(tb.toolbar, actionTexts, actionInfos, actionIcons, -1, this, SLOT(callToolButtonAction()), defaultIndex, combo);
 
@@ -1588,6 +1593,11 @@ void Texstudio::setupToolBars()
 							list.append(act->text());
 							infos.append(act->toolTip());
 							icons.append(act->icon());
+						}
+						else {
+							list.append("");
+							infos.append("");
+							icons.append(QIcon());
 						}
 					//TODO: Is the callToolButtonAction()-slot really needed? Can't we just add the menu itself as the menu of the qtoolbutton, without creating a copy? (should be much faster)
 					QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, infos, icons, 0, this, SLOT(callToolButtonAction()));
