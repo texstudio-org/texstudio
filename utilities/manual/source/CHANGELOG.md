@@ -9,6 +9,7 @@
 - pasting from LibreOffice Calc uses '&' and '\\' as delimiters. If pasted where no table is defined, the table wizard is called.
 - change Adv. Editor option "Vertical Overscroll" to scroll last line to top ([#2944](https://github.com/texstudio-org/texstudio/issues/2944))
 - when the mouse cursor hovers over a spin/combo box, the wheel scrolls through the configuration page instead of changing values ([#2977](https://github.com/texstudio-org/texstudio/issues/2977))
+- copy some details (icons, separators) to menu item list in combo box ([#3025](https://github.com/texstudio-org/texstudio/issues/3025))
 - support toggling comment on folded lines ([#2912](https://github.com/texstudio-org/texstudio/issues/2912))
 - don't show pointing hand cursor over hyperlinks when magnifier is activ ([#2982](https://github.com/texstudio-org/texstudio/pull/2982))
 - improve usage of tab key and enter key in QuickStart Wizard ([#3014](https://github.com/texstudio-org/texstudio/pull/3014))
@@ -44,6 +45,7 @@
 - switch to pointer cursor over bookmark column of editors ([#2220](https://github.com/texstudio-org/texstudio/issues/2220))
 - add shadow option for rectangular magnifier in pdf viewer config ([#2885](https://github.com/texstudio-org/texstudio/issues/2885))
 - in split view mode add editor to split view where current editor is ([#2838](https://github.com/texstudio-org/texstudio/issues/2838))
+- copy tooltip info to menu item list in combo box ([#2881](https://github.com/texstudio-org/texstudio/issues/2881))
 
 ## TeXstudio 4.4.1
 
