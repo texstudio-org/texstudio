@@ -1,7 +1,6 @@
 # pdfMsym package
-# ponte-vecchio 2023-01-17 for v1.1.0
+# ponte-vecchio 2023-01-17 for v1.1.0; Matthew Bertucci 2023-03-18 for v1.1.1
 
-#include:pdftex
 #include:luatex
 #include:xetex
 
@@ -77,6 +76,11 @@
 \varleftrightharp#m
 \varrightleftharp#m
 \varmapsto#m
+\varmapsfrom#m
+\varuphookrightarrow#m
+\varuphookleftarrow#m
+\vardownhookrightarrow#m
+\vardownhookleftarrow#m
 \varhookrightarrow#m
 \varhookleftarrow#m
 \vardoublerightarrow#m
@@ -93,6 +97,13 @@
 \varRibbonleftarrow#m
 \squaredarrow#m
 \roundedarrow#m
+\varrightarrows#m
+\varleftarrows#m
+\varrightleftarrows#m
+\varleftrightarrows#m
+\varRrightarrow#m
+\varLleftarrow#m
+\varLleftRrightarrow#m
 
 ### Long form
 \longvarrightarrow#m
@@ -103,6 +114,11 @@
 \longvarleftrightharp#m
 \longvarrightleftharp#m
 \longvarmapsto#m
+\longvarmapsfrom#m
+\longvaruphookrightarrow#m
+\longvaruphookleftarrow#m
+\longvardownhookrightarrow#m
+\longvardownhookleftarrow#m
 \longvarhookrightarrow#m
 \longvarhookleftarrow#m
 \longvardoublerightarrow#m
@@ -119,6 +135,13 @@
 \longvarRibbonleftarrow#m
 \longsquaredarrow#m
 \longroundedarrow#m
+\longvarrightarrows#m
+\longvarleftarrows#m
+\longvarrightleftarrows#m
+\longvarleftrightarrows#m
+\longvarRrightarrow#m
+\longvarLleftarrow#m
+\longvarLleftRrightarrow#m
 
 ### Extendable form
 \xvarrightarrow{%<arg%>}{%<arg%>}#m
@@ -129,6 +152,11 @@
 \xvarleftrightharp{%<arg%>}{%<arg%>}#m
 \xvarrightleftharp{%<arg%>}{%<arg%>}#m
 \xvarmapsto{%<arg%>}{%<arg%>}#m
+\xvarmapsfrom{%<arg%>}{%<arg%>}#m
+\xvaruphookrightarrow{%<arg%>}{%<arg%>}#m
+\xvaruphookleftarrow{%<arg%>}{%<arg%>}#m
+\xvardownhookrightarrow{%<arg%>}{%<arg%>}#m
+\xvardownhookleftarrow{%<arg%>}{%<arg%>}#m
 \xvarhookrightarrow{%<arg%>}{%<arg%>}#m
 \xvarhookleftarrow{%<arg%>}{%<arg%>}#m
 \xvardoublerightarrow{%<arg%>}{%<arg%>}#m
@@ -145,6 +173,13 @@
 \xvarRibbonleftarrow{%<arg%>}{%<arg%>}#m
 \xsquaredarrow{%<arg%>}{%<arg%>}#m
 \xroundedarrow{%<arg%>}{%<arg%>}#m
+\xvarrightarrows{%<arg%>}{%<arg%>}#m
+\xvarleftarrows{%<arg%>}{%<arg%>}#m
+\xvarrightleftarrows{%<arg%>}{%<arg%>}#m
+\xvarleftrightarrows{%<arg%>}{%<arg%>}#m
+\xvarRrightarrow{%<arg%>}{%<arg%>}#m
+\xvarLleftarrow{%<arg%>}{%<arg%>}#m
+\xvarLleftRrightarrow{%<arg%>}{%<arg%>}#m
 
 ## 2.4 Wide accents
 \varwidehat{%<arg%>}#m
@@ -163,7 +198,8 @@
 
 # not documented
 \pdfMsym#S
-\pdfmsymsettransforms
+\pdfmsymsettransforms#S
+\pdfMsymupdate#S
 \pdfMsymversion#S
 \smallcircle#S
 \strudelccode#S
