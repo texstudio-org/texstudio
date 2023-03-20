@@ -267,6 +267,9 @@
       <insert id="flalign" text="env flalign (amsmath)" insert="\begin{flalign}%\    %&lt;ralign%> &amp; %&lt;lalign%>  &amp;  %&lt;ralign%> &amp; %&lt;lalign%> \\%\    %&lt;ralign%> &amp; %&lt;lalign%>  &amp;  %&lt;ralign%> &amp; %&lt;lalign%>%\\end{flalign}" info="Multiple equations aligned within columns having column spacing to fill full line"/>
       <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\    %&lt;eqn1%> \\%\    %&lt;eqn2%>%\\end{gather}" info="Multiple equations centered in rows"/>
       <insert id="multline" text="env multline (amsmath)" insert="\begin{multline}%\    %&lt;eqn%> \\%\        %&lt;eqn%>%\\end{multline}" info="Single equation split into multiple lines"/>
+
+      <separator/>
+
       // envs without numbers
       <insert id="equation*" text="env equation* (amsmath)" insert="\begin{equation*}%\    %&lt;eqn%>%\\end{equation*}" info="The equation* environment is an unnumbered equation environment."/>
       <insert id="align*" text="env align* (amsmath)" insert="\begin{align*}%\    %&lt;ralign%> &amp; %&lt;lalign%> \\%\    %&lt;ralign%> &amp; %&lt;lalign%>%\\end{align*}" info="The align* environment is an unnumbered align environment."/>
