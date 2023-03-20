@@ -320,14 +320,14 @@
   
   <!-- definitions from \usepackage[standard]{ntheorem} -->
   <menu id="definitions" text="Math &amp;Definitions">
-     <insert id="Corollary" text="env Corollary (ntheorem)" insert="\begin{Corollary}\label{%&lt;key%>}%\%|%\\end{Corollary}"/>
-     <insert id="Definition" text="env Definition (ntheorem)" insert="\begin{Definition}\label{%&lt;key%>}%\%|%\\end{Definition}"/>
-     <insert id="Example" text="env Example (ntheorem)" insert="\begin{Example}\label{%&lt;key%>}%\%|%\\end{Example}"/>
-     <insert id="Lemma" text="env Lemma (ntheorem)" insert="\begin{Lemma}\label{%&lt;key%>}%\%|%\\end{Lemma}"/>
-     <insert id="Proof" text="env Proof (ntheorem)" insert="\begin{Proof}%\%|%\\end{Proof}"/>
-     <insert id="Proposition" text="env Proposition (ntheorem)" insert="\begin{Proposition}\label{%&lt;key%>}%\%|%\\end{Proposition}"/>
-     <insert id="Remark" text="env Remark (ntheorem)" insert="\begin{Remark}\label{%&lt;key%>}%\%|%\\end{Remark}"/>
-     <insert id="Theorem" text="env Theorem (ntheorem)" insert="\begin{Theorem}\label{%&lt;key%>}%\%|%\\end{Theorem}"/>
+     <insert id="Corollary" text="env Corollary (ntheorem)" insert="\begin{Corollary}%\%|%\\end{Corollary}" info="Corollary needs \usepackage[standard]{ntheorem}"/>
+     <insert id="Definition" text="env Definition (ntheorem)" insert="\begin{Definition}%\%|%\\end{Definition}" info="Definition needs \usepackage[standard]{ntheorem}"/>
+     <insert id="Example" text="env Example (ntheorem)" insert="\begin{Example}%\%|%\\end{Example}" info="Example needs \usepackage[standard]{ntheorem}"/>
+     <insert id="Lemma" text="env Lemma (ntheorem)" insert="\begin{Lemma}%\%|%\\end{Lemma}" info="Lemma needs \usepackage[standard]{ntheorem}"/>
+     <insert id="Proof" text="env Proof (ntheorem)" insert="\begin{Proof}%\%|%\\end{Proof}" info="Proof needs \usepackage[standard]{ntheorem}"/>
+     <insert id="Proposition" text="env Proposition (ntheorem)" insert="\begin{Proposition}%\%|%\\end{Proposition}" info="Proposition needs \usepackage[standard]{ntheorem}"/>
+     <insert id="Remark" text="env Remark (ntheorem)" insert="\begin{Remark}%\%|%\\end{Remark}" info="Remark needs \usepackage[standard]{ntheorem}"/>
+     <insert id="Theorem" text="env Theorem (ntheorem)" insert="\begin{Theorem}%\%|%\\end{Theorem}" info="Theorem needs \usepackage[standard]{ntheorem}"/>
   </menu>
      
   <menu id="fontstyles" text="Math Font St&amp;yles">
