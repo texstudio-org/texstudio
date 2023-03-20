@@ -3702,7 +3702,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>Single equation centered in a row</source>
-        <translation type="unfinished"/>
+        <translation>Einzelne Gleichung in Zeile zentriert</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>
@@ -11570,7 +11570,7 @@ Möchten Sie dies erlauben und das neue Kommando ausführen ?
     <message>
         <location filename="../src/texstudio.cpp" line="9018"/>
         <source>Push to repository ?</source>
-        <translation type="unfinished"/>
+        <translation>Zum zentralen Repository hochladen (push) ?</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="9375"/>
