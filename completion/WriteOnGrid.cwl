@@ -1,5 +1,5 @@
 # WriteOnGrid package
-# Matthew Bertucci 2023/01/31 for v0.1.2
+# Matthew Bertucci 2023/03/20 for v0.1.3
 
 #include:xcolor
 # loads table and svgnames options of xcolor
@@ -13,14 +13,18 @@ TyrianPurple#B
 \ColSeyes
 \ColRuled
 
+\DispGrid[keyvals]
+\DispGrid[keyvals]<color>
+
 \begin{EnvGrid}[keyvals]
 \begin{EnvGrid}[keyvals]<color>
 \end{EnvGrid}
 
-#keyvals:\begin{EnvGrid}
+#keyvals:\DispGrid,\begin{EnvGrid}
 NumSquares=%<<cols>x<rows>%>
 Unit=%<number%>
 Margin=%<number%>
+DispBar#true,false
 Enlarge=%<L/R%>
 Border#true,false
 Grid=#5x5,Seyes,Ruled
@@ -44,14 +48,18 @@ Scale=%<factor%>
 \CoulSeyes
 \CoulRuled
 
+\AffQuadrillage[clés%keyvals]
+\AffQuadrillage[clés%keyvals]<color>
+
 \begin{EnvQuadrillage}[clés%keyvals]
 \begin{EnvQuadrillage}[clés%keyvals]<color>
 \end{EnvQuadrillage}
 
-#keyvals:\begin{EnvQuadrillage}
+#keyvals:\AffQuadrillage,\begin{EnvQuadrillage}
 NbCarreaux=%<<nbCol>x<nbLig>%>
 Unite=%<nombre%>
 Marge=%<nombre%>
+AffBarre#true,false
 Elargir=%<L/R%>
 Cadre#true,false
 Grille=#5x5,Seyes,Ruled
