@@ -254,8 +254,8 @@
   <insert id="frac" text="Fraction - \frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
   <insert id="dfrac" text="Fraction - \dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" info="\dfrac (amsmath) always uses display style for the fraction" icon="dfrac" shortcut="Ctrl+Shift+F"/>  
   <insert id="sqrt" text="Square Root - \sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
-  <insert id="left" text="\left" insert="\left " info="Size for opening delimiter" shortcut="Ctrl+Shift+L"/>  
-  <insert id="right" text="\right" insert="\right " info="Size for closing delimiter" shortcut="Ctrl+Shift+R"/>  
+  <insert id="left" text="\left" insert="\left " info="Autosize opening delimiter" shortcut="Ctrl+Shift+L"/>  
+  <insert id="right" text="\right" insert="\right " info="Autosize closing delimiter" shortcut="Ctrl+Shift+R"/>  
   <insert id="array" text="\begin{array}...\end{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="Tabular for math (used inside one of the other math environments)"/>  
 
   
