@@ -246,17 +246,17 @@
 
 <menu id="main/math" text="&amp;Math">
   
-  <insert id="mathmode" text="Inline math mode $...$" insert="$%&lt; %>$" info="The math environment can be used in both paragraph and LR mode" icon="mathmode" shortcut="Ctrl+Shift+M"/>
-  <insert id="latexmathmode" text="LaTeX inline math mode \(...\)" insert="\( %| \)" info="The LaTeX math environment can be used in both paragraph and LR mode"/>
-  <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
+  <insert id="mathmode" text="Inline math - $...$" insert="$%&lt; %>$" info="Math (in text style) within a paragraph of text" icon="mathmode" shortcut="Ctrl+Shift+M"/>
+  <insert id="latexmathmode" text="Inline math - \(...\)" insert="\( %| \)" info="Same as $...$ and the math environment"/>
+  <insert id="displaymath" text="Display math - \[...\]" insert="\[ %| \]" info="Math (in display style) apart from paragraph of text" shortcut="Alt+Shift+M"/>
   <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript" shortcut="Ctrl+Shift+D"/>  
   <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="superscript" shortcut="Ctrl+Shift+U"/>  
   <insert id="frac" text="Fraction - \frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
-  <insert id="dfrac" text="Fraction - \dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" info="\dfrac is an amsmath package shorthand for \displaystyle\frac..." icon="dfrac" shortcut="Ctrl+Shift+F"/>  
+  <insert id="dfrac" text="Fraction - \dfrac{}{}" insert="\dfrac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" info="\dfrac (amsmath) always uses display style for the fraction" icon="dfrac" shortcut="Ctrl+Shift+F"/>  
   <insert id="sqrt" text="Square Root - \sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
-  <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
-  <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
-  <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
+  <insert id="left" text="\left" insert="\left " info="Size for opening delimiter" shortcut="Ctrl+Shift+L"/>  
+  <insert id="right" text="\right" insert="\right " info="Size for closing delimiter" shortcut="Ctrl+Shift+R"/>  
+  <insert id="array" text="\begin{array}...\end{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="Tabular for math (used inside one of the other math environments)"/>  
 
   
   <menu id="equations" text="Math &amp;Equations">  // s. issue #3002 for a discussion about the tooltips
