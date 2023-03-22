@@ -4023,7 +4023,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
         <location filename="../src/additionaltranslations.cpp" line="212"/>
         <location filename="../src/additionaltranslations.cpp" line="214"/>
         <source>Needs \usepackage[standard]{ntheorem}</source>
-        <translation type="unfinished"/>
+        <translation>Nécessite \usepackage[standard]{ntheorem}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="201"/>
