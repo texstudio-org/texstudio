@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/03/06 for v0.99-z-f
+# Matthew Bertucci 2023/03/24 for v0.99-z-g
 
 #include:verbatim
 #include:mathtools
@@ -42,9 +42,10 @@
 #include:fontawesome5
 #include:pifont
 #include:nicematrix
+#include:multirow
+#include:longtable
 #include:fmtcount
 #include:environ
-#include:longtable
 #include:printlen
 #include:ifoddpage
 
@@ -91,6 +92,20 @@ Compact#true,false
 Unite#true,false
 #endkeyvals
 
+## Décomposition décimale ##
+\DecompositionDecimale{nombre}
+\DecompositionDecimale[clés%keyvals]{nombre}
+
+#keyvals:\DecompositionDecimale
+Parentheses#true,false
+Colore#true,false
+CouleurU=#%color
+CouleurD=#%color
+CouleurC=#%color
+Fleches#true,false
+Details#true,false
+#endkeyvals
+
 ## Écrire les nombres en lettres ##
 \Ecriture{nombre}
 \Ecriture[clés%keyvals]{nombre}
@@ -135,6 +150,7 @@ Largeur=%<integer%>
 Hauteur=%<integer%>
 Couleur=#%color
 Seyes#true,false
+Echelle=%<nombre%>
 Millimetre#true,false
 Isometrique#true,false
 IsometriquePointe#true,false
@@ -760,6 +776,7 @@ Math#true,false
 Stretch=%<factor%>
 Largeur=##L
 CouleurTab=#%color
+Simple#true,false
 #endkeyvals
 
 \FlechesPH{a}{b}{texte}
@@ -772,8 +789,10 @@ CouleurTab=#%color
 \FlecheLineaireB{a}{b}{c}{opération}
 \FlecheLineaireG{a}{b}{c}{opération}
 \FlecheLineaireD{a}{b}{c}{opération}
-\FlecheRatio{texte%plain}
-\FlecheInvRatio{texte%plain}
+\FlechePCG{a}{b}
+\FlechePCD{a}{b}
+\FlechePCH{a}{b}
+\FlechePCB{a}{b}
 
 ## Les pourcentages ##
 \Pourcentage{t}{q}
@@ -818,6 +837,9 @@ Stretch=%<factor%>
 CouleurTab=#%color
 Nom#true,false
 #endkeyvals
+
+\FlecheRatio{texte%plain}
+\FlecheInvRatio{texte%plain}
 
 ## Les statistiques ##
 \Stat{Données}
@@ -1414,6 +1436,8 @@ Symboles={%<symbole1,symbole2,...%>}
 #endkeyvals
 
 \SolutionCarte{solution}{commentaires%text}
+\PfCCardsEcartH#*
+\PfCCardsEcartV#*
 
 ## Des dominos à jouer ##
 \Dominos{e q1/r1§q2/r2§...}
