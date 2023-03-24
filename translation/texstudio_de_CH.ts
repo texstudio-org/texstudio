@@ -3732,7 +3732,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="165"/>
         <source>\dfrac (amsmath) always uses display style for the fraction</source>
-        <translation type="unfinished"/>
+        <translation>\dfrac (amsmath) nutzt &quot;display style&quot; für Brüche</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="169"/>
@@ -3752,7 +3752,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="172"/>
         <source>Tabular for math (used inside one of the other math environments)</source>
-        <translation type="unfinished"/>
+        <translation>Tabelle im Mathemodus (innerhalb einer Matheumgebung nutzbar)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="174"/>

@@ -10394,7 +10394,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1197"/>
         <location filename="../src/texstudio.cpp" line="1295"/>
         <source>&amp;Bibliography</source>
-        <translation>&amp;Bibliographie</translation>
+        <translation>Biblio&amp;graphie</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1198"/>
@@ -10683,7 +10683,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1281"/>
         <source>&amp;Wizards</source>
-        <translation>&amp;Assistenten</translation>
+        <translation>A&amp;ssistenten</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1282"/>
