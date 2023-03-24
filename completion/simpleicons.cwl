@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/03/20 for v8.7.0
+# Matthew Bertucci 2023/03/24 for v8.8.0
 
 #include:ifxetex
 #include:ifluatex
@@ -1883,6 +1883,7 @@ semanticweb
 semaphoreci
 semver
 sencha
+sendinblue
 sennheiser
 sensu
 sentry
