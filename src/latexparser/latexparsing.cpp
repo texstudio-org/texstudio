@@ -444,7 +444,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     tk.level = level;
                     tk.argLevel = ConfigManager::RUNAWAYLIMIT; // run-away prevention, needs to be >0 as otherwise closing barces are misinterpreted
                     if (!stack.isEmpty()) {
-                        //tk.subtype = stack.top().subtype; avoid assignening text subtype to just arbitrary braces inside an argument, see #3040 (#2603)
+                        tk.subtype = stack.top().subtype;
+                        if(tk.subtype==Token::text){
+                            tk.subtype=Token::none; //avoid assignening text subtype to just arbitrary braces inside an argument, see #3040 (#2603)
+                        }
                         if(stack.top().subtype==Token::keyValArg){
                             // still the generic argument, needs to be broken down to key or val
                             if(lastComma>0){

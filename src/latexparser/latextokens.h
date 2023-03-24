@@ -20,17 +20,17 @@ class EnumsTokenType
 
 public:
 	enum TokenType {
-		none = 0, word, command, braces, bracket,
-		squareBracket, openBrace, openBracket, openSquare, less,
-		closeBrace, closeBracket, closeSquareBracket, greater, math,
-		comment, commandUnknown, label, bibItem, file,
-		imagefile, bibfile, keyValArg, keyVal_key, keyVal_val,
-		list, text, env, beginEnv, def,
-		labelRef, package, width, placement, colDef,
-		title, shorttitle, todo, url, documentclass,
-		beamertheme, packageoption, color, verbatimStart, verbatimStop,
-		verbatim, symbol, punctuation, number, generalArg,
-		defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
+        none = 0, word, command, braces, bracket,
+        squareBracket, openBrace, openBracket, openSquare, less,
+        closeBrace, closeBracket, closeSquareBracket, greater, math,
+        comment, commandUnknown, label, bibItem, file,
+        imagefile, bibfile, keyValArg, keyVal_key, keyVal_val,
+        list, text, env, beginEnv, def,
+        labelRef, package, width, placement, colDef,
+        title, shorttitle, todo, url, documentclass,
+        beamertheme, packageoption, color, verbatimStart, verbatimStop,
+        verbatim, symbol, punctuation, number, generalArg,
+        defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList,
         formula, specialArg, newTheorem, newBibItem, overlay,
         overlayRegion, defXparseArg, defSpecialArg, _end = 255
 	};

@@ -156,7 +156,7 @@ void LatexParsingTest::test_latexLexing_data() {
                                   << (Levels() << 0 << 1 << 1);
     QTest::newRow("text command with nested braces") << "\\textbf{text {abc}}"
                                   << (TTypes() << T::command << T::braces << T::word << T::braces << T::word)
-                                  << (STypes() << T::none << T::text << T::text << T::text << T::text)
+                                  << (STypes() << T::none << T::text << T::text << T::none << T::none)
                                   << (Starts() << 0 << 7 << 8 << 13 << 14)
                                   << (Length() << 7 << 12 << 4 << 5 << 3)
                                   << (Levels() << 0 << 1 << 1 << 1 << 1);
