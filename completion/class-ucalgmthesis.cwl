@@ -1,5 +1,5 @@
 # ucalgmthesis class
-# Matthew Bertucci 2022/06/07 for release 2019/10/24
+# Matthew Bertucci 2023/03/20 for release 2023/03/18
 
 #include:class-memoir
 #include:fontenc
@@ -33,12 +33,15 @@ manuscript
 #endif
 
 #ifOption:garamond
-#include:mathdesign
+#include:amsthm
 #include:garamondx
+#include:newtxmath
 #endif
 
 #ifOption:utopia
-#include:mathdesign
+#include:amsthm
+#include:erewhon
+#include:newtxmath
 #endif
 
 #ifOption:libertine

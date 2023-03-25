@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/03/03 for v8.6.0
+# Matthew Bertucci 2023/03/24 for v8.8.0
 
 #include:ifxetex
 #include:ifluatex
@@ -765,6 +765,7 @@ folium
 fonoma
 fontawesome
 fontbase
+fontforge
 foodpanda
 ford
 forestry
@@ -1353,6 +1354,7 @@ mlflow
 mobx
 mobxstatetree
 mocha
+modin
 modrinth
 modx
 mojangstudios
@@ -1765,6 +1767,7 @@ redhat
 redhatopenshift
 redis
 redmine
+redox
 redux
 reduxsaga
 redwoodjs
@@ -1880,6 +1883,7 @@ semanticweb
 semaphoreci
 semver
 sencha
+sendinblue
 sennheiser
 sensu
 sentry

@@ -1,11 +1,9 @@
 # stexthm package
-# Matthew Bertucci 2022/07/30 for v3.0.0
+# Matthew Bertucci 2023/03/22 for v3.3.0
 
 #include:stex
 #include:amsthm
 #include:thmtools
-#include:pdfcomment
-#include:xcolor
 
 \begin{theorem}
 \begin{theorem}[heading%text]
@@ -31,8 +29,3 @@
 \begin{definition}
 \begin{definition}[heading%text]
 \end{definition}
-
-\compemph{text}#*
-\symrefemph{text}#*
-\defemph{text}#*
-\varemph{text}#*

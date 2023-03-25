@@ -1,5 +1,5 @@
 # schule package
-# Matthew Bertucci 2022/12/07 for v0.8.3
+# Matthew Bertucci 2023/03/21 for v0.8.4
 
 #include:pgfopts
 #include:xifthen
@@ -21,7 +21,7 @@
 #keyvals:\usepackage/schule#c
 fach=#Informatik,Physik,Geschichte
 weitereFaecher={%<Fach1,Fach2,...%>}
-module=#Aufgaben,Bewertung,Format,Formulare,genord,Kuerzel,Lizenzen,Metadaten,Papiertypen,Storycard,Symbole,Texte
+module=#Aufgaben,Aufgabenpool,Bewertung,Format,Formulare,genord,Kuerzel,Lizenzen,Metadaten,Papiertypen,Storycard,Symbole,Texte
 typ=#ab,Beurteilung,folie,kl,leit,lzk,ub,ueb,ohne
 sprache={%<lang1,lang2,...%>}
 debug
@@ -142,6 +142,14 @@ line-minimum-length=##L
 \bearbeitungshinweisZuAufgabe[Aufgabentyp]{AufgabenId}
 \bearbeitungshinweisliste
 
+## module: Aufgabenpool ##
+#include:standalone
+
+\aufgabeninput{Verzeichnis}{Datei%file}
+\getBasedir
+\setBasedir
+\basedir#*
+
 ## module: Bewertung ##
 # loads Aufgaben module
 
@@ -251,6 +259,7 @@ gendering=#binneni,fem,gap,mas,split,star
 
 #keyvals:\usepackage/schule#c
 lizenz=#cc-by-4,cc-by-sa-4,cc-by-nc-sa-4,cc-by-nc-sa-eu-4
+nohyperxmp
 #endkeyvals
 
 \lizenzName
@@ -518,7 +527,7 @@ linie
 \methodenDokumentation{arg1}{arg2}{arg3}#S
 
 ## fach: Physik ##
-#include:units
+#include:nicefrac
 #include:mhchem
 #include:ziffer
 
@@ -527,6 +536,12 @@ linie
 \plankscheJ
 \elektronenmasse
 \protonenmasse
+\lichtgeschwindigkeit
+\rydbergfrequenz
+\unit{dimension}
+\unit[value]{dimension}
+\unitfrac{num}{den}
+\unitfrac[value]{num}{den}
 
 ## fach: Geschichte ##
 #include:biblatex
@@ -555,8 +570,6 @@ klausurtyp=#klausur,klasse,kurs
 
 ## typ: leit ##
 #include:scrhack
-#include:standalone
-#include:mdframed
 
 #keyvals:\usepackage/schule#c
 hinweisLinkVerbergen
@@ -571,8 +584,6 @@ loesungLinkVerbergen
 \end{hinweisBox}
 
 \headingpar#S
-\begin{greyFrame}{arg1}{arg2}#S
-\end{greyFrame}#S
 
 ## typ: lzk ##
 # no new commands
