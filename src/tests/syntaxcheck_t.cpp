@@ -173,7 +173,8 @@ void SyntaxCheckTest::checktabular(){
 	bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
 	bool realtimeChecking = edView->getConfig()->realtimeChecking;
 
-	edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
+    edView->getConfig()->inlineSyntaxChecking = true;
+    edView->getConfig()->realtimeChecking = true;
 
 	edView->editor->setText(text, false);
 	edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
@@ -256,7 +257,8 @@ void SyntaxCheckTest::checkkeyval(){
     bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
     bool realtimeChecking = edView->getConfig()->realtimeChecking;
 
-    edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
+    edView->getConfig()->inlineSyntaxChecking = true;
+    edView->getConfig()->realtimeChecking = true;
 
     text="\\usepackage{siunitx,color}\n"+text;
 
@@ -300,7 +302,8 @@ void SyntaxCheckTest::checkArguments(){
     bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
     bool realtimeChecking = edView->getConfig()->realtimeChecking;
 
-    edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
+    edView->getConfig()->inlineSyntaxChecking = true;
+    edView->getConfig()->realtimeChecking = true;
 
     //text="\\usepackage{siunitx}\n"+text;
 
@@ -375,6 +378,47 @@ void SyntaxCheckTest::checkMathHighlight(){
             QEQUAL(mathText[k].length,textLength.value(k));
         }
     }
+
+    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+    edView->getConfig()->realtimeChecking = realtimeChecking;
+}
+
+void SyntaxCheckTest::checkAllowedMath_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<bool>("error");
+
+     QTest::newRow("simple")
+             <<"$\\alpha$"<<false;
+     QTest::newRow("simple2")
+             <<"\\alpha"<<true;
+     QTest::newRow("nested text in math")
+             <<"$\\textit{\\alpha}$"<<true;
+     QTest::newRow("nested text in math (underscore)")
+             <<"$\\textit{a_b}$"<<true;
+     QTest::newRow("nested math in text in math")
+             <<"$\\textit{$\\alpha$}$"<<false;
+     QTest::newRow("nested math in text in math (underscore)")
+             <<"$\\textit{$a_b$}$"<<false;
+
+}
+
+void SyntaxCheckTest::checkAllowedMath(){
+    QFETCH(QString, text);
+    QFETCH(bool, error);
+
+    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+    bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+    edView->getConfig()->inlineSyntaxChecking = true;
+    edView->getConfig()->realtimeChecking = true;
+
+    edView->editor->setText(text, false);
+    LatexDocument *doc=edView->getDocument();
+    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+
+    QDocumentLineHandle *dlh=doc->line(0).handle();
+    QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
+    QEQUAL(!formats.isEmpty(),error);
 
     edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
     edView->getConfig()->realtimeChecking = realtimeChecking;

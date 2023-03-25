@@ -19,6 +19,8 @@ class SyntaxCheckTest: public QObject{
         void checkArguments();
         void checkMathHighlight_data();
         void checkMathHighlight();
+        void checkAllowedMath_data();
+        void checkAllowedMath();
 };
 
 #endif
