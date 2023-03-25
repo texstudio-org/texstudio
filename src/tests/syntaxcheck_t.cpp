@@ -395,10 +395,18 @@ void SyntaxCheckTest::checkAllowedMath_data(){
              <<"$\\textit{\\alpha}$"<<true;
      QTest::newRow("nested text in math (underscore)")
              <<"$\\textit{a_b}$"<<true;
+     QTest::newRow("nested text in math and extra braces")
+             <<"$\\textit{ {\\alpha}}$"<<true;
+     QTest::newRow("nested text in math amd extra braces(underscore)")
+             <<"$\\textit{ {a_b}}$"<<true;
      QTest::newRow("nested math in text in math")
              <<"$\\textit{$\\alpha$}$"<<false;
      QTest::newRow("nested math in text in math (underscore)")
              <<"$\\textit{$a_b$}$"<<false;
+     QTest::newRow("nested math in text in math and extra braces")
+             <<"$\\textit{$ {\\alpha}$}$"<<false;
+     QTest::newRow("nested math in text in math and extra braces (underscore)")
+             <<"$\\textit{$ {a_b}$}$"<<false;
 
 }
 
