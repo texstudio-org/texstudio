@@ -418,8 +418,12 @@ bool SyntaxCheck::checkMathEnvActive(const LatexParser &parser, const StackEnvir
 */
 bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 {
-	for (int i = 0; i < envs.size(); ++i) {
+    bool textOrMathEnvUsed=false;
+    for (int i = envs.size()-1; i > -1; --i) {
 		Environment env = envs.at(i);
+        if(textOrMathEnvUsed &&(env.name=="math" || env.name=="text" )){
+            continue; // only the lowest text/math is valid as they can be used alternately
+        }
 		if (ltxCommands->possibleCommands.contains(env.name) && ltxCommands->possibleCommands.value(env.name).contains(cmd))
 			return true;
 		if (ltxCommands->environmentAliases.contains(env.name)) {
@@ -429,6 +433,9 @@ bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 					return true;
 			}
 		}
+        if(env.name=="math" || env.name=="text" ){
+            textOrMathEnvUsed=true; // only the lowest text/math is valid as they can be used alternately
+        }
 	}
 	return false;
 }
