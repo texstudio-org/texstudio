@@ -1297,6 +1297,7 @@
 <file>completion/efbox.cwl</file>
 <file>completion/eforms.cwl</file>
 <file>completion/egothic.cwl</file>
+<file>completion/egpeirce.cwl</file>
 <file>completion/egplot.cwl</file>
 <file>completion/egypto.cwl</file>
 <file>completion/Eichenla.cwl</file>
@@ -1319,6 +1320,7 @@
 <file>completion/embedfile.cwl</file>
 <file>completion/embrac.cwl</file>
 <file>completion/emf.cwl</file>
+<file>completion/emo.cwl</file>
 <file>completion/emojicite.cwl</file>
 <file>completion/emoji.cwl</file>
 <file>completion/emp.cwl</file>
@@ -2298,6 +2300,7 @@
 <file>completion/midpage.cwl</file>
 <file>completion/miller.cwl</file>
 <file>completion/milstd.cwl</file>
+<file>completion/milsymb.cwl</file>
 <file>completion/mindflow.cwl</file>
 <file>completion/minibox.cwl</file>
 <file>completion/minidocument.cwl</file>
