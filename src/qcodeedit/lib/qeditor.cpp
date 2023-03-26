@@ -4287,6 +4287,7 @@ void QEditor::focusOutEvent(QFocusEvent *e)
 {
 	setFlag(CursorOn, false);
 	m_blink.stop();
+    repaintCursor();
 
 	QAbstractScrollArea::focusOutEvent(e);
 }
