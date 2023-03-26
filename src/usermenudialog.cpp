@@ -60,6 +60,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	codeedit->editor()->setFlag(QEditor::AdjustIndent, false);
 	codeedit->editor()->setDisplayModifyTime(false);
 	codeedit->editor()->document()->setCenterDocumentInEditor(false);
+
 	languages->setLanguage(codeedit->editor(), "");
 	//QLineMarkPanel* lineMarkPanel=new QLineMarkPanel;
 	//QAction* lineMarkPanelAction=codeedit->addPanel(lineMarkPanel, QCodeEdit::West, false);
@@ -120,6 +121,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.triggerEdit, SIGNAL(textEdited(QString)), SLOT(triggerChanged()));
 	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
 
+    codeedit->editor()->clearFocus();
 }
 
 UserMenuDialog::~UserMenuDialog()
