@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2022/11/07 for v1.88
+# Matthew Bertucci 2023/03/26 for v1.89
 
 #include:xkeyval
 #include:xstring
@@ -120,12 +120,18 @@ twoside
 
 #ifOption:format=acmcp
 #include:framed
+#include:zref-savepos
+#include:zref-user
 #endif
 #ifOption:acmcp
 #include:framed
+#include:zref-savepos
+#include:zref-user
 #endif
 #ifOption:acmcp=true
 #include:framed
+#include:zref-savepos
+#include:zref-user
 #endif
 
 #ifOption:pbalance
@@ -157,6 +163,7 @@ JOCCH
 JRC
 PACMCGIT
 PACMHCI
+PACMMOD
 PACMNET
 PACMPL
 POMACS
@@ -194,6 +201,7 @@ TOMPECS
 TOMS
 TOPC
 TOPLAS
+TOPML
 TOPS
 TORS
 TOS
@@ -240,10 +248,12 @@ TWEB
 \acmPrice{price}#*
 \acmISBN{ISBN}#*
 \acmDOI{DOI}#*
-\acmBadgeR{imagefile}#*g
-\acmBadgeR[URL]{imagefile}#*g
-\acmBadgeL{imagefile}#*g
-\acmBadgeL[URL]{imagefile}#*g
+\acmBadge{imagefile}#*g
+\acmBadge[URL]{imagefile}#*g
+\acmBadgeR{imagefile}#Sg
+\acmBadgeR[URL]{imagefile}#Sg
+\acmBadgeL{imagefile}#Sg
+\acmBadgeL[URL]{imagefile}#Sg
 \startPage{page}#*
 \begin{CCSXML}
 \end{CCSXML}
