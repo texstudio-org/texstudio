@@ -3182,7 +3182,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="18"/>
         <source>&amp;Horizontal Spacing</source>
-        <translation type="unfinished"/>
+        <translation>Espacio &amp;horizontal</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="22"/>
@@ -3207,7 +3207,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="34"/>
         <source>The main American Mathematical Society packages</source>
-        <translation type="unfinished"/>
+        <translation>Paquetes principales de la American Mathematical Society</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="35"/>
@@ -3217,22 +3217,22 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="36"/>
         <source>Text is allowed only between \begin{document} and \end{document}.</source>
-        <translation type="unfinished"/>
+        <translation>Solo se permite texto entre \begin{document} y \end{document}.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="37"/>
         <source>The \title command declares text to be the title.</source>
-        <translation type="unfinished"/>
+        <translation>El comando \title declara que el texto es el título del documento</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation type="unfinished"/>
+        <translation>El comando \author declara el autor o autores, donde names es una lista de autores separados por el comando \and.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>If used, the \date command declares the date, either with explicit arg for explicit date or with empty arg for no date. If not used, the current date will automatically be inserted by \maketitle.</source>
-        <translation type="unfinished"/>
+        <translation>Sí se usa, el comando \date declara la fecha, ya sea con un argumento explícito para una fecha particular o vacío para omitir la fecha. Sí no se usa, la fecha actual será insertada automáticamente por \maketitle.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
@@ -3242,7 +3242,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="41"/>
         <source>Put this command where you want the table of contents to go</source>
-        <translation type="unfinished"/>
+        <translation>Inserta este comando donde quieras que sea colocada una tabla de contenidos.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="42"/>
@@ -3587,7 +3587,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>The \hline command draws a horizontal line the width of the table.</source>
-        <translation type="unfinished"/>
+        <translation>El comando \hline dibuja una línea horizontal del ancho de la tabla.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
@@ -3602,23 +3602,23 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="114"/>
         <source>The \enspace command inserts a horizontal space of 1/2em.</source>
-        <translation type="unfinished"/>
+        <translation>El comando \enspace inserta un espacio horizontal de 1/2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>El comando \quad inserta un espacio horizontal de 1em (siendo 1em el ancho de una M)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>The \qquad command inserts a horizontal space of 2em.</source>
-        <translation type="unfinished"/>
+        <translation>El comando \qquad inserta un espacio horizontal de 2em.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
         <source>The command \thinspace produces unbreakable and unstretchable space of 1/6em (same as \, in math mode).</source>
-        <translation type="unfinished"/>
+        <translation>El comando \thinspace produce un espacio no separable y fijo de 1/6em (igual que \, en modo matemático).</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="118"/>
@@ -4180,7 +4180,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="238"/>
         <source>regular whitespace</source>
-        <translation type="unfinished"/>
+        <translation>Espacio en blanco regular</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="239"/>
@@ -4195,7 +4195,7 @@ comunes.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="242"/>
         <source>Twice the size of a \quad</source>
-        <translation type="unfinished"/>
+        <translation>Dos veces el tamaño de un \quad</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="243"/>
@@ -5042,12 +5042,12 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="394"/>
         <source>Copy Image</source>
-        <translation type="unfinished"/>
+        <translation>Copiar imagen</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="395"/>
         <source>Save Image As...</source>
-        <translation type="unfinished"/>
+        <translation>Guardar imagen como:</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="454"/>
@@ -6982,7 +6982,7 @@ Notas:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
         <source>Move cursor to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Mueve el cursor al primer carácter en la línea.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
@@ -7047,7 +7047,7 @@ Notas:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
         <source>Select to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar el primer carácter en la línea.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
@@ -8123,12 +8123,12 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="78"/>
         <source>Adds language support to your document with Babel package</source>
-        <translation type="unfinished"/>
+        <translation>Añade compatibilidad lingüística en tu documento con el paquete Babel</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
         <source>Font Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificación de fuentes</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="236"/>
@@ -8254,7 +8254,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="297"/>
         <source>Mathematical symbols from AMS</source>
-        <translation type="unfinished"/>
+        <translation>Símbolos matemáticos de la AMS.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="298"/>
@@ -8264,7 +8264,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="299"/>
         <source>Support for hyperlinks in your document</source>
-        <translation type="unfinished"/>
+        <translation>Soporte para hipervínculos en tu documento.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="300"/>
@@ -8274,7 +8274,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="301"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation type="unfinished"/>
+        <translation>Define tus teoremas como ambientes, debe ser cargado después de amsmath.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="302"/>
@@ -9236,13 +9236,13 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="129"/>
         <source>Online Repository</source>
-        <translation type="unfinished"/>
+        <translation>Repositorio en línea</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="137"/>
         <location filename="../src/templateselector.cpp" line="318"/>
         <source>&lt;loading...&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Cargando...&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="457"/>
@@ -12798,7 +12798,7 @@ Usted puede utilizar el valor especial ?txs-start para iniciar la secuencia de �
     <message>
         <location filename="../src/usermenudialog.cpp" line="413"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Importar macros</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="425"/>
