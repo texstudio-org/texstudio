@@ -1,5 +1,5 @@
 # wgexport class
-# Matthew Bertucci 2022/09/26 for v0.3.2
+# Matthew Bertucci 2023/03/30 for v0.5
 
 #include:class-standalone
 #include:wargame
@@ -50,6 +50,18 @@ varwidth=##L
 \begin{boardimage}{image-name}{subcategory}
 \begin{boardimage}[classification]{image-name}{subcategory}
 \end{boardimage}
+
+\dice{name}{name}{list}
+\dice[tikz-options]{name}{name}{list}
+\dice[tikz-options][node-options]{name}{name}{list}
+
+\battlemarkers{arg}#S
+\battlemarkers[opt]{arg}#S
+\oddsmarkers{arg}#S
+\oddsmarkers[opt]{arg}#S
+\resultmarkers{arg}#S
+\resultmarkers[opt]{arg}#S
+\commonicons{arg1}{arg2}#S
 
 ## from standalone options
 #ifOption:beamer
