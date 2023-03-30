@@ -1,5 +1,5 @@
 # songproj package
-# Matthew Bertucci 2022/11/07 for v1.0.1
+# Matthew Bertucci 2023/03/29 for v1.2.0
 
 #include:verse
 
@@ -8,6 +8,7 @@
 \end{song}
 
 \longest{song line}
+\numbercouplets
 
 \begin{intro}
 \end{intro}
@@ -20,3 +21,5 @@
 
 \inputsong{file}{stanzas per slide}#i
 \inputsong{file}{stanzas per slide}[couplet list]#i
+\inputsong*{file}{stanzas per slide}#i
+\inputsong*{file}{stanzas per slide}[couplet list]#i
