@@ -1,5 +1,5 @@
 # wargame package
-# Matthew Bertucci 2022/09/26 for v0.3.2
+# Matthew Bertucci 2023/03/30 for v0.5
 
 #include:xcolor
 # loads svgnames option of xcolor
@@ -36,8 +36,11 @@ terrain={%<terrain-keys%>}
 ridges={%<ridges-keys%>}
 label={%<label-keys%>}
 town={%<town-keys%>}
+bevel={%<bevel-keys%>}
 extra={%<extra-keys%>}
 extra clipped={%<extra-keys%>}
+row=%<row%>
+column=%<column%>
 #endkeyvals
 
 \road %<⟨path⟩%>;
@@ -48,10 +51,26 @@ extra clipped={%<extra-keys%>}
 \river[%<options%>] %<⟨path⟩%>;
 \border %<⟨path⟩%>;
 \border[%<options%>] %<⟨path⟩%>;
+\fortifiedline %<⟨path⟩%>;
+\fortifiedline[%<options%>] %<⟨path⟩%>;
 
 \boardframe(lower-left)(upper-right)
 \boardframe[margin](lower-left)(upper-right)
 \boardclip(lower-left)(upper-right){options}
+
+\splitboard{options%keyvals}
+#keyvals:\splitboard#c
+paper=#a4,a3,letter,tabloid
+landscape
+margin=%<number%>
+ncol=%<integer%>
+nrow=%<integer%>
+overlap=%<number%>
+image=%<imagefile%>
+output=%<file name%>
+standalone
+scale=%<factor%>
+#endkeyvals
 
 \hexdbglvl#*
 \markpos{arg1}(arg2)#S
@@ -94,8 +113,6 @@ extra clipped={%<extra-keys%>}
 \outlinerev#S
 \shiftScalePath{macro}{relative-coords}#*
 \margin#S
-\oddeven#S
-\oury#S
 \boardXmin#S
 \boardYmin#S
 \boardXmax#S
@@ -103,14 +120,20 @@ extra clipped={%<extra-keys%>}
 \hexboardpath#*
 \boardpath(lower-left)(upper-right)#*
 \debuggrid#*
+\boardhexes(arg1)(arg2)#*
+\boardhexes[options%keyvals](arg1)(arg2)#*
+\segment(arg1)(arg2){arg3}{arg4}{arg5}{arg6}#*
 
 ## from wargame.util tikzlibrary
+\wargamelogo#*
+\wargamelogo[options%keyvals]#*
 \wargamedbglvl#*
 \settosave{arg}#S
 \begin{getbbl}#*
 \end{getbbl}#*
 \begin{getbb}#*
 \end{getbb}#*
+\wglogbb{arg}#S
 
 ## from wargame.natoapp6c tikzlibrary
 # loads wargame.util, calc, arrows.meta, shapes.symbols, positioning, and intersections tikzlibraries
@@ -120,7 +143,7 @@ extra clipped={%<extra-keys%>}
 \natoapp[options%keyvals](location)(name)
 #keyvals:\natoapp#c
 faction=%<faction%>
-command=%<command%>
+command=#air,land,equipment,installation,sea surface,sub surface,space,activity,none
 main={%<mains%>}
 left={%<lefts%>}
 right={%<rights%>}
@@ -198,6 +221,7 @@ color=#%color
 fill=#%color
 text=#%color
 draw=#%color
+bevel={%<bevel-keys%>}
 #endkeyvals
 
 \chitdbglvl#*
@@ -216,6 +240,8 @@ draw=#%color
 \stackmark[options%keyvals]#*
 \zocmark#*
 \zocmark[options%keyvals]#*
+\dicemark{arg}#*
+\dicemark[options%keyvals]{arg}#*
 
 # from svgnames option of xcolor
 AliceBlue#B
