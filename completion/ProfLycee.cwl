@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/03/12 for v2.5.4
+# Matthew Bertucci 2023/03/31 for v2.5.6
 
 #include:mathtools
 #include:xcolor
@@ -18,6 +18,7 @@
 #include:simplekv
 #include:listofitems
 #include:tabularray
+#include:settobox
 #include:hologo
 #include:fancyvrb
 #include:nicefrac
@@ -354,7 +355,12 @@ HautGrad=##L
 AffGrad#true,false
 AffOrigine#true,false
 Annee#true,false
+Trigo#true,false
+Dfrac#true,false
 #endkeyvals
+
+\AffAngleRadian{expr}
+\AffAngleRadian*{expr}
 
 \FenetreTikz
 \FenetreSimpleTikz{liste valx}{liste valy}
