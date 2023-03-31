@@ -2485,7 +2485,7 @@ hier erzwungen werden.</translation>
         <location filename="../src/configdialog.ui" line="3960"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation>Zeige im eingebetteten PDF-Betrachter</translation>
+        <translation>Zeige im integrierten PDF-Betrachter</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3968"/>
@@ -10162,7 +10162,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1115"/>
         <source>Show in embedded viewer</source>
-        <translation>Zeige im eingebetteten PDF-Betrachter</translation>
+        <translation>Zeige im integrierten PDF-Betrachter</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1124"/>
