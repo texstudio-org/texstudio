@@ -9,8 +9,8 @@ scr#true,false
 #endkeyvals
 
 #ifOption:scr
-\mathscr{arg}#m
+\mathscr{text%plain}#m
 #endif
 #ifOption:scr=true
-\mathscr{arg}#m
+\mathscr{text%plain}#m
 #endif
