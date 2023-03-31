@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/9/2021 for v1.03
 
 #include:class-memoir
-#include:xparse
 #include:newunicodechar
 #include:inputenc
 #include:fontenc
@@ -269,7 +268,7 @@ colorCCC#B
 \guillemetright#n
 
 # from mathscr option of eucal
-\mathscr{letters}#m
+\mathscr{text%plain}#m
 
 # from svgnames option of xcolor
 AliceBlue#B
