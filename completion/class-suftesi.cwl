@@ -95,8 +95,8 @@
 #include:amsthm
 #include:mathalpha
 # from cal=boondoxo option of mathalpha
-\mathcal{text}#m
-\mathbfcal{text}#m
+\mathcal{text%plain}#m
+\mathbfcal{text%plain}#m
 #endif
 
 #ifOption:greekfont=artemisia
