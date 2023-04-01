@@ -260,8 +260,8 @@ amsthm
 \Mapsfrom#m
 \mapsfrom#m
 \Mapsto#m
-\mathbb{letter}#m
-\mathbcal{letter}#m
+\mathbb{text%plain}#m
+\mathbcal{text%plain}#m
 \mathbfit{text%plain}#m
 \mathboldsans{text%plain}#m
 \mathdollar#m

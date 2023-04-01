@@ -1,5 +1,5 @@
 # physics2 package
-# Matthew Bertucci 2023/02/07 for v0.1.1
+# Matthew Bertucci 2023/03/30 for v0.2.0
 
 #include:keyval
 
@@ -39,16 +39,22 @@ xmat
 \ab*%<⟨ldelim⟩ arg ⟨rdelim⟩%>#m
 \pab{arg}#m
 \pab*{arg}#m
+\pab[size]{arg}#m
 \bab{arg}#m
 \bab*{arg}#m
+\bab[size]{arg}#m
 \Bab{arg}#m
 \Bab*{arg}#m
+\Bab[size]{arg}#m
 \vab{arg}#m
 \vab*{arg}#m
+\vab[size]{arg}#m
 \aab{arg}#m
 \aab*{arg}#m
+\aab[size]{arg}#m
 \Vab{arg}#m
 \Vab*{arg}#m
+\Vab[size]{arg}#m
 
 ## from phy-ab.braket.sty ('ab.braket' module)
 # loads ab module
@@ -149,11 +155,18 @@ format=%<format code%>
 \norm{arg}#*m
 \norm*{arg}#*m
 \norm[size]{arg}#*m
+\eval{arg}#*m
+\eval*{arg}#*m
+\eval[size]{arg}#*m
+\peval{arg}#*m
+\peval*{arg}#*m
+\peval[size]{arg}#*m
+\beval{arg}#*m
+\beval*{arg}#*m
+\beval[size]{arg}#*m
 \order{arg}#*m
 \order*{arg}#*m
 \order[size]{arg}#*m
-\eval{arg}#*m
-\eval[ldelim]{arg}#*m
 
 ## from phy-bm-um.legacy.sty ('bm-um.legacy' module)
 \bm{letter}#*m

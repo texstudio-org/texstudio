@@ -1,5 +1,5 @@
 # structmech package
-# Matthew Bertucci 12/22/2021 for v1.1
+# Matthew Bertucci 2023/03/31 for v1.2
 
 #include:ifthen
 #include:kvoptions
@@ -7,8 +7,8 @@
 #include:tikzlibrarycalc
 #include:tikzlibrarydecorations.pathreplacing
 #include:tikzlibrarypositioning
+#include:tikzlibrarydecorations.pathmorphing
 #include:xkeyval
-#include:xparse
 #include:xstring
 
 \setstructmech{options%keyvals}
@@ -94,18 +94,29 @@ linewidth=##L
 \BeamDeformR[color]{x1,y1}{x2,y2}[rot-lower][rot-higher]
 \BeamDeformR[color]{x1,y1}{x2,y2}[rot-lower][rot-higher]{scale}
 
-\Angle#*
-\AngleB#*
-\FAC#*
-\Length#*
-\LengthB#*
-\absvalue#*
-\axisColor#*
-\convention#*
-\fillColor#*
-\fillOpacity#*
-\lineColor#*
-\lineWidth#*
-\nodeColor#*
-\rotationColor#*
-\showvalue#*
+\Dashpot{x1,y1}{x2,y2}
+\Dashpot{x1,y1}{x2,y2}{scale}
+\Dashpot[color]{x1,y1}{x2,y2}
+\Dashpot[color]{x1,y1}{x2,y2}{scale}
+
+\Spring{x1,y1}{x2,y2}
+\Spring{x1,y1}{x2,y2}{scale}
+\Spring[color]{x1,y1}{x2,y2}
+\Spring[color]{x1,y1}{x2,y2}{scale}
+
+\Angle#S
+\FAC#S
+\Length#S
+\lvla#S
+\lvlb#S
+\absvalue#S
+\axisColor#S
+\convention#S
+\fillColor#S
+\fillOpacity#S
+\lineColor#S
+\lineWidth#S
+\nodeColor#S
+\rotationColor#S
+\showvalue#S
+\unitL#S

@@ -1,5 +1,5 @@
 # concmath-otf package
-# Matthew Bertucci 2022/09/28 for v0.22
+# Matthew Bertucci 2023/03/31 for v0.40
 
 #include:iftex
 #include:unicode-math
@@ -34,11 +34,13 @@ Style=#leqslant,smaller,subsetneq,upint
 \doublecap#m
 \doublecup#m
 \fourthroot{arg}#m
+\geqqslant#m
 \gggtr#m
 \gtreqqslantless#m
 \gtreqslantless#m
 \gvertneqq#m
 \intextender#*m
+\leqqslant#m
 \lesseqqslantgtr#m
 \lesseqslantgtr#m
 \lhd#m
@@ -50,8 +52,10 @@ Style=#leqslant,smaller,subsetneq,upint
 \mdwhtlozenge#m
 \mithbar#*m
 \ngeqq#m
+\ngeqqslant#m
 \ngeqslant#m
 \nleqq#m
+\nleqqslant#m
 \nleqslant#m
 \npreceq#m
 \nshortmid#m

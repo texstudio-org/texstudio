@@ -198,6 +198,7 @@ v2
 \uutwocell
 \xtwocell[hop]{displace}
 \xtwocell{displace}
+\Xy#*
 \xy#*
 \xyatipfont#*
 \xybox{%<<pos><decor>%>}
@@ -209,7 +210,7 @@ v2
 \xycompile{%<<pos><decor>%>}
 \xycompileto{%<name%>}{%<<pos><decor>%>}
 \xydashfont#*
-\xydate#*
+\xydate#S
 \xyecho#*
 \xygraph{graph%formula}
 \xyignore{%<<pos><decor>%>}
@@ -234,5 +235,5 @@ v2
 \xyShowDrivers#*
 \xytracing#*
 \xyverbose#*
-\xyversion#*
+\xyversion#S
 \zeroDivideLimit{number}#*

@@ -1,5 +1,5 @@
 # LuaTeX primitives
-# Matthew Bertucci updated 2022/11/25 for v1.15.1
+# Matthew Bertucci updated 2023/03/31 for v1.16
 
 ### from LuaTeX Reference Manual ###
 ## 2 Basic TeX enhancements ##
@@ -116,6 +116,7 @@
 \pdfextension %<command%>#*
 \pdfvariable %<name%>#*
 \pdffeedback %<name%>#*
+\deferred#*
 \pagewidth#*
 \pageheight#*
 \adjustspacing#*
