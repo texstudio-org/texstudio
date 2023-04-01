@@ -15,3 +15,7 @@ cov-int/
 # ignore macOS compiling result
 git_revision.o
 texstudio.app/
+build*
+symbols-ng/gesymb-ng
+symbols-ng/gesymb-ng.o
+CMakeLists.txt.user
