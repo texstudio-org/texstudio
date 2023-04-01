@@ -257,6 +257,15 @@ QTreeWidgetItem *UserMenuDialog::findCreateFolder(QTreeWidgetItem *parent, QStri
     return parent;
 }
 
+void UserMenuDialog::keyPressEvent(QKeyEvent *e)
+{
+    if(e->key()==Qt::Key_Escape && codeedit->editor()->hasFocus()){
+        e->accept();
+        return;
+    }
+    QDialog::keyPressEvent(e);
+}
+
 void UserMenuDialog::change(QTreeWidgetItem *current,QTreeWidgetItem *previous)
 {
     Q_UNUSED(previous)

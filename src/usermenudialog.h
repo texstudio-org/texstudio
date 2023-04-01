@@ -46,6 +46,9 @@ private:
 	QLanguageFactory *languages;
 	QSearchReplacePanel *searchReplacePanel;
 
+protected:
+    virtual void keyPressEvent(QKeyEvent *e) override;
+
 signals:
 	void runScript(const QString &script);
 
