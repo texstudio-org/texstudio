@@ -3091,6 +3091,17 @@ void QEditor::setVerticalScrollBarMaximum()
 bool QEditor::event(QEvent *e)
 {
 	// preparations for tooltips
+    if(e->type() == QEvent::ShortcutOverride){
+        QKeyEvent *event = static_cast<QKeyEvent *>(e);
+        if(event->keyCombination()==QKeyCombination(Qt::Key_Escape)){
+            if(cursorMirrorCount()>0){
+                // collapse mirrors to main cursor
+                clearCursorMirrors();
+                e->accept();
+                return true;
+            }
+        }
+    }
 
 	if (e->type() == QEvent::ToolTip) {
 		QHelpEvent *helpEvent = static_cast<QHelpEvent *>(e);

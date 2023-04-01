@@ -198,7 +198,7 @@ void DefaultInputBinding::checkLinkOverlay(QPoint mousePos, Qt::KeyboardModifier
 
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 {
-	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text())
+    if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text())
 	        && (editor->currentPlaceHolder() < 0 || editor->currentPlaceHolder() >= editor->placeHolderCount() || editor->getPlaceHolder(editor->currentPlaceHolder()).mirrors.isEmpty() ||  editor->getPlaceHolder(editor->currentPlaceHolder()).affector != BracketInvertAffector::instance())
 	        && !editor->flag(QEditor::Overwrite))  {
 		//update completer if necessary
@@ -2803,11 +2803,6 @@ bool LatexEditorView::closeElement()
 		searchReplacePanel->closeElement(config->closeSearchAndReplace);
 		return true;
 	}
-    if(editor->cursorMirrorCount()>0){
-        // collapse mirrors to main cursor
-        editor->clearCursorMirrors();
-        return true;
-    }
 	return false;
 }
 
