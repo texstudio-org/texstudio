@@ -2955,6 +2955,7 @@
 <file>completion/pythonhighlight.cwl</file>
 <file>completion/pythonimmediate.cwl</file>
 <file>completion/pythontex.cwl</file>
+<file>completion/qcircuit.cwl</file>
 <file>completion/qcm.cwl</file>
 <file>completion/qqru.cwl</file>
 <file>completion/qrbill.cwl</file>
@@ -3363,6 +3364,7 @@
 <file>completion/tagpair.cwl</file>
 <file>completion/tagpdf.cwl</file>
 <file>completion/tameflts.cwl</file>
+<file>completion/tangocolors.cwl</file>
 <file>completion/TangramTikz.cwl</file>
 <file>completion/tascmac.cwl</file>
 <file>completion/tasks.cwl</file>
@@ -3582,6 +3584,7 @@
 <file>completion/tikzlibrarymatrix.skeleton.cwl</file>
 <file>completion/tikzlibrarymindmap.cwl</file>
 <file>completion/tikzlibrarynef.cwl</file>
+<file>completion/tikzlibrarynfold.cwl</file>
 <file>completion/tikzlibraryocgx.cwl</file>
 <file>completion/tikzlibraryoptics.cwl</file>
 <file>completion/tikzlibraryoverlay-beamer-styles.cwl</file>
