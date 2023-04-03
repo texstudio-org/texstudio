@@ -429,6 +429,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(&help, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
     connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
+#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
+    connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::colorSchemeChanged,this,&Texstudio::colorSchemeChanged);
+#endif
+
 
 	QStringList filters;
 	filters << tr("TeX files") + " (*.tex *.bib *.sty *.cls *.mp *.dtx *.cfg *.ins *.ltx *.tikz *.pdf_tex *.ctx)";
@@ -11290,6 +11294,43 @@ void Texstudio::paletteChanged(const QPalette &palette){
         searchpanel->updateIcon();
     }
 }
+
+#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
+/*!
+ * \brief react to changed palette
+ * i.e. change form light- to dark-mode and vice-versa
+ * \param palette new palette
+ */
+void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
+{
+    bool oldDarkMode=darkMode;
+    bool newDarkMode=(colorScheme == Qt::ColorScheme::Dark);
+    if(newDarkMode != oldDarkMode){
+        if(!configManager.useTexmakerPalette){
+            darkMode=newDarkMode;
+            // load appropriate syntax highlighting scheme
+            QSettings *config=configManager.getSettings();
+            config->beginGroup(darkMode ? "formatsDark" : "formats");
+            m_formats = new QFormatFactory(darkMode ? ":/qxs/defaultFormatsDark.qxf" : ":/qxs/defaultFormats.qxf", this); //load default formats from resource file
+            m_formats->load(*config, true); //load customized formats
+            QDocument::setDefaultFormatScheme(m_formats);
+            //m_formats->modified=true;
+            config->endGroup();
+        }
+        setupMenus(); // reload actions for new icons !
+        setupDockWidgets();
+        darkMode=newDarkMode;
+    }
+    foreach (LatexEditorView *edView, editors->editors()) {
+        QEditor *ed = edView->editor;
+        //edView->updatePalette(palette); // adapt ?
+        ed->document()->markFormatCacheDirty();
+        ed->update();
+        QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(edView->codeeditor->panels("Search")[0]);
+        searchpanel->updateIcon();
+    }
+}
+#endif
 /*!
  * \brief open webpage with txs issue submit
  */

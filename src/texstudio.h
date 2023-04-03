@@ -390,6 +390,9 @@ protected slots:
 	void LTErrorMessage(QString message);
 
     void paletteChanged(const QPalette &palette);
+#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
+    void colorSchemeChanged(Qt::ColorScheme colorScheme);
+#endif
 
 private slots:
 	void readSettings(bool reread = false); ///< read configured/default settings from ini
