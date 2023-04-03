@@ -4,9 +4,6 @@
 #include "mostQtHeaders.h"
 //#include "animatedsplitter.h"
 
-class TitledPanelPage;
-Q_DECLARE_METATYPE(TitledPanelPage *)
-
 class TitledPanelPage : public QObject
 {
 	Q_OBJECT
@@ -47,6 +44,7 @@ private:
 	QAction *m_selectAction;
 	QList<QAction *> *m_toolbarActions;
 };
+Q_DECLARE_METATYPE(TitledPanelPage *)
 
 
 class TitledPanel : public QFrame

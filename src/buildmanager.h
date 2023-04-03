@@ -256,7 +256,7 @@ private:
 };
 
 //#define PROFILE_PROCESSES
-Q_DECLARE_METATYPE(ProcessX *)
+
 //this process can handle dde and normal commands
 class ProcessX: public QProcess
 {
@@ -318,6 +318,6 @@ private:
 	QTime time;
 #endif
 };
-
+Q_DECLARE_METATYPE(ProcessX *)
 
 #endif // BUILDMANAGER_H
