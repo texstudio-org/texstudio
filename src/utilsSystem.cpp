@@ -2,6 +2,10 @@
 #include "unixutils.h"
 #include "smallUsefulFunctions.h"
 
+#if (QT_VERSION >= 0x060500)
+#include <QStyleHints>
+#endif
+
 #ifdef Q_OS_MAC
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFBundle.h>
@@ -364,8 +368,13 @@ QIcon getRealIconCached(const QString &icon, bool forceReload)
  */
 bool systemUsesDarkMode(const QPalette &pal)
 {
+#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
+    QStyleHints *sh=QGuiApplication::styleHints();
+    return sh->colorScheme() == Qt::ColorScheme::Dark;
+#else
     QColor clr=pal.color(QPalette::Text);
     return qGray(clr.rgb())>200;
+#endif
 }
 
 bool isFileRealWritable(const QString &filename)
