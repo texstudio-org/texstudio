@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2022/12/25 for v0.3.0
+# Matthew Bertucci 2023/04/03 for v0.4.0
 
 #include:filehook
 #include:url
@@ -11,7 +11,9 @@ regression-test#true,false
 style=#american-chemical-society,american-medical-association,american-political-science-association,american-sociological-association,apa,chicago-author-date,chicago-fullnote-bibliography,chicago-note-bibliography,elsevier-harvard,harvard-cite-them-right,ieee,modern-humanities-research-association,modern-language-association,nature,vancouver
 class=
 locale=%<language code%>
+backref=#true,page,section,false
 bib-font=%<font commands%>
+bib-entry-page-break#true,false
 bib-item-sep=%<<length> or <glue>%>
 bib-hang=##L
 hanging-indent#true,false
@@ -33,6 +35,8 @@ entry-spacing=%<number%>
 \textcite[options%keyvals]{keylist}
 \citet{keylist}#*
 \citet[options%keyvals]{keylist}#*
+\footcite{keylist}
+\footcite[options%keyvals]{keylist}
 \cites{%<key1%>}{%<key2%>}%<...{keyN}%>
 \cites[%<options%>]{%<key1%>}[%<options%>]{%<key2%>}%<...[options]{keyN}%>
 \citeauthor{keylist}
@@ -74,3 +78,7 @@ volume=%<number%>
 
 \printbibliography
 \printbibliography[options]#*
+
+# not documented
+\DeclareBibliographyCategory{arg}#*
+\addtocategory{arg1}{arg2}#*
