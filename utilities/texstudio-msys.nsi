@@ -185,6 +185,7 @@ File ..\utilities\latex2e.css
 File ..\utilities\list.png
 File ..\utilities\license.txt
 File /r ..\utilities\manual\build\html\*
+File ..\utilities\manual\source\CHANGELOG.md
 
 SetOutPath $INSTDIR\share\poppler
 File /r ..\utilities\poppler-data\*
