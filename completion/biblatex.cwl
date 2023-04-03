@@ -5757,7 +5757,7 @@ xindy#true,false
 \citefilmnoindex{bibid}#*C
 #endif
 
-### biblatex-gb7714-2015 v1.1k ###
+### biblatex-gb7714-2015 v1.1l ###
 #ifOption:style=gb7714-2015
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from gb7714-2015.bbx
@@ -5842,7 +5842,8 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
@@ -5985,10 +5986,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from gb7714-2015ay.cbx
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6118,7 +6121,8 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
@@ -6254,7 +6258,8 @@ gbalign=#right,left,center,gb7714-2015,gb7714-2015ay
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
@@ -6393,10 +6398,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from gb7714-CCNU.cbx (loads gb7714-2015.cbx)
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6536,10 +6543,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from gb7714-NWAFU.cbx (loads gb7714-2015ay.cbx)
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6684,10 +6693,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from gb7714-SEU.cbx (loads gb7714-2015.cbx)
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6745,7 +6756,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 #ifOption:style=chinese-erj
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from chinese-erj.bbx (loads gb7714-2015ay.bbx)
-erjpunctcn#true,false
+gbpunctcn#true,false
 # from gb7714-2015ay.bbx
 gbmedium#true,false
 gbannote#true,false
@@ -6771,7 +6782,7 @@ gbbiblabel=#bracket,parens,plain,dot,box,circle
 gbnamefmt=#uppercase,lowercase,givenahead,familyahead,pinyin,quanpin,reverseorder
 gbalign=#right,left,center,gb7714-2015,gb7714-2015ay
 # from chinese-erj.cbx (loads gb7714-2015ay.cbx)
-erjcitepunctcn#true,false
+gbcitepunctcn#true,false
 # from gb7714-2015ay.cbx
 gblabelref#true,false
 gbcitelabel=#bracket,parens,plain,dot,box,circle
@@ -6843,10 +6854,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from chinese-erj.cbx (loads gb7714-2015ay.cbx)
 \erjpunctmarkcite#*
 \erjpunctsemicoloncite#*
@@ -8426,10 +8439,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from gb7714-2015ay.cbx
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -8567,10 +8582,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from gb7714-2015.cbx
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -8702,10 +8719,12 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \gbcaselocalset#*
 \gbpinyinlocalset#*
 \gbquanpinlocalset#*
-\defdoublelangentry{match}{fieldvalue}
+\defdoublelangentry{entrykey1}{entrykey2}
+\addEntryField{entrykeys}{field}{fieldvalue}
 \entrykeya#S
 \entrykeyb#S
 \userfieldabcde#S
+\pubdatadelim#*
 # from gb7714-2015.cbx
 \mkbibleftborder#*
 \mkbibrightborder#*
