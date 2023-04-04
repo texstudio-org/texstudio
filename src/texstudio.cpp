@@ -85,7 +85,7 @@
 
 #include "PDFDocument_config.h"
 #include <set>
-
+#include <QStyleHints>
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -430,7 +430,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
     connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
 #if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
-    connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::colorSchemeChanged,this,&Texstudio::colorSchemeChanged);
+    connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),SIGNAL(colorSchemeChanged(Qt::ColorScheme)),this,SLOT(colorSchemeChanged(Qt::ColorScheme)));
 #endif
 
 

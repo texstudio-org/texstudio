@@ -391,7 +391,7 @@ protected slots:
 
     void paletteChanged(const QPalette &palette);
 #if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
-    void colorSchemeChanged(Qt::ColorScheme colorScheme);
+    void colorSchemeChanged(Qt::ColorScheme  colorScheme);
 #endif
 
 private slots:
