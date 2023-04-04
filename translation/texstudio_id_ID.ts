@@ -795,7 +795,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="214"/>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Gaya:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="304"/>
@@ -821,7 +821,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="268"/>
         <source>Modern - dark</source>
-        <translation type="unfinished"/>
+        <translation>Modern - gelap</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="358"/>
@@ -2990,7 +2990,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="1104"/>
         <source>Load Other Icon</source>
-        <translation type="unfinished"/>
+        <translation>Load Ikon lainnya</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1105"/>
@@ -4453,7 +4453,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="413"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"/>
+        <translation>Set Hanya-Baca</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="415"/>
