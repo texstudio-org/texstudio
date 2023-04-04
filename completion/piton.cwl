@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/02/14 for v1.4
+# Matthew Bertucci 2023/04/04 for v1.5
 
 #include:l3keys2e
 #include:luatexbase
@@ -54,6 +54,7 @@ auto-gobble
 tabs-auto-gobble
 line-numbers
 all-line-numbers
+numbers-sep=##L
 resume
 identifiers={%<names={<name1>,<name2>,...},style=<instructions>%>}
 splittable
@@ -98,6 +99,7 @@ Keyword=%<formatting%>
 # not documented
 FormattingType=%<formatting%>
 Dict.Value=%<formatting%>
+Name.UserFunction=%<formatting%>
 Interpol.Inside=%<formatting%>
 Comment.Math=%<formatting%>
 InitialValues=%<formatting%>
@@ -146,5 +148,6 @@ Prompt
 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
+\PitonClearUserFunctions#*
 \myfiledate#S
 \myfileversion#S
