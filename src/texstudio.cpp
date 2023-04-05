@@ -428,9 +428,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(&help, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
     connect(&help, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
-    connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
+    connect(qGuiApp,&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
 #if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
-    connect(static_cast<QGuiApplication *>(QGuiApplication::instance()),SIGNAL(colorSchemeChanged(Qt::ColorScheme)),this,SLOT(colorSchemeChanged(Qt::ColorScheme)));
+    connect(qGuiApp->styleHints(),&QStyleHints::colorSchemeChanged,this,&Texstudio::colorSchemeChanged);
 #endif
 
 
