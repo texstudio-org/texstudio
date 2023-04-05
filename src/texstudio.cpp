@@ -12217,8 +12217,8 @@ void Texstudio::updateStructureLocally(){
  * \param rootVector
  */
 void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
-    static const QColor beyondEndColor(255, 170, 0);
-    static const QColor inAppendixColor(200, 230, 200);
+    static const QColor beyondEndColor = darkMode ? QColor(255, 170, 0)  : QColor(255, 170, 0);
+    static const QColor inAppendixColor= darkMode ? QColor(0, 102,   0): QColor(200, 230, 200);
 
     foreach(StructureEntry* elem,se->children){
         if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)){
