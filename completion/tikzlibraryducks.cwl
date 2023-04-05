@@ -1,4 +1,4 @@
 # ducks tikzlibrary
-# 2022/12/01 for v1.5
+# 2023/04/05 for v1.6
 
-#include:tikducks
+#include:tikzducks
