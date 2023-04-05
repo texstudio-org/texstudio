@@ -1,14 +1,15 @@
 # Added as a workaround for a crash in TXS when it tries to autogenerate the CWL for MinionPro fonts.
 # For details see https://github.com/texstudio-org/texstudio/issues/716
 
-# updated 1/20/2022 for v2.1
+# updated 2023/04/04 for v2.3a
 
-#include:textcomp
+#include:kvoptions
 #include:MinionPro-FontDef
+#include:textcomp
 #include:MnSymbol
+#include:eufrak
 #include:microtype
 #include:fontaxes
-#include:otfontdef
 
 #keyvals:\usepackage/MinionPro#c
 smallfamily
@@ -38,6 +39,7 @@ lucidabb
 mixedgreek
 italicgreek
 frenchmath
+scale=%<factor%>
 minionint
 openg
 loosequotes
