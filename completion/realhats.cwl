@@ -1,5 +1,5 @@
 # realhats package
-# Matthew Bertucci 2022/06/14 for v6.0
+# Matthew Bertucci 2023/04/05 for v7.0
 
 #include:amsmath
 #include:calc
@@ -26,6 +26,10 @@ policeman
 scottish
 birthday
 mortarboard
+tile-white
+tile-gray
+tile-light-blue
+tile-blue
 #endkeyvals
 
 \myhat#S
