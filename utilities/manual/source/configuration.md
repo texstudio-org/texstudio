@@ -478,18 +478,18 @@ The internal pdf viewer also accepts the following options
   
 
 It is also possible to modify the arguments of called subcommands with
-argument modifiers or by adding a new argument . These modifiers are
+argument modifiers or by adding a new argument. These modifiers are
 passed through called lists, so it will always change the arguments of
 the finally called program, even if the directly called subcommand is
 just a wrapper around another command:
 
 | command | description |
 | --- | --- |
-| `txs:///foobar --xyz`        | This will add the xyz option |
-| `txs:///foobar[--xyz=123]` | This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar) |
-| `txs:///foobar{--xyz=123}`   | This will remove `--xyz=123` from the foobar command line, ignoring xyz options with other values |
-| `txs:///foobar{--xyz}`       | This will remove any `--xyz` option from the foobar command line, regardless of its value |
-| `txs:///foobar{}`             | This will remove all options from the foobar command line, leaving only the name of the executable |
+| `txs:///foobar --xyz`        | This will add the `xyz` option |
+| `txs:///foobar/[--xyz=123]`  | This will change the value of the `xyz` option to `123` (i.e. removing any `xyz` option defined in `foobar`) |
+| `txs:///foobar/{--xyz=123}`  | This will remove `--xyz=123` from the `foobar` command line, ignoring `xyz` options with other values |
+| `txs:///foobar/{--xyz}`      | This will remove any `--xyz` option from the `foobar` command line, regardless of its value |
+| `txs:///foobar/{}`           | This will remove all options from the `foobar` command line, leaving only the name of the executable |
 
 Finally, there are also hidden options, which can only be changed by
 modifying the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable,
