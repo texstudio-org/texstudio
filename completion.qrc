@@ -2538,6 +2538,7 @@
 <file>completion/orcidlink.cwl</file>
 <file>completion/ordinalpt.cwl</file>
 <file>completion/orientation.cwl</file>
+<file>completion/osda.cwl</file>
 <file>completion/Oswald.cwl</file>
 <file>completion/otf.cwl</file>
 <file>completion/otfontdef.cwl</file>
