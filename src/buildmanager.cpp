@@ -2541,7 +2541,7 @@ void ProcessX::finished()
 void ProcessX::readFromStandardOutput()
 {
 	if (!stdoutEnabled && !stdoutBuffer) return;
-	QString t = readAllStandardOutputStr().trimmed();
+    QString t = readAllStandardOutputStr();
 	if (stdoutBuffer) stdoutBuffer->append(t);
 	emit standardOutputRead(t);
 }
