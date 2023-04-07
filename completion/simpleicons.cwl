@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/03/24 for v8.8.0
+# Matthew Bertucci 2023/04/07 for v8.9.0
 
 #include:ifxetex
 #include:ifluatex
@@ -1440,6 +1440,7 @@ nodered
 nokia
 norco
 nordvpn
+normalizedotcss
 norwegian
 notepadplusplus
 notion
@@ -2006,6 +2007,7 @@ stackbit
 stackblitz
 stackedit
 stackexchange
+stackhawk
 stackoverflow
 stackpath
 stackshare
@@ -2070,6 +2072,7 @@ swift
 swiggy
 swiper
 symantec
+symbolab
 symfony
 symphony
 sympy
