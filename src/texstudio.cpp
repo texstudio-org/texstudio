@@ -3205,20 +3205,20 @@ repeatAfterFileSavingFailed:
 		if (edView->editor->isContentModified()) {
             if(!doc->isHidden())
                 editors->setCurrentEditor(edView);
-			switch (QMessageBox::warning(this, TEXSTUDIO,
-			                             tr("The document \"%1\" contains unsaved work. "
-			                                "Do you want to save it before closing?").arg(edView->displayName()),
-			                             tr("Save and Close"), tr("Close without Saving"), tr("Cancel"),
-			                             0,
-			                             2)) {
-			case 0:
+            int ret=QMessageBox::warning(this, TEXSTUDIO,
+                                           tr("The document \"%1\" contains unsaved work. "
+                                              "Do you want to save it before closing?").arg(edView->displayName()),
+                                           QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
+                                           QMessageBox::Save);
+            switch (ret) {
+            case QMessageBox::Save:
                 fileSave(false,edView->editor);
                 if (currentEditorView() && currentEditorView()->editor->isContentModified())
 					goto repeatAfterFileSavingFailed;
 				break;
-			case 1:
+            case QMessageBox::Discard:
 				break;
-			case 2:
+            case QMessageBox::Cancel:
 			default:
 				editors->setCurrentEditor(savedCurrentEditorView);
 				return false;
@@ -10704,8 +10704,8 @@ void Texstudio::threadCrashed()
 
 	int btn = QMessageBox::warning(this, tr("TeXstudio Emergency"),
                                    tr("TeXstudio has CRASHED due to a %1 in thread %2.\nThe thread has been stopped.\nDo you want to keep TeXstudio running? This may cause data corruption.").arg(signal,threadId),
-	                               tr("Yes"), tr("No, kill the program"));
-	if (btn) {
+                                   QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes);
+    if (btn == QMessageBox::No) {
 		killAtCrashedThread = thread;
 		ThreadBreaker::sleep(10);
 		QMessageBox::warning(this, tr("TeXstudio Emergency"), tr("I tried to die, but nothing happened."));
