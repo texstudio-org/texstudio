@@ -6036,15 +6036,15 @@ bool Texstudio::checkProgramPermission(const QString &program, const QString &cm
 	int t = QMessageBox::warning(nullptr, TEXSTUDIO,
 	                             tr("The document \"%1\" wants to override the command \"%2\" with \"%3\".\n\n"
 	                                "Do you want to allow and run the new, overriding command?\n\n"
-	                                "(a) Yes, allow the new command for this document (only if you trust this document)\n"
+                                    "(a) Yes, allow the new command for this document (only if you trust this document)\n"
 	                                "(b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)\n"
 	                                "(c) No, do not use the command \"%3\" and run the default \"%2\" command"
                                    ).arg(master ? master->getFileName() : "",cmdId,program),
-	                             tr("(a) allow for this document"),
-	                             tr("(b) allow for all documents"),
-	                             tr("(c) use the default command"), 0, 2);
-	if (t == 2) return false;
-	if (t == 1) {
+                                 QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No,
+                                 QMessageBox::No
+                                 );
+    if (t == QMessageBox::No) return false;
+    if (t == QMessageBox::YesToAll) {
 		programWhiteList.append(program);
 		return true;
 	}
