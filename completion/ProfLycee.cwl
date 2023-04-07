@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/03/31 for v2.5.6
+# Matthew Bertucci 2023/04/04 for v2.5.7
 
 #include:mathtools
 #include:xcolor
@@ -166,6 +166,22 @@ Gobble#true,false
 Largeur=##L
 TaillePolice=%<font commands%>
 Alignement=#justify,left,flush left,right,flush right,center,flush center
+Style=#Moderne,Classique
+Filigrane#true,false
+BarreTitre#true,false
+Cadre#true,false
+#endkeyvals
+
+\begin{ConsolePiton}{tcolorbox options}#V
+\begin{ConsolePiton}<options%keyvals>{tcolorbox options}#V
+\begin{ConsolePiton}[piton options]{tcolorbox options}#V
+\begin{ConsolePiton}[piton options]<options%keyvals>{tcolorbox options}#V
+\end{ConsolePiton}
+
+#keyvals:\begin{ConsolePiton}
+Largeur=##L
+Alignement=#justify,left,flush left,right,flush right,center,flush center
+Logo#true,false
 #endkeyvals
 
 ## Code & Console Python, via les packages Pythontex ou Minted ##
@@ -1061,11 +1077,15 @@ vertcapyt#B
 \CODPITalign#S
 \CODPITfonte#S
 \CODPITlargeur#S
+\CODPITstyle#S
+\CODPITtitre#S
 \COEFF#S
 \COEFFA#S
 \Coeffa#S
 \COEFFB#S
 \Coeffc#S
+\ConsPyluaAlign#S
+\ConsPyluaLarg#S
 \convertbasedixtobase{arg1}{arg2}#S
 \convertbasetobasedix{arg1}{arg2}#S
 \cpt#S

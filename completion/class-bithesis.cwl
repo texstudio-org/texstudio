@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2023/03/05 for v3.4.2
+# Matthew Bertucci 2023/04/04 for v3.5.0
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -91,6 +91,9 @@ info/classifiedLevel=%<字符串%>
 style={%<键值列表%>}
 style/head=%<字符串%>
 style/bibliographyIndent#true,false
+style/pageVerticalAlign=#top,scattered
+style/mathFont=#asana,bonum,cm,concrete,dejavu,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,pagella,schola,stix,stix2,termes,xcharter,xits,none
+style/unicodeMathOptions=%<任意选项%>
 TOC={%<键值列表%>}
 TOC/abstract#true,false
 TOC/abstractEn#true,false

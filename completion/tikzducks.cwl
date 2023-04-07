@@ -8,6 +8,11 @@
 \duck
 \duck[options%keyvals]
 
+\picduck
+
+\randuck
+\randuck[options%keyvals]
+
 #keyvals:\duck#c
 body=#%color
 head=#%color
@@ -76,6 +81,8 @@ niuqelrah
 niuqelrah=#%color
 sailor
 sailor=#%color
+bobblehat
+bobblehat=#%color
 crown
 crown=#%color
 queencrown
@@ -179,6 +186,8 @@ stethoscope
 stethoscope=#%color
 neckerchief
 neckerchief=#%color
+scarf
+scarf=#%color
 woggle
 woggle=#%color
 snowduck
@@ -191,6 +200,13 @@ shovel
 shovel=#%color
 pickaxe
 pickaxe=#%color
+strawbroom
+strawbroom=#%color
+strawbroomstick=#%color
+strawbroomribbon=#%color
+broom
+broom=#%color
+broomstick=#%color
 umbrella
 umbrella=#%color
 umbrellaclosed
@@ -198,13 +214,18 @@ umbrellaclosed=#%color
 handbag
 handbag=#%color
 overleaf
-name=
-stripes=
+name=%<name%>
+stripes
+stripes={%<code%>}
 #endkeyvals
 
-\picduck
+## generic tikz options
+#keyvals:\duck#c,\randuck#c
+scale=%<factor%>
+xshift=##L
+yshift=##L
+#endkeyvals
 
-\randuck
 \randomhead#*
 \randomaccessories#*
 \shuffleducks#*

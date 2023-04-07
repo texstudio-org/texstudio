@@ -1,5 +1,5 @@
 # pst-func package
-# Matthew Bertucci 2/25/2022 for v0.99
+# Matthew Bertucci 2023/04/03 for v1.01
 
 #include:pstricks
 #include:pst-plot
@@ -66,6 +66,8 @@
 \psChiIIDist[options%keyvals]{x0}{x1}
 \psTDist{x0}{x1}
 \psTDist[options%keyvals]{x0}{x1}
+\psNonCentralTDist{x0}{x1}
+\psNonCentralTDist[options%keyvals]{x0}{x1}
 \psFDist{x0}{x1}
 \psFDist[options%keyvals]{x0}{x1}
 \psBetaDist{x0}{x1}

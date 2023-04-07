@@ -1,5 +1,5 @@
 # emo package
-# Matthew Bertucci 2023/03/22 for v0.1
+# Matthew Bertucci 2023/04/03 for v0.2
 
 #include:inputenc
 #include:iftex
@@ -38,6 +38,7 @@ rainbow-flag
 label
 eye
 busts
+collision
 currency-exchange
 floppy-disk
 triangular-ruler
@@ -49,6 +50,7 @@ enraged-face
 stop-sign
 robot
 handshake
+exploding-head
 parrot
 judge
 roll-of-paper

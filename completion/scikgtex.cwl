@@ -1,9 +1,12 @@
 # scikgtex package
-# Matthew Bertucci 2022/12/12 for v2.1.1
+# Matthew Bertucci 2023/04/04 for v2.2.0
 
 #include:luatex
 #include:suffix
-#include:hyperref
+
+#keyvals:\usepackage/scikgtex#c
+compatibility
+#endkeyvals
 
 \researchproblem{problem%text}
 \researchproblem[number]{problem%text}
@@ -44,6 +47,7 @@
 \addmetaproperty[model]{name}
 
 # not documented
+\hyperrefloaded#S
 \useignorespacesandallpars#S
 \ignorespacesandallpars#S
 \newpropertycommand{name}#*
