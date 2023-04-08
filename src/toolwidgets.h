@@ -74,7 +74,7 @@ class OutputViewWidget: public TitledPanel
 	Q_OBJECT
 
 public:
-	  explicit OutputViewWidget(QWidget *parent = nullptr, InternalTerminalConfig *terminalConfig = nullptr);
+    explicit OutputViewWidget(QWidget *parent = nullptr, InternalTerminalConfig *terminalConfig = nullptr);
 
 	const QString MESSAGES_PAGE;
 	const QString LOG_PAGE;
@@ -90,6 +90,7 @@ public:
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	bool childHasFocus();
+    void updateIcon();
 
 	virtual void changeEvent(QEvent *event);
 

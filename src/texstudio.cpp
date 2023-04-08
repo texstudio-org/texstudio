@@ -659,6 +659,8 @@ void Texstudio::setupDockWidgets()
         sidePanelSplitter->insertWidget(0, sidePanel);
         sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
         sidePanelSplitter->setStretchFactor(1, 1);
+    }else{
+        sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
     }
 
     //Structure panel
@@ -792,6 +794,8 @@ void Texstudio::setupDockWidgets()
         QAction *temp = new QAction(this);
         temp->setSeparator(true);
         addAction(temp);
+    }else{
+        outputView->updateIcon();
     }
     sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
 }
@@ -1721,6 +1725,7 @@ void Texstudio::createStatusBar()
 		tb->setIcon(act->icon());
 		tb->setIconSize(iconSize);
 		tb->setToolTip(act->toolTip());
+        tb->setObjectName("structureViewToggle");
 		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
 		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
 		status->addPermanentWidget(tb, 0);
@@ -1734,6 +1739,7 @@ void Texstudio::createStatusBar()
 		tb->setIcon(act->icon());
 		tb->setIconSize(iconSize);
 		tb->setToolTip(act->toolTip());
+        tb->setObjectName("outputViewToggle");
 		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
 		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
 		status->addPermanentWidget(tb, 0);
@@ -3281,6 +3287,21 @@ void Texstudio::setStructureSectionIcons()
     iconSection.resize(structureIconNames.length());
     for (int i = 0; i < structureIconNames.length(); i++)
         iconSection[i] = getRealIconCached(structureIconNames[i],true);
+}
+
+/*!
+ * \brief update icons in statusbar
+ * Necessary on pallete/color scheme change
+ */
+void Texstudio::updateStatusBarIcons()
+{
+    QStatusBar *status = statusBar();
+    QToolButton *tb = status->findChild<QToolButton *>("structureViewToggle");
+    QAction *act = getManagedAction("main/view/show/structureview");
+    tb->setIcon(act->icon());
+    act = getManagedAction("main/view/show/outputview");
+    tb = status->findChild<QToolButton *>("outputViewToggle");
+    tb->setIcon(act->icon());
 }
 
 void Texstudio::updateUserMacros(bool updateMenu)
@@ -11295,6 +11316,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
         setStructureSectionIcons();
+        updateStatusBarIcons();
         updateAllTOCs();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
@@ -11334,6 +11356,7 @@ void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
         setStructureSectionIcons();
+        updateStatusBarIcons();
         updateAllTOCs();
     }
     foreach (LatexEditorView *edView, editors->editors()) {

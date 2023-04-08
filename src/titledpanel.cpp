@@ -249,8 +249,8 @@ QAction *TitledPanel::toggleViewAction() const
 
 void TitledPanel::setSelectorStyle(TitledPanel::PageSelectorStyle style)
 {
-	selectorStyle = style;
-	updateTopbar();
+    selectorStyle = style;
+    updateTopbar();
 }
 
 void TitledPanel::setVisible(bool visible)

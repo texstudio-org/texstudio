@@ -391,8 +391,16 @@ void OutputViewWidget::gotoLogLine(int logLine){
 
 bool OutputViewWidget::childHasFocus()
 {
-	return logWidget->childHasFocus()
-	       || OutputMessages->hasFocus();
+    return logWidget->childHasFocus()
+           || OutputMessages->hasFocus();
+}
+
+/*!
+ * \brief update icon on light-/dark-mode change
+ */
+void OutputViewWidget::updateIcon()
+{
+    mToggleViewAction->setIcon(getRealIcon("logpanel"));
 }
 
 void OutputViewWidget::changeEvent(QEvent *event)
