@@ -748,7 +748,7 @@ be called and not modified:</p>
 </table>
 </div>
 <p>It is also possible to modify the arguments of called subcommands with
-argument modifiers or by adding a new argument . These modifiers are
+argument modifiers or by adding a new argument. These modifiers are
 passed through called lists, so it will always change the arguments of
 the finally called program, even if the directly called subcommand is
 just a wrapper around another command:</p>
@@ -761,19 +761,19 @@ just a wrapper around another command:</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar</span> <span class="pre">--xyz</span></code></p></td>
-<td><p>This will add the xyz option</p></td>
+<td><p>This will add the <code class="docutils literal notranslate"><span class="pre">xyz</span></code> option</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar[--xyz=123]</span></code></p></td>
-<td><p>This will change the value of the xyz option to 123 (i.e. removing any xyz option defined in foobar)</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar/[--xyz=123]</span></code></p></td>
+<td><p>This will change the value of the <code class="docutils literal notranslate"><span class="pre">xyz</span></code> option to <code class="docutils literal notranslate"><span class="pre">123</span></code> (i.e. removing any <code class="docutils literal notranslate"><span class="pre">xyz</span></code> option defined in <code class="docutils literal notranslate"><span class="pre">foobar</span></code>)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar{--xyz=123}</span></code></p></td>
-<td><p>This will remove <code class="docutils literal notranslate"><span class="pre">--xyz=123</span></code> from the foobar command line, ignoring xyz options with other values</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar/{--xyz=123}</span></code></p></td>
+<td><p>This will remove <code class="docutils literal notranslate"><span class="pre">--xyz=123</span></code> from the <code class="docutils literal notranslate"><span class="pre">foobar</span></code> command line, ignoring <code class="docutils literal notranslate"><span class="pre">xyz</span></code> options with other values</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar{--xyz}</span></code></p></td>
-<td><p>This will remove any <code class="docutils literal notranslate"><span class="pre">--xyz</span></code> option from the foobar command line, regardless of its value</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar/{--xyz}</span></code></p></td>
+<td><p>This will remove any <code class="docutils literal notranslate"><span class="pre">--xyz</span></code> option from the <code class="docutils literal notranslate"><span class="pre">foobar</span></code> command line, regardless of its value</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar{}</span></code></p></td>
-<td><p>This will remove all options from the foobar command line, leaving only the name of the executable</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">txs:///foobar/{}</span></code></p></td>
+<td><p>This will remove all options from the <code class="docutils literal notranslate"><span class="pre">foobar</span></code> command line, leaving only the name of the executable</p></td>
 </tr>
 </tbody>
 </table>
