@@ -429,7 +429,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(&help, SIGNAL(runCommandAsync(QString,const char*)), this, SLOT(runCommandAsync(QString,const char*)));
 
     connect(qGuiApp,&QGuiApplication::paletteChanged,this,&Texstudio::paletteChanged);
-#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
+#if (QT_VERSION >= 0x060500) && (defined( Q_OS_WIN )||defined( Q_OS_LINUX ))
     connect(qGuiApp->styleHints(),&QStyleHints::colorSchemeChanged,this,&Texstudio::colorSchemeChanged);
 #endif
 
@@ -11295,6 +11295,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
         setStructureSectionIcons();
+        updateTOCs();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
@@ -11333,6 +11334,7 @@ void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
         setStructureSectionIcons();
+        updateTOCs();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
