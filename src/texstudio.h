@@ -238,6 +238,7 @@ private:
 #endif
 private slots:
     void updateTOCs();
+    void updateAllTOCs();
 
     void updateTOC();
     void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr,StructureEntry *selected=nullptr);
@@ -262,7 +263,7 @@ private slots:
     void collapseSubitems();
     StructureEntry *labelForStructureEntry(const StructureEntry *entry);
 
-    void updateStructureLocally();
+    void updateStructureLocally(bool updateAll=false);
     void customMenuStructure(const QPoint &pos);
     void createLabelFromAction();
 

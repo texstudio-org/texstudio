@@ -11295,7 +11295,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
         setStructureSectionIcons();
-        updateTOCs();
+        updateAllTOCs();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
@@ -11334,7 +11334,7 @@ void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
         setStructureSectionIcons();
-        updateTOCs();
+        updateAllTOCs();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
@@ -11358,6 +11358,16 @@ void Texstudio::openBugsAndFeatures() {
 void Texstudio::updateTOCs(){
     updateTOC();
     updateStructureLocally();
+}
+
+/*!
+ * \brief update global TOC and *all* local structure view
+ * Otherwise only current doc is updated
+ */
+void Texstudio::updateAllTOCs()
+{
+    updateTOC();
+    updateStructureLocally(true);
 }
 
 /*!
@@ -12021,7 +12031,7 @@ void Texstudio::gotoLineFromAction()
  * This approach avoid the model/view which repeatedly led to crashes because the view component caches info from the actual model and is not kept up-to-date properly
  *
  */
-void Texstudio::updateStructureLocally(){
+void Texstudio::updateStructureLocally(bool updateAll){
     if(!structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root= nullptr;
 
@@ -12033,195 +12043,201 @@ void Texstudio::updateStructureLocally(){
         return;
     }
 
-    LatexDocument *master = documents.getMasterDocument();
-    bool showHiddenMasterFirst=false;
-    bool hiddenMasterStructureIsVisible=false;
-    if(configManager.parseMaster && master && master->isHidden()){
-        showHiddenMasterFirst=true;
+    QList<LatexDocument*> docs{doc};
+    if(updateAll){
+        docs=documents.documents; // only visible documents
     }
-    if(configManager.structureShowSingleDoc){
-        root= structureTreeWidget->topLevelItem(0);
-        if(structureTreeWidget->topLevelItemCount()>1){
-            for(int i=1;structureTreeWidget->topLevelItemCount()>1;){
-                QTreeWidgetItem *item=structureTreeWidget->takeTopLevelItem(i);
-                delete item;
-            }
+    for(LatexDocument *doc:docs){
+        LatexDocument *master = documents.getMasterDocument();
+        bool showHiddenMasterFirst=false;
+        bool hiddenMasterStructureIsVisible=false;
+        if(configManager.parseMaster && master && master->isHidden()){
+            showHiddenMasterFirst=true;
         }
-    }else{
-        for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
-            QTreeWidgetItem *item = structureTreeWidget->topLevelItem(i);
-            StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-            if (!contextEntry){
-                structureTreeWidget->takeTopLevelItem(i);
-                delete item;
-                --i;
-                continue;
+        if(configManager.structureShowSingleDoc){
+            root= structureTreeWidget->topLevelItem(0);
+            if(structureTreeWidget->topLevelItemCount()>1){
+                for(int i=1;structureTreeWidget->topLevelItemCount()>1;){
+                    QTreeWidgetItem *item=structureTreeWidget->takeTopLevelItem(i);
+                    delete item;
+                }
             }
-            if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
-                if(contextEntry->document == doc){
-                    root=item;
-                }else{
-                    QFont font=item->font(0);
-                    font.setBold(false);
-                    item->setFont(0,font);
-                    if(!documents.documents.contains(contextEntry->document) || documents.hiddenDocuments.contains(contextEntry->document)){
-                        if(showHiddenMasterFirst && contextEntry->document == master && !hiddenMasterStructureIsVisible){
-                            // run only once
-                            // reload may add more structure views
-                            hiddenMasterStructureIsVisible=true;
-                            continue; // keep showing master document regardless
+        }else{
+            for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
+                QTreeWidgetItem *item = structureTreeWidget->topLevelItem(i);
+                StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                if (!contextEntry){
+                    structureTreeWidget->takeTopLevelItem(i);
+                    delete item;
+                    --i;
+                    continue;
+                }
+                if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+                    if(contextEntry->document == doc){
+                        root=item;
+                    }else{
+                        QFont font=item->font(0);
+                        font.setBold(false);
+                        item->setFont(0,font);
+                        if(!documents.documents.contains(contextEntry->document) || documents.hiddenDocuments.contains(contextEntry->document)){
+                            if(showHiddenMasterFirst && contextEntry->document == master && !hiddenMasterStructureIsVisible){
+                                // run only once
+                                // reload may add more structure views
+                                hiddenMasterStructureIsVisible=true;
+                                continue; // keep showing master document regardless
+                            }
+                            structureTreeWidget->takeTopLevelItem(i);
+                            delete item;
+                            --i;
                         }
-                        structureTreeWidget->takeTopLevelItem(i);
-                        delete item;
-                        --i;
+                    }
+                }else{
+                    // remove invalid
+                    structureTreeWidget->takeTopLevelItem(i);
+                    delete item;
+                    --i;
+                }
+            }
+            // reorder documents
+            for(int i=0;i<documents.documents.length();++i){
+                bool found=false;
+                int j=i;
+                StructureEntry *contextEntry;
+                for(;j<structureTreeWidget->topLevelItemCount();++j){
+                    QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
+                    contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                    if(contextEntry->document == documents.documents.value(i)){
+                        found=true;
+                        break;
                     }
                 }
-            }else{
-                // remove invalid
-                structureTreeWidget->takeTopLevelItem(i);
-                delete item;
-                --i;
-            }
-        }
-        // reorder documents
-        for(int i=0;i<documents.documents.length();++i){
-            bool found=false;
-            int j=i;
-            StructureEntry *contextEntry;
-            for(;j<structureTreeWidget->topLevelItemCount();++j){
-                QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
-                contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-                if(contextEntry->document == documents.documents.value(i)){
-                    found=true;
-                    break;
+                if(found && i<j){
+                    QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
+                    if(contextEntry->document==master){
+                        item->setIcon(0,getRealIcon("masterdoc"));
+                    }else{
+                        item->setIcon(0,getRealIcon("doc"));
+                    }
+                    structureTreeWidget->insertTopLevelItem(i,item);
                 }
-            }
-            if(found && i<j){
-                QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
-                if(contextEntry->document==master){
-                    item->setIcon(0,getRealIcon("masterdoc"));
-                }else{
-                    item->setIcon(0,getRealIcon("doc"));
-                }
-                structureTreeWidget->insertTopLevelItem(i,item);
-            }
-            if(!found){
-                QTreeWidgetItem *item=new QTreeWidgetItem();
-                LatexDocument *doc=documents.documents.value(i);
-                StructureEntry *base=doc->baseStructure;
+                if(!found){
+                    QTreeWidgetItem *item=new QTreeWidgetItem();
+                    LatexDocument *doc=documents.documents.value(i);
+                    StructureEntry *base=doc->baseStructure;
 
-                item->setText(0,doc->getFileInfo().fileName());
-                item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
-                if(doc==master){
-                    item->setIcon(0,getRealIcon("masterdoc"));
-                }else{
-                    item->setIcon(0,getRealIcon("doc"));
-                }
-                structureTreeWidget->insertTopLevelItem(i,item);
-                if(doc==documents.getCurrentDocument()){
-                    root=item;
+                    item->setText(0,doc->getFileInfo().fileName());
+                    item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+                    if(doc==master){
+                        item->setIcon(0,getRealIcon("masterdoc"));
+                    }else{
+                        item->setIcon(0,getRealIcon("doc"));
+                    }
+                    structureTreeWidget->insertTopLevelItem(i,item);
+                    if(doc==documents.getCurrentDocument()){
+                        root=item;
+                    }
                 }
             }
         }
-    }
-    StructureEntry *selectedEntry=nullptr;
-    bool itemExpandedLABEL=false;
-    bool itemExpandedTODO=false;
-    bool itemExpandedMAGIC=false;
-    bool itemExpandedBIBLIO=false;
-    bool addToTopLevel=false;
-    if(!root){
-        root=new QTreeWidgetItem();
-        addToTopLevel=true;
-    }else{
-        // get current selected item, check only first and deduce structureEntry
-        QList<QTreeWidgetItem*> selected=structureTreeWidget->selectedItems();
-        if(!selected.isEmpty()){
-            QTreeWidgetItem *item=selected.first();
-            if(item){
-                selectedEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+        StructureEntry *selectedEntry=nullptr;
+        bool itemExpandedLABEL=false;
+        bool itemExpandedTODO=false;
+        bool itemExpandedMAGIC=false;
+        bool itemExpandedBIBLIO=false;
+        bool addToTopLevel=false;
+        if(!root){
+            root=new QTreeWidgetItem();
+            addToTopLevel=true;
+        }else{
+            // get current selected item, check only first and deduce structureEntry
+            QList<QTreeWidgetItem*> selected=structureTreeWidget->selectedItems();
+            if(!selected.isEmpty()){
+                QTreeWidgetItem *item=selected.first();
+                if(item){
+                    selectedEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
+                }
             }
+            // remove all item in topTOC but keep itemTODO
+            for(int i=0;i<root->childCount();++i){
+                QTreeWidgetItem *item=root->child(i);
+                if(item->data(0,Qt::UserRole+1).toString()=="TODO"){
+                    itemExpandedTODO=item->isExpanded();
+                }
+                if(item->data(0,Qt::UserRole+1).toString()=="LABEL"){
+                    itemExpandedLABEL=item->isExpanded();
+                }
+                if(item->data(0,Qt::UserRole+1).toString()=="MAGIC"){
+                    itemExpandedMAGIC=item->isExpanded();
+                }
+                if(item->data(0,Qt::UserRole+1).toString()=="BIBLIO"){
+                    itemExpandedBIBLIO=item->isExpanded();
+                }
+            }
+            QList<QTreeWidgetItem*> items=root->takeChildren();
+            qDeleteAll(items);
         }
-        // remove all item in topTOC but keep itemTODO
-        for(int i=0;i<root->childCount();++i){
-            QTreeWidgetItem *item=root->child(i);
-            if(item->data(0,Qt::UserRole+1).toString()=="TODO"){
-                itemExpandedTODO=item->isExpanded();
-            }
-            if(item->data(0,Qt::UserRole+1).toString()=="LABEL"){
-                itemExpandedLABEL=item->isExpanded();
-            }
-            if(item->data(0,Qt::UserRole+1).toString()=="MAGIC"){
-                itemExpandedMAGIC=item->isExpanded();
-            }
-            if(item->data(0,Qt::UserRole+1).toString()=="BIBLIO"){
-                itemExpandedBIBLIO=item->isExpanded();
-            }
+        QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
+        // fill TOC, starting by current master/top
+
+
+        StructureEntry *base=doc->baseStructure;
+
+        root->setText(0,doc->getFileInfo().fileName());
+        root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+        if(doc==master){
+            root->setIcon(0,getRealIcon("masterdoc"));
+        }else{
+            root->setIcon(0,getRealIcon("doc"));
         }
-        QList<QTreeWidgetItem*> items=root->takeChildren();
-        qDeleteAll(items);
-    }
-    QVector<QTreeWidgetItem *>rootVector(latexParser.MAX_STRUCTURE_LEVEL,root);
-    // fill TOC, starting by current master/top
+        QFont font=root->font(0);
+        font.setBold(true);
+        root->setFont(0,font);
 
+        QList<QTreeWidgetItem*> todoList;
+        QList<QTreeWidgetItem*> labelList;
+        QList<QTreeWidgetItem*> magicList;
+        QList<QTreeWidgetItem*> biblioList;
+        parseStructLocally(base,rootVector,&todoList,&labelList,&magicList,&biblioList);
+        if(addToTopLevel)
+            structureTreeWidget->addTopLevelItem(root);
 
-    StructureEntry *base=doc->baseStructure;
+        if(!biblioList.isEmpty()){
+            QTreeWidgetItem *itemBIBLIO=new QTreeWidgetItem();
+            itemBIBLIO->setText(0,tr("BIBLIOGRAPHY"));
+            itemBIBLIO->setData(0,Qt::UserRole+1,"BIBLIO");
+            itemBIBLIO->insertChildren(0,biblioList);
+            root->insertChild(0,itemBIBLIO);
+            itemBIBLIO->setExpanded(itemExpandedBIBLIO);
+        }
+        if(!magicList.isEmpty()){
+            QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
+            itemTODO->setText(0,tr("MAGIC_COMMENTS"));
+            itemTODO->setData(0,Qt::UserRole+1,"MAGIC");
+            itemTODO->insertChildren(0,magicList);
+            root->insertChild(0,itemTODO);
+            itemTODO->setExpanded(itemExpandedMAGIC);
+        }
+        if(!todoList.isEmpty()){
+            QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
+            itemTODO->setText(0,tr("TODO"));
+            itemTODO->setData(0,Qt::UserRole+1,"TODO");
+            itemTODO->insertChildren(0,todoList);
+            root->insertChild(0,itemTODO);
+            itemTODO->setExpanded(itemExpandedTODO);
+        }
+        if(!labelList.isEmpty()){
+            QTreeWidgetItem *itemLABEL=new QTreeWidgetItem();
+            itemLABEL->setText(0,tr("LABELS"));
+            itemLABEL->setData(0,Qt::UserRole+1,"LABEL");
+            itemLABEL->insertChildren(0,labelList);
+            root->insertChild(0,itemLABEL);
+            itemLABEL->setExpanded(itemExpandedLABEL);
+        }
 
-    root->setText(0,doc->getFileInfo().fileName());
-    root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
-    if(doc==master){
-        root->setIcon(0,getRealIcon("masterdoc"));
-    }else{
-        root->setIcon(0,getRealIcon("doc"));
+        root->setExpanded(true);
+        root->setSelected(false);
+        updateCurrentPosInTOC(nullptr,nullptr,selectedEntry);
     }
-    QFont font=root->font(0);
-    font.setBold(true);
-    root->setFont(0,font);
-
-    QList<QTreeWidgetItem*> todoList;
-    QList<QTreeWidgetItem*> labelList;
-    QList<QTreeWidgetItem*> magicList;
-    QList<QTreeWidgetItem*> biblioList;
-    parseStructLocally(base,rootVector,&todoList,&labelList,&magicList,&biblioList);
-    if(addToTopLevel)
-        structureTreeWidget->addTopLevelItem(root);
-
-    if(!biblioList.isEmpty()){
-        QTreeWidgetItem *itemBIBLIO=new QTreeWidgetItem();
-        itemBIBLIO->setText(0,tr("BIBLIOGRAPHY"));
-        itemBIBLIO->setData(0,Qt::UserRole+1,"BIBLIO");
-        itemBIBLIO->insertChildren(0,biblioList);
-        root->insertChild(0,itemBIBLIO);
-        itemBIBLIO->setExpanded(itemExpandedBIBLIO);
-    }
-    if(!magicList.isEmpty()){
-        QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
-        itemTODO->setText(0,tr("MAGIC_COMMENTS"));
-        itemTODO->setData(0,Qt::UserRole+1,"MAGIC");
-        itemTODO->insertChildren(0,magicList);
-        root->insertChild(0,itemTODO);
-        itemTODO->setExpanded(itemExpandedMAGIC);
-    }
-    if(!todoList.isEmpty()){
-        QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
-        itemTODO->setText(0,tr("TODO"));
-        itemTODO->setData(0,Qt::UserRole+1,"TODO");
-        itemTODO->insertChildren(0,todoList);
-        root->insertChild(0,itemTODO);
-        itemTODO->setExpanded(itemExpandedTODO);
-    }
-    if(!labelList.isEmpty()){
-        QTreeWidgetItem *itemLABEL=new QTreeWidgetItem();
-        itemLABEL->setText(0,tr("LABELS"));
-        itemLABEL->setData(0,Qt::UserRole+1,"LABEL");
-        itemLABEL->insertChildren(0,labelList);
-        root->insertChild(0,itemLABEL);
-        itemLABEL->setExpanded(itemExpandedLABEL);
-    }
-
-    root->setExpanded(true);
-    root->setSelected(false);
-    updateCurrentPosInTOC(nullptr,nullptr,selectedEntry);
 }
 
 /*!
