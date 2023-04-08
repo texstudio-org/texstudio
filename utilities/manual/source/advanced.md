@@ -105,6 +105,12 @@ the following magic comments:
     example, we tell TXS to use the biber command (`txs:///biber`) for
     the general \"Bibliography command\" (txs:///bibliography). See also
     the [description of the build system](configuration.md#advanced-configuration-of-the-build-system).
+    
+    Example:
+    ```
+    % !TeX TXS-program:compile = txs:///pdflatex/{-synctex}
+    ```
+    This will run pdflatex as defined in the option *without* the `-synctex=1` options, see [description of the build system](configuration.md#advanced-configuration-of-the-build-system).
 
 `% !TeX TXS-SCRIPT = name`
 :   This defines a temporary script macro .

@@ -300,6 +300,11 @@ command specified to the left by the one on the right. In the
 example, we tell TXS to use the biber command (<code class="docutils literal notranslate"><span class="pre">txs:///biber</span></code>) for
 the general “Bibliography command” (txs:///bibliography). See also
 the <a class="reference internal" href="configuration.html#advanced-configuration-of-the-build-system"><span class="std std-doc">description of the build system</span></a>.</p>
+<p>Example:</p>
+<div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="c">% !TeX TXS-program:compile = txs:///pdflatex/{-synctex}</span>
+</pre></div>
+</div>
+<p>This will run pdflatex as defined in the option <em>without</em> the <code class="docutils literal notranslate"><span class="pre">-synctex=1</span></code> options, see <a class="reference internal" href="configuration.html#advanced-configuration-of-the-build-system"><span class="std std-doc">description of the build system</span></a>.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">TXS-SCRIPT</span> <span class="pre">=</span> <span class="pre">name</span></code></dt><dd><p>This defines a temporary script macro .</p>
 <p>Example:</p>
