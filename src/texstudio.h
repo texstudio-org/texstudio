@@ -136,6 +136,7 @@ private:
 	void closeEvent(QCloseEvent *e);
     void setStructureSectionIcons();
     void updateStatusBarIcons();
+    void updatePDFIcons();
 
 	void updateUserMacros(bool updateMenu = true);
 

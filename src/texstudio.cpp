@@ -3303,6 +3303,16 @@ void Texstudio::updateStatusBarIcons()
     tb = status->findChild<QToolButton *>("outputViewToggle");
     tb->setIcon(act->icon());
 }
+/*!
+ * \brief update toolbar/statusbar icon in pdf viewer
+ * Called on colorSchemeChanged
+ */
+void Texstudio::updatePDFIcons()
+{
+    if (PDFDocument::documentList().isEmpty())
+        return;
+    PDFDocument::documentList().at(0)->updateIcons();
+}
 
 void Texstudio::updateUserMacros(bool updateMenu)
 {
@@ -11318,6 +11328,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
         setStructureSectionIcons();
         updateStatusBarIcons();
         updateAllTOCs();
+        updatePDFIcons();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
@@ -11358,6 +11369,7 @@ void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
         setStructureSectionIcons();
         updateStatusBarIcons();
         updateAllTOCs();
+        updatePDFIcons();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;

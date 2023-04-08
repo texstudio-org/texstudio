@@ -3071,8 +3071,23 @@ void PDFDocument::shortcutOnlyIfFocused(const QList<QAction *> &actions)
 {
 	foreach (QAction *act, actions) {
 		act->setParent(this);
-		act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
-	}
+        act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+    }
+}
+
+/*!
+ * \brief load Sync Icons
+ * Used in status bar
+ * Needs reloading on colorScheme change
+ */
+void PDFDocument::loadSyncIcons()
+{
+    QIcon icon = getRealIcon("syncSource-off");
+    icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
+    actionCursor_follows_scrolling->setIcon(icon);
+    icon = getRealIcon("syncViewer-off");
+    icon.addFile(getRealIconFile("syncViewer"), QSize(), QIcon::Normal, QIcon::On);
+    actionScrolling_follows_cursor->setIcon(icon);
 }
 /*!
  * \brief reload settings
@@ -3112,12 +3127,7 @@ void PDFDocument::init(bool embedded)
 	//load icons
 	setWindowIcon(QIcon(":/images/previewicon.png"));
 
-	QIcon icon = getRealIcon("syncSource-off");
-	icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
-	actionCursor_follows_scrolling->setIcon(icon);
-	icon = getRealIcon("syncViewer-off");
-	icon.addFile(getRealIconFile("syncViewer"), QSize(), QIcon::Normal, QIcon::On);
-	actionScrolling_follows_cursor->setIcon(icon);
+    loadSyncIcons();
 
 	if (embedded) {
 		actionToggleEmbedded->setIcon(getRealIcon("windowed-viewer"));
@@ -3195,9 +3205,9 @@ void PDFDocument::init(bool embedded)
 	connect(toolBar, SIGNAL(orientationChanged(Qt::Orientation)), this, SLOT(updateToolBarForOrientation(Qt::Orientation)));
 	updateToolBarForOrientation(toolBar->orientation());
 
-	QToolButton *tbCursorFollowsScrolling = UtilsUi::createToolButtonForAction(actionCursor_follows_scrolling);
+    tbCursorFollowsScrolling = UtilsUi::createToolButtonForAction(actionCursor_follows_scrolling);
 	statusBar()->addPermanentWidget(tbCursorFollowsScrolling);
-	QToolButton *tbScrollingFollowsCursor = UtilsUi::createToolButtonForAction(actionScrolling_follows_cursor);
+    tbScrollingFollowsCursor = UtilsUi::createToolButtonForAction(actionScrolling_follows_cursor);
 	statusBar()->addPermanentWidget(tbScrollingFollowsCursor);
 
 	QLabel *lbMessage = new QLabel();
@@ -3808,8 +3818,39 @@ void PDFDocument::enlarge()
 
 void PDFDocument::setStateEnlarged(bool state)
 {
-	actionEnlargeViewer->setVisible(!state);
-	actionShrinkViewer->setVisible(state);
+    actionEnlargeViewer->setVisible(!state);
+    actionShrinkViewer->setVisible(state);
+}
+
+/*!
+ * \brief update toolbar/statusbar icons
+ * Called on colorSchemeChanged
+ */
+void PDFDocument::updateIcons()
+{
+    actionMagnify->setIcon(getRealIcon("magnifier-button"));
+    actionScroll->setIcon(getRealIcon("hand"));
+    actionFirst_Page->setIcon(getRealIcon("go-first"));
+    actionBack->setIcon(getRealIcon("back"));
+    actionPrevious_Page->setIcon(getRealIcon("go-previous"));
+    actionNext_Page->setIcon(getRealIcon("go-next"));
+    actionForward->setIcon(getRealIcon("forward"));
+    actionLast_Page->setIcon(getRealIcon("go-last"));
+
+    actionZoom_In->setIcon(getRealIcon("zoom-in"));
+    actionZoom_Out->setIcon(getRealIcon("zoom-out"));
+    actionActual_Size->setIcon(getRealIcon("zoom-original"));
+    actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
+    actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
+    actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
+    actionExternalViewer->setIcon(getRealIcon("acroread"));
+    actionEnlargeViewer->setIcon(getRealIcon("enlarge-viewer"));
+    actionShrinkViewer->setIcon(getRealIcon("shrink-viewer"));
+    actionAutoHideToolbars->setIcon(getRealIcon("hide-toolbars"));
+
+    loadSyncIcons();
+    tbCursorFollowsScrolling->setIcon(actionCursor_follows_scrolling->icon());
+    tbScrollingFollowsCursor->setIcon(actionScrolling_follows_cursor->icon());
 }
 
 /*!
