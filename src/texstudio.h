@@ -134,6 +134,7 @@ private:
 	void closeAllFiles();
 	bool canCloseNow(bool saveSettings = true); ///< asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
+    void setStructureSectionIcons();
 
 	void updateUserMacros(bool updateMenu = true);
 

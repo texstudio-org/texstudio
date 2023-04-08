@@ -677,10 +677,7 @@ void Texstudio::setupDockWidgets()
     }
 
     // load icons for structure view
-    QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph" << "subparagraph";
-    iconSection.resize(structureIconNames.length());
-    for (int i = 0; i < structureIconNames.length(); i++)
-        iconSection[i] = getRealIconCached(structureIconNames[i]);
+    setStructureSectionIcons();
 
     if(!structureTreeWidget){
         structureTreeWidget = new QTreeWidget();
@@ -3271,6 +3268,19 @@ void Texstudio::closeEvent(QCloseEvent *e)
     } else {
         e->ignore();
     }
+}
+
+/*!
+ * \brief set icons for structure/TOC pane
+ * Needs to be rerun on style change (light/dark mode change)
+ */
+void Texstudio::setStructureSectionIcons()
+{
+    // load icons for structure view
+    QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph" << "subparagraph";
+    iconSection.resize(structureIconNames.length());
+    for (int i = 0; i < structureIconNames.length(); i++)
+        iconSection[i] = getRealIconCached(structureIconNames[i],true);
 }
 
 void Texstudio::updateUserMacros(bool updateMenu)
@@ -11284,6 +11294,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
         }
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
+        setStructureSectionIcons();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
@@ -11321,7 +11332,7 @@ void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
         }
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
-        darkMode=newDarkMode;
+        setStructureSectionIcons();
     }
     foreach (LatexEditorView *edView, editors->editors()) {
         QEditor *ed = edView->editor;
@@ -12219,8 +12230,8 @@ void Texstudio::updateStructureLocally(){
  * \param rootVector
  */
 void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
-    static const QColor beyondEndColor = darkMode ? QColor(255, 170, 0)  : QColor(255, 170, 0);
-    static const QColor inAppendixColor= darkMode ? QColor(0, 102,   0): QColor(200, 230, 200);
+    const QColor beyondEndColor = darkMode ? QColor(255, 170, 0)  : QColor(255, 170, 0);
+    const QColor inAppendixColor= darkMode ? QColor(0, 102,   0): QColor(200, 230, 200);
 
     foreach(StructureEntry* elem,se->children){
         if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)){
