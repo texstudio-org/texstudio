@@ -390,7 +390,7 @@ protected slots:
 	void LTErrorMessage(QString message);
 
     void paletteChanged(const QPalette &palette);
-#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
+#if (QT_VERSION >= 0x060500) && (defined( Q_OS_WIN )||defined( Q_OS_LINUX ))
     void colorSchemeChanged(Qt::ColorScheme  colorScheme);
 #endif
 

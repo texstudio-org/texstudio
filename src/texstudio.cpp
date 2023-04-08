@@ -11269,7 +11269,7 @@ void Texstudio::LTErrorMessage(QString message){
  */
 void Texstudio::paletteChanged(const QPalette &palette){
     bool oldDarkMode=darkMode;
-    bool newDarkMode=systemUsesDarkMode(palette);
+    bool newDarkMode=configManager.systemUsesDarkMode(palette);
     if(newDarkMode != oldDarkMode){
         if(!configManager.useTexmakerPalette){
             darkMode=newDarkMode;
@@ -11295,7 +11295,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
     }
 }
 
-#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
+#if (QT_VERSION >= 0x060500) && (defined( Q_OS_WIN )||defined( Q_OS_LINUX ))
 /*!
  * \brief react to changed palette
  * i.e. change form light- to dark-mode and vice-versa
@@ -11303,6 +11303,8 @@ void Texstudio::paletteChanged(const QPalette &palette){
  */
 void Texstudio::colorSchemeChanged(Qt::ColorScheme colorScheme)
 {
+    // only style Fusion & Windows support autochange
+    if(configManager.interfaceStyle!="Fusion" && configManager.interfaceStyle!="Windows") return;
     bool oldDarkMode=darkMode;
     bool newDarkMode=(colorScheme == Qt::ColorScheme::Dark);
     if(newDarkMode != oldDarkMode){

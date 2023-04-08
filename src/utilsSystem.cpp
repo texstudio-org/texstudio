@@ -2,10 +2,6 @@
 #include "unixutils.h"
 #include "smallUsefulFunctions.h"
 
-#if (QT_VERSION >= 0x060500)
-#include <QStyleHints>
-#endif
-
 #ifdef Q_OS_MAC
 #include <CoreFoundation/CFURL.h>
 #include <CoreFoundation/CFBundle.h>
@@ -356,25 +352,6 @@ QIcon getRealIconCached(const QString &icon, bool forceReload)
 	QIcon *icn = new QIcon(getRealIconFile(icon));
 	iconCache.insert(icon, icn);
 	return *icn;
-}
-
-/*!
- * \brief Tries to determine if the system uses dark mode
- *
- * This function tries to determine if a system uses "dark mode" by looking up general text color and converting it into gray-scale value.
- * A value above 200 (scale is 0 .. 255 ) is considered as light text color on probably dark background, hence a dark mode is detected.
- * This approach is independent on specific on different systems.
- * \return true -> uses dark mode
- */
-bool systemUsesDarkMode(const QPalette &pal)
-{
-#if (QT_VERSION >= 0x060500) && defined( Q_OS_WIN )
-    QStyleHints *sh=QGuiApplication::styleHints();
-    return sh->colorScheme() == Qt::ColorScheme::Dark;
-#else
-    QColor clr=pal.color(QPalette::Text);
-    return qGray(clr.rgb())>200;
-#endif
 }
 
 bool isFileRealWritable(const QString &filename)

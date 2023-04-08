@@ -24,8 +24,6 @@ QKeySequence filterLocaleShortcut(QKeySequence ks);
 
 QString quoteSpaces(const QString &s);
 
-bool systemUsesDarkMode(const QPalette &pal=QApplication::palette());
-
 QChar getPathListSeparator();
 QStringList splitPaths(const QString &paths);
 

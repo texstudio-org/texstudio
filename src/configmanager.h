@@ -83,6 +83,7 @@ public:
 
 
 	//appearance
+    bool systemUsesDarkMode(const QPalette &pal=QApplication::palette());
 	QPalette systemPalette;
 	QString interfaceStyle;
 	QString interfaceFontFamily;

@@ -20,6 +20,10 @@
 
 #include <QDomElement>
 
+#if (QT_VERSION >= 0x060500)
+#include <QStyleHints>
+#endif
+
 #if (QT_VERSION<QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
 #endif
@@ -1929,9 +1933,35 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
     showConfigMaximized=confDlg->isMaximized();
 
-	delete confDlg;
-	return executed;
+    delete confDlg;
+    return executed;
 }
+
+/*!
+ * \brief Tries to determine if the system uses dark mode
+ *
+ * This function tries to determine if a system uses "dark mode" by looking up general text color and converting it into gray-scale value.
+ * A value above 200 (scale is 0 .. 255 ) is considered as light text color on probably dark background, hence a dark mode is detected.
+ * This approach is independent on specific on different systems.
+ * \return true -> uses dark mode
+ */
+bool ConfigManager::systemUsesDarkMode(const QPalette &pal)
+{
+#if (QT_VERSION >= 0x060500) && (defined( Q_OS_WIN )||defined( Q_OS_LINUX ))
+    if(interfaceStyle=="Fusion" && interfaceStyle=="Windows"){
+        // only style Fusion and Windows work properly with stylehints
+        QStyleHints *sh=QGuiApplication::styleHints();
+        return sh->colorScheme() == Qt::ColorScheme::Dark;
+    }else{
+        QColor clr=pal.color(QPalette::Text);
+        return qGray(clr.rgb())>200;
+    }
+#else
+    QColor clr=pal.color(QPalette::Text);
+    return qGray(clr.rgb())>200;
+#endif
+}
+
 
 bool ConfigManager::addRecentFile(const QString &fileName, bool asMaster)
 {
