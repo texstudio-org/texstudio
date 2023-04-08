@@ -3309,9 +3309,11 @@ void Texstudio::updateStatusBarIcons()
  */
 void Texstudio::updatePDFIcons()
 {
+#ifndef NO_POPPLER_PREVIEW
     if (PDFDocument::documentList().isEmpty())
         return;
     PDFDocument::documentList().at(0)->updateIcons();
+#endif
 }
 
 void Texstudio::updateUserMacros(bool updateMenu)
