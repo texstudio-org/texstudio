@@ -1,6 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.5.2
 
+- follow system light-/dark-mode on windows/linux for Fusion&Windows-Style
 - allow wheel usage over linenumber/linemark/fold panel of editors
 - fix skipping scroll when pointer was moved outside the text pane ([#2614](https://github.com/texstudio-org/texstudio/issues/2614))
 - add Min/Max/Close buttons to Macro Editor dialog ([#2987](https://github.com/texstudio-org/texstudio/pull/2987))
