@@ -1554,3 +1554,7 @@ hletter:
 class-hletter
 latex-document
 tex
+nostarch:
+class-nostarch
+latex-document
+tex

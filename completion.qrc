@@ -581,6 +581,7 @@
 <file>completion/CJK.cwl</file>
 <file>completion/CJKfntef.cwl</file>
 <file>completion/CJKnumb.cwl</file>
+<file>completion/CJKpunct.cwl</file>
 <file>completion/CJKutf8.cwl</file>
 <file>completion/cjkutf8-josa.cwl</file>
 <file>completion/cjkutf8-ko.cwl</file>
@@ -837,6 +838,7 @@
 <file>completion/class-njustthesis.cwl</file>
 <file>completion/class-njuthesis.cwl</file>
 <file>completion/class-nlctdoc.cwl</file>
+<file>completion/class-nostarch.cwl</file>
 <file>completion/class-novel.cwl</file>
 <file>completion/class-nwafuthesis.cwl</file>
 <file>completion/class-nwejmart.cwl</file>
@@ -1610,6 +1612,7 @@
 <file>completion/gbt7714.cwl</file>
 <file>completion/gchords.cwl</file>
 <file>completion/gckanbun.cwl</file>
+<file>completion/gelasio.cwl</file>
 <file>completion/genealogytree.cwl</file>
 <file>completion/gensymb.cwl</file>
 <file>completion/gentiumbook.cwl</file>
@@ -2485,6 +2488,7 @@
 <file>completion/Nouveaud.cwl</file>
 <file>completion/nowidow.cwl</file>
 <file>completion/nowtoaux.cwl</file>
+<file>completion/nshyper.cwl</file>
 <file>completion/ntabbing.cwl</file>
 <file>completion/nth.cwl</file>
 <file>completion/ntheorem.cwl</file>
@@ -4020,6 +4024,7 @@
 <file>completion/zennote.cwl</file>
 <file>completion/zhlineskip.cwl</file>
 <file>completion/zhlipsum.cwl</file>
+<file>completion/zhmCJK.cwl</file>
 <file>completion/zhnumber.cwl</file>
 <file>completion/zhspacing.cwl</file>
 <file>completion/zi4.cwl</file>

@@ -1,15 +1,13 @@
 # fontawesome5 package
 # muzimuzhi/4 Dec 2019 for fontawesome5 v5.9.0
-# Matthew Bertucci updated 11/15/2021 for v5.15.3
+# Matthew Bertucci updated 2022/04/10 for v5.15.4
 
-#include:expl3
 #include:l3keys2e
-#include:xparse
 
 #keyvals:\usepackage/fontawesome5#c
 fixed#true,false
-free#true,false
-pro#true,false
+free
+pro
 #endkeyvals
 
 # Every icon can be called by two forms:
@@ -3137,17 +3135,24 @@ zhihu
 \faLevelDown
 \faLevelUp
 \faPencil
+\faRepeat
 \faShield
+\faSignalAlt
 \faSignIn
 \faSignOut
 \faSquareRoot
 \faTachometer
 \faTicket
+\faTransporter
 
 #keyvals:\faIcon
 arrows
 cloud-download
 cloud-upload
+dice-d10
+dice-d12
+dice-d4
+dice-d8
 exchange
 expand-arrows
 external-link
@@ -3155,11 +3160,31 @@ external-link-square
 level-down
 level-up
 pencil
+repeat
+repeat-1
 shield
+signal-1
+signal-2
+signal-3
+signal-4
+signal-alt
+signal-alt-1
+signal-alt-2
+signal-alt-3
+signal-alt-slash
+signal-slash
 sign-in
 sign-out
 square-root
 tachometer
 ticket
+transporter
+transporter-1
+transporter-2
+transporter-3
+transporter-empty
+wifi-1
+wifi-2
+wifi-slash
 #endkeyvals
 #endif

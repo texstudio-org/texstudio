@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/04/04 for v2.5.7
+# Matthew Bertucci 2023/04/07 for v2.5.8
 
 #include:mathtools
 #include:xcolor
@@ -149,15 +149,24 @@ HautRes=%<hauteur%>
 \begin{CodePythonLst}*{tcolorbox options}#V
 \begin{CodePythonLst}*[largeur%l]{tcolorbox options}#V
 \end{CodePythonLst}
+\begin{CodePythonLstAlt}{tcolorbox options}#V
+\begin{CodePythonLstAlt}[largeur%l]{tcolorbox options}#V
+\begin{CodePythonLstAlt}*{tcolorbox options}#V
+\begin{CodePythonLstAlt}*[largeur%l]{tcolorbox options}#V
+\end{CodePythonLstAlt}
 
 \CodePythonLstFichier{tcolorbox options}{file}
 \CodePythonLstFichier[largeur%l]{tcolorbox options}{file}
 \CodePythonLstFichier*{tcolorbox options}{file}
 \CodePythonLstFichier*[largeur%l]{tcolorbox options}{file}
+\CodePythonLstFichierAlt{tcolorbox options}{file}
+\CodePythonLstFichierAlt[largeur%l]{tcolorbox options}{file}
+\CodePythonLstFichierAlt*{tcolorbox options}{file}
+\CodePythonLstFichierAlt*[largeur%l]{tcolorbox options}{file}
 
 ## Code Python via le package piton ##
-\begin{CodePiton}#V
-\begin{CodePiton}[options%keyvals]#V
+\begin{CodePiton}{tcolorbox options}#V
+\begin{CodePiton}[options%keyvals]{tcolorbox options}#V
 \end{CodePiton}
 
 #keyvals:\begin{CodePiton}
@@ -185,18 +194,28 @@ Logo#true,false
 #endkeyvals
 
 ## Code & Console Python, via les packages Pythontex ou Minted ##
-\begin{CodePythonMinted}#V
-\begin{CodePythonMinted}[largeur%l][tcolorbox options]#V
-\begin{CodePythonMinted}*#V
-\begin{CodePythonMinted}*[largeur%l][tcolorbox options]#V
+\begin{CodePythonMinted}{tcolorbox options}#V
+\begin{CodePythonMinted}[largeur%l]{tcolorbox options}#V
+\begin{CodePythonMinted}*{tcolorbox options}#V
+\begin{CodePythonMinted}*[largeur%l]{tcolorbox options}#V
 \end{CodePythonMinted}
+\begin{CodePythonMintedAlt}{tcolorbox options}#V
+\begin{CodePythonMintedAlt}[largeur%l]{tcolorbox options}#V
+\begin{CodePythonMintedAlt}*{tcolorbox options}#V
+\begin{CodePythonMintedAlt}*[largeur%l]{tcolorbox options}#V
+\end{CodePythonMintedAlt}
 
 ## Pseudo-Code ##
-\begin{PseudoCode}
-\begin{PseudoCode}[largeur%l][tcolorbox options]
-\begin{PseudoCode}*
-\begin{PseudoCode}*[largeur%l][tcolorbox options]
+\begin{PseudoCode}{tcolorbox options}#V
+\begin{PseudoCode}[largeur%l]{tcolorbox options}#V
+\begin{PseudoCode}*{tcolorbox options}#V
+\begin{PseudoCode}*[largeur%l]{tcolorbox options}#V
 \end{PseudoCode}
+\begin{PseudoCodeAlt}{tcolorbox options}#V
+\begin{PseudoCodeAlt}[largeur%l]{tcolorbox options}#V
+\begin{PseudoCodeAlt}*{tcolorbox options}#V
+\begin{PseudoCodeAlt}*[largeur%l]{tcolorbox options}#V
+\end{PseudoCodeAlt}
 
 ## Terminal Windows/UNiX/OSX ##
 \begin{TerminalWin}{Titre=%<texte%>}#V
@@ -218,8 +237,8 @@ Logo#true,false
 \CartoucheCapytale*[prefix]{code capytale}
 
 ## Présentation de code LaTeX ##
-\begin{PresentationCode}[color]{tcolorbox options}#V
 \begin{PresentationCode}{tcolorbox options}#V
+\begin{PresentationCode}[color]{tcolorbox options}#V
 \end{PresentationCode}
 
 ## Pavé droit « simple » ##
@@ -795,18 +814,21 @@ DecalLegende=%<décalage%>
 ## pythontex library ##
 # conditional loading not possible, just listed here
 #include:pythontex
-\begin{CodePythontex}#V
-\begin{CodePythontex}[options%keyvals]#V
+\begin{CodePythontex}{}#V
+\begin{CodePythontex}[options%keyvals]{}#V
 \end{CodePythontex}
-#keyvals:\begin{CodePythontex}
+\begin{CodePythontexAlt}{}#V
+\begin{CodePythontexAlt}[options%keyvals]{}#V
+\end{CodePythontexAlt}
+#keyvals:\begin{CodePythontex},\begin{CodePythontexAlt}
 Largeur=##L
 Centre#true,false
 TaillePolice=%<font commands%>
 EspacementVertical=%<factor%>
 Lignes#true,false
 #endkeyvals
-\begin{ConsolePythontex}#V
-\begin{ConsolePythontex}[options%keyvals]#V
+\begin{ConsolePythontex}{}#V
+\begin{ConsolePythontex}[options%keyvals]{}#V
 \end{ConsolePythontex}
 #keyvals:\begin{ConsolePythontex}
 Largeur=##L
@@ -831,6 +853,12 @@ Label#true,false
 \end{tcpythontexcodeno}#S
 \hookcenterpost#S
 \hookcenterpre#S
+\begin{tcpythontexcodealt}#S
+\begin{tcpythontexcodealt}[width]#S
+\end{tcpythontexcodealt}#S
+\begin{tcpythontexcodenoalt}#S
+\begin{tcpythontexcodenoalt}[width]#S
+\end{tcpythontexcodenoalt}#S
 
 # from table option of xcolor
 #include:colortbl

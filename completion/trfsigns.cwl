@@ -1,15 +1,15 @@
 # trfsigns package
-# Matthew Bertucci 8/22/2021 for v1.01
+# Matthew Bertucci 2023/04/10 for v1.01
 
-\fourier#m
-\Fourier#m
-\laplace#m
-\Laplace#m
-\dfourier#m
-\Dfourier#m
-\ztransf#m
-\Ztransf#m
-\dft{arg}#m
-\DFT{arg}#m
-\e#m
-\im#m
+\fourier
+\Fourier
+\laplace
+\Laplace
+\dfourier
+\Dfourier
+\ztransf
+\Ztransf
+\dft{arg%formula}
+\DFT{arg%formula}
+\e
+\im

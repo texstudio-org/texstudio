@@ -1,5 +1,5 @@
 # ifptex package
-# Matthew Bertucci 2023/02/24 for v2.2b
+# Matthew Bertucci 2023/04/08 for v2.2c
 
 #include:iftex
 
@@ -35,6 +35,7 @@
 \upTeXguessedversion
 \RequireupTeXAtLeast{version}
 \RequireNativeupTeXAtLeast{version}
+\RequireStrictupLaTeXAtLeast{version}
 
 \bxipIfptexLoaded#S
 

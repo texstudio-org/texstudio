@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/03/15 for v0.1.13
+# Matthew Bertucci 2023/04/09 for v0.1.17
 
 #include:kvoptions
 #include:class-book
@@ -36,11 +36,13 @@
 blockwidth=##L
 blockheight=##L
 bindingoffset=##L
+gutteroffset=##L
+gutterimageoffset=##L
 bleed=##L
 flatfold=##L
 pagefold=#in,out
 foldout=%<fold-spec%>
-layoutmode=#block,endpaper,cover,jacket
+layoutmode=#block,spread,endpaper,cover,jacket
 block
 endpaper
 cover
@@ -223,6 +225,8 @@ roundprintedlengthsto=%<number%>
 \GenerateTemplate[unit]
 \gsavecell[valign]{name}{width}{height}{content%text}
 \gsavecell{name}{width}{height}{content%text}
+\gutterimageoffset#L
+\gutteroffset#L
 \iffoldmarks
 \ifwriteimagelist#*
 \imageblockheight#L
@@ -366,6 +370,7 @@ roundprintedlengthsto=%<number%>
 \jacketflapfront#L
 \jacketwrap#L
 \keywords{keywords%text}
+\LATEX
 \layoutmode
 \License
 \maxdim{dimen1%l}{dimen2%l}
@@ -387,6 +392,8 @@ roundprintedlengthsto=%<number%>
 \pdfpagecount{.pdf file%file}
 \pdfpagelayout
 \pdfspinewidth{paper-thickness}{cover-thickness}{.pdf file%file}
+\pdfspreadstopages{.pdf file%file}
+\pdfspreadstopages[delta]{.pdf file%file}
 \rcaptioncell[options%keyvals]{caption%text}
 \rcaptioncell{caption%text}
 \ReInitPages
@@ -427,6 +434,7 @@ roundprintedlengthsto=%<number%>
 \spinefold#L
 \spinewidth#L
 \subject{subject%text}
+\TEX
 \ThanksTo
 \tweakimageoffsetleft{length}
 \tweakimageoffsettop{length}
@@ -687,6 +695,7 @@ process
 
 #keyvals:\ChangeLayout
 block
+spread
 endpaper
 cover
 jacket
@@ -719,10 +728,15 @@ jacket
 \ifhardcoverlayout#*
 \ifjacketlayout#*
 \ifsoftcoverlayout#*
+\ifspreadlayout#*
 \jacketlayoutfalse#S
 \jacketlayouttrue#S
-\LATEX#*
 \pagefoldpanelslen#S
+\pdfcover{.pdf file%file}#*
+\pdfcoverback{.pdf file%file}#*
+\pdfcoverfront{.pdf file%file}#*
+\pdfendpaper{.pdf file%file}#*
+\pdfweb{file1%file}{file2%file}#*
 \ResetFoldMarks#*
 \restorepdfboxes#*
 \restorepdfboxes[opt]#*
@@ -730,7 +744,8 @@ jacket
 \ShowMarks[unit]#*
 \softcoverlayoutfalse#S
 \softcoverlayouttrue#S
+\spreadlayoutfalse#S
+\spreadlayouttrue#S
 \storepdfboxes#*
 \storepdfboxes[opt]#*
-\TEX#*
 \thefoldoutpanel#*
