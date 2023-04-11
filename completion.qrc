@@ -581,6 +581,7 @@
 <file>completion/CJK.cwl</file>
 <file>completion/CJKfntef.cwl</file>
 <file>completion/CJKnumb.cwl</file>
+<file>completion/CJKpunct.cwl</file>
 <file>completion/CJKutf8.cwl</file>
 <file>completion/cjkutf8-josa.cwl</file>
 <file>completion/cjkutf8-ko.cwl</file>
@@ -4023,6 +4024,7 @@
 <file>completion/zennote.cwl</file>
 <file>completion/zhlineskip.cwl</file>
 <file>completion/zhlipsum.cwl</file>
+<file>completion/zhmCJK.cwl</file>
 <file>completion/zhnumber.cwl</file>
 <file>completion/zhspacing.cwl</file>
 <file>completion/zi4.cwl</file>
