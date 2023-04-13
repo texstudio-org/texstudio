@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2023/04/03 for v0.4.0
+# Matthew Bertucci 2023/04/13 for v0.4.1
 
 #include:filehook
 #include:url
@@ -9,22 +9,18 @@
 #keyvals:\cslsetup,\usepackage/citation-style-language#c
 regression-test#true,false
 style=#american-chemical-society,american-medical-association,american-political-science-association,american-sociological-association,apa,chicago-author-date,chicago-fullnote-bibliography,chicago-note-bibliography,elsevier-harvard,harvard-cite-them-right,ieee,modern-humanities-research-association,modern-language-association,nature,vancouver
-class=
 locale=%<language code%>
 backref=#true,page,section,false
 bib-font=%<font commands%>
 bib-entry-page-break#true,false
 bib-item-sep=%<<length> or <glue>%>
 bib-hang=##L
-hanging-indent#true,false
 prefix-separator=%<separator%>
 suffix-separator=%<separator%>
-line-spacing=%<number%>
-entry-spacing=%<number%>
 #endkeyvals
 
 \addbibresource{bib file}
-\addbibresource[options]{bib file}#*
+\addbibresource[options]{bib file}#S
 
 \cite[options%keyvals]{keylist}
 \parencite{keylist}#*
@@ -77,8 +73,36 @@ volume=%<number%>
 #endkeyvals
 
 \printbibliography
-\printbibliography[options]#*
+\printbibliography[options%keyvals]
+
+#keyvals:\printbibliography
+heading=%<text%>
+title=%<text%>
+prenote=%<text%>
+postnote=%<text%>
+type=
+nottype=
+keyword=
+notkeyword=
+category=
+notcategory=
+#endkeyvals
+
+\printbibheading
+\printbibheading[options%keyvals]
+
+#keyvals:\printbibheading
+heading=%<text%>
+title=%<text%>
+#endkeyvals
 
 # not documented
-\DeclareBibliographyCategory{arg}#*
-\addtocategory{arg1}{arg2}#*
+\addtocategory{category}{keys%plain}#*
+\backref{arg}#S
+\cslcitation{arg1}{arg2}#S
+\cslcite{arg1}{arg2}#S
+\DeclareBibliographyCategory{category}#*
+\defbibenvironment{name}{begdef}{enddef}{item code}#*
+\defbibheading{name}[title%text]{code}#*
+\defbibheading{name}{code}#*
+\defbibnote{name}{text}#*
