@@ -485,7 +485,6 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
         {
             if (cur_row >= ui.tableWidget->rowCount())
             {
-//                ui.tableWidget->setRowCount(ui.tableWidget->rowCount() + 1);
                 ui.spinBoxRows->setValue(ui.spinBoxRows->value() + 1);
             }
 
@@ -494,7 +493,6 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
             {
                 if (cur_col >= ui.tableWidget->columnCount())
                 {
-//                    ui.tableWidget->setColumnCount(ui.tableWidget->columnCount() + 1);
                     ui.spinBoxColumns->setValue(ui.spinBoxColumns->value() + 1);
                 }
 
@@ -504,13 +502,6 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
                     item->setText(col);
                     ++cur_col;
                 }
-//                else
-//                {
-//                    // Creates new item if item doesn't exist.
-//                    QTableWidgetItem *newItem = new QTableWidgetItem();
-//                    newItem->setText(col);
-//                    ui.tableWidget->setItem(cur_row, cur_col, newItem);
-//                }
             }
             ++cur_row;
             cur_col = starting_col;
