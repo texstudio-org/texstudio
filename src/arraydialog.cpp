@@ -178,7 +178,6 @@ void ArrayDialog::slotPackageChanged() {
 	QString package = ui.comboPackage->currentText();
 	QString currentEnv = ui.comboEnvironment->currentText();
 	int currentEnvIx = ui.comboEnvironment->currentIndex();
-	int currentAlignIx = ui.comboAlignment->currentIndex();
 	setComboEnv(package);
 
 	if (package == "amsmath" || package == "mathtools") {
@@ -291,7 +290,6 @@ void ArrayDialog::newRows(int rows) {
 	int rowsOld = ui.tableWidget->rowCount();
 	int cols = ui.tableWidget->columnCount();
 	ui.tableWidget->setRowCount(rows);
-	int colds = ui.tableWidget->columnCount();
 	if (rows > rowsOld) {
 		for (int col = 0; col < cols; col++) {
 			int ix = currentColAlignIndex(col);
