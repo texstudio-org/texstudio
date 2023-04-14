@@ -7,6 +7,8 @@
 #include:pst-tools
 #include:pstricks-add
 #include:pst-xkey
+#include:iftex
+#include:luacode
 
 \ChebyshevT
 \ChebyshevU
