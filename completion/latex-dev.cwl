@@ -314,7 +314,7 @@ debug={%<options%>}
 \settoheight{\gnat}{text}#*
 \settowidth{\gnat}{text}#*
 \addto#*
-\addtocontents{file}{text}#*
+\addtocontents{ext}{text}#*
 \addtocounter{counter}{value}#*
 \addtolength{\gnat}{length}#*
 \addtoversion#*
