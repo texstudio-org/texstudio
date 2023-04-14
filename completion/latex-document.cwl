@@ -9,7 +9,7 @@
 #include:textcomp
 
 \abstractname#*
-\addcontentsline{file}{secunit}{entry}#*
+\addcontentsline{ext}{secunit}{entry}#*
 \Alph{counter}#*
 \alph{counter}#*
 \and#*
