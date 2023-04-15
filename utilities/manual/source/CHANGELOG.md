@@ -1,4 +1,6 @@
 # CHANGELOG
+## TeXstudio 4.5.3
+
 ## TeXstudio 4.5.2
 
 - follow system light-/dark-mode on windows/linux for Fusion&Windows-Style
