@@ -1,3 +1,7 @@
+TeXstudio 4.5.3
+-----------------
+- 
+
 CHANGELOG was moved to "utilities/manual/source/CHANGELOG.md"
 CHANGELOG is part of help and can be displayed from about dialog.
 Use markdown syntax !
