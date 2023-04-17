@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/04/15 for v0.99-z-i
+# Matthew Bertucci 2023/04/17 for v0.99-z-j
 
 #include:verbatim
 #include:mathtools
@@ -1835,6 +1835,17 @@ Vide#true,false
 VideRepere#true,false
 #endkeyvals
 
+## Les nonogrammes ##
+\Nonogramme{liste de lignes}
+\Nonogramme[clés%keyvals]{liste de lignes}
+
+#keyvals:\Nonogramme
+Enonce#true,false
+Unite=##L
+Taille=%<nombre%>
+Solution#true,false
+#endkeyvals
+
 ## Bulles et cartes mentales ##
 \begin{Mind}#\pictureHighlight
 \end{Mind}
@@ -2177,6 +2188,7 @@ Teal#B
 \buildgraphcq{arg1}#S
 \buildgraphq{arg1}#S
 \BuildNombreAstral{arg}{arg}#S
+\BuildNono{arg1}{arg2}#S
 \BuildPixelArt{arg1}{arg2}{arg3}{arg4}#S
 \buildreperenew#S
 \BuildRLE{arg}#S
@@ -3039,6 +3051,8 @@ Teal#B
 \toklisteNANombres#S
 \toklistenomhor{arg}#S
 \toklistenompointdemidroite{arg}#S
+\toklistenonoa#S
+\toklistenonob#S
 \toklistePANombre#S
 \toklistepoint{arg}#S
 \toklistepointdemidroite{arg}#S
@@ -3123,6 +3137,8 @@ Teal#B
 \UpdatetoksMosaique{arg1}#S
 \UpdatetoksNAMelange{arg}#S
 \UpdatetoksNANombres{arg}#S
+\UpdatetoksNonoa{arg}#S
+\UpdatetoksNonob{arg}#S
 \UpdatetoksPANombre{arg}#S
 \UpdatetoksPQuatreh{arg}#S
 \UpdatetoksPQuatrev{arg}#S
