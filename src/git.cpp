@@ -36,6 +36,7 @@ QString GIT::makeCmd(QString action, QString args)
  */
 void GIT::commit(QString filename, QString message)
 {
+    runGit("add", quote(filename));
     runGit("commit", "-m " + enquoteStr(message) + " " + quote(filename));
 }
 /*!
