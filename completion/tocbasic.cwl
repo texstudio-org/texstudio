@@ -1,5 +1,5 @@
 # tocbasic package
-# Matthew Bertucci 2022/05/18 for v3.36
+# Matthew Bertucci 2023/04/17 for v3.39
 
 #include:scrbase
 #include:scrlogo
@@ -181,6 +181,13 @@ rightindent=##L
 \TOCLineLeaderFill#*
 \TOCLineLeaderFill[leader]#*
 \MakeMarkcase{text}
+
+\parttocdepth#*
+\sectiontocdepth#*
+\subsectiontocdepth#*
+\subsubsectiontocdepth#*
+\paragraphtocdepth#*
+\subparagraphtocdepth#*
 
 # deprecated
 \ifattoclist#S
