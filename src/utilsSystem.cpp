@@ -10,6 +10,7 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
+#include <QLibraryInfo>
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 {
 #ifdef Q_OS_WIN
@@ -191,18 +192,24 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 		else searchFiles << s + "/";
 #if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
 	searchFiles << PREFIX"/share/texstudio/"; //X_11
-    searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio/"; // relative path for appimage
+	searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio/"; // relative path for appimage
 	if (fileName.endsWith(".html")) searchFiles << PREFIX"/share/doc/texstudio/html/"; //for Debian package
+	searchFiles << PREFIX"/share/doc/texstudio/"; //for Debian package
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	searchFiles << QLibraryInfo::path(QLibraryInfo::TranslationsPath) + "/"; //for systemwise qt_*.qm
+#else
+	searchFiles << QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "/"; //for systemwise qt_*.qm
+#endif
 #endif
 #ifdef Q_OS_MAC
 	searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/"; //macx
-    searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/html/"; //macx
+	searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/html/"; //macx
 #endif
 	searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
 	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
-    searchFiles << QCoreApplication::applicationDirPath() + "/help/build/html/"; //windows new manual
+	searchFiles << QCoreApplication::applicationDirPath() + "/help/build/html/"; //windows new manual
 	searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"; //windows new
 
