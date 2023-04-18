@@ -1,10 +1,9 @@
 # lua-typo package
-# Matthew Bertucci 2023/03/09 for v0.65
+# Matthew Bertucci 2023/04/14 for v0.70
 
 #include:luatexbase
 #include:luacode
 #include:luacolor
-#include:kvoptions
 #include:atveryend
 
 #keyvals:\usepackage/lua-typo#c

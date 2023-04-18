@@ -1,9 +1,7 @@
-# soulutf8 package
-# Matthew Bertucci 1/28/2022 for v1.2
+# soulutf8 package (this package is deprecated)
+# Matthew Bertucci 2023/04/11 for v3.0
 
 #include:soul
-#include:infwarerr
-#include:etexcmds
 
 #keyvals:\usepackage/soulutf8#c
 capsdefault

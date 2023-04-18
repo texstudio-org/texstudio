@@ -1,22 +1,25 @@
 # nfold tikzlibrary
-# Matthew Bertucci 2023/03/27 for v0.0.1
+# Matthew Bertucci 2023/04/17 for v0.1.0-alpha1
 
-#include:tikzlibrarydecorations
 # loads bezieroffset pgflibrary
 
 #keyvals:\draw#c,\ar#c
 nfold
 nfold=%<integer%>
+scaling nfold
+scaling nfold=%<integer%>
 #endkeyvals
 
-\ifpgfsegmentvisible{arg}#*
+\checkpgfsegmentvisible{arg}#*
+\pgfoffsetpath{softpath}{length}#*
+\pgfoffsetpathfraction{softpath}{width}{fraction}#*
+\pgfoffsetpathqfraction{softpath}{width}{fraction}#*
+\pgfoffsetpathindex{softpath}{width}{i}{n}#*
 
 # from bezieroffset pgflibrary
-\pgfstorepoint{cmd}#*d
-\pgfglobalstorepoint{cmd}#*d
-\pgfcrossproduct{point1}{point2}#*
-\pgfdotproduct{point1}{point2}#*
-\pgfcrossdot{point1}{point2}#*
+\pgfmathcrossproduct{point1}{point2}#*
+\pgfmathdotproduct{point1}{point2}#*
+\pgfmathcrossdot{point1}{point2}#*
 \pgfoffsetcurve{point1}{point2}{point3}{point4}{distance}#*
 \pgfoffsetcurvenomove{point1}{point2}{point3}{point4}{distance}#*
 \pgfoffsetcurvecallback{point1}{point2}{point3}{point4}{distance}{num}#*

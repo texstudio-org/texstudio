@@ -1,5 +1,5 @@
 # pas-tableur package
-# Matthew Bertucci 12/28/2021 for v2.1
+# Matthew Bertucci 2023/04/16 for v2.05
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -30,11 +30,14 @@ blueSelec#B
 \celtxt*[options%keyvals]{colonne}{ligne}{texte}
 
 #keyvals:\celtxt,\celtxt*
+align=#center,left,right
 c
 l
 r
+ajust#true,false
 width=##L
 color=#%color
+font=%<font commands%>
 #endkeyvals
 
 \selecCell{colonne}{ligne}

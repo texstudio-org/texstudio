@@ -1,5 +1,5 @@
 # scrextend package
-# Matthew Bertucci 2022/05/18 for v3.36
+# Matthew Bertucci 2023/04/17 for v3.39
 
 #include:scrkbase
 #include:scrlogo
@@ -11,7 +11,6 @@ fontsize=##L
 titlepage=#true,on,yes,false,off,no,firstiscover
 cleardoublepage=#empty,headings,letter,myheadings,plain,plain.letter,scrheadings,plain.scrheadings,current
 footnotes=#multiple,nomultiple
-egregdoesnotlikesansseriftitles
 #endkeyvals
 
 #keyvals:\setkomafont#c,\addtokomafont#c,\usekomafont#c,\usesizeofkomafont#c,\usefamilyofkomafont#c,\useseriesofkomafont#c,\useshapeofkomafont#c,\useencodingofkomafont#c,\usefontofkomafont#c
@@ -76,6 +75,7 @@ labelingseparator
 \lowertitleback{titlebackfoot%text}
 \maketitle[page number]
 \marginline{margin note%text}
+\maybesffamily
 \multfootsep#*
 \multiplefootnotemarker#*
 \multiplefootnoteseparator#*
@@ -87,6 +87,7 @@ labelingseparator
 \sectfont#*
 \subject{subject%text}
 \subtitle{subtitle%text}
+\textmaybesf{text}
 \thefootnotemark#*
 \thispagewasoddfalse#*
 \thispagewasoddtrue#*

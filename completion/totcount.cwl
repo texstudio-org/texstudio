@@ -4,10 +4,12 @@
 #include:keyval
 
 \regtotcounter{counter}
+\regtotcounter[options%keyvals]{counter}
+\newtotcounter{counter}
 \newtotcounter[option%keyvals]{counter}
 
-#keyvals:\newtotcounter
-auxfile=
+#keyvals:\regtotcounter,\newtotcounter
+auxfile=%<file%>
 #endkeyvals
 
 \total{counter}
