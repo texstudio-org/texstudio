@@ -3132,7 +3132,6 @@
 <file>completion/se2fonts.cwl</file>
 <file>completion/secdot.cwl</file>
 <file>completion/secnum.cwl</file>
-<file>completion/secsty.cwl</file>
 <file>completion/sectionbox.cwl</file>
 <file>completion/sectionbreak.cwl</file>
 <file>completion/sectsty.cwl</file>
