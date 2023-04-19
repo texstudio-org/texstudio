@@ -10,6 +10,7 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
+#include <QLibraryInfo>
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 {
 #ifdef Q_OS_WIN
@@ -21,11 +22,11 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 	freeBytesToCaller.QuadPart = 0L;
 
 	if ( !GetDiskFreeSpaceEx( d, &freeBytesToCaller, NULL, NULL ) ) {
-        delete[] d;
+		delete[] d;
 		qDebug() << "ERROR: Call to GetDiskFreeSpaceEx() failed on path" << path;
 		return false;
 	}
-    delete[] d;
+	delete[] d;
 	freeBytes = freeBytesToCaller.QuadPart;
 	return true;
 #else
@@ -134,13 +135,13 @@ QStringList findResourceFiles(const QString &dirName, const QString &filter, QSt
 	if (!dn.startsWith('/') && !dn.startsWith(QDir::separator())) dn = "/" + dn; //add / at beginning
 	searchFiles << ":" + dn; //resource fall back
 	searchFiles.append(additionalPreferredPaths);
-    searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio"; //appimage relative path
+	searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio"; //appimage relative path
 	searchFiles << QCoreApplication::applicationDirPath() + dn; //windows new
-    searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
-    searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
-    searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
-    searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
-    searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
+	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 
 #if !defined(PREFIX)
@@ -191,18 +192,24 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
 		else searchFiles << s + "/";
 #if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
 	searchFiles << PREFIX"/share/texstudio/"; //X_11
-    searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio/"; // relative path for appimage
+	searchFiles << QCoreApplication::applicationDirPath() + "/../share/texstudio/"; // relative path for appimage
 	if (fileName.endsWith(".html")) searchFiles << PREFIX"/share/doc/texstudio/html/"; //for Debian package
+	searchFiles << PREFIX"/share/doc/texstudio/"; //for Debian package
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+	searchFiles << QLibraryInfo::path(QLibraryInfo::TranslationsPath) + "/"; //for systemwise qt_*.qm
+#else
+	searchFiles << QLibraryInfo::location(QLibraryInfo::TranslationsPath) + "/"; //for systemwise qt_*.qm
+#endif
 #endif
 #ifdef Q_OS_MAC
 	searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/"; //macx
-    searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/html/"; //macx
+	searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/html/"; //macx
 #endif
 	searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
 	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
 	searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
-    searchFiles << QCoreApplication::applicationDirPath() + "/help/build/html/"; //windows new manual
+	searchFiles << QCoreApplication::applicationDirPath() + "/help/build/html/"; //windows new manual
 	searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"; //windows new
 
@@ -238,8 +245,8 @@ QString findResourceFile(const QString &fileName, bool allowOverride, QStringLis
  */
 QString quoteSpaces(const QString &s)
 {
-    if (!s.contains(' ')) return s;
-    return '"' + s + '"';
+	if (!s.contains(' ')) return s;
+	return '"' + s + '"';
 }
 
 
@@ -259,13 +266,13 @@ bool useSystemTheme;
 QString getRealIconFile(const QString &icon)
 {
 	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
-    QStringList suffixList{""};
-    if(darkMode)
-        suffixList=QStringList{"_dm",""};
-    QStringList iconNames = QStringList();
-    for(const QString& suffix : suffixList){
+	QStringList suffixList{""};
+	if(darkMode)
+		suffixList=QStringList{"_dm",""};
+	QStringList iconNames = QStringList();
+	for(const QString& suffix : suffixList){
 
-        QString iconThemeName = "";
+		QString iconThemeName = "";
 
 		if (iconTheme == 0) { // colibre
 			iconThemeName = "colibre";
@@ -279,8 +286,8 @@ QString getRealIconFile(const QString &icon)
 					<< ":/images-ng/" + iconThemeName + "/" + icon + suffix + ".svgz"
 					<< ":/modern/images/" + iconThemeName + "/" + icon + suffix + ".png";
 
-        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".svg";
-        iconNames << ":/symbols-ng/icons/" + icon + suffix + ".png";
+		iconNames << ":/symbols-ng/icons/" + icon + suffix + ".svg";
+		iconNames << ":/symbols-ng/icons/" + icon + suffix + ".png";
 		iconNames << ":/images/" + icon + ".png";
 
 		// fallback
@@ -290,7 +297,7 @@ QString getRealIconFile(const QString &icon)
     }
 
 	foreach (const QString &name, iconNames) {
-        if (QFileInfo::exists(name))
+		if (QFileInfo::exists(name))
 			return name;
 	}
 
@@ -332,7 +339,7 @@ QIcon getRealIcon(const QString &icon)
  */
 QIcon getRealIconCached(const QString &icon, bool forceReload)
 {
-    if (iconCache.contains(icon) && !forceReload) {
+	if (iconCache.contains(icon) && !forceReload) {
 		return *iconCache[icon];
 	}
 	if (icon.isEmpty()) return QIcon();
@@ -356,9 +363,9 @@ QIcon getRealIconCached(const QString &icon, bool forceReload)
 
 bool isFileRealWritable(const QString &filename)
 {
-    if(QFileInfo::exists(filename)){
-        return QFileInfo(filename).isWritable();
-    }
+	if(QFileInfo::exists(filename)){
+		return QFileInfo(filename).isWritable();
+	}
 
 	QFile fi(filename);
 	bool result = false;
@@ -378,7 +385,7 @@ bool isFileRealWritable(const QString &filename)
  */
 bool isExistingFileRealWritable(const QString &filename)
 {
-    return QFileInfo::exists(filename) && isFileRealWritable(filename);
+	return QFileInfo::exists(filename) && isFileRealWritable(filename);
 }
 
 /*!
@@ -671,20 +678,20 @@ void showInGraphicalShell(QWidget *parent, const QString &pathIn)
 	const QString folder = fileInfo.isDir() ? fileInfo.absoluteFilePath() : fileInfo.filePath();
 	QSettings dummySettings;
 	const QString app = UnixUtils::fileBrowser(&dummySettings);
-    QProcess browserProc;
-    const QString browserArg = UnixUtils::substituteFileBrowserParameters(app, folder);
+	QProcess browserProc;
+	const QString browserArg = UnixUtils::substituteFileBrowserParameters(app, folder);
 #if QT_VERSION>=QT_VERSION_CHECK(5,15,0)
-    QStringList args=QProcess::splitCommand(browserArg);
+	QStringList args=QProcess::splitCommand(browserArg);
 #else
-    QStringList args=browserArg.split(" "); // this assumes that the command is not using quotes with spaces in the command path, better solution from qt5.15 ...
+	QStringList args=browserArg.split(" "); // this assumes that the command is not using quotes with spaces in the command path, better solution from qt5.15 ...
 #endif
-    if(args.isEmpty())
-        return;
-    QString cmd=args.takeFirst();
-    for(QString &elem:args){
-        elem=removeQuote(elem);
-    }
-    bool success = browserProc.startDetached(cmd,args);
+	if(args.isEmpty())
+		return;
+	QString cmd=args.takeFirst();
+	for(QString &elem:args){
+		elem=removeQuote(elem);
+	}
+	bool success = browserProc.startDetached(cmd,args);
 	const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
 	success = success && error.isEmpty();
 	if (!success)
@@ -789,9 +796,9 @@ void SafeThread::wait(unsigned long time)
 QSet<QString> convertStringListtoSet(const QStringList &list)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    return QSet<QString>(list.begin(),list.end());
+	return QSet<QString>(list.begin(),list.end());
 #else
-    return QSet<QString>::fromList(list);
+	return QSet<QString>::fromList(list);
 #endif
 
 }
