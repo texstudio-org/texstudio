@@ -31,10 +31,7 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 	ui.spinBoxColumns->setRange(1,99);
 	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)), this, SLOT(newColumns(int)));
 
-	ui.comboPackage->insertItems(0, packageList);
-	QString defaultPackage = "latex";
-	ui.comboPackage->setCurrentIndex(packageList.indexOf(defaultPackage));
-	setComboEnv(defaultPackage);
+	setComboEnv();
 	ui.comboEnvironment->setCurrentIndex(0);
 
 	ui.comboAlignment->insertItem(0, alignTextList.at(0), 'c');
@@ -52,11 +49,9 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 	addEmptyTableItems();
 	slotEnvironmentChanged();
 
-	connect(ui.comboPackage,SIGNAL(currentIndexChanged(int)),SLOT(slotPackageChanged()));
 	connect(ui.comboEnvironment,SIGNAL(currentIndexChanged(int)),SLOT(slotEnvironmentChanged()));
 	connect(ui.comboAlignment,SIGNAL(currentIndexChanged(int)),SLOT(slotAlignmentChanged(int)));
 	connect(ui.tableWidget, SIGNAL(currentCellChanged(int, int, int, int)),SLOT(slotCurrentCellChanged(int, int)));
-	connect(ui.checkBoxFactorAlignments,SIGNAL(toggled(bool)),SLOT(setTitle()));
 }
 
 ArrayDialog::~ArrayDialog() {
@@ -114,102 +109,55 @@ void ArrayDialog::setTitle() {
 	QStringList beginEnd = getEnvBeginEndStatements();
 	text += beginEnd.first() + "..." + beginEnd.last();
 	setWindowTitle(text);
+	setTableHeader();
+}
+
+void ArrayDialog::setTableHeader() {
+	int ncols = ui.spinBoxColumns->value();
+	QStringList headerList;
+	for (int i = 0; i < ncols; i++) {
+		int ix = currentColAlignIndex(i);
+		headerList << ui.comboAlignment->itemData(ix).toChar();
+	}
+	ui.tableWidget->setHorizontalHeaderLabels(headerList);
 }
 
 QStringList ArrayDialog::getEnvBeginEndStatements() {
 	int ncols = ui.spinBoxColumns->value();
 	QString env = ui.comboEnvironment->currentText();
-	QString package = ui.comboPackage->currentText();
 	QString begin = QString("\\begin{" + env + "}");
 	QString end = QString("\\end{") + env + "}";
 
 	if (env == "array") {
-		begin += "{" + getFactoredAlignments() + "}";
+		begin += "{" + getArrayAlignments() + "}";
 	}
 	else if (env == "alignedat") {
 		begin += QString("{%1}").arg((ncols + 1) / 2);
 	}
-	else if (package == "mathtools") {
+	else if (env.last(1) == "*") {   // mathtools
 		int idx = ui.comboAlignment->currentIndex();
 		begin += "[" + QString(ui.comboAlignment->itemData(idx).toChar()) + "]";
 	}
 	return {begin, end};
 }
 
-QString ArrayDialog::getFactoredAlignments() {
+QString ArrayDialog::getArrayAlignments() {
 	int ncols = ui.spinBoxColumns->value();
 	QString text;
-	QString part;
-	QString previousAlign = ui.comboAlignment->itemData(arrayAligns.at(0)).toChar();
-	QString align;
 	for (int i = 0; i < ncols; i++) {
-		align = ui.comboAlignment->itemData(arrayAligns.at(i)).toChar();
-		if (previousAlign == align) {
-			part += align;
-		}
-		else {
-			text += squash(part, previousAlign);
-			previousAlign = align;
-			part = align;
-		}
-	}
-	text += squash(part, align);
-	return text;
-}
-
-QString ArrayDialog::squash(QString part, QString align) {
-	QString text;
-	int n = part.length();
-	QString factoredAlign  = QString("*{%1}{%2}").arg(n).arg(align);
-	if (n >= factoredAlign.length() && ui.checkBoxFactorAlignments->isChecked()) {
-		text = factoredAlign;
-	}
-	else {
-		text = part;
+		text += ui.comboAlignment->itemData(arrayAligns.at(i)).toChar();
 	}
 	return text;
 }
 
-void ArrayDialog::slotPackageChanged() {
-	disconnect(ui.comboPackage,SIGNAL(currentIndexChanged(int)),nullptr,nullptr);
-	disconnect(ui.comboEnvironment,SIGNAL(currentIndexChanged(int)),nullptr,nullptr);
-	disconnect(ui.comboAlignment,SIGNAL(currentIndexChanged(int)),nullptr,nullptr);
-
-	QString package = ui.comboPackage->currentText();
-	QString currentEnv = ui.comboEnvironment->currentText();
-	int currentEnvIx = ui.comboEnvironment->currentIndex();
-	setComboEnv(package);
-
-	if (package == "amsmath" || package == "mathtools") {
-		ui.comboEnvironment->setCurrentIndex(currentEnvIx);
-	}
-	else if (package == "latex") {
-		if (currentEnv != "array") {
-			ui.comboEnvironment->setCurrentIndex(0);
-			currentEnv = "array";
-			int col = ui.tableWidget->currentColumn();
-			ui.comboAlignment->setCurrentIndex(arrayAligns.at(col));
-		}
-	}
-	slotEnvironmentChanged();
-	connect(ui.comboPackage,SIGNAL(currentIndexChanged(int)),SLOT(slotPackageChanged()));
-	connect(ui.comboEnvironment,SIGNAL(currentIndexChanged(int)),SLOT(slotEnvironmentChanged()));
-	connect(ui.comboAlignment,SIGNAL(currentIndexChanged(int)),SLOT(slotAlignmentChanged(int)));
-}
-
-void ArrayDialog::setComboEnv(QString package) {
+void ArrayDialog::setComboEnv() {
 	ui.comboEnvironment->clear();
 
-	if (package == "latex") {
-		ui.comboEnvironment->insertItem(0, "array");
-	}
-	else {
-		int m = environmentList.indexOf("matrix");
-		for (int i = 0; i < environmentList.count(); i++) {
-			QString env = environmentList.at(i);
-			if (package == "mathtools" && i >= m) env += "*";
-			ui.comboEnvironment->insertItem(i, env);
-		}
+	for (int i = 0; i < environmentList.count(); i++) {
+		QString env = environmentList.at(i);
+		if (env == "")
+			ui.comboEnvironment->insertSeparator(i);
+		else ui.comboEnvironment->insertItem(i, env);
 	}
 }
 
@@ -241,7 +189,6 @@ void ArrayDialog::setColAlignment(int col, Qt::AlignmentFlag align) {
 
 int ArrayDialog::currentColAlignIndex(int col) {
 	QString env = ui.comboEnvironment->currentText();
-	QString package = ui.comboPackage->currentText();
 	int ix;
 	if (env == "array") {
 		ix = arrayAligns.at(col);
@@ -255,17 +202,16 @@ int ArrayDialog::currentColAlignIndex(int col) {
 			ix = alignList.indexOf(Qt::AlignLeft);
 		}
 	}
-	else if (package == "amsmath") {
-		ix = alignList.indexOf(Qt::AlignHCenter);
-	}
-	else {
+	else if (env.last(1) == "*") {  // mathtools
 		ix = ui.comboAlignment->currentIndex();
+	}
+	else {  // amsmath
+		ix = alignList.indexOf(Qt::AlignHCenter);
 	}
 	return ix;
 }
 
 void ArrayDialog::slotAlignmentChanged(int ix) {
-	QString package = ui.comboPackage->currentText();
 	QString env = ui.comboEnvironment->currentText();
 	if (env == "array") {
 		int col = ui.tableWidget->currentColumn();
@@ -273,7 +219,7 @@ void ArrayDialog::slotAlignmentChanged(int ix) {
 		Qt::AlignmentFlag align = alignList[ix];
 		setColAlignment(col, align);
 	}
-	else if (package == "amsmath" || env == "alignedat") {}
+	else if (env.last(1) != "*" || env == "alignedat") {}
 	else
 		setColAlignments();
 	setTitle();

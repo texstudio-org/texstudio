@@ -26,30 +26,32 @@ public:
 	QString getLatexText();
 
 private:
-	QStringList packageList = {"latex", "amsmath", "mathtools"};
-	QStringList environmentList = {"array", "alignedat", "matrix", "pmatrix", "bmatrix", "Bmatrix", "vmatrix", "Vmatrix"};
+	QStringList environmentList = { "array", "alignedat",
+									"", /* separator */
+									"matrix",  "pmatrix",  "bmatrix",  "Bmatrix",  "vmatrix",  "Vmatrix",		// amsmath
+									"", /* separator */
+									"matrix*", "pmatrix*", "bmatrix*", "Bmatrix*", "vmatrix*", "Vmatrix*" };	// mathtools
 	QList<Qt::AlignmentFlag> alignList = {Qt::AlignHCenter, Qt::AlignLeft, Qt::AlignRight};
 	QStringList alignTextList = {tr("Center"), tr("Left"), tr("Right")};
 	QList<int> arrayAligns;
 	void addEmptyTableItems();
 	void addEmptyColumnItems(int col);
-	void setComboEnv(QString package);
+	void setComboEnv();
 	void setColAlignments();
 	void setColAlignment(int col, Qt::AlignmentFlag align);
 	int currentColAlignIndex(int col);
 	QStringList getEnvBeginEndStatements();
-	QString getFactoredAlignments();
-	QString squash(QString part, QString align);
+	QString getArrayAlignments();
 
 protected slots:
 	void newRows(int num);
 	void newColumns(int num);
     void keyPressEvent(QKeyEvent *event);
 	void setTitle();
+	void setTableHeader();
 	void slotEnvironmentChanged();
-	void slotCurrentCellChanged(int row, int col);
 	void slotAlignmentChanged(int ix);
-	void slotPackageChanged();
+	void slotCurrentCellChanged(int row, int col);
 };
 
 #endif

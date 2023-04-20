@@ -77,20 +77,6 @@ For matrix* and the like (package mathtools) sets the alignment for all columns 
        </property>
       </widget>
      </item>
-     <item row="6" column="0" colspan="2" >
-      <widget class="QCheckBox" name="checkBoxFactorAlignments" >
-       <property name="text" >
-        <string>Squash column definitions</string>
-       </property>
-       <property name="toolTip" >
-        <string>When the column specifiers of an array environment contain a sequence of n > 6 equal alignment
-characters "c" then they are replaced by *{n}{c}.</string>
-       </property>
-       <property name="checked" >
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="1" >
       <widget class="QSpinBox" name="spinBoxRows" />
      </item>
@@ -103,23 +89,13 @@ characters "c" then they are replaced by *{n}{c}.</string>
      </item>
      <item row="4" column="1" >
       <widget class="QComboBox" name="comboEnvironment" >
-       <property name="toolTip" >
-        <string>Choose environment to be created (s. window title).</string>
+       <property name="maxVisibleItems" >
+        <number>16</number>
        </property>
-      </widget>
-     </item>
-     <item row="3" column="0" >
-       <widget class="QLabel" name="packageLabel" >
-       <property name="text" >
-        <string>Package Support</string>
-       </property>
-       </widget>
-     </item>
-     <item row="3" column="1" >
-      <widget class="QComboBox" name="comboPackage" >
        <property name="toolTip" >
-        <string>When you choose latex then array is the only environment you can choose from in the next combo box. Choose
-amsmath or mathtools when the document loads the package selected to have more environments available.</string>
+        <string>Choose environment to be created (s. window title).
+Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</string>
        </property>
       </widget>
      </item>
