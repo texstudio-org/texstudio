@@ -134,7 +134,7 @@ QStringList ArrayDialog::getEnvBeginEndStatements() {
 	else if (env == "alignedat") {
 		begin += QString("{%1}").arg((ncols + 1) / 2);
 	}
-	else if (env.last(1) == "*") {   // mathtools
+	else if (env.endsWith("*")) {   // mathtools
 		int idx = ui.comboAlignment->currentIndex();
 		begin += "[" + QString(ui.comboAlignment->itemData(idx).toChar()) + "]";
 	}
@@ -202,7 +202,7 @@ int ArrayDialog::currentColAlignIndex(int col) {
 			ix = alignList.indexOf(Qt::AlignLeft);
 		}
 	}
-	else if (env.last(1) == "*") {  // mathtools
+	else if (env.endsWith("*")) {  // mathtools
 		ix = ui.comboAlignment->currentIndex();
 	}
 	else {  // amsmath
@@ -219,7 +219,7 @@ void ArrayDialog::slotAlignmentChanged(int ix) {
 		Qt::AlignmentFlag align = alignList[ix];
 		setColAlignment(col, align);
 	}
-	else if (env.last(1) != "*" || env == "alignedat") {}
+	else if (!env.endsWith("*") || env == "alignedat") {}
 	else
 		setColAlignments();
 	setTitle();
