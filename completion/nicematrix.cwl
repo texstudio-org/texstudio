@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/03/07 for v6.16
+# Matthew Bertucci 2023/04/20 for v6.18
 
 #include:amsmath
 #include:array
@@ -147,6 +147,8 @@ parallelize-diags#true,false
 delimiters/max-width
 vlines-in-sub-matrix=%<letter%>
 colortbl-like
+rounded-corners
+rounded-corners=##L
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions,\begin{NiceTabular}
