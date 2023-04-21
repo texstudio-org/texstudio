@@ -1,8 +1,7 @@
 # papermas package
-# Matthew Bertucci 11/29/2021 for v1.0h
+# Matthew Bertucci 2023/04/12 for v1.1a
 
 #include:kvoptions
-#include:pageslts
 #include:intcalc
 
 #keyvals:\usepackage/papermas#c
@@ -12,9 +11,14 @@ pagespersheet=%<integer%>
 decimalsep={%<char%>}
 #endkeyvals
 
-\unit{unit}
+\papermassPages
 \papermasstotal
 \papermasformat
 \papermasmasss
 \papermaspagespersheet
 \papermassheets
+
+\thepapermasmasss#S
+\thepapermasPPS#S
+\thepapermassttl#S
+\thepapermassSpace#S

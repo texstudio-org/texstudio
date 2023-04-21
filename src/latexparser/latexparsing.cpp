@@ -343,7 +343,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 //possible command argument without brackets
                 CommandDescription &cd = commandStack.top();
                 if (cd.args > 0) {
-                    cd.optionalArgs = 0; // no optional arguments after mandatory
+                    //cd.optionalArgs = 0; // relax no optional arguments after mandatory, e.g. \newcommand\abc[1]{adadf}, #3073
                     cd.bracketArgs = 0;
                     cd.args--;
                     tk.subtype = cd.argTypes.takeFirst();

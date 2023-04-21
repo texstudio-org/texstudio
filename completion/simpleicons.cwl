@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/04/07 for v8.9.0
+# Matthew Bertucci 2023/04/14 for v8.10.0
 
 #include:ifxetex
 #include:ifluatex
@@ -397,6 +397,7 @@ cilium
 cinema4d
 circle
 circleci
+circuitverse
 cirrusci
 cisco
 citrix
@@ -1523,6 +1524,7 @@ oreilly
 org
 origin
 osano
+osgeo
 oshkosh
 osmc
 osu
@@ -1536,6 +1538,7 @@ oyo
 p5dotjs
 packagist
 packer
+paddlepaddle
 paddypower
 pagekit
 pagerduty
@@ -1628,6 +1631,7 @@ pocketbase
 pocketcasts
 podcastaddict
 podman
+poe
 poetry
 pointy
 pokemon
@@ -2405,6 +2409,7 @@ yahoo
 yale
 yamahacorporation
 yamahamotorcorporation
+yaml
 yammer
 yarn
 ycombinator

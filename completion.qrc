@@ -982,6 +982,7 @@
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
 <file>completion/cleveref.cwl</file>
+<file>completion/cleveref-usedon.cwl</file>
 <file>completion/clicks.cwl</file>
 <file>completion/clipboard.cwl</file>
 <file>completion/clock.cwl</file>
@@ -1891,6 +1892,7 @@
 <file>completion/iwona.cwl</file>
 <file>completion/jamtimes.cwl</file>
 <file>completion/JeuxCartes.cwl</file>
+<file>completion/jiazhu.cwl</file>
 <file>completion/jigsaw.cwl</file>
 <file>completion/jiwonlipsum.cwl</file>
 <file>completion/jkmath.cwl</file>
@@ -2971,6 +2973,7 @@
 <file>completion/qtree.cwl</file>
 <file>completion/quantikz.cwl</file>
 <file>completion/quattrocento.cwl</file>
+<file>completion/quickreaction.cwl</file>
 <file>completion/quiz2socrative.cwl</file>
 <file>completion/quotchap.cwl</file>
 <file>completion/quoted.cwl</file>
@@ -3129,7 +3132,6 @@
 <file>completion/se2fonts.cwl</file>
 <file>completion/secdot.cwl</file>
 <file>completion/secnum.cwl</file>
-<file>completion/secsty.cwl</file>
 <file>completion/sectionbox.cwl</file>
 <file>completion/sectionbreak.cwl</file>
 <file>completion/sectsty.cwl</file>

@@ -1,14 +1,11 @@
 # polyglossia package
-# Matthew Bertucci 2022/11/30 for v1.59
+# Matthew Bertucci 2022/11/30 for v1.61
 
 #include:etoolbox
 #include:makecmds
 #include:xkeyval
 #include:fontspec
 #include:iftex
-#include:expl3
-#include:l3keys2e
-#include:xparse
 #include:bidi
 #include:luabidi
 #include:calc
@@ -1009,6 +1006,7 @@ lang=#local,main,%<language%>
 \textwidthfootnoterule#*
 
 \charifavailable{char code}{substitution}#*
+\BCPdata{type}#*
 \languagename#*
 \mainlanguagename#*
 \languagevariant#*

@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/03/24 for v0.99-z-g
+# Matthew Bertucci 2023/04/17 for v0.99-z-j
 
 #include:verbatim
 #include:mathtools
@@ -440,6 +440,12 @@ EchelleEspace=%<nombre%>
 Sphere#true,false
 AnglePhi=%<degrees%>
 EchelleEspace=%<nombre%>
+Globe#true,false
+Theta=%<degrees%>
+Phi=%<degrees%>
+Axes#true,false
+CouleurG=#%color
+CouleurE=#%color
 ValeurMin=%<nombre%>
 ValeurMax=%<nombre%>
 Etages=%<nombre%>
@@ -494,6 +500,11 @@ AllPerso#true,false
 #endkeyvals
 
 \ResultatPytha
+\RedactionCalculsPythagore#*
+\RedactionCalculsReciPythagore#*
+\RedactionConclusionReciPythagore#*
+\RedactionPythagore#*
+\RedactionReciPythagore#*
 
 ## Le théorème de Thalès ##
 \Thales{Nom des points considérés}{a}{b}{c}{d}{e}{f}
@@ -746,9 +757,25 @@ Longueur=##L
 Details#true,false
 All#true,false
 Longue#true,false
+Couleur=#%color
+Nombre=%<nombre%>
 Contraire=%<integer%>
 Fleches#true,false
 #endkeyvals
+
+## Les opérations sur les fractions ##
+\AddFraction{a/b}{c/d}
+\AddFraction[clés%keyvals]{a/b}{c/d}
+\AddFraction[clés%keyvals][etape]{a/b}{c/d}
+\SousFraction{a/b}{c/d}
+\SousFraction[clés%keyvals]{a/b}{c/d}
+\SousFraction[clés%keyvals][etape]{a/b}{c/d}
+\MulFraction{a/b}{c/d}
+\MulFraction[clés%keyvals]{a/b}{c/d}
+\MulFraction[clés%keyvals][etape]{a/b}{c/d}
+\DivFraction{a/b}{c/d}
+\DivFraction[clés%keyvals]{a/b}{c/d}
+\DivFraction[clés%keyvals][etape]{a/b}{c/d}
 
 ## Ranger des nombres rationnels relatifs ##
 \Rangement{Liste de nombres}
@@ -759,6 +786,7 @@ Decroissant#true,false
 Strict#true,false
 Fraction#true,false
 Details#true,false
+Seul#true,false
 #endkeyvals
 
 ## Les puissances ##
@@ -1061,6 +1089,23 @@ Tableau#true,false
 
 \Resultat
 
+## La factorisation ##
+\Factorisation{f1}{f2}{f3}
+\Factorisation[clés%keyvals]{f1}{f2}{f3}
+\Factorisation*{f1}{f2}{f3}
+\Factorisation*[clés%keyvals]{f1}{f2}{f3}
+
+#keyvals:\Factorisation,\Factorisation*
+Litteral#true,false
+AideMul#true,false
+NomExpression=%<nom%>
+Lettre=%<lettre%>
+Aide#true,false
+Couleur=#%color
+ParenthesesFin#true,false
+Resultat#true,false
+#endkeyvals
+
 ## Un modèle en barre ##
 \ModeleBarre{C1 N1 "T1" C2 N2 "T2"...}{c1 n1 "t1" c2 n2 "t2"...}
 \ModeleBarre[clés%keyvals]{C1 N1 "T1" C2 N2 "T2"...}{c1 n1 "t1" c2 n2 "t2"...}
@@ -1214,6 +1259,21 @@ LargeurT=##L
 Creation#true,false
 Solution#true,false
 Graine=%<nombre%>
+#endkeyvals
+
+## Le défi « Rangement » ##
+\DefiRangement{phrase à décoder}{valeurs à ranger}
+\DefiRangement[clés%keyvals]{phrase à décoder}{valeurs à ranger}
+
+#keyvals:\DefiRangement
+Largeur=##L
+Hauteur=##L
+Solution#true,false
+Graine=%<integer%>
+Creation#true,false
+Deno=%<dénominateur%>
+Negatif#true,false
+Decimaux#true,false
 #endkeyvals
 
 ## Billards ##
@@ -1436,6 +1496,8 @@ Symboles={%<symbole1,symbole2,...%>}
 #endkeyvals
 
 \SolutionCarte{solution}{commentaires%text}
+\PfCTexteJai#*
+\PfCTexteQuia#*
 \PfCCardsEcartH#*
 \PfCCardsEcartV#*
 
@@ -1754,6 +1816,34 @@ Largeur=%<nombre%>
 Echelle=##L
 Solution#true,false
 Graine=%<nombre%>
+#endkeyvals
+
+## Trio ##
+\Trio
+\Trio[clés%keyvals]
+\TrioCourt
+\TrioCourt[clés%keyvals]
+
+#keyvals:\Trio,TrioCourt
+Largeur=##L
+Repere#true,false
+Cible=%<nombre%>
+Graine=%<nombre%>
+Ligne=%<integer%>
+Colonne=%<integer%>
+Vide#true,false
+VideRepere#true,false
+#endkeyvals
+
+## Les nonogrammes ##
+\Nonogramme{liste de lignes}
+\Nonogramme[clés%keyvals]{liste de lignes}
+
+#keyvals:\Nonogramme
+Enonce#true,false
+Unite=##L
+Taille=%<nombre%>
+Solution#true,false
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -2098,6 +2188,7 @@ Teal#B
 \buildgraphcq{arg1}#S
 \buildgraphq{arg1}#S
 \BuildNombreAstral{arg}{arg}#S
+\BuildNono{arg1}{arg2}#S
 \BuildPixelArt{arg1}{arg2}{arg3}{arg4}#S
 \buildreperenew#S
 \BuildRLE{arg}#S
@@ -2116,6 +2207,8 @@ Teal#B
 \CalculECC{arg1}#S
 \CalculFrequence{arg1}#S
 \CalculNombreComposants#S
+\CalculsPythagore{arg1}{arg2}{arg3}{arg4}#S
+\CalculsPythagore[opt]{arg1}{arg2}{arg3}{arg4}#S
 \CalculSemiAngle{arg1}#S
 \CANNew#S
 \CANSGFoo#S
@@ -2516,9 +2609,9 @@ Teal#B
 \MPFigurePolygone#S
 \MPFigurePrisme#S
 \MPFigurePyramide#S
-\MPFigurePytha{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPFigurePytha{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \MPFigurePythaSansMots{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\MPFigureReciPytha{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPFigureReciPytha{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}#S
 \MPFigureRectangle#S
 \MPFigureSommeAngle{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPFigureSphere#S
@@ -2535,6 +2628,7 @@ Teal#B
 \MPFractionSegmentH{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPFractionTriangle{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPFractionTriangleH{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPGlobe{arg1}{arg2}#S
 \MPGrille{arg1}{arg2}{arg3}{arg4}#S
 \MPGrillePointe{arg1}{arg2}{arg3}{arg4}#S
 \MPHorloge{arg1}{arg2}{arg3}#S
@@ -2685,6 +2779,7 @@ Teal#B
 \PfCDerniereColonne#S
 \PfCDerniereColonneEntiere#S
 \PfCdotover#S
+\PfCEcrireFacteur{arg1}{arg2}#S
 \PfCentoure{arg1}{arg2}#S
 \PfCfiledate#S
 \PfCfileversion#S
@@ -2696,6 +2791,7 @@ Teal#B
 \PfCGraineAlea#S
 \PfCHiddenHeight#S
 \PfCHiddenWidth#S
+\PfCJeuRgtH#S
 \PfCKakuro#S
 \PfCKenKen#S
 \PfCLargeurJury#S
@@ -2761,6 +2857,7 @@ Teal#B
 \PfCThalesUnit#S
 \PfCTotal#S
 \PfCTrigoUnit#S
+\PfCTrioHauteur#S
 \PfCTstrut#S
 \PfCVueCubeNom#S
 \PfCYHKimpair#S
@@ -2832,11 +2929,6 @@ Teal#B
 \RecupNbFichiers#S
 \RecupSSDossiers#S
 \Redaction{arg1}{arg2}{arg3}{arg4}#S
-\RedactionCalculsPythagore#S
-\RedactionCalculsReciPythagore#S
-\RedactionConclusionReciPythagore#S
-\RedactionPythagore#S
-\RedactionReciPythagore#S
 \RedactionSom{arg1}{arg2}{arg3}{arg4}#S
 \RedactionSomme#S
 \RedactionThales#S
@@ -2929,6 +3021,7 @@ Teal#B
 \thePfCPuzzlePcpt#S
 \thePfCShikakuNom#S
 \thePfCTortue#S
+\thePfCTrioLettre#S
 \theQuestionQCM#S
 \thesubxlop#S
 \theTitreQCM#S
@@ -2941,6 +3034,7 @@ Teal#B
 \TikzPHD#S
 \TikzRB#S
 \TikzRH#S
+\tofrac{arg}#S
 \tokcalissonlistetracesd#S
 \tokcalissonlistetracesg#S
 \toklisteaffhor{arg}#S
@@ -2957,6 +3051,8 @@ Teal#B
 \toklisteNANombres#S
 \toklistenomhor{arg}#S
 \toklistenompointdemidroite{arg}#S
+\toklistenonoa#S
+\toklistenonob#S
 \toklistePANombre#S
 \toklistepoint{arg}#S
 \toklistepointdemidroite{arg}#S
@@ -3002,6 +3098,7 @@ Teal#B
 \TraceTriomino{arg1}#S
 \TraceTriominoHexa{arg1}#S
 \TrigoCalculs{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\TrioCalculs{arg1}{arg2}{arg3}#S
 \TSimp#S
 \TThales{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \TThalesCalculsD{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
@@ -3040,6 +3137,8 @@ Teal#B
 \UpdatetoksMosaique{arg1}#S
 \UpdatetoksNAMelange{arg}#S
 \UpdatetoksNANombres{arg}#S
+\UpdatetoksNonoa{arg}#S
+\UpdatetoksNonob{arg}#S
 \UpdatetoksPANombre{arg}#S
 \UpdatetoksPQuatreh{arg}#S
 \UpdatetoksPQuatrev{arg}#S

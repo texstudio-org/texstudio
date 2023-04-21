@@ -1,5 +1,5 @@
 # diffcoeff package
-# Matthew Bertucci 2023/01/11 for v5.1
+# Matthew Bertucci 2023/04/12 for v5.3
 
 #include:xtemplate
 #include:mleftright
@@ -15,153 +15,225 @@ DIF={%<keyvals%>}
 \diff{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \diff[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#m
 \diff[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
+\diff<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#m
+\diff<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \diff*{%<variable(s)%>}{%<differentiand%>}#m
 \diff*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diff*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diff*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diff*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff**{%<variable(s)%>}{%<differentiand%>}#m
 \diff**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diff**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diff**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diff**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff.%<name%>.{%<variable(s)%>}{%<differentiand%>}#m
 \diff.%<name%>.{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diff.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diff.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diff.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff.%<name%>.*{%<variable(s)%>}{%<differentiand%>}#*m
 \diff.%<name%>.*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diff.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diff.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diff.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff.%<name%>.**{%<variable(s)%>}{%<differentiand%>}#*m
 \diff.%<name%>.**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diff.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diff.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diff.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diff.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 
 \difs{%<variable(s)%>}{%<differentiand%>}#m
 \difs{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \difs[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#m
 \difs[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
+\difs<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#m
+\difs<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \difs*{%<variable(s)%>}{%<differentiand%>}#m
 \difs*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difs*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difs*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difs*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs**{%<variable(s)%>}{%<differentiand%>}#m
 \difs**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difs**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difs**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difs**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs.%<name%>.{%<variable(s)%>}{%<differentiand%>}#m
 \difs.%<name%>.{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difs.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difs.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difs.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs.%<name%>.*{%<variable(s)%>}{%<differentiand%>}#*m
 \difs.%<name%>.*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difs.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difs.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difs.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs.%<name%>.**{%<variable(s)%>}{%<differentiand%>}#*m
 \difs.%<name%>.**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difs.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difs.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difs.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difs.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 
 \difc{%<variable(s)%>}{%<differentiand%>}#m
 \difc{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \difc[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#m
 \difc[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
+\difc<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#m
+\difc<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 # single star has no effect for compact form
 ##\difc*{%<variable(s)%>}{%<differentiand%>}#m
 ##\difc*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 ##\difc*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 ##\difc*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+##\difc*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+##\difc*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difc**{%<variable(s)%>}{%<differentiand%>}#m
 \difc**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difc**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difc**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difc**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difc**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difc.%<name%>.{%<variable(s)%>}{%<differentiand%>}#m
 \difc.%<name%>.{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difc.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difc.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difc.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difc.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 ##\difc.%<name%>.*{%<variable(s)%>}{%<differentiand%>}#*m
 ##\difc.%<name%>.*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 ##\difc.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 ##\difc.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+##\difc.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+##\difc.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difc.%<name%>.**{%<variable(s)%>}{%<differentiand%>}#*m
 \difc.%<name%>.**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difc.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difc.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difc.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difc.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 
 \diffp{%<variable(s)%>}{%<differentiand%>}#m
 \diffp{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \diffp[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#m
 \diffp[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
+\diffp<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#m
+\diffp<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \diffp*{%<variable(s)%>}{%<differentiand%>}#m
 \diffp*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diffp*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diffp*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diffp*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp**{%<variable(s)%>}{%<differentiand%>}#m
 \diffp**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diffp**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diffp**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diffp**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp.%<name%>.{%<variable(s)%>}{%<differentiand%>}#m
 \diffp.%<name%>.{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diffp.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diffp.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diffp.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp.%<name%>.*{%<variable(s)%>}{%<differentiand%>}#*m
 \diffp.%<name%>.*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diffp.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diffp.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diffp.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp.%<name%>.**{%<variable(s)%>}{%<differentiand%>}#*m
 \diffp.%<name%>.**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \diffp.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \diffp.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\diffp.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\diffp.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 
 \difsp{%<variable(s)%>}{%<differentiand%>}#m
 \difsp{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \difsp[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#m
 \difsp[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
+\difsp<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#m
+\difsp<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \difsp*{%<variable(s)%>}{%<differentiand%>}#m
 \difsp*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difsp*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difsp*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difsp*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp**{%<variable(s)%>}{%<differentiand%>}#m
 \difsp**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difsp**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difsp**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difsp**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp.%<name%>.{%<variable(s)%>}{%<differentiand%>}#m
 \difsp.%<name%>.{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difsp.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difsp.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difsp.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp.%<name%>.*{%<variable(s)%>}{%<differentiand%>}#*m
 \difsp.%<name%>.*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difsp.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difsp.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difsp.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp.%<name%>.**{%<variable(s)%>}{%<differentiand%>}#*m
 \difsp.%<name%>.**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difsp.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difsp.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difsp.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difsp.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 
 \difcp{%<variable(s)%>}{%<differentiand%>}#m
 \difcp{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 \difcp[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#m
 \difcp[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
+\difcp<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#m
+\difcp<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#m
 # single star has no effect for compact form
 ##\difcp*{%<variable(s)%>}{%<differentiand%>}#m
 ##\difcp*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 ##\difcp*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 ##\difcp*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+##\difcp*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+##\difcp*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difcp**{%<variable(s)%>}{%<differentiand%>}#m
 \difcp**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difcp**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difcp**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difcp**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difcp**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difcp.%<name%>.{%<variable(s)%>}{%<differentiand%>}#m
 \difcp.%<name%>.{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difcp.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difcp.%<name%>.[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difcp.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difcp.%<name%>.<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 ##\difcp.%<name%>.*{%<variable(s)%>}{%<differentiand%>}#*m
 ##\difcp.%<name%>.*{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 ##\difcp.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 ##\difcp.%<name%>.*[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+##\difcp.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+##\difcp.%<name%>.*<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difcp.%<name%>.**{%<variable(s)%>}{%<differentiand%>}#*m
 \difcp.%<name%>.**{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 \difcp.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}#*m
 \difcp.%<name%>.**[%<order-spec%>]{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
+\difcp.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}#*m
+\difcp.%<name%>.**<%<order-override%>>{%<variable(s)%>}{%<differentiand%>}[%<pt of eval%>]#*m
 
 \negmu#*m
 \nilmu#*m

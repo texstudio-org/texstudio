@@ -1,5 +1,5 @@
 # scrartcl class
-# Matthew Bertucci 2022/05/18 for v3.36
+# Matthew Bertucci 2023/04/17 for v3.39
 
 #include:scrkbase
 #include:tocbasic
@@ -28,7 +28,6 @@ captions=#bottombeside,besidebottom,centeredbeside,besidecentered,middlebeside,b
 listof=#entryprefix,flat,left,graduated,indent,indented,leveldown,indenttextentries,indentunnumbered,numberline,leftaligntextentries,leftalignunnumbered,nonumberline,notoc,nottotoc,plainheading,numbered,totocnumbered,tocnumbered,numberedtoc,numberedtotoc,standardlevel,totoc,toc,notnumbered
 bibliography=#leveldown,notoc,nottotoc,plainheading,numbered,tocnumbered,totocnumbered,numberedtoc,numberedtotoc,oldstyle,openstyle,standardlevel,toc,totoc,notnumbered
 index=#leveldown,notoc,nottotoc,plainheading,numbered,tocnumbered,totocnumbered,numberedtoc,numberedtotoc,standardlevel,toc,totoc,notnumbered
-egregdoesnotlikesansseriftitles
 bookmarkpackage=#true,on,yes,false,off,no
 #endkeyvals
 
@@ -196,6 +195,7 @@ titlehead
 \lowertitleback{titlebackfoot%text}
 \maketitle[page number]
 \marginline{margin note%text}
+\maybesffamily
 \minisec{title}
 \multfootsep#*
 \multiplefootnotemarker#*
@@ -274,6 +274,7 @@ titlehead
 \subsubsectiontocdepth#*
 \subtitle{subtitle%text}
 \tableformat#*
+\textmaybesf{text}
 \thefootnotemark#*
 \thispagewasoddfalse#*
 \thispagewasoddtrue#*

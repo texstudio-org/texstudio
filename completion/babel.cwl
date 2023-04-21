@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/02/13 for v3.86
+# tbraun 4.11.2008; Matthew Bertucci 2023/04/18 for v3.88
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -169,6 +169,7 @@ maparabic
 mapdigits
 calendar=%<calendar%>
 calendar=%<calendar%>.%<variant%>
+casing=#yiwn,eszett,iota
 #endkeyvals
 
 \localenumeral{style}{number}

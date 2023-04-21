@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/04/09 for v0.1.17
+# Matthew Bertucci 2023/04/11 for v0.1.18
 
 #include:kvoptions
 #include:class-book
@@ -37,7 +37,6 @@ blockwidth=##L
 blockheight=##L
 bindingoffset=##L
 gutteroffset=##L
-gutterimageoffset=##L
 bleed=##L
 flatfold=##L
 pagefold=#in,out
@@ -205,9 +204,9 @@ roundprintedlengthsto=%<number%>
 \cellwidth#L
 \clearance#L
 \clearcaption#L
-\clearfoldoutbinding#L
 \clearfoldoutedge#L
 \clearfoldoutfold#L
+\clearfoldoutgutter#L
 \clearimage#L
 \cleartoleftpage
 \CopyrightNotice
@@ -225,7 +224,6 @@ roundprintedlengthsto=%<number%>
 \GenerateTemplate[unit]
 \gsavecell[valign]{name}{width}{height}{content%text}
 \gsavecell{name}{width}{height}{content%text}
-\gutterimageoffset#L
 \gutteroffset#L
 \iffoldmarks
 \ifwriteimagelist#*

@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/04/07 for v2.5.8
+# Matthew Bertucci 2023/04/17 for v2.6.0
 
 #include:mathtools
 #include:xcolor
@@ -179,6 +179,7 @@ Style=#Moderne,Classique
 Filigrane#true,false
 BarreTitre#true,false
 Cadre#true,false
+CouleurNombres=#%color
 #endkeyvals
 
 \begin{ConsolePiton}{tcolorbox options}#V
@@ -783,6 +784,18 @@ Anegatif#true,false
 #keyvals:\MesurePrincipale
 d#true,false
 Crochets#true,false
+Brut#true,false
+#endkeyvals
+
+## Lignes trigonométriques ##
+\LigneTrigo{cos|sin|tan}(angle)
+\LigneTrigo[options%keyvals]{cos|sin|tan}(angle)
+\LigneTrigo*{cos|sin|tan}(angle)
+\LigneTrigo*[options%keyvals]{cos|sin|tan}(angle)
+
+#keyvals:\LigneTrigo,\LigneTrigo*
+d#true,false
+Etapes#true,false
 #endkeyvals
 
 ## SudoMaths, en TikZ ##
@@ -1103,6 +1116,8 @@ vertcapyt#B
 \chbrut#S
 \chiffre#S
 \CODPITalign#S
+\CODPITcolnb#S
+\CODPITespV#S
 \CODPITfonte#S
 \CODPITlargeur#S
 \CODPITstyle#S
@@ -1140,6 +1155,7 @@ vertcapyt#B
 \ifinal#S
 \iinit#S
 \indice#S
+\IntSimplifMesPpale{arg}#S
 \larcolinter#S
 \larliginter#S
 \LCNA#S

@@ -1,6 +1,6 @@
 # mode: koma letter class (scrlttr2)
 # dani/2006-02-21
-# Matthew Bertucci updated 2022/05/18 for v3.36
+# Matthew Bertucci updated 2023/04/17 for v3.39
 
 #include:scrkbase
 #include:typearea
@@ -113,6 +113,7 @@ footnotes=#multiple,nomultiple
 \LoadLetterOption{name%keyvals}
 \LoadLetterOptions{list of names%keyvals}
 \marginline{margin note%text}
+\maybesffamily
 \mobilephonename#*
 \multfootsep#*
 \multiplefootnotemarker#*
@@ -155,6 +156,7 @@ footnotes=#multiple,nomultiple
 \stopbreaks#*
 \stopletter#*
 \subjectname#*
+\textmaybesf{text}
 \thefootnotemark#*
 \thisletter#*
 \thispagewasoddfalse#*
