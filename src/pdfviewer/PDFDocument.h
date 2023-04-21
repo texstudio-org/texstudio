@@ -431,8 +431,8 @@ public:
 
 	Q_INVOKABLE QString fileName() const { return curFile; }
 	Q_INVOKABLE QFileInfo getMasterFile() const { return masterFile; }
-
 	void saveGeometryToConfig();
+	void setActionTypesetEnabled(bool enable);
 
 	Q_INVOKABLE void zoomToRight(QWidget *otherWindow);
 	void showScale(qreal scale);

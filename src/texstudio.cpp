@@ -8368,9 +8368,13 @@ void Texstudio::fuzzBackForward()
 
 void Texstudio::setBuildButtonsDisabled(bool c)
 {
-    getManagedAction("main/tools/stopcompile")->setEnabled(c);
-    getManagedAction("main/tools/quickbuild")->setEnabled(!c);
-    getManagedAction("main/tools/compile")->setEnabled(!c);
+	getManagedAction("main/tools/stopcompile")->setEnabled(c);
+	getManagedAction("main/tools/quickbuild")->setEnabled(!c);
+	getManagedAction("main/tools/compile")->setEnabled(!c);
+#ifndef NO_POPPLER_PREVIEW
+	foreach (PDFDocument *viewer, PDFDocument::documentList())
+		viewer->setActionTypesetEnabled(!c);
+#endif
 }
 
 void Texstudio::fuzzCursorHistory()
