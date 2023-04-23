@@ -4274,6 +4274,11 @@ void PDFDocument::saveGeometryToConfig()
 	globalConfig->annotationPanelVisible = annotationPanel->isVisible();
 }
 
+void PDFDocument::setActionTypesetEnabled(bool enable)
+{
+	actionTypeset->setEnabled(enable);
+}
+
 void PDFDocument::zoomToRight(QWidget *otherWindow)
 {
 #if QT_VERSION>=QT_VERSION_CHECK(5,15,0)
