@@ -1,5 +1,5 @@
 # nfold tikzlibrary
-# Matthew Bertucci 2023/04/17 for v0.1.0-alpha1
+# Matthew Bertucci 2023/04/24 for v0.1.0
 
 # loads bezieroffset pgflibrary
 
@@ -20,6 +20,7 @@ scaling nfold=%<integer%>
 \pgfmathcrossproduct{point1}{point2}#*
 \pgfmathdotproduct{point1}{point2}#*
 \pgfmathcrossdot{point1}{point2}#*
+\pgfpointtaxicabnorm{arg}#*
 \pgfoffsetcurve{point1}{point2}{point3}{point4}{distance}#*
 \pgfoffsetcurvenomove{point1}{point2}{point3}{point4}{distance}#*
 \pgfoffsetcurvecallback{point1}{point2}{point3}{point4}{distance}{num}#*
