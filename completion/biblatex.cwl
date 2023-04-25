@@ -5757,7 +5757,7 @@ xindy#true,false
 \citefilmnoindex{bibid}#*C
 #endif
 
-### biblatex-gb7714-2015 v1.1l ###
+### biblatex-gb7714-2015 v1.1m ###
 #ifOption:style=gb7714-2015
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 # from gb7714-2015.bbx
@@ -5992,6 +5992,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \entrykeyb#S
 \userfieldabcde#S
 \pubdatadelim#*
+\locnopubdelim#*
 # from gb7714-2015ay.cbx
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6404,6 +6405,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \entrykeyb#S
 \userfieldabcde#S
 \pubdatadelim#*
+\locnopubdelim#*
 # from gb7714-CCNU.cbx (loads gb7714-2015.cbx)
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6549,6 +6551,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \entrykeyb#S
 \userfieldabcde#S
 \pubdatadelim#*
+\locnopubdelim#*
 # from gb7714-NWAFU.cbx (loads gb7714-2015ay.cbx)
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6699,6 +6702,7 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \entrykeyb#S
 \userfieldabcde#S
 \pubdatadelim#*
+\locnopubdelim#*
 # from gb7714-SEU.cbx (loads gb7714-2015.cbx)
 \mkbibleftborder#*
 \mkbibrightborder#*
@@ -6860,12 +6864,13 @@ gbcitelabel=#bracket,parens,plain,dot,box,circle
 \entrykeyb#S
 \userfieldabcde#S
 \pubdatadelim#*
+\locnopubdelim#*
 # from chinese-erj.cbx (loads gb7714-2015ay.cbx)
-\erjpunctmarkcite#*
-\erjpunctsemicoloncite#*
-\erjpunctparenlcite#*
-\erjpunctparenrcite#*
-\execerjpunctencite#*
+\gbpunctmarkcite#*
+\gbpunctsemicoloncite#*
+\gbpunctparenlcite#*
+\gbpunctparenrcite#*
+\exegbpunctencite#*
 # from gb7714-2015ay.cbx
 \mkbibleftborder#*
 \mkbibrightborder#*

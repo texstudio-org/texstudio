@@ -1,8 +1,5 @@
 # lettrine package
-# Matthew Bertucci 2022/09/26 for v2.30
-
-#include:xkeyval
-#include:minifp
+# Matthew Bertucci 2023/04/18 for v2.3
 
 #keyvals:\usepackage/lettrine#c
 optionsfile=%<filename%>
@@ -11,7 +8,7 @@ optionsfile=%<filename%>
 \lettrine{letter}{text%plain}
 \lettrine[options%keyvals]{letter}{text%plain}
 
-#keyvals:\lettrine,\usepackage/lettrine#c
+#keyvals:\lettrine,\usepackage/lettrine#c,\LettrineOptionsFor
 lines=%<integer%>
 depth=%<integer%>
 lhang=%<decimal%>
@@ -26,7 +23,7 @@ novskip=##L
 realheight#true,false
 #endkeyvals
 
-#keyvals:\lettrine
+#keyvals:\lettrine,\LettrineOptionsFor
 ante=%<text%>
 refstring
 #endkeyvals
@@ -52,7 +49,7 @@ refstring
 \ifLettrineOnGrid#*
 \LettrineOnGridtrue#*
 \LettrineOnGridfalse#*
-\LettrineOptionsFor{letter}{options}#*
+\LettrineOptionsFor{letter}{options%keyvals}#*
 \ifLettrineRealHeight#*
 \LettrineRealHeightfalse#*
 \LettrineRealHeighttrue#*

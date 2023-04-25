@@ -1,5 +1,5 @@
 # cleveref-usedon package
-# Matthew Bertucci 2023/04/12 for v0.2.0
+# Matthew Bertucci 2023/04/24 for v0.4.0
 
 #include:cleveref
 
@@ -31,9 +31,19 @@ brazilian
 catalan
 #endkeyvals
 
-\cref[UsedOn]{labellist}#r
-\cref*[UsedOn]{labellist}#r
-\Cref[UsedOn]{labellist}#r
-\Cref*[UsedOn]{labellist}#r
+\cref[option%keyvals]{labellist}#r
+\cref*[option%keyvals]{labellist}#r
+\Cref[option%keyvals]{labellist}#r
+\Cref*[option%keyvals]{labellist}#r
 
-\UsedOnMessage#*
+#keyvals:\cref#c,\cref*#c,\Cref#c,\Cref*#c
+UsedOn
+UsedBy
+UsedByAndOn
+#endkeyvals
+
+\UsedByAndOnMessage{arg1}{arg2}#S
+\UsedByMessage{arg}#S
+\UsedOnMessage{arg}#S
+\UsedOnPackageDate#S
+\UsedOnPackageVersion#S

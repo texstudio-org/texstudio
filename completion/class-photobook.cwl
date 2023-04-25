@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/04/11 for v0.1.18
+# Matthew Bertucci 2023/04/20 for v0.1.19
 
 #include:kvoptions
 #include:class-book
@@ -95,6 +95,7 @@ roundprintedlengthsto=%<number%>
 \begin{CellContent*}[parent-align]{name}{width}{height}
 \end{CellContent*}
 \begin{cliptocell}
+\begin{cliptocell}[size]
 \end{cliptocell}
 \begin{foldout}
 \begin{foldout}[fold-spec]

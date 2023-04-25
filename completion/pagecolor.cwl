@@ -1,7 +1,6 @@
 # pagecolor package
-# Matthew Bertucci 2022/11/27 for v1.2a
+# Matthew Bertucci 2023/04/18 for v1.2c
 
-#include:hardwrap
 #include:kvoptions
 #include:xcolor
 

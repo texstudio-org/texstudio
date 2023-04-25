@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2023/04/04 for v3.5.0
+# Matthew Bertucci 2023/04/23 for v3.5.3
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -109,6 +109,10 @@ publications/maxbibnames=%<正整数%>
 publications/minbibnames=%<正整数%>
 misc={%<键值列表%>}
 misc/arialFont=%<字符串%>
+misc/tabularFontSize=%<其他字号%>
+misc/autoref={%<键值列表%>}
+const={%<键值列表%>}
+const/autoref={%<键值列表%>}
 #endkeyvals
 
 \begin{abstractEn}
