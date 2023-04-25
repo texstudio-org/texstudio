@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2022/11/09 for v1.50
+# Matthew Bertucci 2023/04/25 for v1.51
 
 #include:glossaries
 
@@ -1704,10 +1704,15 @@ theHvalue=%<<prefix><location>%>
 
 ## Nested Links ##
 \glsxtrp{field}{label}#*r
+\glsxtrpInit{csname}{label}#*r
 \glsxtrsetpopts{options%keyvals}#*
 \glossxtrsetpopts#*
 \glsps{label}#*r
 \glspt{label}#*r
+\Glsps{label}#*r
+\Glspt{label}#*r
+\GLSps{label}#*r
+\GLSpt{label}#*r
 \Glsxtrp{field}{label}#*r
 \GLSxtrp{field}{label}#*r
 
@@ -1751,6 +1756,10 @@ theHvalue=%<<prefix><location>%>
 \glsxtrsaveinsert{label}{insert}#*
 \glsxtrassignlinktextfmt#*
 \glsxtrgenabbrvfmt#*
+
+## Hyperlinks ##
+\glsxtrtarget{label}{text}#*
+\glsxtrtargetfield#*
 
 ## Label Prefixes ##
 \glsxtrnewgls{prefix}{cmd}#*d
@@ -2969,6 +2978,7 @@ compound-write-def=#none,all,ref
 
 ### other commands ###
 \GlossariesAbbrStyleTooComplexWarning{arg1}{arg2}#*
+\GlossariesExtraInfo{message%text}#*
 \GlossariesExtraWarning{message%text}#*
 \GlossariesExtraWarningNoLine{message%text}#*
 \glsabspace{label}#*r
