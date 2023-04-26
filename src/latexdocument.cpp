@@ -1061,26 +1061,26 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 QStringList packagesHelper = firstArg.split(",");
 
                 if (cmd.endsWith("theme")) { // special treatment for \usetheme
-                    QString preambel = cmd;
-                    preambel.remove(0, 4);
-                    preambel.prepend("beamer");
-                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                    QString preamble = cmd;
+                    preamble.remove(0, 4);
+                    preamble.prepend("beamer");
+                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
                 }
                 if (cmd=="\\usetikzlibrary") { // special treatment for \usetikzlibrary
-                    QString preambel = "tikzlibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                    QString preamble = "tikzlibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
                 }
                 if (cmd=="\\usepgfplotslibrary") { // special treatment for \usepgfplotslibrary
-                    QString preambel = "pgfplotslibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                    QString preamble = "pgfplotslibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
                 }
                 if (cmd=="\\tcbuselibrary") { // special treatment for \tcbuselibrary
-                    QString preambel = "tcolorboxlibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                    QString preamble = "tcolorboxlibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
                 }
                 if (cmd=="\\UseTblrLibrary") { // special treatment for \UseTblrLibrary
-                    QString preambel = "tabularraylibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^"), preambel);
+                    QString preamble = "tabularraylibrary";
+                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
                 }
 
                 QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
