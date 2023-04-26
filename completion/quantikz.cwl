@@ -1,5 +1,5 @@
 # quantikz package
-# Matthew Bertucci 12/28/2021 for v0.9.6
+# Matthew Bertucci 2023/04/25 for v1.0.0
 
 #include:tikz
-#include:tikzlibraryquantikz
+#include:tikzlibraryquantikz2
