@@ -157,6 +157,7 @@
 \braceru#*m
 \caption{text}
 \caption[short text%text]{text}
+\chapter{title}#L1MS
 \cite{keylist}#c
 \cite[add. text]{keylist}
 \circle{diameter}#*
