@@ -1,5 +1,5 @@
 # libertinus-otf package
-# Matthew Bertucci 4/16/2022 for v0.29
+# Matthew Bertucci 2023/04/24 for v0.30
 
 #include:ifxetex
 #include:ifluatex
@@ -26,6 +26,7 @@ defaultfeatures={%<fontspec features%>}
 #endkeyvals
 
 # text mode commands
+\BiolinumKeyboard#*
 \biolinumKeyGlyph{arg}#*
 \BiolinumKeyGlyph{arg}#*
 \Land
@@ -74,6 +75,7 @@ defaultfeatures={%<fontspec features%>}
 \LKeyBildDown#*
 \LKeyBildUp#*
 \LKeyCapslock
+\LKeyCommand
 \LKeyCtrl
 \LKeyDel
 \LKeyDown
@@ -110,6 +112,7 @@ defaultfeatures={%<fontspec features%>}
 \LKeyStrgAltX{character}
 \LKeyStrgX{character}
 \LKeyTab
+\LKeyTux
 \LKeyUp
 \LKeyWin
 \LKeyWindows

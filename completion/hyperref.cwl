@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 21 June 2022 for v7.00s
+#modified Matthew Bertucci 4 April 2023 for v7.00w
 
 #include:iftex
 #include:keyval
@@ -22,6 +22,7 @@
 #include:atveryend
 #include:rerunfilecheck
 #include:nameref
+#include:etoolbox
 
 #ifOption:backref
 #include:backref
@@ -101,6 +102,7 @@ filecolor=#%color
 final#true,false
 frenchlinks#true,false
 hidelinks
+hitex
 hyperfigures#true,false
 hyperfootnotes#true,false
 hyperindex#true,false

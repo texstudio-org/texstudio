@@ -301,6 +301,7 @@
 <file>completion/beamerthemeSzeged.cwl</file>
 <file>completion/beamerthemetamu.cwl</file>
 <file>completion/beamerthemethubeamer.cwl</file>
+<file>completion/beamerthemeTianQing.cwl</file>
 <file>completion/beamerthemeTorinoTh.cwl</file>
 <file>completion/beamerthemetree.cwl</file>
 <file>completion/beamerthemetrigon.cwl</file>
@@ -1776,6 +1777,7 @@
 <file>completion/hieroglf.cwl</file>
 <file>completion/highlightlatex.cwl</file>
 <file>completion/HindMadurai.cwl</file>
+<file>completion/hitex.cwl</file>
 <file>completion/hlist.cwl</file>
 <file>completion/hmtrump.cwl</file>
 <file>completion/hnja2hngl.cwl</file>
@@ -3130,6 +3132,7 @@
 <file>completion/sdapslayout.cwl</file>
 <file>completion/se2colors.cwl</file>
 <file>completion/se2fonts.cwl</file>
+<file>completion/se2packages.cwl</file>
 <file>completion/secdot.cwl</file>
 <file>completion/secnum.cwl</file>
 <file>completion/sectionbox.cwl</file>

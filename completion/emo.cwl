@@ -1,5 +1,5 @@
 # emo package
-# Matthew Bertucci 2023/04/03 for v0.2
+# Matthew Bertucci 2023/04/22 for v0.3
 
 #include:inputenc
 #include:iftex
@@ -15,6 +15,10 @@ index
 #include:xspace
 \lingchi
 \YHWH
+#keyvals:\emo#c
+lingchi
+YHWH
+#endkeyvals
 #endif
 
 #ifOption:index
@@ -28,7 +32,9 @@ keycap-one
 biohazard
 balance-scale
 check-mark
+plus
 eu
+japanese-bargain-button
 foggy
 globe-africa-europe
 classical-building
@@ -41,6 +47,7 @@ busts
 collision
 currency-exchange
 floppy-disk
+chart-increasing
 triangular-ruler
 pager
 loupe-left
@@ -50,6 +57,7 @@ enraged-face
 stop-sign
 robot
 handshake
+person-facepalming
 exploding-head
 parrot
 judge

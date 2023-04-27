@@ -1,5 +1,5 @@
 # pstricks-add package
-# Matthew Bertucci 2022/11/21 for v3.93
+# Matthew Bertucci 2023/04/18 for v3.94
 
 #include:pstricks
 #include:pst-plot
@@ -58,6 +58,7 @@
 \psFormatInt[options%keyvals]{integer}
 \psFormatInt{integer}
 \psGetDistance(x1,y1)(x2,y2){macro%cmd}#d
+\psGetDistance[decimals](x1,y1)(x2,y2){macro%cmd}#d
 \psGetSlope(x1,y1)(x2,y2){macro%cmd}#d
 \psGTriangle(x1,y1)(x2,y2)(x3,y3){color}{color}{color}#S
 \psGTriangle(x1,y1)(x2,y2)(x3,y3){color1}{color2}{color3}

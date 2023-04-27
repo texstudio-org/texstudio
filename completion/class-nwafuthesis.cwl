@@ -1,7 +1,7 @@
 # nwafuthesis class
-# Matthew Bertucci 2022/08/01 for v1.15
+# Matthew Bertucci 2023/04/19 for v1.25
 
-#include:expl3
+
 #include:xtemplate
 #include:l3keys2e
 #include:class-ctexbook
@@ -50,6 +50,7 @@ style/logo-size={%<宽度,高度%>}
 style/auto-make-cover#true,false
 style/withchapter#true,false
 style/withsig#true,false
+style/anonymous#true,false
 style/chapnum=#zh,en
 info={%<键值列表%>}
 info/degree=#academic,professional
