@@ -493,18 +493,22 @@ void QSearchReplacePanel::display(int mode, bool replace)
 					// copy content to cFind (doesn't trigger textEdited; don't call textEdited to prevent cursor jumping)
 					cbSelection->setChecked(false);
 					cFind->setEditText(editor()->cursor().selectedText());
-					m_search->setSearchText(cFind->currentText());
-				}
-			} else if (useLineForSearch && !replace && !((cbHasFocus(cFind) || cbHasFocus(cReplace)) && visible)) {
-				// use word under cursor if no selection is present (qt creator behavior)
-				QDocumentCursor m_cursor=editor()->cursor();
-				m_cursor.select(QDocumentCursor::WordUnderCursor);
-				if (!m_cursor.selectedText().isEmpty()) {
-					cFind->setEditText(m_cursor.selectedText());
-					m_search->setSearchText(cFind->currentText());
-				}
-			} else if ( cbHasFocus(cFind) && replace && visible)
-				focusFindEdit = false;
+                    m_search->setSearchText(cFind->currentText());
+                }
+            } else {
+                cbSelection->setChecked(false);
+                if (useLineForSearch && !replace && !((cbHasFocus(cFind) || cbHasFocus(cReplace)) && visible)) {
+                    // use word under cursor if no selection is present (qt creator behavior)
+                    QDocumentCursor m_cursor=editor()->cursor();
+                    m_cursor.select(QDocumentCursor::WordUnderCursor);
+                    if (!m_cursor.selectedText().isEmpty()) {
+                        cFind->setEditText(m_cursor.selectedText());
+                        m_search->setSearchText(cFind->currentText());
+                    }
+                } else if ( cbHasFocus(cFind) && replace && visible) {
+                    focusFindEdit = false;
+                }
+            }
 			if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
 				m_search->setOption(QDocumentSearch::HighlightAll, true);
 		}
