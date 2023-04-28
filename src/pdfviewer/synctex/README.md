@@ -1,5 +1,8 @@
-The 2017 branch is the stable branch this year, it is synchronized with the TeXLive svn repository.
-The 2017-1.20 branch is a working branch.
+The 2020 branch is the stable branch this year, it is synchronized with the TeXLive svn repository on Mon May 11 16:05:02 UTC 2020.
+
+The 2020-1.23 branch is a working branch.
+
+All other branches are obsolete.
 
 See synctex_version.h to see the latest version of synctex and of the parser.
 

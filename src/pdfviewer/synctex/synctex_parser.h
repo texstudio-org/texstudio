@@ -146,7 +146,7 @@ extern "C" {
     
     /*  The main entry points.
      *  Given the file name, a line and a column number, synctex_display_query returns the number of nodes
-     *  satisfying the contrain. Use code like
+     *  satisfying the constrain. Use code like
      *
      *      if(synctex_display_query(scanner,name,line,column,page_hint)>0) {
      *         synctex_node_p node;
@@ -165,7 +165,7 @@ extern "C" {
      * - highlight just the character using that information
      *
      *  Given the page and the position in the page, synctex_edit_query returns the number of nodes
-     *  satisfying the contrain. Use code like
+     *  satisfying the constrain. Use code like
      *
      *     if(synctex_edit_query(scanner,page,h,v)>0) {
      *         synctex_node_p node;
@@ -230,7 +230,7 @@ extern "C" {
      *          synctex_node_box_visible_depth(node)
      *      );
      *  The visible dimensions are bigger than real ones
-     *  to compensate 0 width boxes or nodes intentionnaly
+     *  to compensate 0 width boxes or nodes intentionally
      *  put outside the box (using \kern for example).
      *  - parameter node: a node.
      *  - returns: a float.
@@ -248,7 +248,7 @@ extern "C" {
      *  as opposite to TeX coordinates.
      *  The origin is at the top left corner of the page.
      *  The visible dimensions are bigger than real ones
-     *  to compensate 0 width boxes or nodes intentionnaly
+     *  to compensate 0 width boxes or nodes intentionally
      *  put outside the box (using \kern for example).
      *  All nodes have coordinates, but all nodes don't
      *  have non null size. For example, math nodes
@@ -389,7 +389,7 @@ extern "C" {
      *  The scanner owns a list of sheet siblings and
      *  a list of form siblings.
      *  Sheets or forms have one child which is a box:
-     *  theie contents.
+     *  their contents.
      *  - argument page: 1 based sheet page number.
      *  - argument tag: 1 based form tag number.
      */

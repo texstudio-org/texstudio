@@ -40,6 +40,6 @@
  */
 
 /* This local header file is for TEXLIVE, use your own header to fit your system */
-//#   include <w2c/c-auto.h> /* for inline && HAVE_xxx */
+#   include <w2c/c-auto.h> /* for inline && HAVE_xxx */
 /*	No inlining for synctex tool in texlive. */
 #	define SYNCTEX_INLINE
