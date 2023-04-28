@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/04/17 for v2.6.0
+# Matthew Bertucci 2023/04/28 for v2.6.1
 
 #include:mathtools
 #include:xcolor
@@ -108,6 +108,20 @@ Sens=%<< ou >%>
 #endkeyvals
 
 \CompteurSeuil#*
+
+## Valeur approchée d’une intégrale ##
+\IntegraleApprochee{fonction}{a}{b}
+\IntegraleApprochee[options%keyvals]{fonction}{a}{b}
+
+#keyvals:\IntegraleApprochee
+ResultatBrut#true,false
+Methode=#RectanglesGauche,RectanglesDroite,RectanglesMilieu,Trapezes,Simpson
+NbSubDiv=%<nombre%>
+AffFormule#true,false
+Expr=%<expr%>
+Signe=%<signe%>
+Variables=%<variables%>
+#endkeyvals
 
 ## L’outil « Calcul Formel » ##
 \CalculFormelParametres
@@ -759,6 +773,23 @@ TailleLabel=%<fontsize cmd%>
 AffTermes#true,false
 #endkeyvals
 
+## Méthodes graphiques et intégrales ##
+\DeclareFonctionTikz{expr}
+\DeclareFonctionTikz[nom]{expr}
+
+\IntegraleApprocheeTikz{nom fonction}{a}{b}
+\IntegraleApprocheeTikz[options%keyvals]{nom fonction}{a}{b}
+
+#keyvals:\IntegraleApprocheeTikz
+Epaisseur=%<épaisseur%>
+Couleur=#%color
+Remplir#true,false
+Opacite=%<factor%>
+CouleurRemplissage=#%color
+Methode=#RectanglesGauche,RectanglesDroite,RectanglesMilieu,Trapezes
+NbSubDiv=%<nombre%>
+#endkeyvals
+
 ## Style « main levée » en TikZ ##
 #keyvals:\draw#c
 mainlevee
@@ -851,10 +882,10 @@ EspacementVertical=%<factor%>
 Label#true,false
 #endkeyvals
 \begin{pythont}#S
-\begin{tcpythontexcode}#S
-\begin{tcpythontexcode}[width]#S
-\begin{tcpythontexcodeno}#S
-\begin{tcpythontexcodeno}[width]#S
+\begin{tcpythontexcode}{arg}#S
+\begin{tcpythontexcode}[width]{arg}#S
+\begin{tcpythontexcodeno}{arg}#S
+\begin{tcpythontexcodeno}[width]{arg}#S
 \CODPYfonte#S
 \CODPYlargeur#S
 \CODPYstretch#S
@@ -866,11 +897,11 @@ Label#true,false
 \end{tcpythontexcodeno}#S
 \hookcenterpost#S
 \hookcenterpre#S
-\begin{tcpythontexcodealt}#S
-\begin{tcpythontexcodealt}[width]#S
+\begin{tcpythontexcodealt}{arg}#S
+\begin{tcpythontexcodealt}[width]{arg}#S
 \end{tcpythontexcodealt}#S
-\begin{tcpythontexcodenoalt}#S
-\begin{tcpythontexcodenoalt}[width]#S
+\begin{tcpythontexcodenoalt}{arg}#S
+\begin{tcpythontexcodenoalt}[width]{arg}#S
 \end{tcpythontexcodenoalt}#S
 
 # from table option of xcolor
@@ -1379,3 +1410,15 @@ vertcapyt#B
 \yb#S
 \yliste#S
 \YPT#S
+\MethIntegrPrec#S
+\MethIntegrNb#S
+\MethIntegrType#S
+\MethIntegrEqual#S
+\MethIntegrFct#S
+\MethIntegrVar#S
+\MethIntegrTkzCol#S
+\MethIntegrTkzColOpak#S
+\MethIntegrTkzNb#S
+\MethIntegrTkzType#S
+\MethIntegrTkzOpak#S
+\MethIntegrTkzThick#S
