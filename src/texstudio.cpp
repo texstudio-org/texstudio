@@ -7006,12 +7006,15 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 	}
 #endif
 
-	// execute command line
+    	// execute command line
 	foreach (const QString &fileToLoad, filesToLoad) {
 		QFileInfo ftl(fileToLoad);
 		if (fileToLoad != "") {
-			if (ftl.exists()) {
-                if (ftl.suffix() == Session::fileExtension() || ftl.suffix() == "txss") {
+			if (ftl.isDir()) {
+				QMessageBox::warning(this, "", tr("%1 is an invalid TeX project directory.").arg(ftl.absoluteFilePath()));
+				exit(1);
+			} else if (ftl.exists()) {
+				if (ftl.suffix() == Session::fileExtension() || ftl.suffix() == "txss") {
 					loadSession(ftl.filePath());
 				} else {
 					load(fileToLoad, hasExplicitRoot);
