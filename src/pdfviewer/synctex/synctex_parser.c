@@ -904,9 +904,13 @@ static void _synctex_free_node(synctex_node_p node) {
     if (node) {
         SYNCTEX_SCANNER_REMOVE_HANDLE_TO(node);
         SYNCTEX_WILL_FREE(node);
-        synctex_node_free(__synctex_tree_sibling(node));
-        synctex_node_free(_synctex_tree_child(node));
-        _synctex_free(node);
+        synctex_node_p n=node;
+        synctex_node_p nextNode=n;
+        do {
+            nextNode=__synctex_tree_sibling(n);
+            synctex_node_free(_synctex_tree_child(n));
+            _synctex_free(n);
+        } while(n=nextNode);
     }
     return;
 }
