@@ -1,5 +1,5 @@
 # lua-typo package
-# Matthew Bertucci 2023/04/14 for v0.70
+# Matthew Bertucci 2023/04/29 for v0.80
 
 #include:luatexbase
 #include:luacode
@@ -43,3 +43,4 @@ ShortFinalWord#true,false
 
 LTgrey#B
 LTred#B
+LTline#B
