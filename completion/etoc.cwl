@@ -1,5 +1,5 @@
 # etoc package
-# Matthew Bertucci 2023/03/02 for v1.2
+# Matthew Bertucci 2023/05/01 for v1.2a
 
 #include:kvoptions
 #include:multicol
@@ -7,6 +7,7 @@
 #keyvals:\usepackage/etoc#c
 lof
 lot
+deeplevels#true,false
 #endkeyvals
 
 #ifOption:lof
@@ -55,6 +56,8 @@ ouroboros#true,false
 \etoclocalheadtotoc{level name}{text}
 \etocglobalheadtotoc{level name}{text}
 \etoclevel{level name}
+\etocthelevel{level name}
+\etocthemaxlevel
 \etocifunknownlevelTF{level name}{true}{false}
 \etocdivisionnameatlevel{number}
 \etocetoclocaltocmaketitle#*
