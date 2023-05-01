@@ -1,5 +1,5 @@
 # emo package
-# Matthew Bertucci 2023/04/22 for v0.3
+# Matthew Bertucci 2023/04/26 for v0.4
 
 #include:inputenc
 #include:iftex
@@ -9,6 +9,7 @@
 #keyvals:\usepackage/emo#c
 extra
 index
+debug
 #endkeyvals
 
 #ifOption:extra
@@ -31,17 +32,21 @@ YHWH
 keycap-one
 biohazard
 balance-scale
+check-mark-button
 check-mark
+cross-mark
 plus
 eu
 japanese-bargain-button
 foggy
 globe-africa-europe
+party-popper
 classical-building
 desert-island
 stadium
 rainbow-flag
 label
+baby-chick
 eye
 busts
 collision
@@ -58,7 +63,9 @@ stop-sign
 robot
 handshake
 person-facepalming
+zany-face
 exploding-head
+pleading-face
 parrot
 judge
 roll-of-paper

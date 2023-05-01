@@ -1,5 +1,5 @@
 # glossaries-extra-bib2gls package
-# Matthew Bertucci 2022/10/19 for v1.49
+# Matthew Bertucci 2023/04/25 for v1.51
 
 \dgls{label}#r
 \dgls[options%keyvals]{label}#r
@@ -101,6 +101,7 @@ local#true,false
 \glsxtrnameloclink{prefix}{counter}{format}{location}{title%text}{file}#*
 \glshex#*
 \glscapturedgroup#*
+\GlsXtrResourceInitEscSequences#*
 \GlsXtrIfHasNonZeroChildCount{label}{true}{false}#*r
 \GlsXtrBibTeXEntryAliases#*
 \GlsXtrProvideBibTeXFields#*

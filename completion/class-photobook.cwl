@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/04/20 for v0.1.19
+# Matthew Bertucci 2023/04/27 for v0.1.21
 
 #include:kvoptions
 #include:class-book
@@ -210,6 +210,7 @@ roundprintedlengthsto=%<number%>
 \clearfoldoutgutter#L
 \clearimage#L
 \cleartoleftpage
+\cliptocellbleeds{size}
 \CopyrightNotice
 \coverboardgrow#L
 \coverflap#L

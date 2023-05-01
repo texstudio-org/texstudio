@@ -1,5 +1,5 @@
 # glossaries-extra package
-# Matthew Bertucci 2022/11/09 for v1.50
+# Matthew Bertucci 2023/04/25 for v1.51
 
 #include:glossaries
 
@@ -1704,10 +1704,15 @@ theHvalue=%<<prefix><location>%>
 
 ## Nested Links ##
 \glsxtrp{field}{label}#*r
+\glsxtrpInit{csname}{label}#*r
 \glsxtrsetpopts{options%keyvals}#*
 \glossxtrsetpopts#*
 \glsps{label}#*r
 \glspt{label}#*r
+\Glsps{label}#*r
+\Glspt{label}#*r
+\GLSps{label}#*r
+\GLSpt{label}#*r
 \Glsxtrp{field}{label}#*r
 \GLSxtrp{field}{label}#*r
 
@@ -1751,6 +1756,10 @@ theHvalue=%<<prefix><location>%>
 \glsxtrsaveinsert{label}{insert}#*
 \glsxtrassignlinktextfmt#*
 \glsxtrgenabbrvfmt#*
+
+## Hyperlinks ##
+\glsxtrtarget{label}{text}#*
+\glsxtrtargetfield#*
 
 ## Label Prefixes ##
 \glsxtrnewgls{prefix}{cmd}#*d
@@ -2554,12 +2563,15 @@ topicmcols
 
 #keyvals:\glsxtrresourcefile#c,\GlsXtrLoadResources#c
 charset=%<encoding name%>
+locale=%<lang tag%>
 interpret-preamble#true,false
 write-preamble#true,false
 set-widest#true,false
 entry-type-aliases={%<keyvals%>}
 unknown-entry-alias=%<value%>
 action=#define,copy,define or copy
+copy-to-glossary={%<list%>}
+copy-to-glossary-missing-field-action=#skip,fallback,empty
 src={%<list%>}
 selection=#recorded and deps,recorded and deps and see,recorded and deps and see not also,recorded no deps,recorded and ancestors,deps but not recorded,ancestors but not recorded,selected before,all
 match={%<keyvals%>}
@@ -2573,6 +2585,8 @@ save-root-ancestor#true,false
 flatten#true,false
 flatten-lonely=#false,presort,postsort
 flatten-lonely-rule=#only unrecorded parents,discard unrecorded,no discard
+flatten-lonely-condition=%<value%>
+flatten-lonely-missing-field-action=#skip,fallback,empty
 strip-missing-parents#true,false
 missing-parents=#strip,warn,create
 missing-parent-category=#same as child,same as base,no value,false,%<label%>
@@ -2603,11 +2617,15 @@ progenitor-type=%<type%>
 progeny-type=%<type%>
 adopted-parent-field=%<field%>
 abbreviation-name-fallback=%<field%>
+abbreviation-text-fallback=%<field%>
 ignore-fields={%<list%>}
 field-aliases={%<keyvals%>}
 replicate-fields={%<keyvals%>}
 replicate-override#true,false
 replicate-missing-field-action=#skip,fallback,empty
+assign-fields={%<keyvals%>}
+assign-override#true,false
+assign-missing-field-action=#skip,fallback,empty
 counter=%<value%>
 copy-action-group-field=%<value%>
 copy-alias-to-see#true,false
@@ -2960,6 +2978,7 @@ compound-write-def=#none,all,ref
 
 ### other commands ###
 \GlossariesAbbrStyleTooComplexWarning{arg1}{arg2}#*
+\GlossariesExtraInfo{message%text}#*
 \GlossariesExtraWarning{message%text}#*
 \GlossariesExtraWarningNoLine{message%text}#*
 \glsabspace{label}#*r

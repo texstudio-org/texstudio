@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/04/14 for v8.10.0
+# Matthew Bertucci 2023/04/28 for v8.11.0
 
 #include:ifxetex
 #include:ifluatex
@@ -426,6 +426,7 @@ clyp
 cmake
 cncf
 cnn
+cocacola
 cockpit
 cockroachlabs
 cocoapods
