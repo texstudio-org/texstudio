@@ -3606,6 +3606,7 @@
 <file>completion/tikzlibrarypositioning.cwl</file>
 <file>completion/tikzlibraryprofiler.cwl</file>
 <file>completion/tikzlibraryquantikz.cwl</file>
+<file>completion/tikzlibraryquantikz2.cwl</file>
 <file>completion/tikzlibraryquotes.cwl</file>
 <file>completion/tikzlibraryrdf.cwl</file>
 <file>completion/tikzlibraryrulercompass.cwl</file>
@@ -3632,6 +3633,9 @@
 <file>completion/tikzlibrarythrough.cwl</file>
 <file>completion/tikzlibrarytikzlings.cwl</file>
 <file>completion/tikzlibrarytikzmark.cwl</file>
+<file>completion/tikzlibrarytilings.cwl</file>
+<file>completion/tikzlibrarytilings.penrose.cwl</file>
+<file>completion/tikzlibrarytilings.polykite.cwl</file>
 <file>completion/tikzlibrarytqft.cwl</file>
 <file>completion/tikzlibrarytrees.cwl</file>
 <file>completion/tikzlibraryturtle.cwl</file>
