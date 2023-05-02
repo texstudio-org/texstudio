@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/04/17 for v0.99-z-j
+# Matthew Bertucci 2023/05/02 for v0.99-z-k
 
 #include:verbatim
 #include:mathtools
@@ -98,6 +98,8 @@ Unite#true,false
 
 #keyvals:\DecompositionDecimale
 Parentheses#true,false
+ResultatSeul#true,false
+SansMul#true,false
 Colore#true,false
 CouleurU=#%color
 CouleurD=#%color
@@ -164,8 +166,10 @@ ZoneTexte#true,false
 ## Les tableaux de conversion et tableaux de numération ##
 \Tableau{liste de nombres}
 \Tableau[clés%keyvals]{liste de nombres}
+\GlisseNombre{}
+\GlisseNombre[clés%keyvals]{}
 
-#keyvals:\Tableau
+#keyvals:\Tableau,\GlisseNombre
 Metre#true,false
 FlechesH#true,false
 FlechesB#true,false
@@ -206,6 +210,12 @@ Taille=%<nombre%>
 Largeur=##L
 Nom=%<nom%>
 CodeAfter=%<code%>
+#endkeyvals
+
+#keyvals:\GlisseNombre
+Entiers#true,false
+CouleurGN=#%color
+CadreGN=#%color
 #endkeyvals
 
 ## Questions - réponses à relier ##
@@ -625,6 +635,33 @@ Face#true,false
 CouleurFleche=#%color
 Solution#true,false
 Nom=%<nom%>
+#endkeyvals
+
+## Des pavages ##
+\Pavage
+\Pavage[clés%keyvals]
+
+#keyvals:\Pavage
+Epaisseur=%<nombre%>
+Niveau=%<integer%>
+Couleur=#%color
+Numerotation#true,false
+Complete#true,false
+ArrierePlan=#%color
+Traces={%<MP code%>}
+Motif={%<MP code%>}
+Quadrilatere#true,false
+Lignes=%<integer%>
+Colonnes=%<integer%>
+Reseau#true,false
+Basei={%<MP code%>}
+Basej={%<MP code%>}
+Regulier#true,false
+Cote=%<nombre%>
+Escher#true,false
+Rayon=%<nombre%>
+Position=%<nombre%>
+Ecart=%<nombre%>
 #endkeyvals
 
 ## Opérations posées ##
@@ -1203,6 +1240,7 @@ Epaisseur=%<nombre%>
 TortueD#true,false
 TortueF#true,false
 Angle=%<degrés%>
+Couleur=#%color
 Etape=%<nombre%>
 Grille#true,false
 LargeurG=%<nombre%>
@@ -1480,12 +1518,17 @@ Largeur=%<nombre%>
 Hauteur=%<nombre%>
 Marge=%<nombre%>
 Couleur=#%color
+RayonArc=##L
 Theme=%<texte%>
 HauteurTheme=%<nombre%>
 Titre#true,false
 NomTitre=%<nom%>
 Trame#true,false
+Jointes#true,false
+TrameVisible#true,false
 JaiQuia#true,false
+ThemeJaiQuiA=%<texte%>
+Eleve#true,false
 BackgroundAv#true,false
 ImageAv=%<imagefile%>
 BackgroundAr#true,false
@@ -1497,6 +1540,7 @@ Symboles={%<symbole1,symbole2,...%>}
 
 \SolutionCarte{solution}{commentaires%text}
 \PfCTexteJai#*
+\PfCTexteJesuis#*
 \PfCTexteQuia#*
 \PfCCardsEcartH#*
 \PfCCardsEcartV#*
@@ -1646,6 +1690,7 @@ Graines#true,false
 Echelle=%<échelle%>
 Solution#true,false
 Graine=%<integer%>
+Couleur=#%color
 #endkeyvals
 
 ## Le compte est bon ##
@@ -2179,9 +2224,11 @@ Teal#B
 \Brouillon{arg1}{arg2}{arg3}{arg4}#S
 \buildarbreproba#S
 \BuildCalisson{arg1}{arg2}#S
+\BuildCalissonCode#S
 \builddemidroitenew#S
 \buildechelleproba#S
 \BuildEngrenages{arg}#S
+\BuildEngrenagesCode#S
 \buildespace#S
 \buildgraph{arg1}#S
 \buildgraphbarhor#S
@@ -2192,6 +2239,7 @@ Teal#B
 \BuildPixelArt{arg1}{arg2}{arg3}{arg4}#S
 \buildreperenew#S
 \BuildRLE{arg}#S
+\BuildRLECode#S
 \BuildRondeInfernale{arg1}{arg2}#S
 \buildtabfonction#S
 \buildtabpropor#S
@@ -2575,7 +2623,7 @@ Teal#B
 \MPBillardSolution{arg1}{arg2}{arg3}#S
 \MPCalculatrice{arg1}{arg2}{arg3}#S
 \MPCatmull{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPCinq{arg1}{arg2}{arg3}#S
+\MPCinq#S
 \MPCourbe{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPCourbeNew{arg}#S
 \MPDessineFrise{arg}#S
@@ -2595,6 +2643,7 @@ Teal#B
 \MPFigTrigo{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPFigTrigoAngle{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPFigureCarre#S
+\MPFigureCarreCode#S
 \MPFigureCercle#S
 \MPFigureCone#S
 \MPFigureCube#S
@@ -2618,23 +2667,20 @@ Teal#B
 \MPFigureTriangle#S
 \MPFigureTriangleAire#S
 \MPFonctionAffine{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionDisque{arg1}{arg2}{arg3}{arg4}#S
-\MPFractionDisqueH{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionRectangle{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionRectangleH{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionRegulier{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionRegulierH{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionSegment{arg1}{arg2}{arg3}{arg4}#S
-\MPFractionSegmentH{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionTriangle{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPFractionTriangleH{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\MPFractionDisque{arg1}{arg2}#S
+\MPFractionRectangle{arg1}{arg2}#S
+\MPFractionSegment{arg1}{arg2}#S
+\MPFractionTriangle{arg1}{arg2}#S
 \MPGlobe{arg1}{arg2}#S
-\MPGrille{arg1}{arg2}{arg3}{arg4}#S
-\MPGrillePointe{arg1}{arg2}{arg3}{arg4}#S
+\MPGrille#S
+\MPGrilleCode#S
 \MPHorloge{arg1}{arg2}{arg3}#S
-\MPIsometrique{arg1}{arg2}{arg3}#S
-\MPIsometriquePointe{arg1}{arg2}{arg3}#S
-\MPMillimetre{arg1}{arg2}{arg3}#S
+\MPIsometrique#S
+\MPIsometriqueCode#S
+\MPIsometriquePointe#S
+\MPIsometriquePointeCode#S
+\MPMillimetre#S
+\MPMillimetreCode#S
 \MPNewDEMIGraduee{arg1}{arg2}#S
 \MPNewDROITEGraduee{arg1}{arg2}#S
 \MPNewDROITEGradueeMulti{arg1}{arg2}#S
@@ -2642,7 +2688,8 @@ Teal#B
 \MPPlannew{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPPlanTrace{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPRadar{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
-\MPSeyes{arg1}{arg2}{arg3}#S
+\MPSeyes#S
+\MPSeyesCode#S
 \MPSolideCone{arg1}{arg2}{arg3}#S
 \MPSolideCylindre{arg1}{arg2}{arg3}#S
 \MPSolidePave{arg1}{arg2}{arg3}{arg4}{arg5}#S
@@ -2651,12 +2698,14 @@ Teal#B
 \MPStat{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \MPStatCirculaireQ{arg1}{arg2}{arg3}{arg4}{arg5}#S
 \MPStatNew{arg1}{arg2}#S
+\MPStatNewCode#S
 \MPStatQ{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \MPTest{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}{arg9}#S
 \MPTestCours{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}{arg9}#S
 \MPThermo{arg1}{arg2}#S
 \MPTraceFonction{arg1}{arg2}#S
-\MPTriangulaire{arg1}{arg2}{arg3}#S
+\MPTriangulaire#S
+\MPTriangulaireCode#S
 \Multi#S
 \Multij#S
 \Multijo#S
@@ -2678,7 +2727,9 @@ Teal#B
 \NbSecondes#S
 \NbTrois#S
 \NewMPDiagBarreHor{arg1}{arg2}{arg3}{arg4}#S
+\NewMPDiagBarreHorCode#S
 \NewMPStatCirculaireQ{arg1}{arg2}{arg3}{arg4}#S
+\NewMPStatCirculaireCodeQ#S
 \nil#S
 \NomA#S
 \NomAngleDroit#S
@@ -3087,6 +3138,7 @@ Teal#B
 \TotalP#S
 \toto#S
 \TraceDessinGradueComplet{arg1}{arg2}{arg3}#S
+\TraceDessinGradueCompletCode#S
 \TraceDoubleSolution{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \TraceEchiquierColoreColorilude#S
 \TraceEchiquierColorilude#S
@@ -3183,3 +3235,24 @@ Teal#B
 \LabyLongCM#S
 \begin{MyboxJQAr}#S
 \end{MyboxJQAr}#S
+\MPFractionEprouvetteCode#S
+\MPFractionEprouvette{arg1}{arg2}#S
+\MPFractionRegulierCode#S
+\MPFractionRegulier{arg1}{arg2}#S
+\MPFractionTriangleCode#S
+\MPFractionTriangle{arg1}{arg2}#S
+\MPFractionRectangleCode#S
+\MPFractionDisqueCode#S
+\MPFractionSegmentCode#S
+\MPPavageBase#S
+\MPReseauRegulier#S
+\MPReseauCode#S
+\MPPeriodiqueCode#S
+\MPPavageEscherCode#S
+\MPPavageEscher#S
+\MPPeriodique#S
+\MPReseau#S
+\MPRegulier#S
+\MPPavage#S
+\PfCRayonArc#S
+\PfCPapierTest#S
