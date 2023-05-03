@@ -1,5 +1,5 @@
 # njuthesis class
-# Matthew Bertucci 2023/05/02 for v1.2.0
+# Matthew Bertucci 2023/05/03 for v1.2.1
 
 #include:xtemplate
 #include:class-ctexbook
@@ -80,6 +80,7 @@ info/udc={%<udc%>}
 info/secret-level={%<不涉密|秘密|机密|绝密%>}
 info/supervisor-contact={%<导师联系方式%>}
 info/school-code={%<number%>}
+info/degree={%<中文学位名%>}
 info/degree*={%<英文学位名%>}
 header/content={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
 header/content*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
