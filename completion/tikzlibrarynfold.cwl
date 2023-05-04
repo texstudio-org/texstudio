@@ -1,5 +1,5 @@
 # nfold tikzlibrary
-# Matthew Bertucci 2023/04/24 for v0.1.0
+# Matthew Bertucci 2023/05/04 for v0.1.1
 
 # loads bezieroffset pgflibrary
 
@@ -10,7 +10,6 @@ scaling nfold
 scaling nfold=%<integer%>
 #endkeyvals
 
-\checkpgfsegmentvisible{arg}#*
 \pgfoffsetpath{softpath}{length}#*
 \pgfoffsetpathfraction{softpath}{width}{fraction}#*
 \pgfoffsetpathqfraction{softpath}{width}{fraction}#*
