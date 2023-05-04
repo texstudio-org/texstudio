@@ -5097,7 +5097,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
             if ( atStart() )
                 return false;
 
-            if ( m & QDocumentCursor::ThroughWrap && m_doc->line(line).cursorToDocumentOffset(offset).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y() ){
+            if ( m & QDocumentCursor::ThroughWrap && m_doc->line(line).cursorToDocumentOffset(offset).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y() && m_doc->line(line).cursorToDocumentOffset(offset).y()>0 ){
                 QPointF p = documentPosition();
                 p.rx() = 0;
 
