@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/04/04 for v1.5
+# Matthew Bertucci 2023/04/04 for v1.6
 
 #include:l3keys2e
 #include:luatexbase
@@ -61,7 +61,7 @@ splittable
 splittable=%<integer%>
 background-color=#%color
 prompt-background-color=#%color
-slim#true,false
+width=##L
 left-margin=##L
 tab-size=%<integer%>
 show-spaces
@@ -88,6 +88,7 @@ Operator=%<formatting%>
 Operator.Word=%<formatting%>
 Name.Builtin=%<formatting%>
 Name.Function=%<formatting%>
+UserFunction=%<formatting%>
 Name.Decorator=%<formatting%>
 Name.Namespace=%<formatting%>
 Name.Class=%<formatting%>
@@ -99,10 +100,12 @@ Keyword=%<formatting%>
 # not documented
 FormattingType=%<formatting%>
 Dict.Value=%<formatting%>
-Name.UserFunction=%<formatting%>
+Name.Field=%<formatting%>
 Interpol.Inside=%<formatting%>
 Comment.Math=%<formatting%>
+Name.Constructor=%<formatting%>
 InitialValues=%<formatting%>
+Name.Module=%<formatting%>
 TypeParameter=%<formatting%>
 Name.Type=%<formatting%>
 Identifier=%<formatting%>
@@ -124,6 +127,7 @@ Operator
 Operator.Word
 Name.Builtin
 Name.Function
+UserFunction
 Name.Decorator
 Name.Namespace
 Name.Class
@@ -135,9 +139,12 @@ Keyword
 # not documented
 FormattingType
 Dict.Value
+Name.Field
 Interpol.Inside
 Comment.Math
+Name.Constructor
 InitialValues
+Name.Module
 TypeParameter
 Name.Type
 Identifier
@@ -146,8 +153,9 @@ ParseAgain
 Prompt
 #endkeyvals
 
+\PitonClearUserFunctions
+ 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
-\PitonClearUserFunctions#*
 \myfiledate#S
 \myfileversion#S
