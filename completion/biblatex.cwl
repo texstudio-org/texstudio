@@ -8875,7 +8875,7 @@ issueeditor#true,false
 \mkbibdateunified{arg1}{arg2}{arg3}#*
 #endif
 
-### windycity 2021-12-04 ###
+### windycity 2023-05-03 ###
 #ifOption:style=windycity
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 annotate#true,false
@@ -8887,6 +8887,7 @@ noetal#true,false
 nolos#true,false
 nopages#true,false
 reflist#true,false
+sentencecase#true,false
 short#true,false
 shortafter#true,false
 shortfirst#true,false
