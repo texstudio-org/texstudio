@@ -165,7 +165,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        wget https://github.com/sunderme/homebrew-qt6/releases/download/${{ env.OSX_QT_VERSION }}/QtBase-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtBase-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./QtBase-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz -C /usr/local
         rm QtBase-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QtSvg-${{ env.OSX_QT_VERSION }}-Darwin.tar.xz
