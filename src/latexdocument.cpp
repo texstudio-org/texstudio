@@ -2407,6 +2407,9 @@ void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *additi
             break; // no further level to go down
         }
         se=se->children.last();
+        if(se->type  != StructureEntry::SE_SECTION){
+            break; // no structure
+        }
         for(int j=se->level;j<lp.structureDepth();++j){
             parent_level[j+1]=se;
         }
