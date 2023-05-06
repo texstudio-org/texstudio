@@ -212,6 +212,7 @@ public:
     Q_INVOKABLE bool isSubfileRoot(){
         return m_isSubfileRoot;
     }
+    bool saveCachingData(const QString &folder);
 
 private:
 	QString fileName; //absolute

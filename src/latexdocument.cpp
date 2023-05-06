@@ -1886,6 +1886,8 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 
 void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool purge)
 {
+    // save caching information
+    document->saveCachingData(QString("/home/sdm/.config/texstudio/cache"));
     if (!hidden)
         emit aboutToDeleteDocument(document);
     LatexEditorView *view = document->getEditorView();
@@ -3549,6 +3551,57 @@ QString LatexDocument::getLastEnvName(int lineNumber)
 	StackEnvironment env;
 	getEnv(lineNumber, env);
 	if (env.isEmpty())
-		return "";
-	return env.top().name;
+        return "";
+    return env.top().name;
+}
+/*!
+ * \brief save internal data for caching
+ * Data contains labels,user commands and children documents
+ */
+bool LatexDocument::saveCachingData(const QString &folder)
+{
+    // create folder if needed
+    QDir dir(folder);
+    if(!dir.exists()){
+        dir.mkpath(folder);
+    }
+
+    QFileInfo fi=getFileInfo();
+    QFile file(folder+"/"+fi.baseName()+".json");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    QJsonArray ja_labels;
+    for(const auto &elem:mLabelItem){
+        ja_labels.append(elem.name);
+    }
+
+    QJsonArray ja_docs;
+    for(const auto &elem:childDocs){
+        ja_docs.append(elem->fileName);
+    }
+
+    QJsonArray ja_userCommands;
+    QJsonObject j_cmd;
+    for(const auto &elem:mUserCommandList.values()){
+        ja_userCommands.append(elem.name);
+    }
+
+    QJsonArray ja_packages;
+    QJsonObject j_pkg;
+    for(const QString &elem:mUsepackageList.values()){
+        ja_packages.append(elem);
+    }
+
+    QJsonObject dd;
+    dd["filename"]=getFileName();
+    dd["labels"]=ja_labels;
+    dd["childdocs"]=ja_docs;
+    dd["usercommands"]=ja_userCommands;
+    dd["packages"]=ja_packages;
+
+    QJsonDocument jsonDoc(dd);
+    file.write(jsonDoc.toJson());
+
+    return true;
 }
