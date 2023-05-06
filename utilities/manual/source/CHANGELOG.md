@@ -1,5 +1,7 @@
 # CHANGELOG
-## TeXstudio 4.5.3
+## TeXstudio 4.6.0
+
+- use subfiles root for compilation is the current document is a child
 
 ## TeXstudio 4.5.2
 
