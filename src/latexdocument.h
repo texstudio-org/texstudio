@@ -209,6 +209,9 @@ public:
 		syntaxChecking = enable;
         SynChecker.enableSyntaxCheck(enable);
 	}
+    Q_INVOKABLE bool isSubfileRoot(){
+        return m_isSubfileRoot;
+    }
 
 private:
 	QString fileName; //absolute
@@ -269,6 +272,8 @@ private:
 	Environment unclosedEnv;
 
 	bool syntaxChecking;
+
+    bool m_isSubfileRoot=false;
 
 #ifndef QT_NO_DEBUG
 public:

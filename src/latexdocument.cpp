@@ -1086,8 +1086,19 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
                 if (cmd == "\\documentclass") {
                     //special treatment for documentclass, especially for the class options
-                    // at the moment a change here soes not automatically lead to an update of corresponding definitions, here babel
+                    // at the moment a change here does not automatically lead to an update of corresponding definitions, here babel
                     mClassOptions = firstOptArg;
+                    // special treatment for subfile class
+                    m_isSubfileRoot=(firstArg=="subfiles");
+                    if(firstArg=="subfiles"){
+                        // optional argument points to actual root
+                        // this is used to load that document
+                        QString fname = findFileName(firstOptArg);
+                        LatexDocument *dc = parent->findDocumentFromName(fname);
+                        if (!dc) {
+                            parent->addDocToLoad(fname);
+                        }
+                    }
                 }
 
                 QStringList packages;
