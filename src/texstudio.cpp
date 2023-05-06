@@ -6171,7 +6171,7 @@ void Texstudio::runInternalCommand(const QString &cmd, const QString &mainfile, 
 void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool *)
 {
 	if (!buildManager.m_interpetCommandDefinitionInMagicComment) return;
-	LatexDocument *rootDoc = documents.getRootDocumentForDoc();
+    LatexDocument *rootDoc = documents.getRootDocumentForDoc(nullptr,true);
 	if (!rootDoc) return;
 	QString magic = rootDoc->getMagicComment("TXS-program:" + cmdId);
 	if (!magic.isEmpty()) {

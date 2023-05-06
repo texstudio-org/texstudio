@@ -152,7 +152,7 @@ public:
 	{
 		return masterDocument;
 	}
-    const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = nullptr) const;
+    const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = nullptr, bool breakAtSubfileRoot=false) const;
 	Q_INVOKABLE LatexDocument *getRootDocument();
 	Q_INVOKABLE LatexDocument *getTopMasterDocument()
 	{
@@ -340,7 +340,7 @@ public:
     Q_PROPERTY(LatexDocument *masterDocument READ getMasterDocument)
     Q_PROPERTY(QList<LatexDocument *> documents READ getDocuments); //<- semicolon necessary due to qt bug 22992
 
-    Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = nullptr) const ; ///< no argument means current doc ...
+    Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = nullptr, bool breakAtSubfileRoot=false) const ; ///< no argument means current doc ...
 
 	Q_INVOKABLE QString getCurrentFileName() const; ///< returns the absolute file name of the current file or "" if none is opened
 	Q_INVOKABLE QString getCompileFileName() const; ///< returns the absolute file name of the file to be compiled (master or current)
