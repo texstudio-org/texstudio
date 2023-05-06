@@ -1274,6 +1274,7 @@
 <file>completion/dynblocks.cwl</file>
 <file>completion/dynbrackets.cwl</file>
 <file>completion/dynkin-diagrams.cwl</file>
+<file>completion/dyntree.cwl</file>
 <file>completion/ean13isbn.cwl</file>
 <file>completion/easybase.cwl</file>
 <file>completion/easyfig.cwl</file>
@@ -2722,6 +2723,7 @@
 <file>completion/platex.cwl</file>
 <file>completion/plautopatch.cwl</file>
 <file>completion/Play.cwl</file>
+<file>completion/playcards.cwl</file>
 <file>completion/PlayfairDisplay.cwl</file>
 <file>completion/pldocverb.cwl</file>
 <file>completion/plex-mono.cwl</file>
@@ -3485,6 +3487,7 @@
 <file>completion/thumby.cwl</file>
 <file>completion/ticket.cwl</file>
 <file>completion/ticollege.cwl</file>
+<file>completion/tikz3d-fr.cwl</file>
 <file>completion/tikz-3dplot.cwl</file>
 <file>completion/tikz-among-us.cwl</file>
 <file>completion/tikz-among-us-fancyhdr.cwl</file>

@@ -1,8 +1,7 @@
 # njuthesis class
-# Matthew Bertucci 2022/10/24 for v1.1.0
+# Matthew Bertucci 2023/05/03 for v1.2.1
 
 #include:xtemplate
-#include:l3keys2e
 #include:class-ctexbook
 #include:geometry
 #include:fancyhdr
@@ -77,9 +76,12 @@ info/bottom-date={%<yyyy-mm-dd%>}
 info/chairman={%<答辩主席姓名职称%>}
 info/reviewer={%<答辩评委姓名职称%>}
 info/clc={%<中图分类号%>}
-info/secret-level={%<不涉密|秘密|机密|绝密%>}
 info/udc={%<udc%>}
+info/secret-level={%<不涉密|秘密|机密|绝密%>}
 info/supervisor-contact={%<导师联系方式%>}
+info/school-code={%<number%>}
+info/degree={%<中文学位名%>}
+info/degree*={%<英文学位名%>}
 header/content={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
 header/content*={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
 footer/content={{%<位置%>}{%<内容%>}%<,{位置}{内容},...%>}
@@ -113,12 +115,12 @@ bib/style=%<自定义样式%>
 bib/option={%<选项列表%>}
 bib/resource={%<文件%>}
 abstract/toc-entry#true,false
+abstract/underline#true,false
 abstract/title-style=#strict,centered,natural
 tableofcontents/dotline=#chapter,section
 tableofcontents/toc-entry#true,false
 listoffigures/toc-entry#true,false
 listoftables/toc-entry#true,false
-
 #endkeyvals
 
 \njuline{文字%text}

@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/04/28 for v2.6.1
+# Matthew Bertucci 2023/05/03 for v2.6.2
 
 #include:mathtools
 #include:xcolor
@@ -312,6 +312,7 @@ Equationcos#true,false
 Equationsin#true,false
 cos=%<degrees%>
 sin=%<degrees%>
+AffTraitsEq#true,false
 CouleurSol=#%color
 #endkeyvals
 
