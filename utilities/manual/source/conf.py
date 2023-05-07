@@ -9,7 +9,7 @@
 project = 'TeXstudio'
 copyright = '2022, TeXstudio Team'
 author = 'TeXstudio Team'
-release = '4.5.3'
+release = '4.6.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
