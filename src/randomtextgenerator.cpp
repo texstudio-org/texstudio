@@ -92,9 +92,15 @@ void RandomTextGenerator::generateText()
 		}
 	}
 
+        //----------------------------------generating
+        //---------------------------------------
+        // lorem ipsum
+        if (ui->loremIpsumRadioButton->isChecked()) {
+                generateLoremIpsum();
+                return;
+        }
 
-	//----------------------------------generating ---------------------------------------
-	//like Shannon in "A Mathematical Theory of Communication" (1949)
+        //like Shannon in "A Mathematical Theory of Communication" (1949)
 
 	int order = -1;
 	bool usewords = true;
@@ -241,3 +247,35 @@ void RandomTextGenerator::newWordForStream(const QString &w)
 	textStream << w;
 }
 
+void RandomTextGenerator::generateLoremIpsum() {
+        const static QString loremIpsum(
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam "
+            "nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam "
+            "erat, sed diam voluptua. At vero eos et accusam et justo duo "
+            "dolores et ea rebum. Stet clita kasd gubergren, no sea takimata "
+            "sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit "
+            "amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor "
+            "invidunt ut labore et dolore magna aliquyam erat, sed diam "
+            "voluptua. At vero eos et accusam et justo duo dolores et ea "
+            "rebum. Stet clita kasd gubergren, no sea takimata sanctus est "
+            "Lorem ipsum dolor sit amet. ");
+
+        QString text;
+
+        int length = ui->lengthSpinBox->value();
+
+        while (length > 100) {
+                text += loremIpsum;
+                length -= 100;
+        }
+
+        int nthSpaceIndex = 0;
+
+        for (int spaceCounter = 0; spaceCounter < length; spaceCounter++) {
+                nthSpaceIndex = loremIpsum.indexOf(' ', nthSpaceIndex + 1);
+        }
+
+        text += loremIpsum.left(nthSpaceIndex);
+
+        ui->outputEdit->setText(text.trimmed());
+}
