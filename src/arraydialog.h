@@ -25,10 +25,33 @@ public:
 	Ui::ArrayDialog ui;
 	QString getLatexText();
 
+private:
+	QStringList environmentList = { "array", "alignedat",
+									"", /* separator */
+									"matrix",  "pmatrix",  "bmatrix",  "Bmatrix",  "vmatrix",  "Vmatrix",		// amsmath
+									"", /* separator */
+									"matrix*", "pmatrix*", "bmatrix*", "Bmatrix*", "vmatrix*", "Vmatrix*" };	// mathtools
+	QList<Qt::AlignmentFlag> alignList = {Qt::AlignHCenter, Qt::AlignLeft, Qt::AlignRight};
+	QStringList alignTextList = {tr("Center"), tr("Left"), tr("Right")};
+	QList<int> arrayAligns;
+	void addEmptyTableItems();
+	void addEmptyColumnItems(int col);
+	void setComboEnv();
+	void setColAlignments();
+	void setColAlignment(int col, Qt::AlignmentFlag align);
+	int currentColAlignIndex(int col);
+	QStringList getEnvBeginEndStatements();
+	QString getArrayAlignments();
+
 protected slots:
 	void newRows(int num);
 	void newColumns(int num);
     void keyPressEvent(QKeyEvent *event);
+	void setTitle();
+	void setTableHeader();
+	void slotEnvironmentChanged();
+	void slotAlignmentChanged(int ix);
+	void slotCurrentCellChanged(int row, int col);
 };
 
 #endif

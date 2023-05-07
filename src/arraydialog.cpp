@@ -19,45 +19,50 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 	ui.setupUi(this);
 	UtilsUi::resizeInFontHeight(this, 36, 30);
 
+	int defaultColCount = 2;
+	ui.tableWidget->setColumnCount(defaultColCount);
 	ui.tableWidget->setRowCount(2);
-	ui.tableWidget->setColumnCount(2);
 
 	ui.spinBoxRows->setValue(2);
 	ui.spinBoxRows->setRange(1, 99);
 	connect(ui.spinBoxRows, SIGNAL(valueChanged(int)), this, SLOT(newRows(int)));
 
-	ui.spinBoxColumns->setValue(2);
+	ui.spinBoxColumns->setValue(defaultColCount);
 	ui.spinBoxColumns->setRange(1,99);
 	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)), this, SLOT(newColumns(int)));
 
-	ui.comboAlignment->insertItem(0, tr("Center"), 'c');
-	ui.comboAlignment->insertItem(1, tr("Left"), 'l');
-	ui.comboAlignment->insertItem(2, tr("Right"), 'r');
+	setComboEnv();
+	ui.comboEnvironment->setCurrentIndex(0);
 
-	ui.comboEnvironment->insertItem(0, "array");
-	ui.comboEnvironment->insertItem(1, "matrix");
-	ui.comboEnvironment->insertItem(2, "pmatrix");
-	ui.comboEnvironment->insertItem(3, "bmatrix");
-	ui.comboEnvironment->insertItem(4, "Bmatrix");
-	ui.comboEnvironment->insertItem(5, "vmatrix");
-	ui.comboEnvironment->insertItem(6, "Vmatrix");
-	setWindowTitle(tr("Quick Array"));
+	ui.comboAlignment->insertItem(0, alignTextList.at(0), 'c');
+	ui.comboAlignment->insertItem(1, alignTextList.at(1), 'l');
+	ui.comboAlignment->insertItem(2, alignTextList.at(2), 'r');
+
+	int defaultAlignIndex = alignList.indexOf(Qt::AlignHCenter);
+	// fill the list with the alignments for array environment
+	for (int col = 0; col < defaultColCount; col++) {
+		arrayAligns << defaultAlignIndex;
+	}
+
+	ui.tableWidget->setCurrentCell(0,0);
+	ui.comboAlignment->setCurrentIndex(defaultAlignIndex);
+	addEmptyTableItems();
+	slotEnvironmentChanged();
+
+	connect(ui.comboEnvironment,SIGNAL(currentIndexChanged(int)),SLOT(slotEnvironmentChanged()));
+	connect(ui.comboAlignment,SIGNAL(currentIndexChanged(int)),SLOT(slotAlignmentChanged(int)));
+	connect(ui.tableWidget, SIGNAL(currentCellChanged(int, int, int, int)),SLOT(slotCurrentCellChanged(int, int)));
 }
 
 ArrayDialog::~ArrayDialog() {
 }
 
-QString ArrayDialog::getLatexText()
-{
+QString ArrayDialog::getLatexText() {
 	int nrows = ui.spinBoxRows->value();
 	int ncols = ui.spinBoxColumns->value();
-	QString env = ui.comboEnvironment->currentText();
-	QString text = QString("\\begin{") + env + "}";
-	if (env == "array") {
-		QChar alignChar = ui.comboAlignment->itemData(ui.comboAlignment->currentIndex()).toChar();
-		text += "{" + QString(ncols, alignChar) + "}";
-	}
-	text += QString("\n");
+	QStringList beginEnd = getEnvBeginEndStatements();
+
+	QString text = beginEnd.first() + "\n";
 	for (int i = 0; i < nrows - 1; i++) {
 		for (int j = 0; j < ncols - 1; j++) {
 			QTableWidgetItem *item = ui.tableWidget->item(i, j);
@@ -79,16 +84,189 @@ QString ArrayDialog::getLatexText()
 	QTableWidgetItem *item = ui.tableWidget->item(nrows - 1, ncols - 1);
 	if (item)
 		text += item->text();
-	text += QString("\n\\end{") + env + "}";
+	text += QString("\n");
+	text += beginEnd.last();
 	return text;
 }
 
-void ArrayDialog::newRows(int num) {
-	ui.tableWidget->setRowCount(num);
+void ArrayDialog::addEmptyTableItems() {
+	int cols = ui.tableWidget->columnCount();
+	for (int col = 0; col < cols; col++) {
+		addEmptyColumnItems(col);
+	}
 }
 
-void ArrayDialog::newColumns(int num) {
-	ui.tableWidget->setColumnCount(num);
+void ArrayDialog::addEmptyColumnItems(int col) {
+	int rows = ui.tableWidget->rowCount();
+	for (int row = 0; row < rows; row++) {
+		QTableWidgetItem *newItem = new QTableWidgetItem();
+		ui.tableWidget->setItem(row, col, newItem);
+	}
+}
+
+void ArrayDialog::setTitle() {
+	QString text = tr("Quick Array") + " - ";
+	QStringList beginEnd = getEnvBeginEndStatements();
+	text += beginEnd.first() + "..." + beginEnd.last();
+	setWindowTitle(text);
+	setTableHeader();
+}
+
+void ArrayDialog::setTableHeader() {
+	int ncols = ui.spinBoxColumns->value();
+	QStringList headerList;
+	for (int i = 0; i < ncols; i++) {
+		int ix = currentColAlignIndex(i);
+		headerList << ui.comboAlignment->itemData(ix).toChar();
+	}
+	ui.tableWidget->setHorizontalHeaderLabels(headerList);
+}
+
+QStringList ArrayDialog::getEnvBeginEndStatements() {
+	int ncols = ui.spinBoxColumns->value();
+	QString env = ui.comboEnvironment->currentText();
+	QString begin = QString("\\begin{" + env + "}");
+	QString end = QString("\\end{") + env + "}";
+
+	if (env == "array") {
+		begin += "{" + getArrayAlignments() + "}";
+	}
+	else if (env == "alignedat") {
+		begin += QString("{%1}").arg((ncols + 1) / 2);
+	}
+	else if (env.endsWith("*")) {   // mathtools
+		int idx = ui.comboAlignment->currentIndex();
+		begin += "[" + QString(ui.comboAlignment->itemData(idx).toChar()) + "]";
+	}
+	return {begin, end};
+}
+
+QString ArrayDialog::getArrayAlignments() {
+	int ncols = ui.spinBoxColumns->value();
+	QString text;
+	for (int i = 0; i < ncols; i++) {
+		text += ui.comboAlignment->itemData(arrayAligns.at(i)).toChar();
+	}
+	return text;
+}
+
+void ArrayDialog::setComboEnv() {
+	ui.comboEnvironment->clear();
+
+	for (int i = 0; i < environmentList.count(); i++) {
+		QString env = environmentList.at(i);
+		if (env == "")
+			ui.comboEnvironment->insertSeparator(i);
+		else ui.comboEnvironment->insertItem(i, env);
+	}
+}
+
+void ArrayDialog::slotEnvironmentChanged() {
+	QString env = ui.comboEnvironment->currentText();
+	if (env == "array") {
+		int currentCol = ui.tableWidget->currentColumn();
+		ui.comboAlignment->setCurrentIndex(arrayAligns.at(currentCol));
+	}
+	setColAlignments();
+	setTitle();
+}
+
+void ArrayDialog::setColAlignments() {
+	int cols = ui.tableWidget->columnCount();
+	for (int col = 0; col < cols; col++) {
+		int ix = currentColAlignIndex(col);
+		setColAlignment(col, alignList.at(ix));
+	}
+}
+
+void ArrayDialog::setColAlignment(int col, Qt::AlignmentFlag align) {
+	int rows = ui.tableWidget->rowCount();
+	for (int row = 0; row < rows; row++) {
+		QTableWidgetItem *item = ui.tableWidget->item(row, col);
+		item->setTextAlignment(align);
+	}
+}
+
+int ArrayDialog::currentColAlignIndex(int col) {
+	QString env = ui.comboEnvironment->currentText();
+	int ix;
+	if (env == "array") {
+		ix = arrayAligns.at(col);
+	}
+	else if (env == "alignedat") {
+		int mode = col % 2;
+		if (mode == 0) {
+			ix = alignList.indexOf(Qt::AlignRight);
+		}
+		else {
+			ix = alignList.indexOf(Qt::AlignLeft);
+		}
+	}
+	else if (env.endsWith("*")) {  // mathtools
+		ix = ui.comboAlignment->currentIndex();
+	}
+	else {  // amsmath
+		ix = alignList.indexOf(Qt::AlignHCenter);
+	}
+	return ix;
+}
+
+void ArrayDialog::slotAlignmentChanged(int ix) {
+	QString env = ui.comboEnvironment->currentText();
+	if (env == "array") {
+		int col = ui.tableWidget->currentColumn();
+		arrayAligns[ui.tableWidget->currentColumn()] = ix;
+		Qt::AlignmentFlag align = alignList[ix];
+		setColAlignment(col, align);
+	}
+	else if (!env.endsWith("*") || env == "alignedat") {}
+	else
+		setColAlignments();
+	setTitle();
+}
+
+void ArrayDialog::slotCurrentCellChanged(int row, int col) {
+	QString env = ui.comboEnvironment->currentText();
+	if (env == "array") {
+		ui.comboAlignment->setCurrentIndex(arrayAligns.at(col));
+	}
+}
+
+void ArrayDialog::newRows(int rows) {
+	int rowsOld = ui.tableWidget->rowCount();
+	int cols = ui.tableWidget->columnCount();
+	ui.tableWidget->setRowCount(rows);
+	if (rows > rowsOld) {
+		for (int col = 0; col < cols; col++) {
+			int ix = currentColAlignIndex(col);
+			Qt::AlignmentFlag align = alignList[ix];
+			for (int row = rowsOld; row < rows; row++) {
+				QTableWidgetItem *newItem = new QTableWidgetItem();
+				ui.tableWidget->setItem(row, col, newItem);
+				newItem->setTextAlignment(align);
+			}
+		}
+	}
+}
+
+void ArrayDialog::newColumns(int cols) {
+	int colsOld = ui.tableWidget->columnCount();
+	ui.tableWidget->setColumnCount(cols);
+	if (colsOld > cols) {
+		for (int col = colsOld; col > cols; col--) arrayAligns.removeLast();
+	}
+	else if (cols > colsOld) {
+		int ixArray = ui.comboAlignment->currentIndex();
+		Qt::AlignmentFlag alignArray = alignList[ixArray];
+		for (int col = colsOld; col < cols; col++) {
+			arrayAligns.append(ixArray);
+			addEmptyColumnItems(col);
+			int ixOther = currentColAlignIndex(col);
+			Qt::AlignmentFlag alignOther = alignList[ixOther];
+			setColAlignment(col, alignOther);
+		}
+	}
+	setTitle();
 }
 
 void ArrayDialog::keyPressEvent(QKeyEvent *event)
@@ -253,7 +431,6 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
         {
             if (cur_row >= ui.tableWidget->rowCount())
             {
-                ui.tableWidget->setRowCount(ui.tableWidget->rowCount() + 1);
                 ui.spinBoxRows->setValue(ui.spinBoxRows->value() + 1);
             }
 
@@ -262,7 +439,6 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
             {
                 if (cur_col >= ui.tableWidget->columnCount())
                 {
-                    ui.tableWidget->setColumnCount(ui.tableWidget->columnCount() + 1);
                     ui.spinBoxColumns->setValue(ui.spinBoxColumns->value() + 1);
                 }
 
@@ -271,13 +447,6 @@ void ArrayDialog::keyPressEvent(QKeyEvent *event)
                 {
                     item->setText(col);
                     ++cur_col;
-                }
-                else
-                {
-                    // Creates new item if item doesn't exist.
-                    QTableWidgetItem *newItem = new QTableWidgetItem();
-                    newItem->setText(col);
-                    ui.tableWidget->setItem(cur_row, cur_col, newItem);
                 }
             }
             ++cur_row;

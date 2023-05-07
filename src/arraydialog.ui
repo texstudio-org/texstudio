@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0" >
  <class>ArrayDialog</class>
  <widget class="QDialog" name="ArrayDialog" >
@@ -17,7 +18,7 @@
     <number>6</number>
    </property>
    <item row="0" column="0" >
-    <layout class="QGridLayout" >
+    <layout class="QGridLayout"  columnstretch="0,1">
      <property name="margin" >
       <number>0</number>
      </property>
@@ -41,7 +42,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0" >
+     <item row="5" column="0" >
       <widget class="QLabel" name="label_2" >
        <property name="text" >
         <string>Columns Alignment</string>
@@ -62,13 +63,17 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1" >
+     <item row="5" column="1" >
       <widget class="QComboBox" name="comboAlignment" >
        <property name="currentIndex" >
         <number>-1</number>
        </property>
        <property name="maxVisibleItems" >
         <number>11</number>
+       </property>
+       <property name="toolTip" >
+        <string>In case of an array environment sets the alignment for the column of the currently selected cell.
+For matrix* and the like (package mathtools) sets the alignment for all columns at once.</string>
        </property>
       </widget>
      </item>
@@ -83,7 +88,16 @@
       </widget>
      </item>
      <item row="4" column="1" >
-      <widget class="QComboBox" name="comboEnvironment" />
+      <widget class="QComboBox" name="comboEnvironment" >
+       <property name="maxVisibleItems" >
+        <number>16</number>
+       </property>
+       <property name="toolTip" >
+        <string>Choose environment to be created (s. window title).
+Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
