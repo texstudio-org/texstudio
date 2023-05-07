@@ -2562,6 +2562,23 @@ void LatexDocument::moveElementWithSignal(StructureEntry *se, StructureEntry *pa
     removeElement(se);
     insertElement(parent, pos, se);
 }
+/*!
+ * \brief represent local toc with section only as stringlist
+ * \return
+ */
+QStringList LatexDocument::unrollStructure()
+{
+    QStringList result;
+    StructureEntryIterator iter(baseStructure);
+
+    while (iter.hasNext()) {
+        StructureEntry *curSection = iter.next();
+        if (curSection->type == StructureEntry::SE_SECTION){
+            result<<QString("%1").arg(curSection->level)+"#"+curSection->title;
+        }
+    }
+    return result;
+}
 
 void LatexStructureMerger::updateParentVector(StructureEntry *se)
 {
@@ -3582,15 +3599,19 @@ bool LatexDocument::saveCachingData(const QString &folder)
     }
 
     QJsonArray ja_userCommands;
-    QJsonObject j_cmd;
     for(const auto &elem:mUserCommandList.values()){
         ja_userCommands.append(elem.name);
     }
 
     QJsonArray ja_packages;
-    QJsonObject j_pkg;
     for(const QString &elem:mUsepackageList.values()){
         ja_packages.append(elem);
+    }
+    // store toc structure
+    QStringList toc=unrollStructure();
+    QJsonArray ja_toc;
+    for(const QString &elem:toc){
+        ja_toc.append(elem);
     }
 
     QJsonObject dd;
@@ -3599,6 +3620,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
     dd["childdocs"]=ja_docs;
     dd["usercommands"]=ja_userCommands;
     dd["packages"]=ja_packages;
+    dd["toc"]=ja_toc;
 
     QJsonDocument jsonDoc(dd);
     file.write(jsonDoc.toJson());

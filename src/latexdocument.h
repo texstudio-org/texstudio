@@ -264,6 +264,8 @@ private:
 	void insertElement(StructureEntry *parent, int pos, StructureEntry *se);
 	void moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos);
 
+    QStringList unrollStructure();
+
 	void addMagicComment(const QString &text, int lineNr, int posMagicComment);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
 
