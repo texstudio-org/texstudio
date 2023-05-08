@@ -1,10 +1,12 @@
 # newtxsf package
-# Matthew Bertucci 1/13/2021 for v1.054
+# Matthew Bertucci 2023/05/08 for v1.055
 
 #include:amsmath
 #include:xkeyval
 
 #keyvals:\usepackage/newtxsf#c
+scaled=%<factor%>
+vecsep=##L
 nosymbolsc
 cmintegrals
 noamssymbols
@@ -14,6 +16,7 @@ slantedGreek
 frenchmath
 upint
 smallerops
+noSTIXops
 #endkeyvals
 
 # text- or math-mode commands
