@@ -9,7 +9,7 @@
 #include:textcomp
 
 \abstractname#*
-\addcontentsline{ext}{secunit}{entry}#*
+\addcontentsline{ext}{secunit}{entry%text}#*
 \Alph{counter}#*
 \alph{counter}#*
 \and#*
@@ -280,8 +280,8 @@
 \MakeUppercase{text}#*
 \MakeUppercase[options%keyvals]{text}#*
 \mapstochar#*m
-\marginpar[left]{right}#*
-\marginpar{right}#*
+\marginpar[left%text]{right%text}#*
+\marginpar{right%text}#*
 \markboth{lefthead}{righthead}#*
 \markright{righthead}#*
 \mathbf{text%plain}#m
