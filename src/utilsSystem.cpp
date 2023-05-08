@@ -320,7 +320,7 @@ QIcon getRealIcon(const QString &icon)
 	QString name = getRealIconFile(icon);
 	QIcon ic = QIcon(name);
 	//if(ic.isNull()){
-#if (defined(Q_OS_OSX))
+#if QT_VERSION_MAJOR<6 && defined(Q_OS_OSX)
 	QPixmap pm(32, 32);
 	pm.load(name);
 	ic = QIcon(pm);
