@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>534</width>
-    <height>510</height>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,34 +20,7 @@
       <string>Options</string>
      </property>
      <layout class="QGridLayout">
-      <item row="5" column="0" colspan="3">
-       <widget class="QRadioButton" name="wordOrder1RadioButton">
-        <property name="text">
-         <string>First Order Word</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0" colspan="3">
-       <widget class="QRadioButton" name="wordOrder2RadioButton">
-        <property name="text">
-         <string>Second Order Words</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0" colspan="3">
-       <widget class="QRadioButton" name="wordOrder3RadioButton">
-        <property name="text">
-         <string>Third Order Words</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="18" column="0" colspan="3">
+      <item row="4" column="0">
        <spacer>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
@@ -55,64 +28,13 @@
         <property name="sizeHint" stdset="0">
          <size>
           <width>20</width>
-          <height>40</height>
+          <height>25</height>
          </size>
         </property>
        </spacer>
       </item>
-      <item row="19" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Length:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="21" column="0" colspan="3">
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="22" column="0" colspan="3">
-       <widget class="QPushButton" name="generateButton">
-        <property name="text">
-         <string>Generate</string>
-        </property>
-       </widget>
-      </item>
-      <item row="23" column="0" colspan="3">
-       <widget class="QPushButton" name="closeButton">
-        <property name="text">
-         <string>Close</string>
-        </property>
-       </widget>
-      </item>
-      <item row="19" column="2">
-       <widget class="QSpinBox" name="lengthSpinBox">
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>2147483647</number>
-        </property>
-        <property name="value">
-         <number>40</number>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0">
-       <widget class="QRadioButton" name="wordOrderXRadioButton">
-        <property name="text">
-         <string>Higher Order:</string>
-        </property>
-       </widget>
+      <item row="18" column="2">
+       <widget class="QLineEdit" name="exportFileNameLineEdit"/>
       </item>
       <item row="8" column="2">
        <widget class="QSpinBox" name="wordOrderSpinBox">
@@ -131,17 +53,44 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="3">
-       <widget class="QRadioButton" name="characterOrder2RadioButton">
+      <item row="23" column="0" colspan="3">
+       <widget class="QPushButton" name="generateButton">
         <property name="text">
-         <string>Second Order Characters</string>
+         <string>Generate</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" colspan="3">
-       <widget class="QRadioButton" name="characterOrder3RadioButton">
+      <item row="16" column="0" colspan="3">
+       <widget class="QCheckBox" name="upperCaseCheckBox">
         <property name="text">
-         <string>Third Order Characters</string>
+         <string>Ignore Case</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QRadioButton" name="wordOrderXRadioButton">
+        <property name="text">
+         <string>Higher Order:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="22" column="0" colspan="3">
+       <spacer>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="5" column="0" colspan="3">
+       <widget class="QRadioButton" name="wordOrder1RadioButton">
+        <property name="text">
+         <string>First Order Word</string>
         </property>
        </widget>
       </item>
@@ -149,6 +98,13 @@
        <widget class="QRadioButton" name="characterOrderXRadioButton">
         <property name="text">
          <string>Higher Order:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="18" column="0">
+       <widget class="QCheckBox" name="exportCheckBox">
+        <property name="text">
+         <string>Save to:</string>
         </property>
        </widget>
       </item>
@@ -162,28 +118,86 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>25</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="15" column="0" colspan="3">
-       <widget class="QCheckBox" name="upperCaseCheckBox">
+      <item row="2" column="0" colspan="3">
+       <widget class="QRadioButton" name="characterOrder3RadioButton">
         <property name="text">
-         <string>Ignore Case</string>
+         <string>Third Order Characters</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="0" colspan="3">
-       <spacer name="verticalSpacer">
+      <item row="1" column="0" colspan="3">
+       <widget class="QRadioButton" name="characterOrder2RadioButton">
+        <property name="text">
+         <string>Second Order Characters</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0" colspan="3">
+       <widget class="QCheckBox" name="punctationCheckBox">
+        <property name="text">
+         <string>Punctation</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="3">
+       <widget class="QRadioButton" name="wordOrder2RadioButton">
+        <property name="text">
+         <string>Second Order Words</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="24" column="0" colspan="3">
+       <widget class="QPushButton" name="closeButton">
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+      <item row="20" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Length:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="20" column="2">
+       <widget class="QSpinBox" name="lengthSpinBox">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>2147483647</number>
+        </property>
+        <property name="value">
+         <number>40</number>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="0" colspan="3">
+       <widget class="QCheckBox" name="latexInput">
+        <property name="text">
+         <string>LaTeX Input</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="3">
+       <widget class="QRadioButton" name="wordOrder3RadioButton">
+        <property name="text">
+         <string>Third Order Words</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="19" column="0" colspan="3">
+       <spacer>
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
@@ -196,31 +210,24 @@
        </spacer>
       </item>
       <item row="10" column="0" colspan="3">
-       <widget class="QCheckBox" name="punctationCheckBox">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="9" column="0">
+       <widget class="QRadioButton" name="loremIpsumRadioButton">
         <property name="text">
-         <string>Punctation</string>
+         <string>Lorem Ipsum</string>
         </property>
        </widget>
-      </item>
-      <item row="16" column="0" colspan="3">
-       <widget class="QCheckBox" name="latexInput">
-        <property name="text">
-         <string>LaTeX Input</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="17" column="0">
-       <widget class="QCheckBox" name="exportCheckBox">
-        <property name="text">
-         <string>Save to:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="17" column="2">
-       <widget class="QLineEdit" name="exportFileNameLineEdit"/>
       </item>
      </layout>
     </widget>

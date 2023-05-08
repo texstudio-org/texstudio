@@ -37,6 +37,7 @@ private:
 private slots:
 	void generateText();
 	void resetWords();
+        void generateLoremIpsum();
 };
 
 #endif // RANDOMTEXTGENERATOR_H
