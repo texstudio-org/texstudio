@@ -709,26 +709,44 @@ bool scriptengine::needWritePrivileges(const QString &fn, const QString &param)
 {
     if (writeSecurityMode == 0) return false;
     if (hasWritePrivileges()) return true;
-    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
-                                  tr("The current script has requested to enter privileged write mode and call following function:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this call"),
-                                  tr("Yes, allow all calls it will ever make"), tr("No, abort the call"), 0, 2);
-    if (t == 0) return true; //only now
-    if (t != 1) return false;
-    privilegedWriteScripts.append(getScriptHash());
-    return true;
+    QMessageBox messageBox;
+    messageBox.setWindowTitle("TeXstudio script watcher");
+    messageBox.setIcon(QMessageBox::Question);
+    messageBox.setText(tr("The current script has requested to enter privileged write mode and call following function:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"));
+    QAbstractButton *acceptButton =  messageBox.addButton(tr("Yes, allow this call"), QMessageBox::AcceptRole);
+    QAbstractButton *acceptAllButton =  messageBox.addButton(tr("Yes, allow all calls it will ever make"), QMessageBox::AcceptRole);
+    messageBox.addButton(tr("No, abort the call"), QMessageBox::RejectRole);
+    messageBox.exec();
+    if (messageBox.clickedButton() == acceptButton) {
+        return true;
+    }
+    if (messageBox.clickedButton() == acceptAllButton) {
+        privilegedWriteScripts.append(getScriptHash());
+        return true;
+    }
+    return false;
 }
 
 bool scriptengine::needReadPrivileges(const QString &fn, const QString &param)
 {
     if (readSecurityMode == 0) return false;
     if (hasReadPrivileges()) return true;
-    int t = QMessageBox::question(nullptr, "TeXstudio script watcher",
-                                  tr("The current script has requested to enter privileged mode and read the following value:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"), tr("Yes, allow this reading"),
-                                  tr("Yes, grant permanent read access to everything"), tr("No, abort the call"), 0, 2);
-    if (t == 0) return true; //only now
-    if (t != 1) return false;
-    privilegedReadScripts.append(getScriptHash());
-    return true;
+    QMessageBox messageBox;
+    messageBox.setWindowTitle("TeXstudio script watcher");
+    messageBox.setIcon(QMessageBox::Question);
+    messageBox.setText(tr("The current script has requested to enter privileged mode and read the following value:\n%1\n\nDo you trust this script?").arg(fn + "(\"" + param + "\")"));
+    QAbstractButton *acceptButton =  messageBox.addButton(tr("Yes, allow this reading"), QMessageBox::AcceptRole);
+    QAbstractButton *acceptAllButton =  messageBox.addButton(tr("Yes, grant permanent read access to everything"), QMessageBox::AcceptRole);
+    messageBox.addButton(tr("No, abort the call"), QMessageBox::RejectRole);
+    messageBox.exec();
+    if (messageBox.clickedButton() == acceptButton) {
+        return true;
+    }
+    if (messageBox.clickedButton() == acceptAllButton) {
+        privilegedReadScripts.append(getScriptHash());
+        return true;
+    }
+    return false;
 }
 
 bool scriptengine::hasPersistent(const QString &name)
