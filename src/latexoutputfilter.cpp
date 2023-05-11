@@ -825,7 +825,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 
 bool LatexOutputFilter::detectLaTeXLineNumber(QString &warning, short &dwCookie, int len)
 {
-	static QRegExp reLaTeXLineNumber("(.*) on(?: input)? line ([0-9]+)\\.$", Qt::CaseInsensitive);
+	static QRegExp reLaTeXLineNumber("(.*) on(?: input)? line ([0-9]+)\\.?$", Qt::CaseInsensitive);
 	static QRegExp reInternationalLaTeXLineNumber("(.*)([0-9]+)\\.$", Qt::CaseInsensitive);
 	if ((reLaTeXLineNumber.indexIn(warning) != -1) || (reInternationalLaTeXLineNumber.indexIn(warning) != -1)) {
 		m_currentItem.oldline = (reLaTeXLineNumber.cap(2).toInt());
