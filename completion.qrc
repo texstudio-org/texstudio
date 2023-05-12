@@ -3334,6 +3334,7 @@
 <file>completion/swungdash.cwl</file>
 <file>completion/symbats3.cwl</file>
 <file>completion/symbolpalette.cwl</file>
+<file>completion/SympyCalc.cwl</file>
 <file>completion/sympytex.cwl</file>
 <file>completion/synproof.cwl</file>
 <file>completion/syntaxdi.cwl</file>
@@ -3817,6 +3818,7 @@
 <file>completion/unicodefonttable.cwl</file>
 <file>completion/unicode-math.cwl</file>
 <file>completion/uni.cwl</file>
+<file>completion/unifront.cwl</file>
 <file>completion/uninormalize.cwl</file>
 <file>completion/uniquecounter.cwl</file>
 <file>completion/unique.cwl</file>

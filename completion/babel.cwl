@@ -1,9 +1,10 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/04/18 for v3.88
+# tbraun 4.11.2008; Matthew Bertucci 2023/05/11 for v3.89
 
 #keyvals:\usepackage/babel#c
 %<language%>
+modifiers.%<language%>=%<modifiers%>
 KeepShorthandsActive
 activeacute
 activegrave
@@ -17,7 +18,6 @@ noconfigs
 showlanguages
 nocase
 silent
-strings=#generic,unicode,encoded,%<label%>,%<font encoding%>
 hyphenmap=#off,first,select,other,other*
 bidi=#default,basic,basic-r,bidi-l,bidi-r
 layout=#sectioning,counters,counters*,contents,footnotes,captions,columns,graphics,extras
@@ -64,7 +64,6 @@ fontenc=%<encoding%>
 \languageshorthands{language}
 \babelshorthand{shorthand}
 \ifbabelshorthand{character}{true}{false}
-\aliasshorthand{original}{alias}
 \textormath{text code}{math code%formula}#*
 
 #ifOption:base
@@ -381,8 +380,6 @@ select.encoding=#off
 \localename#S
 \ProvidesLanguage{language}#S
 \ProvidesLanguage{language}[release info]#S
-\SetCase[map-list]{to-upper-code}{to-lower-code}#S
-\SetCase{toupper-code}{tolower-code}#S
 \SetHyphenMap{to-lower-macros}#S
 \SetString{macro-name}{string}#S
 \SetStringLoop{macro-name}{string-list}#S

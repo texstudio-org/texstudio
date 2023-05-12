@@ -1,5 +1,5 @@
 # FenetreCas package
-# Matthew Bertucci 2023/03/19 for v0.1.0
+# Matthew Bertucci 2023/05/07 for v0.1.1
 
 #include:tikz
 #include:xstring
@@ -37,6 +37,8 @@ ElargirAuto=%<nombre%>
 HauteurAuto#true,false
 MargeV=##L
 MargeH=%<nombre%>
+Fond#true,false
+CouleurFond=#%color
 #endkeyvals
 
 \begin{CalculFormelXcas}#\pictureHighlight
@@ -69,6 +71,8 @@ MargeH=%<nombre%>
 CouleurCmd=#%color
 CouleurRes=#%color
 PosRes=#centre,gauche,droite
+Fond#true,false
+CouleurFond=#%color
 #endkeyvals
 
 # not documented
@@ -112,3 +116,5 @@ PosRes=#centre,gauche,droite
 \XCCFtaillecmd#S
 \XCCFtailleres#S
 \XCCFtxtopts#S
+\GEOCFcolfond#S
+\XCCFcolfond#S
