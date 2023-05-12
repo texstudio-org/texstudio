@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/04/28 for v8.11.0
+# Matthew Bertucci 2023/05/12 for v8.13.0
 
 #include:ifxetex
 #include:ifluatex
@@ -57,6 +57,7 @@ aeroflot
 aeromexico
 aerospike
 aew
+affine
 affinity
 affinitydesigner
 affinityphoto
@@ -188,6 +189,7 @@ appwrite
 aqua
 aral
 arangodb
+arcgis
 archicad
 archiveofourown
 archlinux
@@ -360,6 +362,7 @@ campaignmonitor
 canonical
 canva
 capacitor
+cardano
 carrefour
 carthrottle
 carto
@@ -476,6 +479,7 @@ construct3
 consul
 contactlesspayment
 containerd
+contao
 contentful
 conventionalcommits
 convertio
@@ -680,6 +684,7 @@ eslgaming
 eslint
 esphome
 espressif
+esri
 etcd
 ethereum
 ethiopianairlines
@@ -1365,6 +1370,7 @@ momenteo
 monero
 moneygram
 mongodb
+mongoose
 monica
 monkeytie
 monogames
@@ -1667,6 +1673,7 @@ prevention
 prezi
 prime
 primevideo
+printables
 prisma
 prismic
 privateinternetaccess
@@ -1838,6 +1845,7 @@ ruby
 rubygems
 rubyonrails
 rubysinatra
+ruff
 runkeeper
 runkit
 rust
