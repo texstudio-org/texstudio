@@ -735,7 +735,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	bool found = false, flush = false;
 	QString warning;
 
-	static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX)|Package|Class) .*Warning.*:(.*)", Qt::CaseInsensitive);
+	static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX)|Package|Class|Module) .*Warning.*:(.*)", Qt::CaseInsensitive);
 	static QRegExp reLatex3Warning("^\\*\\s+(\\S.*)");
 	static QRegExp reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", Qt::CaseInsensitive);
 	static QRegExp reNoFile("^No file (.*)");
@@ -825,7 +825,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 
 bool LatexOutputFilter::detectLaTeXLineNumber(QString &warning, short &dwCookie, int len)
 {
-	static QRegExp reLaTeXLineNumber("(.*) on input[ ]?line ([0-9]+)\\.$", Qt::CaseInsensitive);
+	static QRegExp reLaTeXLineNumber("(.*) on(?: input)? line ([0-9]+)\\.?$", Qt::CaseInsensitive);
 	static QRegExp reInternationalLaTeXLineNumber("(.*)([0-9]+)\\.$", Qt::CaseInsensitive);
 	if ((reLaTeXLineNumber.indexIn(warning) != -1) || (reInternationalLaTeXLineNumber.indexIn(warning) != -1)) {
 		m_currentItem.oldline = (reLaTeXLineNumber.cap(2).toInt());
