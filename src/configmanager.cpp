@@ -694,11 +694,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	//interfaces
     int defaultStyle=0;
-    if(systemUsesDarkMode()){
-        // use modern style -dark in case of dark mode.
-        // this is only relevant on the very first start-up of txs
-        defaultStyle=2;
-    }
+
     registerOption("GUI/Style", &modernStyle, defaultStyle, &pseudoDialog->comboBoxInterfaceModernStyle);
 	registerOption("GUI/Icon Theme", &iconTheme, 0, &pseudoDialog->comboBoxInterfaceIconTheme);
 #if defined Q_WS_X11 || defined Q_OS_LINUX
