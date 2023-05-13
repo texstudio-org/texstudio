@@ -56,6 +56,7 @@ void GIT::push(QString filename)
 GIT::Status GIT::status(QString filename)
 {
     QString output = runGit("status -s", quote(filename));
+    output=output.trimmed(); // git delivers a leading space sometimes (?)
     if (output.isEmpty()) return GIT::CheckedIn;
     if (output.startsWith("?")) return GIT::Unmanaged;
     if (output.startsWith("fatal")) return GIT::NoRepository;
