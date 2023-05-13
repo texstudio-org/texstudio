@@ -2652,15 +2652,17 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				mText = tr("label defined multiple times!");
 			} else {
 				QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(value);
-                QDocumentLineHandle *mLine = result.keys().constFirst();
-				int l = mLine->document()->indexOf(mLine);
-				LatexDocument *doc = qobject_cast<LatexDocument *> (editor->document());
-				if (mLine->document() != editor->document()) {
-					doc = document->parent->findDocument(mLine->document());
-					if (doc) mText = tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-				}
-				if (doc)
-					mText += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                if(!result.isEmpty()){
+                    QDocumentLineHandle *mLine = result.keys().constFirst();
+                    int l = mLine->document()->indexOf(mLine);
+                    LatexDocument *doc = qobject_cast<LatexDocument *> (editor->document());
+                    if (mLine->document() != editor->document()) {
+                        doc = document->parent->findDocument(mLine->document());
+                        if (doc) mText = tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                    }
+                    if (doc)
+                        mText += doc->exportAsHtml(doc->cursor(qMax(0, l - 2), 0, l + 2), true, true, 60);
+                }
 			}
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
 		}
