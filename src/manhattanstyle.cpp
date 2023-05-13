@@ -953,13 +953,7 @@ void ManhattanStyle::drawComplexControl(ComplexControl control, const QStyleOpti
 			label.palette = panelPalette(option->palette);
 			int fw = pixelMetric(PM_DefaultFrameWidth, option, widget);
 			label.rect = button.adjusted(fw, fw, -fw, -fw);
-			if (!label.icon.isNull() && isRetinaMac()) {
-				label.rect = button.adjusted(4 * fw, 4 * fw, -4 * fw, -4 * fw);
-				QPixmap px = label.icon.pixmap(64);
-				painter->drawPixmap(label.rect, px.scaled(label.rect.width() * 2, label.rect.height() * 2, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
-			} else {
-				drawControl(CE_ToolButtonLabel, &label, painter, widget);
-			}
+            drawControl(CE_ToolButtonLabel, &label, painter, widget);
 
 			if (toolbutton->subControls & SC_ToolButtonMenu) {
 				tool.state = mflags;
