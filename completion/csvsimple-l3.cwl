@@ -1,5 +1,5 @@
 # csvsimple-l3 package
-# Matthew Bertucci 2/3/2022 for v2.3.0
+# Matthew Bertucci 2023/05/09 for v2.4.0
 
 \csvreader{file}{assignments%definition}{command list%definition}
 \csvreader[options%keyvals]{file}{assignments%definition}{command list%definition}
@@ -96,6 +96,14 @@ filter equal={%<stringA%>}{%<stringB%>}
 filter not equal={%<stringA%>}{%<stringB%>}
 filter fp=%<floating point expr%>
 filter bool=%<boolean expr%>
+and filter strcmp={%<stringA%>}{%<stringB%>}
+or filter strcmp={%<stringA%>}{%<stringB%>}
+and filter not strcmp={%<stringA%>}{%<stringB%>}
+or filter not strcmp={%<stringA%>}{%<stringB%>}
+and filter fp=%<floating point expr%>
+or filter fp=%<floating point expr%>
+and filter bool=%<boolean expr%>
+or filter bool=%<boolean expr%>
 filter test=%<condition%>
 filter ifthen=%<boolean expr%>
 no filter
@@ -133,7 +141,7 @@ respect leftbrace#true,false
 respect rightbrace#true,false
 respect all 
 respect none
-separator=#comma,semicolon,pipe,tab
+separator=#comma,semicolon,pipe,tab,space
 file=%<file%>
 preprocessed file=%<file%>
 preprocessor=%<macro%>

@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/05/03 for v2.6.2
+# Matthew Bertucci 2023/05/09 for v2.6.3
 
 #include:mathtools
 #include:xcolor
@@ -122,6 +122,10 @@ Expr=%<expr%>
 Signe=%<signe%>
 Variables=%<variables%>
 #endkeyvals
+
+## Équation réduite d’une droite ##
+\EquationReduite{A/xa/ya,B/xb/yb}
+\EquationReduite[d]{%<A/xa/ya,B/xb/yb%>}
 
 ## L’outil « Calcul Formel » ##
 \CalculFormelParametres
@@ -1423,3 +1427,13 @@ vertcapyt#B
 \MethIntegrTkzType#S
 \MethIntegrTkzOpak#S
 \MethIntegrTkzThick#S
+\AffCoeffFAm{arg}#S
+\AffCoeffFAm[opt]{arg}#S
+\AffCoeffFAp{arg}#S
+\AffCoeffFAp[opt]{arg}#S
+\AffCoeffFloatPa{arg}#S
+\AffCoeffFloatPa[opt]{arg}#S
+\AffCoeffFloat{arg}#S
+\AffCoeffFloat[opt]{arg}#S
+\AffCoeffPa{arg}#S
+\AffCoeffPa[opt]{arg}#S

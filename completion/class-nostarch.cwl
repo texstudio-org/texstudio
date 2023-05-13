@@ -1,11 +1,12 @@
 # nostarch class
-# Matthew Bertucci 2023/04/09 for v2.0
+# Matthew Bertucci 2023/05/11 for v2.1
 
 #include:class-book
 #include:xcolor
 # loads table option of xcolor
 #include:iftex
 #include:ifpdf
+#include:longtable
 #include:fancyhdr
 #include:fancyvrb
 #include:booktabs
@@ -24,6 +25,7 @@
 #include:etoolbox
 #include:setspace
 #include:marginnote
+#include:url
 #include:mdframed
 # loads framemethod=TikZ option of mdframed
 #include:soul
@@ -60,6 +62,7 @@ nofontsdir
 \chapterartfile{imagefile}#g
 \colophon
 \makehalftitle
+\NextCaptionWidth{length}
 \nostarchlocation{location}
 \nostarchlogo{imagefile}#g
 \sectionnumberwidth#L
