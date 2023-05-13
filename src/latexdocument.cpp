@@ -1718,6 +1718,7 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visite
 	return listOfDocs;
 }
 void LatexDocument::updateRefHighlight(ReferencePairEx p){
+    if(!p.dlh) return;
     p.dlh->clearOverlays(p.formatList);
     for(int i=0;i<p.starts.size();++i) {
         p.dlh->addOverlay(QFormatRange(p.starts[i], p.lengths[i], p.formats[i]));
@@ -1964,6 +1965,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             foreach (LatexDocument *elem, lstOfDocs) {
                 if (elem->isHidden()) {
                     hiddenDocuments.removeAll(elem);
+                    elem->saveCachingData(QString("/home/sdm/.config/texstudio/cache"));
                     delete elem->getEditorView();
                     delete elem;
                 }
@@ -3577,6 +3579,7 @@ QString LatexDocument::getLastEnvName(int lineNumber)
  */
 bool LatexDocument::saveCachingData(const QString &folder)
 {
+    if(m_cachedDataOnly) return true; // don't overwrite with exact same data
     // create folder if needed
     QDir dir(folder);
     if(!dir.exists()){
@@ -3625,5 +3628,80 @@ bool LatexDocument::saveCachingData(const QString &folder)
     QJsonDocument jsonDoc(dd);
     file.write(jsonDoc.toJson());
 
+    return true;
+}
+/*!
+ * \brief read cached data for document
+ * Data contains labels,user commands, structure and children documents
+ * The document is not loaded but the other data structure are generated as if it was normally loaded.
+ * To be used for hidden documents
+ * \param folder
+ * \return successful load
+ */
+bool LatexDocument::restoreCachedData(const QString &folder,const QString fileName)
+{
+    QFileInfo fi(fileName);
+    QFile file(folder+"/"+fi.baseName()+".json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    QByteArray data = file.readAll();
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc=QJsonDocument::fromJson(data,&parseError);
+    if(parseError.error!=QJsonParseError::NoError){
+        // parser could not read input
+        return false;
+    }
+    QJsonObject dd=jsonDoc.object();
+    QString fn=dd["filename"].toString();
+    if(fn!=fileName){
+        // filename does not match exactly
+        return false;
+    }
+    QJsonArray ja=dd.value("labels").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString lbl=ja[i].toString();
+        ReferencePair rp;
+        rp.name=lbl;
+        mLabelItem.insert(nullptr,rp);
+    }
+    ja=dd.value("childdocs").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString fn=ja[i].toString();
+        qDebug()<<"need to load:"<<fn;
+    }
+    ja=dd.value("usercommands").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString cmd=ja[i].toString();
+        UserCommandPair up(cmd,cmd);
+        mUserCommandList.insert(nullptr,up);
+    }
+    ja=dd.value("packages").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString package=ja[i].toString();
+        mUsepackageList.insert(nullptr,package);
+    }
+    ja=dd.value("toc").toArray();
+    QVector<StructureEntry *> parent_level(lp.structureDepth()+1);
+    parent_level.fill(baseStructure);
+    for (int i = 0; i < ja.size(); ++i) {
+        QString section=ja[i].toString();
+        QStringList l_section=section.split("#");
+        if(l_section.size()!=2){
+            continue; // structure does not fit, needs to be number#text
+        }
+        bool ok;
+        int pos=l_section[0].toInt(&ok);
+        if(!ok) continue; // structure does not fit, needs to be number#text
+        StructureEntry *se=new StructureEntry(this,StructureEntry::SE_SECTION);
+        se->title=l_section[1];
+        se->level=pos;
+        se->setLine(0);
+        parent_level[pos-1]->add(se);
+        for(int k=pos;k<parent_level.size();++k){
+            parent_level[k]=se;
+        }
+    }
+    m_cachedDataOnly=true;
     return true;
 }

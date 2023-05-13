@@ -213,6 +213,7 @@ public:
         return m_isSubfileRoot;
     }
     bool saveCachingData(const QString &folder);
+    bool restoreCachedData(const QString &folder, const QString fileName);
 
 private:
 	QString fileName; //absolute
@@ -277,6 +278,8 @@ private:
 	bool syntaxChecking;
 
     bool m_isSubfileRoot=false;
+
+    bool m_cachedDataOnly=false;
 
 #ifndef QT_NO_DEBUG
 public:

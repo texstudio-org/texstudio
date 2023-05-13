@@ -2276,7 +2276,16 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
     else if (edit->editor->fileInfo().suffix().toLower() != "tex")
         m_languages->setLanguage(edit->editor, f_real);
 
-    edit->editor->load(f_real, QDocument::defaultCodec());
+    if(hidden){
+        // try loading from cache
+        if(doc->restoreCachedData("/home/sdm/.config/texstudio/cache",f_real)){
+            edit->editor->setFileName(f_real);
+        }else{
+            edit->editor->load(f_real, QDocument::defaultCodec());
+        }
+    }else{
+        edit->editor->load(f_real, QDocument::defaultCodec());
+    }
 
     if (!edit->editor->languageDefinition())
         guessLanguageFromContent(m_languages, edit->editor);
