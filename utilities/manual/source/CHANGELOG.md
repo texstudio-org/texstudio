@@ -3,6 +3,8 @@
 
 - use subfiles root for compilation is the current document is a child
 - add support for alignedat environment in QuickArray Wizard ([#2921](https://github.com/texstudio-org/texstudio/issues/2921))
+- change default windows style for new installs to Fusion instead of moden-dark, in case system darkmode is detected.
+- fix some icon issues on OSX ([#3100](https://github.com/texstudio-org/texstudio/issues/2921),[#3104](https://github.com/texstudio-org/texstudio/issues/3104))
 
 ## TeXstudio 4.5.2
 
