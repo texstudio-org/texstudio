@@ -3582,6 +3582,8 @@ QString LatexDocument::getLastEnvName(int lineNumber)
  */
 bool LatexDocument::saveCachingData(const QString &folder)
 {
+    if(!ConfigManagerInterface::getInstance()->getOption("Files/CacheStructure").toBool()) return false;
+
     if(m_cachedDataOnly) return true; // don't overwrite with exact same data
     // create folder if needed
     QDir dir(folder);
@@ -3644,6 +3646,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
  */
 bool LatexDocument::restoreCachedData(const QString &folder,const QString fileName)
 {
+    if(!ConfigManagerInterface::getInstance()->getOption("Files/CacheStructure").toBool()) return false;
     QFileInfo fi(fileName);
     QFile file(folder+"/"+fi.baseName()+".json");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
