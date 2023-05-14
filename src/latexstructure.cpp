@@ -54,6 +54,7 @@ int StructureEntry::getCachedLineNumber() const
 
 int StructureEntry::getRealLineNumber() const
 {
+    if(lineHandle==nullptr) return lineNumber;
 	lineNumber = document->indexOf(lineHandle, lineNumber);
 	Q_ASSERT(lineNumber == -1 || document->line(lineNumber).handle() == lineHandle);
 	return lineNumber;
