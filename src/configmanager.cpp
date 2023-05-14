@@ -484,6 +484,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseRootDoc);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
     registerOption("Files/Autoload", &autoLoadChildren, true, &pseudoDialog->checkBoxAutoLoad);
+    registerOption("Files/CacheStructure", &cacheDocuments, false, &pseudoDialog->checkBoxUseCache);
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	registerOption("Files/Bib Paths", &additionalBibPaths, env.value("BIBINPUTS", ""), &pseudoDialog->lineEditPathBib);
 	registerOption("Files/Image Paths", &additionalImagePaths, env.value("TEXINPUTS", ""), &pseudoDialog->lineEditPathImages);

@@ -212,6 +212,9 @@ public:
     Q_INVOKABLE bool isSubfileRoot(){
         return m_isSubfileRoot;
     }
+    bool saveCachingData(const QString &folder);
+    bool restoreCachedData(const QString &folder, const QString fileName);
+    bool isIncompleteInMemory();
 
 private:
 	QString fileName; //absolute
@@ -263,6 +266,8 @@ private:
 	void insertElement(StructureEntry *parent, int pos, StructureEntry *se);
 	void moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos);
 
+    QStringList unrollStructure();
+
 	void addMagicComment(const QString &text, int lineNr, int posMagicComment);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
 
@@ -274,6 +279,8 @@ private:
 	bool syntaxChecking;
 
     bool m_isSubfileRoot=false;
+
+    bool m_cachedDataOnly=false;
 
 #ifndef QT_NO_DEBUG
 public:

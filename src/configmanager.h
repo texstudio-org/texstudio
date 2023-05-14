@@ -188,6 +188,7 @@ public:
 	bool parseBibTeX, parseMaster;
 	QString logFileEncoding, bibFileEncoding;
 	bool autoLoadChildren;
+    bool cacheDocuments;
 
     // insert cite command, when no context available
     QString citeCommand;

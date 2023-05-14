@@ -2187,6 +2187,14 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         doc = documents.findDocumentFromName(f_real);
         if (doc) existingView = doc->getEditorView();
     }
+    if(!hidden && doc && doc->isIncompleteInMemory()){
+        delete existingView;
+        existingView=nullptr;
+        LatexDocument *m=doc->getMasterDocument();
+        m->removeChild(doc);
+        documents.deleteDocument(doc,true);
+        doc=nullptr;
+    }
     if (existingView) {
         if (hidden)
             return existingView;
@@ -2276,7 +2284,16 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
     else if (edit->editor->fileInfo().suffix().toLower() != "tex")
         m_languages->setLanguage(edit->editor, f_real);
 
-    edit->editor->load(f_real, QDocument::defaultCodec());
+    if(hidden){
+        // try loading from cache
+        if(doc->restoreCachedData("/home/sdm/.config/texstudio/cache",f_real)){
+            edit->editor->setFileName(f_real);
+        }else{
+            edit->editor->load(f_real, QDocument::defaultCodec());
+        }
+    }else{
+        edit->editor->load(f_real, QDocument::defaultCodec());
+    }
 
     if (!edit->editor->languageDefinition())
         guessLanguageFromContent(m_languages, edit->editor);
@@ -8031,7 +8048,8 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
     const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO,StructureEntry::SE_LABEL,StructureEntry::SE_MAGICCOMMENT};
     if(lineTypes.contains(se->type)){
         LatexEditorView *edView = se->document->getEditorView();
-        if (edView) {
+        bool jumpToCachedDocument=se->document->isIncompleteInMemory();
+        if (!se->document->isIncompleteInMemory() && edView) {
             gotoLine(se->getRealLineNumber(), 0, edView);
         }else{
             // going to hidden doc
@@ -8042,7 +8060,8 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
                 se->document->setClean(); // work-around, unclear where that state is reset during load
             LatexEditorView *edView = se->document->getEditorView();
             if (edView) {
-                gotoLine(se->getRealLineNumber(), 0, edView);
+                int ln= jumpToCachedDocument ? se->getCachedLineNumber() : se->getRealLineNumber();
+                gotoLine(ln, 0, edView);
             }
         }
     }else{

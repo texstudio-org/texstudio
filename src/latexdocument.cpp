@@ -1718,6 +1718,7 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visite
 	return listOfDocs;
 }
 void LatexDocument::updateRefHighlight(ReferencePairEx p){
+    if(!p.dlh) return;
     p.dlh->clearOverlays(p.formatList);
     for(int i=0;i<p.starts.size();++i) {
         p.dlh->addOverlay(QFormatRange(p.starts[i], p.lengths[i], p.formats[i]));
@@ -1886,6 +1887,8 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 
 void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool purge)
 {
+    // save caching information
+    document->saveCachingData(QString("/home/sdm/.config/texstudio/cache"));
     if (!hidden)
         emit aboutToDeleteDocument(document);
     LatexEditorView *view = document->getEditorView();
@@ -1962,6 +1965,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             foreach (LatexDocument *elem, lstOfDocs) {
                 if (elem->isHidden()) {
                     hiddenDocuments.removeAll(elem);
+                    elem->saveCachingData(QString("/home/sdm/.config/texstudio/cache"));
                     delete elem->getEditorView();
                     delete elem;
                 }
@@ -2559,6 +2563,26 @@ void LatexDocument::moveElementWithSignal(StructureEntry *se, StructureEntry *pa
 {
     removeElement(se);
     insertElement(parent, pos, se);
+}
+/*!
+ * \brief represent local toc with section only as stringlist
+ * \return
+ */
+QStringList LatexDocument::unrollStructure()
+{
+    QStringList result;
+    StructureEntryIterator iter(baseStructure);
+
+    while (iter.hasNext()) {
+        StructureEntry *curSection = iter.next();
+        if (curSection->type == StructureEntry::SE_SECTION){
+            result<<QString("%1").arg(curSection->level)+"#"+curSection->title+"#"+QString("%1").arg(curSection->getRealLineNumber());
+        }
+        if (curSection->type == StructureEntry::SE_INCLUDE){
+            result<<QString("%1").arg(-1)+"#"+curSection->title+"#"+QString("%1").arg(curSection->getRealLineNumber());
+        }
+    }
+    return result;
 }
 
 void LatexStructureMerger::updateParentVector(StructureEntry *se)
@@ -3269,7 +3293,7 @@ LatexDocument *LatexDocuments::getRootDocumentForDoc(LatexDocument *doc,bool bre
 QString LatexDocument::getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths) const
 {
 	QStringList searchPaths;
-	const LatexDocument *rootDoc = getRootDocument();
+    const LatexDocument *rootDoc = getRootDocument(nullptr,true);
 	QString compileFileName = rootDoc->getFileName();
 	if (compileFileName.isEmpty()) compileFileName = rootDoc->getTemporaryFileName();
 	QString fallbackPath;
@@ -3549,6 +3573,177 @@ QString LatexDocument::getLastEnvName(int lineNumber)
 	StackEnvironment env;
 	getEnv(lineNumber, env);
 	if (env.isEmpty())
-		return "";
-	return env.top().name;
+        return "";
+    return env.top().name;
+}
+/*!
+ * \brief save internal data for caching
+ * Data contains labels,user commands and children documents
+ */
+bool LatexDocument::saveCachingData(const QString &folder)
+{
+    if(!ConfigManagerInterface::getInstance()->getOption("Files/CacheStructure").toBool()) return false;
+
+    if(m_cachedDataOnly) return true; // don't overwrite with exact same data
+    // create folder if needed
+    QDir dir(folder);
+    if(!dir.exists()){
+        dir.mkpath(folder);
+    }
+
+    QFileInfo fi=getFileInfo();
+    QFile file(folder+"/"+fi.baseName()+".json");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+
+    QJsonArray ja_labels;
+    for(const auto &elem:mLabelItem){
+        ja_labels.append(elem.name);
+    }
+
+    QJsonArray ja_docs;
+    for(const auto &elem:childDocs){
+        ja_docs.append(elem->fileName);
+    }
+
+    QJsonArray ja_userCommands;
+    for(const auto &elem:mUserCommandList.values()){
+        ja_userCommands.append(elem.name);
+    }
+
+    QJsonArray ja_packages;
+    for(const QString &elem:mUsepackageList.values()){
+        ja_packages.append(elem);
+    }
+    // store toc structure
+    QStringList toc=unrollStructure();
+    QJsonArray ja_toc;
+    for(const QString &elem:toc){
+        ja_toc.append(elem);
+    }
+
+    QJsonObject dd;
+    dd["filename"]=getFileName();
+    dd["labels"]=ja_labels;
+    dd["childdocs"]=ja_docs;
+    dd["usercommands"]=ja_userCommands;
+    dd["packages"]=ja_packages;
+    dd["toc"]=ja_toc;
+    dd["modified"]=fi.lastModified().toString();
+
+    QJsonDocument jsonDoc(dd);
+    file.write(jsonDoc.toJson());
+
+    return true;
+}
+/*!
+ * \brief read cached data for document
+ * Data contains labels,user commands, structure and children documents
+ * The document is not loaded but the other data structure are generated as if it was normally loaded.
+ * To be used for hidden documents
+ * \param folder
+ * \return successful load
+ */
+bool LatexDocument::restoreCachedData(const QString &folder,const QString fileName)
+{
+    if(!ConfigManagerInterface::getInstance()->getOption("Files/CacheStructure").toBool()) return false;
+    QFileInfo fi(fileName);
+    QFile file(folder+"/"+fi.baseName()+".json");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    QByteArray data = file.readAll();
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc=QJsonDocument::fromJson(data,&parseError);
+    if(parseError.error!=QJsonParseError::NoError){
+        // parser could not read input
+        return false;
+    }
+    QJsonObject dd=jsonDoc.object();
+    // check modified data
+    QString modifiedDate=dd["modified"].toString();
+    if(fi.lastModified().toString()!=modifiedDate){
+        // cache is obsolete
+        qDebug()<<"cached data obsolete: "<<fileName;
+        return false;
+    }
+
+
+    QString fn=dd["filename"].toString();
+    if(fn!=fileName){
+        // filename does not match exactly
+        return false;
+    }
+    QJsonArray ja=dd.value("labels").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString lbl=ja[i].toString();
+        ReferencePair rp;
+        rp.name=lbl;
+        mLabelItem.insert(nullptr,rp);
+    }
+    ja=dd.value("childdocs").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString fn=ja[i].toString();
+        mIncludedFilesList.insert(nullptr,fn);
+        LatexDocument *dc = parent->findDocumentFromName(fn);
+        if (!dc) {
+            parent->addDocToLoad(fn);
+        }
+    }
+    ja=dd.value("usercommands").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString cmd=ja[i].toString();
+        UserCommandPair up(cmd,cmd);
+        mUserCommandList.insert(nullptr,up);
+        ltxCommands.possibleCommands["user"].insert(cmd);
+    }
+    ja=dd.value("packages").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString package=ja[i].toString();
+        mUsepackageList.insert(nullptr,package);
+    }
+    ja=dd.value("toc").toArray();
+    QVector<StructureEntry *> parent_level(lp.structureDepth()+1);
+    parent_level.fill(baseStructure);
+    for (int i = 0; i < ja.size(); ++i) {
+        QString section=ja[i].toString();
+        QStringList l_section=section.split("#");
+        if(l_section.size()<2 || l_section.size()>3){
+            continue; // structure does not fit, needs to be number#text
+        }
+        bool ok;
+        int pos=l_section[0].toInt(&ok);
+        if(!ok) continue; // structure does not fit, needs to be number#text
+        StructureEntry *se;
+        if(pos>=0){
+            se=new StructureEntry(this,StructureEntry::SE_SECTION);
+        }else{
+            se=new StructureEntry(this,StructureEntry::SE_INCLUDE);
+            pos=1;
+        }
+        se->setLine(0);
+        if(l_section.size()==3){
+            int ln=l_section[2].toInt(&ok);
+            if(ok){
+                se->setLine(nullptr,ln);
+            }
+        }
+        se->title=l_section[1];
+        se->level=pos;
+        parent_level[pos]->add(se);
+        for(int k=pos+1;k<parent_level.size();++k){
+            parent_level[k]=se;
+        }
+    }
+    m_cachedDataOnly=true;
+    return true;
+}
+/*!
+ * \brief check if it was restored from cached data
+ * Needs to load from the beginning otherwise
+ * \return
+ */
+bool LatexDocument::isIncompleteInMemory()
+{
+    return m_cachedDataOnly;
 }

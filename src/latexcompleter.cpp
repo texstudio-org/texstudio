@@ -2042,19 +2042,21 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 			topic = tr("label defined multiple times!");
 		} else {
 			QMultiHash<QDocumentLineHandle *, int> result = document->getLabels(value);
-            QDocumentLineHandle *mLine = result.keys().constFirst();
-			int l = mLine->document()->indexOf(mLine);
-			if (mLine->document() != editor->document()) {
-				//LatexDocument *doc=document->parent->findDocument(mLine->document());
-				LatexDocument *doc = qobject_cast<LatexDocument *>(mLine->document());
-				Q_ASSERT_X(doc, "missing latexdoc", "qdoc is not latex document !");
-				if (doc) topic = tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-			}
-			for (int i = qMax(0, l - 2); i < qMin(mLine->document()->lines(), l + 3); i++) {
-				topic += mLine->document()->line(i).text().left(80);
-				if (mLine->document()->line(i).text().length() > 80) topic += "...";
-				if (i < l + 2) topic += "\n";
-			}
+            if(!result.isEmpty()){
+                QDocumentLineHandle *mLine = result.keys().constFirst();
+                int l = mLine->document()->indexOf(mLine);
+                if (mLine->document() != editor->document()) {
+                    //LatexDocument *doc=document->parent->findDocument(mLine->document());
+                    LatexDocument *doc = qobject_cast<LatexDocument *>(mLine->document());
+                    Q_ASSERT_X(doc, "missing latexdoc", "qdoc is not latex document !");
+                    if (doc) topic = tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                }
+                for (int i = qMax(0, l - 2); i < qMin(mLine->document()->lines(), l + 3); i++) {
+                    topic += mLine->document()->line(i).text().left(80);
+                    if (mLine->document()->line(i).text().length() > 80) topic += "...";
+                    if (i < l + 2) topic += "\n";
+                }
+            }
 		}
 	} else if (config->tooltipPreview && (forcedCite || latexParser.possibleCommands["%cite"].contains(cmd))) {
 		QToolTip::hideText();

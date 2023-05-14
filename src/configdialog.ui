@@ -34,13 +34,14 @@
    </property>
    <item row="0" column="0">
     <widget class="QSplitter" name="mainSplitter">
-     <property name="childrenCollapsible">
-      <bool>
-       true
-      </bool>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
      <property name="handleWidth">
       <number>9</number>
+     </property>
+     <property name="childrenCollapsible">
+      <bool>false</bool>
      </property>
      <widget class="QWidget" name="leftPart">
       <property name="sizePolicy">
@@ -110,7 +111,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -142,8 +143,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>662</width>
-                <height>300</height>
+                <width>552</width>
+                <height>526</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout">
@@ -164,7 +165,7 @@
                  <property name="title">
                   <string>Appearance</string>
                  </property>
-                 <layout class="QGridLayout" columnstretch="0,0,1">
+                 <layout class="QGridLayout" columnstretch="0,0,1,0">
                   <item row="0" column="1" colspan="3">
                    <widget class="QComboBox" name="comboBoxInterfaceStyle">
                     <property name="sizePolicy">
@@ -743,8 +744,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>662</width>
-                <height>300</height>
+                <width>570</width>
+                <height>545</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -1368,7 +1369,7 @@ Then you can select a new shortcut by one of the following ways:
              <property name="title">
               <string>GUI Scaling</string>
              </property>
-             <layout class="QGridLayout" columnstretch="0,1,1">
+             <layout class="QGridLayout" columnstretch="0,1,1,0">
               <property name="horizontalSpacing">
                <number>15</number>
               </property>
@@ -1589,8 +1590,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>300</height>
+                <width>1085</width>
+                <height>423</height>
                </rect>
               </property>
               <layout class="QGridLayout">
@@ -1965,16 +1966,6 @@ Then you can select a new shortcut by one of the following ways:
                     </property>
                    </widget>
                   </item>
-                  <item row="16" column="0" colspan="3">
-                   <widget class="QCheckBox" name="checkBoxAutoLoad">
-                    <property name="text">
-                     <string>Automatically load included files</string>
-                    </property>
-                    <property name="advancedOption" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="14" column="2" colspan="3">
                    <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
                     <property name="text">
@@ -1999,6 +1990,26 @@ Then you can select a new shortcut by one of the following ways:
                    <widget class="QCheckBox" name="checkboxRemoveTrailingWsOnSave">
                     <property name="text">
                      <string>Remove Trailing Whitespace on Save</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="16" column="0" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxAutoLoad">
+                    <property name="text">
+                     <string>Automatically load included files</string>
+                    </property>
+                    <property name="advancedOption" stdset="0">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="16" column="2">
+                   <widget class="QCheckBox" name="checkBoxUseCache">
+                    <property name="text">
+                     <string>Cache documents for faster reopening</string>
+                    </property>
+                    <property name="advancedOption" stdset="0">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -2038,8 +2049,8 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>300</height>
+                <width>579</width>
+                <height>1379</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3318,8 +3329,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>405</width>
-                <height>300</height>
+                <width>393</width>
+                <height>605</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3340,7 +3351,7 @@ them here.</string>
                  <property name="title">
                   <string>Spell Check</string>
                  </property>
-                 <layout class="QGridLayout" columnstretch="0,1,1,1,1,1" name="_4">
+                 <layout class="QGridLayout" name="_4" columnstretch="0,1,1,1,1,1">
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_43">
                     <property name="text">
@@ -3875,7 +3886,7 @@ them here.</string>
                  <property name="title">
                   <string>Preview</string>
                  </property>
-                 <layout class="QGridLayout" columnstretch="0,1" name="gridLayout_5">
+                 <layout class="QGridLayout" name="gridLayout_5" columnstretch="0,1">
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_31">
                     <property name="text">
@@ -4126,8 +4137,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>409</width>
-                <height>300</height>
+                <width>367</width>
+                <height>490</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4629,8 +4640,8 @@ Note: Changing this setting will only affect documents that are opened afterward
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>300</height>
+                <width>283</width>
+                <height>152</height>
                </rect>
               </property>
               <layout class="QGridLayout">
