@@ -3290,7 +3290,7 @@ LatexDocument *LatexDocuments::getRootDocumentForDoc(LatexDocument *doc,bool bre
 QString LatexDocument::getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths) const
 {
 	QStringList searchPaths;
-	const LatexDocument *rootDoc = getRootDocument();
+    const LatexDocument *rootDoc = getRootDocument(nullptr,true);
 	QString compileFileName = rootDoc->getFileName();
 	if (compileFileName.isEmpty()) compileFileName = rootDoc->getTemporaryFileName();
 	QString fallbackPath;
