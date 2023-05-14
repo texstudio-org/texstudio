@@ -2187,6 +2187,12 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         doc = documents.findDocumentFromName(f_real);
         if (doc) existingView = doc->getEditorView();
     }
+    if(!hidden && doc && doc->isIncompleteInMemory()){
+        delete existingView;
+        existingView=nullptr;
+        documents.deleteDocument(doc,true);
+        doc=nullptr;
+    }
     if (existingView) {
         if (hidden)
             return existingView;

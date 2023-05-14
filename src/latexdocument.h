@@ -214,6 +214,7 @@ public:
     }
     bool saveCachingData(const QString &folder);
     bool restoreCachedData(const QString &folder, const QString fileName);
+    bool isIncompleteInMemory();
 
 private:
 	QString fileName; //absolute

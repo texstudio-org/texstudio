@@ -3668,7 +3668,11 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     ja=dd.value("childdocs").toArray();
     for (int i = 0; i < ja.size(); ++i) {
         QString fn=ja[i].toString();
-        qDebug()<<"need to load:"<<fn;
+        mIncludedFilesList.insert(nullptr,fn);
+        LatexDocument *dc = parent->findDocumentFromName(fn);
+        if (!dc) {
+            parent->addDocToLoad(fn);
+        }
     }
     ja=dd.value("usercommands").toArray();
     for (int i = 0; i < ja.size(); ++i) {
@@ -3704,4 +3708,13 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     }
     m_cachedDataOnly=true;
     return true;
+}
+/*!
+ * \brief check if it was restored from cached data
+ * Needs to load from the beginning otherwise
+ * \return
+ */
+bool LatexDocument::isIncompleteInMemory()
+{
+    return m_cachedDataOnly;
 }
