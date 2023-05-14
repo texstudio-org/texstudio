@@ -1,8 +1,9 @@
 # CHANGELOG
 ## TeXstudio 4.6.0
 
-- use subfiles root for compilation is the current document is a child
+- use subfiles root for compilation if the current document is a child
 - add support for alignedat environment in QuickArray Wizard ([#2921](https://github.com/texstudio-org/texstudio/issues/2921))
+- add a Lorem Ipsum generator to the Random Text Generator dialog ([#3102](https://github.com/texstudio-org/texstudio/pull/3102))
 - change default windows style for new installs to Fusion instead of moden-dark, in case system darkmode is detected.
 - fix some icon issues on OSX ([#3100](https://github.com/texstudio-org/texstudio/issues/2921),[#3104](https://github.com/texstudio-org/texstudio/issues/3104))
 
