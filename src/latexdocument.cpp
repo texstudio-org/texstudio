@@ -2578,6 +2578,9 @@ QStringList LatexDocument::unrollStructure()
         if (curSection->type == StructureEntry::SE_SECTION){
             result<<QString("%1").arg(curSection->level)+"#"+curSection->title;
         }
+        if (curSection->type == StructureEntry::SE_INCLUDE){
+            result<<QString("%1").arg(-1)+"#"+curSection->title;
+        }
     }
     return result;
 }
@@ -3697,7 +3700,13 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         bool ok;
         int pos=l_section[0].toInt(&ok);
         if(!ok) continue; // structure does not fit, needs to be number#text
-        StructureEntry *se=new StructureEntry(this,StructureEntry::SE_SECTION);
+        StructureEntry *se;
+        if(pos>=0){
+            se=new StructureEntry(this,StructureEntry::SE_SECTION);
+        }else{
+            se=new StructureEntry(this,StructureEntry::SE_INCLUDE);
+            pos=1;
+        }
         se->title=l_section[1];
         se->level=pos;
         se->setLine(0);
