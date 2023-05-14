@@ -2576,10 +2576,10 @@ QStringList LatexDocument::unrollStructure()
     while (iter.hasNext()) {
         StructureEntry *curSection = iter.next();
         if (curSection->type == StructureEntry::SE_SECTION){
-            result<<QString("%1").arg(curSection->level)+"#"+curSection->title;
+            result<<QString("%1").arg(curSection->level)+"#"+curSection->title+"#"+QString("%1").arg(curSection->getRealLineNumber());
         }
         if (curSection->type == StructureEntry::SE_INCLUDE){
-            result<<QString("%1").arg(-1)+"#"+curSection->title;
+            result<<QString("%1").arg(-1)+"#"+curSection->title+"#"+QString("%1").arg(curSection->getRealLineNumber());
         }
     }
     return result;
@@ -3695,7 +3695,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     for (int i = 0; i < ja.size(); ++i) {
         QString section=ja[i].toString();
         QStringList l_section=section.split("#");
-        if(l_section.size()!=2){
+        if(l_section.size()<2 || l_section.size()>3){
             continue; // structure does not fit, needs to be number#text
         }
         bool ok;
@@ -3708,9 +3708,15 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
             se=new StructureEntry(this,StructureEntry::SE_INCLUDE);
             pos=1;
         }
+        se->setLine(0);
+        if(l_section.size()==3){
+            int ln=l_section[2].toInt(&ok);
+            if(ok){
+                se->setLine(nullptr,ln);
+            }
+        }
         se->title=l_section[1];
         se->level=pos;
-        se->setLine(0);
         parent_level[pos-1]->add(se);
         for(int k=pos;k<parent_level.size();++k){
             parent_level[k]=se;

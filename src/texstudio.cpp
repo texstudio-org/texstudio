@@ -8048,6 +8048,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
     const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO,StructureEntry::SE_LABEL,StructureEntry::SE_MAGICCOMMENT};
     if(lineTypes.contains(se->type)){
         LatexEditorView *edView = se->document->getEditorView();
+        bool jumpToCachedDocument=se->document->isIncompleteInMemory();
         if (!se->document->isIncompleteInMemory() && edView) {
             gotoLine(se->getRealLineNumber(), 0, edView);
         }else{
@@ -8059,7 +8060,8 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
                 se->document->setClean(); // work-around, unclear where that state is reset during load
             LatexEditorView *edView = se->document->getEditorView();
             if (edView) {
-                gotoLine(se->getRealLineNumber(), 0, edView);
+                int ln= jumpToCachedDocument ? se->getCachedLineNumber() : se->getRealLineNumber();
+                gotoLine(ln, 0, edView);
             }
         }
     }else{
