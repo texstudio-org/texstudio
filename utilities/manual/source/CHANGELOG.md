@@ -2,6 +2,7 @@
 ## TeXstudio 4.6.0
 
 - use subfiles root for compilation if the current document is a child
+- cache structure/labels/usercommands/packages for faster reload of large projects (optional)
 - add support for alignedat environment in QuickArray Wizard ([#2921](https://github.com/texstudio-org/texstudio/issues/2921))
 - add a Lorem Ipsum generator to the Random Text Generator dialog ([#3102](https://github.com/texstudio-org/texstudio/pull/3102))
 - change default windows style for new installs to Fusion instead of moden-dark, in case system darkmode is detected.
