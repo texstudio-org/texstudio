@@ -3730,8 +3730,8 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         }
         se->title=l_section[1];
         se->level=pos;
-        parent_level[pos-1]->add(se);
-        for(int k=pos;k<parent_level.size();++k){
+        parent_level[pos]->add(se);
+        for(int k=pos+1;k<parent_level.size();++k){
             parent_level[k]=se;
         }
     }
