@@ -3627,6 +3627,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
     dd["usercommands"]=ja_userCommands;
     dd["packages"]=ja_packages;
     dd["toc"]=ja_toc;
+    dd["modified"]=fi.lastModified().toString();
 
     QJsonDocument jsonDoc(dd);
     file.write(jsonDoc.toJson());
@@ -3656,6 +3657,15 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         return false;
     }
     QJsonObject dd=jsonDoc.object();
+    // check modified data
+    QString modifiedDate=dd["modified"].toString();
+    if(fi.lastModified().toString()!=modifiedDate){
+        // cache is obsolete
+        qDebug()<<"cached data obsolete: "<<fileName;
+        return false;
+    }
+
+
     QString fn=dd["filename"].toString();
     if(fn!=fileName){
         // filename does not match exactly
