@@ -8046,7 +8046,7 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
     const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO,StructureEntry::SE_LABEL,StructureEntry::SE_MAGICCOMMENT};
     if(lineTypes.contains(se->type)){
         LatexEditorView *edView = se->document->getEditorView();
-        if (edView) {
+        if (!se->document->isIncompleteInMemory() && edView) {
             gotoLine(se->getRealLineNumber(), 0, edView);
         }else{
             // going to hidden doc
