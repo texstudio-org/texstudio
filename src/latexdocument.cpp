@@ -3682,6 +3682,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         QString cmd=ja[i].toString();
         UserCommandPair up(cmd,cmd);
         mUserCommandList.insert(nullptr,up);
+        ltxCommands.possibleCommands["user"].insert(cmd);
     }
     ja=dd.value("packages").toArray();
     for (int i = 0; i < ja.size(); ++i) {
