@@ -91,11 +91,13 @@ openbib
 thesis-type=#thesis,proposal
 title={%<论文中文题目%>}
 title*={%<English thesis title%>}
-degree-name={%<您要申请什么学位%>}
-degree-name*={%<English degree name%>}
+degree-category={%<您要申请什么学位%>}
+degree-category*={%<English degree name%>}
 department={%<系名全称%>}
 discipline={%<学科名称%>}
 discipline*={%<English discipline name%>}
+professional-field={%<专业领域%>}
+professional-field*={%<English field name%>}
 author={%<中文姓名%>}
 author*={%<name in Pinyin%>}
 student-id={%<id number%>}
