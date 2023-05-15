@@ -7,6 +7,7 @@
 # 2017-01-13: Dependencies to packages added.
 #
 # Matthew Bertucci 2022-01-30, cwls modified/added to reflect subpackage dependencies
+# updated 2023/05/15 for v3.70
 
 # Dependency Tree:
 # beamer.cls
@@ -125,3 +126,4 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 \footheight#*L
 \sidebarheight#*L
 \mathfamilydefault#S
+\insertaspectratio#*
