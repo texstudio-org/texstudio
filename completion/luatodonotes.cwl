@@ -95,8 +95,8 @@ author=
 \missingfigure[options%keyvals]{text%todo}#D
 
 #keyvals:\missingfigure
-figwidth=##l
-figheight=##l
+figwidth=##L
+figheight=##L
 figcolor=#%color
 #endkeyvals
 

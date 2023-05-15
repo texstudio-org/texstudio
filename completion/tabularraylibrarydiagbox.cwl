@@ -7,18 +7,18 @@
 \diagboxthree[options%keyvals]{lower}{middle}{upper}
 
 #keyvals:\diagboxthree
-width=##l
-height=##l
+width=##L
+height=##L
 dir=#NW,NE,SW,SE
-innerwidth=##l
-innerleftsep=##l
-innerrightsep=##l
-outerleftsep=##l
-outerrightsep=##l
-leftsep=##l
-rightsep=##l
+innerwidth=##L
+innerleftsep=##L
+innerrightsep=##L
+outerleftsep=##L
+outerrightsep=##L
+leftsep=##L
+rightsep=##L
 trim=#l,r,lr,rl
 font=%<font commands%>
-linewidth=##l
+linewidth=##L
 linecolor=#%color
 #endkeyvals
