@@ -667,7 +667,6 @@ debug={%<options%>}
 \textcompsubstdefault#*
 \TextOrMath{text content}{math content}#*
 \tmspace{arg1}{arg2}{arg3}#*
-\tracingfonts#*
 \tracingnone#*
 \ttdefault#*
 \ttsubstdefault#*
