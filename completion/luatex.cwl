@@ -100,6 +100,9 @@
 \outputmode = %<<0 or 1>%>#*
 \draftmode = %<<0 or 1>%>#*
 
+# 2.12 Files #
+\tracingfonts = %<<0-6>%>#*
+
 ## 3 Modifications ##
 # 3.1 The merged engines #
 \pagebottomoffset#*
