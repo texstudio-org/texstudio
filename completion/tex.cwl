@@ -375,7 +375,7 @@
 \write#*
 \xdef#*
 \xleaders#*
-\xspaceskip
+\xspaceskip#*
 \year#*
 
 ## 2.2 plain tex macros that are defined in latex
