@@ -38,8 +38,8 @@ hiresbb
 interpolate
 pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
 buttonsize=##L
-buttonbg=#%color
-buttonfg=#%color
+buttonbg=%<color array%>
+buttonfg=%<color array%>
 buttonalpha=%<opacity%>
 step
 nomouse
@@ -92,8 +92,8 @@ pagebox=#mediabox,cropbox,bleedbox,trimbox,artbox
 controls=#all,true,on,none,false,off
 controlsaligned=#left,left+%<<indent>%>,center,right,right+%<<indent>%>
 buttonsize=##L
-buttonbg=#%color
-buttonfg=#%color
+buttonbg=%<color array%>
+buttonfg=%<color array%>
 buttonalpha=%<opacity%>
 draft
 final

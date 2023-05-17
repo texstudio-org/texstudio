@@ -250,8 +250,6 @@
 \nullfont#*
 \number
 \omit#*
-\oalign#*
-\ooalign#*
 \openin#*
 \openout#*
 \or#*
@@ -275,6 +273,7 @@
 \parindent#*
 \parshape#*
 \parskip#*
+\patterns{patterns}#*
 \pausing#*
 \penalty#*
 \postdisplaypenalty#*
@@ -291,6 +290,7 @@
 \right
 \rightskip#*
 \righthyphenmin#*
+\romannumeral#*
 \scriptfont#*
 \scriptscriptfont#*
 \scriptscriptstyle#*
@@ -375,7 +375,7 @@
 \write#*
 \xdef#*
 \xleaders#*
-\xspaceskip
+\xspaceskip#*
 \year#*
 
 ## 2.2 plain tex macros that are defined in latex
@@ -666,6 +666,7 @@
 \nwarrow#m
 \o#n
 \O#n
+\oalign{arg}#*
 \obeylines#*
 \obeyspaces#*
 \odot#m
@@ -676,6 +677,7 @@
 \omega#m
 \Omega#m
 \ominus#m
+\ooalign{arg}#*
 \openup%<dimen%>#*
 \oplus#m
 \oslash#m
@@ -727,7 +729,6 @@
 \rlap{text}#n
 \rm#*
 \rmoustache#*m
-\romannumeral#*
 \root#*m
 \rq#*n
 \S#n
@@ -850,7 +851,6 @@
 \mapstochar#*m
 \mathhexbox#*
 \ointop#*m
-\patterns{patterns}#*
 \relbar#*m
 \Relbar#*m
 \removelastskip#*

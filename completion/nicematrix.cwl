@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/04/20 for v6.18
+# Matthew Bertucci 2023/05/16 for v6.19
 
 #include:amsmath
 #include:array
@@ -373,6 +373,7 @@ color=#%color
 #endkeyvals
 
 \tabularnote{note%text}
+\tabularnote[symbol]{note%text}
 \begin{TabularNote}
 \end{TabularNote}
 \rotate

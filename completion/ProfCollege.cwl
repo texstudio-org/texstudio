@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/05/02 for v0.99-z-k
+# Matthew Bertucci 2023/05/13 for v0.99-z-l
 
 #include:verbatim
 #include:mathtools
@@ -56,29 +56,35 @@ nonamssymb
 
 ## L'écriture de grandeurs ##
 \Lg{nombre}
-\Lg[unité]{nombre}
+\Lg[unité,clés%keyvals]{nombre}
 \Aire{nombre}
-\Aire[unité]{nombre}
+\Aire[unité,clés%keyvals]{nombre}
 \Vol{nombre}
-\Vol[unité]{nombre}
+\Vol[unité,clés%keyvals]{nombre}
 \Masse{nombre}
-\Masse[unité]{nombre}
+\Masse[unité,clés%keyvals]{nombre}
 \Capa{nombre}
-\Capa[unité]{nombre}
+\Capa[unité,clés%keyvals]{nombre}
 \Temps{nombre}
-\Temps[unité]{nombre}
+\Temps[unité,clés%keyvals]{nombre}
 \MasseVol{nombre}
-\MasseVol[unité]{nombre}
+\MasseVol[unité,clés%keyvals]{nombre}
 \Vitesse{nombre}
-\Vitesse[unité]{nombre}
+\Vitesse[unité,clés%keyvals]{nombre}
 \Octet{nombre}
-\Octet[unité]{nombre}
+\Octet[unité,clés%keyvals]{nombre}
 \Conso{nombre}
-\Conso[unité]{nombre}
+\Conso[unité,clés%keyvals]{nombre}
 \Prix{nombre}
-\Prix[unité]{nombre}
+\Prix[unité,clés%keyvals]{nombre}
 \Temp{nombre}
-\Temp[unité]{nombre}
+\Temp[unité,clés%keyvals]{nombre}
+
+#keyvals:\Lg#c,\Aire#c,\Vol#c,\Masse#c,\Capa#c,\Temps#c,\MasseVol#c,\Vitesse#c,\Octet#c,\Conso#c,\Prix#c,\Temp#c
+US#true,false
+UK#true,false
+Dots=##L
+#endkeyvals
 
 ## Représenter graphiquement un nombre entier ##
 \RepresenterEntier{nombre}
@@ -742,6 +748,19 @@ Impression#true,false
 ArbreDessineVide#true,false
 Diviseurs#true,false
 DiviseursT#true,false
+#endkeyvals
+
+## Le crible d’Erathostène ##
+\Erathostene
+\Erathostene[clés%keyvals]
+
+#keyvals:\Erathostene
+Lignes=%<nombre%>
+Colonnes=%<nombre%>
+Hauteur=##L
+Nombre=%<nombre%>
+CouleurP=#%color
+CouleurNP=#%color
 #endkeyvals
 
 ## Des engrenages ##
@@ -1891,6 +1910,16 @@ Taille=%<nombre%>
 Solution#true,false
 #endkeyvals
 
+## Dobble ##
+\Dobble{liste des symboles}
+\Dobble[clés%keyvals]{liste des symboles}
+
+#keyvals:\Dobble
+Niveau=%<nombre%>
+Cercle#true,false
+CouleurCadre=#%color
+#endkeyvals
+
 ## Bulles et cartes mentales ##
 \begin{Mind}#\pictureHighlight
 \end{Mind}
@@ -2008,6 +2037,7 @@ CouleurM=#%color
 \pointilles[length]
 \Lignespointilles{n}
 \MultiCol{l1/l2/...}{contenu1§contenu2§...%text}
+\MultiCol[t|b]{l1/l2/...}{contenu1§contenu2§...%text}
 
 # from table option of xcolor
 #include:colortbl
@@ -2697,7 +2727,7 @@ Teal#B
 \MPSolideSphere{arg1}{arg2}{arg3}#S
 \MPStat{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \MPStatCirculaireQ{arg1}{arg2}{arg3}{arg4}{arg5}#S
-\MPStatNew{arg1}{arg2}#S
+\MPStatNew{arg1}{arg2}{arg3}#S
 \MPStatNewCode#S
 \MPStatQ{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}#S
 \MPTest{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}{arg7}{arg8}{arg9}#S
@@ -3256,3 +3286,17 @@ Teal#B
 \MPPavage#S
 \PfCRayonArc#S
 \PfCPapierTest#S
+\Dollar#*
+\LivreSterling#*
+\PfCJury#S
+\PfCEnonce#S
+\PfCReponse#S
+\PfCCalculsReciPythagore{arg1}{arg2}{arg3}{arg4}#S
+\PfCCalculsReciPythagore[opt]{arg1}{arg2}{arg3}{arg4}#S
+\dobble{arg}#S
+\PfCListeSymboleDobble#S
+\PfCDobbleTotalSymboles#S
+\PfCDobbleNiveau#S
+\TestPremier{arg}#S
+\PfCEraHauteur#S
+\PfCEraMax#S

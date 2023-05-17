@@ -1015,7 +1015,9 @@
 <file>completion/cochineal.cwl</file>
 <file>completion/codeanatomy.cwl</file>
 <file>completion/codebox.cwl</file>
+<file>completion/codedescribe.cwl</file>
 <file>completion/codehigh.cwl</file>
+<file>completion/codelisting.cwl</file>
 <file>completion/codesection.cwl</file>
 <file>completion/coelacanth.cwl</file>
 <file>completion/coffeestains.cwl</file>
@@ -3268,6 +3270,7 @@
 <file>completion/stanli.cwl</file>
 <file>completion/Starburst.cwl</file>
 <file>completion/starfont.cwl</file>
+<file>completion/starray.cwl</file>
 <file>completion/statistics.cwl</file>
 <file>completion/statmath.cwl</file>
 <file>completion/statrep.cwl</file>
@@ -3747,6 +3750,7 @@
 <file>completion/totcount.cwl</file>
 <file>completion/totpages.cwl</file>
 <file>completion/trace.cwl</file>
+<file>completion/tracefnt.cwl</file>
 <file>completion/tracking.cwl</file>
 <file>completion/tracklang.cwl</file>
 <file>completion/tracklang-scripts.cwl</file>
@@ -3817,6 +3821,7 @@
 <file>completion/unicode-alphabets.cwl</file>
 <file>completion/unicodefonttable.cwl</file>
 <file>completion/unicode-math.cwl</file>
+<file>completion/unicode-math-input.cwl</file>
 <file>completion/uni.cwl</file>
 <file>completion/unifront.cwl</file>
 <file>completion/uninormalize.cwl</file>

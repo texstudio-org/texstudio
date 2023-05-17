@@ -1,5 +1,5 @@
 # pst-labo package
-# Matthew Bertucci 2/22/2022 for v2.04
+# Matthew Bertucci 2023/05/12 for v2.05
 
 #include:pstricks
 #include:pst-plot
@@ -46,23 +46,23 @@
 \Cristallisoir
 \InterieurCristallisoir
 
-\BulleX#*
-\BulleY#*
-\GrenailleX#*
-\GrenailleY#*
-\TournureX#*
-\TournureY#*
-\RAYONBULLE#*
-\ClouX#*
-\ClouY#*
+\BulleX#S
+\BulleY#S
+\GrenailleX#S
+\GrenailleY#S
+\TournureX#S
+\TournureY#S
+\RAYONBULLE#S
+\ClouX#S
+\ClouY#S
 
-\randomi#*
-\nextrandom#*
-\setrannum{count register%cmd}{min}{max}#d
-\setrandim{dimen register%cmd}{min}{max}#d
-\pointless
-\PoinTless#*
-\ranval#*
+\randomi#S
+\nextrandom#S
+\setrannum{count register%cmd}{min}{max}#*d
+\setrandim{dimen register%cmd}{min}{max}#*d
+\pointless#*
+\PoinTless#S
+\ranval#S
 \PSTLaboLoaded#S
 Beige#B
 GrisClair#B
