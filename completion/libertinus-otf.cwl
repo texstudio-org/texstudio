@@ -1,5 +1,5 @@
 # libertinus-otf package
-# Matthew Bertucci 2023/04/24 for v0.30
+# Matthew Bertucci 2023/05/17 for v0.31
 
 #include:ifxetex
 #include:ifluatex
@@ -8,14 +8,10 @@
 #include:unicode-math
 
 #keyvals:\usepackage/libertinus-otf#c
-lining#true,false
 oldstyle#true,false
-usefilenames#true,false
-math#true,false
-nomath#true,false
-mono#true,false
-tabular#true,false
+lining#true,false
 proportional#true,false
+tabular#true,false
 semibold#true,false
 bold#true,false
 ScaleRM=%<factor%>
@@ -23,7 +19,27 @@ ScaleSF=%<factor%>
 ScaleTT=%<factor%>
 StretchTT=%<factor%>
 defaultfeatures={%<fontspec features%>}
+uni={%<unicode-math options%>}
+mathfeature={%<\setmathfont options%>}
+greek#true,false
+greekitalic#true,false
+nomath#true,false
+mono#true,false
 #endkeyvals
+
+#ifOption:greek
+#include:newunicodechar
+#endif
+#ifOption:greek=true
+#include:newunicodechar
+#endif
+
+#ifOption:greekitalic
+#include:newunicodechar
+#endif
+#ifOption:greekitalic=true
+#include:newunicodechar
+#endif
 
 # text mode commands
 \BiolinumKeyboard#*
@@ -54,11 +70,8 @@ defaultfeatures={%<fontspec features%>}
 \LibertinusInitials#*
 \Libertinusinitials#*
 \LibertinusKeyboard#*
-\LibertinusMono
-\LibertinusSans
 \LibertinusSansOsF
 \LibertinusSansTLF
-\LibertinusSerif
 \LibertinusSerifOsF
 \LibertinusSerifSB
 \LibertinusSerifTLF
