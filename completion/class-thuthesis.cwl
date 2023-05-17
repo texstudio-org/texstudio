@@ -1,5 +1,5 @@
 # thuthesis class
-# Matthew Bertucci 2022/10/07 for v7.3.1
+# Matthew Bertucci 2023/05/16 for v7.4.0
 
 #include:iftex
 #include:kvdefinekeys
