@@ -8066,7 +8066,7 @@ biblabel=#superscript,brackets
 \mkibid{arg}#*
 #endif
 
-### biblatex-publist v2.0 ###
+### biblatex-publist v2.4 ###
 #ifOption:style=publist
 # from publist.bbx
 \ExecutePublistOptions{options%keyvals}
@@ -8076,6 +8076,7 @@ plauthorfirstname=%<first name%>
 plauthornameprefix=%<von-part%>
 plauthorhandling=#omit,highlight
 nameorder=#family-given,given-family
+fixyear#true,false
 hlyear#true,false
 marginyear#true,false
 plsorting=%<sorting scheme%>
@@ -8100,6 +8101,8 @@ plnumbering=#global,local,global-descending,local-descending,none
 \plmarginyear{text}#*
 \plyearhl{text}#*
 \plauthorhl{text}#*
+\bplopenoa#*
+\bplcloseoa#*
 \plextrainfosep#*
 \extralabelnumberwidth#*
 \shiftplnum{integer}
