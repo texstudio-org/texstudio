@@ -12,10 +12,10 @@
 \pgfkeysifdefined{full key}{true}{false}#*
 \pgfkeysifassignable{full key}{true}{false}#*
 
-\pgfkeys{key list}
-\pgfqkeys{default path}{key list}
-\pgfkeysalso{key list}#*
-\pgfqkeysalso{default path}{key list}#*
+\pgfkeys{key list%keyvals}
+\pgfqkeys{default path}{key list%keyvals}
+\pgfkeysalso{key list%keyvals}#*
+\pgfqkeysalso{default path}{key list%keyvals}#*
 
 \pgfeov#*
 \pgfkeysdef{key%plain}{code}#*
