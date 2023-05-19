@@ -6,16 +6,7 @@
 #include:fontsize
 #include:geometry
 #include:enumitem
-# from inline option of enumitem
-\begin{enumerate*}
-\begin{enumerate*}[options%keyvals]
-\end{enumerate*}
-\begin{itemize*}
-\begin{itemize*}[options%keyvals]
-\end{itemize*}
-\begin{description*}
-\begin{description*}[options%keyvals]
-\end{description*}
+# loads inline option of enumitem
 #include:caption
 #include:multicol
 #include:emptypage
@@ -25,28 +16,7 @@
 #include:etoolbox
 #include:crop
 #include:fontenc
-# from T1 option of fontenc
-\DH#n
-\NG#n
-\dj#n
-\ng#n
-\k{arg}#n
-\guillemotleft#*n
-\guillemotright#*n
-\guilsinglleft#n
-\guilsinglright#n
-\quotedblbase#n
-\quotesinglbase#n
-\textquotedbl#n
-\DJ#n
-\th#n
-\TH#n
-\dh#n
-\Hwithstroke#*n
-\hwithstroke#*n
-\textogonekcentered{arg}#*n
-\guillemetleft#n
-\guillemetright#n
+# loads T1 option of fontenc
 #include:substitutefont
 #include:titlesec
 #include:appendix
@@ -336,6 +306,40 @@ tocauthorfont=#roman,italic,smallcaps
 \itlabel{arg}#*
 \lmfntscale#*
 \sectionsep#*
+
+# from inline option of enumitem
+\begin{enumerate*}
+\begin{enumerate*}[options%keyvals]
+\end{enumerate*}
+\begin{itemize*}
+\begin{itemize*}[options%keyvals]
+\end{itemize*}
+\begin{description*}
+\begin{description*}[options%keyvals]
+\end{description*}
+
+# from T1 option of fontenc
+\DH#n
+\NG#n
+\dj#n
+\ng#n
+\k{arg}#n
+\guillemotleft#*n
+\guillemotright#*n
+\guilsinglleft#n
+\guilsinglright#n
+\quotedblbase#n
+\quotesinglbase#n
+\textquotedbl#n
+\DJ#n
+\th#n
+\TH#n
+\dh#n
+\Hwithstroke#*n
+\hwithstroke#*n
+\textogonekcentered{arg}#*n
+\guillemetleft#n
+\guillemetright#n
 
 # deprecated or not relevant
 \origtableofcontents#S
