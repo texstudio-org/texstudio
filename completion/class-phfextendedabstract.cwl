@@ -8,7 +8,7 @@
 #include:phfthm
 #include:xparse
 
-# from pkgset=extended option passed to phfnote
+# from pkgset=extended option of phfnote
 #include:float
 #include:verbdef
 #include:csquotes
