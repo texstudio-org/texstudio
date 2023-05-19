@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/05/12 for v8.13.0
+# Matthew Bertucci 2023/05/19 for v8.14.0
 
 #include:ifxetex
 #include:ifluatex
@@ -2454,6 +2454,7 @@ zettlr
 zhihu
 zig
 zigbee
+zilch
 zillow
 zingat
 zoho
