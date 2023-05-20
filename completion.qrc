@@ -38,6 +38,7 @@
 <file>completion/adjmulticol.cwl</file>
 <file>completion/adjustbox.cwl</file>
 <file>completion/adobecaslon.cwl</file>
+<file>completion/adobeornaments.cwl</file>
 <file>completion/adrlist.cwl</file>
 <file>completion/adtrees.cwl</file>
 <file>completion/advdate.cwl</file>
@@ -1087,6 +1088,7 @@
 <file>completion/correctmathalign.cwl</file>
 <file>completion/corridx.cwl</file>
 <file>completion/coseoul.cwl</file>
+<file>completion/counterz.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
 <file>completion/counttexruns.cwl</file>
 <file>completion/couriers.cwl</file>
