@@ -1,7 +1,8 @@
 # lineno package
-# Matthew Bertucci 2022/12/06 for v5.00
+# Matthew Bertucci 2023/05/20 for v5.3
 
 #include:etoolbox
+#include:kvoptions
 
 #keyvals:\usepackage/lineno#c
 addpageno
@@ -19,6 +20,8 @@ running
 modulo
 modulo*
 mathlines
+sep=##L
+width=##L
 #endkeyvals
 
 #ifOption:addpageno
