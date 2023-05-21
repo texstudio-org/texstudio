@@ -1,5 +1,5 @@
 # pst-labo package
-# Matthew Bertucci 2023/05/12 for v2.05
+# Matthew Bertucci 2023/05/18 for v2.06
 
 #include:pstricks
 #include:pst-plot
@@ -41,10 +41,13 @@
 \pstDosage[options%keyvals]
 \pstDistillation(x1,y1)(x2,y2)
 \pstDistillation[options%keyvals](x1,y1)(x2,y2)
+\pstSeparateFunnel
+\pstSeparateFunnel[options%keyvals]
+\pstSupport
 
-\chauffe
-\Cristallisoir
-\InterieurCristallisoir
+\chauffe#*
+\Cristallisoir#*
+\InterieurCristallisoir#*
 
 \BulleX#S
 \BulleY#S
@@ -63,6 +66,7 @@
 \pointless#*
 \PoinTless#S
 \ranval#S
+\PSTLabofileversion#S
 \PSTLaboLoaded#S
 Beige#B
 GrisClair#B

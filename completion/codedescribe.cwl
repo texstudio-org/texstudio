@@ -1,39 +1,30 @@
 # codedescribe package
-# Matthew Bertucci 2023/05/12 for v1.0
+# Matthew Bertucci 2023/05/17 for v1.1
 
 #include:xcolor
+#include:pifont
 #include:codelisting
 
 #keyvals:\usepackage/codedescribe#c
 nolisting
 #endkeyvals
 
-\setcodefmt{fmt-keys%keyvals}
+\defgroupfmt{format-group}{format-keys%keyvals}
+\defobjectfmt{obj-type}{format-group}{format-keys%keyvals}
 
-#keyvals:\setcodefmt
-meta=#%color
-marg=#%color
-arg=#%color
-oarg=#%color
-parg=#%color
-xarg=#%color
-code=#%color
-macro=#%color
-function=#%color
-syntax=#%color
-key=#%color
-keys=#%color
-keyval=#%color
-value=#%color
-defaultval=#%color
-option=#%color
-env=#%color
-pkg=#%color
-pack=#%color
-allcolors=#%color
-font=%<font commands%>
-fontsize=%<size command%>
-fontshape=%<shape command%>
+#keyvals:\defgroupfmt#c,\defobjectfmt#c
+meta
+xmeta
+verb
+xverb
+code
+nofmt
+slshape
+itshape
+noshape
+lbracket=%<symbol%>
+rbracket=%<symbol%>
+color=#%color
 #endkeyvals
 
 \begin{codedescribe}{csv-list}
@@ -76,9 +67,11 @@ fontshape=%<shape command%>
 \begin{tsremark}[NB]
 \end{tsremark}
 
-#keyvals:\begin{codedescribe},\begin{describelist},\begin{describelist*},\typesetobj,\tsobj,\typesetargs,\tsargs,\typesetverb,\tsverb
-meta
+#keyvals:\begin{codedescribe}#c,\begin{describelist}#c,\begin{describelist*}#c,\typesetobj#c,\tsobj#c,\typesetargs#c,\tsargs#c,\typesetverb#c,\tsverb#c
 arg
+meta
+verb
+xverb
 marg
 oarg
 parg
@@ -87,25 +80,27 @@ code
 macro
 function
 syntax
+keyval
 key
 keys
-keyval
 value
-defaultval
 option
+defaultval
 env
 pkg
 pack
 #endkeyvals
 
-#keyvals:\begin{codedescribe}
+#keyvals:\begin{codedescribe}#c
 rulecolor=%<color%>
 new=%<date%>
 update=%<date%>
 note=%<text%>
+EXP
+rEXP
 #endkeyvals
 
-#keyvals:\typesetobj,\tsobj
+#keyvals:\typesetobj#c,\tsobj#c
 sep=%<separator%>
 #endkeyvals
 
@@ -122,6 +117,9 @@ date=%<date%>
 \end{typesetabstract}#*
 \begin{tsabstract}
 \end{tsabstract}
+
+\typesetdate#*
+\tsdate
 
 # not documented
 \PkgInfo{arg1}{arg2}#S

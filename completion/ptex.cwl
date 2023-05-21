@@ -13,30 +13,30 @@
 \xkanjiskip%<=⟨skip⟩%>#*
 \xspcode%<⟨8-bit number⟩=⟨0–3⟩%>#*
 \inhibitxspcode%<⟨kanji code⟩=⟨0–3⟩%>#*
-\autospacing‌#*
+\autospacing#*
 \noautospacing#*
-\autoxspacing‌#*
+\autoxspacing#*
 \noautoxspacing#*
 \showmode#*
 \inhibitglue#*
 \disinhibitglue#*
-\tate‌#*
-\yoko‌#*
+\tate#*
+\yoko#*
 \dtou#*
-\iftdir‌#*
-\ifydir‌#*
-\ifddir‌#*
+\iftdir#*
+\ifydir#*
+\ifddir#*
 \ifmdir#*
 \iftbox%<⟨number⟩%>#*
 \ifybox%<⟨number⟩%>#*
 \ifdbox%<⟨number⟩%>#*
 \ifmbox%<⟨number⟩%>#*
-\tbaselineshift‌%<=⟨dimen⟩%>#*
-\ybaselineshift‌%<=⟨dimen⟩%>#*
-\textbaselineshiftfactor‌%<=⟨number⟩%>#*
+\tbaselineshift%<=⟨dimen⟩%>#*
+\ybaselineshift%<=⟨dimen⟩%>#*
+\textbaselineshiftfactor%<=⟨number⟩%>#*
 \scriptbaselineshiftfactor%<=⟨number⟩%>#*
 \scriptscriptbaselineshiftfactor%<=⟨number⟩%>#*
-\jfont‌#*
+\jfont#*
 \tfont#*
 \ifjfont%<⟨font⟩%>#*
 \iftfont%<⟨font⟩%>#*
@@ -52,8 +52,8 @@
 \tojis%<⟨number⟩%>#*
 \kansuji%<⟨number⟩%>#*
 \kansujichar%<⟨0–9⟩=⟨kanji code⟩%>#*
-\ptexversion‌#*
-\ptexminorversion‌#*
+\ptexversion#*
+\ptexminorversion#*
 \ptexrevision#*
 
 ## 𝜀-pTeX
@@ -95,10 +95,10 @@
 \lastnodesubtype#*
 \epTeXinputencoding#*
 \readpapersizespecial#*
-\currentspacingmode‌#*
+\currentspacingmode#*
 \currentxspacingmode#*
-\Uchar‌%<⟨character code⟩%>#*
-\Ucharcat‌%<⟨character code⟩ ⟨category code⟩%>#*
+\Uchar%<⟨character code⟩%>#*
+\Ucharcat%<⟨character code⟩ ⟨category code⟩%>#*
 \suppresslongerror#*
 \suppressoutererror#*
 \suppressmathparerror#*

@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/05/13 for v0.99-z-l
+# Matthew Bertucci 2023/05/19 for v0.99-z-m
 
 #include:verbatim
 #include:mathtools
@@ -407,6 +407,20 @@ PointsSection={%<liste%>}
 CouleurSection=#%color
 CoefSection=%<coef%>
 ObjetSection=
+#endkeyvals
+
+## Patrons de cubes et de pavés droits ##
+\Patron{description du patron}
+\Patron[clés%keyvals]{description du patron}
+
+#keyvals:\Patron
+Pave#true,false
+Largeur=##L
+Profondeur=##L
+Hauteur=##L
+Arete=##L
+Traces={%<MP code%>}
+ListeCouleurs={%<couleur1,couleur2,...%>}
 #endkeyvals
 
 ## Les positions relatives de deux droites ##
@@ -1316,6 +1330,8 @@ LargeurT=##L
 Creation#true,false
 Solution#true,false
 Graine=%<nombre%>
+ValeurMin=%<nombre%>
+ValeurMax=%<nombre%>
 #endkeyvals
 
 ## Le défi « Rangement » ##
@@ -1529,8 +1545,10 @@ Echelle=##L
 ## Des cartes à jouer ##
 \Cartes{contenus du jeu%text}
 \Cartes[clés%keyvals]{contenus du jeu%text}
+\BoiteCartes
+\BoiteCartes[clés%keyvals]
 
-#keyvals:\Cartes
+#keyvals:\Cartes,\BoiteCartes
 Loop#true,false
 Landscape#true,false
 Largeur=%<nombre%>
@@ -1555,6 +1573,16 @@ ImageAr=%<imagefile%>
 ThemeSol=%<texte%>
 Trivial#true,false
 Symboles={%<symbole1,symbole2,...%>}
+#endkeyvals
+
+#keyvals:\BoiteCartes
+NbCartes=%<nombre%>
+TypeJeu=%<texte%>
+CouleurType=#%color
+Niveau=%<texte%>
+CouleurNiveau=#%color
+Numero=%<texte%>
+CouleurNumero=#%color
 #endkeyvals
 
 \SolutionCarte{solution}{commentaires%text}
@@ -2900,7 +2928,7 @@ Teal#B
 \PfCMentaloPremierTerme#S
 \PfCMoitieCase#S
 \PfCMPDessineModelBarre{arg1}{arg2}#S
-\PfCMPDessineModelBarreNonHomogene{arg1}{arg2}#S
+\PfCMPDessineModelBarreNonHomogene{arg1}{arg2}{arg3}#S
 \PfCNACible#S
 \PfCNAListeAEffacer#S
 \PfCNAListeMelange#S
@@ -3300,3 +3328,27 @@ Teal#B
 \TestPremier{arg}#S
 \PfCEraHauteur#S
 \PfCEraMax#S
+\tokPfCListeDesFonctions#S
+\tokPfCListeDesNomsFonctions#S
+\UpdatePfCListeDesFonctions{arg}#S
+\UpdatePfCListeDesNomsFonctions{arg}#S
+\PfCTraceMGCode#S
+\TraceMultiGraphique{arg1}{arg2}#S
+\JeConstruisLesProduits{arg1}{arg2}#S
+\toklistemodelbarresep#S
+\UpdateListeModelBarreSep{arg}#S
+\PfCMPDessineModelBarreNHCode#S
+\PfCMPDessineModelBarreBriqueCode#S
+\PfCMPDessineModelBarreBriqueCodePDF#S
+\CartesClassique#S
+\CartesLoop#S
+\CartesJaiQuia#S
+\CartesTrivial#S
+\BuildBoiteCartesCCCode#S
+\BuildBoiteCartesCommerceC#S
+\toklistepatron#S
+\UpdatetoksPatron{arg}#S
+\MPPatronCubeCode#S
+\MPPatronCube{arg1}{arg2}#S
+\MPPatronPaveCode#S
+\MPPatronPave{arg1}{arg2}#S

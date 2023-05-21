@@ -1,11 +1,9 @@
 # dynkin-diagrams package
-# Matthew Bertucci 2022/06/26 for v3.1415926535897932
+# Matthew Bertucci 2023/05/18 for 3.14159265358979323
 
 #include:tikz
 #include:xstring
-#include:xparse
 #include:etoolbox
-#include:expl3
 #include:pgfkeys
 #include:pgfopts
 #include:amsmath
@@ -29,7 +27,6 @@
 \begin{dynkinDiagram}[%<options%>]{%<letter%>}{%<rank%>}#\pictureHighlight
 \begin{dynkinDiagram}[%<options%>]{%<letter%>}[%<twisted rank%>]{%<rank%>}#\pictureHighlight
 \end{dynkinDiagram}
-\pgfkeys{keyvals}#S
 \dynkinName{%<letter%>}{%<rank%>}#*
 \dynkinName{%<letter%>}[%<twisted rank%>]{%<rank%>}#*
 \dynkinName[%<options%>]{%<letter%>}{%<rank%>}#*
@@ -96,6 +93,7 @@ parabolic=%<integer%>
 ply=#0,1,2,3,4
 reverse arrows
 root radius=##L
+separator length=##L
 scale=%<factor%>
 t/.style={%<style specs%>}
 text style/.style={%<style specs%>}
@@ -109,6 +107,10 @@ X/.style={%<style specs%>}
 #keyvals:\pgfkeys#c,\tikzset#c
 /Dynkin diagram
 #endkeyvals
+
+\dynkins{spec}
+\begin{DynkinDiagrams}{spec}
+\end{DynkinDiagrams}
 
 \dynkinFold{start}{end}
 \dynkinFold[TikZ keys]{start}{end}
@@ -309,6 +311,7 @@ X/.style={%<style specs%>}
 \dynkinRightFold{root1}{root2}#*
 \dynkinRootMark*{mark style}{root}#*
 \dynkinRootMark{mark style}{root}#*
+\dynkinSkip#*
 \dynkinSolidRootMark*[TikZ keys]{root}#*
 \dynkinSolidRootMark*{root}#*
 \dynkinSolidRootMark[TikZ keys]{root}#*

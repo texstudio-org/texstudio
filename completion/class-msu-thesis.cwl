@@ -1,5 +1,5 @@
 # msu-thesis class
-# Matthew Bertucci 2022/12/15 for v4.0
+# Matthew Bertucci 2023/05/19 for v4.1
 
 #include:class-memoir
 #include:etoolbox
@@ -130,4 +130,5 @@ twoside
 \msucaptiondelim
 \msutocdelim#*
 \setabstractnamespace{factor}
+\themsutocdepth#*
 \usememdefaultlineskip#*

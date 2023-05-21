@@ -53,7 +53,7 @@ foldmarks#true,false
 
 #ifOption:apa
 ## loads style=apa and natbib=true options of biblatex
-## from style=apa option
+# from style=apa option of biblatex
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 apamaxprtauth=%<number%>
 #endkeyvals
@@ -85,7 +85,8 @@ apamaxprtauth=%<number%>
 \nptextcites[pre]{bibid}[pre]{bibid}#*C
 \nptextcites[pre][post]{bibid}[pre][post]{bibid}#*C
 \nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
-## from natbib=true option
+
+# from natbib=true option of biblatex
 # from blx-natbib.def
 \citet[prenote][postnote]{bibid}#C
 \citet[postnote]{bibid}#C
@@ -157,7 +158,7 @@ apamaxprtauth=%<number%>
 #endif
 #ifOption:apa=true
 ## loads style=apa and natbib=true options of biblatex
-## from style=apa option
+# from style=apa option of biblatex
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
 apamaxprtauth=%<number%>
 #endkeyvals
@@ -189,7 +190,8 @@ apamaxprtauth=%<number%>
 \nptextcites[pre]{bibid}[pre]{bibid}#*C
 \nptextcites[pre][post]{bibid}[pre][post]{bibid}#*C
 \nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
-## from natbib=true option
+
+# from natbib=true option of biblatex
 # from blx-natbib.def
 \citet[prenote][postnote]{bibid}#C
 \citet[postnote]{bibid}#C

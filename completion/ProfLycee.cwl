@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/05/09 for v2.6.3
+# Matthew Bertucci 2023/05/20 for v2.6.4
 
 #include:mathtools
 #include:xcolor
@@ -14,6 +14,7 @@
 #include:xintexpr
 #include:xintbinhex
 #include:xinttools
+#include:xintgcd
 #include:randomlist
 #include:simplekv
 #include:listofitems
@@ -36,6 +37,8 @@
 #include:tcolorboxlibraryminted
 #include:iftex
 #include:piton
+#include:nicematrix
+#include:cancel
 
 #keyvals:\usepackage/ProfLycee#c
 build
@@ -712,6 +715,18 @@ AfficheConclusion#true,false
 AfficheDelimiteurs#true,false
 #endkeyvals
 
+## Résolution d’une équation diophantienne ##
+\EquationDiophantienne{equation}
+\EquationDiophantienne[options%keyvals]{equation}
+
+#keyvals:\EquationDiophantienne
+Lettre=%<nom%>
+Inconnues=%<x/y%>
+Entier=%<nom%>
+Cadres#true,false
+PresPGCD#true,false
+#endkeyvals
+
 ## Fractions, ensembles ##
 \ConversionFraction{calcul}
 \ConversionFraction[option de formatage%keyvals]{calcul}
@@ -800,6 +815,52 @@ NbSubDiv=%<nombre%>
 mainlevee
 mainlevee=%<segment-length%> et %<amplitude%>
 #endkeyvals
+
+## Affichage de coordonnées ##
+\AffPoint(liste de coordonnées)
+\AffPoint[options](liste de coordonnées)
+\AffVecteur(liste de coordonnées)
+\AffVecteur<options nicematrix>(liste de coordonnées)
+\AffVecteur[options](liste de coordonnées)
+\AffVecteur[options]<options nicematrix>(liste de coordonnées)
+
+## Équation cartésienne d’un plan de l’espace ##
+\TrouveEqCartPlan(vecteur normal)(point)
+\TrouveEqCartPlan(vecteur dir1)(vecteur dir2)(point)
+\TrouveEqCartPlan[options%keyvals](vecteur normal)(point)
+\TrouveEqCartPlan[options%keyvals](vecteur dir1)(vecteur dir2)(point)
+
+#keyvals:\TrouveEqCartPlan
+OptionCoeffs=%<option%>
+SimplifCoeffs#true,false
+Facteur=%<facteur%>
+#endkeyvals
+
+## Équation paramétrique d’une droite de l’espace ##
+\TrouveEqParamDroite(vecteur directeur)(point)
+\TrouveEqParamDroite[options%keyvals](vecteur directeur)(point)
+
+#keyvals:\TrouveEqParamDroite
+OptionCoeffs=%<option%>
+Reel=%<symbole%>
+Oppose#true,false
+Rgras#true,false
+#endkeyvals
+
+## Équation cartésienne d’une droite du plan ##
+\TrouveEqCartDroite(vecteur)(point)
+\TrouveEqCartDroite[options%keyvals](vecteur)(point)
+
+#keyvals:\TrouveEqCartDroite
+OptionCoeffs=%<option%>
+SimplifCoeffs#true,false
+Facteur=%<facteur%>
+VectDirecteur#true,false
+#endkeyvals
+
+## Distance d’un point à un plan ##
+\TrouveDistancePtPlan(point)(vec normal du plan)(point du plan)
+\TrouveDistancePtPlan(point)(équation cartésienne)
 
 ## Écriture d’un trinôme, trinôme aléatoire ##
 \EcritureTrinome{a}{b}{c}
@@ -1437,3 +1498,27 @@ vertcapyt#B
 \AffCoeffFloat[opt]{arg}#S
 \AffCoeffPa{arg}#S
 \AffCoeffPa[opt]{arg}#S
+\AffCoeffSgn{arg1}{arg2}#S
+\AffCoeffSgn[opt]{arg1}{arg2}#S
+\AffCoeffSgn*{arg1}{arg2}#S
+\AffCoeffSgn*[opt]{arg1}{arg2}#S
+\AffCoeffSgnSimpl{arg}#S
+\AffCoeffSgnSimpl[opt]{arg}#S
+\AffCoeffSgnSimpl*{arg}#S
+\AffCoeffSgnSimpl*[opt]{arg}#S
+\eqcartplformat#S
+\eqcartplfact#S
+\eqcartdteformat#S
+\eqcartdtefact#S
+\eqparamdteformat#S
+\eqparamdtereel#S
+\AffVarDteParam{arg1}{arg2}#S
+\AffVarDteParamAlign{arg1}{arg2}#S
+\AffCoeffBezout{arg}#S
+\EgaliteBezout{arg1}{arg2}#S
+\EgaliteBezout[opt]{arg1}{arg2}#S
+\AffCoeffDioph{arg}#S
+\AffCoeffDiophSign{arg}#S
+\LettreSolEDioph#S
+\CouleurSolEDioph#S
+\InconnuesSolEDioph#S

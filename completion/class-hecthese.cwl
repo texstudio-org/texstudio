@@ -114,10 +114,10 @@ phdarticles
 \TH#n
 
 #ifOption:english
-\captionsenglish
-\dateenglish
-\extrasenglish
-\noextrasenglish
+\captionsenglish#*
+\dateenglish#*
+\extrasenglish#*
+\noextrasenglish#*
 \englishhyphenmins#*
 \britishhyphenmins#*
 \americanhyphenmins#*

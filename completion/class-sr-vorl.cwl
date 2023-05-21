@@ -34,7 +34,7 @@ format=#a5-monografie,handbuch-monografie,a5-mehrautorenbuch,vs,autouni
 #endif
 
 #ifOption:deutsch
-# passes ngerman option to babel
+# from ngerman option of babel
 \captionsngerman#*
 \datengerman#*
 \extrasngerman#*
@@ -81,7 +81,7 @@ format=#a5-monografie,handbuch-monografie,a5-mehrautorenbuch,vs,autouni
 #endif
 
 #ifOption:deutsch-ar
-# passes german option to babel
+# from german option of babel
 \captionsgerman#*
 \dategerman#*
 \extrasgerman#*
@@ -145,7 +145,7 @@ format=#a5-monografie,handbuch-monografie,a5-mehrautorenbuch,vs,autouni
 
 #ifOption:englisch
 # passes ngerman and british options to babel
-# from ngerman option
+# from ngerman option of babel
 \captionsngerman#*
 \datengerman#*
 \extrasngerman#*
@@ -189,6 +189,7 @@ format=#a5-monografie,handbuch-monografie,a5-mehrautorenbuch,vs,autouni
 #repl:"' “
 #repl:"< «
 #repl:"> »
+
 # from british option of babel (repeats with ngerman removed)
 \captionsbritish#*
 \datebritish#*
