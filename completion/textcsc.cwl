@@ -1,10 +1,12 @@
 # textcsc package
-# Matthew Bertucci 2022/09/13 for v1.0.0
+# Matthew Bertucci 2023/05/23 for v1.2
 
 #include:iftex
 #include:fontspec
 
 \cscshape
 \textcsc{text}
+\csconlyshape
+\csconly{text}
 
 \textcscversionnumber#S
