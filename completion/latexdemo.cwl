@@ -1,10 +1,9 @@
 # latexdemo package
-# Matthew Bertucci 10/12/2021
+# Matthew Bertucci 2023/05/23 for v0.2
 
 #include:listings
 #include:xspace
 #include:etoolbox
-#include:filecontents
 #include:mdframed
 #include:framed
 #include:xcolor
@@ -14,6 +13,9 @@
 \democodefile
 \democodeprefix
 \demoresultprefix
+
+\begin{DefineCode}
+\end{DefineCode}
 
 \PrintDemo{style%keyvals}
 
