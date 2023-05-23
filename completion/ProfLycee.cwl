@@ -1,7 +1,8 @@
 # ProfLycee package
-# Matthew Bertucci 2023/05/20 for v2.6.4
+# Matthew Bertucci 2023/05/23 for v2.6.5
 
 #include:mathtools
+#include:amssymb
 #include:xcolor
 # xcolor loaded with table and svgnames options
 #include:tikz
@@ -42,6 +43,7 @@
 
 #keyvals:\usepackage/ProfLycee#c
 build
+nonamssymb
 #endkeyvals
 
 \useproflyclib{librairies%keyvals}
@@ -858,6 +860,10 @@ Facteur=%<facteur%>
 VectDirecteur#true,false
 #endkeyvals
 
+## Norme d’un vecteur, distance entre deux points ##
+\TrouveNorme(vecteur)
+\TrouveNorme(point1)(point2)
+
 ## Distance d’un point à un plan ##
 \TrouveDistancePtPlan(point)(vec normal du plan)(point du plan)
 \TrouveDistancePtPlan(point)(équation cartésienne)
@@ -1522,3 +1528,9 @@ vertcapyt#B
 \LettreSolEDioph#S
 \CouleurSolEDioph#S
 \InconnuesSolEDioph#S
+\TrouveEqCartPlanAux#S
+\TrouveEqCartDroiteAux#S
+\AffVecteurAux#S
+\TrouveEqParamDroiteAux#S
+\TrouveDistancePtPlanAux#S
+\TrouveNormeAux#S
