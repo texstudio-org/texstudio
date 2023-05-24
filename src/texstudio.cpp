@@ -5267,13 +5267,7 @@ void Texstudio::callToolButtonAction()
 	REQUIRE(index >= 0);
 	REQUIRE(index < menu->actions().size());
 	QList<QAction *> actions = menu->actions();
-	for (int i = 0; i < actions.size(); i++) {
-		if (actions[i]->isSeparator()) continue;
-		if (index == 0) {
-			actions[i]->trigger();
-			break;
-		} else index--;
-	}
+    actions[index]->trigger();
 }
 
 void Texstudio::insertFromAction()
