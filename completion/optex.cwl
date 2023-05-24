@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2023/03/09 for v1.11
+# Matthew Bertucci 2023/05/24 for v1.12
 
 #include:plaintex
 #include:luatex
@@ -53,6 +53,12 @@
 \normalmath
 \boldmath
 \mathbox{text}#m
+\bbig#m
+\bbigl#m
+\bbigm#m
+\bbigr#m
+\setmathstyle
+\usemathstyle
 
 # documented in optex-math.pdf (math symbols listed at bottom)
 \cramped#m
@@ -643,6 +649,7 @@
 
 # loaded by \load[math]
 \bigp#*m
+\bbigp#*m
 \Bigp#*m
 \biggp#*m
 \Biggp#*m
@@ -690,6 +697,9 @@
 \textdigits#*
 \textmoremath#*
 \replacemissingchars %<\family%>#*
+\mathclap{formula}#*
+\mathrlap{formula}#*
+\mathllap{formula}#*
 \mathset{options%keyvals}#*
 #keyvals:\mathset
 dots
@@ -698,6 +708,8 @@ bfserif
 rmchar={%<list%>}
 vargreek={%<list%>}
 text={%<list%>}
+mstyle=%<style%>
+bstyle=%<style%>
 #endkeyvals
 
 # loaded by \load[mte]
@@ -712,6 +724,8 @@ text={%<list%>}
 \angular#S
 \Baskervald#S
 \Baskerville#S
+\Besley#S
+\BodoniModa#S
 \Bonum#S
 \book#S
 \bs#S
@@ -721,6 +735,7 @@ text={%<list%>}
 \Cursor#S
 \Dejavu#S
 \displ#S
+\DraftingMono#S
 \EBGaramond#S
 \eexpd#S
 \elight#S
@@ -731,8 +746,10 @@ text={%<list%>}
 \GFSBodoni#S
 \hair#S
 \Heros#S
+\Heuristica#S
 \initials#S
 \Iwona#S
+\Jost#S
 \Kerkis#S
 \keybr#S
 \kf#S
