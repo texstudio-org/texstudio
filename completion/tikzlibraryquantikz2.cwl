@@ -1,5 +1,5 @@
 # quantikz2 tikzlibrary
-# 2023/04/25 for v1.0.0
+# 2023/05/24 for v1.0.1
 
 #include:xargs
 #include:ifthen
@@ -234,6 +234,8 @@ angle=%<degrees%>
 \forceredefine#*
 
 \ghost{label text}
+\ghost[min width]{label text}
+\ghost[min width][min height]{label text}
 
 \pgfdeclareanchoralias{arg1}{arg2}{arg3}#*
 \pgfaddtoshape{arg1}{arg2}#*
@@ -242,6 +244,7 @@ angle=%<degrees%>
 \DivideRowsCols#S
 \expandedwire{arg1}{arg2}{arg3}{arg4}#S
 \fullwire{arg1}{arg2}{arg3}{arg4}#S
+\ifcsstringeitheror{arg1}{arg2}{arg3}{arg4}#S
 \ifnodedefined{arg1}{arg2}{arg3}#S
 \importwiretypes{arg}#S
 \maketransparent#S
