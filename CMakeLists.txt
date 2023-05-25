@@ -117,7 +117,7 @@ endif()
 if(WIN32)
 	set(SOURCE_FILES ${SOURCE_FILES} win.rc)
 endif()
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT HAIKU)
 	add_subdirectory(src/xkb)
 endif()
 
