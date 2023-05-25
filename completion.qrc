@@ -734,6 +734,7 @@
 <file>completion/class-hgbthesis.cwl</file>
 <file>completion/class-hitec.cwl</file>
 <file>completion/class-hletter.cwl</file>
+<file>completion/class-hu-berlin-letter.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
 <file>completion/classicthesis-arsclassica.cwl</file>
@@ -1797,6 +1798,7 @@
 <file>completion/hulipsum.cwl</file>
 <file>completion/humanist.cwl</file>
 <file>completion/huncial.cwl</file>
+<file>completion/hu-berlin-base.cwl</file>
 <file>completion/hvarabic.cwl</file>
 <file>completion/hvextern.cwl</file>
 <file>completion/hvfloat.cwl</file>
@@ -2357,6 +2359,7 @@
 <file>completion/morewrites.cwl</file>
 <file>completion/morisawa.cwl</file>
 <file>completion/MorrisIn.cwl</file>
+<file>completion/movement-arrows.cwl</file>
 <file>completion/mparhack.cwl</file>
 <file>completion/mpgraphics.cwl</file>
 <file>completion/mpostinl.cwl</file>
