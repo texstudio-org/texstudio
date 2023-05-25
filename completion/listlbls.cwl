@@ -1,5 +1,5 @@
 # listlbls package
-# Matthew Bertucci 2/3/2022 for v1.03
+# Matthew Bertucci 2023/05/25 for v1.04
 
 #include:translations
 
@@ -13,3 +13,4 @@ nonameref
 #endkeyvals
 
 \listoflabels
+\listoflabels[label]#l
