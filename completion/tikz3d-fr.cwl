@@ -1,5 +1,5 @@
 # tikz3d-fr package
-# Matthew Bertucci 2023/05/02 for v0.1.0
+# Matthew Bertucci 2023/05/25 for v0.1.1
 
 #include:tikz
 #include:xstring
@@ -8,7 +8,6 @@
 #include:xintexpr
 #include:listofitems
 #include:tikzlibrarycalc
-#include:tikzlibrarybabel
 
 \begin{EnvTikzEspace}#\pictureHighlight
 \begin{EnvTikzEspace}<options TikZ>#\pictureHighlight
@@ -107,3 +106,5 @@ CouleurSommets=#%color
 \TrimDimStylePt#S
 \TrimDimtaillePt#S
 \TrimDimCoul#S
+\VecteursBase#S
+\VecteursBase[opt]#S
