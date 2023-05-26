@@ -1558,3 +1558,7 @@ nostarch:
 class-nostarch
 latex-document
 tex
+hu-berlin-letter:
+class-hu-berlin-letter
+latex-document
+tex

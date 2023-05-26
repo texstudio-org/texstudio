@@ -1,5 +1,5 @@
 # letgut class
-# Matthew Bertucci 2023/01/13 for v0.9.5
+# Matthew Bertucci 2023/05/23 for v0.9.7
 
 #include:luatex
 #include:l3keys2e
@@ -32,6 +32,7 @@
 #include:refcount
 #include:ninecolors
 #include:tabularray
+#include:tabularraylibrarybooktabs
 #include:babel
 # loads english and french options of babel
 #include:varioref
@@ -67,8 +68,8 @@ allcolorslinks=#%color
 membership-reminder#true,false
 editorial#true,false
 informations#true,false
-detailedtoc#true,false
-source-files-attached#true,false
+detailedtoc=#section,subsection,subsubsection,paragraph,subparagraph,all,none
+reverse-files-attachement
 #endkeyvals
 
 \inputarticle{file}#i
@@ -246,7 +247,7 @@ list-format={%<code%>}
 
 \separator
 \begin{announcement}{titre%text}
-\begin{announcement}[color]{titre%text}
+\begin{announcement}[options%keyvals]{titre%text}
 \end{announcement}
 \begin{rebus}
 \begin{rebus}[options%keyvals]
@@ -321,7 +322,7 @@ letgut_default_alert_box_color#B
 \pao#*
 
 # tcolorbox keys
-#keyvals:\begin{ltx-code},\begin{ltx-code-result},\begin{ltx-code-external-result},\terminal,\begin{rebus},\rebussolution
+#keyvals:\begin{ltx-code},\begin{ltx-code-result},\begin{ltx-code-external-result},\terminal,\begin{announcement},\begin{rebus},\rebussolution
 ### << always available keys >> ###
 title=%<text%>
 notitle
@@ -1101,6 +1102,11 @@ minted options pre={%<options%>}
 title addon=%<supplément au titre%>
 result width=##L
 reference text=%<texte%>
+#endkeyvals
+
+#keyvals:\begin{announcement}
+toc title=%<titre alternatif%>
+color=#%color
 #endkeyvals
 
 #keyvals:\begin{rebus}

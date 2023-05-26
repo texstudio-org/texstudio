@@ -1,5 +1,5 @@
 # OutilsGeomTikz package
-# Matthew Bertucci 2023/03/06 for v0.1.0
+# Matthew Bertucci 2023/05/22 for v0.1.2
 
 #include:tikz
 #include:pgffor
@@ -35,6 +35,23 @@ CouleurFond=#%color
 Opacite=%<factor%>
 AfficheValeurs#true,false
 PosVal=#h,m,b,hb
+#endkeyvals
+
+\tkzRegleRepere
+\tkzRegleRepere[clés%keyvals]
+
+#keyvals:\tkzRegleRepere
+Longueur=%<nombre%>
+Largeur=%<nombre%>
+Origine={(%<x,y%>)}
+Rotation=%<degrees%>
+Echelle=%<nombre%>
+Couleur=#%color
+Fond#true,false
+CouleurFond=#%color
+Opacite=%<factor%>
+AfficheValeurs#true,false
+Retourne#true,false
 #endkeyvals
 
 \tkzEquerre
@@ -194,3 +211,11 @@ Ombre#true,false
 \REQopac#S
 \REQposOrigin#S
 \TmpUniteX#S
+\REGLREPechelle#S
+\REGLREPlongueur#S
+\REGLREPlargeur#S
+\REGLREPcouleur#S
+\REGLREPcouleurfond#S
+\REGLREPposOrigin#S
+\REGLREPangle#S
+\REGLREPopac#S

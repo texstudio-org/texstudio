@@ -1,10 +1,10 @@
 # templatetools package
-# Matthew Bertucci 1/3/2022 for v0.1
+# Matthew Bertucci 2023/05/23 for v0.2
 
 #include:array
 #include:etoolbox
 #include:ifdraft
-#include:ifpdf
+#include:iftex
 #include:ltxcmds
 #include:scrlfile
 
@@ -38,6 +38,8 @@
 \IfMathVersionDefined{font version}{code-defined}{code-undefined}
 
 \IfGlossariesStyleDefined{style name}{code-defined}
+
+\IfBibEnvironmentDefined{envname}{code-defined}
 
 \SetTemplateDefinition{group}{property}{code}
 \UseDefinition{group}{property}
