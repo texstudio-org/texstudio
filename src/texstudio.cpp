@@ -2191,7 +2191,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         delete existingView;
         existingView=nullptr;
         LatexDocument *m=doc->getMasterDocument();
-        m->removeChild(doc);
+        if(m){
+            m->removeChild(doc);
+        }
         documents.deleteDocument(doc,true);
         doc=nullptr;
     }
