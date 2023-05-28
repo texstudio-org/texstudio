@@ -11612,8 +11612,10 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
-            //QString fn=ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath())+elem->title;
-            QFileInfo fi(doc->getRootDocument()->getFileInfo().absolutePath(),elem->title);
+            QString name=elem->title;
+            name.replace("\\string~",QDir::homePath());
+            QString fname = doc->findFileName(name);
+            QFileInfo fi(fname);
             doc=documents.findDocumentFromName(fi.absoluteFilePath());
             if(!doc){
                 doc=documents.findDocumentFromName(fi.absoluteFilePath()+".tex");
