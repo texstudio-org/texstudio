@@ -8,7 +8,8 @@
 MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
 {
     tableWidget=new QTableWidget(4,1);
-    tableWidget->setHorizontalHeaderLabels(QStringList()<<"Macro name");
+    tableWidget->setHorizontalHeaderLabels(QStringList()<<tr("Macro name"));
+    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tableWidget->horizontalHeader()->setStretchLastSection(true);
     connect(tableWidget,SIGNAL(itemClicked(QTableWidgetItem*)),SLOT(itemClicked(QTableWidgetItem*)));
     auto *lblName=new QLabel(tr("Name"));
@@ -104,6 +105,8 @@ void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
     QString url=item->data(Qt::UserRole).toString();
     if(url.isEmpty()){
         // descend into folder
+        leName->setText("");
+        teDescription->setPlainText("");
         if(item->text()==".."){
             int c=currentPath.lastIndexOf('/');
             url=currentPath.left(c);
