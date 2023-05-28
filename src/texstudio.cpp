@@ -9715,6 +9715,7 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 		doc = qobject_cast<LatexDocument *>(currentEditor()->document());
 	}
 	if (!doc) return;
+    if(doc->getFileName().isEmpty()) return; // unsaved file, no relative filename meaningful
 	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
     if(name.endsWith('#')){
         relativeToCurrentDoc=true;
