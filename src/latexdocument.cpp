@@ -3602,8 +3602,8 @@ bool LatexDocument::saveCachingData(const QString &folder)
     }
 
     QJsonArray ja_docs;
-    for(const auto &elem:childDocs){
-        ja_docs.append(elem->fileName);
+    for(const auto &elem:includedFiles()){
+        ja_docs.append(elem);
     }
 
     QJsonArray ja_userCommands;
