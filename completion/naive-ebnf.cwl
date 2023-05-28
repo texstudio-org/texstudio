@@ -1,5 +1,5 @@
 # naive-ebnf package
-# Matthew Bertucci 2023/03/21 for v0.0.5
+# Matthew Bertucci 2023/05/27 for v0.0.6
 
 #include:pgfopts
 #include:xcolor
@@ -15,3 +15,4 @@ trail=%<file name%>
 
 \terminal{symbol}
 \nonterminal{rule}
+\sterminal{symbol}
