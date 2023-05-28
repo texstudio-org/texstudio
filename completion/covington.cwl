@@ -1,5 +1,5 @@
 # covington package
-# Matthew Bertucci 2022/08/31 for v2.8
+# Matthew Bertucci 2023/05/27 for v2.9
 
 #include:xkeyval
 #include:iftex
@@ -31,6 +31,8 @@ ownfncounter*
 
 #keyvals:\begin{example},\begin{covexample}
 preamble={%<text%>}
+postamble={%<text%>}
+postamble*={%<text%>}
 #endkeyvals
 
 \examplenumbersep#*
@@ -42,6 +44,9 @@ preamble={%<text%>}
 \begin{covexamples}#*
 \end{covexamples}#*
 
+\expreamble{text}
+\expostamble{text}
+
 \begin{subexamples}
 \begin{subexamples}[option%keyvals]
 \end{subexamples}
@@ -50,15 +55,21 @@ preamble={%<text%>}
 
 #keyvals:\begin{subexamples},\begin{covsubexamples}
 preamble={%<text%>}
+postamble={%<text%>}
 #endkeyvals
+
+\subexpreamble{text}
+\subexpostamble{text}
 
 \covexnumber{arg}#*
 \covexnumberfn{arg}#*
 \covsubexnumber{arg}#*
 \covexamplefs#*
 \covexamplenofs#*
-\subexpreamblefs#*
 \expreamblefs#*
+\subexpreamblefs#*
+\expostamblefs#*
+\subexpostamblefs#*
 \thecovfnex#*
 \pxref{label}#r
 \digloss[options%keyvals]{glossline1}{glossline2}{translation}
