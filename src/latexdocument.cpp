@@ -3698,9 +3698,11 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         ltxCommands.possibleCommands["user"].insert(cmd);
     }
     ja=dd.value("packages").toArray();
+    bool addedPackages=false;
     for (int i = 0; i < ja.size(); ++i) {
         QString package=ja[i].toString();
         mUsepackageList.insert(nullptr,package);
+        addedPackages=true;
     }
     ja=dd.value("toc").toArray();
     QVector<StructureEntry *> parent_level(lp.structureDepth()+1);
@@ -3734,6 +3736,9 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         for(int k=pos+1;k<parent_level.size();++k){
             parent_level[k]=se;
         }
+    }
+    if(addedPackages){
+        bool updated=updateCompletionFiles(false, false, true);
     }
     m_cachedDataOnly=true;
     return true;
