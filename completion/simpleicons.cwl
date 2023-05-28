@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/05/19 for v8.14.0
+# Matthew Bertucci 2023/05/27 for v8.15.0
 
 #include:ifxetex
 #include:ifluatex
@@ -276,6 +276,7 @@ behance
 beijingsubway
 bem
 bentley
+bento
 betfair
 bigbasket
 bigbluebutton
@@ -1818,6 +1819,7 @@ ripple
 riseup
 roamresearch
 roblox
+robloxstudio
 robotframework
 rocketdotchat
 rocksdb
