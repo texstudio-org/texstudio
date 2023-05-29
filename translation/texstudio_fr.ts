@@ -113,7 +113,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation type="unfinished"/>
+        <translation>Dans le cas d&apos;un environnement `array`, définit l&apos;alignement pour la colonne de la cellule actuellement sélectionnée.
+Pour les environnements `matrix*` et assimilés (package `mathtools`), définit l&apos;alignement pour toutes les colonnes à la fois.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -125,7 +126,9 @@ For matrix* and the like (package mathtools) sets the alignment for all columns 
         <source>Choose environment to be created (s. window title).
 Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
-        <translation type="unfinished"/>
+        <translation>Choisissez l&apos;environnement à créer (voir le titre de la fenêtre).
+Le package `amsmath` prend en charge `alignedat`, `matrix`, `pmatrix`, `bmatrix`, `Bmatrix`, `vmatrix`, `Vmatrix.
+Le package `mathtools` prend en charge `alignedat`, `matrix*`, `pmatrix*`, `bmatrix*`, `Bmatrix*`, `vmatrix*`, `Vmatrix*`.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="128"/>
@@ -1898,7 +1901,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="../src/configdialog.ui" line="2009"/>
         <source>Cache documents for faster reopening</source>
-        <translation type="unfinished"/>
+        <translation>Mise en cache des documents pour une réouverture plus rapide</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2558"/>
@@ -5404,7 +5407,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="11"/>
         <source>Macro name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de la macro</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
@@ -8360,7 +8363,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location filename="../src/randomtextgenerator.ui" line="228"/>
         <source>Lorem Ipsum</source>
-        <translation type="unfinished"/>
+        <translation>Lorem ipsum (faux-texte)</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="162"/>
@@ -11563,7 +11566,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location filename="../src/texstudio.cpp" line="7027"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation type="unfinished"/>
+        <translation>%1 est un répertoire de projet TeX non valide.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7314"/>

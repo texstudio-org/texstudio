@@ -113,7 +113,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation type="unfinished"/>
+        <translation>Caso um ambiente array defina o alinhamento para a coluna da célula actualmente seleccionada.
+Para matrix* e parecidos (pacote mathtools) define o alinhamento para todas as colunas simultaneamente.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>

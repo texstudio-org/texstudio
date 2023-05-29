@@ -113,7 +113,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation type="unfinished"/>
+        <translation>Если окружение — array, то задаёт выравнивание всего столбца, в котором находится выделенная ячейка.
+Если окружение — matrix* (или подобное, пакет mathtools), то задаёт выравнивание во всех столбцах.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -125,7 +126,9 @@ For matrix* and the like (package mathtools) sets the alignment for all columns 
         <source>Choose environment to be created (s. window title).
 Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
-        <translation type="unfinished"/>
+        <translation>Выберите окружение, которое хотите создать (см. заголовок окна).
+Пакет amsmath поддерживает alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+Пакет mathtools поддерживает alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="128"/>
@@ -1899,7 +1902,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2009"/>
         <source>Cache documents for faster reopening</source>
-        <translation type="unfinished"/>
+        <translation>Кэшировать документы для скорейшего открытия</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2558"/>
@@ -5410,7 +5413,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="11"/>
         <source>Macro name</source>
-        <translation type="unfinished"/>
+        <translation>Название макроса</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
@@ -8366,7 +8369,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="228"/>
         <source>Lorem Ipsum</source>
-        <translation type="unfinished"/>
+        <translation>Lorem Ipsum (текст-рыба)</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="162"/>
@@ -11569,7 +11572,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="7027"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation type="unfinished"/>
+        <translation>%1 не является корректной директорией TeX-проекта.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7314"/>

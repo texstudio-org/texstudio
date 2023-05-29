@@ -113,7 +113,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation type="unfinished"/>
+        <translation>Az array környezet esetén az aktuálisan kijelölt cella oszlopának igazítását állítja be.
+ A matrix* és hasonlók (mathools csomag) esetén az összes oszlop igazítását egyszerre állítja be.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -125,7 +126,9 @@ For matrix* and the like (package mathtools) sets the alignment for all columns 
         <source>Choose environment to be created (s. window title).
 Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
-        <translation type="unfinished"/>
+        <translation>Válassza ki a létrehozandó környezetet (lásd ablak címe).
+Az amsmath csomag támogatja az alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix környezeteket.
+A mathtools csomag támogatja az alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix* környezeteket.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="128"/>
@@ -1896,7 +1899,7 @@ meg kell jelenítenie a karaktereket. Mivel a LaTeX nem támogatja natívan az u
     <message>
         <location filename="../src/configdialog.ui" line="2009"/>
         <source>Cache documents for faster reopening</source>
-        <translation type="unfinished"/>
+        <translation>A dokumentumok gyorsítótárazása a gyorsabb újranyitás érdekében</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2558"/>
@@ -5397,7 +5400,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="11"/>
         <source>Macro name</source>
-        <translation type="unfinished"/>
+        <translation>Makrónév</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
@@ -8346,7 +8349,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="../src/randomtextgenerator.ui" line="228"/>
         <source>Lorem Ipsum</source>
-        <translation type="unfinished"/>
+        <translation>Lorem Ipsum</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="162"/>
@@ -11547,7 +11550,7 @@ Beleegyezik a cserébe?
     <message>
         <location filename="../src/texstudio.cpp" line="7027"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation type="unfinished"/>
+        <translation>%1 érvénytelen TeX projektkönyvtár</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7314"/>

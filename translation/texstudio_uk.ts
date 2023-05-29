@@ -113,7 +113,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation type="unfinished"/>
+        <translation>У випадку середовища array задає вирівнювання для стовпчика поточної виділеної комірки.
+Для matrix* і подібних середовищ (пакет mathtools) задає вирівнювання для всіх стовпців одразу.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -125,7 +126,9 @@ For matrix* and the like (package mathtools) sets the alignment for all columns 
         <source>Choose environment to be created (s. window title).
 Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
-        <translation type="unfinished"/>
+        <translation>Виберіть середовище, яке буде створено (див. заголовок вікна).
+Пакет amsmath підтримує alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+Пакет mathtools підтримує alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="128"/>
@@ -1897,7 +1900,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2009"/>
         <source>Cache documents for faster reopening</source>
-        <translation type="unfinished"/>
+        <translation>Кешувати документи для швидшого відкривання</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2558"/>
@@ -5408,7 +5411,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="11"/>
         <source>Macro name</source>
-        <translation type="unfinished"/>
+        <translation>Назва макросу</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
@@ -8365,7 +8368,7 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
     <message>
         <location filename="../src/randomtextgenerator.ui" line="228"/>
         <source>Lorem Ipsum</source>
-        <translation type="unfinished"/>
+        <translation>Випадковий текст</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="162"/>
@@ -11567,7 +11570,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="../src/texstudio.cpp" line="7027"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation type="unfinished"/>
+        <translation>%1 — недійсний каталог проєкту TeX.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7314"/>
