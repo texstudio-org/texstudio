@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/05/23 for v2.6.5
+# Matthew Bertucci 2023/05/29 for v2.6.6
 
 #include:mathtools
 #include:amssymb
@@ -810,12 +810,6 @@ Opacite=%<factor%>
 CouleurRemplissage=#%color
 Methode=#RectanglesGauche,RectanglesDroite,RectanglesMilieu,Trapezes
 NbSubDiv=%<nombre%>
-#endkeyvals
-
-## Style « main levée » en TikZ ##
-#keyvals:\draw#c
-mainlevee
-mainlevee=%<segment-length%> et %<amplitude%>
 #endkeyvals
 
 ## Affichage de coordonnées ##
