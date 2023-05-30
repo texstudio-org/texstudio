@@ -126,7 +126,9 @@ Para matrix* e parecidos (pacote mathtools) define o alinhamento para todas as c
         <source>Choose environment to be created (s. window title).
 Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
-        <translation type="unfinished"/>
+        <translation>Escolha o ambiente a criar (s. título da janela).
+O pacote amsmath suporta alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
+O pacote mathtools suporta alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="128"/>
@@ -1898,7 +1900,7 @@ Dado que o Unicode não tem suporte nativo no LaTeX, tem de incluir os pacotes a
     <message>
         <location filename="../src/configdialog.ui" line="2009"/>
         <source>Cache documents for faster reopening</source>
-        <translation type="unfinished"/>
+        <translation>Memorizar documentos para reabertura mais rápida</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2558"/>
@@ -5407,7 +5409,7 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="11"/>
         <source>Macro name</source>
-        <translation type="unfinished"/>
+        <translation>Nome da macro</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
@@ -8362,7 +8364,7 @@ Pode usar \1 to \9 no texto de substituição para inserir uma sub-correspondên
     <message>
         <location filename="../src/randomtextgenerator.ui" line="228"/>
         <source>Lorem Ipsum</source>
-        <translation type="unfinished"/>
+        <translation>Lorem Ipsum</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.ui" line="162"/>
@@ -11565,7 +11567,7 @@ Deseja permitir e executar o novo comando sobreposto?
     <message>
         <location filename="../src/texstudio.cpp" line="7027"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation type="unfinished"/>
+        <translation>%1 é uma pasta de projecto TeX inválida</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7314"/>
