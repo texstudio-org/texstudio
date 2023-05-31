@@ -1685,7 +1685,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
         double numDegrees = event->angleDelta().x() / 8.0;
         const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
         QScrollBar *scrollBar = getScrollArea()->horizontalScrollBar();
-        if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
+        if (scrollBar->minimum() < scrollBar->maximum() && !globalConfig->disableHorizontalScrollingForFitToTextWidth) { //if scrollbar visible
             scrollBar->setValue(scrollBar->value() - qRound(scrollBar->singleStep() * QApplication::wheelScrollLines() * numDegrees / degreesPerStep));
         }
     }
@@ -4429,8 +4429,14 @@ void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
 		if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
 			scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	} else {
-		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAsNeeded)
-			scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+		if (scaleOption == kFitTextWidth && globalConfig->disableHorizontalScrollingForFitToTextWidth) {
+			if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
+				scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		}
+		else {
+			if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAsNeeded)
+				scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+		}
 		if (scrollArea->verticalScrollBarPolicy() != Qt::ScrollBarAsNeeded)
 			scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 	}
