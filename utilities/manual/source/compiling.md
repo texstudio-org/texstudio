@@ -61,3 +61,17 @@ scrolls to the corresponding location. The log markers will be activated
 settings). The log file information can be shown or hidden by clicking
 on the Log File button. The Issues button offers a similar function for
 the table with the messages.
+
+### Log files created from previews
+
+A [*preview*](viewing.md#preview) creates temporary files. You can browse these files by navigating to the folder
+for temporary files. TeXstudio supports loading .log files. Thus you better work with the .log file as described
+above. Just copy the file name without extension from the [*messages panel*](getting_started.md#start-texstudio)
+to the clipboard, select `File/Open...`, then navigate to the folder for temporary files and use the clipboard
+for entering the log file name (don't forgett to add file extension .log). After you have confirmed loading the
+file switch to the log panel in the messages pane. %tmp% may be used as a shortcut for the folder for temporary
+files (depending on OS used).
+
+![Message Preview process started](images/previewProcessStarted.png)
+
+![Select temporary log file](images/SelectTempLogFile.png)

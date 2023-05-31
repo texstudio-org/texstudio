@@ -137,7 +137,7 @@ When optimizing small structures visually like tables or formulas, various compi
 
 TeXstudio offers a preview for this circumstance.
 The preview can either be inline, i.e. right below the previewed text, as tooltip, in the preview pane or in the embedded pdf viewer.
-The selection is done in the [configuration](configuration.md#configuring-preview).
+The selection is done in the [configuration](configuration.md#configuring-preview) or in the submenu of main menu `Idefix/Preview Display Mode`.
 
 ### Inline Preview
 
