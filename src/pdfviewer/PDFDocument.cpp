@@ -1685,7 +1685,10 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
         double numDegrees = event->angleDelta().x() / 8.0;
         const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
         QScrollBar *scrollBar = getScrollArea()->horizontalScrollBar();
-        if (scrollBar->minimum() < scrollBar->maximum() && !globalConfig->disableHorizontalScrollingForFitToTextWidth) { //if scrollbar visible
+
+        if ( scrollBar->minimum() < scrollBar->maximum() &&
+//            !(PDFDocument::isCheckedFitToTextWidth() && globalConfig->disableHorizontalScrollingForFitToTextWidth) ) { //if scrollbar visible
+            !(actionFit_to_Text_Width->isChecked() && globalConfig->disableHorizontalScrollingForFitToTextWidth) ) { //if scrollbar visible
             scrollBar->setValue(scrollBar->value() - qRound(scrollBar->singleStep() * QApplication::wheelScrollLines() * numDegrees / degreesPerStep));
         }
     }
@@ -3074,6 +3077,10 @@ void PDFDocument::shortcutOnlyIfFocused(const QList<QAction *> &actions)
         act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
     }
 }
+
+//bool PDFDocument::isCheckedFitToTextWidth() {
+//	return actionFit_to_Text_Width->isChecked();
+//}
 
 /*!
  * \brief load Sync Icons

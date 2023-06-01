@@ -45,6 +45,7 @@
 
 
 const int kPDFWindowStateVersion = 1;
+static QAction *actionFit_to_Text_Width;
 
 class QAction;
 class QMenu;
@@ -458,6 +459,8 @@ public:
 
 	void setStateEnlarged(bool state);
     void updateIcons();
+//	bool isCheckedFitToTextWidth();
+
 
 protected:
 	virtual void changeEvent(QEvent *event);
@@ -664,7 +667,7 @@ private:
 	QAction *actionAutoHideToolbars;
     QAction *actionInvertColors;
     QAction *actionFocus_Editor;
-    QAction *actionFit_to_Text_Width;
+//    QAction *actionFit_to_Text_Width;
     QAction *actionGrayscale;
     QAction *actionSplitMerge;
     QActionGroup *actionGroupGrid;
