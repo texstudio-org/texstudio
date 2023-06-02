@@ -1686,7 +1686,9 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
         const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
         QScrollBar *scrollBar = getScrollArea()->horizontalScrollBar();
         if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
-            scrollBar->setValue(scrollBar->value() - qRound(scrollBar->singleStep() * QApplication::wheelScrollLines() * numDegrees / degreesPerStep));
+            if(scaleOption!=kFitTextWidth || !globalConfig->disableHorizontalScrollingForFitToTextWidth){
+                scrollBar->setValue(scrollBar->value() - qRound(scrollBar->singleStep() * QApplication::wheelScrollLines() * numDegrees / degreesPerStep));
+            }
         }
     }
     if(event->angleDelta().y()!=0){
