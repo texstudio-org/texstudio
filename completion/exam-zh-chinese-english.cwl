@@ -1,7 +1,6 @@
 # exam-zh-chinese-english package
-# Matthew Bertucci 2022/07/29 for v0.1.13
+# Matthew Bertucci 2023/06/02 for v0.1.25
 
-#include:expl3
 #include:tcolorbox
 #include:tcolorboxlibrarymost
 #include:varwidth
