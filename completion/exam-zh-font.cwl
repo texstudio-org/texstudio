@@ -1,8 +1,6 @@
 # exam-zh-font package
-# Matthew Bertucci 2022/08/17 for v0.1.18
+# Matthew Bertucci 2023/06/02 for v0.1.25
 
-#include:expl3
-#include:xparse
 #include:unicode-math
 #include:filehook
 #include:etoolbox
