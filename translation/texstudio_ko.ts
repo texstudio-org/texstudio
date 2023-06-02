@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>변경 로그</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="37"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="45"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio는 Crystal Project (LGPL), Oxygen 아이콘 테마 (CC-BY-SA 3.0) 및 Libre Office의 Colibre 아이콘 테마 (CC0)의 아이콘을 사용합니다.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="46"/>
@@ -12825,7 +12825,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="390"/>
         <source>Images options</source>
-        <translation type="unfinished"/>
+        <translation>이미지 옵션</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="411"/>
@@ -12855,12 +12855,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.cpp" line="33"/>
         <source>Icons</source>
-        <translation type="unfinished"/>
+        <translation>아이콘</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="34"/>
         <source>Page numbers</source>
-        <translation type="unfinished"/>
+        <translation>페이지 번호</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="35"/>
@@ -12881,7 +12881,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="134"/>
         <source>Running browser .</source>
-        <translation type="unfinished"/>
+        <translation>브라우저 실행 중.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="141"/>
@@ -12939,7 +12939,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="637"/>
         <source>Scanning files. Please wait...</source>
-        <translation type="unfinished"/>
+        <translation>파일 스캔 중. 잠시만 기다려주세요.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="681"/>
