@@ -897,12 +897,16 @@ void LatexEditorView::moveLines(int delta)
             i += delta;
             continue;
         }
+        bool skipCursorUp=blocks[i].second==(document->lineCount()-1);
 		QDocumentCursor edit = document->cursor(blocks[i].first, 0, blocks[i].second);
 		QString text = edit.selectedText();
-		edit.removeSelectedText();
-		edit.eraseLine();
+        edit.removeSelectedText();
+        edit.eraseLine();
         if (delta < 0) {
-            edit.movePosition(1, QDocumentCursor::PreviousLine);
+            if(!skipCursorUp){
+                // special treatment of last line of document
+                edit.movePosition(1, QDocumentCursor::PreviousLine);
+            }
 			edit.movePosition(1, QDocumentCursor::StartOfLine);
 			edit.insertText(text + "\n");
 		} else {
