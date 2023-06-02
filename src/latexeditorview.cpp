@@ -889,15 +889,20 @@ void LatexEditorView::moveLines(int delta)
 	QList<QPair<int, int> > blocks = getSelectedLineBlocks();
 	document->beginMacro();
 	int i = delta < 0 ? blocks.size() - 1 : 0;
+    QVector<bool>skipMove(cursors.length(),false);
 	while (i >= 0 && i < blocks.size()) {
 		//edit
+        if ((delta < 0 && blocks[i].first==0)||(delta > 0 && blocks[i].second==(document->lineCount()-1))) {
+            skipMove[i]=true;
+            i += delta;
+            continue;
+        }
 		QDocumentCursor edit = document->cursor(blocks[i].first, 0, blocks[i].second);
 		QString text = edit.selectedText();
 		edit.removeSelectedText();
 		edit.eraseLine();
-		if (delta < 0) {
-			if (blocks[i].second < document->lineCount())
-				edit.movePosition(1, QDocumentCursor::PreviousLine);
+        if (delta < 0) {
+            edit.movePosition(1, QDocumentCursor::PreviousLine);
 			edit.movePosition(1, QDocumentCursor::StartOfLine);
 			edit.insertText(text + "\n");
 		} else {
@@ -910,6 +915,7 @@ void LatexEditorView::moveLines(int delta)
 	//move cursors
 	for (int i=0;i<cursors.length();i++) {
 		cursors[i].setAutoUpdated(true);
+        if(skipMove[i]) continue;
 		if (cursors[i].hasSelection()) {
 			cursors[i].setAnchorLineNumber(cursors[i].anchorLineNumber() + delta);
 			cursors[i].setLineNumber(cursors[i].lineNumber() + delta, QDocumentCursor::KeepAnchor);
