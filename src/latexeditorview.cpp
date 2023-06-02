@@ -928,7 +928,9 @@ QList<QPair<int, int> > LatexEditorView::getSelectedLineBlocks()
 	for (int i=0;i<cursors.length();i++) {
 		if (cursors[i].hasSelection()) {
 			QDocumentSelection sel = cursors[i].selection();
-			for (int l=sel.startLine;l<=sel.endLine;l++)
+			int lastLineOfBlock = sel.endLine;
+			if (cursors[i].selectionEnd().columnNumber()==0) lastLineOfBlock -= 1;
+			for (int l=sel.startLine;l<=lastLineOfBlock;l++)
 				lines << l;
 		} else lines << cursors[i].lineNumber();
 	}
