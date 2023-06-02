@@ -131,8 +131,8 @@ LoadFandol#true,false
 \xeCJKRestoreSubCJKBlock*{blocks}#*
 
 ## 3.4
-\xeCJKDeclareCharClass{class}{class range}#*
-\xeCJKDeclareCharClass*{class}{class range}#*
+\xeCJKDeclareCharClass{char class}{class range}#*
+\xeCJKDeclareCharClass*{char class}{class range}#*
 
 \xeCJKResetCharClass#*
 \xeCJKResetPunctClass#*
