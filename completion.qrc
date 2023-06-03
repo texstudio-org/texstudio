@@ -2764,6 +2764,7 @@
 <file>completion/popupmenu.cwl</file>
 <file>completion/postage.cwl</file>
 <file>completion/poster.cwl</file>
+<file>completion/postit.cwl</file>
 <file>completion/postnotes.cwl</file>
 <file>completion/powerdot-aggie.cwl</file>
 <file>completion/powerdot-BerlinFU.cwl</file>
@@ -3300,6 +3301,7 @@
 <file>completion/stricttex.cwl</file>
 <file>completion/stringenc.cwl</file>
 <file>completion/stringstrings.cwl</file>
+<file>completion/string-diagrams.cwl</file>
 <file>completion/stripsemantex.cwl</file>
 <file>completion/structmech.cwl</file>
 <file>completion/struktex.cwl</file>
@@ -3496,6 +3498,7 @@
 <file>completion/thumby.cwl</file>
 <file>completion/ticket.cwl</file>
 <file>completion/ticollege.cwl</file>
+<file>completion/tikz2d-fr.cwl</file>
 <file>completion/tikz3d-fr.cwl</file>
 <file>completion/tikz-3dplot.cwl</file>
 <file>completion/tikz-among-us.cwl</file>
