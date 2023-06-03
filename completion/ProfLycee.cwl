@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/05/29 for v2.6.6
+# Matthew Bertucci 2023/06/03 for v2.6.7
 
 #include:mathtools
 #include:amssymb
@@ -531,6 +531,35 @@ Elargir=%<pourcentage%>
 Epaisseur=%<épaisseur%>
 Valeurs={%<liste%>}
 AffValeurs#true,false
+#endkeyvals
+
+## Histogrammes ##
+\Histogramme{données}
+\Histogramme[options%keyvals]{données}
+\Histogramme*{données}
+\Histogramme*[options%keyvals]{données}
+
+#keyvals:\Histogramme,\Histogramme*
+DebutOx=%<nombre%>
+FinOx=%<nombre%>
+Largeur=%<nombre%>
+Hauteur=%<nombre%>
+ListeCouleurs={%<couleur1,couleur2,...%>}
+ElargirX=##L
+ElargirY=##L
+LabelX=%<texte%>
+LabelY=%<texte%>
+GradX={%<graduations%>}
+GradY={%<graduations%>}
+AffEffectifs#true,false
+PosEffectifs=#bas,milieu,haut,dessus
+Remplir#true,false
+Opacite=%<factor%>
+AffBornes#true,false
+GrilleV#true,false
+PoliceAxes=%<font commands%>
+PoliceEffectifs=%<font commands%>
+EpaisseurTraits=%<épaisseur%>
 #endkeyvals
 
 ## Calculs de probabilités ##
@@ -1528,3 +1557,21 @@ vertcapyt#B
 \TrouveEqParamDroiteAux#S
 \TrouveDistancePtPlanAux#S
 \TrouveNormeAux#S
+\HistoCouleurs#S
+\HistoLargeur#S
+\HistoHauteur#S
+\HistoGradX#S
+\HistoGradY#S
+\HistoPosEff#S
+\HistoLabelx#S
+\HistoLabely#S
+\HistoElargirx#S
+\HistoElargiry#S
+\HistoFonte#S
+\HistoFonteEff#S
+\HistoOpac#S
+\HistoDebX#S
+\HistoFinX#S
+\HistoEptraits#S
+\HistogrammeTikz{arg}#S
+\HistogrammeTikz[opt]{arg}#S
