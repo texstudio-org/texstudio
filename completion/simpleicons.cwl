@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/05/19 for v8.14.0
+# Matthew Bertucci 2023/06/02 for v9.0.0
 
 #include:ifxetex
 #include:ifluatex
@@ -94,7 +94,6 @@ alibabacloud
 alibabadotcom
 aliexpress
 alipay
-alitalia
 allegro
 alliedmodders
 allocine
@@ -121,6 +120,7 @@ amazonrds
 amazons3
 amazonsqs
 amd
+ameba
 americanairlines
 americanexpress
 amg
@@ -276,6 +276,7 @@ behance
 beijingsubway
 bem
 bentley
+bento
 betfair
 bigbasket
 bigbluebutton
@@ -468,6 +469,7 @@ commerzbank
 commitlint
 commodore
 commonworkflowlanguage
+compilerexplorer
 composer
 comsol
 conan
@@ -796,6 +798,7 @@ freedesktopdotorg
 freelancer
 freenas
 frontendmentor
+frontify
 fsecure
 fugacloud
 fujifilm
@@ -1216,6 +1219,7 @@ lichess
 lidl
 lifx
 lighthouse
+lightning
 line
 lineageos
 linear
@@ -1223,7 +1227,6 @@ linkedin
 linkerd
 linkfire
 linktree
-linode
 linux
 linuxcontainers
 linuxfoundation
@@ -1353,6 +1356,7 @@ minetest
 mini
 minutemailer
 miro
+misskey
 mitsubishi
 mix
 mixcloud
@@ -1388,6 +1392,7 @@ msi
 msibusiness
 mta
 mtr
+mubi
 mui
 mulesoft
 muller
@@ -1562,6 +1567,7 @@ parsedotly
 passport
 pastebin
 patreon
+payloadcms
 payoneer
 paypal
 paytm
@@ -1715,7 +1721,6 @@ pysyft
 pytest
 python
 pytorch
-pytorchlightning
 pyup
 qantas
 qatarairways
@@ -1818,6 +1823,7 @@ ripple
 riseup
 roamresearch
 roblox
+robloxstudio
 robotframework
 rocketdotchat
 rocksdb
@@ -2182,6 +2188,7 @@ tplink
 tqdm
 traefikmesh
 traefikproxy
+trailforks
 trainerroad
 trakt
 transferwise

@@ -3,7 +3,6 @@
 
 #include:l3draw
 #include:l3keys2e
-#include:xparse
 
 #keyvals:\usepackage/zitie#c
 enable-zhlipsum#true,false
@@ -151,5 +150,3 @@ yrange={%<top,bottom%>}
 \zitierawCJKfamily{font family}#*
 \zitierawCJKfamily+{font family}#*
 \zitierawCJKfamily-{font family}#*
-\xeCJKResetPunctClass#*
-\xeCJKDeclareCharClass{class}{class range}#*

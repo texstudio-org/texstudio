@@ -1,16 +1,14 @@
 # covington package
-# Matthew Bertucci 2022/08/31 for v2.8
+# Matthew Bertucci 2023/06/02 for v2.10
 
-#include:xkeyval
 #include:iftex
 
 #keyvals:\usepackage/covington#c
-force
-keeplayout
-noglossbreaks
-owncounter
-ownfncounter
-ownfncounter*
+force#true,false
+keeplayout#true,false
+noglossbreaks#true,false
+owncounter#true,false
+fnexamplecounter=#main,own,own-reset
 #endkeyvals
 
 \twodias{upper diac}{lower diac}{char}
@@ -29,18 +27,21 @@ ownfncounter*
 \begin{covexample}[options%keyvals]#*
 \end{covexample}#*
 
-#keyvals:\begin{example},\begin{covexample}
-preamble={%<text%>}
-#endkeyvals
+\setexampleoptions{options%keyvals}
+
+\begin{examples}
+\begin{examples}[options%keyvals]
+\end{examples}
+\begin{covexamples}#*
+\begin{covexamples}[options%keyvals]#*
+\end{covexamples}#*
 
 \examplenumbersep#*
 \subexamplenumbersep#*
 \exampleind#*
 
-\begin{examples}
-\end{examples}
-\begin{covexamples}#*
-\end{covexamples}#*
+\expreamble{text}
+\expostamble{text}
 
 \begin{subexamples}
 \begin{subexamples}[option%keyvals]
@@ -48,8 +49,36 @@ preamble={%<text%>}
 \begin{covsubexamples}[option%keyvals]#*
 \end{covsubexamples}#*
 
-#keyvals:\begin{subexamples},\begin{covsubexamples}
+\subexpreamble{text}
+\subexpostamble{text}
+
+#keyvals:\begin{example},\begin{covexample},\begin{examples},\begin{covexamples},\begin{subexamples},\begin{covsubexamples},\setexampleoptions
+fs={%<font settings%>}
+fsno={%<font settings%>}
+leftmargin=##L
+addnumbersep=##L
+numberformat={%<template%>}
+fnnumberformat={%<template%>}
+#endkeyvals
+
+## keys with no effect in examples environment
+#keyvals:\begin{example},\begin{covexample},\begin{subexamples},\begin{covsubexamples},\setexampleoptions
 preamble={%<text%>}
+postamble={%<text%>}
+fspreamble={%<font settings%>}
+fspostamble={%<font settings%>}
+#endkeyvals
+
+#keyvals:\begin{example},\begin{covexample},\setexampleoptions
+postamble*={%<text%>}
+#endkeyvals
+
+## keys only for subexamples
+#keyvals:\begin{subexamples},\begin{covsubexamples},\setexampleoptions
+fssubpreamble={%<font settings%>}
+fssubpostamble={%<font settings%>}
+addsubnumbersep=##L
+subnumberformat={%<template%>}
 #endkeyvals
 
 \covexnumber{arg}#*
@@ -57,8 +86,10 @@ preamble={%<text%>}
 \covsubexnumber{arg}#*
 \covexamplefs#*
 \covexamplenofs#*
-\subexpreamblefs#*
 \expreamblefs#*
+\subexpreamblefs#*
+\expostamblefs#*
+\subexpostamblefs#*
 \thecovfnex#*
 \pxref{label}#r
 \digloss[options%keyvals]{glossline1}{glossline2}{translation}
@@ -71,8 +102,12 @@ tlr#true,false
 fsi={%<font settings%>}
 fsii={%<font settings%>}
 fsiii={%<font settings%>}
+fstl={%<font settings%>}
+enquotetl#true,false
 preamble={%<text%>}
 postamble={%<text%>}
+fspreamble={%<font settings%>}
+fspostamble={%<font settings%>}
 #endkeyvals
 
 \gll#*
@@ -85,9 +120,6 @@ postamble={%<text%>}
 \glot{translation}#*
 \glosspreamble{text}#*
 \glend#*
-\glosslineone#*
-\glosslinetwo#*
-\glosslinethree#*
 \glosslinetrans{text}#*
 \covenquote{text}#*
 \glosslinepreamble#*
@@ -96,7 +128,7 @@ postamble={%<text%>}
 \fs{contents}
 \lfs{label%plain}{contents}
 \drs{variables}{contents}
-\sdrs{above-text}{variables}{contents}
+\sdrs{above-text%text}{variables}{contents}
 \negdrs{variables}{contents}
 \ifdrs{variables1}{contents1}{variables2}{contents2}
 \alifdrs{variables1}{contents1}{variables2}{contents2}
@@ -131,22 +163,15 @@ postamble={%<text%>}
 \fileversion#S
 \forceredeffalse#S
 \forceredeftrue#S
+\fsglpostamble#S
+\fsglpreamble#S
 \getwords#S
-\gexamplefalse#S
-\gexampletrue#S
-\ggexamplefalse#S
-\ggexampletrue#S
-\ggtrightfalse#S
-\ggtrighttrue#S
 \gline#S
 \glossglue#S
-\gtrightfalse#S
-\gtrighttrue#S
+\glosslineone#S
+\glosslinetwo#S
+\glosslinethree#S
 \ifforceredef#S
-\ifgexample#S
-\ifggexample#S
-\ifggtright#S
-\ifgtright#S
 \ifnoglossbreaks#S
 \ifnotdone#S
 \ifownexcounter#S

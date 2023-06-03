@@ -1,7 +1,6 @@
 # exam-zh-textfigure package
-# Matthew Bertucci 2022/09/19 for v0.1.20
+# Matthew Bertucci 2023/06/02 for v0.1.25
 
-#include:expl3
 #include:wrapstuff
 #include:tabularray
 #include:varwidth

@@ -1,7 +1,6 @@
 # exam-zh-symbols package
-# Matthew Bertucci 2022/08/10 for v0.1.15
+# Matthew Bertucci 2023/06/02 for v0.1.25
 
-#include:expl3
 #include:tikz
 
 #keyvals:\examsetup,\ExamPrintAnswerSet

@@ -1,5 +1,5 @@
 # counterz package
-# Matthew Bertucci 2023/05/20 for v1.0.0
+# Matthew Bertucci 2023/05/31 for v1.1.0
 
 #include:etoolbox
 #include:makecmds
@@ -44,13 +44,21 @@
 \xnegcoef{counter}
 \xnegsignedcoef{counter}
 
+\randsetcounter{counter}{min}{max}
 \xrandsetcounter{counter}{min}{max}
+\randaddtocounter{counter}{min}{max}
 \xrandaddtocounter{counter}{min}{max}
-\opencountersfile
-\countersfile#S
-\xsavecounter{counter}
 \randomizectr
 \norandomizectr
 \ifrandomizectr{true}{false}
+\opencountersfile
+\countersfile#S
+\savecounter{counter}
+\xsavecounter{counter}
+\inputcountersfile
+\promptrandomizectr{message}{string}
+\promptrandomizectr[macro%cmd]{message}{string}#d
+\randprovidecounter{counter}{min}{max}
+\randprovidecounternz{counter}{min}{max}
 \xrandprovidecounter{counter}{min}{max}
 \xrandprovidecounternz{counter}{min}{max}

@@ -1,8 +1,5 @@
 # exam-zh-choices package
-# Matthew Bertucci 2022/08/30 for v0.1.19
-
-#include:expl3
-#include:xparse
+# Matthew Bertucci 2023/06/02 for v0.1.25
 
 #keyvals:\examsetup,\ExamPrintAnswerSet
 choices={%<键值列表%>}
