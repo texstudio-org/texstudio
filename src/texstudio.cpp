@@ -5894,13 +5894,15 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 			currentEditor()->saveCopy(tmpName);
 			currentEditorView()->document->setTemporaryFileName(tmpName);
 		} else {
-			QMessageBox::warning(this, tr("Error"), tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
-			return false;
+            if(saveAll){
+                QMessageBox::warning(this, tr("Error"), tr("Can't detect the file name.\nYou have to save a document before you can compile it."));
+                return false;
+            }
 		}
 	}
 
 	QString finame = documents.getTemporaryCompileFileName();
-	if (finame == "") {
+    if (finame == "" && saveAll) {
 		UtilsUi::txsWarning(tr("Can't detect the file name"));
 		return false;
 	}
