@@ -7750,7 +7750,7 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
             QTreeWidgetItem *item=structureTreeWidget->itemAt(helpEvent->pos());
             if(item){
                 StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-                if(!entry)
+                if(!entry || !entry->document)
                     return false;
                 QString text;
                 if (!entry->tooltip.isNull()) {
@@ -8067,7 +8067,8 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
         if(se->type == StructureEntry::SE_DOCUMENT_ROOT){
             LatexEditorView *edView = se->document->getEditorView();
             if (!edView) return;
-            editors->setCurrentEditor(edView);
+            gotoLine(0, 0, edView);
+            //editors->setCurrentEditor(edView);
         }
         if(se->type==StructureEntry::SE_INCLUDE || se->type==StructureEntry::SE_BIBTEX){
             saveCurrentCursorToHistory();
@@ -11470,6 +11471,7 @@ void Texstudio::updateTOC(){
         return;
     }
     root->setText(0,doc->getFileInfo().fileName());
+    root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(doc->baseStructure));
 
     StructureEntry *base=doc->baseStructure;
     QList<QTreeWidgetItem*> todoList;
