@@ -3608,6 +3608,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
 
     QJsonArray ja_userCommands;
     for(const auto &elem:mUserCommandList.values()){
+        if(elem.name.isEmpty()) continue; // skip empty values
         ja_userCommands.append(elem.name);
     }
 
@@ -3662,9 +3663,9 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     QJsonObject dd=jsonDoc.object();
     // check modified data
     QString modifiedDate=dd["modified"].toString();
-    if(fi.lastModified().toString()!=modifiedDate){
+    if(fi.lastModified()>QDateTime::fromString(modifiedDate)){
         // cache is obsolete
-        qDebug()<<"cached data obsolete: "<<fileName;
+        qDebug()<<"cached data obsolete: "<<fileName<<fi.lastModified().toString()<<modifiedDate<<fi.absoluteFilePath();
         return false;
     }
 
