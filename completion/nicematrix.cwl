@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/05/16 for v6.19
+# Matthew Bertucci 2023/06/04 for v6.20
 
 #include:amsmath
 #include:array
@@ -115,6 +115,7 @@ code-for-first-col=%<code%>
 code-for-last-col=%<code%>
 nullify-dots
 renew-dots
+xdots/horizontal-labels
 xdots/color=#%color
 xdots/radius=##L
 xdots/shorten-start=##L
@@ -303,6 +304,7 @@ auto-columns-width
 \line[options%keyvals]{i-j}{k-l}#t
 
 #keyvals:\Ldots,\Cdots,\Vdots,\Ddots,\Iddots,\line
+horizontal-labels
 color=#%color
 radius=##L
 shorten-start=##L
