@@ -1,9 +1,9 @@
 # ctxdoc class
 # Matthew Bertucci 2022-07-26 for release 2022-06-07
 
-#include:expl3
 #include:class-l3doc
 #include:ctex
+# loads heading option of ctex
 #include:multitoc
 #include:geometry
 #include:tabularx
@@ -209,3 +209,6 @@ listparameters={%<code%>}
 #keyvals:\begin{ctexexam}
 labelref=##l
 #endkeyvals
+
+# from heading option of ctex
+\CTEXnumberline{arg}#*
