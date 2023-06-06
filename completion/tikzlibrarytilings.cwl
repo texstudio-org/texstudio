@@ -1,5 +1,5 @@
 # tilings tikzlibrary
-# 2023/04/25 for v1.6
+# 2023/06/06 for v2.0
 
 #include:tikzlibraryspath3
 
@@ -28,6 +28,7 @@ tile %<<n>%>/.style={%<TikZ keys%>}
 every circle arc/.style={%<TikZ keys%>}
 every long arc/.style={%<TikZ keys%>}
 tiling step=##L
+first tile/.style={%<TikZ keys%>}
 #endkeyvals
 
 #keyvals:\pic#c
