@@ -1,12 +1,11 @@
 # censor package
-# Matthew Bertucci 4/24/2022 for v4.2
+# Matthew Bertucci 2023/06/06 for v4.3
 
 #include:pbox
 #include:tokcycle
 
 \blackout{text}
 \blackoutenv
-\ccenspace#*
 \censor*{width multiplier}
 \censor{text}
 \censorbox*[pre-commands]{width mult}{height mult}{depth mult}
@@ -17,19 +16,24 @@
 \censormathgreekfalse#*
 \censormathgreektrue#*
 \censorrule{length}#*
-\censorruledepth#*
-\censorruleheight#*
-\censorversiondate#S
-\censorversionnumber#S
-\censpace#*
+\censorruledepth#*L
+\censorruleheight#*L
 \endblackoutenv
 \endxblackoutenv
-\expandargfalse#*
-\expandargtrue#*
-\ifcensormathgreek#*
-\ifexpandarg#*
 \RestartCensoring
-\spacelap#*
 \StopCensoring
 \xblackout{text}
 \xblackoutenv
+
+# not in main documentation
+\ccenspace#S
+\censorfalse#S
+\censortrue#S
+\censorversiondate#S
+\censorversionnumber#S
+\censpace#S
+\expandargfalse#S
+\expandargtrue#S
+\ifcensor#S
+\ifcensormathgreek#S
+\ifexpandarg#S
