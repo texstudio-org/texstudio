@@ -25,6 +25,7 @@ public:
 	~AboutDialog();
 	Ui::AboutDialog ui;
 private slots:
+	void setText(QString latestVersion = "");
 	void largeLogo(); ///< show enlarged logo, triggered via context menu on image in about-dialog
 };
 

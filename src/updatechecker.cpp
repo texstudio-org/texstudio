@@ -123,6 +123,8 @@ void UpdateChecker::parseData(const QByteArray &data)
             if (type.isEmpty() || type.toLower() == "stable"){
                 Version v( ver, "stable", revision);
                 latestStableVersion = v;
+                if (latestStableVersion.isValid())
+                    emit dataParsed(latestStableVersion.versionNumber);
                 if (!latestDevVersion.isValid())
                     latestDevVersion = v;
                 if (!latestReleaseCandidateVersion.isValid())
