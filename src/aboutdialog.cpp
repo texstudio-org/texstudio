@@ -20,7 +20,7 @@ AboutDialog::AboutDialog(QWidget *parent)
 	ui.setupUi(this);
 	setText();
 	connect(UpdateChecker::instance(), SIGNAL(dataParsed(QString)), SLOT(setText(QString)));
-	UpdateChecker::instance()->check();
+	UpdateChecker::instance()->check(true, -2);  // comboBoxUpdateLevel = -2 is used to suppress Update dialog
 	QAction *act = new QAction("large", this);
 	connect(act, SIGNAL(triggered()), SLOT(largeLogo()));
 	ui.label->addAction(act);
