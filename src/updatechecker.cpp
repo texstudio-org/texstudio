@@ -80,7 +80,8 @@ void UpdateChecker::onRequestCompleted()
 	QByteArray ba = reply->readAll();
 
 	parseData(ba);
-	checkForNewVersion();
+	if (comboBoxUpdateLevel > -2)  // if not About dialog
+		checkForNewVersion();
 
     networkManager->deleteLater();
     networkManager=nullptr;
@@ -123,6 +124,8 @@ void UpdateChecker::parseData(const QByteArray &data)
             if (type.isEmpty() || type.toLower() == "stable"){
                 Version v( ver, "stable", revision);
                 latestStableVersion = v;
+                if (latestStableVersion.isValid())
+                    emit dataParsed(latestStableVersion.versionNumber);
                 if (!latestDevVersion.isValid())
                     latestDevVersion = v;
                 if (!latestReleaseCandidateVersion.isValid())
@@ -137,12 +140,13 @@ void UpdateChecker::checkForNewVersion()
 {
 	// updateLevel values from comboBoxUpdateLevel indices:
 	// 0: stable, 1: release candidate, 2: development (alpha, beta)
-	// config dialog (check button) passes correct current index from dialog, so user can check with different settings without closing dialog
-	// auto check uses -1, since we do not have the current gui value. in this case we can stay with config value.
+	// Config dialog (check button) passes correct current index from dialog, so user can check with different settings without closing dialog
+	// Auto check uses -1, since we do not have the current gui value. in this case we can stay with config value.
+	// About dialog uses -2, so we can suppress Update dialog. But in this case this function isn't called.
 	int updateLevel;
 	if (comboBoxUpdateLevel > -1)
 		updateLevel = comboBoxUpdateLevel;
-	else
+	else // comboBoxUpdateLevel = -1
 		updateLevel = ConfigManager::getInstance()->getOption("Update/UpdateLevel").toInt();
 
 	bool checkReleaseCandidate = updateLevel >= 1;
@@ -228,7 +232,7 @@ void UpdateChecker::notify(QString message)
 	msgBox.setTextFormat(Qt::RichText);
 	msgBox.setText(message);
 	msgBox.setStandardButtons(QMessageBox::Ok);
-	msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
+	msgBox.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
 	msgBox.exec();
 }
 

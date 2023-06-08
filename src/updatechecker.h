@@ -22,6 +22,7 @@ public:
 	void check(bool m_silent = true, int currentComboBoxUpdateLevel = -1);
 
 signals:
+	void dataParsed(QString versionNumber);
 	void checkCompleted();
 
 public slots:

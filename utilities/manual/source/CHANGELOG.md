@@ -8,6 +8,7 @@
 - add a Lorem Ipsum generator to the Random Text Generator dialog ([#3102](https://github.com/texstudio-org/texstudio/pull/3102))
 - change default windows style for new installs to Fusion instead of modern-dark, in case system darkmode is detected ([ad0fc44](https://github.com/texstudio-org/texstudio/commit/ad0fc4485f2f7643b3b7b44318e29f54efe2132f))
 - improve some details of the Edit Macros dialog ([#3130](https://github.com/texstudio-org/texstudio/pull/3130))
+- The link to the TeXstudio homepage is now at the top of the About dialog (Help menu) and the number of the latest stable version is also displayed ([#3146](https://github.com/texstudio-org/texstudio/pull/3146))
 - option Disable horizontal scrolling for "Fit to Text Width" now affects horizontal scrolling with mousepad and scroll wheel ([#1526](https://github.com/texstudio-org/texstudio/issues/1526))
 - fix editor moving last line of a selection when selection ends at start of a line ([#3131](https://github.com/texstudio-org/texstudio/issues/3131))
 - fix some icon issues on OSX ([#3100](https://github.com/texstudio-org/texstudio/issues/2921),[#3104](https://github.com/texstudio-org/texstudio/issues/3104))
