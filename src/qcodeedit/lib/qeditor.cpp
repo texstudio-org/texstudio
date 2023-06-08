@@ -2886,7 +2886,7 @@ void QEditor::toggleCommentSelection()
 			QDocumentCursor cur = cursor.selectionStart();
             for (int i = cursor.startLineNumber(); i <= cursor.endLineNumber() ; ++i) {
                 QDocumentLine ln=m_doc->line(i);
-                if (!ln.startsWith(commentMark) && (i<cursor.endLineNumber() || !cur.line().text().isEmpty())) { //special treatmenat of last line if empty
+                if (!ln.startsWith(commentMark) && (i<cursor.endLineNumber() || cursor.endColumnNumber()>0)) { //special treatmenat of last line if empty
 					allCommented = false;
 					break;
 				}
