@@ -3618,6 +3618,11 @@ bool LatexDocument::saveCachingData(const QString &folder)
     for(const QString &elem:mUsepackageList.values()){
         ja_packages.append(elem);
     }
+    QJsonArray ja_bibitems;
+    for(const auto &elem:mBibItem.values()){
+        ja_bibitems.append(elem.name);
+    }
+
     // store toc structure
     QStringList toc=unrollStructure();
     QJsonArray ja_toc;
@@ -3631,6 +3636,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
     dd["childdocs"]=ja_docs;
     dd["usercommands"]=ja_userCommands;
     dd["packages"]=ja_packages;
+    dd["bibitems"]=ja_bibitems;
     dd["toc"]=ja_toc;
     dd["modified"]=fi.lastModified().toString();
 
@@ -3683,6 +3689,13 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         ReferencePair rp;
         rp.name=lbl;
         mLabelItem.insert(nullptr,rp);
+    }
+    ja=dd.value("bibitems").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString lbl=ja[i].toString();
+        ReferencePair rp;
+        rp.name=lbl;
+        mBibItem.insert(nullptr,rp);
     }
     ja=dd.value("childdocs").toArray();
     for (int i = 0; i < ja.size(); ++i) {
