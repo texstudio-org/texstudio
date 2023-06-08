@@ -8066,7 +8066,7 @@ biblabel=#superscript,brackets
 \mkibid{arg}#*
 #endif
 
-### biblatex-publist v2.4 ###
+### biblatex-publist v2.5 ###
 #ifOption:style=publist
 # from publist.bbx
 \ExecutePublistOptions{options%keyvals}
@@ -8126,6 +8126,9 @@ plnumbering=#global,local,global-descending,local-descending,none
 \thebplbgitems#S
 \theplnumgroup#S
 \resetplnumgroup#S
+\GetTotalCount
+\GetSectionCount
+\GetSectionCount[section number]
 # from publist.cbx
 \citeitem[prenote][postnote]{bibid}#*C
 \citeitem[postnote]{bibid}#*C
@@ -8179,6 +8182,15 @@ linktitleissn#true,false
 \therealliststop#*
 \thenonplauthor#*
 \thenonpleditor#*
+\ExecuteDepPublistOptions{arg}#S
+\thebplitems#S
+\thebplsecitems#S
+\thebplbgitems#S
+\theplnumgroup#S
+\resetplnumgroup#S
+\GetTotalCount
+\GetSectionCount
+\GetSectionCount[section number]
 #endif
 
 ### biblatex-realauthor v2.7.1a ###
