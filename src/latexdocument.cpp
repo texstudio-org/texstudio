@@ -3770,7 +3770,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         }
     }
     if(addedPackages){
-        bool updated=updateCompletionFiles(false, false, true);
+        updateCompletionFiles(false, false, true);
     }
     m_cachedDataOnly=true;
     return true;
