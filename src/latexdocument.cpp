@@ -3622,6 +3622,10 @@ bool LatexDocument::saveCachingData(const QString &folder)
     for(const auto &elem:mBibItem.values()){
         ja_bibitems.append(elem.name);
     }
+    QJsonArray ja_bibtexfiles;
+    for(const auto &elem:mMentionedBibTeXFiles.values()){
+        ja_bibtexfiles.append(elem.absolute+"#"+elem.relative);
+    }
 
     // store toc structure
     QStringList toc=unrollStructure();
@@ -3637,6 +3641,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
     dd["usercommands"]=ja_userCommands;
     dd["packages"]=ja_packages;
     dd["bibitems"]=ja_bibitems;
+    dd["bibtexfiles"]=ja_bibtexfiles;
     dd["toc"]=ja_toc;
     dd["modified"]=fi.lastModified().toString();
 
@@ -3671,7 +3676,9 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     QJsonObject dd=jsonDoc.object();
     // check modified data
     QString modifiedDate=dd["modified"].toString();
-    if(fi.lastModified()>QDateTime::fromString(modifiedDate)){
+    auto delta=fi.lastModified()-QDateTime::fromString(modifiedDate);
+    using namespace std::chrono_literals;
+    if(delta>1s){ // add 1 second tolerance when determine if obsolete
         // cache is obsolete
         qDebug()<<"cached data obsolete: "<<fileName<<fi.lastModified().toString()<<modifiedDate<<fi.absoluteFilePath();
         return false;
@@ -3697,6 +3704,16 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         rp.name=lbl;
         mBibItem.insert(nullptr,rp);
     }
+    ja=dd.value("bibtexfiles").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString lbl=ja[i].toString();
+        QStringList lbls=lbl.split("#");
+        if(lbls.size()==2){
+            FileNamePair fnp(lbls[1],lbls[0]);
+            mMentionedBibTeXFiles.insert(nullptr,fnp);
+        }
+    }
+
     ja=dd.value("childdocs").toArray();
     for (int i = 0; i < ja.size(); ++i) {
         QString fn=ja[i].toString();
