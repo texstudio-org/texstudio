@@ -1,6 +1,6 @@
 # mode: multicol.sty
 # dani/2006-02-18
-# updated 12/29/2021 for v1.9b
+# updated 2023/06/08 for v1.9f
 
 #keyvals:\usepackage/multicol#c
 errorshow
@@ -27,6 +27,7 @@ colaction
 \LRmulticolcolumns#*
 \maxbalancingoverflow#*
 \multicolbaselineskip#*
+\multicolmindepthstring#*
 \multicolpretolerance#*
 \multicolsep#*
 \multicoltolerance#*
