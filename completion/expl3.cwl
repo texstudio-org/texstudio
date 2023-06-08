@@ -1,13 +1,13 @@
 # expl3 package
-# Matthew Bertucci 8/21/2021
-# note: latex3 syntax checking is not, in general, supported as of yet
+# Matthew Bertucci 2023/06/07 for v2023-06-05
 
-\ExplSyntaxOn
-\ExplSyntaxOff
-\ProvidesExplClass{class}{date}{version}{description}#*
-\ProvidesExplFile{file}{date}{version}{description}#*
-\ProvidesExplPackage{package}{date}{version}{description}#*
-\ExplFileName#*
-\ExplFileDate#*
-\ExplFileVersion#*
-\ExplFileDescription#*
+# note: latex3 syntax checking is not supported as of yet
+# no commands listed here since available in format; all in latex-dev.cwl
+# only use of expl3 loaded explicitly is for package options
+
+#keyvals:\usepackage/expl3#c
+check-declarations
+log-functions
+backend=#dvips,dvipdfmx,dvisvgm,luatex,pdftex,xetex
+suppress-backend-headers
+#endkeyvals

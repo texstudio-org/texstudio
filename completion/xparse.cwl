@@ -3,10 +3,10 @@
 \RenewDocumentCommand{cmd}{xargs}{def}
 \ProvideDocumentCommand{cmd}{xargs}{def}#d
 \DeclareDocumentCommand{cmd}{xargs}{def}#d
-\NewDocumentEnvironment{envname}{xargs}{begindef}{enddef}#N
-\RenewDocumentEnvironment{envname}{xargs}{begindef}{enddef}
-\ProvideDocumentEnvironment{envname}{xargs}{begindef}{enddef}#N
-\DeclareDocumentEnvironment{envname}{xargs}{begindef}{enddef}#N
+\NewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
+\RenewDocumentEnvironment{envname}{xargs}{begdef}{enddef}
+\ProvideDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
+\DeclareDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
 \NewExpandableDocumentCommand{cmd}{xargs}{def}#d
 \RenewExpandableDocumentCommand{cmd}{xargs}{def}
 \ProvideExpandableDocumentCommand{cmd}{xargs}{def}#d

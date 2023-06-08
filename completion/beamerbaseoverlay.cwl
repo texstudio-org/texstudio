@@ -30,12 +30,12 @@
 
 \beameroriginal{command}#*
 
-\newenvironment<>{envname}{begindef}{enddef}#*N
-\newenvironment<>{envname}[args]{begindef}{enddef}#*N
-\newenvironment<>{envname}[args][default]{begindef}{enddef}#*N
-\renewenvironment<>{envname}{begindef}{enddef}#*
-\renewenvironment<>{envname}[args]{begindef}{enddef}#*
-\renewenvironment<>{envname}[args][default]{begindef}{enddef}#*
+\newenvironment<>{envname}{begdef}{enddef}#*N
+\newenvironment<>{envname}[args]{begdef}{enddef}#*N
+\newenvironment<>{envname}[args][default]{begdef}{enddef}#*N
+\renewenvironment<>{envname}{begdef}{enddef}#*
+\renewenvironment<>{envname}[args]{begdef}{enddef}#*
+\renewenvironment<>{envname}[args][default]{begdef}{enddef}#*
 \newcommand<>{cmd}[args][default]{def}#*d
 \newcommand<>{cmd}[args]{def}#*d
 \newcommand<>{cmd}{def}#*d

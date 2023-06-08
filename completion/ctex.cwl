@@ -3,8 +3,6 @@
 #modified zepinglee 30 Jan 2021
 # updated 26 June 2022 for v2.5.10
 
-#include:expl3
-#include:xparse
 #include:zhnumber
 
 # package only keys
@@ -19,6 +17,13 @@ sub4section
 scheme=#chinese,plain
 linespread=%<number%>
 #endkeyvals
+
+#ifOption:heading
+\CTEXnumberline{arg}#*
+#endif
+#ifOption:heading=true
+\CTEXnumberline{arg}#*
+#endif
 
 ## Sec. 4.3
 \songti

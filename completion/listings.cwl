@@ -397,9 +397,9 @@ podcomment#true,false
 \lstname#*
 \lstindexmacro{arg}#*
 
-\lstnewenvironment{envname}[args][default]{starting code}{ending code}#*N
-\lstnewenvironment{envname}[args]{starting code}{ending code}#*N
-\lstnewenvironment{envname}{starting code}{ending code}#*N
+\lstnewenvironment{envname}[args][default]{begdef}{enddef}#*N
+\lstnewenvironment{envname}[args]{begdef}{enddef}#*N
+\lstnewenvironment{envname}{begdef}{enddef}#*N
 
 \lstMakeShortInline[%<options%>]%<<character>%>#*
 \lstDeleteShortInline%<<character>%>#*
