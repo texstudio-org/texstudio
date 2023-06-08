@@ -1,5 +1,5 @@
 # JeuxCartes package
-# Matthew Bertucci 2023/03/20 for v0.2.4
+# Matthew Bertucci 2023/06/08 for v0.2.5
 
 #include:graphicx
 #include:tikz
@@ -83,7 +83,7 @@ FondAtout=#%color
 #keyvals:\MainMiniCartesJeuAleatoire
 Largeur=##L
 FondAtout=#%color
-TypeJeu=#Poker,Tarot,Belote,Bataille,Rami
+TypeJeu=#Poker,Tarot,Belote,Bataille,Rami,PokerEN,BeloteEN,BatailleEN,RamiEN
 #endkeyvals
 
 # not documented
@@ -138,9 +138,13 @@ TypeJeu=#Poker,Tarot,Belote,Bataille,Rami
 \MiniCarteLargeur#S
 \MiniCarteMainChoisie#S
 \MiniCartesJeuBataille#S
+\MiniCartesJeuBatailleEN#S
 \MiniCartesJeuBelote#S
+\MiniCartesJeuBeloteEN#S
 \MiniCartesJeuPoker#S
+\MiniCartesJeuPokerEN#S
 \MiniCartesJeuRami#S
+\MiniCartesJeuRamiEN#S
 \MiniCartesJeuTarot#S
 \MiniCartesMain#S
 \MiniMainAleaFondAtout#S
@@ -150,4 +154,5 @@ TypeJeu=#Poker,Tarot,Belote,Bataille,Rami
 \MiniMainLargeur#S
 \NbCartesMain#S
 \OptionTikzCBB#S
+\RaiseBoxByDepth#S
 \SecondOffset#S
