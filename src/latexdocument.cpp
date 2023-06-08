@@ -3689,6 +3689,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         // filename does not match exactly
         return false;
     }
+    setFileName(fileName);
     QJsonArray ja=dd.value("labels").toArray();
     for (int i = 0; i < ja.size(); ++i) {
         QString lbl=ja[i].toString();
@@ -3717,10 +3718,10 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     for (int i = 0; i < ja.size(); ++i) {
         QString fn=ja[i].toString();
         mIncludedFilesList.insert(nullptr,fn);
-        LatexDocument *dc = parent->findDocumentFromName(fn);
+        /*LatexDocument *dc = parent->findDocumentFromName(fn);
         if (!dc) {
             parent->addDocToLoad(fn);
-        }
+        }*/
     }
     ja=dd.value("usercommands").toArray();
     for (int i = 0; i < ja.size(); ++i) {

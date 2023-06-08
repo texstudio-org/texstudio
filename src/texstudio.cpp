@@ -2333,6 +2333,16 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 		}
 
 	}
+    if(doc->isIncompleteInMemory()){
+        // load included files from cached document
+        foreach(const QString &fn,doc->includedFiles()){
+            LatexDocument *dc = documents.findDocumentFromName(fn);
+            if (!dc) {
+                documents.addDocToLoad(fn);
+            }
+        }
+
+    }
 
 	updateStructure(true, doc, true);
 
@@ -2352,6 +2362,21 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 			Q_ASSERT(!fnp.absolute.isEmpty());
 			rootDoc->lastCompiledBibTeXFiles.insert(fnp.absolute);
 		}
+    }
+    if(doc->isIncompleteInMemory()){
+        // update bibid highlights
+        bool bibTeXFilesNeedsUpdate=!doc->mentionedBibTeXFiles().isEmpty();
+        if(bibTeXFilesNeedsUpdate || !doc->bibItems().isEmpty()){
+            documents.updateBibFiles(bibTeXFilesNeedsUpdate);
+            // needs probably done asynchronously as bibteFiles needs to be loaded first ...
+            qDebug()<<"\n"<<doc->getFileName();
+            foreach (LatexDocument *elem, doc->getListOfDocs()) {
+                qDebug()<<elem->getFileName()<<elem->getMasterDocument();
+                LatexEditorView *edView=elem->getEditorView();
+                if (edView)
+                    edView->updateCitationFormats();
+            }
+        }
     }
 
 #ifndef Q_OS_MAC
@@ -3945,7 +3970,7 @@ void Texstudio::editEraseWordCmdEnv()
 	// If the case |\cmd is encountered, we shift the
 	// cursor by one to \|cmd so the regular erase approach works.
 	int col = cursor.columnNumber();
-	if ((col < line.count())						// not at end of line
+    if ((col < line.size())						// not at end of line
 	        && (line.at(col) == '\\')					// likely a command/env - check further
 	        && (col == 0 || line.at(col - 1).isSpace()))	// cmd is at start or previous char is space: non-ambiguous situation like word|\cmd
 		// don't need to finally check for command |\c should be handled like \|c for any c (even space and empty)
