@@ -1,5 +1,5 @@
 # njuthesis class
-# Matthew Bertucci 2023/05/03 for v1.2.1
+# Matthew Bertucci 2023/06/08 for v1.3.0
 
 #include:xtemplate
 #include:class-ctexbook
@@ -62,6 +62,7 @@ info/author*={%<姓名拼音%>}
 info/department={%<院系%>}
 info/department*={%<院系%>}
 info/major={%<专业%>}
+info/major={%<专业%>,%<专业全称%>}
 info/major*={%<专业%>}
 info/field={%<方向%>}
 info/field*={%<方向%>}
@@ -77,7 +78,7 @@ info/chairman={%<答辩主席姓名职称%>}
 info/reviewer={%<答辩评委姓名职称%>}
 info/clc={%<中图分类号%>}
 info/udc={%<udc%>}
-info/secret-level={%<不涉密|秘密|机密|绝密%>}
+info/secret-level={%<密级%>}
 info/supervisor-contact={%<导师联系方式%>}
 info/school-code={%<number%>}
 info/degree={%<中文学位名%>}
@@ -106,6 +107,7 @@ theorem/header-font={%<头部字体格式%>}
 theorem/body-font={%<内部字体格式%>}
 theorem/qed-symbol=%<证毕符号%>
 theorem/counter=%<counter%>
+theorem/share-counter#true,false
 theorem/type={%<{环境名,类型标识}{头名称},...%>}
 theorem/define
 label-sep/figure=%<符号%>
