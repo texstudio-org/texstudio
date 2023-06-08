@@ -2368,10 +2368,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         bool bibTeXFilesNeedsUpdate=!doc->mentionedBibTeXFiles().isEmpty();
         if(bibTeXFilesNeedsUpdate || !doc->bibItems().isEmpty()){
             documents.updateBibFiles(bibTeXFilesNeedsUpdate);
-            // needs probably done asynchronously as bibteFiles needs to be loaded first ...
-            qDebug()<<"\n"<<doc->getFileName();
             foreach (LatexDocument *elem, doc->getListOfDocs()) {
-                qDebug()<<elem->getFileName()<<elem->getMasterDocument();
                 LatexEditorView *edView=elem->getEditorView();
                 if (edView)
                     edView->updateCitationFormats();
