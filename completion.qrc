@@ -685,6 +685,7 @@
 <file>completion/class-europasscv.cwl</file>
 <file>completion/class-europecv.cwl</file>
 <file>completion/class-exam.cwl</file>
+<file>completion/class-examz.cwl</file>
 <file>completion/class-exam-n.cwl</file>
 <file>completion/class-exam-zh.cwl</file>
 <file>completion/class-exesheet.cwl</file>
@@ -2808,6 +2809,7 @@
 <file>completion/ProfCollege.cwl</file>
 <file>completion/ProfLabo.cwl</file>
 <file>completion/ProfLycee.cwl</file>
+<file>completion/ProfMaquette.cwl</file>
 <file>completion/program.cwl</file>
 <file>completion/progressbar.cwl</file>
 <file>completion/projlib-author.cwl</file>
