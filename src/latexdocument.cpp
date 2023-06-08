@@ -3676,9 +3676,8 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     QJsonObject dd=jsonDoc.object();
     // check modified data
     QString modifiedDate=dd["modified"].toString();
-    auto delta=fi.lastModified()-QDateTime::fromString(modifiedDate);
-    using namespace std::chrono_literals;
-    if(delta>1s){ // add 1 second tolerance when determine if obsolete
+    auto delta=fi.lastModified().toSecsSinceEpoch()-QDateTime::fromString(modifiedDate).toSecsSinceEpoch();
+    if(delta>1){ // add 1 second tolerance when determine if obsolete
         // cache is obsolete
         qDebug()<<"cached data obsolete: "<<fileName<<fi.lastModified().toString()<<modifiedDate<<fi.absoluteFilePath();
         return false;
