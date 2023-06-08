@@ -3,7 +3,7 @@
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
 # dbitouze/2015-02-21 obsolete font style commands made unusual
-# Matthew Bertucci 2022/11/01 for 2022/11/01 release
+# Matthew Bertucci 2023/06/08 for 2023/06/01 release
 
 #include:latex-dev
 #include:textcomp
@@ -622,6 +622,7 @@
 force
 overwrite
 nosearch
+nowarn
 #endkeyvals
 #keyvals:\begin{filecontents}
 noheader
