@@ -45,7 +45,7 @@ int myrand(int max)
 void RandomTextGenerator::generateText()
 {
 	//---------------------------reading all words and characters in words-------------------
-	if (words.empty()) {
+	if (words.empty() && !ui->loremIpsumRadioButton->isChecked()) {
 		if (documents->documents.empty()) {
 			ui->outputEdit->setText(tr("No data given"));
 			return;
