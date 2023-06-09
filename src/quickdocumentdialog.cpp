@@ -485,7 +485,7 @@ void QuickDocumentDialog::geometryValuesChanged()
 	painter.drawLine(QPointF(marginLeft, 0), QPointF(marginLeft, physicalPaperHeight));
 	painter.drawLine(QPointF(0, marginTop), QPointF(physicalPaperWidth, marginTop));
 	painter.drawLine(QPointF(physicalPaperWidth - marginRight, 0), QPointF(physicalPaperWidth - marginRight, physicalPaperHeight));
-	painter.drawLine(QPointF(0, physicalPaperHeight -  marginTop), QPointF(physicalPaperWidth, physicalPaperHeight - marginTop));
+	painter.drawLine(QPointF(0, physicalPaperHeight -  marginBottom), QPointF(physicalPaperWidth, physicalPaperHeight - marginBottom));
 
 	ui.geometryPreviewLabel->setPixmap(preview);
 }
