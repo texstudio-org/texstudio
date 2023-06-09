@@ -92,26 +92,24 @@ QuickDocumentDialog::~QuickDocumentDialog()
 
 QString QuickDocumentDialog::getNewDocumentText()
 {
-	bool babel = ui.comboBoxBabel->currentText() != "NONE";
-	QString opt = "";
-	QString tag = QString("\\documentclass[");
-	if (babel) tag += ui.comboBoxBabel->currentText() + QString(",");
-	tag += ui.comboBoxSize->currentText() + QString(",");
-	tag += ui.comboBoxPaper->currentText();
-    for (int i = 0; i < ui.listWidgetOptions->count(); ++i) {
-        QListWidgetItem *item=ui.listWidgetOptions->item(i);
-        if (item->checkState()==Qt::Checked) opt += QString(",") + item->text();
-	}
-	tag += opt + QString("]{");
-	tag += ui.comboBoxClass->currentText() + QString("}");
-	tag += QString("\n");
-	// always use utf8
-	tag += QString("\\usepackage[utf8]{inputenc}\n");
-	if (ui.comboBoxFontEncoding->currentText() != "NONE") {
-		tag += QString("\\usepackage[") + ui.comboBoxFontEncoding->currentText() + QString("]{fontenc}");
-		tag += QString("\n");
-	}
+	QString amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog
+	QString userPackages;  // packages added by user
 
+	QString classOpt;
+	if (ui.comboBoxBabel->currentText() != "NONE") {
+		classOpt += ui.comboBoxBabel->currentText() + QString(",");
+		babel = QString("\\usepackage{babel}\n");
+	}
+	classOpt += ui.comboBoxSize->currentText() + QString(",") + ui.comboBoxPaper->currentText();
+	for (int i = 0; i < ui.listWidgetOptions->count(); ++i) {
+		QListWidgetItem *item=ui.listWidgetOptions->item(i);
+		if (item->checkState()==Qt::Checked) classOpt += QString(",") + item->text();
+	}
+	QString tag = QString("\\documentclass[%1]{%2}\n").arg(classOpt).arg(ui.comboBoxClass->currentText());
+
+	// no inputenc needed, always use utf8
+	if (ui.comboBoxFontEncoding->currentText() != "NONE")
+		fontenc = QString("\\usepackage[%1]{fontenc}\n").arg(ui.comboBoxFontEncoding->currentText());
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
 	        ui.checkBoxGeometryPageHeight->isChecked() ||
 	        ui.checkBoxGeometryMarginLeft->isChecked() ||
@@ -126,26 +124,37 @@ QString QuickDocumentDialog::getNewDocumentText()
 		if (ui.checkBoxGeometryMarginTop->isChecked()) geometryOptions += ", top=" + ui.spinBoxGeometryMarginTop->text();
 		if (ui.checkBoxGeometryMarginBottom->isChecked()) geometryOptions += ", bottom=" + ui.spinBoxGeometryMarginBottom->text();
 		geometryOptions.remove(0, 2);
-		tag += "\\usepackage[" + geometryOptions + "]{geometry}\n";
+		geometry = QString("\\usepackage[%1]{geometry}\n").arg(geometryOptions);
 	}
-	if (babel) tag += QString("\\usepackage{babel}\n");
 
 	QTableWidget *table = ui.tableWidgetPackages;
 	packagesUsed = QStringList();
 	for (int i=0; i < table->rowCount(); ++i) {
 		QTableWidgetItem *itemPkgName = table->item(i,0);
 		if (itemPkgName->checkState()==Qt::Checked) {
-			tag += QString("\\usepackage{%1}\n").arg(itemPkgName->text());
-			packagesUsed << itemPkgName->text();
+			QString text = itemPkgName->text();
+			packagesUsed << text;
+			// packages initially available from Packages tab
+			if (text=="amssymb"  ) amssymb   = QString("\\usepackage{amssymb}\n"); else
+			if (text=="amsthm"   ) amsthm    = QString("\\usepackage{amsthm}\n"); else
+			if (text=="graphicx" ) graphicx  = QString("\\usepackage{graphicx}\n"); else
+			if (text=="hyperref" ) hyperref  = QString("\\usepackage{hyperref}\n"); else
+			if (text=="mathtools") mathtools = QString("\\usepackage{mathtools}\n"); else
+			if (text=="nameref"  ) nameref   = QString("\\usepackage{nameref}\n"); else
+			if (text=="thmtools" ) thmtools  = QString("\\usepackage{thmtools}\n"); else
+			if (text=="xcolor"   ) xcolor    = QString("\\usepackage{xcolor}\n"); else
+				userPackages += QString("\\usepackage{%1}\n").arg(text);
 		}
 	}
+// LaTeX code for all packages used
+	tag += fontenc + geometry + graphicx + mathtools + amssymb + amsthm + thmtools + xcolor + nameref + babel + hyperref + userPackages;
 
 	QString makeTitle;
 	if (ui.lineEditTitle->text() != "") {
 		makeTitle = "\\maketitle\n";
-		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
+		tag += QString("\\title{%1}\n").arg(ui.lineEditTitle->text());
 		if (ui.lineEditAuthor->text() != "")
-			tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
+			tag += QString("\\author{%1}\n").arg(ui.lineEditAuthor->text());
 	}
 
 	tag += "\\begin{document}\n" + makeTitle + "%|\n\\end{document}";
@@ -292,7 +301,7 @@ void QuickDocumentDialog::Init()
 	table->setSelectionMode(QAbstractItemView::NoSelection);
 	table->verticalHeader()->hide();
 
-	//each QStringList holds 2 items: the name of the package, and a short package description. These constitute a row of the table of the packages tab
+	// each QStringList holds 2 items: the name of the package, and a short package description. These constitute a row of the table of the packages tab.
 	QList<QStringList> packages = QList<QStringList>()
 		<< QStringList( {"amssymb"     , tr("Mathematical symbols from AMS")} )
 		<< QStringList( {"graphicx"    , tr("Graphics package, easily include images (s. Insert Graphic Wizard)")} )
@@ -300,8 +309,8 @@ void QuickDocumentDialog::Init()
 		<< QStringList( {"mathtools"   , tr("Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath")} )
 		<< QStringList( {"amsthm"      , tr("Define your theorem like env., has to be loaded after amsmath")} )
 		<< QStringList( {"nameref"     , tr("Reference to names of chapters, sections, ..., loaded by hyperref")} )
-        << QStringList( {"thmtools"    , tr("Extension package to amsthm")} )
-        << QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option to use colors in tables")} )
+		<< QStringList( {"thmtools"    , tr("Extension package to amsthm")} )
+		<< QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option to use colors in tables")} )
 		;
 	//add user given packages
 	for (const QString& package:otherPackagesList){
@@ -309,11 +318,11 @@ void QuickDocumentDialog::Init()
 	}
 	//setup packages table 
 	table->setRowCount(packages.size());
-    for (int row=0;row<packages.length();++row){
-        QStringList data=packages.value(row);
+	for (int row=0;row<packages.length();++row){
+		QStringList data=packages.value(row);
 
-        QString pkgName = data[0];
-        QString pkgDescription = data[1];
+		QString pkgName = data[0];
+		QString pkgDescription = data[1];
 
 		QTableWidgetItem *itemPkgName = new QTableWidgetItem(pkgName);
 		QTableWidgetItem *itemPkgDescription = new QTableWidgetItem(pkgDescription);
