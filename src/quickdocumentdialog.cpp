@@ -292,7 +292,7 @@ void QuickDocumentDialog::Init()
 	table->setSelectionMode(QAbstractItemView::NoSelection);
 	table->verticalHeader()->hide();
 
-	//each QStringList holds 2 items: the name of the package, and a short package description. These constitute a row of the table of the packages tab
+	// each QStringList holds 2 items: the name of the package, and a short package description. These constitute a row of the table of the packages tab.
 	QList<QStringList> packages = QList<QStringList>()
 		<< QStringList( {"amssymb"     , tr("Mathematical symbols from AMS")} )
 		<< QStringList( {"graphicx"    , tr("Graphics package, easily include images (s. Insert Graphic Wizard)")} )
@@ -300,8 +300,8 @@ void QuickDocumentDialog::Init()
 		<< QStringList( {"mathtools"   , tr("Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath")} )
 		<< QStringList( {"amsthm"      , tr("Define your theorem like env., has to be loaded after amsmath")} )
 		<< QStringList( {"nameref"     , tr("Reference to names of chapters, sections, ..., loaded by hyperref")} )
-        << QStringList( {"thmtools"    , tr("Extension package to amsthm")} )
-        << QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option to use colors in tables")} )
+		<< QStringList( {"thmtools"    , tr("Extension package to amsthm")} )
+		<< QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option to use colors in tables")} )
 		;
 	//add user given packages
 	for (const QString& package:otherPackagesList){
@@ -309,11 +309,11 @@ void QuickDocumentDialog::Init()
 	}
 	//setup packages table 
 	table->setRowCount(packages.size());
-    for (int row=0;row<packages.length();++row){
-        QStringList data=packages.value(row);
+	for (int row=0;row<packages.length();++row){
+		QStringList data=packages.value(row);
 
-        QString pkgName = data[0];
-        QString pkgDescription = data[1];
+		QString pkgName = data[0];
+		QString pkgDescription = data[1];
 
 		QTableWidgetItem *itemPkgName = new QTableWidgetItem(pkgName);
 		QTableWidgetItem *itemPkgDescription = new QTableWidgetItem(pkgDescription);
