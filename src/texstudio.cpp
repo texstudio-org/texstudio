@@ -7925,7 +7925,11 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 
         QStringList collected_mentionedBibTeXFiles;
         foreach (const LatexDocument *doc, docs) {
-            collected_mentionedBibTeXFiles << doc->listOfMentionedBibTeXFiles();
+            foreach(const QString &elem,doc->listOfMentionedBibTeXFiles()){
+                if(!collected_mentionedBibTeXFiles.contains(elem)){
+                    collected_mentionedBibTeXFiles << elem;
+                }
+            }
         }
 
         for (int i = 0; i < collected_mentionedBibTeXFiles.count(); i++) {
