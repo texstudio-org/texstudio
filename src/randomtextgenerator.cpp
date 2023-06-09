@@ -45,7 +45,7 @@ int myrand(int max)
 void RandomTextGenerator::generateText()
 {
 	//---------------------------reading all words and characters in words-------------------
-	if (words.empty()) {
+	if (words.empty() && !ui->loremIpsumRadioButton->isChecked()) {
 		if (documents->documents.empty()) {
 			ui->outputEdit->setText(tr("No data given"));
 			return;
@@ -92,15 +92,14 @@ void RandomTextGenerator::generateText()
 		}
 	}
 
-        //----------------------------------generating
-        //---------------------------------------
-        // lorem ipsum
-        if (ui->loremIpsumRadioButton->isChecked()) {
-                generateLoremIpsum();
-                return;
-        }
+		//----------------------------------generating ---------------------------------------
+		// like Shannon in "A Mathematical Theory of Communication" (1949)
 
-        //like Shannon in "A Mathematical Theory of Communication" (1949)
+		// lorem ipsum
+		if (ui->loremIpsumRadioButton->isChecked()) {
+				generateLoremIpsum();
+				return;
+		}
 
 	int order = -1;
 	bool usewords = true;
