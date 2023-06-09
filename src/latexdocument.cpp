@@ -3379,7 +3379,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 	lp.append(LatexParser::getInstance()); // append commands set in config
 	QList<LatexDocument *>listOfDocs = getListOfDocs();
 	foreach (const LatexDocument *elem, listOfDocs) {
-		lp.append(elem->ltxCommands);
+        lp.append(elem->ltxCommands);
 	}
 
 	if (updateAll) {
@@ -3414,8 +3414,16 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 
 	LatexEditorView *view = getEditorView();
 	if (view) {
-		view->updateReplamentList(lp, false);
-	}
+        view->updateReplamentList(lp, false);
+    }
+}
+/*!
+ * \brief add latex commands from new loaded (cached) document to root document
+ * Do not recreate the whole command list
+ */
+void LatexDocument::addLtxCommands()
+{
+    lp.append(this->ltxCommands);
 }
 
 void LatexDocument::setLtxCommands(const LatexParser &cmds)

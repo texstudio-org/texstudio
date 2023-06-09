@@ -294,6 +294,7 @@ public slots:
     void patchStructureRemoval(QDocumentLineHandle *dlh,int hint=-1,int count=1);
 	void initClearStructure();
 	void updateLtxCommands(bool updateAll = false);
+    void addLtxCommands();
 	void setLtxCommands(const LatexParser &cmds);
     void setSpeller(SpellerUtility *speller);
     void setReplacementList(QMap<QString,QString> replacementList);
