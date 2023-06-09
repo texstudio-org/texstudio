@@ -3625,6 +3625,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
 
     QJsonArray ja_packages;
     for(const QString &elem:mUsepackageList.values()){
+        if(elem.endsWith("#subfiles") && elem != "#subfiles") continue; // filter class [file]{subfiles} as it leads to unnecessarily loading packages in cached files
         ja_packages.append(elem);
     }
     QJsonArray ja_bibitems;
@@ -3727,10 +3728,6 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     for (int i = 0; i < ja.size(); ++i) {
         QString fn=ja[i].toString();
         mIncludedFilesList.insert(nullptr,fn);
-        /*LatexDocument *dc = parent->findDocumentFromName(fn);
-        if (!dc) {
-            parent->addDocToLoad(fn);
-        }*/
     }
     ja=dd.value("usercommands").toArray();
     for (int i = 0; i < ja.size(); ++i) {

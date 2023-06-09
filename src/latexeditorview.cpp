@@ -681,11 +681,11 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 	gotoLinePanel->setFont(QApplication::font());
 	gotoLinePanelAction = codeeditor->addPanel(gotoLinePanel, QCodeEdit::South, false);
 
-	searchReplacePanel = new QSearchReplacePanel;
+    searchReplacePanel = new QSearchReplacePanel;
 	searchReplacePanel->setFont(QApplication::font());
 	searchReplacePanelAction = codeeditor->addPanel(searchReplacePanel, QCodeEdit::South, false);
-	searchReplacePanel->hide();
-	connect(searchReplacePanel, SIGNAL(showExtendedSearch()), this, SIGNAL(showExtendedSearch()));
+    searchReplacePanel->hide();
+    connect(searchReplacePanel, SIGNAL(showExtendedSearch()), this, SIGNAL(showExtendedSearch()));
 
 	connect(lineMarkPanel, SIGNAL(lineClicked(int)), this, SLOT(lineMarkClicked(int)));
     connect(lineMarkPanel, SIGNAL(toolTipRequested(int,int)), this, SLOT(lineMarkToolTip(int,int)));
