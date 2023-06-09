@@ -94,7 +94,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>couldn&apos;t retrieve data</source>
-        <translation type="unfinished"/>
+        <translation>Daten konnten nicht abgerufen werden.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
