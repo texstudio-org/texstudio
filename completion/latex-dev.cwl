@@ -1,7 +1,7 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2022/11/01 for 2022/11/01 release
+# Matthew Bertucci 2023/06/08 for 2023/06/01 release
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
@@ -10,6 +10,9 @@
 \AddToHook{hook}{code}#*
 \AddToHook{hook}[label]{code}#*
 \AddToHookNext{hook}{code}#*
+\AddToHookNextWithArguments{hook}{code}#*
+\AddToHookWithArguments{hook}{code}#*
+\AddToHookWithArguments{hook}[label]{code}#*
 \AddToNoCaseChangeList{command}#*
 \AfterEndEnvironment[label]{environment}{code}#*
 \AfterEndEnvironment{environment}{code}#*
@@ -38,6 +41,7 @@
 \AtEndOfClass{code}#*
 \AtEndOfPackage{code}#*
 \AtNextShipout{code}#*
+\BCPdata{keywords}#*
 \BeforeBeginEnvironment[label]{environment}{code}#*
 \BeforeBeginEnvironment{environment}{code}#*
 \BeforeClearDocument{code}#*
@@ -71,13 +75,14 @@
 \DebugShipoutsOff#*
 \DebugShipoutsOn#*
 \DeclareCaseChangeEquivalent{cmd}{replacement text}#*d
-\DeclareCommandCopy{cmd}{def}#d
+\DeclareCommandCopy{cmd}{copied cmd%definition}#d
 \DeclareCurrentRelease{name}{date}#*
 \DeclareDefaultHookRule{label1}{relation}{label2}#*
 \DeclareDocumentCommand{cmd}{xargs}{def}#d
 \DeclareDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
 \DeclareEmphSequence{font cmd list}#*
 \DeclareEncodingSubset{encoding}{family}{subset number}#*
+\DeclareEnvironmentCopy{envname}{copied envname}#N
 \DeclareErrorFont{encoding}{family}{series}{shape}{size}#*
 \DeclareExpandableDocumentCommand{cmd}{args}{def}#*d
 \DeclareFixedFont{cmd}{encoding}{family}{series}{shape}{size}#*d
@@ -94,6 +99,8 @@
 \DeclareHookRule{hook}{label1}{relation}{label2}#*
 \DeclareKeys{declarations}#*
 \DeclareKeys[family]{declarations}#*
+\DeclareLowercaseMapping{codepoint}{output}#*
+\DeclareLowercaseMapping[locale]{codepoint}{output}#*
 \DeclareMathAccent{cmd}{type}{sym-font}{slot}#*d
 \DeclareMathAlphabet{math-alph%cmd}{encoding}{family}{series}{shape}#*d
 \DeclareMathDelimiter{cmd}{type}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
@@ -127,9 +134,13 @@
 \DeclareTextFontCommand{cmd}{font-switches%definition}#*d
 \DeclareTextSymbol{cmd}{encoding}{slot}#*d
 \DeclareTextSymbolDefault{cmd}{encoding}#*
+\DeclareTitlecaseMapping{codepoint}{output}#*
+\DeclareTitlecaseMapping[locale]{codepoint}{output}#*
 \DeclareUnicodeCharacter{hexadecimal}{definition}#*
 \DeclareUnknownKeyHandler{code}#*
 \DeclareUnknownKeyHandler[family]{code}#*
+\DeclareUppercaseMapping{codepoint}{output}#*
+\DeclareUppercaseMapping[locale]{codepoint}{output}#*
 \DisableGenericHook{hook}#*
 \DisableHook{hook}#*
 \DiscardShipoutBox#*
@@ -150,13 +161,14 @@
 \IfBlankF{arg}{false code}#*
 \IfBlankT{arg}{true code}#*
 \IfBlankTF{arg}{true code}{false code}#*
-\IfBooleanF{arg}{falseCode}
-\IfBooleanT{arg}{trueCode}
-\IfBooleanTF{arg}{trueCode}{falseCode}
+\IfBooleanF{arg}{false code}
+\IfBooleanT{arg}{true code}
+\IfBooleanTF{arg}{true code}{false code}
 \IfClassAtLeastTF{class}{date}{true code}{false code}#*
-\IfClassLoadedTF{class}{true}{false}#*
-\IfClassLoadedWithOptionsTF{class}{options}{true}{false}#*
-\IfFileExists{file}{then}{else}#*
+\IfClassLoadedTF{class}{true code}{false code}#*
+\IfClassLoadedWithOptionsTF{class}{options}{true code}{false code}#*
+\IfFileAtLeastTF{file}{date}{true code}{false code}#*
+\IfFileExists{file}{true code}{false code}#*
 \IfFontSeriesContextTF{face}{true code}{false code}#*
 \IfFormatAtLeastTF{date}{true code}{false code}#*
 \IfHookEmptyTF{hook}{true code}{false code}#*
@@ -166,20 +178,21 @@
 \IfNoValueT{arg}{-NoValue-Code}
 \IfNoValueTF{arg}{-NoValue-Code}{ValueCode}
 \IfPackageAtLeastTF{package}{date}{true code}{false code}#*
-\IfPackageLoadedTF{package}{true}{false}#*
-\IfPackageLoadedWithOptionsTF{package}{options}{true}{false}#*
-\IfPDFManagementActiveTF{true}{false}#*
+\IfPackageLoadedTF{package}{true code}{false code}#*
+\IfPackageLoadedWithOptionsTF{package}{options}{true code}{false code}#*
+\IfPDFManagementActiveTF{true code}{false code}#*
 \IfTargetDateBefore{date}{before code}{after code}#*
 \IfValueF{arg}{-NoValue-Code}#*
 \IfValueT{arg}{ValueCode}#*
 \IfValueTF{arg}{ValueCode}{-NoValue-Code}#*
 \IncludeInRelease{date}{command}{description}#*
 \IndentBox#*
-\InputIfFileExists{file}{then}{else}#*i
+\InputIfFileExists{file}{true code}{false code}#*i
 \InsertMark{class%plain}{text}#*
 \LastDeclaredEncoding#*
 \LastMark{class%plain}#*
 \LastMark[region]{class%plain}#*
+\LaTeXReleaseInfo#*
 \LoadClass[optionlist]{class}#*u
 \LoadClass[optionlist]{class}[release]#*u
 \LoadClass{class}#*u
@@ -192,15 +205,19 @@
 \MessageBreak#*
 \NeedsTeXFormat{format}#*
 \NeedsTeXFormat{format}[release]#*
-\NewCommandCopy{cmd}{def}#d
+\NewCommandCopy{cmd}{copied cmd%definition}#d
 \NewDocumentCommand{cmd}{xargs}{def}#d
 \NewDocumentEnvironment{envname}{xargs}{begdef}{enddef}#N
+\NewEnvironmentCopy{envname}{copied envname}#N
 \NewExpandableDocumentCommand{cmd}{xargs}{def}#*d
 \NewHook{hook}#*
+\NewHookWithArguments{hook}{number}#*
 \NewMarkClass{class%plain}#*
 \NewMirroredHookPair{hook1}{hook2}#*
+\NewMirroredHookPairWithArguments{hook1}{hook2}{number}#*
 \NewModuleRelease{date}{name}#*
 \NewReversedHook{hook}#*
+\NewReversedHookWithArguments{hook}{number}#*
 \OmitIndent#*
 \OptionNotUsed#*
 \PackageError{package name}{error text%text}{help text%text}#*
@@ -243,9 +260,10 @@
 \ReadonlyShipoutCounter#*
 \RemoveFromHook{hook}#*
 \RemoveFromHook{hook}[label]#*
-\RenewCommandCopy{cmd}{def}
+\RenewCommandCopy{cmd}{copied cmd%definition}
 \RenewDocumentCommand{cmd}{xargs}{def}
 \RenewDocumentEnvironment{envname}{xargs}{begdef}{enddef}
+\RenewEnvironmentCopy{envname}{copied envname}
 \RenewExpandableDocumentCommand{cmd}{xargs}{def}#*
 \RequirePackage[options%keyvals]{package}#*u
 \RequirePackage[options%keyvals]{package}[release]#*u
@@ -266,6 +284,7 @@
 \ShowCommand{cmd}#*
 \ShowDocumentCommandArgSpec{cmd}#*
 \ShowDocumentEnvironmentArgSpec{envname}#*
+\ShowEnvironment{envname}#*
 \ShowFloat{identifier}#*
 \ShowHook{hook}#*
 \SplitArgument{number}{tokens}#*
@@ -276,9 +295,11 @@
 \TrimSpaces#*
 \UndeclareTextCommand{cmd}{encoding}#*
 \UseHook{hook}#*
+\UseHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
 \UseLegacyTextSymbols#*
 \UseName{csname}#*
 \UseOneTimeHook{hook}#*
+\UseOneTimeHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
 \UseRawInputEncoding#*
 \UseTextAccent{encoding}{cmd}{text}#*
 \UseTextSymbol{encoding}{cmd}#*
@@ -300,7 +321,7 @@ uncompress
 lang=%<lang%>
 pdfstandard=#A-1b,A-2a,A-2b,A-2u,A-3a,A-3b,A-3u,A-4 
 colorprofiles={%<options%>}
-testphase=#phase-I,phase-II
+testphase=#phase-I,phase-II,phase-III
 debug={%<options%>}
 #endkeyvals
 \IfDocumentMetadataTF{true code}{false code}#*

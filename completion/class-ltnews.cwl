@@ -1,5 +1,5 @@
 # ltnews class
-# Matthew Bertucci 2022/09/05 for v1.06
+# Matthew Bertucci 2023/06/08 for v1.08
 
 #include:url
 #include:hyperref
@@ -20,10 +20,13 @@
 \issuename#*
 \latex{code}
 \LaTeXNews
+\ltnewssectformat#*
 \NFSS
 \package{package}#*
 \pkg{package}
 \PSNFSS
+\publicationdate#*
+\publicationday{day}
 \publicationissue{issue}
 \publicationmonth{month}
 \publicationyear{year}
