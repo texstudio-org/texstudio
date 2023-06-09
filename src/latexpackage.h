@@ -34,7 +34,6 @@ public:
 	QHash<QString, QSet<QString> > possibleCommands; ///< possible commands, info for syntax checking
 	QHash<QString, QString> specialDefCommands; ///< define special elements, e.g. define color etc
 	QSet<QString> optionCommands; ///< commands which contain arguments, obsolete
-	QHash<QString, QSet< QPairQStringInt > > specialTreatmentCommands; ///< special commands, obsolete
 	QMultiHash<QString, QString> environmentAliases; ///< environment aliases, especially environments which signify math environments concerning syntax check
 	CommandDescriptionHash commandDescriptions; ///< command definitions
 	void unite(LatexPackage &add, bool forCompletion = false); ///< merge with LatexPackage \a add

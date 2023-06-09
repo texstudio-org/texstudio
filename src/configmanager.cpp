@@ -1001,10 +1001,8 @@ QSettings *ConfigManager::readSettings(bool reread)
 		completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
 #if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
-        latexParser.specialTreatmentCommands.insert(pck.specialTreatmentCommands);
         latexParser.specialDefCommands.insert(pck.specialDefCommands);
 #else
-		latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
         latexParser.specialDefCommands.unite(pck.specialDefCommands);
 #endif
 		latexParser.environmentAliases.unite(pck.environmentAliases);
@@ -1725,11 +1723,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
             tobeLoaded.append(pck.requiredPackages);
             completerConfig->words.unite(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
-#if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
-            latexParser.specialTreatmentCommands.insert(pck.specialTreatmentCommands);
-#else
-			latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
-#endif
 			latexParser.environmentAliases.unite(pck.environmentAliases);
 			latexParser.commandDefs.unite(pck.commandDescriptions);
 

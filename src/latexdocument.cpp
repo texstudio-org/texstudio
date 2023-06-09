@@ -3020,7 +3020,6 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 	QSet<QString> userCommandsForSyntaxCheck = ltxCommands.possibleCommands["user"];
 	QSet<QString> columntypeForSyntaxCheck = ltxCommands.possibleCommands["%columntypes"];
 	ltxCommands.optionCommands = pck.optionCommands;
-	ltxCommands.specialTreatmentCommands = pck.specialTreatmentCommands;
 	ltxCommands.specialDefCommands = pck.specialDefCommands;
 	ltxCommands.possibleCommands = pck.possibleCommands;
 	ltxCommands.environmentAliases = pck.environmentAliases;

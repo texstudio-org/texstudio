@@ -299,14 +299,6 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 	case 1:
 		return Command;
 	case 3:
-		if (specialTreatmentCommands.contains(command)) {
-			QSet<QPair<QString, int> > helper = specialTreatmentCommands.value(command);
-			QPair<QString, int> elem;
-			foreach (elem, helper) {
-				if (elem.second == 1)
-					return ArgEx;
-			}
-		}
 		// check key/val
 		{
 			QStringList keys = possibleCommands.keys();
@@ -356,14 +348,6 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 	case 2:
 		// find possible commands for keyval completion
 	{
-		if (specialTreatmentCommands.contains(command)) {
-			QSet<QPair<QString, int> > helper = specialTreatmentCommands.value(command);
-			QPair<QString, int> elem;
-			foreach (elem, helper) {
-				if (elem.second == 0)
-					return OptionEx;
-			}
-		}
 		QStringList keys = possibleCommands.keys();
 		QString arg;
 		if (!vals.isEmpty()) {
@@ -425,12 +409,10 @@ void LatexParser::append(const LatexParser &elem)
 		}
 	}
 #if (QT_VERSION>=QT_VERSION_CHECK(5,15,0))
-    specialTreatmentCommands.insert(elem.specialTreatmentCommands);
     specialDefCommands.insert(elem.specialDefCommands);
     commandDefs.unite(elem.commandDefs);
     mapSpecialArgs.insert(elem.mapSpecialArgs);
 #else
-	specialTreatmentCommands.unite(elem.specialTreatmentCommands);
 	specialDefCommands.unite(elem.specialDefCommands);
 	commandDefs.unite(elem.commandDefs);
 	mapSpecialArgs.unite(elem.mapSpecialArgs);

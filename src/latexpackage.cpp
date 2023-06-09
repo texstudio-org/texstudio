@@ -65,10 +65,8 @@ void LatexPackage::unite(LatexPackage &add, bool forCompletion)
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
 #if (QT_VERSION<QT_VERSION_CHECK(5,15,0))
-    specialTreatmentCommands.unite(add.specialTreatmentCommands);
     specialDefCommands.unite(add.specialDefCommands);
 #else
-    specialTreatmentCommands.insert(add.specialTreatmentCommands);
     specialDefCommands.insert(add.specialDefCommands);
 #endif
 	commandDescriptions.unite(add.commandDescriptions); // overloaded unit, which does not overwrite well defined CDs with poorly defined ones
@@ -106,8 +104,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 		rxCom.setMinimal(true);
 		QStringList keywords;
 		keywords << "text" << "title" << "%<text%>" << "%<title%>";
-		QStringList specialTreatment;
-		specialTreatment << "color";
+
 		QString keyvals;
         package.containsOptionalSections=false;
 		while (!stream.atEnd()) {
@@ -214,9 +211,6 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					package.optionCommands << rxCom.cap(1);
 				}
 
-				if (specialTreatment.contains(rxCom.cap(3))) {
-					package.specialTreatmentCommands[rxCom.cap(1)].insert(qMakePair(rxCom.cap(3), 1));
-				}
 				rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
 				int res3 = rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
 

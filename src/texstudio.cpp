@@ -10946,8 +10946,6 @@ void Texstudio::checkCWLs()
 		res << "\tspecial treatment commands";
 		foreach (const QString &key, package.specialDefCommands.keys()) {
 			QString line = QString("\t\t%1: ").arg(key);
-			foreach (const QPairQStringInt &pair, package.specialTreatmentCommands.value(key))
-				line += QString("%1 (%2)").arg(pair.first).arg(pair.second) + ", ";
 			line.chop(2);
 			res << line;
 		}

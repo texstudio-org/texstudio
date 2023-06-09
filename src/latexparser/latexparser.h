@@ -43,11 +43,10 @@ public:
 	QSet<QString> optionCommands; ///< used by LatexReader only, obsolete
 	QStringList mathStartCommands; ///< commands to start math-mode like '$'
 	QStringList mathStopCommands; ///< commands to stop math-mode like '$'
-	QMultiHash<QString, QString> packageAliases; ///< aliases for classes to packages e.g. article = latex-document, etc
+    QMultiHash<QString, QString> packageAliases; ///< aliases for classes to packages e.g. article = latex-document, etc
 	QMultiHash<QString, QString> environmentAliases; ///< aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	/// commands used for syntax check (per doc basis)
 	QHash<QString, QSet<QString> > possibleCommands;
-	QHash<QString, QSet<QPair<QString, int> > > specialTreatmentCommands; ///< special commands, obsolete
 	QHash<QString, QString> specialDefCommands; ///< define special elements, e.g. define color etc
 	QMap<int, QString> mapSpecialArgs;
 
