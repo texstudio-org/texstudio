@@ -1127,7 +1127,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 #endif
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
 				foreach (const QString &elem, bibs) { //latex doesn't seem to allow any spaces in file names
-					mMentionedBibTeXFiles.insert(line(i).handle(), FileNamePair(elem, getAbsoluteFilePath(elem, "bib", additionalBibPaths)));
+                    QString absolutePath=getAbsoluteFilePath(elem, "bib", additionalBibPaths);
+                    mMentionedBibTeXFiles.insert(line(i).handle(), FileNamePair(elem, absolutePath));
 					if (oldBibs.removeAll(elem) == 0)
 						bibTeXFilesNeedsUpdate = true;
 				}
@@ -2244,7 +2245,9 @@ void LatexDocuments::updateBibFiles(bool updateFiles)
 			QMultiHash<QDocumentLineHandle *, FileNamePair>::iterator it = doc->mentionedBibTeXFiles().begin();
 			QMultiHash<QDocumentLineHandle *, FileNamePair>::iterator itend = doc->mentionedBibTeXFiles().end();
 			for (; it != itend; ++it) {
-				it.value().absolute = getAbsoluteFilePath(it.value().relative, ".bib", additionalBibPaths).replace(QDir::separator(), "/"); // update absolute path
+                if(it.value().absolute.isEmpty()){
+                    it.value().absolute = getAbsoluteFilePath(it.value().relative, ".bib", additionalBibPaths).replace(QDir::separator(), "/"); // update absolute path
+                }
 				mentionedBibTeXFiles << it.value().absolute;
 			}
 		}
