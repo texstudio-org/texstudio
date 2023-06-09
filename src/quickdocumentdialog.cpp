@@ -92,25 +92,25 @@ QuickDocumentDialog::~QuickDocumentDialog()
 
 QString QuickDocumentDialog::getNewDocumentText()
 {
-	bool babel = ui.comboBoxBabel->currentText() != "NONE";
+	QString babel, fontenc, geometry, inputenc;
+	QString userPackages;  // packages added by user
+
 	QString classOpt = "[";
-	QString tag = QString("\\documentclass");
-	if (babel) classOpt += ui.comboBoxBabel->currentText() + QString(",");
+	if (ui.comboBoxBabel->currentText() != "NONE") {
+		classOpt += ui.comboBoxBabel->currentText() + QString(",");
+		babel = QString("\\usepackage{babel}\n");
+	}
 	classOpt += ui.comboBoxSize->currentText() + QString(",") + ui.comboBoxPaper->currentText();
-    for (int i = 0; i < ui.listWidgetOptions->count(); ++i) {
-        QListWidgetItem *item=ui.listWidgetOptions->item(i);
-        if (item->checkState()==Qt::Checked) classOpt += QString(",") + item->text();
+	for (int i = 0; i < ui.listWidgetOptions->count(); ++i) {
+		QListWidgetItem *item=ui.listWidgetOptions->item(i);
+		if (item->checkState()==Qt::Checked) classOpt += QString(",") + item->text();
 	}
 	classOpt += QString("]");
-	tag += classOpt + QString("{") + ui.comboBoxClass->currentText() + QString("}");
-	tag += QString("\n");
-	// always use utf8
-	tag += QString("\\usepackage[utf8]{inputenc}\n");
-	if (ui.comboBoxFontEncoding->currentText() != "NONE") {
-		tag += QString("\\usepackage[") + ui.comboBoxFontEncoding->currentText() + QString("]{fontenc}");
-		tag += QString("\n");
-	}
+	QString tag = QString("\\documentclass") + classOpt + QString("{") + ui.comboBoxClass->currentText() + QString("}\n");
 
+	inputenc = QString("\\usepackage[utf8]{inputenc}\n");  // always use utf8
+	if (ui.comboBoxFontEncoding->currentText() != "NONE")
+		fontenc = QString("\\usepackage[") + ui.comboBoxFontEncoding->currentText() + QString("]{fontenc}\n");
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
 	        ui.checkBoxGeometryPageHeight->isChecked() ||
 	        ui.checkBoxGeometryMarginLeft->isChecked() ||
@@ -125,19 +125,21 @@ QString QuickDocumentDialog::getNewDocumentText()
 		if (ui.checkBoxGeometryMarginTop->isChecked()) geometryOptions += ", top=" + ui.spinBoxGeometryMarginTop->text();
 		if (ui.checkBoxGeometryMarginBottom->isChecked()) geometryOptions += ", bottom=" + ui.spinBoxGeometryMarginBottom->text();
 		geometryOptions.remove(0, 2);
-		tag += "\\usepackage[" + geometryOptions + "]{geometry}\n";
+		geometry = "\\usepackage[" + geometryOptions + "]{geometry}\n";
 	}
-	if (babel) tag += QString("\\usepackage{babel}\n");
 
 	QTableWidget *table = ui.tableWidgetPackages;
 	packagesUsed = QStringList();
 	for (int i=0; i < table->rowCount(); ++i) {
 		QTableWidgetItem *itemPkgName = table->item(i,0);
 		if (itemPkgName->checkState()==Qt::Checked) {
-			tag += QString("\\usepackage{%1}\n").arg(itemPkgName->text());
-			packagesUsed << itemPkgName->text();
+			QString text = itemPkgName->text();
+			packagesUsed << text;
+			userPackages += QString("\\usepackage{%1}\n").arg(text);
 		}
 	}
+// LaTeX code for all packages used
+	tag += inputenc + fontenc + babel + geometry + userPackages;
 
 	QString makeTitle;
 	if (ui.lineEditTitle->text() != "") {
