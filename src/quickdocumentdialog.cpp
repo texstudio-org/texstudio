@@ -95,7 +95,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 	QString amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog
 	QString userPackages;  // packages added by user
 
-	QString classOpt = "[";
+	QString classOpt;
 	if (ui.comboBoxBabel->currentText() != "NONE") {
 		classOpt += ui.comboBoxBabel->currentText() + QString(",");
 		babel = QString("\\usepackage{babel}\n");
@@ -105,12 +105,11 @@ QString QuickDocumentDialog::getNewDocumentText()
 		QListWidgetItem *item=ui.listWidgetOptions->item(i);
 		if (item->checkState()==Qt::Checked) classOpt += QString(",") + item->text();
 	}
-	classOpt += QString("]");
-	QString tag = QString("\\documentclass") + classOpt + QString("{") + ui.comboBoxClass->currentText() + QString("}\n");
+	QString tag = QString("\\documentclass[%1]{%2}\n").arg(classOpt).arg(ui.comboBoxClass->currentText());
 
 	// no inputenc needed, always use utf8
 	if (ui.comboBoxFontEncoding->currentText() != "NONE")
-		fontenc = QString("\\usepackage[") + ui.comboBoxFontEncoding->currentText() + QString("]{fontenc}\n");
+		fontenc = QString("\\usepackage[%1]{fontenc}\n").arg(ui.comboBoxFontEncoding->currentText());
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
 	        ui.checkBoxGeometryPageHeight->isChecked() ||
 	        ui.checkBoxGeometryMarginLeft->isChecked() ||
@@ -125,7 +124,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 		if (ui.checkBoxGeometryMarginTop->isChecked()) geometryOptions += ", top=" + ui.spinBoxGeometryMarginTop->text();
 		if (ui.checkBoxGeometryMarginBottom->isChecked()) geometryOptions += ", bottom=" + ui.spinBoxGeometryMarginBottom->text();
 		geometryOptions.remove(0, 2);
-		geometry = "\\usepackage[" + geometryOptions + "]{geometry}\n";
+		geometry = QString("\\usepackage[%1]{geometry}\n").arg(geometryOptions);
 	}
 
 	QTableWidget *table = ui.tableWidgetPackages;
@@ -153,9 +152,9 @@ QString QuickDocumentDialog::getNewDocumentText()
 	QString makeTitle;
 	if (ui.lineEditTitle->text() != "") {
 		makeTitle = "\\maketitle\n";
-		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
+		tag += QString("\\title{%1}\n").arg(ui.lineEditTitle->text());
 		if (ui.lineEditAuthor->text() != "")
-			tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
+			tag += QString("\\author{%1}\n").arg(ui.lineEditAuthor->text());
 	}
 
 	tag += "\\begin{document}\n" + makeTitle + "%|\n\\end{document}";
