@@ -93,17 +93,16 @@ QuickDocumentDialog::~QuickDocumentDialog()
 QString QuickDocumentDialog::getNewDocumentText()
 {
 	bool babel = ui.comboBoxBabel->currentText() != "NONE";
-	QString opt = "";
-	QString tag = QString("\\documentclass[");
-	if (babel) tag += ui.comboBoxBabel->currentText() + QString(",");
-	tag += ui.comboBoxSize->currentText() + QString(",");
-	tag += ui.comboBoxPaper->currentText();
+	QString classOpt = "[";
+	QString tag = QString("\\documentclass");
+	if (babel) classOpt += ui.comboBoxBabel->currentText() + QString(",");
+	classOpt += ui.comboBoxSize->currentText() + QString(",") + ui.comboBoxPaper->currentText();
     for (int i = 0; i < ui.listWidgetOptions->count(); ++i) {
         QListWidgetItem *item=ui.listWidgetOptions->item(i);
-        if (item->checkState()==Qt::Checked) opt += QString(",") + item->text();
+        if (item->checkState()==Qt::Checked) classOpt += QString(",") + item->text();
 	}
-	tag += opt + QString("]{");
-	tag += ui.comboBoxClass->currentText() + QString("}");
+	classOpt += QString("]");
+	tag += classOpt + QString("{") + ui.comboBoxClass->currentText() + QString("}");
 	tag += QString("\n");
 	// always use utf8
 	tag += QString("\\usepackage[utf8]{inputenc}\n");
