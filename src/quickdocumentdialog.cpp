@@ -92,8 +92,8 @@ QuickDocumentDialog::~QuickDocumentDialog()
 
 QString QuickDocumentDialog::getNewDocumentText()
 {
-	QString amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog
-	QString userPackages;  // packages added by user
+	QString amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog to be sorted
+	QString  inputenc, userPackages;  // packages added by user, special case inputenc needs to be sorted
 
 	QString classOpt;
 	if (ui.comboBoxBabel->currentText() != "NONE") {
@@ -107,7 +107,6 @@ QString QuickDocumentDialog::getNewDocumentText()
 	}
 	QString tag = QString("\\documentclass[%1]{%2}\n").arg(classOpt).arg(ui.comboBoxClass->currentText());
 
-	// no inputenc needed, always use utf8
 	if (ui.comboBoxFontEncoding->currentText() != "NONE")
 		fontenc = QString("\\usepackage[%1]{fontenc}\n").arg(ui.comboBoxFontEncoding->currentText());
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
@@ -139,6 +138,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 			if (text=="amsthm"   ) amsthm    = QString("\\usepackage{amsthm}\n"); else
 			if (text=="graphicx" ) graphicx  = QString("\\usepackage{graphicx}\n"); else
 			if (text=="hyperref" ) hyperref  = QString("\\usepackage{hyperref}\n"); else
+			if (text=="inputenc" ) inputenc  = QString("\\usepackage{inputenc}\n"); else   // special case for user (s. definition of inputenc)
 			if (text=="mathtools") mathtools = QString("\\usepackage{mathtools}\n"); else
 			if (text=="nameref"  ) nameref   = QString("\\usepackage{nameref}\n"); else
 			if (text=="thmtools" ) thmtools  = QString("\\usepackage{thmtools}\n"); else
@@ -147,7 +147,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 		}
 	}
 // LaTeX code for all packages used
-	tag += fontenc + geometry + graphicx + mathtools + amssymb + amsthm + thmtools + xcolor + nameref + babel + hyperref + userPackages;
+	tag += inputenc + fontenc + geometry + graphicx + mathtools + amssymb + amsthm + thmtools + xcolor + nameref + babel + hyperref + userPackages;
 
 	QString makeTitle;
 	if (ui.lineEditTitle->text() != "") {
@@ -556,12 +556,26 @@ void QuickDocumentDialog::addUserOptions()
 
 void QuickDocumentDialog::addUserPackages()
 {
+	QStringList packagesList;
+	QTableWidget *table = ui.tableWidgetPackages;
+	for (int i=0; i < table->rowCount(); ++i) {
+		QTableWidgetItem *itemPkgName = table->item(i,0);
+		packagesList << itemPkgName->text();
+	}
+	packagesList << "fontenc" << "geometry" << "babel"; // additional packages you shouldn't add
+
 	QString newoption;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&newoption, tr("New:"));
-	if (dialog.exec() && !newoption.isEmpty()) {
-		otherPackagesList.append(newoption);
-		Init();
+
+	if (dialog.exec() == QDialog::Accepted) {
+		if (packagesList.contains(newoption)) {
+			QMessageBox::information(this, tr("Hint"), tr("Package %1 is already defined.").arg(newoption));
+		}
+		else if (!newoption.isEmpty()) {
+			otherPackagesList.append(newoption);
+			Init();
+		}
 	}
 }
 
