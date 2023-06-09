@@ -371,7 +371,6 @@ select.encoding=#off
 \BabelString#S
 \BabelStringsDefault#S
 \BabelText{arg}#S
-\BCPdata{arg}#S
 \EndBabelCommands#S
 \IfBabelLayout{layout}{true}{false}#S
 \IfBabelSelectorTF{selectors}{true}{false}#S

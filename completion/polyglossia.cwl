@@ -1006,7 +1006,6 @@ lang=#local,main,%<language%>
 \textwidthfootnoterule#*
 
 \charifavailable{char code}{substitution}#*
-\BCPdata{type}#*
 \languagename#*
 \mainlanguagename#*
 \languagevariant#*
