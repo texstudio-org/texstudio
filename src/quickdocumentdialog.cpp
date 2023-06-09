@@ -556,12 +556,26 @@ void QuickDocumentDialog::addUserOptions()
 
 void QuickDocumentDialog::addUserPackages()
 {
+	QStringList packagesList;
+	QTableWidget *table = ui.tableWidgetPackages;
+	for (int i=0; i < table->rowCount(); ++i) {
+		QTableWidgetItem *itemPkgName = table->item(i,0);
+		packagesList << itemPkgName->text();
+	}
+	packagesList << "fontenc" << "geometry" << "babel"; // additional packages you shouldn't add
+
 	QString newoption;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&newoption, tr("New:"));
-	if (dialog.exec() && !newoption.isEmpty()) {
-		otherPackagesList.append(newoption);
-		Init();
+
+	if (dialog.exec() == QDialog::Accepted) {
+		if (packagesList.contains(newoption)) {
+			QMessageBox::information(this, tr("Hint"), tr("Package %1 is already defined.").arg(newoption));
+		}
+		else if (!newoption.isEmpty()) {
+			otherPackagesList.append(newoption);
+			Init();
+		}
 	}
 }
 
