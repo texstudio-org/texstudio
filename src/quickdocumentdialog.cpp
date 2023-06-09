@@ -92,7 +92,7 @@ QuickDocumentDialog::~QuickDocumentDialog()
 
 QString QuickDocumentDialog::getNewDocumentText()
 {
-	QString babel, fontenc, geometry, inputenc;
+	QString amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog
 	QString userPackages;  // packages added by user
 
 	QString classOpt = "[";
@@ -108,7 +108,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 	classOpt += QString("]");
 	QString tag = QString("\\documentclass") + classOpt + QString("{") + ui.comboBoxClass->currentText() + QString("}\n");
 
-	inputenc = QString("\\usepackage[utf8]{inputenc}\n");  // always use utf8
+	// no inputenc needed, always use utf8
 	if (ui.comboBoxFontEncoding->currentText() != "NONE")
 		fontenc = QString("\\usepackage[") + ui.comboBoxFontEncoding->currentText() + QString("]{fontenc}\n");
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
@@ -135,11 +135,20 @@ QString QuickDocumentDialog::getNewDocumentText()
 		if (itemPkgName->checkState()==Qt::Checked) {
 			QString text = itemPkgName->text();
 			packagesUsed << text;
-			userPackages += QString("\\usepackage{%1}\n").arg(text);
+			// packages initially available from Packages tab
+			if (text=="amssymb"  ) amssymb   = QString("\\usepackage{amssymb}\n"); else
+			if (text=="amsthm"   ) amsthm    = QString("\\usepackage{amsthm}\n"); else
+			if (text=="graphicx" ) graphicx  = QString("\\usepackage{graphicx}\n"); else
+			if (text=="hyperref" ) hyperref  = QString("\\usepackage{hyperref}\n"); else
+			if (text=="mathtools") mathtools = QString("\\usepackage{mathtools}\n"); else
+			if (text=="nameref"  ) nameref   = QString("\\usepackage{nameref}\n"); else
+			if (text=="thmtools" ) thmtools  = QString("\\usepackage{thmtools}\n"); else
+			if (text=="xcolor"   ) xcolor    = QString("\\usepackage{xcolor}\n"); else
+				userPackages += QString("\\usepackage{%1}\n").arg(text);
 		}
 	}
 // LaTeX code for all packages used
-	tag += inputenc + fontenc + babel + geometry + userPackages;
+	tag += fontenc + geometry + graphicx + mathtools + amssymb + amsthm + thmtools + xcolor + nameref + babel + hyperref + userPackages;
 
 	QString makeTitle;
 	if (ui.lineEditTitle->text() != "") {
