@@ -2316,7 +2316,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
     documents.updateMasterSlaveRelations(doc, recheck);
 
     if (recheck || hidden) {
-		doc->updateLtxCommands();
+        if(!doc->isIncompleteInMemory() || !doc->containedPackages().isEmpty() || !doc->userCommandList().isEmpty()){
+            doc->updateLtxCommands();
+        }
 	}
 
 	if (!hidden) {
