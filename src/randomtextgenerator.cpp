@@ -92,15 +92,14 @@ void RandomTextGenerator::generateText()
 		}
 	}
 
-        //----------------------------------generating
-        //---------------------------------------
-        // lorem ipsum
-        if (ui->loremIpsumRadioButton->isChecked()) {
-                generateLoremIpsum();
-                return;
-        }
+		//----------------------------------generating ---------------------------------------
+		// like Shannon in "A Mathematical Theory of Communication" (1949)
 
-        //like Shannon in "A Mathematical Theory of Communication" (1949)
+		// lorem ipsum
+		if (ui->loremIpsumRadioButton->isChecked()) {
+				generateLoremIpsum();
+				return;
+		}
 
 	int order = -1;
 	bool usewords = true;
