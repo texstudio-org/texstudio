@@ -570,7 +570,7 @@ void QuickDocumentDialog::addUserPackages()
 
 	if (dialog.exec() == QDialog::Accepted) {
 		if (packagesList.contains(newoption)) {
-			QMessageBox::information(this, tr("Hint"), tr("Package %1 already in use.").arg(newoption));
+			QMessageBox::information(this, tr("Hint"), tr("Package %1 is already defined.").arg(newoption));
 		}
 		else if (!newoption.isEmpty()) {
 			otherPackagesList.append(newoption);
