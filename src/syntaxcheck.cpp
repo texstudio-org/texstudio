@@ -782,7 +782,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     }
                 }
             }
-			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
+            if (ltxCommands->possibleCommands["user"].contains(word))
 				continue;
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
@@ -1071,7 +1071,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
 
-			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
+            if (ltxCommands->possibleCommands["user"].contains(word))
 				continue;
 
 			if (!checkCommand(word, activeEnv)) {

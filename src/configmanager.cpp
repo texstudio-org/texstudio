@@ -1183,9 +1183,6 @@ QSettings *ConfigManager::readSettings(bool reread)
 	}
 	replacedIconsOnMenus = config->value("customIcons").toMap();
 
-	//custom highlighting
-    LatexParser::getInstance().customCommands = convertStringListtoSet(config->value("customCommands").toStringList());
-
 	//--------------------appearance------------------------------------
 	QFontDatabase fdb;
 	QStringList xf = fdb.families();
@@ -1329,9 +1326,6 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 		else config->setValue(mtb.name + "ToolBar", mtb.actualActions);
 	}
 	config->setValue("customIcons", replacedIconsOnMenus);
-	// custom highlighting
-    QStringList zw = LatexParser::getInstance().customCommands.values();
-	config->setValue("customCommands", zw);
 
 #if QT_VERSION<QT_VERSION_CHECK(6,0,0)
     if(writtenQtVersion>=0x060000){
