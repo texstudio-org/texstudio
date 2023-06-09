@@ -5110,10 +5110,6 @@ void Texstudio::insertTag(const QString &Entity, int dx, int dy)
 	else if (dx == 0) currentEditor()->setCursorPosition(curline + dy, 0);
 	else currentEditor()->setCursorPosition(curline + dy, curindex + dx);
 	currentEditor()->setFocus();
-	//	outputView->setMessage("");
-	//logViewerTabBar->setCurrentIndex(0);
-	//OutputTable->hide();
-	//logpresent=false;
 }
 
 /*!
