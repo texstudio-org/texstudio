@@ -1747,10 +1747,14 @@ void LatexDocument::recheckRefsLabels(QList<LatexDocument*> listOfDocs,QStringLi
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
     QSet<QDocumentLineHandle*> dlhs;
 	for (it = mLabelItem.constBegin(); it != mLabelItem.constEnd(); ++it) {
-        dlhs.insert(it.key());
+        if(it.key()){
+            dlhs.insert(it.key());
+        }
     }
     for (it = mRefItem.constBegin(); it != mRefItem.constEnd(); ++it) {
-        dlhs.insert(it.key());
+        if(it.key()){
+            dlhs.insert(it.key());
+        }
     }
 
     for(QDocumentLineHandle *dlh : dlhs){
@@ -3507,6 +3511,8 @@ bool LatexDocument::languageIsLatexLike() const
  */
 void LatexDocument::reCheckSyntax(int lineStart, int lineNum)
 {
+    if(isIncompleteInMemory()) return; // no syntax check on cached documents
+
 	// Basic sanity checks
 	Q_ASSERT(lineStart >= 0);
 	Q_ASSERT((lineNum == -1) || (lineNum > 0));
