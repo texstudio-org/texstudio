@@ -14,18 +14,18 @@
 #include "configmanagerinterface.h"
 #include "utilsUI.h"
 
-qreal unit2Metre(const qreal &length, const QString &unit)
+qreal unit2Metre(const qreal &length, const QString &unit, const bool &inverse = false)
 {
 	static const qreal inchInMetre = 0.0254;
 	static const qreal pointInMetre = inchInMetre / 72.27;
 	static const qreal bigPointInMetre = inchInMetre / 72;
 	QString lunit = unit.toLower();
-	if (lunit == "pt") return length * pointInMetre;
-	if (lunit == "bp") return length * bigPointInMetre;
-	if (lunit == "cm") return length * 0.01;
-	if (lunit == "dm") return length * 0.1;
-	if (lunit == "in") return length * inchInMetre;
-	/*if (unit == "mm")*/ return length * 0.001;
+	if (lunit == "pt")    if (!inverse) return length * pointInMetre;      else  return length / pointInMetre;   
+	if (lunit == "bp")    if (!inverse) return length * bigPointInMetre;   else  return length / bigPointInMetre;
+	if (lunit == "cm")    if (!inverse) return length * 0.01;              else  return length * 100.;           
+	if (lunit == "dm")    if (!inverse) return length * 0.1;               else  return length * 10.;            
+	if (lunit == "in")    if (!inverse) return length * inchInMetre;       else  return length / inchInMetre;    
+	/*if (unit == "mm")*/ if (!inverse) return length * 0.001;             else  return length * 1000.;          
 }
 
 //options for the configmanager
@@ -374,12 +374,36 @@ void QuickDocumentDialog::accept()
 void QuickDocumentDialog::geometryUnitsChanged(QString newUnit)
 {
 	//update all units (easier than just the changed one, slower, but need probably less memory)
-	ui.spinBoxGeometryPageWidth->setSuffix(newUnit);
-	ui.spinBoxGeometryPageHeight->setSuffix(newUnit);
-	ui.spinBoxGeometryMarginLeft->setSuffix(newUnit);
-	ui.spinBoxGeometryMarginRight->setSuffix(newUnit);
-	ui.spinBoxGeometryMarginTop->setSuffix(newUnit);
-	ui.spinBoxGeometryMarginBottom->setSuffix(newUnit);
+	if (sender() == ui.comboBoxUnitGeometryPageWidth) {
+		qreal newValue = unit2Metre( unit2Metre(ui.spinBoxGeometryPageWidth->value(), ui.spinBoxGeometryPageWidth->suffix()), newUnit, true);
+		ui.spinBoxGeometryPageWidth->setSuffix(newUnit);
+		ui.spinBoxGeometryPageWidth->setValue(newValue);
+	} else
+	if (sender() == ui.comboBoxUnitGeometryPageHeight) {
+		qreal newValue = unit2Metre( unit2Metre(ui.spinBoxGeometryPageHeight->value(), ui.spinBoxGeometryPageHeight->suffix()), newUnit, true);
+		ui.spinBoxGeometryPageHeight->setSuffix(newUnit);
+		ui.spinBoxGeometryPageHeight->setValue(newValue);
+	} else
+	if (sender() == ui.comboBoxUnitGeometryMarginLeft) {
+		qreal newValue = unit2Metre( unit2Metre(ui.spinBoxGeometryMarginLeft->value(), ui.spinBoxGeometryMarginLeft->suffix()), newUnit, true);
+		ui.spinBoxGeometryMarginLeft->setSuffix(newUnit);
+		ui.spinBoxGeometryMarginLeft->setValue(newValue);
+	} else
+	if (sender() == ui.comboBoxUnitGeometryMarginRight) {
+		qreal newValue = unit2Metre( unit2Metre(ui.spinBoxGeometryMarginRight->value(), ui.spinBoxGeometryMarginRight->suffix()), newUnit, true);
+		ui.spinBoxGeometryMarginRight->setSuffix(newUnit);
+		ui.spinBoxGeometryMarginRight->setValue(newValue);
+	} else
+	if (sender() == ui.comboBoxUnitGeometryMarginTop) {
+		qreal newValue = unit2Metre( unit2Metre(ui.spinBoxGeometryMarginTop->value(), ui.spinBoxGeometryMarginTop->suffix()), newUnit, true);
+		ui.spinBoxGeometryMarginTop->setSuffix(newUnit);
+		ui.spinBoxGeometryMarginTop->setValue(newValue);
+	} else
+	if (sender() == ui.comboBoxUnitGeometryMarginBottom) {
+		qreal newValue = unit2Metre( unit2Metre(ui.spinBoxGeometryMarginBottom->value(), ui.spinBoxGeometryMarginBottom->suffix()), newUnit, true);
+		ui.spinBoxGeometryMarginBottom->setSuffix(newUnit);
+		ui.spinBoxGeometryMarginBottom->setValue(newValue);
+	}
 }
 
 void calculatePaperLength(qreal paper, qreal &left, qreal &body, qreal &right, qreal defaultLeftRatio)
