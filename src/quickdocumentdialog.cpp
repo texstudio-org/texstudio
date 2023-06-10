@@ -344,19 +344,19 @@ void QuickDocumentDialog::Init()
 	configManagerInterface->linkOptionToDialogWidget(&babel_language, ui.comboBoxBabel);
 	configManagerInterface->linkOptionToDialogWidget(&author, ui.lineEditAuthor);
 
-	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidth, ui.spinBoxGeometryPageWidth);
-	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeight, ui.spinBoxGeometryPageHeight);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeft, ui.spinBoxGeometryMarginLeft);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRight, ui.spinBoxGeometryMarginRight);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTop, ui.spinBoxGeometryMarginTop);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottom, ui.spinBoxGeometryMarginBottom);
-
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidthUnit, ui.comboBoxUnitGeometryPageWidth);
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeightUnit, ui.comboBoxUnitGeometryPageHeight);
 	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeftUnit, ui.comboBoxUnitGeometryMarginLeft);
 	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRightUnit, ui.comboBoxUnitGeometryMarginRight);
 	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTopUnit, ui.comboBoxUnitGeometryMarginTop);
 	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottomUnit, ui.comboBoxUnitGeometryMarginBottom);
+
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidth, ui.spinBoxGeometryPageWidth);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeight, ui.spinBoxGeometryPageHeight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeft, ui.spinBoxGeometryMarginLeft);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRight, ui.spinBoxGeometryMarginRight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTop, ui.spinBoxGeometryMarginTop);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottom, ui.spinBoxGeometryMarginBottom);
 
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidthEnabled, ui.checkBoxGeometryPageWidth);
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeightEnabled, ui.checkBoxGeometryPageHeight);
