@@ -4753,7 +4753,6 @@ void Texstudio::normalCompletion()
 	QString command;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QDocumentLineHandle *dlh = c.line().handle();
-	//LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
 	TokenStack ts = Parsing::getContext(dlh, c.columnNumber());
 	Token tk;
 	if (!ts.isEmpty()) {

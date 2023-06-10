@@ -35,10 +35,6 @@ public:
 	}
 	int structureCommandLevel(const QString &cmd) const;
 
-	/// realizes whether col is in a \command or in a parameter {}
-	int findContext(QString &line, int &column) const;
-	ContextType findContext(const QString &line, int column, QString &command, QString &value) const;
-
 	QSet<QString> environmentCommands; ///< used by LatexReader only, obsolete
 	QSet<QString> optionCommands; ///< used by LatexReader only, obsolete
 	QStringList mathStartCommands; ///< commands to start math-mode like '$'

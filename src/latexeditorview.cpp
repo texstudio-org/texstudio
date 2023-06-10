@@ -2784,23 +2784,6 @@ void LatexEditorView::mouseHovered(QPoint pos)
 
 	QToolTip::hideText();
 
-	/*
-		switch (LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value)){
-	    case LatexParser::Unknown: // when does this happen ????
-			if (config->toolTipPreview) {
-				QString command = extractMath(cursor);
-				if (!command.isEmpty()) {
-					m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
-					emit showPreview(command);
-				} else {
-					QToolTip::hideText();
-				}
-			}
-			break;
-
-
-	     }*/
-	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }
 
 bool LatexEditorView::closeElement()

@@ -73,10 +73,6 @@ private slots:
 	void nextWord_simple();
 	void cutComment_simple_data();
 	void cutComment_simple();
-	void test_findContext_data();
-	void test_findContext();
-	void test_findContext2_data();
-	void test_findContext2();
 	void test_resolveCommandOptions_data();
 	void test_resolveCommandOptions();
 	void test_findClosingBracket_data();
