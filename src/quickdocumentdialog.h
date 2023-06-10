@@ -43,7 +43,7 @@ public slots:
 	void Init();
 	virtual void accept();
 
-	void geometryUnitsChanged();
+	void geometryUnitsChanged(QString newUnit);
 	void geometryValuesChanged();
 
 private slots:

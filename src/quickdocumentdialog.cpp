@@ -62,12 +62,12 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString &name)
 	connect(ui.tabWidget, SIGNAL(tabBarClicked(int)), SLOT(setPkgTabToolTip(int)));
 
 	//Geometry package
-	connect(ui.comboBoxUnitGeometryPageWidth, SIGNAL(currentTextChanged()), SLOT(geometryUnitsChanged()));
-	connect(ui.comboBoxUnitGeometryPageHeight, SIGNAL(currentTextChanged()), SLOT(geometryUnitsChanged()));
-	connect(ui.comboBoxUnitGeometryMarginLeft, SIGNAL(currentTextChanged()), SLOT(geometryUnitsChanged()));
-	connect(ui.comboBoxUnitGeometryMarginRight, SIGNAL(currentTextChanged()), SLOT(geometryUnitsChanged()));
-	connect(ui.comboBoxUnitGeometryMarginTop, SIGNAL(currentTextChanged()), SLOT(geometryUnitsChanged()));
-	connect(ui.comboBoxUnitGeometryMarginBottom, SIGNAL(currentTextChanged()), SLOT(geometryUnitsChanged()));
+	connect(ui.comboBoxUnitGeometryPageWidth, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged(QString)));
+	connect(ui.comboBoxUnitGeometryPageHeight, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged(QString)));
+	connect(ui.comboBoxUnitGeometryMarginLeft, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged(QString)));
+	connect(ui.comboBoxUnitGeometryMarginRight, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged(QString)));
+	connect(ui.comboBoxUnitGeometryMarginTop, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged(QString)));
+	connect(ui.comboBoxUnitGeometryMarginBottom, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged(QString)));
 
 	connect(ui.spinBoxGeometryPageWidth, SIGNAL(valueChanged(double)), SLOT(geometryValuesChanged()));
 	connect(ui.spinBoxGeometryPageHeight, SIGNAL(valueChanged(double)), SLOT(geometryValuesChanged()));
@@ -371,22 +371,15 @@ void QuickDocumentDialog::accept()
 	QDialog::accept();
 }
 
-void QuickDocumentDialog::geometryUnitsChanged()
+void QuickDocumentDialog::geometryUnitsChanged(QString newUnit)
 {
 	//update all units (easier than just the changed one, slower, but need probably less memory)
-	ui.spinBoxGeometryPageWidth->setSuffix(ui.comboBoxUnitGeometryPageWidth->currentText());
-	ui.spinBoxGeometryPageHeight->setSuffix(ui.comboBoxUnitGeometryPageHeight->currentText());
-	ui.spinBoxGeometryMarginLeft->setSuffix(ui.comboBoxUnitGeometryMarginLeft->currentText());
-	ui.spinBoxGeometryMarginRight->setSuffix(ui.comboBoxUnitGeometryMarginRight->currentText());
-	ui.spinBoxGeometryMarginTop->setSuffix(ui.comboBoxUnitGeometryMarginTop->currentText());
-	ui.spinBoxGeometryMarginBottom->setSuffix(ui.comboBoxUnitGeometryMarginBottom->currentText());
-
-	if (sender() == ui.comboBoxUnitGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
-	else if (sender() == ui.comboBoxUnitGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
-	else if (sender() == ui.comboBoxUnitGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
-	else if (sender() == ui.comboBoxUnitGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
-	else if (sender() == ui.comboBoxUnitGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
-	else if (sender() == ui.comboBoxUnitGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
+	ui.spinBoxGeometryPageWidth->setSuffix(newUnit);
+	ui.spinBoxGeometryPageHeight->setSuffix(newUnit);
+	ui.spinBoxGeometryMarginLeft->setSuffix(newUnit);
+	ui.spinBoxGeometryMarginRight->setSuffix(newUnit);
+	ui.spinBoxGeometryMarginTop->setSuffix(newUnit);
+	ui.spinBoxGeometryMarginBottom->setSuffix(newUnit);
 }
 
 void calculatePaperLength(qreal paper, qreal &left, qreal &body, qreal &right, qreal defaultLeftRatio)
