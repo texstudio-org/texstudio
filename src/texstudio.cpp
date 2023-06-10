@@ -5124,82 +5124,65 @@ void Texstudio::insertCitation(const QString &text)
 {
 	QString citeCmd, citeKey;
 
-	if (text.length() > 1 && text.at(0) == '\\') {
-		LatexParser::ContextType ctx = latexParser.findContext(text, 1, citeCmd, citeKey);
-		if (LatexParser::Command != ctx) {
-			citeCmd = "";
-			citeKey = text;
-		}
+    QRegularExpression re("^(\\\\\\w+\\*?)\\{(.*)\\}");
+    QRegularExpressionMatch match = re.match(text);
+    if (match.hasMatch()) {
+        citeCmd = match.captured(1);
+        citeKey = match.captured(2);
 	} else {
 		citeCmd = "";
 		citeKey = text;
 	}
 
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditor()->cursor();
-	QString line = c.line().text();
-	int cursorCol = c.columnNumber();
-	QString command, value;
-	LatexParser::ContextType context = latexParser.findContext(line, cursorCol, command, value);
+    QDocumentCursor c = currentEditor()->cursor();
+    QDocumentLineHandle *dlh= c.line().handle();
 
-	// Workaround: findContext yields Citation for \cite{..}|\n, but cursorCol is beyond the line,
-	// which causes a crash when determining the insertCol later on.
-	if (context == LatexParser::Citation && cursorCol == line.length() && cursorCol > 0) cursorCol--;
+    TokenStack ts = Parsing::getContext(dlh, c.columnNumber());
 
     // if cursor is directly behind a cite command, insert into that command
-	if (context != LatexParser::Citation && cursorCol > 0) {
-		LatexParser::ContextType prevContext = LatexParser::Unknown;
-		prevContext = latexParser.findContext(line, cursorCol - 1, command, value);
-		if (prevContext == LatexParser::Citation) {
-			cursorCol--;
-			context = prevContext;
-		}
-	}
+    if(!ts.isEmpty()){
+        Token tk=ts.last();
+        if(tk.type == Token::command){
+            // for now, simply assume that it should be added to the next argument
+            TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            int i = tl.indexOf(tk);
+            Token tk2=tl.value(i+1);
+            if(tk2.type==Token::braces && tk2.subtype == Token::bibItem){
+                tk=tk2; // let the normal code handle this
+                c.moveTo(c.lineNumber(),tk.start);
+            }else{
+                // don't indert in the middle of a command
+                return;
+            }
+        }
+        if(tk.type == Token::braces && tk.subtype == Token::bibItem){
+            if(c.columnNumber()==tk.start){
+                // left of braces, move one to the right
+                currentEditor()->setCursorPosition(c.lineNumber(), tk.start+1);
+                // check if braces are empty or not
+                ts = Parsing::getContext(dlh, c.columnNumber()+1);
+                if(!ts.isEmpty() && ts.last().type == Token::bibItem){
+                    insertTag(citeKey+",", citeKey.length()+1); // prepend key
+                    return;
+                }
+            }
+            insertTag(citeKey, citeKey.length());
+            return;
+        }
+        if(tk.type == Token::bibItem){
+            currentEditor()->setCursorPosition(c.lineNumber(), tk.start+tk.length);
+            insertTag(","+citeKey, citeKey.length()+1);
+            return;
+        }
 
-
-	int insertCol = -1;
-	if (context == LatexParser::Command && latexParser.possibleCommands["%cite"].contains(command)) {
-		insertCol = line.indexOf('{', cursorCol) + 1;
-	} else if (context == LatexParser::Citation) {
-		if (cursorCol <= 0) return; // should not be possible,
-		if (line.at(cursorCol) == '{' || line.at(cursorCol) == ',') {
-			insertCol = cursorCol + 1;
-		} else if (line.at(cursorCol - 1) == '{' || line.at(cursorCol - 1) == ',') {
-			insertCol = cursorCol;
-		} else {
-			int nextComma = line.indexOf(',', cursorCol);
-			int closingBracket = line.indexOf('}', cursorCol);
-			if (nextComma >= 0 && (closingBracket == -1 || closingBracket > nextComma)) {
-				insertCol = nextComma + 1;
-			} else if (closingBracket >= 0) {
-				insertCol = closingBracket;
-			}
-		}
-	} else {
-		QString tag;
-		if (citeCmd.isEmpty())
-            tag = citeCmd = configManager.citeCommand+"{" + citeKey + "}";
-		else
-			tag = text;
-		insertTag(tag, tag.length());
-		return;
-	}
-
-	if (insertCol < 0 || insertCol >= line.length()) return;
-
-	currentEditor()->setCursorPosition(c.lineNumber(), insertCol);
-	// now the insertCol is either behind '{', behind ',' or at '}'
-	if (insertCol > 0 && line.at(insertCol - 1) == '{') {
-		if (line.at(insertCol) == '}') {
-			insertTag(citeKey, citeKey.length());
-		} else {
-			insertTag(citeKey + ",", citeKey.length() + 1);
-		}
-	} else if (insertCol > 0 && line.at(insertCol - 1) == ',') {
-		insertTag(citeKey + ",", citeKey.length() + 1);
-	} else {
-		insertTag("," + citeKey, citeKey.length() + 1);
-	}
+    }
+    QString tag;
+    if (citeCmd.isEmpty())
+        tag = citeCmd = configManager.citeCommand+"{" + citeKey + "}";
+    else
+        tag = text;
+    insertTag(tag, tag.length());
 }
 
 void Texstudio::insertFormula(const QString &formula)
