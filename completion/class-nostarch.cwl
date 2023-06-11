@@ -1,5 +1,5 @@
 # nostarch class
-# Matthew Bertucci 2023/05/11 for v2.1
+# Matthew Bertucci 2023/06/11 for v2.2
 
 #include:class-book
 #include:xcolor
@@ -26,6 +26,7 @@
 #include:setspace
 #include:marginnote
 #include:url
+#include:subfigure
 #include:mdframed
 # loads framemethod=TikZ option of mdframed
 #include:soul
@@ -45,6 +46,8 @@ nofontsdir
 12pt
 #endkeyvals
 
+\begin{aside}{title%text}
+\end{aside}
 \begin{cipblock}
 \end{cipblock}
 \begin{Code}
@@ -56,6 +59,8 @@ nofontsdir
 \end{dedicationpage}
 \begin{note}
 \end{note}
+\begin{warning}
+\end{warning}
 
 \brieftableofcontents
 \chapterart{graphics code}
