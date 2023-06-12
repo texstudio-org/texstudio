@@ -1,15 +1,17 @@
 # postit package
-# Matthew Bertucci 2023/06/09 for v0.1.2
+# Matthew Bertucci 2023/06/12 for v0.1.3
 
 #include:tcolorbox
 #include:simplekv
 #include:xstring
 #include:settobox
+#include:varwidth
 #include:tcolorboxlibraryskins
 #include:tikzlibrarycalc
 #include:tikzlibrarypositioning
 #include:tikzlibrarydecorations
 #include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarybabel
 
 ## French versions of commands ##
 \begin{PostIt}
@@ -19,6 +21,7 @@
 \end{PostIt}
 
 #keyvals:\begin{PostIt}
+RappelPostIt=%<nom%>
 Largeur=##L
 Couleur=#%color
 Hauteur=##L
@@ -51,6 +54,7 @@ AlignementPostIt=#top,center,bottom
 \end{PostItNote}
 
 #keyvals:\begin{PostItNote}
+StorePostIt=%<name%>
 Width=##L
 Color=#%color
 Height=##L
@@ -103,3 +107,4 @@ AlignPostIt=#top,center,bottom
 \LargeurStotch#S
 \HauteurScotch#S
 \PostItBorder#S
+\PostItRappel#S
