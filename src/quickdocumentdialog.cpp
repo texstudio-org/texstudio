@@ -14,18 +14,18 @@
 #include "configmanagerinterface.h"
 #include "utilsUI.h"
 
-qreal convertLatexLengthToMetre(const qreal &length, const QString &unit)
+qreal unit2Metre(const qreal &length, const QString &unit, const bool &inverse = false)
 {
 	static const qreal inchInMetre = 0.0254;
 	static const qreal pointInMetre = inchInMetre / 72.27;
 	static const qreal bigPointInMetre = inchInMetre / 72;
 	QString lunit = unit.toLower();
-	if (lunit == "pt") return length * pointInMetre;
-	if (lunit == "bp") return length * bigPointInMetre;
-	if (lunit == "cm") return length * 0.01;
-	if (lunit == "dm") return length * 0.1;
-	if (lunit == "in") return length * inchInMetre;
-	/*if (unit == "mm")*/ return length * 0.001;
+	if (lunit == "pt")    if (!inverse) return length * pointInMetre;      else  return length / pointInMetre;   
+	if (lunit == "bp")    if (!inverse) return length * bigPointInMetre;   else  return length / bigPointInMetre;
+	if (lunit == "cm")    if (!inverse) return length * 0.01;              else  return length * 100.;           
+	if (lunit == "dm")    if (!inverse) return length * 0.1;               else  return length * 10.;            
+	if (lunit == "in")    if (!inverse) return length * inchInMetre;       else  return length / inchInMetre;    
+	/*if (unit == "mm")*/ if (!inverse) return length * 0.001;             else  return length * 1000.;          
 }
 
 //options for the configmanager
@@ -62,12 +62,12 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString &name)
 	connect(ui.tabWidget, SIGNAL(tabBarClicked(int)), SLOT(setPkgTabToolTip(int)));
 
 	//Geometry package
-	connect(ui.spinBoxUnitGeometryPageWidth, SIGNAL(editTextChanged(QString)), SLOT(geometryUnitsChanged()));
-	connect(ui.spinBoxUnitGeometryPageHeight, SIGNAL(editTextChanged(QString)), SLOT(geometryUnitsChanged()));
-	connect(ui.spinBoxUnitGeometryMarginLeft, SIGNAL(editTextChanged(QString)), SLOT(geometryUnitsChanged()));
-	connect(ui.spinBoxUnitGeometryMarginRight, SIGNAL(editTextChanged(QString)), SLOT(geometryUnitsChanged()));
-	connect(ui.spinBoxUnitGeometryMarginTop, SIGNAL(editTextChanged(QString)), SLOT(geometryUnitsChanged()));
-	connect(ui.spinBoxUnitGeometryMarginBottom, SIGNAL(editTextChanged(QString)), SLOT(geometryUnitsChanged()));
+	connect(ui.comboBoxUnitGeometryPageWidth, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged()));
+	connect(ui.comboBoxUnitGeometryPageHeight, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged()));
+	connect(ui.comboBoxUnitGeometryMarginLeft, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged()));
+	connect(ui.comboBoxUnitGeometryMarginRight, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged()));
+	connect(ui.comboBoxUnitGeometryMarginTop, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged()));
+	connect(ui.comboBoxUnitGeometryMarginBottom, SIGNAL(currentTextChanged(QString)), SLOT(geometryUnitsChanged()));
 
 	connect(ui.spinBoxGeometryPageWidth, SIGNAL(valueChanged(double)), SLOT(geometryValuesChanged()));
 	connect(ui.spinBoxGeometryPageHeight, SIGNAL(valueChanged(double)), SLOT(geometryValuesChanged()));
@@ -116,12 +116,12 @@ QString QuickDocumentDialog::getNewDocumentText()
 	        ui.checkBoxGeometryMarginBottom->isChecked() ||
 	        ui.checkBoxGeometryMarginTop->isChecked()) {
 		QString geometryOptions;
-		if (ui.checkBoxGeometryPageWidth->isChecked()) geometryOptions += ", width=" + ui.spinBoxGeometryPageWidth->text();
-		if (ui.checkBoxGeometryPageHeight->isChecked()) geometryOptions += ", height=" + ui.spinBoxGeometryPageHeight->text();
-		if (ui.checkBoxGeometryMarginLeft->isChecked()) geometryOptions += ", left=" + ui.spinBoxGeometryMarginLeft->text();
-		if (ui.checkBoxGeometryMarginRight->isChecked()) geometryOptions += ", right=" + ui.spinBoxGeometryMarginRight->text();
-		if (ui.checkBoxGeometryMarginTop->isChecked()) geometryOptions += ", top=" + ui.spinBoxGeometryMarginTop->text();
-		if (ui.checkBoxGeometryMarginBottom->isChecked()) geometryOptions += ", bottom=" + ui.spinBoxGeometryMarginBottom->text();
+		if (ui.checkBoxGeometryPageWidth->isChecked()) geometryOptions += QString(", width=%1").arg(ui.spinBoxGeometryPageWidth->value()) + ui.comboBoxUnitGeometryPageWidth->currentText();
+		if (ui.checkBoxGeometryPageHeight->isChecked()) geometryOptions += QString(", height=%1").arg(ui.spinBoxGeometryPageHeight->value()) + ui.comboBoxUnitGeometryPageHeight->currentText();
+		if (ui.checkBoxGeometryMarginLeft->isChecked()) geometryOptions += QString(", left=%1").arg(ui.spinBoxGeometryMarginLeft->value()) + ui.comboBoxUnitGeometryMarginLeft->currentText();
+		if (ui.checkBoxGeometryMarginRight->isChecked()) geometryOptions += QString(", right=%1").arg(ui.spinBoxGeometryMarginRight->value()) + ui.comboBoxUnitGeometryMarginRight->currentText();
+		if (ui.checkBoxGeometryMarginTop->isChecked()) geometryOptions += QString(", top=%1").arg(ui.spinBoxGeometryMarginTop->value()) + ui.comboBoxUnitGeometryMarginTop->currentText();
+		if (ui.checkBoxGeometryMarginBottom->isChecked()) geometryOptions += QString(", bottom=%1").arg(ui.spinBoxGeometryMarginBottom->value()) + ui.comboBoxUnitGeometryMarginBottom->currentText();
 		geometryOptions.remove(0, 2);
 		geometry = QString("\\usepackage[%1]{geometry}\n").arg(geometryOptions);
 	}
@@ -351,12 +351,12 @@ void QuickDocumentDialog::Init()
 	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTop, ui.spinBoxGeometryMarginTop);
 	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottom, ui.spinBoxGeometryMarginBottom);
 
-	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidthUnit, ui.spinBoxUnitGeometryPageWidth);
-	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeightUnit, ui.spinBoxUnitGeometryPageHeight);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeftUnit, ui.spinBoxUnitGeometryMarginLeft);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRightUnit, ui.spinBoxUnitGeometryMarginRight);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTopUnit, ui.spinBoxUnitGeometryMarginTop);
-	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottomUnit, ui.spinBoxUnitGeometryMarginBottom);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidthUnit, ui.comboBoxUnitGeometryPageWidth);
+	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeightUnit, ui.comboBoxUnitGeometryPageHeight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginLeftUnit, ui.comboBoxUnitGeometryMarginLeft);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginRightUnit, ui.comboBoxUnitGeometryMarginRight);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginTopUnit, ui.comboBoxUnitGeometryMarginTop);
+	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottomUnit, ui.comboBoxUnitGeometryMarginBottom);
 
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageWidthEnabled, ui.checkBoxGeometryPageWidth);
 	configManagerInterface->linkOptionToDialogWidget(&geometryPageHeightEnabled, ui.checkBoxGeometryPageHeight);
@@ -374,19 +374,14 @@ void QuickDocumentDialog::accept()
 void QuickDocumentDialog::geometryUnitsChanged()
 {
 	//update all units (easier than just the changed one, slower, but need probably less memory)
-	ui.spinBoxGeometryPageWidth->setSuffix(ui.spinBoxUnitGeometryPageWidth->currentText());
-	ui.spinBoxGeometryPageHeight->setSuffix(ui.spinBoxUnitGeometryPageHeight->currentText());
-	ui.spinBoxGeometryMarginLeft->setSuffix(ui.spinBoxUnitGeometryMarginLeft->currentText());
-	ui.spinBoxGeometryMarginRight->setSuffix(ui.spinBoxUnitGeometryMarginRight->currentText());
-	ui.spinBoxGeometryMarginTop->setSuffix(ui.spinBoxUnitGeometryMarginTop->currentText());
-	ui.spinBoxGeometryMarginBottom->setSuffix(ui.spinBoxUnitGeometryMarginBottom->currentText());
-
-	if (sender() == ui.spinBoxUnitGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
-	else if (sender() == ui.spinBoxUnitGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
-	else if (sender() == ui.spinBoxUnitGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
-	else if (sender() == ui.spinBoxUnitGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
-	else if (sender() == ui.spinBoxUnitGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
-	else if (sender() == ui.spinBoxUnitGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
+	// it was decided not to recalculate number part (s. https://github.com/texstudio-org/texstudio/pull/3156) and to not use suffix in spinBoxGeometry...
+	if (sender() == ui.comboBoxUnitGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
+	geometryValuesChanged();
 }
 
 void calculatePaperLength(qreal paper, qreal &left, qreal &body, qreal &right, qreal defaultLeftRatio)
@@ -454,16 +449,16 @@ void QuickDocumentDialog::geometryValuesChanged()
 		ui.geometryPreviewLabel->setText("unknown paper format");
 		return;
 	}
-	qreal physicalPaperWidth = convertLatexLengthToMetre(paperFormats[paperFormat + 1].toDouble(), paperFormats[paperFormat + 3]);
-	qreal physicalPaperHeight = convertLatexLengthToMetre(paperFormats[paperFormat + 2].toDouble(), paperFormats[paperFormat + 3]);
+	qreal physicalPaperWidth = unit2Metre(paperFormats[paperFormat + 1].toDouble(), paperFormats[paperFormat + 3]);
+	qreal physicalPaperHeight = unit2Metre(paperFormats[paperFormat + 2].toDouble(), paperFormats[paperFormat + 3]);
 
-	qreal textWidth = (ui.checkBoxGeometryPageWidth->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryPageWidth->value(), ui.spinBoxGeometryPageWidth->suffix()) : -1);
-	qreal textHeight = (ui.checkBoxGeometryPageWidth->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryPageHeight->value(), ui.spinBoxGeometryPageHeight->suffix()) : -1);
+	qreal textWidth = (ui.checkBoxGeometryPageWidth->isChecked() ? unit2Metre(ui.spinBoxGeometryPageWidth->value(), ui.comboBoxUnitGeometryPageWidth->currentText()) : -1);
+	qreal textHeight = (ui.checkBoxGeometryPageWidth->isChecked() ? unit2Metre(ui.spinBoxGeometryPageHeight->value(), ui.comboBoxUnitGeometryPageHeight->currentText()) : -1);
 
-	qreal marginLeft = (ui.checkBoxGeometryMarginLeft->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginLeft->value(), ui.spinBoxGeometryMarginLeft->suffix()) : -1);
-	qreal marginRight = (ui.checkBoxGeometryMarginRight->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginRight->value(), ui.spinBoxGeometryMarginRight->suffix()) : -1);
-	qreal marginTop = (ui.checkBoxGeometryMarginTop->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginTop->value(), ui.spinBoxGeometryMarginTop->suffix()) : -1);
-	qreal marginBottom = (ui.checkBoxGeometryMarginBottom->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginBottom->value(), ui.spinBoxGeometryMarginBottom->suffix()) : -1);
+	qreal marginLeft = (ui.checkBoxGeometryMarginLeft->isChecked() ? unit2Metre(ui.spinBoxGeometryMarginLeft->value(), ui.comboBoxUnitGeometryMarginLeft->currentText()) : -1);
+	qreal marginRight = (ui.checkBoxGeometryMarginRight->isChecked() ? unit2Metre(ui.spinBoxGeometryMarginRight->value(), ui.comboBoxUnitGeometryMarginRight->currentText()) : -1);
+	qreal marginTop = (ui.checkBoxGeometryMarginTop->isChecked() ? unit2Metre(ui.spinBoxGeometryMarginTop->value(), ui.comboBoxUnitGeometryMarginTop->currentText()) : -1);
+	qreal marginBottom = (ui.checkBoxGeometryMarginBottom->isChecked() ? unit2Metre(ui.spinBoxGeometryMarginBottom->value(), ui.comboBoxUnitGeometryMarginBottom->currentText()) : -1);
 
     bool twoSide = ui.listWidgetOptions->findItems("twoside", Qt::MatchExactly).constFirst()->checkState() == Qt::Checked;
     bool landscape = ui.listWidgetOptions->findItems("landscape", Qt::MatchExactly).constFirst()->checkState() == Qt::Checked;

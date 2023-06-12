@@ -321,18 +321,15 @@
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
-            <property name="suffix">
-             <string>mm</string>
-            </property>
             <property name="maximum">
              <double>99999.990000000005239</double>
             </property>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="spinBoxUnitGeometryPageWidth">
+           <widget class="QComboBox" name="comboBoxUnitGeometryPageWidth">
             <property name="editable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <item>
              <property name="text">
@@ -362,9 +359,9 @@
            </widget>
           </item>
           <item row="1" column="2" rowspan="2">
-           <widget class="QComboBox" name="spinBoxUnitGeometryPageHeight">
+           <widget class="QComboBox" name="comboBoxUnitGeometryPageHeight">
             <property name="editable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <item>
              <property name="text">
@@ -397,9 +394,6 @@
            <widget class="QDoubleSpinBox" name="spinBoxGeometryPageHeight">
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
-            </property>
-            <property name="suffix">
-             <string>mm</string>
             </property>
             <property name="maximum">
              <double>99999.990000000005239</double>
@@ -434,9 +428,6 @@
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
-            <property name="suffix">
-             <string>mm</string>
-            </property>
             <property name="maximum">
              <double>99999.990000000005239</double>
             </property>
@@ -446,9 +437,9 @@
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QComboBox" name="spinBoxUnitGeometryMarginLeft">
+           <widget class="QComboBox" name="comboBoxUnitGeometryMarginLeft">
             <property name="editable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <item>
              <property name="text">
@@ -489,9 +480,6 @@
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
-            <property name="suffix">
-             <string>mm</string>
-            </property>
             <property name="maximum">
              <double>99999.990000000005239</double>
             </property>
@@ -501,9 +489,9 @@
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QComboBox" name="spinBoxUnitGeometryMarginRight">
+           <widget class="QComboBox" name="comboBoxUnitGeometryMarginRight">
             <property name="editable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <item>
              <property name="text">
@@ -537,9 +525,6 @@
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
-            <property name="suffix">
-             <string>mm</string>
-            </property>
             <property name="maximum">
              <double>99999.990000000005239</double>
             </property>
@@ -549,9 +534,9 @@
            </widget>
           </item>
           <item row="2" column="2" rowspan="2">
-           <widget class="QComboBox" name="spinBoxUnitGeometryMarginTop">
+           <widget class="QComboBox" name="comboBoxUnitGeometryMarginTop">
             <property name="editable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <item>
              <property name="text">
@@ -599,9 +584,6 @@
             <property name="locale">
              <locale language="English" country="UnitedStates"/>
             </property>
-            <property name="suffix">
-             <string>mm</string>
-            </property>
             <property name="maximum">
              <double>99999.990000000005239</double>
             </property>
@@ -611,9 +593,9 @@
            </widget>
           </item>
           <item row="4" column="2">
-           <widget class="QComboBox" name="spinBoxUnitGeometryMarginBottom">
+           <widget class="QComboBox" name="comboBoxUnitGeometryMarginBottom">
             <property name="editable">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <item>
              <property name="text">
@@ -763,7 +745,7 @@
   <connection>
    <sender>checkBoxGeometryPageWidth</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBoxUnitGeometryPageWidth</receiver>
+   <receiver>comboBoxUnitGeometryPageWidth</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -795,7 +777,7 @@
   <connection>
    <sender>checkBoxGeometryPageHeight</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBoxUnitGeometryPageHeight</receiver>
+   <receiver>comboBoxUnitGeometryPageHeight</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -827,7 +809,7 @@
   <connection>
    <sender>checkBoxGeometryMarginLeft</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBoxUnitGeometryMarginLeft</receiver>
+   <receiver>comboBoxUnitGeometryMarginLeft</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -859,7 +841,7 @@
   <connection>
    <sender>checkBoxGeometryMarginRight</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBoxUnitGeometryMarginRight</receiver>
+   <receiver>comboBoxUnitGeometryMarginRight</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -891,7 +873,7 @@
   <connection>
    <sender>checkBoxGeometryMarginTop</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBoxUnitGeometryMarginTop</receiver>
+   <receiver>comboBoxUnitGeometryMarginTop</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -923,7 +905,7 @@
   <connection>
    <sender>checkBoxGeometryMarginBottom</sender>
    <signal>toggled(bool)</signal>
-   <receiver>spinBoxUnitGeometryMarginBottom</receiver>
+   <receiver>comboBoxUnitGeometryMarginBottom</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
