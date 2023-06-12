@@ -375,6 +375,12 @@ void QuickDocumentDialog::geometryUnitsChanged()
 {
 	//update all units (easier than just the changed one, slower, but need probably less memory)
 	// it was decided not to recalculate number part (s. https://github.com/texstudio-org/texstudio/pull/3156) and to not use suffix in spinBoxGeometry...
+	if (sender() == ui.comboBoxUnitGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
+	else if (sender() == ui.comboBoxUnitGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
 	geometryValuesChanged();
 }
 
@@ -398,6 +404,14 @@ void calculatePaperLength(qreal paper, qreal &left, qreal &body, qreal &right, q
 
 void QuickDocumentDialog::geometryValuesChanged()
 {
+	//if a value is changed, enable it (I just don't like to create 12 slots for this, where are you lambda?)
+	if (sender() == ui.spinBoxGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
+
 	static const QStringList paperFormats = QStringList()
 	                                        << "a0paper" << "841" << "1189" << "mm"
 	                                        << "a1paper" << "594" << "841" << "mm"
