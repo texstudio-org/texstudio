@@ -1901,6 +1901,7 @@
 <file>completion/itnumpar.cwl</file>
 <file>completion/iwona.cwl</file>
 <file>completion/jamtimes.cwl</file>
+<file>completion/javascripthttp.cwl</file>
 <file>completion/JeuxCartes.cwl</file>
 <file>completion/jiazhu.cwl</file>
 <file>completion/jigsaw.cwl</file>
@@ -2134,6 +2135,7 @@
 <file>completion/luacolor.cwl</file>
 <file>completion/luacomplex.cwl</file>
 <file>completion/luagcd.cwl</file>
+<file>completion/luahttp.cwl</file>
 <file>completion/luahyphenrules.cwl</file>
 <file>completion/luaimageembed.cwl</file>
 <file>completion/luaindex.cwl</file>
@@ -2989,6 +2991,7 @@
 <file>completion/quattrocento.cwl</file>
 <file>completion/quickreaction.cwl</file>
 <file>completion/quiz2socrative.cwl</file>
+<file>completion/quizztex.cwl</file>
 <file>completion/quotchap.cwl</file>
 <file>completion/quoted.cwl</file>
 <file>completion/quoting.cwl</file>
@@ -4061,6 +4064,7 @@
 <file>completion/zitie.cwl</file>
 <file>completion/zlmtt.cwl</file>
 <file>completion/zref-abspage.cwl</file>
+<file>completion/zref-abspos.cwl</file>
 <file>completion/zref-base.cwl</file>
 <file>completion/zref-check.cwl</file>
 <file>completion/zref-clever.cwl</file>
@@ -4070,10 +4074,12 @@
 <file>completion/zref-env.cwl</file>
 <file>completion/zref-hyperref.cwl</file>
 <file>completion/zref-lastpage.cwl</file>
+<file>completion/zref-marks.cwl</file>
 <file>completion/zref-nextpage.cwl</file>
 <file>completion/zref-pageattr.cwl</file>
 <file>completion/zref-pagelayout.cwl</file>
 <file>completion/zref-perpage.cwl</file>
+<file>completion/zref-runs.cwl</file>
 <file>completion/zref-savepos.cwl</file>
 <file>completion/zref-thepage.cwl</file>
 <file>completion/zref-titleref.cwl</file>

@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2022/11/30 for v1.61
+# Matthew Bertucci 2023/06/10 for v1.63
 
 #include:etoolbox
 #include:makecmds
@@ -495,8 +495,10 @@ babelshorthands#true,false
 
 #keyvals:\setdefaultlanguage/arabic#c,\setmainlanguage/arabic#c,\setotherlanguage/arabic#c,\textlang/arabic#c,\textarabic#c,\begin{lang}/arabic#c,\begin{Arabic}#c,\selectlanguage/arabic#c,\foreignlanguage/arabic#c,\begin{otherlanguage}/arabic#c,\begin{otherlanguage*}/arabic#c,\resetdefaultlanguage/arabic#c,\setlanguagealias/arabic#c,\setlanguagealias*/arabic#c,\pghyphenation/arabic#c,\setlanghyphenmins/arabic#c
 calendar=#gregorian,islamic,hijri
+hijricorrection=%<integer%>
 locale=#default,mashriq,libya,algeria,tunisia,morocco,mauritania
-numerals=#mashriq,maghrib
+numerals=#mashriq,eastern,maghrib,western
+sectionsep=%<code%>
 abjadalph#true,false
 abjadjimnotail#true,false
 #endkeyvals
@@ -509,6 +511,7 @@ abjadjimnotail#true,false
 #keyvals:\setdefaultlanguage/armenian#c,\setmainlanguage/armenian#c,\setotherlanguage/armenian#c,\textlang/armenian#c,\textarmenian#c,\begin{lang}/armenian#c,\begin{armenian}#c,\selectlanguage/armenian#c,\foreignlanguage/armenian#c,\begin{otherlanguage}/armenian#c,\begin{otherlanguage*}/armenian#c,\resetdefaultlanguage/armenian#c,\setlanguagealias/armenian#c,\setlanguagealias*/armenian#c,\pghyphenation/armenian#c,\setlanghyphenmins/armenian#c
 variant=#eastern,western
 numerals=#armenian,arabic
+capitalyiwn#true,false
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/belarusian#c,\setmainlanguage/belarusian#c,\setotherlanguage/belarusian#c,\textlang/belarusian#c,\textbelarusian#c,\begin{lang}/belarusian#c,\begin{belarusian}#c,\selectlanguage/belarusian#c,\foreignlanguage/belarusian#c,\begin{otherlanguage}/belarusian#c,\begin{otherlanguage*}/belarusian#c,\resetdefaultlanguage/belarusian#c,\setlanguagealias/belarusian#c,\setlanguagealias*/belarusian#c,\pghyphenation/belarusian#c,\setlanghyphenmins/belarusian#c
@@ -550,6 +553,7 @@ vlna#true,false
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/dutch#c,\setmainlanguage/dutch#c,\setotherlanguage/dutch#c,\textlang/dutch#c,\textdutch#c,\begin{lang}/dutch#c,\begin{dutch}#c,\selectlanguage/dutch#c,\foreignlanguage/dutch#c,\begin{otherlanguage}/dutch#c,\begin{otherlanguage*}/dutch#c,\resetdefaultlanguage/dutch#c,\setlanguagealias/dutch#c,\setlanguagealias*/dutch#c,\pghyphenation/dutch#c,\setlanghyphenmins/dutch#c
+tremahyphenation#true,false
 babelshorthands#true,false
 #endkeyvals
 
@@ -598,6 +602,7 @@ oldmonthnames#true,false
 #keyvals:\setdefaultlanguage/german#c,\setmainlanguage/german#c,\setotherlanguage/german#c,\textlang/german#c,\textgerman#c,\begin{lang}/german#c,\begin{german}#c,\selectlanguage/german#c,\foreignlanguage/german#c,\begin{otherlanguage}/german#c,\begin{otherlanguage*}/german#c,\resetdefaultlanguage/german#c,\setlanguagealias/german#c,\setlanguagealias*/german#c,\pghyphenation/german#c,\setlanghyphenmins/german#c
 variant=#german,austrian,swiss
 spelling=#new,old
+capitaleszett#true,false
 babelshorthands#true,false
 script=#latin,blackletter,fraktur
 #endkeyvals
@@ -650,6 +655,7 @@ swapstrings=#all,headers,headings,none
 variant=#kurmanji,sorani
 script=#Arabic,Latin
 numerals=#western,eastern
+sectionsep=%<code%>
 abjadjimnotail#true,false
 #endkeyvals
 
@@ -686,6 +692,7 @@ variant=#bokmal,nynorsk
 
 #keyvals:\setdefaultlanguage/persian#c,\setmainlanguage/persian#c,\setotherlanguage/persian#c,\textlang/persian#c,\textpersian#c,\begin{lang}/persian#c,\begin{persian}#c,\selectlanguage/persian#c,\foreignlanguage/persian#c,\begin{otherlanguage}/persian#c,\begin{otherlanguage*}/persian#c,\resetdefaultlanguage/persian#c,\setlanguagealias/persian#c,\setlanguagealias*/persian#c,\pghyphenation/persian#c,\setlanghyphenmins/persian#c
 numerals=#western,eastern
+sectionsep=%<code%>
 abjadjimnotail#true,false
 #endkeyvals
 
@@ -720,10 +727,16 @@ numerals=#Devanagari,Western
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/serbian#c,\setmainlanguage/serbian#c,\setotherlanguage/serbian#c,\textlang/serbian#c,\textserbian#c,\begin{lang}/serbian#c,\begin{serbian}#c,\selectlanguage/serbian#c,\foreignlanguage/serbian#c,\begin{otherlanguage}/serbian#c,\begin{otherlanguage*}/serbian#c,\resetdefaultlanguage/serbian#c,\setlanguagealias/serbian#c,\setlanguagealias*/serbian#c,\pghyphenation/serbian#c,\setlanghyphenmins/serbian#c
+variant=#ekavian,ijekavian
 script=#Cyrillic,Latin
+datei#true,false
 splithyphens#true,false
 numerals=#arabic,cyrillic-alph,cyrillic-trad
 #endkeyvals
+
+\todayGen#*
+\todayArabic#*
+\todayRoman#*
 
 #keyvals:\setdefaultlanguage/slovak#c,\setmainlanguage/slovak#c,\setotherlanguage/slovak#c,\textlang/slovak#c,\textslovak#c,\begin{lang}/slovak#c,\begin{slovak}#c,\selectlanguage/slovak#c,\foreignlanguage/slovak#c,\begin{otherlanguage}/slovak#c,\begin{otherlanguage*}/slovak#c,\resetdefaultlanguage/slovak#c,\setlanguagealias/slovak#c,\setlanguagealias*/slovak#c,\pghyphenation/slovak#c,\setlanghyphenmins/slovak#c
 babelshorthands#true,false
@@ -757,6 +770,7 @@ spanishoperators=#all,accented,spaced,none,false
 
 #keyvals:\setdefaultlanguage/syriac#c,\setmainlanguage/syriac#c,\setotherlanguage/syriac#c,\textlang/syriac#c,\textsyriac#c,\begin{lang}/syriac#c,\begin{syriac}#c,\selectlanguage/syriac#c,\foreignlanguage/syriac#c,\begin{otherlanguage}/syriac#c,\begin{otherlanguage*}/syriac#c,\resetdefaultlanguage/syriac#c,\setlanguagealias/syriac#c,\setlanguagealias*/syriac#c,\pghyphenation/syriac#c,\setlanghyphenmins/syriac#c
 numerals=#western,eastern,abjad
+sectionsep=%<code%>
 #endkeyvals
 
 \abjadsyriac{text}#*
@@ -773,6 +787,14 @@ numerals=#tibetan,arabic
 babelshorthands#true,false
 mathfunctions#true,false
 numerals=#arabic,cyrillic-alph,cyrillic-trad
+#endkeyvals
+
+#keyvals:\setdefaultlanguage/urdu#c,\setmainlanguage/urdu#c,\setotherlanguage/urdu#c,\textlang/urdu#c,\texturdu#c,\begin{lang}/urdu#c,\begin{urdu}#c,\selectlanguage/urdu#c,\foreignlanguage/urdu#c,\begin{otherlanguage}/urdu#c,\begin{otherlanguage*}/urdu#c,\resetdefaultlanguage/urdu#c,\setlanguagealias/urdu#c,\setlanguagealias*/urdu#c,\pghyphenation/urdu#c,\setlanghyphenmins/urdu#c
+calendar=#gregorian,hijri
+hijricorrection=%<integer%>
+numerals=#western,eastern
+sectionsep=%<code%>
+abjadjimnotail#true,false
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/uyghur#c,\setmainlanguage/uyghur#c,\setotherlanguage/uyghur#c,\textlang/uyghur#c,\textuyghur#c,\begin{lang}/uyghur#c,\begin{uyghur}#c,\selectlanguage/uyghur#c,\foreignlanguage/uyghur#c,\begin{otherlanguage}/uyghur#c,\begin{otherlanguage*}/uyghur#c,\resetdefaultlanguage/uyghur#c,\setlanguagealias/uyghur#c,\setlanguagealias*/uyghur#c,\pghyphenation/uyghur#c,\setlanghyphenmins/uyghur#c
@@ -1019,9 +1041,9 @@ lang=#local,main,%<language%>
 \iflanguageidloaded{type}{id}{true}{false}#*
 \iflanguageoption{language}{opt key}{opt value}{true}{false}#*
 \setforeignlanguage{language}#S
-\ifxpglanginaux#S
-\xpglanginauxfalse#S
-\xpglanginauxtrue#S
+\ifxpginauxfile#S
+\xpginauxfilefalse#S
+\xpginauxfiletrue#S
 
 ## undocumented commands from gloss-*.ldf files
 # shared commands
