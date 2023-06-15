@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/06/03 for v2.6.7
+# Matthew Bertucci 2023/06/15 for v2.7.0
 
 #include:mathtools
 #include:amssymb
@@ -417,6 +417,7 @@ AffOrigine#true,false
 Annee#true,false
 Trigo#true,false
 Dfrac#true,false
+Frac#true,false
 #endkeyvals
 
 \AffAngleRadian{expr}
@@ -560,6 +561,9 @@ GrilleV#true,false
 PoliceAxes=%<font commands%>
 PoliceEffectifs=%<font commands%>
 EpaisseurTraits=%<épaisseur%>
+Grille=%<GradX%>/%<UniteAire%>
+ExtraGrilleY=%<nombre%>
+PosLegende=
 #endkeyvals
 
 ## Calculs de probabilités ##
@@ -687,6 +691,17 @@ Repetition#true,false
 Notation#true,false
 NotationAncien#true,false
 Formule#true,false
+#endkeyvals
+
+## Fonction de répartition ##
+\FonctionRepartTikz{liste des probas,borneinf,bornesup}
+\FonctionRepartTikz[option%keyvals]{liste des probas,borneinf,bornesup}
+
+#keyvals:\FonctionRepartTikz
+Couleur=#%color
+Epaisseur=%<épaisseur%>
+Pointilles#true,false
+Extremite=#crochet,point
 #endkeyvals
 
 ## Conversions binaire/hexadécimal/décimal ##
@@ -1575,3 +1590,10 @@ vertcapyt#B
 \HistoEptraits#S
 \HistogrammeTikz{arg}#S
 \HistogrammeTikz[opt]{arg}#S
+\CrochetFctRepart{arg1}{arg2}#S
+\FctRepartColor#S
+\FctRepartThickness#S
+\FctRepartExtremite#S
+\HistoGrille#S
+\HistoExtraGridY#S
+\HistoPosLeg#S
