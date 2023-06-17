@@ -1,7 +1,8 @@
 # covington package
-# Matthew Bertucci 2023/06/02 for v2.10
+# Matthew Bertucci 2023/06/17 for v2.11
 
 #include:iftex
+#include:varwidth
 
 #keyvals:\usepackage/covington#c
 force#true,false
@@ -55,8 +56,16 @@ fnexamplecounter=#main,own,own-reset
 #keyvals:\begin{example},\begin{covexample},\begin{examples},\begin{covexamples},\begin{subexamples},\begin{covsubexamples},\setexampleoptions
 fs={%<font settings%>}
 fsno={%<font settings%>}
+judge={%<text%>}
+*
+?
+*?
+??
+fsjudge={%<font settings%>}
 leftmargin=##L
 addnumbersep=##L
+judgewidth={%<text%>}
+addjudgesep=##L
 numberformat={%<template%>}
 fnnumberformat={%<template%>}
 #endkeyvals
@@ -79,6 +88,7 @@ fssubpreamble={%<font settings%>}
 fssubpostamble={%<font settings%>}
 addsubnumbersep=##L
 subnumberformat={%<template%>}
+subjudge={%<text%>}
 #endkeyvals
 
 \covexnumber{arg}#*
@@ -92,24 +102,43 @@ subnumberformat={%<template%>}
 \subexpostamblefs#*
 \thecovfnex#*
 \pxref{label}#r
+\digloss{glossline1}{glossline2}{translation}
+\digloss{glossline1}[comment1]{glossline2}[comment2]{translation}
 \digloss[options%keyvals]{glossline1}{glossline2}{translation}
+\digloss[options%keyvals]{glossline1}[comment1]{glossline2}[comment2]{translation}
+\trigloss{glossline1}{glossline2}{glossline3}{translation}
+\trigloss{glossline1}[comment1]{glossline2}[comment2]{glossline3}[comment3]{translation}
 \trigloss[options%keyvals]{glossline1}{glossline2}{glossline3}{translation}
+\trigloss[options%keyvals]{glossline1}[comment1]{glossline2}[comment2]{glossline3}[comment3]{translation}
 \setglossoptions{options%keyvals}
 
 #keyvals:\digloss,\trigloss,\setglossoptions
 ex#true,false
 tlr#true,false
+tlr*#true,false
 fsi={%<font settings%>}
 fsii={%<font settings%>}
 fsiii={%<font settings%>}
 fstl={%<font settings%>}
 enquotetl#true,false
+addlinesepi=##L
+addlinesepii=##L
+addlinesepiii=##L
+judge={%<text%>}
+fsjudge={%<font settings%>}
+addjudgesep=##L
 preamble={%<text%>}
 postamble={%<text%>}
 fspreamble={%<font settings%>}
 fspostamble={%<font settings%>}
+glosswidth=##L
+glosssep=##L
+glosscommentwidth=##L
+fscomments={%<font settings%>}
 #endkeyvals
 
+\glosswidth#*
+\glosssep#*
 \gll#*
 \glll#*
 \xgll#*
@@ -118,6 +147,7 @@ fspostamble={%<font settings%>}
 \glt#*
 \gln#*
 \glot{translation}#*
+\glot[judgment marker]{translation}#*
 \glosspreamble{text}#*
 \glend#*
 \glosslinetrans{text}#*
@@ -152,6 +182,8 @@ fspostamble={%<font settings%>}
 \twoaccsep#*
 
 # not documented
+\begin{covsubexs}#S
+\end{covsubexs}#S
 \bx#S
 \donewords#S
 \eachwordone#S
@@ -167,10 +199,13 @@ fspostamble={%<font settings%>}
 \fsglpreamble#S
 \getwords#S
 \gline#S
+\glnx#S
 \glossglue#S
 \glosslineone#S
 \glosslinetwo#S
 \glosslinethree#S
+\glosspwidth#*
+\IfExPreamble{arg}#S
 \ifforceredef#S
 \ifnoglossbreaks#S
 \ifnotdone#S
@@ -194,10 +229,13 @@ fspostamble={%<font settings%>}
 \ownexcountertrue#S
 \ownfnexcounterfalse#S
 \ownfnexcountertrue#S
+\pline#S
+\RegisterExPreamble{arg}#S
 \resetownfnexcounterfalse#S
 \resetownfnexcountertrue#S
 \testdone#S
 \thecovex#*
+\theexplid#S
 \threesent#S
 \tweaklayoutfalse#S
 \tweaklayouttrue#S
