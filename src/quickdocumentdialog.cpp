@@ -93,7 +93,7 @@ QuickDocumentDialog::~QuickDocumentDialog()
 QString QuickDocumentDialog::getNewDocumentText()
 {
 	QString amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog to be sorted
-	QString  inputenc, userPackages;  // packages added by user, special case inputenc needs to be sorted
+	QString  cleveref, inputenc, userPackages;  // packages added by user, special cases cleveref, inputenc need to be sorted
 
 	QString classOpt;
 	if (ui.comboBoxBabel->currentText() != "NONE") {
@@ -136,6 +136,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 			// packages initially available from Packages tab
 			if (text=="amssymb"  ) amssymb   = QString("\\usepackage{amssymb}\n"); else
 			if (text=="amsthm"   ) amsthm    = QString("\\usepackage{amsthm}\n"); else
+			if (text=="cleveref" ) cleveref  = QString("\\usepackage{cleveref}\n"); else   // special case for user (s. definition of cleveref)
 			if (text=="graphicx" ) graphicx  = QString("\\usepackage{graphicx}\n"); else
 			if (text=="hyperref" ) hyperref  = QString("\\usepackage{hyperref}\n"); else
 			if (text=="inputenc" ) inputenc  = QString("\\usepackage{inputenc}\n"); else   // special case for user (s. definition of inputenc)
@@ -147,7 +148,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 		}
 	}
 // LaTeX code for all packages used
-	tag += inputenc + fontenc + geometry + graphicx + mathtools + amssymb + amsthm + thmtools + xcolor + nameref + babel + hyperref + userPackages;
+	tag += inputenc + fontenc + geometry + graphicx + mathtools + amssymb + amsthm + thmtools + xcolor + nameref + babel + userPackages + hyperref + cleveref;
 
 	QString makeTitle;
 	if (ui.lineEditTitle->text() != "") {
