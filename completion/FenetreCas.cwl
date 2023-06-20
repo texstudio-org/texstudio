@@ -1,5 +1,5 @@
 # FenetreCas package
-# Matthew Bertucci 2023/05/22 for v0.1.2
+# Matthew Bertucci 2023/06/14 for v0.1.3
 
 #include:tikz
 #include:xstring
@@ -33,6 +33,7 @@ Entete#true,false
 HauteurLigne=%<nombre%>
 TailleCommande=%<commande%>
 TailleResultat=%<commande%>
+PosRes=#gauche,centre,droite
 ElargirAuto=%<nombre%>
 HauteurAuto#true,false
 MargeV=##L
@@ -90,6 +91,7 @@ CouleurFond=#%color
 \GEOCFoffset#S
 \GEOCFoffseth#S
 \GEOCFpolnum#S
+\GEOCFposrep#S
 \GEOCFtaillecmd#S
 \GEOCFtailleres#S
 \GEOCFtitre#S

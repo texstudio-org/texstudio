@@ -823,6 +823,7 @@
 <file>completion/class-milog.cwl</file>
 <file>completion/class-minimart.cwl</file>
 <file>completion/class-minimbook.cwl</file>
+<file>completion/class-mitthesis.cwl</file>
 <file>completion/class-mla.cwl</file>
 <file>completion/class-mnras.cwl</file>
 <file>completion/class-moderncv.cwl</file>
@@ -3065,6 +3066,7 @@
 <file>completion/romande.cwl</file>
 <file>completion/romannum.cwl</file>
 <file>completion/Romantik.cwl</file>
+<file>completion/rorlink.cwl</file>
 <file>completion/rotating.cwl</file>
 <file>completion/rotchiffre.cwl</file>
 <file>completion/Rothdn.cwl</file>

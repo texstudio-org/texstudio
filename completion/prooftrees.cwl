@@ -1,10 +1,11 @@
 # prooftrees package
-# Matthew Bertucci 2022/08/05 for v0.7
+# Matthew Bertucci 2023/06/18 for v0.8
 
 #include:svn-prov
 #include:etoolbox
 #include:forest
 #include:amssymb
+#include:amstext
 
 #keyvals:\usepackage/prooftrees#c
 tableaux
@@ -24,9 +25,7 @@ debug
 #endif
 
 #ifOption:external
-\tikzexternalize
-\tikzexternalenable
-\tikzexternaldisable
+#include:tikzlibraryexternal
 #endif
 
 #ifOption:linguistics
