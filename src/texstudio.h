@@ -343,7 +343,7 @@ private slots:
 	void fileDiffMerge();
 	void declareConflictResolved();
 protected slots:
-    void openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = nullptr,bool relativeToCurrentDoc=false); // signaled by latexViewer to open specific file
+    LatexEditorView * openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = nullptr,bool relativeToCurrentDoc=false); // signaled by latexViewer to open specific file
     void openExternalFileFromAction();
 
 	void editUndo(); ///< undo changes in text editor

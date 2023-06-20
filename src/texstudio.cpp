@@ -8063,10 +8063,9 @@ void Texstudio::gotoLine(QTreeWidgetItem *item, int)
             // going to hidden doc
             // relevant for hidden master document
             bool unmodified=se->document->isClean();
-            openExternalFile(se->document->getFileName(),"tex",se->document);
+            LatexEditorView *edView = openExternalFile(se->document->getFileName(),"tex",se->document);
             if(unmodified)
                 se->document->setClean(); // work-around, unclear where that state is reset during load
-            LatexEditorView *edView = se->document->getEditorView();
             if (edView) {
                 int ln= jumpToCachedDocument ? se->getCachedLineNumber() : se->getRealLineNumber();
                 gotoLine(ln, 0, edView);
@@ -9721,14 +9720,14 @@ void Texstudio::findMissingBracket()
 	if (c.isValid()) currentEditor()->setCursor(c);
 }
 
-void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc, bool relativeToCurrentDoc)
+LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexDocument *doc, bool relativeToCurrentDoc)
 {
 	if (!doc) {
-		if (!currentEditor()) return;
+        if (!currentEditor()) return nullptr;
 		doc = qobject_cast<LatexDocument *>(currentEditor()->document());
 	}
-	if (!doc) return;
-    if(doc->getFileName().isEmpty()) return; // unsaved file, no relative filename meaningful
+    if (!doc) return nullptr;
+    if(doc->getFileName().isEmpty()) return nullptr; // unsaved file, no relative filename meaningful
 	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
     if(name.endsWith('#')){
         relativeToCurrentDoc=true;
@@ -9741,13 +9740,13 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
     if(relativeToCurrentDoc){
         curPaths<< ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
     }
-    bool loaded = false;
+    LatexEditorView * loaded = nullptr;
     loaded = load(documents.getAbsoluteFilePath(name, defaultExt,curPaths));
-    if(!loaded){
+    if(loaded == nullptr){
         loaded = load(documents.getAbsoluteFilePath(name, "",curPaths));
     }
 
-	if (!loaded) {
+    if (loaded == nullptr) {
         QFileInfo fi(documents.getAbsoluteFilePath(name, defaultExt,curPaths));
 		if (fi.exists()) {
 			UtilsUi::txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
@@ -9764,6 +9763,7 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 			}
 		}
     }
+    return loaded;
 }
 
 
