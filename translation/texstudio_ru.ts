@@ -5182,7 +5182,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2685"/>
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n ссылка на эту метку</numerusform><numerusform>%n ссылки на эту ментку</numerusform><numerusform>%n ссылок на эту метку</numerusform><numerusform>%n ссылка на эту метку</numerusform></translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2690"/>
@@ -8346,12 +8346,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="573"/>
         <source>Hint</source>
-        <translation type="unfinished"/>
+        <translation>Подсказка</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="573"/>
         <source>Package %1 is already defined.</source>
-        <translation type="unfinished"/>
+        <translation>Пакет %1 уже определён.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="586"/>
@@ -10775,7 +10775,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1293"/>
         <source>Quick T&amp;abbing...</source>
-        <translation>T&amp;abbing...</translation>
+        <translation>Быстрое создание T&amp;abbing…</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1294"/>

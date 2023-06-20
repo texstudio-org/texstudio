@@ -8346,12 +8346,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="573"/>
         <source>Hint</source>
-        <translation type="unfinished"/>
+        <translation>Подсказка</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="573"/>
         <source>Package %1 is already defined.</source>
-        <translation type="unfinished"/>
+        <translation>Пакет %1 уже определён.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="586"/>
