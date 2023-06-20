@@ -1566,3 +1566,7 @@ examz:
 class-examz
 latex-document
 tex
+mitthesis:
+class-mitthesis
+latex-document
+tex

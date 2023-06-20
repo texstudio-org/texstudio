@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/06/02 for v9.0.0
+# Matthew Bertucci 2023/06/16 for v9.1.0
 
 #include:ifxetex
 #include:ifluatex
@@ -322,6 +322,7 @@ bootstrap
 borgbackup
 bosch
 bose
+botblecms
 boulanger
 bower
 box
@@ -635,6 +636,7 @@ ea
 eagle
 easyjet
 ebay
+ebox
 eclipseche
 eclipseide
 eclipsejetty
@@ -778,6 +780,7 @@ fontforge
 foodpanda
 ford
 forestry
+forgejo
 formstack
 fortinet
 fortran
@@ -797,6 +800,7 @@ freecodecamp
 freedesktopdotorg
 freelancer
 freenas
+freepik
 frontendmentor
 frontify
 fsecure
@@ -815,6 +819,7 @@ gamejolt
 garmin
 gatling
 gatsby
+gdal
 geant
 geeksforgeeks
 generalelectric
@@ -868,6 +873,7 @@ googleadmob
 googleads
 googleadsense
 googleanalytics
+googleappsscript
 googleassistant
 googlecalendar
 googlecardboard
@@ -1991,6 +1997,7 @@ soundcloud
 sourceengine
 sourceforge
 sourcegraph
+sourcehut
 sourcetree
 southwestairlines
 spacemacs
@@ -2309,6 +2316,7 @@ vk
 vlcmediaplayer
 vmware
 vodafone
+voipdotms
 volkswagen
 volvo
 vonage

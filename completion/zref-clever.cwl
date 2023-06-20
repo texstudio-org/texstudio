@@ -1,5 +1,5 @@
 # zref-clever package
-# Matthew Bertucci 2023/01/03 for v0.3.3
+# Matthew Bertucci 2023/06/14 for v0.4.0
 
 #include:zref-base
 #include:zref-user
@@ -59,6 +59,7 @@ reftype=%<type%>
 counterresetters={%<counter list%>}
 counterresetby={%<<counter=encl counter> list%>}
 currentcounter=%<counter%>
+labelhook#true,false
 # "general" keys
 tpairsep={%<separator%>}
 tlistsep={%<separator%>}
@@ -76,6 +77,7 @@ reffont=%<name%>
 
 #keyvals:\zcsetup
 # preamble-only keys
+nocompat
 nocompat={%<module list%>}
 #endkeyvals
 
