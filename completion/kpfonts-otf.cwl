@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 2022/11/10 for v0.46
+# Matthew Bertucci 2023/06/21 for v0.54
 
 #include:iftex
 #include:unicode-math
@@ -9,12 +9,14 @@
 light
 nomath
 notext
+sans
 nosf
 nott
 onlyrm
 fulloldstylenums
 fulloldstyle
 lighttext
+sftext
 oldstylenums
 oldstyle
 veryoldstyle
@@ -24,6 +26,7 @@ germandbls
 eurosym
 harfbuzz
 lightmath
+sfmath
 bbsans
 mathcal
 narrowiints
@@ -116,6 +119,8 @@ symbols
 \Diamondright#m
 \DiamondRight#m
 \doteqdot#m
+\dotlessi#m
+\dotlessj#m
 \doublecap#m
 \doublecup#m
 \downdasharrow#m
@@ -291,6 +296,6 @@ symbols
 \Wr#m
 \Zbar#m
 
-\KpMtoks#*
+\KpMtoks#S
 \fileversion#S
 \filedate#S
