@@ -1,9 +1,8 @@
 # concmath-otf package
-# Matthew Bertucci 2023/03/31 for v0.40
+# Matthew Bertucci 2023/06/21 for v0.41
 
 #include:iftex
 #include:unicode-math
-#include:xkeyval
 
 #keyvals:\usepackage/concmath-otf#c
 no-text
