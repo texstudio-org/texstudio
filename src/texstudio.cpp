@@ -1125,6 +1125,11 @@ void Texstudio::setupMenus()
 
 	setCheckedPreviewModeAction();
 
+	act = newManagedAction(menu, "shrinkPreviewPage", tr("&Shrink Preview Page"), SLOT(setShrinkPreviewPage()));
+	act->setCheckable(true);
+	act->setChecked(configManager.getOption("Preview/Shrink Preview Page").toBool());
+	setCheckedShrinkPreviewPageAction();
+
 	menu->addSeparator();
     newManagedEditorAction(menu, "togglecomment", tr("Toggle &Comment"), "toggleCommentSelection", Qt::CTRL | Qt::Key_T);
 	newManagedEditorAction(menu, "comment", tr("&Comment"), "commentSelection");
@@ -1495,7 +1500,7 @@ void Texstudio::setupMenus()
 	configManager.modifyManagedShortcuts();
 }
 /*! \brief slot for actions from Menu Preview Display Mode
-*/
+ */
 void Texstudio::setPreviewMode()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
@@ -1504,7 +1509,7 @@ void Texstudio::setPreviewMode()
 	}
 }
 /*! \brief set action for Menu Preview Display Mode
-*/
+ */
 void Texstudio::setCheckedPreviewModeAction()
 {
 	ConfigManager::PreviewMode pm = configManager.previewMode;
@@ -1529,6 +1534,22 @@ void Texstudio::setCheckedPreviewModeAction()
 		default:	// PM_INLINE
 			getManagedAction("main/edit2/previewMode/PM_INLINE")->setChecked(true);
 	}
+}
+/*! \brief slot sets option Shrink Preview Page in config dialog to the value the option has in menu
+ */
+void Texstudio::setShrinkPreviewPage()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		configManager.shrinkPreviewPage = act->isChecked();
+	}
+}
+/*! \brief sets Menu Option Idefix/Shrink Preview Page to the value the option has in config dialog
+ */
+void Texstudio::setCheckedShrinkPreviewPageAction()
+{
+	bool checked = configManager.shrinkPreviewPage;
+	getManagedAction("main/edit2/shrinkPreviewPage")->setChecked(checked);
 }
 /*! \brief set-up all tool-bars
  */
@@ -6926,6 +6947,8 @@ void Texstudio::generalOptions()
         changeSecondaryIconSize(configManager.guiSecondaryToolbarIconSize);
         changePDFIconSize(configManager.guiPDFToolbarIconSize);
         changeSymbolGridIconSize(configManager.guiSymbolGridIconSize, false);
+        // update Menu Option Idefix/Shrink Preview Page
+        setCheckedShrinkPreviewPageAction();
         //custom toolbar
         setupToolBars();
         //completion
@@ -6968,8 +6991,8 @@ void Texstudio::generalOptions()
         delete pdfviewerWindow;
     }
 #endif
-    // update action from Menu Preview Display Mode
-	setCheckedPreviewModeAction();
+    // update Menu Idefix/Preview Display Mode
+    setCheckedPreviewModeAction();
 #ifdef INTERNAL_TERMINAL
     outputView->getTerminalWidget()->updateSettings();
 #endif
@@ -8887,12 +8910,14 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 			header << newLine;
 		}
 	}
-	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF || buildManager.dvi2pngMode == BuildManager::DPM_LUA_EMBEDDED_PDF)
-			&& configManager.previewMode != ConfigManager::PM_EMBEDDED) {
-		header << "\\usepackage[active,tightpage]{preview}"
-		       << "\\usepackage{varwidth}"
-		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
-		       << "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+	if (configManager.shrinkPreviewPage) {
+		if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF || buildManager.dvi2pngMode == BuildManager::DPM_LUA_EMBEDDED_PDF)
+				&& configManager.previewMode != ConfigManager::PM_EMBEDDED) {
+			header << "\\usepackage[active,tightpage]{preview}"
+				<< "\\usepackage{varwidth}"
+				<< "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
+				<< "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+		}
 	}
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	return header;

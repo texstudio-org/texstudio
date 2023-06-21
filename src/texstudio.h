@@ -137,6 +137,8 @@ private:
     void setStructureSectionIcons();
     void updateStatusBarIcons();
     void updatePDFIcons();
+	void setCheckedPreviewModeAction();
+	void setCheckedShrinkPreviewPageAction();
 
 	void updateUserMacros(bool updateMenu = true);
 
@@ -376,7 +378,7 @@ protected slots:
 	void editThesaurus(int line = -1, int col = -1);
 	void editChangeLineEnding();
 	void setPreviewMode();
-	void setCheckedPreviewModeAction();
+	void setShrinkPreviewPage();
 	void editSetupEncoding();
 	void editInsertUnicode(); ///< open dialog to insert a unicode character
 	void editInsertRefToNextLabel(const QString &refCmd = "\\ref", bool backward = false);

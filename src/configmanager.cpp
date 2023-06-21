@@ -730,6 +730,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("Preview/Auto Preview", reinterpret_cast<int *>(&autoPreview), 1, &pseudoDialog->comboBoxAutoPreview);
 	registerOption("Preview/Auto Preview Delay", &autoPreviewDelay, 300, &pseudoDialog->spinBoxAutoPreviewDelay);
 	registerOption("Preview/SegmentPreviewScalePercent", &segmentPreviewScalePercent, 150, &pseudoDialog->spinBoxSegmentPreviewScalePercent);
+	registerOption("Preview/Shrink Preview Page", &shrinkPreviewPage, true, &pseudoDialog->checkBoxShrinkPreviewPage);
 
 	//pdf preview
 	QRect screen = QGuiApplication::primaryScreen()->availableGeometry();

@@ -173,6 +173,7 @@ public:
 	AutoPreviewMode autoPreview;
 	int autoPreviewDelay;
 	int segmentPreviewScalePercent;
+	bool shrinkPreviewPage;
 
 	// embedded viewer
 	bool viewerEnlarged;
