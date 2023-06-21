@@ -1,5 +1,5 @@
 # schulma-physik package
-# Matthew Bertucci 2023/03/15 for v1.4
+# Matthew Bertucci 2023/06/21 for v1.5
 
 #include:siunitx
 #include:tikz
@@ -30,6 +30,7 @@ circuitikz
 \Messschieber[cm|inch|cm+inch]{Messwert}
 \Messschraube{Messwert}
 \Kraftmesser{Messwert}{Maximalausschlag}
+\Multimeter{Messwert}{Maximalausschlag}{Maßeinheit}
 
 #keyvals:\node#c
 spannungsquelle
