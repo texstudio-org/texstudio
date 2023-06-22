@@ -7685,7 +7685,7 @@ eutreaty#true,false
 \indexonly{bibid}#C
 #endif
 
-### biblatex-oxref v3.0 ###
+### biblatex-oxref v3.1 ###
 #ifOption:style=oxalph
 # loads oxyear bibliography style
 #include:xpatch
@@ -7720,6 +7720,7 @@ usenametitles#true,false
 \Commission#*
 \datingpagespunct#*
 \decisionsandreports#*
+\DeclareAbbrEndChars{characters}#*
 \echrreports#*
 \ecrreporttitle#*
 \explanatorynote#*
@@ -7795,6 +7796,7 @@ usenametitles#true,false
 \Commission#*
 \datingpagespunct#*
 \decisionsandreports#*
+\DeclareAbbrEndChars{characters}#*
 \echrreports#*
 \ecrreporttitle#*
 \explanatorynote#*
@@ -7869,6 +7871,7 @@ usenametitles#true,false
 \Commission#*
 \datingpagespunct#*
 \decisionsandreports#*
+\DeclareAbbrEndChars{characters}#*
 \echrreports#*
 \ecrreporttitle#*
 \explanatorynote#*
@@ -7938,6 +7941,7 @@ usenametitles#true,false
 \Commission#*
 \datingpagespunct#*
 \decisionsandreports#*
+\DeclareAbbrEndChars{characters}#*
 \echrreports#*
 \ecrreporttitle#*
 \explanatorynote#*
