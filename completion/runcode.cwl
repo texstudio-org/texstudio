@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2023/06/14 for v1.9
+# Matthew Bertucci 2023/06/23 for v2.0
 
 #include:morewrites
 #include:tcolorbox
@@ -7,7 +7,6 @@
 #include:xcolor
 #include:inputenc
 #include:textgreek
-#include:filecontents
 #include:xifthen
 #include:xparse
 #include:xstring
@@ -53,10 +52,34 @@ inline
 \inln{program}{code%definition}[output file%file]
 \inln{program}{code%definition}[output file%file][vbox|inline]
 
+\runCodeIncOut{program}{source file%file}
+\runCodeIncOut{program}{source file%file}[run|cache]
+\runCodeIncOut{program}{source file%file}[run|cache][output file%file]
+\runCodeIncOut{program}{source file%file}[run|cache][output file%file][type%keyvals]
+#keyvals:\runCodeIncOut
+vbox
+tex
+inline
+#endkeyvals
+
 \runJulia{source file%file}{output file%file}
 \runJulia{source file%file}{output file%file}[run|cache]
 \runJulia[server spec]{source file%file}{output file%file}
 \runJulia[server spec]{source file%file}{output file%file}[run|cache]
+
+\runJuliaIncOut{source file%file}
+\runJuliaIncOut{source file%file}[run|cache]
+\runJuliaIncOut{source file%file}[run|cache][output file%file]
+\runJuliaIncOut{source file%file}[run|cache][output file%file][type%keyvals]
+\runJuliaIncOut[server spec]{source file%file}
+\runJuliaIncOut[server spec]{source file%file}[run|cache]
+\runJuliaIncOut[server spec]{source file%file}[run|cache][output file%file]
+\runJuliaIncOut[server spec]{source file%file}[run|cache][output file%file][type%keyvals]
+#keyvals:\runJuliaIncOut
+vbox
+tex
+inline
+#endkeyvals
 
 \inlnJulia{code%definition}
 \inlnJulia{code%definition}[vbox|inline]
@@ -72,6 +95,20 @@ inline
 \runMatlab[server spec]{source file%file}{output file%file}
 \runMatlab[server spec]{source file%file}{output file%file}[run|cache]
 
+\runMatlabIncOut{source file%file}
+\runMatlabIncOut{source file%file}[run|cache]
+\runMatlabIncOut{source file%file}[run|cache][output file%file]
+\runMatlabIncOut{source file%file}[run|cache][output file%file][type%keyvals]
+\runMatlabIncOut[server spec]{source file%file}
+\runMatlabIncOut[server spec]{source file%file}[run|cache]
+\runMatlabIncOut[server spec]{source file%file}[run|cache][output file%file]
+\runMatlabIncOut[server spec]{source file%file}[run|cache][output file%file][type%keyvals]
+#keyvals:\runMatlabIncOut
+vbox
+tex
+inline
+#endkeyvals
+
 \inlnMatlab{code%definition}
 \inlnMatlab{code%definition}[vbox|inline]
 \inlnMatlab{code%definition}[output file%file]
@@ -86,6 +123,20 @@ inline
 \runR[server spec]{source file%file}{output file%file}
 \runR[server spec]{source file%file}{output file%file}[run|cache]
 
+\runRIncOut{source file%file}
+\runRIncOut{source file%file}[run|cache]
+\runRIncOut{source file%file}[run|cache][output file%file]
+\runRIncOut{source file%file}[run|cache][output file%file][type%keyvals]
+\runRIncOut[server spec]{source file%file}
+\runRIncOut[server spec]{source file%file}[run|cache]
+\runRIncOut[server spec]{source file%file}[run|cache][output file%file]
+\runRIncOut[server spec]{source file%file}[run|cache][output file%file][type%keyvals]
+#keyvals:\runRIncOut
+vbox
+tex
+inline
+#endkeyvals
+
 \inlnR{code%definition}
 \inlnR{code%definition}[vbox|inline]
 \inlnR{code%definition}[output file%file]
@@ -99,6 +150,20 @@ inline
 \runPython{source file%file}{output file%file}[run|cache]
 \runPython[server spec]{source file%file}{output file%file}
 \runPython[server spec]{source file%file}{output file%file}[run|cache]
+
+\runPythonIncOut{source file%file}
+\runPythonIncOut{source file%file}[run|cache]
+\runPythonIncOut{source file%file}[run|cache][output file%file]
+\runPythonIncOut{source file%file}[run|cache][output file%file][type%keyvals]
+\runPythonIncOut[server spec]{source file%file}
+\runPythonIncOut[server spec]{source file%file}[run|cache]
+\runPythonIncOut[server spec]{source file%file}[run|cache][output file%file]
+\runPythonIncOut[server spec]{source file%file}[run|cache][output file%file][type%keyvals]
+#keyvals:\runPythonIncOut
+vbox
+tex
+inline
+#endkeyvals
 
 \inlnPython{code%definition}
 \inlnPython{code%definition}[vbox|inline]
@@ -135,3 +200,6 @@ bg#B
 \ifnotnohup#S
 \notnohuptrue#S
 \notnohupfalse#S
+\ifinlnrun#S
+\inlnruntrue#S
+\inlnrunfalse#S
