@@ -243,9 +243,6 @@ void Editors::setCurrentEditor(LatexEditorView *edView, bool setFocus)
 	// catch calls in which editor is not a member tab.
 	// TODO: such calls are deprecated as bad practice. We should avoid them in the long run. For the moment the fallback to do nothing is ok.
 	qDebug() << "Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget";
-#ifndef QT_NO_DEBUG
-	UtilsUi::txsWarning("Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget");
-#endif
 }
 
 QList<LatexEditorView *> Editors::editors()
