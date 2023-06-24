@@ -11804,7 +11804,7 @@ void Texstudio::createLabelFromAction()
     mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
     LatexEditorView *edView = entry->document->getEditorView();
     QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
-    if (!edView) {
+    if (!edView || entry->document->isIncompleteInMemory()) {
         edView = load(entry->document->getFileName());
         if (!edView) return;
         mflags &= ~QEditor::Animated;
@@ -11886,9 +11886,12 @@ void Texstudio::editSectionCopy()
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if(!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
+    if(entry->document->isIncompleteInMemory()){
+        edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
+    }
     if(!edView) return;
     editors->setCurrentEditor(edView);
-    QDocumentSelection sel = entry->document->sectionSelection(entry);
+    QDocumentSelection sel = edView->document->sectionSelection(entry);
 
     edView->editor->setCursorPosition(sel.startLine, 0);
     QDocumentCursor cur = edView->editor->cursor();
@@ -11917,9 +11920,12 @@ void Texstudio::editSectionCut()
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
+    if(entry->document->isIncompleteInMemory()){
+        edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
+    }
     if (!edView) return;
     editors->setCurrentEditor(edView);
-    QDocumentSelection sel = entry->document->sectionSelection(entry);
+    QDocumentSelection sel = edView->document->sectionSelection(entry);
 
     edView->editor->setCursorPosition(sel.startLine, 0);
     QDocumentCursor cur = edView->editor->cursor();
@@ -11947,6 +11953,9 @@ void Texstudio::editSectionPasteBefore()
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
+    if(entry->document->isIncompleteInMemory()){
+        edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
+    }
     if (!edView) return;
     editors->setCurrentEditor(edView);
 
@@ -11973,9 +11982,12 @@ void Texstudio::editSectionPasteAfter()
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
+    if(entry->document->isIncompleteInMemory()){
+        edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
+    }
     if (!edView) return;
     editors->setCurrentEditor(edView);
-    QDocumentSelection sel = entry->document->sectionSelection(entry);
+    QDocumentSelection sel = edView->document->sectionSelection(entry);
 
     int line = sel.endLine;
     if (line >= edView->editor->document()->lines()) {
@@ -12011,9 +12023,12 @@ void Texstudio::editIndentSection()
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
+    if(entry->document->isIncompleteInMemory()){
+        edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
+    }
     if (!edView) return;
     editors->setCurrentEditor(edView);
-    QDocumentSelection sel = entry->document->sectionSelection(entry);
+    QDocumentSelection sel = edView->document->sectionSelection(entry);
 
     QStringList sectionOrder;
     sectionOrder << "\\subparagraph" << "\\paragraph" << "\\subsubsection" << "\\subsection" << "\\section" << "\\chapter";
@@ -12056,9 +12071,12 @@ void Texstudio::editUnIndentSection()
     StructureEntry *entry = item->data(0,Qt::UserRole).value<StructureEntry *>();
     if (!entry) return;
     LatexEditorView *edView = entry->document->getEditorView();
+    if(entry->document->isIncompleteInMemory()){
+        edView = openExternalFile(entry->document->getFileName(),"tex",entry->document);
+    }
     if (!edView) return;
     editors->setCurrentEditor(edView);
-    QDocumentSelection sel = entry->document->sectionSelection(entry);
+    QDocumentSelection sel = edView->document->sectionSelection(entry);
 
     QStringList sectionOrder;
     sectionOrder << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection" << "\\paragraph" << "\\subparagraph" ;
