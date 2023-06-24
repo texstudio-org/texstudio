@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="61"/>
         <source>Latest stable version: %1</source>
-        <translation type="unfinished"/>
+        <translation>Ultima versione stabile: %1</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="62"/>
@@ -1873,17 +1873,17 @@ ancora convertirli in caratteri. Finchè unicode non sarà supportato nativament
     <message>
         <location filename="../src/configdialog.ui" line="338"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="343"/>
         <source>Oxygen Modern</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen Modern</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="348"/>
         <source>Oxygen Classic</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen Classic</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="374"/>
@@ -2547,7 +2547,7 @@ possono essere controllate per ripetizioni a grande distanza.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4013"/>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4029"/>
@@ -2589,12 +2589,12 @@ possono essere controllate per ripetizioni a grande distanza.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4328"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>Rettangolo</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4396"/>
         <source>Shadow</source>
-        <translation type="unfinished"/>
+        <translation>Ombra</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4419"/>
@@ -3266,12 +3266,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando \author dichiara l&apos;autore (o gli autori), i cui nomi sono una lista di autori separati da comandi \and</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
         <source>If used, the \date command declares the date, either with explicit arg for explicit date or with empty arg for no date. If not used, the current date will automatically be inserted by \maketitle.</source>
-        <translation type="unfinished"/>
+        <translation>Se utilizzato, il comando \date dichiara la data, sia con un argomento esplicito per specificare la data, o con un argomento vuoto per evitare di esplicitarla. Se non è utilizzato, verrà inserita la data automaticamente dal comando \maketitle</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="40"/>
@@ -3647,12 +3647,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
         <location filename="../src/additionaltranslations.cpp" line="115"/>
         <location filename="../src/additionaltranslations.cpp" line="240"/>
         <source>The \quad command inserts a horizontal space of 1em (1em being the width of M).</source>
-        <translation type="unfinished"/>
+        <translation>Il comando \quad inserisce uno spazio orizzontale di 1em (dove 1em è la larghezza di M)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="116"/>
         <source>The \qquad command inserts a horizontal space of 2em.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando \qquad inserisce uno spazio orizzontale di 2em</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="117"/>
@@ -3702,7 +3702,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando \bigskip aggiunge un &apos;grande&apos; spazio verticale</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
@@ -3747,7 +3747,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="153"/>
         <source>Inline math - $...$</source>
-        <translation type="unfinished"/>
+        <translation>Inline math - $...$</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="154"/>
@@ -3757,7 +3757,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="../src/additionaltranslations.cpp" line="155"/>
         <source>Inline math - \(...\)</source>
-        <translation type="unfinished"/>
+        <translation>Inline math - \(...\)</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="156"/>
