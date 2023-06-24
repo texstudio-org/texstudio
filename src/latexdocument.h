@@ -118,6 +118,7 @@ public:
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name); ///< get line/column from label name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
+    LatexDocument *getDocumentForLabel(const QString &name); ///< get document from label name
 	Q_INVOKABLE QDocumentLineHandle *findCommandDefinition(const QString &name); ///< get line of definition from command name (may return nullptr)
 	Q_INVOKABLE QDocumentLineHandle *findUsePackage(const QString &name); ///< get line of \usepackage from package name (may return nullptr)
 	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);
@@ -130,10 +131,7 @@ public:
 	StructureEntry *baseStructure;
 
 	QDocumentSelection sectionSelection(StructureEntry *section);
-	void clearAppendix()
-	{
-        mAppendixLine = nullptr;
-	}
+    void clearAppendix();
 	StructureEntry *findSectionForLine(int currentLine);
 
 	LatexDocuments *parent;
@@ -148,16 +146,10 @@ public:
 	void addChild(LatexDocument *doc);
 	void removeChild(LatexDocument *doc);
 	bool containsChild(LatexDocument *doc) const;
-	Q_INVOKABLE LatexDocument *getMasterDocument() const
-	{
-		return masterDocument;
-	}
+    Q_INVOKABLE LatexDocument *getMasterDocument() const;
     const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = nullptr, bool breakAtSubfileRoot=false) const;
 	Q_INVOKABLE LatexDocument *getRootDocument();
-	Q_INVOKABLE LatexDocument *getTopMasterDocument()
-	{
-		return getRootDocument();    // DEPRECATED: only the for backward compatibility of user scripts
-	}
+    Q_INVOKABLE LatexDocument *getTopMasterDocument();
 
     Q_INVOKABLE QStringList includedFiles(bool importsOnly=false);
 	Q_INVOKABLE QStringList includedFilesAndParent();
@@ -171,10 +163,7 @@ public:
     bool updateCompletionFiles(const bool forceUpdate,const bool forceLabelUpdate = false,const bool delayUpdate = false);
     const QSet<QString> &getCWLFiles() const;
 
-	Q_INVOKABLE QString spellingDictName() const
-	{
-		return mSpellingDictName;
-	}
+    Q_INVOKABLE QString spellingDictName() const;
 	Q_INVOKABLE QString getMagicComment(const QString &name) const;
 	Q_INVOKABLE StructureEntry *getMagicCommentEntry(const QString &name) const;
     Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting = false, QString prefix="!TeX");
@@ -204,14 +193,8 @@ public:
 	void getEnv(int lineNumber, StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 	Q_INVOKABLE QString getLastEnvName(int lineNumber); // special function to use with javascript (insert "\item" from menu)
 
-	void enableSyntaxCheck(bool enable)
-	{
-		syntaxChecking = enable;
-        SynChecker.enableSyntaxCheck(enable);
-	}
-    Q_INVOKABLE bool isSubfileRoot(){
-        return m_isSubfileRoot;
-    }
+    void enableSyntaxCheck(bool enable);
+    Q_INVOKABLE bool isSubfileRoot();
     bool saveCachingData(const QString &folder);
     bool restoreCachedData(const QString &folder, const QString fileName);
     bool isIncompleteInMemory();

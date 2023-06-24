@@ -208,9 +208,14 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry *section)
 	return result;
 }
 
+void LatexDocument::clearAppendix()
+{
+    mAppendixLine = nullptr;
+}
+
 class LatexStructureMerger{
 public:
-	LatexStructureMerger (LatexDocument* document, int maxDepth):
+    LatexStructureMerger (LatexDocument* document, int maxDepth):
 		document(document), parent_level(maxDepth)
 	{
 	}
@@ -1533,6 +1538,24 @@ QMultiHash<QDocumentLineHandle *, int> LatexDocument::getLabels(const QString &n
 	}
 	return result;
 }
+/*!
+ * \brief find first document which defines given label
+ * \param name
+ * \return document
+ */
+LatexDocument* LatexDocument::getDocumentForLabel(const QString &name){
+    foreach (LatexDocument *elem, getListOfDocs()) {
+        QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
+        for (it = elem->mLabelItem.constBegin(); it != elem->mLabelItem.constEnd(); ++it) {
+            ReferencePair rp = it.value();
+            if (rp.name == name) {
+                return elem;
+            }
+        }
+    }
+    return nullptr;
+}
+
 
 QDocumentLineHandle *LatexDocument::findCommandDefinition(const QString &name)
 {
@@ -1685,6 +1708,11 @@ void LatexDocument::removeChild(LatexDocument *doc)
 bool LatexDocument::containsChild(LatexDocument *doc) const
 {
 	return childDocs.contains(doc);
+}
+
+LatexDocument *LatexDocument::getMasterDocument() const
+{
+    return masterDocument;
 }
 
 QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visitedDocs)
@@ -2961,6 +2989,11 @@ LatexDocument *LatexDocument::getRootDocument()
     return const_cast<LatexDocument *>(getRootDocument(nullptr));
 }
 
+LatexDocument *LatexDocument::getTopMasterDocument()
+{
+    return getRootDocument();    // DEPRECATED: only the for backward compatibility of user scripts
+}
+
 QStringList LatexDocument::includedFiles(bool importsOnly)
 {
     QStringList helper;
@@ -3096,9 +3129,14 @@ const QSet<QString> &LatexDocument::getCWLFiles() const
 	return mCWLFiles;
 }
 
+QString LatexDocument::spellingDictName() const
+{
+    return mSpellingDictName;
+}
+
 void LatexDocument::emitUpdateCompleter()
 {
-	emit updateCompleter();
+    emit updateCompleter();
 }
 
 void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter)
@@ -3593,6 +3631,16 @@ QString LatexDocument::getLastEnvName(int lineNumber)
 	if (env.isEmpty())
         return "";
     return env.top().name;
+}
+
+void LatexDocument::enableSyntaxCheck(bool enable)
+{
+    syntaxChecking = enable;
+    SynChecker.enableSyntaxCheck(enable);
+}
+
+bool LatexDocument::isSubfileRoot(){
+    return m_isSubfileRoot;
 }
 /*!
  * \brief save internal data for caching

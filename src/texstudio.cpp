@@ -4076,10 +4076,20 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 	switch (tk.type) {
 	case Token::labelRef:
 	case Token::labelRefList: {
-		QMultiHash<QDocumentLineHandle *, int> defs = doc->getLabels(tk.getText());
-		if (defs.isEmpty()) return;
-        QDocumentLineHandle *target = defs.keys().constFirst();
-		LatexEditorView *edView = getEditorViewFromHandle(target);
+        QMultiHash<QDocumentLineHandle *, int> defs = doc->getLabels(tk.getText());
+        QDocumentLineHandle *target = nullptr;
+        LatexEditorView *edView = nullptr;
+        if (defs.isEmpty()){
+            LatexDocument *targetDoc=doc->getDocumentForLabel(tk.getText());
+            if(!targetDoc)
+                return;
+            edView = openExternalFile(targetDoc->getFileName(),"tex",targetDoc);
+            defs=edView->getDocument()->getLabels(tk.getText());
+            target = defs.keys().constFirst();
+        }else{
+            target = defs.keys().constFirst();
+            edView = getEditorViewFromHandle(target);
+        }
 		if (!edView) return;
 		if (edView != currentEditorView()) {
 			editors->setCurrentEditor(edView);
