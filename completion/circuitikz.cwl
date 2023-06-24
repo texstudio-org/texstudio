@@ -1,5 +1,5 @@
 # circuitikz package
-# updated 2023/02/11 for v1.6.1
+# updated 2023/06/24 for v1.6.3
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -171,6 +171,7 @@ example
 \circleradius#S
 \circleleft#S
 \centergap#S
+\drawdobydiodedot{name}{arg}#*
 \drawbodydiode{name}#*
 \declarebpt{name}#*
 \declarebjt{name}#*
