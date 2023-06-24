@@ -3611,6 +3611,15 @@ bool LatexDocument::saveCachingData(const QString &folder)
 
     QFileInfo fi=getFileInfo();
     QFile file(folder+"/"+fi.baseName()+".json");
+
+    // remove cache if dealing with modified, unsaved changes as saved text differs
+    if(!isClean()){
+        if(file.exists()){
+            file.remove();
+        }
+        return false;
+    }
+
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
