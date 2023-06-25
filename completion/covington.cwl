@@ -1,5 +1,5 @@
 # covington package
-# Matthew Bertucci 2023/06/17 for v2.11
+# Matthew Bertucci 2023/06/25 for v2.12
 
 #include:iftex
 #include:varwidth
@@ -89,6 +89,8 @@ fssubpostamble={%<font settings%>}
 addsubnumbersep=##L
 subnumberformat={%<template%>}
 subjudge={%<text%>}
+subpreamble={%<text%>}
+subpostamble={%<text%>}
 #endkeyvals
 
 \covexnumber{arg}#*
@@ -182,6 +184,8 @@ fscomments={%<font settings%>}
 \twoaccsep#*
 
 # not documented
+\begin{covgloss}#S
+\end{covgloss}#S
 \begin{covsubexs}#S
 \end{covsubexs}#S
 \bx#S
@@ -214,9 +218,6 @@ fscomments={%<font settings%>}
 \ifresetownfnexcounter#S
 \iftweaklayout#S
 \lastword{arg1}{arg2}{arg3}#S
-\lglosslineone#S
-\lglosslinethree#S
-\lglosslinetwo#S
 \lineone#S
 \linethree#S
 \linetwo#S
