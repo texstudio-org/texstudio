@@ -623,6 +623,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         Token tk0;
                         tk0.start = tk.start;
                         tk0.length = 0;
+                        tk0.dlh=dlh;
                         tk0.type = Token::keyVal_val;
                         tk0.subtype = Token::keyVal_val;
                         tk0.level = level;
@@ -1244,12 +1245,9 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 		if (tk.start > pos) {
 			break;
 		}
-		if (Token::tkOpen().contains(tk.type)) {
-			stack.push(tk);
-		}
         if (Token::tkClose().contains(tk.type) && !stack.isEmpty() ) {
             if (stack.top().type == Token::opposite(tk.type) && (tk.start<pos)) {
-				stack.pop();
+                stack.pop();
 			}
             continue;
         }
