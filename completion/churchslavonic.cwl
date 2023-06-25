@@ -1,17 +1,22 @@
 # churchslavonic package
-# Matthew Bertucci 2022/07/23 for v0.2
+# Matthew Bertucci 2023/06/25 for v0.2.4
 
 #keyvals:\usepackage/churchslavonic#c
-# passes options to cu-kinovar package
+# options passed to cu-kinovar package
 color
 gray
 bw
+# options passed to cu-kruk package
+autocolormarks
+noautocolormarks
 #endkeyvals
 
+#include:ifluatex
 #include:cu-num
 #include:cu-calendar
 #include:cu-util
 #include:cu-kinovar
+#include:cu-kruk
 
 \cuMarginMark{text}
 
