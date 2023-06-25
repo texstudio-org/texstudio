@@ -1,5 +1,5 @@
 # otf package
-# Matthew Bertucci 2023/02/23 for v1.7b8
+# Matthew Bertucci 2023/06/25 for v1.7b8
 
 #include:platex
 #include:keyval
@@ -8,6 +8,7 @@
 #keyvals:\usepackage/otf#c
 nomacros
 noreplace
+noruby
 bold
 expert
 deluxe
