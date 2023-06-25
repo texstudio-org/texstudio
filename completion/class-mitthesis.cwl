@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2023/06/18 for v1.00
+# Matthew Bertucci 2023/06/25 for v1.02
 
 #include:class-report
 #include:etoolbox
@@ -29,6 +29,7 @@ twoside
 \Acceptor{name}{title%text}{thesis-related position}
 \DegreeDate{month}{year}
 \ThesisDate{date}
+\SignatureBlockSize{fontsize cmd}
 \CClicense{license type}{URL}#U
 \CCurl#*
 \PDFRightsText#*
@@ -44,12 +45,13 @@ twoside
 
 # not documented
 \ClassName#S
+\CurrDept#S
 \MIT#S
 \MonthCheck{arg1}{arg2}#S
 \nomenwidth#S
 \nomname#S
+\PrevDept#S
 \savitemsep#S
-\SignatureBlockSize#S
 \theacccnt#S
 \theaccno#S
 \theautcrcnt#S
@@ -57,6 +59,7 @@ twoside
 \theauthorno#S
 \thedegcnt#S
 \thedegno#S
+\thedepflag#S
 \thesupcnt#S
 \thesupno#S
 \versiondate#S
