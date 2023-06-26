@@ -1129,6 +1129,7 @@
 <file>completion/ctex.cwl</file>
 <file>completion/cu-calendar.cwl</file>
 <file>completion/cu-kinovar.cwl</file>
+<file>completion/cu-kruk.cwl</file>
 <file>completion/cu-num.cwl</file>
 <file>completion/currency.cwl</file>
 <file>completion/currfile-abspath.cwl</file>
@@ -2813,6 +2814,7 @@
 <file>completion/ProfLabo.cwl</file>
 <file>completion/ProfLycee.cwl</file>
 <file>completion/ProfMaquette.cwl</file>
+<file>completion/ProfSio.cwl</file>
 <file>completion/program.cwl</file>
 <file>completion/progressbar.cwl</file>
 <file>completion/projlib-author.cwl</file>
@@ -3072,6 +3074,7 @@
 <file>completion/Rothdn.cwl</file>
 <file>completion/rotpages.cwl</file>
 <file>completion/rotunda.cwl</file>
+<file>completion/RoueQuestions.cwl</file>
 <file>completion/roundbox.cwl</file>
 <file>completion/Royal.cwl</file>
 <file>completion/rsfso.cwl</file>
