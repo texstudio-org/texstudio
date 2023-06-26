@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/05/11 for v3.89
+# tbraun 4.11.2008; Matthew Bertucci 2023/06/26 for v3.90
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -145,6 +145,8 @@ Renderer=%<renderer%>
 #endkeyvals
 
 \setlocalecaption{language}{caption_name}{string}#*
+\BabelUppercaseMapping{locale-name}{codepoint}{output}#*
+\BabelLowercaseMapping{locale-name}{codepoint}{output}#*
 \babelprovide[options%keyvals]{language}
 
 #keyvals:\babelprovide#c
@@ -389,10 +391,10 @@ select.encoding=#off
 
 ### albanian.ldf v1.0d ###
 #ifOption:albanian
-\captionsalbanian
-\datealbanian
-\extrasalbanian
-\noextrasalbanian
+\captionsalbanian#*
+\datealbanian#*
+\extrasalbanian#*
+\noextrasalbanian#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -423,10 +425,10 @@ select.encoding=#off
 
 ### azerbaijani.ldf v1.0a ###
 #ifOption:azerbaijani
-\captionsazerbaijani
-\dateazerbaijani
-\extrasazerbaijani
-\noextrasazerbaijani
+\captionsazerbaijani#*
+\dateazerbaijani#*
+\extrasazerbaijani#*
+\noextrasazerbaijani#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -444,10 +446,10 @@ select.encoding=#off
 
 ### basque.ldf v1.0f ###
 #ifOption:basque
-\captionsbasque
-\datebasque
-\extrasbasque
-\noextrasbasque
+\captionsbasque#*
+\datebasque#*
+\extrasbasque#*
+\noextrasbasque#*
 \basquehyphenmins#*
 \prefacename#*
 \bibname#*
@@ -472,10 +474,10 @@ select.encoding=#off
 
 ### belarusian.ldf v1.5 ###
 #ifOption:belarusian
-\captionsbelarusian
-\datebelarusian
-\extrasbelarusian
-\noextrasbelarusian
+\captionsbelarusian#*
+\datebelarusian#*
+\extrasbelarusian#*
+\noextrasbelarusian#*
 \cyrdash
 \asbuk{counter}
 \Asbuk{counter}
@@ -596,10 +598,10 @@ select.encoding=#off
 
 ### bosnian.ldf v1.1 ###
 #ifOption:bosnian
-\captionsbosnian
-\datebosnian
-\extrasbosnian
-\noextrasbosnian
+\captionsbosnian#*
+\datebosnian#*
+\extrasbosnian#*
+\noextrasbosnian#*
 \th#m
 \ctg#m
 \arctg#m
@@ -619,10 +621,10 @@ select.encoding=#off
 
 ### breton.ldf v1.0f ###
 #ifOption:breton
-\captionsbreton
-\datebreton
-\extrasbreton
-\noextrasbreton
+\captionsbreton#*
+\datebreton#*
+\extrasbreton#*
+\noextrasbreton#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -650,10 +652,10 @@ select.encoding=#off
 
 ### bulgarian.ldf v1.2g ###
 #ifOption:bulgarian
-\captionsbulgarian
-\datebulgarian
-\extrasbulgarian
-\noextrasbulgarian
+\captionsbulgarian#*
+\datebulgarian#*
+\extrasbulgarian#*
+\noextrasbulgarian#*
 \Bulgarian
 \English
 \Bul#*
@@ -778,10 +780,10 @@ select.encoding=#off
 
 ### catalan.ldf v2.2p ###
 #ifOption:catalan
-\captionscatalan
-\datecatalan
-\extrascatalan
-\noextrascatalan
+\captionscatalan#*
+\datecatalan#*
+\extrascatalan#*
+\noextrascatalan#*
 \catalanhyphenmins#*
 \lgem
 \Lgem
@@ -812,10 +814,10 @@ select.encoding=#off
 
 ### croatian.ldf v1.3l ###
 #ifOption:croatian
-\captionscroatian
-\datecroatian
-\extrascroatian
-\noextrascroatian
+\captionscroatian#*
+\datecroatian#*
+\extrascroatian#*
+\noextrascroatian#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -831,10 +833,10 @@ select.encoding=#off
 
 ### czech.ldf v3.1a ###
 #ifOption:czech
-\captionsczech
-\dateczech
-\extrasczech
-\noextrasczech
+\captionsczech#*
+\dateczech#*
+\extrasczech#*
+\noextrasczech#*
 \q{arg}
 \w{arg}
 \uv{arg}
@@ -863,10 +865,10 @@ select.encoding=#off
 
 ### danish.ldf v1.3s ###
 #ifOption:danish
-\captionsdanish
-\datedanish
-\extrasdanish
-\noextrasdanish
+\captionsdanish#*
+\datedanish#*
+\extrasdanish#*
+\noextrasdanish#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -889,10 +891,10 @@ select.encoding=#off
 
 ### dutch.ldf v3.8l (and associated afrikaans.ldf) ###
 #ifOption:dutch
-\captionsdutch
-\datedutch
-\extrasdutch
-\noextrasdutch
+\captionsdutch#*
+\datedutch#*
+\extrasdutch#*
+\noextrasdutch#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -921,10 +923,10 @@ select.encoding=#off
 #endif
 
 #ifOption:afrikaans
-\captionsafrikaans
-\dateafrikaans
-\extrasafrikaans
-\noextrasafrikaans
+\captionsafrikaans#*
+\dateafrikaans#*
+\extrasafrikaans#*
+\noextrasafrikaans#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -954,13 +956,13 @@ select.encoding=#off
 
 ### english.ldf v3.3r (and variants american, australian, british, canadian, newzealand, UKenglish, USenglish) ###
 #ifOption:english
-\captionsenglish
-\dateenglish
-\extrasenglish
-\noextrasenglish
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
+\captionsenglish#*
+\dateenglish#*
+\extrasenglish#*
+\noextrasenglish#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -975,13 +977,13 @@ select.encoding=#off
 #endif
 
 #ifOption:american
-\captionsamerican
-\dateamerican
-\extrasamerican
-\noextrasamerican
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
+\captionsamerican#*
+\dateamerican#*
+\extrasamerican#*
+\noextrasamerican#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -996,14 +998,14 @@ select.encoding=#off
 #endif
 
 #ifOption:australian
-\captionsaustralian
-\dateaustralian
-\extrasaustralian
-\noextrasaustralian
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
-\australianhyphenmins#*
+\captionsaustralian#*
+\dateaustralian#*
+\extrasaustralian#*
+\noextrasaustralian#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
+\australianhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1018,13 +1020,13 @@ select.encoding=#off
 #endif
 
 #ifOption:british
-\captionsbritish
-\datebritish
-\extrasbritish
-\noextrasbritish
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
+\captionsbritish#*
+\datebritish#*
+\extrasbritish#*
+\noextrasbritish#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1039,14 +1041,14 @@ select.encoding=#off
 #endif
 
 #ifOption:canadian
-\captionscanadian
-\datecanadian
-\extrascanadian
-\noextrascanadian
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
-\canadianhyphenmins#*
+\captionscanadian#*
+\datecanadian#*
+\extrascanadian#*
+\noextrascanadian#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
+\canadianhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1061,14 +1063,14 @@ select.encoding=#off
 #endif
 
 #ifOption:newzealand
-\captionsnewzealand
-\datenewzealand
-\extrasnewzealand
-\noextrasnewzealand
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
-\newzealandhyphenmins#*
+\captionsnewzealand#*
+\datenewzealand#*
+\extrasnewzealand#*
+\noextrasnewzealand#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
+\newzealandhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1083,13 +1085,13 @@ select.encoding=#off
 #endif
 
 #ifOption:UKenglish
-\captionsUKenglish
-\dateUKenglish
-\extrasUKenglish
-\noextrasUKenglish
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
+\captionsUKenglish#*
+\dateUKenglish#*
+\extrasUKenglish#*
+\noextrasUKenglish#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1104,13 +1106,13 @@ select.encoding=#off
 #endif
 
 #ifOption:USenglish
-\captionsUSenglish
-\dateUSenglish
-\extrasUSenglish
-\noextrasUSenglish
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
+\captionsUSenglish#*
+\dateUSenglish#*
+\extrasUSenglish#*
+\noextrasUSenglish#*
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1126,10 +1128,10 @@ select.encoding=#off
 
 ### esperanto.ldf v1.4t ###
 #ifOption:esperanto
-\captionsesperanto
-\dateesperanto
-\extrasesperanto
-\noextrasesperanto
+\captionsesperanto#*
+\dateesperanto#*
+\extrasesperanto#*
+\noextrasesperanto#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1162,11 +1164,11 @@ select.encoding=#off
 
 ### estonian.ldf v1.1a ###
 #ifOption:estonian
-\captionsestonian
-\dateestonian
-\extrasestonian
-\noextrasestonian
-\estonianhyphenmins#*
+\captionsestonian#*
+\dateestonian#*
+\extrasestonian#*
+\noextrasestonian#*
+\estonianhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1201,11 +1203,11 @@ select.encoding=#off
 
 ### finnish.ldf v1.3s ###
 #ifOption:finnish
-\captionsfinnish
-\datefinnish
-\extrasfinnish
-\noextrasfinnish
-\finnishhyphenmins#*
+\captionsfinnish#*
+\datefinnish#*
+\extrasfinnish#*
+\noextrasfinnish#*
+\finnishhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1283,12 +1285,12 @@ SuppressWarning#true,false
 \bname{text}
 \bsc{text}
 \CaptionSeparator#*
-\captionsfrench
+\captionsfrench#*
 \ccname#*
 \chaptername#*
 \circonflexe
 \dateacadian#*
-\datefrench
+\datefrench#*
 \DecimalMathComma
 \degre#*
 \degres
@@ -1300,7 +1302,7 @@ SuppressWarning#true,false
 \end{itemizeFB}
 \end{listFB}
 \end{listORI}#*
-\extrasfrench
+\extrasfrench#*
 \FBcolonspace
 \FBdatebox#*
 \FBdatespace#*
@@ -1409,7 +1411,7 @@ SuppressWarning#true,false
 \NoAutoSpaceBeforeFDP#*
 \NoAutoSpacing
 \NoEveryParQuote#*
-\noextrasfrench
+\noextrasfrench#*
 \nombre{arg}#*
 \nos
 \Nos
@@ -1498,11 +1500,11 @@ SuppressWarning#true,false
 \bsc{text}
 \CaptionSeparator#*
 \captionsfrench#*
-\captionsacadian
+\captionsacadian#*
 \ccname#*
 \chaptername#*
 \circonflexe
-\dateacadian
+\dateacadian#*
 \datefrench#*
 \DecimalMathComma
 \degre#*
@@ -1516,7 +1518,7 @@ SuppressWarning#true,false
 \end{listFB}
 \end{listORI}#*
 \extrasfrench#*
-\extrasacadian
+\extrasacadian#*
 \FBcolonspace
 \FBdatebox#*
 \FBdatespace#*
@@ -1626,7 +1628,7 @@ SuppressWarning#true,false
 \NoAutoSpacing
 \NoEveryParQuote#*
 \noextrasfrench#*
-\noextrasacadian
+\noextrasacadian#*
 \nombre{arg}#*
 \nos
 \Nos
@@ -1659,11 +1661,11 @@ SuppressWarning#true,false
 
 ### friulan.ldf v1.3 ###
 #ifOption:friulan
-\captionsfriulan
-\datefriulan
-\extrasfriulan
-\noextrasfriulan
-\friulanhyphenmins#*
+\captionsfriulan#*
+\datefriulan#*
+\extrasfriulan#*
+\noextrasfriulan#*
+\friulanhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -1679,10 +1681,10 @@ SuppressWarning#true,false
 
 ### galician.ldf v4.3c ###
 #ifOption:galician
-\captionsgalician
-\dategalician
-\extrasgalician
-\noextrasgalician
+\captionsgalician#*
+\dategalician#*
+\extrasgalician#*
+\noextrasgalician#*
 \selectgalician
 \selectgalician*
 \layoutgalician#*
@@ -1748,10 +1750,10 @@ SuppressWarning#true,false
 
 ### germanb.ldf v2.13 (and associated austrian.ldf and swissgerman.ldf) ###
 #ifOption:german
-\captionsgerman
-\dategerman
-\extrasgerman
-\noextrasgerman
+\captionsgerman#*
+\dategerman#*
+\extrasgerman#*
+\noextrasgerman#*
 \dq
 \tosstrue#*
 \tossfalse#*
@@ -1810,10 +1812,10 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:austrian
-\captionsaustrian
-\dateaustrian
-\extrasaustrian
-\noextrasaustrian
+\captionsaustrian#*
+\dateaustrian#*
+\extrasaustrian#*
+\noextrasaustrian#*
 \dq
 \tosstrue#*
 \tossfalse#*
@@ -1872,10 +1874,10 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:swissgerman
-\captionsswissgerman
-\dateswissgerman
-\extrasswissgerman
-\noextrasswissgerman
+\captionsswissgerman#*
+\dateswissgerman#*
+\extrasswissgerman#*
+\noextrasswissgerman#*
 \dq
 \tosstrue#*
 \tossfalse#*
@@ -1935,10 +1937,10 @@ SuppressWarning#true,false
 
 ### ngermanb.ldf v2.13 (and associated naustrian.ldf and nswissgerman.ldf) ###
 #ifOption:ngerman
-\captionsngerman
-\datengerman
-\extrasngerman
-\noextrasngerman
+\captionsngerman#*
+\datengerman#*
+\extrasngerman#*
+\noextrasngerman#*
 \dq
 \ntosstrue#*
 \ntossfalse#*
@@ -1981,10 +1983,10 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:naustrian
-\captionsnaustrian
-\datenaustrian
-\extrasnaustrian
-\noextrasnaustrian
+\captionsnaustrian#*
+\datenaustrian#*
+\extrasnaustrian#*
+\noextrasnaustrian#*
 \dq
 \ntosstrue#*
 \ntossfalse#*
@@ -2027,10 +2029,10 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:nswissgerman
-\captionsnswissgerman
-\datenswissgerman
-\extrasnswissgerman
-\noextrasnswissgerman
+\captionsnswissgerman#*
+\datenswissgerman#*
+\extrasnswissgerman#*
+\noextrasnswissgerman#*
 \dq
 \ntosstrue#*
 \ntossfalse#*
@@ -2074,10 +2076,10 @@ SuppressWarning#true,false
 
 ### greek.ldf v1.12 (and options greek.polutoniko and greek.ancient) ###
 #ifOption:greek
-\captionsgreek
-\dategreek
-\extrasgreek
-\noextrasgreek
+\captionsgreek#*
+\dategreek#*
+\extrasgreek#*
+\noextrasgreek#*
 \greekscript
 \greektext
 \ensuregreek{text}
@@ -2246,14 +2248,14 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:greek.polutoniko
-\captionspolutonikogreek
-\datepolutonikogreek
-\extraspolutonikogreek
-\noextraspolutonikogreek
-\captionsgreek
-\dategreek
-\extrasgreek
-\noextrasgreek
+\captionspolutonikogreek#*
+\datepolutonikogreek#*
+\extraspolutonikogreek#*
+\noextraspolutonikogreek#*
+\captionsgreek#*
+\dategreek#*
+\extrasgreek#*
+\noextrasgreek#*
 \greekscript
 \greektext
 \ensuregreek{text}
@@ -2414,12 +2416,12 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:greek.ancient
-\captionsancientgreek
-\extrasancientgreek
-\captionsgreek
-\dategreek
-\extrasgreek
-\noextrasgreek
+\captionsancientgreek#*
+\extrasancientgreek#*
+\captionsgreek#*
+\dategreek#*
+\extrasgreek#*
+\noextrasgreek#*
 \greekscript
 \greektext
 \ensuregreek{text}
@@ -2581,10 +2583,10 @@ SuppressWarning#true,false
 
 ### icelandic.ldf v1.3 ###
 #ifOption:icelandic
-\captionsicelandic
-\dateicelandic
-\extrasicelandic
-\noextrasicelandic
+\captionsicelandic#*
+\dateicelandic#*
+\extrasicelandic#*
+\noextrasicelandic#*
 \tala{arg}
 \grada{arg}
 \gradur{arg}
@@ -2637,11 +2639,11 @@ SuppressWarning#true,false
 
 ### indonesian.ldf v1.0m (and proxies bahasa.ldf, indon.ldf, and bahasai.ldf) ###
 #ifOption:indonesian
-\captionsindonesian
-\dateindonesian
-\extrasindonesian
-\noextrasindonesian
-\indonesianhyphenmins#*
+\captionsindonesian#*
+\dateindonesian#*
+\extrasindonesian#*
+\noextrasindonesian#*
+\indonesianhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2656,11 +2658,11 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:bahasa
-\captionsbahasa
-\datebahasa
-\extrasbahasa
-\noextrasbahasa
-\bahasahyphenmins#*
+\captionsbahasa#*
+\datebahasa#*
+\extrasbahasa#*
+\noextrasbahasa#*
+\bahasahyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2675,11 +2677,11 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:indon
-\captionsindon
-\dateindon
-\extrasindon
-\noextrasindon
-\indonhyphenmins#*
+\captionsindon#*
+\dateindon#*
+\extrasindon#*
+\noextrasindon#*
+\indonhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2694,11 +2696,11 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:bahasai
-\captionsbahasai
-\datebahasai
-\extrasbahasai
-\noextrasbahasai
-\bahasaihyphenmins#*
+\captionsbahasai#*
+\datebahasai#*
+\extrasbahasai#*
+\noextrasbahasai#*
+\bahasaihyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2714,11 +2716,11 @@ SuppressWarning#true,false
 
 ### interlingua.ldf v1.6 ###
 #ifOption:interlingua
-\captionsinterlingua
-\dateinterlingua
-\extrasinterlingua
-\noextrasinterlingua
-\interlinguahyphenmins#*
+\captionsinterlingua#*
+\dateinterlingua#*
+\extrasinterlingua#*
+\noextrasinterlingua#*
+\interlinguahyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2734,11 +2736,11 @@ SuppressWarning#true,false
 
 ### irish.ldf v1.0h ###
 #ifOption:irish
-\captionsirish
-\dateirish
-\extrasirish
-\noextrasirish
-\irishhyphenmins#*
+\captionsirish#*
+\dateirish#*
+\extrasirish#*
+\noextrasirish#*
+\irishhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2754,11 +2756,11 @@ SuppressWarning#true,false
 
 ### italian.ldf v1.4.04 ###
 #ifOption:italian
-\captionsitalian
-\dateitalian
-\extrasitalian
-\noextrasitalian
-\italianhyphenmins#*
+\captionsitalian#*
+\dateitalian#*
+\extrasitalian#*
+\noextrasitalian#*
+\italianhyphenmins#S
 \setactivedoublequote
 \setISOcompliance#*
 \IntelligentComma
@@ -2787,10 +2789,10 @@ SuppressWarning#true,false
 
 ### japanese.ldf v3.1 ###
 #ifOption:japanese
-\captionsjapanese
-\datejapanese
-\extrasjapanese
-\noextrasjapanese
+\captionsjapanese#*
+\datejapanese#*
+\extrasjapanese#*
+\noextrasjapanese#*
 \prefacename#*
 \bibname#*
 \prechaptername#*
@@ -2805,12 +2807,12 @@ SuppressWarning#true,false
 
 ### kurmanji.ldf v1.1 ###
 #ifOption:kurmanji
-\captionskurmanji
-\datekurmanji
-\extraskurmanji
-\noextraskurmanji
+\captionskurmanji#*
+\datekurmanji#*
+\extraskurmanji#*
+\noextraskurmanji#*
 \datekurmanjialternate
-\kurmanjihyphenmins#*
+\kurmanjihyphenmins#S
 \ontoday
 \datesymd
 \datesdmy
@@ -2842,10 +2844,10 @@ SuppressWarning#true,false
 
 ### latin.ldf v4.0 (and associated classiclatin, ecclesiasticlatin, medievallatin) ###
 #ifOption:latin
-\captionslatin
-\datelatin
-\extraslatin
-\noextraslatin
+\captionslatin#*
+\datelatin#*
+\extraslatin#*
+\noextraslatin#*
 \ProsodicMarksOn
 \ProsodicMarksOff
 \prefacename#*
@@ -2865,10 +2867,10 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:classiclatin
-\captionsclassiclatin
-\dateclassiclatin
-\extrasclassiclatin
-\noextrasclassiclatin
+\captionsclassiclatin#*
+\dateclassiclatin#*
+\extrasclassiclatin#*
+\noextrasclassiclatin#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2886,10 +2888,10 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:ecclesiasticlatin
-\captionsecclesiasticlatin
-\dateecclesiasticlatin
-\extrasecclesiasticlatin
-\noextrasecclesiasticlatin
+\captionsecclesiasticlatin#*
+\dateecclesiasticlatin#*
+\extrasecclesiasticlatin#*
+\noextrasecclesiasticlatin#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2913,10 +2915,10 @@ SuppressWarning#true,false
 #endif
 
 #ifOption:medievallatin
-\captionsmedievallatin
-\datemedievallatin
-\extrasmedievallatin
-\noextrasmedievallatin
+\captionsmedievallatin#*
+\datemedievallatin#*
+\extrasmedievallatin#*
+\noextrasmedievallatin#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2941,11 +2943,11 @@ SuppressWarning#true,false
 
 ### latvian.ldf v2.0b ###
 #ifOption:latvian
-\captionslatvian
-\datelatvian
-\extraslatvian
-\noextraslatvian
-\latvianhyphenmins#*
+\captionslatvian#*
+\datelatvian#*
+\extraslatvian#*
+\noextraslatvian#*
+\latvianhyphenmins#S
 \datumaa
 \datums
 \latviangada#*
@@ -2965,11 +2967,11 @@ SuppressWarning#true,false
 
 ### lithuanian.ldf v1.0 ###
 #ifOption:lithuanian
-\captionslithuanian
-\datelithuanian
-\extraslithuanian
-\noextraslithuanian
-\lithuanianhyphenmins#*
+\captionslithuanian#*
+\datelithuanian#*
+\extraslithuanian#*
+\noextraslithuanian#*
+\lithuanianhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -2985,16 +2987,16 @@ SuppressWarning#true,false
 
 ### macedonian.ldf v1.1 ###
 #ifOption:macedonian
-\captionsmacedonian
-\datemacedonian
-\extrasmacedonian
-\noextrasmacedonian
+\captionsmacedonian#*
+\datemacedonian#*
+\extrasmacedonian#*
+\noextrasmacedonian#*
 \cyrillicencoding#*
 \Macedonian
 \English
 \Romannumeral{number}
 \todayRoman
-\englishhyphenmins#*
+\englishhyphenmins#S
 \Mkd#*
 \Mk#*
 \cyrillictext#*
@@ -3096,10 +3098,10 @@ SuppressWarning#true,false
 
 ### magyar.ldf v1.5c (and alias hungarian) ###
 #ifOption:magyar
-\captionsmagyar
-\datemagyar
-\extrasmagyar
-\noextrasmagyar
+\captionsmagyar#*
+\datemagyar#*
+\extrasmagyar#*
+\noextrasmagyar#*
 \ondatemagyar
 \prefacename#*
 \bibname#*
@@ -3187,10 +3189,10 @@ editor
 #endif
 
 #ifOption:hungarian
-\captionshungarian
-\datehungarian
-\extrashungarian
-\noextrashungarian
+\captionshungarian#*
+\datehungarian#*
+\extrashungarian#*
+\noextrashungarian#*
 \prefacename#*
 \bibname#*
 \enclname#*
@@ -3278,11 +3280,11 @@ editor
 
 ### malay.ldf v1.0m (and proxies bahasam.ldf, melayu.ldf, and meyalu.ldf) ###
 #ifOption:malay
-\captionsmalay
-\datemalay
-\extrasmalay
-\noextrasmalay
-\malayhyphenmins#*
+\captionsmalay#*
+\datemalay#*
+\extrasmalay#*
+\noextrasmalay#*
+\malayhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3297,11 +3299,11 @@ editor
 #endif
 
 #ifOption:bahasam
-\captionsbahasam
-\datebahasam
-\extrasbahasam
-\noextrasbahasam
-\bahasamhyphenmins#*
+\captionsbahasam#*
+\datebahasam#*
+\extrasbahasam#*
+\noextrasbahasam#*
+\bahasamhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3316,11 +3318,11 @@ editor
 #endif
 
 #ifOption:melayu
-\captionsmelayu
-\datemelayu
-\extrasmelayu
-\noextrasmelayu
-\melayuhyphenmins#*
+\captionsmelayu#*
+\datemelayu#*
+\extrasmelayu#*
+\noextrasmelayu#*
+\melayuhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3335,11 +3337,11 @@ editor
 #endif
 
 #ifOption:meyalu
-\captionsmeyalu
-\datemeyalu
-\extrasmeyalu
-\noextrasmeyalu
-\meyaluhyphenmins#*
+\captionsmeyalu#*
+\datemeyalu#*
+\extrasmeyalu#*
+\noextrasmeyalu#*
+\meyaluhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3355,10 +3357,10 @@ editor
 
 ### mongolian.ldf v1.2 ###
 #ifOption:mongolian
-\captionsmongolian
-\datemongolian
-\extrasmongolian
-\noextrasmongolian
+\captionsmongolian#*
+\datemongolian#*
+\extrasmongolian#*
+\noextrasmongolian#*
 \latinencoding#*
 \cyrillicencoding#*
 \Mongolian
@@ -3384,7 +3386,7 @@ editor
 \cdash#*
 \mdqon#*
 \mdqoff#*
-\englishhyphenmins#*
+\englishhyphenmins#S
 \Useg{counter}
 \useg{counter}
 \sh#m
@@ -3554,10 +3556,10 @@ editor
 
 ### norsk.ldf v2.0i ###
 #ifOption:norsk
-\captionsnorsk
-\datenorsk
-\extrasnorsk
-\noextrasnorsk
+\captionsnorsk#*
+\datenorsk#*
+\extrasnorsk#*
+\noextrasnorsk#*
 \dq
 \prefacename#*
 \bibname#*
@@ -3574,11 +3576,11 @@ editor
 
 ### piedmontese.ldf v1.0 ###
 #ifOption:piedmontese
-\captionspiedmontese
-\datepiedmontese
-\extraspiedmontese
-\noextraspiedmontese
-\piedmontesehyphenmins#*
+\captionspiedmontese#*
+\datepiedmontese#*
+\extraspiedmontese#*
+\noextraspiedmontese#*
+\piedmontesehyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3606,10 +3608,10 @@ editor
 
 ### polish.ldf v1.2l ###
 #ifOption:polish
-\captionspolish
-\datepolish
-\extraspolish
-\noextraspolish
+\captionspolish#*
+\datepolish#*
+\extraspolish#*
+\noextraspolish#*
 \aob
 \Aob
 \eob
@@ -3662,10 +3664,10 @@ editor
 
 ### portuges.ldf v1.2t ###
 #ifOption:portuges
-\captionsportuges
-\dateportuges
-\extrasportuges
-\noextrasportuges
+\captionsportuges#*
+\dateportuges#*
+\extrasportuges#*
+\noextrasportuges#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3684,10 +3686,10 @@ editor
 #endif
 
 #ifOption:portuguese
-\captionsportuguese
-\dateportuguese
-\extrasportuguese
-\noextrasportuguese
+\captionsportuguese#*
+\dateportuguese#*
+\extrasportuguese#*
+\noextrasportuguese#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3706,10 +3708,10 @@ editor
 #endif
 
 #ifOption:brazil
-\captionsbrazil
-\datebrazil
-\extrasbrazil
-\noextrasbrazil
+\captionsbrazil#*
+\datebrazil#*
+\extrasbrazil#*
+\noextrasbrazil#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3728,10 +3730,10 @@ editor
 #endif
 
 #ifOption:brazilian
-\captionsbrazilian
-\datebrazilian
-\extrasbrazilian
-\noextrasbrazilian
+\captionsbrazilian#*
+\datebrazilian#*
+\extrasbrazilian#*
+\noextrasbrazilian#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3751,10 +3753,10 @@ editor
 
 ### romanian.ldf v1.2m ###
 #ifOption:romanian
-\captionsromanian
-\dateromanian
-\extrasromanian
-\noextrasromanian
+\captionsromanian#*
+\dateromanian#*
+\extrasromanian#*
+\noextrasromanian#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3770,11 +3772,11 @@ editor
 
 ### romansh.ldf v1.0 ###
 #ifOption:romansh
-\captionsromansh
-\dateromansh
-\extrasromansh
-\noextrasromansh
-\romanshhyphenmins#*
+\captionsromansh#*
+\dateromansh#*
+\extrasromansh#*
+\noextrasromansh#*
+\romanshhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -3815,10 +3817,10 @@ editor
 \cyr#*
 \textcyrillic{text}
 \dq
-\captionsrussian
-\daterussian
-\extrasrussian
-\noextrasrussian
+\captionsrussian#*
+\daterussian#*
+\extrasrussian#*
+\noextrasrussian#*
 \CYRA#*
 \CYRB#*
 \CYRV#*
@@ -3934,10 +3936,10 @@ editor
 \cyr#*
 \textcyrillic{text}
 \dq
-\captionsrussian
-\daterussian
-\extrasrussian
-\noextrasrussian
+\captionsrussian#*
+\daterussian#*
+\extrasrussian#*
+\noextrasrussian#*
 \CYRA#*
 \CYRB#*
 \CYRV#*
@@ -4051,10 +4053,10 @@ es-uppernames
 mexico
 mexico-com
 #endkeyvals
-\captionsspanish
-\datespanish
-\extrasspanish
-\noextrasspanish
+\captionsspanish#*
+\datespanish#*
+\extrasspanish#*
+\noextrasspanish#*
 \bibname#*
 \chaptername#*
 \enclname#*
@@ -4139,11 +4141,11 @@ mexico-com
 
 ### samin.ldf v1.0c ###
 #ifOption:samin
-\captionssamin
-\datesamin
-\extrassamin
-\noextrassamin
-\saminhyphenmins#*
+\captionssamin#*
+\datesamin#*
+\extrassamin#*
+\noextrassamin#*
+\saminhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -4159,10 +4161,10 @@ mexico-com
 
 ### scottish.ldf v1.0g ###
 #ifOption:scottish
-\captionsscottish
-\datescottish
-\extrasscottish
-\noextrasscottish
+\captionsscottish#*
+\datescottish#*
+\extrasscottish#*
+\noextrasscottish#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -4178,10 +4180,10 @@ mexico-com
 
 ### serbian.ldf v2.1 ###
 #ifOption:serbian
-\captionsserbian
-\dateserbian
-\extrasserbian
-\noextrasserbian
+\captionsserbian#*
+\dateserbian#*
+\extrasserbian#*
+\noextrasserbian#*
 \today*
 \todayRoman
 \todayRoman*
@@ -4245,10 +4247,10 @@ mexico-com
 
 ### serbianc.ldf v3.1 ###
 #ifOption:serbianc
-\captionsserbianc
-\dateserbianc
-\extrasserbianc
-\noextrasserbianc
+\captionsserbianc#*
+\dateserbianc#*
+\extrasserbianc#*
+\noextrasserbianc#*
 \cyrdash
 \Serbianc
 \sh#m
@@ -4370,10 +4372,10 @@ mexico-com
 
 ### slovak.ldf v3.1a ###
 #ifOption:slovak
-\captionsslovak
-\dateslovak
-\extrasslovak
-\noextrasslovak
+\captionsslovak#*
+\dateslovak#*
+\extrasslovak#*
+\noextrasslovak#*
 \q{arg}
 \dq
 \sq
@@ -4401,10 +4403,10 @@ mexico-com
 
 ### slovene.ldf v1.2n ###
 #ifOption:slovene
-\captionsslovene
-\dateslovene
-\extrasslovene
-\noextrasslovene
+\captionsslovene#*
+\dateslovene#*
+\extrasslovene#*
+\noextrasslovene#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -4420,10 +4422,10 @@ mexico-com
 
 ### lsorbian.ldf v1.0i (and proxy lowersorbian) ###
 #ifOption:lsorbian
-\captionslsorbian
-\datelsorbian
-\extraslsorbian
-\noextraslsorbian
+\captionslsorbian#*
+\datelsorbian#*
+\extraslsorbian#*
+\noextraslsorbian#*
 \newdatelsorbian
 \olddatelsorbian
 \prefacename#*
@@ -4440,10 +4442,10 @@ mexico-com
 #endif
 
 #ifOption:lowersorbian
-\captionslowersorbian
-\datelowersorbian
-\extraslowersorbian
-\noextraslowersorbian
+\captionslowersorbian#*
+\datelowersorbian#*
+\extraslowersorbian#*
+\noextraslowersorbian#*
 \newdatelowersorbian
 \olddatelowersorbian
 \prefacename#*
@@ -4461,10 +4463,10 @@ mexico-com
 
 ### usorbian.ldf v1.0i (and proxy uppersorbian) ###
 #ifOption:usorbian
-\captionsusorbian
-\dateusorbian
-\extrasusorbian
-\noextrasusorbian
+\captionsusorbian#*
+\dateusorbian#*
+\extrasusorbian#*
+\noextrasusorbian#*
 \newdateusorbian
 \olddateusorbian
 \dq
@@ -4485,10 +4487,10 @@ mexico-com
 #endif
 
 #ifOption:uppersorbian
-\captionsuppersorbian
-\dateuppersorbian
-\extrasuppersorbian
-\noextrasuppersorbian
+\captionsuppersorbian#*
+\dateuppersorbian#*
+\extrasuppersorbian#*
+\noextrasuppersorbian#*
 \newdateuppersorbian
 \olddateuppersorbian
 \dq
@@ -4510,11 +4512,11 @@ mexico-com
 
 ### swedish.ldf v2.3e ###
 #ifOption:swedish
-\captionsswedish
-\dateswedish
-\extrasswedish
-\noextrasswedish
-\swedishhyphenmins#*
+\captionsswedish#*
+\dateswedish#*
+\extrasswedish#*
+\noextrasswedish#*
+\swedishhyphenmins#S
 \datesymd
 \datesdmy
 \dq
@@ -4554,11 +4556,11 @@ mexico-com
 
 ### thai.ldf v1.8 ###
 #ifOption:thai
-\captionsthai
-\datethai
-\extrasthai
-\noextrasthai
-\thaihyphenmins#*
+\captionsthai#*
+\datethai#*
+\extrasthai#*
+\noextrasthai#*
+\thaihyphenmins#S
 \thaitext
 \textthai{text}
 \textpali{text}
@@ -4674,10 +4676,10 @@ mexico-com
 
 ### thaicjk.ldf v4.8.5 ###
 #ifOption:thaicjk
-\captionsthaicjk
-\datethaicjk
-\extrasthaicjk
-\noextrasthaicjk
+\captionsthaicjk#*
+\datethaicjk#*
+\extrasthaicjk#*
+\noextrasthaicjk#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -4780,10 +4782,10 @@ mexico-com
 
 ### turkish.ldf v1.4 ###
 #ifOption:turkish
-\captionsturkish
-\dateturkish
-\extrasturkish
-\noextrasturkish
+\captionsturkish#*
+\dateturkish#*
+\extrasturkish#*
+\noextrasturkish#*
 \prefacename#*
 \bibname#*
 \chaptername#*
@@ -4816,10 +4818,10 @@ mexico-com
 \cyr#*
 \textcyrillic{text}
 \dq
-\captionsukrainian
-\dateukrainian
-\extrasukrainian
-\noextrasukrainian
+\captionsukrainian#*
+\dateukrainian#*
+\extrasukrainian#*
+\noextrasukrainian#*
 \CYRA#*
 \CYRB#*
 \CYRV#*
@@ -4916,10 +4918,10 @@ mexico-com
 \viettext
 \viet#*
 \textviet{text}
-\captionsvietnamese
-\datevietnamese
-\extrasvietnamese
-\noextrasvietnamese
+\captionsvietnamese#*
+\datevietnamese#*
+\extrasvietnamese#*
+\noextrasvietnamese#*
 \textquotedbl#n
 \OHORN#n
 \ohorn#n
@@ -4962,11 +4964,11 @@ mexico-com
 
 ### welsh.ldf v1.1a ###
 #ifOption:welsh
-\captionswelsh
-\datewelsh
-\extraswelsh
-\noextraswelsh
-\welshhyphenmins#*
+\captionswelsh#*
+\datewelsh#*
+\extraswelsh#*
+\noextraswelsh#*
+\welshhyphenmins#S
 \prefacename#*
 \bibname#*
 \chaptername#*
