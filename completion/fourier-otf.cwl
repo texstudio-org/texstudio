@@ -1,10 +1,9 @@
 # fourier-otf package
-# Matthew Bertucci 2022/10/20 for v0.54
+# Matthew Bertucci 2022/10/20 for v0.61
 
 #include:iftex
 #include:fourier-orns
 #include:unicode-math
-#include:xkeyval
 #include:realscripts
 
 #keyvals:\usepackage/fourier-otf#c
@@ -182,7 +181,7 @@ Scale=%<factor%>
 \xswordsup#m
 \Zbar#m
 
-\FOTtoksT#*
-\FOTtoksM#*
+\FOTtoksT#S
+\FOTtoksM#S
 \fileversion#S
 \filedate#S

@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/04/27 for v0.1.21
+# Matthew Bertucci 2023/06/26 for v0.1.23
 
 #include:kvoptions
 #include:class-book
@@ -120,6 +120,8 @@ roundprintedlengthsto=%<number%>
 \end{leftpage}
 \begin{leftside}
 \end{leftside}
+\begin{leftside*}
+\end{leftside*}
 \begin{minipagecell}{width}{height}
 \begin{minipagecell}[valign]{width}{height}
 \end{minipagecell}
@@ -146,6 +148,8 @@ roundprintedlengthsto=%<number%>
 \end{papercell}
 \begin{rightside}
 \end{rightside}
+\begin{rightside*}
+\end{rightside*}
 \begin{spine}
 \end{spine}
 \begin{spreadtopages}
@@ -203,7 +207,10 @@ roundprintedlengthsto=%<number%>
 \cellparentheight#L
 \cellparentwidth#L
 \cellwidth#L
-\clearance#L
+\clearancebottom#L
+\clearanceleft#L
+\clearanceright#L
+\clearancetop#L
 \clearcaption#L
 \clearfoldoutedge#L
 \clearfoldoutfold#L
@@ -211,6 +218,7 @@ roundprintedlengthsto=%<number%>
 \clearimage#L
 \cleartoleftpage
 \cliptocellbleeds{size}
+\cliptocellclearances#*
 \CopyrightNotice
 \coverboardgrow#L
 \coverflap#L

@@ -1,9 +1,8 @@
 # euler-math package
-# Matthew Bertucci 2022/11/06 for v0.30
+# Matthew Bertucci 2023/06/21 for v0.41
 
 #include:iftex
 #include:unicode-math
-#include:xkeyval
 
 #keyvals:\usepackage/euler-math#c
 CharacterVariant={%<glyph num list%>}

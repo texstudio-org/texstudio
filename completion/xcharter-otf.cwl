@@ -1,9 +1,8 @@
 # xcharter-otf package
-# Matthew Bertucci 2022/05/16 for v0.32
+# Matthew Bertucci 2022/06/21 for v0.41
 
 #include:iftex
 #include:unicode-math
-#include:xkeyval
 #include:realscripts
 
 #keyvals:\usepackage/xcharter-otf#c
@@ -153,7 +152,7 @@ Scale=%<factor%>
 \widearc{arg}#m
 \Zbar#m
 
-\XCottoksT#*
-\XCottoksM#*
+\XCottoksT#S
+\XCottoksM#S
 \fileversion#S
 \filedate#S

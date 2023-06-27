@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/06/16 for v9.1.0
+# Matthew Bertucci 2023/06/23 for v9.2.0
 
 #include:ifxetex
 #include:ifluatex
@@ -166,6 +166,7 @@ apachekylin
 apachemaven
 apachenetbeanside
 apacheopenoffice
+apacheparquet
 apachepulsar
 apacherocketmq
 apachesolr
@@ -1209,6 +1210,7 @@ legacygames
 lemmy
 lenovo
 lens
+leptos
 leroymerlin
 less
 letsencrypt
@@ -1402,6 +1404,7 @@ mubi
 mui
 mulesoft
 muller
+multisim
 mumble
 musescore
 musicbrainz
@@ -1700,6 +1703,7 @@ prosieben
 protocolsdotio
 protodotio
 protondb
+protondrive
 protonmail
 protonvpn
 protools
@@ -1779,6 +1783,7 @@ reactos
 reactquery
 reactrouter
 reacttable
+readdotcv
 readme
 readthedocs
 realm
@@ -2082,6 +2087,7 @@ subversion
 suckless
 sumologic
 supabase
+supercrease
 supermicro
 superuser
 surrealdb
