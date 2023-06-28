@@ -1,5 +1,5 @@
 # nlctuserguide package
-# Matthew Bertucci 2022/10/18 for v1.08
+# Matthew Bertucci 2023/06/28 for v1.09
 
 #include:iftex
 #include:etoolbox
@@ -241,6 +241,7 @@ longpluralaccess=%<text%>
 #endif
 
 \actext{acronym}
+\aliasref{label}#r
 \app{application}
 \app{application}[suffix]#*
 \appdef{application}
@@ -345,6 +346,7 @@ longpluralaccess=%<text%>
 \filedef{file}
 \filefmt{file}
 \fnsym{num}
+\fnsym*{num}
 \fnsymtext{num}{text}
 \gabbr{abbrev-name}{short}{long}{desc-cmds}
 \gacr{acronym}{short}{long}{desc-cmds}
@@ -374,7 +376,10 @@ longpluralaccess=%<text%>
 \gidx{name}{desc-cmds}
 \gidxpl{name}{desc-cmds}
 \glongswitch{switch-name}{desc-cmds}
+\glongswitchpunc{switch-name}{desc-cmds}
 \glsbibwriteentry{entry}{entry-label}{desc-cmds}
+\glscsname{label}#r
+\glscsname[options]{label}#r
 \gmod{modifier-name}{desc-cmds}
 \gopt{option-name}{desc-cmds}
 \goptval{option}{value}{desc-cmds}
@@ -382,12 +387,15 @@ longpluralaccess=%<text%>
 \gpunc{punc-name}{desc-cmds}
 \gpunccmd{punc-name}{symbol}{desc-cmds}
 \gshortswitch{switch-name}{desc-cmds}
+gshortswitchpunc{switch-name}{desc-cmds}
 \gstyboolopt{package-option-name}{desc-cmds}
 \gstyopt{package-option-name}{desc-cmds}
 \gterm{term-name}{desc-cmds}
 \gtermabbr{term-name}{short}{long}{desc-cmds}
 \gtermacr{acronym}{short}{long}{desc-cmds}
 \htmlavailable
+\icon{name}
+\icontext{name}
 \idx[options%keyvals]{label}#r
 \Idx[options%keyvals]{label}#r
 \idx[options%keyvals]{label}[insert]#r
@@ -416,7 +424,10 @@ longpluralaccess=%<text%>
 \inapp{application}
 \inclass{class}
 \initval{value}
+\initvalcs{csname}
 \initvalempty
+\initvalopt{option-name}{text%plain}
+\initvalref{label}#r
 \initvalvaries
 \inlineglsdef[type]{label}#r
 \inlineglsdef{label}#r
@@ -424,6 +435,8 @@ longpluralaccess=%<text%>
 \Inlineidxdef{entry}
 \inlineidxfdef{entry}
 \inlineidxpdef{entry}
+\inlineoptdef{option-name}
+\inlineoptdef[type]{option-name}
 \inlineswitchdef{switch}
 \inpackage{package}
 \itemtitle{text}
@@ -472,12 +485,14 @@ longpluralaccess=%<text%>
 \parent{parent}
 \pdfLaTeX
 \pdfTeX
+\phyperref{label}{text}#r
 \pkgdef*[options%keyvals]{package}#*
 \pkgdef*{package}
 \pkgdef[options%keyvals]{package}#*
 \pkgdef{package}
 \plabel[text]{label}#l
 \plabel{label}#l
+\pref{label}#r
 \printicons
 \printsummary
 \prono
@@ -1671,6 +1686,7 @@ style6#B
 \locationgroupencapsubsubsection#*
 \locationgroupmarkerchapter#*
 \locationgroupmarkerfigure#*
+\locationgroupmarkerfigures#*
 \locationgroupmarkerpage#*
 \locationgroupmarkerpages#*
 \locationgroupmarkerparagraph#*
@@ -1679,6 +1695,7 @@ style6#B
 \locationgroupmarkersubsection#*
 \locationgroupmarkersubsubsection#*
 \locationgroupmarkertable#*
+\locationgroupmarkertables#*
 \lozengemarker#*
 \maindef[opt]{arg}#*
 \maindef{arg}#*
@@ -1714,6 +1731,7 @@ style6#B
 \nlctmodifiertag#*
 \nlctnovref#*
 \nlctuserguidebib#S
+\nlctuserguidebibextrapreamble#*
 \nlctuserguidecustomentryaliases#*
 \nlctuserguideextrarules#*
 \nlctuserguideignoredpuncrules#*
@@ -1830,6 +1848,7 @@ style6#B
 \termslocfmt{arg1}#*
 \texmeta{arg}#*
 \theexample#*
+\theicon#S
 \thispackage#*
 \thispackagename#*
 \tick#*
