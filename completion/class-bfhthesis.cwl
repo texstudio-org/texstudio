@@ -1,7 +1,6 @@
 # bfhthesis class
 # Matthew Bertucci 2022/06/04 for v2.1.2
 
-#include:expl3
 #include:l3keys2e
 #include:class-scrbook
 #include:bfhlayout

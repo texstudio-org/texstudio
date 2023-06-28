@@ -1,8 +1,6 @@
 # substances package
 # Matthew Bertucci 4/26/2022 for v0.2a
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:xtemplate
 #include:chemmacros

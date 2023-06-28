@@ -2,7 +2,6 @@
 # Matthew Bertucci 9/26/2021 for v1.3a
 
 #include:l3keys2e
-#include:xparse
 #include:xpatch
 #include:xcolor
 #include:scrlfile

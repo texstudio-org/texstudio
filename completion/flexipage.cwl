@@ -1,7 +1,6 @@
 # flexipage package
 # Matthew Bertucci 2022/10/07 for v1.01
 
-#include:xparse
 #include:l3keys2e
 #include:calc
 #include:fp

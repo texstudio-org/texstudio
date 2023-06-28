@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/07/24 for v0.4d
 
 #include:calc
-#include:xparse
 #include:keyval
 #include:xcolor
 

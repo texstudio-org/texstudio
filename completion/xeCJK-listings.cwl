@@ -1,7 +1,6 @@
 # xeCJK-listings package
 # Matthew Bertucci 2022/05/02 for v3.8.8
 
-#include:expl3
 #include:xeCJK
 #include:listings
 

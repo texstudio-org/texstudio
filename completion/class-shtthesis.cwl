@@ -8,8 +8,6 @@
 #include:datetime
 #include:class-ctexbook
 #include:xeCJK
-#include:expl3
-#include:xparse
 #include:xcolor
 # loads table option of xcolor
 #include:geometry

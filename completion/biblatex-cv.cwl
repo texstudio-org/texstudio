@@ -2,8 +2,6 @@
 # Matthew Bertucci 4/25/2022 for v0.01
 
 #include:biblatex
-#include:expl3
-#include:xparse
 #include:totcount
 #include:xpatch
 

@@ -4,7 +4,6 @@
 #include:amsmath
 #include:amssymb
 #include:amsthm
-#include:xparse
 #include:lscape
 #include:setspace
 #include:calc

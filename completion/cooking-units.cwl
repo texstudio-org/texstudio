@@ -1,7 +1,6 @@
 # cooking-units package
 # Matthew Bertucci 2022/12/11 for v3.00
 
-#include:xparse
 #include:translations
 #include:xfrac
 #include:l3keys2e

@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/11/2022 for v1.2
 
 #include:l3keys2e
-#include:xparse
 #include:fontenc
 #include:mweights
 

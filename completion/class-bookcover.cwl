@@ -6,7 +6,6 @@
 #include:graphicx
 #include:calc
 #include:tikz
-#include:xparse
 #include:etoolbox
 #include:fgruler
 

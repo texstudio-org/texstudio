@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/06/06 for v0.5.0
 
 #include:luatex
-#include:expl3
 #include:kvoptions
 #include:atveryend
 

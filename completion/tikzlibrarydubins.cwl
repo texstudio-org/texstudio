@@ -3,7 +3,6 @@
 
 #include:tikzlibrarycalc
 #include:etoolbox
-#include:xfp
 
 \ifpgfmathcond{condition}#*
 \dubinspath{options}#*

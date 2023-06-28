@@ -14,14 +14,12 @@
 #include:xifthen
 #include:xstring
 #include:fp
-#include:xfp
 #include:keyval
 #include:silence
 #include:textpos
 #include:calc
 #include:atbegshi
 #include:letltxmacro
-#include:xparse
 #include:noindentafter
 #include:changepage
 #include:magaz

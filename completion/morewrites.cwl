@@ -1,7 +1,6 @@
 # morewrites package
 # Matthew Bertucci 12/30/2021
 
-#include:expl3
 #include:primargs
 
 \morewritessetup{options%keyvals}

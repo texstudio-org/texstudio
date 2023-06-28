@@ -2,7 +2,6 @@
 # Matthew Bertucci 2023/02/13 for v0.7a
 
 #include:fontspec
-#include:xparse
 #include:expkv-def
 #include:expkv-opt
 

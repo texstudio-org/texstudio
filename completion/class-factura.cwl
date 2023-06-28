@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/07/05 for v4.32
 
 #include:etoolbox
-#include:xparse
 #include:textpos
 #include:eso-pic
 #include:atbegshi

@@ -4,8 +4,6 @@
 # Matthew Bertucci 9/22/2021 for v2.7
 
 #include:l3keys2e
-#include:expl3
-#include:xparse
 
 \lipsum
 \lipsum[num]

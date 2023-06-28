@@ -2,7 +2,6 @@
 # Matthew Bertucci 12/13/2021 for v0.8.5
 
 #include:xkeyval
-#include:xfp
 
 #keyvals:\usepackage/fontsize#c
 fontsize=##L

@@ -3,8 +3,6 @@
 
 #include:everypage-1x
 #include:tikz
-#include:xparse
-#include:expl3
 
 \PageSetup{content for watermark%text}
 \PageSetup[options%keyvals]{content for watermark%text}

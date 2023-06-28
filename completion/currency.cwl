@@ -4,7 +4,6 @@
 #include:siunitx
 #include:pgfkeys
 #include:etoolbox
-#include:xparse
 #include:textcomp
 #include:eurosym
 

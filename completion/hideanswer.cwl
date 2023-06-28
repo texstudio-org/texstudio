@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/06/29 for v1.0
 
 #include:color
-#include:xparse
 
 \sethideanswer
 \unsethideanswer

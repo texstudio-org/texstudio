@@ -4,7 +4,6 @@
 #include:verbatim
 #include:ifthen
 #include:kvoptions
-#include:xparse
 #include:marginnote
 
 #keyvals:\usepackage/exercises#c

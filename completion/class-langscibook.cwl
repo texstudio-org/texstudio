@@ -4,7 +4,6 @@
 #include:xetex
 #include:silence
 #include:etoolbox
-#include:xparse
 #include:langsci-affiliations
 #include:xspace
 #include:kvoptions

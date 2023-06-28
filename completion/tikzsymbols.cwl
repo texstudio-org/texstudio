@@ -1,8 +1,6 @@
 # tikzsymbols package
 # Matthew Bertucci 10/17/2021 for v4.12
 
-#include:xparse
-#include:expl3
 #include:tikz
 #include:xcolor
 #include:xspace

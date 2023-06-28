@@ -10,7 +10,6 @@
 #include:multicol
 #include:pdfpages
 #include:comment
-#include:xparse
 #include:longtable
 #include:booktabs
 #include:array

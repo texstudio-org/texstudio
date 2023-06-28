@@ -5,7 +5,6 @@
 #include:varwidth
 #include:dashrule
 #include:graphicx
-#include:xparse
 #include:etoolbox
 #include:calc
 #include:forloop

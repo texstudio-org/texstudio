@@ -8,7 +8,6 @@
 #include:class-ctexbook
 #include:etoolbox
 #include:filehook
-#include:xparse
 #include:geometry
 #include:fancyhdr
 #include:titletoc

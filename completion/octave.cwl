@@ -1,8 +1,6 @@
 # octave package
 # Matthew Bertucci 2/15/2022
 
-#include:xparse
-
 #keyvals:\usepackage/octave#c
 prime
 number

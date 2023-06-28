@@ -4,7 +4,6 @@
 #include:array
 #include:fontawesome5
 #include:xcolor
-#include:xparse
 #include:ifthen
 
 \notebox{text}

@@ -18,7 +18,6 @@
 #include:tikzlibraryquotes
 #include:tikzlibraryshapes.misc
 #include:tikzlibrarythrough
-#include:xfp
 #include:xpatch
 
 #keyvals:\usepackage/tkz-euclide#c

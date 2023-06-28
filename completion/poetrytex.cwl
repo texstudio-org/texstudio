@@ -1,7 +1,6 @@
 # poetrytex package
 # Matthew Bertucci 10/7/2021 for v3.0.1
 
-#include:expl3
 #include:tocloft
 
 \pttitle#*

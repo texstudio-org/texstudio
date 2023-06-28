@@ -1,7 +1,6 @@
 # semantex package
 # Matthew Bertucci 2022/09/24 for v0.520
 
-#include:xparse
 #include:l3keys2e
 #include:leftindex
 #include:semtex

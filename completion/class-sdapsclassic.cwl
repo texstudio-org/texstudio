@@ -2,7 +2,6 @@
 # Matthew Bertucci 12/18/2021 for v0.1
 
 #include:class-scrartcl
-#include:expl3
 #include:sdapsbase
 #include:sdapslayout
 #include:verbatim

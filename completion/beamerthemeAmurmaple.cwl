@@ -2,9 +2,6 @@
 # Matthew Bertucci 2023/01/31 for v1.2
 
 #include:multicol
-#include:xparse
-#include:xfp
-#include:expl3
 #include:iftex
 #include:pgfpages
 #include:luamesh

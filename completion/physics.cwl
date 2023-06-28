@@ -1,7 +1,6 @@
 # The physics package was created by Sergio C. de la Barrera physics.tex@gmail.com
 # This file was created by Carlos Eduardo Valencia Urbina (2014-04-04). It contains most of the current commands of the physics package.
 #include:amsmath
-#include:xparse
 
 #keyvals:\usepackage/physics#c
 trig

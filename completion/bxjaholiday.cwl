@@ -1,8 +1,6 @@
 # bxjaholiday package
 # Matthew Bertucci 2022/04/29 for v1.1.1
 
-#include:expl3
-
 \jaholidayname{year}{month}{day}
 \jadayofweek{year}{month}{day}
 \IfJaHolidayTF{year}{month}{day}{true code}{false code}

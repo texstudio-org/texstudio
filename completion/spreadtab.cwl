@@ -9,10 +9,6 @@ fp
 xfp
 #endkeyvals
 
-#ifOption:xfp
-#include:xfp
-#endif
-
 \begin{spreadtab}{{envname}{preamble}}#\array
 \end{spreadtab}
 

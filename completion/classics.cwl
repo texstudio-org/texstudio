@@ -1,9 +1,6 @@
 # classics package
 # Matthew Bertucci 11/17/2021 for v0.1a
 
-#include:expl3
-#include:xparse
-
 \newclassic{classic}{formatting directives}
 \newclassic[range sep]{classic}{formatting directives}
 

@@ -9,7 +9,6 @@
 #include:scrlayer-scrpage
 #include:graphicx
 #include:enumitem
-#include:xparse
 #include:etoolbox
 #include:url
 #include:fontspec

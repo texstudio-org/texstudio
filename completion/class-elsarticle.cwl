@@ -1,8 +1,6 @@
 # elsarticle class
 # Matthew Bertucci 3/22/2022 for v3.3
 
-#include:expl3
-#include:xparse
 #include:etoolbox
 #include:graphicx
 #include:natbib

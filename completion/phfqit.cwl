@@ -6,7 +6,6 @@
 #include:dsfont
 #include:mathrsfs
 #include:mathtools
-#include:xparse
 #include:kvoptions
 
 \Hs#m

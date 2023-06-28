@@ -4,7 +4,6 @@
 #include:etoolbox
 #include:pgfkeys
 #include:tikz
-#include:xparse
 #include:xstring
 
 \dmatrix{number list}

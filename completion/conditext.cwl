@@ -3,7 +3,6 @@
 
 #include:simplekv
 #include:xifthen
-#include:xparse
 
 #keyvals:\usepackage/conditext#c
 defaultdisplayall

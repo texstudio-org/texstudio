@@ -1,7 +1,6 @@
 # rmathbr package
 # Matthew Bertucci 2/2/2022 for v1.1.1
 
-#include:expl3
 #include:ifetex
 #include:ifluatex
 #include:xkeyval

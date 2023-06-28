@@ -1,7 +1,6 @@
 # bitreport class
 # Matthew Bertucci 2022/12/04 for v3.2.0
 
-#include:expl3
 #include:l3keys2e
 #include:class-ctexart
 #include:xeCJK

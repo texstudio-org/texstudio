@@ -2,14 +2,12 @@
 # Matthew Bertucci 2/7/2022 for v1.2
 
 #include:booktabs
-#include:expl3
 #include:l3keys2e
 #include:longtable
 #include:siunitx
 #include:translations
 #include:xcolor
 # xcolor loaded with table option
-#include:xparse
 
 \invoiceoptions{options%keyvals}
 

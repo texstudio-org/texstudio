@@ -7,7 +7,6 @@
 #include:pgffor
 #include:listofitems
 #include:xstring
-#include:xparse
 #include:simplekv
 #include:xinttools
 #include:randomlist

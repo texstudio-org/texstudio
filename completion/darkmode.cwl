@@ -1,7 +1,6 @@
 # darkmode package
 # Matthew Bertucci 2022/09/04 for v1.0.1
 
-#include:expl3
 #include:l3keys2e
 #include:xcolor
 #include:pagecolor

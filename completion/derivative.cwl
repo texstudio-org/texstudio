@@ -3,8 +3,6 @@
 # Created by Brian Schubert (2021/08/03).
 # updated 2022/07/11 for v1.2
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 
 #keyvals:\usepackage/derivative#c

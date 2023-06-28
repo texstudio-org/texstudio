@@ -2,7 +2,6 @@
 # Matthew Bertucci 10/24/2021 for v0.3b
 
 #include:tikz
-#include:xparse
 #include:etoolbox
 #include:xstring
 

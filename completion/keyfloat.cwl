@@ -2,7 +2,6 @@
 # Matthew Bertucci 11/29/2021 for v2.06
 
 #include:etoolbox
-#include:xparse
 #include:xkeyval
 #include:graphicx
 #include:caption

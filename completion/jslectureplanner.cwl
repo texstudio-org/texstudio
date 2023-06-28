@@ -7,7 +7,6 @@
 # loads calc option of datetime2
 #include:calc
 #include:ifthen
-#include:xparse
 
 #keyvals:\usepackage/jslectureplanner#c
 style=#german-default,english,cologne

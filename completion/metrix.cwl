@@ -5,7 +5,6 @@
 #include:tikz
 #include:tikzlibrarycalc
 #include:xpatch
-#include:xparse
 
 \metricsymbols{symbols}
 \metricsymbols*{symbols}

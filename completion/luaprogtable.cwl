@@ -1,10 +1,8 @@
 # luaprogtable package
 # Matthew Bertucci 2/4/2022 for v1.0
 
-#include:expl3
 #include:iftex
 #include:luatexbase
-#include:xparse
 
 \LPTNewTable{name%specialDef}{num cols}{preamble}#s#%LPTtablename
 \LPTNewTable{name%specialDef}{num cols}{preamble}[options%keyvals]#s#%LPTtablename

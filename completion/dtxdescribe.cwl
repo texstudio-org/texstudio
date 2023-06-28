@@ -3,7 +3,6 @@
 
 #include:makeidx
 #include:etoolbox
-#include:xparse
 #include:calc
 #include:xcolor
 #include:caption

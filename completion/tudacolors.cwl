@@ -1,7 +1,6 @@
 # tudacolors package
 # Matthew Bertucci 2022/11/08 for v3.28
 
-#include:expl3
 #include:l3keys2e
 #include:xcolor
 

@@ -1,8 +1,6 @@
 # biblatex-ext-oasymb-l3draw package
 # Matthew Bertucci 4/23/2022 for v0.15
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:l3draw
 

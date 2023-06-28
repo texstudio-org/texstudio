@@ -6,7 +6,6 @@
 #include:kvoptions
 #include:phfnote
 #include:phfthm
-#include:xparse
 
 # from pkgset=extended option of phfnote
 #include:float

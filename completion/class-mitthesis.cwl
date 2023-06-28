@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2023/06/25 for v1.02
+# Matthew Bertucci 2023/06/27 for v1.03
 
 #include:class-report
 #include:etoolbox
@@ -42,6 +42,8 @@ twoside
 
 \EntryHeading{text}
 \entry{symbol}{description%text}
+
+\maketitle*
 
 # not documented
 \ClassName#S

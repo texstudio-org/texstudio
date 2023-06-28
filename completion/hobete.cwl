@@ -1,10 +1,8 @@
 # hobete package
 # Matthew Bertucci 2/12/2022
 
-#include:expl3
 #include:l3keys2e
 #include:xfrac
-#include:xparse
 #include:tikz
 #include:beamerthemehohenheim
 

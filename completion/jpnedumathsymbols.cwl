@@ -3,7 +3,6 @@
 
 #include:amsmath
 #include:amssymb
-#include:xparse
 #include:empheq
 
 #keyvals:\usepackage/jpnedumathsymbols#c

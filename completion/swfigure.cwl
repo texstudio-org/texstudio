@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/05/16 for v0.9.20
 
 #include:etoolbox
-#include:xfp
 #include:graphicx
 #include:afterpage
 #include:wrapfig2

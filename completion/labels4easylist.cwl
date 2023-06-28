@@ -1,7 +1,6 @@
 # labels4easylist package
 # Matthew Bertucci 11/6/2021 for v1.4
 
-#include:xparse
 #include:easylist
 
 #keyvals:\usepackage/labels4easylist#c

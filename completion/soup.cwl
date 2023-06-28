@@ -1,10 +1,8 @@
 # soup package
 # Matthew Bertucci 1/18/2021 for v1.0.2
 
-#include:expl3
 #include:l3keys2e
 #include:tikz
-#include:xparse
 
 #keyvals:\usepackage/soup#c
 usetikz#true,false

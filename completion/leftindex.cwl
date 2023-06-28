@@ -1,7 +1,6 @@
 # leftindex package
 # Matthew Bertucci 12/10/2021 for v0.1β
 
-#include:xparse
 #include:mathtools
 
 \leftindex^{sup}{symbol}#m

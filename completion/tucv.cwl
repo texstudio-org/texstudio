@@ -5,7 +5,6 @@
 #include:color
 #include:calc
 #include:fancyhdr
-#include:xparse
 
 #keyvals:\usepackage/tucv#c
 pagesetup

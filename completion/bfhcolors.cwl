@@ -1,7 +1,6 @@
 # bfhcolors package
 # Matthew Bertucci 2/12/2022 for v2.0.0
 
-#include:expl3
 #include:l3keys2e
 #include:xcolor
 

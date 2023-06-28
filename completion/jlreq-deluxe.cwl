@@ -1,7 +1,6 @@
 # jlreq-deluxe package
 # Matthew Bertucci 2022/07/26 for v0.4.0
 
-#include:expl3
 #include:l3keys2e
 #include:pxjodel
 

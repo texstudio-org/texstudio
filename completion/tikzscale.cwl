@@ -4,7 +4,6 @@
 #include:graphicx
 #include:etoolbox
 #include:pgfkeys
-#include:xparse
 #include:letltxmacro
 #include:xstring
 

@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/05/05 for v11.12
 
 #include:etoolbox
-#include:xparse
 #include:hologo
 
 \bnm{text}
