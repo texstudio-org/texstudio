@@ -182,9 +182,9 @@ on insertion.
     them).
 -   Write %\<something%\> to mark it as placeholder which is highlighted
     in the text and can be selected by `Ctrl+Left/Right`.
-    Additional properties of the placeholder can be set after a %:, e.g.
-    %\<something%:persistent,id:123,mirror%\>. The available properties
-    are:
+    Additional properties of the placeholder can be set after a %:,
+    e.g. %\<something%:persistent,id:123,mirror%\>.
+    The available properties are:
     -   select: The placeholder will be selected (similar to %\|)
     -   multiline: The placeholder is used for multiline text. If a
         macro insertion replaces an existing text, the replaced text is
