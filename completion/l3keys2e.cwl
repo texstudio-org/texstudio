@@ -2,7 +2,5 @@
 # Matthew Bertucci 2023/06/28
 ### This package is deprecated. The macros are integrated into the format as \ProcessKeyOptions, hence the #S qualifiers
 
-#include:expl3
-
 \ProcessKeysOptions{module}#S
 \ProcessKeysPackageOptions{module}#S
