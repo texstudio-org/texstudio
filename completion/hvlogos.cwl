@@ -5,7 +5,6 @@
 #include:hologo
 #include:dantelogo
 #include:xspace
-#include:expl3
 
 \ALEPH#n
 \AmS#n

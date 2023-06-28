@@ -3,7 +3,6 @@
 
 #include:xkeyval
 #include:siunitx
-#include:xparse
 
 #keyvals:\usepackage/pst-calculate#c
 useComma

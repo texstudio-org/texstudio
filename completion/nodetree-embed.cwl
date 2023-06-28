@@ -4,8 +4,6 @@
 #include:luatex
 #include:xcolor
 #include:mdframed
-#include:expl3
-#include:xparse
 #include:fontspec
 #include:kvoptions
 

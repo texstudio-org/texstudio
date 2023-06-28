@@ -1,7 +1,6 @@
 # dmlb package
 # Matthew Bertucci 2022/07/24 for v2018-07-22
 
-#include:xparse
 #include:etoolbox
 #include:microtype
 #include:xstring

@@ -18,7 +18,6 @@
 #include:hyperref
 #include:colortbl
 #include:graphicx
-#include:xparse
 #include:substr
 #include:keyval
 #include:xstring

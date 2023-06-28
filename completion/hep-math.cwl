@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/11/03 for v1.1
 
 #include:mathtools
-#include:xparse
 #include:soulutf8
 #include:amssymb
 #include:units

@@ -4,7 +4,6 @@
 #include:ifxetex
 #include:ifluatex
 #include:xkeyval
-#include:xparse
 #include:luacode
 
 #keyvals:\usepackage/spark-otf#c

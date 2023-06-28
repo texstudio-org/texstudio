@@ -1,7 +1,6 @@
 # bfhsciposter class
 # Matthew Bertucci 2022/06/04 for v2.1.2
 
-#include:expl3
 #include:l3keys2e
 #include:class-scrartcl
 #include:bfhfonts
@@ -12,7 +11,6 @@
 #include:tcolorbox
 #include:tcolorboxlibraryposter
 #include:geometry
-#include:xparse
 #include:bfhcolors
 #include:qrcode
 #include:bfhmodule

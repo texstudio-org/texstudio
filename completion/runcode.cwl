@@ -8,7 +8,6 @@
 #include:inputenc
 #include:textgreek
 #include:xifthen
-#include:xparse
 #include:xstring
 #include:minted
 

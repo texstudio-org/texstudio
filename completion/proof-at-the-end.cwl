@@ -6,7 +6,6 @@
 #include:thm-restate
 #include:catchfile
 #include:pgfkeys
-#include:xparse
 #include:hyperref
 #include:kvoptions
 

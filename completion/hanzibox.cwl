@@ -1,11 +1,9 @@
 # hanzibox package
 # Matthew Bertucci 4/19/2022 for v2.3.0
 
-#include:expl3
 #include:xtemplate
 #include:l3keys2e
 #include:l3draw
-#include:xparse
 #include:xpinyin
 
 \hanzibox{character}

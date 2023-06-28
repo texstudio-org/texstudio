@@ -4,7 +4,6 @@
 #include:xkeyval
 #include:kvoptions
 #include:etoolbox
-#include:xparse
 #include:xcolor
 #include:geometry
 #include:sectsty

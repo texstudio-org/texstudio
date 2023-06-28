@@ -9,7 +9,6 @@
 #include:xcolor
 #include:moresize
 #include:listofitems
-#include:xparse
 #include:ifthen
 #include:tikzlibrarypositioning
 #include:tikzlibraryshapes.misc

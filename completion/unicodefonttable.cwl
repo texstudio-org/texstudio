@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/11/13 for v1.0g
 
 #include:xcolor
-#include:xparse
 #include:l3keys2e
 #include:longtable
 #include:booktabs

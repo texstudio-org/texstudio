@@ -1,7 +1,6 @@
 # spbmark package
 # Matthew Bertucci 3/7/2022 for v1.4
 
-#include:xparse
 #include:l3keys2e
 
 #keyvals:\usepackage/spbmark#c

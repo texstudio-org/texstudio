@@ -1,8 +1,6 @@
 # longdivision package
 # Matthew Bertucci 9/16/2021 for v1.0
 
-#include:xparse
-
 \longdivision{dividend}{divisor}
 \longdivision[options%keyvals]{dividend}{divisor}
 \intlongdivision{dividend}{divisor}

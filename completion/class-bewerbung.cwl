@@ -25,7 +25,6 @@
 #include:multicol
 #include:pdfpages
 #include:comment
-#include:xparse
 #include:bewerbung
 # loads x11names option of xcolor by default
 

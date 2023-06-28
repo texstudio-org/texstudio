@@ -12,7 +12,6 @@
 # loads UKenglish option of babel
 #include:isodate
 #include:inputenc
-#include:xparse
 #include:class-report
 #include:tocloft
 #include:parskip

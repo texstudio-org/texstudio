@@ -1,7 +1,6 @@
 # duckuments package
 # Matthew Bertucci 9/21/2021 for v0.5
 
-#include:xparse
 #include:letltxmacro
 #include:l3keys2e
 

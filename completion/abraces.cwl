@@ -1,8 +1,6 @@
 # abraces package
 # Matthew Bertucci 2022/11/07 for v2.1
 
-#include:xparse
-
 #keyvals:\usepackage/abraces#c
 overload
 #endkeyvals

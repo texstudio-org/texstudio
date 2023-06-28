@@ -9,7 +9,6 @@
 #include:arabluatex-patch
 #include:fontspec
 #include:luacode
-#include:xparse
 #include:adjustbox
 #include:xstring
 #include:lua-ul

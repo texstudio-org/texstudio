@@ -1,9 +1,6 @@
 # footnotehyper package
 # Matthew Bertucci 9/7/2021 for v1.1e
 
-#include:expl3
-#include:xparse
-
 \begin{savenotes}
 \end{savenotes}
 \savenotes#*

@@ -1,13 +1,11 @@
 # mercatormap package
 # Matthew Bertucci 2/2/2022 for v1.02
 
-#include:expl3
 #include:graphicx
 #include:pdftexcmds
 #include:siunitx
 #include:tikz
 #include:tikzlibraryshadings
-#include:xparse
 
 ### 3 Map Definition and Map Coordinates ###
 

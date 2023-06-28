@@ -1,7 +1,6 @@
 # rec-thy package
 # Matthew Bertucci 2022/07/28 for v3.8.2
 
-#include:expl3
 #include:ltxcmds
 #include:iftex
 #include:ifpdf
@@ -12,7 +11,6 @@
 #include:etoolbox
 #include:pict2e
 #include:picture
-#include:xparse
 #include:mathrsfs
 #include:mathtools
 #include:enumitem

@@ -3,7 +3,6 @@
 
 #include:etoolbox
 #include:fp
-#include:xparse
 #include:xstring
 #include:tikz
 #include:tikzlibrarycalc

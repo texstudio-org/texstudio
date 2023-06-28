@@ -1,7 +1,6 @@
 # jkmath package
 # Matthew Bertucci 2/3/2022
 
-#include:xparse
 #include:array
 #include:amsmath
 #include:physics

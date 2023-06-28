@@ -2,7 +2,6 @@
 # edited by Stefan Kraus 2013-08-12
 # edited by Matthew Bertucci 2022-05-09 for v4.09
 
-#include:expl3
 #include:l3keys2e
 #include:calc
 #include:amsmath

@@ -1,9 +1,6 @@
 # kalendarium package
 # Matthew Bertucci 12/26/2021 for v1.0
 
-#include:l3keys2e
-#include:xparse
-
 \KalDate{year}{month}{day}
 \KalDate[options%keyvals]{year}{month}{day}
 \KalDateStr{format}{delimiter}{date string}

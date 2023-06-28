@@ -1,8 +1,6 @@
 # pascaltriangle package
 # Matthew Bertucci 1/8/2021 for v1.0.0
 
-#include:expl3
-#include:xparse
 #include:amsmath
 #include:tikz
 #include:tikzlibraryshapes.geometric

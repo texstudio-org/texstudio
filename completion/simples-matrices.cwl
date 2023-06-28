@@ -1,9 +1,7 @@
 # simples-matrices package
 # Matthew Bertucci 2022/06/21 for v1.0
 
-#include:expl3
 #include:l3keys2e
-#include:xparse
 #include:amsmath
 
 \simplesmatricessetup{options%keyvals}

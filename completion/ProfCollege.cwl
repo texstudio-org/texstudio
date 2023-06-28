@@ -21,7 +21,6 @@
 #include:datatool
 #include:multido
 #include:xlop
-#include:xfp
 #include:tcolorbox
 #include:tcolorboxlibrarymost
 #include:tikz

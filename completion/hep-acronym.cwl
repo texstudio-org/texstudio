@@ -3,7 +3,6 @@
 
 #include:glossaries-extra
 #include:everyhook
-#include:xparse
 #include:xspace
 #include:amstext
 

@@ -1,13 +1,11 @@
 # onedown package
 # Matthew Bertucci 2022/05/08 for v1.6
 
-#include:expl3
 #include:xcolor
 #include:textcomp
 #include:moresize
 #include:relsize
 #include:makecmds
-#include:xparse
 #include:xspace
 #include:calc
 #include:ifthen

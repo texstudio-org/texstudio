@@ -1,7 +1,6 @@
 # ducksay package
 # Matthew Bertucci 2022/10/10 for v2.6
 
-#include:xparse
 #include:l3keys2e
 #include:array
 #include:grabbox

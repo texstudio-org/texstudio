@@ -1,7 +1,6 @@
 # lectureslides package
 # Matthew Bertucci 3/8/2022 for v1.0
 
-#include:xparse
 #include:pdfpages
 #include:tocloft
 #include:hyperref

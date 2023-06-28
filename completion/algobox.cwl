@@ -1,8 +1,6 @@
 # algobox package
 # Matthew Bertucci 10/12/2021 for v1.3
 
-#include:expl3
-#include:xparse
 #include:environ
 #include:tikz
 #include:tikzlibrarycalc

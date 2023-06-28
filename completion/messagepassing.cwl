@@ -4,7 +4,6 @@
 #include:tikz
 #include:tikzlibraryquotes
 #include:tikzlibrarycalc
-#include:xparse
 #include:float
 
 #keyvals:\usepackage/messagepassing#c

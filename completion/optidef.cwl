@@ -6,7 +6,6 @@
 #include:etoolbox
 #include:mathtools
 #include:xifthen
-#include:xparse
 
 #keyvals:\usepackage/optidef#c
 short

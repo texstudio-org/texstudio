@@ -2,10 +2,8 @@
 # Matthew Bertucci 9/10/2021 for v1.0
 
 #include:tikz
-#include:xparse
 #include:xstring
 #include:etoolbox
-#include:expl3
 #include:pgfkeys
 #include:pgfopts
 #include:tikzlibrarycalc

@@ -2,8 +2,6 @@
 # muzimuzhi/3 Nov 2019, tasks v1.0c
 # updated 12/29/2021 for v1.3a
 
-#include:expl3
-#include:xparse
 #include:xtemplate
 
 \begin{tasks}

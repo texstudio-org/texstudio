@@ -1,8 +1,6 @@
 # econlipsum package
 # Matthew Bertucci 9/22/2021 for v0.8.2
 
-#include:expl3
-
 #keyvals:\usepackage/econlipsum#c
 par
 nopar

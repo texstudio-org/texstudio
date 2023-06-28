@@ -1,7 +1,6 @@
 # codehigh package
 # Matthew Bertucci 2023/02/10 for v2023A
 
-#include:expl3
 #include:catchfile
 #include:xcolor
 #include:ninecolors

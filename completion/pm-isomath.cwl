@@ -5,7 +5,6 @@
 #include:amsmath
 #include:etoolbox
 #include:iftex
-#include:xparse
 
 #keyvals:\usepackage/pm-isomath#c
 engineer

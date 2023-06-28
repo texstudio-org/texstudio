@@ -1,9 +1,7 @@
 # jmsdelim package
 # Matthew Bertucci 3/29/2022 for v0.2.0
 
-#include:expl3
 #include:l3keys2e
-#include:xparse
 #include:ifluatex
 #include:scalerel
 

@@ -5,7 +5,6 @@
 #include:ifthen
 #include:kvoptions
 #include:calc
-#include:xparse
 #include:xstring
 #include:xcolor
 #include:etoolbox

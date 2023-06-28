@@ -2,10 +2,8 @@
 # Matthew Bertucci 12/13/2021 for v2.2
 
 #include:etoolbox
-#include:expl3
 #include:siunitx
 #include:tikz
-#include:xparse
 #include:tikzlibrarydatavisualization
 #include:tikzlibraryfit
 

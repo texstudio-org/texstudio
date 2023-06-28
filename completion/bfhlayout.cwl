@@ -16,7 +16,6 @@
 #include:graphicx
 #include:bfhlogo
 #include:trimclip
-#include:xparse
 #include:bfhmodule
 # loads tabular and rules bfhmodules
 

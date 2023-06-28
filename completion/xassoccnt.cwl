@@ -5,7 +5,6 @@
 #include:etoolbox
 #include:letltxmacro
 #include:xcolor
-#include:xparse
 #include:l3keys2e
 
 #keyvals:\usepackage/xassoccnt#c

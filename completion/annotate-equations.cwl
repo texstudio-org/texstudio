@@ -8,9 +8,7 @@
 #include:tikzlibrarytikzmark
 #include:tikzlibrarycalc
 #include:xcolor
-#include:expl3
 #include:l3keys2e
-#include:xparse
 
 \eqnmarkbox{node name}{equation terms}#m
 \eqnmarkbox[color]{node name}{equation terms}#m

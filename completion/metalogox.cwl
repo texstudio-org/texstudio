@@ -2,7 +2,6 @@
 # Matthew Bertucci 9/28/2021 for v1.00
 
 #include:metalogo
-#include:xparse
 #include:etoolbox
 
 \adjustlogos{options%keyvals}

@@ -1,8 +1,6 @@
 # minibox package
 # Matthew Bertucci 1/4/2022 for v0.2a
 
-#include:expl3
-
 \minibox{text}
 \minibox[options%keyvals]{text}
 

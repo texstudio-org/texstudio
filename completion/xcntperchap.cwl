@@ -3,7 +3,6 @@
 
 #include:zref-counter
 #include:l3keys2e
-#include:xparse
 #include:xassoccnt
 
 \RegisterTrackCounter{track counter}{counter1,counter2,...}

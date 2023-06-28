@@ -3,7 +3,6 @@
 
 #include:ifxetex
 #include:xeCJK
-#include:xparse
 
 #keyvals:\usepackage/zxjatype#c
 default

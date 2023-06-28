@@ -1,8 +1,6 @@
 # mucproc class
 # Matthew Bertucci 4/19/2022 for v1.06
 
-#include:expl3
-#include:xparse
 #include:scrbase
 #include:class-scrartcl
 #include:graphicx

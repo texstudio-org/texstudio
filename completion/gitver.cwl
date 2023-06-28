@@ -6,7 +6,6 @@
 #include:pdftexcmds
 #include:datetime2
 #include:ifthen
-#include:xparse
 #include:ifluatex
 #include:shellesc
 

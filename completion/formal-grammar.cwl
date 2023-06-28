@@ -1,7 +1,6 @@
 # formal-grammar package
 # Matthew Bertucci 2/19/2022 for v1.2
 
-#include:xparse
 #include:newfloat
 #include:xcolor
 #include:colortbl

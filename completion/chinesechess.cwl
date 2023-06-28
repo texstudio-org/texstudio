@@ -1,10 +1,8 @@
 # chinesechess package
 # Matthew Bertucci 2022/05/11 for v1.2.0
 
-#include:expl3
 #include:l3keys2e
 #include:l3draw
-#include:xparse
 
 #keyvals:\usepackage/chinesechess#c
 draft

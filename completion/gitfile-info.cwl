@@ -3,7 +3,6 @@
 
 #include:ifthen
 #include:currfile
-#include:xparse
 #include:hyperref
 #include:tcolorbox
 #include:tcolorboxlibraryfitting

@@ -5,8 +5,6 @@
 #include:amsmath
 #include:amsfonts
 #include:amssymb
-#include:expl3
-#include:xparse
 #include:etoolbox
 #include:balance
 #include:booktabs

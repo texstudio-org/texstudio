@@ -1,7 +1,6 @@
 # texnegar package
 # Matthew Bertucci 2022/05/07 for v0.1e
 
-#include:xparse
 #include:l3keys2e
 #include:graphicx
 #include:array

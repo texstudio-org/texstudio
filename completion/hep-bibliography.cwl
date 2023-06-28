@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/06/10 for v1.0
 
 #include:kvoptions
-#include:xparse
 #include:biblatex
 #include:relsize
 

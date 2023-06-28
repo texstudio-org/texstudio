@@ -1,8 +1,6 @@
 # unravel package
 # muzimuzhi/1 Nov 2019 for unravel v0.2g
 
-#include:expl3
-#include:xparse
 #include:gtl
 
 \unravel{content}

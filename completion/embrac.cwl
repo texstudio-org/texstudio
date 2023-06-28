@@ -1,8 +1,6 @@
 # embrac package
 # Matthew Bertucci 9/19/2021 for v0.9a
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 
 \emph*{text}#*

@@ -3,7 +3,6 @@
 
 #include:array
 #include:booktabs
-#include:expl3
 #include:siunitx
 
 \typrintalph{font switch}

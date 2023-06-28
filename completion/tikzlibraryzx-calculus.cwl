@@ -4,7 +4,6 @@
 #include:amssymb
 #include:etoolbox
 #include:ifthen
-#include:xparse
 #include:bm
 #include:tikzlibrarycd
 #include:tikzlibrarybackgrounds

@@ -20,7 +20,6 @@
 #include:tikzlibraryshadows
 #include:tikzlibrarythrough
 #include:numprint
-#include:xfp
 #include:fp
 
 \tkzInit[options%keyvals]

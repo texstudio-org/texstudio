@@ -2,7 +2,6 @@
 # Matthew Bertucci 2/15/2022
 
 #include:stackengine
-#include:xparse
 
 #keyvals:\usepackage/musicography#c
 bigger

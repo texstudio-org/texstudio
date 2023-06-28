@@ -9,7 +9,6 @@
 #include:iftex
 #include:xifthen
 #include:options
-#include:xparse
 #include:xpatch
 #include:xstring
 #include:afterpage

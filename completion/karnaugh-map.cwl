@@ -3,7 +3,6 @@
 
 #include:kvoptions
 #include:keyval
-#include:xparse
 #include:xstring
 #include:tikz
 #include:tikzlibrarycalc

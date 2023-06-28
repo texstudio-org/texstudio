@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/09/24 for v0.520
 
 #include:luatex
-#include:xparse
 
 \StripSemantex{file}
 \StripSemantexStripComments{file}

@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/06/05 for v2.3
 
 #include:etoolbox
-#include:xparse
 #include:ifthen
 #include:class-report
 #include:iftex

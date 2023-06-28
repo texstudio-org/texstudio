@@ -2,7 +2,6 @@
 # Matthew Bertucci 11/18/2021 for v23
 
 #include:rule-D
-#include:xparse
 
 \EANControlDigit{string}
 

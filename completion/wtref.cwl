@@ -1,7 +1,6 @@
 # wtref package
 # Matthew Bertucci 1/9/2021 for v0.4.0
 
-#include:xparse
 #include:xkeyval
 
 \newref{ref types}

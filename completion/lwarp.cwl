@@ -15,9 +15,7 @@
 #include:upquote
 #include:kvoptions
 #include:comment
-#include:xparse
 #include:calc
-#include:expl3
 #include:xstring
 #include:environ
 

@@ -1,7 +1,6 @@
 # conteq package
 # Matthew Bertucci 10/18/2021 for v0.1.1
 
-#include:expl3
 #include:amsmath
 #include:environ
 

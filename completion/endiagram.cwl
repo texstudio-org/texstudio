@@ -1,12 +1,10 @@
 # endiagram package
 # Matthew Bertucci 2022/04/29 for v0.1d
 
-#include:expl3
 #include:l3keys2e
 #include:siunitx
 #include:tikz
 #include:tikzlibrarycalc
-#include:xparse
 
 \ENsetup{options%keyvals}
 \ENsetup[module]{options%keyvals}

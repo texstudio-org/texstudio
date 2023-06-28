@@ -3,7 +3,6 @@
 
 #include:shellesc
 #include:pgfkeys
-#include:expl3
 #include:xkeyval
 
 #keyvals:\usepackage/iexec#c

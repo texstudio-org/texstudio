@@ -1,8 +1,6 @@
 # kanbun package
 # Matthew Bertucci 2022/04/29 for v1.2
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:ifluatex
 
