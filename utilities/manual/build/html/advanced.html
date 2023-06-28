@@ -363,15 +363,16 @@ testing.</p>
 <h3>Text macros<a class="headerlink" href="#text-macros" title="Permalink to this heading">#</a></h3>
 <p>Apart from normal text, some special codes are recognized and replaced
 on insertion.</p>
-<ul>
+<ul class="simple">
 <li><p>If you write %| somewhere the cursor will be placed at that place
 in the inserted text. (A second %| will select everything between
 them).</p></li>
 <li><p>Write %&lt;something%&gt; to mark it as placeholder which is highlighted
 in the text and can be selected by <code class="docutils literal notranslate"><span class="pre">Ctrl+Left/Right</span></code>.
-Additional properties of the placeholder can be set after a %:, e.g.</p>
-<p>are:</p>
-<ul class="simple">
+Additional properties of the placeholder can be set after a %:,
+e.g. %&lt;something%:persistent,id:123,mirror%&gt;.
+The available properties are:</p>
+<ul>
 <li><p>select: The placeholder will be selected (similar to %|)</p></li>
 <li><p>multiline: The placeholder is used for multiline text. If a
 macro insertion replaces an existing text, the replaced text is
