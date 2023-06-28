@@ -1,11 +1,10 @@
 # quran package
-# Matthew Bertucci 4/8/2022 for v1.81
+# Matthew Bertucci 2023/06/27 for v1.9
 
 #include:ifxetex
 #include:biditools
 #include:xkeyval
 #include:listofitems
-#include:xparse
 #include:xstring
 #include:xspace
 
@@ -21,6 +20,7 @@ transfa
 transfr
 trans=#lt,de,en,fa,fr
 wordwise
+ornbraces
 #endkeyvals
 
 \quransurah
@@ -66,6 +66,7 @@ wordwise
 \ayahcount
 \ToggleAyahNumber
 \ToggleBasmalah
+\SetOrnamentalBraces{starting brace}{ending brace}
 
 ## All option-specific commands listed with #S to account for many
 ## ways of loading, e.g. translt, trans=lt, trans={de,en,lt}, ...
@@ -490,5 +491,5 @@ wordwise
 # not documented
 \qurandate#S
 \quranversion#S
-\showitemsmacro{arg}#*
-\ChangeQtPar#*
+\showitemsmacro{arg}#S
+\ChangeQtPar#S
