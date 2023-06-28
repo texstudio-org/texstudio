@@ -6,7 +6,6 @@
 #include:etoolbox
 #include:kvoptions
 #include:needspace
-#include:xparse
 #include:zref-abspage
 
 #keyvals:\usepackage/mdframed#c

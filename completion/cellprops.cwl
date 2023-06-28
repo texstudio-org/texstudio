@@ -3,8 +3,6 @@
 
 #include:mdwtab
 #include:xcolor
-#include:expl3
-#include:xparse
 
 \cellprops{CSS properties}
 \cellpropsclass{class1 class2 ...}#*

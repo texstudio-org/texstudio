@@ -1,7 +1,6 @@
 # tudaleaflet class
 # Matthew Bertucci 2022/08/17 for v3.27
 
-#include:expl3
 #include:l3keys2e
 #include:class-leaflet
 #include:scrextend

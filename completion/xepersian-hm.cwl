@@ -1,7 +1,6 @@
 # xepersian-hm package
 # Matthew Bertucci 2022/05/07 for v1.1a
 
-#include:expl3
 #include:l3keys2e
 #include:graphicx
 #include:zref-savepos

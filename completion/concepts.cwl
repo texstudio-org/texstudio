@@ -4,7 +4,6 @@
 #include:etextools
 #include:nth
 #include:xspace
-#include:xparse
 #include:ltxkeys
 #include:xstring
 

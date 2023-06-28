@@ -3,7 +3,6 @@
 
 #include:class-ltxguide
 #include:hyperref
-#include:xparse
 #include:xkeyval
 #include:xcolor
 #include:framed

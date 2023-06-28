@@ -4,7 +4,6 @@
 #include:forarray
 #include:ifthen
 #include:tikz
-#include:xfp
 #include:xstring
 #include:xkeyval
 

@@ -3,7 +3,6 @@
 
 #include:xpatch
 #include:l3keys2e
-#include:xparse
 #include:class-book
 #include:standalone
 #include:datatool

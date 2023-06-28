@@ -3,7 +3,6 @@
 
 #include:xkeyval
 #include:xargs
-#include:xparse
 #include:etoolbox
 #include:suffix
 #include:xstring

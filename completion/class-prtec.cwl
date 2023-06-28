@@ -10,7 +10,6 @@
 #include:graphicx
 #include:xcolor
 # loads dvipsnames, svgnames, and x11names options of xcolor
-#include:xparse
 #include:booktabs
 #include:array
 #include:dcolumn

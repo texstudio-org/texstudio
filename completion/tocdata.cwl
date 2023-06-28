@@ -1,7 +1,6 @@
 # tocdata package
 # Matthew Bertucci 11/22/2021 for v2.04
 
-#include:xparse
 #include:etoolbox
 #include:xpatch
 

@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/26/2022 for v1.8
 
 #include:etoolbox
-#include:xparse
 #include:calc
 #include:environ
 #include:mathtools

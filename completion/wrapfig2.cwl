@@ -1,8 +1,6 @@
 # wrapfig2 package
 # Matthew Bertucci 2/8/2022 for v5.0.7
 
-#include:xparse
-#include:xfp
 #include:etoolbox
 #include:float
 #include:xcolor

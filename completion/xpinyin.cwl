@@ -1,7 +1,6 @@
 # xpinyin package
 # Matthew Bertucci 2022/07/26 for v3.1
 
-#include:xparse
 #include:CJKutf8
 
 \begin{pinyinscope}

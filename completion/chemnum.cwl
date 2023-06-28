@@ -1,7 +1,6 @@
 # chemnum package
 # Matthew Bertucci 12/9/2021 for v1.3a
 
-#include:xparse
 #include:l3keys2e
 #include:translations
 #include:chemgreek

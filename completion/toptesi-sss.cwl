@@ -6,7 +6,6 @@
 #include:amsthm
 #include:xcolor
 #include:xspace
-#include:xparse
 #include:calc
 #include:ifthen
 #include:booktabs

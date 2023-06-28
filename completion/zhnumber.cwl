@@ -3,9 +3,6 @@
 #modified zepinglee 30 Jan 2021
 # edited for v3.0
 
-#include:expl3
-#include:xparse
-
 \zhnumber{number}
 \zhnumber[options%keyvals]{number}
 

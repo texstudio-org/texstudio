@@ -3,13 +3,11 @@
 
 #include:bibentry
 #include:pdfcomment
-#include:xparse
 #include:etoolbox
 
 #ifOption:ocg
 #include:pdfbase
 #include:ocgbase
-#include:expl3
 #include:calc
 #include:linegoal
 #include:xcolor

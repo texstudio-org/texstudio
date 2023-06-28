@@ -2,7 +2,6 @@
 # Matthew Bertucci 12/12/2021 for v1.3.2
 
 #include:zref-abspage
-#include:xparse
 #include:array
 #include:multirow
 #include:longtable

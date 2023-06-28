@@ -4,7 +4,6 @@
 #include:xargs
 #include:ifthen
 #include:xstring
-#include:xparse
 #include:etoolbox
 #include:mathtools
 #include:pgfmath

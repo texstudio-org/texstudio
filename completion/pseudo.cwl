@@ -1,8 +1,6 @@
 # pseudo package
 # Matthew Bertucci 2023/01/30 for v1.2.2
 
-#include:expl3
-#include:xparse
 #include:pgfkeys
 #include:array
 #include:xcolor

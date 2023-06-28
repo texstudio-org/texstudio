@@ -8,7 +8,6 @@
 #include:luacode
 #include:pdftexcmds
 #include:tikz
-#include:xparse
 
 \begin{plantuml}
 \end{plantuml}

@@ -1,9 +1,7 @@
 # skeldoc package
 # Matthew Bertucci 2022/07/20 for v0.1.2
 
-#include:expl3
 #include:xcolor
-#include:xparse
 #include:tabularx
 #include:booktabs
 #include:hyperref

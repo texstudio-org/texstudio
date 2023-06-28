@@ -3,7 +3,6 @@
 
 #include:calc
 #include:etoolbox
-#include:xparse
 
 \begin{eqexpl}
 \begin{eqexpl}[width]

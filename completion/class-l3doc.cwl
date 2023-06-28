@@ -1,7 +1,6 @@
 # l3doc class
 # Matthew Bertucci 2022/12/18 for v2022/12/17
 
-#include:expl3
 #include:calc
 #include:doc
 #include:array

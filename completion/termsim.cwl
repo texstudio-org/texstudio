@@ -1,10 +1,8 @@
 # termsim package
 # Matthew Bertucci 1/9/2021 for v1.1.1
 
-#include:expl3
 #include:xtemplate
 #include:l3keys2e
-#include:xparse
 #include:fontawesome5
 #include:varwidth
 #include:amssymb

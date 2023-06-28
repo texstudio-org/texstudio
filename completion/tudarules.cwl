@@ -1,10 +1,8 @@
 # tudarules package
 # Matthew Bertucci 2/12/2022 for v3.22
 
-#include:expl3
 #include:l3keys2e
 #include:tudacolors
-#include:xparse
 
 #keyvals:\usepackage/tudarules#c
 color=#%color

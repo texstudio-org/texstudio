@@ -3,7 +3,6 @@
 
 #include:tikz
 #include:tikzlibrarypatterns
-#include:expl3
 
 \thing[options%keyvals]
 

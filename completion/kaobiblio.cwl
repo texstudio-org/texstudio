@@ -4,7 +4,6 @@
 #include:etoolbox
 #include:perpage
 #include:iflang
-#include:xparse
 #include:xstring
 #include:hyperref
 #include:kvoptions

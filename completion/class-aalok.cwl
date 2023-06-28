@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/07/29 for v0.6
 
 #include:class-memoir
-#include:expl3
 #include:expex
 #include:xcolor
 #include:marathi

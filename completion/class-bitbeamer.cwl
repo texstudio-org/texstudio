@@ -1,7 +1,6 @@
 # bitbeamer class
 # Matthew Bertucci 2022/08/14 for v3.0.0
 
-#include:expl3
 #include:l3keys2e
 #include:class-ctexbeamer
 #include:xeCJKfntef

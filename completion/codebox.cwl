@@ -1,10 +1,8 @@
 # codebox package
 # Matthew Bertucci 1/6/2022 for v1.0.3
 
-#include:expl3
 #include:xtemplate
 #include:l3keys2e
-#include:xparse
 #include:fontawesome5
 #include:tcolorbox
 #include:tcolorboxlibraryskins

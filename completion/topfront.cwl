@@ -3,7 +3,6 @@
 
 #include:etoolbox
 #include:xspace
-#include:xparse
 
 #keyvals:\usepackage/topfront#c
 evenboxes

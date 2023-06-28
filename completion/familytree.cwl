@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/06/29 for v3.1
 
 #include:relsize
-#include:xparse
 
 ## Individual Box (ft-individual.dtx) ##
 \indvdldef{new box name}{individual name}

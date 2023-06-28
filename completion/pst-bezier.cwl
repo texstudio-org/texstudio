@@ -2,7 +2,6 @@
 # Matthew Bertucci 2/26/2022 for v0.03
 
 #include:pstricks
-#include:expl3
 #include:pst-xkey
 #include:pst-plot
 #include:pst-node

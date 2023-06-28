@@ -2,7 +2,6 @@
 # Matthew Bertucci 12/12/2021 for v0.2
 
 #include:luatex
-#include:xparse
 
 \adddatestamp{key%plain}
 \adddaystamp{key%plain}

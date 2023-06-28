@@ -2,11 +2,6 @@
 # Matthew Bertucci 1/18/2021 for v2.0m
 
 #include:l3keys2e
-#include:xparse
-
-#keyvals:\usepackage/notes2bib#c
-
-#endkeyvals
 
 \bibnote{text}
 \bibnote[name]{text}
@@ -18,7 +13,7 @@
 
 \bibnotesetup{options%keyvals}
 
-#keyvals:\bibnotesetup
+#keyvals:\bibnotesetup,\usepackage/notes2bib#c
 note-name=%<text%>
 refsection-name=%<text%>
 refsection-separator=%<symbol%>

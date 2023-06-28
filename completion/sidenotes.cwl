@@ -4,7 +4,6 @@
 #include:l3keys2e
 #include:marginnote
 #include:caption
-#include:xparse
 #include:changepage
 
 #keyvals:\usepackage/sidenotes#c

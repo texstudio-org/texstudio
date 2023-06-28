@@ -3,7 +3,6 @@
 
 #include:luatex
 #include:etoolbox
-#include:xparse
 #include:xkeyval
 #include:xcolor
 # xcolor loaded with dvipsnames, x11names, and svgnames options

@@ -12,7 +12,6 @@
 #include:suffix
 #include:trimspaces
 #include:xkeyval
-#include:expl3
 
 \pstool{imagefile}{input definitions}#g
 \pstool[options%keyvals]{imagefile}{input definitions}#g

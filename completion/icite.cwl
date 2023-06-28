@@ -2,7 +2,6 @@
 # Matthew Bertucci 11/17/2021 for v1.3a
 
 #include:xkeyval
-#include:xparse
 #include:datatool
 #include:usebib
 

@@ -1,7 +1,6 @@
 # luatexja-preset package
 # Matthew Bertucci 2022/07/04 for v20220703.0
 
-#include:expl3
 #include:l3keys2e
 #include:luatexja
 #include:luatexja-fontspec

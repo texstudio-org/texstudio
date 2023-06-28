@@ -1,10 +1,8 @@
 # leadsheets package
 # Matthew Bertucci 2022/08/03 for v0.7
 
-#include:expl3
 #include:l3keys2e
 #include:translations
-#include:xparse
 
 # note: by default, all but musejazz libraries loaded
 

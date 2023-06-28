@@ -7,7 +7,6 @@
 #include:xkeyval
 #include:rotating
 #include:fancybox
-#include:expl3
 #include:csvsimple
 #include:environ
 #include:geometry

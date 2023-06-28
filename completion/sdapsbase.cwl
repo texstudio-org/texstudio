@@ -1,7 +1,6 @@
 # sdapsbase package
 # Matthew Bertucci 12/18/2021 for v0.1
 
-#include:expl3
 #include:qrcode
 #include:tikz
 #include:tikzlibrarycalc

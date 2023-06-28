@@ -1,7 +1,6 @@
 # annee-scolaire package
 # Matthew Bertucci 9/16/2021 for v1.6
 
-#include:xparse
 #include:l3keys2e
 
 #keyvals:\usepackage/annee-scolaire#c

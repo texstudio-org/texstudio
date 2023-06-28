@@ -3,7 +3,6 @@
 
 #include:etoolbox
 #include:kvoptions
-#include:xparse
 #include:amsmath
 #include:mathtools
 #include:xstring

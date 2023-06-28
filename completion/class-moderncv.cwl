@@ -12,11 +12,9 @@
 #include:fancyhdr
 #include:tweaklist
 #include:calc
-#include:xparse
 #include:microtype
 #include:moderncvcollection
 #include:moderncvcompatibility
-#include:expl3
 
 #keyvals:\documentclass/moderncv#c
 a4paper

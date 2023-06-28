@@ -1,7 +1,6 @@
 # linop package
 # Matthew Bertucci 12/14/2021 for v0.1
 
-#include:xparse
 #include:bm
 
 #keyvals:\usepackage/linop#c

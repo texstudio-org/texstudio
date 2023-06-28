@@ -1,7 +1,6 @@
 # verifiche package
 # Matthew Bertucci 2022/09/19 for v6.0
 
-#include:xparse
 #include:xkeyval 
 #include:amsmath
 #include:amssymb

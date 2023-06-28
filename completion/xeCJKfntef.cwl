@@ -3,7 +3,6 @@
 #modified zepinglee 30 Jan 2021
 # updated 02 May 2022 for v3.8.8
 
-#include:expl3
 #include:xeCJK
 #include:ulem
 

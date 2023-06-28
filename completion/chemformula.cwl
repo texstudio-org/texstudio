@@ -6,8 +6,6 @@
 # Contact: contact@mychemistry.eu
 # File written on 02/23/2016
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:tikz
 #include:amsmath

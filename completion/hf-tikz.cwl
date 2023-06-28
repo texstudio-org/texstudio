@@ -3,7 +3,6 @@
 
 #include:tikz
 #include:tikzlibraryshadings
-#include:xparse
 #include:etoolbox
 
 #keyvals:\usepackage/hf-tikz#c

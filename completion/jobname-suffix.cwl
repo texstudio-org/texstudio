@@ -1,8 +1,6 @@
 # jobname-suffix package
 # Matthew Bertucci 2022/09/26 for v1.0
 
-#include:expl3
-
 \JobnameSuffix
 \IfSuffixTF{true condition}{false condition}
 \IfSuffixTF[suffixes]{true condition}{false condition}

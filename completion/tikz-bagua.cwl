@@ -4,7 +4,6 @@
 #include:tikz
 #include:xstring
 #include:bitset
-#include:xparse
 #include:xintexpr
 
 \taiji

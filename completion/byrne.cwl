@@ -1,7 +1,6 @@
 # byrne package
 # Matthew Bertucci 2022/07/06 for v0.2.2
 
-#include:xparse
 #include:ifmtarg
 #include:luamplib
 

@@ -1,7 +1,6 @@
 # matapli class
 # Matthew Bertucci 3/22/2022 for v1.2.0
 
-#include:expl3
 #include:class-book
 #include:iftex
 #include:latexsym

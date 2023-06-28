@@ -1,11 +1,9 @@
 # skdoc class
 # Matthew Bertucci 2/19/2022 for v1.5d
 
-#include:expl3
 #include:class-scrartcl
 #include:etoolbox
 #include:xstring
-#include:xparse
 #include:atbegshi
 #include:kvoptions
 #include:pdftexcmds

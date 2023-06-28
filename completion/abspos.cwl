@@ -1,7 +1,6 @@
 # abspos package
 # Matthew Bertucci 2022/09/24 for v0.1
 
-#include:expl3
 #include:atbegshi
 
 \absposset{options%keyvals}

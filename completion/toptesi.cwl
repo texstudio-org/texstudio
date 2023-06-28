@@ -5,7 +5,6 @@
 #include:scrextend
 #include:iftex
 #include:xspace
-#include:xparse
 #include:topfront
 #include:graphicx
 #include:etoolbox

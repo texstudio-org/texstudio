@@ -4,9 +4,7 @@
 # updated 7 June 2022 for v3.9.0
 
 #include:xetex
-#include:expl3
 #include:xtemplate
-#include:xparse
 #include:fontspec
 
 # package only keys

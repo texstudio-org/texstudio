@@ -1,9 +1,7 @@
 # skmath package
 # Matthew Bertucci 1/25/2022 for v0.5a
 
-#include:expl3
 #include:l3keys2e
-#include:xparse
 #include:amssymb
 #include:mathtools
 #include:xfrac

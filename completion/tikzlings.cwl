@@ -27,7 +27,6 @@
 #include:tikzlings-squirrels
 #include:tikzlings-wolves
 #include:tikzlings-addons
-#include:expl3
 
 \tikzling
 \tikzling[options%keyvals]

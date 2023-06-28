@@ -7,8 +7,6 @@
 #include:xstring
 #include:shellesc
 #include:iftex
-#include:expl3
-#include:xparse
 #include:class-beamer
 
 #keyvals:\documentclass/beamerswitch#c

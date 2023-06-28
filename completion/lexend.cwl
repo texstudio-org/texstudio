@@ -1,7 +1,6 @@
 # lexend package
 # Matthew Bertucci 1/15/2021 for v1.1.0.70
 
-#include:expl3
 #include:fontspec
 #include:kvoptions
 

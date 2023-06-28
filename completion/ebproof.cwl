@@ -1,9 +1,6 @@
 # ebproof package
 # Matthew Bertucci 9/27/2021 for v2.1.1
 
-#include:expl3
-#include:xparse
-
 \begin{prooftree}#\math
 \begin{prooftree}[options%keyvals]#\math
 \end{prooftree}

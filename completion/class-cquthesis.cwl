@@ -6,7 +6,6 @@
 #include:class-ctexbook
 #include:xeCJK
 #include:etoolbox
-#include:xparse
 #include:environ
 #include:calc
 #include:ifxetex

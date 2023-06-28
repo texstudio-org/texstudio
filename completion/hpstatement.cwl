@@ -1,7 +1,6 @@
 # hpstatement package
 # Matthew Bertucci 2022-05-09 for v2.00
 
-#include:expl3
 #include:l3keys2e
 #include:iflang
 

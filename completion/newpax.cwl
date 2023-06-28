@@ -7,7 +7,6 @@
 #include:kvoptions
 #include:auxhook
 #include:etoolbox
-#include:xfp
 
 \newpaxsetup{options%keyvals}
 

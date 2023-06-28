@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/07/03 for v1.0
 
 #include:tikz
-#include:xparse
 
 #keyvals:\usepackage/cnlogo#c
 ahu

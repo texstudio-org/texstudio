@@ -6,8 +6,6 @@
 #include:tikzlibrarycalc
 #include:tikzlibrarydecorations.markings
 #include:tikzlibrarydubins
-#include:xfp
-#include:xparse
 
 \sankeyset{options%keyvals}
 

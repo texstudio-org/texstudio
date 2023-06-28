@@ -9,8 +9,6 @@
 # commonly used and not yet recorded in latex-document.cwl and amssymb.cwl can 
 # be added.
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:fontspec
 #include:fix-cm

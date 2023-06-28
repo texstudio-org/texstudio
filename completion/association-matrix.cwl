@@ -5,7 +5,6 @@
 #include:forloop
 #include:ifthen
 #include:textcomp
-#include:xparse
 
 \amxrow{key%plain}{text}
 \amxcol{key%plain}{text}

@@ -1,9 +1,7 @@
 # skrapport class
 # Matthew Bertucci 2/2/2022 for v0.12k
 
-#include:expl3
 #include:l3keys2e
-#include:xparse
 #include:xstring
 #include:etoolbox
 #include:typearea

@@ -3,7 +3,6 @@
 
 #include:tikz
 #include:etoolbox
-#include:xparse
 
 #keyvals:\usepackage/dynblocks#c
 customcolors

@@ -3,7 +3,6 @@
 
 #include:emoji
 #include:natbib
-#include:xparse
 
 \emojicite{%<key,emoji%>}
 \emojicite{bibid}#Sc

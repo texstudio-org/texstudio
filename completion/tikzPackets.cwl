@@ -2,7 +2,6 @@
 # Matthew Bertucci 12/24/2021 for v1.0
 
 #include:tikz
-#include:xparse
 #include:tcolorbox
 #include:tcolorboxlibraryskins
 #include:pbox

@@ -7,7 +7,6 @@
 #include:subcaption
 #include:enumitem
 #include:verbatim
-#include:xparse
 #include:ulem
 #include:mdframed
 # mdframed loaded with framemethod=TikZ option

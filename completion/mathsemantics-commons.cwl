@@ -4,7 +4,6 @@
 #include:ifthen
 #include:xifthen
 #include:ifxetex
-#include:xparse
 #include:xspace
 #include:amssymb
 #include:mathtools

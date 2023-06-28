@@ -4,7 +4,6 @@
 #include:pgfkeys
 #include:xstring
 #include:siunitx
-#include:xparse
 #include:array
 #include:collcell
 

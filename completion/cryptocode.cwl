@@ -13,8 +13,6 @@
 #include:pgf
 #include:forloop
 #include:array
-#include:xparse
-#include:expl3
 #include:pbox
 #include:varwidth
 #include:suffix

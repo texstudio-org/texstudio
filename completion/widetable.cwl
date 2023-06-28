@@ -1,8 +1,6 @@
 # widetable package
 # Matthew Bertucci 12/12/2021 for v2.1
 
-#include:xparse
-
 \begin{widetabular}{width}{preamble}#\tabular
 \begin{widetabular}{width}[alignment]{preamble}#\tabular
 \end{widetabular}

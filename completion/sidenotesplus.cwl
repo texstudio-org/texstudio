@@ -3,7 +3,6 @@
 
 #include:marginnote
 #include:caption
-#include:xparse
 #include:calc
 #include:etoolbox
 #include:l3keys2e

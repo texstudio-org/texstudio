@@ -1,9 +1,6 @@
 # numberpt package
 # Matthew Bertucci 12/29/2021 for v1.0
 
-#include:expl3
-#include:xparse
-
 #keyvals:\usepackage/numberpt#c
 catorze
 quatorze

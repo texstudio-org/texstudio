@@ -10,7 +10,6 @@
 #include:etoolbox
 #include:elocalloc
 #include:environ
-#include:xparse
 #include:inlinedef
 
 #keyvals:\usepackage/forest#c

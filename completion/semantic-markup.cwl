@@ -1,7 +1,6 @@
 # semantic-markup package
 # Matthew Bertucci 2/15/2022
 
-#include:xparse
 #include:csquotes
 #include:environ
 #include:stackengine

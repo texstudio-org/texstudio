@@ -4,7 +4,6 @@
 #include:pgfkeys
 #include:pgfopts
 #include:etoolbox
-#include:xparse
 #include:stringstrings
 #include:csvsimple
 

@@ -2,7 +2,6 @@
 # Matthew Bertucci 9/19/2021 for v1.0
 
 #include:tkz-fct
-#include:xparse
 
 \nlAxisX{min}{max}#/tikzpicture
 \nlinfnum{number}{o or c}#/tikzpicture

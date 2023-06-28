@@ -5,7 +5,6 @@
 #include:array
 #include:l3keys2e
 #include:pgfcore
-#include:xparse
 
 #keyvals:\usepackage/nicematrix#c
 renew-dots#true,false

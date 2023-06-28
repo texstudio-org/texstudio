@@ -1,8 +1,6 @@
 # xdufont package
 # Matthew Bertucci 2023/02/23 for v5.4.0.1
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:xeCJK
 #include:unicode-math

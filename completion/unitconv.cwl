@@ -2,7 +2,6 @@
 # Matthew Bertucci 12/12/2021 for v0.1
 
 #include:iftex
-#include:xparse
 #include:luacode
 
 \convTeXLength{TeX length}

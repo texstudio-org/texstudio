@@ -1,8 +1,6 @@
 # letterswitharrows package
 # Matthew Bertucci 9/21/2021
 
-#include:expl3
-#include:xparse
 #include:l3keys2e
 #include:mathtools
 

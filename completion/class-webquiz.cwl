@@ -3,7 +3,6 @@
 
 #include:etoolbox
 #include:pgfopts
-#include:xparse
 #include:pgffor
 #include:amsfonts
 #include:amsmath
