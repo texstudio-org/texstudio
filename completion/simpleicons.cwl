@@ -1,8 +1,7 @@
 # simpleicons package
-# Matthew Bertucci 2023/06/23 for v9.2.0
+# Matthew Bertucci 2023/06/30 for v9.3.0
 
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 
 \simpleicon{name%keyvals}
 
@@ -28,6 +27,7 @@ acer
 acm
 actigraph
 activision
+acura
 adafruit
 adblock
 adblockplus
@@ -117,6 +117,7 @@ amazonlumberyard
 amazonpay
 amazonprime
 amazonrds
+amazonredshift
 amazons3
 amazonsqs
 amd
@@ -184,6 +185,7 @@ applepay
 applepodcasts
 appletv
 appsignal
+appsmith
 appstore
 appveyor
 appwrite
@@ -248,6 +250,7 @@ azuredevops
 azurefunctions
 azurepipelines
 babel
+babylondotjs
 backblaze
 backbonedotjs
 backendless
@@ -356,6 +359,7 @@ byte
 bytedance
 c
 cachet
+cadillac
 cafepress
 caffeine
 cairographics
@@ -603,6 +607,7 @@ docker
 docsdotrs
 docusign
 dogecoin
+doi
 dolby
 doordash
 dotenv
@@ -638,6 +643,7 @@ eagle
 easyjet
 ebay
 ebox
+eclipseadoptium
 eclipseche
 eclipseide
 eclipsejetty
@@ -736,6 +742,7 @@ feedly
 ferrari
 ferrarinv
 ffmpeg
+fi
 fiat
 fidoalliance
 fifa
@@ -1038,6 +1045,7 @@ imagej
 imdb
 imgur
 immer
+immich
 imou
 indeed
 infiniti
@@ -1159,6 +1167,7 @@ kickstarter
 kik
 kingstontechnology
 kinopoisk
+kinsta
 kirby
 kitsu
 klarna
@@ -1252,6 +1261,7 @@ lmms
 lodash
 logitech
 logmein
+logseq
 logstash
 looker
 loom
@@ -1275,6 +1285,7 @@ magasinsu
 magento
 magisk
 mailchimp
+maildotcom
 maildotru
 mailgun
 majorleaguehacking
@@ -1284,6 +1295,7 @@ man
 manageiq
 manjaro
 mapbox
+maplibre
 mariadb
 mariadbfoundation
 markdown
@@ -1333,6 +1345,7 @@ metrodelaciudaddemexico
 metrodemadrid
 metrodeparis
 mewe
+mg
 microbit
 microdotblog
 microgenetics
@@ -1385,6 +1398,7 @@ mongodb
 mongoose
 monica
 monkeytie
+monkeytype
 monogames
 monoprix
 monster
@@ -1445,6 +1459,7 @@ nextdoor
 nextdotjs
 nfc
 nginx
+nginxproxymanager
 ngrok
 niconico
 nike
@@ -1483,6 +1498,7 @@ nutanix
 nuxtdotjs
 nvidia
 nx
+nxp
 nzxt
 observable
 obsidian
@@ -1680,6 +1696,7 @@ powervirtualagents
 prdotco
 preact
 precommit
+prefect
 premierleague
 prestashop
 presto
@@ -1702,6 +1719,7 @@ prometheus
 prosieben
 protocolsdotio
 protodotio
+proton
 protondb
 protondrive
 protonmail
@@ -1961,6 +1979,7 @@ skynet
 skypack
 skype
 skypeforbusiness
+skyrock
 slack
 slackware
 slashdot
@@ -2216,6 +2235,7 @@ triller
 trino
 tripadvisor
 tripdotcom
+trivy
 trove
 trpc
 truenas
@@ -2490,13 +2510,13 @@ zyte
 #endkeyvals
 
 \simpleiconsmap#S
-\simpleiconsmapOne#S
-\simpleiconsmapTwo#S
-\simpleiconsmapThree#S
-\simpleiconsmapFour#S
-\simpleiconsmapFive#S
-\simpleiconsmapSix#S
-\simpleiconsmapSeven#S
-\simpleiconsmapEight#S
-\simpleiconsmapNine#S
-\simpleiconsmapOneZero#S
+\simpleiconsmapone#S
+\simpleiconsmaptwo#S
+\simpleiconsmapthree#S
+\simpleiconsmapfour#S
+\simpleiconsmapfive#S
+\simpleiconsmapsix#S
+\simpleiconsmapseven#S
+\simpleiconsmapeight#S
+\simpleiconsmapnine#S
+\simpleiconsmaponezero#S
