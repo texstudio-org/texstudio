@@ -3372,8 +3372,25 @@ void LatexDocument::patchLinesContaining(const QStringList cmds)
 					break;
 				}
 			}
-		}
-	}
+        }
+    }
+}
+/*!
+ * \brief reparse unknown commands
+ * lp has been changed
+ */
+void LatexDocument::patchUnknownCommands()
+{
+    for(int i=0;i<lines();++i){
+        QDocumentLineHandle *dlh=line(i).handle();
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+        for(int j=0;j<tl.length();++j){
+            if(tl[j].type==Token::commandUnknown){
+                patchStructure(i,1);
+                break;
+            }
+        }
+    }
 }
 
 void LatexDocuments::enablePatch(const bool enable)
@@ -3467,6 +3484,9 @@ void LatexDocument::setLtxCommands(const LatexParser &cmds)
 {
 	SynChecker.setLtxCommands(cmds);
 	lp = cmds;
+
+    // reparse unknown commands
+    patchUnknownCommands();
 
 	LatexEditorView *view = getEditorView();
 	if (view) {
