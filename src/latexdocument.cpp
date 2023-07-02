@@ -3438,7 +3438,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 
 	if (updateAll) {
 		foreach (LatexDocument *elem, listOfDocs) {
-            elem->setLtxCommands(lp);
+            elem->setLtxCommands(lp,elem==this);
             elem->reCheckSyntax();
 		}
 		// check if other document have this doc as child as well (reused doc...)
@@ -3480,13 +3480,14 @@ void LatexDocument::addLtxCommands()
     lp.append(this->ltxCommands);
 }
 
-void LatexDocument::setLtxCommands(const LatexParser &cmds)
+void LatexDocument::setLtxCommands(const LatexParser &cmds,bool skipPatch)
 {
 	SynChecker.setLtxCommands(cmds);
 	lp = cmds;
-
     // reparse unknown commands
-    patchUnknownCommands();
+    if(!skipPatch){
+        patchUnknownCommands();
+    }
 
 	LatexEditorView *view = getEditorView();
 	if (view) {
