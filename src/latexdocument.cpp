@@ -3385,8 +3385,8 @@ void LatexDocument::patchUnknownCommands()
         QDocumentLineHandle *dlh=line(i).handle();
         TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
         for(int j=0;j<tl.length();++j){
-            if(tl[j].type==Token::commandUnknown){
-                patchStructure(i,1);
+            if(tl[j].type==Token::commandUnknown && tl[j].length>2){ // skip over '\\' and similar
+                patchStructure(i,1,true);
                 break;
             }
         }
