@@ -83,6 +83,7 @@
 \day#*
 \deadcycles#*
 \def#*
+\def{cmd}#Sd
 \defaulthyphenchar#*
 \defaultskewchar#*
 \delcode#*
@@ -103,6 +104,7 @@
 \dp#*
 \dump#*
 \edef#*
+\edef{cmd}#Sd
 \else#*
 \emergencystretch#*
 \end#*
@@ -137,6 +139,7 @@
 \futurelet#*
 \futurelet{cmd}#Sd
 \gdef#*
+\gdef{cmd]#Sd
 \global#*
 \globaldefs#*
 \halign#*
@@ -374,6 +377,7 @@
 \widowpenalty#*
 \write#*
 \xdef#*
+\xdef{cmd}#Sd
 \xleaders#*
 \xspaceskip#*
 \year#*
