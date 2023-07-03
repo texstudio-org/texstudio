@@ -1,6 +1,8 @@
 # pst-math package
-# Matthew Bertucci 2/19/2022 for v0.65
+# Matthew Bertucci 2023/07/03 for v0.67
 
+#include:multido
+#include:pstricks
 #include:pst-calculate
 #include:ifluatex
 #include:xstring
@@ -14,5 +16,3 @@
 \getNumberFromList{number}
 
 \PSTmathLoaded#S
-\fileversion
-\filedate#S
