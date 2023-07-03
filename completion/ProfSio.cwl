@@ -1,6 +1,7 @@
 # ProfSio package
-# Matthew Bertucci 2023/06/26 for v0.1.1
+# Matthew Bertucci 2023/07/03 for v0.1.2
 
+#include:iftex
 #include:tikz
 #include:pgffor
 #include:tabularray
@@ -15,6 +16,9 @@
 #include:tikzlibrarybabel
 #include:tikzlibraryshapes
 #include:tikzlibraryshapes.geometric
+#include:xkeyval
+#include:luacode
+#include:nicematrix
 
 \begin{GrapheMPM}
 \begin{GrapheMPM}<options TikZ>
@@ -131,9 +135,7 @@ Boucle
 \DiagrammeSagittal[clés%keyvals]{liaisons}
 \DiagrammeSagittal[clés%keyvals]<options TikZ>{liaisons}
 \DiagrammeSagittal*{liaisons}
-\DiagrammeSagittal*<options TikZ>{liaisons}
 \DiagrammeSagittal*[clés%keyvals]{liaisons}
-\DiagrammeSagittal*[clés%keyvals]<options TikZ>{liaisons}
 
 #keyvals:\DiagrammeSagittal,\DiagrammeSagittal*
 DistElem=%<nombre%>
@@ -145,12 +147,54 @@ CouleurAppli=#%color
 CouleurF=#%color
 CouleurFleches=#%color
 TypeFleche=%<type%>
+Offset=##L
 Epaisseur=##L
 Police=%<font commands%>
 NoirBlanc#true,false
 Labels#true,false
 Ensembles=%<nom%>
 PosLabels=#haut,bas
+#endkeyvals
+
+\DiagrammeSagittalCompo{liaisons1}{liaisons2}
+\DiagrammeSagittalCompo<options TikZ>{liaisons1}{liaisons2}
+\DiagrammeSagittalCompo[clés%keyvals]{liaisons1}{liaisons2}
+\DiagrammeSagittalCompo[clés%keyvals]<options TikZ>{liaisons1}{liaisons2}
+\DiagrammeSagittalCompo*{liaisons1}{liaisons2}
+\DiagrammeSagittalCompo*[clés%keyvals]{liaisons1}{liaisons2}
+
+#keyvals:\DiagrammeSagittalCompo,\DiagrammeSagittalCompo*
+DistElem=%<nombre%>
+DistEns=%<nombre%>
+LargEns=%<nombre%>
+NomApplis=%<nom1%>/%<nom2%>
+CouleurE=#%color
+CouleurApplis=#%color
+CouleurF=#%color
+CouleurG=#%color
+CouleurFleches=#%color
+TypeFleche=%<type%>
+Offset=##L
+Epaisseur=##L
+Police=%<font commands%>
+NoirBlanc#true,false
+Labels#true,false
+Ensembles=%<nom%>
+PosLabels=#haut,bas
+#endkeyvals
+
+\TableVerite{vars}{colonnes_vars}{calculs}{colonnes_calculs}
+\TableVerite<opts nicematrix>{vars}{colonnes_vars}{calculs}{colonnes_calculs}
+\TableVerite[clés%keyvals]{vars}{colonnes_vars}{calculs}{colonnes_calculs}
+\TableVerite[clés%keyvals]<opts nicematrix>{vars}{colonnes_vars}{calculs}{colonnes_calculs}
+
+#keyvals:\TableVerite
+VF=%<vrai%>/%<faux%>
+Swap#true,false
+LargeursColonnes=
+CouleurEnonce=#%color
+CodeAvant=%<code%>
+CodeApres=%<code%>
 #endkeyvals
 
 # not documented
@@ -211,3 +255,32 @@ PosLabels=#haut,bas
 \DSPoliceLabels#S
 \DSNomEns#S
 \DSPosLabels#S
+\DSOffset#S
+\DSListeEltE#S
+\DSListeEltF#S
+\DSListeEltG#S
+\DSEcartIN#S
+\DSEcartIP#S
+\DSLargPatates#S
+\DSNomsFcts#S
+\DSCouleurE#S
+\DSCouleursFct#S
+\DSCouleurF#S
+\DSCouleurArc#S
+\DSCouleurG#S
+\DSTypeFleche#S
+\DSThick#S
+\DSPolicePatates#S
+\DSPoliceLabels#S
+\DSNomEns#S
+\DSPosLabels#S
+\DSOffset#S
+\GenTruthTable{arg1}{arg2}#S
+\GenTruthTable[opt]{arg1}{arg2}#S
+\GenTruthTable*{arg1}{arg2}#S
+\GenTruthTable*[opt]{arg1}{arg2}#S
+\TTABLEtruefalse#S
+\TTABLElargeurs#S
+\TTABLEcoul#S
+\TTABLEcodebefore#S
+\TTABLEcodeafter#S
