@@ -7,7 +7,7 @@
 #include "configmanager.h"
 
 QSet<QString> LatexTables::tabularNames = QSet<QString>() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu"
-                                        << "IEEEeqnarray" << "xtabular" << "xtabular*" << "mpxtabular" << "mpxtabular*";
+                                                          << "IEEEeqnarray" << "xtabular" << "xtabular*" << "mpxtabular" << "mpxtabular*"<<"tblr"<<"longtblr";
 QSet<QString> LatexTables::tabularNamesWithOneOption = QSet<QString>() << "tabular*" << "tabularx" << "tabulary";
 QSet<QString> LatexTables::mathTables = QSet<QString>() << "align" << "align*" << "array" << "matrix" << "matrix*" << "bmatrix" << "bmatrix*"
                                       << "Bmatrix" << "Bmatrix*" << "pmatrix" << "pmatrix*" << "vmatrix" << "vmatrix*"
@@ -485,6 +485,18 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 			}
 		}
 	}
+    // in case of colspec, refine further
+    if(opt.contains("colspec")){
+        QRegularExpression re{"^(.*colspec\\s*[=]\\s*\\{)(.*)\\}"};
+        QRegularExpressionMatch match = re.match(opt);
+        if (match.hasMatch()) {
+            int offset=match.capturedLength(1);
+            QString matched = match.captured(2); // matched == "23 def"
+            opt=matched;
+            cur.moveTo(c.lineNumber(), pos+1+offset);
+            cur.movePosition(opt.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+        }
+    }
 	return opt;
 }
 

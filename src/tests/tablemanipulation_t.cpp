@@ -786,7 +786,11 @@ void TableManipulationTest::getDef_data(){
 	QTest::newRow("multipliers")
 		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 0
-		<< "|l|l|@{ll}c*{2}{lc}";
+        << "|l|l|@{ll}c*{2}{lc}";
+    QTest::newRow("colspec")
+        << "\\begin{tblr}{colspec={ll}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "ll";
 
 }
 void TableManipulationTest::getDef(){
