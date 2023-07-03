@@ -139,7 +139,7 @@
 \futurelet#*
 \futurelet{cmd}#Sd
 \gdef#*
-\gdef{cmd]#Sd
+\gdef{cmd}#Sd
 \global#*
 \globaldefs#*
 \halign#*
