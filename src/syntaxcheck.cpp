@@ -902,6 +902,13 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						}
 					}
 				}
+                if(option.contains("colspec")){
+                    const QRegularExpression re{"^(.*colspec\\s*[=]\\s*\\{)(.*)\\}"};
+                    const QRegularExpressionMatch match = re.match(option);
+                    if (match.hasMatch()) {
+                        option = match.captured(2);
+                    }
+                }
 				QSet<QString> translationMap=ltxCommands->possibleCommands.value("%columntypes");
 				QStringList res = LatexTables::splitColDef(option);
 				QStringList res2;
