@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/05/19 for v0.99-z-m
+# Matthew Bertucci 2023/07/04 for v0.99-z-o
 
 #include:verbatim
 #include:mathtools
@@ -56,14 +56,24 @@ nonamssymb
 ## L'écriture de grandeurs ##
 \Lg{nombre}
 \Lg[unité,clés%keyvals]{nombre}
+\Lg*{nombre}
+\Lg*[unité,clés%keyvals]{nombre}
 \Aire{nombre}
 \Aire[unité,clés%keyvals]{nombre}
+\Aire*{nombre}
+\Aire*[unité,clés%keyvals]{nombre}
 \Vol{nombre}
 \Vol[unité,clés%keyvals]{nombre}
+\Vol*{nombre}
+\Vol*[unité,clés%keyvals]{nombre}
 \Masse{nombre}
 \Masse[unité,clés%keyvals]{nombre}
+\Masse*{nombre}
+\Masse*[unité,clés%keyvals]{nombre}
 \Capa{nombre}
 \Capa[unité,clés%keyvals]{nombre}
+\Capa*{nombre}
+\Capa*[unité,clés%keyvals]{nombre}
 \Temps{nombre}
 \Temps[unité,clés%keyvals]{nombre}
 \MasseVol{nombre}
@@ -146,6 +156,7 @@ Debut=%<nombre%>
 Fin=%<nombre%>
 Seul#true,false
 Addition#true,false
+Soustraction#true,false
 #endkeyvals
 
 ## Différents types de papiers ##
@@ -308,6 +319,20 @@ Numero=%<numero%>
 Questions=%<nombre%>
 ValeurMin=%<nombre%>
 ValeurMax=%<nombre%>
+#endkeyvals
+
+## Automatismes de calculs ##
+\Automatismes{o1,o2,...}
+\Automatismes[clés%keyvals]{o1,o2,...}
+
+#keyvals:\Automatismes
+Relatifs#true,false
+Questions=%<nombre%>
+ValeurMin=%<nombre%>
+ValeurMax=%<nombre%>
+Fractions#true,false
+Graine=%<nombre%>
+Priorites#true,false
 #endkeyvals
 
 ## Le calcul mental ##
@@ -504,7 +529,6 @@ Rectangle#true,false
 #keyvals:\Pythagore
 Soustraction#true,false
 Egalite#true,false
-Exact#true,false
 Entier#true,false
 Racine#true,false
 Precision=%<integer%>
@@ -681,6 +705,8 @@ Escher#true,false
 Rayon=%<nombre%>
 Position=%<nombre%>
 Ecart=%<nombre%>
+Einstein#true,false
+Vampire#true,false
 #endkeyvals
 
 ## Opérations posées ##
@@ -847,8 +873,8 @@ Fleches#true,false
 \DivFraction[clés%keyvals][etape]{a/b}{c/d}
 
 ## Ranger des nombres rationnels relatifs ##
-\Rangement{Liste de nombres}
-\Rangement[clés%keyvals]{Liste de nombres}
+\Rangement{liste de nombres}
+\Rangement[clés%keyvals]{liste de nombres}
 
 #keyvals:\Rangement
 Decroissant#true,false
@@ -946,6 +972,7 @@ Nom#true,false
 Qualitatif#true,false
 Liste#true,false
 Sondage#true,false
+Classes#true,false
 Tableau#true,false
 Stretch=%<factor%>
 CouleurTab=#%color
@@ -986,12 +1013,14 @@ ListeCouleursB={%<liste des coleurs%>}
 Angle#true,false
 SemiAngle#true,false
 Rayon=##L
+DebutAngle=%<degrees%>
 AffichageAngle#true,false
 AffichageDonnees#true,false
 LectureInverse#true,false
 Legende#true,false
 LegendesVides={%<liste de numéros%>}
 Hachures#true,false
+ListeHachures=%<degrees%>
 EcartHachures=%<nombre%>
 EpaisseurHachures=%<nombre%>
 ListeCouleurs={%<liste des coleurs%>}
@@ -1000,6 +1029,9 @@ Longueur=##L
 Hauteur=##L
 EcartBarre=##L
 Bicolore#true,false
+Histogramme#true,false
+UniteAire=%<nombre%>
+DepartHisto=%<nombre%>
 Representation#true,false
 Xmin=%<nombre%>
 Xmax=%<nombre%>
@@ -1022,13 +1054,17 @@ EffectifTotal#true,false
 Etendue#true,false
 Concret#true,false
 Unite=%<unité%>
+Concret=%<unité%>
 Mediane#true,false
 Coupure=%<integer%>
 Moyenne#true,false
 Precision=%<integer%>
 SET#true,false
+Somme#true,false
+MoyenneA#true,false
 ValeurExacte#true,false
 ACompleter#true,false
+UneMediane
 #endkeyvals
 
 \EffectifTotal
@@ -1068,6 +1104,8 @@ Ligne#true,false
 ProgCalcul#true,false
 Antecedent#true,false
 Retrouve#true,false
+CoefDir=
+OrdoOrig=
 Redaction#true,false
 Graphique#true,false
 Unitex=%<nombre%>
@@ -1091,6 +1129,7 @@ Ecriture#true,false
 Points#true,false
 Tangentes#true,false
 Catmull#true,false
+Splines#true,false
 PasX=%<nombre%>
 PasY=%<nombre%>
 UniteX=%<nombre%>
@@ -1945,6 +1984,23 @@ Solution#true,false
 Niveau=%<nombre%>
 Cercle#true,false
 CouleurCadre=#%color
+#endkeyvals
+
+## Number Hive ##
+\NumberHive
+\NumberHive[clés%keyvals]
+
+#keyvals:\NumberHive
+UniteHexa=##L
+Negatif#true,false
+Produit#true,false
+Niveau=%<nombre%>
+Double#true,false
+Graine=%<nombre%>
+Jetons={%<jetons%>}
+Cases={%<cases%>}
+Aide#true,false
+ListeCouleurs={%<list des couleurs%>}
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -3351,3 +3407,35 @@ Teal#B
 \MPPatronCube{arg1}{arg2}#S
 \MPPatronPaveCode#S
 \MPPatronPave{arg1}{arg2}#S
+\TableSoustractionSeule{arg}#S
+\MPEinsteinHatCode#S
+\MPEinstein#S
+\RangementListe{arg}#S
+\PfCArticleMediane#S
+\UpdateHach{arg}#S
+\toklisteanglehachure#S
+\CompteurECCC#S
+\CompteurECCCTotal#S
+\UpdatetoksHisto#S
+\UpdatetoksECC#S
+\buildgraphhisto#S
+\CalculFrequenceClasses{arg}#S
+\CalculECCClasses{arg}#S
+\buildtabclasses#S
+\MPBuildHisto{arg1}{arg2}{arg3}{arg4}#S
+\MPSplineCode#S
+\MPSpline{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\toklistenumberhive#S
+\toklistecasescoloreesNH#S
+\UpdatetoksNHive{Arg}#S
+\UpdatetoksCCNHive{arg}#S
+\BuildNumberHiveAdditif{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\ChoixAleaMix{arg1}{arg2}{arg3}{arg4}#S
+\thePfCAutoNbcpt#S
+\ChoixNombreUn{arg}#S
+\ChoixNombreUn[opt]{arg}#S
+\ChoixNombreDeux{arg}#S
+\ChoixNombreDeux[opt]{arg}#S
+\SoustractionPositive{arg1}{arg2}#S
+\SoustractionPositive[opt]{arg1}{arg2}#S
+\PfCTabstrut#S
