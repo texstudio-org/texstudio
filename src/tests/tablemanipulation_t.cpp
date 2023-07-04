@@ -480,7 +480,11 @@ void TableManipulationTest::getNumberOfCol_data(){
 	QTest::newRow("multipliers, nested")
 		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{*{2}{l}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 0
-		<< 7;
+        << 7;
+    QTest::newRow("colspec")
+        << "\\begin{tblr}{colspec={|l|l|@{ll}c*{2}{*{2}{l}}}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << 7;
 
 }
 void TableManipulationTest::getNumberOfCol(){
@@ -784,14 +788,22 @@ void TableManipulationTest::getDef_data(){
 		<< "|l|l|@{ll}cc";
 
 	QTest::newRow("multipliers")
-		<< "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 0
+        << "|l|l|@{ll}c*{2}{lc}";
+    QTest::newRow("unrelated argument")
+        << "\\begin{tabular}{|l|l|@{ll}c*{2}{lc}}{abc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
         << "|l|l|@{ll}c*{2}{lc}";
     QTest::newRow("colspec")
         << "\\begin{tblr}{colspec={ll}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 2 << 0
         << "ll";
     QTest::newRow("colspec2")
+        << "\\begin{tblr}{width=0.8\\linewidth,colspec={|X[2,l]|X[3,l]|}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "|X[2,l]|X[3,l]|";
+    QTest::newRow("colspec3")
         << "\\begin{tblr}{width=0.8\\linewidth,colspec={|X[2,l]|X[3,l]|}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 2 << 0
         << "|X[2,l]|X[3,l]|";
