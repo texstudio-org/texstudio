@@ -1,5 +1,5 @@
 # ltugboat class
-# Matthew Bertucci 2023/01/17 for v2.28
+# Matthew Bertucci 2023/07/04 for v2.30
 
 #include:mflogo
 
@@ -412,12 +412,12 @@ runningoff
 \tubmultipleaffilnet#*
 \tubomitdoioptionfalse#*
 \tubomitdoioptiontrue#*
-\tuborigthepage#*
 \tubraggedfoot#*
 \tubreflect{text}#*
 \tubrunningauthor#*
 \tubsecfmt#*
 \tubsechook#*
+\tubsecondcolstartextra#*
 \tubsecondcolstartfalse#*
 \tubsecondcolstarttrue#*
 \tubsentencespace
@@ -429,7 +429,6 @@ runningoff
 \tubtypesetdoi#*
 \tug
 \TUG
-\tug
 \UG#*
 \ulap{text}
 \UNIX
@@ -459,6 +458,7 @@ runningoff
 \XHTML
 \xlap{text}
 \XML
+\XMP
 \xrefto{label}#*r
 \xreftoOFF{label}#*r
 \xreftoON{label}#*r
