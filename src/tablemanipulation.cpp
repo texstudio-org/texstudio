@@ -482,6 +482,7 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 				opt.chop(1);
 				cur.moveTo(c.lineNumber(), pos + 1);
 				cur.movePosition(opt.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                break;
 			}
 		}
 	}
