@@ -13,6 +13,7 @@
 - option Disable horizontal scrolling for "Fit to Text Width" now affects horizontal scrolling with mousepad and scroll wheel ([#1526](https://github.com/texstudio-org/texstudio/issues/1526))
 - fix editor moving last line of a selection when selection ends at start of a line ([#3131](https://github.com/texstudio-org/texstudio/issues/3131))
 - fix some icon issues on OSX ([#3100](https://github.com/texstudio-org/texstudio/issues/2921),[#3104](https://github.com/texstudio-org/texstudio/issues/3104))
+- basic support for tblr colspec
 
 ## TeXstudio 4.5.2
 
