@@ -791,7 +791,10 @@ void TableManipulationTest::getDef_data(){
         << "\\begin{tblr}{colspec={ll}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 2 << 0
         << "ll";
-
+    QTest::newRow("colspec2")
+        << "\\begin{tblr}{width=0.8\\linewidth,colspec={|X[2,l]|X[3,l]|}}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 0
+        << "|X[2,l]|X[3,l]|";
 }
 void TableManipulationTest::getDef(){
 	QFETCH(QString, text);
