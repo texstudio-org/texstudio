@@ -491,7 +491,7 @@ QString LatexTables::getDef(QDocumentCursor &cur)
         QRegularExpressionMatch match = re.match(opt);
         if (match.hasMatch()) {
             int offset=match.capturedLength(1);
-            QString matched = match.captured(2); // matched == "23 def"
+            QString matched = match.captured(2);
             opt=matched;
             cur.moveTo(c.lineNumber(), pos+1+offset);
             cur.movePosition(opt.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
@@ -538,7 +538,15 @@ int LatexTables::getNumberOfColumns(QStringList values)
 			}
 			if (!opt.startsWith("{") || !opt.endsWith("}")) return -1;
 			opt = opt.mid(1);
-			opt.chop(1);
+            opt.chop(1);
+            // in case of colspec, refine further
+            if(opt.contains("colspec")){
+                QRegularExpression re{"^(.*colspec\\s*[=]\\s*\\{)(.*)\\}"};
+                QRegularExpressionMatch match = re.match(opt);
+                if (match.hasMatch()) {
+                    opt = match.captured(2);
+                }
+            }
 			//calculate number of columns ...
 			QStringList res = splitColDef(opt);
 			int cols = res.count();
