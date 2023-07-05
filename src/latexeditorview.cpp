@@ -2704,7 +2704,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
 			}
 		}
-		if (tk.subtype == Token::color) {
+		if (config->imageToolTip && tk.subtype == Token::color) {
 			QString text;
 			if (ts.size() > 1) {
 				ts.pop();
