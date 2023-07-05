@@ -717,7 +717,12 @@ void TableManipulationTest::splitCol_data(){
 
 	QTest::newRow("multipliers")
 		<< "|l|l|@{ll}c*{2}{lc}"
-		<< 7;
+        << 7;
+    QTest::newRow("colspec")
+        << "|X[2,l]|X[3,l]|"
+        << 2;
+
+
 }
 void TableManipulationTest::splitCol(){
 	QFETCH(QString, text);
