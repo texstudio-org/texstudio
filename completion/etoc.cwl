@@ -1,5 +1,5 @@
 # etoc package
-# Matthew Bertucci 2023/05/01 for v1.2a
+# Matthew Bertucci 2023/07/05 for v1.2b
 
 #include:kvoptions
 #include:multicol
@@ -221,6 +221,9 @@ ouroboros#true,false
 \etoctoccontentsline*{level name}{name}{bookmark level}
 \etocimmediatetoccontentsline{level name}{name}
 \etocimmediatetoccontentsline*{level name}{name}{bookmark level}
+
+### Compatibility ###
+\etocnoprotrusion#*
 
 ### not documented
 \etocclasslocalperhapsaddtotoc{arg}#S
