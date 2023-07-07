@@ -2705,11 +2705,11 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 		}
 		if (config->imageToolTip && tk.subtype == Token::color) {
-			QString text;
-			if (ts.size() > 1) {
-				ts.pop();
-				tk = ts.top();
-			}
+            QString text;
+            if (ts.size() > 1 && tk.type==Token::word) {
+                ts.pop();
+                tk = ts.top();
+            }
             text = QString("\\noindent{\\color%1 \\rule{1cm}{1cm} }").arg(tk.getText());
 			m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
 			emit showPreview(text);
