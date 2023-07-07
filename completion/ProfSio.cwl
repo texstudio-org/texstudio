@@ -1,5 +1,5 @@
 # ProfSio package
-# Matthew Bertucci 2023/07/03 for v0.1.2
+# Matthew Bertucci 2023/07/07 for v0.1.3
 
 #include:iftex
 #include:tikz
@@ -76,6 +76,9 @@ Aide#true,false
 Epaisseur=##L
 CouleurCases=#%color
 CouleurLegende=#%color
+StyleAlternatif#true,false
+AideAlt#true,false
+PoliceTT#true,false
 PosVarLaterale=#Gauche,Droite
 Legende#true,false
 #endkeyvals
