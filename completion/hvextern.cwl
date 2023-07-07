@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2023/01/29 for v0.32
+# Matthew Bertucci 2023/07/07 for v0.34
 
 #include:shellesc
 #include:xkeyval
@@ -32,6 +32,7 @@ checkCode
 progpath=%<path%>
 runsequence={%<command sequence%>}
 runs=%<integer%>
+runsAfter=%<integer%>
 grfOptions={%<\includegraphics options%>}
 lstOptions={%<listings options%>}
 textOptions={%<fancyvrb options%>}
@@ -78,6 +79,7 @@ aboveskip=##L
 belowpreambleskip=##L
 belowbodyskip=##L
 belowskip=##L
+shellesc#true,false
 #endkeyvals
 
 \defMarkerType{name}{start-main}{stop-main}{start-preamble}{stop-preamble}
