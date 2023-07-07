@@ -14,7 +14,7 @@ defined labels and commands.
 
 The root document is the top-most file in a multi-file document. For a
 single-file document this is the file itself. By default, all calls to
-LaTeX will be performed on the root document.
+LaTeX will be performed on the root document except if a class `subfiles` is used. Then the next higher file with that document-class is compiled. 
 
 TeXstudio automatically detects the root document. If that does not
 work, you can place a magic comment `% !TeX root = root-filename` at the
@@ -49,6 +49,9 @@ to set the magic comment `% !TeX root = root-filename` if you do not
 have the root document open. With this option enabled TeXstudio will
 always know about your complete document and act accordingly when
 performing highlighting or completion.
+
+The option `Editor -> cache included files` lets txs store important information about opened files on the disk.
+If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitely opened in a tab, txs loads the complete file from disk.
 
 ## Overview of TeXstudio command-line options
 

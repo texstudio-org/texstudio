@@ -225,7 +225,7 @@ defined labels and commands.</p>
 <h3>Root Document<a class="headerlink" href="#root-document" title="Permalink to this heading">#</a></h3>
 <p>The root document is the top-most file in a multi-file document. For a
 single-file document this is the file itself. By default, all calls to
-LaTeX will be performed on the root document.</p>
+LaTeX will be performed on the root document except if a class <code class="docutils literal notranslate"><span class="pre">subfiles</span></code> is used. Then the next higher file with that document-class is compiled.</p>
 <p>TeXstudio automatically detects the root document. If that does not
 work, you can place a magic comment <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">!TeX</span> <span class="pre">root</span> <span class="pre">=</span> <span class="pre">root-filename</span></code> at the
 top of your included files.</p>
@@ -256,6 +256,8 @@ to set the magic comment <code class="docutils literal notranslate"><span class=
 have the root document open. With this option enabled TeXstudio will
 always know about your complete document and act accordingly when
 performing highlighting or completion.</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">Editor</span> <span class="pre">-&gt;</span> <span class="pre">cache</span> <span class="pre">included</span> <span class="pre">files</span></code> lets txs store important information about opened files on the disk.
+If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitely opened in a tab, txs loads the complete file from disk.</p>
 </section>
 </section>
 <section id="overview-of-texstudio-command-line-options">

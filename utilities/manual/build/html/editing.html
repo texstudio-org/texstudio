@@ -865,6 +865,12 @@ The drop down menu allows to search within a “Project”,i.e. all files contai
 <p><img alt="extended search pane" src="_images/extendedSearch.png" /></p>
 </section>
 </section>
+<section id="handling-large-projects">
+<h2>Handling large projects<a class="headerlink" href="#handling-large-projects" title="Permalink to this heading">#</a></h2>
+<p>This section describes what support txs provides for larger projects.</p>
+<p>Large projects usually are split into several included files.
+In order to speed up compilation, the package <a class="reference external" href="https://www.ctan.org/pkg/subfiles">subfiles</a> offer compilation of the current document only. txs automatically loads all included files, so that it can provide proposal for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes those information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works on restoring an previous opened project, the initial opening may take a bit longer, see <a class="reference internal" href="background.html#about-documents-separated-in-several-files"><span class="std std-doc">also</span></a>.</p>
+</section>
 <section id="special-commands">
 <h2>Special Commands<a class="headerlink" href="#special-commands" title="Permalink to this heading">#</a></h2>
 <section id="delete-word-command-environment">
@@ -1019,6 +1025,7 @@ Pressing <code class="docutils literal notranslate"><span class="pre">esc</span>
 <li><a class="reference internal" href="#extended-search">Extended search</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#handling-large-projects">Handling large projects</a></li>
 <li><a class="reference internal" href="#special-commands">Special Commands</a><ul>
 <li><a class="reference internal" href="#delete-word-command-environment">Delete word/command/environment</a></li>
 <li><a class="reference internal" href="#rename-environment">Rename environment</a></li>

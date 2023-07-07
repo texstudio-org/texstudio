@@ -647,6 +647,12 @@ In the list of search results, a double-click on a match jumps to the location i
 
 ![extended search pane](images/extendedSearch.png)
 
+## Handling large projects
+This section describes what support txs provides for larger projects.
+
+Large projects usually are split into several included files.
+In order to speed up compilation, the package [subfiles](https://www.ctan.org/pkg/subfiles) offer compilation of the current document only. txs automatically loads all included files, so that it can provide proposal for user commands, labels and bibitems. To speed up reloading a project, txs caches all files, meaning it writes those information on the disk. When reloading that project, all loaded but not open (hidden) sub-files are just opened from the cached information which speeds up the reloading significantly. Obviously this only works on restoring an previous opened project, the initial opening may take a bit longer, see [also](background.md#about-documents-separated-in-several-files).
+
 ## Special Commands
 
 ### Delete word/command/environment
