@@ -8606,10 +8606,10 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				completerPreview = false;
 				completer->showTooltip(text);
 			} else {
-                    QToolTip::showText(p.toPoint(), text, nullptr);
+                QToolTip::showText(p.toPoint(), text, nullptr);
 			}
-		}
-		LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
+        }
+        LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
 	}
 	if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0) {
 		QDocument *doc = currentEditor()->document();

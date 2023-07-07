@@ -2705,6 +2705,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 		}
 		if (config->imageToolTip && tk.subtype == Token::color) {
+            handled=true;
             QString text;
             if (ts.size() > 1 && tk.type==Token::word) {
                 ts.pop();
@@ -2782,8 +2783,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 	if (handled)
 		return;
 
-	QToolTip::hideText();
-
+    QToolTip::hideText();
 }
 
 bool LatexEditorView::closeElement()
