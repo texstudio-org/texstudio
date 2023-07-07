@@ -30,6 +30,7 @@ public:
 	static void generateTableFromTemplate(LatexEditorView *edView, QString templateFileName, QString def, QList<QStringList> table, QString env, QString width);
 	static QString getTableText(QDocumentCursor &cur);
 	static void alignTableCols(QDocumentCursor &cur);
+    static QString handleColSpec(QString opt);
 
     static QSet<QString> tabularNames;
     static QSet<QString> tabularNamesWithOneOption;
