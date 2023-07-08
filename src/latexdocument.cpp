@@ -3697,6 +3697,11 @@ bool LatexDocument::saveCachingData(const QString &folder)
         ja_labels.append(elem.name);
     }
 
+    QJsonArray ja_refs;
+    for(const auto &elem:mRefItem){
+        ja_refs.append(elem.name);
+    }
+
     QJsonArray ja_docs;
     for(const auto &elem:includedFiles()){
         ja_docs.append(elem);
@@ -3732,6 +3737,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
     QJsonObject dd;
     dd["filename"]=getFileName();
     dd["labels"]=ja_labels;
+    dd["refs"]=ja_refs;
     dd["childdocs"]=ja_docs;
     dd["usercommands"]=ja_userCommands;
     dd["packages"]=ja_packages;
@@ -3791,6 +3797,13 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         ReferencePair rp;
         rp.name=lbl;
         mLabelItem.insert(nullptr,rp);
+    }
+    ja=dd.value("refs").toArray();
+    for (int i = 0; i < ja.size(); ++i) {
+        QString lbl=ja[i].toString();
+        ReferencePair rp;
+        rp.name=lbl;
+        mRefItem.insert(nullptr,rp);
     }
     ja=dd.value("bibitems").toArray();
     for (int i = 0; i < ja.size(); ++i) {
