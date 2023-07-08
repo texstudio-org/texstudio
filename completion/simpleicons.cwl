@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/06/30 for v9.3.0
+# Matthew Bertucci 2023/07/08 for v9.4.0
 
 #include:iftex
 
@@ -397,6 +397,7 @@ checkmarx
 chef
 chemex
 chevrolet
+chianetwork
 chinaeasternairlines
 chinasouthernairlines
 chocolatey
@@ -624,6 +625,7 @@ drooble
 dropbox
 drupal
 dsautomobiles
+dts
 dtube
 ducati
 duckdb
@@ -660,6 +662,7 @@ elastic
 elasticcloud
 elasticsearch
 elasticstack
+elavon
 electron
 electronbuilder
 electronfiddle
@@ -1371,6 +1374,7 @@ microsoftvisio
 microsoftword
 microstrategy
 midi
+mikrotik
 minds
 minecraft
 minetest
@@ -1463,6 +1467,7 @@ nginxproxymanager
 ngrok
 niconico
 nike
+nikon
 nim
 nintendo
 nintendo3ds
@@ -2163,6 +2168,7 @@ tencentqq
 tensorflow
 teradata
 teratail
+termius
 terraform
 tesco
 tesla
@@ -2313,6 +2319,7 @@ vectorlogozone
 vectorworks
 veeam
 veepee
+vega
 velog
 venmo
 vercel
@@ -2337,6 +2344,7 @@ vite
 vitess
 vitest
 vivaldi
+vivawallet
 vivino
 vk
 vlcmediaplayer
