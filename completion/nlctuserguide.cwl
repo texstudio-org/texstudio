@@ -387,7 +387,7 @@ longpluralaccess=%<text%>
 \gpunc{punc-name}{desc-cmds}
 \gpunccmd{punc-name}{symbol}{desc-cmds}
 \gshortswitch{switch-name}{desc-cmds}
-gshortswitchpunc{switch-name}{desc-cmds}
+\gshortswitchpunc{switch-name}{desc-cmds}
 \gstyboolopt{package-option-name}{desc-cmds}
 \gstyopt{package-option-name}{desc-cmds}
 \gterm{term-name}{desc-cmds}
