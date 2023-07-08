@@ -1,5 +1,5 @@
 # scrreprt class
-# Matthew Bertucci 2023/04/17 for v3.39
+# Matthew Bertucci 2023/07/08 for v3.41
 
 #include:scrkbase
 #include:tocbasic
@@ -141,6 +141,7 @@ titlehead
 \captionbelowof{float type}[entry]{title%text}
 \captionbelowof{float type}{title%text}
 \captionformat#*
+\captionnopagebreak#*
 \captionof{float type}[entry]{title%text}
 \captionof{float type}{title%text}
 \changefontsizes{font size%l}#*
