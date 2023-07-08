@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/04/04 for v1.6
+# Matthew Bertucci 2023/04/04 for v1.6a
 
 #include:l3keys2e
 #include:luatexbase
@@ -159,3 +159,4 @@ Prompt
 
 \myfiledate#S
 \myfileversion#S
+\PitonSyntaxError#S
