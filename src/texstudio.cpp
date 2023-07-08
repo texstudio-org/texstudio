@@ -4089,6 +4089,9 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
         }else{
             target = defs.keys().constFirst();
             edView = getEditorViewFromHandle(target);
+            if(edView->isHidden()){
+                openExternalFile(target->document()->getFileName());
+            }
         }
 		if (!edView) return;
 		if (edView != currentEditorView()) {
