@@ -1,5 +1,5 @@
 # kpfonts-otf package
-# Matthew Bertucci 2023/06/21 for v0.54
+# Matthew Bertucci 2023/07/09 for v0.55
 
 #include:iftex
 #include:unicode-math
@@ -127,6 +127,8 @@ symbols
 \dualmap#m
 \eqqColon#m
 \fint#m
+\Finv#m
+\Game#m
 \geqqslant#m
 \gggtr#m
 \gtreqqslantless#m
