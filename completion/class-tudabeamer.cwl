@@ -1,5 +1,5 @@
 # tudabeamer class
-# Matthew Bertucci 2022/08/12 for v3.27
+# Matthew Bertucci 2023/07/05 for v3.33
 
 #include:l3keys2e
 #include:URspecialopts
@@ -16,6 +16,7 @@ serif#true,false
 sans-serif#true,false
 department=mecheng
 departmentlogofile=%<imagefile%>
+tudacolors={%<color options%>}
 # options passed to beamer class
 usepdftitle#true,false
 envcountsect
@@ -54,7 +55,6 @@ cjk
 onlytextwidth
 pgf={%<pgf options%>}
 hyperref={%<hyperref options%>}
-color={%<color options%>}
 xcolor={%<xcolor options%>}
 ucs
 utf8x

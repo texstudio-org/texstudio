@@ -1,5 +1,5 @@
 # scrlayer package
-# Matthew Bertucci 2022/07/16 for v3.37
+# Matthew Bertucci 2023/07/08 for v3.41
 
 #include:scrkbase
 #include:scrlfile
@@ -22,7 +22,7 @@ deactivatepagestylelayers=#true,on,yes,false,off,no
 automark
 autooneside=#true,on,yes,false,off,no
 manualmark
-markcase=#lower,upper,used,ignoreuppercase,nouppercase,ignoreupper,noupper
+markcase=#lower,upper,title,used,ignoreuppercase,nouppercase,ignoreupper,noupper
 #endkeyvals
 
 \footheight#*L

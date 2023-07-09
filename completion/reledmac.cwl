@@ -1,5 +1,5 @@
 # reledmac package
-# Matthew Bertucci 3/15/2022 for v2.39.1
+# Matthew Bertucci 2023/07/04 for v2.39.2
 
 #include:xkeyval
 #include:xargs
@@ -959,7 +959,6 @@ after
 \edglsom#S
 \edglsomm#S
 \edglsomo#S
-\EDLABEL#S
 \EDTAB{arg1}#S
 \EDTABINDENT#S
 \edtabindent#S
@@ -1212,7 +1211,6 @@ after
 \widthliketwocolumnstrue#S
 \xabslineref{arg1}#S
 \xedindex#S
-\xedlabel{arg1}#S
 \xedtext{arg1}{arg2}#S
 \Xendstorelineinfo{spec}{series}#S
 \Xendwraplemma#S

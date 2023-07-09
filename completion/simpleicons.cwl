@@ -1,8 +1,7 @@
 # simpleicons package
-# Matthew Bertucci 2023/06/23 for v9.2.0
+# Matthew Bertucci 2023/07/08 for v9.4.0
 
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 
 \simpleicon{name%keyvals}
 
@@ -28,6 +27,7 @@ acer
 acm
 actigraph
 activision
+acura
 adafruit
 adblock
 adblockplus
@@ -117,6 +117,7 @@ amazonlumberyard
 amazonpay
 amazonprime
 amazonrds
+amazonredshift
 amazons3
 amazonsqs
 amd
@@ -184,6 +185,7 @@ applepay
 applepodcasts
 appletv
 appsignal
+appsmith
 appstore
 appveyor
 appwrite
@@ -248,6 +250,7 @@ azuredevops
 azurefunctions
 azurepipelines
 babel
+babylondotjs
 backblaze
 backbonedotjs
 backendless
@@ -356,6 +359,7 @@ byte
 bytedance
 c
 cachet
+cadillac
 cafepress
 caffeine
 cairographics
@@ -393,6 +397,7 @@ checkmarx
 chef
 chemex
 chevrolet
+chianetwork
 chinaeasternairlines
 chinasouthernairlines
 chocolatey
@@ -603,6 +608,7 @@ docker
 docsdotrs
 docusign
 dogecoin
+doi
 dolby
 doordash
 dotenv
@@ -619,6 +625,7 @@ drooble
 dropbox
 drupal
 dsautomobiles
+dts
 dtube
 ducati
 duckdb
@@ -638,6 +645,7 @@ eagle
 easyjet
 ebay
 ebox
+eclipseadoptium
 eclipseche
 eclipseide
 eclipsejetty
@@ -654,6 +662,7 @@ elastic
 elasticcloud
 elasticsearch
 elasticstack
+elavon
 electron
 electronbuilder
 electronfiddle
@@ -736,6 +745,7 @@ feedly
 ferrari
 ferrarinv
 ffmpeg
+fi
 fiat
 fidoalliance
 fifa
@@ -1038,6 +1048,7 @@ imagej
 imdb
 imgur
 immer
+immich
 imou
 indeed
 infiniti
@@ -1159,6 +1170,7 @@ kickstarter
 kik
 kingstontechnology
 kinopoisk
+kinsta
 kirby
 kitsu
 klarna
@@ -1252,6 +1264,7 @@ lmms
 lodash
 logitech
 logmein
+logseq
 logstash
 looker
 loom
@@ -1275,6 +1288,7 @@ magasinsu
 magento
 magisk
 mailchimp
+maildotcom
 maildotru
 mailgun
 majorleaguehacking
@@ -1284,6 +1298,7 @@ man
 manageiq
 manjaro
 mapbox
+maplibre
 mariadb
 mariadbfoundation
 markdown
@@ -1333,6 +1348,7 @@ metrodelaciudaddemexico
 metrodemadrid
 metrodeparis
 mewe
+mg
 microbit
 microdotblog
 microgenetics
@@ -1358,6 +1374,7 @@ microsoftvisio
 microsoftword
 microstrategy
 midi
+mikrotik
 minds
 minecraft
 minetest
@@ -1385,6 +1402,7 @@ mongodb
 mongoose
 monica
 monkeytie
+monkeytype
 monogames
 monoprix
 monster
@@ -1445,9 +1463,11 @@ nextdoor
 nextdotjs
 nfc
 nginx
+nginxproxymanager
 ngrok
 niconico
 nike
+nikon
 nim
 nintendo
 nintendo3ds
@@ -1483,6 +1503,7 @@ nutanix
 nuxtdotjs
 nvidia
 nx
+nxp
 nzxt
 observable
 obsidian
@@ -1680,6 +1701,7 @@ powervirtualagents
 prdotco
 preact
 precommit
+prefect
 premierleague
 prestashop
 presto
@@ -1702,6 +1724,7 @@ prometheus
 prosieben
 protocolsdotio
 protodotio
+proton
 protondb
 protondrive
 protonmail
@@ -1961,6 +1984,7 @@ skynet
 skypack
 skype
 skypeforbusiness
+skyrock
 slack
 slackware
 slashdot
@@ -2144,6 +2168,7 @@ tencentqq
 tensorflow
 teradata
 teratail
+termius
 terraform
 tesco
 tesla
@@ -2216,6 +2241,7 @@ triller
 trino
 tripadvisor
 tripdotcom
+trivy
 trove
 trpc
 truenas
@@ -2293,6 +2319,7 @@ vectorlogozone
 vectorworks
 veeam
 veepee
+vega
 velog
 venmo
 vercel
@@ -2317,6 +2344,7 @@ vite
 vitess
 vitest
 vivaldi
+vivawallet
 vivino
 vk
 vlcmediaplayer
@@ -2490,13 +2518,13 @@ zyte
 #endkeyvals
 
 \simpleiconsmap#S
-\simpleiconsmapOne#S
-\simpleiconsmapTwo#S
-\simpleiconsmapThree#S
-\simpleiconsmapFour#S
-\simpleiconsmapFive#S
-\simpleiconsmapSix#S
-\simpleiconsmapSeven#S
-\simpleiconsmapEight#S
-\simpleiconsmapNine#S
-\simpleiconsmapOneZero#S
+\simpleiconsmapone#S
+\simpleiconsmaptwo#S
+\simpleiconsmapthree#S
+\simpleiconsmapfour#S
+\simpleiconsmapfive#S
+\simpleiconsmapsix#S
+\simpleiconsmapseven#S
+\simpleiconsmapeight#S
+\simpleiconsmapnine#S
+\simpleiconsmaponezero#S

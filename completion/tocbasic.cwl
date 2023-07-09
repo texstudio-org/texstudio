@@ -1,5 +1,5 @@
 # tocbasic package
-# Matthew Bertucci 2023/04/17 for v3.39
+# Matthew Bertucci 2023/07/08 for v3.41
 
 #include:scrbase
 #include:scrlogo
@@ -23,6 +23,7 @@
 \addxcontentsline{extension}{level}[section number]{text}
 \nonumberline
 \addxcontentslinetoeachtocfile{level}{text}
+\addxcontentslinetoeachtocfile{level}[section number]{text}
 \addxcontentslinetoeachtocfile[owner]{level}{text}
 \addxcontentslinetoeachtocfile[owner]{level}[section number]{text}
 \BeforeStartingTOC{commands}#*
@@ -117,6 +118,7 @@ unset={%<list of attributes%>}
 \usetocbasicnumberline[code]
 
 \TOCEntryStyleInitCode{style}{initial code}#*
+\TOCEntryStyleInitCode*{style}{initial code}#*
 \TOCEntryStyleStartInitCode{style}{initial code}#*
 \DefineTOCEntryBooleanOption{option}{prefix}{postfix}{description}#*
 \DefineTOCEntryBooleanOption{option}[default]{prefix}{postfix}{description}#*

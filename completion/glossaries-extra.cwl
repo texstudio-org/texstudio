@@ -2228,8 +2228,8 @@ unsetothers#true,false
 ## Glossary Preamble ##
 \apptoglossarypreamble{text}#*
 \apptoglossarypreamble[type]{text}#*
-\preglossarypreamble{text}#*
-\preglossarypreamble[type]{text}#*
+\pretoglossarypreamble{text}#*
+\pretoglossarypreamble[type]{text}#*
 
 ## Options ##
 # options provided by glossaries.sty
@@ -3026,3 +3026,7 @@ compound-write-def=#none,all,ref
 \glsxtrundefdebug{arg}#S
 \mglsWriteSeparateRefsFalse#S
 \mglsWriteSeparateRefsTrue#S
+
+# deprecated
+\preglossarypreamble{text}#S
+\preglossarypreamble[type]{text}#S
