@@ -1,5 +1,5 @@
 # fourier-otf package
-# Matthew Bertucci 2022/10/20 for v0.61
+# Matthew Bertucci 2023/07/09 for v0.62
 
 #include:iftex
 #include:fourier-orns
@@ -49,7 +49,9 @@ Scale=%<factor%>
 \doublecup#m
 \downdasharrow#m
 \downrightcurvedarrow#m
+\Finv#m
 \forbidden#m
+\Game#m
 \geqqslant#m
 \gggtr#m
 \gggtr#m
