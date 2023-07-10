@@ -166,7 +166,7 @@ File package-zip\styles\*
 
 SetOutPath $INSTDIR\translations
 
-File ..\translation\*.qm
+File package-zip\translations\*
 
 SetOutPath $INSTDIR\templates
 
