@@ -23,6 +23,7 @@ transfa
 transfr
 trans=#lt,en,fa,fr
 wordwise
+ornbraces
 #endkeyvals
 
 \deSetTrans{index}
