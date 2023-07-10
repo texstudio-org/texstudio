@@ -3438,7 +3438,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 
 	if (updateAll) {
 		foreach (LatexDocument *elem, listOfDocs) {
-            elem->setLtxCommands(lp, (elem==this)  && !updateAll);
+            elem->setLtxCommands(lp, (elem==this)  && updateAll);
             elem->reCheckSyntax();
 		}
 		// check if other document have this doc as child as well (reused doc...)
@@ -3463,7 +3463,9 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 			}
 		}
 	} else {
-		SynChecker.setLtxCommands(lp);
+        SynChecker.setLtxCommands(lp);
+        setLtxCommands(lp,false);
+        reCheckSyntax();
 	}
 
 	LatexEditorView *view = getEditorView();

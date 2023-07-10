@@ -2864,7 +2864,7 @@ void Texstudio::fileOpen()
 			doc->recheckRefsLabels();
 			if (completedDocs.contains(doc))
 				continue;
-			doc->updateLtxCommands(true);
+            doc->updateLtxCommands();
 			completedDocs << doc->getListOfDocs();
 		}
 	}
@@ -3644,8 +3644,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         if (completedDocs.contains(doc))
             continue;
 
-        doc->updateLtxCommands(true);
-        completedDocs << doc->getListOfDocs();
+        doc->updateLtxCommands();
+        completedDocs << doc;
     }
     recheckLabels = true;
     //qDebug()<<"labels:"<<tm.elapsed();
