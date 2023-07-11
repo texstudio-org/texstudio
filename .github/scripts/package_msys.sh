@@ -32,6 +32,8 @@ echo "copy directories"
 mkdir -p ./package-zip/translations
 cp -r ../translation/texstudio*.qm ./package-zip/translations
 cp -r $MSYSTEM_PREFIX/share/qt6/translations/qt_*.qm ./package-zip/translations
+cp -r $MSYSTEM_PREFIX/share/qt6/translations/qtbase_*.qm ./package-zip/translations
+cp -r $MSYSTEM_PREFIX/share/qt6/translations/qtmultimedia_*.qm ./package-zip/translations
 cp -r ../templates package-zip
 mkdir -p ./package-zip/help
 cp -r ../utilities/manual/build package-zip/help
