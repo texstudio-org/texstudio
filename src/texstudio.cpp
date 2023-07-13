@@ -69,7 +69,7 @@
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
 #include "execprogram.h"
-
+#include <QImageReader>
 #include <QScreen>
 
 #ifndef QT_NO_DEBUG
@@ -8718,15 +8718,28 @@ void Texstudio::showImgPreview(const QString &fname)
 		//else
 		//    p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 		QRect screen = QGuiApplication::primaryScreen()->geometry();
+#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
 		QPixmap img(imageName);
 		int w = qMin(img.width(), configManager.editorConfig->maxImageTooltipWidth);
 		w = qMin(w, screen.width() - 8);
+#else
+		QImage img;
+		QImageReader reader(imageName);
+		reader.setAllocationLimit(4*configManager.editorConfig->imageToolTipLoadMaxPixels); // each pixel uses 4bytes
+		reader.read(&img);
+		int w = 0;
+		if (img != QImage()) {
+			int realw = qRound(img.width() * QGuiApplication::primaryScreen()->physicalDotsPerInch() / (img.dotsPerMeterX() * 2.54/100) );
+			w = qMin(realw, configManager.editorConfig->maxImageTooltipWidth);
+			w = qMin(w, screen.width() - 8);
+		}
+#endif
 		QString text = QString("<img src=\"" + imageName + "\" width=%1 />").arg(w);
 		if (completerPreview) {
 			completerPreview = false;
 			emit imgPreview(text);
 		} else {
-		        QToolTip::showText(p, text, nullptr);
+			QToolTip::showText(p, text, nullptr);
 			LatexEditorView::hideTooltipWhenLeavingLine = currentEditorView()->editor->cursor().lineNumber();
 		}
 	}

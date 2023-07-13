@@ -546,6 +546,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true, &pseudoDialog->checkBoxToolTipHelp2);
 	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true, &pseudoDialog->checkBoxToolTipPreview);
 	registerOption("Editor/ImageToolTip", &editorConfig->imageToolTip, true, &pseudoDialog->checkBoxImageToolTip);
+	registerOption("Editor/ImageToolTipLoadMaxPixels", &editorConfig->imageToolTipLoadMaxPixels, 30);
 	registerOption("Editor/MaxImageTooltipWidth", &editorConfig->maxImageTooltipWidth, 400);
 	registerOption("Editor/ContextMenuKeyboardModifiers", &editorConfig->contextMenuKeyboardModifiers, Qt::ShiftModifier);
 	registerOption("Editor/ContextMenuSpellcheckingEntryLocation", &editorConfig->contextMenuSpellcheckingEntryLocation, 0, &pseudoDialog->comboBoxContextMenuSpellcheckingEntryLocation);

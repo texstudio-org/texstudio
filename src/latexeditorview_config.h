@@ -43,6 +43,7 @@ public:
 	bool toolTipPreview;
 	bool toolTipHelp;
 	bool imageToolTip;
+	int imageToolTipLoadMaxPixels;
 	int maxImageTooltipWidth;
 	bool texdocHelpInInternalViewer;
 	bool monitorFilesForExternalChanges;
