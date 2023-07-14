@@ -1,5 +1,5 @@
 # projlib-language package
-# Matthew Bertucci 2022/07/04 for 2022/07/03 release
+# Matthew Bertucci 2023/07/14
 
 #include:fontenc
 # loads T1 option of fontenc
@@ -29,6 +29,8 @@ Russian
 \ProjLibLanguageSet{object}{language}{setting}
 \UseLanguage{language}
 \UseOtherLanguage{language}{content%text}
+\begin{OtherLanguage}{language}
+\end{OtherLanguage}
 
 # from T1 option of fontenc
 \DH#n
