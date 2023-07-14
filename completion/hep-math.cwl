@@ -138,3 +138,6 @@
 \ev*{arg}#m
 \ev*[arg1]{arg2}#m
 \vev{arg}#m
+\imaginaryunit#*
+\ceil{arg}#m
+\floor{arg}#m
