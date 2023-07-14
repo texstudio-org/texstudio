@@ -1,5 +1,5 @@
 # minimbook class
-# Matthew Bertucci 2023/01/02 for 2023/01/02 release
+# Matthew Bertucci 2023/07/14
 
 #include:class-book
 #include:silence
@@ -25,6 +25,8 @@ classical
 useindent
 a4paper
 b5paper
+oneside
+twoside
 11pt
 12pt
 # options passed to minimalist package
