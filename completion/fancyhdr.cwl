@@ -57,6 +57,8 @@ fancy
 \fancycenter[distance%l]{left-mark%text}{center-mark%text}{right-mark%text}
 \fancycenter{left-mark%text}{center-mark%text}{right-mark%text}
 
+\nouppercase{text}#*
+
 # deprecated
 \chead[CH-even%text]{CH-odd%text}#*
 \chead{header%text}#*
