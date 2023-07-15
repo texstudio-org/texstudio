@@ -318,11 +318,9 @@ debug={%<options%>}
 \settodepth{\gnat}{text}#*
 \settoheight{\gnat}{text}#*
 \settowidth{\gnat}{text}#*
-\addto#*
 \addtocontents{ext}{text}#*
 \addtocounter{counter}{value}#*
 \addtolength{\gnat}{length}#*
-\addtoversion#*
 \addvspace{length}#*
 \newcounter{foo}#*
 \newcounter{foo}[counter]#*
@@ -372,13 +370,11 @@ debug={%<options%>}
 \belowcaptionskip#*
 \binoppenalty#*
 \bottomfraction#*
-\bottomnumber#*
 \dblfigrule#*
 \dblfloatpagefraction#*
 \dblfloatsep#*
 \dbltextfloatsep#*
 \dbltopfraction#*
-\dbltopnumber#*
 \defaultscriptratio#*
 \defaultscriptscriptratio#*
 \doublerulesep#*
@@ -415,10 +411,8 @@ debug={%<options%>}
 \topfigrule#*
 \topfraction#*
 \topmargin#*L
-\topnumber#*
 \topsep#*L
 \totalheight#*L
-\totalnumber#*
 \textfloatsep#*L
 \textfraction#*
 \abovecaptionskip#*
