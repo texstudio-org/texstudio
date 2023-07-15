@@ -30,7 +30,6 @@
 \BCPdata{keywords}#*
 \BeforeBeginEnvironment[label]{environment}{code}#*
 \BeforeBeginEnvironment{environment}{code}#*
-\BeforeClearDocument{code}#*
 \BooleanFalse
 \BooleanTrue
 \CaseSwitch{normal%text}{upper%text}{lower%text}{title%text}#*
