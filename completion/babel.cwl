@@ -353,6 +353,7 @@ select.encoding=#off
 # miscellaneous (not for standard use)
 \adddialect#S
 \addlanguage#S
+\addto{cmd}{code}#S
 \AfterBabelCommands{code}#S
 \allowhyphens#S
 \BabelDated{arg}#S
