@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/06/04 for v6.20
+# Matthew Bertucci 2023/07/14 for v6.21
 
 #include:amsmath
 #include:array
@@ -147,6 +147,7 @@ parallelize-diags#true,false
 delimiters/max-width
 vlines-in-sub-matrix=%<letter%>
 colortbl-like
+color-inside
 rounded-corners
 rounded-corners=##L
 #endkeyvals
@@ -443,6 +444,9 @@ parallelize-diags#true,false
 delimiters/max-width
 vlines-in-sub-matrix=%<letter%>
 colortbl-like
+color-inside
+rounded-corners
+rounded-corners=##L
 #endkeyvals
 
 \begin{NiceArrayWithDelims}{delim1}{delim2}{preamble}#*m\array

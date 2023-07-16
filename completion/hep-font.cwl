@@ -1,5 +1,5 @@
 # hep-font package
-# Matthew Bertucci 2022/11/02 for v1.1
+# Matthew Bertucci 2023/07/14 for v1.2
 
 #include:kvoptions
 #include:ifluatex
@@ -12,6 +12,7 @@
 #include:textcomp
 #include:slantsc
 #include:inputenc
+#include:xpatch
 
 #keyvals:\usepackage/hep-font#c
 size=#8pt,9pt,10pt,11pt,12pt,14pt,17pt,20pt,default
@@ -31,10 +32,13 @@ lining
 #endif
 
 \ifxetexorluatex#*
-\xetexorluatextrue#*
-\xetexorluatexfalse#*
+\xetexorluatextrue#S
+\xetexorluatexfalse#S
 
 \textui{text}
+
+\codestyle#*
+\code{text%plain}
 
 # from T1 option of fontenc
 \DH#n

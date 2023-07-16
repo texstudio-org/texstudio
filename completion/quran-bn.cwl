@@ -22,6 +22,7 @@ transfa
 transfr
 trans=#lt,de,en,fa,fr
 wordwise
+ornbraces
 #endkeyvals
 
 \bnSetTrans{index}

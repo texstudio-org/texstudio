@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2022/06/21 for v0.41
+# Matthew Bertucci 2022/07/09 for v0.42
 
 #include:iftex
 #include:unicode-math
@@ -41,7 +41,9 @@ Scale=%<factor%>
 \doublecap#m
 \doublecup#m
 \enleadertwodots#m
+\Finv#m
 \fourthroot{arg}#m
+\Game#m
 \geqqslant#m
 \gggtr#m
 \gtreqqslantless#m

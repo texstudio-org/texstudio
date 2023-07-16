@@ -5,8 +5,6 @@
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
-\AddEverypageHook{code}#*
-\AddThispageHook{code}#*
 \AddToHook{hook}{code}#*
 \AddToHook{hook}[label]{code}#*
 \AddToHookNext{hook}{code}#*
@@ -22,17 +20,6 @@
 \AtBeginDvi{code}#*
 \AtBeginEnvironment[label]{environment}{code}#*
 \AtBeginEnvironment{environment}{code}#*
-\AtBeginShipout{code}#*
-\AtBeginShipoutAddToBox{code}#*
-\AtBeginShipoutAddToBoxForeground{code}#*
-\AtBeginShipoutBox#*
-\AtBeginShipoutDiscard#*
-\AtBeginShipoutFirst{code}#*
-\AtBeginShipoutInit#*
-\AtBeginShipoutNext{code}#*
-\AtBeginShipoutOriginalShipout#*
-\AtBeginShipoutUpperLeft{code}#*
-\AtBeginShipoutUpperLeftForeground{code}#*
 \AtEndDocument{code}#*
 \AtEndDocument[label]{code}#*
 \AtEndDvi{code}#*
@@ -40,11 +27,9 @@
 \AtEndEnvironment{environment}{code}#*
 \AtEndOfClass{code}#*
 \AtEndOfPackage{code}#*
-\AtNextShipout{code}#*
 \BCPdata{keywords}#*
 \BeforeBeginEnvironment[label]{environment}{code}#*
 \BeforeBeginEnvironment{environment}{code}#*
-\BeforeClearDocument{code}#*
 \BooleanFalse
 \BooleanTrue
 \CaseSwitch{normal%text}{upper%text}{lower%text}{title%text}#*
@@ -146,7 +131,6 @@
 \DiscardShipoutBox#*
 \EndIncludeInRelease#*
 \EndModuleRelease#*
-\EveryShipout{code}#*
 \ExecuteOptions{optionlist}#*
 \ExpandArgs{spec}#*
 \ExplSyntaxOff#*
@@ -334,11 +318,9 @@ debug={%<options%>}
 \settodepth{\gnat}{text}#*
 \settoheight{\gnat}{text}#*
 \settowidth{\gnat}{text}#*
-\addto#*
 \addtocontents{ext}{text}#*
 \addtocounter{counter}{value}#*
 \addtolength{\gnat}{length}#*
-\addtoversion#*
 \addvspace{length}#*
 \newcounter{foo}#*
 \newcounter{foo}[counter]#*
@@ -388,13 +370,11 @@ debug={%<options%>}
 \belowcaptionskip#*
 \binoppenalty#*
 \bottomfraction#*
-\bottomnumber#*
 \dblfigrule#*
 \dblfloatpagefraction#*
 \dblfloatsep#*
 \dbltextfloatsep#*
 \dbltopfraction#*
-\dbltopnumber#*
 \defaultscriptratio#*
 \defaultscriptscriptratio#*
 \doublerulesep#*
@@ -431,10 +411,8 @@ debug={%<options%>}
 \topfigrule#*
 \topfraction#*
 \topmargin#*L
-\topnumber#*
 \topsep#*L
 \totalheight#*L
-\totalnumber#*
 \textfloatsep#*L
 \textfraction#*
 \abovecaptionskip#*

@@ -1,7 +1,6 @@
 # blowup package
-# Matthew Bertucci 2022/09/24 for v2.1.0
+# Matthew Bertucci 2023/07/15 for v2.2.0
 
-#include:atbegshi
 #include:keyval
 #include:graphics
 #include:typearea

@@ -1,5 +1,5 @@
 # hep-math-font package
-# Matthew Bertucci 2022/06/10 for v1.0
+# Matthew Bertucci 2023/07/14 for v1.2
 
 #include:kvoptions
 #include:ifluatex
@@ -102,5 +102,5 @@ symbols=#ams,true,minion,false
 \varkappa
 \kappasymbol#*
 \Thetasymbol#*
-
 \mathscr{text%plain}#m
+\mathsftext{text%plain}#*m

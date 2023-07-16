@@ -1,5 +1,5 @@
 # xindex package
-# Matthew Bertucci 2023/07/07 for v0.03
+# Matthew Bertucci 2023/07/12 for v0.04
 
 #include:xkeyval
 #include:makeidx
@@ -24,5 +24,5 @@ quiet
 
 \writeidx{code}
 
-\parenLeft#*
-\parenRight#*
+\braceLeft#*
+\braceRight#*

@@ -1,5 +1,5 @@
 # exam class
-# Matthew Bertucci 1/10/2022 for v2.7
+# Matthew Bertucci 2023/07/10 for v2.704
 
 #include:ifthen
 
@@ -7,6 +7,7 @@
 answers
 cancelspace
 addpoints
+solutionsreseteqcounter
 #endkeyvals
 
 \addpoints
@@ -222,6 +223,7 @@ addpoints
 \ifincomplete{true text%text}{false text%text}
 \iflastpage{true text%text}{false text%text}
 \ifprintanswers
+\ifsolutionsreseteqcounter#S
 \IncompleteQuestion
 \lastqinrange{%<range name%>}
 \lfoot[first page text%text]{text}
@@ -312,6 +314,7 @@ addpoints
 \noquestionsonthispage
 \norunningfootrule#*
 \norunningheadrule#*
+\nosolutionsreseteqcounter
 \nounstarredvspace
 \numbonuspoints
 \numcoverpages
@@ -383,6 +386,9 @@ addpoints
 \settabletotalpoints{number}
 \shadedsolutions
 \SolutionEmphasis{format commands}
+\solutionsreseteqcounter
+\solutionsreseteqcounterfalse#S
+\solutionsreseteqcountertrue#S
 \solutiontitle#*
 \subpart
 \subpart[points]

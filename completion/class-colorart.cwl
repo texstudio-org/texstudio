@@ -1,5 +1,5 @@
 # colorart class
-# Matthew Bertucci 2023/01/02 for 2023/01/02 release
+# Matthew Bertucci 2023/07/14
 
 #include:silence
 #include:geometry
@@ -22,6 +22,8 @@ draft
 fast
 a4paper
 b5paper
+oneside
+twoside
 11pt
 12pt
 # options passed to colorist package
