@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/06/26 for v3.90
+# tbraun 4.11.2008; Matthew Bertucci 2023/07/09 for v3.91
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -258,6 +258,8 @@ transliteration.gajica
 kashida.plain
 #endkeyvals
 
+\localeprehyphenation{string}#*
+
 \ensureascii{text}#*
 
 #ifOption:layout=footnotes
@@ -351,6 +353,7 @@ select.encoding=#off
 # miscellaneous (not for standard use)
 \adddialect#S
 \addlanguage#S
+\addto{cmd}{code}#S
 \AfterBabelCommands{code}#S
 \allowhyphens#S
 \BabelDated{arg}#S

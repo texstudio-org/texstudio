@@ -213,7 +213,6 @@
 \glossaryentry{text}{pagenum}
 \glossary{text}
 \hline#t
-\hlinefill
 \hrule
 \hspace*{length}
 \hspace{length}
@@ -332,7 +331,6 @@
 \normalmarginpar#*
 \normalshape#*
 \normalsize
-\nouppercase#*
 \obeycr#*
 \oddsidemargin#*
 \oe
@@ -360,7 +358,6 @@
 \part[short title]{title}#L0
 \partname
 \part{title}#L0
-\plus
 \poptabs#T
 \pounds
 \protect

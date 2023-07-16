@@ -1,5 +1,5 @@
 # bxwareki package
-# Matthew Bertucci 2022/04/29 for v0.6
+# Matthew Bertucci 2023/07/09 for v0.7
 
 \warekisetdate{year}{month}{day}
 \warekisettoday
@@ -22,10 +22,15 @@ o
 \warekitoday
 \warekikanjitoday
 \warekijkanjitoday
-\WarekiUseCustomInterGlue{text}
 \WarekiUseNormalInterGlue
+\WarekiUseNoInterGlue
+\WarekiUseCustomInterGlue{text}
+\WarekiKansuji{counter}
+\WarekiJKansuji{counter}
+\WarekiIfAvailable{true}{false}#*
 
 # not documented
-\WarekiKansuji{counter}#*
+\WarekiResetUHandler#S
 \WarekiSetToday#*
+\WarekiSetUHandler{text}#S
 \bxDebug{arg}#S

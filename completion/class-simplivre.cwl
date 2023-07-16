@@ -1,5 +1,5 @@
 # simplivre class
-# Matthew Bertucci 2023/01/02 for 2023/01/02 release
+# Matthew Bertucci 2023/07/14
 
 #include:class-book
 #include:silence
@@ -24,6 +24,8 @@ classical
 useindent
 a4paper
 b5paper
+oneside
+twoside
 11pt
 12pt
 # options passed to minimalist package
@@ -150,10 +152,19 @@ biolinum
 \xtwoheadrightarrow[sub]{sup}#m
 \xtwoheadleftarrow{sup}#m
 \xtwoheadleftarrow[sub]{sup}#m
+\xrightrightarrows{arg}#m
+\xrightrightarrows[opt]{arg}#m
+\xleftleftarrows{arg}#m
+\xleftleftarrows[opt]{arg}#m
 
 \IfPrintModeTF{true-code}{false-code}#*
 \IfPrintModeT{true-code}#*
 \IfPrintModeF{false-code}#*
+
+\limstrut#*
+\standarddashv#S
+\standardvdash#S
+\raisesymbol{arg1}{arg2}#*
 
 # from japanese option of babel (autoloaded)
 \captionsjapanese#*

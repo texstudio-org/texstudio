@@ -1,5 +1,5 @@
 # lebhart class
-# Matthew Bertucci 2023/01/02 for 2023/01/02 release
+# Matthew Bertucci 2023/07/14
 
 #include:silence
 #include:geometry
@@ -200,6 +200,10 @@ biolinum
 \xtwoheadrightarrow[sub]{sup}#m
 \xtwoheadleftarrow{sup}#m
 \xtwoheadleftarrow[sub]{sup}#m
+\xrightrightarrows{arg}#m
+\xrightrightarrows[opt]{arg}#m
+\xleftleftarrows{arg}#m
+\xleftleftarrows[opt]{arg}#m
 
 \IfPrintModeTF{true-code}{false-code}#*
 \IfPrintModeT{true-code}#*
@@ -208,3 +212,7 @@ biolinum
 \loweredvdots#*m
 \mdwhtsquare#*m
 \unicodevdots#*m
+\limstrut#*
+\standarddashv#S
+\standardvdash#S
+\raisesymbol{arg1}{arg2}#*

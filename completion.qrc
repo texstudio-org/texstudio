@@ -176,6 +176,7 @@
 <file>completion/asypictureB.cwl</file>
 <file>completion/asyprocess.cwl</file>
 <file>completion/at.cwl</file>
+<file>completion/atbegshi.cwl</file>
 <file>completion/atendofenv.cwl</file>
 <file>completion/athnum.cwl</file>
 <file>completion/atkinson.cwl</file>
@@ -1413,6 +1414,8 @@
 <file>completion/eurosym.cwl</file>
 <file>completion/euscript.cwl</file>
 <file>completion/everyhook.cwl</file>
+<file>completion/everypage.cwl</file>
+<file>completion/everyshi.cwl</file>
 <file>completion/exaccent.cwl</file>
 <file>completion/example.cwl</file>
 <file>completion/exam-randomizechoices.cwl</file>
@@ -2173,6 +2176,7 @@
 <file>completion/luatexja-ruby.cwl</file>
 <file>completion/luatexja-zhfonts.cwl</file>
 <file>completion/luatexko.cwl</file>
+<file>completion/luatex85.cwl</file>
 <file>completion/luatodonotes.cwl</file>
 <file>completion/luatruthtable.cwl</file>
 <file>completion/lua-typo.cwl</file>
@@ -3944,6 +3948,7 @@
 <file>completion/wiley-authoringtemplate.cwl</file>
 <file>completion/withargs.cwl</file>
 <file>completion/witharrows.cwl</file>
+<file>completion/wordle.cwl</file>
 <file>completion/wordlike.cwl</file>
 <file>completion/worksheet.cwl</file>
 <file>completion/worldflags.cwl</file>
