@@ -257,7 +257,8 @@ have the root document open. With this option enabled TeXstudio will
 always know about your complete document and act accordingly when
 performing highlighting or completion.</p>
 <p>The option <code class="docutils literal notranslate"><span class="pre">Editor</span> <span class="pre">-&gt;</span> <span class="pre">cache</span> <span class="pre">included</span> <span class="pre">files</span></code> lets txs store important information about opened files on the disk.
-If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitely opened in a tab, txs loads the complete file from disk.</p>
+If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitly opened in a tab, txs loads the complete file from disk.
+In cached files, txs does not search, e.g. with find usages or find in project. The preview for labels does not work if the label is defined in a cached file. If that functionality is important for you, deactivate caching or load explicitly the files when needed.</p>
 </section>
 </section>
 <section id="overview-of-texstudio-command-line-options">

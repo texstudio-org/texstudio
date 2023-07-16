@@ -51,7 +51,8 @@ always know about your complete document and act accordingly when
 performing highlighting or completion.
 
 The option `Editor -> cache included files` lets txs store important information about opened files on the disk.
-If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitely opened in a tab, txs loads the complete file from disk.
+If the files are reopened, it uses the cached information to speed-up loading. Only if a file is explicitly opened in a tab, txs loads the complete file from disk.
+In cached files, txs does not search, e.g. with find usages or find in project. The preview for labels does not work if the label is defined in a cached file. If that functionality is important for you, deactivate caching or load explicitly the files when needed.
 
 ## Overview of TeXstudio command-line options
 
