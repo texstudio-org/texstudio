@@ -250,7 +250,7 @@ tbtags
 \lbag#m
 \Lbag#m
 \leadsto#m
-\leadstoext#m
+\leadstoext#*m
 \leftarrowtail#m
 \leftleftarrows#m
 \leftrightarrows#m
