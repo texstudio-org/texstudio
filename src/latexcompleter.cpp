@@ -1874,6 +1874,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 
             QFileInfo fi(QDir(workingDir),fn);
 			path = fi.absolutePath();
+            currentPath=path;
 		}
 		completerInputBinding->bindTo(editor, this, true, start);
 		adjustWidget();
@@ -2002,8 +2003,10 @@ void LatexCompleter::selectionChanged(const QModelIndex &index)
 		QToolTip::hideText();
 		return;
 	}
-	if (config->tooltipPreview && forcedGraphic) { // picture preview even if help is disabled (maybe the same for cite/ref ?)
-		QString fn = workingDir + QDir::separator() + listModel->words[index.row()].word;
+    if (config->tooltipPreview && forcedGraphic) { // picture preview even if help is disabled (maybe the same for cite/ref ?)
+        QString path=currentPath;
+        if(path.isEmpty()) path=workingDir;
+        QString fn = path + QDir::separator() + listModel->words[index.row()].word;
 		QToolTip::hideText();
 		emit showImagePreview(fn);
 		return;

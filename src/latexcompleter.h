@@ -131,6 +131,7 @@ private:
 	bool forcedLength;
 	bool startedFromTriggerKey;
 	QString workingDir;
+    QString currentPath;
 
     bool disable_mu_sorting;
 
