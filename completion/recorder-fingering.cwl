@@ -1,5 +1,5 @@
 # recorder-fingering package
-# Matthew Bertucci 2023/07/16 for v1.2
+# Matthew Bertucci 2023/07/18 for v1.3
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -38,3 +38,15 @@ trill={%<list of holes%>}
 \NewDfingering{notename}{fingering vector}
 \NewDfingering*{notename}{fingering vector}
 \AddFingerings{%<key%>}{%<note1={vector1},...%>}
+
+\NewFtrill{notename}{fingering vector}{trill vector}
+\NewFtrill*{notename}{fingering vector}{trill vector}
+\NewCtrill{notename}{fingering vector}{trill vector}
+\NewCtrill*{notename}{fingering vector}{trill vector}
+\NewDtrill{notename}{fingering vector}{trill vector}
+\NewDtrill*{notename}{fingering vector}{trill vector}
+\AddTrills{%<key%>}{%<note1={{fingering vector},{trill vector}},...%>}
+
+\Ftrill{note}
+\Ctrill{note}
+\Dtrill{note}
