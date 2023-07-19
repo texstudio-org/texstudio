@@ -798,6 +798,7 @@ PDFWidget::PDFWidget(bool embedded)
 
     if (magnifierCursor == nullptr) {
         QPixmap px(32,32);
+        px.setDevicePixelRatio(devicePixelRatio());
         px.load(getRealIconFile("magnifier"));
         magnifierCursor = new QCursor(px,10,10);
         px.load(getRealIconFile("zoom-in-magnifier"));
