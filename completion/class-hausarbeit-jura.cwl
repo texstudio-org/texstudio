@@ -10,7 +10,6 @@
 #include:tgtermes
 #include:tgheros
 #include:tgcursor
-#include:textcomp
 #include:eurosym
 #include:babel
 # loads ngerman option of babel

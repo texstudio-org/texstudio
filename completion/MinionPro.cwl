@@ -5,7 +5,6 @@
 
 #include:kvoptions
 #include:MinionPro-FontDef
-#include:textcomp
 #include:MnSymbol
 #include:eufrak
 #include:microtype

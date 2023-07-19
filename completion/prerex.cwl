@@ -6,7 +6,6 @@
 #include:pgf
 #include:tikz
 # loads arrows.meta tikzlibrary
-#include:textcomp
 #include:hyperref
 #include:xcolor
 

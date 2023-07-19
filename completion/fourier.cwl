@@ -4,7 +4,6 @@
 #include:iftex
 #include:fontenc
 #include:fourier-orns
-#include:textcomp
 
 #keyvals:\usepackage/fourier#c
 widespace

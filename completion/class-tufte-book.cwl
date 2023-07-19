@@ -30,7 +30,6 @@
 #include:beramono
 #include:fontenc
 # fontenc loaded with T1 option
-#include:textcomp
 #include:fancyhdr
 #include:multicol
 

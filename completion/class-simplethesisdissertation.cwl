@@ -15,7 +15,6 @@
 #include:xunicode
 #include:xltxtra
 #include:lmodern
-#include:textcomp
 #include:underscore
 #include:titlesec
 #include:setspace

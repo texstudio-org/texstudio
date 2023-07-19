@@ -3,7 +3,6 @@
 
 #include:xkeyval
 #include:fontenc
-#include:textcomp
 #include:nfssext-cfr
 
 #keyvals:\usepackage/electrum#c

@@ -3,7 +3,6 @@
 
 #include:xkeyval
 #include:amsmath
-#include:textcomp
 
 #keyvals:\usepackage/fdsymbol#c
 normalweight=#Book,regular,auto

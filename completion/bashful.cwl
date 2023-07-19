@@ -3,7 +3,6 @@
 
 #include:catchfile
 #include:listings
-#include:textcomp
 #include:xcolor
 #include:xkeyval
 

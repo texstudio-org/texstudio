@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/05/08 for v1.6
 
 #include:xcolor
-#include:textcomp
 #include:moresize
 #include:relsize
 #include:makecmds

@@ -2,7 +2,6 @@
 # Matthew Bertucci 8/10/2021
 
 #include:xkeyval
-#include:textcomp
 #include:fontenc
 #include:nfssext-cfr
 

@@ -3,7 +3,6 @@
 
 #include:iftex
 #include:xkeyval
-#include:textcomp
 #include:fontspec
 
 #keyvals:\usepackage/heros-otf#c

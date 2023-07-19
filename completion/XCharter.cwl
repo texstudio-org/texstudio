@@ -4,7 +4,6 @@
 #include:iftex
 #include:xkeyval
 #include:etoolbox
-#include:textcomp
 #include:xstring
 #include:ifthen
 #include:scalefnt

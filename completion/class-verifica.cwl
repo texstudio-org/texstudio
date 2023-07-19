@@ -13,7 +13,6 @@
 #include:multicol
 #include:gensymb
 #include:newunicodechar
-#include:textcomp
 #include:tabto
 #include:tabularx
 #include:lineno

@@ -6,7 +6,6 @@
 #include:ifluatex
 #include:xkeyval
 #include:etoolbox
-#include:textcomp
 #include:ifthen
 #include:xstring
 #include:scalefnt

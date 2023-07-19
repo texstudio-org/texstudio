@@ -2,7 +2,6 @@
 # Matthew Bertucci 2023/02/13
 
 #include:xifthen
-#include:textcomp
 #include:xcolor
 #include:listingsutf8
 #include:inputenc

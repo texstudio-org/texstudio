@@ -2,7 +2,6 @@
 # Matthew Bertucci 4/21/2022 for v6.4.06
 
 #include:iftex
-#include:textcomp
 #include:fancyvrb
 
 \DeclareSlantedCapitalGreekLetters

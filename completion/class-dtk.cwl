@@ -147,7 +147,6 @@ DTKlstNumbers#B
 #include:inputenc
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:libertine
 #include:AnonymousPro
 \DTKrmFontName#*

@@ -2,7 +2,6 @@
 # Matthew Bertucci 2/7/2022 for v1.056
 
 #include:fontenc
-#include:textcomp
 #include:ifetex
 #include:etoolbox
 #include:xstring

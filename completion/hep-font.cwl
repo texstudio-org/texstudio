@@ -9,7 +9,6 @@
 #include:fix-cm
 #include:microtype
 #include:cfr-lm
-#include:textcomp
 #include:slantsc
 #include:inputenc
 #include:xpatch

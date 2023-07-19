@@ -5,7 +5,6 @@
 #include:fltpoint
 #include:ifthen
 #include:MyriadPro-FontDef
-#include:textcomp
 #include:microtype
 #include:fontaxes
 

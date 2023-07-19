@@ -6,7 +6,6 @@
 #include:fontenc
 # loads T1 option of fontenc
 #include:fontaxes
-#include:textcomp
 #include:etoolbox
 
 #keyvals:\usepackage/garamondx#c

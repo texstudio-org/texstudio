@@ -8,7 +8,6 @@
 #include:inputenc
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:tgheros
 #include:amsmath
 #include:amssymb

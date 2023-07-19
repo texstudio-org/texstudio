@@ -45,13 +45,11 @@
 #endif
 
 #ifOption:defaultfont=palatino
-#include:textcomp
 #include:newpxtext
 #include:newpxmath
 #endif
 
 #ifOption:defaultfont=libertine
-#include:textcomp
 #include:libertine
 #include:libertinust1math
 #endif

@@ -4,7 +4,6 @@
 #include:siunitx
 #include:pgfkeys
 #include:etoolbox
-#include:textcomp
 #include:eurosym
 
 \DefineCurrency{ISO}{maps%keyvals}

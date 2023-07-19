@@ -3,7 +3,6 @@
 
 #include:kvoptions
 #include:CronosPro-FontDef
-#include:textcomp
 #include:microtype
 #include:fontaxes
 

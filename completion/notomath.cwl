@@ -4,7 +4,6 @@
 #include:fontenc
 #include:fontaxes
 #include:mweights
-#include:textcomp
 #include:xkeyval
 #include:noto-serif
 #include:noto-sans

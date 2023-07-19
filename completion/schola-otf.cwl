@@ -3,7 +3,6 @@
 
 #include:iftex
 #include:xkeyval
-#include:textcomp
 #include:unicode-math
 
 #keyvals:\usepackage/schola-otf#c

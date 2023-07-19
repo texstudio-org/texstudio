@@ -3,7 +3,6 @@
 
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:beraserif
 #include:berasans
 #include:beramono

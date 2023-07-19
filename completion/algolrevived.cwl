@@ -2,7 +2,6 @@
 # Matthew Bertucci 8/22/2021 for v1.052
 
 #include:fontenc
-#include:textcomp
 #include:xstring
 #include:ifthen
 #include:scalefnt

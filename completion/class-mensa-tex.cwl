@@ -8,7 +8,6 @@
 #include:geometry
 #include:graphicx
 #include:lmodern
-#include:textcomp
 #include:xcolor
 
 \mensaname{cafeteria name}

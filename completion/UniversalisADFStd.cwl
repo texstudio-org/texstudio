@@ -3,7 +3,6 @@
 
 #include:fontenc
 # fontenc loaded with T1 and LY1 options
-#include:textcomp
 #include:mweights
 #include:fontaxes
 #include:xkeyval

@@ -13,7 +13,6 @@
 #include:soul
 #include:setspace
 #include:geometry
-#include:textcomp
 #include:enumitem
 #include:hyperref
 #include:colortbl

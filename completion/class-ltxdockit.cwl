@@ -5,7 +5,6 @@
 #include:multicol
 #include:keyval
 #include:fontenc
-#include:textcomp
 #include:ltxdockit
 #include:hyperref
 #include:hypcap

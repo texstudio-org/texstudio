@@ -4,7 +4,6 @@
 #include:inputenc
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:microtype
 #include:babel
 #include:float

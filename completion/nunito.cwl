@@ -3,7 +3,6 @@
 
 #include:xkeyval
 #include:fontenc
-#include:textcomp
 #include:ifthen
 #include:mweights
 #include:fontaxes

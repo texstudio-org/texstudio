@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/25/2022 for v0.1
 
 #include:fontenc
-#include:textcomp
 
 # from T1 option of fontenc
 \DH#n

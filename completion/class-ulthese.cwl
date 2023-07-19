@@ -12,7 +12,6 @@
 #include:hyperref
 #include:graphicx
 #include:xcolor
-#include:textcomp
 
 #keyvals:\documentclass/ulthese#c
 nonatbib

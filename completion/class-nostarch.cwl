@@ -16,7 +16,6 @@
 #include:makeidx
 #include:upquote
 #include:pifont
-#include:textcomp
 #include:xcolor
 #include:lmodern
 #include:nameref

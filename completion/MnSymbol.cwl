@@ -2,7 +2,6 @@
 # updated 1/20/2021 for v1.4
 
 #include:amsmath
-#include:textcomp
 #include:eufrak
 
 #keyvals:\usepackage/MnSymbol#c

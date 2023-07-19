@@ -1,7 +1,6 @@
 # clara package
 # Matthew Bertucci 2022/01/11
 
-#include:textcomp
 #include:mweights
 #include:fontaxes
 #include:xkeyval

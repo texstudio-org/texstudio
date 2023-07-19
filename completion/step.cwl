@@ -1,7 +1,6 @@
 # step package
 # Matthew Bertucci 1/11/2022 for v2.0.5
 
-#include:textcomp
 #include:fontaxes
 #include:mweights
 #include:xkeyval

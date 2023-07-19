@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/13/2022 for v1.051
 
 #include:fontenc
-#include:textcomp
 #include:xkeyval
 
 #keyvals:\usepackage/newtxtt#c

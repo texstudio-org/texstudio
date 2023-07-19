@@ -4,7 +4,6 @@
 #include:fontenc
 # loads T1 option of fontenc
 #include:amsmath
-#include:textcomp
 #include:units
 #include:xspace
 

@@ -6,7 +6,6 @@
 #include:lmodern
 #include:fontenc
 # fontenc loaded with T1 option
-#include:textcomp
 #include:inputenc
 #include:hyperref
 #include:bookmark

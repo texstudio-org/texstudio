@@ -2,7 +2,6 @@
 # Matthew Bertucci 2/27/2022 for v1.0d
 
 #include:fontenc
-#include:textcomp
 #include:keyval
 
 #keyvals:\usepackage/thsmc#c

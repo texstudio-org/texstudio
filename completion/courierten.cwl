@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/11/2022
 
 #include:fontenc
-#include:textcomp
 #include:ifthen
 #include:mweights
 #include:fontaxes

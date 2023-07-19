@@ -5,7 +5,6 @@
 #include:lambda
 #include:ifthen
 #include:calc
-#include:textcomp
 
 #keyvals:\usepackage/skak#c
 tiny

@@ -2,7 +2,6 @@
 # Matthew Bertucci 9/7/2021 for v1.035
 
 #include:fontenc
-#include:textcomp
 #include:mweights
 #include:etoolbox
 #include:fontaxes

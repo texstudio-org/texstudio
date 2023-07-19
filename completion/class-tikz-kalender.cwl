@@ -8,7 +8,6 @@
 #include:ragged2e
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:lmodern
 #include:tgheros
 #include:geometry

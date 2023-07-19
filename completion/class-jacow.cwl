@@ -17,7 +17,6 @@
 #include:footmisc
 #include:url
 #include:newtxtt
-#include:textcomp
 #include:fontenc
 # loads T1 option of fontenc
 #include:lmodern
