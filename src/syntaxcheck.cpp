@@ -932,7 +932,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 
         if (tk.type == Token::command) {
-			QString word = line.mid(tk.start, tk.length);
+            QString word = line.mid(tk.start, tk.length);
+            if (word.contains('@')) {
+                continue; //ignore commands containg @
+            }
 			if(!tk.optionalCommandName.isEmpty()){
 				word=tk.optionalCommandName;
 			}
