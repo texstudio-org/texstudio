@@ -1,7 +1,8 @@
 # RoueQuestions package
-# Matthew Bertucci 2023/06/27 for v0.0.2
+# Matthew Bertucci 2023/07/19 for v0.0.3
 
 #include:tikz
+#include:tkz-euclide
 #include:simplekv
 #include:listofitems
 #include:ifthen
