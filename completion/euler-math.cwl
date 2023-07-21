@@ -1,5 +1,5 @@
 # euler-math package
-# Matthew Bertucci 2023/06/21 for v0.41
+# Matthew Bertucci 2023/07/21 for v0.50
 
 #include:iftex
 #include:unicode-math
@@ -29,6 +29,7 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \fourthrootsign{arg}#*m
 \Game#m
 \geqqslant#m
+\harrowextender#*m
 \intextender#*m
 \Join#m
 \leftcurvedarrow#m
@@ -82,6 +83,7 @@ Numbers=#Uppercase,UppercaseOff,Lowercase,LowercaseOff,Lining,LiningOff,OldStyle
 \updasharrow#m
 \updigamma#*m
 \vartriangle#m
+\Vvert#m
 \vysmblksquare#m
 \vysmwhtsquare#m
 \wedgebar#m
