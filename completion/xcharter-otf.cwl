@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2022/07/09 for v0.42
+# Matthew Bertucci 2023/07/21 for v0.50
 
 #include:iftex
 #include:unicode-math
@@ -25,31 +25,44 @@ Scale=%<factor%>
 \circledS
 
 # math mode commands
+\backepsilon#m
+\bigstar#m
 \blacklozenge#m
 \blacksquare#m
+\blacktriangle#m
+\blacktriangledown#m
 \Box#m
 \centerdot#m
 \circlearrowleft#m
 \circlearrowright#m
 \cuberoot{arg}#m
+\cuberootsign{arg}#*m
 \dashleftarrow#m
 \dashrightarrow#m
 \diagdown#m
 \diagup#m
 \Diamond#m
+\digamma#m
 \doteqdot#m
+\doublebarwedge#m
 \doublecap#m
 \doublecup#m
+\downdasharrow#m
 \enleadertwodots#m
+\eqqslantgtr#m
+\eqqslantless#m
 \Finv#m
 \fourthroot{arg}#m
+\fourthrootsign{arg}#*m
 \Game#m
 \geqqslant#m
 \gggtr#m
 \gtreqqslantless#m
 \gtreqslantless#m
 \gvertneqq#m
+\harrowextender#*m
 \intextender#*m
+\Join#m
 \leadsto#m
 \leftdasharrow#m
 \leqqslant#m
@@ -74,6 +87,7 @@ Scale=%<factor%>
 \mdlgblkdiamond#m
 \mdlgblklozenge#m
 \mdlgwhtdiamond#m
+\mdsmblkcircle#m
 \mdsmblksquare#m
 \mdsmwhtcircle#m
 \mdsmwhtsquare#m
@@ -104,8 +118,12 @@ Scale=%<factor%>
 \ntriangleright#m
 \overrightarc{arg}#m
 \parallelslant#m
+\pitchfork#m
+\precapprox#m
 \preceqq#m
+\precnapprox#m
 \precneq#m
+\precneqq#m
 \restriction#m
 \rhd#m
 \rightcurvedarrow#m
@@ -123,17 +141,24 @@ Scale=%<factor%>
 \smblklozenge#m
 \smwhtlozenge#m
 \square#m
+\subseteqq#m
 \subsetneqq#m
+\succapprox#m
 \succeqq#m
+\succnapprox#m
 \succneq#m
+\succneqq#m
+\supseteqq#m
 \supsetneqq#m
 \thickapprox#m
 \thicksim#m
 \tieconcat#*m
+\triangledown#m
 \unlhd#m
 \unrhd#m
 \upand#m
 \upbackepsilon#m
+\updasharrow#m
 \updigamma#*m
 \varemptyset#m
 \varpropto#m
@@ -147,6 +172,7 @@ Scale=%<factor%>
 \varsymscrE#*m
 \varsymscrQ#*m
 \varsymscrT#*m
+\vartriangle#m
 \Vvert#m
 \vysmblksquare#m
 \vysmwhtsquare#m
