@@ -70,6 +70,8 @@ QString getRealIconFile(const QString &icon);
 QIcon getRealIcon(const QString &icon);
 QIcon getRealIconCached(const QString &icon, bool forceReload=false);
 
+QPixmap loadPixmapFromSVG(const QString &fn,const QSize sz);
+
 ///returns if the file is writable (QFileInfo.isWritable works in different ways on Windows and Linux)
 bool isFileRealWritable(const QString &filename);
 //returns if the file exists and is writable

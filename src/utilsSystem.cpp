@@ -1,6 +1,7 @@
 #include "utilsSystem.h"
 #include "unixutils.h"
 #include "smallUsefulFunctions.h"
+#include <QSvgRenderer>
 
 #ifdef Q_OS_MAC
 #include <CoreFoundation/CFURL.h>
@@ -801,4 +802,19 @@ QSet<QString> convertStringListtoSet(const QStringList &list)
 	return QSet<QString>::fromList(list);
 #endif
 
+}
+/*!
+ * \brief load Pixmap From SVG directly with given target size
+ * \param fn file name
+ * \param sz target size
+ * \return loaded pixmap
+ */
+QPixmap loadPixmapFromSVG(const QString &fn, const QSize sz)
+{
+    QSvgRenderer svgRender(fn);
+    QImage img(sz, QImage::Format_ARGB32);
+    QPainter p(&img);
+    img.fill(0x000000000);
+    svgRender.render(&p);
+    return QPixmap::fromImage(img);
 }

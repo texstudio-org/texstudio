@@ -797,16 +797,10 @@ PDFWidget::PDFWidget(bool embedded)
 	}
 
     if (magnifierCursor == nullptr) {
-        QPixmap px(32,32);
-        //px.setDevicePixelRatio(devicePixelRatio());
-        px.load(getRealIconFile("magnifier"));
-        magnifierCursor = new QCursor(px,10,10);
-        px.load(getRealIconFile("zoom-in-magnifier"));
-        zoomInCursor = new QCursor(px,12,12);
-        px.load(getRealIconFile("zoom-out-magnifier"));
-        zoomOutCursor = new QCursor(px,12,12);
-        px.load(getRealIconFile("focusedhand"));
-        focusedHandCursor = new QCursor(px,8,13);
+        magnifierCursor = new QCursor(loadPixmapFromSVG(getRealIconFile("magnifier"),QSize(32,32)),10,10);
+        zoomInCursor = new QCursor(loadPixmapFromSVG(getRealIconFile("zoom-in-magnifier"),QSize(32,32)),12,12);
+        zoomOutCursor = new QCursor(loadPixmapFromSVG(getRealIconFile("zoom-out-magnifier"),QSize(32,32)),12,12);
+        focusedHandCursor = new QCursor(loadPixmapFromSVG(getRealIconFile("focusedhand"),QSize(32,32)),8,13);
 	}
 
 	ctxZoomInAction = new QAction(tr("Zoom In"), this);
