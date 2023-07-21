@@ -3,7 +3,6 @@
 #include:fhginstitutes
 #include:graphicx
 #include:pgf
-#include:textcomp
 \begin{splitvv}#
 \begin{splitv}#
 \boxitem#

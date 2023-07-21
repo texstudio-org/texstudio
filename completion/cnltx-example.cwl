@@ -5,7 +5,6 @@
 #include:cnltx-translations
 #include:mdframed
 #include:idxcmds
-#include:textcomp
 #include:adjustbox
 #include:ifxetex
 #include:ulem

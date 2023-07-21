@@ -3,7 +3,6 @@
 
 #include:amstext
 #include:graphicx
-#include:textcomp
 #include:xtemplate
 
 \sfrac{num}{denom}

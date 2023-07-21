@@ -4,7 +4,6 @@
 #include:etoolbox
 #include:forloop
 #include:ifthen
-#include:textcomp
 
 \amxrow{key%plain}{text}
 \amxcol{key%plain}{text}

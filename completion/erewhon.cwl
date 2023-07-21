@@ -2,7 +2,6 @@
 # Matthew Bertucci 2022/05/26 for v1.12
 
 #include:fontenc
-#include:textcomp
 #include:mweights
 #include:xstring
 #include:ifthen

@@ -3,7 +3,6 @@
 
 # note: zi4 and inconsolata are identical packages
 
-#include:textcomp
 #include:xkeyval
 #include:upquote
 

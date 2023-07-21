@@ -13,7 +13,6 @@
 #include:hologo
 #include:enumitem
 #include:pifont
-#include:textcomp
 #include:trace
 #include:csquotes
 #include:fancyvrb

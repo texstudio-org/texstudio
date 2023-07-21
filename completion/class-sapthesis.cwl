@@ -7,7 +7,6 @@
 #include:ifxetex
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:lmodern
 #include:caption
 #include:graphicx

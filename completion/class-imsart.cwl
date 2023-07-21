@@ -83,28 +83,24 @@ preprint
 #ifOption:aap
 #include:times
 #include:helvet
-#include:textcomp
 #include:textcase
 #endif
 
 #ifOption:aop
 #include:times
 #include:helvet
-#include:textcomp
 #include:textcase
 #endif
 
 #ifOption:aos
 #include:times
 #include:helvet
-#include:textcomp
 #include:textcase
 #endif
 
 #ifOption:aoas
 #include:times
 #include:helvet
-#include:textcomp
 #include:textcase
 #endif
 
@@ -114,7 +110,6 @@ preprint
 #endif
 
 #ifOption:bj
-#include:textcomp
 #include:helvet
 #include:newtxmath
 #include:graphicx
@@ -137,13 +132,11 @@ preprint
 #ifOption:aihp
 #include:times
 #include:helvet
-#include:textcomp
 #endif
 
 #ifOption:bjps
 #include:times
 #include:helvet
-#include:textcomp
 \savehline#S
 \thline#*
 #endif

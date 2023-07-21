@@ -12,7 +12,6 @@
 #include:rotating
 #include:appendix
 #include:xcolor
-#include:textcomp
 #include:manyfoot
 #include:booktabs
 #include:algorithm

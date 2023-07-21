@@ -14,7 +14,6 @@
 #include:isomath
 #include:microtype
 #include:skmath
-#include:textcomp
 #include:xcolor
 #include:xkeyval
 #include:fontenc

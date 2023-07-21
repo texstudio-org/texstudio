@@ -4,7 +4,6 @@
 #include:ifxetex
 #include:ifluatex
 #include:xkeyval
-#include:textcomp
 #include:fontspec
 
 #keyvals:\usepackage/plex-otf#c

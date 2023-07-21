@@ -6,7 +6,6 @@
 #include:tipa
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:zi4
 #include:amssymb
 #include:babel

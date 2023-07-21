@@ -1,8 +1,6 @@
 # stix2 package
 # Matthew Bertucci 1/16/2022 for v2.0.2
 
-#include:textcomp
-
 #keyvals:\usepackage/stix2#c
 notext
 nomath

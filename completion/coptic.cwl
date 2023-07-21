@@ -1,8 +1,6 @@
 # coptic package
 # Matthew Bertucci 2022/06/09 for v0.2
 
-#include:textcomp
-
 \begin{coptic}
 \end{coptic}
 \begin{copte}#*

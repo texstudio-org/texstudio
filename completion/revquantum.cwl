@@ -36,7 +36,6 @@ strict
 #ifOption:uselistings
 #include:xcolor
 #include:listings
-#include:textcomp
 comment-color#B
 #endif
 

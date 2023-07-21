@@ -1,5 +1,5 @@
 # penlight package
-# Matthew Bertucci 4/24/2022 for release 2022-04-16
+# Matthew Bertucci 2023/07/19 for v2023/07/18
 
 #include:luacode
 
@@ -16,3 +16,12 @@ extrasnoglobals
 \writePDFmetadata
 \writePDFmetadatakv{keyvals}
 \writePDFmetadatakv*{keyvals}
+
+\luastringT{string}#S
+\luastringF{string}#S
+\MakeluastringCommands{spec}
+\MakeluastringCommands[def]{spec}
+\splitToComma{text}{text to split on%text}
+\splitToComma[expansion level]{text}{text to split on%text}
+\splitToItems{text}{text to split on%text}
+\splitToItems[expansion level]{text}{text to split on%text}

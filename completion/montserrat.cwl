@@ -4,7 +4,6 @@
 #include:fontaxes
 #include:fontenc
 #include:mweights
-#include:textcomp
 #include:xkeyval
 
 #keyvals:\usepackage/montserrat#c

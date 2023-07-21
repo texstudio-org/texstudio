@@ -3,7 +3,6 @@
 
 #include:ifthen
 #include:pxfonts
-#include:textcomp
 
 #keyvals:\usepackage/gfsdidot#c
 noGFSDidotTS1

@@ -1,5 +1,5 @@
 # fourier-otf package
-# Matthew Bertucci 2023/07/09 for v0.62
+# Matthew Bertucci 2023/07/21 for v0.63
 
 #include:iftex
 #include:fourier-orns
@@ -26,10 +26,14 @@ Scale=%<factor%>
 \circledS
 
 # math mode commands
+\backepsilon#m
 \Bbbbackslash#*m
 \beware#m
+\bigstar#m
 \blacklozenge#m
 \blacksquare#m
+\blacktriangle#m
+\blacktriangledown#m
 \boom#m
 \Box#m
 \centerdot#m
@@ -37,20 +41,28 @@ Scale=%<factor%>
 \circlearrowright#m
 \circledR#m
 \circledS#m
+\cuberoot{arg}#m
+\cuberootsign{arg}#*m
 \dashleftarrow#m
 \dashrightarrow#m
 \diagdown#m
 \diagup#m
 \Diamond#m
+\digamma#m
 \doteqdot#m
+\doublebarwedge#m
 \doublecap#m
 \doublecap#m
 \doublecup#m
 \doublecup#m
 \downdasharrow#m
 \downrightcurvedarrow#m
+\eqqslantgtr#m
+\eqqslantless#m
 \Finv#m
 \forbidden#m
+\fourthroot{arg}#m
+\fourthrootsign{arg}#*m
 \Game#m
 \geqqslant#m
 \gggtr#m
@@ -58,7 +70,9 @@ Scale=%<factor%>
 \gtreqqslantless#m
 \gtreqslantless#m
 \gvertneqq#m
+\harrowextender#*m
 \intbar#m
+\intextender#*m
 \Join#m
 \leadsto#m
 \leadsto#m
@@ -69,6 +83,7 @@ Scale=%<factor%>
 \lesseqqslantgtr#m
 \lesseqslantgtr#m
 \lgblkcircle#m
+\lgblksquare#m
 \lgwhtsquare#m
 \lhd#m
 \llless#m
@@ -96,12 +111,19 @@ Scale=%<factor%>
 \mbfvec#*m
 \mbfwp#*m
 \mdblkcircle#m
+\mdblkdiamond#m
+\mdblklozenge#m
 \mdblksquare#m
+\mdlgblkdiamond#m
 \mdlgblklozenge#m
 \mdlgwhtdiamond#m
 \mdsmblkcircle#m
+\mdsmblksquare#m
 \mdsmwhtcircle#m
+\mdsmwhtsquare#m
 \mdwhtcircle#m
+\mdwhtdiamond#m
+\mdwhtlozenge#m
 \mdwhtsquare#m
 \mithbar#*m
 \mitvarpartial#*m
@@ -133,8 +155,12 @@ Scale=%<factor%>
 \ntriangleright#m
 \overrightarc{arg}#m
 \parallelslant#m
+\pitchfork#m
+\precapprox#m
 \preceqq#m
+\precnapprox#m
 \precneq#m
+\precneqq#m
 \restriction#m
 \rhd#m
 \rightcurvedarrow#m
@@ -144,17 +170,28 @@ Scale=%<factor%>
 \shortparallel#m
 \shortparallelslant#m
 \smallblacktriangleleft#m
+\smallblacktriangleright#m
 \smallfrown#m
 \smallsmile#m
 \smalltriangleleft#m
+\smalltriangleright#m
+\smblkdiamond#m
+\smblklozenge#m
+\smwhtlozenge#m
 \square#m
+\subseteqq#m
 \subsetneqq#m
+\succapprox#m
 \succeqq#m
+\succnapprox#m
 \succneq#m
+\succneqq#m
+\supseteqq#m
 \supsetneqq#m
 \thething#m
 \thickapprox#m
 \thicksim#m
+\triangledown#m
 \unlhd#m
 \unrhd#m
 \upand#m
@@ -174,6 +211,7 @@ Scale=%<factor%>
 \varsymscrE#*m
 \varsymscrQ#*m
 \varsymscrT#*m
+\vartriangle#m
 \Vvert#m
 \vysmblksquare#m
 \vysmwhtsquare#m

@@ -14,7 +14,6 @@
 #include:tabularx
 #include:enumitem
 #include:blindtext
-#include:textcomp
 #include:hyperref
 #include:scrlayer-scrpage
 #include:caption

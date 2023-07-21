@@ -5,7 +5,6 @@
 #include:intcalc
 #include:ifthen
 #include:tocloft
-#include:textcomp
 
 #keyvals:\usepackage/contracard#c
 showcountafter

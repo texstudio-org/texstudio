@@ -1,8 +1,9 @@
 # lutabulartools package
-# Matthew Bertucci 4/24/2022 for release 2022-11-29
+# Matthew Bertucci 2023/07/19 for v2023/07/18
 
 #include:booktabs
 #include:multirow
+#include:longtable
 #include:makecell
 #include:array
 #include:xcolor

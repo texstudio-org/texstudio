@@ -1755,12 +1755,15 @@
 <file>completion/helvet.cwl</file>
 <file>completion/hep-acronym.cwl</file>
 <file>completion/hep-bibliography.cwl</file>
+<file>completion/hep-feynman.cwl</file>
 <file>completion/hep-float.cwl</file>
 <file>completion/hep-font.cwl</file>
+<file>completion/hep-graphic.cwl</file>
 <file>completion/hep-math.cwl</file>
 <file>completion/hep-math-font.cwl</file>
 <file>completion/hep-paper.cwl</file>
 <file>completion/hepparticles.cwl</file>
+<file>completion/hep-plot.cwl</file>
 <file>completion/hep-text.cwl</file>
 <file>completion/hep-title.cwl</file>
 <file>completion/hepunits.cwl</file>
@@ -3059,6 +3062,7 @@
 <file>completion/rgltxdoc.cwl</file>
 <file>completion/ribbonproofs.cwl</file>
 <file>completion/richtext.cwl</file>
+<file>completion/rit-fonts.cwl</file>
 <file>completion/rjlpshap.cwl</file>
 <file>completion/rmannot.cwl</file>
 <file>completion/rmathbr.cwl</file>

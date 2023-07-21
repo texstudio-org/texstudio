@@ -8,7 +8,6 @@
 #include:stmaryrd
 #include:mathrsfs
 #include:tikz-cd
-#include:textcomp
 #include:gensymb
 
 \Aut#m

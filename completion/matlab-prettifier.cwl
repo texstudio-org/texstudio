@@ -1,7 +1,6 @@
 # matlab-prettifier package
 # Matthew Bertucci 10/12/2021 for v0.3
 
-#include:textcomp
 #include:xcolor
 #include:listings
 

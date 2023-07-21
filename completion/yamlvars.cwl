@@ -1,9 +1,10 @@
 # yamlvars package
-# Matthew Bertucci 4/24/2022 for release 2022-04-16
+# Matthew Bertucci 2023/07/19 for v2023/07/18
 
 #include:luacode
 #include:xspace
 #include:etoolbox
+#include:luakeys
 #include:penlight
 
 #keyvals:\usepackage/YAMLvars#c
@@ -34,3 +35,9 @@ debug
 
 \begin{parseYAMLpdfdata}
 \end{parseYAMLpdfdata}
+
+# not documented
+\TextualYV#S
+\setYAMLvars{arg}#S
+\setYAMLvars*{arg}#S
+\setdefYAMLvars{arg}#S

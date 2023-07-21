@@ -1,7 +1,6 @@
 # scholax package
 # Matthew Bertucci 9/13/2021 for v1.030
 
-#include:textcomp
 #include:xstring
 #include:fontenc
 #include:mweights

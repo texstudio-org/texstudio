@@ -7,7 +7,6 @@
 #include:graphicx
 #include:xcolor
 #include:fontenc
-#include:textcomp
 
 #keyvals:\usepackage/countriesofeurope#c
 Scale=%<factor%>

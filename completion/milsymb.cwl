@@ -9,7 +9,6 @@
 #include:acronym
 #include:amssymb
 #include:xifthen
-#include:textcomp
 #include:tikzlibraryshapes.geometric
 #include:tikzlibraryshapes.symbols
 #include:tikzlibrarypositioning

@@ -1,7 +1,6 @@
 # junicode package
 # Matthew Bertucci 1/18/2022
 
-#include:textcomp
 #include:mweights
 #include:fontaxes
 #include:xkeyval

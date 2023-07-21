@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/13/2022 for v1.012
 
 #include:fontenc
-#include:textcomp
 #include:xkeyval
 
 #keyvals:\usepackage/nimbussans#c

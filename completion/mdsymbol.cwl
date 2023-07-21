@@ -3,7 +3,6 @@
 
 #include:xkeyval
 #include:amsmath
-#include:textcomp
 #include:etoolbox
 #include:fltpoint
 #include:calc

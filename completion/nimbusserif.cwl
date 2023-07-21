@@ -2,7 +2,6 @@
 # Matthew Bertucci 1/11/2022 for v1.012
 
 #include:fontenc
-#include:textcomp
 #include:xkeyval
 
 #keyvals:\usepackage/nimbusserif#c

@@ -2,7 +2,6 @@
 # Matthew Bertucci 2/22/2022 for v1.3
 
 #include:fontenc
-#include:textcomp
 #include:keyval
 
 #keyvals:\usepackage/dogma#c

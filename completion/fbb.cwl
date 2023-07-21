@@ -3,7 +3,6 @@
 
 #include:fontaxes
 #include:fontenc
-#include:textcomp
 #include:ifetex
 #include:etoolbox
 #include:xstring

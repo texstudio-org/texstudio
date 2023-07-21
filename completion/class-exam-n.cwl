@@ -76,7 +76,6 @@ A1
 
 #ifOption:mtpro2
 #include:mtpro2
-#include:textcomp
 #include:fontenc
 # loads T1 option of fontenc
 \DH#n

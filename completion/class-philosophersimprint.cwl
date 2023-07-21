@@ -10,7 +10,6 @@
 #include:helvet
 #include:fontenc
 # loads T1 option of fontenc
-#include:textcomp
 #include:microtype
 #include:trajan
 #include:flushend

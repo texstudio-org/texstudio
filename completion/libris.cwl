@@ -3,7 +3,6 @@
 
 #include:nfssext-cfr
 #include:fontenc
-#include:textcomp
 
 \swashstyle#n
 \textswash{text}#n

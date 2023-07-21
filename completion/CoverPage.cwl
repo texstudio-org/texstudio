@@ -2,7 +2,6 @@
 # Matthew Bertucci 4/11/2022 for v1.01
 
 #include:keyval
-#include:textcomp
 #include:url
 #include:verbatim
 

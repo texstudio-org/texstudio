@@ -8,7 +8,6 @@
 #include:twemojis
 #include:pifont
 #include:amsfonts
-#include:textcomp
 #include:array
 #include:upquote
 #include:hologo

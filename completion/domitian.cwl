@@ -1,7 +1,6 @@
 # domitian package
 # Matthew Bertucci 1/11/2022 for v1.01
 
-#include:textcomp
 #include:mweights
 #include:fontaxes
 #include:xkeyval
