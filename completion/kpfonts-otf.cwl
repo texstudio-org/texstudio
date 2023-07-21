@@ -62,13 +62,17 @@ symbols
 \textsb{text}
 
 # math mode commands
+\backepsilon#m
 \barV#m
 \bigcapplus#m
 \bigsqcapplus#m
 \bigsqcupplus#m
 \bigsqcupplus#m
+\bigstar#m
 \blacklozenge#m
 \blacksquare#m
+\blacktriangle#m
+\blacktriangledown#m
 \Box#m
 \boxast#m
 \boxbar#m
@@ -118,9 +122,11 @@ symbols
 \DiamondLeft#m
 \Diamondright#m
 \DiamondRight#m
+\Digamma#m
 \doteqdot#m
 \dotlessi#m
 \dotlessj#m
+\doublebarwedge#m
 \doublecap#m
 \doublecup#m
 \downdasharrow#m
@@ -134,7 +140,9 @@ symbols
 \gtreqqslantless#m
 \gtreqslantless#m
 \gvertneqq#m
+\harrowextender#*m
 \IM#m
+\intextender#*m
 \Join#m
 \lambdabar#m
 \lambdaslash#m
@@ -228,8 +236,12 @@ symbols
 \overrightarc{arg}#m
 \parallelbackslant#m
 \parallelslant#m
+\pitchfork#m
+\precapprox#m
 \preceqq#m
+\precnapprox#m
 \precneq#m
+\precneqq#m
 \rbag#m
 \RE#m
 \restriction#m
@@ -256,13 +268,19 @@ symbols
 \strictfi#m
 \strictif#m
 \strictiff#m
+\subseteqq#m
 \subsetneqq#m
+\succapprox#m
 \succeqq#m
+\succnapprox#m
 \succneq#m
+\succneqq#m
+\supseteqq#m
 \supsetneqq#m
 \thickapprox#m
 \thicksim#m
 \tieconcat#m
+\triangledown#m
 \twonotes#m
 \unlhd#m
 \unrhd#m
@@ -286,6 +304,7 @@ symbols
 \varsubsetneqq#m
 \varsupsetneq#m
 \varsupsetneqq#m
+\vartriangle#m
 \Vbar#m
 \VvDash#m
 \Vvert#m
