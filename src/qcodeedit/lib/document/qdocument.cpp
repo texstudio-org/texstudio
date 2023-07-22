@@ -3548,7 +3548,22 @@ void QDocumentLineHandle::layout(int lineNr) const
 		}
 	}
 
-	setFlag(QDocumentLine::LayoutDirty, false);
+    setFlag(QDocumentLine::LayoutDirty, false);
+}
+
+void QDocumentLineHandle::setParenthesis(QVector<QParenthesis> parens)
+{
+    lockForWrite();
+    m_parens=parens;
+    unlock();
+}
+
+QVector<QParenthesis> QDocumentLineHandle::parenthesis()
+{
+    lockForRead();
+    QVector<QParenthesis>result=m_parens;
+    unlock();
+    return result;
 }
 
 
