@@ -1,5 +1,5 @@
 # crefthe package
-# Matthew Bertucci 2022/08/30 for release 2022/08/28
+# Matthew Bertucci 2023/07/22
 
 #include:cleveref
 #include:regexpatch
@@ -80,6 +80,8 @@ catalan
 \crefthename{type}[prep1]{singular}[prep2]{plural}
 \Crefthename{type}{singular}{plural}
 \Crefthename{type}[prep1]{singular}[prep2]{plural}
+\crefthevariantname{type}{settings}
+\Crefthevariantname{type}{settings}
 \crefthepatchname{counters}
 
 #ifOption:overwrite
