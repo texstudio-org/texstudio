@@ -1,11 +1,12 @@
 # crefthe package
-# Matthew Bertucci 2023/07/22
+# Matthew Bertucci 2023/07/23
 
 #include:cleveref
 #include:regexpatch
 
 #keyvals:\usepackage/crefthe#c
 overwrite#true,false
+disable german article contractions
 # options passed to cleveref
 poorman
 sort
