@@ -5461,38 +5461,30 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 		case QDocumentCursor::StartOfParenthesis :
 		{
-			QStringList possibleOpeningParentheses = QStringList() << "{" << "(" << "[";
-			QStringList possibleClosingParentheses = QStringList() << "}" << ")" << "]";
-
-			QString text = m_doc->line(line).text();
-			QStringList closingParenthesesStack;
-			bool found = false;
-			for (int i = offset; i >= 0; i--) {
-				foreach(const QString &closing, possibleClosingParentheses) {
-					if (text.mid(i).startsWith(closing) && (i+closing.length() < offset)) {
-						closingParenthesesStack.prepend(closing);
-						break;
-					}
-				}
-				foreach(const QString &opening, possibleOpeningParentheses) {
-					if (text.mid(i).startsWith(opening)) {
-						if (closingParenthesesStack.isEmpty()) {
-							offset = i;
-							found = true;
-							break;
-						} else {
-							QString matchingClosingForOpening = possibleClosingParentheses.at(possibleOpeningParentheses.indexOf(opening));
-							if (closingParenthesesStack.first() == matchingClosingForOpening) {
-								closingParenthesesStack.removeFirst();
-							} else {
-								return false;  // unmatched inner parentheses
-							}
-						}
-					}
-				}
-				if (found) break;
-			}
-			if (!found) return false;  // not within parentheses
+            const QVector<QParenthesis> &parens=m_doc->line(line).parentheses();
+            QStack<QParenthesis> candidates;
+            for (int i = 0; i<parens.size();++i){
+                const QParenthesis &p=parens[i];
+                if(p.offset>=offset){
+                    break;
+                }
+                if(p.role&QParenthesis::Open){
+                    candidates.push(p);
+                }
+                if(p.role&QParenthesis::Close){
+                    if(candidates.top().id == p.id && candidates.top().role&QParenthesis::Open){
+                        candidates.pop();
+                    }else{
+                        candidates.push(p);
+                    }
+                }
+            }
+            if(    candidates.size()==0
+                || candidates.top().role&QParenthesis::Close)
+            {
+                return false;  // not within parentheses
+            }
+            offset = candidates.top().offset;
 
 			refreshColumnMemory();
 
