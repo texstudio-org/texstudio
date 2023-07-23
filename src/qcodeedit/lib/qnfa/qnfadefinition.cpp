@@ -381,7 +381,12 @@ QString QNFADefinition::defaultLineMark() const
 }
 
 int QNFADefinition::parenthesisWeight(int id) const{
-	return m_parenWeight.value(id, -1);
+    return m_parenWeight.value(id, -1);
+}
+
+void QNFADefinition::addParenthesisWeight(int id, int weight)
+{
+    m_parenWeight.insert(id,weight);
 }
 
 /*!
