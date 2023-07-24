@@ -1,5 +1,5 @@
 # qrbill package
-# Matthew Bertucci 2022/10/20 for v1.07
+# Matthew Bertucci 2023/07/24 for v2.01
 
 #include:iftex
 #include:l3keys2e
@@ -22,6 +22,7 @@ icon=#swiss-cross,%<file name%>
 iconwidth=##L
 ignore-if-empty={%<comma list%>}
 qrmode=#package,lua
+qrsize=##L
 qrscheme=%<name%>
 referenceseparator=%<token list%>
 sep-iban=%<integer%>
