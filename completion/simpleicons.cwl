@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/07/08 for v9.4.0
+# Matthew Bertucci 2023/07/24 for v9.6.0
 
 #include:iftex
 
@@ -200,6 +200,7 @@ ardour
 arduino
 argo
 argos
+ariakit
 arkecosystem
 arlo
 arm
@@ -1230,6 +1231,7 @@ letterboxd
 levelsdotfyi
 lg
 lgtm
+liberadotchat
 liberapay
 librariesdotio
 librarything
@@ -1316,6 +1318,7 @@ matrix
 matterdotjs
 mattermost
 matternet
+mautic
 max
 maxplanckgesellschaft
 maytag
@@ -1706,6 +1709,7 @@ premierleague
 prestashop
 presto
 prettier
+pretzel
 prevention
 prezi
 prime
@@ -1732,6 +1736,7 @@ protonvpn
 protools
 protractor
 proxmox
+pterodactyl
 pubg
 publons
 pubmed
@@ -1812,6 +1817,7 @@ readthedocs
 realm
 reason
 reasonstudios
+recoil
 red
 redbubble
 reddit
@@ -1854,6 +1860,7 @@ rimacautomobili
 ring
 riotgames
 ripple
+riscv
 riseup
 roamresearch
 roblox
@@ -1973,6 +1980,7 @@ simpleicons
 simplenote
 sinaweibo
 singlestore
+sitecore
 sitepoint
 sketch
 sketchfab
@@ -2043,6 +2051,7 @@ speedtest
 spinnaker
 spinrilla
 splunk
+spoj
 spond
 spotify
 spotlight
@@ -2192,6 +2201,7 @@ thewashingtonpost
 thingiverse
 thinkpad
 threadless
+threads
 threedotjs
 threema
 thumbtack
@@ -2375,6 +2385,7 @@ wantedly
 wappalyzer
 warnerbros
 warp
+wasabi
 wasmcloud
 wasmer
 wattpad
