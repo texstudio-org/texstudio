@@ -71,6 +71,11 @@ void TableManipulationTest::addCol_data(){
 		<< 1 << 1
 		<< "\\begin{tabular}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabular}\n";
 
+    QTest::newRow("add second col, tabularx")
+        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabularx}\n"
+        << 2 << 1
+        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{xly}\na& &b\\\\\nc& &d\\\\\ne& &f\\\\\n\\end{tabularx}\n";
+
     QTest::newRow("add second col tnl")
         << "\\begin{tabular}{xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 1 << 1
@@ -168,7 +173,12 @@ void TableManipulationTest::remCol_data(){
 		<< 1 << 1
 		<< "\\begin{tabular}{x}\na\\\\\nc\\\\\ne\\\\\n\\end{tabular}\n";
 
-    QTest::newRow("rem col 1")
+    QTest::newRow("rem col 1, tabularx")
+        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{xy}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
+        << 2 << 1
+        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{x}\na\\\\\nc\\\\\ne\\\\\n\\end{tabular}\n";
+
+    QTest::newRow("rem col 1, tabularnewline")
         << "\\begin{tabular}{xy}\na&b\\tabularnewline\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
         << 1 << 1
         << "\\begin{tabular}{x}\na\\tabularnewline\nc\\\\\ne\\\\\n\\end{tabular}\n";
@@ -436,6 +446,11 @@ void TableManipulationTest::getNumberOfCol_data(){
 		<< "\\begin{tabular}{|l|l|cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
 		<< 2 << 0
 		<< 4;
+
+    QTest::newRow("tabularx")
+        << "\\usepackage{tabularx}\n\\begin{tabularx}{\\linewidth}{|l|l|cc}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabularx}\n"
+        << 2 << 0
+        << 4;
 
 	QTest::newRow("cols 0")
 		<< "\\begin{tabular}{}\na&b\\\\\nc&d\\\\\ne&f\\\\\n\\end{tabular}\n"
