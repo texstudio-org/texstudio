@@ -217,7 +217,7 @@
 \mathchar#*
 \mathchardef#*
 \mathchardef{cmd}#Sd
-\mathchoice{math1}{math2}{math3}{math4}#*
+\mathchoice{display}{text%plain}{subscript}{subsubscript}#*
 \mathclose#*
 \mathcode#*
 \mathinner#*
