@@ -539,7 +539,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             */
         }
     }
-
+    QVector<QParenthesis> m_parens;
     // check command-words
 	for (int i = 0; i < tl.length(); i++) {
         Token &tk = tl[i];
@@ -719,6 +719,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 elem.format=mFormatList["&math"];
                 elem.range = QPair<int, int>(tk.start, tk.length);
                 newRanges.append(elem);
+                QParenthesis p(61,17,tk.start,tk.length);
+                m_parens.append(p);
                 continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
@@ -741,6 +743,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     elem.format=mFormatList["&math"];
                     elem.range = QPair<int, int>(tk.start, tk.length);
                     newRanges.append(elem);
+                    QParenthesis p(61,18,tk.start,tk.length);
+                    m_parens.append(p);
 				}// ignore mismatching mathstop commands
 				continue;
 			}
@@ -974,6 +978,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 elem.format=mFormatList["&math"];
                 elem.range = QPair<int, int>(tk.start, tk.length);
                 newRanges.append(elem);
+                QParenthesis p(61,17,tk.start,tk.length);
+                m_parens.append(p);
 				continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
@@ -996,6 +1002,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                     elem.format=mFormatList["&math"];
                     elem.range = QPair<int, int>(tk.start, tk.length);
                     newRanges.append(elem);
+                    QParenthesis p(61,18,tk.start,tk.length);
+                    m_parens.append(p);
 				}// ignore mismatching mathstop commands
 				continue;
 			}
@@ -1287,6 +1295,24 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			}
 		}
 	}
+    if(!m_parens.isEmpty()){
+        // merge original parenthesis vector with new additions
+        // skip duplicates
+        QVector<QParenthesis> original_parens=dlh->parenthesis();
+        QVector<QParenthesis> result;
+        int i=0;
+        for(int j=0;j<m_parens.length();++j){
+            while(i<original_parens.size() && original_parens[i].offset<m_parens[j].offset){
+                result<<original_parens[i];
+                ++i;
+            }
+            if(i<original_parens.size() && m_parens[j].offset==original_parens[i].offset){
+                ++i;
+            }
+            result<<m_parens[j];
+        }
+        dlh->setParenthesis(result);
+    }
     if(!activeEnv.isEmpty()){
         //check active env for env highlighting (math,verbatim)
         QStack<Environment>::Iterator it=activeEnv.begin();

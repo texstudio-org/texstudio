@@ -167,6 +167,9 @@ public:
 		bool isRTLByLayout() const;
 		bool isRTLByText() const;
 		void layout(int lineNr) const; //public for unittests
+
+        void setParenthesis(QVector<QParenthesis> parens);
+        QVector<QParenthesis> parenthesis();
 	private:
 		void drawBorders(QPainter *p, qreal yStart, qreal yEnd) const;
 

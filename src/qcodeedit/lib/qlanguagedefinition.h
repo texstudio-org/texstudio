@@ -70,6 +70,7 @@ class QCE_EXPORT QLanguageDefinition
 		virtual QString defaultLineMark() const;
 
 		virtual int parenthesisWeight(int id) const;
+        virtual void addParenthesisWeight(int id,int weight);
 		virtual const QStringList& openingParenthesis() const = 0;
 		virtual const QStringList closingParentheses() const = 0;
 		//virtual const QHash<int, QString>& closingParenthesis() const = 0;
