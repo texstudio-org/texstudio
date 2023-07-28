@@ -1,4 +1,8 @@
 # CHANGELOG
+TeXstudio 4.6.1
+
+- 
+
 ## TeXstudio 4.6.0
 
 - use subfiles root for compilation if the current document is a child
