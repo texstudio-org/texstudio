@@ -840,70 +840,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
             QString firstArg = Parsing::getArg(args, dlh, 0, ArgumentList::Mandatory,true,i);
 
-			//// newcommand ////
-			if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
-				completerNeedsUpdate = true;
-				//Tokens cmdName;
-				QString cmdName = Parsing::getArg(args, Token::def);
-				cmdName.replace("@","@@"); // special treatment for commandnames containing @
-				bool isDefWidth = true;
-				if (cmdName.isEmpty())
-					cmdName = Parsing::getArg(args, Token::defWidth);
-				else
-					isDefWidth = false;
 
-                ltxCommands.possibleCommands["user"].insert(cmdName);
-
-                if (!removedUserCommands.removeAll(cmdName)) {
-                    addedUserCommands << cmdName;
-                }
-                QString cmdNameWithoutArgs = cmdName;
-                QString cmdNameWithoutOptional = cmdName;
-                bool def=false;
-
-                QString xarg=Parsing::getArg(args, Token::defXparseArg);
-                if(!xarg.isEmpty()){
-                    // xparse style defintion
-                    QString arguments=interpretXArgs(xarg);
-                    cmdName=cmdName+arguments;
-                }else{
-                    int optionCount = Parsing::getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
-                    if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-                    def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
-
-
-                    for (int j = 0; j < optionCount; j++) {
-                        if (j == 0) {
-                            if (!def){
-                                cmdName.append("{%<arg1%|%>}");
-                                cmdNameWithoutOptional.append("{%<arg1%|%>}");
-                            } else
-                                cmdName.append("[%<opt. arg1%|%>]");
-                        } else {
-                            cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
-                            cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
-                        }
-                    }
-                }
-                CodeSnippet cs(cmdName);
-                cs.index = qHash(cmdName);
-                cs.snippetLength = cmdName.length();
-                if (isDefWidth)
-                    cs.type = CodeSnippet::length;
-                mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
-                if(def){ // optional argument, add version without that argument as well
-                    CodeSnippet cs(cmdNameWithoutOptional);
-                    cs.index = qHash(cmdNameWithoutOptional);
-                    cs.snippetLength = cmdNameWithoutOptional.length();
-                    if (isDefWidth)
-                        cs.type = CodeSnippet::length;
-                    mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
-                }
-
-				// remove obsolete Overlays (maybe this can be refined
-				//updateSyntaxCheck=true;
-				continue;
-			}
 			// special treatment \def
 			if (cmd == "\\def" || cmd == "\\gdef" || cmd == "\\edef" || cmd == "\\xdef") {
 				QString remainder = curLine.mid(cmdStart + cmd.length());
@@ -1018,42 +955,71 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					}
 				}
 				continue;
-			}
-			/// specialDefinition ///
-			/// e.g. definecolor
-            /*if (ltxCommands.specialDefCommands.contains(cmd)) {
-				if (!args.isEmpty() ) {
-					completerNeedsUpdate = true;
-					QString definition = ltxCommands.specialDefCommands.value(cmd);
-					Token::TokenType type = Token::braces;
-					if (definition.startsWith('(')) {
-						definition.chop(1);
-						definition = definition.mid(1);
-						type = Token::bracket;
-					}
-					if (definition.startsWith('[')) {
-						definition.chop(1);
-						definition = definition.mid(1);
-						type = Token::squareBracket;
-					}
+            }
+            //// newcommand ////
+            if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
+                completerNeedsUpdate = true;
+                //Tokens cmdName;
+                QString cmdName = Parsing::getArg(args, Token::def);
+                cmdName.replace("@","@@"); // special treatment for commandnames containing @
+                bool isDefWidth = true;
+                if (cmdName.isEmpty())
+                    cmdName = Parsing::getArg(args, Token::defWidth);
+                else
+                    isDefWidth = false;
 
-					foreach (Token mTk, args) {
-						if (mTk.type != type)
-							continue;
-                        if(mTk.subtype == Token::defSpecialArg){
-                            // handled elsewhere
-                            break;
+                ltxCommands.possibleCommands["user"].insert(cmdName);
+
+                if (!removedUserCommands.removeAll(cmdName)) {
+                    addedUserCommands << cmdName;
+                }
+                QString cmdNameWithoutArgs = cmdName;
+                QString cmdNameWithoutOptional = cmdName;
+                bool def=false;
+
+                QString xarg=Parsing::getArg(args, Token::defXparseArg);
+                if(!xarg.isEmpty()){
+                    // xparse style defintion
+                    QString arguments=interpretXArgs(xarg);
+                    cmdName=cmdName+arguments;
+                }else{
+                    int optionCount = Parsing::getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
+                    if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
+                    def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
+
+
+                    for (int j = 0; j < optionCount; j++) {
+                        if (j == 0) {
+                            if (!def){
+                                cmdName.append("{%<arg1%|%>}");
+                                cmdNameWithoutOptional.append("{%<arg1%|%>}");
+                            } else
+                                cmdName.append("[%<opt. arg1%|%>]");
+                        } else {
+                            cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
+                            cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
                         }
-						QString elem = mTk.getText();
-						elem = elem.mid(1, elem.length() - 2); // strip braces
-						mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), definition + "%" + elem));
-						if (!removedUserCommands.removeAll(elem)) {
-							addedUserCommands << elem;
-						}
-						break;
-					}
-				}
-            }*/
+                    }
+                }
+                CodeSnippet cs(cmdName);
+                cs.index = qHash(cmdName);
+                cs.snippetLength = cmdName.length();
+                if (isDefWidth)
+                    cs.type = CodeSnippet::length;
+                mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+                if(def){ // optional argument, add version without that argument as well
+                    CodeSnippet cs(cmdNameWithoutOptional);
+                    cs.index = qHash(cmdNameWithoutOptional);
+                    cs.snippetLength = cmdNameWithoutOptional.length();
+                    if (isDefWidth)
+                        cs.type = CodeSnippet::length;
+                    mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+                }
+
+                // remove obsolete Overlays (maybe this can be refined
+                //updateSyntaxCheck=true;
+                continue;
+            }
 
 			///usepackage
             if (lp.possibleCommands["%usepackage"].contains(cmd)) {
