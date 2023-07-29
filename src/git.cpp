@@ -84,6 +84,9 @@ QStringList GIT::log(QString filename)
     for(QString& elem:revisions){
         elem=elem.simplified();
     }
+    if(!revisions.isEmpty() && revisions.last().isEmpty()){
+        revisions.takeLast();
+    }
     return revisions;
 }
 /*!
