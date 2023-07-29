@@ -81,6 +81,7 @@ public:
 	virtual QString defaultLineMark() const;
 
 	virtual int parenthesisWeight(int id) const;
+    virtual void addParenthesisWeight(int id,int weight);
 	virtual const QStringList& openingParenthesis() const;
 	virtual const QStringList closingParentheses() const;
 	//virtual const QHash<int, QString> & closingParenthesis() const;

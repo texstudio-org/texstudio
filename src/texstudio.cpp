@@ -1980,6 +1980,11 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
     REQUIRE(m_languages);
     REQUIRE(edit->codeeditor);
     m_languages->setLanguage(edit->codeeditor->editor(), ".tex");
+    // tweak $/$$ parenthesis weight
+    QLanguageFactory::LangData texData=m_languages->languageData("(La)TeX");
+    if(texData.d){
+        texData.d->addParenthesisWeight(61,40);
+    }
 
     connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
     connect(edit->editor, SIGNAL(requestClose()), &documents, SLOT(requestedClose()));

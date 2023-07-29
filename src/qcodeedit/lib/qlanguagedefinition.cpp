@@ -102,8 +102,15 @@ QString QLanguageDefinition::defaultLineMark() const
 }
 
 int QLanguageDefinition::parenthesisWeight(int id) const{
-	Q_UNUSED(id)
-	return 0;
+    Q_UNUSED(id)
+    return 0;
+}
+
+void QLanguageDefinition::addParenthesisWeight(int id, int weight)
+{
+    Q_UNUSED(id)
+    Q_UNUSED(weight)
+    return;
 }
 
 bool QLanguageDefinition::possibleEndingOfOpeningParenthesis(const QString& text) const{
