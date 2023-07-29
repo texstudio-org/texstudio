@@ -11496,7 +11496,11 @@ void Texstudio::updateTOC(){
         topTOCTreeWidget->clear();
         return;
     }
-    root->setText(0,doc->getFileInfo().fileName());
+    QString fn=doc->getFileInfo().fileName();
+    if(fn.isEmpty()){
+        fn=tr("untitled");
+    }
+    root->setText(0,fn);
     root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(doc->baseStructure));
 
     StructureEntry *base=doc->baseStructure;
@@ -12292,7 +12296,11 @@ void Texstudio::updateStructureLocally(bool updateAll){
 
         StructureEntry *base=doc->baseStructure;
 
-        root->setText(0,doc->getFileInfo().fileName());
+        QString fn=doc->getFileInfo().fileName();
+        if(fn.isEmpty()){
+            fn=tr("untitled");
+        }
+        root->setText(0,fn);
         root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
         if(doc==master){
             root->setIcon(0,getRealIcon("masterdoc"));
