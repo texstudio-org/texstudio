@@ -71,7 +71,7 @@ void LatexParser::init()
 }
 
 ///position of the % starting a comment (takes care of multiple backslashes before comment character ..)
-int LatexParser::commentStart(const QString &text)
+int commentStart(const QString &text)
 {
 	if (text.startsWith("%")) return 0;
 	QString test = text;
@@ -83,13 +83,13 @@ int LatexParser::commentStart(const QString &text)
 }
 
 /// remove comment from text, take care of multiple backslashes before comment character ...
-QString LatexParser::cutComment(const QString &text)
+QString cutComment(const QString &text)
 {
-	return text.left(LatexParser::commentStart(text));
+    return text.left(commentStart(text));
 }
 
 /// returns true if the options are complete, false if the scanning ended while still in the options
-bool LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts)
+bool resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts)
 {
 	const QString BracketsOpen("[{(");
 	const QString BracketsClose("]})");
@@ -156,7 +156,7 @@ bool LatexParser::resolveCommandOptions(const QString &line, int column, QString
  * \param option text
  * \return option without []
  */
-QString LatexParser::removeOptionBrackets(const QString &option)
+QString removeOptionBrackets(const QString &option)
 {
 	if (option.isNull() || option.length() < 2) return option;
 	if ((option.at(0) == '{' && option.at(option.length() - 1) == '}') ||

@@ -333,11 +333,11 @@ void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles)
 
 			//todo: support other languages except latex (either search the comment starting with document()->languageDefinition()->singleLineComment() in the highlighting info, or modify singleLineComment to return a regex matching the comment start
 			QList<int> commentStarts;
-			QString temp = line;
-			int commentStart;
-			while ((commentStart=LatexParser::commentStart(temp)) >= 0 ) {
-				temp = temp.mid(commentStart+1);
-				commentStarts << commentStart + (commentStarts.isEmpty()?0:commentStarts.last());
+            QString temp = line;
+            int commentStartPos;
+            while ((commentStartPos=commentStart(temp)) >= 0 ) {
+                temp = temp.mid(commentStartPos+1);
+                commentStarts << commentStartPos + (commentStarts.isEmpty()?0:commentStarts.last());
 			}
 
 

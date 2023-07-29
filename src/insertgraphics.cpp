@@ -258,7 +258,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 			lr.index = lr.wordStartIndex + lr.word.length();
 			continue;
 		}
-		LatexParser::resolveCommandOptions(code, lr.index, args, &argStarts);
+        resolveCommandOptions(code, lr.index, args, &argStarts);
 		if (args.length() == 0) {
 			UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nInsufficient number of arguments to ") + lr.word);
 			return false;
@@ -268,11 +268,11 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 			if (args.at(0) == "{figure}") {
 				conf.useFigure = true;
 				conf.spanTwoCols = false;
-				conf.placement = (args.length() < 2) ? "" : LatexParser::removeOptionBrackets(args.at(1));
+                conf.placement = (args.length() < 2) ? "" : removeOptionBrackets(args.at(1));
 			} else 	if (args.at(0) == "{figure*}") {
 				conf.useFigure = true;
 				conf.spanTwoCols = true;
-				conf.placement = (args.length() < 2) ? "" : LatexParser::removeOptionBrackets(args.at(1));
+                conf.placement = (args.length() < 2) ? "" : removeOptionBrackets(args.at(1));
 			} else if (args.at(0) == "{center}") {
 				conf.useFigure = false;
 				conf.center = true;
@@ -284,34 +284,34 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 			// nothing to do
 		} else if (lr.word == "\\caption") {
 			if (args.at(0).at(0) == '[') {
-				conf.shortCaption = LatexParser::removeOptionBrackets((args.at(0)));
+                conf.shortCaption = removeOptionBrackets((args.at(0)));
 				if (args.length() < 2) {
 					UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nInvalid \\caption command."));
 				}
-				conf.caption = LatexParser::removeOptionBrackets(args.at(1));
+                conf.caption = removeOptionBrackets(args.at(1));
 			} else {
 				conf.shortCaption.clear();
-				conf.caption = LatexParser::removeOptionBrackets(args.at(0));
+                conf.caption = removeOptionBrackets(args.at(0));
 			}
 			conf.captionBelow = includeParsed;
 		} else if (lr.word == "\\label") {
-			conf.label = LatexParser::removeOptionBrackets(args.at(0));
+            conf.label = removeOptionBrackets(args.at(0));
 		} else if (lr.word == "\\includegraphics") {
 			if (args.at(0).at(0) == '[') {
-				conf.includeOptions = LatexParser::removeOptionBrackets(args.at(0));
+                conf.includeOptions = removeOptionBrackets(args.at(0));
 				if (args.length() < 2) {
 					UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nMissing \\includegraphics options."));
 					return false;
 				}
-				conf.file = LatexParser::removeOptionBrackets(args.at(1));
+                conf.file = removeOptionBrackets(args.at(1));
 			} else {
 				conf.includeOptions = "";
-				conf.file = LatexParser::removeOptionBrackets(args.at(0));
+                conf.file = removeOptionBrackets(args.at(0));
 			}
 			includeParsed = true;
 		} else if (lr.word == "\\input") {
 			conf.includeOptions = "";
-			conf.file = LatexParser::removeOptionBrackets(args.at(0));
+            conf.file = removeOptionBrackets(args.at(0));
 			if (QFileInfo(conf.file).suffix().isEmpty()) {
 				conf.file.append(".tex");  // need to add .tex to distinguish from image files
 			}

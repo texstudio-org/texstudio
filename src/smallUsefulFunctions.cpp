@@ -335,8 +335,8 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines){
 		} else {
 			tmpLine.append(" " + rtrimmedLine.trimmed());
 		}
-		int commentStart = LatexParser::commentStart(rtrimmedLine);
-		if (commentStart >= 0) {
+        int commentStartPos = commentStart(rtrimmedLine);
+        if (commentStartPos >= 0) {
             FLUSH_TMPLINE();
 		}
 	}
@@ -373,7 +373,7 @@ QStringList splitLines(const QStringList &lines, int maxCharPerLine, const QRegu
 			splittedLines << indent + leftPart;
 			if (breakAt >= 0) {
 				line.remove(0, breakAt + 1);
-				inComment = inComment || (LatexParser::commentStart(leftPart) >= 0);
+                inComment = inComment || (commentStart(leftPart) >= 0);
 			} else {
 				line.clear();
 				break;

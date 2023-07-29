@@ -6,7 +6,7 @@
  */
 QString ArgumentList::argContent(int index) const
 {
-	return LatexParser::removeOptionBrackets(this->at(index));
+    return removeOptionBrackets(this->at(index));
 }
 
 /*!

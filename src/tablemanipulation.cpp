@@ -279,7 +279,7 @@ void LatexTables::removeColumn(QDocument *doc, const int lineNumber, const int c
 			if (add > 1) {
 				//multicolumn handling
 				QStringList values;
-				LatexParser::resolveCommandOptions(selText, 0, values);
+                resolveCommandOptions(selText, 0, values);
 				values.takeFirst();
 				values.prepend(QString("{%1}").arg(add - 1));
 				cur.movePosition(1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
@@ -361,7 +361,7 @@ int LatexTables::findNextToken(QDocumentCursor &cur, QStringList tokens, bool ke
 		if (backwards) {
 			offset = line.length();
 		}
-		line = LatexParser::cutComment(line);
+        line = cutComment(line);
 		if (backwards) {
 			offset = offset - line.length();
             std::reverse(line.begin(),line.end());
@@ -446,7 +446,7 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 	if (pos > -1) {
 		QStringList values;
 		QList<int> starts;
-		LatexParser::resolveCommandOptions(line, pos, values, &starts);
+        resolveCommandOptions(line, pos, values, &starts);
 		QString env = values.takeFirst();
 		pos = starts.takeFirst();
 		if (!env.startsWith("{") || !env.endsWith("}")) return QString();
@@ -459,7 +459,7 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 			if (endExtra >= 0 && endExtra > startExtra) {
 				QString textHelper = line;
 				textHelper.remove(startExtra, endExtra - startExtra); // remove to/spread definition
-				LatexParser::resolveCommandOptions(textHelper, pos, values, &starts);
+                resolveCommandOptions(textHelper, pos, values, &starts);
 				for (int i = 1; i < starts.count(); i++) {
 					starts[i] += endExtra - startExtra;
 				}
@@ -511,7 +511,7 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur)
 	int pos = line.indexOf("\\begin");
 	if (pos > -1) {
 		QStringList values;
-		LatexParser::resolveCommandOptions(line, pos, values);
+        resolveCommandOptions(line, pos, values);
 		return getNumberOfColumns(values);
 	}
 	return -1;
@@ -564,7 +564,7 @@ bool LatexTables::inTableEnv(QDocumentCursor &cur)
 	int pos = line.indexOf("\\begin");
 	if (pos > -1) {
 		QStringList values;
-		LatexParser::resolveCommandOptions(line, pos, values);
+        resolveCommandOptions(line, pos, values);
 		QString env = values.takeFirst();
 		if (!env.startsWith("{") || !env.endsWith("}")) return -1;
 		env = env.mid(1);
@@ -585,11 +585,11 @@ int LatexTables::getNumOfColsInMultiColumn(const QString &str, QString *outAlign
 	//return the number of columns in mulitcolumn command
 	QStringList values;
 	QString zw = str.trimmed();
-	LatexParser::resolveCommandOptions(zw, 0, values);
+    resolveCommandOptions(zw, 0, values);
 	if (values.length() != 3) return -1;
 
-	if (outAlignment) *outAlignment = LatexParser::removeOptionBrackets(values.at(1));
-	if (outText) *outText = LatexParser::removeOptionBrackets(values.at(2));
+    if (outAlignment) *outAlignment = removeOptionBrackets(values.at(1));
+    if (outText) *outText = removeOptionBrackets(values.at(2));
 
 	zw = values.takeFirst();
 	if (zw.startsWith("{") && zw.endsWith("}")) {

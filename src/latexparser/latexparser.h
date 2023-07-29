@@ -25,10 +25,7 @@ public:
 	static LatexParser &getInstance();
 	static LatexParser *getInstancePtr();
 
-	static int commentStart(const QString &text);
-	static QString cutComment(const QString &text);
-    static bool resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts = nullptr);
-	static QString removeOptionBrackets(const QString &option);
+
 	int structureDepth()
 	{
 		return MAX_STRUCTURE_LEVEL;
@@ -63,6 +60,10 @@ int findClosingBracket(const QString &word, int &start, QChar oc = QChar('{'), Q
 int findOpeningBracket(const QString &word, int start, QChar oc = QChar('{'), QChar cc = QChar('}'));
 /// determine Arguments from xparse argument definition
 QString interpretXArgs(const QString &xarg);
+int commentStart(const QString &text);
+QString cutComment(const QString &text);
+bool resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts = nullptr);
+QString removeOptionBrackets(const QString &option);
 
 
 #endif // LATEXPARSER_H

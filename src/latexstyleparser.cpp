@@ -717,7 +717,7 @@ QStringList LatexStyleParser::readPackage(QString fileName, QStringList &parsedP
 		QString line;
 		bool inRequirePackage = false;
 		while (!stream.atEnd()) {
-			line = LatexParser::cutComment(stream.readLine());
+            line = cutComment(stream.readLine());
 			results << parseLine(line, inRequirePackage, parsedPackages, fileName);
 		}
 	}

@@ -2887,23 +2887,23 @@ void LatexEditorView::insertHardLineBreaks(int newLength, bool smartScopeSelecti
 	QString insertBlock;
 	for (int i = 0; i < lines.count(); i++) {
 		QString line = lines[i];
-		int commentStart = LatexParser::commentStart(line);
-		if (commentStart == -1) commentStart = line.length();
+        int commentStartPos = commentStart(line);
+        if (commentStartPos == -1) commentStartPos = line.length();
 		while (line.length() > newLength) {
 			int breakAt = line.lastIndexOf(breakChars, newLength);
 			if (breakAt < 0) breakAt = line.indexOf(breakChars, newLength);
 			if (breakAt < 0) break;
-			if (breakAt >= commentStart && breakAt + 1 > newLength) {
+            if (breakAt >= commentStartPos && breakAt + 1 > newLength) {
 				int newBreakAt = line.indexOf(breakChars, breakAt - 1);
 				if (newBreakAt > -1) breakAt = newBreakAt;
 			}
 			insertBlock += line.left(breakAt) + "\n";
-			if (breakAt < commentStart) {
+            if (breakAt < commentStartPos) {
 				line = line.mid(breakAt + 1);
-				commentStart -= breakAt + 1;
+                commentStartPos -= breakAt + 1;
 			} else {
 				line = "%" + line.mid(breakAt + 1);
-				commentStart = 0;
+                commentStartPos = 0;
 			}
 		}
 		insertBlock += line + "\n";

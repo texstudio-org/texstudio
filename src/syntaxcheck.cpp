@@ -473,7 +473,7 @@ void SyntaxCheck::markUnclosedEnv(Environment env)
 	dlh->lockForWrite();
 	if (dlh->getCurrentTicket() == env.ticket) {
 		QString line = dlh->text();
-		line = ltxCommands->cutComment(line);
+        line = cutComment(line);
 		QString cmd = "\\begin{" + env.name + "}";
 		int index = line.lastIndexOf(cmd);
 		if (index >= 0) {

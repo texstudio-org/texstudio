@@ -304,7 +304,7 @@ void LatexParserTest::cutComment_simple()
 {
 	QFETCH(QString, in);
 	QFETCH(QString, out);
-	QString res = LatexParser::cutComment(in);
+    QString res = cutComment(in);
 	QEQUAL(res, out);
 }
 
@@ -337,7 +337,7 @@ void LatexParserTest::test_resolveCommandOptions()
 	QFETCH(bool, expectedComplete);
 	QStringList values;
 	QList<int> starts;
-	bool complete = LatexParser::resolveCommandOptions(line, column, values, &starts);
+    bool complete = resolveCommandOptions(line, column, values, &starts);
 	QEQUAL(values.length(), starts.length());
 	QEQUAL(values.join("|"), expectedValues.join("|"));
 	QVERIFY(starts == expectedStarts);

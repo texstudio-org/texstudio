@@ -2751,7 +2751,7 @@ void Texstudio::insertTableTemplate()
 		//tableText.remove("\n");
 		tableText.remove("\\hline");
 		if (tableText.startsWith("\\begin")) {
-			LatexParser::resolveCommandOptions(tableText, 0, values, &starts);
+            resolveCommandOptions(tableText, 0, values, &starts);
 			env = values.takeFirst();
 			env.remove(0, 1);
 			env.remove(env.length() - 1, 1);
@@ -2765,7 +2765,7 @@ void Texstudio::insertTableTemplate()
 					textHelper.remove(startExtra, endExtra - startExtra); // remove to/spread definition
 					values.clear();
 					starts.clear();
-					LatexParser::resolveCommandOptions(textHelper, 0, values, &starts);
+                    resolveCommandOptions(textHelper, 0, values, &starts);
 					for (int i = 1; i < starts.count(); i++) {
 						starts[i] += endExtra - startExtra;
 					}

@@ -99,7 +99,7 @@ QList<TokenizedBlock> tokenizeWords(LatexParser *latexParser, const QList<LineIn
 				//don't check captions
 				QStringList temp;
 				QList<int> starts;
-				LatexParser::resolveCommandOptions(lr.line, lr.wordStartIndex - 1, temp, &starts);
+                resolveCommandOptions(lr.line, lr.wordStartIndex - 1, temp, &starts);
 				for (int j = 0; j < starts.count() && j < 2; j++) {
 					lr.index = starts.at(j) + temp.at(j).length() - 1;
 					if (temp.at(j).startsWith("{")) break;
