@@ -1,4 +1,8 @@
 # CHANGELOG
+TeXstudio 4.6.3
+
+- 
+
 
 ## TeXstudio 4.6.2
 
