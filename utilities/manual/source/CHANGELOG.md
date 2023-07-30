@@ -1,4 +1,8 @@
 # CHANGELOG
+TeXstudio 4.6.2
+
+- 
+
 TeXstudio 4.6.1
 
 - fix wrong path for saving cache information
