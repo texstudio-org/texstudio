@@ -1,11 +1,12 @@
 # CHANGELOG
-TeXstudio 4.6.2
 
-- 
+## TeXstudio 4.6.2
 
-TeXstudio 4.6.1
+- t.b.d.
 
-- fix wrong path for saving cache information
+## TeXstudio 4.6.1
+
+- fix wrong path for saving cache information ([#3225](https://github.com/texstudio-org/texstudio/issues/3225))
 - allow delimiter operations on $ math sections
 
 ## TeXstudio 4.6.0
