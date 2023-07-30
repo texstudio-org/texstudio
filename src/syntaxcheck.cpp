@@ -1311,6 +1311,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
             }
             result<<m_parens[j];
         }
+        for(;i<original_parens.size();++i){
+            result<<original_parens[i];
+        }
         dlh->setParenthesis(result);
     }
     if(!activeEnv.isEmpty()){
