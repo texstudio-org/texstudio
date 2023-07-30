@@ -1,7 +1,8 @@
 # CHANGELOG
 TeXstudio 4.6.1
 
-- 
+- fix wrong path for saving cache information
+- allow delimiter operations on $ math sections
 
 ## TeXstudio 4.6.0
 
