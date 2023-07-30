@@ -2294,7 +2294,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
     if(hidden){
         // try loading from cache
-        if(doc->restoreCachedData("/home/sdm/.config/texstudio/cache",f_real)){
+        if(doc->restoreCachedData(documents.getCachingFolder(),f_real)){
             edit->editor->setFileName(f_real);
         }else{
             edit->editor->load(f_real, QDocument::defaultCodec());
