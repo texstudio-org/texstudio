@@ -3463,9 +3463,9 @@ void LatexDocument::setLtxCommands(const LatexParser &cmds,bool skipPatch)
 	SynChecker.setLtxCommands(cmds);
 	lp = cmds;
     // reparse unknown commands
-    if(!skipPatch){
+    /*if(!skipPatch){
         patchUnknownCommands();
-    }
+    }*/
 
 	LatexEditorView *view = getEditorView();
 	if (view) {
