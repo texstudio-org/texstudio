@@ -2,7 +2,7 @@
 
 ## TeXstudio 4.6.2
 
-- t.b.d.
+- fix crash
 
 ## TeXstudio 4.6.1
 
