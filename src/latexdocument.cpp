@@ -1889,7 +1889,7 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool purge)
 {
     // save caching information
-    document->saveCachingData(QString("/home/sdm/.config/texstudio/cache"));
+    document->saveCachingData(m_cachingFolder);
     if (!hidden)
         emit aboutToDeleteDocument(document);
     LatexEditorView *view = document->getEditorView();
@@ -1966,7 +1966,7 @@ void LatexDocuments::deleteDocument(LatexDocument *document, bool hidden, bool p
             foreach (LatexDocument *elem, lstOfDocs) {
                 if (elem->isHidden()) {
                     hiddenDocuments.removeAll(elem);
-                    elem->saveCachingData(QString("/home/sdm/.config/texstudio/cache"));
+                    elem->saveCachingData(m_cachingFolder);
                     delete elem->getEditorView();
                     delete elem;
                 }
@@ -2222,7 +2222,17 @@ LatexDocument *LatexDocuments::findDocument(const QString &fileName, bool checkT
 
 void LatexDocuments::settingsRead()
 {
-	return; // currently unused
+    return; // currently unused
+}
+
+void LatexDocuments::setCachingFolder(const QString &folder)
+{
+    m_cachingFolder=folder;
+}
+
+QString LatexDocuments::getCachingFolder() const
+{
+    return m_cachingFolder;
 }
 
 bool LatexDocuments::singleMode() const

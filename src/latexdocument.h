@@ -347,6 +347,8 @@ public:
 	void reorder(const QList<LatexDocument *> &order);
 
 	void settingsRead();
+    void setCachingFolder(const QString &folder);
+    QString getCachingFolder() const;
 
 	Q_INVOKABLE bool singleMode() const;
 
@@ -393,6 +395,7 @@ public slots:
 
 private:
 	bool m_patchEnabled;
+    QString m_cachingFolder;
 };
 
 #endif // LATEXDOCUMENT_H

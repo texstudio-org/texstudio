@@ -268,6 +268,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	LatexEditorView::updateFormatSettings();
 
 	// TAB WIDGET EDITEUR
+    documents.setCachingFolder(joinPath(configManager.configBaseDir,"cache"));
 	documents.indentationInStructure = configManager.indentationInStructure;
 	documents.showCommentedElementsInStructure = configManager.showCommentedElementsInStructure;
 	documents.indentIncludesInStructure = configManager.indentIncludesInStructure;
