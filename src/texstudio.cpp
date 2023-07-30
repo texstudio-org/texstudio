@@ -2320,6 +2320,10 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	}
 
     documents.updateMasterSlaveRelations(doc, recheck);
+    LatexDocument *root=doc->getRootDocument();
+    if(root != doc){
+        doc->setLtxCommands(root->lp); // use packages etc. from root doc
+    }
 
     if (recheck || hidden) {
         if(!doc->isIncompleteInMemory() || !doc->containedPackages().isEmpty() || !doc->userCommandList().isEmpty()){
