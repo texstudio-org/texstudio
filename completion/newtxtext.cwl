@@ -1,5 +1,5 @@
 # newtxtext package
-# Matthew Bertucci 2023/07/27 for v1.72
+# Matthew Bertucci 2023/07/31 for v1.723
 
 #include:iftex
 #include:xkeyval
@@ -66,6 +66,7 @@ looser
 \textnumerator{text}#*
 \textosf{text}
 \textsu{text}
+\textsup{text}#S
 \textsuperior{text}#*
 \textth{text}
 \textthit{text}#*
