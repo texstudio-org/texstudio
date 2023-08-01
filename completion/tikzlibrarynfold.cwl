@@ -1,7 +1,7 @@
 # nfold tikzlibrary
-# Matthew Bertucci 2023/05/04 for v0.1.1
+# Matthew Bertucci 2023/07/23 for v1.0.0
 
-# loads bezieroffset pgflibrary
+# loads nfold pgflibrary, which loads offsetpath pgflibrary, which loads bezieroffset pgflibrary
 
 #keyvals:\draw#c,\ar#c
 nfold
@@ -10,6 +10,7 @@ scaling nfold
 scaling nfold=%<integer%>
 #endkeyvals
 
+# from offsetpath pgflibrary
 \pgfoffsetpath{softpath}{length}#*
 \pgfoffsetpathfraction{softpath}{width}{fraction}#*
 \pgfoffsetpathqfraction{softpath}{width}{fraction}#*

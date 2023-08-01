@@ -1,11 +1,10 @@
 # yamlvars package
-# Matthew Bertucci 2023/07/19 for v2023/07/18
+# Matthew Bertucci 2023/07/23
 
 #include:luacode
-#include:xspace
 #include:etoolbox
 #include:luakeys
-#include:penlight
+#include:penlightplus
 
 #keyvals:\usepackage/YAMLvars#c
 useyv

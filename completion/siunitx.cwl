@@ -1,7 +1,7 @@
 # dbitouze/2015-03-20 for siunitx v2.6e
 # thatlittleboy/2018-06-18
 # r0the/2021-10-07 for siunitx v3
-# Matthew Bertucci 2023-01-03 for v3.2.0
+# Matthew Bertucci 2023-07-31 for v3.3.0
 
 #include:translations
 #include:amstext
@@ -139,6 +139,7 @@
 \mp#*
 \MPa#*
 \ms#*
+\mT#*
 \mV#*
 \MW#*
 \mW#*
@@ -202,6 +203,7 @@
 \square
 \squared
 \steradian
+\T#*
 \tablenum{%<number%>}#t
 \tablenum[%<options%>]{%<number%>}#t
 \tebi
@@ -224,6 +226,7 @@
 \unit[options%keyvals]{unit%formula}
 \unit{unit%formula}
 \us#*
+\uT#*
 \uV#*
 \uW#*
 \V#*
@@ -308,6 +311,7 @@ input-exponent-markers=%<symbols%>
 input-ignore=%<symbols%>
 input-open-uncertainty=%<symbols%>
 input-signs=%<symbols%>
+input-uncertainty-divider=%<symbol%>
 input-uncertainty-signs=%<symbols%>
 parse-numbers#true,false
 retain-explicit-decimal-marker#true,false
@@ -332,12 +336,14 @@ exponent-thresholds=%<min:max%>
 fixed-exponent=%<integer%>
 minimum-integer-digits=%<integer%>
 minimum-decimal-digits=%<integer%>
+round-direction=#nearest,up,down
 round-half=#up,even
 round-minimum=%<number%>
 round-mode=#none,figures,places,uncertainty
 round-pad#true,false
 round-precision=%<integer%>
 round-zero-positive#true,false
+uncertainty-round-direction=#nearest,up,down
 #endkeyvals
 
 ## 4.5 Printing numbers
@@ -376,23 +382,33 @@ zero-symbol=%<symbol%>
 
 ## 4.6 Lists, products and ranges
 #keyvals:\sisetup,\numlist,\qtylist,\SIlist
+list-close-bracket=%<symbol%>
 list-exponents=#individual,combine-bracket,combine
 list-final-separator=%<separator%>
+list-independent-prefix#true,false
+list-open-bracket=%<symbol%>
 list-pair-separator=%<separator%>
 list-separator=%<separator%>
 list-units=#bracket,repeat,single
 #endkeyvals
 
 #keyvals:\sisetup,\numproduct,\qtyproduct
+product-close-bracket=%<symbol%>
 product-exponents=#individual,combine-bracket,combine
+product-independent-prefix#true,false
 product-mode=#symbol,phrase
+product-open-bracket=%<symbol%>
 product-phrase=%<text%>
 product-symbol=%<symbol%>
 product-units=#bracket,bracket-power,power,repeat,single
 #endkeyvals
 
 #keyvals:\sisetup,\numrange,\qtyrange,\SIrange
+range-close-bracket=%<symbol%>
 range-exponents=#individual,combine-bracket,combine
+range-independent-prefix#true,false
+range-open-bracket=%<symbol%>
+range-open-phrase=%<symbol%>
 range-phrase=%<text%>
 range-units=#bracket,repeat,single
 #endkeyvals
@@ -473,6 +489,7 @@ table-auto-round#true,false
 table-column-width=##L
 table-fixed-width=##L
 table-format=%<format value%>
+table-model-setup=%<commands%>
 table-number-alignment=#left,center,right
 table-text-alignment=#left,center,right,none
 #endkeyvals
@@ -484,6 +501,8 @@ locale=#DE,UK,US,ZA,FR
 
 ## 4.14 Preamble-only options
 #keyvals:\sisetup
+list-input-separator=%<separator%>
+product-input-separator=%<separator%>
 table-column-type=%<tokens%>
 #endkeyvals
 

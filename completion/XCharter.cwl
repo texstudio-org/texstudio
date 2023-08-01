@@ -1,5 +1,5 @@
 # XCharter package
-# Matthew Bertucci 4/24/2022 for v1.24
+# Matthew Bertucci 2023/07/27 for v1.25
 
 #include:iftex
 #include:xkeyval
@@ -84,10 +84,12 @@ Scale=%<factor%>
 \liningnums
 \nufigures
 \nustyle#*
+\oldstyleInums#S
 \oldstylenums
 \osfstyle
 \proportionalnums
 \sufigures
+\sustyle#*
 \tabularnums
 \textde{text}#*
 \textdenominator{text}
@@ -103,7 +105,8 @@ Scale=%<factor%>
 \textnumerator{text}
 \textruble
 \textsu{text}
-\textsuperior{text}#*
+\textsub{text}#*
+\textsup{text}#*
 \textth{text}
 \textthit{text}#*
 \thdefault#*

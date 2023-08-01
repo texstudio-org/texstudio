@@ -1,14 +1,22 @@
 # newtx package
-# Matthew Bertucci 3/8/2022 for v1.71
+# Matthew Bertucci 2023/07/27 for v1.72
 
 #include:newtxtext
 #include:newtxmath
+#include:xstring
 
 #keyvals:\usepackage/newtx#c
 # options specific to the bundled package
 otfmath#true,false
 textscaled=%<factor%>
 mathscaled=%<factor%>
+ScaleBaseRM=%<factor%>
+ScaleBaseSF=%<factor%>
+ScaleBaseTT=%<factor%>
+llscale=%<factor%>
+ttscale=%<factor%>
+rm#true,false
+sf#true,false
 libertine#true,false
 libertinus#true,false
 etbb#true,false
@@ -31,8 +39,6 @@ sfracscaling=%<factor%>
 # options from newtxtext
 type1#true,false
 type1text#true,false
-otfmath#true,false
-nofontspec#true,false
 defaultfeatures={%<fontspec options%>}
 lining#true,false
 lf#true,false
@@ -328,3 +334,5 @@ vecsep=##L
 \textsfrac[whole part]{numerator}{denominator}
 \textsfrac{numerator}{denominator}
 \pliningnums#*
+\lbtntextfrac[whole part]{numerator}{denominator}#S
+\lbtntextfrac{numerator}{denominator}#S

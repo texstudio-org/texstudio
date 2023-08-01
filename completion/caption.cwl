@@ -1,6 +1,6 @@
 # caption.cwl
 # Edson 2010
-# Matthew Bertucci updated 2023/03/12 for v3.6j
+# Matthew Bertucci updated 2023/07/28 for v3.6m
 
 #include:caption3
 #include:ltcaption
@@ -146,6 +146,10 @@ config=%<file name%>
 \setcaptionsubtype{float type}
 \setcaptiontype*
 \setcaptiontype{float type}
+\subcaptionsetup[float type]{options%keyvals}
+\subcaptionsetup{options%keyvals}
+\subcaptionsetup*[float type]{options%keyvals}#*
+\subcaptionsetup*{options%keyvals}#*
 
 # only available if longtable package loaded
 \begin{longtable*}#S

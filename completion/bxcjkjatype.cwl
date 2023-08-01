@@ -1,5 +1,5 @@
 # bxcjkjatype package
-# Matthew Bertucci 2022/07/17 for v0.3
+# Matthew Bertucci 2023/07/22 for v0.5
 
 #include:keyval
 #include:CJK
@@ -16,6 +16,7 @@ nowhole
 everypage
 noeverypage
 ipaex-type1
+defaultmingoth
 oneweight
 nooneweight
 autotilde
@@ -28,11 +29,14 @@ boldbyembolden
 noboldbyembolden
 substmingoth
 nosubstmingoth
+CJKtildeasspace
+noCJKtildeasspace
 ms
 ipa
 ipaex
 ms-hg
 ipa-hg
+ipaex-hg
 moga-mobo
 moga-maruberi
 kozuka-pro
@@ -40,22 +44,16 @@ kozuka-pr6
 kozuka-pr6n
 hiragino-pro
 hiragino-pron
+hiragino-elcapitan-pro
+hiragino-elcapitan-pron
 morisawa-pro
 morisawa-pr6n
+yu-win
+yu-win10
+yu-osx
 scale=%<factor%>
-vertical=#none,false,sub,main,true
 ttfname=%<pattern%>
 #endkeyvals
-
-#ifOption:vertical=sub
-#include:CJKvert
-#endif
-#ifOption:vertical=main
-#include:CJKvert
-#endif
-#ifOption:vertical=true
-#include:CJKvert
-#endif
 
 \setminchofont{font-file}
 \setminchofont[id]{font-file}
@@ -95,21 +93,20 @@ ttfname=%<pattern%>
 \gtfamily
 \mgfamily
 
-\CJKboldbyembolden
-\CJKnoboldbyembolden
+\CJKboldbyembolden#*
+\CJKnoboldbyembolden#*
 
 # not functional
-\setlightminchofont{font-file}#*
-\setlightminchofont[id]{font-file}#*
+\setlightminchofont{font-file}#S
+\setlightminchofont[id]{font-file}#S
 
 # not documented
-\bxcjkjatypeHyperrefPatchDone#*
-\CJKforced{character}#*
+\bxcjkjatypeHyperrefPatchDone#S
+\CJKforced{kanji}#*
 \ebdefault#*
 \ebseries#*
 \Entry{arg1}{arg2}#S
 \EveryCJKUse{code}#*
 \FirstCJKUse{code}#*
 \FONT#S
-\unicode#S
-\usecmapforalphabet#*
+\usecmapforalphabet#S

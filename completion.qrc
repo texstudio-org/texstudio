@@ -457,6 +457,7 @@
 <file>completion/bxcalc.cwl</file>
 <file>completion/bxcalcux.cwl</file>
 <file>completion/bxcjkjatype.cwl</file>
+<file>completion/bxcjkvert.cwl</file>
 <file>completion/bxdvidriver.cwl</file>
 <file>completion/bxeepic.cwl</file>
 <file>completion/bxenclose.cwl</file>
@@ -2157,6 +2158,7 @@
 <file>completion/luamesh.cwl</file>
 <file>completion/luamodulartables.cwl</file>
 <file>completion/luamplib.cwl</file>
+<file>completion/luanumint.cwl</file>
 <file>completion/luaoptions.cwl</file>
 <file>completion/luaotfload.cwl</file>
 <file>completion/luapackageloader.cwl</file>
@@ -3001,6 +3003,7 @@
 <file>completion/quantikz.cwl</file>
 <file>completion/quattrocento.cwl</file>
 <file>completion/quickreaction.cwl</file>
+<file>completion/quiver.cwl</file>
 <file>completion/quiz2socrative.cwl</file>
 <file>completion/quizztex.cwl</file>
 <file>completion/quotchap.cwl</file>

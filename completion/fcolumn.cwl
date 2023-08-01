@@ -1,7 +1,12 @@
 # fcolumn package
-# Matthew Bertucci 11/24/2021 for v1.4
+# Matthew Bertucci 2023/07/25 for v1.4.2
 
 #include:array
+
+#keyvals:\usepackage/fcolumn#c
+red
+strict
+#endkeyvals
 
 \sumline#t
 \sumline[space-above%l]#t

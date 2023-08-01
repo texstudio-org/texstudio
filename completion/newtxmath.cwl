@@ -1,11 +1,10 @@
 # newtxmath package
-# Matthew Bertucci 3/8/2022 for v1.71
+# Matthew Bertucci 2023/07/27 for v1.72
 
 #include:amsmath
 #include:ifthen
 #include:etoolbox
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 #include:xkeyval
 #include:centernot
 
@@ -20,6 +19,7 @@ vvarbb
 libaltvw
 nosymbolsc
 libertine
+libertinus
 minion
 cochineal
 garamondx
@@ -182,10 +182,12 @@ vecsep=##L
 \circS#m
 \colonapprox#m
 \Colonapprox#m
-\Coloneq#m
+\Colondash#m
+\colondash#m
+\Coloneq#*m
 \coloneq#m
 \coloneqq#m
-\Coloneqq#m
+\Coloneqq#*m
 \colonsim#m
 \Colonsim#m
 \complement#m
@@ -199,6 +201,8 @@ vecsep=##L
 \curvearrowright#m
 \daleth#m
 \dasharrow#m
+\Dashcolon#m
+\dashcolon#m
 \dashleftarrow#m
 \dashleftrightarrow#m
 \dashrightarrow#m
@@ -238,9 +242,9 @@ vecsep=##L
 \epsilonit#*m
 \epsilonup#*m
 \eqcirc#m
-\Eqcolon#m
+\Eqcolon#*m
 \eqcolon#m
-\Eqqcolon#m
+\Eqqcolon#*m
 \eqqcolon#m
 \eqsim#m
 \eqslantgtr#m
