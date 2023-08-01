@@ -324,3 +324,44 @@ chinese
 
 ## Sec. 8.3
 \CTeX#*
+
+## commands defined regardless of whether luatex or xetex used
+#include:fontspec
+\addCJKfontfeature*[blocks]{font features%keyvals}#S
+\addCJKfontfeature*{font features%keyvals}#S
+\addCJKfontfeature[blocks]{font features%keyvals}#S
+\addCJKfontfeature{font features%keyvals}#S
+\addCJKfontfeatures*[blocks]{font features%keyvals}#*
+\addCJKfontfeatures*{font features%keyvals}#*
+\addCJKfontfeatures[blocks]{font features%keyvals}#*
+\addCJKfontfeatures{font features%keyvals}#*
+\CJKfamilydefault#S
+\CJKfontspec[font features%keyvals]{font name}
+\CJKfontspec{font name}
+\CJKfontspec{font name}[font features]#*
+\CJKrmdefault#S
+\CJKsfdefault#S
+\CJKttdefault#S
+\defaultCJKfontfeatures{font features%keyvals}#*
+\newCJKfontfamily[family]{cmd}[font features%keyvals]{font name}#d
+\newCJKfontfamily[family]{cmd}{font name}#*d
+\newCJKfontfamily{cmd}[font features%keyvals]{font name}#d
+\newCJKfontfamily{cmd}{font name}#d
+\setCJKfamilyfont{family}[font features%keyvals]{font name}
+\setCJKfamilyfont{family}{font name}
+\setCJKfamilyfont{family}{font name}[font features]#*
+\setCJKmainfont[font features%keyvals]{font name}
+\setCJKmainfont{font name}
+\setCJKmainfont{font name}[font features]#*
+\setCJKmathfont[font features%keyvals]{font name}#*
+\setCJKmathfont{font name}#*
+\setCJKmathfont{font name}[font features]#*
+\setCJKmonofont[font features%keyvals]{font name}
+\setCJKmonofont{font name}
+\setCJKmonofont{font name}[font features]#*
+\setCJKromanfont[font features%keyvals]{font name}#S
+\setCJKromanfont{font name}#S
+\setCJKromanfont{font name}[font features]#S
+\setCJKsansfont[font features%keyvals]{font name}
+\setCJKsansfont{font name}
+\setCJKsansfont{font name}[font features]#*

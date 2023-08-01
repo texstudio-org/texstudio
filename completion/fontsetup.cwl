@@ -1,5 +1,5 @@
 # fontsetup package
-# Matthew Bertucci 2023/01/02 for v1.4
+# Matthew Bertucci 2023/07/31 for v1.5
 
 #include:fontspec
 #include:unicode-math
@@ -25,13 +25,14 @@ neokadmus
 msgaramond
 ebgaramond
 minion
-neoeuler
+euler
 libertinus
 olddefault
 concrete
 talos
 oldstandard
 xcharter
+erewhon
 #endkeyvals
 
 #ifOption:default
@@ -65,6 +66,10 @@ xcharter
 #include:xcharter-otf
 #endif
 
+#ifOption:erewhon
+#include:fourier-otf
+#endif
+
 \leftgrquotes#S
 \rightgrquotes#S
 
@@ -84,11 +89,12 @@ xcharter
 \fontsetupmsgaramond#S
 \fontsetupebgaramond#S
 \fontsetupminion#S
-\fontsetupneoeuler#S
+\fontsetupeuler#S
 \fontsetuplibertinus#S
 \fontsetupolddefault#S
 \fontsetupconcrete#S
 \fontsetuptalos#S
 \fontsetupoldstandard#S
 \fontsetupxcharter#S
+\fontsetuperewhon#S
 \fontsetupfont#S

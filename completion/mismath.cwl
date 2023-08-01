@@ -1,5 +1,5 @@
 # mismath package
-# Matthew Bertucci 2023/02/24 for v2.5
+# Matthew Bertucci 2023/07/27 for v2.8
 
 #include:amsmath
 #include:mathtools
@@ -101,6 +101,7 @@ alignedleftspaceyesifneg
 \oldi#S
 \oldj#S
 \oldRe#*m
+\onlymathC#*
 \P#m
 \Par
 \pinormal#*m

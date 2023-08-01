@@ -1,5 +1,5 @@
 # tikz3d-fr package
-# Matthew Bertucci 2023/05/25 for v0.1.1
+# Matthew Bertucci 2023/07/24 for v0.1.2
 
 #include:tikz
 #include:xstring
@@ -75,16 +75,23 @@ CouleurSommets=#%color
 \end{EmpilementCubes}
 
 \PlaquePetitsCubes{empilement}
+\PlaquePetitsCubes{empilement}[épaisseur]
 \PlaquePetitsCubes[color]{empilement}
+\PlaquePetitsCubes[color]{empilement}[épaisseur]
 \PlaqueVide
 \PlaqueVide[nb]
 
 \BlocPetitsCubes{grille des hauteurs}
+\BlocPetitsCubes{grille des hauteurs}[épaisseur]
 \BlocPetitsCubes[color]{grille des hauteurs}
+\BlocPetitsCubes[color]{grille des hauteurs}[épaisseur]
 \BlocPetitsCubes*{grille des hauteurs}
+\BlocPetitsCubes*{grille des hauteurs}[épaisseur]
 \BlocPetitsCubes*[color]{grille des hauteurs}
-\PetitCube{grille des hauteurs}
-\PetitCube[color]{grille des hauteurs}
+\BlocPetitsCubes*[color]{grille des hauteurs}[épaisseur]
+\PetitCube{grille des hauteurs}#*
+\PetitCube[color]{grille des hauteurs}#*
+\PetitCube[color][épaisseur]{grille des hauteurs}#*
 
 # not documented
 \thelgblocs#S

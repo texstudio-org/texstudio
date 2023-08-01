@@ -1,5 +1,5 @@
 # newtxtext package
-# Matthew Bertucci 3/9/2022 for v1.71
+# Matthew Bertucci 2023/07/31 for v1.723
 
 #include:iftex
 #include:xkeyval
@@ -11,10 +11,6 @@
 #include:fontaxes
 
 #keyvals:\usepackage/newtxtext#c
-type1#true,false
-type1text#true,false
-otfmath#true,false
-nofontspec#true,false
 defaultfeatures={%<fontspec options%>}
 lining#true,false
 lf#true,false
@@ -66,10 +62,11 @@ looser
 \textinf{text}
 \textinferior{text}#*
 \textlf{text}
-\textnu{text}
+\textnum{text}
 \textnumerator{text}#*
 \textosf{text}
 \textsu{text}
+\textsup{text}#S
 \textsuperior{text}#*
 \textth{text}
 \textthit{text}#*

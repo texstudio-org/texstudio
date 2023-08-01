@@ -1,11 +1,12 @@
 # crefthe package
-# Matthew Bertucci 2022/08/30 for release 2022/08/28
+# Matthew Bertucci 2023/07/24
 
 #include:cleveref
 #include:regexpatch
 
 #keyvals:\usepackage/crefthe#c
 overwrite#true,false
+disable german article contractions
 # options passed to cleveref
 poorman
 sort
@@ -80,6 +81,10 @@ catalan
 \crefthename{type}[prep1]{singular}[prep2]{plural}
 \Crefthename{type}{singular}{plural}
 \Crefthename{type}[prep1]{singular}[prep2]{plural}
+\crefthevariantname{type}{settings}
+\Crefthevariantname{type}{settings}
+\setcrefname{type}{settings}
+\setCrefname{type}{settings}
 \crefthepatchname{counters}
 
 #ifOption:overwrite
