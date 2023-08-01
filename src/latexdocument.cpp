@@ -3351,23 +3351,6 @@ void LatexDocument::patchLinesContaining(const QStringList cmds)
         }
     }
 }
-/*!
- * \brief reparse unknown commands
- * lp has been changed
- */
-void LatexDocument::patchUnknownCommands()
-{
-    for(int i=0;i<lines();++i){
-        QDocumentLineHandle *dlh=line(i).handle();
-        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
-        for(int j=0;j<tl.length();++j){
-            if(tl[j].type==Token::commandUnknown && tl[j].length>2){ // skip over '\\' and similar
-                patchStructure(i,1,true);
-                break;
-            }
-        }
-    }
-}
 
 void LatexDocuments::enablePatch(const bool enable)
 {
@@ -3440,7 +3423,6 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 		}
 	} else {
         SynChecker.setLtxCommands(lp);
-        setLtxCommands(lp,false);
         reCheckSyntax();
 	}
 
@@ -3462,10 +3444,6 @@ void LatexDocument::setLtxCommands(const LatexParser &cmds,bool skipPatch)
 {
 	SynChecker.setLtxCommands(cmds);
 	lp = cmds;
-    // reparse unknown commands
-    /*if(!skipPatch){
-        patchUnknownCommands();
-    }*/
 
 	LatexEditorView *view = getEditorView();
 	if (view) {

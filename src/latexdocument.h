@@ -127,7 +127,6 @@ public:
 	Q_INVOKABLE void replaceLabelsAndRefs(const QString &name, const QString &newName);
 
 	void patchLinesContaining(const QStringList cmds);
-    void patchUnknownCommands();
 
 	StructureEntry *baseStructure;
 
