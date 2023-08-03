@@ -1,5 +1,5 @@
 # luamaths package
-# Matthew Bertucci 2022/12/28 for v1.0
+# Matthew Bertucci 2023/08/03 for v1.1
 
 #include:xkeyval
 #include:amsmath
@@ -14,7 +14,7 @@
 \mathCos{number}
 \mathExp{number}
 \mathFloor{number}
-\mathHuge#*
+\mathInf
 \mathLog{number}
 \mathMax{num1,num2,...}
 \mathMin{num1,num2,...}
@@ -25,3 +25,7 @@
 \mathTan{number}
 \mathRad{degrees}
 \mathRound{number}{digits}
+\imUnit#*
+
+# not documented
+\complexround{arg1}{arg2}#S
