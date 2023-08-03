@@ -26,6 +26,4 @@
 \mathRad{degrees}
 \mathRound{number}{digits}
 \imUnit#*
-
-# not documented
-\complexround{arg1}{arg2}#S
+\complexRound{a+bi}{num digits}
