@@ -5739,7 +5739,7 @@ void Texstudio::insertRef(const QString &refCmd)
 		foreach (const LatexDocument *doc, docs)
 			labels << doc->labelItems();
 	} else return;
-	QString listItemUseNoLabel = "<" + tr("use no label") + ">";	// of course we can't insert in the document a ref to this label
+	QString listItemUseNoLabel = "<" + tr("empty") + ">";	// of course we can't insert in the document a ref to this label
 	labels.sort();
 	labels.prepend(listItemUseNoLabel);
 	UniversalInputDialog dialog;
