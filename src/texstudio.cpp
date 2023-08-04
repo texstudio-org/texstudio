@@ -5739,14 +5739,18 @@ void Texstudio::insertRef(const QString &refCmd)
 		foreach (const LatexDocument *doc, docs)
 			labels << doc->labelItems();
 	} else return;
+	QString listItemUseNoLabel = "<" + tr("empty") + ">";	// of course we can't insert in the document a ref to this label
 	labels.sort();
+	labels.prepend(listItemUseNoLabel);
 	UniversalInputDialog dialog;
 	dialog.addVariable(&labels, tr("Labels:"));
-	if (dialog.exec() && !labels.isEmpty()) {
-		QString tag = refCmd + "{" + labels.first() + "}";
+	if (dialog.exec()) {
+		QString cmdArgument = labels.first();
+		if (cmdArgument == listItemUseNoLabel)
+			cmdArgument = "";
+		QString tag = refCmd + "{" + cmdArgument + "}";
 		insertTag(tag, tag.length(), 0);
-	} else
-		insertTag(refCmd + "{}", refCmd.length() + 1, 0);
+	} // Cancel button inserts nothing
 }
 
 void Texstudio::insertRef()
