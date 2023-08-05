@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/07/28 for v9.7.0
+# Matthew Bertucci 2023/07/28 for v9.8.0
 
 #include:iftex
 
@@ -51,6 +51,7 @@ adobepremierepro
 adobexd
 adonisjs
 adp
+adroll
 adyen
 aerlingus
 aeroflot
@@ -70,6 +71,7 @@ aiohttp
 aiqfome
 airasia
 airbnb
+airbrakedotio
 airbus
 airbyte
 aircall
@@ -101,6 +103,7 @@ allocine
 alltrails
 alpinedotjs
 alpinelinux
+alteryx
 altiumdesigner
 alwaysdata
 amazon
@@ -114,6 +117,7 @@ amazonecs
 amazoneks
 amazonfiretv
 amazongames
+amazoniam
 amazonlumberyard
 amazonluna
 amazonpay
@@ -177,6 +181,7 @@ apachespark
 apachestorm
 apachetomcat
 aparat
+apifox
 apollographql
 apostrophe
 appian
@@ -287,6 +292,7 @@ beijingsubway
 bem
 bentley
 bento
+bentoml
 betfair
 bigbasket
 bigbluebutton
@@ -297,6 +303,7 @@ billboard
 bim
 binance
 biolink
+bisecthosting
 bit
 bitbucket
 bitcoin
@@ -321,6 +328,7 @@ bmw
 boardgamegeek
 boehringeringelheim
 boeing
+bombardier
 bookalope
 bookbub
 bookmeter
@@ -340,8 +348,10 @@ boxysvg
 brandfolder
 brave
 breaker
+brevo
 britishairways
 broadcom
+bspwm
 bt
 buddy
 budibase
@@ -400,6 +410,7 @@ chartdotjs
 chartmogul
 chase
 chatbot
+chatwoot
 checkio
 checkmarx
 checkmk
@@ -520,6 +531,7 @@ cplusplus
 craftcms
 cratedb
 crayon
+creality
 createreactapp
 creativecommons
 creativetechnology
@@ -655,6 +667,7 @@ e
 e3
 ea
 eagle
+easyeda
 easyjet
 ebay
 ebox
@@ -831,6 +844,7 @@ freepik
 frontendmentor
 frontify
 fsecure
+fsharp
 fugacloud
 fujifilm
 fujitsu
@@ -910,11 +924,13 @@ googleclassroom
 googlecloud
 googlecolab
 googlecontaineroptimizedos
+googledocs
 googledomains
 googledrive
 googleearth
 googlefit
 googlefonts
+googleforms
 googlehangouts
 googlehome
 googlekeep
@@ -982,6 +998,7 @@ handshakeprotocol
 happycow
 harbor
 harmonyos
+hashicorp
 hashnode
 haskell
 hasura
@@ -1099,6 +1116,7 @@ intermarche
 internetarchive
 internetexplorer
 intigriti
+intuit
 invision
 invoiceninja
 iobroker
@@ -1107,6 +1125,7 @@ ionos
 ios
 iota
 ipfs
+iris
 issuu
 istio
 itchdotio
@@ -1144,6 +1163,7 @@ johndeere
 joomla
 joplin
 jordan
+jovian
 jpeg
 jquery
 jrgroup
@@ -1417,6 +1437,7 @@ minecraft
 minetest
 mini
 minutemailer
+miraheze
 miro
 misskey
 mitsubishi
@@ -1479,6 +1500,7 @@ nativescript
 naver
 nba
 nbb
+nbc
 ndr
 nec
 neo4j
@@ -1505,6 +1527,7 @@ nfc
 nginx
 nginxproxymanager
 ngrok
+ngrx
 niconico
 nike
 nikon
@@ -1586,6 +1609,7 @@ openproject
 openscad
 opensea
 opensearch
+opensourcehardware
 opensourceinitiative
 openssl
 openstack
@@ -1598,6 +1622,7 @@ openwrt
 openzeppelin
 openzfs
 opera
+operagx
 opnsense
 opsgenie
 opslevel
@@ -1629,6 +1654,7 @@ pagerduty
 pagespeedinsights
 pagseguro
 palantir
+paloaltonetworks
 paloaltosoftware
 pandas
 pandora
@@ -1639,12 +1665,14 @@ parsedotly
 passport
 pastebin
 patreon
+paychex
 payloadcms
 payoneer
 paypal
 paytm
 pcgamingwiki
 peakdesign
+pearson
 peertube
 pegasusairlines
 pelican
@@ -1663,6 +1691,7 @@ pexels
 pfsense
 phabricator
 philipshue
+phoenixframework
 phonepe
 photobucket
 photocrowd
@@ -1715,6 +1744,7 @@ pocket
 pocketbase
 pocketcasts
 podcastaddict
+podcastindex
 podman
 poe
 poetry
@@ -1800,6 +1830,7 @@ pyscaffold
 pysyft
 pytest
 python
+pythonanywhere
 pytorch
 pyup
 qantas
@@ -1810,6 +1841,7 @@ qi
 qiita
 qiskit
 qiwi
+qlik
 qmk
 qt
 qualcomm
@@ -1835,6 +1867,7 @@ rabbitmq
 racket
 radar
 radiopublic
+radixui
 railway
 rainmeter
 rakuten
@@ -1875,6 +1908,7 @@ redwoodjs
 reebok
 relay
 relianceindustrieslimited
+remark
 remix
 renault
 render
@@ -1947,6 +1981,7 @@ ryanair
 s7airlines
 sabanci
 safari
+sage
 sahibinden
 sailfishos
 salesforce
@@ -1989,6 +2024,7 @@ semanticscholar
 semanticuireact
 semanticweb
 semaphoreci
+semrush
 semver
 sencha
 sendinblue
@@ -2116,6 +2152,7 @@ square
 squareenix
 squarespace
 ssrn
+sst
 stackbit
 stackblitz
 stackedit
@@ -2158,6 +2195,7 @@ strava
 streamlit
 stripe
 strongswan
+stryker
 stubhub
 studio3t
 styledcomponents
@@ -2181,6 +2219,7 @@ suse
 suzuki
 svelte
 svg
+svgdotjs
 svgo
 swagger
 swarm
@@ -2240,6 +2279,7 @@ testrail
 tether
 textpattern
 tga
+thangs
 thealgorithms
 theconversation
 theirishtimes
@@ -2259,6 +2299,7 @@ threedotjs
 threema
 thumbtack
 thunderbird
+thurgauerkantonalbank
 thymeleaf
 ticketmaster
 tidal
@@ -2269,6 +2310,7 @@ tietoevry
 tiktok
 tile
 timescale
+tina
 tinder
 tinyletter
 tistory
@@ -2423,6 +2465,7 @@ voipdotms
 volkswagen
 volvo
 vonage
+vorondesign
 vowpalwabbit
 vox
 vsco
@@ -2579,6 +2622,7 @@ zigbee
 zilch
 zillow
 zingat
+zod
 zoho
 zoiper
 zomato
