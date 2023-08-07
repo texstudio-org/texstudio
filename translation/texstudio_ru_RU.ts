@@ -11935,13 +11935,13 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/texstudio.cpp" line="11510"/>
         <location filename="../src/texstudio.cpp" line="12310"/>
         <source>untitled</source>
-        <translation>untitled</translation>
+        <translation>безымянный</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11521"/>
         <location filename="../src/texstudio.cpp" line="12349"/>
         <source>TODO</source>
-        <translation>НАДО СДЕЛАТЬ</translation>
+        <translation>TODO</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11636"/>
