@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/07/04 for v0.99-z-o
+# Matthew Bertucci 2023/08/08 for v0.99-z-q
 
 #include:verbatim
 #include:mathtools
@@ -22,7 +22,17 @@
 #include:multido
 #include:xlop
 #include:tcolorbox
-#include:tcolorboxlibrarymost
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryexternal
+#include:tcolorboxlibraryfitting
+#include:tcolorboxlibraryhooks
+#include:tcolorboxlibrarymagazine
+#include:tcolorboxlibraryposter
+#include:tcolorboxlibraryraster
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarytheorems
+#include:tcolorboxlibrarylistings
+#include:tcolorboxlibrarylistingsutf8
 #include:tikz
 #include:tikzlibrarycalc
 #include:tikzlibraryshapes
@@ -234,6 +244,22 @@ CouleurGN=#%color
 CadreGN=#%color
 #endkeyvals
 
+\PfCCG#*
+\PfCDG#*
+\PfCUG#*
+\PfCCM#*
+\PfCDM#*
+\PfCUM#*
+\PfCCm#*
+\PfCDm#*
+\PfCUm#*
+\PfCC#*
+\PfCD#*
+\PfCU#*
+\PfCd#*
+\PfCc#*
+\PfCm#*
+
 ## Questions - réponses à relier ##
 \Relie{Liste des éléments par ligne}
 \Relie[clés%keyvals]{Liste des éléments par ligne}
@@ -311,6 +337,18 @@ Numero=%<numero%>
 
 \BoiteRapido{texte%text}
 
+## Des cibles pour le calcul mental ##
+\Cible{n1,n2,...}
+\Cible[clés%keyvals]{n1,n2,...}
+
+#keyvals:\Cible
+RayonBase=##L
+Ecart=##L
+TitreFlechettes#true,false
+RayonF=##L
+Impression#true,false
+#endkeyvals
+
 ## Mentalo ##
 \Mentalo{o1,o2,...}
 \Mentalo[clés%keyvals]{o1,o2,...}
@@ -333,6 +371,15 @@ ValeurMax=%<nombre%>
 Fractions#true,false
 Graine=%<nombre%>
 Priorites#true,false
+#endkeyvals
+
+## Pyramide de vocabulaire ##
+\PyraVoca{définition1/mot1/couleur1,...}
+\PyraVoca[clés%keyvals]{définition1/mot1/couleur1,...}
+
+#keyvals:\PyraVoca
+Largeur=##L
+Solution#true,false
 #endkeyvals
 
 ## Le calcul mental ##
@@ -464,8 +511,10 @@ Remediation#true,false
 \Reperage[clés%keyvals]{Liste des éléments}
 \ReperageMulti{Liste des éléments}#*
 \ReperageMulti[clés%keyvals]{Liste des éléments}#*
+\ReperageZoom{élément}
+\ReperageZoom[clés%keyvals]{élément}
 
-#keyvals:\Reperage,\ReperageMulti
+#keyvals:\Reperage,\ReperageMulti,\ReperageZoom
 Unitex=%<nombre%>
 AffichageGrad#true,false
 AffichageNom#true,false
@@ -475,6 +524,7 @@ Pasx=%<nombre%>
 DemiDroite#true,false
 ValeurOrigine=%<valeur%>
 ValeurUnitex=%<valeur%>
+Niveau=%<nombre%>
 Thermometre#true,false
 Kelvin#true,false
 Farenheit#true,false
@@ -672,6 +722,7 @@ Echelle=%<nombre%>
 CouleurCube=#%color
 Angle=%<degres%>
 Trou#true,false
+Seul#true,false
 Creation#true,false
 Grilles#true,false
 Face#true,false
@@ -712,6 +763,8 @@ Vampire#true,false
 ## Opérations posées ##
 \Addition{n1}{n2}
 \Addition[clés%keyvals]{n1}{n2}
+\MultiAddition{{%<n1%>}{%<n2%>}%<...%>}
+\MultiAddition[%<options%>]{{%<n1%>}{%<n2%>}%<...%>}
 \Soustraction{n1}{n2}
 \Soustraction[clés%keyvals]{n1}{n2}
 \Multiplication{n1}{n2}
@@ -721,7 +774,7 @@ Vampire#true,false
 \DivisionD{n1}{n2}
 \DivisionD[clés%keyvals]{n1}{n2}
 
-#keyvals:\Addition,\Soustraction,\Multiplication,\Division,\DivisionD
+#keyvals:\Addition,\MultiAddition,\Soustraction,\Multiplication,\Division,\DivisionD
 CouleurCadre=#%color
 CouleurFond=#%color
 CouleurVirgule=#%color
@@ -924,7 +977,6 @@ Simple#true,false
 #keyvals:\Pourcentage
 Appliquer#true,false
 Fractionnaire#true,false
-Concret#true,false
 Unite=%<unité%>
 Augmenter#true,false
 AideTableau#true,false
@@ -991,6 +1043,9 @@ ECCVide#true,false
 Total#true,false
 ColVide=%<integer%>
 CasesVides={%<cases%>}
+Crochets#true,false
+Centre#true,false
+CentreVide#true,false
 Graphique#true,false
 Batons#true,false
 Unitex=%<nombre%>
@@ -1161,6 +1216,21 @@ Traces={%<MP code%>}
 Vide#true,false
 #endkeyvals
 
+\LectureGraphique
+\LectureGraphique[clés%keyvals]
+
+#keyvals:\LectureGraphique
+NbPoints=%<nombre%>
+UniteX=%<nombre%>
+UniteY=%<nombre%>
+Points#true,false
+CouleurTrace=#%color
+Epaisseur=%<nombre%>
+Image#true,false
+Antecedent#true,false
+Graine=
+#endkeyvals
+
 ## La distributivité ##
 \Distri{a}{b}{c}{d}
 \Distri[clés%keyvals]{a}{b}{c}{d}
@@ -1269,6 +1339,7 @@ Exact#true,false
 Ecran#true,false
 NbLignes=%<integer%>
 Largeur=%<nombre%>
+Calcul#true,false
 #endkeyvals
 
 ## Le tableur ##
@@ -1355,6 +1426,10 @@ Vide#true,false
 Polygone#true,false
 CaseVide#true,false
 ProduitVide#true,false
+Addition#true,false
+LesNombres={%<nombres%>}
+LesProduits={%<produits%>}
+LesSommes={%<sommes%>}
 Couleur=#%color
 #endkeyvals
 
@@ -1439,6 +1514,8 @@ Murs#true,false
 EntreeSortie#true,false
 Entree="%<trouve%>"
 Sortie="%<trouve%>"
+Multiplication#true,false
+Graine=%<nombre%>
 #endkeyvals
 
 ## Triominos ##
@@ -2001,6 +2078,40 @@ Jetons={%<jetons%>}
 Cases={%<cases%>}
 Aide#true,false
 ListeCouleurs={%<list des couleurs%>}
+#endkeyvals
+
+## Le Grimuku ##
+\Grimuku{description du jeu}
+\Grimuku[clés%keyvals]{description du jeu}
+
+#keyvals:\Grimuku
+TLargeur=%<nombre%>
+Largeur=##L
+CouleurCase=#%color
+CouleurSolution=#%color
+#endkeyvals
+
+## Pièces de puzzle et multiplication ##
+\PuzzleMul{liste des lignes}
+\PuzzleMul[clés%keyvals]{liste des lignes}
+
+#keyvals:\PuzzleMul
+Unite=##L
+Solution#true,false
+Couleur=#%color
+#endkeyvals
+
+## Horloges ##
+\Horloge{horaire}
+\Horloge[clés%keyvals]{horaire}
+
+#keyvals:\Horloge
+Aiguilles#true,false
+Secondes#true,false
+Cadre#true,false
+Numerique#true,false
+Impression#true,false
+Secondes#true,false
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -3439,3 +3550,26 @@ Teal#B
 \SoustractionPositive{arg1}{arg2}#S
 \SoustractionPositive[opt]{arg1}{arg2}#S
 \PfCTabstrut#S
+\MPMultiZoom{arg1}{arg2}{arg3}#S
+\PfCPyraVocaHauteur#S
+\toklistegrimukupdt#S
+\toklistegrimukunb#S
+\UpdatetoksGrimCases#S
+\BuildGrimuku{arg1}{arg2}#S
+\toklistepuzzlea#S
+\UpdatetoksPuzzleA#S
+\BuildPuzzleCode#S
+\BuildPuzzle{arg}#S
+\Horlogeaux#S
+\timenow#S
+\MPAfficheurNew{arg1}{arg2}{arg3}#S
+\MPHorlogeNew{arg1}{arg2}{arg3}#S
+\RondeInfernaleaux#S
+\TraceLabyMul{arg1}{arg2}{arg3}{arg4}{arg5}#S
+\toklistenombrecalculatrice#S
+\UpdatetoksCalculatrice#S
+\toklisteciblea#S
+\UpdatetoksCibleA#S
+\BuildCible{arg}#S
+\DessineRoseMulPersoCode#S
+\DessineRoseMulPerso{arg1}{arg2}#S
