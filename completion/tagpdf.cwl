@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2023/02/15 for v0.98d
+# Matthew Bertucci 2023/08/08 for v0.98k
 
 #include:pdfmanagement-testphase
 
@@ -81,6 +81,9 @@ E=%<text%>
 
 \tagstructend
 \tagstructuse{label}
+
+\tagstop
+\tagstart
 
 \ShowTagging{keyvals}
 
