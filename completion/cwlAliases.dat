@@ -1570,3 +1570,7 @@ mitthesis:
 class-mitthesis
 latex-document
 tex
+apa6:
+class-apa6
+latex-document
+tex
