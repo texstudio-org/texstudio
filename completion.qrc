@@ -30,6 +30,7 @@
 <file>completion/addfont.cwl</file>
 <file>completion/addlines.cwl</file>
 <file>completion/addrset.cwl</file>
+<file>completion/addtoluatexpath.cwl</file>
 <file>completion/adfarrows.cwl</file>
 <file>completion/adfbullets.cwl</file>
 <file>completion/adforn.cwl</file>
@@ -606,6 +607,7 @@
 <file>completion/class-amsproc.cwl</file>
 <file>completion/class-amstext-l.cwl</file>
 <file>completion/class-aomart.cwl</file>
+<file>completion/class-apa6.cwl</file>
 <file>completion/class-apa7.cwl</file>
 <file>completion/class-arabic-book.cwl</file>
 <file>completion/class-argetabelle.cwl</file>
@@ -3191,6 +3193,7 @@
 <file>completion/setouterhbox.cwl</file>
 <file>completion/sets.cwl</file>
 <file>completion/setspace.cwl</file>
+<file>completion/setspaceenhanced.cwl</file>
 <file>completion/settobox.cwl</file>
 <file>completion/sf298.cwl</file>
 <file>completion/sgame.cwl</file>
@@ -3955,6 +3958,7 @@
 <file>completion/wiley-authoringtemplate.cwl</file>
 <file>completion/withargs.cwl</file>
 <file>completion/witharrows.cwl</file>
+<file>completion/wordcloud.cwl</file>
 <file>completion/wordle.cwl</file>
 <file>completion/wordlike.cwl</file>
 <file>completion/worksheet.cwl</file>
