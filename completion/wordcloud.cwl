@@ -8,7 +8,7 @@
 \wordcloudFile{file}{number of words}
 \wordcloudFile[options%keyvals]{file}{number of words}
 
-#keyvals:\wordcloud
+#keyvals:\wordcloud,\wordcloudFile
 scale=%<factor%>
 margin=##L
 rotate=%<degrees%>
