@@ -4443,6 +4443,14 @@ void Texstudio::readSettings(bool reread)
         if (x + w > screen.right()) w = screen.width() - 100;
         if (y + h > screen.height()) h = screen.height() - 100;
     }
+    if(!screen.isValid()){
+        // no screen for coordinates found
+        screen = QGuiApplication::primaryScreen()->availableGeometry();
+        x = screen.x() + 10;
+        y = screen.y() + 10;
+        if (x + w > screen.right()) w = screen.width() - 100;
+        if (y + h > screen.height()) h = screen.height() - 100;
+    }
     resize(w, h);
     move(x, y);
     windowstate = config->value("MainWindowState").toByteArray();
