@@ -2754,6 +2754,36 @@ apamaxprtauth=%<number%>
 \nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
 #endif
 
+### biblatex-apa6 v8.5 ###
+#ifOption:style=apa6
+#keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
+# from apa6.bbx
+apamaxprtauth=%<number%>
+#endkeyvals
+# from apa6.bbx
+\apanum{arg}#S
+\apashortdash#S
+\begrelateddelimreviewof#S
+\maxprtauth#S
+\mkdaterangeapalong{arg}
+\mkdaterangeapalongextra{arg}#S
+# from apa6.cbx
+\citeresetapa#S
+\fullcitebib[prenote][postnote]{bibid}#*C
+\fullcitebib[postnote]{bibid}#*C
+\fullcitebib{bibid}#*C
+\nptextcite[prenote][postnote]{bibid}#C
+\nptextcite[postnote]{bibid}#C
+\nptextcite{bibid}#C
+\nptextcites{bibid}{bibid}#*C
+\nptextcites(post){bibid}{bibid}#*C
+\nptextcites(pre)(post){bibid}{bibid}#*C
+\nptextcites(pre)(post)[post]{bibid}[post]{bibid}#*C
+\nptextcites[post]{bibid}[post]{bibid}#*C
+\nptextcites[pre][post]{bibid}[pre][post]{bibid}#*C
+\nptextcites(pre)(post)[pre][post]{bibid}[pre][post]{bibid}#*C
+#endif
+
 ### biblatex-arthistory-bonn v1.2 ###
 #ifOption:style=arthistory-bonn
 #keyvals:\usepackage/biblatex#c,\ExecuteBibliographyOptions#c
