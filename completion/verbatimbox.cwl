@@ -1,6 +1,7 @@
 # verbatimbox package
-# Matthew Bertucci 9/27/2021 for v3.13
+# Matthew Bertucci 2023/08/09 for v3.2
 
+#include:verbatim
 #include:readarray
 
 \begin{verbbox}#V
@@ -22,3 +23,11 @@
 \end{verbnobox}
 \verbfilenobox{file}
 \verbfilenobox[pre-commands]{file}
+
+# not documented
+\begin{origverbbox}#SV
+\begin{origverbbox}[pre-commands]#SV
+\end{origverbbox}#S
+\savedverbbox#S
+\theVerbboxLineNo#S
+\verbatimboxVersionNumber#S
