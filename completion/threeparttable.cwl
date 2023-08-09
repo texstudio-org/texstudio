@@ -35,6 +35,7 @@ normal
 \tnote{label}
 
 \TPTminimum#*
+\TPToverlap#*
 \TPTrlap#*
 \TPTtagStyle#*
 \TPTnoteLabel#*
