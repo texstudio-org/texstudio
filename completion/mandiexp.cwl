@@ -1,7 +1,8 @@
 # mandiexp package
-# Matthew Bertucci 2/12/2022 for v3.1.0
+# Matthew Bertucci 2023/08/07 for v3.2.0
 
 #include:mandi
+#include:mandistudent
 
 \mandiexpversion#*
 

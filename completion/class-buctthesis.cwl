@@ -1,5 +1,5 @@
 # buctthesis class
-# Matthew Bertucci 2022/07/30 for v1.4
+# Matthew Bertucci 2023/08/07 for v2.0
 
 #include:ifxetex
 #include:kvoptions
@@ -27,12 +27,16 @@
 #include:caption
 #include:bicaption
 #include:tikz
+#include:calc
+#include:textpos
+#include:xeCJKfntef
 #include:listings
 #include:gbt7714
 #include:xcolor
 #include:pdfpages
 #include:footmisc
 #include:xpatch
+#include:xifthen
 #include:hyperref
 
 #keyvals:\documentclass/buctthesis#c
@@ -72,6 +76,8 @@ draft
 final
 titlepage
 notitlepage
+openright
+openany
 onecolumn
 twocolumn
 leqno
@@ -91,30 +97,24 @@ openbib
 \buctsetup{options%keyvals}
 
 #keyvals:\buctsetup
-ctitle={%<中文标题%>}
-etitle={%<English title%>}
-cauthor={%<中文名%>}
+ChineseTitle={%<中文标题%>}
+ChineseTitleLineA=
+ChineseTitleLineB=
+EnglishTitle={%<English title%>}
+author={%<中文名%>}
 class={%<class%>}
 studentid={%<id number%>}
 school={%<学院%>}
 major={%<专业%>}
 supervisor={%<导师姓名, 教授%>}
 msupervisor={%<导师姓名, 教授%>}
-ckeywords={%<关键词 1, 关键词 2%>}
-ekeywords={%<keyword1,keyword2,...%>}
+ChineseKeywords={%<关键词 1, 关键词 2%>}
+EnglishKeywords={%<keyword1,keyword2,...%>}
+date={%<date%>}
 #endkeyvals
 
-\ctitle{中文标题%text}
-\etitle{English title%text}
-\cauthor{中文名}
-\class{class}
-\studentid{id number}
-\school{学院}
-\major{专业%text}
-\supervisor{导师姓名, 教授}
-\msupervisor{导师姓名, 教授}
-\ckeywords{关键词 1, 关键词 2%text}
-\ekeywords{keyword1,keyword2,...%text}
+\makecover
+\makecover[imagefile]#g
 
 \makedeclare
 \makedeclare[imagefile]#g
@@ -125,6 +125,7 @@ ekeywords={%<keyword1,keyword2,...%>}
 \end{eabstract}
 
 \begin{taskbook}
+\begin{taskbook}*
 \end{taskbook}
 \taskinfo
 \taskinfo*
@@ -207,8 +208,7 @@ ekeywords={%<keyword1,keyword2,...%>}
 # not documented
 \bfhei#*
 \bfsong#*
-\econtentsname#*
 \equationname#*
-\thetaskitemcnt#*
+\thetaskitemcnt#S
 \begin{oldlongtable}#S
 \end{oldlongtable}#S

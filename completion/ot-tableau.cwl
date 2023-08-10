@@ -1,5 +1,5 @@
 # ot-tableau package
-# Matthew Bertucci 1/4/2022
+# Matthew Bertucci 2023/08/06
 
 #include:xstring
 #include:amssymb
@@ -9,10 +9,6 @@
 #include:rotating
 #include:arydshln
 
-#ifOption:usehhline
-#include:hhline
-#endif
-
 #keyvals:\usepackage/ot-tableau#c
 notipa
 circledviolations
@@ -20,6 +16,10 @@ shadedcells
 fingerafter
 usehhline
 #endkeyvals
+
+#ifOption:usehhline
+#include:hhline
+#endif
 
 \begin{tableau}{preamble}
 \end{tableau}
@@ -33,6 +33,7 @@ usehhline
 \cand*{candidate%text}#*
 \cand*[symbol]{candidate%text}#*
 \vio{violation%text}
+\vio*{violation%text}
 
 \SetCellShading{factor}
 \Optimal
@@ -49,6 +50,11 @@ usehhline
 \ShadingOff
 \FingerBeforeLetter
 \LetterBeforeFinger
+
+\mcand{candidate%text}
+\mcand[symbol]{candidate%text}
+\mcand*{candidate%text}#*
+\mcand*[symbol]{candidate%text}#*
 
 \CellShading#S
 \ConstraintString#S

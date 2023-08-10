@@ -1,12 +1,15 @@
-# updated 2022/12/01 for v3.7.19
+# updated 2023/08/08 for v3.8
 
 #include:iftex
 #include:array
 #include:dcolumn
 #include:delarray
 #include:tabularx
+#include:booktabs
 #include:textcase
 #include:etoolbox
+#include:xpatch
+#include:nameref
 
 #keyvals:\documentclass/memoir
 10pt
@@ -81,7 +84,6 @@ twoside
 \abnormalparskip{length}#*
 \abovecaptionskip
 \abovecolumnspenalty#*
-\aboverulesep#*
 \abscolnamefont#*
 \abscoltextfont#*
 \abslabeldelim{text}#*
@@ -100,7 +102,6 @@ twoside
 \abstracttextfont#*
 \addappheadtotoc#*
 \added{arg}#*
-\addlinespace#*
 \addperiod{arg}#*
 \addtodef#*
 \addtoiargdef#*
@@ -139,7 +140,6 @@ twoside
 \appendixrefname#*
 \appendixtocname#*
 \Aref{label}#r
-\arraybackslash#*
 \arraytostring{array name}{result%cmd}#*d
 \AtBeginClass{class}{code}#*
 \AtBeginFile{file}{code}#*
@@ -221,7 +221,6 @@ twoside
 \begin{writeverbatim}{stream}#V
 \begintheglossaryhook#*
 \belowcaptionskip
-\belowrulesep#*
 \bibintoc#*
 \bibitemsep
 \biblistextra#*
@@ -251,7 +250,6 @@ twoside
 \bookpagemark{title%plain}#*
 \bookrefname#*
 \booktitlefont#*
-\bottomrule#*
 \bottomsectionpenalty#*
 \bottomsectionskip
 \boxedverbatiminput{file}
@@ -566,9 +564,6 @@ nearest
 \closeoutputstream{stream}#*
 \cmd{cmd}#*
 \cmdprint{cmd}#*
-\cmidrule#*
-\cmidrulekern#*
-\cmidrulewidth#*
 \cmrsideswitch#*
 \colorchapnum#*
 \colorchaptitle#*
@@ -598,10 +593,7 @@ right
 \ctableftskip#*
 \ctabrightskip#*
 \ctabsetlines#*
-\currenttitle#*
 \dashbox{length}(width,height)[position]{text}
-\date#*
-\defaultaddspace#*
 \defaultlists#*
 \defaultsecnum#*
 \deleted{arg}#*
@@ -696,7 +688,6 @@ right
 \extrafeetinshook#*
 \extrafeetminihook#*
 \extrafeetreinshook#*
-\extratabsurround#*
 \fancybreak{text}#*
 \fancybreak*{text}#*
 \fcardinal{number}#*
@@ -709,7 +700,6 @@ right
 \firmlist#*
 \firmlists#*
 \FirstFrameCommand#*
-\firsthline#*
 \fixdvipslayout#*
 \fixheaderwidths#*
 \fixpdflayout#*
@@ -759,7 +749,6 @@ right
 \frontmatter#*
 \frontmatter*#*
 \Ftrimpicbl#*
-\futurenonspacelet{arg}#*
 \getarrayelement{array name}{index}{result}#*
 \getthelinenumber{counter}{start}#*
 \glossary{term}{description%text}#*
@@ -783,7 +772,6 @@ right
 \headnameref#*
 \headstyles{name}#*
 \headwidth
-\heavyrulewidth#*
 \hfuzz#*
 \hideindexmarks#*
 \hline#*
@@ -955,7 +943,6 @@ right
 \LARGE#*
 \Large#*
 \LastFrameCommand#*
-\lasthline#*
 \lastlineparrule#*
 \lastlinerulefill#*
 \lcminusname#*
@@ -966,7 +953,6 @@ right
 \leftspringright{lfrac}{rfrac}{ltext}{rtext}#*
 \legend{text}#*
 \letcountercounter{counter1}{counter2}#*
-\lightrulewidth#*
 \linemodnum#*
 \linenottooshort#*
 \linenottooshort[length]#*
@@ -1138,13 +1124,9 @@ none
 \MidFrameCommand#*
 \midpartskip#*
 \midPoemTitleskip
-\midrule#*
-\midrule[width]#*
 \midsloppy#*
 \miniscule#*
 \minusname#*
-\mit#*
-\morecmidrules#*
 \movetoevenpage#*
 \movetoevenpage[text]#*
 \movetooddpage#*
@@ -1159,8 +1141,6 @@ none
 \namedsubappendices#*
 \namenumberand#*
 \namenumbercomma#*
-\namerefoff#*
-\namerefon#*
 \nametest{string1}{string2}#*
 \Needspace{length}#*
 \Needspace*{length}#*
@@ -1333,6 +1313,7 @@ none
 \pagenotehyperanchor{arg}#*
 \pagenotesubhead{chapapp}{number}{title%plain}#*
 \pagenotesubheadstarred{chapapp}{number}{title%plain}#*
+\pagenumbering*{numstyle%keyvals}
 \pageold#*
 \pagepostvo#*
 \pagepottvo#*
@@ -1634,7 +1615,6 @@ none
 \setxlvchars[fontspec]#*
 \shaded#*
 \shortsubcaption#*
-\showcols#*
 \showheadfootlocoff#*
 \showheadfootlocon#*
 \showindexmarks#*
@@ -1696,9 +1676,7 @@ none
 \sourceatright{text}#*
 \sourceatright[length]{text}#*
 \sourceflush#*
-\specialindex#*
 \specialindex{file}{counter}{stuff}#*
-\specialrule{width}{abovespace}{belowspace}#*
 \spinemargin
 \Sref{key}
 \stanzaskip
@@ -1797,8 +1775,6 @@ none
 \tabsoff#*
 \tabson#*
 \tabson[number]#*
-\tabularnewline#*
-\tabularxcolumn#*
 \tamark#*
 \teennumbername{arg}#*
 \teenordinalname{arg}#*
@@ -1848,7 +1824,6 @@ none
 \thesubsection
 \thesubsubsection
 \thetitle#*
-\theTitleReference{number}{text}#*
 \theverse
 \thevslineno
 \thicklines#/picture
@@ -1876,11 +1851,9 @@ none
 \tocnameref#*
 \tocskip{skip%l}#*
 \today#*
-\toprule#*
 \topsepi
 \topsepii
 \topsepiii
-\tracingtabularx#*
 \traditionalparskip#*
 \tref{key}#*r
 \trimedge
@@ -1938,6 +1911,14 @@ none
 \xindyindex#*
 \xlvchars
 \zerotrivseps#*
+
+#keyvals:\pagenumbering*#c
+arabic
+roman
+Roman
+alph
+Alph
+#endkeyvals
 
 #keyvals:\pagestyle#c,\thispagestyle#c
 plain

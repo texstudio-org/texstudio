@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/04/04 for v1.6a
+# Matthew Bertucci 2023/08/07 for v2.0
 
 #include:l3keys2e
 #include:luatexbase
@@ -30,9 +30,11 @@ beamer#true,false
 
 \piton{code%definition}
 \begin{Piton}#V
+\begin{Piton}[options%keyvals]#V
 \end{Piton}
-# beamer only
-\begin{Piton}<overlay spec>#*V
+# beamer only (breaks keyval completion so commented out)
+#\begin{Piton}<overlay spec>#*V
+#\begin{Piton}<overlay spec>[options%keyvals]#*V
 
 \PitonInputFile{file}
 \PitonInputFile[options%keyvals]{file}
@@ -47,8 +49,8 @@ last-line=%<integer%>
 
 \PitonOptions{options%keyvals}
 
-#keyvals:\PitonOptions
-language=%<language%>
+#keyvals:\PitonOptions,\begin{Piton}
+language=#Python,OCaml,C
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
@@ -84,30 +86,30 @@ String.Long=%<formatting%>
 String=%<formatting%>
 String.Doc=%<formatting%>
 String.Interpol=%<formatting%>
+Interpol.Inside=%<formatting%>
 Operator=%<formatting%>
 Operator.Word=%<formatting%>
 Name.Builtin=%<formatting%>
-Name.Function=%<formatting%>
-UserFunction=%<formatting%>
 Name.Decorator=%<formatting%>
 Name.Namespace=%<formatting%>
 Name.Class=%<formatting%>
+Name.Function=%<formatting%>
+UserFunction=%<formatting%>
 Exception=%<formatting%>
+InitialValues=%<formatting%>
 Comment=%<formatting%>
 Comment.LaTeX=%<formatting%>
 Keyword.Constant=%<formatting%>
 Keyword=%<formatting%>
-# not documented
-FormattingType=%<formatting%>
-Dict.Value=%<formatting%>
+Name.Type=%<formatting%>
 Name.Field=%<formatting%>
-Interpol.Inside=%<formatting%>
-Comment.Math=%<formatting%>
 Name.Constructor=%<formatting%>
-InitialValues=%<formatting%>
 Name.Module=%<formatting%>
 TypeParameter=%<formatting%>
-Name.Type=%<formatting%>
+Preproc=%<formatting%>
+# not documented
+FormattingType=%<formatting%>
+Comment.Math=%<formatting%>
 Identifier=%<formatting%>
 ParseAgain.noCR=%<formatting%>
 ParseAgain=%<formatting%>
@@ -123,30 +125,30 @@ String.Long
 String
 String.Doc
 String.Interpol
+Interpol.Inside
 Operator
 Operator.Word
 Name.Builtin
-Name.Function
-UserFunction
 Name.Decorator
 Name.Namespace
 Name.Class
+Name.Function
+UserFunction
 Exception
+InitialValues
 Comment
 Comment.LaTeX
 Keyword.Constant
 Keyword
-# not documented
-FormattingType
-Dict.Value
+Name.Type
 Name.Field
-Interpol.Inside
-Comment.Math
 Name.Constructor
-InitialValues
 Name.Module
 TypeParameter
-Name.Type
+Preproc
+# not documented
+FormattingType
+Comment.Math
 Identifier
 ParseAgain.noCR
 ParseAgain

@@ -1,5 +1,5 @@
 # lualinalg package
-# Matthew Bertucci 2023/02/11 for v1.0
+# Matthew Bertucci 2023/08/09 for v1.6
 
 #include:xkeyval
 #include:amsmath
@@ -35,8 +35,6 @@
 brckt=#round,square,curly
 truncate=%<integer%>
 #endkeyvals
-
-\complexRound{a+bi}{num digits}
 
 \matrixNew{name}{entries}
 
@@ -92,7 +90,3 @@ truncate=%<integer%>
 type=#pmatrix,bmatrix,vmatrix,Vmatrix
 truncate=%<integer%>
 #endkeyvals
-
-# not documented
-\matrixRREFERR{arg}#S
-\matrixRREFE{arg}#S

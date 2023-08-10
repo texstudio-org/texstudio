@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/06/15 for v2.7.0
+# Matthew Bertucci 2023/08/09 for v2.7.1
 
 #include:mathtools
 #include:amssymb
@@ -34,7 +34,12 @@
 #include:tikzlibraryshapes.geometric
 #include:tikzlibrarydecorations.pathmorphing
 #include:tcolorbox
-#include:tcolorboxlibrarymost
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryfitting
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarylistings
+#include:tcolorboxlibrarylistingsutf8
+#include:tcolorboxlibraryhooks
 #include:tcolorboxlibraryminted
 #include:iftex
 #include:piton

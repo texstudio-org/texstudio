@@ -1,5 +1,5 @@
 # mandi package
-# Matthew Bertucci 12/26/2021 for v3.1.0
+# Matthew Bertucci 2023/08/07 for v3.2.0
 
 #include:luatex
 #include:array
@@ -42,7 +42,7 @@ preciseconstants#true,false
 \momentumvectoronlyalternateunits#*m
 \vectormomentumonlyalternateunits#*m
 
-\checkquantity{name}
+\CheckQuantity{name}
 
 \acceleration{magnitude}#m
 \accelerationvector{c1,c2,...}#m
@@ -1262,18 +1262,18 @@ preciseconstants#true,false
 \youngsmodulusonlyderivedunits#*m
 \youngsmodulusonlyalternateunits#*m
 
-\newscalarquantity{name}{base units}
-\newscalarquantity{name}{base units}[derived units]
-\newscalarquantity{name}{base units}[derived units][alt units]
-\renewscalarquantity{name}{base units}
-\renewscalarquantity{name}{base units}[derived units]
-\renewscalarquantity{name}{base units}[derived units][alt units]
-\newvectorquantity{name}{base units}
-\newvectorquantity{name}{base units}[derived units]
-\newvectorquantity{name}{base units}[derived units][alt units]
-\renewvectorquantity{name}{base units}
-\renewvectorquantity{name}{base units}[derived units]
-\renewvectorquantity{name}{base units}[derived units][alt units]
+\NewScalarQuantity{name}{base units}
+\NewScalarQuantity{name}{base units}[derived units]
+\NewScalarQuantity{name}{base units}[derived units][alt units]
+\RenewScalarQuantity{name}{base units}
+\RenewScalarQuantity{name}{base units}[derived units]
+\RenewScalarQuantity{name}{base units}[derived units][alt units]
+\NewVectorQuantity{name}{base units}
+\NewVectorQuantity{name}{base units}[derived units]
+\NewVectorQuantity{name}{base units}[derived units][alt units]
+\RenewVectorQuantity{name}{base units}
+\RenewVectorQuantity{name}{base units}[derived units]
+\RenewVectorQuantity{name}{base units}[derived units][alt units]
 
 \alwaysusebaseunits
 \alwaysusederivedunits
@@ -1302,7 +1302,7 @@ preciseconstants#true,false
 \oofpezonlyderivedunits#*m
 \oofpezonlyalternateunits#*m
 
-\checkconstant{name}
+\CheckConstant{name}
 
 \avogadro#m
 \avogadroapproximatevalue#*m
@@ -1735,12 +1735,12 @@ preciseconstants#true,false
 \vacuumpermittivityonlyderivedunits#*m
 \vacuumpermittivityonlyalternateunits#*m
 
-\newphysicalconstant{name}{symbol}{approx val}{precise val}{base units}
-\newphysicalconstant{name}{symbol}{approx val}{precise val}{base units}[derived units]
-\newphysicalconstant{name}{symbol}{approx val}{precise val}{base units}[derived units][alt units]
-\renewphysicalconstant{name}{symbol}{approx val}{precise val}{base units}
-\renewphysicalconstant{name}{symbol}{approx val}{precise val}{base units}[derived units]
-\renewphysicalconstant{name}{symbol}{approx val}{precise val}{base units}[derived units][alt units]
+\NewPhysicalConstant{name}{symbol}{approx val}{precise val}{base units}
+\NewPhysicalConstant{name}{symbol}{approx val}{precise val}{base units}[derived units]
+\NewPhysicalConstant{name}{symbol}{approx val}{precise val}{base units}[derived units][alt units]
+\RenewPhysicalConstant{name}{symbol}{approx val}{precise val}{base units}
+\RenewPhysicalConstant{name}{symbol}{approx val}{precise val}{base units}[derived units]
+\RenewPhysicalConstant{name}{symbol}{approx val}{precise val}{base units}[derived units][alt units]
 
 \alwaysuseapproximateconstants
 \alwaysusepreciseconstants
@@ -1755,7 +1755,7 @@ preciseconstants#true,false
 
 \per#m
 \usk#m
-\unit{magnitude}{unit}#m
+\units{magnitude}{unit}#m
 \emptyunit#m
 \ampere#m
 \atomicmassunit#m

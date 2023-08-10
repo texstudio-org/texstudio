@@ -1,5 +1,5 @@
 # mandistudent package
-# Matthew Bertucci 2022/06/30 for v3.1.0
+# Matthew Bertucci 2023/08/07 for v3.2.0
 
 #include:amsmath
 #include:enumitem
@@ -20,7 +20,6 @@
 #include:tikzlibraryshapes
 #include:tikzlibraryfit
 #include:tikzlibrarytikzmark
-#include:unicode-math
 #include:hyperref
 
 \mandistudentversion#*
