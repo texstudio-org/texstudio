@@ -19,12 +19,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="61"/>
         <source>Latest stable version: %1</source>
-        <translation type="unfinished"/>
+        <translation>Najnowsza wersja stabilna: %1</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="62"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>Lista zmian</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
@@ -69,7 +69,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="75"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio wykorzystuje ikony z Crystal Project (LGPL), motywu ikon Oxygen (CC-BY-SA 3.0) i motywu ikon Colibre (CC0) z LibreOffice.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="76"/>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>couldn&apos;t retrieve data</source>
-        <translation type="unfinished"/>
+        <translation>Nie można pobrać danych</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
@@ -1865,7 +1865,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="../src/configdialog.ui" line="330"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Motyw ikon:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="338"/>
@@ -2476,7 +2476,7 @@ zaznaczając je tu.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3924"/>
         <source>Preview with lualatex</source>
-        <translation type="unfinished"/>
+        <translation>Podgląd z lualatex</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3932"/>
@@ -2579,7 +2579,7 @@ zaznaczając je tu.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4328"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>Prostokąt</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4396"/>
@@ -2998,7 +2998,7 @@ ustawić ten skrót?</translation>
     <message>
         <location filename="../src/configdialog.cpp" line="730"/>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz katalog ze słownikiem</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="735"/>
@@ -3609,7 +3609,7 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="111"/>
         <source>The \hline command draws a horizontal line the width of the table.</source>
-        <translation type="unfinished"/>
+        <translation>Komenda \hline rysuje poziomą linię na długość tabeli.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="112"/>
@@ -4010,17 +4010,17 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="161"/>
         <source>Fraction - \frac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Ułamek - \frac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="164"/>
         <source>Fraction - \dfrac{}{}</source>
-        <translation type="unfinished"/>
+        <translation>Ułamek - \dfrac{}{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="168"/>
         <source>Square Root - \sqrt{}</source>
-        <translation type="unfinished"/>
+        <translation>Pierwiastek kwadratowy - \sqrt{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="195"/>
@@ -5057,12 +5057,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="394"/>
         <source>Copy Image</source>
-        <translation type="unfinished"/>
+        <translation>Kopiuj obraz</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="395"/>
         <source>Save Image As...</source>
-        <translation type="unfinished"/>
+        <translation>Zapisz obraz jako...</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="454"/>
@@ -5139,7 +5139,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2395"/>
         <source>Ignore all</source>
-        <translation type="unfinished"/>
+        <translation>Ignoruj wszystko</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2660"/>
@@ -5207,7 +5207,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3134"/>
         <source>Save Preview Image</source>
-        <translation type="unfinished"/>
+        <translation>Zapisz podgląd obrazu</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3134"/>
@@ -5403,7 +5403,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="11"/>
         <source>Macro name</source>
-        <translation type="unfinished"/>
+        <translation>Nazwa makra</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="15"/>
@@ -5418,7 +5418,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="41"/>
         <source>Browse macros from repository</source>
-        <translation type="unfinished"/>
+        <translation>Przeglądaj makra z repozytorium</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="145"/>
@@ -6971,7 +6971,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4748"/>
         <source>Move cursor to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Przenieś kursor na pierwszy znak w linii</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4749"/>
@@ -7036,7 +7036,7 @@ Notes:
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
         <source>Select to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz pierwszy znak w linii</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
@@ -9570,7 +9570,7 @@ nie powiodło się.</translation>
         <location filename="../src/texstudio.cpp" line="708"/>
         <location filename="../src/texstudio.cpp" line="710"/>
         <source>TOC</source>
-        <translation type="unfinished"/>
+        <translation>Spis treści</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="741"/>
@@ -10335,7 +10335,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1184"/>
         <source>update TOC</source>
-        <translation type="unfinished"/>
+        <translation>zaktualizuj spis treści</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1185"/>
@@ -10999,7 +10999,7 @@ nie powiodło się.</translation>
         <location filename="../src/texstudio.cpp" line="1645"/>
         <location filename="../src/texstudio.cpp" line="5847"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>pokaż więcej pozycji ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1653"/>
@@ -11309,7 +11309,7 @@ ten plik przed nadpisaniem.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="3946"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>Usuń duplikaty</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="4183"/>
@@ -11403,7 +11403,7 @@ Do you want to continue?</source>
     <message>
         <location filename="../src/texstudio.cpp" line="5834"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>pokaż mniej pozycji ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="5875"/>
@@ -11899,12 +11899,12 @@ Czy chcesz by TeXstudio był wciąż włączony? Może to spowodować uszkodzeni
     <message>
         <location filename="../src/texstudio.cpp" line="11751"/>
         <source>Copy filename</source>
-        <translation type="unfinished"/>
+        <translation>Skopiuj nazwę pliku</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11752"/>
         <source>Copy file path</source>
-        <translation type="unfinished"/>
+        <translation>Skopiuj ścieżkę do pliku</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11759"/>
@@ -12435,14 +12435,14 @@ wstawiono dokument w %1</translation>
         <location filename="../src/updatechecker.cpp" line="187"/>
         <location filename="../src/updatechecker.cpp" line="205"/>
         <source>Current version:</source>
-        <translation type="unfinished"/>
+        <translation>Aktualna wersja: %1</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="170"/>
         <location filename="../src/updatechecker.cpp" line="188"/>
         <location filename="../src/updatechecker.cpp" line="206"/>
         <source>Latest stable version:</source>
-        <translation type="unfinished"/>
+        <translation>Najnowsza wersja stabilna: %1</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="171"/>
@@ -12474,7 +12474,7 @@ wstawiono dokument w %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="186"/>
         <source>A new development version of TeXstudio is available.</source>
-        <translation type="unfinished"/>
+        <translation>Nowa wersja deweloperska TeXstudio jest dostępna.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="189"/>
@@ -12484,12 +12484,12 @@ wstawiono dokument w %1</translation>
     <message>
         <location filename="../src/updatechecker.cpp" line="204"/>
         <source>A new stable version of TeXstudio is available.</source>
-        <translation type="unfinished"/>
+        <translation>Nowa stabilna wersja TeXstudio jest dostępna.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="219"/>
         <source>Failure to find current TeXstudio versions.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można odnaleźć aktualnej wersji TeXstudio.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="231"/>
@@ -12714,7 +12714,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="426"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Importuj makra</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="438"/>
