@@ -3406,6 +3406,17 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			//setFlag(CursorOn, true);
 			//ensureCursorVisible();
 
+            // remove volatile placeholdes (auto removeifleft, e.g. closing auto brackets which are not touched any more)
+            for(int i=0;i<m_placeHolders.size();++i){
+                PlaceHolder &ph=m_placeHolders[i];
+                if(ph.autoRemoveIfLeft){
+                    if(!ph.cursor.isWithinSelection(m_cursor)){
+                        removePlaceHolder(i);
+                        break; // one should suffice
+                    }
+                }
+            }
+
             if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.size() && !m_placeHolders[m_curPlaceHolder].cursor.isWithinSelection(m_cursor))
 				setPlaceHolder(-1);
 				/*if ( m_curPlaceHolder >= 0 && m_curPlaceHolder < m_placeHolders.count() )
@@ -5440,6 +5451,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
         } else {
             copiedCursor.insertText(autoBracket);
             if(!autoBracket.startsWith('\\')){ // don't set placeholder for commands e.g. \} or \left as it pretty much inhibits enterring normal commands
+                ph.autoRemoveIfLeft = true;
                 addPlaceHolder(ph);
             }
             c.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
