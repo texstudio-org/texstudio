@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.6.4
+
+- 
+
 ## TeXstudio 4.6.3
 
 - improved handling of active packages when loading included files
