@@ -1,5 +1,5 @@
 # CHANGELOG
-TeXstudio 4.6.3
+## TeXstudio 4.6.3
 
 - improved handling of active packages when loading included files
 - better detection that a screen is not active any more and move window onto active screen
