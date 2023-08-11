@@ -1,6 +1,8 @@
 # CHANGELOG
 TeXstudio 4.6.3
 
+- improved handling of active packages when loading included files
+- better detection that a screen is not active any more and move window onto active screen
 - Cancel button of dialog for inserting label references now inserts nothing, but you can still add an empty reference when needed ([#3230](https://github.com/texstudio-org/texstudio/issues/3230))
 
 ## TeXstudio 4.6.2
