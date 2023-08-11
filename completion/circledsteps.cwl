@@ -1,5 +1,5 @@
 # circledsteps package
-# Matthew Bertucci 9/13/2021 for v1.3.1
+# Matthew Bertucci 2023/08/11 for v1.3.3
 
 #include:xcolor
 #include:pict2e
@@ -27,4 +27,5 @@ fill color=#%color
 \resetcstep
 \thecstepcnt
 
-\CircledParamOpts{options%keyvals}{0_or_1}{text}#*
+\CircledParamOpts{options%keyvals}{0 or 1}{text}#*
+\cstepsversion#S
