@@ -1,5 +1,5 @@
 # xkcdcolors package
-# Matthew Bertucci 8/19/2021 for v1.01
+# Matthew Bertucci 2023/08/11 for v1.0.2
 
 #include:xcolor
 
@@ -952,3 +952,5 @@ xkcdYellowOrange#B
 xkcdYellowTan#B
 xkcdYellowyBrown#B
 xkcdYellowyGreen#B
+
+\xkcdcolorsversion#S
