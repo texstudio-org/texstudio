@@ -617,7 +617,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}else{
 			    int i = elem.indexOf("{");
 			    if (i >= 0) elem = elem.left(i);
-			    ltxCommands.possibleCommands["user"].remove(elem);
+                if(countCommandDefintions(elem)==1){
+                    ltxCommands.possibleCommands["user"].remove(elem);
+                }
 			}
 			if(cmd.snippet.type==CodeSnippet::userConstruct)
 				continue;
@@ -1520,6 +1522,17 @@ LatexDocument* LatexDocument::getDocumentForLabel(const QString &name){
         }
     }
     return nullptr;
+}
+
+int LatexDocument::countCommandDefintions(const QString &name)
+{
+    int result=0;
+    for (auto it = mUserCommandList.constBegin(); it != mUserCommandList.constEnd(); ++it) {
+        if (it.value().name == name) {
+            ++result;
+        }
+    }
+    return result;
 }
 
 
