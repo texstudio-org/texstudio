@@ -198,6 +198,7 @@ public:
     bool saveCachingData(const QString &folder);
     bool restoreCachedData(const QString &folder, const QString fileName);
     bool isIncompleteInMemory();
+    void startSyntaxChecker();
 
 private:
 	QString fileName; //absolute

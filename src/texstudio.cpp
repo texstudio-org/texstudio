@@ -2214,6 +2214,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
                 }
                 existingView->document->baseStructure->children.clear();*/
             //
+            doc->startSyntaxChecker();
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
             documents.deleteDocument(existingView->document, true);
             existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
@@ -2390,6 +2391,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
                     edView->updateCitationFormats();
             }
         }
+    }
+    if (!hidden) {
+        doc->startSyntaxChecker(); // only syntax check visible documents
     }
 
 #ifndef Q_OS_MAC

@@ -54,7 +54,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 
 	SynChecker.setLtxCommands(LatexParser::getInstance());
     updateSettings();
-	SynChecker.start();
+    //SynChecker.start(); start when needed
 
     connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);
 }
@@ -3844,4 +3844,13 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
 bool LatexDocument::isIncompleteInMemory()
 {
     return m_cachedDataOnly;
+}
+/*!
+ * \brief start syntax checker once it becomes visible
+ */
+void LatexDocument::startSyntaxChecker()
+{
+    if(!SynChecker.isRunning()){
+        SynChecker.start();
+    }
 }
