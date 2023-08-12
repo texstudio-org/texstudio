@@ -101,8 +101,9 @@ void LatexEditorViewTest::inMathEnvironment(){
 	QFETCH(QString, text);
 	QFETCH(QString, inmath);
 	edView->editor->setText(text);
+    edView->document->startSyntaxChecker();
 
-        edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+    edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
 	QDocumentCursor c = edView->editor->document()->cursor(0,0);
 	for (int i=0;i<inmath.size();i++) {
