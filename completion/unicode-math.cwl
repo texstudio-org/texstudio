@@ -1,7 +1,7 @@
 # unicode-math package
 # rend3r, 6 Sep 2020
 # muzimuzhi, 7 Sep 2020
-# Matthew Bertucci 30 Sep 2020 for v0.8q
+# Matthew Bertucci 13 Aug 2023 for v0.8r
 
 # The 2946 math symbol commands listed in
 #     https://github.com/wspr/unicode-math/blob/master/unicode-math-table.tex
@@ -1412,6 +1412,8 @@ version=%<version name%>
 \dashcolon#m
 \DashVDash#m
 \dashVdash#m
+\diagdown#m
+\diagup#m
 \divideontimes#m
 \Doteq#m
 \dotminus#m
@@ -1611,6 +1613,7 @@ version=%<version name%>
 \rbracklend#*m
 \rbrackuend#*m
 \Rdsh#m
+\reversesolidus#m
 \rightangle#m
 \rightarrowonoplus#m
 \rightarrowtail#m
