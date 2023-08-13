@@ -1,5 +1,5 @@
 # xpunctuate package
-# Matthew Bertucci 11/13/2021 for v1.0
+# Matthew Bertucci 2023/08/13 for v2.0
 
 #include:xspace
 
@@ -7,6 +7,7 @@
 \xcomma
 \xperiodcomma
 
+\xspaceafter{text}
 \xperiodafter{text}
 \xcommaafter{text}
 \xperiodcommaafter{text}
