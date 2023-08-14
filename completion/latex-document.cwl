@@ -248,7 +248,7 @@
 \LaTeXe
 \lbrack#*
 \ldots
-\lefteqn
+\lefteqn{formula}
 \lefthyphenmin#*
 \legacyoldstylenums{text}#*
 \lhook#*m
