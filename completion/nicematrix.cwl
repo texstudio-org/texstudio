@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/07/14 for v6.21
+# Matthew Bertucci 2023/08/14 for v6.22
 
 #include:amsmath
 #include:array
@@ -194,6 +194,7 @@ l
 c
 r
 fill=#%color
+opacity=%<factor%>
 draw
 draw=#%color
 color=#%color
