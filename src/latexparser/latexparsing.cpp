@@ -87,6 +87,13 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
 					continue;
 				}
 				if (c.isLetter() && present.type == Token::number) {
+                    // special case 0x... 0b....
+                    if((c=='x' || c=='b')   && i-present.start==1 && s[present.start]=='0'){
+                        continue;
+                    }
+                    if(QString("abcdef").contains(c.toLower()) && s[present.start]=='0' && s[present.start+1]=='x'){
+                        continue;
+                    }
 					present.length = i - present.start;
 					lexed.append(present);
 					present.start = i;
