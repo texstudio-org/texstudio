@@ -1,5 +1,5 @@
 # lettrine package
-# Matthew Bertucci 2023/04/18 for v2.3
+# Matthew Bertucci 2023/08/14 for v2.52
 
 #keyvals:\usepackage/lettrine#c
 optionsfile=%<filename%>
@@ -21,11 +21,13 @@ image#true,false
 grid#true,false
 novskip=##L
 realheight#true,false
+refstring
+refstring=%<string%>
 #endkeyvals
 
 #keyvals:\lettrine,\LettrineOptionsFor
 ante=%<text%>
-refstring
+viewport=%<llx lly urx ury%>
 #endkeyvals
 
 \DefaultFindent#*
@@ -42,7 +44,6 @@ refstring
 \LettrineFont#*
 \LettrineFontHook#*
 \LettrineHeight#*
-\LettrineImage#*
 \ifLettrineImage#*
 \LettrineImagetrue#*
 \LettrineImagefalse#*

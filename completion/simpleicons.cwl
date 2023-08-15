@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/07/28 for v9.8.0
+# Matthew Bertucci 2023/08/11 for v9.9.0
 
 #include:iftex
 
@@ -857,6 +857,7 @@ g2a
 gameandwatch
 gamedeveloper
 gamejolt
+gamemaker
 garmin
 gatling
 gatsby
@@ -2562,6 +2563,7 @@ wprocket
 writedotas
 wwe
 wwise
+x
 xamarin
 xaml
 xampp

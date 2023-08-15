@@ -1,5 +1,5 @@
 # dccpaper-base package
-# Matthew Bertucci 3/25/2022 for v2.3
+# Matthew Bertucci 2023/08/11 for v2.4
 
 #include:babel
 # loads british option of babel
@@ -32,24 +32,25 @@
 \authblksep#*
 \Authfont#*
 \AuthorBlock#*
-\BBA#*
+\BBA#S
 \begin{widequote}#*
 \conference{name of conference}
+\conference*{name of conference}
 \correspondence{%<name,postal address,%> Email: \email{%<email address%>}}
 \doi{DOI}
 \email{email address%URL}#U
 \end{widequote}#*
-\fixspaces#*
+\fixspaces#S
 \FixTextHeight#*
 \flushleftright#*
 \HeadTitle#*
 \issue{number}
 \MainAuthor#*
-\nofixspaces#*
+\nofixspaces#S
 \NormalFoot#*
 \NormalHead#*
 \oldBBA#S
-\OrigLineBreak#*
+\OrigLineBreak#S
 \OtherMainAuthors#*
 \ProperTitle#*
 \RaggedParindent#*
@@ -59,14 +60,14 @@
 \revised{date}
 \submitted{date}
 \subno{number}
-\theauthors#*
-\theauthorsinblock#*
-\theblock#*
+\theauthors#S
+\theauthorsinblock#S
+\theblock#S
 \thecorrespondence#*
 \thedoi#*
 \theissue#*
 \thelastpage#*
-\thesectionpars#*
+\thesectionpars#S
 \thesubno#*
 \thevolume#*
 \title[name%text]{full version%text}
