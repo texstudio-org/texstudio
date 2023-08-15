@@ -1,5 +1,5 @@
 # ProfCollege package
-# Matthew Bertucci 2023/08/08 for v0.99-z-q
+# Matthew Bertucci 2023/08/15 for v0.99-z-s
 
 #include:verbatim
 #include:mathtools
@@ -1579,6 +1579,21 @@ Solution#true,false
 ListeNombres{%<nombre1,nombre2,...%>}
 #endkeyvals
 
+## Mul’Art ##
+\TableauMultiplicatif{description du pixel-art}
+\TableauMultiplicatif[clés%keyvals]{description du pixel-art}
+
+#keyvals:\TableauMultiplicatif
+Largeur=##L
+Couleur=#%color
+Graine=%<nombre%>
+Multiple=%<nombre%>
+Cible={%<nombres%>}
+Operations#true,false
+Enonce#true,false
+SchemaEnonce#true,false
+#endkeyvals
+
 ## Qui suis je? ##
 \Quisuisje{c1§c2§...}{m o t à t r o u v e r}
 \Quisuisje[clés%keyvals]{c1§c2§...}{m o t à t r o u v e r}
@@ -1836,6 +1851,7 @@ Nom=%<nom%>
 Largeur=##L
 Couleur=#%color
 Solution#true,false
+CouleurS=#%color
 ListeNombres={%<liste%>}
 Inverse#true,false
 Vide#true,false
@@ -2112,6 +2128,15 @@ Cadre#true,false
 Numerique#true,false
 Impression#true,false
 Secondes#true,false
+#endkeyvals
+
+## Calculatrice cassée ##
+\DefiCalculatrice{nombre}
+\DefiCalculatrice[clés%keyvals]{nombre}
+
+#keyvals:\DefiCalculatrice
+Impression
+ListeTouches={%<touches%>}
 #endkeyvals
 
 ## Bulles et cartes mentales ##
@@ -3573,3 +3598,19 @@ Teal#B
 \BuildCible{arg}#S
 \DessineRoseMulPersoCode#S
 \DessineRoseMulPerso{arg1}{arg2}#S
+\theCCRetiensAide#S
+\tokstabmul#S
+\tokstabmulpdts#S
+\tokstabmulnonpdts#S
+\tokstabmulpdtscible#S
+\UpdatetoksTabMul#S
+\UpdatetoksTabMulPdts#S
+\UpdatetoksTabMulNonPdts#S
+\UpdatetoksTabMulPdtsCible#S
+\PfCListeDiviseurs{arg}#S
+\TabMulCibleCode#S
+\BuildTabMulCible{arg1}{arg2}{arg3}#S
+\TabMulCode#S
+\BuildTabMul{arg}#S
+\TabMulEnonceCode#S
+\BuildTabMulEnonce{arg1}{arg2}{arg3}#S
