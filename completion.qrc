@@ -1095,6 +1095,7 @@
 <file>completion/correctmathalign.cwl</file>
 <file>completion/corridx.cwl</file>
 <file>completion/coseoul.cwl</file>
+<file>completion/couleurs-fr.cwl</file>
 <file>completion/counterz.cwl</file>
 <file>completion/countriesofeurope.cwl</file>
 <file>completion/counttexruns.cwl</file>
@@ -1923,6 +1924,7 @@
 <file>completion/jmlrutils.cwl</file>
 <file>completion/jmsdelim.cwl</file>
 <file>completion/jobname-suffix.cwl</file>
+<file>completion/joinbox.cwl</file>
 <file>completion/josefin.cwl</file>
 <file>completion/jpneduenumerate.cwl</file>
 <file>completion/jpnedumathsymbols.cwl</file>
