@@ -1,4 +1,5 @@
 #include "latexrepository.h"
+#include <QXmlStreamReader>
 #include <QMutex>
 
 LatexRepository *LatexRepository::m_Instance = nullptr;
@@ -6,7 +7,7 @@ LatexRepository *LatexRepository::m_Instance = nullptr;
 LatexRepository::LatexRepository() :
     QObject(nullptr), m_dataSource(None)
 {
-	loadStaticPackageList(":/utilities/packageList");
+	loadStaticPackageList("packages.xml");
 }
 
 LatexRepository *LatexRepository::instance()
@@ -30,18 +31,25 @@ bool LatexRepository::loadStaticPackageList(const QString &file)
 	packages.reserve(3000);
 
 	QFile f(file);
-	if (! f.open(QFile::ReadOnly)) return false;
+	if (! f.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(nullptr, tr("Reading Package Data"),
+                             tr("Cannot read file %1").arg(QDir::toNativeSeparators(file)));
+        return false;
+    }
 
-	while (!f.atEnd()) {
-		QString line = f.readLine().trimmed();
-		if (line.startsWith('#')) continue;
-		int sep = line.indexOf(':');
-		if (sep < 0) {
-			packages.insert(line, LatexPackageInfo(line));
-		} else {
-			QString name = line.left(sep);
-			packages.insert(name, LatexPackageInfo(name, line.mid(sep + 1)));
+	QXmlStreamReader xml;
+	QIODevice *device = &f;
+	xml.setDevice(device);
+
+	if (!xml.readNextStartElement()) return false;
+	while (xml.readNextStartElement()) {
+		if (xml.name() == QString("package")) {
+			QString key = QString("%1").arg(xml.attributes().value(QString(""),QString("key")));
+			QString name = QString("%1").arg(xml.attributes().value(QString(""),QString("name")));
+			QString caption = QString("%1").arg(xml.attributes().value(QString(""),QString("caption")));
+			packages.insert(key, LatexPackageInfo(name, caption));
 		}
+		xml.skipCurrentElement();
 	}
 	m_dataSource = Static;
 	return true;
