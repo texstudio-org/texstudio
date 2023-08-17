@@ -23,14 +23,15 @@ public:
 	~TexdocDialog();
 
 private slots:
-	void searchTermChanged(const QString &text);
+	void tableSearchTermChanged(QString term);
+	void itemChanged(QTableWidgetItem* item);
 	void delayedCheckDocAvailable(const QString &package);
 	void checkDockAvailable();
 	void updateDocAvailableInfo(const QString &package, bool available, QString customWarning = QString());
+	void openCtanUrl();
 
 private:
 	Ui::TexdocDialog *ui;
-    QRegularExpressionValidator packageNameValidator;
 	QAbstractButton *openButton;
 	QTimer checkTimer;
 	QString lastDocRequest;

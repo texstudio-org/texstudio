@@ -6770,9 +6770,6 @@ void Texstudio::texdocHelp()
 	if (currentEditorView()) {
 		selection = currentEditorView()->editor->cursor().selectedText();
 		foreach (const QString &key, currentEditorView()->document->parent->cachedPackages.keys()) {
-			if (currentEditorView()->document->parent->cachedPackages[key].completionWords.isEmpty())
-				// remove empty packages which probably do not exist
-				continue;
 			packages << LatexPackage::keyToPackageName(key);
 		}
 

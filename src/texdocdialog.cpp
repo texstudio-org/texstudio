@@ -6,12 +6,11 @@
 TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 	QDialog(parent),
 	ui(new Ui::TexdocDialog),
-	packageNameValidator(this),
     openButton(nullptr),
     help(obj)
 {
 	ui->setupUi(this);
-	UtilsUi::resizeInFontHeight(this, 28, 10);
+	UtilsUi::resizeInFontHeight(this, 28, 26);
 
 	foreach (QAbstractButton *bt, ui->buttonBox->buttons()) {
 		if (ui->buttonBox->buttonRole(bt) == QDialogButtonBox::AcceptRole) {
@@ -19,18 +18,17 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 			break;
 		}
 	}
-    packageNameValidator.setRegularExpression(QRegularExpression("[0-9a-zA-Z\\-\\.]*"));
-	ui->cbPackages->lineEdit()->setValidator(&packageNameValidator);
-	ui->cbPackages->setMaxVisibleItems(15);
 
 	checkTimer.setSingleShot(true);
 	connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
-	connect(ui->cbPackages, SIGNAL(editTextChanged(QString)), SLOT(searchTermChanged(QString)));
-    connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
+	connect(ui->lineEditSearch, SIGNAL(textChanged(QString)),SLOT(tableSearchTermChanged(QString)));
+	connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
+	connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
+	connect(ui->buttonCTAN, SIGNAL(clicked()), SLOT(openCtanUrl()));
 
 	updateDocAvailableInfo("", false); // initially disable warning message
-
-    if (openButton) openButton->setEnabled(true);
+	ui->buttonCTAN->setEnabled(false);
+	ui->lineEditSearch->setEnabled(false);
 }
 
 TexdocDialog::~TexdocDialog()
@@ -38,40 +36,99 @@ TexdocDialog::~TexdocDialog()
 	delete ui;
 }
 
-void TexdocDialog::searchTermChanged(const QString &text)
+void TexdocDialog::tableSearchTermChanged(QString term) {
+	QTableWidget *tb = ui->tbPackages;
+	int rows = tb->rowCount();
+	QRegExp termRE(".*"+term+".*", Qt::CaseInsensitive);
+	bool found = false;
+	for (int i=0; i<rows; i++) {
+		QTableWidgetItem *itemPkgName = tb->item(i,0);
+		bool match = termRE.exactMatch(itemPkgName->text());
+		if (match && !found) {
+			found = true;
+			tb->setCurrentItem(itemPkgName);
+		}
+		tb->setRowHidden(i,!match);
+	}
+	if (!found && rows>0) {
+		QTableWidgetItem *itemPkgName = tb->item(0,0);
+		tb->setCurrentItem(itemPkgName);
+	}
+}
+
+void TexdocDialog::itemChanged(QTableWidgetItem* item)
 {
-	ui->lbShortDescription->setText(LatexRepository::instance()->shortDescription(text));
+	openButton->setEnabled(false);
+	int row = item->row();
+	QString text = ui->tbPackages->item(row,0)->text();
 	delayedCheckDocAvailable(text);
 }
 
 void TexdocDialog::setPackageNames(const QStringList &packages)
 {
-	ui->cbPackages->clear();
+	ui->tbPackages->clear();
 	if (!packages.isEmpty()) {
 		QStringList pkgs(packages);
-		pkgs.sort();
-		ui->cbPackages->addItems(pkgs);
-		ui->cbPackages->setCurrentIndex(0);
-		ui->cbPackages->lineEdit()->selectAll();
+		ui->tbPackages->setRowCount(pkgs.size());
+		ui->tbPackages->setHorizontalHeaderLabels({tr("Name"),tr("Caption")});
+		ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
+		ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
+		ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
+		LatexRepository *repo = LatexRepository::instance();
+		int n=0;
+		for (int i=0;i<pkgs.size();i++) {
+			QString name = pkgs.at(i);
+			if (repo->LatexRepository::packageExists(name)) {
+				QString desc = repo->LatexRepository::shortDescription(name);
+				QTableWidgetItem *itemPkgName = new QTableWidgetItem(name);
+				QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
+				itemPkgName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+				itemPkgDesc->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+				ui->tbPackages->setItem(n,0,itemPkgName);
+				ui->tbPackages->setItem(n,1,itemPkgDesc);
+				n++;
+			}
+		}
+		ui->tbPackages->setRowCount(n);
+		ui->tbPackages->sortItems(0,Qt::AscendingOrder);
+		if (n>0) {
+			QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
+			ui->tbPackages->setCurrentItem(itemPkgName);
+			ui->buttonCTAN->setEnabled(true);
+			ui->lineEditSearch->setEnabled(true);
+		}
 	}
 }
 
 void TexdocDialog::setPreferredPackage(const QString &package)
 {
-	int index = ui->cbPackages->findText(package);
-	int dummyPos = 0;
-	QString pkgName = package; // copy because valitdate may modify it
-	if (index < 0 && QValidator::Acceptable == packageNameValidator.validate(pkgName, dummyPos)) {
-		ui->cbPackages->addItem(package);
-		index = ui->cbPackages->findText(package);
+	int i = 0;
+	int rows = ui->tbPackages->rowCount();
+	LatexRepository *repo = LatexRepository::instance();
+	if (repo->LatexRepository::packageExists(package)) {
+		for (;i<rows;i++) {
+			if (ui->tbPackages->item(i,0)->text() == package) break;
+		}
+		if (i>=rows) {
+			QString desc = repo->LatexRepository::shortDescription(package);
+			QTableWidgetItem *itemPkgName = new QTableWidgetItem(package);
+			QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
+			rows++;
+			ui->tbPackages->setRowCount(rows);
+			ui->tbPackages->setItem(i,0,itemPkgName);
+			ui->tbPackages->setItem(i,1,itemPkgDesc);
+		}
 	}
-	ui->cbPackages->setCurrentIndex(index);
-	ui->cbPackages->lineEdit()->selectAll();
+	if (rows>0) {
+		QTableWidgetItem *itemPkgName = ui->tbPackages->item(i,0);
+		ui->tbPackages->setCurrentItem(itemPkgName);
+		itemPkgName->setSelected(true);
+	}
 }
 
 QString TexdocDialog::selectedPackage() const
 {
-	return ui->cbPackages->currentText();
+	return ui->tbPackages->item(ui->tbPackages->currentRow(),0)->text();
 }
 
 // use delayed checking because the auto completion of the combo box fires two events
@@ -100,4 +157,13 @@ void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available
 	if (openButton) openButton->setEnabled(available);
 	ui->lbInfo->setText(showWarning ? warning : "");
 	ui->lbWarnIcon->setVisible(showWarning);
+}
+
+void TexdocDialog::openCtanUrl()
+{
+	int row = ui->tbPackages->currentRow();
+	if (row<0) return;
+	QString package = ui->tbPackages->item(row,0)->text();
+	QUrl packageUrl(QString("https://www.ctan.org/pkg/%1").arg(package));
+	QDesktopServices::openUrl(packageUrl);
 }
