@@ -7,7 +7,7 @@ LatexRepository *LatexRepository::m_Instance = nullptr;
 LatexRepository::LatexRepository() :
     QObject(nullptr), m_dataSource(None)
 {
-	loadStaticPackageList("packages.xml");
+    loadStaticPackageList(":/utilities/packageList.xml");
 }
 
 LatexRepository *LatexRepository::instance()
@@ -32,8 +32,6 @@ bool LatexRepository::loadStaticPackageList(const QString &file)
 
 	QFile f(file);
 	if (! f.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::warning(nullptr, tr("Reading Package Data"),
-                             tr("Cannot read file %1").arg(QDir::toNativeSeparators(file)));
         return false;
     }
 

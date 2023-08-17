@@ -48,7 +48,6 @@
         <file>images/up-arrow-circle-silver.png</file>
         <file>images/separator.png</file>
         <file>images/TexTablet.png</file>
-        <file>utilities/packageList</file>
         <file>utilities/template_resources.xml</file>
         <file>images/beamer/default.png</file>
         <file>images/beamer/AnnArbor.png</file>
@@ -125,5 +124,6 @@
         <file>images/rc/radio_checked_disabled.png</file>
         <file>images/rc/radio_checked_focus.png</file>
         <file>images/rc/radio_checked.png</file>
+        <file>utilities/packageList.xml</file>
     </qresource>
 </RCC>
