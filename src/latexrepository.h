@@ -31,6 +31,7 @@ public:
 	DataSource dataSource();
 	bool packageExists(const QString &name);
 	QString shortDescription(const QString &name);
+    QStringList availablePackages();
 
 private:
 	LatexRepository();

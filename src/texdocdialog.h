@@ -23,7 +23,8 @@ public:
 	~TexdocDialog();
 
 private slots:
-	void tableSearchTermChanged(QString term);
+    void regenerateTable(int state=0);
+    void tableSearchTermChanged(QString term);
 	void itemChanged(QTableWidgetItem* item);
 	void delayedCheckDocAvailable(const QString &package);
 	void checkDockAvailable();
@@ -36,6 +37,7 @@ private:
 	QTimer checkTimer;
 	QString lastDocRequest;
     Help *help;
+    QStringList m_packages;
 };
 
 #endif // TEXDOCDIALOG_H

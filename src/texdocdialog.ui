@@ -7,23 +7,16 @@
     <x>0</x>
     <y>0</y>
     <width>363</width>
-    <height>126</height>
+    <height>174</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Packages Help (Texdoc)</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="3">
-    <widget class="QLineEdit" name="lineEditSearch">
-     <property name="toolTip">
-      <string>Enter Package Name to search, or a regular expression</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="0" colspan="3">
     <widget class="QTableWidget" name="tbPackages">
-     <property name="columnCount" >
+     <property name="columnCount">
       <number>2</number>
      </property>
      <column>
@@ -71,7 +64,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="images.qrc">:/images-ng/warning.svgz</pixmap>
+        <pixmap resource="../images.qrc">:/images-ng/warning.svgz</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -101,9 +94,9 @@
    </item>
    <item row="3" column="0">
     <widget class="QPushButton" name="buttonCTAN">
-      <property name="text">
-       <string>open CTAN</string>
-      </property>
+     <property name="text">
+      <string>open CTAN</string>
+     </property>
     </widget>
    </item>
    <item row="3" column="1" colspan="2">
@@ -116,10 +109,24 @@
      </property>
     </widget>
    </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLineEdit" name="lineEditSearch">
+     <property name="toolTip">
+      <string>Enter Package Name to search, or a regular expression</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QCheckBox" name="cbShowAllPackages">
+     <property name="text">
+      <string>all packages</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources>
-  <include location="images.qrc"/>
+  <include location="../images.qrc"/>
  </resources>
  <connections>
   <connection>

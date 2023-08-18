@@ -25,6 +25,7 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 	connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
 	connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
 	connect(ui->buttonCTAN, SIGNAL(clicked()), SLOT(openCtanUrl()));
+    connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
 
 	updateDocAvailableInfo("", false); // initially disable warning message
 	ui->buttonCTAN->setEnabled(false);
@@ -33,7 +34,52 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 
 TexdocDialog::~TexdocDialog()
 {
-	delete ui;
+    delete ui;
+}
+/*!
+ * \brief generate all rows for table
+ * \param all filter to used packages or all ctan packages
+ */
+void TexdocDialog::regenerateTable(int state)
+{
+    ui->tbPackages->disconnect(SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)));
+    ui->tbPackages->clear();
+    if (!m_packages.isEmpty() || (state>0)) {
+        ui->tbPackages->setHorizontalHeaderLabels({tr("Name"),tr("Caption")});
+        ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
+        ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
+        LatexRepository *repo = LatexRepository::instance();
+
+        QStringList pkgs;
+        if(state>0){
+            pkgs=repo->LatexRepository::availablePackages();
+        }else{
+            pkgs=m_packages;
+        }
+
+        ui->tbPackages->setRowCount(pkgs.size());
+        int n=0;
+        for (int i=0;i<pkgs.size();i++) {
+            QString name = pkgs.at(i);
+            if(state==0 && !repo->LatexRepository::packageExists(name)) continue;
+            QString desc = repo->LatexRepository::shortDescription(name);
+            QTableWidgetItem *itemPkgName = new QTableWidgetItem(name);
+            QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
+            itemPkgName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+            itemPkgDesc->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
+            ui->tbPackages->setItem(n,0,itemPkgName);
+            ui->tbPackages->setItem(n,1,itemPkgDesc);
+            ++n;
+        }
+        ui->tbPackages->setRowCount(n);
+        ui->tbPackages->sortItems(0,Qt::AscendingOrder);
+        QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
+        ui->tbPackages->setCurrentItem(itemPkgName);
+        ui->buttonCTAN->setEnabled(true);
+        ui->lineEditSearch->setEnabled(true);
+    }
+    connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
 }
 
 void TexdocDialog::tableSearchTermChanged(QString term) {
@@ -70,37 +116,8 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
 
 void TexdocDialog::setPackageNames(const QStringList &packages)
 {
-	ui->tbPackages->clear();
-	if (!packages.isEmpty()) {
-        ui->tbPackages->setRowCount(packages.size());
-		ui->tbPackages->setHorizontalHeaderLabels({tr("Name"),tr("Caption")});
-		ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
-		ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
-		ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
-		LatexRepository *repo = LatexRepository::instance();
-		int n=0;
-        for (int i=0;i<packages.size();i++) {
-            QString name = packages.at(i);
-			if (repo->LatexRepository::packageExists(name)) {
-				QString desc = repo->LatexRepository::shortDescription(name);
-				QTableWidgetItem *itemPkgName = new QTableWidgetItem(name);
-				QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
-				itemPkgName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
-				itemPkgDesc->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
-				ui->tbPackages->setItem(n,0,itemPkgName);
-				ui->tbPackages->setItem(n,1,itemPkgDesc);
-				n++;
-			}
-		}
-		ui->tbPackages->setRowCount(n);
-		ui->tbPackages->sortItems(0,Qt::AscendingOrder);
-		if (n>0) {
-			QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
-			ui->tbPackages->setCurrentItem(itemPkgName);
-			ui->buttonCTAN->setEnabled(true);
-			ui->lineEditSearch->setEnabled(true);
-		}
-	}
+    m_packages=packages;
+    regenerateTable();
 }
 
 void TexdocDialog::setPreferredPackage(const QString &package)

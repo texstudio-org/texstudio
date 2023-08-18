@@ -60,5 +60,13 @@ bool LatexRepository::packageExists(const QString &name)
 
 QString LatexRepository::shortDescription(const QString &name)
 {
-	return packages[name].shortDescription;
+    return packages[name].shortDescription;
+}
+/*!
+ * \brief provide names of all known packages
+ * \return
+ */
+QStringList LatexRepository::availablePackages()
+{
+    return packages.keys();
 }
