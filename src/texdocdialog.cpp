@@ -72,16 +72,15 @@ void TexdocDialog::setPackageNames(const QStringList &packages)
 {
 	ui->tbPackages->clear();
 	if (!packages.isEmpty()) {
-		QStringList pkgs(packages);
-		ui->tbPackages->setRowCount(pkgs.size());
+        ui->tbPackages->setRowCount(packages.size());
 		ui->tbPackages->setHorizontalHeaderLabels({tr("Name"),tr("Caption")});
 		ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
 		ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
 		ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
 		LatexRepository *repo = LatexRepository::instance();
 		int n=0;
-		for (int i=0;i<pkgs.size();i++) {
-			QString name = pkgs.at(i);
+        for (int i=0;i<packages.size();i++) {
+            QString name = packages.at(i);
 			if (repo->LatexRepository::packageExists(name)) {
 				QString desc = repo->LatexRepository::shortDescription(name);
 				QTableWidgetItem *itemPkgName = new QTableWidgetItem(name);
