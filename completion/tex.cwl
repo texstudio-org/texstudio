@@ -348,7 +348,7 @@
 \tracingstats#*
 \uccode#*
 \uchyph#*
-\underline{text%plain}#m
+\underline{text%plain}
 \unhbox#*
 \unhcopy#*
 \unkern#*
