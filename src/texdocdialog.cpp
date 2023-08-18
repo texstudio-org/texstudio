@@ -39,15 +39,19 @@ TexdocDialog::~TexdocDialog()
 void TexdocDialog::tableSearchTermChanged(QString term) {
 	QTableWidget *tb = ui->tbPackages;
 	int rows = tb->rowCount();
-	QRegExp termRE(".*"+term+".*", Qt::CaseInsensitive);
 	bool found = false;
 	for (int i=0; i<rows; i++) {
 		QTableWidgetItem *itemPkgName = tb->item(i,0);
-		bool match = termRE.exactMatch(itemPkgName->text());
+        bool match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
 		if (match && !found) {
 			found = true;
 			tb->setCurrentItem(itemPkgName);
 		}
+        if(!match){
+            // check description
+            QTableWidgetItem *itemPkgName = tb->item(i,1);
+            match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
+        }
 		tb->setRowHidden(i,!match);
 	}
 	if (!found && rows>0) {
