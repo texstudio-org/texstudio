@@ -1,16 +1,27 @@
 # ProfMaquette package
-# Matthew Bertucci 2023/06/05 for v0.15
+# Matthew Bertucci 2023/08/18 for v0.4
 
 #include:verbatim
 #include:calc
 #include:xlop
-#include:tcolorbox
-#include:tcolorboxlibrarymost
 #include:varwidth
+#include:tcolorbox
+#include:tcolorboxlibrarybreakable
+#include:tcolorboxlibraryexternal
+#include:tcolorboxlibraryfitting
+#include:tcolorboxlibraryhooks
+#include:tcolorboxlibrarymagazine
+#include:tcolorboxlibraryposter
+#include:tcolorboxlibraryraster
+#include:tcolorboxlibraryskins
+#include:tcolorboxlibrarytheorems
+#include:tcolorboxlibrarylistings
+#include:tcolorboxlibrarylistingsutf8
 #include:xinttools
 #include:listofitems
 #include:array
 #include:datatool
+#include:modulus
 #include:simplekv
 
 \begin{Maquette}{clés%keyvals}
@@ -39,6 +50,8 @@ NomExercice=%<texte%>
 # no new keys
 # type ParcoursPerso
 Fichier=%<.csv file%>
+# type Cours
+Couleur=#%color
 #endkeyvals
 
 \TikzDM#*
@@ -53,6 +66,7 @@ Fichier=%<.csv file%>
 \TikzParcoursCor{clés}#*
 \TikzPdT#*
 \TikzPdTCor{clés}#*
+\TikzCours#*
 
 \Competences{texte1/texte2/...%text}
 \Competences[N]{col1§...§colN/texte1/texte2/...%text}
@@ -66,6 +80,8 @@ Fichier=%<.csv file%>
 \end{exercice}
 
 #keyvals:\begin{exercice}
+Background=#%color
+Cadre=#%color
 BaremeTotal#true,false
 BaremeDetaille#true,false
 MotPoint=%<texte%>
@@ -208,10 +224,11 @@ Direct#true,false
 \SolutionWrite#S
 \SolutionWritePP#S
 \TableauRecapitulatif#S
-\theMaquette#S
+\thePfMMaquette#S
 \thePfMAlea#S
 \thePfMCorrigeParcoursPerso#S
 \thePfMExo#S
+\thePfMExoSol#S
 \thePfMNbLogo#S
 \thePfMSOS#S
 \theRetiensInd#S
@@ -225,6 +242,19 @@ Direct#true,false
 \tripletspytha#S
 \tripletspythaentier#S
 \VehiculesINSEE#S
+\thePfMSection#S
+\thePfMSommetcount#S
+\ChoixSommet{arg1}{arg2}#S
+\VariableAlea{arg1}{arg2}#S
+\VariableAlea*{arg1}{arg2}#S
+\ChoixAlea{arg1}{arg2}{arg3}#S
+\ChoixAlea[opt]{arg1}{arg2}{arg3}#S
+\ChoixAlea*{arg1}{arg2}{arg3}#S
+\ChoixAlea*[opt]{arg1}{arg2}{arg3}#S
+\RestoreChoixAlea{arg}#S
+\RestoreSommet{arg1}{arg2}#S
+\TikzFicheCorRep{arg}#S
+\TikzFicheCorInd{arg}#S
 
 # from random.tex
 \randomi#S
