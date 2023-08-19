@@ -1,23 +1,35 @@
 # chronology package
-# Matthew Bertucci 2022/12/16 for v1.1.1
+# Matthew Bertucci 2023/08/19 for v2.0
 
 #include:calc
 #include:tikz
 
-\begin{chronology}{start}{end}{width}
-\begin{chronology}{start}{end}{width1}[width2]#*
-\begin{chronology}[stepsize]{start}{end}{width}#*
-\begin{chronology}[stepsize]{start}{end}{width1}[width2]
-\begin{chronology}*{start}{end}{width}
-\begin{chronology}*{start}{end}{width1}[width2]#*
-\begin{chronology}*[stepsize]{start}{end}{width}#*
-\begin{chronology}*[stepsize]{start}{end}{width1}[width2]
+\begin{chronology}{year-start}{year-stop}{width}
+\begin{chronology}{year-start}{year-stop}{width}[scaling]#*
+\begin{chronology}[step]{year-start}{year-stop}{width}#*
+\begin{chronology}[step]{year-start}{year-stop}{width}[scaling]
+\begin{chronology}*{year-start}{year-stop}{width}
+\begin{chronology}*{year-start}{year-stop}{width}[scaling]#*
+\begin{chronology}*[step]{year-start}{year-stop}{width}#*
+\begin{chronology}*[step]{year-start}{year-stop}{width}[scaling]
 \end{chronology}
 
-\event{year}{text}
-\event[start-year]{end-year}{text}
 \decimaldate{day}{month}{year}
+\eventspan{begin-date}{end-date}{label%text}
+\eventspan{begin-date}{end-date}{label%text}[fill]
+\eventspan{begin-date}{end-date}{label%text}[fill][opacity]
+\eventspan{begin-date}{end-date}{label%text}[fill][opacity][bar-thickness]
+\eventspan{begin-date}{end-date}{label%text}[fill][opacity][bar-thickness][indicator]
+\eventpoint{date}{label%text}
+\eventpoint{date}{label%text}[fill]
+\eventpoint{date}{label%text}[fill][opacity]
+\eventpoint{date}{label%text}[fill][opacity][height]
 
+# deprecated
+\event{end-date}{label%text}#*
+\event[begin-date]{end-date}{label%text}#*
+
+# not documented
 \thestep#S
 \thestepstart#S
 \thestepstop#S
