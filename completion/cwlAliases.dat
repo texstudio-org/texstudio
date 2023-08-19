@@ -1574,3 +1574,7 @@ apa6:
 class-apa6
 latex-document
 tex
+brandeis-dissertation:
+class-brandeis-dissertation
+latex-document
+tex
