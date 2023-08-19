@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/08/11 for v9.9.0
+# Matthew Bertucci 2023/08/19 for v9.10.0
 
 #include:iftex
 
@@ -438,6 +438,7 @@ civo
 ckeditor4
 clarifai
 claris
+clarivate
 clickhouse
 clickup
 clion
@@ -625,6 +626,7 @@ discourse
 discover
 disqus
 disroot
+distrokid
 django
 dlib
 dlna
@@ -917,6 +919,7 @@ googleadsense
 googleanalytics
 googleappsscript
 googleassistant
+googlebard
 googlecalendar
 googlecardboard
 googlechat
@@ -1090,10 +1093,12 @@ imgur
 immer
 immich
 imou
+improvmx
 indeed
 inertia
 infiniti
 influxdb
+infoq
 informatica
 infosys
 infracost
