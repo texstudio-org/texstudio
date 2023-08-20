@@ -618,11 +618,9 @@
 #keyvals:\begin{filecontents},\begin{filecontents*}
 force
 overwrite
+noheader
 nosearch
 nowarn
-#endkeyvals
-#keyvals:\begin{filecontents}
-noheader
 #endkeyvals
 
 #keyvals:\bibliographystyle#c
