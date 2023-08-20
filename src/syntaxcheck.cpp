@@ -362,16 +362,16 @@ int SyntaxCheck::topEnv(const QString &name, const StackEnvironment &envs, const
 * \param id if >=0 check if the env has the given id.
 * \return environment id of  found env otherwise 0
 */
-int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id)
+int SyntaxCheck::containsEnv(const QString &name, const StackEnvironment &envs, const int id)
 {
 	for (int i = envs.size() - 1; i > -1; --i) {
 		Environment env = envs.at(i);
 		if (env.name == name) {
 			if (id < 0 || env.id == id)
 				return env.id;
-		}
-		if (id < 0 && parser.environmentAliases.contains(env.name)) {
-			QStringList altEnvs = parser.environmentAliases.values(env.name);
+        }
+        if (id < 0 && ltxCommands->environmentAliases.contains(env.name)) {
+            QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
 			foreach (const QString &altEnv, altEnvs) {
 				if (altEnv == name)
 					return env.id;
@@ -389,7 +389,7 @@ int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, con
  * \param envs stack of environements
  * \return math is active (true) or not (false)
  */
-bool SyntaxCheck::checkMathEnvActive(const LatexParser &parser, const StackEnvironment &envs)
+bool SyntaxCheck::checkMathEnvActive(const StackEnvironment &envs)
 {
     for (int i = envs.size() - 1; i > -1; --i) {
         Environment env = envs.at(i);
@@ -399,8 +399,8 @@ bool SyntaxCheck::checkMathEnvActive(const LatexParser &parser, const StackEnvir
         if (env.name == "text") {
                 return false;
         }
-        if (parser.environmentAliases.contains(env.name)) {
-            QStringList altEnvs = parser.environmentAliases.values(env.name);
+        if (ltxCommands->environmentAliases.contains(env.name)) {
+            QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
             foreach (const QString &altEnv, altEnvs) {
                 if (altEnv == "math")
                     return true;
@@ -582,7 +582,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			QString word = line.mid(tk.start, tk.length);
 			QStringList forbiddenSymbols;
 			forbiddenSymbols<<"^"<<"_";
-            if(forbiddenSymbols.contains(word) && !checkMathEnvActive(*ltxCommands, activeEnv) && tk.subtype!=Token::formula){
+            if(forbiddenSymbols.contains(word) && !checkMathEnvActive(activeEnv) && tk.subtype!=Token::formula){
 				Error elem;
 				elem.range = QPair<int, int>(tk.start, tk.length);
 				elem.type = ERR_MathCommandOutsideMath;
@@ -672,12 +672,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }
             }
             word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
-            if (speller->hideNonTextSpellingErrors && (checkMathEnvActive(*ltxCommands, activeEnv)||containsEnv(*ltxCommands, "picture", activeEnv)) ){
+            if (speller->hideNonTextSpellingErrors && (checkMathEnvActive(activeEnv)||containsEnv("picture", activeEnv)) ){
                 word.clear();
                 tk.ignoreSpelling=true;
             }else{
                 tk.ignoreSpelling=false;
-                if(containsEnv(*ltxCommands, "math", activeEnv)){
+                if(containsEnv("math", activeEnv)){
                     // in math env, highlight as math-text !
                     Error elem;
                     elem.type = ERR_highlight;
@@ -953,7 +953,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				}
 			}
             // special treatment for & in math
-            if(word=="&" && containsEnv(*ltxCommands, "math", activeEnv)){
+            if(word=="&" && containsEnv("math", activeEnv)){
                 Error elem;
                 elem.range = QPair<int, int>(tk.start, tk.length);
                 elem.type = ERR_highlight;
