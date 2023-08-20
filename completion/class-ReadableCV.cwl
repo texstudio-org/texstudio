@@ -1,5 +1,5 @@
 # ReadableCV class
-# Matthew Bertucci 11/29/2021 for v3.0
+# Matthew Bertucci 2023/08/19 for v4.0
 
 #include:class-memoir
 #include:hyperref
@@ -26,7 +26,8 @@
 \showHeader
 \setSectionAlignment{alignment%keyvals}
 \newHeading{heading%text}
-\addSkills{sk1%text}{sk2%text}{sk3%text}{sk4%text}{sk5%text}{sk6%text}{sk7%text}{sk8%text}{sk9%text}
+\addSkills{sk1%text}{sk2%text}{sk3%text}{sk4%text}{sk5%text}{sk6%text}{sk7%text}{sk8%text}
+\newQuickRole{dates}{job title%text}{company}
 \setJobCompanyOrder{order type%keyvals}
 \newRole{dates}{job title%text}{company}{role summary%text}
 \roleAchievements{ach1%text}{ach2%text}{ach3%text}{ach4%text}{ach5%text}{ach6%text}

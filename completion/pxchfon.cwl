@@ -1,5 +1,5 @@
 # pxchfon package
-# Matthew Bertucci 2022/07/22 for v1.9
+# Matthew Bertucci 2023/08/19 for v1.9b
 
 #include:platex
 
@@ -40,6 +40,8 @@ expert
 noexpert
 glyphid
 noglyphid
+autojfmsync
+noautojfmsync
 noembed
 ms
 ipa
@@ -194,6 +196,10 @@ noto-otf!
 
 \diruni
 \textdiruni{テキスト}
+
+# experimental
+\jfmsync#*
+\jfmsyncbox{width}{text}#*
 
 # deprecated
 \asUTF{jachar}#S
