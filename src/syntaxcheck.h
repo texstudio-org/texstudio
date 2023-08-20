@@ -111,7 +111,7 @@ public:
 	bool checkCommand(const QString &cmd, const StackEnvironment &envs);
 	static bool equalEnvStack(StackEnvironment env1, StackEnvironment env2);
 
-	void setLtxCommands(const LatexParser &cmds);
+    void setLtxCommands(QSharedPointer<LatexParser> cmds);
     void setSpeller(SpellerUtility *su);
     void setReplacementList(QMap<QString, QString> replacementList);
     void setFormats(QMap<QString, int> formatList);
@@ -134,9 +134,9 @@ private:
 	bool stopped;
     bool mSyntaxChecking; //! show/hide syntax errors
     int syntaxErrorFormat;
-	LatexParser *ltxCommands;
+    QSharedPointer<LatexParser> ltxCommands;
 
-	LatexParser newLtxCommands;
+    QSharedPointer<LatexParser> newLtxCommands;
 	bool newLtxCommandsAvailable;
 	QMutex mLtxCommandLock;
 	bool stackContainsDefinition(const TokenStack &stack) const;

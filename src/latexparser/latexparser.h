@@ -15,6 +15,8 @@ class LatexParser
 public:
 	LatexParser(); ///< constructor
 	~LatexParser();
+    LatexParser(const LatexParser &other); ///< copy constructor
+    LatexParser & operator=(const LatexParser &other);
 	void init(); ///< set default values
 
 	static const int MAX_STRUCTURE_LEVEL;
@@ -30,7 +32,7 @@ public:
 	{
 		return MAX_STRUCTURE_LEVEL;
 	}
-	int structureCommandLevel(const QString &cmd) const;
+    int structureCommandLevel(const QString &cmd) const;
 
 	QSet<QString> environmentCommands; ///< used by LatexReader only, obsolete
 	QSet<QString> optionCommands; ///< used by LatexReader only, obsolete

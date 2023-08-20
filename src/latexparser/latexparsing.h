@@ -13,7 +13,7 @@ class QDocumentLineHandle;
 namespace Parsing {
 
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh); ///< first pass lexing of text line
-bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const LatexParser &lp); ///< second pass lexing of text line, uses tokens from first pass
+bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const QSharedPointer<LatexParser> lp); ///< second pass lexing of text line, uses tokens from first pass
 int findCommandWithArgsFromTL(const TokenList &tl, Token &cmd, TokenList &args, int offset, bool parseComment = false);
 
 QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type, bool enableMultiLineSearch = true,int hint=-1);

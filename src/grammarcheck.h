@@ -78,7 +78,7 @@ private:
 	QString languageFromHunspellToLanguageTool(QString language);
 	QString languageFromLanguageToolToHunspell(QString language);
 	LTStatus ltstatus;
-	LatexParser *latexParser;
+    QSharedPointer<LatexParser> latexParser;
 	GrammarCheckerConfig config;
 	GrammarCheckBackend *backend;
 	QMap<QString, LanguageGrammarData> languages;

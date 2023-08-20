@@ -729,11 +729,11 @@ LatexEditorView::~LatexEditorView()
 	}
 }
 
-void LatexEditorView::updateReplamentList(const LatexParser &cmds, bool forceUpdate)
+void LatexEditorView::updateReplamentList(const QSharedPointer<LatexParser> cmds, bool forceUpdate)
 {
 	QMap<QString, QString> replacementList;
 	bool differenceExists = false;
-    foreach (QString elem, cmds.possibleCommands["%replace"]) {
+    foreach (QString elem, cmds->possibleCommands["%replace"]) {
 		int i = elem.indexOf(" ");
 		if (i > 0) {
 			replacementList.insert(elem.left(i), elem.mid(i + 1));
@@ -2523,7 +2523,7 @@ QString LatexEditorView::findEnclosedMathText(QDocumentCursor cursor, QString co
 
 bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos)
 {
-	QStringList envAliases = document->lp.environmentAliases.values(environment);
+    QStringList envAliases = document->lp->environmentAliases.values(environment);
 	bool found;
     QString text;
     if (((command == "\\begin" || command == "\\end") && envAliases.contains("math")) || command == "\\[" || command == "\\]" || command == "\\(" || command == "\\)") {

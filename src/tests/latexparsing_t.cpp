@@ -315,9 +315,10 @@ void LatexParsingTest::test_latexLexing_data() {
 }
 
 void LatexParsingTest::test_latexLexing() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(TTypes, types);
     QFETCH(STypes, subtypes);
@@ -416,9 +417,10 @@ void LatexParsingTest::test_findCommandWithArgsFromTL_data() {
 }
 
 void LatexParsingTest::test_findCommandWithArgsFromTL() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(TTypes, types);
     QFETCH(STypes, subtypes);
@@ -500,9 +502,10 @@ void LatexParsingTest::test_getArg_data() {
 }
 
 void LatexParsingTest::test_getArg() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(STypes, types);
     QFETCH(QStringList, desiredResults);
@@ -647,9 +650,10 @@ void LatexParsingTest::test_getArg2_data() {
 }
 
 void LatexParsingTest::test_getArg2() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(ATypes, types);
     QFETCH(QList<int>, nr);
@@ -713,9 +717,10 @@ void LatexParsingTest::test_getTokenAtCol_data() {
 }
 
 void LatexParsingTest::test_getTokenAtCol() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(QList<int>, nr);
     QFETCH(TTypes, desiredResults);
@@ -839,9 +844,10 @@ void LatexParsingTest::test_getCommandFromToken_data() {
 }
 
 void LatexParsingTest::test_getCommandFromToken() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(int, nr);
     QFETCH(int, lineNr);
@@ -912,9 +918,10 @@ void LatexParsingTest::test_getContext_data() {
 }
 
 void LatexParsingTest::test_getContext() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(int, nr);
     QFETCH(TTypes, desiredResults);
@@ -977,9 +984,10 @@ void LatexParsingTest::test_getCompleterContext_data() {
 }
 
 void LatexParsingTest::test_getCompleterContext() {
-    LatexParser lp = LatexParser::getInstance();
+    QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
+    *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
-    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(int, nr);
     QFETCH(int, desiredResult);

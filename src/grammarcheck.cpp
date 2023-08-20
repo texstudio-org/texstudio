@@ -15,7 +15,7 @@ GrammarError::GrammarError(int offset, int length, const GrammarError &other): o
 GrammarCheck::GrammarCheck(QObject *parent) :
     QObject(parent), ltstatus(LTS_Unknown), backend(nullptr), ticket(0), pendingProcessing(false), shuttingDown(false)
 {
-	latexParser = new LatexParser();
+    latexParser = QSharedPointer<LatexParser>::create();
 }
 /*!
  * \brief GrammarCheck::~GrammarCheck
@@ -23,7 +23,6 @@ GrammarCheck::GrammarCheck(QObject *parent) :
  */
 GrammarCheck::~GrammarCheck()
 {
-	delete latexParser;
     delete backend;
 }
 /*!
@@ -224,7 +223,7 @@ void GrammarCheck::process(int reqId)
 		}
 	}
 
-	cr.blocks = tokenizeWords(latexParser, cr.inlines);
+    cr.blocks = tokenizeWords(latexParser.data(), cr.inlines);
 
     LTStatus newstatus = backend->isWorking() ? LTS_Working : LTS_Error;
 	if (newstatus != ltstatus) {

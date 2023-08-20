@@ -82,7 +82,7 @@ void SyntaxCheck::stop()
 */
 void SyntaxCheck::run()
 {
-	ltxCommands = new LatexParser();
+    ltxCommands = QSharedPointer<LatexParser>::create();
 
 	forever {
 		//wait for enqueued lines
@@ -93,7 +93,7 @@ void SyntaxCheck::run()
 			mLtxCommandLock.lock();
 			if (newLtxCommandsAvailable) {
 				newLtxCommandsAvailable = false;
-				*ltxCommands = newLtxCommands;
+                *ltxCommands = *newLtxCommands;
                 speller=newSpeller;
                 mReplacementList=newReplacementList;
                 mFormatList=newFormatList;
@@ -166,7 +166,6 @@ void SyntaxCheck::run()
 		newLine.dlh->deref(); //if deleted, delete now
 	}
 
-	delete ltxCommands;
 	ltxCommands = nullptr;
 }
 
@@ -241,12 +240,13 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 * \brief set latex commands which are referenced for syntax checking
 * \param cmds
 */
-void SyntaxCheck::setLtxCommands(const LatexParser &cmds)
+void SyntaxCheck::setLtxCommands(QSharedPointer<LatexParser> cmds)
 {
 	if (stopped) return;
 	mLtxCommandLock.lock();
 	newLtxCommandsAvailable = true;
-	newLtxCommands = cmds;
+    newLtxCommands = QSharedPointer<LatexParser>::create();
+    *newLtxCommands = *cmds;
     mLtxCommandLock.unlock();
 }
 

@@ -153,7 +153,7 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
 }
 
 
-bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const LatexParser &lp)
+bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const QSharedPointer<LatexParser> lp)
 {
 	if (!dlh)
 	    return false;
@@ -257,7 +257,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }
             if (tk2.type == Token::openBrace && closingFound) {
                 QString env = line.mid(tk3.start, tk_closing.start-tk3.start);
-                if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing corresponds to open !
+                if (lp->possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing corresponds to open !
                     Token verbatimStart=stack.top();
                     // second option, env in optionalCommandName
                     if(verbatimStart.optionalCommandName.isEmpty() || verbatimStart.optionalCommandName==env){
@@ -338,8 +338,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 tk.subtype = stack.top().subtype;
                 if (tk.subtype == Token::keyValArg && lastEqual > -1) {
                     tk.subtype = Token::keyVal_val;
-                    if (!commandStack.isEmpty() && lp.commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
-                        CommandDescription cd = lp.commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
+                    if (!commandStack.isEmpty() && lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
+                        CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
                         tk.subtype = cd.argTypes.value(0, Token::keyVal_val);
                     }
                 }
@@ -361,8 +361,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     commandStack.pop();
                 }
             }
-            if (lp.commandDefs.contains(command) && tk.subtype != Token::definition) {
-                CommandDescription cd = lp.commandDefs.value(command);
+            if (lp->commandDefs.contains(command) && tk.subtype != Token::definition) {
+                CommandDescription cd = lp->commandDefs.value(command);
                 cd.level = level;
                 if(cd.bracketCommand){
                     //command like \left
@@ -528,9 +528,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             if (tk2.type == Token::beginEnv) {
                                 // special treatment for \begin ...
                                 QString env = line.mid(tk2.start, tk2.length);
-                                CommandDescription cd = lp.commandDefs.value("\\begin{" + env + "}", CommandDescription());
+                                CommandDescription cd = lp->commandDefs.value("\\begin{" + env + "}", CommandDescription());
                                 // special treatment for verbatim
-                                if (lp.possibleCommands["%verbatimEnv"].contains(env)) {
+                                if (lp->possibleCommands["%verbatimEnv"].contains(env)) {
                                     if(cd.args==1 && cd.optionalArgs==1 && i<(tl.length()-1) && tl[i+1].type==Token::openSquare){ // next Token needs to be [ i.e. optional arg, otherwise start verbatim directly
                                         // special treatment for \begin{abc}[...]
                                         cd.verbatimAfterOptionalArg=true;
@@ -709,8 +709,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                             }
                         }
                     }
-                    if (!commandStack.isEmpty() && lp.commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
-                        CommandDescription cd = lp.commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
+                    if (!commandStack.isEmpty() && lp->commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
+                        CommandDescription cd = lp->commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
                         tk.type = cd.argTypes.value(0, Token::keyVal_val); // only types can be set in key_val as they need to be recognized later
                         if(!lexed.isEmpty() && lexed.last().type==tk.type && lexed.last().subtype==tk.subtype){
                             lexed.last().length=tk.start+tk.length-lexed.last().start;

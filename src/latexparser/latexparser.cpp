@@ -30,7 +30,33 @@ LatexParser::~LatexParser()
         LatexParserInstance = nullptr;
 	}
 }
+LatexParser::LatexParser(const LatexParser &other){
+    commandDefs=other.commandDefs;
+    environmentCommands=other.environmentCommands;
+    mathStartCommands=other.mathStartCommands;
+    mathStopCommands=other.mathStopCommands;
+    possibleCommands=other.possibleCommands;
+    optionCommands=other.optionCommands;
+    packageAliases=other.packageAliases;
+    environmentAliases=other.environmentAliases;
+    specialDefCommands=other.specialDefCommands;
+    mapSpecialArgs=other.mapSpecialArgs;
+}
 
+LatexParser &LatexParser::operator=(const LatexParser &other)
+{
+    commandDefs=other.commandDefs;
+    environmentCommands=other.environmentCommands;
+    mathStartCommands=other.mathStartCommands;
+    mathStopCommands=other.mathStopCommands;
+    possibleCommands=other.possibleCommands;
+    optionCommands=other.optionCommands;
+    packageAliases=other.packageAliases;
+    environmentAliases=other.environmentAliases;
+    specialDefCommands=other.specialDefCommands;
+    mapSpecialArgs=other.mapSpecialArgs;
+    return *this;
+}
 LatexParser &LatexParser::getInstance()
 {
 	Q_ASSERT(LatexParserInstance);

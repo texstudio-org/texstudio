@@ -50,9 +50,9 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 	unclosedEnv.id = -1;
 	syntaxChecking = true;
 
-	lp = LatexParser::getInstance();
+    lp = QSharedPointer<LatexParser>::create();
+    *lp= LatexParser::getInstance();
 
-	SynChecker.setLtxCommands(LatexParser::getInstance());
     updateSettings();
     //SynChecker.start(); start when needed
 
@@ -959,7 +959,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				continue;
             }
             //// newcommand ////
-            if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
+            if (lp->possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
                 completerNeedsUpdate = true;
                 //Tokens cmdName;
                 QString cmdName = Parsing::getArg(args, Token::def);
@@ -1024,7 +1024,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             }
 
 			///usepackage
-            if (lp.possibleCommands["%usepackage"].contains(cmd)) {
+            if (lp->possibleCommands["%usepackage"].contains(cmd)) {
                 if(firstArg.contains("\\")){
                     // argument contains backslash
                     // hence, invalid and to be ignored
@@ -1076,9 +1076,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
                 QStringList packages;
 				foreach (QString elem, packagesHelper) {
-					elem = elem.simplified();
-					if (lp.packageAliases.contains(elem))
-						packages << lp.packageAliases.values(elem);
+                    elem = elem.simplified();
+                    if (lp->packageAliases.contains(elem))
+                        packages << lp->packageAliases.values(elem);
 					else
 						packages << elem;
 				}
@@ -1090,8 +1090,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 				continue;
 			}
-			//// bibliography ////
-			if (lp.possibleCommands["%bibliography"].contains(cmd)) {
+            //// bibliography ////
+            if (lp->possibleCommands["%bibliography"].contains(cmd)) {
 				QStringList additionalBibPaths = ConfigManagerInterface::getInstance()->getOption("Files/Bib Paths").toString().split(getPathListSeparator());
 #if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
                 QStringList bibs = firstArg.split(',', Qt::SkipEmptyParts);
@@ -1126,10 +1126,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 
 			//// include,input,import ////
-            if (lp.possibleCommands["%include"].contains(cmd) ) {
+            if (lp->possibleCommands["%include"].contains(cmd) ) {
                 QString fn=Parsing::getArg(args, Token::file);
-				StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
+                StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
+                newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp->structureDepth() - 1;
                 fn = removeQuote(fn);
                 newInclude->title = fn;
                 QString name=fn;
@@ -1152,9 +1152,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				continue;
 			}
 
-			if (lp.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
-				StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
+            if (lp->possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
+                StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
+                newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp->structureDepth() - 1;
                 newInclude->setContext(StructureEntry::Import);
 				QDir dir(firstArg);
                 QFileInfo fi(dir, Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,i));
@@ -1181,11 +1181,11 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 			//// all sections ////
 			if (cmd.endsWith("*"))
-				cmd = cmd.left(cmd.length() - 1);
-			int level = lp.structureCommandLevel(cmd);
+                cmd = cmd.left(cmd.length() - 1);
+            int level = lp->structureCommandLevel(cmd);
 			if(level<0 && cmd=="\\begin"){
-				// special treatment for \begin{frame}{title}
-				level=lp.structureCommandLevel(cmd+"{"+firstArg+"}");
+                // special treatment for \begin{frame}{title}
+                level=lp->structureCommandLevel(cmd+"{"+firstArg+"}");
 			}
 			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
 				StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
@@ -1229,9 +1229,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				}
 			}
 			/// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
-			if(j+2<tl.length() && !firstArg.isEmpty() && lp.possibleCommands["math"].contains(cmd) ){
-				if (lp.commandDefs.contains(cmd)) {
-					CommandDescription cd = lp.commandDefs.value(cmd);
+            if(j+2<tl.length() && !firstArg.isEmpty() && lp->possibleCommands["math"].contains(cmd) ){
+                if (lp->commandDefs.contains(cmd)) {
+                    CommandDescription cd = lp->commandDefs.value(cmd);
 					if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
 						QString txt=cmd+"{"+firstArg+"}";
                         CodeSnippet cs(txt,true,true);
@@ -1275,7 +1275,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	StructureEntry *newSection = nullptr;
 
     // always generate complete structure, also for hidden, as needed for globalTOC
-    LatexStructureMergerMerge(this, lp.structureDepth(), lineNrStart, newCount)(flatStructure);
+    LatexStructureMergerMerge(this, lp->structureDepth(), lineNrStart, newCount)(flatStructure);
 
     const QList<StructureEntry *> categories =
             QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
@@ -2440,10 +2440,10 @@ void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *additi
 {
     if(!addition) return;
     // get last element on different levels
-    QVector<StructureEntry *> parent_level(lp.structureDepth()+1);
+    QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
     parent_level.fill(base);
     StructureEntry *se=base;
-    for(int i=0;i<lp.structureDepth();++i){
+    for(int i=0;i<lp->structureDepth();++i){
         if(se->children.isEmpty()){
             break; // no further level to go down
         }
@@ -2451,7 +2451,7 @@ void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *additi
         if(se->type  != StructureEntry::SE_SECTION){
             break; // no structure
         }
-        for(int j=se->level;j<lp.structureDepth();++j){
+        for(int j=se->level;j<lp->structureDepth();++j){
             parent_level[j+1]=se;
         }
     }
@@ -3401,11 +3401,10 @@ QString LatexDocuments::findPackageByCommand(const QString command)
 
 void LatexDocument::updateLtxCommands(bool updateAll)
 {
-	lp.init();
-	lp.append(LatexParser::getInstance()); // append commands set in config
+    *lp=LatexParser::getInstance(); // append commands set in config
 	QList<LatexDocument *>listOfDocs = getListOfDocs();
 	foreach (const LatexDocument *elem, listOfDocs) {
-        lp.append(elem->ltxCommands);
+        lp->append(elem->ltxCommands);
 	}
 
 	if (updateAll) {
@@ -3421,12 +3420,11 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 				continue; // already handled
 			if (elem->containsChild(this)) {
 				// unhandled parent/child
-				LatexParser lp;
-				lp.init();
-				lp.append(LatexParser::getInstance()); // append commands set in config
+                QSharedPointer<LatexParser> lp= QSharedPointer<LatexParser>::create();
+                *lp=LatexParser::getInstance(); // start with commands set in config
 				QList<LatexDocument *>listOfDocs = elem->getListOfDocs();
-				foreach (const LatexDocument *elem, listOfDocs) {
-					lp.append(elem->ltxCommands);
+                foreach (const LatexDocument *elem, listOfDocs) {
+                    lp->append(elem->ltxCommands);
 				}
 				foreach (LatexDocument *elem, listOfDocs) {
 					elem->setLtxCommands(lp);
@@ -3450,10 +3448,10 @@ void LatexDocument::updateLtxCommands(bool updateAll)
  */
 void LatexDocument::addLtxCommands()
 {
-    lp.append(this->ltxCommands);
+    lp->append(this->ltxCommands);
 }
 
-void LatexDocument::setLtxCommands(const LatexParser &cmds,bool skipPatch)
+void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds, bool skipPatch)
 {
 	SynChecker.setLtxCommands(cmds);
 	lp = cmds;
@@ -3811,7 +3809,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         addedPackages=true;
     }
     ja=dd.value("toc").toArray();
-    QVector<StructureEntry *> parent_level(lp.structureDepth()+1);
+    QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
     parent_level.fill(baseStructure);
     for (int i = 0; i < ja.size(); ++i) {
         QString section=ja[i].toString();

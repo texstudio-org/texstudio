@@ -156,7 +156,8 @@ public:
 	Q_INVOKABLE QStringList includedFilesAndParent();
     Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = nullptr);
 
-	LatexParser ltxCommands, lp;
+    LatexParser ltxCommands; /// locally defined latex commands
+    QSharedPointer<LatexParser> lp;
 
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
@@ -280,7 +281,7 @@ public slots:
 	void initClearStructure();
 	void updateLtxCommands(bool updateAll = false);
     void addLtxCommands();
-    void setLtxCommands(const LatexParser &cmds, bool skipPatch=true);
+    void setLtxCommands(QSharedPointer<LatexParser> cmds, bool skipPatch=true);
     void setSpeller(SpellerUtility *speller);
     void setReplacementList(QMap<QString,QString> replacementList);
 	void updateSettings();
