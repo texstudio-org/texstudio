@@ -1,23 +1,12 @@
 # verifiche package
-# Matthew Bertucci 2022/09/19 for v6.0
+# Matthew Bertucci 2023/08/22 for v7.0
 
-#include:xkeyval 
-#include:amsmath
-#include:amssymb
+#include:xkeyval
 #include:pgffor
+#include:amssymb
 #include:enumitem
 # loads shortlabels and inline options of enumitem
-#include:siunitx
-#include:graphicx
-#include:xcolor
 #include:tikz
-#include:tikzlibrarycalc
-#include:tikzlibraryshapes.geometric
-#include:tikzlibrarypatterns
-#include:tikzlibrarypositioning
-#include:tikzlibraryangles
-#include:tikzlibraryquotes
-#include:booktabs
 #include:ulem
 
 #keyvals:\usepackage/verifiche#c
@@ -47,6 +36,15 @@ blue
 \subtitle{testo del sottotitolo%text}
 \subtitlefont{text}#*
 \printheading
+\headingstyle{style%keyvals}
+\defineheadingstyle{nome dello stile%specialDef}{definition}#s#%verificheheadingstyle
+
+#keyvals:\headingstyle#c
+galilei
+einstein
+cattaneo
+%verificheheadingstyle
+#endkeyvals
 
 #keyvals:\pagestyle#c
 mainverifiche
@@ -167,6 +165,7 @@ linecolor=#%color
 \columnseparation#*
 \headerfont{text}#*
 \institutefont{text}#*
+\ptfont#*
 \asyearfont{text}#*
 \testtypefont{text}#*
 \instructionfont{text}#*
