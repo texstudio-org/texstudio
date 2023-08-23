@@ -644,6 +644,7 @@
 <file>completion/class-bookcover.cwl</file>
 <file>completion/class-book.cwl</file>
 <file>completion/class-bookshelf.cwl</file>
+<file>completion/class-brandeis-dissertation.cwl</file>
 <file>completion/class-brandeis-thesis.cwl</file>
 <file>completion/class-brief.cwl</file>
 <file>completion/class-br-lex.cwl</file>
@@ -1439,6 +1440,7 @@
 <file>completion/exesheet.cwl</file>
 <file>completion/exframe.cwl</file>
 <file>completion/expex-acro.cwl</file>
+<file>completion/expex-glossonly.cwl</file>
 <file>completion/expex.cwl</file>
 <file>completion/expkv-cs.cwl</file>
 <file>completion/expkv.cwl</file>
@@ -1533,10 +1535,12 @@
 <file>completion/flexisym.cwl</file>
 <file>completion/flippdf.cwl</file>
 <file>completion/float.cwl</file>
+<file>completion/floatbytocbasic.cwl</file>
 <file>completion/floatflt.cwl</file>
 <file>completion/floatpag.cwl</file>
 <file>completion/floatpagestyle.cwl</file>
 <file>completion/floatrow.cwl</file>
+<file>completion/floatrowbytocbasic.cwl</file>
 <file>completion/flowchart.cwl</file>
 <file>completion/flowfram.cwl</file>
 <file>completion/fltpage.cwl</file>
@@ -2106,6 +2110,7 @@
 <file>completion/logicproof.cwl</file>
 <file>completion/logicpuzzle.cwl</file>
 <file>completion/logix.cwl</file>
+<file>completion/logoetalab.cwl</file>
 <file>completion/logpap.cwl</file>
 <file>completion/logreq.cwl</file>
 <file>completion/logsys.cwl</file>
@@ -2601,6 +2606,7 @@
 <file>completion/pageslts.cwl</file>
 <file>completion/pandora.cwl</file>
 <file>completion/pangram.cwl</file>
+<file>completion/PanneauxRoute.cwl</file>
 <file>completion/papermas.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/paralist.cwl</file>
