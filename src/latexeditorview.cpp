@@ -209,9 +209,11 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 		else
 			editor->write(event->text());
 		if (autoOverriden) LatexEditorView::completer->complete(editor, LatexCompleter::CF_OVERRIDEN_BACKSLASH);
-		else {
-			int flags = Parsing::getCompleterContext(editor->cursor().line().handle(), editor->cursor().columnNumber());
-			LatexEditorView::completer->complete(editor, LatexCompleter::CompletionFlag(flags));
+        else {
+            EnumsTokenType::TokenType ctx = Parsing::getCompleterContext(editor->cursor().line().handle(), editor->cursor().columnNumber());
+            if(ctx==EnumsTokenType::def) return true;
+            LatexCompleter::CompletionFlags flags= ctx==EnumsTokenType::width ? LatexCompleter::CF_FORCE_LENGTH : LatexCompleter::CompletionFlag(0) ;
+            LatexEditorView::completer->complete(editor, flags);
 		}
 		return true;
 	}

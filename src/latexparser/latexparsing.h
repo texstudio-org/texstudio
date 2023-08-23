@@ -27,7 +27,7 @@ TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention
 TokenStack getContext(QDocumentLineHandle *dlh, int pos);
 QString getCommandFromToken(Token tk); ///< get command name from Token \a tk which is an argument
 Token getCommandTokenFromToken(TokenList tl, Token tk);
-int getCompleterContext(QDocumentLineHandle *dlh, int column);
+Token::TokenType getCompleterContext(QDocumentLineHandle *dlh, int column);
 
 }
 

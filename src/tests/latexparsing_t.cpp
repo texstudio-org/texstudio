@@ -955,29 +955,29 @@ void LatexParsingTest::test_getContext() {
 void LatexParsingTest::test_getCompleterContext_data() {
     QTest::addColumn<QString>("lines");
     QTest::addColumn<int >("nr");
-    QTest::addColumn<int >("desiredResult");
+    QTest::addColumn<EnumsTokenType::TokenType >("desiredResult");
 
     QTest::newRow("simple") << "bummerang"
                             << 2
-                            <<  0;
+                            <<  EnumsTokenType::word;
     QTest::newRow("command") << "\\section{abc}"
                             << 10
-                            << 0;
+                            << EnumsTokenType::title;
     QTest::newRow("command without braces") << "\\section abc"
                             << 10
-                            << 0;
+                            << EnumsTokenType::title;
     QTest::newRow("command with optional arg") << "\\section[fds]{abc}"
                             << 10
-                            << 0;
+                            << EnumsTokenType::shorttitle;
     QTest::newRow("command with keyval") << "\\includegraphics[width=4cm]{abc}"
                             << 18
-                            << 0;
+                            << EnumsTokenType::keyVal_key;
     QTest::newRow("command with keyval2") << "\\includegraphics[width=4cm]{abc}"
                             << 24
-                            << 512;
+                            << EnumsTokenType::width;
     QTest::newRow("length") << "\\hspace{4cm}"
                             << 9
-                            << 512;
+                            << EnumsTokenType::width;
 
 
 
@@ -990,7 +990,7 @@ void LatexParsingTest::test_getCompleterContext() {
     lp->commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(int, nr);
-    QFETCH(int, desiredResult);
+    QFETCH(EnumsTokenType::TokenType, desiredResult);
 
 
     QDocument *doc = new QDocument();
@@ -1008,7 +1008,7 @@ void LatexParsingTest::test_getCompleterContext() {
     QDocumentLineHandle *dlh = doc->line(0).handle();
     //TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
-    int result = Parsing::getCompleterContext(dlh, nr);
+    EnumsTokenType::TokenType result = Parsing::getCompleterContext(dlh, nr);
 
     QCOMPARE(result, desiredResult);
 

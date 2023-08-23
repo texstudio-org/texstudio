@@ -1381,7 +1381,7 @@ Token getCommandTokenFromToken(TokenList tl, Token tk)
  * \param column
  * \return 512 if token at column is 'width'
  */
-int getCompleterContext(QDocumentLineHandle *dlh, int column)
+EnumsTokenType::TokenType getCompleterContext(QDocumentLineHandle *dlh, int column)
 {
 	TokenStack ts = getContext(dlh, column);
 	Token tk;
@@ -1395,19 +1395,11 @@ int getCompleterContext(QDocumentLineHandle *dlh, int column)
 		}
 	}
 
-	Token::TokenType type = tk.type;
+    EnumsTokenType::TokenType type = tk.type;
 	if (tk.subtype != Token::none && tk.subtype != Token::keyVal_val)
 		type = tk.subtype;
 
-	int result = 0;
-	switch (type) {
-	case Token::width:
-		result = 512;
-		break;
-	default:
-		;
-	}
-	return result;
+    return type;
 }
 
 }  // namespace Parsing
