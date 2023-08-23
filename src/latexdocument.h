@@ -246,6 +246,7 @@ private:
 
     StructureEntry* splitStructure(StructureEntry *base,int lineNr);
     void appendStructure(StructureEntry *base,StructureEntry *addition);
+    void mergeStructure(StructureEntry *base,int lineNr,int count,QList<StructureEntry *> flatStructure);
 
 	void removeElement(StructureEntry *se);
 	void addElement(StructureEntry *parent, StructureEntry *se);

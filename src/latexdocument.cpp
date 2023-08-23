@@ -1275,7 +1275,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	StructureEntry *newSection = nullptr;
 
     // always generate complete structure, also for hidden, as needed for globalTOC
-    LatexStructureMergerMerge(this, lp->structureDepth(), lineNrStart, newCount)(flatStructure);
+    mergeStructure(baseStructure,lineNrStart,newCount,flatStructure);
+    //LatexStructureMergerMerge(this, lp->structureDepth(), lineNrStart, newCount)(flatStructure);
 
     const QList<StructureEntry *> categories =
             QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
@@ -2467,6 +2468,66 @@ void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *additi
             --i;
         }
     }
+}
+
+
+
+/*!
+ * \brief merge structure entries from list flatStructure into StructureEntry tree
+ * Reuses entries from current tree if only text is changed, so that states (expanded) can be reused
+ * \param base root element of tree
+ * \param lineNr
+ * \param count
+ * \param flatStructure elements to be inserted as list
+ */
+void LatexDocument::mergeStructure(StructureEntry *base, int lineNr, int count, QList<StructureEntry *> flatStructure)
+{
+    if(base->children.isEmpty()){
+        // no children to check
+        return;
+    }
+    // split structure
+    StructureEntry *tail=splitStructure(base,lineNr+count);
+    StructureEntry *cut=splitStructure(base,lineNr);
+    // get last element on different levels
+    QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
+    parent_level.fill(base);
+    StructureEntry *se=base;
+    for(int i=0;i<lp->structureDepth();++i){
+        if(se->children.isEmpty()){
+            break; // no further level to go down
+        }
+        se=se->children.last();
+        if(se->type  != StructureEntry::SE_SECTION){
+            break; // no structure
+        }
+        for(int j=se->level;j<lp->structureDepth();++j){
+            parent_level[j+1]=se;
+        }
+    }
+    // add elements from flatStructure
+    StructureEntryIterator iter(cut);
+    for(int i=0;i<flatStructure.size();++i){
+        StructureEntry *se=flatStructure.at(i);
+        StructureEntry *comparison=nullptr;
+        if(iter.hasNext()){
+            comparison=iter.next();
+        }
+        if(se->type==StructureEntry::SE_SECTION){
+            if(comparison && comparison->type==StructureEntry::SE_SECTION && comparison->getLineHandle()==se->getLineHandle()){
+                se->expanded=comparison->expanded;
+            }
+            parent_level[se->level]->add(se);
+            for (int j = se->level + 1; j < parent_level.size(); j++)
+                parent_level[j] = se;
+        }else{
+            parent_level[se->level]->add(se);
+            for (int j = se->level; j < parent_level.size(); j++)
+                parent_level[j] = parent_level[se->level];
+        }
+    }
+    // handle tail
+    appendStructure(base,tail);
 }
 
 void LatexStructureMergerMerge::mergeStructure(StructureEntry *se)
