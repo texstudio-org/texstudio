@@ -91,8 +91,6 @@ public:
 
 	friend class SyntaxCheckTest;
     friend class LatexEditorViewTest;
-	friend class LatexStructureMerger;
-	friend class LatexStructureMergerMerge;
 	friend class ScriptEngineTest;
     friend class LatexDocumentTest;
 
