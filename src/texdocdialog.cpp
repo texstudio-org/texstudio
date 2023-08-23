@@ -43,10 +43,10 @@ TexdocDialog::~TexdocDialog()
 void TexdocDialog::regenerateTable(int state)
 {
     ui->tbPackages->disconnect(SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)));
-    ui->tbPackages->clear();
+    ui->tbPackages->clearContents();
+    ui->tbPackages->setRowCount(0);
+    ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
     if (!m_packages.isEmpty() || (state>0)) {
-        ui->tbPackages->setHorizontalHeaderLabels({tr("Name"),tr("Caption")});
-        ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
         ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
         ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
         LatexRepository *repo = LatexRepository::instance();
