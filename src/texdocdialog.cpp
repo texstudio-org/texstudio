@@ -74,8 +74,10 @@ void TexdocDialog::regenerateTable(int state)
         }
         ui->tbPackages->setRowCount(n);
         ui->tbPackages->sortItems(0,Qt::AscendingOrder);
-        QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
-        ui->tbPackages->setCurrentItem(itemPkgName);
+        if (n>0) {
+            QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
+            ui->tbPackages->setCurrentItem(itemPkgName);
+        }
         ui->buttonCTAN->setEnabled(true);
         ui->lineEditSearch->setEnabled(true);
     }
