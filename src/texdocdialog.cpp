@@ -80,6 +80,7 @@ void TexdocDialog::regenerateTable(int state)
         ui->lineEditSearch->setEnabled(true);
     }
     connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
+    tableSearchTermChanged(ui->lineEditSearch->text());
 }
 
 void TexdocDialog::tableSearchTermChanged(QString term) {
