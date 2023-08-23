@@ -2482,10 +2482,6 @@ void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *additi
  */
 void LatexDocument::mergeStructure(StructureEntry *base, int lineNr, int count, QList<StructureEntry *> flatStructure)
 {
-    if(base->children.isEmpty()){
-        // no children to check
-        return;
-    }
     // split structure
     StructureEntry *tail=splitStructure(base,lineNr+count);
     StructureEntry *cut=splitStructure(base,lineNr);
@@ -2526,6 +2522,8 @@ void LatexDocument::mergeStructure(StructureEntry *base, int lineNr, int count, 
                 parent_level[j] = parent_level[se->level];
         }
     }
+    // delete cut
+    delete cut;
     // handle tail
     appendStructure(base,tail);
 }
