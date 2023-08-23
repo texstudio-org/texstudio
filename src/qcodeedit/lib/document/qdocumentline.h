@@ -187,7 +187,7 @@ class QCE_EXPORT QDocumentLine
         int getFormatAt(int pos) const;
         int getCachedFormatAt(int pos) const;
 		
-		const QVector<QParenthesis>& parentheses() const;
+		const QVector<QParenthesis> parentheses() const;
 		void setParentheses(const QVector<QParenthesis>& parentheses);
 		
 		inline QDocumentLineHandle* handle() const

@@ -613,11 +613,11 @@ QFormatRange QDocumentLine::getLastOverlay(int start, int end, int preferredForm
 	
 	\note This is language dependent.
 */
-const QVector<QParenthesis>& QDocumentLine::parentheses() const
+const QVector<QParenthesis> QDocumentLine::parentheses() const
 {
 	Q_CHECK_PTR(m_handle);
 	
-	return m_handle->m_parens;
+    return m_handle->parenthesis();
 }
 
 /*!
@@ -628,9 +628,9 @@ const QVector<QParenthesis>& QDocumentLine::parentheses() const
 void QDocumentLine::setParentheses(const QVector<QParenthesis>& parentheses)
 {
 	if ( !m_handle )
-		return;
-	
-	m_handle->m_parens = parentheses;
+        return;
+
+    m_handle->setParenthesis(parentheses);
 }
 
 /*!
