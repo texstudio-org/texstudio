@@ -80,6 +80,7 @@ void TexdocDialog::regenerateTable(int state)
         }
         ui->buttonCTAN->setEnabled(true);
         ui->lineEditSearch->setEnabled(true);
+        ui->lineEditSearch->setFocus();
     }
     connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
     tableSearchTermChanged(ui->lineEditSearch->text());
