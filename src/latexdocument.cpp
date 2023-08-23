@@ -2384,7 +2384,14 @@ StructureEntry *LatexDocument::splitStructure(StructureEntry *base, int lineNr)
     for(int k=i+offset;k<base->children.count();++k){
         result->add(base->children.at(k));
     }
+#if QT_VERSION_MAJOR>5
     base->children.remove(i+1,base->children.count()-i-1);
+#else
+    const int cnt=base->children.count();
+    for(int n=i+1;n<cnt;++n){
+        base->children.removeAt(i+1);
+    }
+#endif
 
     return result;
 }
