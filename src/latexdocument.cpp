@@ -2516,11 +2516,6 @@ void LatexDocument::insertElement(StructureEntry *parent, int pos, StructureEntr
 	se->parent = parent;
 }
 
-void LatexDocument::moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos)
-{
-    removeElement(se);
-    insertElement(parent, pos, se);
-}
 /*!
  * \brief represent local toc with section only as stringlist
  * \return

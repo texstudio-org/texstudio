@@ -249,7 +249,6 @@ private:
 	void removeElement(StructureEntry *se);
 	void addElement(StructureEntry *parent, StructureEntry *se);
 	void insertElement(StructureEntry *parent, int pos, StructureEntry *se);
-	void moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos);
 
     QStringList unrollStructure();
 
