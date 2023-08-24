@@ -1,5 +1,5 @@
 # lualinalg package
-# Matthew Bertucci 2023/08/09 for v1.6
+# Matthew Bertucci 2023/08/24 for v1.8
 
 #include:xkeyval
 #include:amsmath
@@ -12,6 +12,7 @@
 \vectorGetCoordinate{vector}{index}
 \vectorSetCoordinate{vector}{index}{value}
 \vectorCopy{name}{vector}
+\vectorEql{vector1}{vector2}
 \vectorAdd{name}{vector1}{vector2}
 \vectorSub{name}{vector1}{vector2}
 \vectorMulNum{name}{vector}{number}
@@ -71,6 +72,7 @@ truncate=%<integer%>
 \matrixConcatV{name}{matrix1}{matrix2}
 \matrixOp{matrix}{expression}
 \matrixCopy{name}{matrix}
+\matrixEql{matrix1}{matrix2}
 \matrixCreateRandom{name}{i}{j}{k}{l}
 \matrixSwapRows{name}{matrix}{row1}{row2}
 \matrixMulRow{name}{matrix}{row}{number}
