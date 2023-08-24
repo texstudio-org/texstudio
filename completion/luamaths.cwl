@@ -1,5 +1,5 @@
 # luamaths package
-# Matthew Bertucci 2023/08/03 for v1.1
+# Matthew Bertucci 2023/08/24 for v1.5
 
 #include:xkeyval
 #include:amsmath
@@ -27,3 +27,4 @@
 \mathRound{number}{digits}
 \imUnit#*
 \complexRound{a+bi}{num digits}
+\luaChkeqnum{num1}{num2}
