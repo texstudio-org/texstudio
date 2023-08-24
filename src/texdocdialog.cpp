@@ -43,10 +43,10 @@ TexdocDialog::~TexdocDialog()
 void TexdocDialog::regenerateTable(int state)
 {
     ui->tbPackages->disconnect(SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)));
-    ui->tbPackages->clear();
+    ui->tbPackages->clearContents();
+    ui->tbPackages->setRowCount(0);
+    ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
     if (!m_packages.isEmpty() || (state>0)) {
-        ui->tbPackages->setHorizontalHeaderLabels({tr("Name"),tr("Caption")});
-        ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
         ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
         ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
         LatexRepository *repo = LatexRepository::instance();
@@ -74,10 +74,13 @@ void TexdocDialog::regenerateTable(int state)
         }
         ui->tbPackages->setRowCount(n);
         ui->tbPackages->sortItems(0,Qt::AscendingOrder);
-        QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
-        ui->tbPackages->setCurrentItem(itemPkgName);
+        if (n>0) {
+            QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
+            ui->tbPackages->setCurrentItem(itemPkgName);
+        }
         ui->buttonCTAN->setEnabled(true);
         ui->lineEditSearch->setEnabled(true);
+        ui->lineEditSearch->setFocus();
     }
     connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
     tableSearchTermChanged(ui->lineEditSearch->text());

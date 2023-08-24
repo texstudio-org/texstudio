@@ -112,7 +112,7 @@
    <item row="0" column="0" colspan="2">
     <widget class="QLineEdit" name="lineEditSearch">
      <property name="toolTip">
-      <string>Enter Package Name to search, or a regular expression</string>
+      <string>Enter a term to search for in both columns.</string>
      </property>
     </widget>
    </item>
