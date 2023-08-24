@@ -42,9 +42,9 @@ bool LatexRepository::loadStaticPackageList(const QString &file)
 	if (!xml.readNextStartElement()) return false;
 	while (xml.readNextStartElement()) {
 		if (xml.name() == QString("package")) {
-			QString key = QString("%1").arg(xml.attributes().value(QString(""),QString("key")));
-			QString name = QString("%1").arg(xml.attributes().value(QString(""),QString("name")));
-			QString caption = QString("%1").arg(xml.attributes().value(QString(""),QString("caption")));
+            QString key = xml.attributes().value(QString(""),QString("key")).toString();
+            QString name = xml.attributes().value(QString(""),QString("name")).toString();
+            QString caption = xml.attributes().value(QString(""),QString("caption")).toString();
 			packages.insert(key, LatexPackageInfo(name, caption));
 		}
 		xml.skipCurrentElement();
