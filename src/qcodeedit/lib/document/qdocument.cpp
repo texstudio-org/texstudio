@@ -3396,8 +3396,9 @@ QVector<QParenthesis> QDocumentLineHandle::parenthesis()
 
 
 void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel, int from, int until) const{
-    if (until == -1 || until > m_text.size())
+    if (until == -1 || until > m_text.size()){
         until = m_text.size();
+    }
 
 	if (from == until){
 		return;
