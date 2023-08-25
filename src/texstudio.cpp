@@ -236,8 +236,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     //connect(grammarCheck, SIGNAL(checked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)));
     connect(grammarCheck, &GrammarCheck::checked, &documents, &LatexDocuments::lineGrammarChecked);
     connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
-	if (configManager.autoLoadChildren)
-		connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
+    if (configManager.autoLoadChildren){
+        connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
+        connect(&documents, SIGNAL(docsToLoad(QStringList)), this, SLOT(addDocsToLoad(QStringList)));
+    }
 	connect(&documents, SIGNAL(updateQNFA()), this, SLOT(updateTexQNFA()));
 
 	grammarCheckThread.start();
@@ -11077,8 +11079,21 @@ void Texstudio::addDocToLoad(QString filename)
 {
 	//qDebug()<<"fname:"<<filename;
 	if (filename.isEmpty())
-		return;
-	load(filename, false, true, recheckLabels);
+        return;
+    load(filename, false, true, recheckLabels);
+}
+/*!
+ * \brief load included documents as hidden
+ * Load all in parallel
+ * Perform lexing only
+ * \param filenames
+ */
+void Texstudio::addDocsToLoad(QStringList filenames)
+{
+    for(const QString &fn:filenames){
+        auto *doc=new LatexDocument();
+        doc->load(fn,QDocument::defaultCodec());
+    }
 }
 
 /*!

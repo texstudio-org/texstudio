@@ -1034,7 +1034,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                         QString fname = findFileName(firstOptArg);
                         LatexDocument *dc = parent->findDocumentFromName(fname);
                         if (!dc) {
-                            parent->addDocToLoad(fname);
+                            //parent->addDocToLoad(fname);
+                            lstFilesToLoad << fname;
                         }
                     }
                 }
@@ -1304,9 +1305,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	if (!isHidden())
 		checkForLeak();
 #endif
-	foreach (QString fname, lstFilesToLoad) {
-		parent->addDocToLoad(fname);
-	}
+    parent->addDocsToLoad(lstFilesToLoad);
+
 	if (reRunSuggested && !recheck){
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
 	}
@@ -2302,7 +2302,15 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
 
 void LatexDocuments::addDocToLoad(QString filename)
 {
-	emit docToLoad(filename);
+    emit docToLoad(filename);
+}
+/*!
+ * \brief load included files from top level
+ * \param filenames
+ */
+void LatexDocuments::addDocsToLoad(QStringList filenames)
+{
+    emit docsToLoad(filenames);
 }
 
 void LatexDocuments::hideDocInEditor(LatexEditorView *edView)

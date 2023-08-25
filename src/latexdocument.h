@@ -372,6 +372,7 @@ public:
 
 	QHash<QString, LatexPackage> cachedPackages;
 	void addDocToLoad(QString filename);
+    void addDocsToLoad(QStringList filenames);
 	void removeDocs(QStringList removeIncludes);
 	void hideDocInEditor(LatexEditorView *edView);
 	QString findPackageByCommand(const QString command);
@@ -383,6 +384,7 @@ signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);
 	void docToLoad(QString filename);
+    void docsToLoad(QStringList filenames);
 	void docToHide(LatexEditorView *edView);
 	void updateQNFA();
 

@@ -390,6 +390,7 @@ protected slots:
 	void findNextWordRepetion();
 
 	void addDocToLoad(QString filename);
+    void addDocsToLoad(QStringList filenames);
 
 	void LTErrorMessage(QString message);
 
