@@ -863,51 +863,6 @@ void QDocument::highlight()
 		m_impl->emitContentsChange(0, lines());
 }
 
-/*!
-	\brief Add a chunk of text to the document
-*/
-void QDocument::addChunk(const QString& txt)
-{
-	if ( !m_impl || txt.isEmpty() )
-		return;
-
-	m_leftOver += txt;
-	int idx = 0, last = 0;
-
-	while ( idx < m_leftOver.length() )
-	{
-		if ( m_leftOver.at(idx) == '\r') {
-			++idx;
-			if (idx >= m_leftOver.length())
-				break; //there might be a \n in the next chunk
-			m_impl->m_lines << new QDocumentLineHandle(
-				m_leftOver.mid(last, idx - last - 1),
-				this
-			);
-			if (m_leftOver.at(idx) == '\n') {
-				++(m_impl->_dos);
-				++idx;
-			} else ++(m_impl->_mac);
-			last = idx;
-		} else if ( m_leftOver.at(idx) == '\n') {
-			++(m_impl->_nix);
-			m_impl->m_lines << new QDocumentLineHandle(
-				m_leftOver.mid(last, idx - last),
-				this
-			);
-			last = ++idx;
-		} else {
-			++idx;
-		}
-	}
-
-	if ( idx != last )
-		m_leftOver = m_leftOver.mid(last);
-	else
-		m_leftOver.clear();
-
-}
-
 QString QDocument::getFileName() const{
 	return m_impl?m_impl->m_fileName:"";
 }
@@ -2201,7 +2156,7 @@ QDocumentLineHandle::~QDocumentLineHandle()
 
 int QDocumentLineHandle::count() const
 {
-	return m_text.count();
+    return m_text.size();
 }
 
 int QDocumentLineHandle::length() const
@@ -2435,7 +2390,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 						(0xF900 <= uc && uc <= 0xFAFF))     // CJK Compatibility Ideographs
 					);                                  // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
 					// additionally check if its a surrogate
-					if (!isCJK && c.isHighSurrogate() && idx+1 < m_text.count()) {
+                    if (!isCJK && c.isHighSurrogate() && idx+1 < m_text.size()) {
 						QChar cLow = m_text.at(idx+1);
 						if (cLow.isLowSurrogate()) {
 							uint uic = joinUnicodeSurrogate(c, cLow);
@@ -3441,8 +3396,8 @@ QVector<QParenthesis> QDocumentLineHandle::parenthesis()
 
 
 void QDocumentLineHandle::splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel, int from, int until) const{
-	if (until == -1 || until > m_text.count())
-		until = m_text.count();
+    if (until == -1 || until > m_text.size())
+        until = m_text.size();
 
 	if (from == until){
 		return;
