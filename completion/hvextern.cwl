@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2023/07/07 for v0.34
+# Matthew Bertucci 2023/08/25 for v0.36
 
 #include:shellesc
 #include:xkeyval
@@ -55,6 +55,7 @@ usefancyvrb#true,false
 showFilename#true,false
 outerFN#true,false
 code#true,false
+vshift=##L
 force#true,false
 crop#true,false
 tcbox#true,false
@@ -336,7 +337,7 @@ podcomment#true,false
 \DoubleperCent#S
 \NumChar#S
 \DoubleNumChar#S
-\hvExternDateiname#S
+\hvExternFilename#S
 \hvexternFileversion#S
 \begin{WriteVerb}#SV
 \end{WriteVerb}#S
