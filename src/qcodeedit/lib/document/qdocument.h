@@ -188,9 +188,6 @@ class QCE_EXPORT QDocument : public QObject
 		Q_INVOKABLE void setText(const QString& s, bool allowUndo);
 
 		void load(const QString& file, QTextCodec* codec);
-		void startChunkLoading();
-		void stopChunkLoading();
-		void addChunk(const QString& txt);
 
 		QString getFileName() const;
 		QFileInfo getFileInfo() const;

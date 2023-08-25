@@ -789,142 +789,14 @@ void QDocument::load(const QString& file, QTextCodec* codec){
 		return;
 	}
 
-	const qint64 size = f.size();
-	//const int size = m_lastFileState.size = f.size();
+    QByteArray d = f.readAll();
+    if (codec == nullptr)
+        codec=guessEncoding(d);
 
-	bool slow = (size > 30 * 1024);
-	if (slow) emit slowOperationStarted();
-
-    if ( size < 500000 )
-	{
-		// instant load for files smaller than 500kb
-		QByteArray d = f.readAll();
-		if (codec == nullptr)
-			codec=guessEncoding(d);
-
-		setText(codec->toUnicode(d), false);
-	} else {
-		// load by chunks of 100kb otherwise to avoid huge peaks of memory usage
-		// and driving mad the disk drivers
-
-		int count = 0;
-		QByteArray ba;
-
-        startChunkLoading();
-
-		ba = f.read(100000);
-		if (codec == nullptr)
-			codec=guessEncoding(ba);
-
-		QTextDecoder *dec = codec->makeDecoder();
-		do
-		{
-			count += ba.count();
-			//m_lastFileState.checksum ^= qChecksum(ba.constData(), ba.size());
-			addChunk(dec->toUnicode(ba));
-			ba = f.read(100000);
-		} while ( (count < size) && ba.count() );
-		delete dec;
-		stopChunkLoading();
-	}
-	if (slow) emit slowOperationEnded();
+    setText(codec->toUnicode(d), false);
 
 	setCodecDirect(codec);
 	setLastModified(QFileInfo(file).lastModified());
-}
-
-/*!
-	\brief Start a chunk loading
-
-	It is possible to load document contents in one piece
-	or by chunks. To achieve the later you have to proceed as follows :
-
-	\code
-	QDocument doc;
-	doc.startChunkLoading();
-
-	// fetch data and add it using doc.addChunk();
-
-	doc.stopChunkLoading();
-	\endcode
-
-	\see addChunk(const QString&)
-	\see stopChunkLoading()
-*/
-void QDocument::startChunkLoading()
-{
-	if ( !m_impl )
-		return;
-
-	m_impl->m_deleting = true;
-
-    for(int i=0;i<m_impl->m_lines.size();++i){
-        QDocumentLineHandle *h= m_impl->m_lines.at(i);
-        emit lineDeleted(h,i);
-    }
-	foreach ( QDocumentLineHandle *h, m_impl->m_lines )
-	{
-		h->m_doc = nullptr;
-		h->deref();
- 	}
-
-	m_impl->discardAutoUpdatedCursors();
-
-	m_impl->m_lines.clear();
-	m_impl->m_marks.clear();
-	m_impl->m_status.clear();
-	m_impl->m_hidden.clear();
-	m_impl->m_wrapped.clear();
-	m_impl->m_matches.clear();
-	m_impl->m_largest.clear();
-	m_impl->m_commands.clear();
-
-	m_impl->m_deleting = false;
-
-	m_impl->_nix = 0;
-	m_impl->_dos = 0;
-	m_impl->_mac = 0;
-
-	m_leftOver.clear();
-}
-
-/*!
-	\brief Stop chunk loading
-
-	\see startChunkLoading()
-*/
-void QDocument::stopChunkLoading()
-{
-	bool emptyEndingLine = false;
-	if ( m_leftOver.count() )
-	{
-		if (m_leftOver.endsWith('\r')) {
-			emptyEndingLine = true;
-			m_impl->_mac++;
-			m_leftOver.chop(1);
-		}
-		m_impl->m_lines << new QDocumentLineHandle( m_leftOver, this );
-
-		m_leftOver.clear();
-
-	} else emptyEndingLine = true;
-
-	if (emptyEndingLine)
-		m_impl->m_lines << new QDocumentLineHandle(this);
-
-	//qDebug("[chunk] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
-
-	m_impl->m_lastModified = QDateTime::currentDateTime();
-
-	if ( lineEnding() == Conservative )
-		setLineEndingDirect(Conservative);
-
-	m_impl->setWidth();
-	m_impl->setHeight();
-
-	emit lineCountChanged(lineCount());
-
-    //emit m_impl->emitContentsChange(0, m_impl->m_lines.count()); //will be called explicitely later by txs itself. Avoid calling twice. Is it really save to not call it ?
 }
 
 /*!
