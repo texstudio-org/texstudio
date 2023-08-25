@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/06/26 for v0.1.23
+# Matthew Bertucci 2023/08/25 for v0.1.25
 
 #include:kvoptions
 #include:class-book
@@ -189,6 +189,7 @@ roundprintedlengthsto=%<number%>
 \BookSoftwareInfoPage
 \BookSoftwareInfoPage[text]
 \BookTitle
+\BookType
 \BookVersion
 \BookYear
 \ByNotice
