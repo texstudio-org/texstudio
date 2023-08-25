@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/08/09 for v2.7.1
+# Matthew Bertucci 2023/08/25 for v2.7.2
 
 #include:mathtools
 #include:amssymb
@@ -47,6 +47,7 @@
 #include:cancel
 
 #keyvals:\usepackage/ProfLycee#c
+xcolor
 build
 nonamssymb
 #endkeyvals
@@ -1019,9 +1020,9 @@ Label#true,false
 \begin{tcpythontexcodenoalt}[width]{arg}#S
 \end{tcpythontexcodenoalt}#S
 
+#ifOption:xcolor
 # from table option of xcolor
 #include:colortbl
-
 # from svgnames option of xcolor
 AliceBlue#B
 DarkKhaki#B
@@ -1174,6 +1175,7 @@ YellowGreen#B
 Pink#B
 Seashell#B
 Teal#B
+#endif
 
 PLlinux#B
 PLmgray#B
@@ -1184,6 +1186,7 @@ PLosxgray#B
 PLterminal#B
 PLwinblue#B
 vertcapyt#B
+CouleurVertForet#B
 
 # not documented
 \AleaSigneA#S
@@ -1372,7 +1375,7 @@ vertcapyt#B
 \PLnoeud{arg1}{arg2}#S
 \PLnuagepoints[opt]{arg}#S
 \PLnuagepoints{arg}#S
-\PLOSXGreen#S
+\PLOSXgreen#S
 \PLOSXLG#S
 \PLOSXOrange#S
 \PLOSXRed#S
