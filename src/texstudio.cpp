@@ -11090,14 +11090,23 @@ void Texstudio::addDocToLoad(QString filename)
  */
 void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp)
 {
+    LatexDocument *doc = nullptr;
     for(const QString &fn:filenames){
         LatexDocument *doc = documents.findDocumentFromName(fn);
         if(doc==nullptr){
             doc=new LatexDocument();
             doc->load(fn,QDocument::defaultCodec());
+            doc->setFileName(fn);
             documents.addDocument(doc,true);
             doc->setLtxCommands(lp);
             doc->patchStructure(0,-1);
+            documents.updateMasterSlaveRelations(doc);
+        }
+    }
+    if(doc){
+        QList<LatexDocument *>listOfDocs = doc->getListOfDocs();
+        foreach (const LatexDocument *elem, listOfDocs) {
+            lp->append(elem->ltxCommands);
         }
     }
 }
