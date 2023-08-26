@@ -575,7 +575,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	QList<StructureEntry *> removedBibTeX;
 	int posBibTeX = findStructureParentPos(bibTeXList->children, removedBibTeX, lineNrStart, newCount);
 
-	bool isLatexLike = languageIsLatexLike();
+    bool isLatexLike = languageIsLatexLike();
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
 	// force command from all line of which the actual line maybe subsequent lines (multiline commands)
 	for (int i = lineNrStart; i < linenr + count; i++) {
@@ -3420,8 +3420,11 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, i
 
 bool LatexDocument::languageIsLatexLike() const
 {
-	QLanguageDefinition *ld = languageDefinition();
-	if (!ld) return false;
+    QLanguageDefinition *ld = languageDefinition();
+    if (!ld){
+        if(fileName.endsWith(".tex")) return true; // workaround ...
+        return false;
+    }
 	return LATEX_LIKE_LANGUAGES.contains(ld->language());
 }
 
