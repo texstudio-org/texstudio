@@ -2236,6 +2236,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
     // find closed master doc
     if (doc) {
+        bool unmodified=doc->isClean();
         LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
         edit->setLatexPackageList(&latexPackageList);
         edit->document = doc;
@@ -2252,6 +2253,11 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         doc->setEditorView(edit); //update file name (if document didn't exist)
 
         configureNewEditorViewEnd(edit, !hidden, hidden);
+
+        documents.addDocument(edit->document, hidden);
+
+        if(unmodified)
+            doc->setClean();
 
         if (!hidden) {
             bookmarks->restoreBookmarks(edit);
@@ -3657,11 +3663,11 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     QList<LatexDocument *> completedDocs;
     foreach (LatexDocument *doc, documents.getDocuments()) {
         doc->recheckRefsLabels();
-        if (completedDocs.contains(doc))
+        /*if (completedDocs.contains(doc))
             continue;
 
         doc->updateLtxCommands();
-        completedDocs << doc;
+        completedDocs << doc;*/
     }
     recheckLabels = true;
     //qDebug()<<"labels:"<<tm.elapsed();
@@ -11090,7 +11096,6 @@ void Texstudio::addDocToLoad(QString filename)
  */
 void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp)
 {
-    LatexDocument *doc = nullptr;
     for(const QString &fn:filenames){
         LatexDocument *doc = documents.findDocumentFromName(fn);
         if(doc==nullptr){
@@ -11101,14 +11106,17 @@ void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> 
             doc->setLtxCommands(lp);
             doc->patchStructure(0,-1);
             documents.updateMasterSlaveRelations(doc);
+            doc->lp->append(doc->ltxCommands);
         }
     }
-    if(doc){
-        QList<LatexDocument *>listOfDocs = doc->getListOfDocs();
-        foreach (const LatexDocument *elem, listOfDocs) {
-            lp->append(elem->ltxCommands);
-        }
+    // recheck syntax for all none hidden
+    QList<LatexEditorView *> editorList = editors->editors();
+    foreach (LatexEditorView *edView, editorList) {
+        LatexDocument *elem=edView->getDocument();
+        elem->setLtxCommands(elem->lp);
+        elem->reCheckSyntax();
     }
+
 }
 
 /*!

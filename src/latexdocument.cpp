@@ -1872,6 +1872,7 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 		}
 	} else {
 		documents.append(document);
+        hiddenDocuments.removeAll(document); // make sure to avoid duplicates
 	}
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
 	document->parent = this;
@@ -3294,7 +3295,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 
 	if (updateAll) {
 		foreach (LatexDocument *elem, listOfDocs) {
-            elem->setLtxCommands(lp, (elem==this)  && updateAll);
+            elem->setLtxCommands(lp);
             elem->reCheckSyntax();
 		}
 		// check if other document have this doc as child as well (reused doc...)
@@ -3336,7 +3337,7 @@ void LatexDocument::addLtxCommands()
     lp->append(this->ltxCommands);
 }
 
-void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds, bool skipPatch)
+void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds)
 {
 	SynChecker.setLtxCommands(cmds);
 	lp = cmds;
