@@ -73,8 +73,8 @@ void LatexDocumentTest::appendStructure_data()
     QTest::newRow("add higher flat hierachy") << "\\subsection{Hallo}\n" << "222" << "0>3>2>2>2";
     QTest::newRow("add straight hierachy") << "\\section{Hallo}\n" << "23434" << "0>2>2>>3>>>4>>3>>>4";
     QTest::newRow("add higher straight hierachy") << "\\section{Hallo}\n" << "12323" << "0>2>1>>2>>>3>>2>>>3";
-    QTest::newRow("add include") << "\\section{Hallo}\n" << "2i" << "0>2>2>>i";
-    QTest::newRow("add include straight") << "\\section{Hallo}\n" << "3i" << "0>2>>3>>>i";
+    QTest::newRow("add include") << "\\section{Hallo}\n" << "2i" << "0>2>2>i";
+    QTest::newRow("add include straight") << "\\section{Hallo}\n" << "3i" << "0>2>>3>i";
 }
 
 void LatexDocumentTest::appendStructure()
