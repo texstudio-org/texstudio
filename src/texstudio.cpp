@@ -238,7 +238,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
     if (configManager.autoLoadChildren){
         connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
-        connect(&documents, SIGNAL(docsToLoad(QStringList)), this, SLOT(addDocsToLoad(QStringList)));
+        connect(&documents, &LatexDocuments::docsToLoad, this, &Texstudio::addDocsToLoad);
     }
 	connect(&documents, SIGNAL(updateQNFA()), this, SLOT(updateTexQNFA()));
 
@@ -11088,11 +11088,15 @@ void Texstudio::addDocToLoad(QString filename)
  * Perform lexing only
  * \param filenames
  */
-void Texstudio::addDocsToLoad(QStringList filenames)
+void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp)
 {
     for(const QString &fn:filenames){
         auto *doc=new LatexDocument();
         doc->load(fn,QDocument::defaultCodec());
+        doc->setLtxCommands(lp);
+        int count=doc->lineCount();
+        int start=0;
+        doc->lexLines(start,count);
     }
 }
 

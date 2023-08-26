@@ -391,6 +391,98 @@ inline bool isDefinitionArgument(const QString &arg)
 	int pos = arg.indexOf("#");
 	return (pos >= 0 && pos < arg.length() - 1 && arg[pos + 1].isDigit());
 }
+/*!
+ * \brief first pass for lexing latex
+ * Just translates text into basic tokens like commands, words, braces, etc.
+ * \param lineNr
+ * \param count
+ */
+void LatexDocument::lexLinesSimple(const int lineNr,const int count){
+    QList<QDocumentLineHandle *> l_dlh;
+    for (int i = lineNr; i < lineNr + count; i++) {
+        l_dlh << line(i).handle();
+    }
+    QtConcurrent::blockingMap(l_dlh,Parsing::simpleLexLatexLine);
+}
+
+/*!
+ * \brief lex lines for latex commads
+ * Translates text into tokens
+ * \param lineNr
+ * \param count
+ * \return stoppedAtLine lexing was cut short to allow loading of packages (root document)
+ */
+int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
+    //first pass: simple lex
+    if(!recheck){
+        lexLinesSimple(lineNr,count);
+    }
+
+    TokenStack oldRemainder;
+    CommandStack oldCommandStack;
+
+    int stoppedAtLine=-1;
+    TokenList l_tkFilter;
+    QDocumentLineHandle *lastHandle = line(lineNr - 1).handle();
+    if (lastHandle) {
+        oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
+    }
+    for (int i = lineNr; i < lineCount() && i < lineNr + count; ++i) {
+        if (line(i).text() == "\\begin{document}"){
+            if(lineNr==0 && count==lineCount() && !recheck) {
+                stoppedAtLine=i;
+                break; // do recheck quickly as usepackages probably need to be loaded
+            }
+        }
+        bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
+        bool leaveLoop=false;
+        if(oldRemainder.size()>0){
+            for(int k=0;k<oldRemainder.size();++k){
+                Token tk=oldRemainder.at(k);
+                int idx=l_tkFilter.indexOf(tk);
+                if(idx>=0){
+                    oldRemainder.remove(k); // discard run-away argument
+                    --k;
+                    l_tkFilter.removeAt(idx);
+                    leaveLoop=true;
+                }
+            }
+            if(leaveLoop){
+                // store filtered as remainder into line
+                QDocumentLineHandle *dlh=line(i).handle();
+                dlh->lockForWrite();
+                dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(oldRemainder));
+                dlh->unlock();
+                continue;
+            }
+
+            for(int k=0;k<oldRemainder.size();++k){
+                Token tk=oldRemainder.at(k);
+                if(tk.type==Token::openBrace && tk.subtype!= Token::text && tk.subtype!= Token::none && tk.argLevel==0){
+                    // redo with filtering out this offending
+                    l_tkFilter.append(tk);
+                }
+            }
+            if(!l_tkFilter.isEmpty()){
+                i=i-ConfigManager::RUNAWAYLIMIT;
+                lastHandle = line(i).handle();
+                if (lastHandle) {
+                    oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+                    oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
+                }else{
+                    oldRemainder.clear();
+                    oldCommandStack.clear();
+                }
+                continue;
+            }
+        }
+        if (remainderChanged && i + 1 == lineNr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
+            count++; // check also next line ...
+        }
+    }
+    return stoppedAtLine;
+}
 
 /*!
  * \brief parse lines to update syntactical and structure information
@@ -457,78 +549,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	QStringList addedUsepackages;
 	QStringList removedUserCommands, addedUserCommands;
 	QStringList lstFilesToLoad;
-	//first pass: lex
-    TokenStack oldRemainder;
-    CommandStack oldCommandStack;
-	if (!recheck) {
-		QList<QDocumentLineHandle *> l_dlh;
-//#pragma omp parallel for shared(l_dlh)
-		for (int i = linenr; i < linenr + count; i++) {
-			l_dlh << line(i).handle();
-            //Parsing::simpleLexLatexLine(line(i).handle());
-		}
-        QtConcurrent::blockingMap(l_dlh,Parsing::simpleLexLatexLine);
-	}
-    int stoppedAtLine=-1;
-    TokenList l_tkFilter;
-    QDocumentLineHandle *lastHandle = line(linenr - 1).handle();
-    if (lastHandle) {
-        oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
-    }
-    for (int i = linenr; i < lineCount() && i < linenr + count; ++i) {
-        if (line(i).text() == "\\begin{document}"){
-            if(linenr==0 && count==lineCount() && !recheck) {
-                stoppedAtLine=i;
-                break; // do recheck quickly as usepackages probably need to be loaded
-            }
-        }
-        bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
-        bool leaveLoop=false;
-        if(oldRemainder.size()>0){
-            for(int k=0;k<oldRemainder.size();++k){
-                Token tk=oldRemainder.at(k);
-                int idx=l_tkFilter.indexOf(tk);
-                if(idx>=0){
-                    oldRemainder.remove(k); // discard run-away argument
-                    --k;
-                    l_tkFilter.removeAt(idx);
-                    leaveLoop=true;
-                }
-            }
-            if(leaveLoop){
-                // store filtered as remainder into line
-                QDocumentLineHandle *dlh=line(i).handle();
-                dlh->lockForWrite();
-                dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(oldRemainder));
-                dlh->unlock();
-                continue;
-            }
+    //lex lines
+    int stoppedAtLine=lexLines(linenr,count,recheck);
 
-            for(int k=0;k<oldRemainder.size();++k){
-                Token tk=oldRemainder.at(k);
-                if(tk.type==Token::openBrace && tk.subtype!= Token::text && tk.subtype!= Token::none && tk.argLevel==0){
-                    // redo with filtering out this offending
-                    l_tkFilter.append(tk);
-                }
-            }
-            if(!l_tkFilter.isEmpty()){
-                i=i-ConfigManager::RUNAWAYLIMIT;
-                lastHandle = line(i).handle();
-                if (lastHandle) {
-                    oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-                    oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
-                }else{
-                    oldRemainder.clear();
-                    oldCommandStack.clear();
-                }
-                continue;
-            }
-        }
-        if (remainderChanged && i + 1 == linenr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
-            count++; // check also next line ...
-        }
-    }
 	if (linenr >= lineNrStart) {
 		newCount = linenr + count - lineNrStart;
 	}
@@ -705,9 +728,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 }else{
                     // oops, complete tokenlist needed !
                     // redo on time
-                    for (int i = stoppedAtLine; i < lineCount(); i++) {
-                        Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
-                    }
+                    int cnt=lineCount()-i;
+                    lexLines(i,cnt,true);
                 }
             }
         }
@@ -1109,7 +1131,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     dc->setMasterDocument(this, recheckLabels && updateSyntaxCheck);
 				} else {
 					lstFilesToLoad << fname;
-					//parent->addDocToLoad(fname);
 				}
 				newInclude->valid = !fname.isEmpty();
 				newInclude->setLine(line(i).handle(), i);
@@ -1136,7 +1157,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     dc->importedFile=true;
 				} else {
 					lstFilesToLoad << fname;
-					//parent->addDocToLoad(fname);
 				}
 				newInclude->valid = !fname.isEmpty();
 				newInclude->setLine(line(i).handle(), i);
@@ -1305,7 +1325,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	if (!isHidden())
 		checkForLeak();
 #endif
-    parent->addDocsToLoad(lstFilesToLoad);
+    parent->addDocsToLoad(lstFilesToLoad,lp);
 
 	if (reRunSuggested && !recheck){
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
@@ -2308,9 +2328,9 @@ void LatexDocuments::addDocToLoad(QString filename)
  * \brief load included files from top level
  * \param filenames
  */
-void LatexDocuments::addDocsToLoad(QStringList filenames)
+void LatexDocuments::addDocsToLoad(QStringList filenames, QSharedPointer<LatexParser> lp)
 {
-    emit docsToLoad(filenames);
+    emit docsToLoad(filenames,lp);
 }
 
 void LatexDocuments::hideDocInEditor(LatexEditorView *edView)

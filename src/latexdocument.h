@@ -200,6 +200,9 @@ public:
     bool isIncompleteInMemory();
     void startSyntaxChecker();
 
+    int lexLines(int &lineNr,int &count,bool recheck=false);
+    void lexLinesSimple(const int lineNr,const int count);
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary
@@ -372,7 +375,7 @@ public:
 
 	QHash<QString, LatexPackage> cachedPackages;
 	void addDocToLoad(QString filename);
-    void addDocsToLoad(QStringList filenames);
+    void addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser>lp);
 	void removeDocs(QStringList removeIncludes);
 	void hideDocInEditor(LatexEditorView *edView);
 	QString findPackageByCommand(const QString command);
@@ -384,7 +387,7 @@ signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);
 	void docToLoad(QString filename);
-    void docsToLoad(QStringList filenames);
+    void docsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp);
 	void docToHide(LatexEditorView *edView);
 	void updateQNFA();
 
