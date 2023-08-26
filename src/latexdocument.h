@@ -279,7 +279,7 @@ public slots:
 	void initClearStructure();
 	void updateLtxCommands(bool updateAll = false);
     void addLtxCommands();
-    void setLtxCommands(QSharedPointer<LatexParser> cmds, bool skipPatch=true);
+    void setLtxCommands(QSharedPointer<LatexParser> cmds);
     void setSpeller(SpellerUtility *speller);
     void setReplacementList(QMap<QString,QString> replacementList);
 	void updateSettings();

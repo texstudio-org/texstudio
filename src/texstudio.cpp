@@ -3658,8 +3658,8 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         if (completedDocs.contains(doc))
             continue;
 
-        doc->updateLtxCommands();
-        completedDocs << doc;
+        doc->updateLtxCommands(true);
+        completedDocs << doc->getListOfDocs();
     }
     recheckLabels = true;
     //qDebug()<<"labels:"<<tm.elapsed();

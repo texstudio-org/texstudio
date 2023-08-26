@@ -3271,7 +3271,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 
 	if (updateAll) {
 		foreach (LatexDocument *elem, listOfDocs) {
-            elem->setLtxCommands(lp, (elem==this)  && updateAll);
+            elem->setLtxCommands(lp);
             elem->reCheckSyntax();
 		}
 		// check if other document have this doc as child as well (reused doc...)
@@ -3313,7 +3313,7 @@ void LatexDocument::addLtxCommands()
     lp->append(this->ltxCommands);
 }
 
-void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds, bool skipPatch)
+void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds)
 {
 	SynChecker.setLtxCommands(cmds);
 	lp = cmds;
