@@ -2422,6 +2422,9 @@ void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *additi
     }
     int level=addition->level;
     parent_level[level]->add(addition);
+    if(addition->type==StructureEntry::SE_INCLUDE){
+        level=lp->structureDepth();
+    }
     /* check that level are not distorted as first element was too high a level
     *  e.g. \subsection
     *       \section
@@ -2429,7 +2432,11 @@ void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *additi
     for(int i=0;i<addition->children.count();++i){
         se=addition->children.at(i);
         if(se->type != StructureEntry::SE_SECTION){
-            continue; // don't touch non-section for now
+            parent_level[se->level]->add(se);
+            addition->children.takeAt(i);
+            --i;
+            level=lp->structureDepth();
+            continue;
         }
         if(se->level<=level){
             // move element to appropriate parent level
