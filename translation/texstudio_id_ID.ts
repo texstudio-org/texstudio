@@ -19,12 +19,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="61"/>
         <source>Latest stable version: %1</source>
-        <translation type="unfinished"/>
+        <translation>Versi stabil terakhir: %1</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="62"/>
         <source>Changelog</source>
-        <translation type="unfinished"/>
+        <translation>Log perubahan</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
@@ -69,7 +69,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="75"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL), the Oxygen icon theme (CC-BY-SA 3.0) and the Colibre icon theme (CC0) of LibreOffice.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio menggunakan ikon dari Crystal Project (LGPL), ikon tema the Oxygen (CC-BY-SA 3.0) dan ikon tema the Colibre (CC0) dari LibreOffice.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="76"/>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="77"/>
         <source>TeXstudio uses adwaita-qt (GPL2) from </source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio menggunakan adwaita-qt (GPL2) dari</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="79"/>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="56"/>
         <source>couldn&apos;t retrieve data</source>
-        <translation type="unfinished"/>
+        <translation>tidak dapat menampilkan data</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="80"/>
@@ -198,7 +198,7 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/bibtexdialog.ui" line="80"/>
         <source>Insert Empty, Optional Fields</source>
-        <translation type="unfinished"/>
+        <translation>Sisipkan Isian Kosong Opsional</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="20"/>
@@ -617,12 +617,12 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada distribusi LaTeX ditemukan pada sistem anda. Dengan demikian, perintah yang bersesuain tidak dikonfigurasi. Dengan kata lain, anda tidak dapat mengompilasi dokumen anda pada format keluaran yang dinginkan (misalkan pdf).</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1488"/>
         <source>Popular LaTeX distributions on Windows are %1 and %2.</source>
-        <translation type="unfinished"/>
+        <translation>Distribusi LaTeX yang popular pada Windows adalah %1 dan %2.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1490"/>
@@ -632,7 +632,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1493"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
-        <translation type="unfinished"/>
+        <translation>Distribusi LaTeX yang populer pada OSX adalah %1.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1495"/>
@@ -1128,7 +1128,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1123"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"/>
+        <translation>Tutup Element (Esc)</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1129"/>
@@ -1138,7 +1138,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1136"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Tutup penampil tertanam</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1143"/>
@@ -1148,7 +1148,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1153"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan Shortcuts pada Tooltips</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1176"/>
@@ -1698,7 +1698,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2376"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Rata Tengahkan Dokumen pada Editor</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2507"/>
@@ -1819,17 +1819,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2562"/>
         <source>No Color Background</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada warna latar belakang</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2567"/>
         <source>Green Background</source>
-        <translation type="unfinished"/>
+        <translation>Latar belakang hijau</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2572"/>
         <source>Blue Background</source>
-        <translation type="unfinished"/>
+        <translation>Latar belakang biru</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2580"/>
@@ -1849,22 +1849,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="330"/>
         <source>Icon Theme:</source>
-        <translation type="unfinished"/>
+        <translation>Tema Ikon:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="338"/>
         <source>Colibre</source>
-        <translation type="unfinished"/>
+        <translation>Colibre</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="343"/>
         <source>Oxygen Modern</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen Modern</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="348"/>
         <source>Oxygen Classic</source>
-        <translation type="unfinished"/>
+        <translation>Oxygen Classic</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="374"/>
@@ -1904,7 +1904,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2637"/>
         <source>Use color in global TOC:</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan warna pada global TOC:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2657"/>
@@ -2177,7 +2177,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3180"/>
         <source>Fuzzy</source>
-        <translation type="unfinished"/>
+        <translation>Kabur</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3185"/>
@@ -2213,7 +2213,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3241"/>
         <source>Filter list below</source>
-        <translation type="unfinished"/>
+        <translation>Filter daftar di bawah</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3352"/>
@@ -2333,7 +2333,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3595"/>
         <source>LT Path:</source>
-        <translation type="unfinished"/>
+        <translation>LT Path:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3602"/>
@@ -2551,12 +2551,12 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="4328"/>
         <source>Rectangle</source>
-        <translation type="unfinished"/>
+        <translation>Persegi panjang</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4396"/>
         <source>Shadow</source>
-        <translation type="unfinished"/>
+        <translation>Bayangan</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4419"/>
@@ -2696,7 +2696,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="../src/configdialog.ui" line="4447"/>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4512"/>
@@ -2881,7 +2881,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="501"/>
         <source>Asymptote</source>
-        <translation type="unfinished"/>
+        <translation>Asimtot</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="502"/>
@@ -3075,7 +3075,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="10"/>
         <source>&amp;LaTeX</source>
-        <translation type="unfinished"/>
+        <translation>&amp;LaTeX</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="11"/>
@@ -3636,7 +3636,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation type="unfinished"/>
+        <translation>Perintah \newpage mengakhiri halaman ini</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
@@ -3651,17 +3651,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="126"/>
         <source>The \bigskip command adds a &apos;big&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Perintah \bigskip menambahkan suatu jarak vertikal yang besar.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="127"/>
         <source>The \medskip command adds a &apos;medium&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Perintah \medskip menambahkan suatu jarak vertikal yang sedang.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="128"/>
         <source>The \smallskip command adds a &apos;small&apos; vertical space.</source>
-        <translation type="unfinished"/>
+        <translation>Perintah \smallskip menambahkan suatu jarak vertikal yang kecil.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="129"/>
@@ -4408,12 +4408,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="203"/>
         <source>Load &amp;&amp; Save</source>
-        <translation type="unfinished"/>
+        <translation>Muat &amp;&amp; Simpan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="209"/>
         <source>Default encoding</source>
-        <translation type="unfinished"/>
+        <translation>Enkode bawaan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="219"/>
@@ -4438,7 +4438,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="248"/>
         <source>Old Mac</source>
-        <translation type="unfinished"/>
+        <translation>Mac lama</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="256"/>
@@ -4529,7 +4529,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/encodingdialog.ui" line="48"/>
         <source>Change To</source>
-        <translation type="unfinished"/>
+        <translation>Ubah menjadi</translation>
     </message>
     <message>
         <location filename="../src/encodingdialog.ui" line="90"/>
@@ -4594,7 +4594,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="20"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Bentuk</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="35"/>
@@ -4625,7 +4625,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Bentuk</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="27"/>
@@ -4641,23 +4641,23 @@ Are you sure you want to undo all changes?</source>
 <context>
     <name>GrammarCheck</name>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="325"/>
+        <location filename="../src/grammarcheck.cpp" line="324"/>
         <source>Word repetition</source>
         <translation>Pengulangan Kata</translation>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="335"/>
+        <location filename="../src/grammarcheck.cpp" line="334"/>
         <source>Word repetition. Distance %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="337"/>
+        <location filename="../src/grammarcheck.cpp" line="336"/>
         <source>Long range word repetition. Distance %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/grammarcheck.cpp" line="347"/>
-        <location filename="../src/grammarcheck.cpp" line="349"/>
+        <location filename="../src/grammarcheck.cpp" line="346"/>
+        <location filename="../src/grammarcheck.cpp" line="348"/>
         <source>Bad word</source>
         <translation type="unfinished"/>
     </message>
@@ -4727,7 +4727,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/insertgraphics.ui" line="239"/>
         <source>Above graphic</source>
-        <translation type="unfinished"/>
+        <translation>Di atas grafis</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="244"/>
@@ -4986,17 +4986,17 @@ The wizard does not support command </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2733"/>
+        <location filename="../src/latexdocument.cpp" line="2608"/>
         <source>Invalid codec</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2747"/>
+        <location filename="../src/latexdocument.cpp" line="2622"/>
         <source>Missing value for -job-name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2750"/>
+        <location filename="../src/latexdocument.cpp" line="2625"/>
         <source>Unknown magic comment</source>
         <translation type="unfinished"/>
     </message>
@@ -5004,202 +5004,202 @@ The wizard does not support command </source>
 <context>
     <name>LatexEditorView</name>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="314"/>
+        <location filename="../src/latexeditorview.cpp" line="316"/>
         <source>Could not open url:</source>
         <translation>URL tidak dapat dibuka</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="394"/>
+        <location filename="../src/latexeditorview.cpp" line="396"/>
         <source>Copy Image</source>
-        <translation type="unfinished"/>
+        <translation>Salin gambar</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="395"/>
+        <location filename="../src/latexeditorview.cpp" line="397"/>
         <source>Save Image As...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="454"/>
+        <location filename="../src/latexeditorview.cpp" line="456"/>
         <source>Spelling</source>
         <translation>Ejaan</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="468"/>
+        <location filename="../src/latexeditorview.cpp" line="470"/>
         <source>New BibTeX Entry %1</source>
         <translation>Entri BibTeX Baru %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="494"/>
+        <location filename="../src/latexeditorview.cpp" line="496"/>
         <source>Open %1</source>
         <translation>Buka %1</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="501"/>
+        <location filename="../src/latexeditorview.cpp" line="503"/>
         <source>Open Bibliography</source>
         <translation>Buka Bibliografi</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="510"/>
-        <location filename="../src/latexeditorview.cpp" line="526"/>
-        <location filename="../src/latexeditorview.cpp" line="539"/>
+        <location filename="../src/latexeditorview.cpp" line="512"/>
+        <location filename="../src/latexeditorview.cpp" line="528"/>
+        <location filename="../src/latexeditorview.cpp" line="541"/>
         <source>Open package documentation</source>
         <translation>Buka paket dokumentasi</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="547"/>
+        <location filename="../src/latexeditorview.cpp" line="549"/>
         <source>Go to Definition</source>
         <translation>Pergi ke definisi</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="553"/>
+        <location filename="../src/latexeditorview.cpp" line="555"/>
         <source>Find Usages</source>
         <translation>Temukan kegunaan</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="560"/>
+        <location filename="../src/latexeditorview.cpp" line="562"/>
         <source>Thesaurus...</source>
         <translation>Tesaurus...</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="587"/>
+        <location filename="../src/latexeditorview.cpp" line="589"/>
         <source>use yours</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="591"/>
+        <location filename="../src/latexeditorview.cpp" line="593"/>
         <source>use other&apos;s</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="611"/>
+        <location filename="../src/latexeditorview.cpp" line="613"/>
         <source>Go to PDF</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="1203"/>
+        <location filename="../src/latexeditorview.cpp" line="1205"/>
         <source>untitled</source>
         <translation>nirjudul</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2360"/>
+        <location filename="../src/latexeditorview.cpp" line="2362"/>
         <source>Delete</source>
         <translation>Hapus</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2393"/>
+        <location filename="../src/latexeditorview.cpp" line="2395"/>
         <source>Add to Dictionary</source>
         <translation>Tambahkan ke kamus</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2395"/>
+        <location filename="../src/latexeditorview.cpp" line="2397"/>
         <source>Ignore all</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2660"/>
+        <location filename="../src/latexeditorview.cpp" line="2662"/>
         <source>label missing!</source>
         <translation>label hilang!</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2662"/>
-        <location filename="../src/latexeditorview.cpp" line="2682"/>
+        <location filename="../src/latexeditorview.cpp" line="2664"/>
+        <location filename="../src/latexeditorview.cpp" line="2684"/>
         <source>label defined multiple times!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2671"/>
-        <location filename="../src/latexeditorview.cpp" line="2745"/>
+        <location filename="../src/latexeditorview.cpp" line="2673"/>
+        <location filename="../src/latexeditorview.cpp" line="2747"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
-        <location filename="../src/latexeditorview.cpp" line="2685"/>
+        <location filename="../src/latexeditorview.cpp" line="2687"/>
         <source>%n reference(s) to this label</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2690"/>
+        <location filename="../src/latexeditorview.cpp" line="2692"/>
         <source>Class</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2690"/>
+        <location filename="../src/latexeditorview.cpp" line="2692"/>
         <source>Package</source>
         <translation>Paket</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2694"/>
+        <location filename="../src/latexeditorview.cpp" line="2696"/>
         <source>Beamer Theme</source>
         <translation>Beamer Theme</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2703"/>
+        <location filename="../src/latexeditorview.cpp" line="2705"/>
         <source>not found</source>
         <translation>tidak ditemukan</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2720"/>
+        <location filename="../src/latexeditorview.cpp" line="2722"/>
         <source>Citation correct (reading ...)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2726"/>
+        <location filename="../src/latexeditorview.cpp" line="2728"/>
         <source>Citation missing</source>
         <translation>Sitasi hilang</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2729"/>
+        <location filename="../src/latexeditorview.cpp" line="2731"/>
         <source>Warning:</source>
         <translation>Peringatan</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="2729"/>
+        <location filename="../src/latexeditorview.cpp" line="2731"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3134"/>
+        <location filename="../src/latexeditorview.cpp" line="3136"/>
         <source>Save Preview Image</source>
         <translation>Simpan Gambar Pratinjau</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3134"/>
+        <location filename="../src/latexeditorview.cpp" line="3136"/>
         <source>Images</source>
         <translation>Gambar</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3268"/>
+        <location filename="../src/latexeditorview.cpp" line="3270"/>
         <source>Remove Bookmark</source>
         <translation>Hapus Bookmark</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3276"/>
+        <location filename="../src/latexeditorview.cpp" line="3278"/>
         <source>Unnamed Bookmark</source>
         <translation>Bookmark Nirnama</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3282"/>
+        <location filename="../src/latexeditorview.cpp" line="3284"/>
         <source>Bookmark</source>
         <translation>Bookmark</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3309"/>
+        <location filename="../src/latexeditorview.cpp" line="3311"/>
         <source>Collapse All</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3313"/>
+        <location filename="../src/latexeditorview.cpp" line="3315"/>
         <source>Collapse Level %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3318"/>
+        <location filename="../src/latexeditorview.cpp" line="3320"/>
         <source>Expand All</source>
         <translation>Bentangkan Semua</translation>
     </message>
     <message>
-        <location filename="../src/latexeditorview.cpp" line="3322"/>
+        <location filename="../src/latexeditorview.cpp" line="3324"/>
         <source>Expand Level %1</source>
         <translation>Bentangkan Level %1</translation>
     </message>
@@ -6566,7 +6566,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="265"/>
         <source>Panels</source>
-        <translation type="unfinished"/>
+        <translation>Panel</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
@@ -6578,7 +6578,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="701"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1468"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Bawaan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="521"/>
@@ -6596,7 +6596,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>Po&amp;tong</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
@@ -6637,7 +6637,7 @@ Restart from the beginning?</source>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
         <source>Unc&amp;omment</source>
-        <translation type="unfinished"/>
+        <translation>Batal k&amp;omentar</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
@@ -6703,12 +6703,12 @@ Restart from the beginning?</source>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="729"/>
         <source>Dos/Windows</source>
-        <translation type="unfinished"/>
+        <translation>DOS/Windows</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
         <source>Old Mac</source>
-        <translation type="unfinished"/>
+        <translation>Mac lama</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="920"/>
@@ -6738,7 +6738,7 @@ Press &quot;Ignore&quot; to ignore this warning.
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1088"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1110"/>
         <source>Saving failed</source>
-        <translation type="unfinished"/>
+        <translation>Penyimpanan gagal</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1013"/>
@@ -6775,32 +6775,36 @@ result in data loss.
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1077"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>Peringatan</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Pembuatan cadangan berkas gagal. Penyimpanan masih bisa dilanjutkan, namun jika penyimpanan gagal, Anda mungkin kehilangan data di berkas asli. Apakah Anda ingin melanjutkan?</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1101"/>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Menulis dokumen ke berkas
+%1
+gagal.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1106"/>
         <source>The original file on disk was destroyed during the save operation.
 You'll find a copy at
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Berkas asli di diska rusak pada saat operasi penyimpanan.
+Anda dapat menemukan salinannya di
+%1</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
         <source>File deleted</source>
-        <translation type="unfinished"/>
+        <translation>Berkas terhapus</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
@@ -6828,12 +6832,17 @@ was changed outside of TeXstudio. Reload from disk?
 Notes:
 - Reloading overwrites the editor content with the file from disk. This cannot be undone.
 - You can permanently enable silent reloading in the options.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+telah diubah di luar TeXstudio. Muat ulang berkas dari diska?
+
+Catatan:
+- Memuat ulang akan mengganti konten di editor dengan berkas dari diska. Ini tidak dapat dibatalkan.
+- Anda bisa menyalakan pemuatan ulang hening secara permanen di pengaturan.</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1338"/>
         <source>Print Source Code</source>
-        <translation type="unfinished"/>
+        <translation>Cetak Kode Sumber</translation>
     </message>
     <message>
         <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1471"/>
@@ -6866,299 +6875,299 @@ Notes:
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4736"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4747"/>
         <source>None</source>
         <translation>Tidak ada</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4737"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4748"/>
         <source>Invalid</source>
         <translation>Tidak valid</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4739"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4756"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4750"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
         <source>Internal</source>
         <translation>Internal</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4741"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4752"/>
         <source>Move cursor up</source>
         <translation>Naikkan kursor</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4742"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
         <source>Move cursor down</source>
         <translation>Turunkan kursor</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4743"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
         <source>Move cursor left (1 character)</source>
         <translation>Pindahkan kursor ke kiri (1 karakter)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4744"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
         <source>Move cursor right (1 character)</source>
         <translation>Pindahkan kursor ke kanan (1 karakter)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4745"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4756"/>
         <source>Move cursor left (1 word)</source>
         <translation>Pindahkan kursor ke kiri (1 kata)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4746"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
         <source>Move cursor right (1 word)</source>
         <translation>Pindahkan kursor ke kanan (1 kata)</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4747"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4758"/>
         <source>Move cursor to line start</source>
         <translation>Pindahkan kursor ke awal baris.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4748"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
         <source>Move cursor to first character in line</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan kursor ke awal baris</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4749"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
         <source>Move cursor to line end</source>
         <translation>Pindahkan kursor ke akhir baris.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4750"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
         <source>Move cursor to document start</source>
         <translation>Pindahkan kursor ke awal dokumen.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4751"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
         <source>Move cursor to document end</source>
         <translation>Pindahkan kursor ke akhir dokumen.</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4753"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4764"/>
         <source>Move cursor one page up</source>
         <translation>Pindahkan kursor satu halaman ke atas</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
         <source>Move cursor one page down</source>
         <translation>Pindahkan kursor satu halama ke bawah</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4758"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
         <source>Select up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4770"/>
         <source>Select down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
         <source>Select left (1 character)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
         <source>Select right (1 character)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4773"/>
         <source>Select left (1 word)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4763"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
         <source>Select right (1 word)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4764"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4775"/>
         <source>Select to line start</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
         <source>Select to first character in line</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
         <source>Select to line end</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
         <source>Select to document start</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
         <source>Select to document end</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4770"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
         <source>Select page up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
         <source>Select page down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4775"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
         <source>Delete left character</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
         <source>Delete right character</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
         <source>Delete left word</source>
         <translation>Hapus kata sebelah kiri</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
         <source>Delete right word</source>
         <translation>Hapus kata sebelah kanan</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
         <source>New line</source>
         <translation>Baris baru</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
         <source>Change overwrite mode</source>
         <translation>Ubah ke mode overwrite</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
         <source>Undo</source>
         <translation>Batalkan</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
         <source>Redo</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
         <source>Copy</source>
         <translation>Salin</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
         <source>Paste</source>
         <translation>Tempel</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
         <source>Cut</source>
         <translation>Potong</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4787"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4798"/>
         <source>Print</source>
         <translation>Cetak</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Pilih semua</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
         <source>Find</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4790"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
         <source>Find next</source>
         <translation>Cari lagi</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4802"/>
         <source>Find previous</source>
         <translation>Temukan sebelumnya</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4792"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
         <source>Replace</source>
         <translation>Ganti</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
         <source>Create cursor mirror up</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
         <source>Create cursor mirror down</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
         <source>Next placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
         <source>Previous placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4798"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4809"/>
         <source>Next placeholder or one word right</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4810"/>
         <source>Previous placeholder or one word left</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4811"/>
         <source>Next placeholder or character</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
         <source>Previous placeholder or character</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4802"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
         <source>Tab or Indent selection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
         <source>Insert tab</source>
         <translation>Tambahkan tab</translation>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4815"/>
         <source>Indent selection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4816"/>
         <source>Unindent selection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
+        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4819"/>
         <source>Unknown</source>
         <translation>Tidak diketahui</translation>
     </message>
@@ -7969,7 +7978,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../src/quickbeamerdialog.ui" line="39"/>
@@ -8747,94 +8756,94 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="218"/>
+        <location filename="../src/syntaxcheck.cpp" line="217"/>
         <source>no error</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="219"/>
+        <location filename="../src/syntaxcheck.cpp" line="218"/>
         <source>unrecognized environment</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="220"/>
+        <location filename="../src/syntaxcheck.cpp" line="219"/>
         <source>unrecognized command</source>
         <translation>perintah tidak dikenali</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="221"/>
+        <location filename="../src/syntaxcheck.cpp" line="220"/>
         <source>unrecognized math command</source>
         <translation>perintah matematika tidak dikenali</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="222"/>
+        <location filename="../src/syntaxcheck.cpp" line="221"/>
         <source>unrecognized tabular command</source>
         <translation>perintah tabular tidak dikenali</translation>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="223"/>
+        <location filename="../src/syntaxcheck.cpp" line="222"/>
         <source>tabular command outside tabular env</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="224"/>
+        <location filename="../src/syntaxcheck.cpp" line="223"/>
         <source>math command outside math env</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="225"/>
+        <location filename="../src/syntaxcheck.cpp" line="224"/>
         <source>tabbing command outside tabbing env</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="226"/>
+        <location filename="../src/syntaxcheck.cpp" line="225"/>
         <source>more cols in tabular than specified</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="227"/>
+        <location filename="../src/syntaxcheck.cpp" line="226"/>
         <source>cols in tabular missing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="228"/>
+        <location filename="../src/syntaxcheck.cpp" line="227"/>
         <source>\\ missing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="229"/>
+        <location filename="../src/syntaxcheck.cpp" line="228"/>
         <source>closing environment which has not been opened</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="230"/>
+        <location filename="../src/syntaxcheck.cpp" line="229"/>
         <source>environment not closed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="231"/>
+        <location filename="../src/syntaxcheck.cpp" line="230"/>
         <source>unrecognized key in key option</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="232"/>
+        <location filename="../src/syntaxcheck.cpp" line="231"/>
         <source>unrecognized value in key option</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="233"/>
+        <location filename="../src/syntaxcheck.cpp" line="232"/>
         <source>command outside suitable env</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="234"/>
+        <location filename="../src/syntaxcheck.cpp" line="233"/>
         <source>spelling</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/syntaxcheck.cpp" line="237"/>
+        <location filename="../src/syntaxcheck.cpp" line="236"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>tidak diketahui</translation>
     </message>
 </context>
 <context>
@@ -8857,7 +8866,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="../src/tabdialog.ui" line="113"/>
         <source>Alignment :</source>
-        <translation type="unfinished"/>
+        <translation>Perataan :</translation>
     </message>
     <message>
         <location filename="../src/tabdialog.ui" line="127"/>
@@ -9252,22 +9261,32 @@ failed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texdocdialog.ui" line="45"/>
-        <source>description text</source>
-        <translation>deskripsi teks</translation>
+        <location filename="../src/texdocdialog.ui" line="24"/>
+        <source>Package</source>
+        <translation>Paket</translation>
     </message>
     <message>
-        <location filename="../src/texdocdialog.ui" line="77"/>
-        <source>Package:</source>
-        <translation>Paket:</translation>
+        <location filename="../src/texdocdialog.ui" line="29"/>
+        <source>Caption</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texdocdialog.ui" line="113"/>
-        <source>Description:</source>
-        <translation>Deskripsi</translation>
+        <location filename="../src/texdocdialog.ui" line="98"/>
+        <source>open CTAN</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texdocdialog.cpp" line="99"/>
+        <location filename="../src/texdocdialog.ui" line="115"/>
+        <source>Enter a term to search for in both columns.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.ui" line="122"/>
+        <source>all packages</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texdocdialog.cpp" line="190"/>
         <source>No Documentation Available</source>
         <translation>Tak Ada Dokumentasi Tersedia</translation>
     </message>
@@ -9329,7 +9348,7 @@ failed.</source>
         <location filename="../src/additionaltranslations.cpp" line="348"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Asimtot</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="349"/>
@@ -9416,7 +9435,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="365"/>
-        <location filename="../src/texstudio.cpp" line="6335"/>
+        <location filename="../src/texstudio.cpp" line="6347"/>
         <source>Ready</source>
         <translation type="unfinished"/>
     </message>
@@ -9457,8 +9476,8 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="446"/>
-        <location filename="../src/texstudio.cpp" line="9816"/>
-        <location filename="../src/texstudio.cpp" line="9823"/>
+        <location filename="../src/texstudio.cpp" line="9825"/>
+        <location filename="../src/texstudio.cpp" line="9832"/>
         <source>All files</source>
         <translation>Semua file</translation>
     </message>
@@ -9709,7 +9728,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="943"/>
-        <location filename="../src/texstudio.cpp" line="10017"/>
+        <location filename="../src/texstudio.cpp" line="10026"/>
         <source>&amp;Close</source>
         <translation>&amp;Tutup</translation>
     </message>
@@ -9946,9 +9965,9 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1013"/>
-        <location filename="../src/texstudio.cpp" line="7802"/>
-        <location filename="../src/texstudio.cpp" line="7827"/>
-        <location filename="../src/texstudio.cpp" line="7847"/>
+        <location filename="../src/texstudio.cpp" line="7811"/>
+        <location filename="../src/texstudio.cpp" line="7836"/>
+        <location filename="../src/texstudio.cpp" line="7856"/>
         <source>Line</source>
         <translation>Baris</translation>
     </message>
@@ -10019,12 +10038,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1066"/>
         <source>Unix (LF)</source>
-        <translation type="unfinished"/>
+        <translation>Unix (LF)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1070"/>
         <source>Old Mac (CR)</source>
-        <translation type="unfinished"/>
+        <translation>Mac lama (CR)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1076"/>
@@ -10145,34 +10164,34 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1141"/>
         <source>Previous Error</source>
-        <translation type="unfinished"/>
+        <translation>Kesalahan sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1141"/>
         <location filename="../src/texstudio.cpp" line="1142"/>
         <source>No LaTeX errors detected !</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada kesalahan LaTeX terdeteksi !</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1142"/>
         <source>Next Error</source>
-        <translation type="unfinished"/>
+        <translation>Kesalahan selanjutnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1143"/>
         <source>Previous Warning</source>
-        <translation type="unfinished"/>
+        <translation>Peringatan sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1143"/>
         <location filename="../src/texstudio.cpp" line="1144"/>
         <source>No LaTeX warnings detected !</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada peringatan LaTeX terdeteksi !</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1144"/>
         <source>Next Warning</source>
-        <translation type="unfinished"/>
+        <translation>Peringatan selanjutnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1145"/>
@@ -10193,7 +10212,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1149"/>
         <source>Definition</source>
-        <translation type="unfinished"/>
+        <translation>Definisi</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1152"/>
@@ -10203,13 +10222,13 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1154"/>
         <source>Parenthesis</source>
-        <translation type="unfinished"/>
+        <translation>Tanda kurung</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1156"/>
         <location filename="../src/texstudio.cpp" line="1166"/>
         <source>Jump to Match</source>
-        <translation type="unfinished"/>
+        <translation>Lompat ke yang cocok</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1157"/>
@@ -10227,7 +10246,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1159"/>
         <location filename="../src/texstudio.cpp" line="1169"/>
         <source>Select Command</source>
-        <translation type="unfinished"/>
+        <translation>Pilih perintah</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1160"/>
@@ -10245,7 +10264,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1164"/>
         <location filename="../src/texstudio.cpp" line="1174"/>
         <source>Find Mismatch</source>
-        <translation type="unfinished"/>
+        <translation>Temukan ketidakcocokan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1177"/>
@@ -10255,7 +10274,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1178"/>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1179"/>
@@ -10359,7 +10378,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1211"/>
         <location filename="../src/texstudio.cpp" line="1261"/>
         <source>&amp;LaTeX</source>
-        <translation type="unfinished"/>
+        <translation>&amp;LaTeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1212"/>
@@ -10527,49 +10546,49 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1266"/>
         <source>Add Row</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Tambahkan baris</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1267"/>
         <source>Add Column</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Tambahkan kolom</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1268"/>
         <source>Remove Row</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Hapus baris</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1269"/>
         <source>Remove Column</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Hapus kolom</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1270"/>
         <source>Cut Column</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Potong kolom</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1271"/>
         <source>Paste Column</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Tempel kolom</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1272"/>
         <source>Add \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Tambahkan \hline</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Remove \hline</source>
         <comment>table</comment>
-        <translation type="unfinished"/>
+        <translation>Hapus \hline</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1274"/>
@@ -10580,12 +10599,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1275"/>
         <source>Align Columns</source>
-        <translation type="unfinished"/>
+        <translation>Ratakan kolom</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1276"/>
         <source>Add magic comments ...</source>
-        <translation type="unfinished"/>
+        <translation>Tambahkan magic comments ...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1277"/>
@@ -10688,7 +10707,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1339"/>
         <location filename="../src/texstudio.cpp" line="1345"/>
         <source>BibLaTeX</source>
-        <translation type="unfinished"/>
+        <translation>BibLaTeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1349"/>
@@ -10698,27 +10717,27 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1355"/>
         <source>Previous Document</source>
-        <translation type="unfinished"/>
+        <translation>Dokumen sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1356"/>
         <source>Next Document</source>
-        <translation type="unfinished"/>
+        <translation>Dokumen selanjutnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1357"/>
         <source>Open Documents</source>
-        <translation type="unfinished"/>
+        <translation>Buka dokumen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1358"/>
         <source>List Of Open Documents</source>
-        <translation type="unfinished"/>
+        <translation>Daftar dokumen yang terbuka</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1359"/>
         <source>List Of Hidden Documents</source>
-        <translation type="unfinished"/>
+        <translation>Daftar dokumen yang tersembunyi</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1361"/>
@@ -10743,40 +10762,40 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1372"/>
         <source>Show embedded PDF large</source>
-        <translation type="unfinished"/>
+        <translation>Tampilakan PDF tertanam (besar)</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1373"/>
         <source>Show embedded PDF small</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan PDF tertanam kecil.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1375"/>
         <source>Close Element</source>
-        <translation type="unfinished"/>
+        <translation>Tutup elemen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1378"/>
         <source>Collapse</source>
-        <translation type="unfinished"/>
+        <translation>Ciutkan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1379"/>
         <location filename="../src/texstudio.cpp" line="1384"/>
         <source>Everything</source>
-        <translation type="unfinished"/>
+        <translation>Seluruhnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1380"/>
         <location filename="../src/texstudio.cpp" line="1385"/>
         <source>Nearest Block</source>
-        <translation type="unfinished"/>
+        <translation>Blok terdekat</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1382"/>
         <location filename="../src/texstudio.cpp" line="1387"/>
         <source>Level %1</source>
-        <translation type="unfinished"/>
+        <translation>Level %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1383"/>
@@ -10806,7 +10825,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1395"/>
         <source>Grammar Mistake</source>
-        <translation type="unfinished"/>
+        <translation>Kesalahan gramatikal</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1397"/>
@@ -10841,7 +10860,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1418"/>
         <source>Highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Menyoroti</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1442"/>
@@ -10872,7 +10891,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1449"/>
         <source>Restore &amp;Default Settings...</source>
-        <translation type="unfinished"/>
+        <translation>Kembalikan &amp;Settingan bawaan...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1452"/>
@@ -10898,12 +10917,12 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1467"/>
         <source>LaTeX Reference...</source>
-        <translation type="unfinished"/>
+        <translation>Referensi LaTeX...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1468"/>
         <source>User Manual...</source>
-        <translation type="unfinished"/>
+        <translation>Panduan pengguna...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1469"/>
@@ -10913,17 +10932,17 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1472"/>
         <source>Check LaTeX Installation</source>
-        <translation type="unfinished"/>
+        <translation>Cek instalasi LaTeX</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1473"/>
         <source>Check Active Completion Files</source>
-        <translation type="unfinished"/>
+        <translation>Cek file Active Completion</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1474"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>Cek LanguageTool</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1475"/>
@@ -10933,33 +10952,33 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1476"/>
         <source>About TeXstudio...</source>
-        <translation type="unfinished"/>
+        <translation>Tentang TeXstudio...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1645"/>
-        <location filename="../src/texstudio.cpp" line="5847"/>
+        <location filename="../src/texstudio.cpp" line="5859"/>
         <source>show more entries ...</source>
-        <translation type="unfinished"/>
+        <translation>tampilkan lebih banyak entri</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1653"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Bawaan</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1687"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"/>
+        <translation>Terhubung ke LanguageTool pada %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1691"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"/>
+        <translation>TIdak ada server LanguageTool ditemukan pada %1</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1695"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>Status LanguageTool tidak diketahui</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1699"/>
@@ -10974,9 +10993,9 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1774"/>
         <location filename="../src/texstudio.cpp" line="1775"/>
-        <location filename="../src/texstudio.cpp" line="5877"/>
-        <location filename="../src/texstudio.cpp" line="5880"/>
-        <location filename="../src/texstudio.cpp" line="5881"/>
+        <location filename="../src/texstudio.cpp" line="5889"/>
+        <location filename="../src/texstudio.cpp" line="5892"/>
+        <location filename="../src/texstudio.cpp" line="5893"/>
         <source>Encoding</source>
         <translation>Enkode</translation>
     </message>
@@ -10998,7 +11017,7 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1861"/>
         <source>Automatic</source>
-        <translation type="unfinished"/>
+        <translation>Otomatis</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1862"/>
@@ -11025,86 +11044,86 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="2172"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah anda ingin mendebug file SyncTeX?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2264"/>
-        <location filename="../src/texstudio.cpp" line="4216"/>
-        <location filename="../src/texstudio.cpp" line="5931"/>
-        <location filename="../src/texstudio.cpp" line="5984"/>
-        <location filename="../src/texstudio.cpp" line="6551"/>
-        <location filename="../src/texstudio.cpp" line="6732"/>
-        <location filename="../src/texstudio.cpp" line="6734"/>
+        <location filename="../src/texstudio.cpp" line="2265"/>
+        <location filename="../src/texstudio.cpp" line="4220"/>
+        <location filename="../src/texstudio.cpp" line="5943"/>
+        <location filename="../src/texstudio.cpp" line="5996"/>
+        <location filename="../src/texstudio.cpp" line="6563"/>
         <location filename="../src/texstudio.cpp" line="6744"/>
         <location filename="../src/texstudio.cpp" line="6746"/>
-        <location filename="../src/texstudio.cpp" line="10498"/>
+        <location filename="../src/texstudio.cpp" line="6756"/>
+        <location filename="../src/texstudio.cpp" line="6758"/>
+        <location filename="../src/texstudio.cpp" line="10507"/>
         <source>Error</source>
         <translation>Kesalahan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2264"/>
+        <location filename="../src/texstudio.cpp" line="2265"/>
         <source>You do not have read permission to the file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Anda tidak memiliki izin untuk membaca file %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2341"/>
+        <location filename="../src/texstudio.cpp" line="2342"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2347"/>
+        <location filename="../src/texstudio.cpp" line="2348"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membuka file pemulihan &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2504"/>
+        <location filename="../src/texstudio.cpp" line="2508"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2592"/>
+        <location filename="../src/texstudio.cpp" line="2596"/>
         <source>Could not write template data:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2624"/>
+        <location filename="../src/texstudio.cpp" line="2628"/>
         <source>Could not write template meta data:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="2675"/>
-        <location filename="../src/texstudio.cpp" line="2739"/>
-        <source>File not found:</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2679"/>
         <location filename="../src/texstudio.cpp" line="2743"/>
+        <source>File not found:</source>
+        <translation>File tidak ditemukan:</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="2683"/>
+        <location filename="../src/texstudio.cpp" line="2747"/>
         <source>You do not have read permission to this file:</source>
         <translation>Anda tidak memiliki izin untuk membaca file ini</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2860"/>
-        <location filename="../src/texstudio.cpp" line="10328"/>
+        <location filename="../src/texstudio.cpp" line="2864"/>
+        <location filename="../src/texstudio.cpp" line="10337"/>
         <source>Open Files</source>
         <translation>Buka File</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2894"/>
-        <location filename="../src/texstudio.cpp" line="2901"/>
+        <location filename="../src/texstudio.cpp" line="2898"/>
+        <location filename="../src/texstudio.cpp" line="2905"/>
         <source>Loading of last session failed.</source>
-        <translation type="unfinished"/>
+        <translation>Pemuatan sesi terakhir gagal.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2967"/>
+        <location filename="../src/texstudio.cpp" line="2971"/>
         <source>Save As</source>
-        <translation type="unfinished"/>
+        <translation>Simpan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2984"/>
+        <location filename="../src/texstudio.cpp" line="2988"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -11113,267 +11132,268 @@ this other file before you can overwrite it.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3002"/>
+        <location filename="../src/texstudio.cpp" line="3006"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3102"/>
+        <location filename="../src/texstudio.cpp" line="3106"/>
         <source>Rename/Move</source>
-        <translation type="unfinished"/>
+        <translation>Ubah nama/pindahkan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3102"/>
-        <location filename="../src/texstudio.cpp" line="11787"/>
+        <location filename="../src/texstudio.cpp" line="3106"/>
+        <location filename="../src/texstudio.cpp" line="11796"/>
         <source>Copy</source>
         <translation>Salin</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3117"/>
+        <location filename="../src/texstudio.cpp" line="3121"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah anda benar-benar ingin menghapus file &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3126"/>
+        <location filename="../src/texstudio.cpp" line="3130"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3153"/>
+        <location filename="../src/texstudio.cpp" line="3157"/>
         <source>Numeric permissions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3154"/>
+        <location filename="../src/texstudio.cpp" line="3158"/>
         <source>Verbose permissions</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3269"/>
+        <location filename="../src/texstudio.cpp" line="3273"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
-        <translation type="unfinished"/>
+        <translation>Dokumen &quot;%1&quot; mengandung pekerjaan yang belum tersimpan. Apakah anda ingin menyimpan sebelum menutupnya?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3395"/>
-        <location filename="../src/texstudio.cpp" line="3454"/>
-        <location filename="../src/texstudio.cpp" line="3534"/>
+        <location filename="../src/texstudio.cpp" line="3399"/>
+        <location filename="../src/texstudio.cpp" line="3458"/>
+        <location filename="../src/texstudio.cpp" line="3538"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
-        <translation type="unfinished"/>
+        <translation>File &quot;%1&quot; tidak ada lagi. Apakah anda ingin menghapusnya dari list recent file ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3547"/>
+        <location filename="../src/texstudio.cpp" line="3551"/>
         <source>Loading of session failed.</source>
-        <translation type="unfinished"/>
+        <translation>Pemuatan sesi gagal.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3564"/>
+        <location filename="../src/texstudio.cpp" line="3568"/>
         <source>Load Session</source>
-        <translation type="unfinished"/>
+        <translation>Muat sesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3564"/>
-        <location filename="../src/texstudio.cpp" line="3582"/>
+        <location filename="../src/texstudio.cpp" line="3568"/>
+        <location filename="../src/texstudio.cpp" line="3586"/>
         <source>TeXstudio Session</source>
-        <translation type="unfinished"/>
+        <translation>Sesi TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3582"/>
+        <location filename="../src/texstudio.cpp" line="3586"/>
         <source>Save Session</source>
-        <translation type="unfinished"/>
+        <translation>Simpan sesi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3588"/>
+        <location filename="../src/texstudio.cpp" line="3592"/>
         <source>Saving of session failed.</source>
-        <translation type="unfinished"/>
+        <translation>Simpan sesi gagal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3677"/>
+        <location filename="../src/texstudio.cpp" line="3681"/>
         <source>The following files could not be loaded:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3842"/>
+        <location filename="../src/texstudio.cpp" line="3846"/>
         <source>Image Formats (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Format gambar (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3844"/>
+        <location filename="../src/texstudio.cpp" line="3848"/>
         <source>Save Image</source>
-        <translation type="unfinished"/>
+        <translation>Simpan gambar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3849"/>
+        <location filename="../src/texstudio.cpp" line="3853"/>
         <source>Could not save the image file.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menyimpan gambar</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3937"/>
+        <location filename="../src/texstudio.cpp" line="3941"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Urutan naik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3937"/>
+        <location filename="../src/texstudio.cpp" line="3941"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Urutkan menurun</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3937"/>
+        <location filename="../src/texstudio.cpp" line="3941"/>
         <source>No Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Tanpa pengurutan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3937"/>
+        <location filename="../src/texstudio.cpp" line="3941"/>
         <source>Random (Shuffle)</source>
-        <translation type="unfinished"/>
+        <translation>Acak (shuffle)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3943"/>
+        <location filename="../src/texstudio.cpp" line="3947"/>
         <source>Sorting</source>
-        <translation type="unfinished"/>
+        <translation>Mengurutkan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3944"/>
+        <location filename="../src/texstudio.cpp" line="3948"/>
         <source>Complete Lines</source>
-        <translation type="unfinished"/>
+        <translation>Selesaikan baris</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3945"/>
+        <location filename="../src/texstudio.cpp" line="3949"/>
         <source>Case Sensitive</source>
-        <translation type="unfinished"/>
+        <translation>Sensitif terhadap kapital/nonkapital</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3946"/>
+        <location filename="../src/texstudio.cpp" line="3950"/>
         <source>Remove Duplicates</source>
-        <translation type="unfinished"/>
+        <translation>Hapus duplikasi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4183"/>
+        <location filename="../src/texstudio.cpp" line="4187"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4184"/>
+        <location filename="../src/texstudio.cpp" line="4188"/>
         <source>Smart scope selecting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4185"/>
+        <location filename="../src/texstudio.cpp" line="4189"/>
         <source>Join lines before wrapping</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4199"/>
-        <location filename="../src/texstudio.cpp" line="6428"/>
-        <location filename="../src/texstudio.cpp" line="6485"/>
+        <location filename="../src/texstudio.cpp" line="4203"/>
+        <location filename="../src/texstudio.cpp" line="6440"/>
+        <location filename="../src/texstudio.cpp" line="6497"/>
         <source>No document open</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada dokumen yang terbuka</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4205"/>
+        <location filename="../src/texstudio.cpp" line="4209"/>
         <source>No dictionary available.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada kamus tersedia.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4216"/>
+        <location filename="../src/texstudio.cpp" line="4220"/>
         <source>Can&apos;t load Thesaurus Database</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuka Thesaurus Database</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4618"/>
+        <location filename="../src/texstudio.cpp" line="4630"/>
         <source>Storing session failed</source>
-        <translation type="unfinished"/>
+        <translation>Penyimpanan session gagal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4618"/>
+        <location filename="../src/texstudio.cpp" line="4630"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4703"/>
+        <location filename="../src/texstudio.cpp" line="4715"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4713"/>
+        <location filename="../src/texstudio.cpp" line="4725"/>
         <source>Unable to write to settings file %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5547"/>
+        <location filename="../src/texstudio.cpp" line="5559"/>
         <source>Quick Start</source>
         <translation>Memulai segera</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5569"/>
+        <location filename="../src/texstudio.cpp" line="5581"/>
         <source>Quick Beamer Presentation</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5606"/>
+        <location filename="../src/texstudio.cpp" line="5618"/>
         <source>&lt;Current File&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5638"/>
+        <location filename="../src/texstudio.cpp" line="5650"/>
         <source>Type: %1</source>
-        <translation type="unfinished"/>
+        <translation>Tipe: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5680"/>
+        <location filename="../src/texstudio.cpp" line="5692"/>
         <source>Edit User &amp;Tags</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5742"/>
+        <location filename="../src/texstudio.cpp" line="5754"/>
         <source>empty</source>
-        <translation type="unfinished"/>
+        <translation>kosong</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5746"/>
+        <location filename="../src/texstudio.cpp" line="5758"/>
         <source>Labels:</source>
-        <translation type="unfinished"/>
+        <translation>Label:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5834"/>
+        <location filename="../src/texstudio.cpp" line="5846"/>
         <source>show less entries ...</source>
-        <translation type="unfinished"/>
+        <translation>tampilkan lebih sedikit entri ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5875"/>
+        <location filename="../src/texstudio.cpp" line="5887"/>
         <source>Encoding Aliases: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5931"/>
+        <location filename="../src/texstudio.cpp" line="5943"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat mendeteksi nama file.
+Anda harus menyimpan dokumen sebelum anda dapat mengkompilasinya.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5939"/>
+        <location filename="../src/texstudio.cpp" line="5951"/>
         <source>Can&apos;t detect the file name</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat mendeteksi nama file</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5978"/>
+        <location filename="../src/texstudio.cpp" line="5990"/>
         <source>  Running this command: </source>
-        <translation type="unfinished"/>
+        <translation>Menjalankan perintah:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5984"/>
+        <location filename="../src/texstudio.cpp" line="5996"/>
         <source>could not start the command</source>
-        <translation type="unfinished"/>
+        <translation>tidak dapat memulai perintah</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6108"/>
+        <location filename="../src/texstudio.cpp" line="6120"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6128"/>
+        <location filename="../src/texstudio.cpp" line="6140"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11384,221 +11404,221 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6212"/>
+        <location filename="../src/texstudio.cpp" line="6224"/>
         <source>Unknown internal command: %1</source>
-        <translation type="unfinished"/>
+        <translation>Perintah internal tidak diketahui: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6247"/>
+        <location filename="../src/texstudio.cpp" line="6259"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation>%!TeX program digunakan: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6250"/>
+        <location filename="../src/texstudio.cpp" line="6262"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6311"/>
+        <location filename="../src/texstudio.cpp" line="6323"/>
         <source>You cannot compile the document in a non writable directory.</source>
-        <translation type="unfinished"/>
+        <translation>Anda tidak dapat mengkompilasi dokumen pada direktori yang tidak dapat ditulis.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6313"/>
+        <location filename="../src/texstudio.cpp" line="6325"/>
         <source>Could not start %1.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat memulai %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6342"/>
+        <location filename="../src/texstudio.cpp" line="6354"/>
         <source>Error:</source>
-        <translation type="unfinished"/>
+        <translation>Kesalahan:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6418"/>
+        <location filename="../src/texstudio.cpp" line="6430"/>
         <source>No open project or tex file to clean.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada proyek yang terbuka atau file tex untuk dibersihkan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6489"/>
+        <location filename="../src/texstudio.cpp" line="6501"/>
         <source>Text Analysis</source>
         <translation>Analisis teks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6513"/>
+        <location filename="../src/texstudio.cpp" line="6525"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6551"/>
+        <location filename="../src/texstudio.cpp" line="6563"/>
         <source>File must be saved and compiling before you can view the log</source>
-        <translation type="unfinished"/>
+        <translation>File harus disimpan dan dikompilasi sebelum anda dapat melihat log</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6732"/>
         <location filename="../src/texstudio.cpp" line="6744"/>
+        <location filename="../src/texstudio.cpp" line="6756"/>
         <source>File not found</source>
         <translation>File tidak ditemukan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6734"/>
         <location filename="../src/texstudio.cpp" line="6746"/>
+        <location filename="../src/texstudio.cpp" line="6758"/>
         <source>Could not open browser</source>
         <translation>URL tidak dapat dibuka</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7062"/>
+        <location filename="../src/texstudio.cpp" line="7071"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation type="unfinished"/>
+        <translation>%1 bukanlah sebuah direktori proyek TeX yang valid</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7349"/>
+        <location filename="../src/texstudio.cpp" line="7358"/>
         <source>You have to save the file before it can be defined as root document.</source>
-        <translation type="unfinished"/>
+        <translation>Anda harus menyimpan file sebelum file dapat didefinisikan sebagai root document.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7805"/>
+        <location filename="../src/texstudio.cpp" line="7814"/>
         <source>Label</source>
         <translation>Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7807"/>
-        <location filename="../src/texstudio.cpp" line="7829"/>
+        <location filename="../src/texstudio.cpp" line="7816"/>
+        <location filename="../src/texstudio.cpp" line="7838"/>
         <source>Beyond end of document.</source>
         <translation>Melampaui akhir dokumen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7810"/>
-        <location filename="../src/texstudio.cpp" line="7831"/>
+        <location filename="../src/texstudio.cpp" line="7819"/>
+        <location filename="../src/texstudio.cpp" line="7840"/>
         <source>In Appendix.</source>
         <translation>Di Appendix.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7849"/>
+        <location filename="../src/texstudio.cpp" line="7858"/>
         <source>File not found.</source>
         <translation>File tidak ditemukan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7864"/>
+        <location filename="../src/texstudio.cpp" line="7873"/>
         <source> (Line %1)</source>
         <translation> (Baris%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9120"/>
+        <location filename="../src/texstudio.cpp" line="9129"/>
         <source>commit comment:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9124"/>
+        <location filename="../src/texstudio.cpp" line="9133"/>
         <source>check in whole directory ?</source>
-        <translation type="unfinished"/>
+        <translation>cek pada seluruh direktori ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9126"/>
+        <location filename="../src/texstudio.cpp" line="9135"/>
         <source>Push to repository ?</source>
-        <translation type="unfinished"/>
+        <translation>Dorong ke repository?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9483"/>
+        <location filename="../src/texstudio.cpp" line="9492"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9779"/>
+        <location filename="../src/texstudio.cpp" line="9788"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuka file &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9781"/>
+        <location filename="../src/texstudio.cpp" line="9790"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9816"/>
+        <location filename="../src/texstudio.cpp" line="9825"/>
         <source>Save Profile</source>
-        <translation type="unfinished"/>
+        <translation>Simpan Profil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9816"/>
-        <location filename="../src/texstudio.cpp" line="9823"/>
+        <location filename="../src/texstudio.cpp" line="9825"/>
+        <location filename="../src/texstudio.cpp" line="9832"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
-        <translation type="unfinished"/>
+        <translation>TXS Profile</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9823"/>
+        <location filename="../src/texstudio.cpp" line="9832"/>
         <source>Load Profile</source>
-        <translation type="unfinished"/>
+        <translation>Muat profil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9876"/>
+        <location filename="../src/texstudio.cpp" line="9885"/>
         <source>Failed to read profile file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal membaca profile file %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9999"/>
+        <location filename="../src/texstudio.cpp" line="10008"/>
         <source>Problem</source>
-        <translation type="unfinished"/>
+        <translation>Permasalahan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9999"/>
+        <location filename="../src/texstudio.cpp" line="10008"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10004"/>
-        <source>Find Word Repetitions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="10013"/>
+        <source>Find Word Repetitions</source>
+        <translation>Temukan perulangan kata</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="10022"/>
         <source>&amp;Find Next</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Cari Selanjutnya</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10015"/>
+        <location filename="../src/texstudio.cpp" line="10024"/>
         <source>&amp;Find Previous</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Cari Sebelumnya</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10066"/>
+        <location filename="../src/texstudio.cpp" line="10075"/>
         <source>Reached beginning of text.</source>
-        <translation type="unfinished"/>
+        <translation>Sampai pada bagian awal teks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10066"/>
+        <location filename="../src/texstudio.cpp" line="10075"/>
         <source>Reached end of text.</source>
-        <translation type="unfinished"/>
+        <translation>Sampai pada bagian akhir teks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10328"/>
-        <location filename="../src/texstudio.cpp" line="10538"/>
-        <location filename="../src/texstudio.cpp" line="10541"/>
+        <location filename="../src/texstudio.cpp" line="10337"/>
+        <location filename="../src/texstudio.cpp" line="10547"/>
+        <location filename="../src/texstudio.cpp" line="10550"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10498"/>
+        <location filename="../src/texstudio.cpp" line="10507"/>
         <source>You do not have read permission to this file.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10538"/>
+        <location filename="../src/texstudio.cpp" line="10547"/>
         <source>Open Compare File</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10541"/>
+        <location filename="../src/texstudio.cpp" line="10550"/>
         <source>Open Base File</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10622"/>
+        <location filename="../src/texstudio.cpp" line="10631"/>
         <source>SVN Conflict!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10623"/>
+        <location filename="../src/texstudio.cpp" line="10632"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11606,14 +11626,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10720"/>
-        <location filename="../src/texstudio.cpp" line="10811"/>
-        <location filename="../src/texstudio.cpp" line="10817"/>
+        <location filename="../src/texstudio.cpp" line="10729"/>
+        <location filename="../src/texstudio.cpp" line="10820"/>
+        <location filename="../src/texstudio.cpp" line="10826"/>
         <source>TeXstudio Emergency</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10724"/>
+        <location filename="../src/texstudio.cpp" line="10733"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11622,269 +11642,281 @@ Please provide this file if you send a bug report.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10727"/>
+        <location filename="../src/texstudio.cpp" line="10736"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10728"/>
+        <location filename="../src/texstudio.cpp" line="10737"/>
         <source>Yes, try to recover</source>
-        <translation type="unfinished"/>
+        <translation>Ya, coba untuk memulihkan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10729"/>
-        <location filename="../src/texstudio.cpp" line="10734"/>
+        <location filename="../src/texstudio.cpp" line="10738"/>
+        <location filename="../src/texstudio.cpp" line="10743"/>
         <source>No, kill the program</source>
-        <translation type="unfinished"/>
+        <translation>Tidak, hentikan program</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10731"/>
+        <location filename="../src/texstudio.cpp" line="10740"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10732"/>
+        <location filename="../src/texstudio.cpp" line="10741"/>
         <source>Yes, stop the loop and try to recover</source>
-        <translation type="unfinished"/>
+        <translation>Tidak, hentikan perulangan dan coba untuk memulihkan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10733"/>
+        <location filename="../src/texstudio.cpp" line="10742"/>
         <source>Yes, continue the loop</source>
-        <translation type="unfinished"/>
+        <translation>Ya, lanjutkan perulangan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10812"/>
+        <location filename="../src/texstudio.cpp" line="10821"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10817"/>
+        <location filename="../src/texstudio.cpp" line="10826"/>
         <source>I tried to die, but nothing happened.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10849"/>
+        <location filename="../src/texstudio.cpp" line="10858"/>
         <source>System Report</source>
-        <translation type="unfinished"/>
+        <translation>Laporan sistem</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10987"/>
+        <location filename="../src/texstudio.cpp" line="10996"/>
         <source>LT Report</source>
-        <translation type="unfinished"/>
+        <translation>Laporan LT</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11013"/>
+        <location filename="../src/texstudio.cpp" line="11022"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"/>
+        <translation>proses gagal untuk memulai
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11016"/>
+        <location filename="../src/texstudio.cpp" line="11025"/>
         <source>process crashed
 </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11026"/>
+        <location filename="../src/texstudio.cpp" line="11035"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"/>
+        <translation>Pengecekan real-time diaktifkan.
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11028"/>
+        <location filename="../src/texstudio.cpp" line="11037"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"/>
+        <translation>Pengecekan real-time dinonaktifkan!!!
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11031"/>
+        <location filename="../src/texstudio.cpp" line="11040"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Pengecekan terhadap tata bahasa diaktifkan.
+
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11033"/>
+        <location filename="../src/texstudio.cpp" line="11042"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Pengecekan terhadap tata bahasa dinonaktifkan.!!!
+
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11036"/>
+        <location filename="../src/texstudio.cpp" line="11045"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Mencoba memulai secara otomatis.
+
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11038"/>
+        <location filename="../src/texstudio.cpp" line="11047"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Autostart dinonaktifkan.
+
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11043"/>
+        <location filename="../src/texstudio.cpp" line="11052"/>
         <source>LT current status: </source>
-        <translation type="unfinished"/>
+        <translation>Status LT kini: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11046"/>
+        <location filename="../src/texstudio.cpp" line="11055"/>
         <source>working</source>
-        <translation type="unfinished"/>
+        <translation>sedang bekerja</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11049"/>
+        <location filename="../src/texstudio.cpp" line="11058"/>
         <source>error</source>
         <translation>kesalahan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11053"/>
+        <location filename="../src/texstudio.cpp" line="11062"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>tidak diketahui</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11056"/>
+        <location filename="../src/texstudio.cpp" line="11065"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"/>
+        <translation>LT-URL: %1
+</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11366"/>
+        <location filename="../src/texstudio.cpp" line="11375"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"/>
+        <translation>Kesalahan saat berkomunikasi dengan LT: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11510"/>
-        <location filename="../src/texstudio.cpp" line="12310"/>
+        <location filename="../src/texstudio.cpp" line="11519"/>
+        <location filename="../src/texstudio.cpp" line="12319"/>
         <source>untitled</source>
         <translation>nirjudul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11521"/>
-        <location filename="../src/texstudio.cpp" line="12349"/>
+        <location filename="../src/texstudio.cpp" line="11530"/>
+        <location filename="../src/texstudio.cpp" line="12358"/>
         <source>TODO</source>
         <translation>AKAN DIKERJAKAN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11636"/>
-        <location filename="../src/texstudio.cpp" line="11644"/>
-        <location filename="../src/texstudio.cpp" line="11676"/>
+        <location filename="../src/texstudio.cpp" line="11645"/>
+        <location filename="../src/texstudio.cpp" line="11653"/>
+        <location filename="../src/texstudio.cpp" line="11685"/>
         <source>Document: </source>
-        <translation type="unfinished"/>
+        <translation>Dokumen:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11729"/>
+        <location filename="../src/texstudio.cpp" line="11738"/>
         <source>Close document</source>
         <translation>Tutup Dokumen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11730"/>
+        <location filename="../src/texstudio.cpp" line="11739"/>
         <source>Set as explicit root document</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11731"/>
+        <location filename="../src/texstudio.cpp" line="11740"/>
         <source>Open all related documents</source>
-        <translation type="unfinished"/>
+        <translation>Buka seluruh dokumen yang berhubungan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11732"/>
+        <location filename="../src/texstudio.cpp" line="11741"/>
         <source>Close all related documents</source>
-        <translation type="unfinished"/>
+        <translation>Tutup seluruh dokumen yang berhubungan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11734"/>
+        <location filename="../src/texstudio.cpp" line="11743"/>
         <source>Remove explicit root document role</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11736"/>
+        <location filename="../src/texstudio.cpp" line="11745"/>
         <source>Show all open documents in this tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11738"/>
+        <location filename="../src/texstudio.cpp" line="11747"/>
         <source>Show only current document in this tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11751"/>
-        <source>Copy filename</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="11752"/>
-        <source>Copy file path</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/texstudio.cpp" line="11759"/>
-        <source>Insert</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/texstudio.cpp" line="11760"/>
-        <location filename="../src/texstudio.cpp" line="11761"/>
-        <source>Insert as %1</source>
-        <translation type="unfinished"/>
+        <source>Copy filename</source>
+        <translation>Salin nama file</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11763"/>
+        <location filename="../src/texstudio.cpp" line="11761"/>
+        <source>Copy file path</source>
+        <translation>Salin alamat file</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11768"/>
+        <source>Insert</source>
+        <translation>Tambahkan</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11769"/>
+        <location filename="../src/texstudio.cpp" line="11770"/>
+        <source>Insert as %1</source>
+        <translation>Tembahkan sebagai %1</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="11772"/>
         <source>Find Usages</source>
         <translation>Temukan kegunaan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11774"/>
+        <location filename="../src/texstudio.cpp" line="11783"/>
         <source>Insert Label</source>
         <translation>Sisipkan Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11778"/>
+        <location filename="../src/texstudio.cpp" line="11787"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11782"/>
+        <location filename="../src/texstudio.cpp" line="11791"/>
         <source>Create Label</source>
-        <translation type="unfinished"/>
+        <translation>Buat label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11786"/>
+        <location filename="../src/texstudio.cpp" line="11795"/>
         <source>Cut</source>
         <translation>Potong</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11788"/>
+        <location filename="../src/texstudio.cpp" line="11797"/>
         <source>Paste Before</source>
         <translation>Tempel Sebelum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11789"/>
+        <location filename="../src/texstudio.cpp" line="11798"/>
         <source>Paste After</source>
         <translation>Tempel Setelah</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11791"/>
+        <location filename="../src/texstudio.cpp" line="11800"/>
         <source>Indent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11792"/>
+        <location filename="../src/texstudio.cpp" line="11801"/>
         <source>Unindent Section</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11745"/>
-        <location filename="../src/texstudio.cpp" line="11795"/>
+        <location filename="../src/texstudio.cpp" line="11754"/>
+        <location filename="../src/texstudio.cpp" line="11804"/>
         <source>Expand Subitems</source>
         <translation type="unfinished"/>
     </message>
@@ -11894,34 +11926,34 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
-        <location filename="../src/texstudio.cpp" line="11796"/>
+        <location filename="../src/texstudio.cpp" line="11755"/>
+        <location filename="../src/texstudio.cpp" line="11805"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished"/>
+        <translation>Ciutkan Subitems</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11808"/>
+        <location filename="../src/texstudio.cpp" line="11817"/>
         <source>Open Document</source>
         <translation>Buka Dokumen</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11809"/>
-        <location filename="../src/texstudio.cpp" line="11816"/>
+        <location filename="../src/texstudio.cpp" line="11818"/>
+        <location filename="../src/texstudio.cpp" line="11825"/>
         <source>Go to Definition</source>
         <translation>Pergi ke definisi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12333"/>
+        <location filename="../src/texstudio.cpp" line="12342"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAFI</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12341"/>
+        <location filename="../src/texstudio.cpp" line="12350"/>
         <source>MAGIC_COMMENTS</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12357"/>
+        <location filename="../src/texstudio.cpp" line="12366"/>
         <source>LABELS</source>
         <translation>LABEL</translation>
     </message>
@@ -11938,12 +11970,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/utilsSystem.cpp" line="706"/>
         <source>Show in Explorer</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan pada Explorer</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="708"/>
         <source>Show in Finder</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan pada Finder</translation>
     </message>
     <message>
         <location filename="../src/utilsSystem.cpp" line="710"/>
@@ -12009,32 +12041,32 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="../src/textanalysis.ui" line="126"/>
         <location filename="../src/textanalysis.ui" line="140"/>
         <source>?</source>
-        <translation type="unfinished"/>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="77"/>
         <source>Text lines</source>
-        <translation type="unfinished"/>
+        <translation>Baris teks</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="84"/>
         <source>Total shown phrases</source>
-        <translation type="unfinished"/>
+        <translation>Total frasa ditunjukkan</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="91"/>
         <source>Comment lines</source>
-        <translation type="unfinished"/>
+        <translation>Baris komentar</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="119"/>
         <source>Different phrases</source>
-        <translation type="unfinished"/>
+        <translation>Frasa berbeda</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="133"/>
         <source>Characters in phrases</source>
-        <translation type="unfinished"/>
+        <translation>Karakter pada frasa</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="166"/>
@@ -12049,7 +12081,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="175"/>
         <source>Analyse normal text</source>
-        <translation type="unfinished"/>
+        <translation>Analisis teks normal</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="185"/>
@@ -12059,17 +12091,17 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="188"/>
         <source>Analyse comments</source>
-        <translation type="unfinished"/>
+        <translation>Analisis komentar</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="195"/>
         <source>If this is enabled, \commands are counted.</source>
-        <translation type="unfinished"/>
+        <translation>Jika ini diaktifkan, \commands dihitung.</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="198"/>
         <source>Analyse commands</source>
-        <translation type="unfinished"/>
+        <translation>Analisis perintah</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="211"/>
@@ -12085,27 +12117,27 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="224"/>
         <source>Show all phrases</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan seluruh frasa</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="229"/>
         <source>Minimum phrase length:</source>
-        <translation type="unfinished"/>
+        <translation>Panjang frasa minimum:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="234"/>
         <source>Minimum word length (one):</source>
-        <translation type="unfinished"/>
+        <translation>Panjang minimum satu kata:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="239"/>
         <source>Minimum word length (all):</source>
-        <translation type="unfinished"/>
+        <translation>Panjang minimum (seluruh) kata:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="244"/>
         <source>Fully ignore shorter words:</source>
-        <translation type="unfinished"/>
+        <translation>Abaikan seluruhnya kata-kata yang lebih singkat:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="264"/>
@@ -12138,7 +12170,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <location filename="../src/textanalysis.ui" line="332"/>
         <source>Source:</source>
-        <translation type="unfinished"/>
+        <translation>Sumber:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="351"/>
@@ -12149,7 +12181,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="355"/>
         <source>.;:?!</source>
-        <translation type="unfinished"/>
+        <translation>.;:?!</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="362"/>
@@ -12165,32 +12197,32 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/textanalysis.ui" line="379"/>
         <source>Maximum words per phrase:</source>
-        <translation type="unfinished"/>
+        <translation>Maksimal kata per frasa:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="384"/>
         <source>Min&amp;max words per phrase:</source>
-        <translation type="unfinished"/>
+        <translation>Kata Min&amp;max per frasa:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="399"/>
         <source>None (.*)</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada (.*)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="404"/>
         <source>No Numbers (.*[^0-9].*)</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada angka (.*[^0-9].*)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="409"/>
         <source>No Digits ([^0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada digit ([^0-9]*)</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="417"/>
         <source>Filter</source>
-        <translation type="unfinished"/>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="430"/>
@@ -12244,7 +12276,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="143"/>
         <source>Lookup</source>
-        <translation type="unfinished"/>
+        <translation>Cari</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="144"/>
@@ -12254,7 +12286,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="145"/>
         <source>Contains ...</source>
-        <translation type="unfinished"/>
+        <translation>Mengandung ...</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="146"/>
@@ -12274,29 +12306,29 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="188"/>
         <source>Thesaurus</source>
-        <translation type="unfinished"/>
+        <translation>Thesaurus</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="247"/>
         <source>&lt;all&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;all&gt;</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="367"/>
         <location filename="../src/thesaurusdialog.cpp" line="403"/>
         <source>New Word:</source>
-        <translation type="unfinished"/>
+        <translation>Kata baru:</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="368"/>
         <location filename="../src/thesaurusdialog.cpp" line="404"/>
         <source>Category:</source>
-        <translation type="unfinished"/>
+        <translation>Kategori</translation>
     </message>
     <message>
         <location filename="../src/thesaurusdialog.cpp" line="387"/>
         <source>Do you want to add &quot;%1&quot; as synonym for &quot;%2&quot; or &quot;%3&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah anda ingin menambahkan &quot;%1&quot; sebagai sinonim untuk &quot;%2&quot; atau &quot;%3&quot;?</translation>
     </message>
 </context>
 <context>
@@ -12328,83 +12360,84 @@ included document in %1</source>
         <location filename="../src/updatechecker.cpp" line="69"/>
         <source>Update check failed with error:
 </source>
-        <translation type="unfinished"/>
+        <translation>Cek perbaharuan gagal dengan kesalahan:
+</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="159"/>
         <source>Update check failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Cek perbaharuan  gagal (format file tidak valid).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="165"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Cek perbaharuan pada kandidat rilis gagal (format file terbaru tidak valid).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="168"/>
         <source>A new release candidate of TeXstudio is available.</source>
-        <translation type="unfinished"/>
+        <translation>Kandidat rilis terbaru dari TeXstudio tersedia</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="169"/>
         <location filename="../src/updatechecker.cpp" line="187"/>
         <location filename="../src/updatechecker.cpp" line="205"/>
         <source>Current version:</source>
-        <translation type="unfinished"/>
+        <translation>Versi kini:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="170"/>
         <location filename="../src/updatechecker.cpp" line="188"/>
         <location filename="../src/updatechecker.cpp" line="206"/>
         <source>Latest stable version:</source>
-        <translation type="unfinished"/>
+        <translation>Versi stabil terakhir</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="171"/>
         <source>Release candidate:</source>
-        <translation type="unfinished"/>
+        <translation>Kandidat rilis:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="172"/>
         <location filename="../src/updatechecker.cpp" line="190"/>
         <location filename="../src/updatechecker.cpp" line="207"/>
         <source>You can download it from the %1 TeXstudio website</source>
-        <translation type="unfinished"/>
+        <translation>Anda dapat mengunduhnya dari %1 website TeXstudio</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="201"/>
         <source>Update check for stable version failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Cek perbaharuan pada versi stabil gagal (format file terbaru tidak valid).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="214"/>
         <source>Your TeXstudio version %1 is up-to-date.</source>
-        <translation type="unfinished"/>
+        <translation>Versi TeXstudio anda %1 sudah termutakhir.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="183"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Cek perbaharuan pada versi development gagal (format file terbaru tidak valid).</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="186"/>
         <source>A new development version of TeXstudio is available.</source>
-        <translation type="unfinished"/>
+        <translation>Sebuah versi development dari TeXstudio tersedia.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="189"/>
         <source>Latest development version:</source>
-        <translation type="unfinished"/>
+        <translation>Versi pengembangan terakhir:</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="204"/>
         <source>A new stable version of TeXstudio is available.</source>
-        <translation type="unfinished"/>
+        <translation>Sebuah versi stabil dari TeXstudio tersedia.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="219"/>
         <source>Failure to find current TeXstudio versions.</source>
-        <translation type="unfinished"/>
+        <translation>Gagal meneukan versi TeXstudio kini.</translation>
     </message>
     <message>
         <location filename="../src/updatechecker.cpp" line="231"/>
@@ -12422,32 +12455,32 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="98"/>
         <source>Browse offered macros on txs site.</source>
-        <translation type="unfinished"/>
+        <translation>Telusuri makro yang ditawarkan pada situs txs.</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="101"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Telusuri</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="108"/>
         <source>Export macro to file</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor makro ke file</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="111"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="118"/>
         <source>Import macro from file</source>
-        <translation type="unfinished"/>
+        <translation>Impor makro dari file</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="121"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Impor</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="138"/>
@@ -12457,7 +12490,7 @@ included document in %1</source>
     <message>
         <location filename="../src/usermenudialog.ui" line="149"/>
         <source>Folder</source>
-        <translation type="unfinished"/>
+        <translation>Folder</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="166"/>
@@ -12484,13 +12517,13 @@ included document in %1</source>
         <location filename="../src/usermenudialog.ui" line="75"/>
         <location filename="../src/usermenudialog.ui" line="259"/>
         <source>Abbreviation</source>
-        <translation type="unfinished"/>
+        <translation>Singkatan</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="70"/>
         <location filename="../src/usermenudialog.ui" line="271"/>
         <source>Trigger</source>
-        <translation type="unfinished"/>
+        <translation>Pemicu</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="348"/>
@@ -12516,7 +12549,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="390"/>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="397"/>
@@ -12526,12 +12559,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="410"/>
         <source>Script</source>
-        <translation type="unfinished"/>
+        <translation>Skrip</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="449"/>
         <source>Run Script</source>
-        <translation type="unfinished"/>
+        <translation>Jalankan skrip</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="469"/>
@@ -12552,73 +12585,73 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="../src/usermenudialog.ui" line="65"/>
         <location filename="../src/usermenudialog.ui" line="492"/>
         <source>Shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Pintasan</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="508"/>
         <source>Shift+F1</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F1</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="513"/>
         <source>Shift+F2</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F2</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="518"/>
         <source>Shift+F4</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F4</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="523"/>
         <location filename="../src/usermenudialog.ui" line="528"/>
         <source>Shift+F5</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F5</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="533"/>
         <source>Shift+F6</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F6</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="538"/>
         <source>Shift+F7</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F7</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="543"/>
         <source>Shift+F8</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F8</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="548"/>
         <source>Shift+F9</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F9</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="553"/>
         <source>Shift+F10</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F10</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="558"/>
         <source>Shift+F11</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F11</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="563"/>
         <source>Shift+F12</source>
-        <translation type="unfinished"/>
+        <translation>Shift+F12</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="342"/>
         <source>Folder is not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Folder tidak kosong</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="347"/>
         <source>Do you really want to delete the current macro?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah anda benar-benar ingin menghapus makro ini ?</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="426"/>
@@ -12629,12 +12662,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.cpp" line="426"/>
         <source>Import macros</source>
-        <translation type="unfinished"/>
+        <translation>Impor makro</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="438"/>
         <source>Export macro</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor makro</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="567"/>
@@ -12647,7 +12680,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/userquickdialog.ui" line="14"/>
         <source>Quick Build Command</source>
-        <translation type="unfinished"/>
+        <translation>Perintah Quick Build</translation>
     </message>
     <message>
         <location filename="../src/userquickdialog.ui" line="42"/>
@@ -12711,12 +12744,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="114"/>
         <source>Content name :</source>
-        <translation type="unfinished"/>
+        <translation>Nama konten :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="121"/>
         <source>Start Index :</source>
-        <translation type="unfinished"/>
+        <translation>Mulai indeks :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="128"/>
@@ -12741,7 +12774,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="174"/>
         <source>Number of compilations :</source>
-        <translation type="unfinished"/>
+        <translation>Jumlah kompilasi :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="186"/>
@@ -12776,22 +12809,22 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="259"/>
         <source>Alignment :</source>
-        <translation type="unfinished"/>
+        <translation>Perataan :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="266"/>
         <source>Create an index page ?</source>
-        <translation type="unfinished"/>
+        <translation>Buat sebuah halaman indeks?</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="273"/>
         <source>Text displayed at the bottom of each html files </source>
-        <translation type="unfinished"/>
+        <translation>Teks ditampilkan pada bagian bawah setiap file html</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="280"/>
         <source>Alignment in the html files</source>
-        <translation type="unfinished"/>
+        <translation>Perataan pada file html</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="287"/>
@@ -12801,7 +12834,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="316"/>
         <source>Browser command. Let&apos;s empty to not run the browser at the end of the conversion</source>
-        <translation type="unfinished"/>
+        <translation>Perintah peramban. Ayo kosongkan agar peramban tidak berjalan pada akhir percakapan.</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="336"/>
@@ -12811,7 +12844,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="350"/>
         <source>Input File :</source>
-        <translation type="unfinished"/>
+        <translation>File masukan :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="371"/>
@@ -12826,17 +12859,17 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.ui" line="390"/>
         <source>Images options</source>
-        <translation type="unfinished"/>
+        <translation>Opsi gambar</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="411"/>
         <source>Images Width :</source>
-        <translation type="unfinished"/>
+        <translation>Opsi lebar :</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.ui" line="418"/>
         <source>Width of the largest image</source>
-        <translation type="unfinished"/>
+        <translation>Lebar dari gambar terbesar</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="30"/>
@@ -12856,33 +12889,34 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/webpublishdialog.cpp" line="33"/>
         <source>Icons</source>
-        <translation type="unfinished"/>
+        <translation>Ikon</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="34"/>
         <source>Page numbers</source>
-        <translation type="unfinished"/>
+        <translation>Nomor halaman</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="35"/>
         <source>Yes</source>
-        <translation type="unfinished"/>
+        <translation>Ya</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="36"/>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>Tidak</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="129"/>
         <source>Conversion done.
 The html files are located in the %1 directory.</source>
-        <translation type="unfinished"/>
+        <translation>Konversi selesai.
+Html file berlokasi pada direktori %1 .</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="134"/>
         <source>Running browser .</source>
-        <translation type="unfinished"/>
+        <translation>Peramban berjalan</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="141"/>
@@ -12895,22 +12929,22 @@ The html files are located in the %1 directory.</source>
         <location filename="../src/webpublishdialog.cpp" line="141"/>
         <location filename="../src/webpublishdialog.cpp" line="173"/>
         <source>could not start the command</source>
-        <translation type="unfinished"/>
+        <translation>tidak dapat memulai perintah</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="146"/>
         <source>Input file not found.</source>
-        <translation type="unfinished"/>
+        <translation>File masukan tidak ditemukan</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="165"/>
         <source>  Running this command: </source>
-        <translation type="unfinished"/>
+        <translation>Menjalankan perintah:</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="187"/>
         <source>a process has failed</source>
-        <translation type="unfinished"/>
+        <translation>sebuah proses telah gagal</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="489"/>
@@ -12918,7 +12952,7 @@ The html files are located in the %1 directory.</source>
         <location filename="../src/webpublishdialog.cpp" line="692"/>
         <location filename="../src/webpublishdialog.cpp" line="757"/>
         <source>Can&apos;t open</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuka</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="499"/>
@@ -12935,17 +12969,17 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="518"/>
         <source>Compiling input file. Please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Mengompilasi file masukan. Silahkan tunggu...</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="637"/>
         <source>Scanning files. Please wait...</source>
-        <translation type="unfinished"/>
+        <translation>Memindai file. Silahkan tunggu...</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="681"/>
         <source>Writing page</source>
-        <translation type="unfinished"/>
+        <translation>Menulis halaman</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="681"/>
@@ -12955,7 +12989,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="754"/>
         <source>Writing index page</source>
-        <translation type="unfinished"/>
+        <translation>Menulis halaman indeks</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="820"/>
@@ -13021,17 +13055,20 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"/>
+        <translation>Skrip ini meminta untuk memasuki mode privileged dan membaca nilai berikut:
+%1
+
+Apakah anda mempercayai skrip ini?</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="738"/>
         <source>Yes, allow this reading</source>
-        <translation type="unfinished"/>
+        <translation>Ya, izinkan bacaan ini</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="739"/>
         <source>Yes, grant permanent read access to everything</source>
-        <translation type="unfinished"/>
+        <translation>Ya, berikan akses membaca permanen atas selurunya</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="298"/>
@@ -13044,7 +13081,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/templateselector.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="66"/>
@@ -13059,12 +13096,12 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/templateselector.ui" line="205"/>
         <source>Create in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Buat di Editor</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="238"/>
         <source>Target folder not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Folder target tidak kosong.</translation>
     </message>
 </context>
 </TS>
