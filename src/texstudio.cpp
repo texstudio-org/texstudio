@@ -3089,7 +3089,7 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 	}
     // save hidden files (in case that they are changed via replace in all docs
     foreach (LatexDocument *d, documents.hiddenDocuments){
-        if(d->getEditorView()->editor->isContentModified())
+        if(d->getEditorView() && d->getEditorView()->editor->isContentModified())
             d->getEditorView()->editor->save();
     }
 
@@ -11091,12 +11091,14 @@ void Texstudio::addDocToLoad(QString filename)
 void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp)
 {
     for(const QString &fn:filenames){
-        auto *doc=new LatexDocument();
-        doc->load(fn,QDocument::defaultCodec());
-        doc->setLtxCommands(lp);
-        int count=doc->lineCount();
-        int start=0;
-        doc->lexLines(start,count);
+        LatexDocument *doc = documents.findDocumentFromName(fn);
+        if(doc==nullptr){
+            doc=new LatexDocument();
+            doc->load(fn,QDocument::defaultCodec());
+            documents.addDocument(doc,true);
+            doc->setLtxCommands(lp);
+            doc->patchStructure(0,-1);
+        }
     }
 }
 
