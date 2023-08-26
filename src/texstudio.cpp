@@ -3663,11 +3663,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
     QList<LatexDocument *> completedDocs;
     foreach (LatexDocument *doc, documents.getDocuments()) {
         doc->recheckRefsLabels();
-        /*if (completedDocs.contains(doc))
-            continue;
-
-        doc->updateLtxCommands();
-        completedDocs << doc;*/
     }
     recheckLabels = true;
     //qDebug()<<"labels:"<<tm.elapsed();
@@ -11109,14 +11104,6 @@ void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> 
             doc->lp->append(doc->ltxCommands);
         }
     }
-    // recheck syntax for all none hidden
-    QList<LatexEditorView *> editorList = editors->editors();
-    foreach (LatexEditorView *edView, editorList) {
-        LatexDocument *elem=edView->getDocument();
-        elem->setLtxCommands(elem->lp);
-        elem->reCheckSyntax();
-    }
-
 }
 
 /*!
