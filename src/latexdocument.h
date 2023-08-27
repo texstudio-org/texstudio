@@ -264,7 +264,7 @@ private:
 	void updateContext(QDocumentLineHandle *oldLine, QDocumentLineHandle *newLine, StructureEntry::Context context);
 	void setContextForLines(StructureEntry *se, int startLine, int endLine, StructureEntry::Context context, bool state);
 
-	int findStructureParentPos(const QList<StructureEntry *> &children, QList<StructureEntry *> &removedElements, int linenr, int count);
+    int findStructureParentPos(StructureEntry *base, int linenr, int count);
 
     StructureEntry* splitStructure(StructureEntry *base,int lineNr);
     void appendStructure(StructureEntry *base,StructureEntry *addition);

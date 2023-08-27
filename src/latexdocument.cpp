@@ -1121,20 +1121,15 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	// QPersistentModelIndex'es that point to these elements in the structure tree view. That is why we remove all the structure elements
 	// within the updated area and then just add anew any structure elements that we find in the updated area.
 
-	QList<StructureEntry *> removedMagicComments;
-	int posMagicComment = findStructureParentPos(magicCommentList->children, removedMagicComments, lineNrStart, newCount);
+    int posMagicComment = findStructureParentPos(magicCommentList, lineNrStart, newCount);
 
-	QList<StructureEntry *> removedLabels;
-    changedCommands.posLabel = findStructureParentPos(labelList->children, removedLabels, lineNrStart, newCount);
+    changedCommands.posLabel = findStructureParentPos(labelList, lineNrStart, newCount);
 
-	QList<StructureEntry *> removedTodo;
-    changedCommands.posTodo = findStructureParentPos(todoList->children, removedTodo, lineNrStart, newCount);
+    changedCommands.posTodo = findStructureParentPos(todoList, lineNrStart, newCount);
 
-	QList<StructureEntry *> removedBlock;
-    changedCommands.posBlock = findStructureParentPos(blockList->children, removedBlock, lineNrStart, newCount);
+    changedCommands.posBlock = findStructureParentPos(blockList, lineNrStart, newCount);
 
-	QList<StructureEntry *> removedBibTeX;
-    changedCommands.posBibTeX = findStructureParentPos(bibTeXList->children, removedBibTeX, lineNrStart, newCount);
+    changedCommands.posBibTeX = findStructureParentPos(bibTeXList, lineNrStart, newCount);
 
     bool isLatexLike = languageIsLatexLike();
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
@@ -1157,12 +1152,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		foreach (UserCommandPair cmd, commands) {
 			QString elem = cmd.snippet.word;
 			if(elem.length()==1){
-			    for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
-				if(i.left(1)==elem){
-				    ltxCommands.possibleCommands["%columntypes"].remove(i);
-				    break;
-				}
-			    }
+                for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
+                    if(i.left(1)==elem){
+                        ltxCommands.possibleCommands["%columntypes"].remove(i);
+                        break;
+                    }
+                }
 			}else{
 			    int i = elem.indexOf("{");
 			    if (i >= 0) elem = elem.left(i);
@@ -1256,27 +1251,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			parent->updateMasterSlaveRelations(this);
 		}
 	}//for each line handle
-	StructureEntry *se;
-	foreach (se, removedTodo) {
-        removeElement(se);
-		delete se;
-	}
-	foreach (se, removedBibTeX) {
-        removeElement(se);
-		delete se;
-	}
-	foreach (se, removedBlock) {
-        removeElement(se);
-		delete se;
-	}
-	foreach (se, removedLabels) {
-        removeElement(se);
-		delete se;
-	}
-	foreach (se, removedMagicComments) {
-        removeElement(se);
-		delete se;
-	}
+
 	StructureEntry *newSection = nullptr;
 
     // always generate complete structure, also for hidden, as needed for globalTOC
@@ -2353,9 +2328,9 @@ void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
 	emit docToHide(edView);
 }
 
-int LatexDocument::findStructureParentPos(const QList<StructureEntry *> &children, QList<StructureEntry *> &removedElements, int linenr, int count)
+int LatexDocument::findStructureParentPos(StructureEntry *base, int linenr, int count)
 {
-	QListIterator<StructureEntry *> iter(children);
+    QMutableListIterator<StructureEntry *> iter(base->children);
 	int parentPos = 0;
 	while (iter.hasNext()) {
 		StructureEntry *se = iter.next();
@@ -2365,9 +2340,11 @@ int LatexDocument::findStructureParentPos(const QList<StructureEntry *> &childre
 			break;
 		}
 		if (realline >= linenr) {
-			removedElements.append(se);
-		}
-		++parentPos;
+            iter.remove();
+            delete se;
+        }else{
+            ++parentPos;
+        }
 	}
     return parentPos;
 }
