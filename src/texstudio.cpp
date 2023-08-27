@@ -2363,8 +2363,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         addDocsToLoad(doc->includedFiles(),doc->lp);
     }
 
-    }
-
 	updateStructure(true, doc, true);
 
 	bookmarks->restoreBookmarks(edit);
