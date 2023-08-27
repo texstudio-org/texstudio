@@ -334,14 +334,13 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
 
         QList<StructureEntry *> categories = QList<StructureEntry *>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
         foreach (StructureEntry *sec, categories) {
-            int l = 0;
             QMutableListIterator<StructureEntry *> iter(sec->children);
             while (iter.hasNext()) {
                 StructureEntry *se = iter.next();
                 if (dlh == se->getLineHandle()) {
                     iter.remove();
                     delete se;
-                } else l++;
+                }
             }
         }
         if(i+1<count){
@@ -483,6 +482,570 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
     }
     return stoppedAtLine;
 }
+/*!
+ * \brief handle special comments (TODO, MAGIC comments)
+ * comment detection moved to lexer as formats are not yet generated here (e.g. on first load)
+ * \param dlh
+ * \return
+ */
+void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &posTodoComment,int &posMagicComment){
+    //
+    QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
+    int col = commentStart.first;
+    if (col >= 0) {
+        // all
+        //// TODO marker
+        QString curLine=dlh->text();
+        QString text = curLine.mid(col);
+        QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
+        static QRegularExpression rx(regularExpression);
+        if (rx.match(text).hasMatch()) {  // other todos like \todo are handled by the tokenizer below.
+            StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
+            newTodo->title = text.mid(1).trimmed();
+            newTodo->setLine(dlh, curLineNr);
+            insertElement(todoList, posTodoComment++, newTodo);
+            // save comment type into cookie
+            commentStart.second=Token::todoComment;
+            dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
+        }
+        //// parameter comment
+        if (curLine.startsWith("%&")) {
+            int start = curLine.indexOf("-job-name=");
+            if (start >= 0) {
+                int end = start + 10; // += "-job-name=".length;
+                if (end < curLine.length() && curLine[end] == '"') {
+                    // quoted filename
+                    end = curLine.indexOf('"', end + 1);
+                    if (end >= 0) {
+                        end += 1;  // include closing quotation mark
+                        addMagicComment(curLine.mid(start, end - start), curLineNr, posMagicComment++);
+                    }
+                } else {
+                    end = curLine.indexOf(' ', end + 1);
+                    if (end >= 0) {
+                        addMagicComment(curLine.mid(start, end - start), curLineNr, posMagicComment++);
+                    } else {
+                        addMagicComment(curLine.mid(start), curLineNr, posMagicComment++);
+                    }
+                }
+            }
+            commentStart.second=Token::magicComment;
+            dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
+        }
+        //// magic comment
+        static const QRegularExpression rxMagicTexComment("^%\\ ?!T[eE]X");
+        static const QRegularExpression rxMagicBibComment("^%\\ ?!BIB");
+        QRegularExpressionMatch matchMagicTexComment=rxMagicTexComment.match(text);
+        QRegularExpressionMatch matchMagicBibComment=rxMagicBibComment.match(text);
+        if (matchMagicTexComment.hasMatch()) {
+            addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), curLineNr, posMagicComment++);
+            commentStart.second=Token::magicComment;
+            dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
+        } else if (matchMagicBibComment.hasMatch()) {
+            // workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
+            text = text.mid(matchMagicBibComment.capturedLength()).trimmed();
+            QString name;
+            QString val;
+            splitMagicComment(text, name, val);
+            if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex" || val == "bibtex8")) {
+                addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), curLineNr, posMagicComment++);
+                commentStart.second=Token::magicComment;
+                dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
+            }
+        }
+    }
+}
+
+
+
+void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int currentLineNr,HandledData &data,bool recheckLabels,QList<StructureEntry *> &flatStructure){
+    TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+
+    const QString curLine=dlh->text();
+
+    for (int j = 0; j < tl.length(); j++) {
+        Token tk = tl.at(j);
+        // break at comment start
+        if (tk.type == Token::comment)
+            break;
+        // work special args
+        ////Ref
+        //for reference counting (can be placed in command options as well ...
+        if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
+            ReferencePair elem;
+            elem.name = tk.getText();
+            elem.start = tk.start;
+            mRefItem.insert(dlh, elem);
+        }
+
+        //// label ////
+        if (tk.type == Token::label && tk.length > 0) {
+            ReferencePair elem;
+            elem.name = tk.getText();
+            elem.start = tk.start;
+            mLabelItem.insert(dlh, elem);
+            data.completerNeedsUpdate = true;
+            StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
+            newLabel->title = elem.name;
+            newLabel->setLine(dlh, currentLineNr);
+            insertElement(labelList, data.posLabel++, newLabel);
+        }
+        //// newtheorem ////
+        if (tk.type == Token::newTheorem && tk.length > 0) {
+            data.completerNeedsUpdate = true;
+            QStringList lst;
+            QString firstArg = tk.getText();
+            lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
+            foreach (const QString &elem, lst) {
+                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, elem));
+                ltxCommands.possibleCommands["user"].insert(elem);
+                if (!data.removedUserCommands.removeAll(elem)) {
+                    data.addedUserCommands << elem;
+                }
+            }
+            continue;
+        }
+        /// bibitem ///
+        if (tk.type == Token::newBibItem && tk.length > 0) {
+            ReferencePair elem;
+            elem.name = tk.getText();
+            elem.start = tk.start;
+            mBibItem.insert(line(currentLineNr).handle(), elem);
+            data.bibItemsChanged = true;
+            continue;
+        }
+        /// todo ///
+        if (tk.subtype == Token::todo && (tk.type == Token::braces || tk.type == Token::openBrace)) {
+            StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
+            newTodo->title = tk.getInnerText();
+            newTodo->setLine(line(currentLineNr).handle(), currentLineNr);
+            insertElement(todoList, data.posTodo++, newTodo);
+        }
+        // specialArg definition
+        if(tk.type == Token::defSpecialArg){
+            QString cmd=Parsing::getCommandFromToken(tk);
+            data.completerNeedsUpdate = true;
+            QString definition = ltxCommands.specialDefCommands.value(cmd);
+            QString elem = tk.getText();
+            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(QString(), definition + "%" + elem));
+            if (!data.removedUserCommands.removeAll(elem)) {
+                data.addedUserCommands << elem;
+            }
+        }
+
+        // work on general commands
+        if (tk.type != Token::command && tk.type != Token::commandUnknown)
+            continue; // not a command
+        Token tkCmd;
+        TokenList args;
+        QString cmd;
+        int cmdStart = Parsing::findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
+        if (cmdStart < 0) break;
+        cmdStart=tkCmd.start; // from here, cmdStart is line column position of command
+        cmd = curLine.mid(tkCmd.start, tkCmd.length);
+
+        QString firstArg = Parsing::getArg(args, dlh, 0, ArgumentList::Mandatory,true,currentLineNr);
+
+
+        // special treatment \def
+        if (cmd == "\\def" || cmd == "\\gdef" || cmd == "\\edef" || cmd == "\\xdef") {
+            QString remainder = curLine.mid(cmdStart + cmd.length());
+            data.completerNeedsUpdate = true;
+            QRegExp rx("(\\\\\\w+)\\s*([^{%]*)");
+            if (rx.indexIn(remainder) > -1) {
+                QString name = rx.cap(1);
+                QString nameWithoutArgs = name;
+                QString optionStr = rx.cap(2);
+                //qDebug()<< name << ":"<< optionStr;
+                ltxCommands.possibleCommands["user"].insert(name);
+                if (!data.removedUserCommands.removeAll(name)) data.addedUserCommands << name;
+                optionStr = optionStr.trimmed();
+                if (optionStr.length()) {
+                    int lastArg = optionStr[optionStr.length() - 1].toLatin1() - '0';
+                    if (optionStr.length() == lastArg * 2) { //#1#2#3...
+                        for (int j = 1; j <= lastArg; j++)
+                            if (j == 1) name.append("{%<arg1%|%>}");
+                            else name.append(QString("{%<arg%1%>}").arg(j));
+                    } else {
+                        QStringList args = optionStr.split('#'); //#1;#2#3:#4 => ["",1;,2,3:,4]
+                        bool hadSeparator = true;
+                        for (int i = 1; i < args.length(); i++) {
+                            if (args[i].length() == 0) continue; //invalid
+                            bool hasSeparator = (args[i].length() != 1); //only single digit variables allowed. last arg also needs a sep
+                            if (!hadSeparator || !hasSeparator)
+                                args[i] = QString("{%<arg") + args[i][0] + QString("%>}") + args[i].mid(1);
+                            else
+                                args[i] = QString("%<arg") + args[i][0] + QString("%>") + args[i].mid(1); //no need to use {} for arguments that are separated anyways
+                            hadSeparator  = hasSeparator;
+                        }
+                        name.append(args.join(""));
+                    }
+                }
+                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(nameWithoutArgs, name));
+                // remove obsolete Overlays (maybe this can be refined
+                //updateSyntaxCheck=true;
+            }
+            continue;
+        }
+        if (cmd == "\\newcolumntype") {
+            if(firstArg.length()==1){ // only single letter definitions are allowed/handled
+                QString secondArg = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory);
+                ltxCommands.possibleCommands["%columntypes"].insert(firstArg+secondArg);
+                if (!data.removedUserCommands.removeAll(firstArg)) {
+                    data.addedUserCommands << firstArg;
+                }
+                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(QString(), firstArg));
+                continue;
+            }
+        }
+
+        //// newenvironment ////
+        static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
+        if (envTokens.contains(cmd)) {
+            data.completerNeedsUpdate = true;
+            TokenList argsButFirst = args;
+            if(argsButFirst.isEmpty())
+                continue; // no arguments present
+            argsButFirst.removeFirst();
+            int optionCount = Parsing::getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
+            if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
+            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, "\\end{" + firstArg + "}"));
+            QStringList lst;
+            lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
+            foreach (const QString &elem, lst) {
+                ltxCommands.possibleCommands["user"].insert(elem);
+                if (!data.removedUserCommands.removeAll(elem)) {
+                    data.addedUserCommands << elem;
+                }
+            }
+            bool hasDefaultArg = !Parsing::getArg(argsButFirst, dlh, 1, ArgumentList::Optional).isNull();
+            int mandatoryOptionCount = hasDefaultArg ? optionCount - 1 : optionCount;
+            QString mandatoryArgString;
+            for (int j = 0; j < mandatoryOptionCount; j++) {
+                if (j == 0) mandatoryArgString.append("{%<1%>}");
+                else mandatoryArgString.append(QString("{%<%1%>}").arg(j + 1));
+            }
+            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + mandatoryArgString));
+            if (hasDefaultArg) {
+                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString));
+            }
+            continue;
+        }
+        //// newcounter ////
+        if (cmd == "\\newcounter") {
+            data.completerNeedsUpdate = true;
+            QStringList lst;
+            lst << "\\the" + firstArg ;
+            foreach (const QString &elem, lst) {
+                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(elem, elem));
+                ltxCommands.possibleCommands["user"].insert(elem);
+                if (!data.removedUserCommands.removeAll(elem)) {
+                    data.addedUserCommands << elem;
+                }
+            }
+            continue;
+        }
+        //// newif ////
+        if (cmd == "\\newif") {
+            // \newif\ifmycondition also defines \myconditiontrue and \myconditionfalse
+            data.completerNeedsUpdate = true;
+            QStringList lst;
+            lst << firstArg
+                << "\\" + firstArg.mid(3) + "false"
+                << "\\" + firstArg.mid(3) + "true";
+            foreach (const QString &elem, lst) {
+                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(elem, elem));
+                ltxCommands.possibleCommands["user"].insert(elem);
+                if (!data.removedUserCommands.removeAll(elem)) {
+                    data.addedUserCommands << elem;
+                }
+            }
+            continue;
+        }
+        //// newcommand ////
+        if (lp->possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
+            data.completerNeedsUpdate = true;
+            //Tokens cmdName;
+            QString cmdName = Parsing::getArg(args, Token::def);
+            cmdName.replace("@","@@"); // special treatment for commandnames containing @
+            bool isDefWidth = true;
+            if (cmdName.isEmpty())
+                cmdName = Parsing::getArg(args, Token::defWidth);
+            else
+                isDefWidth = false;
+
+            ltxCommands.possibleCommands["user"].insert(cmdName);
+
+            if (!data.removedUserCommands.removeAll(cmdName)) {
+                data.addedUserCommands << cmdName;
+            }
+            QString cmdNameWithoutArgs = cmdName;
+            QString cmdNameWithoutOptional = cmdName;
+            bool def=false;
+
+            QString xarg=Parsing::getArg(args, Token::defXparseArg);
+            if(!xarg.isEmpty()){
+                // xparse style defintion
+                QString arguments=interpretXArgs(xarg);
+                cmdName=cmdName+arguments;
+            }else{
+                int optionCount = Parsing::getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
+                if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
+                def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
+
+
+                for (int j = 0; j < optionCount; j++) {
+                    if (j == 0) {
+                        if (!def){
+                            cmdName.append("{%<arg1%|%>}");
+                            cmdNameWithoutOptional.append("{%<arg1%|%>}");
+                        } else
+                            cmdName.append("[%<opt. arg1%|%>]");
+                    } else {
+                        cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
+                        cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
+                    }
+                }
+            }
+            CodeSnippet cs(cmdName);
+            cs.index = qHash(cmdName);
+            cs.snippetLength = cmdName.length();
+            if (isDefWidth)
+                cs.type = CodeSnippet::length;
+            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+            if(def){ // optional argument, add version without that argument as well
+                CodeSnippet cs(cmdNameWithoutOptional);
+                cs.index = qHash(cmdNameWithoutOptional);
+                cs.snippetLength = cmdNameWithoutOptional.length();
+                if (isDefWidth)
+                    cs.type = CodeSnippet::length;
+                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+            }
+
+            // remove obsolete Overlays (maybe this can be refined
+            //updateSyntaxCheck=true;
+            continue;
+        }
+
+        ///usepackage
+        if (lp->possibleCommands["%usepackage"].contains(cmd)) {
+            if(firstArg.contains("\\")){
+                // argument contains backslash
+                // hence, invalid and to be ignored
+                continue;
+            }
+            data.completerNeedsUpdate = true;
+            QStringList packagesHelper = firstArg.split(",");
+
+            if (cmd.endsWith("theme")) { // special treatment for \usetheme
+                QString preamble = cmd;
+                preamble.remove(0, 4);
+                preamble.prepend("beamer");
+                packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
+            }
+            if (cmd=="\\usetikzlibrary") { // special treatment for \usetikzlibrary
+                QString preamble = "tikzlibrary";
+                packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
+            }
+            if (cmd=="\\usepgfplotslibrary") { // special treatment for \usepgfplotslibrary
+                QString preamble = "pgfplotslibrary";
+                packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
+            }
+            if (cmd=="\\tcbuselibrary") { // special treatment for \tcbuselibrary
+                QString preamble = "tcolorboxlibrary";
+                packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
+            }
+            if (cmd=="\\UseTblrLibrary") { // special treatment for \UseTblrLibrary
+                QString preamble = "tabularraylibrary";
+                packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
+            }
+
+            QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
+            if (cmd == "\\documentclass") {
+                //special treatment for documentclass, especially for the class options
+                // at the moment a change here does not automatically lead to an update of corresponding definitions, here babel
+                mClassOptions = firstOptArg;
+                // special treatment for subfile class
+                m_isSubfileRoot=(firstArg=="subfiles");
+                if(firstArg=="subfiles"){
+                    // optional argument points to actual root
+                    // this is used to load that document
+                    QString fname = findFileName(firstOptArg);
+                    LatexDocument *dc = parent->findDocumentFromName(fname);
+                    if (!dc) {
+                        //parent->addDocToLoad(fname);
+                        data.lstFilesToLoad << fname;
+                    }
+                }
+            }
+
+            QStringList packages;
+            foreach (QString elem, packagesHelper) {
+                elem = elem.simplified();
+                if (lp->packageAliases.contains(elem))
+                    packages << lp->packageAliases.values(elem);
+                else
+                    packages << elem;
+            }
+
+            foreach (const QString &elem, packages) {
+                if (!data.removedUsepackages.removeAll(firstOptArg + "#" + elem))
+                    data.addedUsepackages << firstOptArg + "#" + elem;
+                mUsepackageList.insert(dlh, firstOptArg + "#" + elem); // hand on option of usepackages for conditional cwl load ..., force load if option is changed
+            }
+            continue;
+        }
+        //// bibliography ////
+        if (lp->possibleCommands["%bibliography"].contains(cmd)) {
+            QStringList additionalBibPaths = ConfigManagerInterface::getInstance()->getOption("Files/Bib Paths").toString().split(getPathListSeparator());
+#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
+            QStringList bibs = firstArg.split(',', Qt::SkipEmptyParts);
+#else
+            QStringList bibs = firstArg.split(',', QString::SkipEmptyParts);
+#endif \
+    //add new bibs and set bibTeXFilesNeedsUpdate if there was any change
+            foreach (const QString &elem, bibs) { //latex doesn't seem to allow any spaces in file names
+                QString absolutePath=getAbsoluteFilePath(elem, "bib", additionalBibPaths);
+                mMentionedBibTeXFiles.insert(line(currentLineNr).handle(), FileNamePair(elem, absolutePath));
+                if (data.oldBibs.removeAll(elem) == 0)
+                    data.bibTeXFilesNeedsUpdate = true;
+            }
+            //write bib tex in tree
+            foreach (const QString &bibFile, bibs) {
+                StructureEntry *newFile = new StructureEntry(this, StructureEntry::SE_BIBTEX);
+                newFile->title = bibFile;
+                newFile->setLine(line(currentLineNr).handle(), currentLineNr);
+                insertElement(bibTeXList, data.posBibTeX++, newFile);
+            }
+            continue;
+        }
+
+        //// beamer blocks ////
+
+        if (cmd == "\\begin" && firstArg == "block") {
+            StructureEntry *newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
+            newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,currentLineNr);
+            newBlock->setLine(line(currentLineNr).handle(), currentLineNr);
+            insertElement(blockList, data.posBlock++, newBlock);
+            continue;
+        }
+
+        //// include,input,import ////
+        if (lp->possibleCommands["%include"].contains(cmd) ) {
+            QString fn=Parsing::getArg(args, Token::file);
+            StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
+            newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp->structureDepth() - 1;
+            fn = removeQuote(fn);
+            newInclude->title = fn;
+            QString name=fn;
+            name.replace("\\string~",QDir::homePath());
+            QString fname = findFileName(name);
+            data.updateSyntaxCheck = (data.removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
+            mIncludedFilesList.insert(line(currentLineNr).handle(), fname);
+            LatexDocument *dc = parent->findDocumentFromName(fname);
+            if (dc) {
+                childDocs.insert(dc);
+                dc->setMasterDocument(this, recheckLabels && data.updateSyntaxCheck);
+            } else {
+                data.lstFilesToLoad << fname;
+            }
+            newInclude->valid = !fname.isEmpty();
+            newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
+            newInclude->columnNumber = cmdStart;
+            flatStructure << newInclude;
+            continue;
+        }
+
+        if (lp->possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
+            StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
+            newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp->structureDepth() - 1;
+            newInclude->setContext(StructureEntry::Import);
+            QDir dir(firstArg);
+            QFileInfo fi(dir, Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,currentLineNr));
+            QString file = fi.filePath();
+            newInclude->title = file;
+            QString fname = findFileName(file);
+            data.updateSyntaxCheck = (data.removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
+            mImportedFilesList.insert(line(currentLineNr).handle(), fname);
+            LatexDocument *dc = parent->findDocumentFromName(fname);
+            if (dc) {
+                childDocs.insert(dc);
+                dc->setMasterDocument(this, recheckLabels && data.updateSyntaxCheck);
+                dc->importedFile=true;
+            } else {
+                data.lstFilesToLoad << fname;
+            }
+            newInclude->valid = !fname.isEmpty();
+            newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
+            newInclude->columnNumber = cmdStart;
+            flatStructure << newInclude;
+            continue;
+        }
+
+        //// all sections ////
+        if (cmd.endsWith("*"))
+            cmd = cmd.left(cmd.length() - 1);
+        int level = lp->structureCommandLevel(cmd);
+        if(level<0 && cmd=="\\begin"){
+            // special treatment for \begin{frame}{title}
+            level=lp->structureCommandLevel(cmd+"{"+firstArg+"}");
+        }
+        if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
+            StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
+            if (mAppendixLine && indexOf(mAppendixLine) < currentLineNr) newSection->setContext(StructureEntry::InAppendix);
+            if (mBeyondEnd && indexOf(mBeyondEnd) < currentLineNr) newSection->setContext(StructureEntry::BeyondEnd);
+            //QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
+            QString firstOptArg = Parsing::getArg(args, Token::shorttitle);
+            if (!firstOptArg.isEmpty() && firstOptArg != "[]") // workaround, actually getArg should return "" for "[]"
+                firstArg = firstOptArg;
+            if(cmd=="\\begin"){
+                // special treatment for \begin{frame}{title}
+                firstArg = Parsing::getArg(args, dlh, 1, ArgumentList::MandatoryWithBraces,false,currentLineNr);
+                if(firstArg.isEmpty()){
+                    // empty frame title, maybe \frametitle is used ?
+                    delete newSection;
+                    continue;
+                }
+            }
+            newSection->title = latexToText(firstArg).trimmed();
+            newSection->level = level;
+            newSection->setLine(line(currentLineNr).handle(), currentLineNr);
+            newSection->columnNumber = cmdStart;
+            flatStructure << newSection;
+            continue;
+        }
+        /// auto user command for \symbol_...
+        if(j+2<tl.length()){
+            Token tk2=tl.at(j+1);
+            if(tk2.getText()=="_"){
+                QString txt=cmd+"_";
+                tk2=tl.at(j+2);
+                txt.append(tk2.getText());
+                if(tk2.type==Token::command && j+3<tl.length()){
+                    Token tk3=tl.at(j+3);
+                    if(tk3.level==tk2.level && tk.subtype!=Token::none)
+                        txt.append(tk3.getText());
+                }
+                CodeSnippet cs(txt,true,true);
+                cs.type=CodeSnippet::userConstruct;
+                mUserCommandList.insert(dlh, UserCommandPair(QString(), cs));
+            }
+        }
+        /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
+        if(j+2<tl.length() && !firstArg.isEmpty() && lp->possibleCommands["math"].contains(cmd) ){
+            if (lp->commandDefs.contains(cmd)) {
+                CommandDescription cd = lp->commandDefs.value(cmd);
+                if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
+                    QString txt=cmd+"{"+firstArg+"}";
+                    CodeSnippet cs(txt,true,true);
+                    cs.type=CodeSnippet::userConstruct;
+                    mUserCommandList.insert(dlh, UserCommandPair(QString(), cs));
+                }
+            }
+        }
+
+    } // for tl
+}
 
 /*!
  * \brief parse lines to update syntactical and structure information
@@ -541,15 +1104,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 	}
 	bool updateSyntaxCheck = false;
-	QList<StructureEntry *> flatStructure;
+
+    QList<StructureEntry *> flatStructure;
 
 	// usepackage list
-	QStringList removedUsepackages;
-	QStringList addedUsepackages;
-	QStringList removedUserCommands, addedUserCommands;
-	QStringList lstFilesToLoad;
+    HandledData changedCommands;
+
     //lex lines
-    int stoppedAtLine=lexLines(linenr,count,recheck);
+    lexLines(linenr,count,recheck);
 
 	if (linenr >= lineNrStart) {
 		newCount = linenr + count - lineNrStart;
@@ -563,16 +1125,16 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	int posMagicComment = findStructureParentPos(magicCommentList->children, removedMagicComments, lineNrStart, newCount);
 
 	QList<StructureEntry *> removedLabels;
-	int posLabel = findStructureParentPos(labelList->children, removedLabels, lineNrStart, newCount);
+    changedCommands.posLabel = findStructureParentPos(labelList->children, removedLabels, lineNrStart, newCount);
 
 	QList<StructureEntry *> removedTodo;
-	int posTodo = findStructureParentPos(todoList->children, removedTodo, lineNrStart, newCount);
+    changedCommands.posTodo = findStructureParentPos(todoList->children, removedTodo, lineNrStart, newCount);
 
 	QList<StructureEntry *> removedBlock;
-	int posBlock = findStructureParentPos(blockList->children, removedBlock, lineNrStart, newCount);
+    changedCommands.posBlock = findStructureParentPos(blockList->children, removedBlock, lineNrStart, newCount);
 
 	QList<StructureEntry *> removedBibTeX;
-	int posBibTeX = findStructureParentPos(bibTeXList->children, removedBibTeX, lineNrStart, newCount);
+    changedCommands.posBibTeX = findStructureParentPos(bibTeXList->children, removedBibTeX, lineNrStart, newCount);
 
     bool isLatexLike = languageIsLatexLike();
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
@@ -610,7 +1172,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 			if(cmd.snippet.type==CodeSnippet::userConstruct)
 				continue;
-			removedUserCommands << elem;
+            changedCommands.removedUserCommands << elem;
 			//updateSyntaxCheck=true;
 		}
 		if (mLabelItem.contains(dlh)) {
@@ -621,8 +1183,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				updateRefsLabels(rp.name);
 		}
 		mRefItem.remove(dlh);
-		QStringList removedIncludes = mIncludedFilesList.values(dlh);
-        removedIncludes.append(mImportedFilesList.values(dlh));
+        changedCommands.removedIncludes = mIncludedFilesList.values(dlh);
+        changedCommands.removedIncludes.append(mImportedFilesList.values(dlh));
 		mIncludedFilesList.remove(dlh);
         mImportedFilesList.remove(dlh);
 
@@ -630,85 +1192,21 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (mBibItem.remove(dlh))
 			bibTeXFilesNeedsUpdate = true;
 
-		removedUsepackages << mUsepackageList.values(dlh);
+        changedCommands.removedUsepackages << mUsepackageList.values(dlh);
 		if (mUsepackageList.remove(dlh) > 0) completerNeedsUpdate = true;
 
 		//remove old bibs files from hash, but keeps a temporary copy
-		QStringList oldBibs;
 		while (mMentionedBibTeXFiles.contains(dlh)) {
 			QMultiHash<QDocumentLineHandle *, FileNamePair>::iterator it = mMentionedBibTeXFiles.find(dlh);
 			Q_ASSERT(it.key() == dlh);
 			Q_ASSERT(it != mMentionedBibTeXFiles.end());
 			if (it == mMentionedBibTeXFiles.end()) break;
-			oldBibs.append(it.value().relative);
+            changedCommands.oldBibs.append(it.value().relative);
 			mMentionedBibTeXFiles.erase(it);
 		}
 
         // handle special comments (TODO, MAGIC comments)
-        // comment detection moved to lexer as formats are not yet generated here (e.g. on first load)
-        QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
-        int col = commentStart.first;
-		if (col >= 0) {
-            // all
-            //// TODO marker
-            QString text = curLine.mid(col);
-			QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
-            static QRegularExpression rx(regularExpression);
-            if (rx.match(text).hasMatch()) {  // other todos like \todo are handled by the tokenizer below.
-				StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
-				newTodo->title = text.mid(1).trimmed();
-				newTodo->setLine(line(i).handle(), i);
-                insertElement(todoList, posTodo++, newTodo);
-                // save comment type into cookie
-                commentStart.second=Token::todoComment;
-                dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
-			}
-            //// parameter comment
-            if (curLine.startsWith("%&")) {
-                int start = curLine.indexOf("-job-name=");
-                if (start >= 0) {
-                    int end = start + 10; // += "-job-name=".length;
-                    if (end < curLine.length() && curLine[end] == '"') {
-                        // quoted filename
-                        end = curLine.indexOf('"', end + 1);
-                        if (end >= 0) {
-                            end += 1;  // include closing quotation mark
-                            addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
-                        }
-                    } else {
-                        end = curLine.indexOf(' ', end + 1);
-                        if (end >= 0) {
-                            addMagicComment(curLine.mid(start, end - start), i, posMagicComment++);
-                        } else {
-                            addMagicComment(curLine.mid(start), i, posMagicComment++);
-                        }
-                    }
-                }
-                commentStart.second=Token::magicComment;
-                dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
-            }
-            //// magic comment
-            static const QRegularExpression rxMagicTexComment("^%\\ ?!T[eE]X");
-            static const QRegularExpression rxMagicBibComment("^%\\ ?!BIB");
-            QRegularExpressionMatch matchMagicTexComment=rxMagicTexComment.match(text);
-            QRegularExpressionMatch matchMagicBibComment=rxMagicBibComment.match(text);
-            if (matchMagicTexComment.hasMatch()) {
-                addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), i, posMagicComment++);
-                commentStart.second=Token::magicComment;
-                dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
-            } else if (matchMagicBibComment.hasMatch()) {
-                // workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
-                text = text.mid(matchMagicBibComment.capturedLength()).trimmed();
-                QString name;
-                QString val;
-                splitMagicComment(text, name, val);
-                if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex" || val == "bibtex8")) {
-                    addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, posMagicComment++);
-                    commentStart.second=Token::magicComment;
-                    dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
-                }
-            }
-		}
+        handleComments(dlh,i,changedCommands.posTodo,posMagicComment);
 
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
@@ -726,7 +1224,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         /// only useful when loading a complete new text.
         if (curLine == "\\begin{document}"){
             if(linenr==0 && count==lineCount() && !recheck) {
-                if(!addedUsepackages.isEmpty()){
+                if(!changedCommands.addedUsepackages.isEmpty()){
                     break; // do recheck quickly as usepackages probably need to be loaded
                 }else{
                     // oops, complete tokenlist needed !
@@ -746,497 +1244,15 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			oldLineBeyond = mBeyondEnd;
 			mBeyondEnd = nullptr;
 		}
+        // interpret arguments and update txs knowledge about them
+        // e.g. labels, packages, etc
+        interpretCommandArguments(dlh,i,changedCommands,recheckLabels,flatStructure);
 
-        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
-
-		for (int j = 0; j < tl.length(); j++) {
-			Token tk = tl.at(j);
-			// break at comment start
-			if (tk.type == Token::comment)
-				break;
-			// work special args
-			////Ref
-			//for reference counting (can be placed in command options as well ...
-			if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
-				ReferencePair elem;
-				elem.name = tk.getText();
-				elem.start = tk.start;
-				mRefItem.insert(line(i).handle(), elem);
-			}
-
-			//// label ////
-			if (tk.type == Token::label && tk.length > 0) {
-				ReferencePair elem;
-				elem.name = tk.getText();
-				elem.start = tk.start;
-				mLabelItem.insert(line(i).handle(), elem);
-				completerNeedsUpdate = true;
-				StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
-				newLabel->title = elem.name;
-				newLabel->setLine(line(i).handle(), i);
-                insertElement(labelList, posLabel++, newLabel);
-			}
-			//// newtheorem ////
-			if (tk.type == Token::newTheorem && tk.length > 0) {
-				completerNeedsUpdate = true;
-				QStringList lst;
-				QString firstArg = tk.getText();
-				lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
-				foreach (const QString &elem, lst) {
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, elem));
-					ltxCommands.possibleCommands["user"].insert(elem);
-					if (!removedUserCommands.removeAll(elem)) {
-						addedUserCommands << elem;
-					}
-				}
-				continue;
-			}
-			/// bibitem ///
-			if (tk.type == Token::newBibItem && tk.length > 0) {
-				ReferencePair elem;
-				elem.name = tk.getText();
-				elem.start = tk.start;
-				mBibItem.insert(line(i).handle(), elem);
-				bibItemsChanged = true;
-				continue;
-			}
-			/// todo ///
-			if (tk.subtype == Token::todo && (tk.type == Token::braces || tk.type == Token::openBrace)) {
-				StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
-				newTodo->title = tk.getInnerText();
-				newTodo->setLine(line(i).handle(), i);
-                insertElement(todoList, posTodo++, newTodo);
-			}
-            // specialArg definition
-            if(tk.type == Token::defSpecialArg){
-                QString cmd=Parsing::getCommandFromToken(tk);
-                completerNeedsUpdate = true;
-                QString definition = ltxCommands.specialDefCommands.value(cmd);
-                QString elem = tk.getText();
-                mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), definition + "%" + elem));
-                if (!removedUserCommands.removeAll(elem)) {
-                    addedUserCommands << elem;
-                }
-            }
-
-			// work on general commands
-			if (tk.type != Token::command && tk.type != Token::commandUnknown)
-				continue; // not a command
-			Token tkCmd;
-			TokenList args;
-			QString cmd;
-			int cmdStart = Parsing::findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
-			if (cmdStart < 0) break;
-			cmdStart=tkCmd.start; // from here, cmdStart is line column position of command
-			cmd = curLine.mid(tkCmd.start, tkCmd.length);
-
-            QString firstArg = Parsing::getArg(args, dlh, 0, ArgumentList::Mandatory,true,i);
-
-
-			// special treatment \def
-			if (cmd == "\\def" || cmd == "\\gdef" || cmd == "\\edef" || cmd == "\\xdef") {
-				QString remainder = curLine.mid(cmdStart + cmd.length());
-				completerNeedsUpdate = true;
-				QRegExp rx("(\\\\\\w+)\\s*([^{%]*)");
-				if (rx.indexIn(remainder) > -1) {
-					QString name = rx.cap(1);
-					QString nameWithoutArgs = name;
-					QString optionStr = rx.cap(2);
-					//qDebug()<< name << ":"<< optionStr;
-					ltxCommands.possibleCommands["user"].insert(name);
-					if (!removedUserCommands.removeAll(name)) addedUserCommands << name;
-					optionStr = optionStr.trimmed();
-					if (optionStr.length()) {
-						int lastArg = optionStr[optionStr.length() - 1].toLatin1() - '0';
-						if (optionStr.length() == lastArg * 2) { //#1#2#3...
-							for (int j = 1; j <= lastArg; j++)
-								if (j == 1) name.append("{%<arg1%|%>}");
-								else name.append(QString("{%<arg%1%>}").arg(j));
-						} else {
-							QStringList args = optionStr.split('#'); //#1;#2#3:#4 => ["",1;,2,3:,4]
-							bool hadSeparator = true;
-							for (int i = 1; i < args.length(); i++) {
-								if (args[i].length() == 0) continue; //invalid
-								bool hasSeparator = (args[i].length() != 1); //only single digit variables allowed. last arg also needs a sep
-								if (!hadSeparator || !hasSeparator)
-                                    args[i] = QString("{%<arg") + args[i][0] + QString("%>}") + args[i].mid(1);
-								else
-                                    args[i] = QString("%<arg") + args[i][0] + QString("%>") + args[i].mid(1); //no need to use {} for arguments that are separated anyways
-								hadSeparator  = hasSeparator;
-							}
-							name.append(args.join(""));
-						}
-					}
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(nameWithoutArgs, name));
-					// remove obsolete Overlays (maybe this can be refined
-					//updateSyntaxCheck=true;
-				}
-				continue;
-			}
-			if (cmd == "\\newcolumntype") {
-				if(firstArg.length()==1){ // only single letter definitions are allowed/handled
-					QString secondArg = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory);
-					ltxCommands.possibleCommands["%columntypes"].insert(firstArg+secondArg);
-					if (!removedUserCommands.removeAll(firstArg)) {
-						addedUserCommands << firstArg;
-					}
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), firstArg));
-					continue;
-				}
-			}
-
-			//// newenvironment ////
-			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
-			if (envTokens.contains(cmd)) {
-				completerNeedsUpdate = true;
-				TokenList argsButFirst = args;
-				if(argsButFirst.isEmpty())
-					continue; // no arguments present
-				argsButFirst.removeFirst();
-				int optionCount = Parsing::getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
-				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-				mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, "\\end{" + firstArg + "}"));
-				QStringList lst;
-				lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
-				foreach (const QString &elem, lst) {
-					ltxCommands.possibleCommands["user"].insert(elem);
-					if (!removedUserCommands.removeAll(elem)) {
-						addedUserCommands << elem;
-					}
-				}
-				bool hasDefaultArg = !Parsing::getArg(argsButFirst, dlh, 1, ArgumentList::Optional).isNull();
-				int mandatoryOptionCount = hasDefaultArg ? optionCount - 1 : optionCount;
-				QString mandatoryArgString;
-				for (int j = 0; j < mandatoryOptionCount; j++) {
-					if (j == 0) mandatoryArgString.append("{%<1%>}");
-					else mandatoryArgString.append(QString("{%<%1%>}").arg(j + 1));
-				}
-				mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + mandatoryArgString));
-				if (hasDefaultArg) {
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString));
-				}
-				continue;
-			}
-			//// newcounter ////
-			if (cmd == "\\newcounter") {
-				completerNeedsUpdate = true;
-				QStringList lst;
-				lst << "\\the" + firstArg ;
-				foreach (const QString &elem, lst) {
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(elem, elem));
-					ltxCommands.possibleCommands["user"].insert(elem);
-					if (!removedUserCommands.removeAll(elem)) {
-						addedUserCommands << elem;
-					}
-				}
-				continue;
-			}
-			//// newif ////
-			if (cmd == "\\newif") {
-				// \newif\ifmycondition also defines \myconditiontrue and \myconditionfalse
-				completerNeedsUpdate = true;
-				QStringList lst;
-				lst << firstArg
-					<< "\\" + firstArg.mid(3) + "false"
-					<< "\\" + firstArg.mid(3) + "true";
-				foreach (const QString &elem, lst) {
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(elem, elem));
-					ltxCommands.possibleCommands["user"].insert(elem);
-					if (!removedUserCommands.removeAll(elem)) {
-						addedUserCommands << elem;
-					}
-				}
-				continue;
-            }
-            //// newcommand ////
-            if (lp->possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
-                completerNeedsUpdate = true;
-                //Tokens cmdName;
-                QString cmdName = Parsing::getArg(args, Token::def);
-                cmdName.replace("@","@@"); // special treatment for commandnames containing @
-                bool isDefWidth = true;
-                if (cmdName.isEmpty())
-                    cmdName = Parsing::getArg(args, Token::defWidth);
-                else
-                    isDefWidth = false;
-
-                ltxCommands.possibleCommands["user"].insert(cmdName);
-
-                if (!removedUserCommands.removeAll(cmdName)) {
-                    addedUserCommands << cmdName;
-                }
-                QString cmdNameWithoutArgs = cmdName;
-                QString cmdNameWithoutOptional = cmdName;
-                bool def=false;
-
-                QString xarg=Parsing::getArg(args, Token::defXparseArg);
-                if(!xarg.isEmpty()){
-                    // xparse style defintion
-                    QString arguments=interpretXArgs(xarg);
-                    cmdName=cmdName+arguments;
-                }else{
-                    int optionCount = Parsing::getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
-                    if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-                    def = !Parsing::getArg(args, Token::optionalArgDefinition).isEmpty();
-
-
-                    for (int j = 0; j < optionCount; j++) {
-                        if (j == 0) {
-                            if (!def){
-                                cmdName.append("{%<arg1%|%>}");
-                                cmdNameWithoutOptional.append("{%<arg1%|%>}");
-                            } else
-                                cmdName.append("[%<opt. arg1%|%>]");
-                        } else {
-                            cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
-                            cmdNameWithoutOptional.append(QString("{%<arg%1%>}").arg(j + 1));
-                        }
-                    }
-                }
-                CodeSnippet cs(cmdName);
-                cs.index = qHash(cmdName);
-                cs.snippetLength = cmdName.length();
-                if (isDefWidth)
-                    cs.type = CodeSnippet::length;
-                mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
-                if(def){ // optional argument, add version without that argument as well
-                    CodeSnippet cs(cmdNameWithoutOptional);
-                    cs.index = qHash(cmdNameWithoutOptional);
-                    cs.snippetLength = cmdNameWithoutOptional.length();
-                    if (isDefWidth)
-                        cs.type = CodeSnippet::length;
-                    mUserCommandList.insert(line(i).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
-                }
-
-                // remove obsolete Overlays (maybe this can be refined
-                //updateSyntaxCheck=true;
-                continue;
-            }
-
-			///usepackage
-            if (lp->possibleCommands["%usepackage"].contains(cmd)) {
-                if(firstArg.contains("\\")){
-                    // argument contains backslash
-                    // hence, invalid and to be ignored
-                    continue;
-                }
-                completerNeedsUpdate = true;
-                QStringList packagesHelper = firstArg.split(",");
-
-                if (cmd.endsWith("theme")) { // special treatment for \usetheme
-                    QString preamble = cmd;
-                    preamble.remove(0, 4);
-                    preamble.prepend("beamer");
-                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
-                }
-                if (cmd=="\\usetikzlibrary") { // special treatment for \usetikzlibrary
-                    QString preamble = "tikzlibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
-                }
-                if (cmd=="\\usepgfplotslibrary") { // special treatment for \usepgfplotslibrary
-                    QString preamble = "pgfplotslibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
-                }
-                if (cmd=="\\tcbuselibrary") { // special treatment for \tcbuselibrary
-                    QString preamble = "tcolorboxlibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
-                }
-                if (cmd=="\\UseTblrLibrary") { // special treatment for \UseTblrLibrary
-                    QString preamble = "tabularraylibrary";
-                    packagesHelper.replaceInStrings(QRegularExpression("^\\s*"), preamble);
-                }
-
-                QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
-                if (cmd == "\\documentclass") {
-                    //special treatment for documentclass, especially for the class options
-                    // at the moment a change here does not automatically lead to an update of corresponding definitions, here babel
-                    mClassOptions = firstOptArg;
-                    // special treatment for subfile class
-                    m_isSubfileRoot=(firstArg=="subfiles");
-                    if(firstArg=="subfiles"){
-                        // optional argument points to actual root
-                        // this is used to load that document
-                        QString fname = findFileName(firstOptArg);
-                        LatexDocument *dc = parent->findDocumentFromName(fname);
-                        if (!dc) {
-                            //parent->addDocToLoad(fname);
-                            lstFilesToLoad << fname;
-                        }
-                    }
-                }
-
-                QStringList packages;
-				foreach (QString elem, packagesHelper) {
-                    elem = elem.simplified();
-                    if (lp->packageAliases.contains(elem))
-                        packages << lp->packageAliases.values(elem);
-					else
-						packages << elem;
-				}
-
-				foreach (const QString &elem, packages) {
-					if (!removedUsepackages.removeAll(firstOptArg + "#" + elem))
-						addedUsepackages << firstOptArg + "#" + elem;
-                    mUsepackageList.insert(dlh, firstOptArg + "#" + elem); // hand on option of usepackages for conditional cwl load ..., force load if option is changed
-				}
-				continue;
-			}
-            //// bibliography ////
-            if (lp->possibleCommands["%bibliography"].contains(cmd)) {
-				QStringList additionalBibPaths = ConfigManagerInterface::getInstance()->getOption("Files/Bib Paths").toString().split(getPathListSeparator());
-#if (QT_VERSION>=QT_VERSION_CHECK(5,14,0))
-                QStringList bibs = firstArg.split(',', Qt::SkipEmptyParts);
-#else
-				QStringList bibs = firstArg.split(',', QString::SkipEmptyParts);
-#endif
-				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
-				foreach (const QString &elem, bibs) { //latex doesn't seem to allow any spaces in file names
-                    QString absolutePath=getAbsoluteFilePath(elem, "bib", additionalBibPaths);
-                    mMentionedBibTeXFiles.insert(line(i).handle(), FileNamePair(elem, absolutePath));
-					if (oldBibs.removeAll(elem) == 0)
-						bibTeXFilesNeedsUpdate = true;
-				}
-				//write bib tex in tree
-				foreach (const QString &bibFile, bibs) {
-					StructureEntry *newFile = new StructureEntry(this, StructureEntry::SE_BIBTEX);
-					newFile->title = bibFile;
-					newFile->setLine(line(i).handle(), i);
-                    insertElement(bibTeXList, posBibTeX++, newFile);
-				}
-				continue;
-			}
-
-			//// beamer blocks ////
-
-			if (cmd == "\\begin" && firstArg == "block") {
-				StructureEntry *newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
-                newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,i);
-				newBlock->setLine(line(i).handle(), i);
-                insertElement(blockList, posBlock++, newBlock);
-				continue;
-			}
-
-			//// include,input,import ////
-            if (lp->possibleCommands["%include"].contains(cmd) ) {
-                QString fn=Parsing::getArg(args, Token::file);
-                StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
-                newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp->structureDepth() - 1;
-                fn = removeQuote(fn);
-                newInclude->title = fn;
-                QString name=fn;
-                name.replace("\\string~",QDir::homePath());
-                QString fname = findFileName(name);
-                updateSyntaxCheck = (removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
-				mIncludedFilesList.insert(line(i).handle(), fname);
-				LatexDocument *dc = parent->findDocumentFromName(fname);
-				if (dc) {
-					childDocs.insert(dc);
-                    dc->setMasterDocument(this, recheckLabels && updateSyntaxCheck);
-				} else {
-					lstFilesToLoad << fname;
-				}
-				newInclude->valid = !fname.isEmpty();
-				newInclude->setLine(line(i).handle(), i);
-				newInclude->columnNumber = cmdStart;
-				flatStructure << newInclude;
-				continue;
-			}
-
-            if (lp->possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
-                StructureEntry *newInclude = new StructureEntry(this, StructureEntry::SE_INCLUDE);
-                newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp->structureDepth() - 1;
-                newInclude->setContext(StructureEntry::Import);
-				QDir dir(firstArg);
-                QFileInfo fi(dir, Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,i));
-				QString file = fi.filePath();
-				newInclude->title = file;
-				QString fname = findFileName(file);
-                updateSyntaxCheck = (removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
-                mImportedFilesList.insert(line(i).handle(), fname);
-				LatexDocument *dc = parent->findDocumentFromName(fname);
-				if (dc) {
-					childDocs.insert(dc);
-                    dc->setMasterDocument(this, recheckLabels && updateSyntaxCheck);
-                    dc->importedFile=true;
-				} else {
-					lstFilesToLoad << fname;
-				}
-				newInclude->valid = !fname.isEmpty();
-				newInclude->setLine(line(i).handle(), i);
-				newInclude->columnNumber = cmdStart;
-				flatStructure << newInclude;
-				continue;
-			}
-
-			//// all sections ////
-			if (cmd.endsWith("*"))
-                cmd = cmd.left(cmd.length() - 1);
-            int level = lp->structureCommandLevel(cmd);
-			if(level<0 && cmd=="\\begin"){
-                // special treatment for \begin{frame}{title}
-                level=lp->structureCommandLevel(cmd+"{"+firstArg+"}");
-			}
-			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
-				StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
-				if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
-				if (mBeyondEnd && indexOf(mBeyondEnd) < i) newSection->setContext(StructureEntry::BeyondEnd);
-				//QString firstOptArg = Parsing::getArg(args, dlh, 0, ArgumentList::Optional);
-				QString firstOptArg = Parsing::getArg(args, Token::shorttitle);
-				if (!firstOptArg.isEmpty() && firstOptArg != "[]") // workaround, actually getArg should return "" for "[]"
-					firstArg = firstOptArg;
-				if(cmd=="\\begin"){
-					// special treatment for \begin{frame}{title}
-                    firstArg = Parsing::getArg(args, dlh, 1, ArgumentList::MandatoryWithBraces,false,i);
-					if(firstArg.isEmpty()){
-						// empty frame title, maybe \frametitle is used ?
-						delete newSection;
-						continue;
-					}
-				}
-				newSection->title = latexToText(firstArg).trimmed();
-				newSection->level = level;
-				newSection->setLine(line(i).handle(), i);
-				newSection->columnNumber = cmdStart;
-				flatStructure << newSection;
-				continue;
-			}
-			/// auto user command for \symbol_...
-			if(j+2<tl.length()){
-				Token tk2=tl.at(j+1);
-				if(tk2.getText()=="_"){
-					QString txt=cmd+"_";
-					tk2=tl.at(j+2);
-					txt.append(tk2.getText());
-					if(tk2.type==Token::command && j+3<tl.length()){
-						Token tk3=tl.at(j+3);
-						if(tk3.level==tk2.level && tk.subtype!=Token::none)
-							txt.append(tk3.getText());
-					}
-                    CodeSnippet cs(txt,true,true);
-					cs.type=CodeSnippet::userConstruct;
-					mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), cs));
-				}
-			}
-			/// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
-            if(j+2<tl.length() && !firstArg.isEmpty() && lp->possibleCommands["math"].contains(cmd) ){
-                if (lp->commandDefs.contains(cmd)) {
-                    CommandDescription cd = lp->commandDefs.value(cmd);
-					if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
-						QString txt=cmd+"{"+firstArg+"}";
-                        CodeSnippet cs(txt,true,true);
-						cs.type=CodeSnippet::userConstruct;
-						mUserCommandList.insert(line(i).handle(), UserCommandPair(QString(), cs));
-					}
-				}
-			}
-
-		} // while(findCommandWithArgs())
-
-		if (!oldBibs.isEmpty())
+        if (!changedCommands.oldBibs.isEmpty())
 			bibTeXFilesNeedsUpdate = true; //file name removed
 
-		if (!removedIncludes.isEmpty()) {
-			parent->removeDocs(removedIncludes);
+        if (!changedCommands.removedIncludes.isEmpty()) {
+            parent->removeDocs(changedCommands.removedIncludes);
 			parent->updateMasterSlaveRelations(this);
 		}
 	}//for each line handle
@@ -1295,13 +1311,13 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 	emit structureUpdated(this, newSection);
 	bool updateLtxCommands = false;
-	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {
-		bool forceUpdate = !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
+    if (!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty() || !changedCommands.addedUserCommands.isEmpty() || !changedCommands.removedUserCommands.isEmpty()) {
+        bool forceUpdate = !changedCommands.addedUserCommands.isEmpty() || !changedCommands.removedUserCommands.isEmpty();
 
-        reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());     
+        reRunSuggested = (count > 1) && (!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty());
         updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
-        if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty()){
-            emit updateCompleterCommands();
+        if(!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty()){
+            emit updateCompleterCommands(); // TODO: necessary ?
         }
 	}
 	if (bibTeXFilesNeedsUpdate)
@@ -1328,7 +1344,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	if (!isHidden())
 		checkForLeak();
 #endif
-    parent->addDocsToLoad(lstFilesToLoad,lp);
+    parent->addDocsToLoad(changedCommands.lstFilesToLoad,lp);
 
 	if (reRunSuggested && !recheck){
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)

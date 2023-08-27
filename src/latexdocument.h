@@ -202,6 +202,27 @@ public:
 
     int lexLines(int &lineNr,int &count,bool recheck=false);
     void lexLinesSimple(const int lineNr,const int count);
+    void handleComments(QDocumentLineHandle *dlh, int &curLineNr, int &posTodoComment, int &posMagicComment);
+
+    struct HandledData {
+        QStringList removedUsepackages;
+        QStringList addedUsepackages;
+        QStringList removedUserCommands;
+        QStringList addedUserCommands;
+        QStringList lstFilesToLoad;
+        QStringList removedIncludes;
+        QStringList oldBibs;
+        bool completerNeedsUpdate = false;
+        bool bibItemsChanged = false;
+        bool bibTeXFilesNeedsUpdate = false;
+        bool updateSyntaxCheck = false;
+        int posLabel;
+        int posTodo;
+        int posBlock;
+        int posBibTeX;
+    };
+
+    void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, QList<StructureEntry *> &flatStructure);
 
 private:
 	QString fileName; //absolute

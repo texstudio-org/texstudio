@@ -11085,6 +11085,7 @@ void Texstudio::addDocToLoad(QString filename)
  */
 void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp)
 {
+    // TODO: cached files ?!
     for(const QString &fn:filenames){
         LatexDocument *doc = documents.findDocumentFromName(fn);
         if(doc==nullptr){
