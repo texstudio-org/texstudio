@@ -310,7 +310,7 @@ public slots:
     void checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint=-1);
 
 signals:
-    void structureUpdated(LatexDocument *document, StructureEntry *highlight = nullptr);
+    void structureUpdated();
 	void updateCompleter();
     void updateCompleterCommands();
 	void updateBibTeXFiles();

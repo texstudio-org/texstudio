@@ -229,7 +229,7 @@ void LatexDocument::initClearStructure()
 	mBeyondEnd = nullptr;
 
 
-	emit structureUpdated(this, nullptr);
+    emit structureUpdated();
 
 	const int CATCOUNT = 5;
 	StructureEntry *categories[CATCOUNT] = {magicCommentList, labelList, todoList, bibTeXList, blockList};
@@ -355,16 +355,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
     delete seRemove;
     appendStructure(baseStructure,seSplit);
 
-	// rehighlight current cursor position
-	StructureEntry *newSection = nullptr;
-	if (edView) {
-		int i = edView->editor->cursor().lineNumber();
-		if (i >= 0) {
-			newSection = findSectionForLine(i);
-		}
-	}
-
-	emit structureUpdated(this, newSection);
+    emit structureUpdated();
 
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
@@ -1270,16 +1261,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         updateContext(oldLineBeyond, mBeyondEnd, StructureEntry::BeyondEnd);
     }
 
-    // rehighlight current cursor position
-    StructureEntry *newSection = nullptr;
-    if (edView) {
-        int i = edView->editor->cursor().lineNumber();
-        if (i >= 0) {
-            newSection = findSectionForLine(i);
-        }
-    }
+    emit structureUpdated();
 
-	emit structureUpdated(this, newSection);
 	bool updateLtxCommands = false;
     if (!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty() || !changedCommands.addedUserCommands.isEmpty() || !changedCommands.removedUserCommands.isEmpty()) {
         bool forceUpdate = !changedCommands.addedUserCommands.isEmpty() || !changedCommands.removedUserCommands.isEmpty();
