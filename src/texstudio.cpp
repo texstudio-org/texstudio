@@ -11659,6 +11659,10 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
 
     char offset=0;
     QString docName=se->document->getName();
+    if(docName.isEmpty()){
+        // try filename
+        docName=QFileInfo(se->document->getFileName()).fileName();
+    }
     foreach(StructureEntry* elem,se->children){
         if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)&&(elem->title=="TODO")){
             parseStruct(elem,rootVector,visited,todoList);
