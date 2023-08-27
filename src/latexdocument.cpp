@@ -1261,7 +1261,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         updateContext(oldLineBeyond, mBeyondEnd, StructureEntry::BeyondEnd);
     }
 
-    emit structureUpdated();
+    emit structureUpdated(); // TODO: recheck ??
 
 	bool updateLtxCommands = false;
     if (!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty() || !changedCommands.addedUserCommands.isEmpty() || !changedCommands.removedUserCommands.isEmpty()) {
@@ -1399,7 +1399,6 @@ bool LatexDocument::bibIdValid(const QString &name)
 	bool result = !findFileFromBibId(name).isEmpty();
 	if (!result) {
 		foreach (const LatexDocument *doc, getListOfDocs()) {
-			//if(doc->getEditorView()->containsBibTeXId(name)){
 			if (doc->bibItems().contains(name)) {
 				result = true;
 				break;
@@ -1413,7 +1412,6 @@ bool LatexDocument::isBibItem(const QString &name)
 {
 	bool result = false;
 	foreach (const LatexDocument *doc, getListOfDocs()) {
-		//if(doc->getEditorView()->containsBibTeXId(name)){
 		if (doc->bibItems().contains(name)) {
 			result = true;
 			break;

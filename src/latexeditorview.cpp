@@ -1693,11 +1693,6 @@ void LatexEditorView::updateCitationFormats()
 	}
 }
 
-bool LatexEditorView::containsBibTeXId(QString id)
-{
-	return document->bibIdValid(id);
-}
-
 int LatexEditorView::bookMarkId(int bookmarkNumber)
 {
 	if (bookmarkNumber == -1) return  QLineMarksInfoCenter::instance()->markTypeId("bookmark"); //unnumbered mark

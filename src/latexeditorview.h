@@ -116,7 +116,6 @@ public:
 
 	static void setCompleter(LatexCompleter *newCompleter);
 	static LatexCompleter *getCompleter();
-	bool containsBibTeXId(QString id);
 
 	void updateCitationFormats();
 	void updatePackageFormats();
