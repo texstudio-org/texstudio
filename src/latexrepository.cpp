@@ -62,6 +62,23 @@ QString LatexRepository::shortDescription(const QString &name)
 {
     return packages[name].shortDescription;
 }
+
+TeXdocStatus LatexRepository::docStatus(const QString &name)
+{
+    return packages[name].docStatus;
+}
+
+QString LatexRepository::docMessage(const QString &name)
+{
+    return packages[name].docMessage;
+}
+
+void LatexRepository::updatePackageInfo(const QString &name, const TeXdocStatus &docStatus, const QString &docMessage)
+{
+    packages[name].docStatus = docStatus;
+    packages[name].docMessage = docMessage;
+}
+
 /*!
  * \brief provide names of all known packages
  * \return
