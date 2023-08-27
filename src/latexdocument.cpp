@@ -1083,10 +1083,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		recheckLabels = false;
 	}
 
-	bool completerNeedsUpdate = false;
-	bool bibTeXFilesNeedsUpdate = false;
-	bool bibItemsChanged = false;
-
 	QDocumentLineHandle *oldLine = mAppendixLine; // to detect a change in appendix position
 	QDocumentLineHandle *oldLineBeyond = mBeyondEnd; // to detect a change in end document position
 	// get remainder
@@ -1172,7 +1168,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 		if (mLabelItem.contains(dlh)) {
 			QList<ReferencePair> labels = mLabelItem.values(dlh);
-			completerNeedsUpdate = true;
+            changedCommands.completerNeedsUpdate = true;
 			mLabelItem.remove(dlh);
 			foreach (const ReferencePair &rp, labels)
 				updateRefsLabels(rp.name);
@@ -1183,12 +1179,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		mIncludedFilesList.remove(dlh);
         mImportedFilesList.remove(dlh);
 
-		if (mUserCommandList.remove(dlh) > 0) completerNeedsUpdate = true;
+        if (mUserCommandList.remove(dlh) > 0) changedCommands.completerNeedsUpdate = true;
 		if (mBibItem.remove(dlh))
-			bibTeXFilesNeedsUpdate = true;
+            changedCommands.bibTeXFilesNeedsUpdate = true;
 
         changedCommands.removedUsepackages << mUsepackageList.values(dlh);
-		if (mUsepackageList.remove(dlh) > 0) completerNeedsUpdate = true;
+        if (mUsepackageList.remove(dlh) > 0) changedCommands.completerNeedsUpdate = true;
 
 		//remove old bibs files from hash, but keeps a temporary copy
 		while (mMentionedBibTeXFiles.contains(dlh)) {
@@ -1244,7 +1240,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         interpretCommandArguments(dlh,i,changedCommands,recheckLabels,flatStructure);
 
         if (!changedCommands.oldBibs.isEmpty())
-			bibTeXFilesNeedsUpdate = true; //file name removed
+            changedCommands.bibTeXFilesNeedsUpdate = true; //file name removed
 
         if (!changedCommands.removedIncludes.isEmpty()) {
             parent->removeDocs(changedCommands.removedIncludes);
@@ -1294,18 +1290,18 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             emit updateCompleterCommands(); // TODO: necessary ?
         }
 	}
-	if (bibTeXFilesNeedsUpdate)
+    if (changedCommands.bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
 	// force update on citation overlays
-	if (bibItemsChanged || bibTeXFilesNeedsUpdate) {
-		parent->updateBibFiles(bibTeXFilesNeedsUpdate);
+    if (changedCommands.bibItemsChanged || changedCommands.bibTeXFilesNeedsUpdate) {
+        parent->updateBibFiles(changedCommands.bibTeXFilesNeedsUpdate);
 		// needs probably done asynchronously as bibteFiles needs to be loaded first ...
 		foreach (LatexDocument *elem, getListOfDocs()) {
 			if (elem->edView)
 				elem->edView->updateCitationFormats();
 		}
 	}
-	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
+    if (changedCommands.completerNeedsUpdate || changedCommands.bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 	if ((!recheck && updateSyntaxCheck) || updateLtxCommands) {
 	    this->updateLtxCommands(true);
