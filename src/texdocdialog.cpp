@@ -89,35 +89,37 @@ void TexdocDialog::regenerateTable(int state)
 void TexdocDialog::tableSearchTermChanged(QString term) {
     QTableWidget *tb = ui->tbPackages;
     int rows = tb->rowCount();
+    QTableWidgetItem *currentItem = nullptr;
     uint foundLevel = 0;
     for (int i=0; i<rows; i++) {
         QTableWidgetItem *itemPkgName = tb->item(i,0);
         bool match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
         if (match){
             if(foundLevel<1){
-                tb->setCurrentItem(itemPkgName);
+                currentItem = itemPkgName;
                 foundLevel=1;
             }
             if(foundLevel<2 && itemPkgName->text().startsWith(term,Qt::CaseInsensitive)){
-                tb->setCurrentItem(itemPkgName);
+                currentItem = itemPkgName;
                 foundLevel=2;
             }
             if(foundLevel<3 && itemPkgName->text().startsWith(term)){
-                tb->setCurrentItem(itemPkgName);
+                currentItem = itemPkgName;
                 foundLevel=3;
             }
-		}
+        }
         if(!match){
             // check description
             QTableWidgetItem *itemPkgName = tb->item(i,1);
             match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
+            if (match) currentItem = itemPkgName;
         }
         tb->setRowHidden(i,!match);
     }
     if (foundLevel==0 && rows>0) {
-        QTableWidgetItem *itemPkgName = tb->item(0,0);
-        tb->setCurrentItem(itemPkgName);
+        currentItem = tb->item(0,0);
     }
+    tb->setCurrentItem(currentItem);
 }
 
 void TexdocDialog::itemChanged(QTableWidgetItem* item)
