@@ -1252,8 +1252,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 	}//for each line handle
 
-	StructureEntry *newSection = nullptr;
-
     // always generate complete structure, also for hidden, as needed for globalTOC
     mergeStructure(baseStructure,lineNrStart,newCount,flatStructure);
 
@@ -1277,6 +1275,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
     }
 
     // rehighlight current cursor position
+    StructureEntry *newSection = nullptr;
     if (edView) {
         int i = edView->editor->cursor().lineNumber();
         if (i >= 0) {
