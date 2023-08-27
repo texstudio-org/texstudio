@@ -2360,12 +2360,8 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	}
     if(doc->isIncompleteInMemory()){
         // load included files from cached document
-        foreach(const QString &fn,doc->includedFiles()){
-            LatexDocument *dc = documents.findDocumentFromName(fn);
-            if (!dc) {
-                documents.addDocToLoad(fn);
-            }
-        }
+        addDocsToLoad(doc->includedFiles(),doc->lp);
+    }
 
     }
 
