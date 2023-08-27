@@ -653,8 +653,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             //// TODO marker
             QString text = curLine.mid(col);
 			QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
-			QRegExp rx(regularExpression);
-			if (rx.indexIn(text)==0) {  // other todos like \todo are handled by the tokenizer below.
+            static QRegularExpression rx(regularExpression);
+            if (rx.match(text).hasMatch()) {  // other todos like \todo are handled by the tokenizer below.
 				StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
 				newTodo->title = text.mid(1).trimmed();
 				newTodo->setLine(line(i).handle(), i);
@@ -688,8 +688,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
             }
             //// magic comment
-            const QRegularExpression rxMagicTexComment("^%\\ ?!T[eE]X");
-            const QRegularExpression rxMagicBibComment("^%\\ ?!BIB");
+            static const QRegularExpression rxMagicTexComment("^%\\ ?!T[eE]X");
+            static const QRegularExpression rxMagicBibComment("^%\\ ?!BIB");
             QRegularExpressionMatch matchMagicTexComment=rxMagicTexComment.match(text);
             QRegularExpressionMatch matchMagicBibComment=rxMagicBibComment.match(text);
             if (matchMagicTexComment.hasMatch()) {
