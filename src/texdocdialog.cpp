@@ -91,6 +91,7 @@ void TexdocDialog::tableSearchTermChanged(QString term) {
     int rows = tb->rowCount();
     QTableWidgetItem *currentItem = nullptr;
     uint foundLevel = 0;
+    int n = 0;
     for (int i=0; i<rows; i++) {
         QTableWidgetItem *itemPkgName = tb->item(i,0);
         bool match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
@@ -112,8 +113,9 @@ void TexdocDialog::tableSearchTermChanged(QString term) {
             // check description
             QTableWidgetItem *itemPkgName = tb->item(i,1);
             match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
-            if (match) currentItem = itemPkgName;
+            if (n==0 && match) currentItem = itemPkgName;
         }
+        if (match) n++;
         tb->setRowHidden(i,!match);
     }
     if (foundLevel==0 && rows>0) {
