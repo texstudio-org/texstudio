@@ -25,7 +25,7 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 	connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
 	connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
 	connect(ui->buttonCTAN, SIGNAL(clicked()), SLOT(openCtanUrl()));
-    connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
+	connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
 
 	updateDocAvailableInfo("", false); // initially disable warning message
 	ui->buttonCTAN->setEnabled(false);
@@ -87,11 +87,11 @@ void TexdocDialog::regenerateTable(int state)
 }
 
 void TexdocDialog::tableSearchTermChanged(QString term) {
-	QTableWidget *tb = ui->tbPackages;
-	int rows = tb->rowCount();
+    QTableWidget *tb = ui->tbPackages;
+    int rows = tb->rowCount();
     uint foundLevel = 0;
-	for (int i=0; i<rows; i++) {
-		QTableWidgetItem *itemPkgName = tb->item(i,0);
+    for (int i=0; i<rows; i++) {
+        QTableWidgetItem *itemPkgName = tb->item(i,0);
         bool match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
         if (match){
             if(foundLevel<1){
@@ -112,12 +112,12 @@ void TexdocDialog::tableSearchTermChanged(QString term) {
             QTableWidgetItem *itemPkgName = tb->item(i,1);
             match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
         }
-		tb->setRowHidden(i,!match);
-	}
+        tb->setRowHidden(i,!match);
+    }
     if (foundLevel==0 && rows>0) {
-		QTableWidgetItem *itemPkgName = tb->item(0,0);
-		tb->setCurrentItem(itemPkgName);
-	}
+        QTableWidgetItem *itemPkgName = tb->item(0,0);
+        tb->setCurrentItem(itemPkgName);
+    }
 }
 
 void TexdocDialog::itemChanged(QTableWidgetItem* item)
@@ -176,7 +176,7 @@ void TexdocDialog::delayedCheckDocAvailable(const QString &package)
 void TexdocDialog::checkDockAvailable()
 {
     if (lastDocRequest.isEmpty()){
-		updateDocAvailableInfo("", false);
+        updateDocAvailableInfo("", false);
     } else {
         help->texdocAvailableRequest(lastDocRequest);
     }
