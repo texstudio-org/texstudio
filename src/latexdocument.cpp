@@ -511,8 +511,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
     //QElapsedTimer tm ;
     //tm.start();
 
-	static QRegExp rxMagicTexComment("^%\\ ?!T[eE]X");
-	static QRegExp rxMagicBibComment("^%\\ ?!BIB");
+
 
 	bool reRunSuggested = false;
 	bool recheckLabels = true;
@@ -689,13 +688,17 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
             }
             //// magic comment
-            if (rxMagicTexComment.indexIn(text) == 0) {
-                addMagicComment(text.mid(rxMagicTexComment.matchedLength()).trimmed(), i, posMagicComment++);
+            const QRegularExpression rxMagicTexComment("^%\\ ?!T[eE]X");
+            const QRegularExpression rxMagicBibComment("^%\\ ?!BIB");
+            QRegularExpressionMatch matchMagicTexComment=rxMagicTexComment.match(text);
+            QRegularExpressionMatch matchMagicBibComment=rxMagicBibComment.match(text);
+            if (matchMagicTexComment.hasMatch()) {
+                addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), i, posMagicComment++);
                 commentStart.second=Token::magicComment;
                 dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
-            } else if (rxMagicBibComment.indexIn(text) == 0) {
+            } else if (matchMagicBibComment.hasMatch()) {
                 // workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
-                text = text.mid(rxMagicBibComment.matchedLength()).trimmed();
+                text = text.mid(matchMagicBibComment.capturedLength()).trimmed();
                 QString name;
                 QString val;
                 splitMagicComment(text, name, val);
