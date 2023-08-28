@@ -1,7 +1,7 @@
 # from XeTeX reference guide (Jan 3, 2011)
-# updated 2022/05/05 for refguide 2019/12/09
+# updated 2023/08/27 for refguide 2023/08/24
 
-# font primitives
+# Font primitives
 \XeTeXtracingfonts#*
 \XeTeXfonttype#*
 \XeTeXfirstfontchar#*
@@ -42,6 +42,9 @@
 \XeTeXvariationdefault#*
 \XeTeXfindvariationbyname#*
 
+# Contextual adjustment space handling
+\XeTeXinterwordspaceshaping#*
+
 # Math fonts
 \Umathcode#*
 \Umathcodenum#*
@@ -57,19 +60,6 @@
 \Umathaccent#*
 \Uradical#*
 
-# deprecated math font commands
-\XeTeXmathcode#S
-\XeTeXmathcodenum#S
-\XeTeXmathchar#S
-\XeTeXmathcharnum#S
-\XeTeXmathchardef#S
-\XeTeXmathcharnumdef#S
-\XeTeXdelcode#S
-\XeTeXdelcodenum#S
-\XeTeXdelimiter#S
-\XeTeXmathaccent#S
-\XeTeXradical#S
-
 # Characters
 \Uchar#*
 \Ucharcat#*
@@ -81,17 +71,18 @@
 \XeTeXcharclass#*
 \XeTeXinterchartoks#*
 
-# Encoding
+# Encodings
 \XeTeXinputnormalization#*
 \XeTeXinputencoding#*
 \XeTeXdefaultencoding#*
 
-# Line Breaking
+# Line breaking
 \XeTeXdashbreakstate#*
 \XeTeXlinebreaklocale#*
 \XeTeXlinebreakskip#*
 \XeTeXlinebreakpenalty#*
 \XeTeXupwardsmode#*
+\XeTeXhyphenatablelength#*
 
 # Graphics
 \XeTeXpicfile#*
@@ -101,7 +92,7 @@
 # Character protrusion
 \XeTeXprotrudechars#*
 
-# Cross-compatibility with pdfTeX and/or LuaTeX
+# Cross-compatibility with other TeX engines
 \pdfpageheight#*
 \pdfpagewidth#*
 \pdfsavepos#*
@@ -126,22 +117,31 @@
 \elapsedtime#*
 \resettimer#*
 
-# File queries
+# File handling
+\creationdate#*
 \filedump#*
-\filemoddate#*
-\filesize#*
+\filemoddate{file}#*
+\filesize{file}#*
 \mdfivesum#*
 
 # Fonts
-\pdfmapfile#*
-\pdfmapline#*
+\pdfmapfile{file}#*
+\pdfmapline{map spec}#*
 \suppressfontnotfounderror#*
 
 # Engine version
 \XeTeXversion#*
 \XeTeXrevision#*
 
-# other (not in ref guide)
-\creationdate#*
-\XeTeXhyphenatablelength#*
-\XeTeXinterwordspaceshaping#*
+# deprecated math font commands
+\XeTeXmathcode#S
+\XeTeXmathcodenum#S
+\XeTeXmathchar#S
+\XeTeXmathcharnum#S
+\XeTeXmathchardef#S
+\XeTeXmathcharnumdef#S
+\XeTeXdelcode#S
+\XeTeXdelcodenum#S
+\XeTeXdelimiter#S
+\XeTeXmathaccent#S
+\XeTeXradical#S
