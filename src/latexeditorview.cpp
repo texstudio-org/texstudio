@@ -2696,15 +2696,15 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				type = tr("Beamer Theme");
 				type.replace(' ', "&nbsp;");
 			}
-            QString text = QString("%1:&nbsp;<b>%2</b>").arg(type,value);
-            if (latexPackageList->find(preambel + value) != latexPackageList->end()) {
+			QString text = QString("%1:&nbsp;<b>%2</b>").arg(type,value);
+			if (LatexRepository::instance()->packageExists(value)
+				|| latexPackageList->find(preambel + value) != latexPackageList->end()) {
 				QString description = LatexRepository::instance()->shortDescription(value);
 				if (!description.isEmpty()) text += "<br>" + description;
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
 			} else {
 				text += "<br><b>(" + tr("not found") + ")";
-				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
 			}
+			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
 		}
 		if (config->imageToolTip && tk.subtype == Token::color) {
             handled=true;
