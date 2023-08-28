@@ -3,13 +3,19 @@
 
 #include:thmtools
 
-\begin{restatable}[thm title]{envname}{cmd name}
+\begin{restatable}[options%keyvals]{envname}{cmd name}
 \begin{restatable}{envname}{cmd name}
 \end{restatable}
 
-\begin{restatable*}[thm title]{envname}{cmd name}#*
+\begin{restatable*}[options%keyvals]{envname}{cmd name}#*
 \begin{restatable*}{envname}{cmd name}#*
 \end{restatable*}#*
+
+#keyvals:\begin{restatable}#c,\begin{restatable*}#c
+%<title%>
+name=%<title%>
+label=##l
+#endkeyvals
 
 \restatable#S
 \endrestatable#S

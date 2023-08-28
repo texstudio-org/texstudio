@@ -1,6 +1,6 @@
 # xepersian 23.7
 # hadi_sfr (info@hadisafari.ir)
-# updated 2022/10/30 for v24.8
+# updated 2023/08/26 for v24.9
 
 # Equivalent Persian Commands, documentclasses and some other commands are not included
 
@@ -40,6 +40,12 @@ computeautoilg
 DetectColumn
 debugtextdigitfont
 perpagefootnote
+mainpersianfont=#Default,Parsian,Naskh,Sans,Mono,Classic
+persiansansfont=#on,off
+persianmonofont=#on,off
+mathdigitfont=#Default,Parsian,Naskh,Sans,Mono,Classic
+mathsansdigitfont=#on,off
+mathmonodigitfont=#on,off
 #endkeyvals
 
 #ifOption:extrafootnotefeatures

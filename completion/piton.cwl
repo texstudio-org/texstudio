@@ -1,14 +1,10 @@
 # piton package
-# Matthew Bertucci 2023/08/07 for v2.0
+# Matthew Bertucci 2023/08/07 for v2.1
 
 #include:l3keys2e
 #include:luatexbase
-#include:luacode
 
 #keyvals:\usepackage/piton#c
-comment-latex=%<string%>
-math-comments#true,false
-escape-inside=%<two-chars%>
 footnote
 footnotehyper
 beamer#true,false
@@ -45,19 +41,46 @@ beamer#true,false
 #keyvals:\PitonInputFile
 first-line=%<integer%>
 last-line=%<integer%>
+begin-range=%<content%>
+end-range=%<content%>
+range=%<content%>
+marker/include-lines
 #endkeyvals
 
 \PitonOptions{options%keyvals}
 
+# keys for \PitonOptions only
+#keyvals:\PitonOptions
+comment-latex=%<string%>
+math-comments#true,false
+line-numbers/absolute
+marker={%<options%>}
+marker/beginning=%<spec%>
+marker/end=%<spec%>
+begin-escape=%<character%>
+end-escape=%<character%>
+begin-escape-math=%<character%>
+end-escape-math=%<character%>
+#endkeyvals
+
+# keys for \begin{Piton} only
+#keyvals:\begin{Piton}
+line-numbers/start
+#endkeyvals
+
+# keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
 language=#Python,OCaml,C
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
+env-gobble
 line-numbers
-all-line-numbers
-numbers-sep=##L
-resume
+line-numbers={%<options%>}
+line-numbers/skip-empty-lines#true,false
+line-numbers/label-empty-lines#true,false
+line-numbers/resume
+line-numbers/sep=##L
 identifiers={%<names={<name1>,<name2>,...},style=<instructions>%>}
 splittable
 splittable=%<integer%>
@@ -161,4 +184,6 @@ Prompt
 
 \myfiledate#S
 \myfileversion#S
+\PitonBeginMarkerNotFound#S
+\PitonEndMarkerNotFound#S
 \PitonSyntaxError#S

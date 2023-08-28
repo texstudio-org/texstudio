@@ -1111,6 +1111,7 @@
 <file>completion/crbox.cwl</file>
 <file>completion/createsudoku.cwl</file>
 <file>completion/create-theorem.cwl</file>
+<file>completion/CreationBoites.cwl</file>
 <file>completion/crefthe.cwl</file>
 <file>completion/crimson.cwl</file>
 <file>completion/CrimsonPro.cwl</file>
@@ -2472,6 +2473,7 @@
 <file>completion/newfloat.cwl</file>
 <file>completion/newpax.cwl</file>
 <file>completion/newproof.cwl</file>
+<file>completion/newpx.cwl</file>
 <file>completion/newpxmath.cwl</file>
 <file>completion/newpxtext.cwl</file>
 <file>completion/newspaper.cwl</file>
@@ -2657,6 +2659,7 @@
 <file>completion/pdftexcmds.cwl</file>
 <file>completion/pdfx.cwl</file>
 <file>completion/penlight.cwl</file>
+<file>completion/penlightplus.cwl</file>
 <file>completion/perfectcut.cwl</file>
 <file>completion/perltex.cwl</file>
 <file>completion/permute.cwl</file>
