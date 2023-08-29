@@ -39,6 +39,13 @@
     <kudo>ModernToolkit</kudo>
     <kudo>UserDocs</kudo>
   </kudos>
+  <keywords>
+    <keyword>editor</keyword>
+    <keyword translate="no">tex</keyword>
+    <keyword translate="no">latex</keyword>
+    <keyword>ide</keyword>
+    <keyword>latex-editor</keyword>
+  </keywords>
   <url type="homepage">https://texstudio.org/</url>
   <url type="bugtracker">https://github.com/texstudio-org/texstudio/issues</url>
   <url type="faq">https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions</url>
