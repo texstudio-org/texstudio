@@ -42,6 +42,11 @@
   <url type="homepage">https://texstudio.org/</url>
   <url type="bugtracker">https://github.com/texstudio-org/texstudio/issues</url>
   <url type="faq">https://github.com/texstudio-org/texstudio/wiki/Frequently-Asked-Questions</url>
+  <url type="help">https://texstudio-org.github.io/getting_started.html</url>
+  <url type="translate">https://explore.transifex.com/texstudio/texstudio/</url>
+  <url type="contact">https://texstudio.org/#about</url>
+  <url type="vcs-browser">https://github.com/texstudio-org/texstudio</url>
+  <url type="contribute">https://texstudio.org/#participate</url>
   <developer_name>Benito van der Zander</developer_name>
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
