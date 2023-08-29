@@ -1,9 +1,10 @@
 # hvextern package
-# Matthew Bertucci 2023/08/25 for v0.36
+# Matthew Bertucci 2023/08/29 for v0.37
 
 #include:shellesc
 #include:xkeyval
 #include:graphicx
+#include:comment
 #include:fancyvrb
 #include:tikz
 #include:listings
