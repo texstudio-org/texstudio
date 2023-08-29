@@ -68,4 +68,7 @@
       </description>
     </release>
   </releases>
+  <provides>
+    <binary>texstudio</binary>
+  </provides>
 </component>
