@@ -23,7 +23,7 @@ signals:
 public slots:
 	void execTexdocDialog(const QStringList &packages, const QString &defaultPackage);
 	void viewTexdoc(QString package);
-	void texdocAvailableRequest(const QString &package);
+	bool texdocAvailableRequest(const QString &package);
     void texdocAvailableRequestFinished(int,QProcess::ExitStatus status);
 
 private:

@@ -121,13 +121,12 @@ QString Help::packageDocFile(const QString &package, bool silent)
  * \param silent
  * \return
  */
-void Help::texdocAvailableRequest(const QString &package)
+bool Help::texdocAvailableRequest(const QString &package)
 {
 	if (package.isEmpty())
-		return;
+		return false;
     if (BuildManager::CMD_TEXDOC.isEmpty()) {
-		emit texdocAvailableReply(package, false, tr("texdoc not found."));
-		return;
+		return false;
 	}
 
 	QStringList args;
@@ -140,7 +139,7 @@ void Help::texdocAvailableRequest(const QString &package)
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}
     runTexdocAsync(args.join(" "),SLOT(texdocAvailableRequestFinished(int,QProcess::ExitStatus)));
-
+	return true;
 }
 void Help::texdocAvailableRequestFinished(int,QProcess::ExitStatus status){
 
