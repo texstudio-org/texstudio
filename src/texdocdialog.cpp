@@ -193,7 +193,18 @@ void TexdocDialog::checkDockAvailable()
     if (lastDocRequest.isEmpty()){
         updateDocAvailableInfo("", false);
     } else {
-        help->texdocAvailableRequest(lastDocRequest);
+        LatexRepository *repo = LatexRepository::instance();
+        if (repo->LatexRepository::packageExists(lastDocRequest)) {
+            TeXdocStatus status = repo->LatexRepository::docStatus(lastDocRequest);
+            if (status == Undefined)
+                help->texdocAvailableRequest(lastDocRequest);
+            else {
+                updateDocAvailableInfo(lastDocRequest, status==Available);
+            }
+        }
+        else {
+            help->texdocAvailableRequest(lastDocRequest);
+        }
     }
 }
 
@@ -203,6 +214,8 @@ void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available
 
 	bool showWarning = !package.isEmpty() && !available;
 	QString warning = customWarning.isNull() ? tr("No Documentation Available") : customWarning;
+	TeXdocStatus status = available ? Available : Unavailable;
+	LatexRepository::instance()->updatePackageInfo(package, status);
 	if (openButton) openButton->setEnabled(available);
 	ui->lbInfo->setText(showWarning ? warning : "");
 	ui->lbWarnIcon->setVisible(showWarning);

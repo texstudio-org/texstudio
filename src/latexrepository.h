@@ -2,20 +2,23 @@
 #define Header_Latex_Repository
 
 #include "mostQtHeaders.h"
+enum TeXdocStatus { Undefined, Available, Unavailable };
 
 class LatexPackageInfo
 {
 public:
-	LatexPackageInfo(const QString &name = QString(), const QString &shortDescr = QString(), bool inst = false)
+	LatexPackageInfo(const QString &name = QString(), const QString &shortDescr = QString(), bool inst = false, TeXdocStatus status = Undefined)
 	{
 		this->name = name;
 		shortDescription = shortDescr;
 		installed = inst;
+		docStatus = status;
 	}
 
 	QString name;
 	QString shortDescription;
 	bool installed;
+	TeXdocStatus docStatus;
 };
 Q_DECLARE_METATYPE(LatexPackageInfo)
 
@@ -31,7 +34,9 @@ public:
 	DataSource dataSource();
 	bool packageExists(const QString &name);
 	QString shortDescription(const QString &name);
-    QStringList availablePackages();
+	TeXdocStatus docStatus(const QString &name);
+	void updatePackageInfo(const QString &name, const TeXdocStatus &docStatus);
+	QStringList availablePackages();
 
 private:
 	LatexRepository();
