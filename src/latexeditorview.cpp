@@ -731,7 +731,7 @@ LatexEditorView::~LatexEditorView()
 	}
 }
 
-void LatexEditorView::updateReplamentList(const QSharedPointer<LatexParser> cmds, bool forceUpdate)
+void LatexEditorView::updateReplacementList(const QSharedPointer<LatexParser> cmds, bool forceUpdate)
 {
 	QMap<QString, QString> replacementList;
 	bool differenceExists = false;
