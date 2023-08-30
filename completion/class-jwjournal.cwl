@@ -27,10 +27,8 @@ jwjournal-entry#B
 \JWJournalItem{text}#S
 \begin{jwjournal}#S
 \end{jwjournal}#S
-\JWJournalSkip#S
-\JWJournalSkip[factor]#S
-\JWJournalBack#S
-\JWJournalBack[factor]#S
+\JWJournalSkip<factor>#S
+\JWJournalBack<factor>#S
 \begin{JWJournalCompactCenter}#S
 \end{JWJournalCompactCenter}#S
 \begin{JWJournalCenter}#S
@@ -40,9 +38,6 @@ jwjournal-entry#B
 \begin{JWJournalRight}#S
 \end{JWJournalRight}#S
 \JWJournalCompactCenterText{text}#S
-\JWJournalShowImageCenter{imagefile}#Sg
-\JWJournalShowImageCenter[options]{imagefile}#Sg
-\JWJournalShowImageLeft{imagefile}#Sg
-\JWJournalShowImageLeft[options]{imagefile}#Sg
-\JWJournalShowImageRight{imagefile}#Sg
-\JWJournalShowImageRight[options]{imagefile}#Sg
+\JWJournalShowImageCenter<options><imagefile>#Sg
+\JWJournalShowImageLeft<options><imagefile>#Sg
+\JWJournalShowImageRight<options><imagefile>#Sg
