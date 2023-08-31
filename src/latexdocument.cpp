@@ -3308,7 +3308,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 
 	LatexEditorView *view = getEditorView();
 	if (view) {
-        view->updateReplamentList(lp, false);
+        view->updateReplacementList(lp, false);
     }
 }
 /*!
@@ -3327,7 +3327,7 @@ void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds)
 
 	LatexEditorView *view = getEditorView();
 	if (view) {
-		view->updateReplamentList(cmds, false);
+		view->updateReplacementList(cmds, false);
     }
 }
 
