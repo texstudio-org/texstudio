@@ -1,9 +1,8 @@
 # mitthesis class
-# Matthew Bertucci 2023/06/27 for v1.03
+# Matthew Bertucci 2023/08/31 for v1.06
 
 #include:class-report
 #include:etoolbox
-#include:ifthen
 #include:iftex
 #include:geometry
 #include:mathtools
@@ -24,7 +23,9 @@ twoside
 \Author{full name}{department}
 \Author{%<full name%>}{%<department%>}[%<degree1%>]%<[degree2]...%>
 \Degree{degree name}{department}
-\DegreeYear#*
+\DegreeYear
+\DegreeMonth
+\CopyrightAuthor
 \Supervisor{name}{department}
 \Acceptor{name}{title%text}{thesis-related position}
 \DegreeDate{month}{year}
@@ -33,6 +34,7 @@ twoside
 \CClicense{license type}{URL}#U
 \CCurl#*
 \PDFRightsText#*
+\SuppressAcceptorError#*
 
 \begin{nomenclature}
 \begin{nomenclature}[space]
@@ -47,23 +49,10 @@ twoside
 
 # not documented
 \ClassName#S
-\CurrDept#S
 \MIT#S
-\MonthCheck{arg1}{arg2}#S
 \nomenwidth#S
 \nomname#S
-\PrevDept#S
 \savitemsep#S
-\theacccnt#S
-\theaccno#S
-\theautcrcnt#S
-\theauthorcnt#S
-\theauthorno#S
-\thedegcnt#S
-\thedegno#S
-\thedepflag#S
-\thesupcnt#S
-\thesupno#S
 \versiondate#S
 \versionno#S
 
