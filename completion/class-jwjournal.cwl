@@ -23,6 +23,7 @@ jwjournal-color-6#B
 jwjournal-color-7#B
 jwjournal-entry#B
 
+\JWJournalSeperator#S
 \JWJournalEntry{date}{text}#S
 \JWJournalItem{text}#S
 \begin{jwjournal}#S
@@ -41,3 +42,4 @@ jwjournal-entry#B
 \JWJournalShowImageCenter<options><imagefile>#Sg
 \JWJournalShowImageLeft<options><imagefile>#Sg
 \JWJournalShowImageRight<options><imagefile>#Sg
+\JWJournalNote{arg}#S
