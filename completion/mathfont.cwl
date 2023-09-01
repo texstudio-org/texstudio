@@ -1,5 +1,5 @@
 # mathfont package
-# Matthew Bertucci 2022/12/06 for v2.2a
+# Matthew Bertucci 2023/08/22 for v2.2b
 
 #keyvals:\usepackage/mathfont#c
 easter-egg
@@ -288,7 +288,6 @@ italic
 \Nearrow#m
 \nequiv#m
 \neswarrow#m
-\ng#m
 \ngeq#m
 \ngsim#*m
 \nin#m
@@ -449,6 +448,9 @@ italic
 \Zeta#*m
 \zigzagarrow#m
 
+\ng
+\mathng#*m
+\textng#*
 \surdbox#*
 \radicandoffset#*
 \setmathfontcommands{font name}#*

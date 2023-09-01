@@ -1,5 +1,5 @@
 # expex-acro package
-# Matthew Bertucci 2022/05/18 for v0.0.2
+# Matthew Bertucci 2023/08/24 for v0.0.3
 
 #include:expex
 #include:etoolbox
@@ -16,6 +16,7 @@ refmode=#expex,latex
 
 \exref{tag}
 \exref[tag1]{tag2}
+\exref[range][tag1]{tag2}#*
 \exrefnil{tag}
 \exrefnil[tag1]{tag2}
 \mexref{tag1,tag2,...}

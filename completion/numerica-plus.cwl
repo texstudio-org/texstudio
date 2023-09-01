@@ -1,5 +1,5 @@
 # numerica-plus package
-# Matthew Bertucci 12/14/2021 for v2.0.0
+# Matthew Bertucci 2023/08/22 for v3.0.0
 
 #include:numerica
 
@@ -29,25 +29,33 @@
 \nmcIterate*[settings%keyvals]{expression}[vv-list%formula][num format]#*
 
 #keyvals:\iter,\iter*,\nmcIterate,\nmcIterate*,\solve,\solve*,\nmcSolve,\nmcSolve*,\recur,\recur*,\nmcRecur,\nmcRecur*
-dbg=%<integer%>
+# functional settings
+dbg=#0,1,2,3,5,7,11
 view
-reuse=#0,1,2
 ^=%<char%>
 xx=#0,1
-()=#0,1,2
-o
-log=%<number%>
-vvmode=#0,1
+ff=%<char%>
+1s2=#0,1
+/min=%<integer%>
+/max=%<integer%>
 vv@=#0,1
-vvi=%<specification%>
-vvd=%<specification%>
-*
-p
-p=%<chars%>
+vvmode=#0,1
+o=#0,1
+log=%<number%>
 S+=%<integer%>
 S?=%<integer%>
 P+=%<integer%>
 P?=%<integer%>
+# display settings
+f=#0,1
+p=%<punctuation%>
+pp=%<punctuation%>
+env=%<envname%>
+arg=%<arg%>
+eq=%<symbol%>
+vv=%<spec%>
+sep=%<separator%>
+\}=%<<space><r-delim>%>
 #endkeyvals
 
 #keyvals:\iter,\iter*,\nmcIterate,\nmcIterate*
@@ -121,3 +129,5 @@ see1=%<integer%>
 see2=%<integer%>
 ...
 #endkeyvals
+
+\clitem%<\macro <number>%>

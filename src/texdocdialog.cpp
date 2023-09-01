@@ -25,11 +25,7 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 	connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
 	connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
 	connect(ui->buttonCTAN, SIGNAL(clicked()), SLOT(openCtanUrl()));
-    connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
-
-	updateDocAvailableInfo("", false); // initially disable warning message
-	ui->buttonCTAN->setEnabled(false);
-	ui->lineEditSearch->setEnabled(false);
+	connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
 }
 
 TexdocDialog::~TexdocDialog()
@@ -46,6 +42,7 @@ void TexdocDialog::regenerateTable(int state)
     ui->tbPackages->clearContents();
     ui->tbPackages->setRowCount(0);
     ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
+    int n=0;
     if (!m_packages.isEmpty() || (state>0)) {
         ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
         ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -59,7 +56,6 @@ void TexdocDialog::regenerateTable(int state)
         }
 
         ui->tbPackages->setRowCount(pkgs.size());
-        int n=0;
         for (int i=0;i<pkgs.size();i++) {
             QString name = pkgs.at(i);
             if(state==0 && !repo->LatexRepository::packageExists(name)) continue;
@@ -74,54 +70,73 @@ void TexdocDialog::regenerateTable(int state)
         }
         ui->tbPackages->setRowCount(n);
         ui->tbPackages->sortItems(0,Qt::AscendingOrder);
-        if (n>0) {
-            QTableWidgetItem *itemPkgName = ui->tbPackages->item(0,0);
-            ui->tbPackages->setCurrentItem(itemPkgName);
-        }
-        ui->buttonCTAN->setEnabled(true);
-        ui->lineEditSearch->setEnabled(true);
-        ui->lineEditSearch->setFocus();
     }
+    ui->lineEditSearch->setEnabled(n>0);
+    if (n>0) ui->lineEditSearch->setFocus();
     connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
     tableSearchTermChanged(ui->lineEditSearch->text());
 }
 
 void TexdocDialog::tableSearchTermChanged(QString term) {
-	QTableWidget *tb = ui->tbPackages;
-	int rows = tb->rowCount();
+    QTableWidget *tb = ui->tbPackages;
+    int rows = tb->rowCount();
+    QTableWidgetItem *currentItem = nullptr;
+    ui->buttonCTAN->setEnabled(false);
     uint foundLevel = 0;
-	for (int i=0; i<rows; i++) {
-		QTableWidgetItem *itemPkgName = tb->item(i,0);
+    int n = 0;
+    for (int i=0; i<rows; i++) {
+        QTableWidgetItem *itemPkgName = tb->item(i,0);
         bool match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
         if (match){
             if(foundLevel<1){
-                tb->setCurrentItem(itemPkgName);
+                currentItem = itemPkgName;
                 foundLevel=1;
             }
             if(foundLevel<2 && itemPkgName->text().startsWith(term,Qt::CaseInsensitive)){
-                tb->setCurrentItem(itemPkgName);
+                currentItem = itemPkgName;
                 foundLevel=2;
             }
             if(foundLevel<3 && itemPkgName->text().startsWith(term)){
-                tb->setCurrentItem(itemPkgName);
+                currentItem = itemPkgName;
                 foundLevel=3;
             }
-		}
+        }
         if(!match){
             // check description
             QTableWidgetItem *itemPkgName = tb->item(i,1);
             match = itemPkgName->text().contains(term,Qt::CaseInsensitive);
+            if (n==0 && match) currentItem = itemPkgName;
         }
-		tb->setRowHidden(i,!match);
-	}
-    if (foundLevel==0 && rows>0) {
-		QTableWidgetItem *itemPkgName = tb->item(0,0);
-		tb->setCurrentItem(itemPkgName);
-	}
+        if (match) n++;
+        tb->setRowHidden(i,!match);
+    }
+    if (n>0) {
+        ui->buttonCTAN->setEnabled(true);
+        if (tb->currentItem() != currentItem) {
+            ui->lbInfo->setText("");
+            ui->lbWarnIcon->setVisible(false);
+            openButton->setEnabled(false);
+            tb->scrollToItem(currentItem,QAbstractItemView::PositionAtTop);
+            tb->setCurrentItem(currentItem);
+        }
+        else {
+            tb->scrollToItem(currentItem,QAbstractItemView::PositionAtTop);
+            itemChanged(currentItem);
+        }
+    }
+    else {
+        ui->buttonCTAN->setEnabled(false);
+        ui->lbInfo->setText("");
+        ui->lbWarnIcon->setVisible(false);
+        openButton->setEnabled(false);
+    }
 }
 
 void TexdocDialog::itemChanged(QTableWidgetItem* item)
 {
+	ui->buttonCTAN->setEnabled(true);
+	ui->lbInfo->setText("");
+	ui->lbWarnIcon->setVisible(false);
 	openButton->setEnabled(false);
 	int row = item->row();
 	QString text = ui->tbPackages->item(row,0)->text();
@@ -176,9 +191,20 @@ void TexdocDialog::delayedCheckDocAvailable(const QString &package)
 void TexdocDialog::checkDockAvailable()
 {
     if (lastDocRequest.isEmpty()){
-		updateDocAvailableInfo("", false);
+        updateDocAvailableInfo("", false);
     } else {
-        help->texdocAvailableRequest(lastDocRequest);
+        LatexRepository *repo = LatexRepository::instance();
+        if (repo->LatexRepository::packageExists(lastDocRequest)) {
+            TeXdocStatus status = repo->LatexRepository::docStatus(lastDocRequest);
+            if (status == Undefined)
+                help->texdocAvailableRequest(lastDocRequest);
+            else {
+                updateDocAvailableInfo(lastDocRequest, status==Available);
+            }
+        }
+        else {
+            help->texdocAvailableRequest(lastDocRequest);
+        }
     }
 }
 
@@ -188,6 +214,8 @@ void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available
 
 	bool showWarning = !package.isEmpty() && !available;
 	QString warning = customWarning.isNull() ? tr("No Documentation Available") : customWarning;
+	TeXdocStatus status = available ? Available : Unavailable;
+	LatexRepository::instance()->updatePackageInfo(package, status);
 	if (openButton) openButton->setEnabled(available);
 	ui->lbInfo->setText(showWarning ? warning : "");
 	ui->lbWarnIcon->setVisible(showWarning);

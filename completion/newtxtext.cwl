@@ -1,5 +1,5 @@
 # newtxtext package
-# Matthew Bertucci 2023/07/31 for v1.723
+# Matthew Bertucci 2023/08/21 for v1.724
 
 #include:iftex
 #include:xkeyval
@@ -65,6 +65,8 @@ looser
 \textnum{text}
 \textnumerator{text}#*
 \textosf{text}
+\textsfrac[whole part]{numerator}{denominator}
+\textsfrac{numerator}{denominator}
 \textsu{text}
 \textsup{text}#S
 \textsuperior{text}#*

@@ -165,7 +165,7 @@ public:
 	bool getSearchIsRegExp();
 	bool getSearchIsWords();
 
-	void updateReplamentList(const QSharedPointer<LatexParser> cmds, bool forceUpdate = false);
+	void updateReplacementList(const QSharedPointer<LatexParser> cmds, bool forceUpdate = false);
     QMap<QString,QString> getReplacementList(){
         return mReplacementList;
     }

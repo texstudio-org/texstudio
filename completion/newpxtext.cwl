@@ -1,9 +1,8 @@
 # newpxtext package
-# Matthew Bertucci 1/13/2022 for v1.503
+# Matthew Bertucci 2023/08/21 for v1.51
 
 #include:fontenc
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 #include:xkeyval
 #include:etoolbox
 #include:xstring
@@ -13,10 +12,7 @@
 #include:fontaxes
 
 #keyvals:\usepackage/newpxtext#c
-type1#true,false
-nofontspec#true,false
 no-math#true,false
-defaultfeatures={%<fontspec options%>}
 lining#true,false
 lf#true,false
 oldstyle#true,false
@@ -26,7 +22,6 @@ t#true,false
 proportional#true,false
 p#true,false
 scaled=%<factor%>
-scale=%<factor%>
 defaultsups#true,false
 largesc#true,false
 nohelv#true,false
@@ -36,6 +31,7 @@ spacing=##L
 stretch=##L
 shrink=##L
 oldSS
+notextnu
 slashedzero
 theoremfont
 thmlining
@@ -66,9 +62,12 @@ looser
 \textinf{text}
 \textinferior{text}#*
 \textlf{text}
-\textnu{text}
+\textnu{text}#*
+\textnum{text}
 \textnumerator{text}#*
 \textosf{text}
+\textsfrac[whole part]{numerator}{denominator}
+\textsfrac{numerator}{denominator}
 \textsu{text}
 \textsuperior{text}#*
 \textth{text}

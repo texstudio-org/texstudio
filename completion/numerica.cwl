@@ -1,9 +1,14 @@
 # numerica package
-# Matthew Bertucci 12/14/2021 for v2.0.0
+# Matthew Bertucci 2023/08/22 for v3.0.0
 
-#include:l3keys2e
 #include:amsmath
 #include:mathtools
+
+#keyvals:\usepackage/numerica#c
+comma#true,false
+rounding=%<integer%>
+approx
+#endkeyvals
 
 \eval{expression}
 \eval[settings%keyvals]{expression}
@@ -31,25 +36,33 @@
 \nmcEvaluate*[settings%keyvals]{expression}[vv-list%formula][num format]#*
 
 #keyvals:\eval,\eval*,\nmcEvaluate,\nmcEvaluate*,\macros,\macros*,\nmcMacros,\nmcMacros*,\constants,\constants*,\nmcConstants,\nmcConstants*,\reuse,\reuse*,\nmcReuse,\nmcReuse*
-dbg=%<integer%>
+# functional settings
+dbg=#0,1,2,3,5,7,11
 view
-reuse=#0,1
 ^=%<char%>
 xx=#0,1
-()=#0,1,2
-o
-log=%<number%>
-vvmode=#0,1
+ff=%<char%>
+1s2=#0,1
+/min=%<integer%>
+/max=%<integer%>
 vv@=#0,1
-vvi=%<specification%>
-vvd=%<specification%>
-*
-p
-p=%<chars%>
+vvmode=#0,1
+o=#0,1
+log=%<number%>
 S+=%<integer%>
 S?=%<integer%>
 P+=%<integer%>
 P?=%<integer%>
+# display settings
+f=#0,1
+p=%<punctuation%>
+pp=%<punctuation%>
+env=%<envname%>
+arg=%<arg%>
+eq=%<symbol%>
+vv=%<spec%>
+sep=%<separator%>
+\}=%<<space><r-delim>%>
 #endkeyvals
 
 \csch#m
@@ -63,6 +76,18 @@ P?=%<integer%>
 \acsch#m
 \asech#m
 \acoth#m
+\arsinh#*m
+\arcosh#*m
+\artanh#*m
+\arcsch#*m
+\arsech#*m
+\arcoth#*m
+\arcsinh#*m
+\arccosh#*m
+\arctanh#*m
+\arccsch#*m
+\arcsech#*m
+\arccoth#*m
 \lb#m
 \sgn#m
 \abs{arg}#m
@@ -77,6 +102,9 @@ P?=%<integer%>
 \ceil[opt]{arg}#*m
 \ceil*{arg}#m
 \ceil*[opt]{arg}#m
+\comma#*
+\equals#*
+\degree#*
 \q#m
 \Q#m
 
@@ -137,6 +165,8 @@ add
 \nmcReuse*[settings%keyvals]{csname}#*
 
 #keyvals:\reuse,\reuse*,\nmcReuse,\nmcReuse*
-delete
+save
 renew
+load
+delete
 #endkeyvals

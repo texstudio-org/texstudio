@@ -1,5 +1,5 @@
 # brandeis-thesis class
-# Matthew Bertucci 2022/06/05 for v3.2
+# Matthew Bertucci 2023/08/27 for v3.3
 
 #include:class-book
 #include:silence
@@ -21,12 +21,12 @@
 \degreetype{type%text}
 
 \maketitlepage
-\makecopyright
+\startbody
 
 \begin{thesis-abstract}
 \end{thesis-abstract}
 
-\startbody
+\sectionbreak#*
 
 # from english option of babel
 \captionsenglish#*

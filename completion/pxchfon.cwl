@@ -1,7 +1,8 @@
 # pxchfon package
-# Matthew Bertucci 2023/08/19 for v1.9b
+# Matthew Bertucci 2023/08/27 for v2.0
 
 #include:platex
+#include:keyval
 
 #keyvals:\usepackage/pxchfon#c
 nodvidriver
@@ -9,7 +10,7 @@ dvips
 dviout
 xdvi
 dvipdfmx
-use=%<指定%>
+use=%<名前%>
 alphabet
 noalphabet
 relfont
@@ -25,9 +26,8 @@ everypage
 noeverypage
 oneweight
 nooneweight
-directunicode*
-directunicode
-nodirectunicode
+unicode
+unicode=#full,all,UTF,false
 dumpmap
 nodumpmap
 dumpmaptl
@@ -36,10 +36,15 @@ switchfont
 noswitchfont
 strictcsi
 nostrictcsi
+fullwidth
+nofullwidth
+legacycode=#apply,ignore,suppress
+legacycode-replace=%<真偽値%>
 expert
 noexpert
 glyphid
 noglyphid
+maybe-multiweight
 autojfmsync
 noautojfmsync
 noembed
@@ -64,7 +69,6 @@ morisawa-pro
 morisawa-pr6n
 yu-win
 yu-win10
-yu-win10+
 yu-osx
 sourcehan-otc
 sourcehan
@@ -73,10 +77,6 @@ noto-otc
 noto
 noto-jp
 haranoaji
-sourcehan-otc+
-sourcehan+
-noto-otc+
-noto+
 sourcehan-otc!
 sourcehan!
 sourcehan-jp!
@@ -201,5 +201,6 @@ noto-otf!
 \jfmsync#*
 \jfmsyncbox{width}{text}#*
 
-# deprecated
-\asUTF{jachar}#S
+# not documented
+\maybemultiweight#S
+\pxchfonMaybeMultiweight#S

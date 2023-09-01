@@ -1,13 +1,12 @@
 # novel class
-# Matthew Bertucci 2023/02/24 for v1.80
+# Matthew Bertucci 2023/08/27 for v1.82
 
 # Code broken into several sty files which are accounted
 # for here rather than having their own cwls.
 
 ## from novel.cls ##
 #include:luatex
-#include:ifluatex
-#include:ifxetex
+#include:iftex
 #include:luatex85
 #include:pdftexcmds
 #include:etoolbox
@@ -275,6 +274,7 @@ depth=%<integer%>
 \novelyadayada*[integer]#*
 \sidebyside{content1%text}{content2%text}
 \sidebyside[a,b,c,d]{content1%text}{content2%text}
+\myparindent{length}
 \nfs#*
 \nbs#*
 \normalparindent#*
