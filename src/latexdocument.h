@@ -395,7 +395,6 @@ public:
 
 
 	QHash<QString, LatexPackage> cachedPackages;
-	void addDocToLoad(QString filename);
     void addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser>lp);
 	void removeDocs(QStringList removeIncludes);
 	void hideDocInEditor(LatexEditorView *edView);
@@ -407,7 +406,6 @@ public:
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);
-	void docToLoad(QString filename);
     void docsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp);
 	void docToHide(LatexEditorView *edView);
 	void updateQNFA();

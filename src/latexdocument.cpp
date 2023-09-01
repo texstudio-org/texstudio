@@ -1996,13 +1996,11 @@ void LatexDocuments::setMasterDocument(LatexDocument *document)
 {
 	if (document == masterDocument) return;
 	if (masterDocument != nullptr && masterDocument->getEditorView() == nullptr) {
-		QString fn = masterDocument->getFileName();
-		addDocToLoad(fn);
+        QString fn = masterDocument->getFileName();
+        //addDocsToLoad(QStringList(fn));
 		LatexDocument *doc = masterDocument;
 		masterDocument = nullptr;
 		deleteDocument(doc);
-		//documents.removeAll(masterDocument);
-		//delete masterDocument;
 	}
 	masterDocument = document;
 	if (masterDocument != nullptr) {
@@ -2286,10 +2284,6 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
 	}
 }
 
-void LatexDocuments::addDocToLoad(QString filename)
-{
-    emit docToLoad(filename);
-}
 /*!
  * \brief load included files from top level
  * \param filenames
@@ -2601,8 +2595,8 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		if (dc) {
 			dc->childDocs.insert(this);
 			setMasterDocument(dc);
-		} else {
-			parent->addDocToLoad(fname);
+        } else {
+            parent->addDocsToLoad(QStringList(fname),lp);
 		}
 		se->valid = true;
 	} else if (lowerName == "encoding") {

@@ -237,7 +237,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     connect(grammarCheck, &GrammarCheck::checked, &documents, &LatexDocuments::lineGrammarChecked);
     connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
     if (configManager.autoLoadChildren){
-        connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
         connect(&documents, &LatexDocuments::docsToLoad, this, &Texstudio::addDocsToLoad);
     }
 	connect(&documents, SIGNAL(updateQNFA()), this, SLOT(updateTexQNFA()));
