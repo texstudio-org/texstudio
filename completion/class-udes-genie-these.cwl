@@ -1,5 +1,5 @@
 # udes-genie-these class
-# Matthew Bertucci 2022/09/26 for v3.0
+# Matthew Bertucci 2023/09/01 for v3.1.0
 
 #include:class-book
 #include:babel
@@ -35,6 +35,8 @@ fichier-symboles={%<fichier%>}
 fichier-acronymes={%<fichier%>}
 fichiers-references={%<bib-fichier%>}
 style-references={%<bib-style%>}
+auto-bib#true,false
+legendes-min#true,false
 #endkeyvals
 
 \Auteur{prénom}{nom}
