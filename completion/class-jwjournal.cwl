@@ -1,5 +1,5 @@
 # jwjournal class
-# Matthew Bertucci 2023/08/29
+# Matthew Bertucci 2023/09/02
 
 #include:class-einfart
 #include:ProjLib
@@ -25,7 +25,7 @@ jwjournal-entry#B
 
 \JWJournalSeperator#S
 \JWJournalEntry{date}{text}#S
-\JWJournalItem{text}#S
+\JWJournalItem{arg1}{arg2}#S
 \begin{jwjournal}#S
 \end{jwjournal}#S
 \JWJournalSkip<factor>#S
