@@ -434,8 +434,6 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
             continue;
         }else{
             bool remainderChanged = Parsing::latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
-            line(i).setFlag(QDocumentLine::lexedPass2InComplete,true);
-            line(i).setFlag(QDocumentLine::argumentsParsed,false);
             bool leaveLoop=false;
             if(oldRemainder.size()>0){
                 for(int k=0;k<oldRemainder.size();++k){

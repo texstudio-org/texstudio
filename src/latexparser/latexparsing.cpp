@@ -179,6 +179,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
     int commentStart=-1;
 	QString keyName;
 
+    bool unknownCommandsPresent = false;
+
 	int lineLength=line.length();
 
 	for (int i = 0; i < tl.length(); i++) {
@@ -385,6 +387,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             } else {
                 if(tk.type==Token::command && tk.subtype == Token::none){
                     tk.type = Token::commandUnknown;
+                    unknownCommandsPresent=true;
                 }
             }
             lexed << tk;
@@ -845,6 +848,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
     dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(stack));
     dlh->setCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE, QVariant::fromValue<CommandStack>(commandStack));
     dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >({commentStart, Token::unknownComment}));
+    dlh->setFlag(QDocumentLine::lexedPass2InComplete,unknownCommandsPresent);
+    dlh->setFlag(QDocumentLine::lexedPass2Complete,!unknownCommandsPresent);
+    dlh->setFlag(QDocumentLine::argumentsParsed,false);
     dlh->unlock();
 
     bool remainderChanged = (stack != oldRemainder) || (commandStack != oldCommandStack) ;
