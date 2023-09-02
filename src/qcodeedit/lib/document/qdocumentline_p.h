@@ -146,6 +146,7 @@ public:
 		void lockForWriteText() {
 		    mLock.lockForWrite();
 		    mTicket++;
+            m_state&=31; // clear all lexed states
 		}
 		void lockForWrite() {
 		    mLock.lockForWrite();

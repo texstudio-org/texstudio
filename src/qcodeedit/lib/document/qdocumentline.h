@@ -89,7 +89,11 @@ class QCE_EXPORT QDocumentLine
 			
 			LayoutDirty			= 16,
 			FormatsApplied		= 32,
-			LayoutedByQTextLayout	= 64
+            LayoutedByQTextLayout	= 64,
+            lexedPass1 = 128,
+            lexedPass2InComplete = 256,
+            lexedPass2Complete = 512,
+            argumentsParsed = 1024,
 		};
 		
         Q_DECLARE_FLAGS(States, State)
