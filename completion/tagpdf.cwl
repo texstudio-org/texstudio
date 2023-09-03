@@ -91,6 +91,7 @@ E=%<text%>
 mc-data=%<integer%>
 mc-current
 struct-stack=#log,show
+debug/structures
 #endkeyvals
 
 # not documented

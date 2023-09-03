@@ -14,7 +14,6 @@
 \AddToNoCaseChangeList{command}#*
 \AfterEndEnvironment[label]{environment}{code}#*
 \AfterEndEnvironment{environment}{code}#*
-\ArgumentSpecification#*
 \AtBeginDocument{code}#*
 \AtBeginDocument[label]{code}#*
 \AtBeginDvi{code}#*
@@ -140,8 +139,6 @@
 \GenericError{continuation}{message%text}{help location%text}{help info%text}#*
 \GenericInfo{continuation}{message%text}#*
 \GenericWarning{continuation}{message%text}#*
-\GetDocumentCommandArgSpec{cmd}#*
-\GetDocumentEnvironmentArgSpec{envname}#*
 \IfBlankF{arg}{false code}#*
 \IfBlankT{arg}{true code}#*
 \IfBlankTF{arg}{true code}{false code}#*
@@ -266,8 +263,6 @@
 \ShipoutBoxHeight#*
 \ShipoutBoxWidth#*
 \ShowCommand{cmd}#*
-\ShowDocumentCommandArgSpec{cmd}#*
-\ShowDocumentEnvironmentArgSpec{envname}#*
 \ShowEnvironment{envname}#*
 \ShowFloat{identifier}#*
 \ShowHook{hook}#*
