@@ -2043,11 +2043,8 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
     edit->setSpellerManager(&spellerManager);
     edit->setSpeller("<default>");
     //patch Structure
-    //disconnect(edit->editor->document(),SIGNAL(contentsChange(int, int))); // force order of contentsChange update
     connect(edit->editor->document(), SIGNAL(contentsChange(int,int)), edit->document, SLOT(patchStructure(int,int)));
-    //connect(edit->editor->document(),SIGNAL(contentsChange(int, int)),edit,SLOT(documentContentChanged(int,int))); now directly called by patchStructure
     connect(edit->editor->document(), SIGNAL(linesRemoved(QDocumentLineHandle*,int,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int,int)));
-    //connect(edit->editor->document(), SIGNAL(lineDeleted(QDocumentLineHandle*,int)), edit->document, SLOT(patchStructureRemoval(QDocumentLineHandle*,int)));
     connect(edit->document, &LatexDocument::updateCompleter, this, &Texstudio::completerNeedsUpdate);
     connect(edit->document, &LatexDocument::updateCompleterCommands, this, &Texstudio::completerCommandsNeedsUpdate);
     connect(edit->editor, SIGNAL(needUpdatedCompleter()), this, SLOT(needUpdatedCompleter()));
@@ -4734,11 +4731,7 @@ void Texstudio::updateStructure(bool initial, LatexDocument *doc, bool hidden)
 	if (!doc)
 		doc = currentEditorView()->document;
 	if (initial) {
-		doc->patchStructure(0, -1);
-		// execute QCE highlting
-		doc->parent->enablePatch(false);
 		doc->highlight();
-		doc->parent->enablePatch(true);
 
 		bool previouslyEmpty=doc->localMacros.isEmpty();
 		doc->updateMagicCommentScripts();
@@ -10288,18 +10281,15 @@ void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
 	Q_ASSERT(oldLangDef != newLangDef);
 
 	if (editors) {
-		documents.enablePatch(false);
         foreach (LatexDocument *doc, documents.getDocuments()) {
             LatexEditorView *edView=doc->getEditorView();
             if(edView) {
                 QEditor *ed = edView->editor;
                 if (ed->languageDefinition() == oldLangDef) {
                     ed->setLanguageDefinition(newLangDef);
-                    // ed->highlight(); is executed by caller !
                 }
             }
         }
-		documents.enablePatch(true);
 	}
 }
 
