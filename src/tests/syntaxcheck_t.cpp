@@ -177,14 +177,14 @@ void SyntaxCheckTest::checktabular(){
     edView->getConfig()->realtimeChecking = true;
 
 	edView->editor->setText(text, false);
-	edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+    edView->document->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 	StackEnvironment env;
     edView->document->getEnv(row,env);
     QDocumentLineHandle *prev=edView->document->line(row-1).handle();
     TokenStack remainder;
     if(prev)
           remainder=prev->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-    QString message=edView->document->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env,remainder);
+    QString message=edView->document->synChecker.getErrorAt(edView->document->line(row).handle(),col,env,remainder);
 	QEQUAL(message, expectedMessage);
 
 	edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
@@ -264,7 +264,7 @@ void SyntaxCheckTest::checkkeyval(){
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
-    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
     QDocumentLineHandle *dlh=doc->line(1).handle();
     QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
@@ -309,7 +309,7 @@ void SyntaxCheckTest::checkArguments(){
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
-    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
     bool synError=false;
     for(int i=0;i<doc->lineCount();i++){
@@ -361,7 +361,7 @@ void SyntaxCheckTest::checkMathHighlight(){
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
-    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
     for(int i=0;i<doc->lineCount();++i){
         QDocumentLineHandle *dlh=doc->line(i).handle();
@@ -422,7 +422,7 @@ void SyntaxCheckTest::checkAllowedMath(){
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
-    doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
     QDocumentLineHandle *dlh=doc->line(0).handle();
     QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);

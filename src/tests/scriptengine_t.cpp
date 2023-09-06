@@ -240,7 +240,7 @@ void ScriptEngineTest::getLineTokens(void)
 
 	if (!documentText.isEmpty()) {
 		edView->editor->setText(documentText, false);
-		edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        edView->document->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 	}
 	scriptengine eng(nullptr);
 	eng.setEditorView(edView);
