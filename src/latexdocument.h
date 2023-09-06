@@ -200,10 +200,6 @@ public:
     bool isIncompleteInMemory();
     void startSyntaxChecker();
 
-    int lexLines(int &lineNr,int &count,bool recheck=false);
-    void lexLinesSimple(const int lineNr,const int count);
-    void handleComments(QDocumentLineHandle *dlh, int &curLineNr, int &posTodoComment, int &posMagicComment);
-
     struct HandledData {
         QStringList removedUsepackages;
         QStringList addedUsepackages;
@@ -222,7 +218,12 @@ public:
         int posBibTeX;
     };
 
+    int lexLines(int &lineNr,int &count,bool recheck=false);
+    void lexLinesSimple(const int lineNr,const int count);
+    void handleComments(QDocumentLineHandle *dlh, int &curLineNr, int &posTodoComment, int &posMagicComment);
+    void handleRescanDocuments(HandledData changedCommands);
     void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, QList<StructureEntry *> &flatStructure);
+    void reinterpretCommandArguments();
 
 private:
 	QString fileName; //absolute
@@ -281,7 +282,7 @@ private:
 
 	void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);
 
-	SyntaxCheck SynChecker;
+    SyntaxCheck synChecker;
 	Environment unclosedEnv;
 
 	bool syntaxChecking;
@@ -298,7 +299,7 @@ public:
 
 public slots:
 	void updateStructure();
-	bool patchStructure(int linenr, int count, bool recheck = false);
+    void patchStructure(int linenr, int count, bool recheck = false);
     void patchStructureRemoval(QDocumentLineHandle *dlh,int hint=-1,int count=1);
 	void initClearStructure();
 	void updateLtxCommands(bool updateAll = false);
@@ -399,8 +400,6 @@ public:
 	void removeDocs(QStringList removeIncludes);
 	void hideDocInEditor(LatexEditorView *edView);
 	QString findPackageByCommand(const QString command);
-	void enablePatch(const bool enable);
-	bool patchEnabled();
 	void requestQNFAupdate();
 
 signals:

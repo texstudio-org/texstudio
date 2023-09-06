@@ -56,13 +56,13 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
     updateSettings();
     //SynChecker.start(); start when needed
 
-    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);
+    connect(&synChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);
 }
 
 LatexDocument::~LatexDocument()
 {
-	SynChecker.stop();
-	SynChecker.wait();
+    synChecker.stop();
+    synChecker.wait();
 
 	foreach (QDocumentLineHandle *dlh, mLineSnapshot) {
 		dlh->deref();
@@ -409,7 +409,8 @@ void LatexDocument::lexLinesSimple(const int lineNr,const int count){
  */
 int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
     //first pass: simple lex
-    lexLinesSimple(lineNr,count);
+    if(!recheck)
+        lexLinesSimple(lineNr,count);
 
     TokenStack oldRemainder;
     CommandStack oldCommandStack;
@@ -428,7 +429,7 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
                 break; // do recheck quickly as usepackages probably need to be loaded
             }
         }
-        if(line(i).hasFlag(QDocumentLine::lexedPass2InComplete)){
+        if(line(i).hasFlag(QDocumentLine::lexedPass2Complete)){
             oldRemainder = line(i).getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
             oldCommandStack = line(i).getCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
             continue;
@@ -475,8 +476,11 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
                     continue;
                 }
             }
-            if (remainderChanged && i + 1 == lineNr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
-                count++; // check also next line ...
+            if (remainderChanged && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
+                line(i + 1).setFlag(QDocumentLine::lexedPass2Complete,false);
+                if(i + 1 == lineNr + count){
+                    ++count; // check also next line ...
+                }
             }
         }
     }
@@ -557,7 +561,14 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
 }
 
 
-
+/*!
+ * \brief interpret Command arguments and update internal data accordingly
+ * \param dlh line handle
+ * \param currentLineNr
+ * \param data
+ * \param recheckLabels
+ * \param flatStructure
+ */
 void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int currentLineNr,HandledData &data,bool recheckLabels,QList<StructureEntry *> &flatStructure){
     TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
@@ -1046,6 +1057,66 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
 
     } // for tl
 }
+/*!
+ * \brief reinterpret command arguments when packages have changed
+ */
+void LatexDocument::reinterpretCommandArguments()
+{
+    for (int i = 0; i < lineCount(); ++i) {
+        QDocumentLineHandle *dlh=line(i).handle();
+        HandledData changedCommands;
+        QList<StructureEntry*> flatStructure;
+        interpretCommandArguments(dlh,i,changedCommands,false,flatStructure);
+    }
+}
+/*!
+ * \brief decide if documents need to be rescanned (lexing and argument parsing)
+ * Perform the appropriate steps
+ */
+void LatexDocument::handleRescanDocuments(HandledData changedCommands){
+    // includes changed
+    if(!changedCommands.lstFilesToLoad.isEmpty()){
+        // lex2 & argument parsing, syntax check
+        parent->addDocsToLoad(changedCommands.lstFilesToLoad,lp);
+    }
+    if(!changedCommands.removedIncludes.isEmpty()){
+        // argument parsing & syntax check
+        parent->updateMasterSlaveRelations(this);
+    }
+    // usepackage changed, lex pass2 all documents
+    if(!changedCommands.addedUsepackages.isEmpty()){
+        // lex2 & argument parsing, syntax check
+        updateCompletionFiles(false);
+        int start=0;
+        int cnt=lineCount();
+        lexLines(start,cnt,true);
+        reinterpretCommandArguments();
+        synChecker.setLtxCommands(lp);
+        reCheckSyntax();
+    }
+    if(!changedCommands.removedUsepackages.isEmpty()){
+        // argument parsing & syntax check
+    }
+    if(!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty()){
+        emit updateCompleterCommands(); // TODO: necessary ?
+    }
+    // user commands changed
+    // update completer & syntax check
+
+    // bib files changed
+    // update bibitem checking and completer
+    if (changedCommands.bibTeXFilesNeedsUpdate)
+        emit updateBibTeXFiles();
+    // force update on citation overlays
+    if (changedCommands.bibItemsChanged || changedCommands.bibTeXFilesNeedsUpdate) {
+        parent->updateBibFiles(changedCommands.bibTeXFilesNeedsUpdate);
+        // needs probably done asynchronously as bibteFiles needs to be loaded first ...
+        foreach (LatexDocument *elem, getListOfDocs()) {
+            if (elem->edView)
+                elem->edView->updateCitationFormats();
+        }
+    }
+}
 
 /*!
  * \brief parse lines to update syntactical and structure information
@@ -1060,16 +1131,13 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
  * \return true means a second run is suggested as packages are loadeed which change the outcome
  *         e.g. definition of specialDef command, but packages are load at the end of this method.
  */
-bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
+void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 {
 	/* true means a second run is suggested as packages are loadeed which change the outcome
 	 * e.g. definition of specialDef command, but packages are load at the end of this method.
 	 */
 
-	if (!parent->patchEnabled())
-		return false;
-
-	if (!baseStructure) return false;
+    if (!baseStructure) return;
 
     //QElapsedTimer tm ;
     //tm.start();
@@ -1099,8 +1167,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				lineNrStart = linenr;
 		}
 	}
-	bool updateSyntaxCheck = false;
-
     QList<StructureEntry *> flatStructure;
 
 	// usepackage list
@@ -1270,53 +1336,18 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         updateContext(oldLineBeyond, mBeyondEnd, StructureEntry::BeyondEnd);
     }
 
-    emit structureUpdated(); // TODO: recheck ??
+    handleRescanDocuments(changedCommands);
 
-	bool updateLtxCommands = false;
-    if (!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty() || !changedCommands.addedUserCommands.isEmpty() || !changedCommands.removedUserCommands.isEmpty()) {
-        bool forceUpdate = !changedCommands.addedUserCommands.isEmpty() || !changedCommands.removedUserCommands.isEmpty();
+    emit structureUpdated();
 
-        reRunSuggested = (count > 1) && (!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty());
-        updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
-        if(!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty()){
-            emit updateCompleterCommands(); // TODO: necessary ?
-        }
-	}
-    if (changedCommands.bibTeXFilesNeedsUpdate)
-		emit updateBibTeXFiles();
-	// force update on citation overlays
-    if (changedCommands.bibItemsChanged || changedCommands.bibTeXFilesNeedsUpdate) {
-        parent->updateBibFiles(changedCommands.bibTeXFilesNeedsUpdate);
-		// needs probably done asynchronously as bibteFiles needs to be loaded first ...
-		foreach (LatexDocument *elem, getListOfDocs()) {
-			if (elem->edView)
-				elem->edView->updateCitationFormats();
-		}
-	}
-    if (changedCommands.completerNeedsUpdate || changedCommands.bibTeXFilesNeedsUpdate)
-		emit updateCompleter();
-	if ((!recheck && updateSyntaxCheck) || updateLtxCommands) {
-	    this->updateLtxCommands(true);
-	}
-    //update view (unless patchStructure is run again anyway)
-    if (edView && (!reRunSuggested ||recheck)){
+    //update view
+    if (edView){
 		edView->documentContentChanged(linenr, count);
     }
 #ifndef QT_NO_DEBUG
 	if (!isHidden())
 		checkForLeak();
 #endif
-    parent->addDocsToLoad(changedCommands.lstFilesToLoad,lp);
-
-	if (reRunSuggested && !recheck){
-		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
-	}
-	if(!recheck){
-		reCheckSyntax(lineNrStart, newCount);
-	}
-    //qDebug()<<"fin"<<tm.elapsed();
-
-	return reRunSuggested;
 }
 
 #ifndef QT_NO_DEBUG
@@ -3233,16 +3264,6 @@ void LatexDocument::patchLinesContaining(const QStringList cmds)
     }
 }
 
-void LatexDocuments::enablePatch(const bool enable)
-{
-	m_patchEnabled = enable;
-}
-
-bool LatexDocuments::patchEnabled()
-{
-	return m_patchEnabled;
-}
-
 void LatexDocuments::requestQNFAupdate()
 {
 	emit updateQNFA();
@@ -3301,7 +3322,7 @@ void LatexDocument::updateLtxCommands(bool updateAll)
 			}
 		}
 	} else {
-        SynChecker.setLtxCommands(lp);
+        synChecker.setLtxCommands(lp);
         reCheckSyntax();
 	}
 
@@ -3321,7 +3342,7 @@ void LatexDocument::addLtxCommands()
 
 void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds)
 {
-	SynChecker.setLtxCommands(cmds);
+    synChecker.setLtxCommands(cmds);
 	lp = cmds;
 
 	LatexEditorView *view = getEditorView();
@@ -3332,17 +3353,17 @@ void LatexDocument::setLtxCommands(QSharedPointer<LatexParser> cmds)
 
 void LatexDocument::setSpeller(SpellerUtility *speller)
 {
-    SynChecker.setSpeller(speller);
+    synChecker.setSpeller(speller);
 }
 
 void LatexDocument::setReplacementList(QMap<QString, QString> replacementList)
 {
-    SynChecker.setReplacementList(replacementList);
+    synChecker.setReplacementList(replacementList);
 }
 
 void LatexDocument::updateSettings()
 {
-	SynChecker.setErrFormat(syntaxErrorFormat);
+    synChecker.setErrFormat(syntaxErrorFormat);
     QMap<QString,int> fmtList;
     QList<QPair<QString,QString> >formats;
     formats<<QPair<QString,QString>("math","numbers")<<QPair<QString,QString>("verbatim","verbatim")<<QPair<QString,QString>("pictureHighlight","picture")
@@ -3351,7 +3372,7 @@ void LatexDocument::updateSettings()
     for(const auto &elem : formats){
         fmtList.insert(elem.first,getFormatId(elem.second));
     }
-    SynChecker.setFormats(fmtList);
+    synChecker.setFormats(fmtList);
 }
 
 void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, int ticket, int hint)
@@ -3383,20 +3404,20 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, i
 						if (result.isValid())
 							env = result.value<StackEnvironment>();
 						remainder = prev->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-					}
-					SynChecker.putLine(unclosedEnv.dlh, env, remainder, true, unclosedEnvIndex);
+                    }
+                    synChecker.putLine(unclosedEnv.dlh, env, remainder, true, unclosedEnvIndex);
 				}
 			}
 			if (env.size() > 1) {
 				//at least one env has not been closed
 				Environment environment = env.top();
-				unclosedEnv = env.top();
-				SynChecker.markUnclosedEnv(environment);
+                unclosedEnv = env.top();
+                synChecker.markUnclosedEnv(environment);
 			}
 			return;
 		}
 		TokenStack remainder = dlh->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        SynChecker.putLine(line(index + 1).handle(), env, remainder, clearOverlay,index+1);
+        synChecker.putLine(line(index + 1).handle(), env, remainder, clearOverlay,index+1);
 	}
     dlh->deref();
 }
@@ -3457,13 +3478,13 @@ void LatexDocument::reCheckSyntax(int lineStart, int lineNum)
 	TokenStack prevTokens;
 	if (lineStart) {
 		prevTokens = line(lineStart-1).getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
-	}
-	SynChecker.putLine(line(lineStart).handle(), prevEnv, prevTokens, true, lineStart);
+    }
+    synChecker.putLine(line(lineStart).handle(), prevEnv, prevTokens, true, lineStart);
 }
 
 QString LatexDocument::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack)
 {
-	return SynChecker.getErrorAt(dlh, pos, previous, stack);
+    return synChecker.getErrorAt(dlh, pos, previous, stack);
 }
 
 int LatexDocument::syntaxErrorFormat;
@@ -3495,7 +3516,7 @@ QString LatexDocument::getLastEnvName(int lineNumber)
 void LatexDocument::enableSyntaxCheck(bool enable)
 {
     syntaxChecking = enable;
-    SynChecker.enableSyntaxCheck(enable);
+    synChecker.enableSyntaxCheck(enable);
 }
 
 bool LatexDocument::isSubfileRoot(){
@@ -3732,7 +3753,7 @@ bool LatexDocument::isIncompleteInMemory()
  */
 void LatexDocument::startSyntaxChecker()
 {
-    if(!SynChecker.isRunning()){
-        SynChecker.start();
+    if(!synChecker.isRunning()){
+        synChecker.start();
     }
 }
