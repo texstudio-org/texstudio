@@ -11079,7 +11079,10 @@ void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> 
         LatexDocument *doc = documents.findDocumentFromName(fn);
         if(doc==nullptr){
             doc=new LatexDocument();
-            doc->load(fn,QDocument::defaultCodec());
+            doc->parent=&documents;
+            if(!doc->restoreCachedData(documents.getCachingFolder(),fn)){
+                doc->load(fn,QDocument::defaultCodec());
+            }
             doc->setFileName(fn);
             documents.addDocument(doc,true);
             doc->setLtxCommands(lp);
