@@ -88,7 +88,7 @@ public:
     Q_INVOKABLE void runInternalCommand(const QString &cmd, const QString &master, const QString &options);
 
 public slots:
-	LatexEditorView *load(const QString &f , bool asProject = false, bool hidden = false, bool recheck = true, bool dontAsk = false);
+	LatexEditorView *load(const QString &f , bool asProject = false, bool recheck = true, bool dontAsk = false);
     void executeCommandLine(const QStringList &args, bool realCmdLine);
 	void hideSplash(); ///< hide splash screen
 	void startupCompleted();

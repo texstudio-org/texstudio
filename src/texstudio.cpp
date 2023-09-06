@@ -2148,7 +2148,7 @@ void guessLanguageFromContent(QLanguageFactory *m_languages, QEditor *e)
  * \param dontAsk
  * \return
  */
-LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden, bool recheck, bool dontAsk)
+LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck, bool dontAsk)
 {
     QString f_real = f;
 #ifdef Q_OS_WIN32
@@ -2181,8 +2181,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         return nullptr;
     }
 
-    if (!hidden)
-        raise();
+    raise();
 
     //test is already opened
     LatexEditorView *existingView = getEditorViewFromFileName(f_real);
@@ -2191,7 +2190,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         doc = documents.findDocumentFromName(f_real);
         if (doc) existingView = doc->getEditorView();
     }
-    if(!hidden && doc && doc->isIncompleteInMemory()){
+    if(doc && doc->isIncompleteInMemory()){
         delete existingView;
         existingView=nullptr;
         LatexDocument *m=doc->getMasterDocument();
@@ -2202,8 +2201,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         doc=nullptr;
     }
     if (existingView) {
-        if (hidden)
-            return existingView;
         if (asProject) documents.setMasterDocument(existingView->document);
         if (existingView->document->isHidden()) {
             // clear baseStructure outside treeview context
@@ -2248,16 +2245,14 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         doc->setLineEnding(edit->editor->document()->originalLineEnding());
         doc->setEditorView(edit); //update file name (if document didn't exist)
 
-        configureNewEditorViewEnd(edit, !hidden, hidden);
+        configureNewEditorViewEnd(edit, true, false);
 
-        documents.addDocument(edit->document, hidden);
+        documents.addDocument(edit->document, false);
 
         if(unmodified)
             doc->setClean();
 
-        if (!hidden) {
-            bookmarks->restoreBookmarks(edit);
-        }
+        bookmarks->restoreBookmarks(edit);
         return edit;
     }
 
@@ -2265,7 +2260,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
     if (!QFile::exists(f_real)) return nullptr;
     QFile file(f_real);
     if (!file.open(QIODevice::ReadOnly)) {
-        if (!hidden && !dontAsk)
+        if (!dontAsk)
             QMessageBox::warning(this, tr("Error"), tr("You do not have read permission to the file %1.").arg(f_real));
         return nullptr;
     }
@@ -2279,17 +2274,14 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
     LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
     edit->setLatexPackageList(&latexPackageList);
     edit->setHelp(&help);
-    if (hidden) {
-        edit->editor->setLineWrapping(false); //disable linewrapping in hidden docs to speed-up updates
-        doc->clearWidthConstraint();
-    }
+
     configureNewEditorView(edit);
 
     edit->document = documents.findDocument(f_real);
     if (!edit->document) {
         edit->document = doc;
         edit->document->setEditorView(edit);
-        documents.addDocument(edit->document, hidden);
+        documents.addDocument(edit->document, false);
     } else edit->document->setEditorView(edit);
 
     if (configManager.recentFileHighlightLanguage.contains(f_real))
@@ -2297,16 +2289,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
     else if (edit->editor->fileInfo().suffix().toLower() != "tex")
         m_languages->setLanguage(edit->editor, f_real);
 
-    if(hidden){
-        // try loading from cache
-        if(doc->restoreCachedData(documents.getCachingFolder(),f_real)){
-            edit->editor->setFileName(f_real);
-        }else{
-            edit->editor->load(f_real, QDocument::defaultCodec());
-        }
-    }else{
-        edit->editor->load(f_real, QDocument::defaultCodec());
-    }
+    edit->editor->load(f_real, QDocument::defaultCodec());
 
     if (!edit->editor->languageDefinition())
         guessLanguageFromContent(m_languages, edit->editor);
@@ -2315,14 +2298,12 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
     edit->document->setEditorView(edit); //update file name (if document didn't exist)
 
-    configureNewEditorViewEnd(edit, asProject, hidden);
+    configureNewEditorViewEnd(edit, asProject, false);
 
     //check for svn conflict
-	if (!hidden) {
-		checkSVNConflicted();
+    checkSVNConflicted();
 
-		MarkCurrentFileAsRecent();
-	}
+    MarkCurrentFileAsRecent();
 
     documents.updateMasterSlaveRelations(doc, recheck);
     LatexDocument *root=doc->getRootDocument();
@@ -2330,34 +2311,25 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
         doc->setLtxCommands(root->lp); // use packages etc. from root doc
     }
 
-    if (recheck || hidden) {
+    if (recheck) {
         if(!doc->isIncompleteInMemory() || !doc->containedPackages().isEmpty() || !doc->userCommandList().isEmpty()){
-            if(hidden){
-                doc->addLtxCommands();
-            }else{
-                doc->updateLtxCommands();
-            }
+            doc->updateLtxCommands();
         }
-	}
-
-	if (!hidden) {
-		if (QFile::exists(f_real + ".recover.bak~")
-		        && QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
-            if (UtilsUi::txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString(),f_real))) {
-				QFile f(f_real + ".recover.bak~");
-				if (f.open(QFile::ReadOnly)) {
-					QByteArray ba = f.readAll();
-					QString recovered = QTextCodec::codecForName("UTF-8")->toUnicode(ba); //TODO: chunk loading?
-					edit->document->setText(recovered, true);
-				} else UtilsUi::txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
-			}
-		}
-
-	}
-    if(doc->isIncompleteInMemory()){
-        // load included files from cached document
-        addDocsToLoad(doc->includedFiles(),doc->lp);
     }
+
+
+    if (QFile::exists(f_real + ".recover.bak~")
+        && QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
+        if (UtilsUi::txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString(),f_real))) {
+            QFile f(f_real + ".recover.bak~");
+            if (f.open(QFile::ReadOnly)) {
+                QByteArray ba = f.readAll();
+                QString recovered = QTextCodec::codecForName("UTF-8")->toUnicode(ba); //TODO: chunk loading?
+                edit->document->setText(recovered, true);
+            } else UtilsUi::txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
+        }
+    }
+
 
 	updateStructure(true, doc, true);
 
@@ -2390,24 +2362,20 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
             }
         }
     }
-    if (!hidden) {
-        doc->startSyntaxChecker(); // only syntax check visible documents
-    }
+    doc->startSyntaxChecker(); // only syntax check visible documents
 
 #ifndef Q_OS_MAC
-	if (!hidden) {
-		if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
-			show();
-			if (windowState() == Qt::WindowMinimized)
-				setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
-			show();
-			raise();
-			QApplication::setActiveWindow(this);
-			activateWindow();
-			setFocus();
-			edit->editor->setFocus();
-		}
-	}
+    if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
+        show();
+        if (windowState() == Qt::WindowMinimized)
+            setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+        show();
+        raise();
+        QApplication::setActiveWindow(this);
+        activateWindow();
+        setFocus();
+        edit->editor->setFocus();
+    }
 #endif
 
 	runScriptsInList(Macro::ST_LOAD_THIS_FILE, doc->localMacros);
@@ -3624,7 +3592,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
             progress.setValue(i);
             progress.setLabelText(QFileInfo(f.fileName).fileName());
         }
-        LatexEditorView *edView = load(f.fileName, f.fileName == s.masterFile(), false, false, true);
+        LatexEditorView *edView = load(f.fileName, f.fileName == s.masterFile(), false, true);
         if (edView) {
             int line = f.cursorLine;
             int col = f.cursorCol;
