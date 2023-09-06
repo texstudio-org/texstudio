@@ -2,7 +2,7 @@
 
 ## TeXstudio 4.6.4
 
-- TeXdoc dialog now shows (optionally all) packages as a searchable list. A new button opens the CTAN package documentation online. ([#3259](https://github.com/texstudio-org/texstudio/pull/3259), [bd5a74c](https://github.com/texstudio-org/texstudio/commit/bd5a74cd100f3f896fb12764406bf666a54b3ace), [059dfbe](https://github.com/texstudio-org/texstudio/commit/059dfbe64534c5483896e2a29922a81b42ffce9e), [#3270](https://github.com/texstudio-org/texstudio/pull/3270), ...)
+- TeXdoc dialog now shows (optionally all) packages as a searchable list. A new button opens the CTAN package documentation online. ([#3259](https://github.com/texstudio-org/texstudio/pull/3259), [#3270](https://github.com/texstudio-org/texstudio/pull/3270), ...)
 
 ## TeXstudio 4.6.3
 
