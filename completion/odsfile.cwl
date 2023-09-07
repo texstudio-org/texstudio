@@ -1,5 +1,5 @@
 # odsfile package
-# Matthew Bertucci 2022/12/13 for v0.7
+# Matthew Bertucci 2023/09/07 for v0.8
 
 #include:luacode
 #include:xkeyval
@@ -21,6 +21,7 @@ coltypes=%<coltypes%>
 rowtemplate=#%<template name%>,{%<code%>}
 celltemplate=#%<template name%>,{%<code%>}
 multicoltemplate=#%<template name%>,{%<code%>}
+escape#true,false
 #endkeyvals
 
 \tabletemplate{name}{code}
