@@ -389,7 +389,6 @@ protected slots:
 	void findWordRepetions();
 	void findNextWordRepetion();
 
-	void addDocToLoad(QString filename);
     void addDocsToLoad(QStringList filenames, QSharedPointer<LatexParser> lp);
 
 	void LTErrorMessage(QString message);

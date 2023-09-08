@@ -11020,20 +11020,7 @@ void Texstudio::checkLanguageTool()
 
     currentEditorView()->editor->setText(result, false);
 }
-/*!
- * \brief load document hidden
- *
- * when parsing a document, child-documents can be loaded automatically.
- * They are loaded here into the hidden state.
- * \param filename
- */
-void Texstudio::addDocToLoad(QString filename)
-{
-	//qDebug()<<"fname:"<<filename;
-	if (filename.isEmpty())
-        return;
-    load(filename, false, true, recheckLabels);
-}
+
 /*!
  * \brief load included documents as hidden
  * Load all in parallel

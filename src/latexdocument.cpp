@@ -884,7 +884,6 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
                     QString fname = findFileName(firstOptArg);
                     LatexDocument *dc = parent->findDocumentFromName(fname);
                     if (!dc) {
-                        //parent->addDocToLoad(fname);
                         data.lstFilesToLoad << fname;
                     }
                 }
