@@ -2507,7 +2507,6 @@ void Texstudio::fileNewInternal(QString fileName)
 	documents.addDocument(edit->document);
 
 	configureNewEditorViewEnd(edit);
-	doc->updateLtxCommands();
 	if (!fileName.isEmpty())
 		fileSave(true);
 }
@@ -11027,6 +11026,7 @@ void Texstudio::checkLanguageTool()
 void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp)
 {
     // TODO: cached files ?!
+    LatexDocument *docForUpdate=nullptr;
     for(const QString &fn:filenames){
         LatexDocument *doc = documents.findDocumentFromName(fn);
         if(doc==nullptr){
@@ -11041,6 +11041,14 @@ void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> 
             doc->patchStructure(0,-1);
             documents.updateMasterSlaveRelations(doc);
             doc->lp->append(doc->ltxCommands);
+            docForUpdate=doc;
+        }
+    }
+    if(docForUpdate){
+        QList<LatexDocument *>listOfDocs = docForUpdate->getListOfDocs();
+        foreach (LatexDocument *elem, listOfDocs) {
+            elem->setLtxCommands(lp);
+            elem->reCheckSyntax(); //rescan as well ?
         }
     }
 }

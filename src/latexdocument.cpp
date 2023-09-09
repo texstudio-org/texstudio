@@ -570,9 +570,11 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
  * \param flatStructure
  */
 void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int currentLineNr,HandledData &data,bool recheckLabels,QList<StructureEntry *> &flatStructure){
+    if(dlh->hasFlag(QDocumentLine::argumentsParsed)) return;
     TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
     const QString curLine=dlh->text();
+    bool parsingComplete = true;
 
     for (int j = 0; j < tl.length(); j++) {
         Token tk = tl.at(j);
@@ -647,6 +649,9 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
         // work on general commands
         if (tk.type != Token::command && tk.type != Token::commandUnknown)
             continue; // not a command
+        if(tk.type == Token::commandUnknown){
+            parsingComplete=false; // most likely not all commands parsed
+        }
         Token tkCmd;
         TokenList args;
         QString cmd;
@@ -1053,6 +1058,10 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
         }
 
     } // for tl
+
+    if(parsingComplete){
+        dlh->setFlag(QDocumentLine::argumentsParsed,true);
+    }
 }
 /*!
  * \brief reinterpret command arguments when packages have changed
@@ -1198,6 +1207,8 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	 */
 
     if (!baseStructure) return;
+
+    if(isIncompleteInMemory()) return; // no update for incomplete/cached documents
 
     //QElapsedTimer tm ;
     //tm.start();
@@ -1346,6 +1357,10 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
     handleRescanDocuments(changedCommands);
 
     emit structureUpdated();
+
+    if(changedCommands.completerNeedsUpdate){
+        emit updateCompleter();
+    }
 
 
 
