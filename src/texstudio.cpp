@@ -6457,7 +6457,7 @@ void Texstudio::analyseText()
 	if (!textAnalysisDlg) return;
 	textAnalysisDlg->setEditor(currentEditorView()->editor);//->document(), currentEditorView()->editor->cursor());
 	textAnalysisDlg->init();
-	textAnalysisDlg->interpretStructureTree(currentEditorView()->document->baseStructure);
+    textAnalysisDlg->interpretStructureTree(currentEditorView()->document);
 
 	textAnalysisDlg->show();
 	textAnalysisDlg->raise(); //not really necessary, since the dlg is always on top
@@ -11491,11 +11491,10 @@ void Texstudio::updateTOC(){
         fn=tr("untitled");
     }
     root->setText(0,fn);
-    root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(doc->baseStructure));
+    root->setData(0,Qt::UserRole,QVariant::fromValue<LatexDocument *>(doc));
 
-    StructureEntry *base=doc->baseStructure;
     QList<QTreeWidgetItem*> todoList;
-    parseStruct(base,rootVector,nullptr,&todoList);
+    parseStruct(doc,rootVector,nullptr,&todoList);
     topTOCTreeWidget->insertTopLevelItem(0,root);
     if(!todoList.isEmpty()){
         QTreeWidgetItem *itemTODO=new QTreeWidgetItem();
@@ -11529,14 +11528,14 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
             root=nullptr;
             for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
                 QTreeWidgetItem* item=structureTreeWidget->topLevelItem(i);
-                StructureEntry *se = item->data(0,Qt::UserRole).value<StructureEntry *>();
-                if(old && old->document!=documents.getCurrentDocument() && se->document==old->document){
+                LatexDocument *doc = item->data(0,Qt::UserRole).value<LatexDocument *>();
+                if(old && old->document!=documents.getCurrentDocument() && doc==old->document){
                     // remove cursor mark from structureView of not current document (after document switch)
                     updateCurrentPosInTOC(item,old);
                     if(root)
                         break; // no need to search further
                 }
-                if(se->document == documents.getCurrentDocument()){
+                if(doc == documents.getCurrentDocument()){
                     root=item;
                 }
             }
@@ -11578,7 +11577,7 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
  * \param rootVector
  * \return section elements found (true/false)
  */
-bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,int currentColor) {
+bool Texstudio::parseStruct(LatexDocument* document, QVector<QTreeWidgetItem *> &rootVector, QSet<LatexDocument*> *visited,QList<QTreeWidgetItem*> *todoList,int currentColor) {
     bool elementsAdded=false;
     bool deleteVisitedDocs=false;
     if (!visited) {
@@ -11605,15 +11604,12 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
     }
 
     char offset=0;
-    QString docName=se->document->getName();
+    QString docName=document->getName();
     if(docName.isEmpty()){
         // try filename
-        docName=QFileInfo(se->document->getFileName()).fileName();
+        docName=QFileInfo(document->getFileName()).fileName();
     }
-    foreach(StructureEntry* elem,se->children){
-        if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)&&(elem->title=="TODO")){
-            parseStruct(elem,rootVector,visited,todoList);
-        }
+    foreach(StructureEntry* elem,document->docStructure){
         if(todoList && (elem->type == StructureEntry::SE_TODO)){
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
@@ -11637,7 +11633,6 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
             }
-            parseStruct(elem,rootVector,visited,todoList,currentColor);
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             LatexDocument *doc=elem->document;
@@ -11652,7 +11647,7 @@ bool Texstudio::parseStruct(StructureEntry* se, QVector<QTreeWidgetItem *> &root
             bool ea=false;
             if(doc &&!visited->contains(doc)){
                 visited->insert(doc);
-                ea=parseStruct(doc->baseStructure,rootVector,visited,todoList,(currentColor+1+offset)%nrColors);
+                ea=parseStruct(doc,rootVector,visited,todoList,(currentColor+1+offset)%nrColors);
             }
             if(!ea){
                 QTreeWidgetItem * item=new QTreeWidgetItem();
@@ -12231,10 +12226,9 @@ void Texstudio::updateStructureLocally(bool updateAll){
                 if(!found){
                     QTreeWidgetItem *item=new QTreeWidgetItem();
                     LatexDocument *doc=documents.documents.value(i);
-                    StructureEntry *base=doc->baseStructure;
 
                     item->setText(0,doc->getFileInfo().fileName());
-                    item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+                    item->setData(0,Qt::UserRole,QVariant::fromValue<LatexDocument *>(doc));
                     if(doc==master){
                         item->setIcon(0,getRealIcon("masterdoc"));
                     }else{
@@ -12288,14 +12282,12 @@ void Texstudio::updateStructureLocally(bool updateAll){
         // fill TOC, starting by current master/top
 
 
-        StructureEntry *base=doc->baseStructure;
-
         QString fn=doc->getFileInfo().fileName();
         if(fn.isEmpty()){
             fn=tr("untitled");
         }
         root->setText(0,fn);
-        root->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(base));
+        root->setData(0,Qt::UserRole,QVariant::fromValue<LatexDocument *>(doc));
         if(doc==master){
             root->setIcon(0,getRealIcon("masterdoc"));
         }else{
@@ -12309,7 +12301,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
         QList<QTreeWidgetItem*> labelList;
         QList<QTreeWidgetItem*> magicList;
         QList<QTreeWidgetItem*> biblioList;
-        parseStructLocally(base,rootVector,&todoList,&labelList,&magicList,&biblioList);
+        parseStructLocally(doc,rootVector,&todoList,&labelList,&magicList,&biblioList);
         if(addToTopLevel)
             structureTreeWidget->addTopLevelItem(root);
 
@@ -12359,14 +12351,11 @@ void Texstudio::updateStructureLocally(bool updateAll){
  * \param se root structureentry
  * \param rootVector
  */
-void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
+void Texstudio::parseStructLocally(LatexDocument *doc, QVector<QTreeWidgetItem *> &rootVector, QList<QTreeWidgetItem *> *todoList, QList<QTreeWidgetItem *> *labelList, QList<QTreeWidgetItem *> *magicList, QList<QTreeWidgetItem *> *biblioList) {
     const QColor beyondEndColor = darkMode ? QColor(255, 170, 0)  : QColor(255, 170, 0);
     const QColor inAppendixColor= darkMode ? QColor(0, 102,   0): QColor(200, 230, 200);
 
-    foreach(StructureEntry* elem,se->children){
-        if(todoList && (elem->type == StructureEntry::SE_OVERVIEW)){
-            parseStructLocally(elem,rootVector,todoList,labelList,magicList,biblioList);
-        }
+    foreach(StructureEntry* elem,doc->docStructure){
         if(todoList && (elem->type == StructureEntry::SE_TODO)){
             QTreeWidgetItem * item=new QTreeWidgetItem();
             item->setData(0,Qt::UserRole,QVariant::fromValue<StructureEntry *>(elem));
@@ -12404,7 +12393,6 @@ void Texstudio::parseStructLocally(StructureEntry* se, QVector<QTreeWidgetItem *
             for(int i=elem->level+1;i<latexParser.MAX_STRUCTURE_LEVEL;i++){
                 rootVector[i]=item;
             }
-            parseStructLocally(elem,rootVector,todoList,labelList,magicList);
         }
         if(elem->type == StructureEntry::SE_INCLUDE){
             QTreeWidgetItem * item=new QTreeWidgetItem();
@@ -12560,10 +12548,9 @@ StructureEntry* Texstudio::labelForStructureEntry(const StructureEntry *entry)
     QDocumentLineHandle *dlh = entry->getLineHandle();
     if (!dlh) return nullptr;
     QDocumentLineHandle *nextDlh = entry->document->line(entry->getRealLineNumber() + 1).handle();
-    StructureEntryIterator iter(entry->document->baseStructure);
 
-    while (iter.hasNext()) {
-        StructureEntry *se = iter.next();
+    for(auto iter=entry->document->docStructure.cbegin();iter!=entry->document->docStructure.cend();++iter){
+        StructureEntry *se = *iter;
         if (se->type == StructureEntry::SE_LABEL) {
             QDocumentLineHandle *labelDlh = se->getLineHandle();
             if (labelDlh == dlh || labelDlh == nextDlh) {

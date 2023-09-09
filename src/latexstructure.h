@@ -65,18 +65,4 @@ private:
 Q_DECLARE_METATYPE(StructureEntry *)
 
 
-/// iterator for fast traversal of a structure entry tree
-class StructureEntryIterator
-{
-public:
-	StructureEntryIterator(StructureEntry *entry);
-	bool hasNext();
-	StructureEntry *next();
-
-private:
-	QList<StructureEntry *> entryHierarchy; ///< hierarchy of next element (all parents and element itself)
-	QList<int> indexHierarchy; ///< for every element in entryHierarchy the index of this element in its parent children
-};
-
-
 #endif // LATEXSTRUCTURE_H

@@ -9,7 +9,7 @@
 
 class QEditor;
 class QDocument;
-struct StructureEntry;
+class LatexDocument;
 
 class ClsWord
 {
@@ -67,10 +67,7 @@ public:
 
 	//void setData(const QDocument* doc, const QDocumentCursor &cur);
 	void setEditor(QEditor *aeditor);
-	void interpretStructureTree(StructureEntry *item);
-
-private:
-	void interpretStructureTreeRec(StructureEntry *item, int targetLevel);
+    void interpretStructureTree(LatexDocument *doc);
 
 private slots:
 	void slotCount();

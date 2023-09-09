@@ -126,29 +126,31 @@ void TextAnalysisDialog::setEditor(QEditor *aeditor)
 	}
 }
 
-int lowestStructureLevel(StructureEntry *entry)
+int lowestStructureLevel(LatexDocument *doc)
 {
-	if (!entry) return 1000;
-	if (entry->level >= 1) return entry->level; //0 is part, 1 chapter, 2 section, ... we skip part, and take the next that exists
+    if (!doc) return 1000;
 	int r = 1000;
-	for (int i = 0; i < entry->children.count(); i++)
-		r = qMin(r, lowestStructureLevel(entry->children.at(i)));
+    for(int i = 0; i < doc->docStructure.count(); ++i){
+        StructureEntry *se=doc->docStructure.at(i);
+        if(se->type != StructureEntry::SE_SECTION) continue;
+        r = qMin(r, se->level);
+    }
 	return r;
 }
 
-void TextAnalysisDialog::interpretStructureTree(StructureEntry *entry)
+void TextAnalysisDialog::interpretStructureTree(LatexDocument *doc)
 {
-	interpretStructureTreeRec(entry, lowestStructureLevel(entry));
-}
+    if (!doc) return;
 
-void TextAnalysisDialog::interpretStructureTreeRec(StructureEntry *entry, int targetLevel)
-{
-	if (!entry) return;
-	if (entry->level == targetLevel) {
-		chapters.append(QPair<QString, int> (entry->title, entry->getCachedLineNumber()));
-		ui.comboBox->addItem(entry->title);
-	} else for (int i = 0; i < entry->children.count(); i++)
-			interpretStructureTree(entry->children.at(i));
+    int targetLevel=lowestStructureLevel(doc);
+    for(int i = 0; i < doc->docStructure.count(); ++i){
+        StructureEntry *se=doc->docStructure.at(i);
+        if(se->type != StructureEntry::SE_SECTION) continue;
+        if (se->level == targetLevel) {
+            chapters.append(QPair<QString, int> (se->title, se->getCachedLineNumber()));
+            ui.comboBox->addItem(se->title);
+        }
+    }
 }
 
 void TextAnalysisDialog::init()

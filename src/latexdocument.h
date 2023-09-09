@@ -125,8 +125,6 @@ public:
     Q_INVOKABLE void replaceRefs(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
 	Q_INVOKABLE void replaceLabelsAndRefs(const QString &name, const QString &newName);
 
-	StructureEntry *baseStructure;
-
 	QDocumentSelection sectionSelection(StructureEntry *section);
     void clearAppendix();
 	StructureEntry *findSectionForLine(int currentLine);
@@ -218,11 +216,13 @@ public:
 
     int lexLines(int &lineNr,int &count,bool recheck=false);
     void lexLinesSimple(const int lineNr,const int count);
-    void handleComments(QDocumentLineHandle *dlh, int &curLineNr, int &posTodoComment, int &posMagicComment);
+    void handleComments(QDocumentLineHandle *dlh, int &curLineNr,QList<StructureEntry *> &flatStructure);
     void removeLineElements(QDocumentLineHandle *dlh, HandledData &changedCommands);
     void handleRescanDocuments(HandledData changedCommands);
     void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, QList<StructureEntry *> &flatStructure);
     void reinterpretCommandArguments();
+
+    QList<StructureEntry *> docStructure;
 
 private:
 	QString fileName; //absolute
@@ -234,12 +234,6 @@ private:
 
 	LatexDocument *masterDocument;
 	QSet<LatexDocument *> childDocs;
-
-	StructureEntry *magicCommentList;
-	StructureEntry *labelList;
-	StructureEntry *todoList;
-	StructureEntry *bibTeXList;
-	StructureEntry *blockList;
 
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mLabelItem;
 	QMultiHash<QDocumentLineHandle *, ReferencePair> mBibItem;
@@ -262,13 +256,12 @@ private:
 	QDocumentLineHandle *mAppendixLine, *mBeyondEnd;
 
 	void updateContext(QDocumentLineHandle *oldLine, QDocumentLineHandle *newLine, StructureEntry::Context context);
-	void setContextForLines(StructureEntry *se, int startLine, int endLine, StructureEntry::Context context, bool state);
+    void setContextForLines(int startLine, int endLine, StructureEntry::Context context, bool state);
 
     int findStructureParentPos(StructureEntry *base, int linenr, int count);
 
-    StructureEntry* splitStructure(StructureEntry *base,int lineNr);
-    void appendStructure(StructureEntry *base,StructureEntry *addition);
-    void mergeStructure(StructureEntry *base,int lineNr,int count,QList<StructureEntry *> flatStructure);
+    void removeRangeFromStructure(int lineNr,int count);
+    void insertStructure(int lineNr, int count, QList<StructureEntry *> flatStructure);
 
 	void removeElement(StructureEntry *se);
 	void addElement(StructureEntry *parent, StructureEntry *se);
@@ -276,7 +269,7 @@ private:
 
     QStringList unrollStructure();
 
-	void addMagicComment(const QString &text, int lineNr, int posMagicComment);
+    void addMagicComment(const QString &text, int lineNr,QList<StructureEntry*> &flatStructure);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
 
 	void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);

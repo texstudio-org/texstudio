@@ -28,18 +28,12 @@ const QSet<QString> LatexDocument::LATEX_LIKE_LANGUAGES = QSet<QString>() << "(L
  */
 LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoReload(false), mayHaveDiffMarkers(false), edView(nullptr), mAppendixLine(nullptr), mBeyondEnd(nullptr)
 {
-	baseStructure = new StructureEntry(this, StructureEntry::SE_DOCUMENT_ROOT);
-	magicCommentList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-	labelList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-	todoList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-	bibTeXList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
-	blockList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
 
-	magicCommentList->title = tr("MAGIC_COMMENTS");
+    /*magicCommentList->title = tr("MAGIC_COMMENTS");
 	labelList->title = tr("LABELS");
 	todoList->title = tr("TODO");
 	bibTeXList->title = tr("BIBLIOGRAPHY");
-	blockList->title = tr("BLOCKS");
+    blockList->title = tr("BLOCKS"); */
 	mLabelItem.clear();
 	mBibItem.clear();
 	mUserCommandList.clear();
@@ -69,23 +63,11 @@ LatexDocument::~LatexDocument()
 	}
 	mLineSnapshot.clear();
 
-	if (!magicCommentList->parent) delete magicCommentList;
-	if (!labelList->parent) delete labelList;
-	if (!todoList->parent) delete todoList;
-	if (!bibTeXList->parent) delete bibTeXList;
-	if (!blockList->parent) delete blockList;
-
-	delete baseStructure;
+    qDeleteAll(docStructure);
 }
 
 void LatexDocument::setFileName(const QString &fileName)
 {
-	//clear all references to old editor
-    /*if (this->edView) {
-		StructureEntryIterator iter(baseStructure);
-		while (iter.hasNext()) iter.next()->setLine(nullptr);
-    }*/
-
 	this->setFileNameInternal(fileName);
 	this->edView = nullptr;
 }
@@ -94,9 +76,6 @@ void LatexDocument::setEditorView(LatexEditorView *edView)
 {
 	this->setFileNameInternal(edView->editor->fileName(), edView->editor->fileInfo());
 	this->edView = edView;
-	if (baseStructure) {
-		baseStructure->title = fileName;
-	}
 }
 
 /// Set the values of this->fileName and this->this->fileInfo
@@ -231,23 +210,8 @@ void LatexDocument::initClearStructure()
 
     emit structureUpdated();
 
-	const int CATCOUNT = 5;
-	StructureEntry *categories[CATCOUNT] = {magicCommentList, labelList, todoList, bibTeXList, blockList};
-	for (int i = 0; i < CATCOUNT; i++)
-		if (categories[i]->parent == baseStructure) {
-            removeElement(categories[i]);
-			foreach (StructureEntry *se, categories[i]->children)
-				delete se;
-			categories[i]->children.clear();
-		}
-
-	for (int i = 0; i < baseStructure->children.length(); i++) {
-		StructureEntry *temp = baseStructure->children[i];
-        removeElement(temp);
-		delete temp;
-	}
-
-	baseStructure->title = fileName;
+    qDeleteAll(docStructure);
+    docStructure.clear();
 }
 /*! rebuild structure view completely
  *  /note very expensive call
@@ -263,7 +227,6 @@ void LatexDocument::updateStructure()
 */
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int count)
 {
-	if (!baseStructure) return;
 	bool completerNeedsUpdate = false;
 	bool bibTeXFilesNeedsUpdate = false;
 	bool updateSyntaxCheck = false;
@@ -332,17 +295,6 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
             }
         }
 
-        QList<StructureEntry *> categories = QList<StructureEntry *>() << magicCommentList << labelList << todoList << blockList << bibTeXList;
-        foreach (StructureEntry *sec, categories) {
-            QMutableListIterator<StructureEntry *> iter(sec->children);
-            while (iter.hasNext()) {
-                StructureEntry *se = iter.next();
-                if (dlh == se->getLineHandle()) {
-                    iter.remove();
-                    delete se;
-                }
-            }
-        }
         if(i+1<count){
             // not at last element yet
             dlh=line(linenr+1).handle();
@@ -350,10 +302,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
     }
 
     // cut from structure
-    StructureEntry *seSplit=splitStructure(baseStructure,hint+count);
-    StructureEntry *seRemove=splitStructure(baseStructure,hint);
-    delete seRemove;
-    appendStructure(baseStructure,seSplit);
+    removeRangeFromStructure(hint,count);
 
     emit structureUpdated();
 
@@ -492,7 +441,7 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
  * \param dlh
  * \return
  */
-void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &posTodoComment,int &posMagicComment){
+void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,QList<StructureEntry *> &flatStructure){
     //
     QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
     int col = commentStart.first;
@@ -507,7 +456,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
             StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
             newTodo->title = text.mid(1).trimmed();
             newTodo->setLine(dlh, curLineNr);
-            insertElement(todoList, posTodoComment++, newTodo);
+            flatStructure << newTodo;
             // save comment type into cookie
             commentStart.second=Token::todoComment;
             dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
@@ -522,14 +471,14 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
                     end = curLine.indexOf('"', end + 1);
                     if (end >= 0) {
                         end += 1;  // include closing quotation mark
-                        addMagicComment(curLine.mid(start, end - start), curLineNr, posMagicComment++);
+                        addMagicComment(curLine.mid(start, end - start), curLineNr, flatStructure);
                     }
                 } else {
                     end = curLine.indexOf(' ', end + 1);
                     if (end >= 0) {
-                        addMagicComment(curLine.mid(start, end - start), curLineNr, posMagicComment++);
+                        addMagicComment(curLine.mid(start, end - start), curLineNr,flatStructure);
                     } else {
-                        addMagicComment(curLine.mid(start), curLineNr, posMagicComment++);
+                        addMagicComment(curLine.mid(start), curLineNr, flatStructure);
                     }
                 }
             }
@@ -542,7 +491,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
         QRegularExpressionMatch matchMagicTexComment=rxMagicTexComment.match(text);
         QRegularExpressionMatch matchMagicBibComment=rxMagicBibComment.match(text);
         if (matchMagicTexComment.hasMatch()) {
-            addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), curLineNr, posMagicComment++);
+            addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), curLineNr, flatStructure);
             commentStart.second=Token::magicComment;
             dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
         } else if (matchMagicBibComment.hasMatch()) {
@@ -552,7 +501,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
             QString val;
             splitMagicComment(text, name, val);
             if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex" || val == "bibtex8")) {
-                addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), curLineNr, posMagicComment++);
+                addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), curLineNr, flatStructure);
                 commentStart.second=Token::magicComment;
                 dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
             }
@@ -601,7 +550,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
             newLabel->title = elem.name;
             newLabel->setLine(dlh, currentLineNr);
-            insertElement(labelList, data.posLabel++, newLabel);
+            flatStructure << newLabel;
         }
         //// newtheorem ////
         if (tk.type == Token::newTheorem && tk.length > 0) {
@@ -632,7 +581,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
             newTodo->title = tk.getInnerText();
             newTodo->setLine(line(currentLineNr).handle(), currentLineNr);
-            insertElement(todoList, data.posTodo++, newTodo);
+            flatStructure << newTodo;
         }
         // specialArg definition
         if(tk.type == Token::defSpecialArg){
@@ -928,7 +877,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
                 StructureEntry *newFile = new StructureEntry(this, StructureEntry::SE_BIBTEX);
                 newFile->title = bibFile;
                 newFile->setLine(line(currentLineNr).handle(), currentLineNr);
-                insertElement(bibTeXList, data.posBibTeX++, newFile);
+                flatStructure << newFile;
             }
             continue;
         }
@@ -939,7 +888,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             StructureEntry *newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
             newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,currentLineNr);
             newBlock->setLine(line(currentLineNr).handle(), currentLineNr);
-            insertElement(blockList, data.posBlock++, newBlock);
+            flatStructure << newBlock;
             continue;
         }
 
@@ -1206,8 +1155,6 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	 * e.g. definition of specialDef command, but packages are load at the end of this method.
 	 */
 
-    if (!baseStructure) return;
-
     if(isIncompleteInMemory()) return; // no update for incomplete/cached documents
 
     //QElapsedTimer tm ;
@@ -1251,16 +1198,6 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	// QPersistentModelIndex'es that point to these elements in the structure tree view. That is why we remove all the structure elements
 	// within the updated area and then just add anew any structure elements that we find in the updated area.
 
-    int posMagicComment = findStructureParentPos(magicCommentList, lineNrStart, newCount);
-
-    changedCommands.posLabel = findStructureParentPos(labelList, lineNrStart, newCount);
-
-    changedCommands.posTodo = findStructureParentPos(todoList, lineNrStart, newCount);
-
-    changedCommands.posBlock = findStructureParentPos(blockList, lineNrStart, newCount);
-
-    changedCommands.posBibTeX = findStructureParentPos(bibTeXList, lineNrStart, newCount);
-
     bool isLatexLike = languageIsLatexLike();
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
 	// force command from all line of which the actual line maybe subsequent lines (multiline commands)
@@ -1281,7 +1218,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
         removeLineElements(dlh,changedCommands);
 
         // handle special comments (TODO, MAGIC comments)
-        handleComments(dlh,i,changedCommands.posTodo,posMagicComment);
+        handleComments(dlh,i,flatStructure);
 
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
@@ -1333,17 +1270,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	}//for each line handle
 
     // always generate complete structure, also for hidden, as needed for globalTOC
-    mergeStructure(baseStructure,lineNrStart,newCount,flatStructure);
-
-    const QList<StructureEntry *> categories =
-            QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
-
-    for (int i = categories.size() - 1; i >= 0; i--) {
-        StructureEntry *cat = categories[i];
-        if (cat->children.isEmpty() == (cat->parent == nullptr)) continue;
-        if (cat->children.isEmpty()) removeElement(cat);
-        else insertElement(baseStructure, 0, cat);
-    }
+    insertStructure(lineNrStart,newCount,flatStructure);
 
     //update appendix change
     if (oldLine != mAppendixLine) {
@@ -1378,10 +1305,9 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 #ifndef QT_NO_DEBUG
 void LatexDocument::checkForLeak()
 {
-	StructureEntryIterator iter(baseStructure);
 	QSet<StructureEntry *>zw = StructureContent;
-	while (iter.hasNext()) {
-		zw.remove(iter.next());
+    for(auto iter=docStructure.cbegin();iter != docStructure.end();++iter) {
+        zw.remove(*iter);
 	}
 
 	// filter top level elements
@@ -1397,22 +1323,15 @@ void LatexDocument::checkForLeak()
 
 StructureEntry *LatexDocument::findSectionForLine(int currentLine)
 {
-	StructureEntryIterator iter(baseStructure);
     StructureEntry *newSection = nullptr;
 
-	while (/*iter.hasNext()*/true) {
-        StructureEntry *curSection = nullptr;
-		while (iter.hasNext()) {
-			curSection = iter.next();
-			if (curSection->type == StructureEntry::SE_SECTION)
-				break;
-		}
-        if (curSection == nullptr || curSection->type != StructureEntry::SE_SECTION)
-			break;
-
-		if (curSection->getRealLineNumber() > currentLine) break; //curSection is after newSection where the cursor is
-		else newSection = curSection;
-	}
+    for(auto iter=docStructure.cbegin();iter!=docStructure.cend();++iter){
+        StructureEntry *curSection = *iter;
+        if (curSection->getRealLineNumber() > currentLine) break; //curSection is after newSection where the cursor is
+        if (curSection->type == StructureEntry::SE_SECTION){
+            newSection = curSection;
+        }
+    }
     if (newSection && newSection->getRealLineNumber() > currentLine) newSection = nullptr;
 
 	return newSection;
@@ -2385,180 +2304,52 @@ int LatexDocument::findStructureParentPos(StructureEntry *base, int linenr, int 
 }
 
 /*!
- * \brief split the tree structure at lineNr
- * Base structure children are removed if they are among the split off elements
- * \param root element of structure to split
+ * \brief remove all structure entries in range lineNr .. lineNr+count-1
  * \param lineNr
- * \return structure after lineNr referenced to new root element
+ * \param count
  */
-StructureEntry *LatexDocument::splitStructure(StructureEntry *base, int lineNr)
+void LatexDocument::removeRangeFromStructure(int lineNr, int count)
 {
-    StructureEntry *result=nullptr;
-    if(base->children.isEmpty()){
-        // no children to check
-        return nullptr;
-    }
-    // find last element before lineNr
-    int i;
-    for(i=base->children.count()-1;i>=0;--i){
-        StructureEntry *element=base->children.at(i);
-        if(element->type!=StructureEntry::SE_SECTION && element->type!=StructureEntry::SE_INCLUDE){
-            // non-sections are always "before", except include
-            break;
-        }
+    for(int i=0;i<docStructure.size();++i){
+        StructureEntry *element=docStructure.at(i);
         int ln=element->getRealLineNumber();
-        if(ln>=lineNr){
+        if(ln<lineNr){
+            continue;
+        }
+        if(ln<lineNr+count){
+            docStructure.remove(i);
+            --i;
             continue;
         }
         break;
     }
-    if(i<0){
-        // all elements after lineNr
-        result=base->children.takeFirst();
-        for(int k=0;k<base->children.count();++k){
-            result->add(base->children.at(k));
-        }
-        base->children.clear();
-        result->parent=nullptr;
-        return result;
-    }
-    if(i==base->children.count()-1){
-        // all elements before lineNr
-        result=splitStructure(base->children.last(),lineNr);
-        return result;
-    }
-    // split found
-    result=splitStructure(base->children.at(i),lineNr);
-    // resort elements after split
-    int offset=1;
-    if(!result){
-        result=base->children.at(i+1);
-        offset=2;
-    }
-    result->parent=nullptr;
-    for(int k=i+offset;k<base->children.count();++k){
-        result->add(base->children.at(k));
-    }
-#if QT_VERSION_MAJOR>5
-    base->children.remove(i+1,base->children.count()-i-1);
-#else
-    const int cnt=base->children.count();
-    for(int n=i+1;n<cnt;++n){
-        base->children.removeAt(i+1);
-    }
-#endif
-
-    return result;
 }
 /*!
- * \brief add second structure to first one
- * Assumes that all elements are after all elements of the first structure
- * \param base
- * \param addition
+ * \brief insert flat structure entries at correct position
+ * Remove old entries if necessary
+ * \param lineNrStart
+ * \param count
+ * \param flatStructure
  */
-void LatexDocument::appendStructure(StructureEntry *base, StructureEntry *addition)
+void LatexDocument::insertStructure(int lineNr, int count, QList<StructureEntry *> flatStructure)
 {
-    if(!addition) return;
-    // get last element on different levels
-    QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
-    parent_level.fill(base);
-    StructureEntry *se=base;
-    for(int i=0;i<lp->structureDepth();++i){
-        if(se->children.isEmpty()){
-            break; // no further level to go down
-        }
-        se=se->children.last();
-        if(se->type  != StructureEntry::SE_SECTION){
-            break; // no structure
-        }
-        for(int j=se->level;j<lp->structureDepth();++j){
-            parent_level[j+1]=se;
-        }
-    }
-    int level=addition->level;
-    parent_level[level]->add(addition);
-    if(addition->type==StructureEntry::SE_INCLUDE){
-        level=lp->structureDepth();
-    }
-    /* check that level are not distorted as first element was too high a level
-    *  e.g. \subsection
-    *       \section
-    */
-    for(int i=0;i<addition->children.count();++i){
-        se=addition->children.at(i);
-        if(se->type != StructureEntry::SE_SECTION){
-            parent_level[se->level]->add(se);
-            addition->children.takeAt(i);
-            --i;
-            level=lp->structureDepth();
+    int i=0;
+    for(;i<docStructure.size();++i){
+        StructureEntry *element=docStructure.at(i);
+        int ln=element->getRealLineNumber();
+        if(ln<lineNr){
             continue;
         }
-        if(se->level<=level){
-            // move element to appropriate parent level
-            level=se->level;
-            parent_level[se->level]->add(se);
-            addition->children.takeAt(i);
+        if(ln<lineNr+count){
+            docStructure.remove(i);
             --i;
+            continue;
         }
+        break;
     }
-}
-
-
-
-/*!
- * \brief merge structure entries from list flatStructure into StructureEntry tree
- * Reuses entries from current tree if only text is changed, so that states (expanded) can be reused
- * \param base root element of tree
- * \param lineNr
- * \param count
- * \param flatStructure elements to be inserted as list
- */
-void LatexDocument::mergeStructure(StructureEntry *base, int lineNr, int count, QList<StructureEntry *> flatStructure)
-{
-    // split structure
-    StructureEntry *tail=splitStructure(base,lineNr+count);
-    StructureEntry *cut=splitStructure(base,lineNr);
-    // get last element on different levels
-    QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
-    parent_level.fill(base);
-    StructureEntry *se=base;
-    for(int i=0;i<lp->structureDepth();++i){
-        if(se->children.isEmpty()){
-            break; // no further level to go down
-        }
-        se=se->children.last();
-        if(se->type  != StructureEntry::SE_SECTION){
-            break; // no structure
-        }
-        for(int j=se->level;j<lp->structureDepth();++j){
-            parent_level[j+1]=se;
-        }
+    for(int k=0;k<flatStructure.size();++k){
+        docStructure.insert(i+k,flatStructure[k]);
     }
-    // add elements from flatStructure
-    StructureEntryIterator iter(cut);
-    for(int i=0;i<flatStructure.size();++i){
-        StructureEntry *se=flatStructure.at(i);
-        StructureEntry *comparison=nullptr;
-        if(iter.hasNext()){
-            comparison=iter.next();
-        }
-        if(se->type==StructureEntry::SE_SECTION){
-            if(comparison && comparison->type==StructureEntry::SE_SECTION && comparison->getLineHandle()==se->getLineHandle()){
-                se->expanded=comparison->expanded;
-            }
-            parent_level[se->level]->add(se);
-            for (int j = se->level + 1; j < parent_level.size(); j++)
-                parent_level[j] = se;
-        }else{
-            parent_level[se->level]->add(se);
-            for (int j = se->level; j < parent_level.size(); j++)
-                parent_level[j] = parent_level[se->level];
-        }
-    }
-    // delete cut
-    delete cut;
-    // handle tail
-    appendStructure(base,tail);
 }
 
 void LatexDocument::removeElement(StructureEntry *se)
@@ -2592,10 +2383,9 @@ void LatexDocument::insertElement(StructureEntry *parent, int pos, StructureEntr
 QStringList LatexDocument::unrollStructure()
 {
     QStringList result;
-    StructureEntryIterator iter(baseStructure);
 
-    while (iter.hasNext()) {
-        StructureEntry *curSection = iter.next();
+    for(QList<StructureEntry*>::iterator iter=docStructure.begin();iter!=docStructure.end();++iter){
+        StructureEntry *curSection = *iter;
         if (curSection->type == StructureEntry::SE_SECTION){
             result<<QString("%1").arg(curSection->level)+"#"+curSection->title+"#"+QString("%1").arg(curSection->getRealLineNumber());
         }
@@ -2627,7 +2417,7 @@ bool LatexDocument::splitMagicComment(const QString &comment, QString &name, QSt
 \a lineNr - line number of the magic comment
 \a posMagicComment - Zero-based position of magic comment in the structure list tree view.
   */
-void LatexDocument::addMagicComment(const QString &text, int lineNr, int posMagicComment)
+void LatexDocument::addMagicComment(const QString &text, int lineNr, QList<StructureEntry *> &flatStructure)
 {
 	StructureEntry *newMagicComment = new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
 	QDocumentLineHandle *dlh = line(lineNr).handle();
@@ -2638,7 +2428,7 @@ void LatexDocument::addMagicComment(const QString &text, int lineNr, int posMagi
 	parseMagicComment(name, val, newMagicComment);
 	newMagicComment->title = text;
 	newMagicComment->setLine(dlh, lineNr);
-    insertElement(magicCommentList, posMagicComment, newMagicComment);
+    flatStructure << newMagicComment;
 }
 
 /*!
@@ -2695,34 +2485,24 @@ void LatexDocument::updateContext(QDocumentLineHandle *oldLine, QDocumentLineHan
 	if (oldLine) {
 		startLine = indexOf(oldLine);
 		if (endLine < 0 || endLine > startLine) {
-			// remove appendic marker
-			StructureEntry *se = baseStructure;
-			setContextForLines(se, startLine, endLine, context, false);
+            // remove appendix marker
+            setContextForLines(startLine, endLine, context, false);
 		}
 	}
 
 	if (endLine > -1 && (endLine < startLine || startLine < 0)) {
-		StructureEntry *se = baseStructure;
-		setContextForLines(se, endLine, startLine, context, true);
+        setContextForLines(endLine, startLine, context, true);
 	}
 }
 
-void LatexDocument::setContextForLines(StructureEntry *se, int startLine, int endLine, StructureEntry::Context context, bool state)
+void LatexDocument::setContextForLines(int startLine, int endLine, StructureEntry::Context context, bool state)
 {
-	bool first = false;
-	for (int i = 0; i < se->children.size(); i++) {
-		StructureEntry *elem = se->children[i];
+    for (int i = 0; i < docStructure.size(); ++i) {
+        StructureEntry *elem = docStructure[i];
 		if (endLine >= 0 && elem->getLineHandle() && elem->getRealLineNumber() > endLine) break;
-		if (elem->type == StructureEntry::SE_SECTION && elem->getRealLineNumber() > startLine) {
-			if (!first && i > 0) setContextForLines(se->children[i - 1], startLine, endLine, context, state);
+        if (elem->type == StructureEntry::SE_SECTION && elem->getRealLineNumber() >= startLine) {
 			elem->setContext(context, state);
-			setContextForLines(se->children[i], startLine, endLine, context, state);
-			first = true;
 		}
-	}
-	if (!first && !se->children.isEmpty()) {
-		StructureEntry *elem = se->children.last();
-		if (elem->type == StructureEntry::SE_SECTION) setContextForLines(elem, startLine, endLine, context, state);
 	}
 }
 
@@ -3086,10 +2866,10 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
 QString LatexDocument::getMagicComment(const QString &name) const
 {
 	QString seName;
-	QString val;
-	StructureEntryIterator iter(magicCommentList);
-	while (iter.hasNext()) {
-		StructureEntry *se = iter.next();
+    QString val;
+    for (auto iter=docStructure.cbegin();iter!=docStructure.cend();++iter) {
+        StructureEntry *se = *iter;
+        if(se->type != StructureEntry::SE_MAGICCOMMENT) continue;
 		splitMagicComment(se->title, seName, val);
 		if (seName.toLower() == name.toLower())
 			return val;
@@ -3102,11 +2882,9 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
 	QString seName;
 	QString val;
 
-	if (!magicCommentList) return nullptr;
-
-	StructureEntryIterator iter(magicCommentList);
-	while (iter.hasNext()) {
-		StructureEntry *se = iter.next();
+    for (auto iter=docStructure.cbegin();iter!=docStructure.cend();++iter) {
+        StructureEntry *se = *iter;
+        if(se->type != StructureEntry::SE_MAGICCOMMENT) continue;
 		splitMagicComment(se->title, seName, val);
 		if (seName == name) return se;
 	}
@@ -3144,15 +2922,13 @@ void LatexDocument::updateMagicComment(const QString &name, const QString &val, 
 
 void LatexDocument::updateMagicCommentScripts()
 {
-	if (!magicCommentList) return;
-
 	localMacros.clear();
 
 	QRegExp rxTrigger(" *// *(Trigger) *[:=](.*)");
 
-	StructureEntryIterator iter(magicCommentList);
-	while (iter.hasNext()) {
-		StructureEntry *se = iter.next();
+    for (auto iter=docStructure.cbegin();iter!=docStructure.cend();++iter) {
+        StructureEntry *se = *iter;
+        if(se->type != StructureEntry::SE_MAGICCOMMENT) continue;
 		QString seName, val;
 		splitMagicComment(se->title, seName, val);
 		if (seName == "TXS-SCRIPT") {
@@ -3692,7 +3468,6 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
     }
     ja=dd.value("toc").toArray();
     QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
-    parent_level.fill(baseStructure);
     for (int i = 0; i < ja.size(); ++i) {
         QString section=ja[i].toString();
         QStringList l_section=section.split("#");
@@ -3718,10 +3493,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         }
         se->title=l_section[1];
         se->level=pos;
-        parent_level[pos]->add(se);
-        for(int k=pos+1;k<parent_level.size();++k){
-            parent_level[k]=se;
-        }
+        docStructure << se;
     }
     if(addedPackages){
         updateCompletionFiles(false);
