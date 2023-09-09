@@ -2487,6 +2487,9 @@ void Texstudio::fileNewInternal(QString fileName)
 {
 	LatexDocument *doc = new LatexDocument(this);
 	doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+    if(configManager.editorConfig->inlineSyntaxChecking){
+        doc->startSyntaxChecker();
+    }
 	LatexEditorView *edit = new LatexEditorView (nullptr, configManager.editorConfig, doc);
 	edit->setLatexPackageList(&latexPackageList);
     edit->setHelp(&help);
