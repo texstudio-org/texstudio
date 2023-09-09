@@ -2203,12 +2203,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     if (existingView) {
         if (asProject) documents.setMasterDocument(existingView->document);
         if (existingView->document->isHidden()) {
-            // clear baseStructure outside treeview context
-            /*foreach(StructureEntry *elem,existingView->document->baseStructure->children){
-                    delete elem;
-                }
-                existingView->document->baseStructure->children.clear();*/
-            //
             doc->startSyntaxChecker();
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap > 0);
             documents.deleteDocument(existingView->document, true);
