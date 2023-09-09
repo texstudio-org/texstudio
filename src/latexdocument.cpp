@@ -1095,6 +1095,9 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
     }
     if(!changedCommands.removedUsepackages.isEmpty()){
         // argument parsing & syntax check
+        updateCompletionFiles(false);
+        synChecker.setLtxCommands(lp);
+        reCheckSyntax();
     }
     if(!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty()){
         emit updateCompleterCommands(); // TODO: necessary ?
@@ -2917,7 +2920,7 @@ CodeSnippetList LatexDocument::additionalCommandsList(QStringList &loadedFiles)
 	return pck.completionWords;
 }
 
-bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool forceLabelUpdate, const bool delayUpdate)
+bool LatexDocument::updateCompletionFiles(const bool forceUpdate)
 {
 
 	QStringList files = mUsepackageList.values();
@@ -2961,24 +2964,11 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 		}
 		if (!elem.startsWith("\\begin{") && !elem.startsWith("\\end{")) {
             int i = elem.indexOf(QRegularExpression("\\W"), 1);
-			//int j=elem.indexOf("[");
-			if (i >= 0) elem = elem.left(i);
-			//if(j>=0 && j<i) elem=elem.left(j);
-		}
+            if (i >= 0) elem = elem.left(i);
+        }
 	}
 
-	//patch lines for new commands (ref,def, etc)
-
-	QStringList categories;
-    categories << "%ref" << "%label" << "%definition" << "%cite" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%url" << "%todo" << "%replace";
-	foreach (const QString elem, categories) {
-		QStringList cmds = ltxCommands.possibleCommands[elem].values();
-		foreach (const QString cmd, cmds) {
-			if (!latexParser.possibleCommands[elem].contains(cmd) || forceLabelUpdate) {
-				latexParser.possibleCommands[elem] << cmd;
-			}
-		}
-	}
+    /*
 	bool needQNFAupdate = false;
     QStringList cmdsToUpdate;
 	for (int i = 0; i < latexParser.MAX_STRUCTURE_LEVEL; i++) {
@@ -2997,16 +2987,11 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate, const bool for
 	}
     if (needQNFAupdate)
 		parent->requestQNFAupdate();
-
-    if (delayUpdate && cmdsToUpdate.isEmpty()) // force update here if structure commands are changed
-		return update;
+    */
 
 	if (update) {
 		updateLtxCommands(true);
 	}
-    if(!cmdsToUpdate.isEmpty()){
-        patchLinesContaining(cmdsToUpdate);
-    }
 
 	return false;
 }
@@ -3244,23 +3229,6 @@ void LatexDocuments::lineGrammarChecked(LatexDocument *doc, QDocumentLineHandle 
 	if (d == -1) return;
 	if (!documents[d]->getEditorView()) return;
 	documents[d]->getEditorView()->lineGrammarChecked(doc, line, lineNr, errors);
-}
-
-void LatexDocument::patchLinesContaining(const QStringList cmds)
-{
-	foreach (LatexDocument *elem, getListOfDocs()) {
-		// search all cmds in all lines, patch line if cmd is found
-		for (int i = 0; i < elem->lines(); i++) {
-			QString text = elem->line(i).text();
-			foreach (const QString cmd, cmds) {
-				if (text.contains(cmd)) {
-					elem->patchStructure(i, 1);
-					//patchStructure(i,1);
-					break;
-				}
-			}
-        }
-    }
 }
 
 void LatexDocuments::requestQNFAupdate()
@@ -3733,7 +3701,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         }
     }
     if(addedPackages){
-        updateCompletionFiles(false, false, true);
+        updateCompletionFiles(false);
     }
     m_cachedDataOnly=true;
     return true;

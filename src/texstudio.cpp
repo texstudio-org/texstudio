@@ -6875,7 +6875,7 @@ void Texstudio::generalOptions()
                     if (configManager.editorConfig->realtimeChecking) {
                         edView->document->updateLtxCommands();
                         edView->documentContentChanged(0, edView->document->lines());
-                        edView->document->updateCompletionFiles(false, true);
+                        edView->document->updateCompletionFiles(false);
                         if(recheckSyntax){
                             edView->reCheckSyntax(0);
                         }

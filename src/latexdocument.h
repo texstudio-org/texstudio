@@ -125,8 +125,6 @@ public:
     Q_INVOKABLE void replaceRefs(const QString &name, const QString &newName, QDocumentCursor *cursor = nullptr);
 	Q_INVOKABLE void replaceLabelsAndRefs(const QString &name, const QString &newName);
 
-	void patchLinesContaining(const QStringList cmds);
-
 	StructureEntry *baseStructure;
 
 	QDocumentSelection sectionSelection(StructureEntry *section);
@@ -160,7 +158,7 @@ public:
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
     Q_INVOKABLE QSet<QString> usedPackages();
-    bool updateCompletionFiles(const bool forceUpdate,const bool forceLabelUpdate = false,const bool delayUpdate = false);
+    bool updateCompletionFiles(const bool forceUpdate);
     const QSet<QString> &getCWLFiles() const;
 
     Q_INVOKABLE QString spellingDictName() const;
