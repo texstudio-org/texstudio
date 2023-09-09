@@ -1,5 +1,5 @@
 # rank-2-roots package
-# Matthew Bertucci 9/10/2021 for v1.0
+# Matthew Bertucci 2023/08/31 for v1.1
 
 #include:tikz
 #include:xstring
@@ -53,11 +53,16 @@ root
 \hexgrid{lattice size}#*/rootSystem
 \hexgrid[TikZ options]{lattice size}#*/rootSystem
 \hexclip#*/rootSystem
+\simpleroots#/rootSystem
 
 \weightLength#*
 \weightRadius#*
 \gradingDot#*
-\defaultWeightLatticeSize#*
-\ifAutoSizeWeightLattice#*
 \AutoSizeWeightLatticetrue#*
 \AutoSizeWeightLatticefalse#*
+
+# not documented
+\rt{arg1}{arg2}#S
+\rt[opt]{arg1}{arg2}#S
+\defaultWeightLatticeSize#S
+\ifAutoSizeWeightLattice#S

@@ -3738,7 +3738,7 @@ void Texstudio::editPaste()
 	if (!currentEditorView()) return;
 
 	const QMimeData *d = QApplication::clipboard()->mimeData();
-    if ((d->hasFormat("application/x-openoffice-embed-source-xml;windows_formatname=\"Star Embed Source (XML)\"")||d->hasFormat("application/x-qt-windows-mime;value=\"Star Embed Source (XML)\"")) && d->hasFormat("text/plain")) {
+    if ((d->hasFormat("application/x-openoffice-embed-source-xml;windows_formatname=\"Star Embed Source (XML)\"")||d->hasFormat("application/x-qt-windows-mime;value=\"Star Embed Source (XML)\"")) && d->hasFormat("text/plain")&& d->hasFormat("image/png")) {
 		// workaround for LibreOffice (im "application/x-qt-image" has a higher priority for them than "text/plain")
         QDocumentCursor cur = currentEditorView()->editor->cursor();
         if (LatexTables::inTableEnv(cur)){

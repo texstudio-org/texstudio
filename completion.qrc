@@ -480,6 +480,7 @@
 <file>completion/bytefield.cwl</file>
 <file>completion/byzantinemusic.cwl</file>
 <file>completion/cabin.cwl</file>
+<file>completion/cahierprof.cwl</file>
 <file>completion/caladea.cwl</file>
 <file>completion/calcage.cwl</file>
 <file>completion/calc.cwl</file>
@@ -1800,6 +1801,7 @@
 <file>completion/hiero.cwl</file>
 <file>completion/hieroglf.cwl</file>
 <file>completion/highlightlatex.cwl</file>
+<file>completion/highlightx.cwl</file>
 <file>completion/HindMadurai.cwl</file>
 <file>completion/hitex.cwl</file>
 <file>completion/hlist.cwl</file>
@@ -1917,6 +1919,7 @@
 <file>completion/issuulinks.cwl</file>
 <file>completion/itnumpar.cwl</file>
 <file>completion/iwona.cwl</file>
+<file>completion/iwonamath.cwl</file>
 <file>completion/jamtimes.cwl</file>
 <file>completion/javascripthttp.cwl</file>
 <file>completion/JeuxCartes.cwl</file>
@@ -2323,6 +2326,7 @@
 <file>completion/methylen.cwl</file>
 <file>completion/metre.cwl</file>
 <file>completion/metrix.cwl</file>
+<file>completion/metsymb.cwl</file>
 <file>completion/mfirstuc.cwl</file>
 <file>completion/mflogo.cwl</file>
 <file>completion/mfpic4ode.cwl</file>

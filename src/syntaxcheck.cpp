@@ -93,8 +93,9 @@ void SyntaxCheck::run()
 			mLtxCommandLock.lock();
 			if (newLtxCommandsAvailable) {
 				newLtxCommandsAvailable = false;
-                if(newLtxCommands)
+                if(newLtxCommands){
                     *ltxCommands = *newLtxCommands;
+                }
                 speller=newSpeller;
                 mReplacementList=newReplacementList;
                 mFormatList=newFormatList;
