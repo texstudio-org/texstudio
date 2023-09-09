@@ -54,6 +54,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
     *lp= LatexParser::getInstance();
 
     updateSettings();
+    synChecker.setLtxCommands(lp);
 
     connect(&synChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);
 }
@@ -692,8 +693,6 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
                     }
                 }
                 mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(nameWithoutArgs, name));
-                // remove obsolete Overlays (maybe this can be refined
-                //updateSyntaxCheck=true;
             }
             continue;
         }
@@ -1233,7 +1232,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
     //lex lines
     lexLines(linenr,count,recheck);
 
-	if (linenr >= lineNrStart) {
+    if (linenr > lineNrStart) {
 		newCount = linenr + count - lineNrStart;
 	}
 	// Note: We cannot re-use the structure elements in the updated area because if there are multiple same-type elements on the same line
