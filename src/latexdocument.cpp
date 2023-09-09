@@ -54,7 +54,6 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
     *lp= LatexParser::getInstance();
 
     updateSettings();
-    //SynChecker.start(); start when needed
 
     connect(&synChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int,int)), SLOT(checkNextLine(QDocumentLineHandle*,bool,int,int)), Qt::QueuedConnection);
 }
@@ -1119,6 +1118,66 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
         }
     }
 }
+/*!
+ * \brief remove all previously detected elements like include,bibitem,labels,usercommands, etc
+ * Keep trak of removal to allow reinstating
+ *
+ * \param dlh
+ * \param changedCommands
+ */
+void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &changedCommands){
+    QList<UserCommandPair> commands = mUserCommandList.values(dlh);
+    foreach (UserCommandPair cmd, commands) {
+        QString elem = cmd.snippet.word;
+        if(elem.length()==1){
+            for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
+                if(i.left(1)==elem){
+                    ltxCommands.possibleCommands["%columntypes"].remove(i);
+                    break;
+                }
+            }
+        }else{
+            int i = elem.indexOf("{");
+            if (i >= 0) elem = elem.left(i);
+            if(countCommandDefintions(elem)==1){
+                ltxCommands.possibleCommands["user"].remove(elem);
+            }
+        }
+        if(cmd.snippet.type==CodeSnippet::userConstruct)
+            continue;
+        changedCommands.removedUserCommands << elem;
+        //updateSyntaxCheck=true;
+    }
+    if (mLabelItem.contains(dlh)) {
+        QList<ReferencePair> labels = mLabelItem.values(dlh);
+        changedCommands.completerNeedsUpdate = true;
+        mLabelItem.remove(dlh);
+        foreach (const ReferencePair &rp, labels)
+            updateRefsLabels(rp.name);
+    }
+    mRefItem.remove(dlh);
+    changedCommands.removedIncludes = mIncludedFilesList.values(dlh);
+    changedCommands.removedIncludes.append(mImportedFilesList.values(dlh));
+    mIncludedFilesList.remove(dlh);
+    mImportedFilesList.remove(dlh);
+
+    if (mUserCommandList.remove(dlh) > 0) changedCommands.completerNeedsUpdate = true;
+    if (mBibItem.remove(dlh))
+        changedCommands.bibTeXFilesNeedsUpdate = true;
+
+    changedCommands.removedUsepackages << mUsepackageList.values(dlh);
+    if (mUsepackageList.remove(dlh) > 0) changedCommands.completerNeedsUpdate = true;
+
+    //remove old bibs files from hash, but keeps a temporary copy
+    while (mMentionedBibTeXFiles.contains(dlh)) {
+        QMultiHash<QDocumentLineHandle *, FileNamePair>::iterator it = mMentionedBibTeXFiles.find(dlh);
+        Q_ASSERT(it.key() == dlh);
+        Q_ASSERT(it != mMentionedBibTeXFiles.end());
+        if (it == mMentionedBibTeXFiles.end()) break;
+        changedCommands.oldBibs.append(it.value().relative);
+        mMentionedBibTeXFiles.erase(it);
+    }
+}
 
 /*!
  * \brief parse lines to update syntactical and structure information
@@ -1144,9 +1203,6 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
     //QElapsedTimer tm ;
     //tm.start();
 
-
-
-	bool reRunSuggested = false;
 	bool recheckLabels = true;
 	if (count < 0) {
 		count = lineCount();
@@ -1211,58 +1267,8 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (!dlh)
 			continue; //non-existing line ...
 
-		// remove command,bibtex,labels at from this line
-		QList<UserCommandPair> commands = mUserCommandList.values(dlh);
-		foreach (UserCommandPair cmd, commands) {
-			QString elem = cmd.snippet.word;
-			if(elem.length()==1){
-                for (auto i:ltxCommands.possibleCommands["%columntypes"]) {
-                    if(i.left(1)==elem){
-                        ltxCommands.possibleCommands["%columntypes"].remove(i);
-                        break;
-                    }
-                }
-			}else{
-			    int i = elem.indexOf("{");
-			    if (i >= 0) elem = elem.left(i);
-                if(countCommandDefintions(elem)==1){
-                    ltxCommands.possibleCommands["user"].remove(elem);
-                }
-			}
-			if(cmd.snippet.type==CodeSnippet::userConstruct)
-				continue;
-            changedCommands.removedUserCommands << elem;
-			//updateSyntaxCheck=true;
-		}
-		if (mLabelItem.contains(dlh)) {
-			QList<ReferencePair> labels = mLabelItem.values(dlh);
-            changedCommands.completerNeedsUpdate = true;
-			mLabelItem.remove(dlh);
-			foreach (const ReferencePair &rp, labels)
-				updateRefsLabels(rp.name);
-		}
-		mRefItem.remove(dlh);
-        changedCommands.removedIncludes = mIncludedFilesList.values(dlh);
-        changedCommands.removedIncludes.append(mImportedFilesList.values(dlh));
-		mIncludedFilesList.remove(dlh);
-        mImportedFilesList.remove(dlh);
-
-        if (mUserCommandList.remove(dlh) > 0) changedCommands.completerNeedsUpdate = true;
-		if (mBibItem.remove(dlh))
-            changedCommands.bibTeXFilesNeedsUpdate = true;
-
-        changedCommands.removedUsepackages << mUsepackageList.values(dlh);
-        if (mUsepackageList.remove(dlh) > 0) changedCommands.completerNeedsUpdate = true;
-
-		//remove old bibs files from hash, but keeps a temporary copy
-		while (mMentionedBibTeXFiles.contains(dlh)) {
-			QMultiHash<QDocumentLineHandle *, FileNamePair>::iterator it = mMentionedBibTeXFiles.find(dlh);
-			Q_ASSERT(it.key() == dlh);
-			Q_ASSERT(it != mMentionedBibTeXFiles.end());
-			if (it == mMentionedBibTeXFiles.end()) break;
-            changedCommands.oldBibs.append(it.value().relative);
-			mMentionedBibTeXFiles.erase(it);
-		}
+        // remove command,bibtex,labels at from this line
+        removeLineElements(dlh,changedCommands);
 
         // handle special comments (TODO, MAGIC comments)
         handleComments(dlh,i,changedCommands.posTodo,posMagicComment);
@@ -1342,9 +1348,12 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
     emit structureUpdated();
 
+
+
     //update view
     if (edView){
 		edView->documentContentChanged(linenr, count);
+        reCheckSyntax(lineNrStart,count);
     }
 #ifndef QT_NO_DEBUG
 	if (!isHidden())
@@ -3436,7 +3445,7 @@ void LatexDocument::reCheckSyntax(int lineStart, int lineNum)
 		// line handle while removing the cookie. Lack of write locking causes crashes due to simultaneous
 		// access from the syntax checker thread.
 		line(i).removeCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
-    } //crash in qt6, looks like race coming from patchLines...
+    }
 
 	// Enqueue the first line for syntax checking. The remaining lines will be enqueued automatically
 	// through the checkNextLine signal because we deleted their STACK_ENVIRONMENT_COOKIE cookies.

@@ -219,6 +219,7 @@ public:
     int lexLines(int &lineNr,int &count,bool recheck=false);
     void lexLinesSimple(const int lineNr,const int count);
     void handleComments(QDocumentLineHandle *dlh, int &curLineNr, int &posTodoComment, int &posMagicComment);
+    void removeLineElements(QDocumentLineHandle *dlh, HandledData &changedCommands);
     void handleRescanDocuments(HandledData changedCommands);
     void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, QList<StructureEntry *> &flatStructure);
     void reinterpretCommandArguments();
