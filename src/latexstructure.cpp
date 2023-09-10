@@ -2,7 +2,7 @@
 #include "latexdocument.h"
 
 
-StructureEntry::StructureEntry(LatexDocument *doc, Type newType): type(newType), level(0), valid(false), expanded(false), parent(nullptr), document(doc), columnNumber(0), parentRow(-1), lineHandle(nullptr), lineNumber(-1), m_contexts(Unknown)
+StructureEntry::StructureEntry(LatexDocument *doc, Type newType): type(newType), level(0), valid(false), expanded(false), parent(nullptr), document(doc), columnNumber(0), lineHandle(nullptr), lineNumber(-1), m_contexts(Unknown)
 {
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(document);
@@ -13,27 +13,12 @@ StructureEntry::StructureEntry(LatexDocument *doc, Type newType): type(newType),
 StructureEntry::~StructureEntry()
 {
 	level = -1; //invalidate entry
-	foreach (StructureEntry *se, children)
-		delete se;
+
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(document);
 	bool removed = document->StructureContent.remove(this);
 	Q_ASSERT(removed); //prevent double deletion
 #endif
-}
-
-void StructureEntry::add(StructureEntry *child)
-{
-    Q_ASSERT(child != nullptr);
-	children.append(child);
-	child->parent = this;
-}
-
-void StructureEntry::insert(int pos, StructureEntry *child)
-{
-    Q_ASSERT(child != nullptr);
-	children.insert(pos, child);
-	child->parent = this;
 }
 
 void StructureEntry::setLine(QDocumentLineHandle *handle, int lineNr)
@@ -76,13 +61,6 @@ template <typename T> inline int hintedIndexOf (const QList<T *> &list, const T 
 	for (; forward < list.size(); forward++)
 		if (list[forward] == elem) return forward;
 	return -1;
-}
-
-int StructureEntry::getRealParentRow() const
-{
-	REQUIRE_RET(parent, -1);
-	parentRow = hintedIndexOf<StructureEntry>(parent->children, this, parentRow);
-	return parentRow;
 }
 
 void StructureEntry::debugPrint(const char *message) const

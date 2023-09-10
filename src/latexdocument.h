@@ -258,14 +258,8 @@ private:
 	void updateContext(QDocumentLineHandle *oldLine, QDocumentLineHandle *newLine, StructureEntry::Context context);
     void setContextForLines(int startLine, int endLine, StructureEntry::Context context, bool state);
 
-    int findStructureParentPos(StructureEntry *base, int linenr, int count);
-
     void removeRangeFromStructure(int lineNr,int count);
     void insertStructure(int lineNr, int count, QList<StructureEntry *> flatStructure);
-
-	void removeElement(StructureEntry *se);
-	void addElement(StructureEntry *parent, StructureEntry *se);
-	void insertElement(StructureEntry *parent, int pos, StructureEntry *se);
 
     QStringList unrollStructure();
 

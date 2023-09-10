@@ -11770,11 +11770,11 @@ void Texstudio::customMenuStructure(const QPoint &pos){
         menu.addSeparator();
         menu.addAction(tr("Indent Section"), this, SLOT(editIndentSection()));
         menu.addAction(tr("Unindent Section"), this, SLOT(editUnIndentSection()));
-        if (!contextEntry->children.isEmpty()) {
+        //if (!contextEntry->children.isEmpty()) {
             menu.addSeparator();
             menu.addAction(tr("Expand Subitems"), this, SLOT(expandSubitems()));
             menu.addAction(tr("Collapse Subitems"), this, SLOT(collapseSubitems()));
-        }
+        //}
 
         menu.exec(w->mapToGlobal(pos));
         return;

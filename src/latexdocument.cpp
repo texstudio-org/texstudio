@@ -161,22 +161,29 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry *section)
 	int startLine = section->getRealLineNumber();
 
 	// find next section or higher
-	StructureEntry *parent;
-	int index;
-	do {
-		parent = section->parent;
-		if (parent) {
-			index = section->getRealParentRow();
-			section = parent;
-		} else index = -1;
-	} while ((index >= 0) && (index >= parent->children.count() - 1) && (parent->type == StructureEntry::SE_SECTION));
-
+    const int level=section->level;
+    StructureEntry *se=nullptr;
+    for(auto iter=docStructure.cbegin();iter!=docStructure.cend();++iter){
+        se=*iter;
+        if(se==section){
+            do{
+                ++iter;
+                se=*iter;
+            }while(iter!=docStructure.cend() && se->type!=StructureEntry::SE_SECTION && se->level>level);
+            if(iter==docStructure.cend()){
+                se=nullptr;
+            }else{
+                se=*iter;
+            }
+            break;
+        }
+    }
 	int endingLine = -1;
-	if (index >= 0 && index < parent->children.count() - 1) {
-		endingLine = parent->children.at(index + 1)->getRealLineNumber();
+    if (se) {
+        endingLine = se->getRealLineNumber();
 	} else {
 		// no ending section but end of document
-		endingLine = findLineContaining("\\end{document}", startLine, Qt::CaseInsensitive);
+        endingLine = findLineContaining("\\end{document}", startLine, Qt::CaseInsensitive);
 		if (endingLine < 0) endingLine = lines();
 	}
 
@@ -2282,27 +2289,6 @@ void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
 	emit docToHide(edView);
 }
 
-int LatexDocument::findStructureParentPos(StructureEntry *base, int linenr, int count)
-{
-    QMutableListIterator<StructureEntry *> iter(base->children);
-	int parentPos = 0;
-	while (iter.hasNext()) {
-		StructureEntry *se = iter.next();
-		int realline = se->getRealLineNumber();
-		Q_ASSERT(realline >= 0);
-		if (realline >= linenr + count) {
-			break;
-		}
-		if (realline >= linenr) {
-            iter.remove();
-            delete se;
-        }else{
-            ++parentPos;
-        }
-	}
-    return parentPos;
-}
-
 /*!
  * \brief remove all structure entries in range lineNr .. lineNr+count-1
  * \param lineNr
@@ -2350,30 +2336,6 @@ void LatexDocument::insertStructure(int lineNr, int count, QList<StructureEntry 
     for(int k=0;k<flatStructure.size();++k){
         docStructure.insert(i+k,flatStructure[k]);
     }
-}
-
-void LatexDocument::removeElement(StructureEntry *se)
-{
-	int parentRow = se->getRealParentRow();
-	REQUIRE(parentRow >= 0);
-
-	se->parent->children.removeAt(parentRow);
-	se->parent = nullptr;
-}
-
-void LatexDocument::addElement(StructureEntry *parent, StructureEntry *se)
-{
-	parent->children.append(se);
-	se->parent = parent;
-}
-
-void LatexDocument::insertElement(StructureEntry *parent, int pos, StructureEntry *se)
-{
-    if(pos>parent->children.size()){
-        pos=parent->children.size();
-    }
-	parent->children.insert(pos, se);
-	se->parent = parent;
 }
 
 /*!

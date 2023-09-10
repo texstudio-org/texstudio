@@ -143,13 +143,13 @@ StructureEntry *LatexDocumentTest::generateFromCoded(const QString &code)
         }
         if(base){
             if(c.isDigit()){
-                parent_level[se->level]->add(se);
+                //parent_level[se->level]->add(se);
                 for(int i=se->level;i<10;++i){
                     parent_level[i+1]=se;
                 }
             }else{
                 // add at lowest level
-                parent_level[10]->add(se);
+                //parent_level[10]->add(se);
             }
         }else{
             base=se;
