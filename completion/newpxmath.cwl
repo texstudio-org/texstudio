@@ -1,5 +1,5 @@
 # newpxmath package
-# Matthew Bertucci 1/13/2022 for v1.5
+# Matthew Bertucci 2023/09/11 for v1.51
 
 #include:amsmath
 #include:etoolbox
@@ -26,8 +26,13 @@ frenchmath
 upint
 smallerops
 noOT1
+amsthm
 fracspacing
 #endkeyvals
+
+#ifOption:amsthm
+#include:amsthm
+#endif
 
 # math- or text-mode commands
 \checkmark
@@ -144,10 +149,12 @@ fracspacing
 \circS#m
 \colonapprox#m
 \Colonapprox#m
-\Coloneq#m
+\Colondash#m
+\colondash#m
+\Coloneq#*m
 \coloneq#m
 \coloneqq#m
-\Coloneqq#m
+\Coloneqq#*m
 \colonsim#m
 \Colonsim#m
 \complement#m
@@ -162,6 +169,8 @@ fracspacing
 \daleth#m
 \dasharrow#m
 \dasharrow#m
+\Dashcolon#m
+\dashcolon#m
 \dashleftarrow#m
 \dashleftrightarrow#m
 \dashrightarrow#m
@@ -203,9 +212,9 @@ fracspacing
 \epsilonit#*m
 \epsilonup#*m
 \eqcirc#m
-\Eqcolon#m
+\Eqcolon#*m
 \eqcolon#m
-\Eqqcolon#m
+\Eqqcolon#*m
 \eqqcolon#m
 \eqsim#m
 \eqslantgtr#m

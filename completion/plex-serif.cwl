@@ -1,5 +1,5 @@
 # plex-serif package
-# Matthew Bertucci 1/11/2022
+# Matthew Bertucci 2023/09/09
 
 #include:ifxetex
 #include:ifluatex
@@ -28,4 +28,5 @@ sb
 #endkeyvals
 
 \plexserif
+\plexseriflgr
 \plexseriffamily#*

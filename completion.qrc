@@ -153,6 +153,7 @@
 <file>completion/arrayjobx.cwl</file>
 <file>completion/arraysort.cwl</file>
 <file>completion/arsclassica.cwl</file>
+<file>completion/arsenal.cwl</file>
 <file>completion/ArtNouvc.cwl</file>
 <file>completion/ArtNouv.cwl</file>
 <file>completion/artthreads.cwl</file>
@@ -1523,6 +1524,7 @@
 <file>completion/FiraSans.cwl</file>
 <file>completion/fistrum.cwl</file>
 <file>completion/fitbox.cwl</file>
+<file>completion/fitch.cwl</file>
 <file>completion/fitr.cwl</file>
 <file>completion/fixdif.cwl</file>
 <file>completion/fixfoot.cwl</file>
@@ -1880,6 +1882,7 @@
 <file>completion/incgraph.cwl</file>
 <file>completion/includeRnw.cwl</file>
 <file>completion/inconsolata.cwl</file>
+<file>completion/inconsolata-nerd-font.cwl</file>
 <file>completion/index.cwl</file>
 <file>completion/indextools.cwl</file>
 <file>completion/infix-RPN.cwl</file>
@@ -3090,6 +3093,7 @@
 <file>completion/roboto.cwl</file>
 <file>completion/roboto-mono.cwl</file>
 <file>completion/roboto-serif.cwl</file>
+<file>completion/robust-externalize.cwl</file>
 <file>completion/robustglossary.cwl</file>
 <file>completion/robustindex.cwl</file>
 <file>completion/rojud.cwl</file>
@@ -3762,6 +3766,7 @@
 <file>completion/titling.cwl</file>
 <file>completion/tkz-base.cwl</file>
 <file>completion/tkz-berge.cwl</file>
+<file>completion/tkz-bernoulli.cwl</file>
 <file>completion/tkz-euclide.cwl</file>
 <file>completion/tkzexample.cwl</file>
 <file>completion/tkz-fct.cwl</file>
@@ -3883,6 +3888,7 @@
 <file>completion/UniversalisADFStd.cwl</file>
 <file>completion/universalis.cwl</file>
 <file>completion/unravel.cwl</file>
+<file>completion/updatemarks.cwl</file>
 <file>completion/upgreek.cwl</file>
 <file>completion/upkcat.cwl</file>
 <file>completion/uplatex.cwl</file>

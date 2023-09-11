@@ -1,5 +1,5 @@
 # exesheet package
-# Matthew Bertucci 2023/08/27 for v2.1
+# Matthew Bertucci 2023/09/06 for v2.2
 
 #include:kvoptions
 #include:ifthen
@@ -139,7 +139,7 @@ mode=#unboxed,boxed
 \begin{tablitem*}
 \end{tablitem*}
 
-#keyvals:\begin{tablenum1}
+#keyvals:\begin{tablenum1},\begin{tablenuma},\begin{tablitem}
 style=#itemize,enumerate
 label-format=%<code%>
 label=%<code%>
@@ -158,6 +158,9 @@ start=%<integer%>
 counter=%<counter%>
 debug#true,false
 #endkeyvals
+
+\labelenumone#*
+\labelenuma#*
 
 \begin{questions}
 \end{questions}

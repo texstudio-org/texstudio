@@ -33,6 +33,7 @@ slantedGreek
 frenchmath
 upint
 smallerops
+amsthm
 noOT1
 fracspacing
 # passed to newpxtext
@@ -63,4 +64,11 @@ trueslanted
 scosf
 tighter
 looser
+supscaled=%<factor%>
+supsraised=##L
+supspaced=##L
 #endkeyvals
+
+#ifOption:amsthm
+#include:amsthm
+#endif

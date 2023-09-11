@@ -1,5 +1,5 @@
 # penlightplus package
-# Matthew Bertucci 2023/08/28
+# Matthew Bertucci 2023/09/04
 
 #include:luacode
 #include:luakeys
@@ -27,6 +27,8 @@ pl
 \chgtbl{name}
 \tblfrkv{name}{key-val string}
 \tblfrkv{name}{key-val string}[luakeys opts]
+\tblfrcsv{name}{key-val string}
+\tblfrcsv{name}{key-val string}[luakeys opts]
 \settbl{index}{value}
 \gettbl{index}
 \deftbl{index}{csname}
@@ -35,6 +37,7 @@ pl
 \iftbl{index}{true}[false]
 \iftblv{index}{true}
 \iftblv{index}{true}[false]
+\kvtblundefcheck
 
 # not documented
 \writePDFmetadata#S

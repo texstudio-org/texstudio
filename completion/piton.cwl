@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/08/07 for v2.1
+# Matthew Bertucci 2023/09/05 for v2.2
 
 #include:l3keys2e
 #include:luatexbase
@@ -61,6 +61,7 @@ begin-escape=%<character%>
 end-escape=%<character%>
 begin-escape-math=%<character%>
 end-escape-math=%<character%>
+path=%<file path%>
 #endkeyvals
 
 # keys for \begin{Piton} only
@@ -70,7 +71,7 @@ line-numbers/start
 
 # keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
-language=#Python,OCaml,C
+language=#Python,OCaml,C,SQL
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
@@ -101,6 +102,7 @@ continuation-symbol-on-indentation=%<symbol%>
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
+\SetPitonStyle[language]{options%keyvals}
 
 #keyvals:\SetPitonStyle
 Number=%<formatting%>
@@ -130,6 +132,7 @@ Name.Constructor=%<formatting%>
 Name.Module=%<formatting%>
 TypeParameter=%<formatting%>
 Preproc=%<formatting%>
+Name.Table=%<formatting%>
 # not documented
 FormattingType=%<formatting%>
 Comment.Math=%<formatting%>
@@ -169,6 +172,7 @@ Name.Constructor
 Name.Module
 TypeParameter
 Preproc
+Name.Table
 # not documented
 FormattingType
 Comment.Math
@@ -179,7 +183,8 @@ Prompt
 #endkeyvals
 
 \PitonClearUserFunctions
- 
+\PitonClearUserFunctions[languages]
+
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
 \myfiledate#S

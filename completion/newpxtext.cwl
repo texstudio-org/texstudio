@@ -1,5 +1,5 @@
 # newpxtext package
-# Matthew Bertucci 2023/08/21 for v1.51
+# Matthew Bertucci 2023/09/11 for v1.52
 
 #include:fontenc
 #include:iftex
@@ -39,10 +39,14 @@ trueslanted
 scosf
 tighter
 looser
+supscaled=%<factor%>
+supsraised=##L
+supspaced=##L
 #endkeyvals
 
 \defigures#*
 \destyle
+\fakesuperscript{text}#S
 \infigures#*
 \instyle
 \lfstyle
@@ -52,8 +56,10 @@ looser
 \oldstylenums{text}
 \osfstyle
 \proportionalnums{text}
+\realsuperscript{text}#S
 \sufigures#*
-\sustyle
+\supstyle
+\sustyle#*
 \tabularnums{text}
 \textde{text}
 \textdenominator{text}#*
@@ -68,8 +74,9 @@ looser
 \textosf{text}
 \textsfrac[whole part]{numerator}{denominator}
 \textsfrac{numerator}{denominator}
-\textsu{text}
+\textsu{text}#*
 \textsuperior{text}#*
+\textsups{text}
 \textth{text}
 \textthit{text}#*
 \texttlf{text}

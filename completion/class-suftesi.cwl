@@ -1,5 +1,5 @@
 # suftesi class
-# Matthew Bertucci 12/13/2021 for v3.2.0
+# Matthew Bertucci 2023/09/07 for v3.2.1
 
 #include:xkeyval
 #include:class-book
@@ -17,7 +17,6 @@
 #include:crop
 #include:fontenc
 # loads T1 option of fontenc
-#include:substitutefont
 #include:titlesec
 #include:appendix
 #include:titletoc
