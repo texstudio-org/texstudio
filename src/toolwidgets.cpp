@@ -251,8 +251,8 @@ void TerminalWidget::initQTermWidget()
 void TerminalWidget::setCurrentFileName(const QString &filename)
 {
 	QString const &path = filename.left(filename.lastIndexOf('/'));
-	if(qTermWidget && qTermWidget->workingDirectory() != path )
-		qTermWidget->changeDir(path);
+    if(qTermWidget && qTermWidget->workingDirectory() != path )
+        qTermWidget->changeDir(enquoteStr(path));
 }
 
 void TerminalWidget::updateSettings(bool noreset)
