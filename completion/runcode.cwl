@@ -1,6 +1,7 @@
 # runcode package
-# Matthew Bertucci 2023/06/23 for v2.0
+# Matthew Bertucci 2023/09/09 for v2.2
 
+#include:etoolbox
 #include:morewrites
 #include:tcolorbox
 #include:tcolorboxlibrarymany
@@ -9,6 +10,7 @@
 #include:textgreek
 #include:xifthen
 #include:xstring
+#include:forloop
 #include:minted
 
 #keyvals:\usepackage/runcode#c
@@ -51,6 +53,10 @@ inline
 \inln{program}{code%definition}[output file%file]
 \inln{program}{code%definition}[output file%file][vbox|inline]
 
+\showChunk{language}{source file%file}
+\showChunk{language}{source file%file}[chunk id]
+\showChunk{language}{source file%file}[chunk id][begin mark][end mark]
+
 \runCodeIncOut{program}{source file%file}
 \runCodeIncOut{program}{source file%file}[run|cache]
 \runCodeIncOut{program}{source file%file}[run|cache][output file%file]
@@ -89,6 +95,15 @@ inline
 \inlnJulia[server spec]{code%definition}[output file%file]
 \inlnJulia[server spec]{code%definition}[output file%file][vbox|inline]
 
+\runJuliaChunk{source file%file}{chunk id}
+\runJuliaChunk{source file%file}{chunk id}[run|cache]
+\runJuliaChunk{source file%file}{chunk id}[run|cache][output file%file]
+\runJuliaChunk{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+\runJuliaChunk[server spec]{source file%file}{chunk id}
+\runJuliaChunk[server spec]{source file%file}{chunk id}[run|cache]
+\runJuliaChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file]
+\runJuliaChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+
 \runMatlab{source file%file}{output file%file}
 \runMatlab{source file%file}{output file%file}[run|cache]
 \runMatlab[server spec]{source file%file}{output file%file}
@@ -116,6 +131,15 @@ inline
 \inlnMatlab[server spec]{code%definition}[vbox|inline]
 \inlnMatlab[server spec]{code%definition}[output file%file]
 \inlnMatlab[server spec]{code%definition}[output file%file][vbox|inline]
+
+\runMatlabChunk{source file%file}{chunk id}
+\runMatlabChunk{source file%file}{chunk id}[run|cache]
+\runMatlabChunk{source file%file}{chunk id}[run|cache][output file%file]
+\runMatlabChunk{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+\runMatlabChunk[server spec]{source file%file}{chunk id}
+\runMatlabChunk[server spec]{source file%file}{chunk id}[run|cache]
+\runMatlabChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file]
+\runMatlabChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
 
 \runR{source file%file}{output file%file}
 \runR{source file%file}{output file%file}[run|cache]
@@ -145,6 +169,15 @@ inline
 \inlnR[server spec]{code%definition}[output file%file]
 \inlnR[server spec]{code%definition}[output file%file][vbox|inline]
 
+\runRChunk{source file%file}{chunk id}
+\runRChunk{source file%file}{chunk id}[run|cache]
+\runRChunk{source file%file}{chunk id}[run|cache][output file%file]
+\runRChunk{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+\runRChunk[server spec]{source file%file}{chunk id}
+\runRChunk[server spec]{source file%file}{chunk id}[run|cache]
+\runRChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file]
+\runRChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+
 \runPython{source file%file}{output file%file}
 \runPython{source file%file}{output file%file}[run|cache]
 \runPython[server spec]{source file%file}{output file%file}
@@ -173,20 +206,30 @@ inline
 \inlnPython[server spec]{code%definition}[output file%file]
 \inlnPython[server spec]{code%definition}[output file%file][vbox|inline]
 
+\runPythonChunk{source file%file}{chunk id}
+\runPythonChunk{source file%file}{chunk id}[run|cache]
+\runPythonChunk{source file%file}{chunk id}[run|cache][output file%file]
+\runPythonChunk{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+\runPythonChunk[server spec]{source file%file}{chunk id}
+\runPythonChunk[server spec]{source file%file}{chunk id}[run|cache]
+\runPythonChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file]
+\runPythonChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+
 \runPythonBatch{code%definition}{output file%file}
 
-\begin{codelisting}#*V
-\begin{codelisting}[number]#*V
-\end{codelisting}#*
+# not documented
+bg#B
+\begin{codelisting}#SV
+\begin{codelisting}[number]#SV
+\end{codelisting}#S
 \checkZeroBytes{arg}#S
-\runcmd#S
+\runcmd{arg1}{arg2}#S
 \setvalue{cmd}{def}#Sd
 \thecodeOutput#S
 \thecodelisting#S
 \generated#S
 \tempfile#S
 \tmpname#S
-bg#B
 \ifruncode#S
 \runcodetrue#S
 \runcodefalse#S
@@ -202,3 +245,11 @@ bg#B
 \ifinlnrun#S
 \inlnruntrue#S
 \inlnrunfalse#S
+\langs#S
+\theportNo#S
+\InitLang{arg}#S
+\writeChunk{arg1}{arg2}#S
+\writeChunk{arg1}{arg2}[opt]#S
+\writeChunk{arg1}{arg2}[opt1][opt2]#S
+\LANG#S
+\LANGcmd#S

@@ -1,5 +1,5 @@
 # plex-otf package
-# Matthew Bertucci 1/11/2022 for v0.07a
+# Matthew Bertucci 2023/09/09 for v0.08
 
 #include:ifxetex
 #include:ifluatex
@@ -56,7 +56,6 @@ DefaultFeatures={%<fontspec options%>}
 \PlexTextTT
 \PlexSemiBoldTT
 
-\IBM
 \CE
 \FCC
 \upleftarrow

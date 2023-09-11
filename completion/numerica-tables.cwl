@@ -1,5 +1,5 @@
 # numerica-tables package
-# Matthew Bertucci 2023/08/23 for v3.0.0
+# Matthew Bertucci 2023/09/06 for v3.1.0
 
 #include:numerica
 #include:booktabs
@@ -73,6 +73,7 @@ chead=%<tokens%>
 calign=#r,c,l
 chnudge=%<integer%>
 chround=%<integer%>
+headless=#0,1
 rules=%<chars%>
 foot=%<tokens%>
 rbloc={%<csv list%>}
@@ -80,6 +81,7 @@ rblocsep=##L
 (pad)=%<integer%>
 signs=#-2,-1,0,1,2
 diffs=%<integer%>
+round=%<function%>
 Q?=%<tokens%>
 A!=%<tokens%>
 valign=#t,m,b

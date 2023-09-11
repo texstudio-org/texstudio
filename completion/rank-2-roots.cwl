@@ -1,5 +1,5 @@
 # rank-2-roots package
-# Matthew Bertucci 2023/08/31 for v1.1
+# Matthew Bertucci 2023/09/04 for v1.2
 
 #include:tikz
 #include:xstring
@@ -16,6 +16,7 @@
 #include:tikzlibraryfadings
 
 \begin{rootSystem}{type%keyvals}
+\begin{rootSystem}[options]{type%keyvals}
 \end{rootSystem}
 
 #keyvals:\begin{rootSystem}
@@ -54,6 +55,7 @@ root
 \hexgrid[TikZ options]{lattice size}#*/rootSystem
 \hexclip#*/rootSystem
 \simpleroots#/rootSystem
+\fundamentalweights#/rootSystem
 
 \weightLength#*
 \weightRadius#*

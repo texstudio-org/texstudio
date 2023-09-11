@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/08/25 for v2.7.2
+# Matthew Bertucci 2023/09/04 for v2.7.4
 
 #include:mathtools
 #include:amssymb
@@ -45,6 +45,9 @@
 #include:piton
 #include:nicematrix
 #include:cancel
+#include:interval
+#include:esvect
+#include:xspace
 
 #keyvals:\usepackage/ProfLycee#c
 xcolor
@@ -970,6 +973,105 @@ ListeLegV=%<liste%>
 ListeLegH=%<liste%>
 DecalLegende=%<décalage%>
 #endkeyvals
+
+## ecritures library ##
+# conditional loading not possible, just listed here
+\Arrondi{expr}
+\Arrondi[précision]{expr}
+\Arrondi*{expr}
+\Arrondi*[précision]{expr}
+\N
+\N*
+\Z
+\Z*
+\D
+\D*
+\R
+\R*
+\C
+\C*
+\ensH
+\ensH*
+\IntervalleFF{arg1%formula}{arg2%formula}
+\IntervalleFF[options%keyvals]{arg1%formula}{arg2%formula}
+\IntervalleOF{arg1%formula}{arg2%formula}
+\IntervalleOF[options%keyvals]{arg1%formula}{arg2%formula}
+\IntervalleFO{arg1%formula}{arg2%formula}
+\IntervalleFO[options%keyvals]{arg1%formula}{arg2%formula}
+\IntervalleOO{arg1%formula}{arg2%formula}
+\IntervalleOO[options%keyvals]{arg1%formula}{arg2%formula}
+#keyvals:\IntervalleFF,\IntervalleOF,\IntervalleFO,\IntervalleOO
+open
+open left
+open right
+#endkeyvals
+#keyvals:\interval,\ointerval,\linterval,\rinterval
+scaled=%<scale command%>
+#endkeyvals
+\Vecteur{arg%formula}
+\Vecteur{arg%formula}[sub%formula]
+\Vecteur*{arg%formula}
+\Vecteur*{arg%formula}[sub%formula]
+\CoordPtPl{arg1%formula}{arg2%formula}
+\CoordPtEsp{arg1%formula}{arg2%formula}{arg3%formula}
+\CoordVecPl{arg1%formula}{arg2%formula}
+\CoordVecEsp{arg1%formula}{arg2%formula}{arg3%formula}
+\MatDeux{arg1%formula}{arg2%formula}{arg3%formula}{arg4%formula}
+\RepereOij
+\RepereOij[Sep={%<symbol%>}]
+\RepereOij*
+\RepereOij*[Sep={%<symbol%>}]
+\RepereOijk
+\RepereOijk[Sep={%<symbol%>}]
+\RepereOijk*
+\RepereOijk*[Sep={%<symbol%>}]
+\RepereOuv
+\RepereOuv[Sep={%<symbol%>}]
+\RepereOuv*
+\RepereOuv*[Sep={%<symbol%>}]
+\ReperePlan{arg1%formula}{arg2%formula}{arg3%formula}
+\ReperePlan[Sep={%<symbol%>}]{arg1%formula}{arg2%formula}{arg3%formula}
+\ReperePlan*{arg1%formula}{arg2%formula}{arg3%formula}
+\ReperePlan*[Sep={%<symbol%>}]{arg1%formula}{arg2%formula}{arg3%formula}
+\RepereEspace{arg1%formula}{arg2%formula}{arg3%formula}{arg4%formula}
+\RepereEspace[Sep={%<symbol%>}]{arg1%formula}{arg2%formula}{arg3%formula}{arg4%formula}
+\RepereEspace*{arg1%formula}{arg2%formula}{arg3%formula}{arg4%formula}
+\RepereEspace*[Sep={%<symbol%>}]{arg1%formula}{arg2%formula}{arg3%formula}{arg4%formula}
+\Courbe
+\Courbe[sub%formula]
+\Courbe*
+\Courbe*[sub%formula]
+\jfalg
+\jfexp
+\Modulo{arg}
+\Modulo[options%keyvals]{arg}
+\Modulo*{arg}
+\Modulo*[options%keyvals]{arg}
+#keyvals:\Modulo,\Modulo*
+Cro
+Par
+Txt
+#endkeyvals
+\Suite{arg}
+\Suite[sub]{arg}
+\Integrale#m
+\dx
+\dx[var%formula]
+\LoiNormale{arg1%formula}{arg2%formula}
+\LoiNormale*{arg1%formula}{arg2%formula}
+\LoiBinomiale{arg1%formula}{arg2%formula}
+\LoiBinomiale*{arg1%formula}{arg2%formula}
+\LoiPoisson{arg%formula}
+\LoiPoisson*{arg%formula}
+\LoiUnif{arg%formula}
+\LoiUnif*{arg%formula}
+\LoiExpo{arg%formula}
+\LoiExpo*{arg%formula}
+\Esper{arg%formula}
+\Esper[symbol%formula]{arg%formula}
+\Varianc{arg%formula}
+\Varianc[symbol%formula]{arg%formula}
+\EcType{arg%formula}
 
 ## pythontex library ##
 # conditional loading not possible, just listed here
