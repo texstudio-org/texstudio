@@ -1,8 +1,10 @@
 # mathfont package
-# Matthew Bertucci 2023/08/22 for v2.2b
+# Matthew Bertucci 2023/09/11 for v2.3
 
 #keyvals:\usepackage/mathfont#c
 easter-egg
+default-loader
+fontspec-loader
 adjust
 no-adjust
 %<font name%>
@@ -10,6 +12,10 @@ no-adjust
 
 #ifOption:easter-egg
 \EasterEggUpdate
+#endif
+
+#ifOption:fontspec-loader
+#include:fontspec
 #endif
 
 \mathfont{font name}
