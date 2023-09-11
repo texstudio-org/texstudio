@@ -1313,7 +1313,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 void LatexDocument::checkForLeak()
 {
 	QSet<StructureEntry *>zw = StructureContent;
-    for(auto iter=docStructure.cbegin();iter != docStructure.end();++iter) {
+    for(auto iter=docStructure.cbegin();iter != docStructure.cend();++iter) {
         zw.remove(*iter);
 	}
 
@@ -2303,7 +2303,7 @@ void LatexDocument::removeRangeFromStructure(int lineNr, int count)
             continue;
         }
         if(ln<lineNr+count){
-            docStructure.remove(i);
+            docStructure.removeAt(i);
             --i;
             continue;
         }
@@ -2327,7 +2327,7 @@ void LatexDocument::insertStructure(int lineNr, int count, QList<StructureEntry 
             continue;
         }
         if(ln<lineNr+count){
-            docStructure.remove(i);
+            docStructure.removeAt(i);
             --i;
             continue;
         }
