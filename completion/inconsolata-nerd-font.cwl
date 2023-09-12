@@ -1,5 +1,5 @@
 # inconsolata-nerd-font package
-# Matthew Bertucci 2023/09/11 for v0.1
+# Matthew Bertucci 2023/09/12 for v0.2
 
 #include:fontspec
 
@@ -9,4 +9,8 @@ scale=%<factor%>
 #endkeyvals
 
 \inconsolatanffamily
+\inconsolatanfmonofamily
+\inconsolatanfpropofamily
 \textinconsolatanf{text}
+\textinconsolatanfmono{text}
+\textinconsolatanfpropo{text}
