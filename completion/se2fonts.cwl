@@ -1,8 +1,9 @@
 # se2fonts package
-# Matthew Bertucci 2023/01/10 for v2.0.0
+# Matthew Bertucci 2023/09/12 for v3.2.0
 
 #include:unicode-math
 #include:libertinus-otf
+#include:inconsolata-nerd-font
 
 \pdftexengine#*
 \xetexengine#*
