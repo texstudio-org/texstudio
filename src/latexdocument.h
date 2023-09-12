@@ -216,14 +216,14 @@ public:
 
     int lexLines(int &lineNr,int &count,bool recheck=false);
     void lexLinesSimple(const int lineNr,const int count);
-    void handleComments(QDocumentLineHandle *dlh, int &curLineNr, int &docStructurePosition);
+    void handleComments(QDocumentLineHandle *dlh, int &curLineNr, std::list<StructureEntry*>::iterator &docStructureIter);
     void removeLineElements(QDocumentLineHandle *dlh, HandledData &changedCommands);
     void handleRescanDocuments(HandledData changedCommands);
-    void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, int &docStructurePosition);
+    void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, std::list<StructureEntry*>::iterator &docStructureIter);
     void reinterpretCommandArguments();
-    void replaceOrAdd(int &docStructurePosition, QDocumentLineHandle *dlh, StructureEntry *newElement);
+    void replaceOrAdd(std::list<StructureEntry*>::iterator &docStructureIter, QDocumentLineHandle *dlh, StructureEntry *newElement);
 
-    QList<StructureEntry *> docStructure;
+    std::list<StructureEntry *> docStructure;
 
 private:
 	QString fileName; //absolute
@@ -260,11 +260,10 @@ private:
     void setContextForLines(int startLine, int endLine, StructureEntry::Context context, bool state);
 
     void removeRangeFromStructure(int lineNr,int count);
-    void insertStructure(int lineNr, int count, QList<StructureEntry *> flatStructure);
 
     QStringList unrollStructure();
 
-    void addMagicComment(const QString &text, int lineNr, int &docStructurePosition);
+    void addMagicComment(const QString &text, int lineNr, std::list<StructureEntry*>::iterator &docStructureIter);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
 
 	void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);

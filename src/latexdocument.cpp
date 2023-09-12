@@ -448,7 +448,7 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
  * \param dlh
  * \return
  */
-void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &docStructurePosition){
+void LatexDocument::handleComments(QDocumentLineHandle *dlh, int &curLineNr, std::list<StructureEntry*>::iterator &docStructureIter){
     //
     QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
     int col = commentStart.first;
@@ -463,7 +463,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
             StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
             newTodo->title = text.mid(1).trimmed();
             newTodo->setLine(dlh, curLineNr);
-            replaceOrAdd(docStructurePosition,dlh,newTodo);
+            replaceOrAdd(docStructureIter,dlh,newTodo);
             // save comment type into cookie
             commentStart.second=Token::todoComment;
             dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
@@ -478,14 +478,14 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
                     end = curLine.indexOf('"', end + 1);
                     if (end >= 0) {
                         end += 1;  // include closing quotation mark
-                        addMagicComment(curLine.mid(start, end - start), curLineNr, docStructurePosition);
+                        addMagicComment(curLine.mid(start, end - start), curLineNr, docStructureIter);
                     }
                 } else {
                     end = curLine.indexOf(' ', end + 1);
                     if (end >= 0) {
-                        addMagicComment(curLine.mid(start, end - start), curLineNr,docStructurePosition);
+                        addMagicComment(curLine.mid(start, end - start), curLineNr,docStructureIter);
                     } else {
-                        addMagicComment(curLine.mid(start), curLineNr, docStructurePosition);
+                        addMagicComment(curLine.mid(start), curLineNr, docStructureIter);
                     }
                 }
             }
@@ -498,7 +498,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
         QRegularExpressionMatch matchMagicTexComment=rxMagicTexComment.match(text);
         QRegularExpressionMatch matchMagicBibComment=rxMagicBibComment.match(text);
         if (matchMagicTexComment.hasMatch()) {
-            addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), curLineNr, docStructurePosition);
+            addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), curLineNr, docStructureIter);
             commentStart.second=Token::magicComment;
             dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
         } else if (matchMagicBibComment.hasMatch()) {
@@ -508,7 +508,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
             QString val;
             splitMagicComment(text, name, val);
             if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex" || val == "bibtex8")) {
-                addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), curLineNr, docStructurePosition);
+                addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), curLineNr, docStructureIter);
                 commentStart.second=Token::magicComment;
                 dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
             }
@@ -525,7 +525,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &
  * \param recheckLabels
  * \param flatStructure
  */
-void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int currentLineNr,HandledData &data,bool recheckLabels,int & docStructurePosition){
+void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const int currentLineNr, HandledData &data, bool recheckLabels, std::list<StructureEntry*>::iterator & docStructureIter){
     if(dlh->hasFlag(QDocumentLine::argumentsParsed)) return;
     TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
@@ -557,7 +557,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             StructureEntry *newLabel = new StructureEntry(this, StructureEntry::SE_LABEL);
             newLabel->title = elem.name;
             newLabel->setLine(dlh, currentLineNr);
-            replaceOrAdd(docStructurePosition,dlh,newLabel);
+            replaceOrAdd(docStructureIter,dlh,newLabel);
         }
         //// newtheorem ////
         if (tk.type == Token::newTheorem && tk.length > 0) {
@@ -588,7 +588,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
             newTodo->title = tk.getInnerText();
             newTodo->setLine(line(currentLineNr).handle(), currentLineNr);
-            replaceOrAdd(docStructurePosition,dlh,newTodo);
+            replaceOrAdd(docStructureIter,dlh,newTodo);
             continue;
         }
         // specialArg definition
@@ -885,7 +885,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
                 StructureEntry *newFile = new StructureEntry(this, StructureEntry::SE_BIBTEX);
                 newFile->title = bibFile;
                 newFile->setLine(line(currentLineNr).handle(), currentLineNr);
-                replaceOrAdd(docStructurePosition,dlh,newFile);
+                replaceOrAdd(docStructureIter,dlh,newFile);
             }
             continue;
         }
@@ -896,7 +896,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             StructureEntry *newBlock = new StructureEntry(this, StructureEntry::SE_BLOCK);
             newBlock->title = Parsing::getArg(args, dlh, 1, ArgumentList::Mandatory,true,currentLineNr);
             newBlock->setLine(line(currentLineNr).handle(), currentLineNr);
-            replaceOrAdd(docStructurePosition,dlh,newBlock);
+            replaceOrAdd(docStructureIter,dlh,newBlock);
             continue;
         }
 
@@ -922,7 +922,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             newInclude->valid = !fname.isEmpty();
             newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
             newInclude->columnNumber = cmdStart;
-            replaceOrAdd(docStructurePosition,dlh,newInclude);
+            replaceOrAdd(docStructureIter,dlh,newInclude);
             continue;
         }
 
@@ -948,7 +948,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             newInclude->valid = !fname.isEmpty();
             newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
             newInclude->columnNumber = cmdStart;
-            replaceOrAdd(docStructurePosition,dlh,newInclude);
+            replaceOrAdd(docStructureIter,dlh,newInclude);
             continue;
         }
 
@@ -981,7 +981,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
             newSection->level = level;
             newSection->setLine(line(currentLineNr).handle(), currentLineNr);
             newSection->columnNumber = cmdStart;
-            replaceOrAdd(docStructurePosition,dlh,newSection);
+            replaceOrAdd(docStructureIter,dlh,newSection);
             continue;
         }
         /// auto user command for \symbol_...
@@ -1016,10 +1016,10 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
 
     } // for tl
     // remove obsolete entries for this line in docStructure
-    for(;docStructurePosition<docStructure.size();++docStructurePosition){
-        if(docStructure[docStructurePosition]->getLineHandle()==dlh){
-            docStructure.remove(docStructurePosition);
-            --docStructurePosition;
+    while(docStructureIter!=docStructure.end()){
+        if((*docStructureIter)->getLineHandle()==dlh){
+            delete *docStructureIter;
+            docStructureIter=docStructure.erase(docStructureIter);
         }else{
             break;
         }
@@ -1034,18 +1034,18 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh,const int
  */
 void LatexDocument::reinterpretCommandArguments()
 {
-    int docStructurePosition=0;
+    std::list<StructureEntry*>::iterator docStructureIter = docStructure.begin();
     for (int i = 0; i < lineCount(); ++i) {
         QDocumentLineHandle *dlh=line(i).handle();
         HandledData changedCommands;
-        for(;docStructurePosition<docStructure.size();++docStructurePosition){
-            StructureEntry *element=docStructure.at(docStructurePosition);
+        for(;docStructureIter!=docStructure.end();++docStructureIter){
+            StructureEntry *element=*docStructureIter;
             int ln=element->getRealLineNumber();
             if(ln>=i){
                 break;
             }
         }
-        interpretCommandArguments(dlh,i,changedCommands,false,docStructurePosition);
+        interpretCommandArguments(dlh,i,changedCommands,false,docStructureIter);
     }
 }
 /*!
@@ -1054,18 +1054,18 @@ void LatexDocument::reinterpretCommandArguments()
  * \param dlh
  * \param newElement
  */
-void LatexDocument::replaceOrAdd(int &docStructurePosition, QDocumentLineHandle *dlh, StructureEntry *newElement)
+void LatexDocument::replaceOrAdd(std::list<StructureEntry*>::iterator &docStructureIter, QDocumentLineHandle *dlh, StructureEntry *newElement)
 {
-    if(docStructurePosition<docStructure.size() && docStructure[docStructurePosition]->getLineHandle() == dlh && docStructure[docStructurePosition]->type == newElement->type){
+    if(docStructureIter != docStructure.end() && (*docStructureIter)->getLineHandle() == dlh && (*docStructureIter)->type == newElement->type){
         // replace old element
-        docStructure[docStructurePosition]->columnNumber=newElement->columnNumber;
-        docStructure[docStructurePosition]->title=newElement->title;
-        docStructure[docStructurePosition]->level=newElement->level;
-        docStructure[docStructurePosition]->valid=newElement->valid;
-        ++docStructurePosition;
+        (*docStructureIter)->columnNumber=newElement->columnNumber;
+        (*docStructureIter)->title=newElement->title;
+        (*docStructureIter)->level=newElement->level;
+        (*docStructureIter)->valid=newElement->valid;
+        ++docStructureIter;
         delete newElement;
     }else{
-        docStructure.insert(docStructurePosition++,newElement);
+        docStructure.insert(docStructureIter++,newElement);
     }
 }
 /*!
@@ -1226,8 +1226,6 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				lineNrStart = linenr;
 		}
 	}
-    QList<StructureEntry *> flatStructure;
-
 	// usepackage list
     HandledData changedCommands;
 
@@ -1245,8 +1243,15 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
     bool isLatexLike = languageIsLatexLike();
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
 	// force command from all line of which the actual line maybe subsequent lines (multiline commands)
-    int docStructurePosition=0;
-	for (int i = lineNrStart; i < linenr + count; i++) {
+    std::list<StructureEntry*>::iterator docStructureIter = docStructure.begin();
+    for (int i = lineNrStart; i < linenr + newCount; i++) {
+        for(;docStructureIter!=docStructure.end();++docStructureIter){
+            StructureEntry *element=*docStructureIter;
+            int ln=element->getRealLineNumber();
+            if(ln>=i){
+                break;
+            }
+        }
 		//update bookmarks
 		if (edView && edView->hasBookmark(i, -1)) {
 			emit bookmarkLineUpdated(i);
@@ -1263,7 +1268,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
         removeLineElements(dlh,changedCommands);
 
         // handle special comments (TODO, MAGIC comments)
-        handleComments(dlh,i,docStructurePosition);
+        handleComments(dlh,i,docStructureIter);
 
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
@@ -1303,15 +1308,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
         // interpret arguments and update txs knowledge about them
         // e.g. labels, packages, etc
-
-        for(;docStructurePosition<docStructure.size();++docStructurePosition){
-            StructureEntry *element=docStructure.at(docStructurePosition);
-            int ln=element->getRealLineNumber();
-            if(ln>=i){
-                break;
-            }
-        }
-        interpretCommandArguments(dlh,i,changedCommands,recheckLabels,docStructurePosition);
+        interpretCommandArguments(dlh,i,changedCommands,recheckLabels,docStructureIter);
 
         if (!changedCommands.oldBibs.isEmpty())
             changedCommands.bibTeXFilesNeedsUpdate = true; //file name removed
@@ -2339,45 +2336,19 @@ void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
  */
 void LatexDocument::removeRangeFromStructure(int lineNr, int count)
 {
-    for(int i=0;i<docStructure.size();++i){
-        StructureEntry *element=docStructure.at(i);
+    for(auto it=docStructure.begin();it!=docStructure.end();){
+        StructureEntry *element=*it;
         int ln=element->getRealLineNumber();
         if(ln<lineNr){
+            ++it;
             continue;
         }
         if(ln<lineNr+count){
-            docStructure.removeAt(i);
-            --i;
+            delete *it;
+            it=docStructure.erase(it);
             continue;
         }
         break;
-    }
-}
-/*!
- * \brief insert flat structure entries at correct position
- * Remove old entries if necessary
- * \param lineNrStart
- * \param count
- * \param flatStructure
- */
-void LatexDocument::insertStructure(int lineNr, int count, QList<StructureEntry *> flatStructure)
-{
-    int i=0;
-    for(;i<docStructure.size();++i){
-        StructureEntry *element=docStructure.at(i);
-        int ln=element->getRealLineNumber();
-        if(ln<lineNr){
-            continue;
-        }
-        if(ln<lineNr+count){
-            docStructure.removeAt(i);
-            --i;
-            continue;
-        }
-        break;
-    }
-    for(int k=0;k<flatStructure.size();++k){
-        docStructure.insert(i+k,flatStructure[k]);
     }
 }
 
@@ -2389,7 +2360,7 @@ QStringList LatexDocument::unrollStructure()
 {
     QStringList result;
 
-    for(QList<StructureEntry*>::iterator iter=docStructure.begin();iter!=docStructure.end();++iter){
+    for(std::list<StructureEntry*>::iterator iter=docStructure.begin();iter!=docStructure.end();++iter){
         StructureEntry *curSection = *iter;
         if (curSection->type == StructureEntry::SE_SECTION){
             result<<QString("%1").arg(curSection->level)+"#"+curSection->title+"#"+QString("%1").arg(curSection->getRealLineNumber());
@@ -2422,7 +2393,7 @@ bool LatexDocument::splitMagicComment(const QString &comment, QString &name, QSt
 \a lineNr - line number of the magic comment
 \a posMagicComment - Zero-based position of magic comment in the structure list tree view.
   */
-void LatexDocument::addMagicComment(const QString &text, int lineNr, int &docStructurePosition)
+void LatexDocument::addMagicComment(const QString &text, int lineNr, std::list<StructureEntry*>::iterator &docStructureIter)
 {
 	StructureEntry *newMagicComment = new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
 	QDocumentLineHandle *dlh = line(lineNr).handle();
@@ -2433,7 +2404,7 @@ void LatexDocument::addMagicComment(const QString &text, int lineNr, int &docStr
 	parseMagicComment(name, val, newMagicComment);
 	newMagicComment->title = text;
 	newMagicComment->setLine(dlh, lineNr);
-    replaceOrAdd(docStructurePosition,dlh,newMagicComment);
+    replaceOrAdd(docStructureIter,dlh,newMagicComment);
 }
 
 /*!
@@ -2502,8 +2473,8 @@ void LatexDocument::updateContext(QDocumentLineHandle *oldLine, QDocumentLineHan
 
 void LatexDocument::setContextForLines(int startLine, int endLine, StructureEntry::Context context, bool state)
 {
-    for (int i = 0; i < docStructure.size(); ++i) {
-        StructureEntry *elem = docStructure[i];
+    for (auto it = docStructure.begin(); it != docStructure.end(); ++it) {
+        StructureEntry *elem = *it;
 		if (endLine >= 0 && elem->getLineHandle() && elem->getRealLineNumber() > endLine) break;
         if (elem->type == StructureEntry::SE_SECTION && elem->getRealLineNumber() >= startLine) {
 			elem->setContext(context, state);
@@ -3498,7 +3469,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         }
         se->title=l_section[1];
         se->level=pos;
-        docStructure << se;
+        docStructure.push_back(se);
     }
     if(addedPackages){
         updateCompletionFiles(false);

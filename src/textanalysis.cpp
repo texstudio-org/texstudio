@@ -130,8 +130,8 @@ int lowestStructureLevel(LatexDocument *doc)
 {
     if (!doc) return 1000;
 	int r = 1000;
-    for(int i = 0; i < doc->docStructure.count(); ++i){
-        StructureEntry *se=doc->docStructure.at(i);
+    for(auto it = doc->docStructure.cbegin(); it != doc->docStructure.cend(); ++it){
+        StructureEntry *se=*it;
         if(se->type != StructureEntry::SE_SECTION) continue;
         r = qMin(r, se->level);
     }
@@ -143,8 +143,8 @@ void TextAnalysisDialog::interpretStructureTree(LatexDocument *doc)
     if (!doc) return;
 
     int targetLevel=lowestStructureLevel(doc);
-    for(int i = 0; i < doc->docStructure.count(); ++i){
-        StructureEntry *se=doc->docStructure.at(i);
+    for(auto it = doc->docStructure.cbegin(); it != doc->docStructure.cend(); ++it){
+        StructureEntry *se=*it;
         if(se->type != StructureEntry::SE_SECTION) continue;
         if (se->level == targetLevel) {
             chapters.append(QPair<QString, int> (se->title, se->getCachedLineNumber()));
