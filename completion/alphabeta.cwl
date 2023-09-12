@@ -1,5 +1,5 @@
 # alphabeta package
-# Matthew Bertucci 9/22/2021 for v2.0
+# Matthew Bertucci 2023/09/12 for v2.5
 
 #include:textalpha
 
@@ -41,7 +41,6 @@ keep-semicolon
 \mathvarrho#*m
 \mathsigma#*m
 \mathvarsigma#*m
-\mathfinalsigma#*m
 \mathtau#*m
 \mathupsilon#*m
 \mathphi#*m
@@ -52,6 +51,7 @@ keep-semicolon
 \mathdigamma#*m
 \mathvarbeta#*m
 \mathvarkappa#*m
+\mathvarTheta#*m
 
 \Alpha
 \Beta
@@ -122,6 +122,7 @@ keep-semicolon
 \varkappa
 \varpi
 \varrho
+\varTheta
 \vartheta
 
 \betasymbol#*
