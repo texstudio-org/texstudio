@@ -12168,55 +12168,42 @@ void Texstudio::updateStructureLocally(bool updateAll){
         }else{
             for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
                 QTreeWidgetItem *item = structureTreeWidget->topLevelItem(i);
-                StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-                if (!contextEntry){
-                    structureTreeWidget->takeTopLevelItem(i);
-                    delete item;
-                    --i;
-                    continue;
-                }
-                if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
-                    if(contextEntry->document == doc){
-                        root=item;
-                    }else{
-                        QFont font=item->font(0);
-                        font.setBold(false);
-                        item->setFont(0,font);
-                        if(!documents.documents.contains(contextEntry->document) || documents.hiddenDocuments.contains(contextEntry->document)){
-                            if(showHiddenMasterFirst && contextEntry->document == master && !hiddenMasterStructureIsVisible){
-                                // run only once
-                                // reload may add more structure views
-                                hiddenMasterStructureIsVisible=true;
-                                continue; // keep showing master document regardless
-                            }
-                            structureTreeWidget->takeTopLevelItem(i);
-                            delete item;
-                            --i;
-                        }
-                    }
+                LatexDocument *document = item->data(0,Qt::UserRole).value<LatexDocument *>();
+                if(document == doc){
+                    root=item;
                 }else{
-                    // remove invalid
-                    structureTreeWidget->takeTopLevelItem(i);
-                    delete item;
-                    --i;
+                    QFont font=item->font(0);
+                    font.setBold(false);
+                    item->setFont(0,font);
+                    if(!documents.documents.contains(document) || documents.hiddenDocuments.contains(document)){
+                        if(showHiddenMasterFirst && document == master && !hiddenMasterStructureIsVisible){
+                            // run only once
+                            // reload may add more structure views
+                            hiddenMasterStructureIsVisible=true;
+                            continue; // keep showing master document regardless
+                        }
+                        structureTreeWidget->takeTopLevelItem(i);
+                        delete item;
+                        --i;
+                    }
                 }
             }
             // reorder documents
             for(int i=0;i<documents.documents.length();++i){
                 bool found=false;
                 int j=i;
-                StructureEntry *contextEntry;
+                LatexDocument *document;
                 for(;j<structureTreeWidget->topLevelItemCount();++j){
                     QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
-                    contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-                    if(contextEntry->document == documents.documents.value(i)){
+                    document = item->data(0,Qt::UserRole).value<LatexDocument *>();
+                    if(document == documents.documents.value(i)){
                         found=true;
                         break;
                     }
                 }
                 if(found && i<j){
                     QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
-                    if(contextEntry->document==master){
+                    if(document==master){
                         item->setIcon(0,getRealIcon("masterdoc"));
                     }else{
                         item->setIcon(0,getRealIcon("doc"));
