@@ -1,5 +1,5 @@
 # se2thesis class
-# Matthew Bertucci 2023/04/18 for v3.0.0
+# Matthew Bertucci 2023/09/12 for v3.2.0
 
 #include:graphicx
 #include:translations
@@ -12,7 +12,7 @@
 #include:tcolorbox
 
 #keyvals:\documentclass/se2thesis#c
-class=#scrreprt,scrartcl,scrbook
+class=#scrreprt,scrbook
 paper=#a4,b5
 logofile={%<path-to-file%>}
 thesistype=#bachelor,bachelorproposal,master,masterproposal,phd,phdproposal
