@@ -216,7 +216,7 @@ public:
 
     int lexLines(int &lineNr,int &count,bool recheck=false);
     void lexLinesSimple(const int lineNr,const int count);
-    void handleComments(QDocumentLineHandle *dlh, int &curLineNr,QList<StructureEntry *> &flatStructure);
+    void handleComments(QDocumentLineHandle *dlh, int &curLineNr, int &docStructurePosition);
     void removeLineElements(QDocumentLineHandle *dlh, HandledData &changedCommands);
     void handleRescanDocuments(HandledData changedCommands);
     void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, int &docStructurePosition);
@@ -264,7 +264,7 @@ private:
 
     QStringList unrollStructure();
 
-    void addMagicComment(const QString &text, int lineNr,QList<StructureEntry*> &flatStructure);
+    void addMagicComment(const QString &text, int lineNr, int &docStructurePosition);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
 
 	void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);

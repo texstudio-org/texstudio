@@ -448,7 +448,7 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
  * \param dlh
  * \return
  */
-void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,QList<StructureEntry *> &flatStructure){
+void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,int &docStructurePosition){
     //
     QPair<int,int> commentStart = dlh->getCookieLocked(QDocumentLine::LEXER_COMMENTSTART_COOKIE).value<QPair<int,int> >();
     int col = commentStart.first;
@@ -463,7 +463,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,QList
             StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
             newTodo->title = text.mid(1).trimmed();
             newTodo->setLine(dlh, curLineNr);
-            flatStructure << newTodo;
+            replaceOrAdd(docStructurePosition,dlh,newTodo);
             // save comment type into cookie
             commentStart.second=Token::todoComment;
             dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
@@ -478,14 +478,14 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,QList
                     end = curLine.indexOf('"', end + 1);
                     if (end >= 0) {
                         end += 1;  // include closing quotation mark
-                        addMagicComment(curLine.mid(start, end - start), curLineNr, flatStructure);
+                        addMagicComment(curLine.mid(start, end - start), curLineNr, docStructurePosition);
                     }
                 } else {
                     end = curLine.indexOf(' ', end + 1);
                     if (end >= 0) {
-                        addMagicComment(curLine.mid(start, end - start), curLineNr,flatStructure);
+                        addMagicComment(curLine.mid(start, end - start), curLineNr,docStructurePosition);
                     } else {
-                        addMagicComment(curLine.mid(start), curLineNr, flatStructure);
+                        addMagicComment(curLine.mid(start), curLineNr, docStructurePosition);
                     }
                 }
             }
@@ -498,7 +498,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,QList
         QRegularExpressionMatch matchMagicTexComment=rxMagicTexComment.match(text);
         QRegularExpressionMatch matchMagicBibComment=rxMagicBibComment.match(text);
         if (matchMagicTexComment.hasMatch()) {
-            addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), curLineNr, flatStructure);
+            addMagicComment(text.mid(matchMagicTexComment.capturedLength()).trimmed(), curLineNr, docStructurePosition);
             commentStart.second=Token::magicComment;
             dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
         } else if (matchMagicBibComment.hasMatch()) {
@@ -508,7 +508,7 @@ void LatexDocument::handleComments(QDocumentLineHandle *dlh,int &curLineNr,QList
             QString val;
             splitMagicComment(text, name, val);
             if ((name == "TS-program" || name == "program") && (val == "biber" || val == "bibtex" || val == "bibtex8")) {
-                addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), curLineNr, flatStructure);
+                addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), curLineNr, docStructurePosition);
                 commentStart.second=Token::magicComment;
                 dlh->setCookie(QDocumentLine::LEXER_COMMENTSTART_COOKIE, QVariant::fromValue<QPair<int,int> >(commentStart));
             }
@@ -1062,7 +1062,6 @@ void LatexDocument::replaceOrAdd(int &docStructurePosition, QDocumentLineHandle 
         docStructure[docStructurePosition]->title=newElement->title;
         docStructure[docStructurePosition]->level=newElement->level;
         docStructure[docStructurePosition]->valid=newElement->valid;
-        docStructure[docStructurePosition]->expanded=newElement->expanded;
         ++docStructurePosition;
         delete newElement;
     }else{
@@ -1264,7 +1263,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
         removeLineElements(dlh,changedCommands);
 
         // handle special comments (TODO, MAGIC comments)
-        handleComments(dlh,i,flatStructure);
+        handleComments(dlh,i,docStructurePosition);
 
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
@@ -1322,9 +1321,6 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			parent->updateMasterSlaveRelations(this);
 		}
 	}//for each line handle
-
-    // always generate complete structure, also for hidden, as needed for globalTOC
-    //insertStructure(lineNrStart,newCount,flatStructure);
 
     //update appendix change
     if (oldLine != mAppendixLine) {
@@ -2426,7 +2422,7 @@ bool LatexDocument::splitMagicComment(const QString &comment, QString &name, QSt
 \a lineNr - line number of the magic comment
 \a posMagicComment - Zero-based position of magic comment in the structure list tree view.
   */
-void LatexDocument::addMagicComment(const QString &text, int lineNr, QList<StructureEntry *> &flatStructure)
+void LatexDocument::addMagicComment(const QString &text, int lineNr, int &docStructurePosition)
 {
 	StructureEntry *newMagicComment = new StructureEntry(this, StructureEntry::SE_MAGICCOMMENT);
 	QDocumentLineHandle *dlh = line(lineNr).handle();
@@ -2437,7 +2433,7 @@ void LatexDocument::addMagicComment(const QString &text, int lineNr, QList<Struc
 	parseMagicComment(name, val, newMagicComment);
 	newMagicComment->title = text;
 	newMagicComment->setLine(dlh, lineNr);
-    flatStructure << newMagicComment;
+    replaceOrAdd(docStructurePosition,dlh,newMagicComment);
 }
 
 /*!
