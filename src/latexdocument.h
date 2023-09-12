@@ -219,8 +219,9 @@ public:
     void handleComments(QDocumentLineHandle *dlh, int &curLineNr,QList<StructureEntry *> &flatStructure);
     void removeLineElements(QDocumentLineHandle *dlh, HandledData &changedCommands);
     void handleRescanDocuments(HandledData changedCommands);
-    void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, QList<StructureEntry *> &flatStructure);
+    void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, int &docStructurePosition);
     void reinterpretCommandArguments();
+    void replaceOrAdd(int &docStructurePosition, QDocumentLineHandle *dlh, StructureEntry *newElement);
 
     QList<StructureEntry *> docStructure;
 
