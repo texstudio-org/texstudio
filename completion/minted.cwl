@@ -2,13 +2,12 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
-# modified by Matthew Bertucci 2022 Dec 12, minted v2.7
+# modified by Matthew Bertucci 2023 Sep 12, minted v2.8
 
 #include:keyval
 #include:kvoptions
 #include:fvextra
 #include:ifthen
-#include:calc
 #include:shellesc
 #include:ifplatform
 #include:pdftexcmds
@@ -36,6 +35,7 @@ fontencoding=%<encoding%>
 frozencache#true,false
 draft#true,false
 final#true,false
+inputlanglinenos#true,false
 kpsewhich#true,false
 langlinenos#true,false
 newfloat#true,false
@@ -143,7 +143,7 @@ texcomments#true,false
 xleftmargin=##L
 xrightmargin=##L
 breakafter=%<string%>
-breakaftergroup#true,false
+breakafterinrun#true,false
 breakaftersymbolpre=%<string%>
 breakaftersymbolpost=%<string%>
 breakanywhere#true,false
@@ -151,7 +151,7 @@ breakanywheresymbolpre=%<string%>
 breakanywheresymbolpost=%<string%>
 breakautoindent#true,false
 breakbefore=%<string%>
-breakbeforegroup#true,false
+breakbeforeinrun#true,false
 breakbeforesymbolpre=%<string%>
 breakbeforesymbolpost=%<string%>
 breakindent=##L
