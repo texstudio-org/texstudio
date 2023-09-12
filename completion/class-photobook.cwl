@@ -1,5 +1,5 @@
 # photobook class
-# Matthew Bertucci 2023/08/25 for v0.1.25
+# Matthew Bertucci 2023/09/12 for v0.1.28
 
 #include:kvoptions
 #include:class-book
@@ -218,7 +218,7 @@ roundprintedlengthsto=%<number%>
 \clearfoldoutgutter#L
 \clearimage#L
 \cleartoleftpage
-\cliptocellbleeds{size}
+\cliptocellbleeds#*
 \cliptocellclearances#*
 \CopyrightNotice
 \coverboardgrow#L
@@ -438,6 +438,7 @@ roundprintedlengthsto=%<number%>
 \ResettableMacro{name}{code}
 \savecell[valign]{name}{width}{height}{content%text}
 \savecell{name}{width}{height}{content%text}
+\setcliptocellbleeds{size}
 \SoftwareInfo
 \SoftwareNotice
 \spinefold#L
