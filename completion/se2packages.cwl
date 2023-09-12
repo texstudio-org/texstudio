@@ -1,7 +1,8 @@
 # se2packages package
-# Matthew Bertucci 2023/04/18 for v3.0.0
+# Matthew Bertucci 2023/09/12 for v3.2.0
 
 # packages loaded by default
+#include:fvextra
 #include:csquotes
 #include:booktabs
 #include:selnolig
