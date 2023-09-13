@@ -1,5 +1,5 @@
 # lua-typo package
-# Matthew Bertucci 2023/04/29 for v0.80
+# Matthew Bertucci 2023/09/13 for v0.85
 
 #include:luatexbase
 #include:luacode
@@ -25,11 +25,13 @@ FirstWordMatch#true,false
 LastWordMatch#true,false
 FootnoteSplit#true,false
 ShortFinalWord#true,false
+MarginparPos#true,false
 #endkeyvals
 
 \luatypoLLminWD#*
 \luatypoBackPI#*
 \luatypoBackFuzz#*
+\luatypoMarginparTol#*
 \luatypoStretchMax#*
 \luatypoHyphMax#*
 \luatypoPageMin#*
