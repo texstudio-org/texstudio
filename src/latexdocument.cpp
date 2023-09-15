@@ -844,7 +844,9 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                     QString fname = findFileName(firstOptArg);
                     LatexDocument *dc = parent->findDocumentFromName(fname);
                     if (!dc) {
-                        data.lstFilesToLoad << fname;
+                        if(!fname.isEmpty()){
+                            data.lstFilesToLoad << fname;
+                        }
                     }
                 }
             }
@@ -917,11 +919,13 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             if (dc) {
                 childDocs.insert(dc);
                 dc->setMasterDocument(this, recheckLabels && data.updateSyntaxCheck);
-                if(includeWasNotPresent){
+                if(!includeWasNotPresent){
                     data.addedIncludes << dc;
                 }
             } else {
-                data.lstFilesToLoad << fname;
+                if(!fname.isEmpty()){
+                    data.lstFilesToLoad << fname;
+                }
             }
             newInclude->valid = !fname.isEmpty();
             newInclude->setLine(line(currentLineNr).handle(), currentLineNr);
@@ -1036,12 +1040,11 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
 /*!
  * \brief reinterpret command arguments when packages have changed
  */
-void LatexDocument::reinterpretCommandArguments()
+void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
 {
     std::list<StructureEntry*>::iterator docStructureIter = docStructure.begin();
     for (int i = 0; i < lineCount(); ++i) {
         QDocumentLineHandle *dlh=line(i).handle();
-        HandledData changedCommands;
         for(;docStructureIter!=docStructure.end();++docStructureIter){
             StructureEntry *element=*docStructureIter;
             int ln=element->getRealLineNumber();
@@ -1077,31 +1080,45 @@ void LatexDocument::replaceOrAdd(std::list<StructureEntry*>::iterator &docStruct
  * Perform the appropriate steps
  */
 void LatexDocument::handleRescanDocuments(HandledData changedCommands){
-    // includes changed
-    if(!changedCommands.lstFilesToLoad.isEmpty()){
-        // lex2 & argument parsing, syntax check
-        parent->addDocsToLoad(changedCommands.lstFilesToLoad,lp);
-    }
-    if(!changedCommands.removedIncludes.isEmpty() || !changedCommands.addedUserCommands.isEmpty()){
-        // argument parsing & syntax check
-        parent->removeDocs(changedCommands.removedIncludes);
-        parent->updateMasterSlaveRelations(this);
-        updateLtxCommands(true);
-    }
-    // usepackage changed, lex pass2 all documents
-    if(!changedCommands.addedUsepackages.isEmpty()||!changedCommands.removedUsepackages.isEmpty()){
-        // lex2 & argument parsing, syntax check
-        updateCompletionFiles(false);
-        if(!changedCommands.addedUsepackages.isEmpty()){
-            int start=0;
-            int cnt=lineCount();
-            lexLines(start,cnt,true);
-            reinterpretCommandArguments();
+    bool loopAgain=false;
+    bool updateCompleter=!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty() || !changedCommands.removedIncludes.isEmpty() || !changedCommands.addedIncludes.isEmpty();
+    do{
+        loopAgain=false;
+        // includes changed
+        if(!changedCommands.lstFilesToLoad.isEmpty()){
+            // lex2 & argument parsing, syntax check
+            parent->addDocsToLoad(changedCommands.lstFilesToLoad,lp);
+            changedCommands.lstFilesToLoad.clear();
         }
-        synChecker.setLtxCommands(lp);
-        reCheckSyntax();
-    }
-    if(!changedCommands.addedUsepackages.isEmpty() || !changedCommands.removedUsepackages.isEmpty()){
+        if(!changedCommands.removedIncludes.isEmpty() || !changedCommands.addedIncludes.isEmpty()){
+            // argument parsing & syntax check
+            parent->removeDocs(changedCommands.removedIncludes);
+            if(!changedCommands.addedIncludes.isEmpty()){
+                recheckRefsLabels();
+                changedCommands.addedIncludes.clear();
+            }
+            updateLtxCommands(true);
+        }
+        // usepackage changed, lex pass2 all documents
+        if(!changedCommands.addedUsepackages.isEmpty()||!changedCommands.removedUsepackages.isEmpty()){
+            // lex2 & argument parsing, syntax check
+            updateCompletionFiles(false);
+            if(!changedCommands.addedUsepackages.isEmpty()){
+                changedCommands.addedUsepackages.clear();
+                int start=0;
+                int cnt=lineCount();
+                lexLines(start,cnt,true);
+                reinterpretCommandArguments(changedCommands);
+                if(!changedCommands.addedIncludes.isEmpty()||!changedCommands.addedUsepackages.isEmpty()||!changedCommands.lstFilesToLoad.isEmpty()){
+                    loopAgain=true;
+                    updateCompleter=true;
+                }
+            }
+            synChecker.setLtxCommands(lp);
+            reCheckSyntax();
+        }
+    }while(loopAgain);
+    if(updateCompleter){
         emit updateCompleterCommands(); // TODO: necessary ?
     }
     // user commands changed
@@ -2773,27 +2790,6 @@ bool LatexDocument::updateCompletionFiles(const bool forceUpdate)
         }
 	}
 
-    /*
-	bool needQNFAupdate = false;
-    QStringList cmdsToUpdate;
-	for (int i = 0; i < latexParser.MAX_STRUCTURE_LEVEL; i++) {
-		QString elem = QString("%structure%1").arg(i);
-		QStringList cmds = ltxCommands.possibleCommands[elem].values();
-		foreach (const QString cmd, cmds) {
-			bool update = !latexParser.possibleCommands[elem].contains(cmd);
-			if (update) {
-				latexParser.possibleCommands[elem] << cmd;
-                cmdsToUpdate<<cmd;
-				//only update QNFA for added commands. When the default commands are not in ltxCommands.possibleCommands[elem], ltxCommands.possibleCommands[elem] and latexParser.possibleCommands[elem] will always differ and regenerate the QNFA needlessly after every key press
-                needQNFAupdate = true;
-                cmdsToUpdate<<cmd;
-            }
-		}
-	}
-    if (needQNFAupdate)
-		parent->requestQNFAupdate();
-    */
-
 	if (update) {
 		updateLtxCommands(true);
 	}
@@ -3299,7 +3295,7 @@ bool LatexDocument::isSubfileRoot(){
 bool LatexDocument::saveCachingData(const QString &folder)
 {
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
-    if(!conf || conf->cacheDocuments ) return false;
+    if(!conf || !conf->cacheDocuments ) return false;
 
     if(m_cachedDataOnly) return true; // don't overwrite with exact same data
     // create folder if needed
@@ -3392,7 +3388,7 @@ bool LatexDocument::saveCachingData(const QString &folder)
 bool LatexDocument::restoreCachedData(const QString &folder,const QString fileName)
 {
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
-    if(!conf || conf->cacheDocuments ) return false;
+    if(!conf || !conf->cacheDocuments ) return false;
 
     QFileInfo fi(fileName);
     QFile file(folder+"/"+fi.baseName()+".json");

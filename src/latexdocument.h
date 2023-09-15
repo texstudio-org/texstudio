@@ -221,7 +221,7 @@ public:
     void removeLineElements(QDocumentLineHandle *dlh, HandledData &changedCommands);
     void handleRescanDocuments(HandledData changedCommands);
     void interpretCommandArguments(QDocumentLineHandle *dlh, const int i, HandledData &data, bool recheckLabels, std::list<StructureEntry*>::iterator &docStructureIter);
-    void reinterpretCommandArguments();
+    void reinterpretCommandArguments(HandledData &changedCommands);
     void replaceOrAdd(std::list<StructureEntry*>::iterator &docStructureIter, QDocumentLineHandle *dlh, StructureEntry *newElement);
 
     std::list<StructureEntry *> docStructure;
