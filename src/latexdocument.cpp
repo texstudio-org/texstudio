@@ -2026,7 +2026,6 @@ void LatexDocuments::setMasterDocument(LatexDocument *document)
 	if (document == masterDocument) return;
 	if (masterDocument != nullptr && masterDocument->getEditorView() == nullptr) {
         QString fn = masterDocument->getFileName();
-        //addDocsToLoad(QStringList(fn));
 		LatexDocument *doc = masterDocument;
 		masterDocument = nullptr;
 		deleteDocument(doc);
@@ -2037,8 +2036,8 @@ void LatexDocuments::setMasterDocument(LatexDocument *document)
 		documents.prepend(masterDocument);
 		// repaint doc
 		foreach (LatexDocument *doc, documents) {
-			LatexEditorView *edView = doc->getEditorView();
-                        if (edView) edView->documentContentChanged(0, doc->lines());
+            LatexEditorView *edView = doc->getEditorView();
+            if (edView) edView->documentContentChanged(0, doc->lines());
 		}
 	}
 	emit masterDocumentChanged(masterDocument);
