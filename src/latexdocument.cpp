@@ -2313,12 +2313,41 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
 }
 
 /*!
- * \brief load included files from top level
+ * \brief load included documents as hidden
+ * Load all in parallel
+ * Perform lexing only
  * \param filenames
  */
 void LatexDocuments::addDocsToLoad(QStringList filenames, QSharedPointer<LatexParser> lp)
 {
-    emit docsToLoad(filenames,lp);
+    auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    if(conf->autoLoadChildren){
+        LatexDocument *docForUpdate=nullptr;
+        for(const QString &fn:filenames){
+            LatexDocument *doc = findDocumentFromName(fn);
+            if(doc==nullptr){
+                doc=new LatexDocument();
+                doc->parent=this;
+                if(!doc->restoreCachedData(getCachingFolder(),fn)){
+                    doc->load(fn,QDocument::defaultCodec());
+                }
+                doc->setFileName(fn);
+                addDocument(doc,true);
+                doc->setLtxCommands(lp);
+                doc->patchStructure(0,-1);
+                updateMasterSlaveRelations(doc);
+                doc->lp->append(doc->ltxCommands);
+                docForUpdate=doc;
+            }
+        }
+        if(docForUpdate){
+            QList<LatexDocument *>listOfDocs = docForUpdate->getListOfDocs();
+            foreach (LatexDocument *elem, listOfDocs) {
+                elem->setLtxCommands(lp);
+                elem->reCheckSyntax(); //rescan as well ?
+            }
+        }
+    }
 }
 
 void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
@@ -3269,7 +3298,8 @@ bool LatexDocument::isSubfileRoot(){
  */
 bool LatexDocument::saveCachingData(const QString &folder)
 {
-    if(!ConfigManagerInterface::getInstance()->getOption("Files/CacheStructure").toBool()) return false;
+    auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    if(!conf || conf->cacheDocuments ) return false;
 
     if(m_cachedDataOnly) return true; // don't overwrite with exact same data
     // create folder if needed
@@ -3361,7 +3391,9 @@ bool LatexDocument::saveCachingData(const QString &folder)
  */
 bool LatexDocument::restoreCachedData(const QString &folder,const QString fileName)
 {
-    if(!ConfigManagerInterface::getInstance()->getOption("Files/CacheStructure").toBool()) return false;
+    auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    if(!conf || conf->cacheDocuments ) return false;
+
     QFileInfo fi(fileName);
     QFile file(folder+"/"+fi.baseName()+".json");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))

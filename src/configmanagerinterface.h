@@ -63,7 +63,6 @@ struct ManagedProperty {
 	void deallocate();
 };
 
-
 class ConfigManagerInterface
 {
 public:
@@ -98,7 +97,7 @@ public:
 	virtual QString reverseParseDir(QString s) const = 0;
 	virtual QString reverseParseDir(const QStringList &s) const = 0;
 
-	static ConfigManagerInterface *getInstance();
+    static ConfigManagerInterface *getInstance();
 };
 
 #define CONFIG_DECLARE_OPTION_WITH_OBJECT(config, type, name, defaultvalue, configname, object) static type name; config->registerOption(configname, &name, defaultvalue); config->linkOptionToObject(&name, object, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));

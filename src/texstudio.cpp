@@ -236,9 +236,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     //connect(grammarCheck, SIGNAL(checked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(LatexDocument*,QDocumentLineHandle*,int,QList<GrammarError>)));
     connect(grammarCheck, &GrammarCheck::checked, &documents, &LatexDocuments::lineGrammarChecked);
     connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
-    if (configManager.autoLoadChildren){
-        connect(&documents, &LatexDocuments::docsToLoad, this, &Texstudio::addDocsToLoad);
-    }
 	connect(&documents, SIGNAL(updateQNFA()), this, SLOT(updateTexQNFA()));
 
 	grammarCheckThread.start();
@@ -11015,42 +11012,6 @@ void Texstudio::checkLanguageTool()
     result +=tr("LT-URL: %1\n").arg(grammarCheck->serverUrl());
 
     currentEditorView()->editor->setText(result, false);
-}
-
-/*!
- * \brief load included documents as hidden
- * Load all in parallel
- * Perform lexing only
- * \param filenames
- */
-void Texstudio::addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser> lp)
-{
-    // TODO: cached files ?!
-    LatexDocument *docForUpdate=nullptr;
-    for(const QString &fn:filenames){
-        LatexDocument *doc = documents.findDocumentFromName(fn);
-        if(doc==nullptr){
-            doc=new LatexDocument();
-            doc->parent=&documents;
-            if(!doc->restoreCachedData(documents.getCachingFolder(),fn)){
-                doc->load(fn,QDocument::defaultCodec());
-            }
-            doc->setFileName(fn);
-            documents.addDocument(doc,true);
-            doc->setLtxCommands(lp);
-            doc->patchStructure(0,-1);
-            documents.updateMasterSlaveRelations(doc);
-            doc->lp->append(doc->ltxCommands);
-            docForUpdate=doc;
-        }
-    }
-    if(docForUpdate){
-        QList<LatexDocument *>listOfDocs = docForUpdate->getListOfDocs();
-        foreach (LatexDocument *elem, listOfDocs) {
-            elem->setLtxCommands(lp);
-            elem->reCheckSyntax(); //rescan as well ?
-        }
-    }
 }
 
 /*!
