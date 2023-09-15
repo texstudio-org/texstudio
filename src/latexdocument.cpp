@@ -1085,26 +1085,19 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
     if(!changedCommands.removedIncludes.isEmpty() || !changedCommands.addedUserCommands.isEmpty()){
         // argument parsing & syntax check
         parent->removeDocs(changedCommands.removedIncludes);
-        for(LatexDocument *elem:changedCommands.addedIncludes){
-            elem->setLtxCommands(lp);
-        }
         parent->updateMasterSlaveRelations(this);
         updateLtxCommands(true);
     }
     // usepackage changed, lex pass2 all documents
-    if(!changedCommands.addedUsepackages.isEmpty()){
+    if(!changedCommands.addedUsepackages.isEmpty()||!changedCommands.removedUsepackages.isEmpty()){
         // lex2 & argument parsing, syntax check
         updateCompletionFiles(false);
-        int start=0;
-        int cnt=lineCount();
-        lexLines(start,cnt,true);
-        reinterpretCommandArguments();
-        synChecker.setLtxCommands(lp);
-        reCheckSyntax();
-    }
-    if(!changedCommands.removedUsepackages.isEmpty()){
-        // argument parsing & syntax check
-        updateCompletionFiles(false);
+        if(!changedCommands.addedUsepackages.isEmpty()){
+            int start=0;
+            int cnt=lineCount();
+            lexLines(start,cnt,true);
+            reinterpretCommandArguments();
+        }
         synChecker.setLtxCommands(lp);
         reCheckSyntax();
     }
