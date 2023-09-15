@@ -64,8 +64,23 @@ void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, T
 	mLinesEnqueuedCounter.ref();
 	mLinesLock.unlock();
 	//avoid reading of any results before this execution is stopped
-	//mResultLock.lock(); not possible under windows
-	mLinesAvailable.release();
+    //mResultLock.lock(); not possible under windows
+    mLinesAvailable.release();
+}
+/*!
+ * \brief remove all outstanding unckecked lines
+ * Clear queue as all lines are rechecked
+ */
+void SyntaxCheck::clearQueue()
+{
+    mLinesLock.lock();
+    mLines.clear();
+    int n=mLinesAvailable.available();
+    if(n>0){
+        mLinesAvailable.acquire(n-1);
+    }
+    mLinesLock.unlock();
+    // what to do with the semaphore ?
 }
 
 /*!
@@ -105,7 +120,11 @@ void SyntaxCheck::run()
 
 		// get Linedata
 		mLinesLock.lock();
-		SyntaxLine newLine = mLines.dequeue();
+        if(mLines.isEmpty()){
+            mLinesLock.unlock();
+            continue;
+        }
+        SyntaxLine newLine = mLines.dequeue();
 		mLinesLock.unlock();
 		// do syntax check
 		newLine.dlh->lockForRead();

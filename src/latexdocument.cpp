@@ -910,12 +910,16 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             QString name=fn;
             name.replace("\\string~",QDir::homePath());
             QString fname = findFileName(name);
-            data.updateSyntaxCheck = (data.removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
+            bool includeWasNotPresent = (data.removedIncludes.removeAll(fname) == 0); // don't update syntax if include was removed and reinstated
+            data.updateSyntaxCheck |= includeWasNotPresent;
             mIncludedFilesList.insert(line(currentLineNr).handle(), fname);
             LatexDocument *dc = parent->findDocumentFromName(fname);
             if (dc) {
                 childDocs.insert(dc);
                 dc->setMasterDocument(this, recheckLabels && data.updateSyntaxCheck);
+                if(includeWasNotPresent){
+                    data.addedIncludes << dc;
+                }
             } else {
                 data.lstFilesToLoad << fname;
             }
@@ -1078,9 +1082,14 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
         // lex2 & argument parsing, syntax check
         parent->addDocsToLoad(changedCommands.lstFilesToLoad,lp);
     }
-    if(!changedCommands.removedIncludes.isEmpty()){
+    if(!changedCommands.removedIncludes.isEmpty() || !changedCommands.addedUserCommands.isEmpty()){
         // argument parsing & syntax check
+        parent->removeDocs(changedCommands.removedIncludes);
+        for(LatexDocument *elem:changedCommands.addedIncludes){
+            elem->setLtxCommands(lp);
+        }
         parent->updateMasterSlaveRelations(this);
+        updateLtxCommands(true);
     }
     // usepackage changed, lex pass2 all documents
     if(!changedCommands.addedUsepackages.isEmpty()){
@@ -1313,10 +1322,6 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
         if (!changedCommands.oldBibs.isEmpty())
             changedCommands.bibTeXFilesNeedsUpdate = true; //file name removed
 
-        if (!changedCommands.removedIncludes.isEmpty()) {
-            parent->removeDocs(changedCommands.removedIncludes);
-			parent->updateMasterSlaveRelations(this);
-		}
 	}//for each line handle
 
     //update appendix change
@@ -3196,6 +3201,8 @@ void LatexDocument::reCheckSyntax(int lineStart, int lineNum)
 	int lineEnd;
 	if (lineNum == -1) {
 		lineEnd = lineTotal;
+        // all lines are checked from start, clear queue
+        synChecker.clearQueue();
 	} else {
 		if ((lineEnd = lineStart + lineNum) > lineTotal) {
 			lineEnd = lineTotal;

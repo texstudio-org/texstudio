@@ -203,6 +203,7 @@ public:
         QStringList addedUserCommands;
         QStringList lstFilesToLoad;
         QStringList removedIncludes;
+        QList<LatexDocument *> addedIncludes;
         QStringList oldBibs;
         bool completerNeedsUpdate = false;
         bool bibItemsChanged = false;

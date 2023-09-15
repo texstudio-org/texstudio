@@ -99,6 +99,7 @@ public:
     explicit SyntaxCheck(QObject *parent = nullptr);
 
     void putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay = false,int hint=-1);
+    void clearQueue();
 	void stop();
 	void setErrFormat(int errFormat);
     QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
