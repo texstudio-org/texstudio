@@ -353,7 +353,7 @@ const int ConfigManager::MAX_NUM_MACROS;
 QTextCodec *ConfigManager::newFileEncoding = nullptr;
 QString ConfigManager::configDirOverride;
 bool ConfigManager::dontRestoreSession=false;
-int ConfigManager::RUNAWAYLIMIT=30;
+int ConfigManager::RUNAWAYLIMIT=50;
 
 QString getText(QWidget *w)
 {
