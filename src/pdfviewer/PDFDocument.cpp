@@ -456,7 +456,11 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	
 			// draw transparent shadow
 			QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
-			drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
+			if (globalConfig->invertColors){
+				drawGradient(painter, outline, QColor(Qt::white), shadowWidth, globalConfig->magnifierShape);
+			}else{
+				drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
+			}
 	
 			borderPath.addRoundedRect(
 				width()/2 - side/2 + shadowWidth - 2, 
@@ -472,8 +476,12 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	
 			// draw transparent shadow
 			QRect outline(0, 0, width(), height());
-			drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
-	
+			if (globalConfig->invertColors){
+				drawGradient(painter, outline, QColor(Qt::white), shadowWidth, globalConfig->magnifierShape);
+			}else{
+				drawGradient(painter, outline, QColor(Qt::black), shadowWidth, globalConfig->magnifierShape);
+			}
+
 			borderPath.addRect(5, 5, width() - shadowWidth - 3, height() - shadowWidth - 6);
 
 		}
@@ -524,7 +532,11 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	// draw a border around the magnifier
 	if (globalConfig->magnifierBorder) {
 		if(globalConfig->magnifierShadow) {
-			painter.setPen(QPen(QPalette().shadow().color(), 2)); // black outline
+			if (globalConfig->invertColors){
+				painter.setPen(QPen(QPalette().light().color(), 2)); // white outline
+			} else {
+				painter.setPen(QPen(QPalette().shadow().color(), 2)); // black outline
+			}
 		} else {
 			painter.setPen(QPen(QPalette().mid().color(), 2)); // gray outline
 		}
