@@ -154,7 +154,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	previewEditorPending = nullptr;
 	previewIsAutoCompiling = false;
 	completerPreview = false;
-	recheckLabels = true;
 	cursorHistory = nullptr;
 	recentSessionList = nullptr;
 	editors = nullptr;
@@ -2809,7 +2808,6 @@ void Texstudio::fileOpen()
 	}
 	QStringList files = FileDialog::getOpenFileNames(this, tr("Open Files"), currentDir, fileFilters,  &selectedFileFilter);
 
-	recheckLabels = false; // impede label rechecking on hidden docs
 	QList<LatexEditorView *>listViews;
 	foreach (const QString &fn, files)
 		listViews << load(fn);
@@ -2828,7 +2826,6 @@ void Texstudio::fileOpen()
 			completedDocs << doc->getListOfDocs();
 		}
 	}
-	recheckLabels = true;
 	// update completer
 	if (currentEditorView())
 		updateCompleter(currentEditorView());
@@ -3560,7 +3557,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         progress.setMinimumDuration(3000);
         progress.setLabel(new QLabel());
     }
-    recheckLabels = false; // impede label rechecking on hidden docs
 
     bookmarks->setBookmarks(s.bookmarks()); // set before loading, so that bookmarks are automatically restored on load
 
@@ -3597,13 +3593,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
         editors->changeSplitOrientation();
     }
     //qDebug()<<"loaded:"<<tm.elapsed();
-    // update ref/labels in one go;
-    QList<LatexDocument *> completedDocs;
-    foreach (LatexDocument *doc, documents.getDocuments()) {
-        doc->recheckRefsLabels();
-    }
-    recheckLabels = true;
-    //qDebug()<<"labels:"<<tm.elapsed();
 
     if (showProgress) {
         progress.setValue(progress.maximum());

@@ -696,8 +696,6 @@ protected:
 	bool completerPreview;
     QPixmapCache previewCache;
 
-	bool recheckLabels;
-
     bool rememberFollowFromScroll,enlargedViewer;
 
     std::set<QString> latexPackageList, currentPackageList;
