@@ -10,8 +10,8 @@ class LatexEditorView;
 class StructureViewTest: public QObject{
 	Q_OBJECT
 	public:
-		StructureViewTest(LatexEditorView* editor,LatexDocument *doc, bool all);
-		QStringList unrollStructure(StructureEntry *baseStructure);
+        StructureViewTest(LatexEditorView* editor,LatexDocument *doc, bool all);
+        QStringList unrollStructure(std::list<StructureEntry *> docStructure);
 	private:
 		LatexEditorView *edView;
 		LatexDocument *document;

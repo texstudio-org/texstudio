@@ -432,5 +432,6 @@ void SyntaxCheckTest::checkAllowedMath(){
     edView->getConfig()->realtimeChecking = realtimeChecking;
 }
 
+
 #endif
 
