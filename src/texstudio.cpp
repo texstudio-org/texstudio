@@ -2243,6 +2243,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
             doc->setClean();
 
         bookmarks->restoreBookmarks(edit);
+
+        doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
+
         return edit;
     }
 
