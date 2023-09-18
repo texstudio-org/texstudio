@@ -1087,7 +1087,7 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
         // includes changed
         if(!changedCommands.lstFilesToLoad.isEmpty()){
             // lex2 & argument parsing, syntax check
-            parent->addDocsToLoad(changedCommands.lstFilesToLoad,lp);
+            parent->addDocsToLoad(changedCommands.lstFilesToLoad,this);
             changedCommands.lstFilesToLoad.clear();
         }
         if(!changedCommands.removedIncludes.isEmpty() || !changedCommands.addedIncludes.isEmpty()){
@@ -2335,7 +2335,7 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
  * Perform lexing only
  * \param filenames
  */
-void LatexDocuments::addDocsToLoad(QStringList filenames, QSharedPointer<LatexParser> lp)
+void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentDocument)
 {
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
     if(conf->autoLoadChildren){
@@ -2350,18 +2350,26 @@ void LatexDocuments::addDocsToLoad(QStringList filenames, QSharedPointer<LatexPa
                 }
                 doc->setFileName(fn);
                 addDocument(doc,true);
-                doc->setLtxCommands(lp);
+                doc->setLtxCommands(parentDocument->lp);
                 doc->patchStructure(0,-1);
-                updateMasterSlaveRelations(doc);
+                doc->setMasterDocument(parentDocument,false);
+                parentDocument->addChild(doc);
                 doc->lp->append(doc->ltxCommands);
                 docForUpdate=doc;
             }
         }
         if(docForUpdate){
             QList<LatexDocument *>listOfDocs = docForUpdate->getListOfDocs();
+            QStringList items;
             foreach (LatexDocument *elem, listOfDocs) {
-                elem->setLtxCommands(lp);
+                elem->setLtxCommands(parentDocument->lp);
                 elem->reCheckSyntax(); //rescan as well ?
+                items << elem->labelItems();
+            }
+            foreach (LatexDocument *elem, listOfDocs) {
+                if(elem->getEditorView()){
+                    elem->recheckRefsLabels(listOfDocs,items);
+                }
             }
         }
     }
@@ -2470,7 +2478,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 			dc->childDocs.insert(this);
 			setMasterDocument(dc);
         } else {
-            parent->addDocsToLoad(QStringList(fname),lp);
+            parent->addDocsToLoad(QStringList(fname),this);
 		}
 		se->valid = true;
 	} else if (lowerName == "encoding") {

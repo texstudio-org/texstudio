@@ -383,7 +383,7 @@ public:
 
 
 	QHash<QString, LatexPackage> cachedPackages;
-    void addDocsToLoad(QStringList filenames,QSharedPointer<LatexParser>lp);
+    void addDocsToLoad(QStringList filenames,LatexDocument *parentDocument);
 	void removeDocs(QStringList removeIncludes);
 	void hideDocInEditor(LatexEditorView *edView);
 	QString findPackageByCommand(const QString command);
