@@ -1122,7 +1122,7 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
                     updateCompleter=true;
                 }
             }
-            synChecker.setLtxCommands(lp);
+            synChecker.setLtxCommands(lp); // redundant here, updateCompletionfiles
             reCheckSyntax();
         }
     }while(loopAgain);
@@ -2363,9 +2363,9 @@ void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
                 doc->setFileName(fn);
                 addDocument(doc,true);
                 doc->setLtxCommands(parentDocument->lp);
-                doc->patchStructure(0,-1);
                 doc->setMasterDocument(parentDocument,false);
                 parentDocument->addChild(doc);
+                doc->patchStructure(0,-1);
                 doc->lp->append(doc->ltxCommands);
                 docForUpdate=doc;
             }
