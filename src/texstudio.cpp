@@ -2296,19 +2296,6 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 
     MarkCurrentFileAsRecent();
 
-    documents.updateMasterSlaveRelations(doc, recheck);
-    LatexDocument *root=doc->getRootDocument();
-    if(root != doc){
-        doc->setLtxCommands(root->lp); // use packages etc. from root doc
-    }
-
-    if (recheck) {
-        if(!doc->isIncompleteInMemory() || !doc->containedPackages().isEmpty() || !doc->userCommandList().isEmpty()){
-            doc->updateLtxCommands();
-        }
-    }
-
-
     if (QFile::exists(f_real + ".recover.bak~")
         && QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
         if (UtilsUi::txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString(),f_real))) {
@@ -2322,7 +2309,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     }
 
 
-	updateStructure(true, doc, true);
+    updateStructure(true, doc, true);
 
 	bookmarks->restoreBookmarks(edit);
 

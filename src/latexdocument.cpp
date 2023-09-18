@@ -1661,6 +1661,10 @@ void LatexDocument::replaceLabelsAndRefs(const QString &name, const QString &new
 void LatexDocument::setMasterDocument(LatexDocument *doc, bool recheck)
 {
     masterDocument = doc;
+    if(doc && lp != doc->lp){
+        // set lp in newly included document
+        lp=doc->lp;
+    }
     if (recheck) {
         QList<LatexDocument *>listOfDocs = getListOfDocs();
 
