@@ -31,7 +31,7 @@ void TexStudioTest::checkIncludes(){
     QFETCH(QStringList, files);
     Texstudio *txs=txsInstance;
 
-    LatexEditorView *edView;
+    LatexEditorView *edView=nullptr;
     for(const QString &fn:files){
         edView=txs->load(fn);
     }
