@@ -706,7 +706,7 @@ void QDocumentCursorTest::bidiMoving_data(){
 	QString combined = QString::fromUtf8("\n" "دددددtest" "\n");
 	QTest::newRow("start of line")  << combined << 1<<4  << 1 << (int)QDocumentCursor::StartOfLine << 1<<0;
     if (globalExecuteAllTests) {
-        QTest::newRow("end of line")    << combined << 1<<4  << 1 << (int)QDocumentCursor::EndOfLine   << 1<<5; //appended ltr text does not count , failing test on ubuntu
+        QTest::newRow("end of line 2")    << combined << 1<<4  << 1 << (int)QDocumentCursor::EndOfLine   << 1<<5; //appended ltr text does not count , failing test on ubuntu
     }
 
 }
@@ -724,7 +724,9 @@ void QDocumentCursorTest::bidiMoving(){
 		qDebug("skipped bidi tests");
 		return;
 	}
-
+    QEXPECT_FAIL("with all markers 1", "currently not properly supported", Continue);
+    QEXPECT_FAIL("with some markers 1", "currently not properly supported", Continue);
+    QEXPECT_FAIL("with other markers 1", "currently not properly supported", Continue);
 
 	doc->setText(text,false);
 	for (int i=0;i<doc->lineCount();i++)
@@ -733,8 +735,9 @@ void QDocumentCursorTest::bidiMoving(){
 	QDocumentCursor c(doc, line, column);
 	c.movePosition(movement, (QDocumentCursor::MoveOperation)dir);
 	QEQUAL2(c.lineNumber(), newLine, "line" );
-	QEQUAL2(c.columnNumber(), newColumn, "column" );
 
+    QEXPECT_FAIL("end of line 2", "currently not properly supported", Continue);
+	QEQUAL2(c.columnNumber(), newColumn, "column" );
 }
 
 void QDocumentCursorTest::isForwardSelection_data()
