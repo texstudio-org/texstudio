@@ -85,123 +85,123 @@ void StructureViewTest::script_data(){
 
 		QTest::newRow("set sequence of headings")
                 << "editor.setText(\"\\\\documentclass{book}\\n\\\\section{a}\\n\\\\section{b}\\n\\\\section{c}\\n\")"
-                << "##Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 1 up")
                 << "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{a}\")"
-                << "##Section:a LVL:1##Section:b LVL:2##Section:c LVL:2" ;
+                << "Section:a LVL:1##Section:b LVL:2##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 1 up")
                 << "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\subsection{a}\")"
-                << "##Section:a LVL:3##Section:b LVL:2##Section:c LVL:2" ;
+                << "Section:a LVL:3##Section:b LVL:2##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 1 back")
                 << "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{a}\")"
-                << "##Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 2 up")
                 << "cursor.moveTo(2,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{b}\")"
-                << "##Section:a LVL:2##Section:b LVL:1##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:1##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 1 (remove)")
                 << "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\ssection{a}\")"
-                << "##Section:b LVL:1##Section:c LVL:2" ;
+                << "Section:b LVL:1##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 1 (add)")
                 << "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{a}\")"
-                << "##Section:a LVL:2##Section:b LVL:1##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:1##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 2 down")
                 << "cursor.moveTo(2,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\subsection{b}\")"
-                << "##Section:a LVL:2##Section:b LVL:3##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:3##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 2 back")
                 << "cursor.moveTo(2,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{b}\")"
-                << "##Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
 
 		QTest::newRow("change heading in line 3 up")
                 << "cursor.moveTo(3,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{c}\")"
-                << "##Section:a LVL:2##Section:b LVL:2##Section:c LVL:1" ;
+                << "Section:a LVL:2##Section:b LVL:2##Section:c LVL:1" ;
 
 		QTest::newRow("change heading in line 3 down")
                 << "cursor.moveTo(3,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\subsection{c}\")"
-                << "##Section:a LVL:2##Section:b LVL:2##Section:c LVL:3" ;
+                << "Section:a LVL:2##Section:b LVL:2##Section:c LVL:3" ;
 
 		QTest::newRow("change heading in line 3 back")
                 << "cursor.moveTo(3,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{c}\")"
-                << "##Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:2##Section:c LVL:2" ;
 
 		QTest::newRow("set sequence of sections/subsection")
 				<< "editor.setText(\"\\\\section{a}\\n\\\\subsection{sdfgsdfgsdfgsfgb}\\n\\\\subsection{c}\\n\")"
-                << "##Section:a LVL:2##Section:sdfgsdfgsdfgsfgb LVL:3##Section:c LVL:3" ;
+                << "Section:a LVL:2##Section:sdfgsdfgsdfgsfgb LVL:3##Section:c LVL:3" ;
 
 		QTest::newRow("change heading in line 2 down")
 				<< "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine);cursor.movePosition(3,cursorEnums.Left);cursor.insertText(\"df\")"
-                << "##Section:a LVL:2##Section:sdfgsdfgsdfgsfdfgb LVL:3##Section:c LVL:3" ;
+                << "Section:a LVL:2##Section:sdfgsdfgsdfgsfdfgb LVL:3##Section:c LVL:3" ;
 
 		QTest::newRow("set sequence of sections/chapter")
                 << "editor.setText(\"\\\\documentclass{book}\\n\\\\section{a}\\n\\\\section{b}\\n\\\\chapter{c}\\n\")"
-                << "##Section:a LVL:2##Section:b LVL:2##Section:c LVL:1" ;
+                << "Section:a LVL:2##Section:b LVL:2##Section:c LVL:1" ;
 
 		QTest::newRow("change heading in line 2 up")
                 << "cursor.moveTo(2,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{b}\")"
-                << "##Section:a LVL:2##Section:b LVL:1##Section:c LVL:1" ;
+                << "Section:a LVL:2##Section:b LVL:1##Section:c LVL:1" ;
 
 		QTest::newRow("set sequence of sections/subsec")
                 << "editor.setText(\"\\\\documentclass{book}\\n\\\\section{a}\\n\\\\subsection{b}\\n\")"
-                << "##Section:a LVL:2##Section:b LVL:3" ;
+                << "Section:a LVL:2##Section:b LVL:3" ;
 
 		QTest::newRow("change heading in line 2 up")
                 << "cursor.moveTo(1,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\chapter{a}\")"
-                << "##Section:a LVL:1##Section:b LVL:3" ;
+                << "Section:a LVL:1##Section:b LVL:3" ;
 
 		QTest::newRow("set sequence of subsection/section")
 				<< "editor.setText(\"\\\\subsection{a}\\n\\\\subsection{b}\\n\\\\section{c}\\n\")"
-                << "##Section:a LVL:3##Section:b LVL:3##Section:c LVL:2" ;
+                << "Section:a LVL:3##Section:b LVL:3##Section:c LVL:2" ;
 
 		QTest::newRow("change first subsection to section")
 				<< "cursor.moveTo(0,0);cursor.movePosition(1,cursorEnums.EndOfLine,cursorEnums.KeepAnchor);cursor.replaceSelectedText(\"\\\\section{a}\")"
-                << "##Section:a LVL:2##Section:b LVL:3##Section:c LVL:2" ;
+                << "Section:a LVL:2##Section:b LVL:3##Section:c LVL:2" ;
 
 		QTest::newRow("Nested structure on one line")
                 << "editor.setText(\"\\\\documentclass{book}\\n123\\\\chapter{abc}...\\\\section{def},,,\\\\chapter{xyz}\")"
-                << "##Section:abc LVL:1##Section:def LVL:2##Section:xyz LVL:1";
+                << "Section:abc LVL:1##Section:def LVL:2##Section:xyz LVL:1";
 
 		QTest::newRow("Structure/include")
                     << "editor.setText('\\\\documentclass{book}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\include{incl}\\n'); cursor.insertText('\\\\section{s}\\n');cursor.insertText('\\\\subsection{ss}\\n');"
-                << "##Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
+                << "Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
 
 		QTest::newRow("Structure/include 2")
                     << "editor.setText('\\\\documentclass{book}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\section{s}\\n');cursor.insertText('\\\\subsection{ss}\\n'); cursor.moveTo(2,0); cursor.insertText('\\\\include{incl}\\n'); "
-                << "##Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
+                << "Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
 
 		QTest::newRow("Structure/include 3")
                     << "editor.setText('\\\\documentclass{book}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\section{s}\\n');cursor.insertText('\\\\subsection{ss}\\n'); cursor.moveTo(2,0); cursor.insertText('\\\\include{incl}'); cursor.insertText('\\n');"
-                << "##Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
+                << "Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
 
 		QTest::newRow("Structure/include 4")
                     << "editor.setText('\\\\documentclass{book}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\subsection{ss}\\n'); cursor.moveTo(2,0); cursor.insertText('\\\\include{incl}\\n\\\\section{s}\\n');"
-                << "##Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
+                << "Section:c LVL:1##Include:incl LVL:0##Section:s LVL:2##Section:ss LVL:3";
 
 		QTest::newRow("Move section")
                     << "editor.setText('\\\\documentclass{book}\\n'); cursor.moveTo(1,0); cursor.insertText('\\\\chapter{c}\\n'); cursor.insertText('\\\\section{s}\\n');  cursor.insertText('\\\\subsection{ss}\\n');  cursor.moveTo(2,0); cursor.insertLine();"
-                    << "##Section:c LVL:1##Section:s LVL:2##Section:ss LVL:3";
+                    << "Section:c LVL:1##Section:s LVL:2##Section:ss LVL:3";
 
 		QTest::newRow("Delete empty line")
 				    << "editor.setText(''); cursor.moveTo(0,0); editor.insertText('\\\\section{s}\\n\\n\\\\subsection{ss}'); cursor.moveTo(1,0); cursor.deletePreviousChar();"
-                    << "##Section:s LVL:2##Section:ss LVL:3";
+                    << "Section:s LVL:2##Section:ss LVL:3";
 
 		QTest::newRow("Section before chapter,include,section")
                     << "editor.setText('\\\\documentclass{book}\\n'); cursor.moveTo(1,0); editor.insertText('\\n\\n\\\\chapter{title}\\\\include{file}\\\\section{s}'); cursor.moveTo(1,0); cursor.insertText('\\\\section{s}');"
-                    << "##Section:s LVL:2##Section:title LVL:1##Include:file LVL:0##Section:s LVL:2";
+                    << "Section:s LVL:2##Section:title LVL:1##Include:file LVL:0##Section:s LVL:2";
 
 		QTest::newRow("chapter/section/include/section")
                     << "editor.setText('\\\\documentclass{book}\\n\\\\chapter{title}\\\\section{s1}\\\\section{s2}\\\\section{s3}\\\\section{s4}\\\\include{in}\\\\section{end}'); cursor.moveTo(1,2); cursor.deleteChar();"
-                    << "##Section:s1 LVL:2##Section:s2 LVL:2##Section:s3 LVL:2##Section:s4 LVL:2##Include:in LVL:0##Section:end LVL:2";
+                    << "Section:s1 LVL:2##Section:s2 LVL:2##Section:s3 LVL:2##Section:s4 LVL:2##Include:in LVL:0##Section:end LVL:2";
 
 		QTest::newRow("inserting several before")
                     << "editor.setText('\\\\documentclass{book}\\n\\\\chapter{Yc}\\\\section{Ys1}\\\\section{Ys2}\\\\section{Ys3}\\\\chapter{Yc2}\\\\section{Ys4}\\\\section{Ys5}\\n\\\\chapter{Zc}\\\\section{Zs1}\\\\section{Zs2}'); cursor.moveTo(1,0); cursor.insertText('\\n');"
-                << "##Section:Yc LVL:1##Section:Ys1 LVL:2##Section:Ys2 LVL:2##Section:Ys3 LVL:2##Section:Yc2 LVL:1##Section:Ys4 LVL:2##Section:Ys5 LVL:2##Section:Zc LVL:1##Section:Zs1 LVL:2##Section:Zs2 LVL:2";
+                    << "Section:Yc LVL:1##Section:Ys1 LVL:2##Section:Ys2 LVL:2##Section:Ys3 LVL:2##Section:Yc2 LVL:1##Section:Ys4 LVL:2##Section:Ys5 LVL:2##Section:Zc LVL:1##Section:Zs1 LVL:2##Section:Zs2 LVL:2";
 
 	}
 }
