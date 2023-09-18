@@ -254,6 +254,7 @@ if(${TEXSTUDIO_ENABLE_TESTS})
 		src/tests/tablemanipulation_t.h
 		src/tests/testmanager.h
 		src/tests/testutil.h
+                src/tests/texstudio_t.h
 		src/tests/updatechecker_t.h
 		src/tests/usermacro_t.h
 		src/tests/utilsui_t.h
@@ -285,6 +286,7 @@ if(${TEXSTUDIO_ENABLE_TESTS})
 		src/tests/tablemanipulation_t.cpp
 		src/tests/testmanager.cpp
 		src/tests/testutil.cpp
+                src/tests/texstudio_t.cpp
 		src/tests/usermacro_t.cpp
 	)
 else()

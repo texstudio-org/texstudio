@@ -29,6 +29,7 @@
 #include "latexoutputfilter_t.h"
 #include "git_t.h"
 #include "latexdocument_t.h"
+#include "texstudio_t.h"
 #include <QtTest/QtTest>
 
 const QRegExp TestToken::simpleTextRegExp ("[A-Z'a-z0-9]+.?");
@@ -102,6 +103,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
             << new VersionTest(level==TL_ALL)
             << new HelpTest(buildManager)
             << new UserMacroTest()
+            << new TexStudioTest()
             << new GitTest(buildManager,level!=TL_AUTO);
 	bool allPassed=true;
 	if (level!=TL_ALL)
