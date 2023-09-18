@@ -11,16 +11,9 @@ class LatexDocumentTest: public QObject{
 	public:
         LatexDocumentTest(LatexEditorView* view);
 	private:
-        QString unrollStructure(StructureEntry *baseStructure);
-        StructureEntry* generateFromCoded(const QString &code);
-
         LatexEditorView *m_edView;
         LatexDocument *m_doc;
 	private slots:
-        void splitStructure_data();
-        void splitStructure();
-        void appendStructure_data();
-        void appendStructure();
 };
 
 #endif
