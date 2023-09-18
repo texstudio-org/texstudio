@@ -214,6 +214,14 @@ void LatexDocument::initClearStructure()
 	mAppendixLine = nullptr;
 	mBeyondEnd = nullptr;
 
+    // reset line states
+    for(int i=0;i<lines();++i){
+        line(i).setFlag(QDocumentLine::lexedPass1,false);
+        line(i).setFlag(QDocumentLine::lexedPass2Complete,false);
+        line(i).setFlag(QDocumentLine::lexedPass2InComplete,false);
+        line(i).setFlag(QDocumentLine::argumentsParsed,false);
+    }
+
 
     emit structureUpdated();
 
