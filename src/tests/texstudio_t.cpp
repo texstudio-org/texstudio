@@ -14,8 +14,17 @@ void TexStudioTest::checkIncludes_data(){
     QTest::addColumn<QStringList>("files");
 
     QTest::newRow("simple")
-        <<QStringList{"/home/sdm/Dokumente/tex/testcases_structure/simple_document.tex"};
-
+        <<QStringList{QString(TESTDATADIR)+"/simple_document.tex"};
+    QTest::newRow("top_with_two_level_include")
+        <<QStringList{QString(TESTDATADIR)+"/top_with_two_level_include.tex"};
+    QTest::newRow("top_with_two_level_include_as_second_file")
+        <<QStringList{QString(TESTDATADIR)+"/included_level1.tex",QString(TESTDATADIR)+"/top_with_two_level_include.tex"};
+    QTest::newRow("top_with_two_level_include_as_first_file")
+        <<QStringList{QString(TESTDATADIR)+"/top_with_two_level_include.tex",QString(TESTDATADIR)+"/included_level1.tex"};
+    QTest::newRow("top_with_subfile")
+        <<QStringList{QString(TESTDATADIR)+"/top_with_subfile.tex"};
+    QTest::newRow("subfile")
+        <<QStringList{QString(TESTDATADIR)+"/subfile_level1.tex"};
 }
 
 void TexStudioTest::checkIncludes(){
@@ -42,5 +51,7 @@ void TexStudioTest::checkIncludes(){
             synError=true;
     }
     QEQUAL(synError,false);
-    txs->fileClose();
+    for(int i=0;i<files.size();++i){
+        txs->fileClose();
+    }
 }

@@ -226,6 +226,7 @@ option(TEXSTUDIO_ENABLE_TESTS "Enable/Disable internal tests" OFF)
 if(${TEXSTUDIO_ENABLE_TESTS})
 	message(STATUS "tests enabled.")
 	find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Test REQUIRED)
+        set(ADDITIONAL_DEFINITIONS ${ADDITIONAL_DEFINITIONS} -DTESTDATADIR="${CMAKE_CURRENT_SOURCE_DIR}/src/tests/testdata")
 	set(HEADER_FILES ${HEADER_FILES}
 		src/tests/buildmanager_t.h
 		src/tests/codesnippet_t.h
