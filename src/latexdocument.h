@@ -93,6 +93,7 @@ public:
     friend class LatexEditorViewTest;
 	friend class ScriptEngineTest;
     friend class LatexDocumentTest;
+    friend class TexStudioTest;
 
 private:
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle *, ReferencePair> &list);

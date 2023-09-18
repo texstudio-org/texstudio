@@ -1,33 +1,35 @@
 #include "texstudio_t.h"
 
 #include "testutil.h"
+#include "texstudio.h"
 #include <QtTest/QtTest>
+
+extern Texstudio *txsInstance;
 
 TexStudioTest::TexStudioTest()
 {
-    qDebug()<<"test";
 }
 
 void TexStudioTest::checkIncludes_data(){
     QTest::addColumn<QStringList>("files");
 
     QTest::newRow("simple")
-        <<QStringList{"simple_document"};
+        <<QStringList{"/home/sdm/Dokumente/tex/testcases_structure/simple_document.tex"};
 
 }
 
 void TexStudioTest::checkIncludes(){
     QFETCH(QStringList, files);
-    /*
+    Texstudio *txs=txsInstance;
 
-    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
-    bool realtimeChecking = edView->getConfig()->realtimeChecking;
-
-    edView->getConfig()->inlineSyntaxChecking = true;
-    edView->getConfig()->realtimeChecking = true;
-
+    LatexEditorView *edView;
     for(const QString &fn:files){
-        load(fn)
+        edView=txs->load(fn);
+    }
+
+    if(!edView){
+        qDebug()<<"test file not found ! Skip !";
+        return;
     }
     LatexDocument *doc=edView->getDocument();
     doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
@@ -39,8 +41,6 @@ void TexStudioTest::checkIncludes(){
         if(!formats.isEmpty())
             synError=true;
     }
-    QEQUAL(synError,error);
-
-    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
-    edView->getConfig()->realtimeChecking = realtimeChecking;*/
+    QEQUAL(synError,false);
+    txs->fileClose();
 }

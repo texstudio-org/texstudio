@@ -87,6 +87,8 @@ public:
 
     Q_INVOKABLE void runInternalCommand(const QString &cmd, const QString &master, const QString &options);
 
+    friend class TexStudioTest;
+
 public slots:
 	LatexEditorView *load(const QString &f , bool asProject = false, bool recheck = true, bool dontAsk = false);
     void executeCommandLine(const QStringList &args, bool realCmdLine);
