@@ -103,7 +103,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
             << new VersionTest(level==TL_ALL)
             << new HelpTest(buildManager)
             << new UserMacroTest()
-            << new TexStudioTest()
+            << new TexStudioTest(level==TL_ALL)
             << new GitTest(buildManager,level!=TL_AUTO);
 	bool allPassed=true;
 	if (level!=TL_ALL)

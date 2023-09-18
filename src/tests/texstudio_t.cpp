@@ -6,11 +6,12 @@
 
 extern Texstudio *txsInstance;
 
-TexStudioTest::TexStudioTest()
-{
-}
-
 void TexStudioTest::checkIncludes_data(){
+    if (!allTests){
+        qDebug("skipped includes tests");
+        return;
+    }
+
     QTest::addColumn<QStringList>("files");
     QTest::addColumn<bool>("refPresent");
 
@@ -29,6 +30,10 @@ void TexStudioTest::checkIncludes_data(){
 }
 
 void TexStudioTest::checkIncludes(){
+    if (!allTests){
+        qDebug("skipped includes tests");
+        return;
+    }
     QFETCH(QStringList, files);
     QFETCH(bool, refPresent);
 
@@ -38,7 +43,6 @@ void TexStudioTest::checkIncludes(){
     for(const QString &fn:files){
         edView=txs->load(fn);
     }
-
     if(!edView){
         qDebug()<<"test file not found ! Skip !";
         return;
