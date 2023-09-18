@@ -77,6 +77,8 @@ public:
     LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig, LatexDocument *doc = nullptr);
 	~LatexEditorView();
 
+    friend class TexStudioTest;
+
 	QCodeEdit *codeeditor;
 	QEditor *editor;
 
