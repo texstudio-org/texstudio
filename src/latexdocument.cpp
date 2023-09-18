@@ -1080,7 +1080,7 @@ void LatexDocument::replaceOrAdd(std::list<StructureEntry*>::iterator &docStruct
         ++docStructureIter;
         delete newElement;
     }else{
-        docStructure.insert(docStructureIter++,newElement);
+        docStructure.insert(docStructureIter,newElement);
     }
 }
 /*!
