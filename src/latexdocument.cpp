@@ -2369,6 +2369,7 @@ void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
             foreach (LatexDocument *elem, listOfDocs) {
                 if(elem->getEditorView()){
                     elem->recheckRefsLabels(listOfDocs,items);
+                    elem->getEditorView()->updateCitationFormats(); // TODO: inefficent -> improve
                 }
             }
         }
@@ -2856,8 +2857,6 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
             if (masterDoc) {
                 QString fn = masterDoc->getFileInfo().absolutePath();
                 name += "/" + fn;
-                // TODO: oha, the key can be even more complex: option#filename.cwl/masterfile
-                // consider this in the key-handling functions of LatexPackage
             }
             emit importPackage(name);
         } else {

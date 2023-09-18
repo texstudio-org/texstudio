@@ -5013,66 +5013,6 @@ void Texstudio::insertTextCompletion()
         }
 
     }
-    /*QString my_text = currentEditorView()->editor->text();
-	int end = 0;
-	int k = 0; // number of occurences of search word.
-	QString word = line.mid(col, c.columnNumber() - col);
-	//TODO: Boundary needs to specified more exactly
-	//TODO: type in text needs to be excluded, if not already present
-	//TODO: editor->text() is far too slow
-	QSet<QString> words;
-	int i;
-	while ((i = my_text.indexOf(QRegExp("\\b" + word), end)) > 0) {
-		end = my_text.indexOf(QRegExp("\\b"), i + 1);
-		if (end > i) {
-            bool addVar=false;
-            do {
-                addVar=false;
-                if (word == my_text.mid(i, end - i)) {
-                    k = k + 1;
-                    if (k == 2) words << my_text.mid(i, end - i);
-                } else {
-                    QString txt=my_text.mid(i, end - i);
-                    if(txt.endsWith("_")){
-                        if(my_text.mid(end,1)=="\\"||my_text.mid(end,1)=="{"){
-                            // special handling for abc_\cmd{dsfsdf}
-                            QRegExp rx("(\\\\[a-zA-Z]+)?(\\{\\w+\\})?"); // better solution would be employing tokens ...
-                            int zw=rx.indexIn(my_text,end);
-                            if(zw==end){
-                                txt.append(rx.cap());
-                                words << txt;
-                            }
-                        }
-                    }else{
-                        if (!words.contains(txt))
-                            words << txt;
-                    }
-                }
-                // add more variants if word boundary is \_ \- or -
-                if(my_text.length()>end+1){
-                    addVar|=(my_text.mid(end,2)=="\\_");
-                    addVar|=(my_text.mid(end,2)=="\\-");
-                    if(addVar)
-                        end++;
-                }
-                if(my_text.mid(end,1)=="-")
-                    addVar=true;
-                if(addVar){
-                    end = my_text.indexOf(QRegExp("\\b"), end+2);
-                    addVar=(end>i);
-                }
-            } while(addVar);
-		} else {
-			if (word == my_text.mid(i, end - i)) {
-				k = k + 1;
-				if (k == 2) words << my_text.mid(i, end - i);
-			} else {
-				if (!words.contains(my_text.mid(i, end - i)))
-					words << my_text.mid(i, my_text.length() - i);
-			}
-		}
-	}
-    */
 	completer->setAdditionalWords(words, CT_NORMALTEXT);
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 }

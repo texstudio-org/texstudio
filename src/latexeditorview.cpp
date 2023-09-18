@@ -108,7 +108,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
     QLanguageDefinition *language = editor->document() ? editor->document()->languageDefinition() : nullptr;
 	QDocumentLine line = editor->cursor().selectionStart().line();
 	int column = editor->cursor().selectionStart().columnNumber();
-	QString prev = line.text().mid(0, column) + event->text(); //TODO: optimize
+    QString prev = line.text().mid(0, column) + event->text();
     if(event->text().isEmpty() && event->key()==Qt::Key_Tab){
         // workaround for #2866 (tab as trigger in macro on osx)
         prev+="\t";

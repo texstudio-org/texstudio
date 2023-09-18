@@ -2635,7 +2635,6 @@ void PDFWidget::zoom(qreal scale)
 	}
 }
 
-//TODO: optimize?
 QRect PDFWidget::gridPageRect(int pageIndex) const
 {
 	if (gridx * gridy <= 1)

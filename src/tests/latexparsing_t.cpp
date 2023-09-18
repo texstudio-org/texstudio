@@ -9,6 +9,7 @@
 #include "latexparser/latexparser.h"
 #include "latexpackage.h"
 #include "testutil.h"
+#include "configmanager.h"
 #include <QtTest/QtTest>
 
 // shortcuts and semantic types
@@ -650,6 +651,8 @@ void LatexParsingTest::test_getArg2_data() {
 }
 
 void LatexParsingTest::test_getArg2() {
+    int storeRUNAWAYLIMIT=ConfigManager::RUNAWAYLIMIT;
+    ConfigManager::RUNAWAYLIMIT=30;
     QSharedPointer<LatexParser> lp = QSharedPointer<LatexParser>::create();
     *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
@@ -683,6 +686,7 @@ void LatexParsingTest::test_getArg2() {
         QCOMPARE(result, desiredResults.at(i));
     }
     delete doc;
+    ConfigManager::RUNAWAYLIMIT=storeRUNAWAYLIMIT;
 }
 
 void LatexParsingTest::test_getTokenAtCol_data() {

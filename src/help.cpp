@@ -134,7 +134,6 @@ bool Help::texdocAvailableRequest(const QString &package)
 		args << "--print-only" << package;
 	} else {
         args << "--list" << "--machine" << package; // --print-only does not exist in texlive 2012, actual is response is not used either ...
-		// TODO: not the right option: don't open the viewer here
 		// There seems to be no option yielding only the would be called command
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}

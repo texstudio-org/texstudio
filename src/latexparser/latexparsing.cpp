@@ -11,9 +11,6 @@
 namespace Parsing {
 
 
-//const int RUNAWAYLIMIT = 30; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the argument is unclosed
-
-
 /*!
  * Realizes the first pass lexing
  * Following functionality is implemented:
@@ -833,9 +830,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
     }
 
     dlh->setCookie(QDocumentLine::LEXER_COOKIE, QVariant::fromValue<TokenList>(lexed));
-    // run-away prevention
-    // reduce argLevel by 1, remove all elements with level <0
-    // TODO: needs to be applied on commandStack as well !!!
+
     for (int i = 0; i < stack.size(); i++) {
         if (stack[i].type == Token::verbatim)
             continue;

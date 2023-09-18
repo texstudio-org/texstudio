@@ -33,7 +33,7 @@ struct StructureEntry {
 	StructureEntry(LatexDocument *doc, Type newType); ///< constructor
 	~StructureEntry();
 
-	int columnNumber; //position of the entry in the line, only used for correct sorting of structure update (TODO: use a local variable for it)
+    int columnNumber; //position of the entry in the line, only used for correct sorting of structure update
 	void setLine(QDocumentLineHandle *handle, int lineNr = -1); ///< set linehandle for automatic update of line number
 	QDocumentLineHandle *getLineHandle() const; ///< get linehandle for entry
 	int getCachedLineNumber() const; ///< get cached line number

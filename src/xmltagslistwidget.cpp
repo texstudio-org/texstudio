@@ -179,5 +179,4 @@ void XmlTagsListWidget::addListWidgetItems(const xmlTagList &tagList)
 		if (tagList.tags.at(i).type == 0) item->setFont(commandFont);
 		else item->setFont(optionFont);
 	}
-	//TODO: use QListView, and CompletionItemDelegate from latexcompleter to highlight temporary code completion
 }

@@ -6,8 +6,6 @@
 #include "latexparser/latex2text.h"
 #include "configmanagerinterface.h"
 
-
-//TODO: move this away
 #include "grammarcheck_config.h"
 class QDocumentLineHandle;
 class LatexDocument;
