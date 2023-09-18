@@ -50,8 +50,8 @@ void TexStudioTest::checkIncludes(){
         if(!formats.isEmpty())
             synError=true;
     }
-    QEQUAL(synError,false);
     for(int i=0;i<files.size();++i){
         txs->fileClose();
     }
+    QEQUAL(synError,false);
 }
