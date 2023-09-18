@@ -919,7 +919,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             if (dc) {
                 childDocs.insert(dc);
                 dc->setMasterDocument(this, recheckLabels && data.updateSyntaxCheck);
-                if(!includeWasNotPresent){
+                if(includeWasNotPresent){
                     data.addedIncludes << dc;
                 }
             } else {
@@ -2363,7 +2363,7 @@ void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
             }
         }
         if(docForUpdate){
-            QList<LatexDocument *>listOfDocs = docForUpdate->getListOfDocs();
+            QList<LatexDocument *>listOfDocs = parentDocument->getListOfDocs();
             QStringList items;
             foreach (LatexDocument *elem, listOfDocs) {
                 elem->setLtxCommands(parentDocument->lp);
