@@ -3474,6 +3474,10 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         QString fn=ja[i].toString();
         mIncludedFilesList.insert(nullptr,fn);
     }
+    if(!mIncludedFilesList.isEmpty()){
+        QStringList files=mIncludedFilesList.values();
+        parent->addDocsToLoad(files,this);
+    }
     ja=dd.value("usercommands").toArray();
     for (int i = 0; i < ja.size(); ++i) {
         QString cmd=ja[i].toString();
