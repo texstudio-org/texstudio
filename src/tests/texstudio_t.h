@@ -11,6 +11,8 @@ public:
 private slots:
     void checkIncludes_data();
     void checkIncludes();
+    void checkIncludesCached_data();
+    void checkIncludesCached();
 
 private:
     bool allTests;
