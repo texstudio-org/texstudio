@@ -2363,6 +2363,15 @@ void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
                 doc->setFileName(fn);
                 addDocument(doc,true);
                 doc->setLtxCommands(parentDocument->lp);
+                if(doc->isIncompleteInMemory()){
+                    // gather all commands from all child documents
+                    // needed for cached files
+                    QList<LatexDocument *>listOfDocs = doc->getListOfDocs();
+                    foreach (const LatexDocument *elem, listOfDocs) {
+                        if(elem==doc) continue;
+                        doc->lp->append(elem->ltxCommands);
+                    }
+                }
                 doc->setMasterDocument(parentDocument,false);
                 parentDocument->addChild(doc);
                 doc->patchStructure(0,-1);
