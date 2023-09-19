@@ -39,9 +39,10 @@ void TexStudioTest::checkIncludes(){
 
     Texstudio *txs=txsInstance;
 
+    // deactivate caching
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
-    bool cacheDocs=false;
-    std::swap(conf->cacheDocuments,cacheDocs);
+    bool cacheDocs=conf->cacheDocuments;
+    conf->cacheDocuments=false;
 
     LatexEditorView *edView=nullptr;
     for(const QString &fn:files){
@@ -71,8 +72,8 @@ void TexStudioTest::checkIncludes(){
     for(int i=0;i<files.size();++i){
         txs->fileClose();
     }
-
-    std::swap(conf->cacheDocuments,cacheDocs);
+    // restore previous cache setting
+    conf->cacheDocuments=cacheDocs;
 
     QEQUAL(synError,false);
     QEQUAL(refFound,refPresent);
@@ -112,8 +113,8 @@ void TexStudioTest::checkIncludesCached(){
     Texstudio *txs=txsInstance;
     // used cached docs
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
-    bool cacheDocs=true;
-    std::swap(conf->cacheDocuments,cacheDocs);
+    bool cacheDocs=conf->cacheDocuments;
+    conf->cacheDocuments=true;
 
     LatexEditorView *edView=nullptr;
     for(const QString &fn:files){
@@ -140,8 +141,8 @@ void TexStudioTest::checkIncludesCached(){
     for(int i=0;i<files.size();++i){
         txs->fileClose();
     }
-
-    std::swap(conf->cacheDocuments,cacheDocs);
+    // restore previous cache setting
+    conf->cacheDocuments=cacheDocs;
 
     QEQUAL(synError,false);
     QEQUAL(refFound,refPresent);
