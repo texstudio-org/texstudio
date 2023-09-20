@@ -2556,8 +2556,8 @@ topicmcols
 \glsifcategoryattributehasitem{category}{attribute}{item}{true}{false}#*
 
 ### 11 bib2gls: Managing Reference Databases ###
-\glsxtrresourcefile{filename%file}
-\glsxtrresourcefile[options%keyvals]{filename%file}
+\glsxtrresourcefile{basename}
+\glsxtrresourcefile[options%keyvals]{basename}
 \GlsXtrLoadResources
 \GlsXtrLoadResources[options%keyvals]
 
