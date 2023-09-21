@@ -3,5 +3,5 @@
 
 #include:commado
 
-\DoWithExtBases{cmd}{ext}{basenames}
-\DoWithBasesExts{cmd}{basenames}{exts}
+\DoWithExtBases{cmd}{ext}{basenames%definition}
+\DoWithBasesExts{cmd}{basenames%definition}{exts}

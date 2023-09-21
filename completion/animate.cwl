@@ -50,8 +50,8 @@ poster=#first,last,none,%<number%>
 alttext=#none,%<alt description%>
 #endkeyvals
 
-\animategraphics{frame rate}{file basename}{first}{last}
-\animategraphics[options%keyvals]{frame rate}{file basename}{first}{last}
+\animategraphics{frame rate}{file basename%definition}{first}{last}
+\animategraphics[options%keyvals]{frame rate}{file basename%definition}{first}{last}
 
 \begin{animateinline}{frame rate}
 \begin{animateinline}[options%keyvals]{frame rate}

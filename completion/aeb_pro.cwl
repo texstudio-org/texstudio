@@ -188,7 +188,7 @@ true
 false
 print#true,false
 #endkeyvals
-\DeclareAnime{basename}{speed}{nframes}
+\DeclareAnime{basename%definition}{speed}{nframes}
 \animeBld
 \animeBld[options%keyvals]
 \backAnimeBtn{width}{height}
@@ -309,7 +309,7 @@ true
 false
 print#true,false
 #endkeyvals
-\DeclareAnime{basename}{speed}{nframes}
+\DeclareAnime{basename%definition}{speed}{nframes}
 \animeBld
 \animeBld[options%keyvals]
 \backAnimeBtn{width}{height}

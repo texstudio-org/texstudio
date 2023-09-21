@@ -1022,7 +1022,7 @@ showtargets=#left,right,innerleft,innerright,annoteleft,annoteright
 
 \glsxtrundeftag#*
 \glsxtrundefaction{message}{additional help}#*
-\glsxtrsetbibglsaux{basename}#*
+\glsxtrsetbibglsaux{basename%definition}#*
 \thewrglossary#*
 \glsxtrwrglossmark#*
 \glsxtrwrglosscountermark{number}#*
@@ -2556,8 +2556,8 @@ topicmcols
 \glsifcategoryattributehasitem{category}{attribute}{item}{true}{false}#*
 
 ### 11 bib2gls: Managing Reference Databases ###
-\glsxtrresourcefile{basename}
-\glsxtrresourcefile[options%keyvals]{basename}
+\glsxtrresourcefile{basename%definition}
+\glsxtrresourcefile[options%keyvals]{basename%definition}
 \GlsXtrLoadResources
 \GlsXtrLoadResources[options%keyvals]
 
