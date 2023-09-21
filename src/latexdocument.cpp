@@ -428,6 +428,12 @@ int LatexDocument::lexLines(int &lineNr,int &count,bool recheck){
                     }
                 }
                 if(!l_tkFilter.isEmpty()){
+                    // reset line status
+                    for(int j=i-ConfigManager::RUNAWAYLIMIT;j<=i;++j){
+                        line(j).setFlag(QDocumentLine::lexedPass2Complete,false);
+                        line(j).setFlag(QDocumentLine::lexedPass2InComplete,false);
+                        line(j).setFlag(QDocumentLine::argumentsParsed,false);
+                    }
                     i=i-ConfigManager::RUNAWAYLIMIT;
                     lastHandle = line(i).handle();
                     if (lastHandle) {
