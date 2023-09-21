@@ -1,5 +1,5 @@
 # ProfSio package
-# Matthew Bertucci 2023/07/07 for v0.1.3
+# Matthew Bertucci 2023/09/21 for v0.1.6
 
 #include:iftex
 #include:tikz
@@ -92,6 +92,18 @@ Legende#true,false
 Couleur=#%color
 Type=#Centre,Gauche,Droite
 Decalage=##L
+#endkeyvals
+
+\SimplificationKarnaugh{code binaire de la table}
+\SimplificationKarnaugh[clés%keyvals]{code binaire de la table}
+
+#keyvals:\SimplificationKarnaugh
+Couleurs=
+Variables=
+Swap#true,false
+Contraire#true,false
+Espace#true,false
+StyleAlternatif#true,false
 #endkeyvals
 
 \begin{GrapheTikz}
