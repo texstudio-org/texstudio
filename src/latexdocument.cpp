@@ -1066,7 +1066,11 @@ void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
                 break;
             }
         }
+        bool skipRecheck=dlh->hasFlag(QDocumentLine::argumentsParsed);
         interpretCommandArguments(dlh,i,changedCommands,false,docStructureIter);
+        if (edView && !skipRecheck){
+            edView->documentContentChanged(i, 1);
+        }
     }
 }
 /*!
