@@ -2616,6 +2616,7 @@
 <file>completion/pandora.cwl</file>
 <file>completion/pangram.cwl</file>
 <file>completion/PanneauxRoute.cwl</file>
+<file>completion/PapierGurvan.cwl</file>
 <file>completion/papermas.cwl</file>
 <file>completion/paracol.cwl</file>
 <file>completion/paralist.cwl</file>
