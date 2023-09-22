@@ -1,5 +1,5 @@
 # libertinus-otf package
-# Matthew Bertucci 2023/05/17 for v0.31
+# Matthew Bertucci 2023/09/21 for v0.32
 
 #include:ifxetex
 #include:ifluatex
@@ -67,7 +67,6 @@ mono#true,false
 \LHLIG+
 \LibertinusDisplay#*
 \LibertinusInitials#*
-\Libertinusinitials#*
 \LibertinusKeyboard#*
 \LibertinusSansOsF
 \LibertinusSansTLF
@@ -293,3 +292,6 @@ mono#true,false
 \Uuparrow#m
 \whitearrowupfrombar#m
 \Zbar#m
+
+\IgnoreWhiteSpace#S
+\ObeyWhiteSpace#S

@@ -114,7 +114,7 @@ keep-semicolon
 \accdasia{arg}#n
 \accpsili{arg}#n
 \accdasiavaria{arg}#n
-\acctonos{arg}#n
+\accoxia{arg}#n
 \accdasiaoxia{arg}#n
 \accpsilioxia{arg}#n
 \accpsilivaria{arg}#n

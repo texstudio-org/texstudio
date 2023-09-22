@@ -1,5 +1,5 @@
 # setspaceenhanced package
-# Matthew Bertucci 2023/08/05 for v1.0
+# Matthew Bertucci 2023/09/20 for v1.01
 
 #include:setspace
 
@@ -8,7 +8,7 @@
 #keyvals:\usepackage/setspaceenhanced#c,\spacesetup
 byselectfont#true,false
 doublespacing
-fontsize#true,false
+keepfontsize#true,false
 onehalfspacing
 singlespacing
 #endkeyvals
