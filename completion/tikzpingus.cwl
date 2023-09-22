@@ -1,5 +1,5 @@
 # tikzpingus package
-# Matthew Bertucci 2022/08/27 for v1.0
+# Matthew Bertucci 2023/09/21 for v1.1
 
 #include:etoolbox
 #include:tikz
@@ -89,7 +89,7 @@ right eye devil=#%color
 right eye sad=#%color
 right eye angry=#%color
 right eye hearts=#%color
-eyes=#none,normal,vertical,shiny,wink,shock,devil,sad,angry,hearts,!random
+eyes=#none,normal,vertical,shiny,wink,shock,devil,sad,angry,hearts,critical,!random
 eyes color=#%color
 eyes second color=#%color
 eyes none=#%color
@@ -102,6 +102,7 @@ eyes devil=#%color
 eyes sad=#%color
 eyes angry=#%color
 eyes hearts=#%color
+eyes critical=#%color
 left wing=#none,normal,wave,raise,grab,shock,hug
 left wing color=#%color
 left wing none=#%color
@@ -155,7 +156,14 @@ bill angry=#%color
 :devil=#%color
 :hide
 :back
-heart=%<node options%>
+:pingu={%<options%>}
+:mix=%<color mix%>
+:mix-draw=%<color mix%>
+:mix-all=%<color mix%>
+heart
+heart=#%color
+vampire teeth
+vampire teeth=#%color
 tie
 tie=#%color
 tie knot=#%color
@@ -173,6 +181,8 @@ bow tie offset=##L
 cup
 cup=#%color
 cup straw=#%color
+cup steam=#%color
+cup steam shift=##L
 medal
 medal=#%color
 medal band=#%color
@@ -248,6 +258,9 @@ devil horns=#%color
 devil wings
 devil wings=#%color
 devil wings b=#%color
+belt
+belt=#%color
+belt knot color=#%color
 head band
 head band=#%color
 head band bend=%<degrees%>
@@ -280,6 +293,27 @@ hat ribbon=#%color
 hat base=#%color
 hat coronal=#%color
 hat position={%<angle%>:(%<x,y%>){%<scale%>}}
+mitra
+mitra=#%color
+mitra height
+mitra background=#%color
+mitra overset=##L
+mitra lower angle=%<degrees%>
+mitra upper angle=%<degrees%>
+mitra lower band=#%color
+mitra lower band height=%<factor%>
+mitra upper band=#%color
+mitra upper band height=%<factor%>
+mitra center band=#%color
+mitra center band width=%<factor%>
+mitra position{%<angle%>:(%<x,y%>){%<scale%>}}
+witch hat
+witch hat=#%color
+witch hat ribbon=#%color
+witch hat base=#%color
+witch hat coronal=#%color
+witch hat band=#%color
+witch hat position={%<angle%>:(%<x,y%>){%<scale%>}}
 conical hat
 conical hat=#%color
 conical hat rounding=##L
@@ -345,6 +379,64 @@ pumpkin-hat stripe c=#%color
 pumpkin-hat outline=#%color
 pumpkin-hat outline width=##L
 pumpkin-hat position={%<angle%>:(%<x,y%>){%<scale%>}}
+jack o lantern
+jack o lantern=#%color
+jack o lantern stalk=#%color
+jack o lantern stalk top=#%color
+jack o lantern stripe a=#%color
+jack o lantern stripe b=#%color
+jack o lantern stripe c=#%color
+jack o lantern back stripe a=#%color
+jack o lantern back stripe b=#%color
+jack o lantern back stripe c=#%color
+jack o lantern background=#%color
+jack o lantern outline=#%color
+jack o lantern outline width=##L
+jack o lantern width=##L
+jack o lantern height=##L
+jack o lantern position={%<angle%>:(%<x,y%>){%<scale%>}}
+jack o lantern helmet=#%color
+bee
+bee=#%color
+bee body=#%color
+bee wings=#%color
+bee mouth=#%color
+bee eyes=#%color
+bee blush=#%color
+bee position={%<angle%>:(%<x,y%>){%<scale%>}}
+on horse
+on horse=#%color
+on horse flip#true,false
+on horse donkey#true,false
+on horse has base#true,false
+on horse has bounding box#true,false
+on horse draw=#%color
+on horse mane=#%color
+on horse mane draw=#%color
+on horse thatch=#%color
+on horse thatch draw=#%color
+on horse tail=#%color
+on horse tail draw=#%color
+on horse eyes=#%color
+on horse mouth=#%color
+on horse nose=#%color
+on horse ears=#%color
+on horse base=#%color
+on horse base draw=#%color
+on horse base shade=#%color
+on horse base shade draw=#%color
+on horse front left hoof=#%color
+on horse front right hoof=#%color
+on horse back left hoof=#%color
+on horse back right hoof=#%color
+on horse front hoofs=#%color
+on horse back hoofs=#%color
+on horse hoofs=#%color
+on horse xshift=##L
+on horse yshift=##L
+on horse scale=%<factor%>
+horse behind
+horse behind=#%color
 vr-headset
 vr-headset=#%color
 vr-headset band=#%color
@@ -369,6 +461,24 @@ santa hat bobble=#%color
 santa beard
 santa beard=#%color
 santa beard string=#%color
+snowball left
+snowball left=#%color
+snowball left size=##L
+snowball left xshift=##L
+snowball left yshift=##L
+snowball right
+snowball right=#%color
+snowball right size=##L
+snowball right xshift=##L
+snowball right yshift=##L
+wool hat
+wool hat=#%color
+wool hat second=#%color
+wool hat bobble=#%color
+deer hat
+deer hat=#%color
+deer hat b=#%color
+deer hat band=#%color
 mask
 mask=#%color
 mask band=#%color
@@ -474,6 +584,22 @@ light-staff right staff=#%color
 light-staff right core=#%color
 light-staff right core width=##L
 light-staff right outer glow factor=%<factor%>
+broom left
+broom left=#%color
+broom left length=##L
+broom left shift=##L
+broom left band=#%color
+broom left bristles a=#%color
+broom left bristles b=#%color
+broom left bristles c=#%color
+broom right
+broom right=#%color
+broom right length=##L
+broom right shift=##L
+broom right band=#%color
+broom right bristles a=#%color
+broom right bristles b=#%color
+broom right bristles c=#%color
 flag left
 flag left=#%color
 flag left pole=#%color
@@ -492,12 +618,114 @@ pride flag right
 pride flag right=#%color
 german flag right
 german flag right=#%color
+present left
+present left=#%color
+present left width=##L
+present left height=##L
+present left ribbon=#%color
+present left band=#%color
+present left band width=##L
+present left xshift=##L
+present left yshift=##L
+present left band second height=##L
+present left band second yshift=##L
+present left lid=#%color
+present left lid height=##L
+present left lid overhang=##L
+present left lid yshift=##L
+present left lid band=#%color
+present right
+present right=#%color
+present right width=##L
+present right height=##L
+present right ribbon=#%color
+present right band=#%color
+present right band width=##L
+present right xshift=##L
+present right yshift=##L
+present right band second height=##L
+present right band second yshift=##L
+present right lid=#%color
+present right lid height=##L
+present right lid overhang=##L
+present right lid yshift=##L
+present right lid band=#%color
 staff left
 staff left=#%color
 staff left length=##L
+staff left raise=##L
+staff left code={%<TikZ code%>}
+staff left code app={%<TikZ code%>}
+staff left code app pre={%<TikZ code%>}
+spear left
+spear left=#%color
+cross left
+cross left=#%color
 staff right
 staff right=#%color
 staff right length=##L
+staff right raise=##L
+staff right code={%<TikZ code%>}
+staff right code app={%<TikZ code%>}
+staff right code app pre={%<TikZ code%>}
+spear right
+spear right=#%color
+cross right
+cross right=#%color
+hammer left
+hammer left=#%color
+hammer left handle length=##L
+hammer left handle shift=##L
+hammer left width=##L
+hammer left height=##L
+hammer left xshift=##L
+hammer left yshift=##L
+hammer left handle=#%color
+hammer left with knob
+hammer left with knob=#%color
+hammer right
+hammer right=#%color
+hammer right handle length=##L
+hammer right handle shift=##L
+hammer right width=##L
+hammer right height=##L
+hammer right xshift=##L
+hammer right yshift=##L
+hammer right handle=#%color
+hammer right with knob
+hammer right with knob=#%color
+magnifier left
+magnifier left=#%color
+magnifier left handle length=##L
+magnifier left handle shift=##L
+magnifier left size=##L
+magnifier left glass=#%color
+magnifier left opacity=%<factor%>
+magnifier left thick=##L
+magnifier left xshift=##L
+magnifier left yshift=##L
+magnifier right
+magnifier right=#%color
+magnifier right handle length=##L
+magnifier right handle shift=##L
+magnifier right size=##L
+magnifier right glass=#%color
+magnifier right opacity=%<factor%>
+magnifier right thick=##L
+magnifier right xshift=##L
+magnifier right yshift=##L
+plank left
+plank left=#%color
+plank left width=##L
+plank left height=##L
+plank left xshift=##L
+plank left yshift=##L
+plank right
+plank right=#%color
+plank right width=##L
+plank right height=##L
+plank right xshift=##L
+plank right yshift=##L
 laptop left
 laptop left=#%color
 laptop left bracket=#%color
@@ -525,6 +753,7 @@ devil fork right length=##L
 horse left
 horse left=#%color
 horse left flip#true,false
+horse left donkey#true,false
 horse left has base#true,false
 horse left draw=#%color
 horse left mane=#%color
@@ -541,12 +770,20 @@ horse left base=#%color
 horse left base draw=#%color
 horse left base shade=#%color
 horse left base shade draw=#%color
+horse left front left hoof=#%color
+horse left front right hoof=#%color
+horse left back left hoof=#%color
+horse left back right hoof=#%color
+horse left front hoofs=#%color
+horse left back hoofs=#%color
+horse left hoofs=#%color
 horse left xshift=##L
 horse left yshift=##L
 horse left on base
 horse right
 horse right=#%color
 horse right flip#true,false
+horse right donkey#true,false
 horse right has base#true,false
 horse right draw=#%color
 horse right mane=#%color
@@ -563,6 +800,13 @@ horse right base=#%color
 horse right base draw=#%color
 horse right base shade=#%color
 horse right base shade draw=#%color
+horse right front left hoof=#%color
+horse right front right hoof=#%color
+horse right back left hoof=#%color
+horse right back right hoof=#%color
+horse right front hoofs=#%color
+horse right back hoofs=#%color
+horse right hoofs=#%color
 horse right xshift=##L
 horse right yshift=##L
 horse right on base
@@ -626,14 +870,16 @@ horse
 
 # not documented
 \basew#S
-\basicfeetbend#*
-\eyebaseang#*
+\basicfeetbend#S
+\eyebaseang#S
 \pengu[options]#S
-\pinguanglehl#*
-\pinguanglehr#*
-\pingulightsaberfactor#*
-\pingupathxbowtieknot#*
-\pingupathxbowtieleft#*
-\pingupathxbowtieright#*
-\pingupathxtie#*
-\pingupathxtieknot#*
+\pinguanglehl#S
+\pinguanglehr#S
+\pingulightsaberfactor#S
+\pingupathxbowtieknot#S
+\pingupathxbowtieleft#S
+\pingupathxbowtieright#S
+\pingupathxtie#S
+\pingupathxtieknot#S
+\pingupathwitchhatupper#S
+\pingulibpathprefix#S

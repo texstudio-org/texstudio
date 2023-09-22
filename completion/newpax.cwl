@@ -1,11 +1,7 @@
 # newpax package
-# Matthew Bertucci 2022/06/13 for v0.51
+# Matthew Bertucci 2023/09/11 for v0.54
 
 #include:graphicx
-#include:ltxcmds
-#include:kvsetkeys
-#include:kvoptions
-#include:auxhook
 #include:etoolbox
 
 \newpaxsetup{options%keyvals}
@@ -14,5 +10,6 @@
 usefileattributes#true,false
 destsuffix=%<suffix%>
 addannots#true,false
+dests=#used,all
 paxextension=#pax,newpax
 #endkeyvals

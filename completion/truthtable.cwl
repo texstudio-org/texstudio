@@ -1,6 +1,7 @@
 # truthtable package
-# Matthew Bertucci 10/4/2021 for v0.0.1
+# Matthew Bertucci 2023/09/17 for v0.1.0
 
 #include:luacode
 
 \truthtable{vars}{dvars}{statements}{dstatements}{true val}{false val}
+\truthtableasc{vars}{dvars}{statements}{dstatements}{true val}{false val}

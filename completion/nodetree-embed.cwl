@@ -1,5 +1,5 @@
 # nodetree-embed package
-# Matthew Bertucci 2/8/2022 for v2.2
+# Matthew Bertucci 2023/09/11 for v2.3.0
 
 #include:luatex
 #include:xcolor
@@ -36,6 +36,8 @@ theme=#bwdark,bwlight,monokaisoda
 thememode=#dark,light
 font=%<font name%>
 fontsize=%<fontsize cmd%>
+firstline=%<integer%>
+lastline=%<integer%>
 showmarkup#true,false
 #endkeyvals
 
@@ -54,6 +56,8 @@ theme
 thememode
 font
 fontsize
+firstline
+lastline
 showmarkup
 #endkeyvals
 
