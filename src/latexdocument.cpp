@@ -1070,6 +1070,7 @@ void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
         interpretCommandArguments(dlh,i,changedCommands,false,docStructureIter);
         if (edView && !skipRecheck){
             edView->documentContentChanged(i, 1);
+            reCheckSyntax(i,1);
         }
     }
 }
@@ -1105,8 +1106,11 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
         // includes changed
         if(!changedCommands.lstFilesToLoad.isEmpty()){
             // lex2 & argument parsing, syntax check
-            parent->addDocsToLoad(changedCommands.lstFilesToLoad,this);
+            bool newPackagesFound=parent->addDocsToLoad(changedCommands.lstFilesToLoad,this);
             changedCommands.lstFilesToLoad.clear();
+            if(newPackagesFound){
+                changedCommands.addedUsepackages<<"dummy"; // force handling newly included packages
+            }
         }
         if(!changedCommands.removedIncludes.isEmpty() || !changedCommands.addedIncludes.isEmpty()){
             // argument parsing & syntax check
@@ -2356,10 +2360,12 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
  * Load all in parallel
  * Perform lexing only
  * \param filenames
+ * \return true if newly loaded files contains packages
  */
-void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentDocument)
+bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentDocument)
 {
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+    bool newPackagesFound=false;
     if(conf->autoLoadChildren){
         LatexDocument *docForUpdate=nullptr;
         for(const QString &fn:filenames){
@@ -2387,6 +2393,7 @@ void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
                 doc->patchStructure(0,-1);
                 doc->lp->append(doc->ltxCommands);
                 docForUpdate=doc;
+                newPackagesFound|=!doc->usedPackages().isEmpty();
             }
         }
         if(docForUpdate){
@@ -2405,6 +2412,7 @@ void LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
             }
         }
     }
+    return newPackagesFound;
 }
 
 void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
