@@ -2186,14 +2186,16 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         doc = documents.findDocumentFromName(f_real);
         if (doc) existingView = doc->getEditorView();
     }
+    LatexDocument *presetParentDoc=nullptr;
     if(doc && doc->isIncompleteInMemory()){
         delete existingView;
         existingView=nullptr;
-        LatexDocument *m=doc->getMasterDocument();
-        if(m){
-            m->removeChild(doc);
+        presetParentDoc=doc->getMasterDocument();
+        if(presetParentDoc){
+            presetParentDoc->removeChild(doc);
         }
-        documents.deleteDocument(doc,true);
+        //documents.deleteDocument(doc,true);
+        documents.hiddenDocuments.removeAll(doc);
         doc=nullptr;
     }
     if (existingView) {
@@ -2267,6 +2269,10 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
     edit->setLatexPackageList(&latexPackageList);
     edit->setHelp(&help);
+    if(presetParentDoc){
+        // hidden doc is replaced with visible
+        presetParentDoc->addChild(doc);
+    }
 
     configureNewEditorView(edit);
 
