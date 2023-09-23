@@ -2187,7 +2187,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         if (doc) existingView = doc->getEditorView();
     }
     LatexDocument *presetParentDoc=nullptr;
-    if(doc && doc->isIncompleteInMemory()){
+    if(doc && (doc->isIncompleteInMemory() || !existingView)){
         delete existingView;
         existingView=nullptr;
         presetParentDoc=doc->getMasterDocument();

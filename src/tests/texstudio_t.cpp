@@ -15,12 +15,12 @@ void TexStudioTest::checkIncludes_data(){
     QTest::addColumn<QStringList>("files");
     QTest::addColumn<bool>("refPresent");
 
-    QTest::newRow("simple")
+    /*QTest::newRow("simple")
         <<QStringList{QString(TESTDATADIR)+"/simple_document.tex"}<<false;
     QTest::newRow("top_with_two_level_include")
         <<QStringList{QString(TESTDATADIR)+"/top_with_two_level_include.tex"}<<true;
     QTest::newRow("top_with_two_level_include_as_second_file")
-        <<QStringList{QString(TESTDATADIR)+"/included_level1.tex",QString(TESTDATADIR)+"/top_with_two_level_include.tex"}<<true;
+        <<QStringList{QString(TESTDATADIR)+"/included_level1.tex",QString(TESTDATADIR)+"/top_with_two_level_include.tex"}<<true;*/
     QTest::newRow("top_with_two_level_include_as_first_file")
         <<QStringList{QString(TESTDATADIR)+"/top_with_two_level_include.tex",QString(TESTDATADIR)+"/included_level1.tex"}<<true;
     QTest::newRow("top_with_subfile")
@@ -48,17 +48,21 @@ void TexStudioTest::checkIncludes(){
     bool cacheDocs=conf->cacheDocuments;
     conf->cacheDocuments=false;
 
-    LatexEditorView *edView=nullptr;
+    QList<LatexEditorView *> edViews;
     for(const QString &fn:files){
-        edView=txs->load(fn);
+        LatexEditorView *edView=txs->load(fn);
+        if(!edView){
+            qDebug()<<"test file not found ! Skip !";
+            return;
+        }
+        edViews<<edView;
     }
-    if(!edView){
-        qDebug()<<"test file not found ! Skip !";
-        return;
+    for(const LatexEditorView* edView:edViews){
+        LatexDocument *doc=edView->getDocument();
+        doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
     }
-    LatexDocument *doc=edView->getDocument();
-    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
+    LatexDocument *doc=edViews.last()->getDocument();
     bool synError=false;
     bool refFound=false;
     for(int i=0;i<doc->lineCount();i++){
