@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2023/08/31 for v1.06
+# Matthew Bertucci 2023/09/23 for v1.09
 
 #include:class-report
 #include:etoolbox
@@ -32,7 +32,6 @@ twoside
 \ThesisDate{date}
 \SignatureBlockSize{fontsize cmd}
 \CClicense{license type}{URL}#U
-\CCurl#*
 \PDFRightsText#*
 \SuppressAcceptorError#*
 
