@@ -27,6 +27,10 @@ void TexStudioTest::checkIncludes_data(){
         <<QStringList{QString(TESTDATADIR)+"/top_with_subfile.tex"}<<false;
     QTest::newRow("subfile")
         <<QStringList{QString(TESTDATADIR)+"/subfile_level1.tex"}<<false;
+    QTest::newRow("eqref")
+        <<QStringList{QString(TESTDATADIR)+"/test_eqref.tex"}<<true;
+    QTest::newRow("eqref via include")
+        <<QStringList{QString(TESTDATADIR)+"/test_eqref_top.tex"}<<true;
 }
 
 void TexStudioTest::checkIncludes(){
@@ -100,6 +104,10 @@ void TexStudioTest::checkIncludesCached_data(){
         <<QStringList{QString(TESTDATADIR)+"/top_with_subfile.tex"}<<false;
     QTest::newRow("subfile")
         <<QStringList{QString(TESTDATADIR)+"/subfile_level1.tex"}<<false;
+    QTest::newRow("eqref")
+        <<QStringList{QString(TESTDATADIR)+"/test_eqref.tex"}<<true;
+    QTest::newRow("eqref via include")
+        <<QStringList{QString(TESTDATADIR)+"/test_eqref_top.tex"}<<true;
 }
 
 void TexStudioTest::checkIncludesCached(){
