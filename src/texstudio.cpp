@@ -2272,6 +2272,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     if(presetParentDoc){
         // hidden doc is replaced with visible
         presetParentDoc->addChild(doc);
+        doc->setMasterDocument(presetParentDoc,false);
         doc->setLtxCommands(presetParentDoc->lp);
     }
 

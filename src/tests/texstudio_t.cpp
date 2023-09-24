@@ -31,6 +31,10 @@ void TexStudioTest::checkIncludes_data(){
         <<QStringList{QString(TESTDATADIR)+"/test_eqref.tex"}<<true;
     QTest::newRow("eqref via include")
         <<QStringList{QString(TESTDATADIR)+"/test_eqref_top.tex"}<<true;
+    QTest::newRow("2 level include")
+        <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a1.tex",QString(TESTDATADIR)+"/a2.tex"}<<false;
+    QTest::newRow("2 level include, out of order")
+        <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a2.tex",QString(TESTDATADIR)+"/a1.tex"}<<false;
 }
 
 void TexStudioTest::checkIncludes(){
@@ -112,6 +116,10 @@ void TexStudioTest::checkIncludesCached_data(){
         <<QStringList{QString(TESTDATADIR)+"/test_eqref.tex"}<<true;
     QTest::newRow("eqref via include")
         <<QStringList{QString(TESTDATADIR)+"/test_eqref_top.tex"}<<true;
+    QTest::newRow("2 level include")
+        <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a1.tex",QString(TESTDATADIR)+"/a2.tex"}<<false;
+    QTest::newRow("2 level include, out of order")
+        <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a2.tex",QString(TESTDATADIR)+"/a1.tex"}<<false;
 }
 
 void TexStudioTest::checkIncludesCached(){
