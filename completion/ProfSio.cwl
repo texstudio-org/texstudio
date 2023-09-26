@@ -1,5 +1,5 @@
 # ProfSio package
-# Matthew Bertucci 2023/09/21 for v0.1.6
+# Matthew Bertucci 2023/09/26 for v0.1.7
 
 #include:iftex
 #include:tikz
@@ -104,6 +104,18 @@ Swap#true,false
 Contraire#true,false
 Espace#true,false
 StyleAlternatif#true,false
+#endkeyvals
+
+\§
+
+\SimplificationBooleenne{expression formatée}
+\SimplificationBooleenne[clés%keyvals]{expression formatée}
+
+#keyvals:\SimplificationBooleenne
+Enonce#true,false
+Variables#true,false
+Contraire=%<a/b/c%>
+Espace#true,false
 #endkeyvals
 
 \begin{GrapheTikz}
@@ -299,3 +311,4 @@ CodeApres=%<code%>
 \TTABLEcoul#S
 \TTABLEcodebefore#S
 \TTABLEcodeafter#S
+\KnghBourrageZeros{arg}#S
