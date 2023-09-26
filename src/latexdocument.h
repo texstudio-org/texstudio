@@ -157,7 +157,7 @@ public:
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
     Q_INVOKABLE QSet<QString> usedPackages();
-    bool updateCompletionFiles(const bool forceUpdate);
+    bool updateCompletionFiles(const bool updatePackages=true,const bool updateUserCommands=true);
     const QSet<QString> &getCWLFiles() const;
 
     Q_INVOKABLE QString spellingDictName() const;

@@ -328,7 +328,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
 		emit updateCompleter();
 
     if (!removedUsepackages.isEmpty() || updateSyntaxCheck) {
-		updateCompletionFiles(updateSyntaxCheck);
+        updateCompletionFiles();
     }
 
 }
@@ -1122,9 +1122,11 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
             updateLtxCommands(true);
         }
         // usepackage changed, lex pass2 all documents
-        if(!changedCommands.addedUsepackages.isEmpty()||!changedCommands.removedUsepackages.isEmpty()){
+        if(!changedCommands.addedUsepackages.isEmpty()||!changedCommands.removedUsepackages.isEmpty()||!changedCommands.addedUserCommands.isEmpty()){
             // lex2 & argument parsing, syntax check
-            updateCompletionFiles(false);
+            const bool updatePackages=!changedCommands.addedUsepackages.isEmpty()||!changedCommands.removedUsepackages.isEmpty();
+            const bool updateUserCommands=!changedCommands.addedUserCommands.isEmpty()||!changedCommands.removedUserCommands.isEmpty();
+            updateCompletionFiles(updatePackages,updateUserCommands);
             if(!changedCommands.addedUsepackages.isEmpty()){
                 changedCommands.addedUsepackages.clear();
                 int start=0;
@@ -2790,57 +2792,56 @@ CodeSnippetList LatexDocument::additionalCommandsList(QStringList &loadedFiles)
 	return pck.completionWords;
 }
 
-bool LatexDocument::updateCompletionFiles(const bool forceUpdate)
+bool LatexDocument::updateCompletionFiles(const bool updatePackages, const bool updateUserCommands)
 {
+    if(updatePackages){
+        QSet<QString> userCommands=ltxCommands.possibleCommands["user"]; // keep user commands
+        QSet<QString> columnCommands=ltxCommands.possibleCommands["%columntypes"];
 
-	QStringList files = mUsepackageList.values();
-	bool update = forceUpdate;
-	LatexParser &latexParser = LatexParser::getInstance();
+        QStringList files = mUsepackageList.values();
+        LatexParser &latexParser = LatexParser::getInstance();
 
-	//recheck syntax of ALL documents ...
-	LatexPackage pck;
-	pck.commandDescriptions = latexParser.commandDefs;
-	pck.specialDefCommands = latexParser.specialDefCommands;
-	QStringList loadedFiles;
-	for (int i = 0; i < files.count(); i++) {
-		if (!files.at(i).endsWith(".cwl"))
-			files[i] = files[i] + ".cwl";
-	}
-	gatherCompletionFiles(files, loadedFiles, pck);
-	update = true;
+        //recheck syntax of ALL documents ...
 
-    mCWLFiles = convertStringListtoSet(loadedFiles);
-	QSet<QString> userCommandsForSyntaxCheck = ltxCommands.possibleCommands["user"];
-	QSet<QString> columntypeForSyntaxCheck = ltxCommands.possibleCommands["%columntypes"];
-	ltxCommands.optionCommands = pck.optionCommands;
-	ltxCommands.specialDefCommands = pck.specialDefCommands;
-	ltxCommands.possibleCommands = pck.possibleCommands;
-	ltxCommands.environmentAliases = pck.environmentAliases;
-	ltxCommands.commandDefs = pck.commandDescriptions;
-	QSet<QString> pckSet = pck.possibleCommands["user"];
-	ltxCommands.possibleCommands["user"] = userCommandsForSyntaxCheck.unite(pckSet);
-	ltxCommands.possibleCommands["%columntypes"] = columntypeForSyntaxCheck;
-
-	// user commands
-	QList<UserCommandPair> commands = mUserCommandList.values();
-	foreach (UserCommandPair cmd, commands) {
-		QString elem = cmd.snippet.word;
-		if (elem.startsWith("%")) { // insert specialArgs
-			int i = elem.indexOf('%', 1);
-			QString category = elem.left(i);
-			elem = elem.mid(i + 1);
-			ltxCommands.possibleCommands[category].insert(elem);
-			continue;
-		}
-		if (!elem.startsWith("\\begin{") && !elem.startsWith("\\end{")) {
-            int i = elem.indexOf(QRegularExpression("\\W"), 1);
-            if (i >= 0) elem = elem.left(i);
+        LatexPackage pck;
+        pck.commandDescriptions = latexParser.commandDefs;
+        pck.specialDefCommands = latexParser.specialDefCommands;
+        QStringList loadedFiles;
+        for (int i = 0; i < files.count(); i++) {
+            if (!files.at(i).endsWith(".cwl"))
+                files[i] = files[i] + ".cwl";
         }
-	}
+        gatherCompletionFiles(files, loadedFiles, pck);
+        mCWLFiles = convertStringListtoSet(loadedFiles);
+        ltxCommands.optionCommands = pck.optionCommands;
+        ltxCommands.specialDefCommands = pck.specialDefCommands;
+        ltxCommands.possibleCommands = pck.possibleCommands;
+        ltxCommands.environmentAliases = pck.environmentAliases;
+        ltxCommands.commandDefs = pck.commandDescriptions;
 
-	if (update) {
-		updateLtxCommands(true);
-	}
+        ltxCommands.possibleCommands["user"] = userCommands;// keep user commands
+        ltxCommands.possibleCommands["%columntypes"] = columnCommands;
+    }
+    if(updateUserCommands){
+        // user commands
+        QList<UserCommandPair> commands = mUserCommandList.values();
+        foreach (UserCommandPair cmd, commands) {
+            QString elem = cmd.snippet.word;
+            if (elem.startsWith("%")) { // insert specialArgs
+                int i = elem.indexOf('%', 1);
+                QString category = elem.left(i);
+                elem = elem.mid(i + 1);
+                ltxCommands.possibleCommands[category].insert(elem);
+                continue;
+            }
+            if (!elem.startsWith("\\begin{") && !elem.startsWith("\\end{")) {
+                int i = elem.indexOf(QRegularExpression("\\W"), 1);
+                if (i >= 0) elem = elem.left(i);
+            }
+        }
+    }
+
+    updateLtxCommands(true);
 
 	return false;
 }
@@ -3506,6 +3507,7 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         parent->addDocsToLoad(files,this);
     }
     ja=dd.value("usercommands").toArray();
+    const bool addedUserCommands=ja.size()>0;
     for (int i = 0; i < ja.size(); ++i) {
         QString cmd=ja[i].toString();
         UserCommandPair up(cmd,cmd);
@@ -3513,11 +3515,10 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         ltxCommands.possibleCommands["user"].insert(cmd);
     }
     ja=dd.value("packages").toArray();
-    bool addedPackages=false;
+    const bool addedPackages=ja.size()>0;
     for (int i = 0; i < ja.size(); ++i) {
         QString package=ja[i].toString();
         mUsepackageList.insert(nullptr,package);
-        addedPackages=true;
     }
     ja=dd.value("toc").toArray();
     QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
@@ -3548,9 +3549,9 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         se->level=pos;
         docStructure.push_back(se);
     }
-    if(addedPackages){
-        updateCompletionFiles(false);
-    }
+
+    updateCompletionFiles(addedPackages,addedUserCommands);
+
     m_cachedDataOnly=true;
     return true;
 }

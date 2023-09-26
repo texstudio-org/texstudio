@@ -6795,7 +6795,7 @@ void Texstudio::generalOptions()
                     if (configManager.editorConfig->realtimeChecking) {
                         edView->document->updateLtxCommands();
                         edView->documentContentChanged(0, edView->document->lines());
-                        edView->document->updateCompletionFiles(false);
+                        edView->document->updateCompletionFiles(true,false);
                         if(recheckSyntax){
                             edView->reCheckSyntax(0);
                         }
@@ -10001,7 +10001,7 @@ void Texstudio::packageScanCompleted(QString name)
             foreach(const QString &key,keys){
                 documents.cachedPackages.remove(key); // TODO: check is this still correct if keys are complex?
             }
-			doc->updateCompletionFiles(false);
+            doc->updateCompletionFiles(true,false);
 		}
 	}
 }
