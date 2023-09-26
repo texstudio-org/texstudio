@@ -284,6 +284,8 @@ void SyntaxCheckTest::checkArguments_data(){
              <<"\\@as"<<false;
      QTest::newRow("at2")
              <<"\\sdf@as"<<false;
+     QTest::newRow("unknown command")
+         <<"\\sdfs"<<true;
      QTest::newRow("newcommand")
              <<"\\newcommand{\\test}{\\abcd}"<<false;
      QTest::newRow("newcommand2")
