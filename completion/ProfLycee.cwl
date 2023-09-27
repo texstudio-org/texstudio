@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/09/04 for v2.7.4
+# Matthew Bertucci 2023/09/27 for v2.7.6
 
 #include:mathtools
 #include:amssymb
@@ -177,15 +177,20 @@ HautRes=%<hauteur%>
 
 ## Code Python « simple » via le package listings ##
 \begin{CodePythonLst}{tcolorbox options}#V
-\begin{CodePythonLst}[largeur%l]{tcolorbox options}#V
+\begin{CodePythonLst}[options%keyvals]{tcolorbox options}#V
 \begin{CodePythonLst}*{tcolorbox options}#V
-\begin{CodePythonLst}*[largeur%l]{tcolorbox options}#V
+\begin{CodePythonLst}*[options%keyvals]{tcolorbox options}#V
 \end{CodePythonLst}
 \begin{CodePythonLstAlt}{tcolorbox options}#V
-\begin{CodePythonLstAlt}[largeur%l]{tcolorbox options}#V
+\begin{CodePythonLstAlt}[options%keyvals]{tcolorbox options}#V
 \begin{CodePythonLstAlt}*{tcolorbox options}#V
-\begin{CodePythonLstAlt}*[largeur%l]{tcolorbox options}#V
+\begin{CodePythonLstAlt}*[options%keyvals]{tcolorbox options}#V
 \end{CodePythonLstAlt}
+
+#keyvals:\begin{CodePythonLst},\begin{CodePythonLstAlt}
+Largeur=##L
+PremLigne=%<numéro%>
+#endkeyvals
 
 \CodePythonLstFichier{tcolorbox options}{file}
 \CodePythonLstFichier[largeur%l]{tcolorbox options}{file}
@@ -198,7 +203,9 @@ HautRes=%<hauteur%>
 
 ## Code Python via le package piton ##
 \begin{CodePiton}{tcolorbox options}#V
+\begin{CodePiton}{tcolorbox options}<line options>#V
 \begin{CodePiton}[options%keyvals]{tcolorbox options}#V
+\begin{CodePiton}[options%keyvals]{tcolorbox options}<line options>#V
 \end{CodePiton}
 
 #keyvals:\begin{CodePiton}
@@ -228,27 +235,38 @@ Logo#true,false
 
 ## Code & Console Python, via les packages Pythontex ou Minted ##
 \begin{CodePythonMinted}{tcolorbox options}#V
-\begin{CodePythonMinted}[largeur%l]{tcolorbox options}#V
+\begin{CodePythonMinted}[options%keyvals]{tcolorbox options}#V
 \begin{CodePythonMinted}*{tcolorbox options}#V
-\begin{CodePythonMinted}*[largeur%l]{tcolorbox options}#V
+\begin{CodePythonMinted}*[options%keyvals]{tcolorbox options}#V
 \end{CodePythonMinted}
 \begin{CodePythonMintedAlt}{tcolorbox options}#V
-\begin{CodePythonMintedAlt}[largeur%l]{tcolorbox options}#V
+\begin{CodePythonMintedAlt}[options%keyvals]{tcolorbox options}#V
 \begin{CodePythonMintedAlt}*{tcolorbox options}#V
-\begin{CodePythonMintedAlt}*[largeur%l]{tcolorbox options}#V
+\begin{CodePythonMintedAlt}*[options%keyvals]{tcolorbox options}#V
 \end{CodePythonMintedAlt}
+
+#keyvals:\begin{CodePythonMinted},\begin{CodePythonMintedAlt}
+Largeur=##L
+PremLigne=%<numéro%>
+#endkeyvals
 
 ## Pseudo-Code ##
 \begin{PseudoCode}{tcolorbox options}#V
-\begin{PseudoCode}[largeur%l]{tcolorbox options}#V
+\begin{PseudoCode}[options%keyvals]{tcolorbox options}#V
 \begin{PseudoCode}*{tcolorbox options}#V
-\begin{PseudoCode}*[largeur%l]{tcolorbox options}#V
+\begin{PseudoCode}*[options%keyvals]{tcolorbox options}#V
 \end{PseudoCode}
 \begin{PseudoCodeAlt}{tcolorbox options}#V
-\begin{PseudoCodeAlt}[largeur%l]{tcolorbox options}#V
+\begin{PseudoCodeAlt}[options%keyvals]{tcolorbox options}#V
 \begin{PseudoCodeAlt}*{tcolorbox options}#V
-\begin{PseudoCodeAlt}*[largeur%l]{tcolorbox options}#V
+\begin{PseudoCodeAlt}*[options%keyvals]{tcolorbox options}#V
 \end{PseudoCodeAlt}
+
+#keyvals:\begin{PseudoCode},\begin{PseudoCodeAlt}
+Largeur=##L
+PremLigne=%<numéro%>
+Couleur#true,false
+#endkeyvals
 
 ## Terminal Windows/UNiX/OSX ##
 \begin{TerminalWin}{Titre=%<texte%>}#V
@@ -1084,6 +1102,7 @@ Txt
 \end{CodePythontexAlt}
 #keyvals:\begin{CodePythontex},\begin{CodePythontexAlt}
 Largeur=##L
+PremLigne=%<numéro%>
 Centre#true,false
 TaillePolice=%<font commands%>
 EspacementVertical=%<factor%>
