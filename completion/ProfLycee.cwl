@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/09/27 for v2.7.6
+# Matthew Bertucci 2023/09/29 for v2.7.7
 
 #include:mathtools
 #include:amssymb
@@ -532,6 +532,18 @@ Couleur=#%color
 Style={%<TikZ clés%>}
 xl=%<num%>
 xr=%<num%>
+#endkeyvals
+
+## Points de discontinuité ##
+\PtsDiscontinuite{liste}
+\PtsDiscontinuite[clés%keyvals]{liste}
+
+#keyvals:\PtsDiscontinuite
+Couleur=#%color
+Epaisseur=##L
+Pos=#G,D
+Echelle=%<echelle%>
+Type=#par,cro,rond,demirond
 #endkeyvals
 
 ## Boîtes à moustaches ##
