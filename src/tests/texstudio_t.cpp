@@ -15,12 +15,12 @@ void TexStudioTest::checkIncludes_data(){
     QTest::addColumn<QStringList>("files");
     QTest::addColumn<bool>("refPresent");
 
-    /*QTest::newRow("simple")
+    QTest::newRow("simple")
         <<QStringList{QString(TESTDATADIR)+"/simple_document.tex"}<<false;
     QTest::newRow("top_with_two_level_include")
         <<QStringList{QString(TESTDATADIR)+"/top_with_two_level_include.tex"}<<true;
     QTest::newRow("top_with_two_level_include_as_second_file")
-        <<QStringList{QString(TESTDATADIR)+"/included_level1.tex",QString(TESTDATADIR)+"/top_with_two_level_include.tex"}<<true;*/
+        <<QStringList{QString(TESTDATADIR)+"/included_level1.tex",QString(TESTDATADIR)+"/top_with_two_level_include.tex"}<<true;
     QTest::newRow("top_with_two_level_include_as_first_file")
         <<QStringList{QString(TESTDATADIR)+"/top_with_two_level_include.tex",QString(TESTDATADIR)+"/included_level1.tex"}<<true;
     QTest::newRow("top_with_subfile")
@@ -35,6 +35,8 @@ void TexStudioTest::checkIncludes_data(){
         <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a1.tex",QString(TESTDATADIR)+"/a2.tex"}<<false;
     QTest::newRow("2 level include, out of order")
         <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a2.tex",QString(TESTDATADIR)+"/a1.tex"}<<false;
+    QTest::newRow("usercommands")
+        <<QStringList{QString(TESTDATADIR)+"/usercommands.tex"}<<false;
 }
 
 void TexStudioTest::checkIncludes(){

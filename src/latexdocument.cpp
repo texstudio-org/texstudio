@@ -1137,6 +1137,9 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
                     loopAgain=true;
                     updateCompleter=true;
                 }
+                if(!changedCommands.addedUserCommands.isEmpty()){
+                    lp->possibleCommands["user"].unite(ltxCommands.possibleCommands["user"]);
+                }
             }
             synChecker.setLtxCommands(lp); // redundant here, updateCompletionfiles
             reCheckSyntax();
