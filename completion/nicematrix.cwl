@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/08/14 for v6.22
+# Matthew Bertucci 2023/09/29 for v6.24
 
 #include:amsmath
 #include:array
@@ -114,14 +114,6 @@ code-for-first-col=%<code%>
 code-for-last-col=%<code%>
 nullify-dots
 renew-dots
-xdots/horizontal-labels
-xdots/color=#%color
-xdots/radius=##L
-xdots/shorten-start=##L
-xdots/shorten-end=##L
-xdots/shorten=##L
-xdots/inter=##L
-xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
 code-after=%<code%>
 cell-space-top-limit=##L
 cell-space-bottom-limit=##L
@@ -341,6 +333,14 @@ sub-matrix/hlines=
 sub-matrix/hvlines
 rules/width=##L
 rules/color=#%color
+xdots/horizontal-labels
+xdots/color=#%color
+xdots/radius=##L
+xdots/shorten-start=##L
+xdots/shorten-end=##L
+xdots/shorten=##L
+xdots/inter=##L
+xdots/line-style=#standard,solid,dotted,densely dotted,loosely dotted,dashed,densely dashed,loosely dashed
 #endkeyvals
 
 \SubMatrix{delim1}{i-j}{k-l}{delim2}#t
@@ -373,6 +373,14 @@ right-shorten
 shorten
 yshift=##L
 color=#%color
+#endkeyvals
+
+\TikzEveryCell{TikZ keys}
+\TikzEveryCell[options%keyvals]{TikZ keys}
+
+#keyvals:\TikzEveryCell
+empty
+not-empty
 #endkeyvals
 
 \tabularnote{note%text}
