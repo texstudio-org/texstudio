@@ -1,5 +1,5 @@
 # ProfSio package
-# Matthew Bertucci 2023/09/26 for v0.1.7
+# Matthew Bertucci 2023/09/29 for v0.1.8
 
 #include:iftex
 #include:tikz
@@ -85,6 +85,8 @@ Legende#true,false
 
 \KarnaughCasesResult{contenu binaire des cases}
 \KarnaughCasesResult*{contenu binaire des cases}
+\KarnaughCasesAuto{expression booléenne}
+\KarnaughCasesAuto*{expression booléenne}
 \KarnaughBlocRegroup{coinA}{coinB}
 \KarnaughBlocRegroup[clés%keyvals]{coinA}{coinB}
 
