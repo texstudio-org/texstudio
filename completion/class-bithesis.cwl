@@ -1,9 +1,12 @@
 # bithesis class
-# Matthew Bertucci 2023/04/23 for v3.5.3
+# Matthew Bertucci 2023/10/01 for v3.6.0
 
 #include:l3keys2e
 #include:class-ctexbook
 #include:geometry
+#include:xcolor
+# loads table option of xcolot
+#include:colortbl
 #include:xeCJK
 #include:titletoc
 #include:setspace
@@ -16,7 +19,6 @@
 #include:tikz
 #include:etoolbox
 #include:hyperref
-#include:xcolor
 #include:caption
 #include:array
 #include:amsmath
@@ -58,6 +60,7 @@ cover/labelAlign=#c,l,r
 cover/valueAlign=#c,l,r
 cover/underlineThickness=##L
 cover/underlineOffset=##L
+cover/hideCoverInPeerReview#true,false
 info={%<键值列表%>}
 info/title=%<字符串%>
 info/titleEn=%<字符串%>
@@ -88,12 +91,17 @@ info/instituteEn=%<字符串%>
 info/defenseDate=%<字符串%>
 info/defenseDateEn=%<字符串%>
 info/classifiedLevel=%<字符串%>
+info/teacher=%<字符串%>
+info/semester=%<字符串%>
 style={%<键值列表%>}
 style/head=%<字符串%>
+style/headline=%<字符串%>
 style/bibliographyIndent#true,false
 style/pageVerticalAlign=#top,scattered
 style/mathFont=#asana,bonum,cm,concrete,dejavu,erewhon,euler,fira,garamond,gfsneohellenic,kp,libertinus,lm,newcm,pagella,schola,stix,stix2,termes,xcharter,xits,none
+style/windowsSimSunFakeBold#true,false
 style/unicodeMathOptions=%<任意选项%>
+style/hyphen#true,false
 TOC={%<键值列表%>}
 TOC/abstract#true,false
 TOC/abstractEn#true,false
@@ -111,8 +119,11 @@ misc={%<键值列表%>}
 misc/arialFont=%<字符串%>
 misc/tabularFontSize=%<其他字号%>
 misc/autoref={%<键值列表%>}
+misc/hideLinks#true,false
 const={%<键值列表%>}
 const/autoref={%<键值列表%>}
+const/style/substituteSymbol=%<字符串%>
+const/info={%<键值列表%>}
 #endkeyvals
 
 \begin{abstractEn}
@@ -181,6 +192,8 @@ const/autoref={%<键值列表%>}
 \MakeTitle
 \MakeTOC
 \pubsection{text}
+\SecretInfo{arg}
+\SecretInfo{arg}[opt]
 
 # not documented
 \begin{blindPeerReview}#*
