@@ -1,7 +1,6 @@
 # reledmac package
-# Matthew Bertucci 2023/07/04 for v2.39.2
+# Matthew Bertucci 2023/09/30 for v2.39.7
 
-#include:xkeyval
 #include:xargs
 #include:etoolbox
 #include:suffix
@@ -9,6 +8,7 @@
 #include:ifluatex
 #include:ragged2e
 #include:ifxetex
+#include:xkeyval
 
 #keyvals:\usepackage/reledmac#c
 series={%<A,B,C,D,and/or E%>}
@@ -31,6 +31,7 @@ nopenalties
 auxdir=%<folder%>
 swcaseinsensitive
 noresetlinenumannotation
+onlyonerule
 antilabe
 #endkeyvals
 
@@ -524,6 +525,8 @@ C
 \beforenotesX[series]{length}
 \Xprenotes{length}
 \prenotesX{length}
+\Xonlyonerule
+\onlyoneruleX
 \Xafterrule{length}
 \Xafterrule[series]{length}
 \afterruleX{length}
