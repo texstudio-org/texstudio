@@ -1,4 +1,5 @@
 #include "searchresultmodel.h"
+#include "latexdocument.h"
 #include "qdocument.h"
 #include "qdocumentsearch.h"
 #include "smallUsefulFunctions.h"
@@ -201,9 +202,15 @@ QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int ro
 		} else {
 			return Qt::PartiallyChecked;
 		}
-	}
-	case Qt::DisplayRole:
-		return (search.doc ? QDir::toNativeSeparators(search.doc->getFileName()) : tr("File closed")) + QString(" (%1)").arg(search.lines.size());
+    }
+    case Qt::DisplayRole: {
+        if(!search.doc){
+            return tr("File closed") + QString(" (%1)").arg(search.lines.size());
+        }
+        LatexDocument *ldoc=dynamic_cast<LatexDocument*>(search.doc.data());
+        QString fn=ldoc->getFileName();
+        return QDir::toNativeSeparators(fn);
+    }
 	}
 	return QVariant();
 }
