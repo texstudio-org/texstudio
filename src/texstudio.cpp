@@ -2187,7 +2187,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         if (doc) existingView = doc->getEditorView();
     }
     LatexDocument *presetParentDoc=nullptr;
-    if(doc && (doc->isIncompleteInMemory() || !existingView)){
+    if(doc && doc->isIncompleteInMemory()){
         delete existingView;
         existingView=nullptr;
         presetParentDoc=doc->getMasterDocument();
@@ -2222,33 +2222,34 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
     // find closed master doc
     if (doc) {
         bool unmodified=doc->isClean();
-        LatexEditorView *edit = new LatexEditorView(nullptr, configManager.editorConfig, doc);
-        edit->setLatexPackageList(&latexPackageList);
-        edit->document = doc;
-        edit->editor->setFileName(doc->getFileName());
-        edit->setHelp(&help);
-        disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
-        configureNewEditorView(edit);
-        if (edit->editor->fileInfo().suffix().toLower() != "tex")
-            m_languages->setLanguage(edit->editor, f_real);
-        if (!edit->editor->languageDefinition())
-            guessLanguageFromContent(m_languages, edit->editor);
+        LatexEditorView *edView = new LatexEditorView(nullptr, configManager.editorConfig, doc);
+        edView->setLatexPackageList(&latexPackageList);
+        edView->document = doc;
+        edView->editor->setFileName(doc->getFileName());
+        edView->setHelp(&help);
+        disconnect(doc, SIGNAL(contentsChange(int, int)), doc, SLOT(patchStructure(int, int)));
+        configureNewEditorView(edView);
+        if (edView->editor->fileInfo().suffix().toLower() != "tex")
+            m_languages->setLanguage(edView->editor, f_real);
+        if (!edView->editor->languageDefinition())
+            guessLanguageFromContent(m_languages, edView->editor);
 
-        doc->setLineEnding(edit->editor->document()->originalLineEnding());
-        doc->setEditorView(edit); //update file name (if document didn't exist)
+        doc->setLineEnding(doc->originalLineEnding());
+        doc->setEditorView(edView); //update file name (if document didn't exist)
 
-        configureNewEditorViewEnd(edit, true, false);
+        configureNewEditorViewEnd(edView, true, false);
 
-        documents.addDocument(edit->document, false);
+        documents.addDocument(doc, false);
 
         if(unmodified)
             doc->setClean();
 
-        bookmarks->restoreBookmarks(edit);
+        bookmarks->restoreBookmarks(edView);
 
         doc->startSyntaxChecker(); // only syntax check visible documents, start when loading hidden docs
+        edView->documentContentChanged(0, doc->lines());
 
-        return edit;
+        return edView;
     }
 
     //load it otherwise
