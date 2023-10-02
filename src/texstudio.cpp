@@ -2187,6 +2187,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         if (doc) existingView = doc->getEditorView();
     }
     LatexDocument *presetParentDoc=nullptr;
+    LatexDocument *docToDelete=nullptr;
     if(doc && doc->isIncompleteInMemory()){
         delete existingView;
         existingView=nullptr;
@@ -2196,6 +2197,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         }
         //documents.deleteDocument(doc,true);
         documents.hiddenDocuments.removeAll(doc);
+        docToDelete=doc;
         doc=nullptr;
     }
     if (existingView) {
@@ -2352,6 +2354,8 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         }
     }
     doc->startSyntaxChecker(); // only syntax check visible documents
+
+    delete docToDelete; // remove cached document which was replaced by newly loaded document
 
 #ifndef Q_OS_MAC
     if (windowState() == Qt::WindowMinimized || !isVisible() || !QApplication::activeWindow()) {
