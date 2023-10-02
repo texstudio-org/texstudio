@@ -1,5 +1,5 @@
 # glossary-hypernav package
-# Matthew Bertucci 2022/10/28 for v4.50
+# Matthew Bertucci 2023/10/02 for v4.53
 
 \glsnavhypertarget{group-label}{group-title%text}
 \glsnavhypertarget[glossary-label]{group-label}{group-title%text}
