@@ -290,7 +290,7 @@ public slots:
     void patchStructure(int linenr, int count, bool recheck = false);
     void patchStructureRemoval(QDocumentLineHandle *dlh,int hint=-1,int count=1);
 	void initClearStructure();
-	void updateLtxCommands(bool updateAll = false);
+    void updateLtxCommands(bool updateAll = false, bool updatePackages=true);
     void addLtxCommands();
     void setLtxCommands(QSharedPointer<LatexParser> cmds);
     void setSpeller(SpellerUtility *speller);

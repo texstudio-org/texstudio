@@ -2844,7 +2844,7 @@ bool LatexDocument::updateCompletionFiles(const bool updatePackages, const bool 
         }
     }
 
-    updateLtxCommands(true);
+    updateLtxCommands(true,updatePackages);
 
 	return false;
 }
@@ -3102,13 +3102,20 @@ QString LatexDocuments::findPackageByCommand(const QString command)
 }
 
 
-void LatexDocument::updateLtxCommands(bool updateAll)
+void LatexDocument::updateLtxCommands(bool updateAll,bool updatePackages)
 {
-    *lp=LatexParser::getInstance(); // append commands set in config
-	QList<LatexDocument *>listOfDocs = getListOfDocs();
-	foreach (const LatexDocument *elem, listOfDocs) {
-        lp->append(elem->ltxCommands);
-	}
+    QList<LatexDocument *>listOfDocs = getListOfDocs();
+    if(updatePackages){
+        *lp=LatexParser::getInstance(); // append commands set in config
+        foreach (const LatexDocument *elem, listOfDocs) {
+            lp->append(elem->ltxCommands);
+        }
+    }else{
+        lp->possibleCommands["user"].clear();
+        foreach (const LatexDocument *elem, listOfDocs) {
+            lp->possibleCommands["user"].unite(elem->ltxCommands.possibleCommands["user"]);
+        }
+    }
 
 	if (updateAll) {
 		foreach (LatexDocument *elem, listOfDocs) {
