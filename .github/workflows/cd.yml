@@ -186,7 +186,10 @@ jobs:
         wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz
         sudo tar xvf ./QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz -C /usr/local --strip-components=1
         rm QuaZip-${{ env.OSX_QUAZIP_VERSION }}-Darwin.tar.xz
-        brew install cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 nspr nss openjpeg
+        wget https://github.com/sunderme/homebrew-qt6-modules/releases/download/${{ env.OSX_QT_VERSION }}/nss.tar.xz
+        sudo tar xvf ./nss.tar.xz -C /usr/local --strip-components=1
+        rm nss.tar.xz
+        brew install cairo fontconfig freetype gettext jpeg libpng libtiff little-cms2 openjpeg
         brew install ninja pkg-config
 
     - name: Configure
