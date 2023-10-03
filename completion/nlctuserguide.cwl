@@ -1,5 +1,5 @@
 # nlctuserguide package
-# Matthew Bertucci 2023/06/28 for v1.09
+# Matthew Bertucci 2023/10/03 for v1.10
 
 #include:iftex
 #include:etoolbox
@@ -377,6 +377,7 @@ longpluralaccess=%<text%>
 \glongswitch{switch-name}{desc-cmds}
 \glongswitchpunc{switch-name}{desc-cmds}
 \glsbibwriteentry{entry}{entry-label}{desc-cmds}
+\glscmd{csname}
 \glscsname{label}#r
 \glscsname[options]{label}#r
 \gmod{modifier-name}{desc-cmds}
@@ -436,6 +437,8 @@ longpluralaccess=%<text%>
 \inlineidxpdef{entry}
 \inlineoptdef{option-name}
 \inlineoptdef[type]{option-name}
+\inlinepkgdef{package}
+\inlinepkgdef[type]{package}
 \inlineswitchdef{switch}
 \inpackage{package}
 \itemtitle{text}
