@@ -11384,7 +11384,7 @@ void Texstudio::updateTOC(){
         fn=tr("untitled");
     }
     root->setText(0,fn);
-    root->setData(0,Qt::UserRole,QVariant::fromValue<LatexDocument *>(doc));
+    root->setData(0,Qt::UserRole,QVariant::fromValue<void *>(static_cast<void*>(doc)));
 
     QList<QTreeWidgetItem*> todoList;
     parseStruct(doc,rootVector,nullptr,&todoList);
@@ -11421,7 +11421,7 @@ void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old
             root=nullptr;
             for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
                 QTreeWidgetItem* item=structureTreeWidget->topLevelItem(i);
-                LatexDocument *doc = item->data(0,Qt::UserRole).value<LatexDocument *>();
+                LatexDocument *doc = static_cast<LatexDocument*>(item->data(0,Qt::UserRole).value<void*>());
                 if(old && old->document!=documents.getCurrentDocument() && doc==old->document){
                     // remove cursor mark from structureView of not current document (after document switch)
                     updateCurrentPosInTOC(item,old);
@@ -12061,7 +12061,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
         }else{
             for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
                 QTreeWidgetItem *item = structureTreeWidget->topLevelItem(i);
-                LatexDocument *document = item->data(0,Qt::UserRole).value<LatexDocument *>();
+                LatexDocument *document = static_cast<LatexDocument *>(item->data(0,Qt::UserRole).value<void *>());
                 if(document == doc){
                     root=item;
                 }else{
@@ -12088,7 +12088,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
                 LatexDocument *document;
                 for(;j<structureTreeWidget->topLevelItemCount();++j){
                     QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
-                    document = item->data(0,Qt::UserRole).value<LatexDocument *>();
+                    document = static_cast<LatexDocument*>(item->data(0,Qt::UserRole).value<void*>());
                     if(document == documents.documents.value(i)){
                         found=true;
                         break;
@@ -12108,7 +12108,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
                     LatexDocument *doc=documents.documents.value(i);
 
                     item->setText(0,doc->getFileInfo().fileName());
-                    item->setData(0,Qt::UserRole,QVariant::fromValue<LatexDocument *>(doc));
+                    item->setData(0,Qt::UserRole,QVariant::fromValue<void*>(static_cast<void*>(doc)));
                     if(doc==master){
                         item->setIcon(0,getRealIcon("masterdoc"));
                     }else{
@@ -12167,7 +12167,7 @@ void Texstudio::updateStructureLocally(bool updateAll){
             fn=tr("untitled");
         }
         root->setText(0,fn);
-        root->setData(0,Qt::UserRole,QVariant::fromValue<LatexDocument *>(doc));
+        root->setData(0,Qt::UserRole,QVariant::fromValue<void*>(static_cast<void*>(doc)));
         if(doc==master){
             root->setIcon(0,getRealIcon("masterdoc"));
         }else{
