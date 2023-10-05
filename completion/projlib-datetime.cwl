@@ -26,12 +26,17 @@ day-month-year
 \ProjLibToday
 \ProjLibToday[options%keyvals]
 
-\ProjLibdate{date}
-\ProjLibdate[options%keyvals]{date}
-\ProjLibDate{date}
-\ProjLibDate[options%keyvals]{date}
+\Thedate{date}
+\Thedate[options%keyvals]{date}
+\TheDate{date}
+\TheDate[options%keyvals]{date}
+\ProjLibdate{date}#*
+\ProjLibdate[options%keyvals]{date}#*
+\ProjLibDate{date}#*
+\ProjLibDate[options%keyvals]{date}#*
 
-#keyvals:\ProjLibtoday,\ProjLibToday,\ProjLibdate,\ProjLibDate
+
+#keyvals:\ProjLibtoday,\ProjLibToday,\Thedate,\TheDate,\ProjLibdate,\ProjLibDate
 year-month-day=
 month-day-year=
 day-month-year=
@@ -45,6 +50,3 @@ only-year=
 only-month=
 only-day=
 #endkeyvals
-
-\Thedate
-\TheDate
