@@ -742,6 +742,7 @@
 <file>completion/class-hgbthesis.cwl</file>
 <file>completion/class-hitec.cwl</file>
 <file>completion/class-hletter.cwl</file>
+<file>completion/class-homework.cwl</file>
 <file>completion/class-hu-berlin-letter.cwl</file>
 <file>completion/classico.cwl</file>
 <file>completion/classics.cwl</file>
@@ -2520,6 +2521,7 @@
 <file>completion/nolbreaks.cwl</file>
 <file>completion/nomencl.cwl</file>
 <file>completion/nonfloat.cwl</file>
+<file>completion/non-decimal-units.cwl</file>
 <file>completion/normalcolor.cwl</file>
 <file>completion/notes2bib.cwl</file>
 <file>completion/notespages.cwl</file>
@@ -3144,6 +3146,7 @@
 <file>completion/scalerel.cwl</file>
 <file>completion/scanpages.cwl</file>
 <file>completion/schedule.cwl</file>
+<file>completion/schemabloc.cwl</file>
 <file>completion/schemata.cwl</file>
 <file>completion/schola-otf.cwl</file>
 <file>completion/scholax.cwl</file>
