@@ -1578,3 +1578,7 @@ brandeis-dissertation:
 class-brandeis-dissertation
 latex-document
 tex
+homework:
+class-homework
+latex-document
+tex
