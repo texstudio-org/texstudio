@@ -1,5 +1,5 @@
 # sidenotesplus package
-# Matthew Bertucci 2022/05/21 for v1.00
+# Matthew Bertucci 2023/10/05 for v1.03
 
 #include:marginnote
 #include:caption
@@ -88,6 +88,30 @@ alerton
 \sidecite[postnote]{bibid}#*C
 \sidecite[prenote][postnote]{bibid}#*C
 \sidecite|%<float offset%>|<%<fixed offset%>>(%<mark%>)!%<color%>![%<prenote%>][%<postnote%>]{%<bibid%>}
+\sidecite*{bibid}#C
+\sidecite*[postnote]{bibid}#*C
+\sidecite*[prenote][postnote]{bibid}#*C
+\sidecite*|%<float offset%>|<%<fixed offset%>>(%<mark%>)!%<color%>![%<prenote%>][%<postnote%>]{%<bibid%>}
+\sidecitebefore{bibid}#C
+\sidecitebefore[postnote]{bibid}#*C
+\sidecitebefore[prenote][postnote]{bibid}#*C
+\sidecitebefore|%<float offset%>|<%<fixed offset%>>(%<mark%>)!%<color%>![%<prenote%>][%<postnote%>]{%<bibid%>}
+\sidecitebefore*{bibid}#C
+\sidecitebefore*[postnote]{bibid}#*C
+\sidecitebefore*[prenote][postnote]{bibid}#*C
+\sidecitebefore*|%<float offset%>|<%<fixed offset%>>(%<mark%>)!%<color%>![%<prenote%>][%<postnote%>]{%<bibid%>}
+\sideciteafter{bibid}#C
+\sideciteafter[postnote]{bibid}#*C
+\sideciteafter[prenote][postnote]{bibid}#*C
+\sideciteafter|%<float offset%>|<%<fixed offset%>>(%<mark%>)!%<color%>![%<prenote%>][%<postnote%>]{%<bibid%>}
+\sideciteafter*{bibid}#C
+\sideciteafter*[postnote]{bibid}#*C
+\sideciteafter*[prenote][postnote]{bibid}#*C
+\sideciteafter*|%<float offset%>|<%<fixed offset%>>(%<mark%>)!%<color%>![%<prenote%>][%<postnote%>]{%<bibid%>}
+\sidecitemark
+\sidecitemark(%<mark%>)!%<color%>!
+\sidecitemark*
+\sidecitemark*(%<mark%>)!%<color%>!
 \sidecitet{bibid}#C
 \sidecitet[postnote]{bibid}#*C
 \sidecitet[prenote][postnote]{bibid}#*C

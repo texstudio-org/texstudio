@@ -1,5 +1,5 @@
 # newfloat package
-# Matthew Bertucci 11/17/2021 for v1.1
+# Matthew Bertucci 2023/10/02 for v1.2
 
 #include:keyval
 
@@ -19,6 +19,8 @@ chapterlistsgap=##L
 fileext=%<file extension%>
 listname=%<list name%>
 name=%<name%>
+autorefname=%<name%>
+legendname=%<name%>
 placement=%<combination of htbp%>
 within=%<<counter> or none%>
 chapterlistsgaps=#on,off

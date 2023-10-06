@@ -1,5 +1,5 @@
 # ProfSio package
-# Matthew Bertucci 2023/09/21 for v0.1.6
+# Matthew Bertucci 2023/09/29 for v0.1.8
 
 #include:iftex
 #include:tikz
@@ -85,6 +85,8 @@ Legende#true,false
 
 \KarnaughCasesResult{contenu binaire des cases}
 \KarnaughCasesResult*{contenu binaire des cases}
+\KarnaughCasesAuto{expression booléenne}
+\KarnaughCasesAuto*{expression booléenne}
 \KarnaughBlocRegroup{coinA}{coinB}
 \KarnaughBlocRegroup[clés%keyvals]{coinA}{coinB}
 
@@ -104,6 +106,18 @@ Swap#true,false
 Contraire#true,false
 Espace#true,false
 StyleAlternatif#true,false
+#endkeyvals
+
+\§
+
+\SimplificationBooleenne{expression formatée}
+\SimplificationBooleenne[clés%keyvals]{expression formatée}
+
+#keyvals:\SimplificationBooleenne
+Enonce#true,false
+Variables#true,false
+Contraire=%<a/b/c%>
+Espace#true,false
 #endkeyvals
 
 \begin{GrapheTikz}
@@ -299,3 +313,4 @@ CodeApres=%<code%>
 \TTABLEcoul#S
 \TTABLEcodebefore#S
 \TTABLEcodeafter#S
+\KnghBourrageZeros{arg}#S

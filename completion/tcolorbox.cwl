@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2023/02/10 for v6.0.0
+# Matthew Bertucci updated 2023/09/26 for v6.1.0
 
 #include:environ
 #include:etoolbox
@@ -286,6 +286,7 @@ invisible
 saveto=%<file name%>
 lowerbox=#visible,invisible,ignored
 savelowerto=%<file name%>
+redirectlowerto=%<file name%>
 lower separated#true,false
 savedelimiter=%<name%>
 colframe=#%color

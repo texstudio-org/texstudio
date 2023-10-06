@@ -1,5 +1,5 @@
 # bitbeamer class
-# Matthew Bertucci 2022/08/14 for v3.0.0
+# Matthew Bertucci 2023/10/01 for v3.6.0
 
 #include:l3keys2e
 #include:class-ctexbeamer
@@ -55,3 +55,7 @@ aspectratio=#2013,1610,169,149,141,54,43,32,%<xxxx%>
 #endkeyvals
 
 \CJKhl{color}{text}
+
+bitred#B
+bitgreen#B
+bitdarkgreen#B
