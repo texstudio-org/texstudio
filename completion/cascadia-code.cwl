@@ -1,5 +1,5 @@
 # cascadia-code package
-# Matthew Bertucci 10/6/2021 for v0.0.1
+# Matthew Bertucci 2023/10/07 for v0.0.2
 
 #include:xkeyval
 #include:fontenc
@@ -9,7 +9,6 @@
 
 #keyvals:\usepackage/cascadia-code#c
 scale=%<factor%>
-scaled=%<factor%>
 lining
 tabular
 mainfont
