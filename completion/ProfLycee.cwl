@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/09/29 for v2.7.7
+# Matthew Bertucci 2023/10/08 for v2.7.8
 
 #include:mathtools
 #include:amssymb
@@ -48,6 +48,7 @@
 #include:interval
 #include:esvect
 #include:xspace
+#include:modulus
 
 #keyvals:\usepackage/ProfLycee#c
 xcolor
@@ -755,8 +756,10 @@ AffBase#true,false
 
 \ConversionBinHex{nombre}
 \ConversionBinHex[options%keyvals]{nombre}
+\ConversionHexBin{nombre}
+\ConversionHexBin[options%keyvals]{nombre}
 
-#keyvals:\ConversionBinHex
+#keyvals:\ConversionBinHex,\ConversionHexBin
 AffBase#true,false
 Details#true,false
 #endkeyvals
@@ -810,6 +813,23 @@ Inconnues=%<x/y%>
 Entier=%<nom%>
 Cadres#true,false
 PresPGCD#true,false
+#endkeyvals
+
+## Diviseurs ##
+\ListeDiviseurs{nombre}
+\ListeDiviseurs[AffNom=false]{%<nombre%>}
+\ListeDiviseurs*{nombre}
+\ListeDiviseurs*[AffNom=false]{%<nombre%>}
+\ArbreDiviseurs{nombre}
+\ArbreDiviseurs[clés%keyvals]{nombre}
+
+#keyvals:\ArbreDiviseurs
+EspaceNiveau=%<nombre%>
+EspaceFeuille=%<nombre%>
+Details#true,false
+CouleurDetails=#%color
+Echelle=%<nombre%>
+Fleches#true,false
 #endkeyvals
 
 ## Fractions, ensembles ##
@@ -1737,4 +1757,5 @@ CouleurVertForet#B
 \FctRepartExtremite#S
 \HistoGrille#S
 \HistoExtraGridY#S
+\ConvHexBinBloc{arg}#S
 \HistoPosLeg#S
