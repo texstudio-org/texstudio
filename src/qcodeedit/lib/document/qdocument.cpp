@@ -4937,9 +4937,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
         case QDocumentCursor::StartOfLineText :
             // jump in front of first charatcter in line
             // if already there or only spaces before, jump to start of line
-            if ( atStart() )
-                return false;
-
             if ( m & QDocumentCursor::ThroughWrap && m_doc->line(line).cursorToDocumentOffset(offset).y()==m_doc->line(line).cursorToDocumentOffset(offset-1).y() && m_doc->line(line).cursorToDocumentOffset(offset).y()>0 ){
                 QPointF p = documentPosition();
                 p.rx() = 0;
