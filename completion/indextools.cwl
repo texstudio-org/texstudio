@@ -1,5 +1,5 @@
 # indextools package
-# Matthew Bertucci 2/5/2022 for v1.5.1
+# Matthew Bertucci 2023/10/10 for v1.6.0
 
 #include:xkeyval
 #include:ifxetex
@@ -13,6 +13,7 @@ makeindex
 xindy
 texindy
 truexindy
+upmendex
 noautomatic
 nonewpage
 quiet
@@ -28,7 +29,7 @@ splitindex
 #keyvals:\makeindex
 name=%<name%>
 title=%<text%>
-program=#makeindex,xindy,texindy,truexindy
+program=#makeindex,xindy,texindy,truexindy,upmendex
 options=%<program options%>
 noautomatic#true,false
 intoc#true,false
