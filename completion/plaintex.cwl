@@ -829,7 +829,7 @@
 \uchyph
 \underbar{text}
 \underbrace{text%plain}#m
-\underline{text%plain}#m
+\underline{text%plain}
 \unhbox%<⟨register⟩%>
 \unhcopy%<⟨register⟩%>
 \unkern
