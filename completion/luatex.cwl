@@ -51,14 +51,14 @@
 
 # 2.8 Tokens, commands and strings #
 \scantextokens#*
-\toksapp#*
-\tokspre#*
-\etoksapp#*
-\etokspre#*
-\gtoksapp#*
-\gtokspre#*
-\xtoksapp#*
-\xtokspre#*
+\toksapp%<\register%>{%<tokens%>}#*
+\tokspre%<\register%>{%<tokens%>}#*
+\etoksapp%<\register%>{%<tokens%>}#*
+\etokspre%<\register%>{%<tokens%>}#*
+\gtoksapp%<\register%>{%<tokens%>}#*
+\gtokspre%<\register%>{%<tokens%>}#*
+\xtoksapp%<\register%>{%<tokens%>}#*
+\xtokspre%<\register%>{%<tokens%>}#*
 \csstring#*
 \begincsname#*
 \lastnamedcs#*
