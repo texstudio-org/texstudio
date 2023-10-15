@@ -1,5 +1,5 @@
 # PixelArtTikz package
-# Matthew Bertucci 2023/01/26 for v0.1.0
+# Matthew Bertucci 2023/10/15 for v0.1.2
 
 #keyvals:\usepackage/PixelArtTikz#c
 csvii
@@ -15,14 +15,14 @@ csvii
 
 # French commands
 \PixelArtTikz{file}
-\PixelArtTikz[options%keyvals]{file}
-\PixelArtTikz[options%keyvals]<TikZ options>{file}
+\PixelArtTikz[clés%keyvals]{file}
+\PixelArtTikz[clés%keyvals]<TikZ options>{file}
 \PixelArtTikz*{file}
-\PixelArtTikz*[options%keyvals]{file}
+\PixelArtTikz*[clés%keyvals]{file}
 
 \begin{EnvPixelArtTikz}{file}#\pictureHighlight
-\begin{EnvPixelArtTikz}[options%keyvals]{file}
-\begin{EnvPixelArtTikz}[options%keyvals]<TikZ options>{file}
+\begin{EnvPixelArtTikz}[clés%keyvals]{file}
+\begin{EnvPixelArtTikz}[clés%keyvals]<TikZ options>{file}
 \end{EnvPixelArtTikz}
 
 #keyvals:\PixelArtTikz,\PixelArtTikz*,\begin{EnvPixelArtTikz}
@@ -34,6 +34,16 @@ Symb#true,false
 BordCases#true,false
 Style=%<font commands%>
 Unite=%<nombre%>
+#endkeyvals
+
+\MiniPixelArt{liste des couleurs}
+\MiniPixelArt{liste des couleurs}<TikZ options>
+\MiniPixelArt[clés%keyvals]{liste des couleurs}
+\MiniPixelArt[clés%keyvals]{liste des couleurs}<TikZ options>
+
+#keyvals:\MiniPixelArt
+Unite=##L
+Bord#true,false
 #endkeyvals
 
 # English commands
@@ -59,7 +69,20 @@ Style=%<font commands%>
 Unit=%<number%>
 #endkeyvals
 
+\MiniPixlArt{list of colors}
+\MiniPixlArt{list of colors}<TikZ options>
+\MiniPixlArt[options%keyvals]{list of colors}
+\MiniPixlArt[options%keyvals]{list of colors}<TikZ options>
+
+#keyvals:\MiniPixlArt
+Unit=##L
+Border#true,false
+#endkeyvals
+
 # not documented
+\DessineCarrePA{arg1}{arg2}{arg3}#S
+\DrawSquarePA{arg1}{arg2}{arg3}#S
+\minipaunit#S
 \PATchiffres#S
 \PATcouleurs#S
 \PATlettres#S
