@@ -2367,7 +2367,7 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
  * \param filenames
  * \return true if newly loaded files contains packages
  */
-bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentDocument)
+bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentDocument,bool isHigherLevel)
 {
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
     bool newPackagesFound=false;
@@ -2393,8 +2393,12 @@ bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
                         doc->lp->append(elem->ltxCommands);
                     }
                 }
-                doc->setMasterDocument(parentDocument,false);
-                parentDocument->addChild(doc);
+                if(!isHigherLevel){
+                    // child document is added
+                    // don't run if actually a root document is added, e.g. % texroot=...
+                    doc->setMasterDocument(parentDocument,false);
+                    parentDocument->addChild(doc);
+                }
                 doc->patchStructure(0,-1);
                 doc->lp->append(doc->ltxCommands);
                 docForUpdate=doc;
@@ -2523,7 +2527,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 			dc->childDocs.insert(this);
 			setMasterDocument(dc);
         } else {
-            parent->addDocsToLoad(QStringList(fname),this);
+            parent->addDocsToLoad(QStringList(fname),this,true);
 		}
 		se->valid = true;
 	} else if (lowerName == "encoding") {
