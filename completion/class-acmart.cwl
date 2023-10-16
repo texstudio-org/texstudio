@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2023/03/26 for v1.89
+# Matthew Bertucci 2023/10/15 for v1.92
 
 #include:xkeyval
 #include:xstring
@@ -323,6 +323,7 @@ Position
 
 \acmCodeLink{link%URL}#U
 \acmDataLink{link%URL}#U
+\acmContributions{contributions%text}
 
 \Description{description%text}
 \Description[short description%text]{description%text}

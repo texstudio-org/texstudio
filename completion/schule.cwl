@@ -1,5 +1,5 @@
 # schule package
-# Matthew Bertucci 2023/03/21 for v0.8.4
+# Matthew Bertucci 2023/10/08 for v0.9.0
 
 #include:pgfopts
 #include:xifthen
@@ -93,8 +93,9 @@ symbol=%<symbol%>
 #endkeyvals
 
 \setzeAufgabentemplate{Templatename%keyvals}
+\setzeLoesungentemplate{Templatename%keyvals}
 
-#keyvals:\setzeAufgabentemplate
+#keyvals:\setzeAufgabentemplate,\setzeLoesungentemplate
 schule-binnen
 schule-default
 schule-keinenummer
@@ -148,7 +149,14 @@ line-minimum-length=##L
 \aufgabeninput{Verzeichnis}{Datei%file}
 \getBasedir
 \setBasedir
-\basedir#*
+\inputOnce{Datei%file}
+\begin{aufgabenpoolHinweis}
+\end{aufgabenpoolHinweis}
+\ifAufgabenpoolOptionTF{Optionname}{Wahr}{Falsch}
+\ifAufgabenpoolOptionT{Optionname}{Wahr}
+\ifAufgabenpoolOptionF{Optionname}{Falsch}
+\setAufgabenpoolOptionen{Optionennamen}
+
 
 ## module: Bewertung ##
 # loads Aufgaben module

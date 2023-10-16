@@ -1,5 +1,5 @@
 # tkz-bernoulli package
-# Matthew Bertucci 2023/09/09 for v0.1.0
+# Matthew Bertucci 2023/10/10 for v0.1.1
 
 #include:tikz
 #include:pgffor
@@ -17,8 +17,12 @@
 \tkzSchemBernoulli*[clés%keyvals]
 \tkzSchemBernoulli*<options TikZ>
 \tkzSchemBernoulli*[clés%keyvals]<options TikZ>
+\tkzEpreuvBernoulli
+\tkzEpreuvBernoulli[clés%keyvals]
+\tkzEpreuvBernoulli*
+\tkzEpreuvBernoulli*[clés%keyvals]
 
-#keyvals:\tkzSchemBernoulli,\tkzSchemBernoulli*
+#keyvals:\tkzSchemBernoulli,\tkzSchemBernoulli*,\tkzEpreuvBernoulli,\tkzEpreuvBernoulli*
 EspNiv=%<nombre%>
 EspFeuil=%<nombre%>
 Evts=%<Succès/Échec%>
@@ -42,8 +46,12 @@ N=%<nombre%>
 \tkzBernoulliTree*[keyvals]
 \tkzBernoulliTree*<TikZ options>
 \tkzBernoulliTree*[keyvals]<TikZ options>
+\tkzBernoulliTrial
+\tkzBernoulliTrial[keyvals]
+\tkzBernoulliTrial*
+\tkzBernoulliTrial*[keyvals]
 
-#keyvals:\tkzBernoulliTree,\tkzBernoulliTree*
+#keyvals:\tkzBernoulliTree,\tkzBernoulliTree*,\tkzBernoulliTrial,\tkzBernoulliTrial*
 LevelSep=%<number%>
 NodeSep=%<number%>
 Events=

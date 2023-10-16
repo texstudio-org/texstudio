@@ -1,4 +1,4 @@
-# cascadia-code package
+# CascadiaMonoPL package
 # Matthew Bertucci 2023/10/07 for v0.0.2
 
 #include:xkeyval
@@ -7,7 +7,7 @@
 #include:mweights
 #include:fontaxes
 
-#keyvals:\usepackage/cascadia-code#c
+#keyvals:\usepackage/CascadiaMonoPL#c
 scale=%<factor%>
 lining
 tabular

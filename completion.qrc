@@ -43,6 +43,7 @@
 <file>completion/adrlist.cwl</file>
 <file>completion/adtrees.cwl</file>
 <file>completion/advdate.cwl</file>
+<file>completion/advice.cwl</file>
 <file>completion/aeb-comment.cwl</file>
 <file>completion/aeb_dad.cwl</file>
 <file>completion/aeb_envelope.cwl</file>
@@ -508,6 +509,9 @@
 <file>completion/Carrickc.cwl</file>
 <file>completion/cartonaugh.cwl</file>
 <file>completion/cascade.cwl</file>
+<file>completion/CascadiaCodePL.cwl</file>
+<file>completion/CascadiaMono.cwl</file>
+<file>completion/CascadiaMonoPL.cwl</file>
 <file>completion/cascadia-code.cwl</file>
 <file>completion/cas-common.cwl</file>
 <file>completion/cases.cwl</file>
@@ -581,6 +585,7 @@
 <file>completion/circledsteps.cwl</file>
 <file>completion/circledtext.cwl</file>
 <file>completion/circuitikz.cwl</file>
+<file>completion/circularglyphs.cwl</file>
 <file>completion/citation-style-language.cwl</file>
 <file>completion/citeall.cwl</file>
 <file>completion/cite.cwl</file>
@@ -1033,6 +1038,7 @@
 <file>completion/codesection.cwl</file>
 <file>completion/coelacanth.cwl</file>
 <file>completion/coffeestains.cwl</file>
+<file>completion/collargs.cwl</file>
 <file>completion/collcell.cwl</file>
 <file>completion/collectbox.cwl</file>
 <file>completion/collect.cwl</file>
@@ -2310,6 +2316,8 @@
 <file>completion/memhangul-common.cwl</file>
 <file>completion/memhangul-x.cwl</file>
 <file>completion/memhfixc.cwl</file>
+<file>completion/memoizable.cwl</file>
+<file>completion/memoize.cwl</file>
 <file>completion/memory.cwl</file>
 <file>completion/memorygraphs.cwl</file>
 <file>completion/memucs-setspace.cwl</file>
@@ -2519,6 +2527,7 @@
 <file>completion/noindentafter.cwl</file>
 <file>completion/noitcrul.cwl</file>
 <file>completion/nolbreaks.cwl</file>
+<file>completion/nomemoize.cwl</file>
 <file>completion/nomencl.cwl</file>
 <file>completion/nonfloat.cwl</file>
 <file>completion/non-decimal-units.cwl</file>
@@ -3227,6 +3236,7 @@
 <file>completion/shapepar.cwl</file>
 <file>completion/shdoc.cwl</file>
 <file>completion/shellesc.cwl</file>
+<file>completion/shortlst.cwl</file>
 <file>completion/shortmathj.cwl</file>
 <file>completion/shorttoc.cwl</file>
 <file>completion/shortvrb.cwl</file>
@@ -3733,6 +3743,7 @@
 <file>completion/tikz-mirror-lens.cwl</file>
 <file>completion/tikz-network.cwl</file>
 <file>completion/tikz-opm.cwl</file>
+<file>completion/tikz-osci.cwl</file>
 <file>completion/tikzorbital.cwl</file>
 <file>completion/tikzPackets.cwl</file>
 <file>completion/tikz-page.cwl</file>
