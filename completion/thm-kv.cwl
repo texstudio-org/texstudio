@@ -31,6 +31,7 @@ notebraces=%<two chars%>
 break
 postheadspace=##L
 headformat=%<code%>
+headstyle=%<code%>
 headindent=##L
 #endkeyvals
 
