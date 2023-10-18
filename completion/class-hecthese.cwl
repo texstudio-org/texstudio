@@ -1,13 +1,13 @@
 # hecthese class
-# Matthew Bertucci 2022/07/01 for v1.5
+# Matthew Bertucci 2023/10/18 for v2.0
 
 #include:ifthen
 #include:class-memoir
 #include:inputenc
 #include:fontenc
 # loads T1 option of fontenc
-#include:natbib
 #include:babel
+#include:csquotes
 #include:numprint
 #include:calc
 #include:enumitem
@@ -27,14 +27,6 @@ phdclassique
 phdarticles
 #endkeyvals
 
-#ifOption:mscarticles
-#include:chapterbib
-#endif
-
-#ifOption:phdarticles
-#include:chapterbib
-#endif
-
 \begin{HECabbreviations}{widest label}
 \end{HECabbreviations}
 \begin{HECabreviations}{widest label}#*
@@ -47,8 +39,6 @@ phdarticles
 \HECanneeDepot{year}#*
 \HECauteur{name}#*
 \HECauthor{name}
-\HECbibliographieArticle
-\HECbibliographieGenerale
 \HECcodirecteurRecherche{name}{M|F}#*
 \HECcodirectorUniversity{university%text}
 \HECdirecteurRecherche{name}{M|F}#*
@@ -67,7 +57,6 @@ phdarticles
 \HECpdftitre
 \HECpresidentRapporteur{name}{M|F}#*
 \HECrapporteurPresident{name}{M|F}
-\HECreferences{bibstyle}{bib file}
 \HECrepresentantDirecteur{name}{M|F}#*
 \HECresearchCodirector{name}{M|F}
 \HECresearchDirector{name}{M|F}
