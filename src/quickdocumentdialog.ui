@@ -333,27 +333,27 @@
             </property>
             <item>
              <property name="text">
-              <string>mm</string>
+              <string notr="true">mm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>cm</string>
+              <string notr="true">cm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>pt</string>
+              <string notr="true">pt</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>bp</string>
+              <string notr="true">bp</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>in</string>
+              <string notr="true">in</string>
              </property>
             </item>
            </widget>
@@ -365,27 +365,27 @@
             </property>
             <item>
              <property name="text">
-              <string>mm</string>
+              <string notr="true">mm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>cm</string>
+              <string notr="true">cm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>pt</string>
+              <string notr="true">pt</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>bp</string>
+              <string notr="true">bp</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>in</string>
+              <string notr="true">in</string>
              </property>
             </item>
            </widget>
@@ -443,27 +443,27 @@
             </property>
             <item>
              <property name="text">
-              <string>mm</string>
+              <string notr="true">mm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>cm</string>
+              <string notr="true">cm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>pt</string>
+              <string notr="true">pt</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>bp</string>
+              <string notr="true">bp</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>in</string>
+              <string notr="true">in</string>
              </property>
             </item>
            </widget>
@@ -495,27 +495,27 @@
             </property>
             <item>
              <property name="text">
-              <string>mm</string>
+              <string notr="true">mm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>cm</string>
+              <string notr="true">cm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>pt</string>
+              <string notr="true">pt</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>bp</string>
+              <string notr="true">bp</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>in</string>
+              <string notr="true">in</string>
              </property>
             </item>
            </widget>
@@ -540,27 +540,27 @@
             </property>
             <item>
              <property name="text">
-              <string>mm</string>
+              <string notr="true">mm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>cm</string>
+              <string notr="true">cm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>pt</string>
+              <string notr="true">pt</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>bp</string>
+              <string notr="true">bp</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>in</string>
+              <string notr="true">in</string>
              </property>
             </item>
            </widget>
@@ -599,27 +599,27 @@
             </property>
             <item>
              <property name="text">
-              <string>mm</string>
+              <string notr="true">mm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>cm</string>
+              <string notr="true">cm</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>pt</string>
+              <string notr="true">pt</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>bp</string>
+              <string notr="true">bp</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>in</string>
+              <string notr="true">in</string>
              </property>
             </item>
            </widget>
