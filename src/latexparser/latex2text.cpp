@@ -14,7 +14,9 @@ LineInfo::LineInfo(QDocumentLineHandle* line): line(line){
 		if(tk.type==Token::word && (tk.subtype==Token::none||tk.subtype==Token::text))
 			continue;
 		if(tk.type==Token::punctuation && (tk.subtype==Token::none||tk.subtype==Token::text))
-			continue;
+            continue;
+        if(tk.type==Token::number && (tk.subtype==Token::none||tk.subtype==Token::text))
+            continue; // don't blank numbers, let LT see dates correctly
 		if(tk.type==Token::symbol && (tk.subtype==Token::none||tk.subtype==Token::text))
 			continue; // don't blank symbol like '~'
 		if(tk.type==Token::braces && tk.subtype==Token::text){
