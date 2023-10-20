@@ -4976,6 +4976,23 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	switch ( op )
 	{
 	case DeleteLeft :
+        // special treatment: remove auto completed parenthes as well if it it right next
+        if(flag(AutoCloseChars)){
+            for(int i=0;i<placeHolderCount();++i){
+                PlaceHolder ph=getPlaceHolder(i);
+                int startLine,startCol;
+                ph.cursor.beginBoundary(startLine,startCol);
+                if(!ph.autoRemoveIfLeft || startCol!=c.columnNumber() || startLine!=c.lineNumber()){
+                    continue;
+                }
+                QChar ch=c.previousChar();
+                QString closingPar=languageDefinition()->getClosingParenthesis(ch);
+                if(closingPar.length()==1 && c.nextChar()==closingPar){
+                    c.deleteChar();
+                }
+                break;
+            }
+        }
 		if(!hasSelection) c.deletePreviousChar();
 		cutBuffer.clear();
 		break;
