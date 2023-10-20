@@ -215,7 +215,7 @@ the meaning of \\\$PATH.\"
 ## Inserting a list
 
 The usual list environments code can be insert quickly via the
-\"LaTeX-List\" menu. ALternatively you can use the [environment completion](#environment-completion).
+\"LaTeX-List\" menu. Alternatively you can use the [environment completion](#environment-completion).
 ```{note}
 The shortcut for the \\item command is `Ctrl+Shift+I`.
 ```
@@ -686,7 +686,7 @@ resulting text is `\textbf{text}`.
 ### Block cursor
 TeXstudio supports block cursors (or multiple cursors).
 Cursors can be added by `Ctrl+Alt`+left click.
-ALternatively pressing `Ctrl+alt+Up/down` also add block cursors.
+Alternatively pressing `Ctrl+alt+Up/down` also add block cursors.
 The cursors can jointly move, add and remove text and select characters.
 Pressing `esc` or clicking into the text ends the block cursor mode.
 
