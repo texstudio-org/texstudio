@@ -3697,6 +3697,12 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
             }
 #endif
         }
+        // remove previous text
+        if(e->replacementLength()>0){
+            for(int k=0;k<e->replacementLength();++k){
+                m_cursor.deletePreviousChar();
+            }
+        }
 
         m_cursor.insertText(e->commitString());
 
@@ -6148,6 +6154,7 @@ void QEditor::scrollContentsBy(int dx, int dy)
 }
 
 QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
+    qDebug()<<int(property);
 	switch(property) {
     case Qt::ImCursorRectangle:
         return cursorMircoFocusRect();
@@ -6158,7 +6165,7 @@ QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
 	case Qt::ImCursorPosition:
 		// TODO find out correct value: qtextcontol uses the following
 		//return QVariant(d->cursor.position() - block.position());
-		return QVariant();
+        return QVariant(cursor().columnNumber());
 	case Qt::ImSurroundingText:
 		return QVariant(cursor().line().text());
 	case Qt::ImCurrentSelection:
@@ -6168,7 +6175,9 @@ QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
 	case Qt::ImAnchorPosition:
 		// TODO find out correct value: qtextcontol uses the following
 		//return QVariant(qBound(0, d->cursor.anchor() - block.position(), block.length()));
-		return QVariant();
+        return QVariant(cursor().anchorColumnNumber());
+    case Qt::ImAbsolutePosition:
+        return QVariant(cursor().anchorColumnNumber());
 	default:
 		return QVariant();
 	}
