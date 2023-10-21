@@ -11595,24 +11595,24 @@ void Texstudio::customMenuStructure(const QPoint &pos){
     QTreeWidgetItem *item = w->itemAt(pos);
     if(!item) return;
     StructureEntry *contextEntry = item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if (!contextEntry) return;
-    if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
+    LatexDocument *document = static_cast<LatexDocument *>(item->data(0,Qt::UserRole).value<void *>());
+    if (!contextEntry && document) {
         QMenu menu;
-        if (contextEntry->document != documents.masterDocument) {
-            menu.addAction(tr("Close document"), this, SLOT(closeDocument()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-            menu.addAction(tr("Set as explicit root document"), this, SLOT(toggleMasterDocument()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-            menu.addAction(tr("Open all related documents"), this, SLOT(openAllRelatedDocuments()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-            menu.addAction(tr("Close all related documents"), this, SLOT(closeAllRelatedDocuments()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        if (document != documents.masterDocument) {
+            menu.addAction(tr("Close document"), this, SLOT(closeDocument()))->setData(QVariant::fromValue<LatexDocument *>(document));
+            menu.addAction(tr("Set as explicit root document"), this, SLOT(toggleMasterDocument()))->setData(QVariant::fromValue<LatexDocument *>(document));
+            menu.addAction(tr("Open all related documents"), this, SLOT(openAllRelatedDocuments()))->setData(QVariant::fromValue<LatexDocument *>(document));
+            menu.addAction(tr("Close all related documents"), this, SLOT(closeAllRelatedDocuments()))->setData(QVariant::fromValue<LatexDocument *>(document));
         } else
-            menu.addAction(tr("Remove explicit root document role"), this, SLOT(toggleMasterDocument()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+            menu.addAction(tr("Remove explicit root document role"), this, SLOT(toggleMasterDocument()))->setData(QVariant::fromValue<LatexDocument *>(document));
         if (configManager.structureShowSingleDoc) {
             menu.addAction(tr("Show all open documents in this tree"), this, SLOT(toggleSingleDocMode()));
         } else {
             menu.addAction(tr("Show only current document in this tree"), this, SLOT(toggleSingleDocMode()));
         }
         /*menu.addSeparator();
-        menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()))->setData(QVariant::fromValue<LatexDocument *>(document));
+        menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()))->setData(QVariant::fromValue<LatexDocument *>(document));
         */
 		menu.addSeparator();
         menu.addAction(tr("Expand Subitems"), this, SLOT(expandSubitems()));
@@ -11621,12 +11621,14 @@ void Texstudio::customMenuStructure(const QPoint &pos){
         menu.addAction(tr("Collapse all documents"), this, SLOT(collapseAllDocuments()));
 		*/
         menu.addSeparator();
-        menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
-        menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()))->setData(QVariant::fromValue<LatexDocument *>(contextEntry->document));
+        menu.addAction(tr("Copy filename"), this, SLOT(copyFileName()))->setData(QVariant::fromValue<LatexDocument *>(document));
+        menu.addAction(tr("Copy file path"), this, SLOT(copyFilePath()))->setData(QVariant::fromValue<LatexDocument *>(document));
+        menu.addAction(msgGraphicalShellAction(), this, SLOT(showInGraphicalShell_()))->setData(QVariant::fromValue<LatexDocument *>(document));
         menu.exec(w->mapToGlobal(pos));
         return;
     }
+
+    if (!contextEntry) return;
     if (contextEntry->type == StructureEntry::SE_LABEL) {
         QMenu menu;
         menu.addAction(tr("Insert"), this, SLOT(insertTextFromAction()))->setData(contextEntry->title);
