@@ -1,5 +1,5 @@
 # ProfLycee package
-# Matthew Bertucci 2023/10/08 for v2.7.8
+# Matthew Bertucci 2023/10/08 for v2.8.0
 
 #include:mathtools
 #include:amssymb
@@ -33,6 +33,7 @@
 #include:tikzlibrarybabel
 #include:tikzlibraryshapes.geometric
 #include:tikzlibrarydecorations.pathmorphing
+#include:tikzlibrarylindenmayersystems
 #include:tcolorbox
 #include:tcolorboxlibrarybreakable
 #include:tcolorboxlibraryfitting
@@ -1022,6 +1023,30 @@ PoliceLeg=%<font commands%>
 ListeLegV=%<liste%>
 ListeLegH=%<liste%>
 DecalLegende=%<décalage%>
+#endkeyvals
+
+## Quelques fractales, en TikZ ##
+\FractaleTikz#*
+\FractaleTikz[options%keyvals]
+\FractaleTikz<TikZ options>#*
+\FractaleTikz[options%keyvals]<TikZ options>
+\FractaleTikz*#*
+\FractaleTikz*[options%keyvals]
+\FractaleTikz*<TikZ options>#*
+\FractaleTikz*[options%keyvals]<TikZ options>
+\EtapesFloconKoch{étapes}
+\EtapesFloconKoch[options%keyvals]{étapes}
+
+#keyvals:\FractaleTikz,\FractaleTikz*,\EtapesFloconKoch
+Epaisseur=##L
+Type=#Koch,Sierp
+Couleur=#%color
+LongueurCote=%<nombre%>
+Etape=%<nombre%>
+Remplir#true,false
+Remplissage=#%color
+Depart={(%<x,y%>)}
+AlignV#true,false
 #endkeyvals
 
 ## ecritures library ##
