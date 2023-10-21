@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 3/20/2022 for v1.30
+# Matthew Bertucci 2023/10/21 for v1.35
 
 #include:etoolbox
 #include:ifthen
@@ -55,6 +55,7 @@ pdf-a
 pdfaconformance=#b,u
 pdfapart=#1,2,3
 var0
+unboldcaption
 # options passed to babel (a few language options explicitly listed)
 activeacute
 activegrave
