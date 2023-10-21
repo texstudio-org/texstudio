@@ -1,5 +1,5 @@
 # OutilsGeomTikz package
-# Matthew Bertucci 2023/05/22 for v0.1.2
+# Matthew Bertucci 2023/10/21 for v0.1.4
 
 #include:tikz
 #include:pgffor
@@ -68,6 +68,7 @@ Fond#true,false
 CouleurFond=#%color
 Opacite=%<factor%>
 AfficheValeurs#true,false
+PetitCote#true,false
 #endkeyvals
 
 \tkzRapporteur
@@ -83,6 +84,22 @@ Fond#true,false
 CouleurFond=#%color
 Opacite=%<factor%>
 AfficheAngles#true,false
+#endkeyvals
+
+\tkzPourcenteur
+\tkzPourcenteur[clés%keyvals]
+
+#keyvals:\tkzPourcenteur
+Echelle=%<nombre%>
+EchelleAngle=%<nombre%>
+Couleur=#%color
+CouleurFond=#%color
+Origine={(%<x,y%>)}
+Rotation=%<degrees%>
+AfficheValeurs#true,false
+Fond#true,false
+Opacite=%<factor%>
+Decoration#true,false
 #endkeyvals
 
 \tkzRequerre
