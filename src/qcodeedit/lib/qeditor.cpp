@@ -6154,7 +6154,6 @@ void QEditor::scrollContentsBy(int dx, int dy)
 }
 
 QVariant QEditor::inputMethodQuery(Qt::InputMethodQuery property) const {
-    qDebug()<<int(property);
 	switch(property) {
     case Qt::ImCursorRectangle:
         return cursorMircoFocusRect();
