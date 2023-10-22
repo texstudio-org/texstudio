@@ -620,8 +620,8 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         // work on general commands
         if (tk.type != Token::command && tk.type != Token::commandUnknown)
             continue; // not a command
-        if(tk.type == Token::commandUnknown && tk.length>1){
-            // work around '\ ' command
+        if(tk.type == Token::commandUnknown && tk.length>2){
+            // ignore all 2 letter commands like '\ ',\\,\& etc.
             parsingComplete=false; // most likely not all commands parsed
         }
         Token tkCmd;
