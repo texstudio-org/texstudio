@@ -620,7 +620,8 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         // work on general commands
         if (tk.type != Token::command && tk.type != Token::commandUnknown)
             continue; // not a command
-        if(tk.type == Token::commandUnknown){
+        if(tk.type == Token::commandUnknown && tk.length>1){
+            // work around '\ ' command
             parsingComplete=false; // most likely not all commands parsed
         }
         Token tkCmd;
@@ -868,6 +869,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             QStringList packages;
             foreach (QString elem, packagesHelper) {
                 elem = elem.simplified();
+                if(elem.isEmpty()) continue;
                 if (lp->packageAliases.contains(elem))
                     packages << lp->packageAliases.values(elem);
                 else
@@ -1067,6 +1069,7 @@ void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
             }
         }
         bool skipRecheck=dlh->hasFlag(QDocumentLine::argumentsParsed);
+        changedCommands.removedUsepackages << mUsepackageList.values(dlh); // make already interpreted usepakages known
         interpretCommandArguments(dlh,i,changedCommands,false,docStructureIter);
         if (edView && !skipRecheck){
             edView->documentContentChanged(i, 1);
