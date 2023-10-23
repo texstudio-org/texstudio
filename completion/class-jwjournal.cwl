@@ -1,5 +1,5 @@
 # jwjournal class
-# Matthew Bertucci 2023/09/02
+# Matthew Bertucci 2023/10/23
 
 #include:class-einfart
 #include:ProjLib
@@ -9,6 +9,8 @@
 #include:enumitem
 
 #keyvals:\documentclass/jwjournal#c
+month-day-year
+day-month-year
 paperstyle=#lightyellow,yellow,parchment,green,lightgray,gray,nord,dark
 scroll
 color entry
@@ -22,6 +24,7 @@ jwjournal-color-5#B
 jwjournal-color-6#B
 jwjournal-color-7#B
 jwjournal-entry#B
+jwjournal-sep-line#B
 
 \JWJournalSeperator#S
 \JWJournalEntry{date}{text}#S
@@ -43,3 +46,8 @@ jwjournal-entry#B
 \JWJournalShowImageLeft<options><imagefile>#Sg
 \JWJournalShowImageRight<options><imagefile>#Sg
 \JWJournalNote{arg}#S
+\JWJournalSepLine#S
+\JWJournalSepLine[color]#S
+\jwjournaltext{text}#S
+\InputJournal{file}#Si
+\IncludeJournal{file}#Si
