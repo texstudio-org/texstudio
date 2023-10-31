@@ -1,5 +1,5 @@
 # newtxmath package
-# Matthew Bertucci 2023/07/27 for v1.72
+# Matthew Bertucci 2023/10/31 for v1.725
 
 #include:amsmath
 #include:ifthen
@@ -56,6 +56,7 @@ cochf
 cochrho
 alty
 varg
+propmathfigs
 varvw
 internaldigits
 noOT1
