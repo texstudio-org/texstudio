@@ -1,7 +1,9 @@
 # newpxtext package
-# Matthew Bertucci 2023/09/11 for v1.52
+# Matthew Bertucci 2023/10/31 for v1.53
 
 #include:fontenc
+#include:xcolor
+#include:xpatch
 #include:iftex
 #include:xkeyval
 #include:etoolbox
@@ -41,25 +43,27 @@ tighter
 looser
 supscaled=%<factor%>
 supsraised=##L
-supspaced=##L
+supLspaced=##L
+supRspaced=##L
+supscolor=#%color
 #endkeyvals
 
 \defigures#*
 \destyle
 \fakesuperscript{text}#S
 \infigures#*
+\infstyle#*
 \instyle
 \lfstyle
 \liningnums{text}
 \nufigures#*
 \nustyle
-\oldstylenums{text}
 \osfstyle
 \proportionalnums{text}
 \realsuperscript{text}#S
 \sufigures#*
-\supstyle
-\sustyle#*
+\supstyle#*
+\sustyle
 \tabularnums{text}
 \textde{text}
 \textdenominator{text}#*
@@ -75,8 +79,9 @@ supspaced=##L
 \textsfrac[whole part]{numerator}{denominator}
 \textsfrac{numerator}{denominator}
 \textsu{text}#*
-\textsuperior{text}#*
-\textsups{text}
+\textsub{text}
+\textsup{text}
+\textsups{text}#*
 \textth{text}
 \textthit{text}#*
 \texttlf{text}
