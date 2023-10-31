@@ -486,6 +486,7 @@
 <file>completion/caladea.cwl</file>
 <file>completion/calcage.cwl</file>
 <file>completion/calc.cwl</file>
+<file>completion/calcfrac.cwl</file>
 <file>completion/calctab.cwl</file>
 <file>completion/calculation.cwl</file>
 <file>completion/calculator.cwl</file>
@@ -1925,6 +1926,7 @@
 <file>completion/isonums.cwl</file>
 <file>completion/isopt.cwl</file>
 <file>completion/isorot.cwl</file>
+<file>completion/isosafety.cwl</file>
 <file>completion/isotope.cwl</file>
 <file>completion/issuulinks.cwl</file>
 <file>completion/itnumpar.cwl</file>
@@ -3782,6 +3784,7 @@
 <file>completion/tkz-base.cwl</file>
 <file>completion/tkz-berge.cwl</file>
 <file>completion/tkz-bernoulli.cwl</file>
+<file>completion/tkz-elements.cwl</file>
 <file>completion/tkz-euclide.cwl</file>
 <file>completion/tkzexample.cwl</file>
 <file>completion/tkz-fct.cwl</file>
