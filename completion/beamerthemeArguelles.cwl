@@ -1,5 +1,5 @@
 # Arguelles beamertheme
-# Matthew Bertucci 2023/03/22 for v2.2.0
+# Matthew Bertucci 2023/10/31 for v2.3.0
 
 #include:inputenc
 #include:fontenc
@@ -15,6 +15,9 @@
 #include:enumitem
 #include:parskip
 #include:tikz
+#include:tcolorbox
+#include:tcolorboxlibraryskins
+#include:tikzlibrarycalc
 
 #keyvals:\usetheme/Arguelles#c
 sans
@@ -36,9 +39,9 @@ mp
 #include:cancel
 #include:pgfplots
 #include:csvsimple
-#include:tikzlibrarycalc
-#include:pgfplotslibrarystatistics
 #include:pgfplotslibraryfillbetween
+#include:pgfplotslibrarygroupplots
+#include:pgfplotslibrarystatistics
 #endif
 
 \mediumfont
@@ -50,6 +53,10 @@ mp
 \event{event%text}
 \insertemail#*
 \email{email%URL}#U
+\inserthomepage#*
+\homepage{URL}#U
+\insertgithub#*
+\github{username}
 \fillpicture{imagefile}#g
 
 # from T1 option of fontenc
