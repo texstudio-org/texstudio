@@ -1,7 +1,15 @@
 # cncolours package
-# Matthew Bertucci 2/12/2022 for v1.1
+# Matthew Bertucci 2/12/2022 for v2.0
 
 #include:xcolor
+#include:suffix
+
+#keyvals:\usepackage/cncolours#c
+cas-rgb
+cas-rgb*
+cas-cmyk
+cas-cmyk*
+#endkeyvals
 
 粉红#B
 粉紅#B
@@ -257,3 +265,9 @@
 正赤#B
 正黄#B
 正黃#B
+
+# not documented
+\loadCASrgbcolors#S
+\loadCASrgbcolors*#S
+\loadCAScmykcolors#S
+\loadCAScmykcolors*#S
