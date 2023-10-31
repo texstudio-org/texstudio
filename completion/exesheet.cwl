@@ -1,5 +1,5 @@
 # exesheet package
-# Matthew Bertucci 2023/09/06 for v2.2
+# Matthew Bertucci 2023/10/31 for v2.4
 
 #include:kvoptions
 #include:ifthen
@@ -175,7 +175,9 @@ correctioncolor#B
 \correctionname#*
 
 \question{question%text}
+\question*{question%text}
 \answer{answer%text}
+\answer*{answer%text}
 \answerspace{height}
 \points{number}
 \pointsname#*
