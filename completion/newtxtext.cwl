@@ -1,6 +1,8 @@
 # newtxtext package
-# Matthew Bertucci 2023/08/21 for v1.724
+# Matthew Bertucci 2023/10/31 for v1.73
 
+#include:xpatch
+#include:xcolor
 #include:iftex
 #include:xkeyval
 #include:etoolbox
@@ -39,11 +41,18 @@ trueslanted
 scosf
 tighter
 looser
+supscaled=%<factor%>
+supsraised=##L
+supLspaced=##L
+supLRspaced=##L
+supscolor=#%color
+newsu
 #endkeyvals
 
 \defigures#*
 \destyle
 \infigures
+\infstyle#*
 \instyle#*
 \lfstyle
 \liningnums{text}
@@ -62,14 +71,16 @@ looser
 \textinf{text}
 \textinferior{text}#*
 \textlf{text}
+\textnu{text}#*
 \textnum{text}
 \textnumerator{text}#*
 \textosf{text}
 \textsfrac[whole part]{numerator}{denominator}
 \textsfrac{numerator}{denominator}
-\textsu{text}
-\textsup{text}#S
-\textsuperior{text}#*
+\textsu{text}#*
+\textsub{text}
+\textsup{text}
+\textsups{text}#*
 \textth{text}
 \textthit{text}#*
 \texttlf{text}
