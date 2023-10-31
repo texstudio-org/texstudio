@@ -1,5 +1,5 @@
 # ltugcomn package
-# Matthew Bertucci 2023/07/04 for v2.30
+# Matthew Bertucci 2023/10/31 for v2.31
 
 #include:mflogo
 
@@ -100,10 +100,12 @@
 \latextubstyle#*
 \ldash
 \Ldash
+\LMTX
 \LuaHBLaTeX
 \LuaHBTeX
 \LuaLaTeX
 \LuaTeX
+\luatex#*
 \LyX
 \macOS
 \MacOSX
@@ -165,7 +167,8 @@
 \PCTeX
 \pcTeX
 \PDF
-\pdflatex
+\pdfLaTeX
+\pdflatex#*
 \pdfTeX
 \pdftex#*
 \PGF
@@ -215,12 +218,15 @@
 \SVG
 \TANGLE
 \TB
+\tbcode{text%plain}
+\tbcodebreak{text%plain}
 \TBdriver#*
 \TBecircacute#*
 \TBEnableRemarks#*
 \tbgobbledash#*
 \tbhurl{URL}#U
 \tbhurlfootnote{URL}#U
+\tbppkernfoot#*
 \TBremark{text}#*
 \tbsurl{URL}#U
 \tbsurlfootnote{URL}#U
