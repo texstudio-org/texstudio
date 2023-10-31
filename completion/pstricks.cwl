@@ -1,6 +1,6 @@
 # mode: pstricks.sty
 # dani/2006-02-22
-# Matthew Bertucci/2022-11-01 for v3.17
+# Matthew Bertucci/2023-10-31 for v3.19a
 
 #include:iftex
 #include:xcolor
@@ -14,6 +14,7 @@ psfonts
 noEngineCheck
 pdf
 xetex
+nometadata
 distiller
 monochrome
 grayscale
