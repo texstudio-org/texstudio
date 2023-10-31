@@ -1,5 +1,5 @@
 # fontsetup package
-# Matthew Bertucci 2023/07/31 for v1.5
+# Matthew Bertucci 2023/10/20 for v1.7
 
 #include:fontspec
 #include:unicode-math
@@ -10,6 +10,7 @@
 default
 upint
 varnothing
+amsbb
 gfsartemisia
 gfsdidot
 gfsdidotclassic

@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/07/09 for v3.91
+# tbraun 4.11.2008; Matthew Bertucci 2023/10/31 for v3.96
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -261,6 +261,7 @@ kashida.plain
 \localeprehyphenation{string}#*
 
 \ensureascii{text}#*
+\asciiencoding#*
 
 #ifOption:layout=footnotes
 \localfootnote{text}

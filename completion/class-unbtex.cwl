@@ -1,5 +1,5 @@
 # unbtex class
-# Matthew Bertucci 2022/10/07 for v1.2
+# Matthew Bertucci 2023/10/17 for v1.3
 
 #include:class-abntex2
 #include:fontenc
@@ -15,10 +15,7 @@
 #include:multirow
 #include:xcolor
 # loads dvipsnames and table options of xcolor
-#include:tikz
-#include:tikzlibraryexternal
-#include:tikzlibraryshapes
-#include:tikzlibrarypositioning
+#include:tocbasic
 #include:amsmath
 #include:amsfonts
 #include:amsthm
@@ -158,6 +155,7 @@ twoside
 \dfname#*
 \dia{dia}
 \ecname#*
+\entrynumberwithprefix{arg1}{arg2}#*
 \epname#*
 \fichacatalografica
 \imprimirano#*

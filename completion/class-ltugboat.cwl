@@ -1,7 +1,8 @@
 # ltugboat class
-# Matthew Bertucci 2023/07/04 for v2.30
+# Matthew Bertucci 2023/10/31 for v2.31
 
 #include:mflogo
+#include:gettitlestring
 
 #keyvals:\documentclass/ltugboat#c
 draft
@@ -123,7 +124,6 @@ runningoff
 \end{reviewitem}#*
 \end{SafeSection}#*
 \endash
-\env{envname}
 \EPS
 \eTeX
 \ExTeX
@@ -177,11 +177,13 @@ runningoff
 \latextubstyle#*
 \ldash
 \Ldash
+\LMTX
 \lstlistingnamestyle#*
 \LuaHBLaTeX
 \LuaHBTeX
 \LuaLaTeX
 \LuaTeX
+\luatex#*
 \LyX
 \macOS
 \MacOSX
@@ -259,7 +261,8 @@ runningoff
 \PCTeX
 \pcTeX
 \PDF
-\pdflatex
+\pdfLaTeX
+\pdflatex#*
 \pdfTeX
 \pdftex#*
 \personalURL{URL}#U
@@ -334,6 +337,8 @@ runningoff
 \SVG
 \TANGLE
 \TB
+\tbcode{text%plain}
+\tbcodebreak{text%plain}
 \TBdriver#*
 \TBecircacute#*
 \TBEnableRemarks#*
@@ -343,6 +348,7 @@ runningoff
 \tbhurlfootnote{URL}#U
 \TBInfo{text}#*
 \tbotregister#*
+\tbppkernfoot#*
 \TBremark{text}#*
 \tbsurl{URL}#U
 \tbsurlfootnote{URL}#U
@@ -427,6 +433,7 @@ runningoff
 \tubtitlerulefullwidthfalse#*
 \tubtitlerulefullwidthtrue#*
 \tubtypesetdoi#*
+\tubtypesetpageno{arg}#*
 \tug
 \TUG
 \UG#*

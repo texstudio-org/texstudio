@@ -1,5 +1,5 @@
 # tikz-osci package
-# Matthew Bertucci 2023/10/09 for v0.3.0
+# Matthew Bertucci 2023/10/24 for v0.4.0
 
 #include:xcolor
 #include:pgfkeys
@@ -34,6 +34,11 @@ math mode hide source=#0,1
 func one=%<function%>
 func two=%<function%>
 indicators=#0,1
+vertical cursor one#true,false
+vertical cursor two#true,false
+horizontal cursor one#true,false
+horizontal cursor two#true,false
+cursor precision=%<integer%>
 color one=%<hexadecimal%>
 color text one=%<hexadecimal%>
 color two=%<hexadecimal%>
@@ -44,4 +49,12 @@ graph back color=%<hexadecimal%>
 info back color=%<hexadecimal%>
 main axis color=%<hexadecimal%>
 grid color=%<hexadecimal%>
+horizontal cursor color=%<hexadecimal%>
+vertical cursor color=%<hexadecimal%>
+smooth one=#0,1
+smooth two=#0,1
+smooth three=#0,1
 #endkeyvals
+
+# not documented
+\raisedtext{text}#S

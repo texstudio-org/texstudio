@@ -117,15 +117,20 @@ ExampleBack#B
 Hyperlink#B
 Fade#B
 
-#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations}
+# keys that make sense with \doc<type> commands
+#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*
 doc name=%<name%>
-doc parameter=%<parameters%>
-doc description=%<description%>
 doc label=%<text%>
 doc index=%<text%>
 doc sort index=%<text%>
 doc into index#true,false
 doc no index
+#endkeyvals
+
+# keys that don't make sense with \doc<type> commands
+#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations}
+doc parameter=%<parameters%>
+doc description=%<description%>
 doc new=%<date%>
 doc updated=%<date%>
 doc new and updated={%<new date%>}{%<update date%>}

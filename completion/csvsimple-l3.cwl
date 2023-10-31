@@ -1,5 +1,5 @@
 # csvsimple-l3 package
-# Matthew Bertucci 2023/05/09 for v2.4.0
+# Matthew Bertucci 2023/10/16 for v2.5.0
 
 \csvreader{file}{assignments%definition}{command list%definition}
 \csvreader[options%keyvals]{file}{assignments%definition}{command list%definition}
@@ -32,6 +32,19 @@
 \csvautobooklongtable*{file}
 \csvautobooklongtable*[options%keyvals]{file}
 
+\csvautotabularray{file}
+\csvautotabularray{file}[taboptions1]
+\csvautotabularray{file}[taboptions1][taboptions2]
+\csvautotabularray*{file}
+\csvautotabularray*{file}[taboptions1]
+\csvautotabularray*{file}[taboptions1][taboptions2]
+\csvautolongtabularray{file}
+\csvautolongtabularray{file}[taboptions1]
+\csvautolongtabularray{file}[taboptions1][taboptions2]
+\csvautolongtabularray*{file}
+\csvautolongtabularray*{file}[taboptions1]
+\csvautolongtabularray*{file}[taboptions1][taboptions2]
+
 \csvset{options%keyvals}
 
 \csvstyle{key name%specialDef}{options%keyvals}#s#%csvstyle
@@ -63,7 +76,7 @@
 \ifcsvfpcmp{floating point expr}{true}{false}
 \ifcsvintcmp{integer expr}{true}{false}
 
-#keyvals:\csvreader,\csvloop,\csvautotabular,\csvautotabular*,\csvautolongtable,\csvautolongtable*,\csvautobooktabular,\csvautobooktabular*,\csvautobooklongtable,\csvautobooklongtable*,\csvset,\csvstyle
+#keyvals:\csvreader,\csvloop,\csvautotabular,\csvautotabular*,\csvautolongtable,\csvautolongtable*,\csvautobooktabular,\csvautobooktabular*,\csvautobooklongtable,\csvautobooklongtable*,\csvautotabularray,\csvautotabularray*,\csvautolongtabularray,\csvautolongtabularray*,\csvset,\csvstyle
 before reading=%<code%>
 after head=%<code%>
 before filter=%<code%>
@@ -166,6 +179,10 @@ autobooktabular=%<file%>
 autobooktabular*=%<file%>
 autobooklongtable=%<file%>
 autobooklongtable*=%<file%>
+autotabularray=%<file%>
+autotabularray*=%<file%>
+autolongtabularray=%<file%>
+autolongtabularray*=%<file%>
 #endkeyvals
 
 # deprecated

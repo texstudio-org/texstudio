@@ -1,5 +1,5 @@
 # xcharter-otf package
-# Matthew Bertucci 2023/07/21 for v0.50
+# Matthew Bertucci 2023/10/31 for v0.51
 
 #include:iftex
 #include:unicode-math
@@ -78,6 +78,7 @@ Scale=%<factor%>
 \mbfdotlessi#*m
 \mbfdotlessj#*m
 \mbfimath#*m
+\mbfitvarv#*m
 \mbfjmath#*m
 \mbfvarzero#*m
 \mdblkcircle#m
@@ -96,6 +97,7 @@ Scale=%<factor%>
 \mdwhtlozenge#m
 \mdwhtsquare#m
 \mithbar#*m
+\mitvarv#*m
 \mscre#*m
 \mscrg#*m
 \mscro#*m

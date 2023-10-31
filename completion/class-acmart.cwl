@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2023/10/15 for v1.92
+# Matthew Bertucci 2023/10/24 for v1.93
 
 #include:xkeyval
 #include:xstring
@@ -166,6 +166,7 @@ PACMHCI
 PACMMOD
 PACMNET
 PACMPL
+PACMSE
 POMACS
 TAAS
 TACCESS

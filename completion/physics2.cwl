@@ -1,5 +1,5 @@
 # physics2 package
-# Matthew Bertucci 2023/03/30 for v0.2.0
+# Matthew Bertucci 2023/10/31 for v1.0.0
 
 #include:keyval
 
@@ -20,9 +20,6 @@ qtext.legacy
 xmat
 #endkeyvals
 
-## no good way to conditionally load module commands so all just listed here
-
-## from phy-common.sty (automatically loaded)
 \delopen%<⟨delim⟩%>#m
 \delclose%<⟨delim⟩%>#m
 \biggg%<⟨delim⟩%>#m
@@ -33,6 +30,8 @@ xmat
 \Bigggl%<⟨delim⟩%>#m
 \Bigggm%<⟨delim⟩%>#m
 \Bigggr%<⟨delim⟩%>#m
+
+## no good way to conditionally load module commands so all just listed here
 
 ## from phy-ab.sty ('ab' module)
 \ab%<⟨ldelim⟩ arg ⟨rdelim⟩%>#m

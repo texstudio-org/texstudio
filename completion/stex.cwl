@@ -1,5 +1,5 @@
 # stex package
-# Matthew Bertucci 2023/03/22 for v3.3.0
+# Matthew Bertucci 2023/10/17 for v3.4.0
 
 #include:l3keys2e
 #include:ltxcmds
@@ -15,6 +15,7 @@ mathhub=%<directory%>
 writesms#true,false
 usems#true,false
 image#true,false
+nofrontmatter#true,false
 debug=%<log-prefix%>
 checkterms#true,false
 #endkeyvals
@@ -520,6 +521,8 @@ post=
 \MMTinclude{arg1}#S
 \MMTrule{arg1}{arg2}#S
 \MSC{arg1}#S
+\objective{arg1}{arg2}#S
+\precondition{arg1}{arg2}#S
 \realize{arg1}{arg2}#S
 \renamedecl[optarg1]{arg2}{arg3}#S
 \renamedecl{arg1}{arg2}#S

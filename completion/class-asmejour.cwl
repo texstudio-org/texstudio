@@ -1,5 +1,5 @@
 # asmejour class
-# Matthew Bertucci 3/21/2022 for v1.18
+# Matthew Bertucci 2023/10/24 for v1.21
 
 #include:class-extarticle
 #include:etoolbox
@@ -2009,7 +2009,6 @@ SuppressWarning#true,false
 \EntryHeading{heading%text}
 \firstrowauthorblock#*
 \hrefurl{URL}{text%plain}#U
-\isOtherfnote#S
 \keywordname#*
 \keywords{keywords}
 \LogNote{message%text}#*
