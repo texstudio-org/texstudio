@@ -3382,6 +3382,7 @@ void PDFDocument::init(bool embedded)
     //connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 	conf->registerOption("Preview/Grayscale", &globalConfig->grayscale, false);
 	conf->linkOptionToObject(&globalConfig->grayscale, actionGrayscale);
+    pdfWidget->addAction(actionGrayscale); // add grayscale to widget context menu
     //connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
     if(!embedded){
