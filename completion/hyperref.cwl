@@ -3,7 +3,7 @@
 #modified Edson 30-12-2010
 #modified Denis Bitouz\'e 14-06-2014
 #modified muzimuzhi 18 Jan 2020, 8 May 2020, 8 Jul 2020
-#modified Matthew Bertucci 4 April 2023 for v7.00w
+#modified Matthew Bertucci 31 October 2023 for v7.01d
 
 #include:iftex
 #include:keyval
@@ -207,12 +207,13 @@ nextactionraw={%<PDF code%>}
 \AddToDocumentProperties[category]{property}{value}#*
 \GetDocumentProperties{property}#*
 
-\MakeLinkTarget{counter}
-\MakeLinkTarget[prefix]{counter}
-\MakeLinkTarget*{target name}
-\NextLinkTarget{target name}
-\LinkTargetOn
-\LinkTargetOff
+## these are now in the format
+# \MakeLinkTarget{counter}
+# \MakeLinkTarget[prefix]{counter}
+# \MakeLinkTarget*{target name}
+# \NextLinkTarget{target name}
+# \LinkTargetOn
+# \LinkTargetOff
 \SetLinkTargetFilter{filter code}
 
 \url{URL}#U
