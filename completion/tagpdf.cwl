@@ -1,11 +1,12 @@
 # tagpdf package
-# Matthew Bertucci 2023/08/08 for v0.98k
+# Matthew Bertucci 2023/10/31 for v0.98m
 
 #include:pdfmanagement-testphase
 
 #keyvals:\usepackage/tagpdf#c
 luamode
 genericmode
+disabledelayedshipout
 #endkeyvals
 
 \tagpdfsetup{keyvals}
