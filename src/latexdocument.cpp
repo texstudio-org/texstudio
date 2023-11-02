@@ -1378,7 +1378,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
     emit structureUpdated();
 
     if(changedCommands.completerNeedsUpdate){
-        emit updateCompleter();
+        emit updateCompleterCommands();
     }
 
 
@@ -3121,6 +3121,11 @@ void LatexDocument::updateLtxCommands(bool updateAll,bool updatePackages)
         lp->possibleCommands["user"].clear();
         foreach (const LatexDocument *elem, listOfDocs) {
             lp->possibleCommands["user"].unite(elem->ltxCommands.possibleCommands["user"]);
+            QStringList keys=elem->ltxCommands.possibleCommands.keys();
+            for(const auto &key : keys){
+                if(!key.startsWith("%")) continue; // unite possible user commands (special def like %color)
+                lp->possibleCommands[key].unite(elem->ltxCommands.possibleCommands[key]);
+            }
         }
     }
 

@@ -7866,7 +7866,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                     completer->setKeyValWords(name, ltxCommands.possibleCommands[elem]);
                 }
             }
-            if (elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem)) {
+            if (elem == "%color" || (elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem))) {
                 completer->setKeyValWords(elem, ltxCommands.possibleCommands[elem]);
             }
         }
