@@ -669,7 +669,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                         name.append(args.join(""));
                     }
                 }
-                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(nameWithoutArgs, name));
+                mUserCommandList.insert(dlh, UserCommandPair(nameWithoutArgs, name));
             }
             continue;
         }
@@ -680,7 +680,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                 if (!data.removedUserCommands.removeAll(firstArg)) {
                     data.addedUserCommands << firstArg;
                 }
-                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(QString(), firstArg));
+                mUserCommandList.insert(dlh, UserCommandPair(QString(), firstArg));
                 continue;
             }
         }
@@ -695,7 +695,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             argsButFirst.removeFirst();
             int optionCount = Parsing::getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
             if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, "\\end{" + firstArg + "}"));
+            mUserCommandList.insert(dlh, UserCommandPair(firstArg, "\\end{" + firstArg + "}"));
             QStringList lst;
             lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
             foreach (const QString &elem, lst) {
@@ -711,9 +711,9 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                 if (j == 0) mandatoryArgString.append("{%<1%>}");
                 else mandatoryArgString.append(QString("{%<%1%>}").arg(j + 1));
             }
-            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + mandatoryArgString));
+            mUserCommandList.insert(dlh, UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + mandatoryArgString));
             if (hasDefaultArg) {
-                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString));
+                mUserCommandList.insert(dlh, UserCommandPair(firstArg, "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString));
             }
             continue;
         }
@@ -723,7 +723,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             QStringList lst;
             lst << "\\the" + firstArg ;
             foreach (const QString &elem, lst) {
-                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(elem, elem));
+                mUserCommandList.insert(dlh, UserCommandPair(elem, elem));
                 ltxCommands.possibleCommands["user"].insert(elem);
                 if (!data.removedUserCommands.removeAll(elem)) {
                     data.addedUserCommands << elem;
@@ -740,7 +740,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                 << "\\" + firstArg.mid(3) + "false"
                 << "\\" + firstArg.mid(3) + "true";
             foreach (const QString &elem, lst) {
-                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(elem, elem));
+                mUserCommandList.insert(dlh, UserCommandPair(elem, elem));
                 ltxCommands.possibleCommands["user"].insert(elem);
                 if (!data.removedUserCommands.removeAll(elem)) {
                     data.addedUserCommands << elem;
@@ -798,14 +798,14 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             cs.snippetLength = cmdName.length();
             if (isDefWidth)
                 cs.type = CodeSnippet::length;
-            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+            mUserCommandList.insert(dlh, UserCommandPair(cmdNameWithoutArgs, cs));
             if(def){ // optional argument, add version without that argument as well
                 CodeSnippet cs(cmdNameWithoutOptional);
                 cs.index = qHash(cmdNameWithoutOptional);
                 cs.snippetLength = cmdNameWithoutOptional.length();
                 if (isDefWidth)
                     cs.type = CodeSnippet::length;
-                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(cmdNameWithoutArgs, cs));
+                mUserCommandList.insert(dlh, UserCommandPair(cmdNameWithoutArgs, cs));
             }
 
             // remove obsolete Overlays (maybe this can be refined
