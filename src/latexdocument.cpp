@@ -2830,6 +2830,11 @@ bool LatexDocument::updateCompletionFiles(const bool updatePackages, const bool 
     if(updatePackages){
         QSet<QString> userCommands=ltxCommands.possibleCommands["user"]; // keep user commands
         QSet<QString> columnCommands=ltxCommands.possibleCommands["%columntypes"];
+        QHash<QString, QSet<QString> > cacheCommands;
+        cacheCommands["%color"]=ltxCommands.possibleCommands["%color"];
+        for(const QString &key:lp->mapSpecialArgs.values()){
+            cacheCommands[key]=ltxCommands.possibleCommands[key];
+        }
 
         QStringList files = mUsepackageList.values();
         LatexParser &latexParser = LatexParser::getInstance();
@@ -2854,6 +2859,9 @@ bool LatexDocument::updateCompletionFiles(const bool updatePackages, const bool 
 
         ltxCommands.possibleCommands["user"] = userCommands;// keep user commands
         ltxCommands.possibleCommands["%columntypes"] = columnCommands;
+        for(const QString &key:cacheCommands.keys()){
+            ltxCommands.possibleCommands[key].unite(cacheCommands[key]);
+        }
     }
     if(updateUserCommands){
         // user commands
