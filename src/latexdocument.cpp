@@ -580,7 +580,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             QString firstArg = tk.getText();
             lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
             foreach (const QString &elem, lst) {
-                mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(firstArg, elem));
+                mUserCommandList.insert(dlh, UserCommandPair(firstArg, elem));
                 ltxCommands.possibleCommands["user"].insert(elem);
                 if (!data.removedUserCommands.removeAll(elem)) {
                     data.addedUserCommands << elem;
@@ -593,7 +593,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             ReferencePair elem;
             elem.name = tk.getText();
             elem.start = tk.start;
-            mBibItem.insert(line(currentLineNr).handle(), elem);
+            mBibItem.insert(dlh, elem);
             data.bibItemsChanged = true;
             continue;
         }
@@ -601,7 +601,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
         if (tk.subtype == Token::todo && (tk.type == Token::braces || tk.type == Token::openBrace)) {
             StructureEntry *newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
             newTodo->title = tk.getInnerText();
-            newTodo->setLine(line(currentLineNr).handle(), currentLineNr);
+            newTodo->setLine(dlh, currentLineNr);
             replaceOrAdd(docStructureIter,dlh,newTodo);
             continue;
         }
@@ -611,7 +611,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             data.completerNeedsUpdate = true;
             QString definition = ltxCommands.specialDefCommands.value(cmd);
             QString elem = tk.getText();
-            mUserCommandList.insert(line(currentLineNr).handle(), UserCommandPair(QString(), definition + "%" + elem));
+            mUserCommandList.insert(dlh, UserCommandPair(QString(), definition + "%" + elem));
             if (!data.removedUserCommands.removeAll(elem)) {
                 data.addedUserCommands << elem;
             }
