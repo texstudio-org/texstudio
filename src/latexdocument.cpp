@@ -1211,7 +1211,19 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
     mIncludedFilesList.remove(dlh);
     mImportedFilesList.remove(dlh);
 
-    if (mUserCommandList.remove(dlh) > 0) changedCommands.completerNeedsUpdate = true;
+    if (mUserCommandList.count(dlh) > 0) {
+        changedCommands.completerNeedsUpdate = true;
+        foreach (const UserCommandPair &cmd, mUserCommandList.values(dlh)) {
+            QString elem = cmd.snippet.word;
+            if (elem.startsWith("%")) { // insert specialArgs
+                int i = elem.indexOf('%', 1);
+                QString category = elem.left(i);
+                elem = elem.mid(i + 1);
+                ltxCommands.possibleCommands[category].remove(elem);
+            }
+        }
+        mUserCommandList.remove(dlh);
+    }
     if (mBibItem.remove(dlh))
         changedCommands.bibTeXFilesNeedsUpdate = true;
 
