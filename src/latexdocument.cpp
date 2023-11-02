@@ -611,9 +611,10 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             data.completerNeedsUpdate = true;
             QString definition = ltxCommands.specialDefCommands.value(cmd);
             QString elem = tk.getText();
-            mUserCommandList.insert(dlh, UserCommandPair(QString(), definition + "%" + elem));
-            if (!data.removedUserCommands.removeAll(elem)) {
-                data.addedUserCommands << elem;
+            QString completeDefinition=definition + "%" + elem;
+            mUserCommandList.insert(dlh, UserCommandPair(QString(), completeDefinition));
+            if (!data.removedUserCommands.removeAll(completeDefinition)) {
+                data.addedUserCommands << completeDefinition;
             }
         }
 
@@ -1142,6 +1143,16 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
                 }
                 if(!changedCommands.addedUserCommands.isEmpty()){
                     lp->possibleCommands["user"].unite(ltxCommands.possibleCommands["user"]);
+                    // handle specialDef commands
+                    for(const QString &key: changedCommands.addedUserCommands){
+                        if(key.startsWith("%")){
+                            int i = key.indexOf('%', 1);
+                            QString category = key.left(i);
+                            QString elem = key.mid(i + 1);
+                            lp->possibleCommands[category].insert(elem);
+                            ltxCommands.possibleCommands[category].insert(elem);
+                        }
+                    }
                 }
             }
             synChecker.setLtxCommands(lp); // redundant here, updateCompletionfiles
