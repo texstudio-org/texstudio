@@ -1,5 +1,5 @@
 # mitthesis class
-# Matthew Bertucci 2023/09/23 for v1.09
+# Matthew Bertucci 2023/11/03 for v1.11
 
 #include:class-report
 #include:etoolbox
@@ -30,9 +30,13 @@ twoside
 \Acceptor{name}{title%text}{thesis-related position}
 \DegreeDate{month}{year}
 \ThesisDate{date}
+\Tighten
 \SignatureBlockSize{fontsize cmd}
+\AuthorNameSize{fontsize cmd}
+\Squash
 \CClicense{license type}{URL}#U
 \PDFRightsText#*
+\SuppressMonthError#*
 \SuppressAcceptorError#*
 
 \begin{nomenclature}
