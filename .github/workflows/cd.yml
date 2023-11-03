@@ -8,7 +8,7 @@ permissions:
 
 env:
   OSX_QT_VERSION: 6.6.0
-  OSX_POPPLER_VERSION: 23.10.0
+  OSX_POPPLER_VERSION: 23.11.0
   OSX_QUAZIP_VERSION: 1.4
 
 jobs:
