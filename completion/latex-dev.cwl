@@ -1,26 +1,27 @@
 # latex mode: LaTeX commands (package level)
 # dani/2006-02-18
 # muzimuzhi/8 Jul 2019
-# Matthew Bertucci 2023/06/08 for 2023/06/01 release
+# Matthew Bertucci 2023/11/01 release
 
 # commands with big Letters and others
 \ActivateGenericHook{hook}#*
-\AddToHook{hook}{code}#*
 \AddToHook{hook}[label]{code}#*
+\AddToHook{hook}{code}#*
 \AddToHookNext{hook}{code}#*
 \AddToHookNextWithArguments{hook}{code}#*
-\AddToHookWithArguments{hook}{code}#*
 \AddToHookWithArguments{hook}[label]{code}#*
+\AddToHookWithArguments{hook}{code}#*
 \AddToNoCaseChangeList{command}#*
 \AfterEndEnvironment[label]{environment}{code}#*
 \AfterEndEnvironment{environment}{code}#*
-\AtBeginDocument{code}#*
+\AssignSocketPlug{socket}{socket plug}#*
 \AtBeginDocument[label]{code}#*
+\AtBeginDocument{code}#*
 \AtBeginDvi{code}#*
 \AtBeginEnvironment[label]{environment}{code}#*
 \AtBeginEnvironment{environment}{code}#*
-\AtEndDocument{code}#*
 \AtEndDocument[label]{code}#*
+\AtEndDocument{code}#*
 \AtEndDvi{code}#*
 \AtEndEnvironment[label]{environment}{code}#*
 \AtEndEnvironment{environment}{code}#*
@@ -58,6 +59,8 @@
 \DebugMarksOn#*
 \DebugShipoutsOff#*
 \DebugShipoutsOn#*
+\DebugSocketsOff#*
+\DebugSocketsOn#*
 \DeclareCaseChangeEquivalent{cmd}{replacement text}#*d
 \DeclareCommandCopy{cmd}{copied cmd%definition}#d
 \DeclareCurrentRelease{name}{date}#*
@@ -81,10 +84,10 @@
 \DeclareFontShapeChangeRule{shape1}{shape2}{result1}{result2}#*
 \DeclareFontSubstitution{encoding}{family}{series}{shape}#*
 \DeclareHookRule{hook}{label1}{relation}{label2}#*
-\DeclareKeys{declarations}#*
 \DeclareKeys[family]{declarations}#*
-\DeclareLowercaseMapping{codepoint}{output}#*
+\DeclareKeys{declarations}#*
 \DeclareLowercaseMapping[locale]{codepoint}{output}#*
+\DeclareLowercaseMapping{codepoint}{output}#*
 \DeclareMathAccent{cmd}{type}{sym-font}{slot}#*d
 \DeclareMathAlphabet{math-alph%cmd}{encoding}{family}{series}{shape}#*d
 \DeclareMathDelimiter{cmd}{type}{sym-font-1}{slot-1}{sym-font-2}{slot-2}#*d
@@ -118,13 +121,13 @@
 \DeclareTextFontCommand{cmd}{font-switches%definition}#*d
 \DeclareTextSymbol{cmd}{encoding}{slot}#*d
 \DeclareTextSymbolDefault{cmd}{encoding}#*
-\DeclareTitlecaseMapping{codepoint}{output}#*
 \DeclareTitlecaseMapping[locale]{codepoint}{output}#*
+\DeclareTitlecaseMapping{codepoint}{output}#*
 \DeclareUnicodeCharacter{hexadecimal}{definition}#*
-\DeclareUnknownKeyHandler{code}#*
 \DeclareUnknownKeyHandler[family]{code}#*
-\DeclareUppercaseMapping{codepoint}{output}#*
+\DeclareUnknownKeyHandler{code}#*
 \DeclareUppercaseMapping[locale]{codepoint}{output}#*
+\DeclareUppercaseMapping{codepoint}{output}#*
 \DisableGenericHook{hook}#*
 \DisableHook{hook}#*
 \DiscardShipoutBox#*
@@ -134,8 +137,8 @@
 \ExpandArgs{spec}#*
 \ExplSyntaxOff#*
 \ExplSyntaxOn#*
-\FirstMark{class%plain}#*
 \FirstMark[region]{class%plain}#*
+\FirstMark{class%plain}#*
 \GenericError{continuation}{message%text}{help location%text}{help info%text}#*
 \GenericInfo{continuation}{message%text}#*
 \GenericWarning{continuation}{message%text}#*
@@ -148,13 +151,15 @@
 \IfClassAtLeastTF{class}{date}{true code}{false code}#*
 \IfClassLoadedTF{class}{true code}{false code}#*
 \IfClassLoadedWithOptionsTF{class}{options}{true code}{false code}#*
+\IfExplAtLeastTF{date}{true code}{false code}#*
 \IfFileAtLeastTF{file}{date}{true code}{false code}#*
 \IfFileExists{file}{true code}{false code}#*
 \IfFontSeriesContextTF{face}{true code}{false code}#*
 \IfFormatAtLeastTF{date}{true code}{false code}#*
 \IfHookEmptyTF{hook}{true code}{false code}#*
-\IfMarksEqualTF{class%plain}{pos1}{pos2}{true code}{false code}#*
+\IfLabelExistTF{label}{true code}{false code}#*
 \IfMarksEqualTF[region]{class%plain}{pos1}{pos2}{true code}{false code}#*
+\IfMarksEqualTF{class%plain}{pos1}{pos2}{true code}{false code}#*
 \IfNoValueF{arg}{ValueCode}
 \IfNoValueT{arg}{-NoValue-Code}
 \IfNoValueTF{arg}{-NoValue-Code}{ValueCode}
@@ -162,6 +167,8 @@
 \IfPackageLoadedTF{package}{true code}{false code}#*
 \IfPackageLoadedWithOptionsTF{package}{options}{true code}{false code}#*
 \IfPDFManagementActiveTF{true code}{false code}#*
+\IfPropertyExistTF{property}{true code}{false code}#*
+\IfPropertyRecordedTF{label}{property}{true code}{false code}#*
 \IfTargetDateBefore{date}{before code}{after code}#*
 \IfValueF{arg}{-NoValue-Code}#*
 \IfValueT{arg}{ValueCode}#*
@@ -171,9 +178,11 @@
 \InputIfFileExists{file}{true code}{false code}#*i
 \InsertMark{class%plain}{text}#*
 \LastDeclaredEncoding#*
-\LastMark{class%plain}#*
 \LastMark[region]{class%plain}#*
+\LastMark{class%plain}#*
 \LaTeXReleaseInfo#*
+\LinkTargetOff#*
+\LinkTargetOn#*
 \LoadClass[optionlist]{class}#*u
 \LoadClass[optionlist]{class}[release]#*u
 \LoadClass{class}#*u
@@ -182,6 +191,10 @@
 \LoadClassWithOptions{class}[release]#*u
 \LoadFontDefinitionFile{encoding}{family}#*
 \LogHook{hook}#*
+\LogSocket{socket}#*
+\MakeLinkTarget*{target name}#*
+\MakeLinkTarget[prefix]{counter}#*
+\MakeLinkTarget{counter}#*
 \MakeRobust{cmd}#*
 \MessageBreak#*
 \NeedsTeXFormat{format}#*
@@ -197,8 +210,12 @@
 \NewMirroredHookPair{hook1}{hook2}#*
 \NewMirroredHookPairWithArguments{hook1}{hook2}{number}#*
 \NewModuleRelease{date}{name}#*
+\NewProperty{property%specialDef}{setpoint}{default}{code}#*s#%latexproperties
 \NewReversedHook{hook}#*
 \NewReversedHookWithArguments{hook}{number}#*
+\NewSocket{socket}{number of inputs}#*
+\NewSocketPlug{socket}{socket plug}{code}#*
+\NextLinkTarget{target name}#*
 \OmitIndent#*
 \OptionNotUsed#*
 \PackageError{package name}{error text%text}{help text%text}#*
@@ -239,6 +256,10 @@
 \RawParEnd#*
 \RawShipout#*
 \ReadonlyShipoutCounter#*
+\RecordProperties{label}{properties%keyvals}#*l
+\RefProperty[local default]{label}{property%keyvals}#*r
+\RefProperty{label}{property%keyvals}#*r
+\RefUndefinedWarn{label}{property%keyvals}#*
 \RemoveFromHook{hook}#*
 \RemoveFromHook{hook}[label]#*
 \RenewCommandCopy{cmd}{copied cmd%definition}
@@ -254,9 +275,10 @@
 \RequirePackageWithOptions{package}[release]#*u
 \ReverseBoolean#*
 \SetDefaultHookLabel{default label}#*
-\SetKeys{keyvals}#*
 \SetKeys[family]{keyvals}#*
+\SetKeys{keyvals}#*
 \SetMathAlphabet{math-alph%cmd}{version}{encoding}{family}{series}{shape}#*d
+\SetProperty{property}{setpoint}{default}{code}#*
 \SetSymbolFont{sym-font}{version}{encoding}{family}{series}{shape}#*
 \ShipoutBox#*
 \ShipoutBoxDepth#*
@@ -266,11 +288,12 @@
 \ShowEnvironment{envname}#*
 \ShowFloat{identifier}#*
 \ShowHook{hook}#*
+\ShowSocket{socket}#*
 \SplitArgument{number}{tokens}#*
 \SplitList{tokens}#*
 \TextSymbolUnavailable{arg}#*
-\TopMark{class%plain}#*
 \TopMark[region]{class%plain}#*
+\TopMark{class%plain}#*
 \TrimSpaces#*
 \UndeclareTextCommand{cmd}{encoding}#*
 \UseHook{hook}#*
@@ -280,8 +303,23 @@
 \UseOneTimeHook{hook}#*
 \UseOneTimeHookWithArguments{%<hook%>}{%<number%>}{%<arg1%>}%<{arg2}...%>#*
 \UseRawInputEncoding#*
+\UseSocket{socket}#*
 \UseTextAccent{encoding}{cmd}{text}#*
 \UseTextSymbol{encoding}{cmd}#*
+
+#keyvals:\RecordProperties#c,\RefProperty#c,\RefUndefinedWarn#c
+abspage
+page
+pagenum
+label
+title
+target
+pagetarget
+counter
+xpos
+ypos
+%latexproperties
+#endkeyvals
 
 # expl3 commands
 \ExplFileDate#S
@@ -626,8 +664,12 @@ debug={%<options%>}
 \ltmetaversion#S
 \ltparadate#S
 \ltparaversion#S
+\ltpropertiesdate#S
+\ltpropertiesversion#S
 \ltshipoutdate#S
 \ltshipoutversion#S
+\ltsocketsdate#S
+\ltsocketsversion#S
 \mathalpha#*
 \mathgroup#*
 \mathhexbox#*

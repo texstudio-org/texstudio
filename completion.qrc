@@ -204,6 +204,7 @@
 <file>completion/auto-pst-pdf.cwl</file>
 <file>completion/auto-pst-pdf-lua.cwl</file>
 <file>completion/autopuncitems.cwl</file>
+<file>completion/autotype.cwl</file>
 <file>completion/auxhook.cwl</file>
 <file>completion/avremu.cwl</file>
 <file>completion/awesomebox.cwl</file>

@@ -1,5 +1,5 @@
 # pst-solides3d package
-# Matthew Bertucci 2/23/2022 for v4.34a
+# Matthew Bertucci 2023/11/03 for v4.35
 
 #include:pstricks
 #include:pst-node
@@ -38,10 +38,10 @@
 \psResetSolidKeys#*
 \gridIIID(x1,y1)(x2,y2)
 \gridIIID[options%keyvals](x1,y1)(x2,y2)
-\psImage[file=%<imagefile%>]
-\psImage[file=%<imagefile%>,%<options%>]
-\psImage[file=%<imagefile%>](x,y)
-\psImage[file=%<imagefile%>,%<options%>](x,y)
+\psImage[filename=%<imagefile%>]
+\psImage[filename=%<imagefile%>,%<options%>]
+\psImage[filename=%<imagefile%>](x,y)
+\psImage[filename=%<imagefile%>,%<options%>](x,y)
 \psImage[options%keyvals](x,y)#S
 \Normale(radius,longitude,latitude)#*
 \addtosolideslistobject{name}
@@ -60,7 +60,7 @@ showOrigin#true,false
 #endkeyvals
 
 #keyvals:\psSolid#c
-object=#point,line,vector,plan,grille,cube,cylindre,cylindrecreux,cone,conecreux,tronccone,troncconecreux,sphere,calottesphere,calottespherecreuse,tore,tetrahedron,octahedron,dodecahedron,icosahedron,anneau,prisme,prismecreux,parallelepiped,face,polygonregulier,ruban,surface,surface*,surfaceparametree,pie,fusion,geode,load,offfile,objfile,datfile,new,courbe,vecteur,vecteur3d
+object=#point,line,vector,plan,grille,cube,cylindre,cylindrecreux,cone,conecreux,tronccone,troncconecreux,sphere,ellipsoid,calottesphere,calottespherecreuse,tore,tetrahedron,octahedron,dodecahedron,icosahedron,anneau,prisme,prismecreux,parallelepiped,face,polygonregulier,ruban,surface,surface*,surfaceparametree,pie,fusion,geode,load,offfile,objfile,datfile,new,courbe,vecteur,vecteur3d
 a=%<length%>
 action=#none,draw,draw*,draw**,writesolid,writeobj,writeoff
 affinage=#0,1,2,3,all
@@ -85,7 +85,7 @@ dualreg#true,false
 faces={%<faces spec%>}
 fcol=%<n1 (col1) n2 (col2) ...%>
 fcolor=#%color
-file=%<file name%>
+filename=%<file name%>
 fillcolor=#%color
 fontsize=##L
 function=#%pstsolides3dfunc
@@ -244,7 +244,7 @@ Zmin=%<number%>
 
 #keyvals:\psImage#c
 divisions=%<integer%>
-file=%<imagefile%>
+filename=%<imagefile%>
 normal=%<x y z%>
 origine=%<x y z%>
 phi=%<degrees%>

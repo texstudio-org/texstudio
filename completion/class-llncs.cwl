@@ -1,5 +1,5 @@
 # llncs class
-# Matthew Bertucci 3/27/2022 for v2.21
+# Matthew Bertucci 2023/11/03 for v2.23
 
 #include:aliascnt
 #include:multicol
@@ -99,6 +99,9 @@ fleqn
 \spnewtheorem{envname}[numbered like]{caption}{cap font}{body font}#N
 \spnewtheorem*{envname}{caption}{cap font}{body font}#N
 
+\begin{credits}
+\end{credits}
+
 #keyvals:\bibliographystyle#c
 splncs04
 #endkeyvals
@@ -128,6 +131,7 @@ splncs04
 \contriblistname#*
 \corollaryname#*
 \definitionname#*
+\discintname#*
 \examplename#*
 \exercisename#*
 \fnindent#*
