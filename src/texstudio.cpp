@@ -7772,10 +7772,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 {
     CodeSnippetList words;
 
-    if(mCompleterCommandsNeedsUpdate){
-        mCompleterWords.clear();
-    }
-
     if (configManager.parseBibTeX) documents.updateBibFiles();
 
     if (!edView)
@@ -7791,6 +7787,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
         docs = edView->document->getListOfDocs();
 
         // collect user commands and references
+        QSet<QString>cwlFiles;
         foreach (LatexDocument *doc, docs) {
             QList<CodeSnippet> userList=doc->userCommandList();
             if(config){
@@ -7806,8 +7803,34 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                 }
             }
             words.unite(userList);
+
             if(mCompleterCommandsNeedsUpdate){
-                mCompleterWords.unite(doc->additionalCommandsList(loadedFiles));
+                cwlFiles.unite(doc->getCWLFiles());
+            }
+        }
+        if(mCompleterCommandsNeedsUpdate){
+            // load only needed cwl files
+            auto addedCwl=cwlFiles-mLoadedCWLFiles;
+            auto removedCwl=mLoadedCWLFiles-cwlFiles;
+            if(!removedCwl.isEmpty()){
+                // recreate complete set (for now)
+                mCompleterWords.clear();
+                addedCwl=cwlFiles; // reload all
+                mLoadedCWLFiles.clear();
+            }
+            if(!addedCwl.isEmpty()){
+                // load additional cwls
+                LatexPackage pck;
+                QStringList files = addedCwl.values();
+                edView->document->gatherCompletionFiles(files, loadedFiles, pck, true);
+                mCompleterWords.unite(pck.completionWords);
+                mLoadedCWLFiles.unite(addedCwl);
+            }else{
+                // filter out user commands
+                mCompleterWords.erase(
+                    std::remove_if(mCompleterWords.begin(),mCompleterWords.end(),[](CodeSnippet x){return x.type==CodeSnippet::userCommand;}),
+                    mCompleterWords.end()
+                );
             }
         }
         mCompleterWords.unite(words);

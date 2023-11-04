@@ -44,6 +44,7 @@ struct UserCommandPair {
 	// information for code completion
 	CodeSnippet snippet;
 	UserCommandPair(const QString &name, const CodeSnippet &snippet);
+    UserCommandPair(const QString &name, const QString &snippet);
 };
 
 
@@ -225,6 +226,8 @@ public:
     void reinterpretCommandArguments(HandledData &changedCommands);
     void replaceOrAdd(std::list<StructureEntry*>::iterator &docStructureIter, QDocumentLineHandle *dlh, StructureEntry *newElement);
 
+    void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);
+
     std::list<StructureEntry *> docStructure;
 
 private:
@@ -267,8 +270,6 @@ private:
 
     void addMagicComment(const QString &text, int lineNr, std::list<StructureEntry*>::iterator &docStructureIter);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
-
-	void gatherCompletionFiles(QStringList &files, QStringList &loadedFiles, LatexPackage &pck, bool gatherForCompleter = false);
 
     SyntaxCheck synChecker;
 	Environment unclosedEnv;

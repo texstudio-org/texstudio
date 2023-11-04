@@ -50,7 +50,7 @@ public:
 	uint index; ///< hash index for usage count identification
 	int snippetLength; ///< number of characters
 	int score;
-	enum Type {none, length,userConstruct};
+    enum Type {none, length,userConstruct,userCommand};
 	Type type;
 
 	QString expandCode(const QString &code);

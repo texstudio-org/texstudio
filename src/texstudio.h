@@ -659,6 +659,7 @@ protected:
 
 	bool mCompleterNeedsUpdate;
     bool mCompleterCommandsNeedsUpdate=false;
+    QSet<QString> mLoadedCWLFiles;
     CodeSnippetList mCompleterWords;
 
 	int currentLine;

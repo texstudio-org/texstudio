@@ -20,6 +20,11 @@
 FileNamePair::FileNamePair(const QString &rel, const QString &abs): relative(rel), absolute(abs) {}
 UserCommandPair::UserCommandPair(const QString &name, const CodeSnippet &snippet): name(name), snippet(snippet) {}
 
+UserCommandPair::UserCommandPair(const QString &name, const QString &snippet): name(name), snippet(snippet)
+{
+    this->snippet.type=CodeSnippet::userCommand;
+}
+
 // languages for LaTeX syntax checking (exact name from qnfa file)
 const QSet<QString> LatexDocument::LATEX_LIKE_LANGUAGES = QSet<QString>() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file";
 /*! \brief constructor
@@ -805,6 +810,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             CodeSnippet cs(cmdName);
             cs.index = qHash(cmdName);
             cs.snippetLength = cmdName.length();
+            cs.type=CodeSnippet::userCommand;
             if (isDefWidth)
                 cs.type = CodeSnippet::length;
             mUserCommandList.insert(dlh, UserCommandPair(cmdNameWithoutArgs, cs));
@@ -812,6 +818,7 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                 CodeSnippet cs(cmdNameWithoutOptional);
                 cs.index = qHash(cmdNameWithoutOptional);
                 cs.snippetLength = cmdNameWithoutOptional.length();
+                cs.type=CodeSnippet::userCommand;
                 if (isDefWidth)
                     cs.type = CodeSnippet::length;
                 mUserCommandList.insert(dlh, UserCommandPair(cmdNameWithoutArgs, cs));
