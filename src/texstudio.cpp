@@ -7808,7 +7808,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             words.unite(userList);
             if(mCompleterCommandsNeedsUpdate){
                 mCompleterWords.unite(doc->additionalCommandsList(loadedFiles));
-                ltxCommands.append(doc->ltxCommands);
             }
         }
         mCompleterWords.unite(words);
@@ -7857,23 +7856,20 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
     completer->setAdditionalWords(mCompleterWords, CT_COMMANDS);
     if(mCompleterCommandsNeedsUpdate){
         // add keyval completion, add special lists
-        foreach (const QString &elem, ltxCommands.possibleCommands.keys()) {
+        foreach (const QString &elem, edView->document->lp->possibleCommands.keys()) {
             if (elem.startsWith("key%")) {
                 QString name = elem.mid(4);
                 if (name.endsWith("#c"))
                     name.chop(2);
                 if (!name.isEmpty()) {
-                    completer->setKeyValWords(name, ltxCommands.possibleCommands[elem]);
+                    completer->setKeyValWords(name, edView->document->lp->possibleCommands[elem]);
                 }
-            }
-            if (elem == "%color" || (elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem))) {
-                completer->setKeyValWords(elem, ltxCommands.possibleCommands[elem]);
             }
         }
         // add context completion
         if (config) {
             foreach (const QString &elem, config->specialCompletionKeys) {
-                completer->setContextWords(ltxCommands.possibleCommands[elem], elem);
+                completer->setContextWords(edView->document->lp->possibleCommands[elem], elem);
             }
         }
     }
