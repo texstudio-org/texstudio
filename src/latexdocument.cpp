@@ -1215,19 +1215,10 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
                 }
             }
         }else{
-            if(elem.startsWith("%")){
-                int i = elem.indexOf('%', 1);
-                QString category = elem.left(i);
-                QString wrd = elem.mid(i + 1);
-                if(countCommandDefintions("",elem)==1){
-                    ltxCommands.possibleCommands[category].remove(wrd);
-                }
-            }else{
-                int i = elem.indexOf("{");
-                if (i >= 0) elem = elem.left(i);
-                if(countCommandDefintions(elem)==1){
-                    ltxCommands.possibleCommands["user"].remove(elem);
-                }
+            int i = elem.indexOf("{");
+            if (i >= 0) elem = elem.left(i);
+            if(countCommandDefintions(elem)==1){
+                ltxCommands.possibleCommands["user"].remove(elem);
             }
         }
         if(cmd.snippet.type==CodeSnippet::userConstruct)
