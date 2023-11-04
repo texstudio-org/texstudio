@@ -7781,7 +7781,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
     LatexParser ltxCommands = LatexParser::getInstance();
     LatexCompleterConfig *config = completer->getConfig();
 
-    QStringList loadedFiles; // keep track of loaded files to avoid duplicate loading
+
     if (edView && edView->document) {
         // determine from which docs data needs to be collected
         docs = edView->document->getListOfDocs();
@@ -7828,6 +7828,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                 // load additional cwls
                 LatexPackage pck;
                 QStringList files = addedCwl.values();
+                QStringList loadedFiles = mLoadedCWLFiles.values(); // keep track of loaded files to avoid duplicate loading
                 edView->document->gatherCompletionFiles(files, loadedFiles, pck, true);
                 mCompleterWords.unite(pck.completionWords);
                 mLoadedCWLFiles.unite(addedCwl);
