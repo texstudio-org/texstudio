@@ -1,5 +1,7 @@
 
 [CI]: https://github.com/texstudio-org/texstudio/workflows/CI/badge.svg
+[Codacy Badge]: https://app.codacy.com/project/badge/Grade/892de515e8c54a7a99bd836743c4510c
+[Codacy TeXstudio]: https://app.codacy.com/gh/texstudio-org/texstudio/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade
 
 [Website]: https://www.texstudio.org
 
@@ -12,7 +14,7 @@
 
 
 # TeXstudio
-![CI]
+![CI] [![Codacy Badge]][Codacy TeXstudio]
 
 **TeXstudio** is a fully featured **LaTeX** editor.
 
