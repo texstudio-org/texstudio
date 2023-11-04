@@ -7820,7 +7820,7 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
             }else{
                 // filter out user commands
                 mCompleterWords.erase(
-                    std::remove_if(mCompleterWords.begin(),mCompleterWords.end(),[](CodeSnippet x){return x.type==CodeSnippet::userCommand;}),
+                    std::remove_if(mCompleterWords.begin(),mCompleterWords.end(),[](CodeSnippet x){return x.type!=CodeSnippet::none;}),
                     mCompleterWords.end()
                     );
             }
