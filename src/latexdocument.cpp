@@ -274,9 +274,17 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh, int hint,int
                     }
                 }
             }else{
-                int i = word.indexOf("{");
-                if (i >= 0) word = word.left(i);
-                ltxCommands.possibleCommands["user"].remove(word);
+                if(word.startsWith("%")){
+                    int i = word.indexOf('%', 1);
+                    QString category = word.left(i);
+                    QString elem = word.mid(i + 1);
+                    lp->possibleCommands[category].remove(elem);
+                    ltxCommands.possibleCommands[category].remove(elem);
+                }else{
+                    int i = word.indexOf("{");
+                    if (i >= 0) word = word.left(i);
+                    ltxCommands.possibleCommands["user"].remove(word);
+                }
             }
             updateSyntaxCheck = true;
         }
