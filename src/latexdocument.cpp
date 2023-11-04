@@ -1906,6 +1906,7 @@ QList<CodeSnippet> LatexDocument::userCommandList() const
 {
 	QList<CodeSnippet> csl;
     foreach (UserCommandPair cmd, mUserCommandList) {
+        if(cmd.name.isEmpty()) continue; // filter out special def
 		csl.append(cmd.snippet);
 	}
     std::sort(csl.begin(),csl.end());
