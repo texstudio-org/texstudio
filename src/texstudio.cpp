@@ -7817,6 +7817,12 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                 mCompleterWords.clear();
                 addedCwl=cwlFiles; // reload all
                 mLoadedCWLFiles.clear();
+            }else{
+                // filter out user commands
+                mCompleterWords.erase(
+                    std::remove_if(mCompleterWords.begin(),mCompleterWords.end(),[](CodeSnippet x){return x.type==CodeSnippet::userCommand;}),
+                    mCompleterWords.end()
+                    );
             }
             if(!addedCwl.isEmpty()){
                 // load additional cwls
@@ -7825,12 +7831,6 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
                 edView->document->gatherCompletionFiles(files, loadedFiles, pck, true);
                 mCompleterWords.unite(pck.completionWords);
                 mLoadedCWLFiles.unite(addedCwl);
-            }else{
-                // filter out user commands
-                mCompleterWords.erase(
-                    std::remove_if(mCompleterWords.begin(),mCompleterWords.end(),[](CodeSnippet x){return x.type==CodeSnippet::userCommand;}),
-                    mCompleterWords.end()
-                );
             }
         }
         mCompleterWords.unite(words);
