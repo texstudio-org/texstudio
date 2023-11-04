@@ -118,7 +118,7 @@ public:
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
     LatexDocument *getDocumentForLabel(const QString &name); ///< get document from label name
-    int countCommandDefintions(const QString &name); ///< count how many time a certain command is defined, used for checking for duplicates
+    int countCommandDefintions(const QString &name, const QString word=""); ///< count how many time a certain command is defined, used for checking for duplicates
 	Q_INVOKABLE QDocumentLineHandle *findCommandDefinition(const QString &name); ///< get line of definition from command name (may return nullptr)
 	Q_INVOKABLE QDocumentLineHandle *findUsePackage(const QString &name); ///< get line of \usepackage from package name (may return nullptr)
 	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = nullptr);

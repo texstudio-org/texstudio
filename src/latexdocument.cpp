@@ -816,9 +816,6 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                     cs.type = CodeSnippet::length;
                 mUserCommandList.insert(dlh, UserCommandPair(cmdNameWithoutArgs, cs));
             }
-
-            // remove obsolete Overlays (maybe this can be refined
-            //updateSyntaxCheck=true;
             continue;
         }
 
@@ -1149,20 +1146,32 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
                     loopAgain=true;
                     updateCompleter=true;
                 }
-                if(!changedCommands.addedUserCommands.isEmpty()){
-                    lp->possibleCommands["user"].unite(ltxCommands.possibleCommands["user"]);
-                    // handle specialDef commands
-                    for(const QString &key: changedCommands.addedUserCommands){
-                        if(key.startsWith("%")){
-                            int i = key.indexOf('%', 1);
-                            QString category = key.left(i);
-                            QString elem = key.mid(i + 1);
-                            lp->possibleCommands[category].insert(elem);
-                            ltxCommands.possibleCommands[category].insert(elem);
-                        }
+            }
+            if(!changedCommands.addedUserCommands.isEmpty()){
+                lp->possibleCommands["user"].unite(ltxCommands.possibleCommands["user"]);
+                // handle specialDef commands
+                for(const QString &key: changedCommands.addedUserCommands){
+                    if(key.startsWith("%")){
+                        int i = key.indexOf('%', 1);
+                        QString category = key.left(i);
+                        QString elem = key.mid(i + 1);
+                        lp->possibleCommands[category].insert(elem);
+                        ltxCommands.possibleCommands[category].insert(elem);
                     }
                 }
             }
+            if(!changedCommands.removedUserCommands.isEmpty()){
+                for(const QString &key: changedCommands.removedUserCommands){
+                    if(key.startsWith("%")){
+                        int i = key.indexOf('%', 1);
+                        QString category = key.left(i);
+                        QString elem = key.mid(i + 1);
+                        lp->possibleCommands[category].remove(elem);
+                        ltxCommands.possibleCommands[category].remove(elem);
+                    }
+                }
+            }
+
             synChecker.setLtxCommands(lp); // redundant here, updateCompletionfiles
             reCheckSyntax();
         }
@@ -1206,16 +1215,24 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
                 }
             }
         }else{
-            int i = elem.indexOf("{");
-            if (i >= 0) elem = elem.left(i);
-            if(countCommandDefintions(elem)==1){
-                ltxCommands.possibleCommands["user"].remove(elem);
+            if(elem.startsWith("%")){
+                int i = elem.indexOf('%', 1);
+                QString category = elem.left(i);
+                QString wrd = elem.mid(i + 1);
+                if(countCommandDefintions("",elem)==1){
+                    ltxCommands.possibleCommands[category].remove(wrd);
+                }
+            }else{
+                int i = elem.indexOf("{");
+                if (i >= 0) elem = elem.left(i);
+                if(countCommandDefintions(elem)==1){
+                    ltxCommands.possibleCommands["user"].remove(elem);
+                }
             }
         }
         if(cmd.snippet.type==CodeSnippet::userConstruct)
             continue;
         changedCommands.removedUserCommands << elem;
-        //updateSyntaxCheck=true;
     }
     if (mLabelItem.contains(dlh)) {
         QList<ReferencePair> labels = mLabelItem.values(dlh);
@@ -1586,12 +1603,18 @@ LatexDocument* LatexDocument::getDocumentForLabel(const QString &name){
     return nullptr;
 }
 
-int LatexDocument::countCommandDefintions(const QString &name)
+int LatexDocument::countCommandDefintions(const QString &name,const QString word)
 {
     int result=0;
     for (auto it = mUserCommandList.constBegin(); it != mUserCommandList.constEnd(); ++it) {
-        if (it.value().name == name) {
-            ++result;
+        if(name.isEmpty()){
+            if (it.value().snippet.word == word) {
+                ++result;
+            }
+        }else{
+            if (it.value().name == name) {
+                ++result;
+            }
         }
     }
     return result;
@@ -2882,10 +2905,6 @@ bool LatexDocument::updateCompletionFiles(const bool updatePackages, const bool 
                 elem = elem.mid(i + 1);
                 ltxCommands.possibleCommands[category].insert(elem);
                 continue;
-            }
-            if (!elem.startsWith("\\begin{") && !elem.startsWith("\\end{")) {
-                int i = elem.indexOf(QRegularExpression("\\W"), 1);
-                if (i >= 0) elem = elem.left(i);
             }
         }
     }
