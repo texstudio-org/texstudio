@@ -2110,32 +2110,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
 
-    if (config->inlineGrammarChecking) {
-		QList<LineInfo> changedLines;
-		int lookBehind = 0;
-		for (; linenr - lookBehind >= 0; lookBehind++)
-			if (editor->document()->line(linenr - lookBehind).firstChar() == -1) break;
-		if (lookBehind > 0) lookBehind--;
-		if (lookBehind > linenr) lookBehind = linenr;
-
-        changedLines.reserve(linenr + count + lookBehind + 1);
-
-		int truefirst = linenr - lookBehind;
-		for (int i = linenr - lookBehind; i < editor->document()->lineCount(); i++) {
-			QDocumentLine line = editor->document()->line(i);
-			if (!line.isValid()) break;
-			changedLines << LineInfo(line.handle());
-			if (line.firstChar() == -1) {
-                emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
-				truefirst += changedLines.size();
-				changedLines.clear();
-				if (i >= linenr + count) break;
-			}
-		}
-		if (!changedLines.isEmpty())
-            emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
-
-    }
+    //checkGrammar(linenr,count);
 
     for (int i = linenr; i < linenr + count; i++) {
 		QDocumentLine line = editor->document()->line(i);
@@ -2144,7 +2119,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
         //remove all overlays used for latex things, in descending frequency
         line.clearOverlays(formatsList); //faster as it avoids multiple lock/unlock operations
 
-		bool addedOverlaySpellCheckError = false;
 		bool addedOverlayReference = false;
 		bool addedOverlayCitation = false;
 		bool addedOverlayEnvironment = false;
@@ -2272,7 +2246,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			bool updateWrapping = false;
 			QFormatScheme *ff = QDocument::defaultFormatScheme();
 			REQUIRE(ff);
-			updateWrapping |= addedOverlaySpellCheckError && ff->format(SpellerUtility::spellcheckErrorFormat).widthChanging();
 			updateWrapping |= addedOverlayReference && (ff->format(referenceMissingFormat).widthChanging() || ff->format(referencePresentFormat).widthChanging() || ff->format(referenceMultipleFormat).widthChanging());
 			updateWrapping |= addedOverlayCitation && (ff->format(citationPresentFormat).widthChanging() || ff->format(citationMissingFormat).widthChanging());
 			updateWrapping |= addedOverlayPackage && (ff->format(packagePresentFormat).widthChanging() || ff->format(packageMissingFormat).widthChanging());
@@ -2294,6 +2267,40 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 void LatexEditorView::reCheckSyntax(int linenr, int count)
 {
     document->reCheckSyntax(linenr,count);
+}
+/*!
+ * \brief collect and prepare text for grammar check
+ * \param linenr Starting line
+ * \param count Number of lines
+ */
+void LatexEditorView::checkGrammar(int linenr, int count)
+{
+    if (config->inlineGrammarChecking) {
+        QList<LineInfo> changedLines;
+        int lookBehind = 0;
+        for (; linenr - lookBehind >= 0; lookBehind++)
+            if (editor->document()->line(linenr - lookBehind).firstChar() == -1) break;
+        if (lookBehind > 0) lookBehind--;
+        if (lookBehind > linenr) lookBehind = linenr;
+
+        changedLines.reserve(linenr + count + lookBehind + 1);
+
+        int truefirst = linenr - lookBehind;
+        for (int i = linenr - lookBehind; i < editor->document()->lineCount(); i++) {
+            QDocumentLine line = editor->document()->line(i);
+            if (!line.isValid()) break;
+            changedLines << LineInfo(line.handle());
+            if (line.firstChar() == -1) {
+                emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
+                truefirst += changedLines.size();
+                changedLines.clear();
+                if (i >= linenr + count) break;
+            }
+        }
+        if (!changedLines.isEmpty())
+            emit linesChanged(speller ? speller->name() : "<none>", document, changedLines, truefirst);
+
+    }
 }
 
 void LatexEditorView::lineDeleted(QDocumentLineHandle *l,int)

@@ -1433,6 +1433,7 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
     if (edView){
 		edView->documentContentChanged(linenr, count);
         reCheckSyntax(lineNrStart,count);
+        edView->checkGrammar(linenr,count);
     }
 #ifndef QT_NO_DEBUG
 	if (!isHidden())
