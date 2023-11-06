@@ -2824,25 +2824,11 @@ void Texstudio::fileOpen()
 	}
 	QStringList files = FileDialog::getOpenFileNames(this, tr("Open Files"), currentDir, fileFilters,  &selectedFileFilter);
 
-	QList<LatexEditorView *>listViews;
-	foreach (const QString &fn, files)
-		listViews << load(fn);
+    QList<LatexEditorView *>listViews;
+    foreach (const QString &fn, files)
+        listViews << load(fn);
 
-	// update ref/labels in one go;
-	QList<LatexDocument *> completedDocs;
-	foreach (LatexEditorView *edView, listViews) {
-		if (!edView)
-			continue;
-		LatexDocument *docBase = edView->getDocument();
-		foreach (LatexDocument *doc, docBase->getListOfDocs()) {
-			doc->recheckRefsLabels();
-			if (completedDocs.contains(doc))
-				continue;
-            doc->updateLtxCommands();
-			completedDocs << doc->getListOfDocs();
-		}
-	}
-	// update completer
+    // update completer
 	if (currentEditorView())
 		updateCompleter(currentEditorView());
 }
