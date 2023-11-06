@@ -104,7 +104,7 @@ class QCE_EXPORT QDocumentPrivate
 		QDocumentLineHandle* next(const QDocumentLineHandle *l) const;
 		QDocumentLineHandle* previous(const QDocumentLineHandle *l) const;
 		
-		void adjustWidth(int l);
+        void adjustWidth(int l,bool multiLine=false);
 		//int checkWidth(QDocumentLineHandle *l, int w);
 		//int checkWidth(QDocumentLineHandle *l, const QString& s);
 		

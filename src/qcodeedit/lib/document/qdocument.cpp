@@ -7230,7 +7230,7 @@ void QDocumentPrivate::setWidth()
 
 // static const int widthCacheSize = 5;  // unused ...
 
-void QDocumentPrivate::adjustWidth(int line)
+void QDocumentPrivate::adjustWidth(int line, bool multiLine)
 {
 	if ( line < 0 || line >= m_lines.count() )
 		return;
@@ -7257,9 +7257,10 @@ void QDocumentPrivate::adjustWidth(int line)
 				//qDebug("removed wrap on line %i", line);
 				m_wrapped.remove(line);
 			}
-
-			emitFormatsChange(line, -1);
-			setHeight();
+            if(!multiLine){
+                emitFormatsChange(line, -1);
+                setHeight();
+            }
 		}
 	}
 	if ( !m_constrained ) {
@@ -8493,7 +8494,7 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 	}
 
 	for (int i=line; i<line+lines; i++)
-		adjustWidth(i);
+        adjustWidth(i,true);
 	if (lines > 1) setHeight();
 	//qDebug("%i, %i : %i", line, lines, n);
 
