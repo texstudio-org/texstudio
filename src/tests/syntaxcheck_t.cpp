@@ -227,6 +227,8 @@ void SyntaxCheckTest::checkkeyval_data(){
              <<"\\SI[color={red!20!black}]{test}"<<false;
      QTest::newRow("key/value,mixed color")
              <<"\\SI[color=red!20!black]{test}"<<false;
+     QTest::newRow("key/value,defined color")
+         <<"\\definecolor{cola}{as}{as}\\SI[color=cola]{test}"<<false;
      QTest::newRow("2 key/value,composite key")
              <<"\\SI[mode=text,number-mode=math]{test}"<<false;
      QTest::newRow("yathesis without options")
@@ -292,9 +294,10 @@ void SyntaxCheckTest::checkArguments_data(){
              <<"\\newcommand{\\test}{\\abcd\n \\abcd}"<<false;
      QTest::newRow("newcommand3")
              <<"\\newcommand{\\test}{\\abcd\n{\n \\abcd}\n}"<<false;
-
-
-
+     QTest::newRow("specialDef missing")
+         <<"\\DTLrowcount{tes}\n}"<<true;
+     QTest::newRow("specialDef present")
+         <<"\\DTLnewdb{tes}\n\\DTLrowcount{tes}\n}"<<false;
 }
 
 void SyntaxCheckTest::checkArguments(){
@@ -307,7 +310,7 @@ void SyntaxCheckTest::checkArguments(){
     edView->getConfig()->inlineSyntaxChecking = true;
     edView->getConfig()->realtimeChecking = true;
 
-    //text="\\usepackage{siunitx}\n"+text;
+    text="\\usepackage{datatool}\n"+text;
 
     edView->editor->setText(text, false);
     LatexDocument *doc=edView->getDocument();
