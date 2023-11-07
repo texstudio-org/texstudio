@@ -582,6 +582,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     tk.subtype=tk1.subtype;
                     level=tk1.level; // restore original level
                     lexed.append(tk);
+                    // clean up command stack (unrealized arguments)
+                    while (!commandStack.isEmpty() && commandStack.top().level > level) {
+                        commandStack.pop();
+                    }
                 }
                 if (!commandStack.isEmpty() && commandStack.top().level == level) {
                     CommandDescription cd = commandStack.top();
