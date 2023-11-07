@@ -3115,12 +3115,12 @@ bool QEditor::event(QEvent *e)
 	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) )
 		setVerticalScrollBarMaximum();
 
-    if ( e->type() == QEvent::Resize && flag(LineWrap)  && m_doc)
+    /*if ( e->type() == QEvent::Resize && flag(LineWrap)  && m_doc)
 	{
 		//qDebug("resize adjust (1) : wrapping to %i", viewport()->width());
 		m_doc->setWidthConstraint(wrapWidth());
 		ensureCursorVisible(KeepDistanceFromViewTop);
-	}
+    }*/
 
 	return r;
 }
