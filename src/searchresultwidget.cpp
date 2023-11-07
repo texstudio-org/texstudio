@@ -224,14 +224,15 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	}
 
 	// draw text
-	QString text = index.data().toString();
+    QString text = index.data().toString();
+    text.replace("\t"," ");
 	QList<SearchMatch> matches = index.data(SearchResultModel::MatchesRole).value<QList<SearchMatch> >();
 
 	int pos = 0;
 	foreach (SearchMatch match, matches) {
 		// text before match
 		QString part = text.mid(pos, match.pos - pos);
-		int w = UtilsUi::getFmWidth(painter->fontMetrics(), part);
+        int w = UtilsUi::getFmWidth(painter->fontMetrics(), part);
 		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, part);
 		r.setLeft(r.left() + w + 1);
 		// matched text
