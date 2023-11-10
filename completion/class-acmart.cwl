@@ -1,5 +1,5 @@
 # acmart class
-# Matthew Bertucci 2023/10/24 for v1.93
+# Matthew Bertucci 2023/11/10 for v2.00
 
 #include:xkeyval
 #include:xstring
@@ -246,7 +246,6 @@ TWEB
 \acmMonth{month}#*
 \acmArticleSeq{number}#*
 \acmSubmissionID{ID}
-\acmPrice{price}#*
 \acmISBN{ISBN}#*
 \acmDOI{DOI}#*
 \acmBadge{imagefile}#*g
