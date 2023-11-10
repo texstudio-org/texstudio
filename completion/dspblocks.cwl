@@ -1,5 +1,5 @@
 # dspblocks package
-# Matthew Bertucci 2022/07/21 for v1.0
+# Matthew Bertucci 2023/11/10 for v1.1
 
 #include:calc
 #include:fp
@@ -40,3 +40,6 @@
 \BDdwsmp{N}
 
 \BDwidth#L
+
+\BDclip#*
+\BDclip[length]#*
