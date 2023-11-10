@@ -1,5 +1,5 @@
 # dspfunctions package
-# Matthew Bertucci 2022/07/21 for v1.0
+# Matthew Bertucci 2023/11/10 for v1.1
 
 \dspToDeg#*
 \dspRect{a}{b}
@@ -20,3 +20,6 @@
 \dspDFTMAG{x0 x1 ...}
 \dspFIRI{a0 a1 ...}
 \dspTFM{a0 a1 ...}{b0 b1 ...}
+\dspAudio{a}{b}#*
+\dspSetFilter{b0 b1 ...}{a0 a1 ...}
+\dspFilter
