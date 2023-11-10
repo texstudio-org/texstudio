@@ -1,8 +1,9 @@
 # bodegraph package
-# Matthew Bertucci 12/13/2021 for v1.4
+# Matthew Bertucci 2023/11/10 for v1.6
 
 #include:ifsym
 #include:ifthen
+#include:relsize
 #include:tikz
 #include:tikzlibraryshapes
 #include:tikzlibrarybackgrounds
@@ -14,6 +15,7 @@
 \UnitedB
 \UniteDegre
 \OrdBode{number}
+\Unites{label axe X}{label axe Y}
 \Unitx
 \Unity
 
@@ -47,6 +49,7 @@ Temp label points/.style={%<options%>}
 \BodeGraph*[%<options%>]{%<domain%>}{%<function%>}{[%<node options%>]%<text%>}
 \BodePoint{list}{function}
 \BodePoint[options%keyvals]{list}{function}
+\NomGnuplot[name]
 \POAmp{K}{tau}
 \POAmpAsymp{K}{tau}
 \POArg{K}{tau}
@@ -138,32 +141,6 @@ Temp label points/.style={%<options%>}
 \AbaqueTRsecond
 \AbaqueDepassement
 
-\CorpsPol#*
-\LW#*
-\POAmpReel{arg1}{arg2}#*
-\POAmpng{arg1}{arg2}#*
-\POArgReel{arg1}{arg2}#*
-\POBlack{arg1}{arg2}#*
-\SOAmpReel{arg1}{arg2}{arg3}#*
-\SOArgReel{arg1}{arg2}{arg3}#*
-\SOBlack{arg1}{arg2}{arg3}#*
-\SOncArg{arg1}{arg2}{arg3}{arg4}#*
-\UnitS#*
-\ValK#*
-\ValW#*
-\ValZ#*
-\Valsuivante#*
-\Xmax#*
-\puce#*
-\theidGnuplo*
-\valgridx#*
-\valgridy#*
-\valmaxBf#*
-\valmaxx#*
-\valmaxy#*
-\valpas#*
-\valpi#*
-
 \AbaqueBlackNoStar#S
 \AbaqueBlackStar#S
 \BlackGraphNoText#S
@@ -179,6 +156,11 @@ Temp label points/.style={%<options%>}
 \BodeArg#S
 \BodeGraphNoText#S
 \BodeGraphText#S
+\CorpsPol#S
+\LW#S
+\NameGraph#S
+\NOMgnuplot#S
+\NomGraphe{name}#S
 \NyquistGraphNoText#S
 \NyquistGraphText#S
 \NyquistGridNoStar#S
@@ -187,9 +169,32 @@ Temp label points/.style={%<options%>}
 \NyquistPointPos#S
 \NyquistTextNoPoint#S
 \NyquistTextPoint#S
+\POAmpng{arg1}{arg2}#S
+\POAmpReel{arg1}{arg2}#S
+\POArgReel{arg1}{arg2}#S
+\POBlack{arg1}{arg2}#S
+\puce#S
 \RepTempNoText#S
 \RepTempText#S
-\TempGridNoStar#S
-\TempGridStar#S
 \semilogNS#S
 \semilogS#S
+\SOAmpReel{arg1}{arg2}{arg3}#S
+\SOArgReel{arg1}{arg2}{arg3}#S
+\SOBlack{arg1}{arg2}{arg3}#S
+\SOncArg{arg1}{arg2}{arg3}{arg4}#S
+\TempGridNoStar#S
+\TempGridStar#S
+\theidGnuplot#S
+\UnitS#S
+\valgridx#S
+\valgridy#S
+\ValK#S
+\valmaxBf#S
+\valmaxx#S
+\valmaxy#S
+\valpas#S
+\valpi#S
+\Valsuivante#S
+\ValW#S
+\ValZ#S
+\Xmax#S
