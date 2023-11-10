@@ -7353,12 +7353,11 @@ conference=#long,full,acronym
 #endkeyvals
 #endif
 
-### biblatex-lni v0.5 ###
+### biblatex-lni v0.6 ###
 #ifOption:style=LNI
 # from LNI.bbx
 \LNIversion#S
 \LNIdate#S
-\volnumdelim#*
 \aftertitledelim#*
 #endif
 
