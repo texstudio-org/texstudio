@@ -2241,6 +2241,9 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
 
         configureNewEditorViewEnd(edView, true, false);
 
+        QString spellingDictName=doc->spellingDictName();
+        if(!spellingDictName.isEmpty()) edView->changeSpellingDict(spellingDictName);
+
         documents.addDocument(doc, false);
 
         if(unmodified)

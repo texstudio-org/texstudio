@@ -241,11 +241,12 @@ private slots:
 	void lineMarkToolTip(int line, int mark);
 	void triggeredThesaurus();
 	void reloadSpeller();
-	void changeSpellingDict(const QString &name);
 	void copyImageFromAction();
 	void saveImageFromAction();
 
 public slots:
+    void changeSpellingDict(const QString &name);
+
 	void cleanBib();
 
 	void jumpChangePositionBackward();
