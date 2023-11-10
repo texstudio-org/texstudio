@@ -1,5 +1,5 @@
 # newtxmath package
-# Matthew Bertucci 2023/10/31 for v1.725
+# Matthew Bertucci 2023/11/10 for v1.732
 
 #include:amsmath
 #include:ifthen
@@ -32,6 +32,7 @@ erewhon
 xcharter
 cmintegrals
 cmbraces
+curlybraces
 noamssymbols
 amssymbols
 uprightscript
@@ -200,6 +201,7 @@ vecsep=##L
 \curlywedge#m
 \curvearrowleft#m
 \curvearrowright#m
+\dAlembertian#m
 \daleth#m
 \dasharrow#m
 \Dashcolon#m
@@ -384,6 +386,8 @@ vecsep=##L
 \lambdaslash#m
 \Lambdaup#*m
 \lambdaup#*m
+\laplac#m
+\laplace#m
 \lbag#m
 \Lbag#m
 \lBrack#m
