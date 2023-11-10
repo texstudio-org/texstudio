@@ -1,5 +1,5 @@
 # newtx package
-# Matthew Bertucci 2023/07/27 for v1.72
+# Matthew Bertucci 2023/11/10 for v1.732
 
 #include:newtxtext
 #include:newtxmath
@@ -68,6 +68,8 @@ scosf
 tighter
 looser
 # options from newtxmath
+vecsep=##L
+amsthm
 subscriptcorrectionfile=%<file%>
 nosubscriptcorrection
 subscriptcorrection
@@ -91,8 +93,8 @@ useBImacros
 varg
 varvw
 noOT1
-amsthm
-vecsep=##L
+propmathfigs
+curlybraces
 #endkeyvals
 
 #ifOption:libertine

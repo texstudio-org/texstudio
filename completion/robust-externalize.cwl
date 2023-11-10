@@ -1,5 +1,5 @@
 # robust-externalize package
-# Matthew Bertucci 2023/09/22 for v2.0
+# Matthew Bertucci 2023/11/10 for v2.1
 
 #include:pgfkeys
 #include:pgffor
@@ -7,6 +7,10 @@
 #include:verbatim
 #include:xsimverb
 #include:etoolbox
+#include:iftex
+#include:xparse
+#include:atveryend
+#include:etl
 
 \begin{CacheMe}{preset style}
 \end{CacheMe}
@@ -49,8 +53,15 @@
 \cacheTikz[preset for TikZ][preset for TikZpicture][delimiters]
 \clearGroupPlaceholders{name group}
 \clearImportedPlaceholders{name placeholder%definition}
+\configIfMacroPresent{macro}{options}
 \copyGroupPlaceholders{name group}{name group to copy}
 \copyPlaceholder{new placeholder%definition}{old placeholder%definition}
+\DeclareDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
+\DeclareDocumentCommandAutoForward{cmd}{xargs}{def}#d
+\defAutoForward{cmd}[arg spec]{def}#d
+\defAutoForward{cmd}[arg spec]{def}[add. style]#d
+\defAutoForward{cmd}{def}#d
+\defAutoForward{cmd}{def}[add. style]#d
 \evalPlaceholder{name placeholder%definition}
 \evalPlaceholderInplace{name placeholder%definition}
 \evalPlaceholderNoReplacement{name placeholder%definition}
@@ -70,6 +81,14 @@
 \importPlaceholderFirst
 \importPlaceholdersFromGroup{name group}
 \importPlaceholdersFromGroup{name placeholder%definition}
+\newcommandAutoForward{cmd}[args][default]{def}#d
+\newcommandAutoForward{cmd}[args][default]{def}[add. style]#d
+\newcommandAutoForward{cmd}[args]{def}#d
+\newcommandAutoForward{cmd}[args]{def}[add. style]#d
+\newcommandAutoForward{cmd}{def}#d
+\newcommandAutoForward{cmd}{def}[add. style]#d
+\NewDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
+\NewDocumentCommandAutoForward{cmd}{xargs}{def}#d
 \newGroupPlaceholders{name group}
 \onlyPlaceholdersInCompilationCommand{list of placeholders%definition}
 \onlyPlaceholdersInTemplate{list of placeholders%definition}
@@ -98,10 +117,26 @@
 \printPlaceholder{name placeholder%definition}
 \printPlaceholderNoReplacement*{name placeholder%definition}
 \printPlaceholderNoReplacement{name placeholder%definition}
+\providecommandAutoForward{cmd}[args][default]{def}#d
+\providecommandAutoForward{cmd}[args][default]{def}[add. style]#d
+\providecommandAutoForward{cmd}[args]{def}#d
+\providecommandAutoForward{cmd}[args]{def}[add. style]#d
+\providecommandAutoForward{cmd}{def}#d
+\providecommandAutoForward{cmd}{def}[add. style]#d
+\ProvideDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
+\ProvideDocumentCommandAutoForward{cmd}{xargs}{def}#d
 \removeImportedPlaceholder{name placeholder%definition}
 \removePlaceholder{placeholder%definition}
 \removePlaceholderFromGroup{name group}{list of placeholders%definition}
 \removePlaceholdersFromGroup{name group}{list of placeholders%definition}
+\renewcommandAutoForward{cmd}[args][default]{def}
+\renewcommandAutoForward{cmd}[args][default]{def}[add. style]
+\renewcommandAutoForward{cmd}[args]{def}
+\renewcommandAutoForward{cmd}[args]{def}[add. style]
+\renewcommandAutoForward{cmd}{def}
+\renewcommandAutoForward{cmd}{def}[add. style]
+\RenewDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}
+\RenewDocumentCommandAutoForward{cmd}{xargs}{def}
 \rescanPlaceholderInVariableNoReplacement{name macro}{name placeholder%definition}
 \robExtAddCachePath{path%file}#*
 \robExtAddCachePathAndName{path%file}#*
@@ -128,6 +163,8 @@
 
 # not documented
 \addPlaceholdersToGroupBefore{arg1}{arg2}#S
+\autoForwardMacro{arg}#S
+\autoForwardMacro{arg}[opt]#S
 \begin{RobExtCacheMe}{arg}#S
 \begin{RobExtCacheMeCode}{arg}#S
 \begin{RobExtCacheMeNoContent}#S
@@ -168,6 +205,9 @@
 \robExtAppendBeforeGroupPlaceholders{arg1}{arg2}#S
 \robExtAppendGroupPlaceholders{arg1}{arg2}#S
 \robExtArgumentList#S
+\robExtAutoForward#S
+\robExtAutoForwardMacro{arg}#S
+\robExtAutoForwardMacro{arg}[opt]#S
 \robExtCacheCommand[opt]{arg1}{arg2}#S
 \robExtCacheCommand[opt1]{arg1}[opt2]{arg2}#S
 \robExtCacheCommand{arg1}[opt]{arg2}#S
@@ -180,6 +220,7 @@
 \robExtClearGroupPlaceholders{arg}#S
 \robExtClearImportedPlaceholders#S
 \robExtCompileFile{arg}#S
+\robExtConfigIfMacroPresent{macro}{options}#S
 \robExtCopyGroupPlaceholders{arg1}{arg2}#S
 \robExtCopyPlaceholder*{arg1}{arg2}#S
 \robExtCopyPlaceholder{arg1}{arg2}#S
@@ -198,6 +239,8 @@
 \robExtEvaluateCompileAndInclude#S
 \robExtFirstPlaceholdersInCompilationCommand{arg}#S
 \robExtFirstPlaceholdersInTemplate{arg}#S
+\robExtGetCommandDefinition{arg}#S
+\robExtGetCommandDefinitionInMacro{arg}#S
 \robExtGetNearlyFinalValueTemplateAndCompilationCommand#S
 \robExtGetPlaceholder[opt]{arg}#S
 \robExtGetPlaceholder{arg}#S
@@ -215,6 +258,12 @@
 \robExtGetPlaceholderInResultReplaceFromList{arg1}{arg2}#S
 \robExtGetPlaceholderNoReplacement{arg}#S
 \robExtGetPrefixPath#S
+\RobExtIfFormatAtLeastTF{true}{false}#S
+\robExtIfMatchesRegex{arg1}{arg2}#S
+\robExtIfMatchesString{arg1}{arg2}#S
+\robExtImagePlaceholderIfFallbackMode#S
+\robExtImagePlaceholderIfManualMode#S
+\robExtImagePlaceholderIfParallelCompilation#S
 \robExtImportAllPlaceholders#S
 \robExtImportPlaceholder#S
 \robExtImportPlaceholderFirst{arg}#S
@@ -223,6 +272,7 @@
 \robExtIncludeGraphicsArgs#S
 \robExtKeepaftergroup{arg}#S
 \robExtKeepPlaceholderAfterGroup{arg}#S
+\robExtLoadAutoForwardMacroConfig{arg}#S
 \robExtLoadSpecialPlaceholders#S
 \robExtOnlyPlaceholdersInCompilationCommand{arg}#S
 \robExtOnlyPlaceholdersInTemplate{arg}#S
@@ -266,8 +316,10 @@
 \robExtRescanPlaceholderInVariableNoReplacement{arg1}{arg2}#S
 \robExtResetDependencies{arg}#S
 \robExtRestoreDependencies{arg}#S
+\robExtRunCodeToRunForMacroPresent{arg}#S
 \robExtSaveDependencies{arg}#S
 \robExtSetBackCompilationCommandAndTemplate#S
+\robExtSetCodeToRunIfMacroPresent{arg1}{arg2}#S
 \robExtSetCommandResetList{arg}#S
 \robExtSetCompilationCommand{arg}#S
 \robExtSetEnvironmentResetList{arg}#S
@@ -286,6 +338,7 @@
 \robExtShowPlaceholdersContents#S
 \robExtShowPlaceholdersContents*#S
 \robExtStrSetHashRobust{arg1}{arg2}#S
+\robExtUseHookJustBeforeWritingFiles#S
 \robExtWriteFile{arg}#S
 \setPlaceholderFirst{arg1}{arg2}#S
 \setPlaceholderFromStringExpanded{arg1}{arg2}#S

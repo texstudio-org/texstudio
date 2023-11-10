@@ -1,5 +1,5 @@
 # ppt-slides package
-# Matthew Bertucci 2022/12/04 for v0.2.1
+# Matthew Bertucci 2023/11/10 for v0.30
 
 #include:pgfopts
 #include:xcolor
@@ -72,6 +72,7 @@ nominutes
 \pptToc[text]
 \param#S
 \pptQuote{imagefile}{quote%text}{author}#g
+\pptQuote[name]{imagefile}{quote%text}{author}#g
 \pptPic{width factor}{imagefile}#g
 \pptPin{text}#*
 \pptPin[right|left]{text}#*
