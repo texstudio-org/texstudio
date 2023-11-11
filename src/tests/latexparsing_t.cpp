@@ -313,6 +313,12 @@ void LatexParsingTest::test_latexLexing_data() {
                                       << (Starts() << 0 << 1 << 7 << 12)
                                       << (Length() << 1 << 5 << 5 << 1)  // note: the brackets are ignored, they are not part of the command
                                       << (Levels() << 0 << 0 << 0 << 0);
+    QTest::newRow("unused argument in text command") << "\\textbf{\\textbf} text"
+                                     << (TTypes() << T::command << T::braces << T::command << T::word)
+                                     << (STypes() << T::none << T::text << T::text << T::none)
+                                     << (Starts() << 0 << 7 << 8 <<17)
+                                     << (Length() << 7 << 9 << 7 << 4)
+                                     << (Levels() << 0 << 1 << 1 << 0);
 }
 
 void LatexParsingTest::test_latexLexing() {
@@ -466,7 +472,7 @@ void LatexParsingTest::test_getArg_data() {
     QTest::addColumn<QStringList>("desiredResults");
 
 
-    /*QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
+    QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
                                         << (STypes() <<T::def << T::definition)
                                         << (QStringList() <<"text" <<"test");
     QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
@@ -482,7 +488,7 @@ void LatexParsingTest::test_getArg_data() {
     QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}"
                                             << (STypes() <<T::text) << (QStringList() <<"te\\textit{xt} bg");
     QTest::newRow("text command, embedded ,open") << "\\textbf{  te\\textit{xt} bg"
-                                            <<   (STypes() <<T::text) << (QStringList() <<"  te\\textit{xt} bg");*/
+                                            <<   (STypes() <<T::text) << (QStringList() <<"  te\\textit{xt} bg");
     QTest::newRow("text command, multi-line") << "\\textbf{  te\n bg}"
                                             <<   (STypes() <<T::text) << (QStringList() <<"  te bg");
     QTest::newRow("text command, multi-line, with comment") << "\\textbf{  te%abc\n bg}"
