@@ -1,5 +1,5 @@
 # newpxmath package
-# Matthew Bertucci 2023/09/11 for v1.51
+# Matthew Bertucci 2023/11/11 for v1.533
 
 #include:amsmath
 #include:etoolbox
@@ -28,6 +28,7 @@ smallerops
 noOT1
 amsthm
 fracspacing
+curlybraces
 #endkeyvals
 
 #ifOption:amsthm
@@ -166,6 +167,7 @@ fracspacing
 \curlywedge#m
 \curvearrowleft#m
 \curvearrowright#m
+\dAlembertian#m
 \daleth#m
 \dasharrow#m
 \dasharrow#m
@@ -312,6 +314,8 @@ fracspacing
 \lambdaslash#m
 \Lambdaup#*m
 \lambdaup#*m
+\laplac#m
+\laplace#m
 \lbag#m
 \Lbag#m
 \lBrack#m
