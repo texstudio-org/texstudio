@@ -4151,6 +4151,10 @@ void Texstudio::editSpell()
 
 void Texstudio::editThesaurus(int line, int col)
 {
+    if(!mThesaurusWasStarted){
+        ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
+        mThesaurusWasStarted=true;
+    }
 	if (!ThesaurusDialog::retrieveDatabase()) {
 		QMessageBox::warning(this, tr("Error"), tr("Can't load Thesaurus Database"));
 		return;
@@ -4417,7 +4421,6 @@ void Texstudio::readSettings(bool reread)
     spellerManager.setDefaultSpeller(configManager.spellLanguage);
 
     ThesaurusDialog::setUserPath(configManager.configFileNameBase);
-    ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
 
     symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
                                           config->value("Symbols/FavoriteIDs").toStringList());
@@ -6736,7 +6739,10 @@ void Texstudio::generalOptions()
 
         symbolListModel->setDarkmode(darkMode);
 
-        ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
+        if(mThesaurusWasStarted){
+            // replace database with new one
+            ThesaurusDialog::prepareDatabase(configManager.parseDir(configManager.thesaurus_database));
+        }
         if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);
 
         // update syntaxChecking with alls docs
