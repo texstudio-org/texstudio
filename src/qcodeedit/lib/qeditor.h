@@ -313,11 +313,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
         }
         inline qreal verticalOffset() const
         {
-#if defined Q_OS_MAC
-            return verticalScrollBar()->value() * m_doc->getLineSpacing();  // does this work always ?
-#else
-            return verticalScrollBar()->isVisible() ? 1. * verticalScrollBar()->value() * m_doc->getLineSpacing() : 0;
-#endif
+            return 1. * verticalScrollBar()->value() * m_doc->getLineSpacing();
         }
 		
 		inline QPoint mapToContents(const QPoint &point) const
