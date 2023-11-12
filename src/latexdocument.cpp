@@ -1360,7 +1360,10 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			continue; //non-existing line ...
 
         // remove command,bibtex,labels at from this line
-        removeLineElements(dlh,changedCommands);
+        if(!dlh->hasFlag(QDocumentLine::argumentsParsed)){
+            // don't handle unchanged lines as they are not reinterpreted
+            removeLineElements(dlh,changedCommands);
+        }
 
         // handle special comments (TODO, MAGIC comments)
         handleComments(dlh,i,docStructureIter);
