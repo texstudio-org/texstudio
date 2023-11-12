@@ -436,8 +436,8 @@ public:
             insertCompletedWord();
 			resetBinding();
 			return true;
-		} else {
-			if (event->text().length() != 1 || event->text() == " ") {
+        } else {
+            if (event->text().length() != 1 || (event->text() == " " && !completer->listModel->isNextCharPossible(' ') ) ) {
 				resetBinding();
 				return false;
 			}
