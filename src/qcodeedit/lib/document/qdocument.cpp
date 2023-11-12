@@ -7654,6 +7654,7 @@ void QDocumentPrivate::insertLines(int after, const QList<QDocumentLineHandle*>&
 		h->setFlag(QDocumentLine::CollapsedBlockStart, false);
 		h->setFlag(QDocumentLine::CollapsedBlockEnd, false);
 		h->m_frontiers.clear();
+        h->m_state&=31; // reset lexing states
 	}
 
 	QMap<int, int>::iterator it = m_hidden.begin();
