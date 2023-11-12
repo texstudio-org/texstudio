@@ -1434,9 +1434,9 @@ void LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
     //update view
     if (edView){
-		edView->documentContentChanged(linenr, count);
-        reCheckSyntax(lineNrStart,count);
-        edView->checkGrammar(linenr,count);
+        edView->documentContentChanged(linenr, newCount);
+        reCheckSyntax(lineNrStart,newCount);
+        edView->checkGrammar(linenr,newCount);
     }
 #ifndef QT_NO_DEBUG
 	if (!isHidden())
