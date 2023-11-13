@@ -2,6 +2,7 @@
 # sdm 2014
 # thatlittleboy/2018-11-11
 # muzimuzhi/12 Nov 2019, 25 Apr 2020
+# Matthew Bertucci 2023/11/13 for v3.00
 
 #keyvals:\usepackage/xcolor#c
 dvips
@@ -44,8 +45,6 @@ svgnames*
 x11names
 x11names*
 table
-fixpdftex
-hyperref
 prologue
 kernelfbox
 xcdraw
@@ -59,10 +58,6 @@ hideerrors
 
 #ifOption:table
 #include:colortbl
-#endif
-
-#ifOption:fixpdftex
-#include:pdfcolmk
 #endif
 
 \GetGinDriver#*
