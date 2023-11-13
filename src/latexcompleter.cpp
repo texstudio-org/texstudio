@@ -1859,8 +1859,14 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 				if (flags & CF_FORCE_GRAPHIC) start = i + 1;
 				if (flags & CF_FORCE_CITE) start = i + 1;
 				if (flags & CF_FORCE_REF) start = i + 1;
-				if (flags & CF_FORCE_PACKAGE) start = i + 1;
-				if (flags & CF_FORCE_KEYVAL) start = i + 1;
+                if (flags & CF_FORCE_PACKAGE) start = i + 1;
+                if (flags & CF_FORCE_KEYVAL){
+                    ++i;
+                    while(i<c.columnNumber() && lineText.at(i)==' '){
+                        ++i;
+                    }
+                    start = i;
+                }
 				if (flags & CF_FORCE_SPECIALOPTION) start = i + 1;
 				break;
 			}
