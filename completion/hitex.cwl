@@ -1,8 +1,8 @@
 # hitex format
-# Matthew Bertucci 2023/04/18 for v2.0
+# Matthew Bertucci 2023/11/13 for v2.0
 
 \HINTversion#*
-\HINTsubversion#*
+\HINTminorversion#*
 \HINTimage %<= <name> <width> <height>%>#*
 \HINTstartlink %<<destination>%>#*
 \HINTendlink#*
