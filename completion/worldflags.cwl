@@ -1,6 +1,7 @@
 # worldflags package
-# Matthew Bertucci 8/12/2021
+# Matthew Bertucci 2023/11/13
 
+#include:graphicx
 #include:ifthen
 #include:tikz
 #include:tikzlibrarycalc
@@ -9,6 +10,7 @@
 #include:tikzlibraryshapes.symbols
 #include:tikzlibrarypositioning
 #include:tikzlibrarymath
+#include:tikzlibrarydecorations.text
 #include:xcolor
 #include:xkeyval
 
@@ -25,6 +27,7 @@ grid
 noemblem
 emblem
 emblemdefault
+variant=%<number%>
 #endkeyvals
 
 #keyvals:\flagsdefault
@@ -36,6 +39,7 @@ hang=%<degrees%>
 \begin{flagdescription}{aspectratio}#*
 \end{flagdescription}#*
 \framecode{code}#*
+\flagvariant#*
 \flagwidth#*
 \flaglength#*
 \flagframe#*
