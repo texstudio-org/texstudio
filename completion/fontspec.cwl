@@ -19,7 +19,6 @@ silent
 #endif
 
 ## Sec. I.4 Interaction with LaTeX2e and other packages
-\oldstylenums{text}
 \liningnums{text}
 \strong{text}
 \begin{strongenv}

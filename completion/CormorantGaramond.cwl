@@ -20,7 +20,6 @@ medium
 light
 #endkeyvals
 
-\oldstylenums{text}
 \liningnums{text}
 \tabularnums{text}
 \proportionalnums{text}

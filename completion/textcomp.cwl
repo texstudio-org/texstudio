@@ -30,7 +30,6 @@ force
 \capitaltie{A}
 \capitaltilde{A}
 \newtie{A}
-\oldstylenums{number}
 \textacutedbl
 \textascendercompwordmark
 \textasciiacute

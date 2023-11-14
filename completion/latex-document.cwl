@@ -336,7 +336,7 @@
 \oe
 \OE
 \ointop#*m
-\oldstylenums{text}#*
+\oldstylenums{text}
 \onecolumn
 \oval(width,height)#*/picture
 \oval(width,height)[portion]#*/picture

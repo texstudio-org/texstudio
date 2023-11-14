@@ -40,7 +40,6 @@ extralight
 \crimsonproproportional
 \tabularnums{text}
 \proportionalnums{text}
-\oldstylenums{text}
 \liningnums{text}
 \textsu{text}
 \sufigures

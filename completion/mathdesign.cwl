@@ -54,28 +54,23 @@ didot
 
 # commands specific to mdpus.sty
 #ifOption:utopiastd
-\oldstylenums{text}
 \semiseries
 \blackseries
 #endif
 #ifOption:mdpus
-\oldstylenums{text}
 \semiseries
 \blackseries
 #endif
 #ifOption:adobe-utopiastd
-\oldstylenums{text}
 \semiseries
 \blackseries
 #endif
 
 # commands specific to mdpgd.sty
 #ifOption:adobe-garamond
-\oldstylenums{text}
 \blackseries
 #endif
 #ifOption:mdpgd
-\oldstylenums{text}
 \blackseries
 #endif
 

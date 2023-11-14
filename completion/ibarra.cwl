@@ -18,6 +18,5 @@ semibold
 
 \ibarra
 \ibarraSemiBold
-\oldstylenums{text}
 \liningnums{text}
 \ibarrafamily#*

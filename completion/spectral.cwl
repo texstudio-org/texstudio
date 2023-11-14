@@ -37,7 +37,6 @@ eb
 \spectralmedium
 \spectralsemibold
 \spectralextrabold
-\oldstylenums{text}
 \liningnums{text}
 \tabularnums{text}
 \proportionalnums{text}

@@ -29,7 +29,6 @@ eb
 #endkeyvals
 
 \ebgaramond
-\oldstylenums{text}
 \liningnums{text}
 \tabularnums{text}
 \proportionalnums{text}

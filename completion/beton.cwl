@@ -7,7 +7,6 @@ oldstyle-equation-numbers
 concrete-math
 #endkeyvals
 
-\oldstylenums{text}
 \TextOldstyle#*
 \MathOldstyle#*
 \dash#*
