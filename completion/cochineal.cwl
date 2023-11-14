@@ -1,9 +1,8 @@
 # cochineal package
-# Matthew Bertucci 2/7/2022 for v1.076
+# Matthew Bertucci 2023/11/14 for v1.08
 
 #include:fontenc
-#include:ifxetex
-#include:ifluatex
+#include:iftex
 #include:xkeyval
 #include:etoolbox
 #include:ifthen
@@ -14,7 +13,6 @@
 
 #keyvals:\usepackage/cochineal#c
 type1#true,false
-nofontspec#true,false
 defaultfeatures={%<fontspec options%>}
 lining#true,false
 lf#true,false
@@ -30,6 +28,7 @@ altQ
 altJ
 oldSS
 theoremfont
+otfmath
 thmtabular
 thmlining
 swashQ
@@ -51,12 +50,14 @@ aftsolidus=##L
 \infigures
 \lfstyle
 \liningnums{text}
+\nufigures#*
 \nustyle#*
 \osfstyle
 \proportionalnums{text}
 \Qnoswash#*
 \Qswash
 \sufigures
+\sustyle#*
 \swshape
 \tabularnums{text}
 \textde{text}
@@ -66,6 +67,7 @@ aftsolidus=##L
 \textinf{text}
 \textinferior{text}#*
 \textlf{text}
+\textnu{text}#*
 \textosf{text}
 \textsu{text}
 \textsuperior{text}#*
