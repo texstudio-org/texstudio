@@ -1,5 +1,5 @@
 # diffcoeff package
-# Matthew Bertucci 2023/04/12 for v5.3
+# Matthew Bertucci 2023/11/14 for v5.4
 
 #include:xtemplate
 #include:mleftright
@@ -245,7 +245,7 @@ DIF={%<keyvals%>}
 \difdef{id-list}{variant-name}{keyvals}
 
 #keyvals:\difdef
-style=#frac,tfrac,dfrac,/,auto,big,Big,bigg,Bigg,_,dl
+style=#frac,tfrac,dfrac,/,auto,big,Big,bigg,Bigg,_,dl,d^
 slash-tok=%<token(s)%>
 slash-sep=##L
 derivand-sep=##L
@@ -279,9 +279,15 @@ op-sub-nudge=##L
 \dl[%<order-spec%>]{%<variable(s)%>}#m
 \dl.%<name%>.{%<variable(s)%>}#m
 \dl.%<name%>.[%<order-spec%>]{%<variable(s)%>}#m
+\difl{%<variable(s)%>}#m
+\difl[%<order-spec%>]{%<variable(s)%>}#m
+\difl.%<name%>.{%<variable(s)%>}#m
+\difl.%<name%>.[%<order-spec%>]{%<variable(s)%>}#m
 
 \jacob{%<numer%>}{%<denom%>}#m
 \jacob.%<name%>.{%<numer%>}{%<denom%>}#m
+\difj{%<numer%>}{%<denom%>}#m
+\difj.%<name%>.{%<numer%>}{%<denom%>}#m
 
 \DeclareChildTemplate{object type}{parent template}{new template}{parameters}{new defaults}#*
 
