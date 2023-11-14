@@ -1,5 +1,5 @@
 # pmdraw package
-# Matthew Bertucci 2023/11/09 for v1.0
+# Matthew Bertucci 2023/11/14 for v1.1
 
 #include:keyval
 #include:tikz
@@ -63,6 +63,7 @@ decorate after={%<code%>}
 
 #keyvals:\pmdDiagram#c,\pmdProduct#c
 row sep=%<integer%>
+tikz={%<TikZ options%>}
 dots options={%<code%>}
 grid
 decorate before={%<code%>}
