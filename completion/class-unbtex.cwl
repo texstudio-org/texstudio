@@ -1,18 +1,11 @@
 # unbtex class
-# Matthew Bertucci 2023/10/17 for v1.3
+# Matthew Bertucci 2023/11/15 for v1.4
 
 #include:class-abntex2
-#include:fontenc
-# loads T1 option of fontenc
-#include:inputenc
-#include:stix2
-#include:helvet
 #include:graphicx
-#include:subcaption
-#include:icomma
-#include:indentfirst
-#include:microtype
+#include:subfig
 #include:multirow
+#include:icomma
 #include:xcolor
 # loads dvipsnames and table options of xcolor
 #include:tocbasic
@@ -28,6 +21,14 @@
 #include:mdframed
 #include:eso-pic
 #include:xstring
+#include:stickstootext
+#include:newtxmath
+#include:helvet
+#include:inconsolata
+#include:indentfirst
+#include:microtype
+#include:fvextra
+#include:cleveref
 
 # options passed to abntex2 class
 #keyvals:\documentclass/unbtex#c
@@ -222,29 +223,6 @@ verdeunb#B
 azulunb#B
 mygreen#B
 mylilas#B
-
-# from T1 option of fontenc
-\DH#n
-\dh#n
-\dj#n
-\DJ#n
-\guillemetleft#n
-\guillemetright#n
-\guillemotleft#*n
-\guillemotright#*n
-\guilsinglleft#n
-\guilsinglright#n
-\Hwithstroke#n
-\hwithstroke#n
-\k{arg}#n
-\NG#n
-\ng#n
-\quotedblbase#n
-\quotesinglbase#n
-\textogonekcentered{arg}#n
-\textquotedbl#n
-\th#n
-\TH#n
 
 # from dvipsnames option of xcolor
 Apricot#B
