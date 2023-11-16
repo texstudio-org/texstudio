@@ -1,11 +1,12 @@
 # WriteOnGrid package
-# Matthew Bertucci 2023/08/09 for v0.1.4
+# Matthew Bertucci 2023/11/15 for v0.1.5
 
 #include:tikz
 #include:simplekv
 #include:xstring
 #include:tikzlibrarycalc
 #include:tikzlibrarypositioning
+#include:setspace
 
 TyrianPurple#B
 PapierRose#B
@@ -63,6 +64,7 @@ AffBarre#true,false
 Elargir=%<L/R%>
 Cadre#true,false
 Grille=#5x5,Seyes,Ruled
+ReglureSeyes=%<nombre%>
 CouleurBarreSeyes=#%color
 #endkeyvals
 
@@ -88,6 +90,8 @@ CouleurP=#%color
 CouleurS=#%color
 CouleurMarge=#%color
 NumLignes#true,false
+ReglureSeyes=%<nombre%>
+FormatPapier=#A4,A5,lxh
 #endkeyvals
 
 \LignePapierSeyes{text}
@@ -111,7 +115,7 @@ Largeur=%<nombre%>
 #keyvals:\ParagraphePapierSeyes
 Couleur=#%color
 Ligne=%<numéro%>
-TaillePolice=%<nombre%>
+Echelle=%<nombre%>
 Espacement=%<nombre%>
 Largeur=%<nombre%>
 #endkeyvals
@@ -124,6 +128,7 @@ Largeur=%<nombre%>
 Couleur=#%color
 CouleurMarge=#%color
 NumLignes#true,false
+FormatPapier=#A4,A5,lxh
 #endkeyvals
 
 \LignePapierCinqCinq{text}
@@ -147,7 +152,7 @@ Largeur=%<nombre%>
 #keyvals:\ParagraphePapierCinqCinq
 Couleur=#%color
 Ligne=%<numéro%>
-TaillePolice=%<nombre%>
+Echelle=%<nombre%>
 Espacement=%<nombre%>
 Largeur=%<nombre%>
 #endkeyvals
@@ -160,6 +165,7 @@ Largeur=%<nombre%>
 Couleur=#%color
 CouleurMarge=#%color
 NumLignes#true,false
+FormatPapier=#A4,A5,lxh
 #endkeyvals
 
 \LignePapierRuled{text}
@@ -183,7 +189,7 @@ Largeur=%<nombre%>
 #keyvals:\ParagraphePapierRuled
 Couleur=#%color
 Ligne=%<numéro%>
-TaillePolice=%<nombre%>
+Echelle=%<nombre%>
 Espacement=%<nombre%>
 Largeur=%<nombre%>
 #endkeyvals
@@ -209,6 +215,7 @@ Largeur=%<nombre%>
 \QuadElarG#S
 \QuadNbCar#S
 \QuadNbLig#S
+\QuadReglureSeyes#S
 \QuadType#S
 \RuledFullCoul#S
 \RuledFullCoulMarge#S
