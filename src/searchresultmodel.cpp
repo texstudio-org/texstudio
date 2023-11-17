@@ -210,7 +210,7 @@ QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int ro
         LatexDocument *ldoc=dynamic_cast<LatexDocument*>(search.doc.data());
         QString fn=ldoc->getFileName();
         if(fn.isEmpty()) fn=tr("untitled");
-        return QDir::toNativeSeparators(fn);
+        return QDir::toNativeSeparators(fn) + QString(" (%1)").arg(search.lines.size());
     }
 	}
 	return QVariant();
