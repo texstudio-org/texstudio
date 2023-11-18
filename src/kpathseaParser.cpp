@@ -60,9 +60,16 @@ void KpathSeaParser::run()
 		QString line;
 		if (data.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&data);
+            bool skipDocs=false;
 			while (!stream.atEnd()) {
 				line = stream.readLine();
-				if (line.endsWith(".sty") || line.endsWith(".cls")) {
+                if(line.endsWith(":")){
+                    // skip packages in doc directory as they are only used for building documentation
+                    // see https://github.com/texstudio-org/texstudio/issues/3372
+                    skipDocs=line.contains("/doc/");
+                }
+                if(skipDocs) continue;
+                if (line.endsWith(".sty") || line.endsWith(".cls")) {
 					line.chop(4);
 					results.insert(line);
 				}
