@@ -279,6 +279,7 @@ squeezed title*=%<text%>
 titlebox=#visible,invisible
 detach title
 attach title
+attach title to upper
 attach title to upper=%<text%>
 subtitle style={%<options%>}
 upperbox=#visible,invisible
