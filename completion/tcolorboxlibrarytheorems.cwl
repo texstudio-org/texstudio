@@ -41,6 +41,7 @@ terminator sign none
 label separator=%<separator%>
 theorem full label supplement={%<style%>}
 theorem label supplement={%<style%>}
+theorem hanging indent
 theorem hanging indent=##L
 theorem name and number
 theorem number and name

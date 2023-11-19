@@ -204,6 +204,7 @@ library/all
 
 # << Layered Boxes and Every Box settings >>
 \tcbsetmanagedlayers{number}
+\thetcblayer
 
 # << Even and Odd pages >>
 \tcbifoddpage{odd code}{even code}
@@ -278,6 +279,7 @@ squeezed title*=%<text%>
 titlebox=#visible,invisible
 detach title
 attach title
+attach title to upper
 attach title to upper=%<text%>
 subtitle style={%<options%>}
 upperbox=#visible,invisible
