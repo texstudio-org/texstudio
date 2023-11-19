@@ -204,6 +204,7 @@ library/all
 
 # << Layered Boxes and Every Box settings >>
 \tcbsetmanagedlayers{number}
+\thetcblayer
 
 # << Even and Odd pages >>
 \tcbifoddpage{odd code}{even code}
