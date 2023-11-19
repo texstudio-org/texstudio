@@ -383,8 +383,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 }
             } else {
                 if(tk.type==Token::command && tk.subtype == Token::none){
-                    tk.type = Token::commandUnknown;
-                    unknownCommandsPresent=true;
+                    if(command!="\\\\"){
+                        // skip "\\"
+                        tk.type = Token::commandUnknown;
+                        unknownCommandsPresent=true;
+                    }
                 }
             }
             lexed << tk;

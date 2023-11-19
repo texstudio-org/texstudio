@@ -1082,7 +1082,9 @@ void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
             }
         }
         bool skipRecheck=dlh->hasFlag(QDocumentLine::argumentsParsed);
-        changedCommands.removedUsepackages << mUsepackageList.values(dlh); // make already interpreted usepakages known
+        if(!dlh->hasFlag(QDocumentLine::argumentsParsed)){
+            removeLineElements(dlh,changedCommands);
+        }
         interpretCommandArguments(dlh,i,changedCommands,false,docStructureIter);
         if (edView && !skipRecheck){
             edView->documentContentChanged(i, 1);
