@@ -150,14 +150,14 @@ public:
 
     Q_INVOKABLE QStringList includedFiles(bool importsOnly=false);
 	Q_INVOKABLE QStringList includedFilesAndParent();
-    Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = nullptr);
+    Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument *> *visitedDocs = nullptr,bool onlyChildDocs=false);
 
     LatexParser ltxCommands; /// locally defined latex commands
     QSharedPointer<LatexParser> lp;
 
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
-    Q_INVOKABLE QSet<QString> usedPackages();
+    Q_INVOKABLE QSet<QString> usedPackages(bool onlyInChildDocs=false);
     bool updateCompletionFiles(const bool updatePackages=true,const bool updateUserCommands=true);
     const QSet<QString> &getCWLFiles() const;
 

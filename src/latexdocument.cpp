@@ -1787,7 +1787,7 @@ LatexDocument *LatexDocument::getMasterDocument() const
     return masterDocument;
 }
 
-QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visitedDocs)
+QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visitedDocs,bool onlyChildDocs)
 {
 	QList<LatexDocument *>listOfDocs;
 	bool deleteVisitedDocs = false;
@@ -1805,10 +1805,10 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument *> *visite
 			if (visitedDocs && !visitedDocs->contains(elem)) {
 				listOfDocs << elem;
 				visitedDocs->insert(elem);
-				listOfDocs << elem->getListOfDocs(visitedDocs);
+                listOfDocs << elem->getListOfDocs(visitedDocs,onlyChildDocs);
 			}
 		}
-		if (masterDocument) { //check masters
+        if (masterDocument && !onlyChildDocs) { //check masters
 			master = masterDocument;
 			if (!visitedDocs->contains(master))
 				listOfDocs << master->getListOfDocs(visitedDocs);
@@ -2464,7 +2464,7 @@ bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
                 doc->patchStructure(0,-1);
                 doc->lp->append(doc->ltxCommands);
                 docForUpdate=doc;
-                newPackagesFound|=!doc->containedPackages().isEmpty();
+                newPackagesFound|=!doc->usedPackages(true).isEmpty();
             }
         }
         if(docForUpdate){
@@ -3099,10 +3099,10 @@ QStringList LatexDocument::containedPackages()
  * Return a list of packages that are available in the document.
  * This includes all packages declared in all project files.
  */
-QSet<QString> LatexDocument::usedPackages()
+QSet<QString> LatexDocument::usedPackages(bool onlyInChildDocs)
 {
 	QSet<QString> packages;
-	foreach (LatexDocument *doc, getListOfDocs()) {
+    foreach (LatexDocument *doc, getListOfDocs(nullptr,onlyInChildDocs)) {
         packages.unite(convertStringListtoSet(doc->containedPackages()));
 	}
 	return packages;
