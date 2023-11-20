@@ -2464,7 +2464,7 @@ bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
                 doc->patchStructure(0,-1);
                 doc->lp->append(doc->ltxCommands);
                 docForUpdate=doc;
-                newPackagesFound|=!doc->usedPackages().isEmpty();
+                newPackagesFound|=!doc->containedPackages().isEmpty();
             }
         }
         if(docForUpdate){
