@@ -1,12 +1,12 @@
 # fvextra package
-# Matthew Bertucci 2022/12/01 for v1.5
+# Matthew Bertucci 2023/11/19 for v1.6
 
 #include:etoolbox
 #include:fancyvrb
 #include:upquote
 #include:lineno
 
-#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
+#keyvals:\Verb,\Verb*,\DefineShortVerb,\begin{Verbatim},\begin{Verbatim*},\begin{BVerbatim},\begin{BVerbatim*},\begin{LVerbatim},\begin{LVerbatim*},\fvset,\DefineVerbatimEnvironment,\CustomVerbatimEnvironment,\RecustomVerbatimEnvironment,\CustomVerbatimCommand,\RecustomVerbatimCommand,\SaveVerb,\SaveVerb*,\UseVerb,\UseVerb*,\begin{SaveVerbatim},\UseVerbatim,\BUseVerbatim,\LUseVerbatim,\VerbatimInput,\BVerbatimInput,\LLVerbatimInput,\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
 beameroverlays#true,false
 curlyquotes#true,false
 extra#true,false
@@ -36,6 +36,7 @@ breakbefore=%<string%>
 breakbeforeinrun#true,false
 breakbeforesymbolpre=%<string%>
 breakbeforesymbolpost=%<string%>
+breakcollapsespaces#true,false
 breakindent=##L
 breakindentnchars=%<integer%>
 breaklines#true,false
@@ -55,6 +56,7 @@ breaksymbolsepleft=##L
 breaksymbolsepleftnchars=%<integer%>
 breaksymbolsepright=##L
 breaksymbolseprightnchars=%<integer%>
+spacebreak=%<macro%>
 breakbytoken#true,false
 breakbytokenanywhere#true,false
 #endkeyvals
@@ -62,7 +64,7 @@ breakbytokenanywhere#true,false
 \fvinlineset{options%keyvals}
 
 # keys from fancyvrb for fvextra commands
-#keyvals:\fvinlineset,\EscVerb,\EscVerb*,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
+#keyvals:\fvinlineset,\EscVerb,\EscVerb*,\begin{VerbEnv},\VerbatimInsertBuffer,\RobustVerb,\RobustVerb*,\RobustUseVerb,\RobustUseVerb*,\RobustEscVerb,\RobustEscVerb*
 commentchar=%<single char%>
 gobble=%<integer%>
 formatcom=%<commands%>
@@ -116,12 +118,43 @@ aftersave={%<code%>}
 
 \EscVerb{backslash-escaped text}
 \EscVerb[options%keyvals]{backslash-escaped text}
-\EscVerb*{backslash-escaped text}#*
-\EscVerb*[options%keyvals]{backslash-escaped text}#*
+\EscVerb*{backslash-escaped text}
+\EscVerb*[options%keyvals]{backslash-escaped text}
 
 \begin{VerbEnv}#V
 \begin{VerbEnv}[options%keyvals]#V
 \end{VerbEnv}
+
+\begin{VerbatimWrite}#V
+\begin{VerbatimWrite}[options%keyvals]#V
+\end{VerbatimWrite}
+
+#keyvals:\begin{VerbatimWrite}
+writefilehandle=%<file handle%>
+writer=%<macro%>
+#endkeyvals
+
+\FancyVerbWriteFileHandle#*
+\FancyVerbDefaultWriter#*
+
+\begin{VerbatimBuffer}#V
+\begin{VerbatimBuffer}[options%keyvals]#V
+\end{VerbatimBuffer}
+
+\FancyVerbDefaultBufferer#*
+\FancyVerbBufferLineName#*
+
+\VerbatimInsertBuffer
+\VerbatimInsertBuffer[options%keyvals]
+
+#keyvals:\begin{VerbatimBuffer},\VerbatimInsertBuffer
+afterbuffer=%<macro%>
+bufferer=%<macro%>
+bufferlengthname=%<string%>
+bufferlinename=%<string%>
+buffername=%<string%>
+globalbuffer#true,false
+#endkeyvals
 
 \FancyVerbBreakStart#*
 \FancyVerbBreakStop#*
@@ -196,3 +229,4 @@ FancyVerbHighlightColor#B
 \FancyVerbBreakBeforeSymbolPost#*
 \FancyVerbBreakAfterSymbolPre#*
 \FancyVerbBreakAfterSymbolPost#*
+\FancyVerbSpaceBreak#*
