@@ -49,7 +49,6 @@ llscale=%<factor%>
 defaultfeatures={%<fontspec features%>}
 #endkeyvals
 
-\oldstylenums{text}#n
 \oldstylenumsf{text}#n
 \liningnums{text}#n
 \liningnumsf{text}#n

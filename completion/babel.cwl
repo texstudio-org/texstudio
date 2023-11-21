@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/10/31 for v3.96
+# tbraun 4.11.2008; Matthew Bertucci 2023/11/11 for v3.97
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -259,6 +259,17 @@ kashida.plain
 #endkeyvals
 
 \localeprehyphenation{string}#*
+
+\babelcharclass{locale}{name}{char-list}#*
+\babelinterchar{locale}{class-first}{class-second}{code}#*
+\babelinterchar[options%keyvals]{locale}{class-first}{class-second}{code}#*
+
+#keyvals:\babelinterchar
+label=%<label%>
+#endkeyvals
+
+\enablelocaleinterchar{label}#*
+\disablelocaleinterchar{label}#*
 
 \ensureascii{text}#*
 \asciiencoding#*

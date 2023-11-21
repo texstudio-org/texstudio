@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/10/23 for v9.19.0
+# Matthew Bertucci 2023/10/23 for v9.20.0
 
 #include:iftex
 
@@ -173,6 +173,7 @@ apachedruid
 apacheecharts
 apacheflink
 apachegroovy
+apacheguacamole
 apachehadoop
 apachehive
 apachejmeter
@@ -867,6 +868,7 @@ fox
 foxtel
 fozzy
 framer
+framework
 framework7
 franprix
 fraunhofergesellschaft
@@ -2716,6 +2718,7 @@ yourtraveldottv
 youtube
 youtubegaming
 youtubemusic
+youtubeshorts
 youtubestudio
 youtubetv
 yubico

@@ -39,7 +39,6 @@ defaultfeatures={%<fontspec features%>}
 \sufigures#n
 \textsu{text}#n
 \textsuperior{text}#*n
-\oldstylenums{text}#n
 \liningnums{text}#*n
 \oldstylenumsf{text}#n
 \liningnumsf{text}#n

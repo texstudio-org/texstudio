@@ -20,6 +20,5 @@ black
 
 \overlock
 \overlockBlack
-\oldstylenums{text}
 \liningnums{text}
 \overlockfamily#*

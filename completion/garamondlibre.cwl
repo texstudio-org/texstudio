@@ -18,7 +18,6 @@ lining
 lf
 #endkeyvals
 
-\oldstylenums{text}
 \liningnums{text}
 \sufigures
 \textsu{text}

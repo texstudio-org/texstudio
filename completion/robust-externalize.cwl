@@ -1,5 +1,5 @@
 # robust-externalize package
-# Matthew Bertucci 2023/11/10 for v2.1
+# Matthew Bertucci 2023/11/14 for v2.2
 
 #include:pgfkeys
 #include:pgffor
@@ -58,6 +58,8 @@
 \copyPlaceholder{new placeholder%definition}{old placeholder%definition}
 \DeclareDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
 \DeclareDocumentCommandAutoForward{cmd}{xargs}{def}#d
+\DeclareExpandableDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
+\DeclareExpandableDocumentCommandAutoForward{cmd}{xargs}{def}#d
 \defAutoForward{cmd}[arg spec]{def}#d
 \defAutoForward{cmd}[arg spec]{def}[add. style]#d
 \defAutoForward{cmd}{def}#d
@@ -67,6 +69,22 @@
 \evalPlaceholderNoReplacement{name placeholder%definition}
 \firstPlaceholdersInCompilationCommand{list of placeholders%definition}
 \firstPlaceholdersInTemplate{list of placeholders%definition}
+\genericAutoForward{string}{code}
+\genericAutoForward{string}[add. style]{code}
+\genericAutoForward[preset]{string}{code}
+\genericAutoForward[preset]{string}[add. style]{code}
+\genericAutoForward*{string}{code}
+\genericAutoForward*{string}[add. style]{code}
+\genericAutoForward*[preset]{string}{code}
+\genericAutoForward*[preset]{string}[add. style]{code}
+\genericAutoForwardStringMatch{string}{code}
+\genericAutoForwardStringMatch{string}[add. style]{code}
+\genericAutoForwardStringMatch[preset]{string}{code}
+\genericAutoForwardStringMatch[preset]{string}[add. style]{code}
+\genericAutoForwardStringMatch*{string}{code}
+\genericAutoForwardStringMatch*{string}[add. style]{code}
+\genericAutoForwardStringMatch*[preset]{string}{code}
+\genericAutoForwardStringMatch*[preset]{string}[add. style]{code}
 \getPlaceholder[new placeholder%definition]{name placeholder%definition}
 \getPlaceholder{name placeholder%definition}
 \getPlaceholderInResult[new placeholder%definition]{name placeholder%definition}
@@ -89,6 +107,8 @@
 \newcommandAutoForward{cmd}{def}[add. style]#d
 \NewDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
 \NewDocumentCommandAutoForward{cmd}{xargs}{def}#d
+\NewExpandableDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
+\NewExpandableDocumentCommandAutoForward{cmd}{xargs}{def}#d
 \newGroupPlaceholders{name group}
 \onlyPlaceholdersInCompilationCommand{list of placeholders%definition}
 \onlyPlaceholdersInTemplate{list of placeholders%definition}
@@ -125,6 +145,8 @@
 \providecommandAutoForward{cmd}{def}[add. style]#d
 \ProvideDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
 \ProvideDocumentCommandAutoForward{cmd}{xargs}{def}#d
+\ProvideExpandableDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}#d
+\ProvideExpandableDocumentCommandAutoForward{cmd}{xargs}{def}#d
 \removeImportedPlaceholder{name placeholder%definition}
 \removePlaceholder{placeholder%definition}
 \removePlaceholderFromGroup{name group}{list of placeholders%definition}
@@ -137,6 +159,8 @@
 \renewcommandAutoForward{cmd}{def}[add. style]
 \RenewDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}
 \RenewDocumentCommandAutoForward{cmd}{xargs}{def}
+\RenewExpandableDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}
+\RenewExpandableDocumentCommandAutoForward{cmd}{xargs}{def}
 \rescanPlaceholderInVariableNoReplacement{name macro}{name placeholder%definition}
 \robExtAddCachePath{path%file}#*
 \robExtAddCachePathAndName{path%file}#*
@@ -261,6 +285,7 @@
 \RobExtIfFormatAtLeastTF{true}{false}#S
 \robExtIfMatchesRegex{arg1}{arg2}#S
 \robExtIfMatchesString{arg1}{arg2}#S
+\robExtIfWindowsTF{true}{false}#S
 \robExtImagePlaceholderIfFallbackMode#S
 \robExtImagePlaceholderIfManualMode#S
 \robExtImagePlaceholderIfParallelCompilation#S
@@ -343,3 +368,19 @@
 \setPlaceholderFirst{arg1}{arg2}#S
 \setPlaceholderFromStringExpanded{arg1}{arg2}#S
 \showAllRegisteredGroupsAndPlaceholders#S
+\robExtGenericAutoForward{string}{code}
+\robExtGenericAutoForward{string}[add. style]{code}
+\robExtGenericAutoForward[preset]{string}{code}
+\robExtGenericAutoForward[preset]{string}[add. style]{code}
+\robExtGenericAutoForward*{string}{code}
+\robExtGenericAutoForward*{string}[add. style]{code}
+\robExtGenericAutoForward*[preset]{string}{code}
+\robExtGenericAutoForward*[preset]{string}[add. style]{code}
+\robExtGenericAutoForwardStringMatch{string}{code}
+\robExtGenericAutoForwardStringMatch{string}[add. style]{code}
+\robExtGenericAutoForwardStringMatch[preset]{string}{code}
+\robExtGenericAutoForwardStringMatch[preset]{string}[add. style]{code}
+\robExtGenericAutoForwardStringMatch*{string}{code}
+\robExtGenericAutoForwardStringMatch*{string}[add. style]{code}
+\robExtGenericAutoForwardStringMatch*[preset]{string}{code}
+\robExtGenericAutoForwardStringMatch*[preset]{string}[add. style]{code}

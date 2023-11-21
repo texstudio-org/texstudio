@@ -85,7 +85,6 @@ Scale=%<factor%>
 \nufigures
 \nustyle#*
 \oldstyleInums#S
-\oldstylenums
 \osfstyle
 \proportionalnums
 \sufigures

@@ -1,5 +1,5 @@
 # postnotes package
-# Matthew Bertucci 2022/12/28 for v0.2.0
+# Matthew Bertucci 2023/11/15 for v0.2.7
 
 \postnote{text}
 \postnote[options%keyvals]{text}
@@ -58,6 +58,7 @@ sort#true,false
 \pnhdtopages#*
 \pnheaderdefault#*
 \pnheading#*
+\pnidnextnote#*
 \pnthechapter#*
 \pnthechapternextnote#*
 \pnthepage#*

@@ -58,7 +58,6 @@ newsu
 \liningnums{text}
 \nufigures#*
 \nustyle
-\oldstylenums{text}
 \osfstyle
 \proportionalnums{text}
 \sufigures#*

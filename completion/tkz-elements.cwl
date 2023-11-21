@@ -1,5 +1,5 @@
 # tkz-elements package
-# Matthew Bertucci 2023/10/26 for v1.00b
+# Matthew Bertucci 2023/11/11 for v1.20b
 
 #include:luacode
 
@@ -7,3 +7,7 @@
 \end{tkzelements}
 
 \tkzGetNodes
+\tkzUseLua{variable}
+
+# not documented
+\tkzEraseTables#S

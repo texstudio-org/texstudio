@@ -26,7 +26,6 @@ sb
 h
 #endkeyvals
 
-\oldstylenums{text}
 \liningnums{text}
 \tabularnums{text}
 \proportionalnums{text}

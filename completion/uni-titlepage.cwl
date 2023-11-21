@@ -1,5 +1,5 @@
 # uni-titlepage package
-# Matthew Bertucci 2022/08/06 for v1.1
+# Matthew Bertucci 2023/11/21 for v1.2
 
 #include:scrbase
 #include:graphicx
@@ -119,7 +119,7 @@ secondlogo={%<logo code%>}
 #endkeyvals
 
 #keyvals:\TitlePageStyle/WWUM
-sience=%<sience%>
+science=%<science%>
 #endkeyvals
 
 #keyvals:\TitlePageStyle/KOMAScript,\TitlePageStyle/Markus-1,\TitlePageStyle/Markus-2,\TitlePageStyle/Spacer,\TitlePageStyle/TU-HH
@@ -170,7 +170,7 @@ referee
 rulesep
 rulewidth
 secondlogo
-sience
+science
 student
 subject
 subjectfont
@@ -216,7 +216,7 @@ referee={%<referee names%>}
 rulesep=##L
 rulewidth=##L
 secondlogo={%<logo code%>}
-sience=%<sience%>
+science=%<science%>
 student=%<student name%>
 subject=%<subject%>
 subjectfont=%<font commands%>

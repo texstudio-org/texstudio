@@ -16,5 +16,4 @@ fix-cm
 #include:fix-cm
 #endif
 
-\oldstylenums{text}
 \newstylenums{text}
