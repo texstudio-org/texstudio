@@ -5,6 +5,8 @@
 - optimize internal parsing
 - TeXdoc dialog now shows (optionally all) packages as a searchable list. A new button opens the CTAN package documentation online. ([#3259](https://github.com/texstudio-org/texstudio/pull/3259), [#3270](https://github.com/texstudio-org/texstudio/pull/3270), ...)
 - fix inputting accented characters on OSX
+- handle keyval with spaces better [#3362](https://github.com/texstudio-org/texstudio/issues/3362)
+- save some memory by reading thesaurus database only when needed the first time
 
 ## TeXstudio 4.6.3
 
