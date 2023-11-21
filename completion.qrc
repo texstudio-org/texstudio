@@ -1678,6 +1678,7 @@
 <file>completion/gincltex.cwl</file>
 <file>completion/gindex.cwl</file>
 <file>completion/gitfile-info.cwl</file>
+<file>completion/gitinfo-lua.cwl</file>
 <file>completion/gitinfo2.cwl</file>
 <file>completion/gitlog.cwl</file>
 <file>completion/gitstatus.cwl</file>
@@ -2037,6 +2038,7 @@
 <file>completion/lapdf.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latex2man.cwl</file>
+<file>completion/latex2pydata.cwl</file>
 <file>completion/latexalpha2.cwl</file>
 <file>completion/latexbangla.cwl</file>
 <file>completion/latexcolors.cwl</file>
