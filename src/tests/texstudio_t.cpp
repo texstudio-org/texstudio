@@ -35,6 +35,8 @@ void TexStudioTest::checkIncludes_data(){
         <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a1.tex",QString(TESTDATADIR)+"/a2.tex"}<<false;
     QTest::newRow("2 level include, out of order")
         <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a2.tex",QString(TESTDATADIR)+"/a1.tex"}<<false;
+    QTest::newRow("2 level include, buried package")
+        <<QStringList{QString(TESTDATADIR)+"/included_level1a.tex",QString(TESTDATADIR)+"/included_level2a.tex",QString(TESTDATADIR)+"/top_buried_package.tex"}<<true;
     QTest::newRow("usercommands")
         <<QStringList{QString(TESTDATADIR)+"/usercommands.tex"}<<false;
 }
@@ -122,6 +124,8 @@ void TexStudioTest::checkIncludesCached_data(){
         <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a1.tex",QString(TESTDATADIR)+"/a2.tex"}<<false;
     QTest::newRow("2 level include, out of order")
         <<QStringList{QString(TESTDATADIR)+"/top.tex",QString(TESTDATADIR)+"/a2.tex",QString(TESTDATADIR)+"/a1.tex"}<<false;
+    QTest::newRow("2 level include, buried package")
+        <<QStringList{QString(TESTDATADIR)+"/included_level1a.tex",QString(TESTDATADIR)+"/included_level2a.tex",QString(TESTDATADIR)+"/top_buried_package.tex"}<<true;
 }
 
 void TexStudioTest::checkIncludesCached(){

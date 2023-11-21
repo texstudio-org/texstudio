@@ -7056,7 +7056,13 @@ bool Texstudio::executeTests(const QStringList &args)
                 return false;
             }
         }else{
-            m_languages->setLanguageFromName(currentEditorView()->editor, "TXS Test Results");
+            QEditor *ed=currentEditor();
+            if(!ed){
+                qDebug()<<"Editor was closed.";
+                fileNew();
+                ed=currentEditor();
+            }
+            m_languages->setLanguageFromName(ed, "TXS Test Results");
             currentEditorView()->editor->setText(result, false);
             if (result.startsWith("*** THERE SEEM TO BE FAILED TESTS! ***")) {
                 QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(currentEditorView()->codeeditor->panels("Search")[0]);
