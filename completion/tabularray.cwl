@@ -339,7 +339,7 @@ remark{%<name%>}={%<text%>}
 
 \DefTblrTemplate{element%keyvals}{template name}{definition}#*
 \DeclareTblrTemplate{element%keyvals}{template name}{definition}#*
-\SetTblrTemplate{element%keyvals}{template name}{definition}#*
+\SetTblrTemplate{element%keyvals}{template name}#*
 \UseTblrTemplate{element%keyvals}{default}#*
 \ExpTblrTemplate{element%keyvals}{default}#*
 
