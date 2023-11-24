@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/10/23 for v9.20.0
+# Matthew Bertucci 2023/11/24 for v9.21.0
 
 #include:iftex
 
@@ -330,6 +330,7 @@ bitrise
 bitwarden
 bitwig
 blackberry
+blackmagicdesign
 blazemeter
 blazor
 blender
@@ -622,6 +623,7 @@ dell
 delonghi
 delphi
 delta
+deluge
 deno
 denon
 dependabot
@@ -643,6 +645,7 @@ diaspora
 digg
 digikeyelectronics
 digitalocean
+dinersclub
 dior
 directus
 discogs
@@ -780,6 +783,7 @@ facebookgaming
 facebooklive
 faceit
 facepunch
+fairphone
 falco
 falcon
 fampay
@@ -1074,6 +1078,7 @@ hey
 hibernate
 hibob
 hilton
+hiltonhotelsandresorts
 hitachi
 hive
 hiveblockchain
@@ -1157,6 +1162,7 @@ ingress
 inkdrop
 inkscape
 insomnia
+insta360
 instacart
 instagram
 instapaper
@@ -1435,6 +1441,7 @@ mastercomfig
 mastodon
 materialdesign
 materialdesignicons
+materialformkdocs
 matillion
 matomo
 matrix
@@ -1466,6 +1473,7 @@ mercadopago
 mercedes
 merck
 mercurial
+mermaid
 messenger
 meta
 metabase
@@ -1549,6 +1557,7 @@ morrisons
 moscowmetro
 motorola
 mozilla
+mpv
 mqtt
 msi
 msibusiness
@@ -1757,6 +1766,7 @@ payoneer
 paypal
 paytm
 pcgamingwiki
+pdm
 peakdesign
 pearson
 peerlist
@@ -1807,6 +1817,7 @@ planet
 planetscale
 plangrid
 platformdotsh
+platformio
 platzi
 plausibleanalytics
 playcanvas
@@ -1846,6 +1857,7 @@ polywork
 popos
 porsche
 portainer
+portswigger
 postcss
 postgresql
 posthog
@@ -2071,6 +2083,7 @@ runkit
 rust
 rxdb
 ryanair
+rye
 s7airlines
 sabanci
 safari
@@ -2090,6 +2103,7 @@ saopaulometro
 sap
 sass
 sat1
+satellite
 saturn
 saucelabs
 scala
@@ -2453,6 +2467,7 @@ treehouse
 trello
 trendmicro
 treyarch
+tricentis
 trilium
 triller
 trino
@@ -2621,6 +2636,7 @@ webassembly
 webauthn
 webcomponentsdotorg
 webdriverio
+webex
 webflow
 webgl
 webhint
@@ -2637,6 +2653,7 @@ wegame
 weightsandbiases
 welcometothejungle
 wellfound
+wellsfargo
 wemo
 westerndigital
 wetransfer
