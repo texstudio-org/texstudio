@@ -1,9 +1,8 @@
 # backref package
-# Matthew Bertucci 11/5/2021 for v1.41
+# Matthew Bertucci 2023/11/26 for v1.44
 
 #include:kvoptions
 #include:kvsetkeys
-#include:ltxcmds
 #include:rerunfilecheck
 
 \backrefsetup{options%keyvals}
