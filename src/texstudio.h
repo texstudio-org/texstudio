@@ -139,6 +139,7 @@ private:
     void setStructureSectionIcons();
     void updateStatusBarIcons();
     void updatePDFIcons();
+	void setCheckedToolTipPreviewAction();
 	void setCheckedPreviewModeAction();
 
 	void updateUserMacros(bool updateMenu = true);
@@ -378,6 +379,7 @@ protected slots:
 	void editSpell();
 	void editThesaurus(int line = -1, int col = -1);
 	void editChangeLineEnding();
+	void setToolTipPreview();
 	void setPreviewMode();
 	void editSetupEncoding();
 	void editInsertUnicode(); ///< open dialog to insert a unicode character

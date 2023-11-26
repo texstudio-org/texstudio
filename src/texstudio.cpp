@@ -1090,6 +1090,9 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
     newManagedAction(menu, "previewLatex", tr("Pre&view Selection/Parentheses"), SLOT(previewLatex()), Qt::ALT | Qt::Key_P);
 	newManagedAction(menu, "removePreviewLatex", tr("C&lear Inline Preview"), SLOT(clearPreview()));
+	act = newManagedAction(menu, "toggleToolTipPreview", tr("Show Preview on &Formulas"), SLOT(setToolTipPreview()));
+	act->setCheckable(true);
+	setCheckedToolTipPreviewAction();
 
 	submenu = newManagedMenu(menu, "previewMode", tr("Preview Dis&play Mode"));
 	QActionGroup *previewModeGroup = new QActionGroup(this);
@@ -1491,6 +1494,22 @@ void Texstudio::setupMenus()
 
 	configManager.modifyMenuContents();
 	configManager.modifyManagedShortcuts();
+}
+/* \brief slot for menu action Idefix/Show preview on formulas (toggles same config option)
+ */
+void Texstudio::setToolTipPreview()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		configManager.editorConfig->toolTipPreview = act->isChecked();
+	}
+}
+/* \brief (un)checks menu action Idefix/Show preview on formulas
+ */
+void Texstudio::setCheckedToolTipPreviewAction()
+{
+	bool status = configManager.editorConfig->toolTipPreview;
+	getManagedAction("main/edit2/toggleToolTipPreview")->setChecked(status);
 }
 /*! \brief slot for actions from Menu Preview Display Mode
  */
@@ -6871,6 +6890,8 @@ void Texstudio::generalOptions()
         delete pdfviewerWindow;
     }
 #endif
+    // update Menu Idefix/Show Preview on Formulas
+    setCheckedToolTipPreviewAction();
     // update Menu Idefix/Preview Display Mode
     setCheckedPreviewModeAction();
 #ifdef INTERNAL_TERMINAL
