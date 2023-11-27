@@ -1,5 +1,5 @@
 # libertineRoman package
-# Matthew Bertucci 12/26/2021 for v5.3.0
+# Matthew Bertucci 2023/11/27 for v5.3.0
 
 #include:ifxetex
 #include:ifluatex
@@ -12,16 +12,10 @@
 type1#true,false
 nofontspec#true,false
 lining#true,false
-nf#true,false
-lf#true,false
 oldstyle#true,false
-osf#true,false
 tabular#true,false
-t#true,false
 proportional#true,false
-p#true,false
 semibold#true,false
-sb#true,false
 bold#true,false
 defaultfeatures={%<fontspec features%>}
 #endkeyvals
@@ -33,7 +27,8 @@ defaultfeatures={%<fontspec features%>}
 \libertineDisplay#n
 \libertineInitial#n
 \sufigures#n
-\textsu{text}#n
+\textsu{text}#*n
+\textsup{text}#n
 \textsuperior{text}#*n
 \liningnums{text}#n
 \oldstylenumsf{text}#n
