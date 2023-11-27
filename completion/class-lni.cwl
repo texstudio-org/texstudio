@@ -1,5 +1,5 @@
 # lni class
-# Matthew Bertucci 3/29/2022 for v1.7
+# Matthew Bertucci 2023/11/27 for v1.8
 
 #include:iftex
 #include:cmap
@@ -12,34 +12,35 @@
 #include:newtxmath
 #include:newtxtt
 #include:microtype
-#include:ccicons
 #include:etoolbox
 #include:geometry
 #include:csquotes
+#include:amsmath
+#include:etoolbox
 #include:graphicx
 #include:eso-pic
 #include:grffile
 #include:fancyhdr
 #include:listings
+#include:enumitem
+#include:footmisc
 #include:caption
 #include:verbatim
 #include:url
 #include:xspace
 #include:hyperref
 #include:cleveref
+#include:orcidlink
 #include:hypcap
+#include:authblk
 
 #keyvals:\documentclass/lni#c
-latin1
-utf8
-ansinew
 english
-nohyperref
 nocleveref
 biblatex
 crop
-oldfonts
-norunningheads
+runningheads
+anonymous
 # options passed to article class
 a4paper
 a5paper
@@ -63,10 +64,6 @@ leqno
 fleqn
 openbib
 #endkeyvals
-
-#ifOption:oldfonts
-#include:mathptmx
-#endif
 
 #ifOption:crop
 #include:crop
@@ -145,6 +142,10 @@ openbib
 #endif
 
 \andname#*
+\anonymousfalse#S
+\anonymoustrue#S
+\author{name}{email}{ORCID}
+\author[number]{name}{email}{ORCID}
 \authorrunning{text}
 \autofontsfalse#S
 \autofontstrue#S
@@ -165,8 +166,8 @@ openbib
 \eg
 \email{email address%URL}#U
 \etal
-\fnindent#*
 \ie
+\ifanonymous#S
 \ifautofonts#S
 \ifcrop#S
 \ifkeywords#S
@@ -192,6 +193,7 @@ openbib
 \oldfontstrue#S
 \oldsmall#S
 \OMG
+\orcid{ORCID}#*
 \powerset#m
 \startpage{number}
 \subtitle{text}
@@ -230,10 +232,10 @@ openbib
 \TH#n
 
 # from ngerman option of babel
-\captionsngerman#*
-\datengerman#*
-\extrasngerman#*
-\noextrasngerman#*
+\captionsngerman#S
+\datengerman#S
+\extrasngerman#S
+\noextrasngerman#S
 \dq
 \ntosstrue#*
 \ntossfalse#*
@@ -275,10 +277,10 @@ openbib
 #repl:"> »
 
 # from english option of babel
-\captionsenglish#*
-\dateenglish#*
-\extrasenglish#*
-\noextrasenglish#*
-\englishhyphenmins#*
-\britishhyphenmins#*
-\americanhyphenmins#*
+\captionsenglish#S
+\dateenglish#S
+\extrasenglish#S
+\noextrasenglish#S
+\englishhyphenmins#S
+\britishhyphenmins#S
+\americanhyphenmins#S
