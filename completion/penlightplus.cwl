@@ -1,5 +1,5 @@
 # penlightplus package
-# Matthew Bertucci 2023/09/04
+# Matthew Bertucci 2023/11/27
 
 #include:luacode
 #include:luakeys
@@ -13,31 +13,34 @@ pl
 
 \MakeluastringCommands{spec}
 \MakeluastringCommands[def]{spec}
-\splitToComma{text%plain}{text to split on}
-\splitToComma[expansion level]{text%plain}{text to split on}
-\splitToItems{text%plain}{text to split on}
-\splitToComma[expansion level]{text%plain}{text to split on}
+\splittocomma{text%plain}{text to split on}
+\splittocomma[expansion level]{text%plain}{text to split on}
+\splittoitems{text%plain}{text to split on}
+\splittoitems[expansion level]{text%plain}{text to split on}
 \luastringT{string}
 \luastringF{string}
 \ifluax{Lua expr%definition}{true}
 \ifluax{Lua expr%definition}{true}[false]
 \ifluaxv{Lua expr%definition}{true}
 \ifluaxv{Lua expr%definition}{true}[false]
-\newtbl{name}
-\chgtbl{name}
+\tblnew{name}
+\tblchg{name}
 \tblfrkv{name}{key-val string}
 \tblfrkv{name}{key-val string}[luakeys opts]
+\tblfrkvN{name}{key-val string}
+\tblfrkvN{name}{key-val string}[luakeys opts]
 \tblfrcsv{name}{key-val string}
 \tblfrcsv{name}{key-val string}[luakeys opts]
-\settbl{index}{value}
-\gettbl{index}
-\deftbl{index}{csname}
-\gdeftbl{index}{csname}
-\iftbl{index}{true}
-\iftbl{index}{true}[false]
-\iftblv{index}{true}
-\iftblv{index}{true}[false]
-\kvtblundefcheck
+\tblset{index}{value}
+\tblget{index}
+\tbldef{index}{csname}
+\tblgdef{index}{csname}
+\tbldefxy{index}{csname}
+\tblif{index}{true}
+\tblif{index}{true}[false]
+\tblifv{index}{true}
+\tblifv{index}{true}[false]
+\tblkvundefcheck
 
 # not documented
 \writePDFmetadata#S
