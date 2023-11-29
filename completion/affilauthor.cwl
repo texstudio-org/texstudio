@@ -1,5 +1,5 @@
 # affilauthor package
-# Matthew Bertucci 2023/11/08 for v1.0.0
+# Matthew Bertucci 2023/11/29 for v1.0.1
 
 #include:marvosym
 
@@ -42,4 +42,5 @@ notefont=%<font commands%>
 notenum=#alpha,fnsym,roman
 authspace=##L
 affilspace=##L
+affilnum=#alpha,Alpha,roman,Roman
 #endkeyvals
