@@ -8495,7 +8495,7 @@ void QDocumentPrivate::emitContentsChange(int line, int lines)
 	}
 
 	for (int i=line; i<line+lines; i++)
-        adjustWidth(i,true);
+        adjustWidth(i,lines>1);
 	if (lines > 1) setHeight();
 	//qDebug("%i, %i : %i", line, lines, n);
 
