@@ -71,7 +71,7 @@
 \DeclareEncodingSubset{encoding}{family}{subset number}#*
 \DeclareEnvironmentCopy{envname}{copied envname}#N
 \DeclareErrorFont{encoding}{family}{series}{shape}{size}#*
-\DeclareExpandableDocumentCommand{cmd}{args}{def}#*d
+\DeclareExpandableDocumentCommand{cmd}{xargs}{def}#*d
 \DeclareFixedFont{cmd}{encoding}{family}{series}{shape}{size}#*d
 \DeclareFontEncoding{encoding}{text-settings}{math-settings}#*
 \DeclareFontEncodingDefaults{text-settings}{math-settings}#*
