@@ -2235,9 +2235,6 @@ Then you can select a new shortcut by one of the following ways:
                     <property name="text">
                      <string>Show preview as tooltip on formulas in editor</string>
                     </property>
-                    <property name="toolTip">
-                     <string>Note: Even if the preview display mode is set to Inline, a tooltip is used.</string>
-                    </property>
                    </widget>
                   </item>
                   <item row="4" column="2" colspan="2">
@@ -3950,6 +3947,9 @@ them here.</string>
                    <widget class="QComboBox" name="comboBoxPreviewMode">
                     <property name="advancedOption" stdset="0">
                      <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it's still a tooltip).</string>
                     </property>
                     <item>
                      <property name="text">
