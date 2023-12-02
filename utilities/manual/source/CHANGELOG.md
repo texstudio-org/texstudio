@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.7.1
+
+- 
+
 ## TeXstudio 4.7.0
 
 - remove auto inserted closing parenthesis if the opening one is removed via backspace
