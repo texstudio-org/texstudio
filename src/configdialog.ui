@@ -2231,6 +2231,16 @@ Then you can select a new shortcut by one of the following ways:
                    </widget>
                   </item>
                   <item row="3" column="2" colspan="2">
+                   <widget class="QCheckBox" name="checkBoxToolTipPreview">
+                    <property name="text">
+                     <string>Show preview as tooltip on formulas in editor</string>
+                    </property>
+                    <property name="toolTip">
+                     <string>Note: Even if the preview display mode is set to Inline, a tooltip is used.</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="2" colspan="2">
                    <widget class="QCheckBox" name="checkBoxImageToolTip">
                     <property name="text">
                      <string>Show image tooltip on image files</string>
@@ -2390,7 +2400,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                   <item row="23" column="1" colspan="2">
                    <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
                   </item>
-                  <item row="5" column="2" colspan="2">
+                  <item row="6" column="2" colspan="2">
                    <widget class="QCheckBox" name="checkBoxTexDocInternal">
                     <property name="text">
                      <string>Show help on commands in internal pdf viewer (texdoc)</string>
@@ -2501,7 +2511,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                     </item>
                    </widget>
                   </item>
-                  <item row="4" column="2" colspan="2">
+                  <item row="5" column="2" colspan="2">
                    <widget class="QCheckBox" name="checkBoxToolTipHelp2">
                     <property name="text">
                      <string>Show help as tooltip on text in editor</string>
@@ -4046,13 +4056,6 @@ them here.</string>
                     </property>
                     <property name="advancedOption" stdset="0">
                      <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="0" colspan="2">
-                   <widget class="QCheckBox" name="checkBoxToolTipPreview">
-                    <property name="text">
-                     <string>Show preview as tooltip on formulas in editor</string>
                     </property>
                    </widget>
                   </item>
