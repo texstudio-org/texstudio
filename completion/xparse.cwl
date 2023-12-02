@@ -1,4 +1,4 @@
-### this package is deprecated. All but the commands below are provided are in the format (see latex-dev.cwl)
+### this package is deprecated. All but the commands below are provided in the format (see latex-dev.cwl)
 
 \ArgumentSpecification#S
 \GetDocumentCommandArgSpec{cmd}#S
