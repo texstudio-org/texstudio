@@ -1085,6 +1085,9 @@ void LatexDocument::reinterpretCommandArguments(HandledData &changedCommands)
         if(!dlh->hasFlag(QDocumentLine::argumentsParsed)){
             removeLineElements(dlh,changedCommands);
         }
+        // handle special comments (TODO, MAGIC comments)
+        handleComments(dlh,i,docStructureIter);
+
         interpretCommandArguments(dlh,i,changedCommands,false,docStructureIter);
         if (edView && !skipRecheck){
             edView->documentContentChanged(i, 1);
