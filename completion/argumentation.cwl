@@ -1,23 +1,25 @@
 # argumentation package
-# Matthew Bertucci 2023/11/07 for v1.0
+# Matthew Bertucci 2023/12/03 for v1.1
 
-#include:options
+#include:pgfopts
 #include:tikz
 #include:tikzlibrarypositioning
 #include:tikzlibrarydecorations.markings
 
 #keyvals:\usepackage/argumentation#c
-namestyle=#italics,bold,bolditalics
-argumentstyle=#standard,retro
-attackstyle=#standard,retro
+namestyle=#normal,italics,bold,bolditalics,monospace
+argumentstyle=#standard
+attackstyle=#standard,large
+supportstyle=#standard,dashed,double
 #endkeyvals
+
+\setargumentstyle{style}
+\setattackstyle{style}
+\setsupportstyle{style}
 
 \begin{af}#\pictureHightlight
 \begin{af}[options]#\pictureHightlight
 \end{af}
-\begin{miniaf}#\pictureHightlight
-\begin{miniaf}[options]#\pictureHightlight
-\end{miniaf}
 
 \argument{id}{name}
 \argument[options]{id}{name}
@@ -29,16 +31,12 @@ attackstyle=#standard,retro
 \selfattack[options]{id}
 \support{id1}{id2}
 \support[options]{id1}{id2}
+\annotatedattack{id1}{id2}{value}
+\annotatedattack[options]{id1}{id2}{value}
 \afname{id}{name}
 \afname[options]{id}{name}
+\annotation{id}{text}
+\annotation[options]{id}{text}
 
 # not documented
 \argstyle{text}#S
-\setargumentstyle{options}#S
-\setattackstyle{options}#S
-\setloopstyle{options}#S
-\adjustargumentstyle{options}#S
-\adjustattackstyle{options}#S
-\resetargumentstyle#S
-\resetattackstyle#S
-\resetloopstyle#S
