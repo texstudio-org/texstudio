@@ -1,7 +1,8 @@
 # CHANGELOG
 ## TeXstudio 4.7.1
 
-- 
+- fix highlighting of %TODO comments after loading a file [#3398](https://github.com/texstudio-org/texstudio/issues/3398)
+- fix missing document height update when copy wrapped single lines [#3396](https://github.com/texstudio-org/texstudio/issues/3396)
 
 ## TeXstudio 4.7.0
 
