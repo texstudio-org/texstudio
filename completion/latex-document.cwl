@@ -308,7 +308,7 @@
 \negmedspace
 \negthickspace
 \newblock#*
-\newlabel
+\newlabel{label%plain}{data}#*
 \newlength{newlength%cmd}#d
 \newline
 \newpage

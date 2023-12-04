@@ -1,5 +1,5 @@
 # codedescribe package
-# Matthew Bertucci 2023/05/17 for v1.1
+# Matthew Bertucci 2023/11/22 for v1.2
 
 #include:xcolor
 #include:pifont
@@ -122,4 +122,5 @@ date=%<date%>
 \tsdate
 
 # not documented
+\PkgDescription{arg}#S
 \PkgInfo{arg1}{arg2}#S

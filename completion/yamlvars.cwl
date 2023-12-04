@@ -1,5 +1,5 @@
 # yamlvars package
-# Matthew Bertucci 2023/07/23
+# Matthew Bertucci 2023/11/27
 
 #include:luacode
 #include:etoolbox
@@ -40,3 +40,5 @@ debug
 \setYAMLvars{arg}#S
 \setYAMLvars*{arg}#S
 \setdefYAMLvars{arg}#S
+\yamlvarsdebugon#S
+\yamlvarsdebugoff#S

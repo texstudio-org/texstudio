@@ -1,5 +1,5 @@
 # biolinum package
-# Matthew Bertucci 12/26/2021 for v5.3.0
+# Matthew Bertucci 2023/11/27 for v5.3.0
 
 #include:ifxetex
 #include:ifluatex
@@ -12,22 +12,12 @@ sfdefault#true,false
 type1#true,false
 nofontspec#true,false
 lining#true,false
-nf#true,false
-lf#true,false
 oldstyle#true,false
-osf#true,false
 sflining#true,false
-sflf#true,false
 sfoldstyle#true,false
-sfosf#true,false
-osfss#true,false
 tabular#true,false
-t#true,false
-p#true,false
 sftabular#true,false
-sft#true,false
 sfproportional#true,false
-sfp#true,false
 scaled=%<factor%>
 defaultfeatures={%<fontspec features%>}
 #endkeyvals
@@ -37,7 +27,8 @@ defaultfeatures={%<fontspec features%>}
 \biolinumLF#n
 \biolinumkey#*n
 \sufigures#n
-\textsu{text}#n
+\textsu{text}#*n
+\textsup{text}#n
 \textsuperior{text}#*n
 \liningnums{text}#*n
 \oldstylenumsf{text}#n

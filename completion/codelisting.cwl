@@ -1,5 +1,5 @@
 # codelisting package
-# Matthew Bertucci 2023/05/12 for v1.0
+# Matthew Bertucci 2023/11/22 for v1.2
 
 #include:listings
 #include:scontents
@@ -70,4 +70,9 @@ codeprefix=%<text%>
 resultprefix=%<text%>
 parindent=##L
 ruleht=%<number%>
+basicstyle=%<font commands%>
 #endkeyvals
+
+# not documented
+\PkgDescription{arg}#S
+\PkgInfo{arg1}{arg2}#S
