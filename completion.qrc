@@ -3952,6 +3952,7 @@
 <file>completion/vcell.cwl</file>
 <file>completion/vdmlisting.cwl</file>
 <file>completion/vector.cwl</file>
+<file>completion/vectorlogos.cwl</file>
 <file>completion/venndiagram.cwl</file>
 <file>completion/venturis2.cwl</file>
 <file>completion/venturis.cwl</file>

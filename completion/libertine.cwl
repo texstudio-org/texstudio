@@ -1,5 +1,5 @@
 # denisbitouze, 27.10.2012
-# Matthew Bertucci 11/2/2021 for v5.3.0
+# Matthew Bertucci 2023/11/27 for v5.3.0
 
 #include:ifxetex
 #include:ifluatex
@@ -20,32 +20,18 @@ sfdefault#true,false
 type1#true,false
 nofontspec#true,false
 lining#true,false
-nf#true,false
-lf#true,false
 oldstyle#true,false
-osf#true,false
 sflining#true,false
-sflf#true,false
 sfoldstyle#true,false
-sfosf#true,false
-osfss#true,false
 tabular#true,false
-t#true,false
 proportional#true,false
-p#true,false
 sftabular#true,false
-sft#true,false
 sfproportional#true,false
-sfp#true,false
 semibold#true,false
-sb#true,false
 bold#true,false
 scaled=%<factor%>
-scale=%<factor%>
 ttscaled=%<factor%>
-ttscale=%<factor%>
 llscaled=%<factor%>
-llscale=%<factor%>
 defaultfeatures={%<fontspec features%>}
 #endkeyvals
 
@@ -57,7 +43,8 @@ defaultfeatures={%<fontspec features%>}
 \proportionalnums{text}#n
 \proportionalnumsf{text}#n
 \sufigures#n
-\textsu{text}#n
+\infigures#n
+\textsup{text}#n
 \textsuperior{text}#*n
 \libertine#n
 \libertineSB#n

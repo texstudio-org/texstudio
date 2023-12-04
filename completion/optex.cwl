@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2023/05/24 for v1.12
+# Matthew Bertucci 2023/11/22 for v1.13
 
 #include:plaintex
 #include:luatex
@@ -44,7 +44,8 @@
 
 ## Math ##
 \noloadmath
-\loadmath{[font-file]}
+\loadmath{[%<font-file%>]}
+\loadmath %<⟨factor⟩%>{[%<font-file%>]}
 \script#m
 \frak#m
 \bbchar#m
@@ -212,6 +213,7 @@
 \nocite[bibid]#c
 \bibpart{name}
 \bibnum=%<⟨number⟩%>
+\readbibs{bib-bases}#*
 
 ## Graphics ##
 \Blue
@@ -436,6 +438,7 @@
 \posg[label]
 \private
 \public
+\qcasesof{%<string%>}%<⟨list of cases⟩%>
 \readkv{%<list%>}
 \replstring%<\macro%>{%<stringA%>}{%<stringB%>}
 \sdef{string%definition}{def}#S
@@ -476,6 +479,7 @@
 \bslash
 \catalogexclude#*
 \catalogmathsample#*
+\catalognextfam#*
 \catalogonly#*
 \catalogsample#*
 \clqq#S
@@ -526,6 +530,7 @@
 \link[type:spec]{color}{text}#S
 \lipsumtext[number]#*
 \listskipamount#S
+\loadtrick %<⟨csname⟩%>
 \localcolor
 \mathcodes %<⟨family⟩%> {%<list-of-pairs%>}
 \mathsboff
@@ -731,7 +736,9 @@ bstyle=%<style%>
 \bs#S
 \calli#S
 \ccond#S
+\Clara#S
 \Comicneue#S
+\Culmus#S
 \Cursor#S
 \Dejavu#S
 \displ#S
@@ -742,6 +749,7 @@ bstyle=%<style%>
 \Erewhon#S
 \expd#S
 \extend#S
+\Fraunces#S
 \Garamondl#S
 \GFSBodoni#S
 \hair#S
@@ -775,6 +783,7 @@ bstyle=%<style%>
 \noexpd#S
 \normal#S
 \noswash#S
+\Oldstandard#S
 \onum#S
 \osize#S
 \Overlock#S

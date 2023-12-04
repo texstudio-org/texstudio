@@ -1,5 +1,5 @@
 # covington package
-# Matthew Bertucci 2023/06/25 for v2.12
+# Matthew Bertucci 2023/12/02 for v2.13
 
 #include:iftex
 #include:varwidth
@@ -27,6 +27,8 @@ fnexamplecounter=#main,own,own-reset
 \begin{covexample}#*
 \begin{covexample}[options%keyvals]#*
 \end{covexample}#*
+
+\covchapexsep#*
 
 \setexampleoptions{options%keyvals}
 
@@ -194,6 +196,10 @@ fscomments={%<font settings%>}
 \eachwordthree#S
 \eachwordtwo#S
 \ex#S
+\exfmtchangedfalse#S
+\exfmtchangedtrue#S
+\exfmtgchangedfalse#S
+\exfmtgchangedtrue#S
 \filedate#S
 \filename#S
 \fileversion#S
@@ -209,6 +215,8 @@ fscomments={%<font settings%>}
 \glosslinetwo#S
 \glosslinethree#S
 \glosspwidth#*
+\ifexfmtchanged#S
+\ifexfmtgchanged#S
 \IfExPreamble{arg}#S
 \ifforceredef#S
 \ifnoglossbreaks#S
