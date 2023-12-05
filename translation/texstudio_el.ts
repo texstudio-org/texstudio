@@ -39,17 +39,17 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="69"/>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation>Το TeXstudio χρησιμοποιεί το συστατικό προβολής PDF του TeXworks.</translation>
+        <translation>Το TeXstudio χρησιμοποιεί το πρόγραμμα προβολής αρχείων PDF του TeXworks.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="70"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation>Το TeXstudio χρησιμοποιεί την κλάση DSingleApplication (Συγγραφέας: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Άδεια: GPL).</translation>
+        <translation>Το TeXstudio χρησιμοποιεί την κλάση DSingleApplication (Συγγραφέας: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Άδεια χρήσης: GPL).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="71"/>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation>Το TeXstudio χρησιμοποιεί το TexTablet (Άδεια MIT, Copyright (c) 2012 Steven Lovegrove).</translation>
+        <translation>Το TeXstudio χρησιμοποιεί το TexTablet (Άδεια χρήσης: MIT, Copyright (c) 2012 Steven Lovegrove).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="72"/>
@@ -74,7 +74,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="76"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation>Precompile</translation>
+        <translation>Το TeXstudio χρησιμοποιεί το παράδειγμα flowlayout που υπάρχει στην τεκμηρίωση της έκδοσης 5.6 του Qt.</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="77"/>
@@ -176,7 +176,7 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/bibtexdialog.ui" line="20"/>
         <source>Insert in File:</source>
-        <translation>Προσθήκη στο αρχείο</translation>
+        <translation>Εισαγωγή στο αρχείο:</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.ui" line="27"/>
@@ -393,12 +393,12 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/bookmarks.cpp" line="96"/>
         <source>Remove</source>
-        <translation>Αφαίρεση</translation>
+        <translation>Κατάργηση</translation>
     </message>
     <message>
         <location filename="../src/bookmarks.cpp" line="99"/>
         <source>Remove All</source>
-        <translation>Αφαίρεση όλων</translation>
+        <translation>Κατάργηση όλων</translation>
     </message>
 </context>
 <context>
@@ -592,12 +592,12 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/buildmanager.cpp" line="942"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
-        <translation>Η εντολή έχει επεκταθεί σε %1 επίπεδα. Θέλετε να συνεχίσετε την επέκταση &quot;%2&quot;;</translation>
+        <translation>Έχει γίνει αντικατάσταση της εντολής &quot;%2&quot; σε %1 επίπεδα. Θέλετε να συνεχιστεί η διαδικασία αυτή;</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="995"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation>Έχετε χρησιμοποιήσει txs:///command[... ή txs:///command{... μετατροπείς, αλλά υποστηρίζουμε μόνο μετατροπείς της μορφής txs:///command/[... ή txs:///command/{... με μια κάθετη κατάληξη για να κρατηθεί η σύνταξη πιο απλή/καθαρή.</translation>
+        <translation>Έχετε χρησιμοποιήσει τον τροποποιητή txs:///command[... ή txs:///command{... ωστόσο υποστηρίζονται μόνο οι τροποποιητές της μορφής txs:///command/[... ή txs:///command/{... με επίθημα μία κάθετο κυρίως για λόγους αισθητικούς.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1006"/>
@@ -617,7 +617,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1089"/>
         <source>Failed to understand command %1</source>
-        <translation>Αποτυχία κατανόησης της εντολής %1</translation>
+        <translation>Δεν ήταν δυνατή η κατανόηση της εντολής %1</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1484"/>
@@ -632,22 +632,22 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="1490"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
-        <translation>Αν σκοπεύετε να δουλέψετε με τη LaTeX, τότε σίγουρα θα χρειαστεί να εγκαταστήσετε ένα από αυτά.</translation>
+        <translation>Αν σκοπεύετε να εργαστείτε με τη LaTeX, τότε σίγουρα θα χρειαστεί να εγκαταστήσετε μία από αυτές.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1493"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
-        <translation>Μία δημοφιλής διανομή LaTeX στο OSX είναι η %1.</translation>
+        <translation>Μία δημοφιλής διανομή LaTeX για OSX είναι η %1.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1495"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
-        <translation>Αν σκοπεύετε να δουλέψετε με τη LaTeX, τότε σίγουρα θα χρειαστεί να το εγκαταστήσετε.</translation>
+        <translation>Αν σκοπεύετε να εργαστείτε με τη LaTeX, τότε σίγουρα θα χρειαστεί να την εγκαταστήσετε.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1498"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
-        <translation>Αν σκοπεύετε να δουλέψετε με τη LaTeX, τότε θα χρειαστεί να εγκαταστήσετε κάποια έκδοση της LaTeX.</translation>
+        <translation>Αν σκοπεύετε να εργαστείτε με τη LaTeX, τότε σίγουρα θα χρειαστεί να εγκαταστήσετε κάποια διανομή της LaTeX.</translation>
     </message>
     <message>
         <location filename="../src/buildmanager.cpp" line="1511"/>
@@ -688,7 +688,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/buildmanager.cpp" line="2228"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
-        <translation>Έχετε χρησιμοποιήσει μια εντολή dde:// με δύο κάθετους, η οποία έχει καταργηθεί. Παρακαλώ αλλάξτε την με μια εντολή με τρεις καθέτους dde:/// προσθέτοντας μία ακόμη κάθετο.</translation>
+        <translation>Έχετε χρησιμοποιήσει μια εντολή dde:// με δύο κάθετους, η οποία είναι απαρχαιωμένη και σύντομα θα καταργηθεί. Αλλάξτε την με μια εντολή με τρεις καθέτους dde:/// προσθέτοντας μία ακόμη κάθετο.</translation>
     </message>
 </context>
 <context>
@@ -696,7 +696,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/cleandialog.ui" line="14"/>
         <source>Clean</source>
-        <translation>Καθαρισμός</translation>
+        <translation>Εκκαθάριση βοηθητικών αρχείων</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.ui" line="20"/>
@@ -726,7 +726,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/cleandialog.cpp" line="57"/>
         <source>Project (Master file folder and all subfolders)</source>
-        <translation>Project (Φάκελος Master αρχείου κι όλων των υποφακέλων)</translation>
+        <translation>Project (φάκελος κύριου αρχείου και όλοι οι υποφάκελοι)</translation>
     </message>
     <message>
         <location filename="../src/cleandialog.cpp" line="63"/>
@@ -746,7 +746,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/cleandialog.cpp" line="114"/>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
-        <translation>Για την ασφάλειά σας, ο καθαρισμός δεν θα διαγράψει τα αρχεία με τις ακόλουθες επεκτάσεις:</translation>
+        <translation>Δε θα διαγραφούν τα αρχεία με τις ακόλουθες επεκτάσεις:</translation>
     </message>
 </context>
 <context>
@@ -755,13 +755,13 @@ Please change your configuration and define command lists only at &apos;Options 
         <location filename="../src/additionaltranslations.cpp" line="162"/>
         <location filename="../src/additionaltranslations.cpp" line="166"/>
         <source>num</source>
-        <translation>αρ</translation>
+        <translation>αριθμητής</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="163"/>
         <location filename="../src/additionaltranslations.cpp" line="167"/>
         <source>den</source>
-        <translation>παρ</translation>
+        <translation>παρονομαστής</translation>
     </message>
 </context>
 <context>
@@ -987,7 +987,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="808"/>
         <source>Build Options</source>
-        <translation>Επιλογές Δημιουργίας</translation>
+        <translation>Επιλογές μεταγλώττισης</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="820"/>
@@ -1034,7 +1034,7 @@ Please change your configuration and define command lists only at &apos;Options 
     <message>
         <location filename="../src/configdialog.ui" line="890"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation>Κάποιες δομές LaTeX (π.χ. παραπομπές) χρειάζονται πολλαπλούς κύκλους εκτελέσεων μέχρι να εμφανιστούν σωστά.</translation>
+        <translation>Για κάποιες δομές LaTeX (π.χ. παραπομπές) είναι απαραίτητη η εκτέλεση της εντολής μεταγλώττισης περισσότερες από μία φορές ώστε η εμφάνισή τους να είναι σωστή.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="893"/>
@@ -1200,7 +1200,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1214"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation>Αυτό ελέγχει αν η λίστα από πάνω δείχνει όλα τα στοιχεία του μενού ή μόνο εκείνα που συνήθως αλλάζουν.</translation>
+        <translation>Με την επιλογή αυτή καθορίζετε αν η παραπάνω λίστα πρέπει να εμφανίζει όλα τα αντικείμενα των μενού ή μόνο αυτά που τροποποιούνται πιο συχνά.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1217"/>
@@ -1240,7 +1240,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1331"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation>Αυτό δείχνει τις διαθέσιμες ενέργειες που μπορούν να αντιστοιχηθούν σε μια γραμμή εργαλειών.</translation>
+        <translation>Εδώ φαίνονται τα αντικείμενα που μπορούν να προστεθούν σε μια γραμμή εργαλείων.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1502"/>
@@ -1698,7 +1698,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="2226"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Αυτό χρησιμοποιεί το QSaveFile για να αποτρέψει το χάσιμο των υπαρχόντων δεδομένων σε περίπτωση που η διαδικασία εγγραφής αποτύχει. Ως μειονέκτημα, ο τρέχων χρήστης γίνεται ο ιδιοκτήτης του αρχείου και τα πρόσθετα χαρακτηριστικά του αρχείου χάνονται. Επίσης, φαίνεται να υπάρχουν προβλήματα σε αυτή τη μέθοδο με τους φακέλους του Dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Χρησιμοποιεί το QSaveFile για να αποτρέψει τυχόν απώλεια δεδομένων σε περίπτωση που η διαδικασία εγγραφής αποτύχει. Ωστόσο, ο τρέχων χρήστης γίνεται ο συντάκτης του αρχείου και τα πρόσθετα χαρακτηριστικά του (attributes) χάνονται, ενώ έχουν κατά καιρούς παρουσιαστεί προβλήματα αυτής της μεθόδου με φακέλους Dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2229"/>
@@ -1754,8 +1754,9 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="../src/configdialog.ui" line="2355"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation>Κατά τη χρησιμοποίηση χαρακτήρων unicode μέσα στον πηγαίο κώδικα, η LaTeX πρέπει και πάλι
-να καταστήσει τους χαρακτήρες. Από τη στιγμή που το unicode δεν υποστηρίζεται εγγενώς από τη LaTeX, θα πρέπει να συμπεριλάβετε τα κατάλληλα πακέτα για χαρακτήρες unicode μέσα στο έγγραφο.</translation>
+        <translation>Η χρήση χαρακτήρων unicode κώδικα επιβάλλει στη LaTeX να τους αποδώσει.
+Από τη στιγμή που το unicode δεν υποστηρίζεται εγγενώς από τη LaTeX,
+πρέπει να συμπεριλάβετε τα κατάλληλα πακέτα για χαρακτήρες unicode στο έγγραφό σας.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2359"/>
@@ -2060,7 +2061,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2903"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation>Αν η μνήμη cache των γραμμών απόδοσης είναι ενεργοποιημένη, οι αποδομένες γραμμές αποθηκεύονται σε κάποια cache, επομένως δεν χρειάζεται να αποδοθούν ξανά. Αυτό μπορεί να οδηγήσει στην αύξηση της ταχύτητας (ειδικά σε Mac), με κόστος τη χρήση περισσότερης μνήμης.</translation>
+        <translation>Αν η μνήμη cache των γραμμών που έχουν ήδη αποδοθεί είναι ενεργοποιημένη, τότε αυτές αποθηκεύονται στη μνήμη cache, ώστε να μην είναι απαραίτητη η εκ νέου απόδοσή τους. Σε αυτήν την περίπτωση, αν και ο χρόνος μεταγλώττισης μειώνεται (ειδικά σε Mac), χρησιμοποιείται περισσότερη μνήμη.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2906"/>
@@ -2490,7 +2491,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3952"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
-        <translation type="unfinished"/>
+        <translation>Με την αλλαγή της τιμής της ρύθμισης αυτής, η ενημερώνεται αυτόματα και η εμφάνιση προεπισκόπησης - παραμένει ωστόσο σε tooltip για την επιλογή «στην ίδια γραμμή».</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3956"/>
@@ -5216,12 +5217,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3272"/>
         <source>Remove Bookmark</source>
-        <translation>Αφαίρεση σελιδοδείκτη</translation>
+        <translation>Κατάργηση σελιδοδείκτη</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3280"/>
         <source>Unnamed Bookmark</source>
-        <translation>Ανώνυμος σελιδοδείκτης</translation>
+        <translation>Σελιδοδείκτης χωρίς όνομα</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3286"/>
@@ -10070,7 +10071,7 @@ failed.</source>
         <location filename="../src/texstudio.cpp" line="1046"/>
         <location filename="../src/texstudio.cpp" line="1050"/>
         <source>Unnamed Bookmark</source>
-        <translation>Ανώνυμος σελιδοδείκτης</translation>
+        <translation>Σελιδοδείκτης χωρίς όνομα</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1057"/>
