@@ -1036,6 +1036,9 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                 CodeSnippet cs(txt,true,true);
                 cs.type=CodeSnippet::userConstruct;
                 mUserCommandList.insert(dlh, UserCommandPair(QString(), cs));
+                if (!data.removedUserCommands.removeAll(txt)) {
+                    data.addedUserCommands << txt;
+                }
             }
         }
         /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
@@ -1047,6 +1050,9 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                     CodeSnippet cs(txt,true,true);
                     cs.type=CodeSnippet::userConstruct;
                     mUserCommandList.insert(dlh, UserCommandPair(QString(), cs));
+                    if (!data.removedUserCommands.removeAll(txt)) {
+                        data.addedUserCommands << txt;
+                    }
                 }
             }
         }
@@ -1922,7 +1928,7 @@ QList<CodeSnippet> LatexDocument::userCommandList() const
 {
 	QList<CodeSnippet> csl;
     foreach (UserCommandPair cmd, mUserCommandList) {
-        if(cmd.name.isEmpty()) continue; // filter out special def
+        if(cmd.name.isEmpty() && cmd.snippet.type!=CodeSnippet::userConstruct) continue; // filter out special def
 		csl.append(cmd.snippet);
 	}
     std::sort(csl.begin(),csl.end());
