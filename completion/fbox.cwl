@@ -1,5 +1,5 @@
 # fbox package
-# Matthew Bertucci 2/21/2022 for v0.06
+# Matthew Bertucci 2023/12/05 for v0.07
 
 #include:xkeyval
 #include:xcolor
@@ -19,4 +19,5 @@ lcolor=#%color
 tcolor=#%color
 rcolor=#%color
 bcolor=#%color
+linewidth=##L
 #keyvals
