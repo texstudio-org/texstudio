@@ -128,39 +128,39 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 
 	QFont f(e->document()->font());
 	f.setWeight(QFont::Bold);
-    const QFontMetricsF sfm(f);
-    bool specialFontUsage=false;
-    QFont specialFont(font());
+	const QFontMetricsF sfm(f);
+	bool specialFontUsage=false;
+	QFont specialFont(font());
 
-	#ifndef WIN32
+#ifndef WIN32
 	static const QChar wrappingArrow(0x2937);
-    const QFontMetricsF specialSfm(sfm);
+	const QFontMetricsF specialSfm(sfm);
 #if defined Q_OS_MAC
-    if(!specialSfm.inFont(wrappingArrow)){
-        specialFontUsage=true;
-        specialFont.setFamily("Gothic Regular");
-        //specialSfm(specialFont);
-    }
+	if(!specialSfm.inFont(wrappingArrow)){
+		specialFontUsage=true;
+		specialFont.setFamily("Gothic Regular");
+		//specialSfm(specialFont);
+	}
 #endif
-	#else
+#else
 	// 0xC4 gives a decent wrapping arrow in Wingdings fonts, availables on all windows systems
 	// this is a hackish fallback to workaround Windows issues with Unicode...
 	static const QChar wrappingArrow(0xC4);
 	specialFont.setFamily("Wingdings");
-    const QFontMetricsF specialSfm(specialFont);
+	const QFontMetricsF specialSfm(specialFont);
 	specialFontUsage=true;
-	#endif
+#endif
 
 	int max = e->document()->lines();
 	if(max<100) max=100; // always reserve 3 line number columns to avoid ugly jumping of width
 	QString s_width=QString::number(max);
 	s_width.fill('6');
-    const qreal panelWidth = UtilsUi::getFmWidth(sfm, s_width) + 5;
+	const qreal panelWidth = UtilsUi::getFmWidth(sfm, s_width) + 5;
 	setFixedWidth(panelWidth);
 
-    int n;
-    qreal posY,
-        as = QFontMetricsF(e->document()->font()).ascent(),
+	int n;
+	qreal posY,
+	as = QFontMetricsF(e->document()->font()).ascent(),
 		ls = e->document()->getLineSpacing(),
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
@@ -203,37 +203,39 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 
 			p->save();
 			f.setWeight(QFont::Bold);
-
 			p->setFont(f);
 		}
 
 		if ( draw )
 		{
-            p->drawText(QPointF(width() - 2 - UtilsUi::getFmWidth(sfm, txt),
-                        posY),
-						txt);
-            if(specialFontUsage){
-            	if (line.lineSpan()>1) {
-                	p->save();
-                	specialFont.setBold(n == cursorLine); //todo: only get bold on the current wrapped line
-                	p->setFont(specialFont);
-            	}
-            }
+			p->drawText(QPointF(width() - 2 - UtilsUi::getFmWidth(sfm, txt),
+					posY),
+				txt);
+			if (line.lineSpan()>1) {
+				p->save();
+				if(specialFontUsage){
+					specialFont.setBold(n == cursorLine); //todo: only get bold on the current wrapped line
+					p->setFont(specialFont);
+				} else {
+					f.setWeight(QFont::Normal);
+					p->setFont(f);
+				}
+			}
 
 			for ( int i = 1; i < line.lineSpan(); ++i )
-                p->drawText(QPointF(width() - 2 - UtilsUi::getFmWidth(specialSfm, wrappingArrow), posY + i * ls), wrappingArrow);
+				p->drawText(QPointF(width() - 2 - UtilsUi::getFmWidth(specialSfm, wrappingArrow), posY + i * ls), wrappingArrow);
 
-            if(specialFontUsage){
-                if (line.lineSpan()>1)
-                    p->restore();
-            }
+//			if(specialFontUsage){
+				if (line.lineSpan()>1)
+					p->restore();
+//			}
 		} else {
 			int yOff = posY - (as + 1) + ls / 2;
 
 			if ( (n + 1) % 5 )
-                p->drawPoint(QPointF(width() - 5, yOff));
+				p->drawPoint(QPointF(width() - 5, yOff));
 			else
-                p->drawLine(QPointF(width() - 7, yOff), QPointF(width() - 2, yOff));
+				p->drawLine(QPointF(width() - 7, yOff), QPointF(width() - 2, yOff));
 		}
 
 		if ( n == cursorLine )
