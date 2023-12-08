@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/12/02 for v10.0.0
+# Matthew Bertucci 2023/12/08 for v10.1.0
 
 #include:iftex
 
@@ -13,6 +13,8 @@
 4chan
 4d
 500px
+99designs
+9gag
 abbott
 abbrobotstudio
 abbvie
@@ -125,6 +127,7 @@ amazongames
 amazoniam
 amazonlumberyard
 amazonluna
+amazonmusic
 amazonpay
 amazonprime
 amazonrds
@@ -186,6 +189,7 @@ apachestorm
 apachetomcat
 aparat
 apifox
+apmterminals
 apollographql
 apostrophe
 appian
@@ -247,7 +251,9 @@ aurelia
 auth0
 authelia
 authy
+autocad
 autodesk
+autodeskmaya
 autodeskrevit
 autohotkey
 automattic
@@ -411,6 +417,7 @@ castro
 caterpillar
 cbc
 cbs
+ccleaner
 cdprojekt
 celery
 celestron
@@ -471,6 +478,7 @@ cloudera
 cloudflare
 cloudflarepages
 cloudfoundry
+cloudinary
 cloudsmith
 cloudways
 clubhouse
@@ -496,6 +504,7 @@ codeforces
 codeigniter
 codeium
 codemagic
+codementor
 codemirror
 codenewbie
 codepen
@@ -511,6 +520,7 @@ codingame
 codingninjas
 codio
 coffeescript
+coggle
 cognizant
 coil
 coinbase
@@ -534,10 +544,12 @@ contactlesspayment
 containerd
 contao
 contentful
+contentstack
 conventionalcommits
 convertio
 cookiecutter
 coop
+coppel
 cora
 coronaengine
 coronarenderer
@@ -675,6 +687,7 @@ dotnet
 douban
 doubanread
 dovecot
+doxygen
 dpd
 dragonframe
 draugiemdotlv
@@ -720,6 +733,7 @@ edx
 egghead
 egnyte
 eightsleep
+ejs
 elastic
 elasticcloud
 elasticsearch
@@ -916,9 +930,11 @@ genius
 gentoo
 geocaching
 gerrit
+getx
 ghost
 ghostery
 gimp
+gin
 giphy
 git
 gitbook
@@ -938,6 +954,7 @@ gitter
 glassdoor
 glitch
 globus
+glovo
 gmail
 gnome
 gnometerminal
@@ -1069,6 +1086,7 @@ haveibeenpwned
 haxe
 hbo
 hcl
+hdfcbank
 headlessui
 headphonezone
 headspace
@@ -1134,6 +1152,7 @@ ibmcloud
 ibmwatson
 iced
 iceland
+icicibank
 icinga
 icloud
 icomoon
@@ -1171,6 +1190,7 @@ ingress
 inkdrop
 inkscape
 insomnia
+inspire
 insta360
 instacart
 instagram
@@ -1366,6 +1386,10 @@ librariesdotio
 librarything
 libreoffice
 libreofficebase
+libreofficedraw
+libreofficeimpress
+libreofficemath
+libreofficewriter
 libuv
 lichess
 lidl
@@ -1384,6 +1408,7 @@ linux
 linuxcontainers
 linuxfoundation
 linuxmint
+linuxprofessionalinstitute
 lionair
 liquibase
 lit
@@ -1481,6 +1506,7 @@ meetup
 mega
 meilisearch
 mendeley
+mentorcruise
 mercadopago
 mercedes
 merck
@@ -1565,6 +1591,7 @@ monster
 monzo
 moo
 moonrepo
+moqups
 morrisons
 moscowmetro
 motorola
@@ -1586,6 +1613,7 @@ musescore
 musicbrainz
 mxlinux
 myanimelist
+myget
 myob
 myspace
 mysql
@@ -1609,6 +1637,7 @@ neovim
 nestjs
 netapp
 netbsd
+netcup
 netflix
 netlify
 nette
@@ -1786,6 +1815,7 @@ paypal
 paytm
 pcgamingwiki
 pdm
+pdq
 peakdesign
 pearson
 peerlist
@@ -1878,6 +1908,7 @@ poly
 polygon
 polymerproject
 polywork
+pond5
 popos
 porsche
 portainer
@@ -1981,6 +2012,7 @@ quest
 quickbooks
 quicklook
 quicktime
+quicktype
 quip
 quora
 qwant
@@ -1999,12 +2031,14 @@ rainmeter
 rakuten
 ram
 rancher
+rapid
 rarible
 rasa
 raspberrypi
 ravelry
 ray
 raycast
+raylib
 razer
 razorpay
 react
@@ -2069,6 +2103,7 @@ riotgames
 ripple
 riscv
 riseup
+ritzcarlton
 rive
 roadmapdotsh
 roamresearch
@@ -2145,6 +2180,7 @@ scipy
 scopus
 scpfoundation
 scrapbox
+scrapy
 scratch
 screencastify
 scribd
@@ -2180,6 +2216,7 @@ session
 sessionize
 setapp
 sfml
+shadcnui
 shadow
 shanghaimetro
 sharex
@@ -2259,6 +2296,7 @@ songoda
 sonicwall
 sonos
 sony
+soriana
 soundcharts
 soundcloud
 sourceengine
@@ -2341,6 +2379,7 @@ storyblok
 storybook
 strapi
 strava
+streamlabs
 streamlit
 stripe
 strongswan
@@ -2385,6 +2424,7 @@ symphony
 sympy
 synology
 system76
+tabelog
 tableau
 tablecheck
 tacobell
@@ -2591,6 +2631,7 @@ vectorworks
 veeam
 veepee
 vega
+vegas
 velog
 venmo
 vercel
@@ -2614,6 +2655,7 @@ virustotal
 visa
 visualbasic
 visualstudio
+visualstudioappcenter
 visualstudiocode
 vite
 vitess
@@ -2760,10 +2802,12 @@ yeti
 yoast
 youtube
 youtubegaming
+youtubekids
 youtubemusic
 youtubeshorts
 youtubestudio
 youtubetv
+yr
 yubico
 zabka
 zalando
@@ -2787,6 +2831,7 @@ zettlr
 zhihu
 zig
 zigbee
+ziggo
 zilch
 zillow
 zingat
