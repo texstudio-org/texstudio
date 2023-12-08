@@ -2859,3 +2859,4 @@ zyte
 \simpleiconsmapnine#S
 \simpleiconsmaponezero#S
 \simpleiconsmaponeone#S
+\simpleiconsmaponetwo#S
