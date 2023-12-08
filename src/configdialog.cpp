@@ -251,7 +251,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 					foreach (QTreeWidgetItem *twi, li) {
 						if (twi) {
 							if (twi->text(2) == value) twi->setText(2, "");
-							else if (twi->text(3) == value) twi->setText(3, "");
+                            if (twi->text(3) == value) twi->setText(3, "");
 						}
 					}
 				} else {
