@@ -1,7 +1,8 @@
 # CHANGELOG
+
 ## TeXstudio 4.7.2
 
-- 
+- fix duplicate shortcut in 'Additional Shortcut' column is not removed [#3408](https://github.com/texstudio-org/texstudio/pull/3408)
 
 ## TeXstudio 4.7.1
 
