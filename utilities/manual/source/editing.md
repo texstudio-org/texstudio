@@ -661,6 +661,7 @@ With the shortcut Alt+Del, the word under the cursor is deleted. If it
 is a command, the command is deleted including opening and closing
 braces. E.g. `\textbf{text}` leave `text`. If it is an environment,
 the enclosing `\begin`/`\end` are removed.
+In case that matching delimiters are highlighted like `()`, both are removed.
 
 ### Rename environment
 
