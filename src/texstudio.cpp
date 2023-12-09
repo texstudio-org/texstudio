@@ -3930,6 +3930,8 @@ void Texstudio::editEraseWordCmdEnv()
 		cursor.movePosition(1);
 	}
 
+    bool handled=false;
+
 	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	int tkPos = Parsing::getTokenAtCol(tl, cursor.columnNumber());
 	Token tk;
@@ -4003,13 +4005,30 @@ void Texstudio::editEraseWordCmdEnv()
 			}
 			currentEditorView()->editor->document()->endMacro();
 		}
+        handled=true;
 		break;
-
 	default:
-		cursor.select(QDocumentCursor::WordUnderCursor);
-		cursor.removeSelectedText();
 		break;
 	}
+    if(!handled){
+        // remove matching brackets
+        QDocumentCursor orig, to;
+        currentEditor()->cursor().getMatchingPair(orig, to, false);
+        if (orig.isValid() && to.isValid()){
+            if(to<orig){
+                qSwap(orig,to);
+            }
+            currentEditorView()->editor->document()->beginMacro();
+            to.removeSelectedText();
+            orig.removeSelectedText();
+            currentEditorView()->editor->document()->endMacro();
+            handled=true;
+        }
+    }
+    if(!handled){
+        cursor.select(QDocumentCursor::WordUnderCursor);
+        cursor.removeSelectedText();
+    }
 	currentEditorView()->editor->setCursor(cursor);
 }
 
