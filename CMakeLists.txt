@@ -435,7 +435,7 @@ endif()
 
 install(TARGETS texstudio DESTINATION bin)
 
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT HAIKU)
         option(APPDATA "Install appdata" ON)
 	install(FILES utilities/texstudio.desktop DESTINATION share/applications)
 	install(FILES utilities/texstudio.svg DESTINATION share/icons/hicolor/scalable/apps)
