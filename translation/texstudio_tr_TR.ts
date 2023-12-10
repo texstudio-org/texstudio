@@ -2491,7 +2491,7 @@ buradan etkinleştirerek kullanılmaya zorlayabilirsiniz.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3952"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
-        <translation type="unfinished"/>
+        <translation>Kip değiştirildiğinde formüllerin ön izlemesi buna göre ayarlanır (ancak satır içinde ipucu olarak görüntülenir).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3956"/>
@@ -5119,7 +5119,7 @@ Yardımcı komutu desteklemiyor</translation>
     <message>
         <location filename="../src/latexeditorview.cpp" line="1205"/>
         <source>untitled</source>
-        <translation>başlıksız</translation>
+        <translation>adlandırılmamış</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="2364"/>
@@ -8425,7 +8425,7 @@ Metin değiştirmede bir alt eşleşme eklemek için \1 ile \9 arasındaki ifade
     <message>
         <location filename="../src/searchresultmodel.cpp" line="212"/>
         <source>untitled</source>
-        <translation>başlıksız</translation>
+        <translation>adlandırılmamış</translation>
     </message>
     <message>
         <location filename="../src/searchresultmodel.cpp" line="371"/>
@@ -11864,7 +11864,7 @@ TeXstudio çalışmayı sürdürsün mü? Bu durum verilerin bozulmasına neden 
         <location filename="../src/texstudio.cpp" line="11405"/>
         <location filename="../src/texstudio.cpp" line="12190"/>
         <source>untitled</source>
-        <translation>başlıksız</translation>
+        <translation>adlandırılmamış</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="11415"/>
