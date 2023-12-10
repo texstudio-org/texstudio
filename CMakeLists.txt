@@ -400,7 +400,7 @@ if(ZLIB_FOUND)
 	target_link_libraries(texstudio PUBLIC ${ZLIB_LIBRARIES})
 endif()
 
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT HAIKU)
 	find_package(X11 REQUIRED)
 	target_include_directories(texstudio PUBLIC ${X11_INCLUDE_DIRS})
 	target_link_libraries(texstudio PUBLIC ${X11_LIBRARIES})
@@ -435,7 +435,7 @@ endif()
 
 install(TARGETS texstudio DESTINATION bin)
 
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT HAIKU)
         option(APPDATA "Install appdata" ON)
 	install(FILES utilities/texstudio.desktop DESTINATION share/applications)
 	install(FILES utilities/texstudio.svg DESTINATION share/icons/hicolor/scalable/apps)
