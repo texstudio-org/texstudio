@@ -400,7 +400,7 @@ if(ZLIB_FOUND)
 	target_link_libraries(texstudio PUBLIC ${ZLIB_LIBRARIES})
 endif()
 
-if(UNIX AND NOT APPLE)
+if(UNIX AND NOT APPLE AND NOT HAIKU)
 	find_package(X11 REQUIRED)
 	target_include_directories(texstudio PUBLIC ${X11_INCLUDE_DIRS})
 	target_link_libraries(texstudio PUBLIC ${X11_LIBRARIES})
