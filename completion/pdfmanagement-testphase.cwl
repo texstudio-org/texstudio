@@ -1,8 +1,7 @@
 # pdfmanagement-testphase package
-# Matthew Bertucci 2023/06/18 for v0.95x
+# Matthew Bertucci 2023/12/11 for v0.96d
 
 #include:tagpdf-base
-#include:l3bitset
 #include:pdfmanagement-firstaid
 
 ## l3pdfmanagement
@@ -95,4 +94,10 @@ pdfcontactphone=%<phone number%>
 pdfcontactemail=%<email%>
 pdfcontacturl=%<URL%>
 pdfdate=%<date%>
+link#true,false
+url#true,false
+file#true,false
+run#true,false
+menu#true,false
+nested-links#true,false
 #endkeyvals
