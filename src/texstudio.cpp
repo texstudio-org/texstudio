@@ -2324,7 +2324,10 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool recheck
         }
     }
 
-
+    if(!configManager.autoLoadChildren){
+        // explicitely set root/child relation
+        documents.updateMasterSlaveRelations(doc,false);
+    }
     updateStructure(true, doc, true);
 
 	bookmarks->restoreBookmarks(edit);
