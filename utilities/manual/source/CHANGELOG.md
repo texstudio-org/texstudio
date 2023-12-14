@@ -3,6 +3,7 @@
 ## TeXstudio 4.7.2
 
 - fix duplicate shortcut in 'Additional Shortcut' column is not removed [#3408](https://github.com/texstudio-org/texstudio/pull/3408)
+- fix some minor issues in the windowed internal pdf-viewer [#3419](https://github.com/texstudio-org/texstudio/pull/3419)
 
 ## TeXstudio 4.7.1
 
