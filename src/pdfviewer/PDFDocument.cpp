@@ -2809,6 +2809,18 @@ void PDFWidget::restoreState()
 	emit changedScaleOption(scaleOption);
 }
 
+void PDFWidget::magnifierClicked()
+{
+	setTool(kMagnifier);
+	updateCursor();
+}
+
+void PDFWidget::scrollClicked()
+{
+	setTool(kScroll);
+	updateCursor();
+}
+
 PDFScrollArea *PDFWidget::getScrollArea() const
 {
 	QWidget *parent = parentWidget();
@@ -3000,8 +3012,10 @@ void PDFDocument::setupMenus(bool embedded)
     actionGrayscale=configManager->newManagedAction(menuroot,menuEdit, "grayscale", tr("Grayscale"), pdfWidget, SLOT(update()), QList<QKeySequence>());
     actionGrayscale->setCheckable(true);
 
-    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), this, "", QList<QKeySequence>(),"magnifier-button");
-    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), this, "", QList<QKeySequence>(),"hand");
+    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), pdfWidget, SLOT(magnifierClicked()), QList<QKeySequence>(),"magnifier-button");
+    actionMagnify->setCheckable(true);
+    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), pdfWidget, SLOT(scrollClicked()), QList<QKeySequence>(),"hand");
+    actionScroll->setCheckable(true);
     menuView->addSeparator();
     actionFirst_Page=configManager->newManagedAction(menuroot,menuView, "firstPage", tr("&First Page"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>()<<Qt::Key_Home<<QKeySequence(Qt::ControlModifier | Qt::Key_Home),"go-first");
     actionBack=configManager->newManagedAction(menuroot,menuView, "back", tr("Back"), pdfWidget, SLOT(goBack()), QList<QKeySequence>()<< QKeySequence(Qt::AltModifier | Qt::Key_L),"back");
@@ -3360,6 +3374,7 @@ void PDFDocument::init(bool embedded)
     //connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
     //connect(actionFull_Screen, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
     //connect(actionPresentation, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
+	wasFullScreen = false;
 	connect(pdfWidget, SIGNAL(changedZoom(qreal)), this, SLOT(enableZoomActions(qreal)));
 	connect(pdfWidget, SIGNAL(changedScaleOption(autoScaleOption)), this, SLOT(adjustScaleActions(autoScaleOption)));
     connect(pdfWidget, SIGNAL(syncClick(int,const QPointF&,bool)), this, SLOT(syncClick(int,const QPointF&,bool)));
@@ -3898,6 +3913,7 @@ bool PDFDocument::closeElement()
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
 	else if (configManager->useEscForClosingEmbeddedViewer && isVisible()) {
 		// Note: avoid crash on osx where esc key is passed to hidden window
+		toggleFullScreen(false);
 		actionClose->trigger();
 	} else {
 		return false;  // nothing to close
@@ -4454,12 +4470,16 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 {
 	bool presentation = false;
 	if (fullscreen) {
-		// entering full-screen mode
+		// entering full-screen mode (maybe a second time when switching from fullscreen to presentation)
+		if (!wasFullScreen) {
+			wasContinuous = actionContinuous->isChecked() == true;
+			wasShowToolBar = toolBar->isVisible() == true;
+		}
+		pdfWidget->saveState();
 		statusBar()->hide();
 		toolBar->hide();
 		globalConfig->windowMaximized = isMaximized();
 		showFullScreen();
-		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
 		dwVisOutline = dwOutline->isVisible();
 		dwVisOverview = dwOverview->isVisible();
@@ -4479,18 +4499,14 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			dwInfo->hide();
 			dwOverview->hide();
 			presentation = true;
-			if (actionContinuous->isChecked()) {
-				actionContinuous->setChecked(false);
-				wasContinuous = true;
-			} else wasContinuous = false;
+			if (wasContinuous) actionContinuous->setChecked(false);
 		} else
 			actionFull_Screen->setChecked(true);
-
-		//actionFull_Screen->setChecked(true);
 	} else {
 		// exiting full-screen mode
 		statusBar()->show();
-		toolBar->show();
+		if (wasContinuous) actionContinuous->setChecked(true);
+		if (wasShowToolBar) toolBar->show();
 		if (globalConfig->windowMaximized)
 			showMaximized();
 		else
@@ -4505,10 +4521,10 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		pdfWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
 		if (exitFullscreen) {
 			delete exitFullscreen;
-            exitFullscreen = nullptr;
+			exitFullscreen = nullptr;
 		}
-		if (wasContinuous) actionContinuous->setChecked(true);
 	}
+	wasFullScreen = fullscreen;
 }
 
 void PDFDocument::zoomFromAction()

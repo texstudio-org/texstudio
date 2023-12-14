@@ -242,6 +242,9 @@ protected slots: //not private, so scripts have access
 	void goBack();
 	void doPageDialog();
 
+	void magnifierClicked();
+	void scrollClicked();
+
 	void fitWidth(bool checked = true);
 	void fitTextWidth(bool checked = true);
 	void zoomIn();
@@ -705,6 +708,8 @@ private:
 	PDFDock *dwClock, *dwOutline, *dwFonts, *dwInfo, *dwOverview;
 	bool dwVisOutline, dwVisFonts, dwVisInfo, dwVisSearch, dwVisOverview;
 	bool wasContinuous;
+	bool wasShowToolBar;
+	bool wasFullScreen;
 	PDFSearchDock *dwSearch;
 
 	PDFSearchResult lastSearchResult;
