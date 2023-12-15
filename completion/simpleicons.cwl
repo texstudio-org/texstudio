@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/12/08 for v10.1.0
+# Matthew Bertucci 2023/12/15 for v10.2.0
 
 #include:iftex
 
@@ -282,6 +282,7 @@ backendless
 backstage
 badoo
 baidu
+bakalari
 bamboo
 bandcamp
 bandlab
@@ -367,6 +368,7 @@ brandfolder
 brave
 breaker
 brevo
+bricks
 britishairways
 broadcom
 bsd
@@ -628,6 +630,7 @@ debian
 decapcms
 dedge
 deepin
+deepl
 deepnote
 delicious
 deliveroo
@@ -706,6 +709,7 @@ duckdb
 duckduckgo
 dungeonsanddragons
 dunked
+dunzo
 duolingo
 dvc
 dwavesystems
@@ -729,6 +733,7 @@ eclipsevertdotx
 edeka
 editorconfig
 edotleclerc
+educative
 edx
 egghead
 egnyte
@@ -990,6 +995,7 @@ googleclassroom
 googlecloud
 googlecloudcomposer
 googlecloudspanner
+googlecloudstorage
 googlecolab
 googlecontaineroptimizedos
 googledataflow
@@ -1035,10 +1041,13 @@ gradleplaypublisher
 grafana
 grammarly
 grandfrais
+grapheneos
+graphite
 graphql
 grav
 gravatar
 graylog
+greatlearning
 greenhouse
 greensock
 griddotai
@@ -1098,6 +1107,7 @@ hellyhansen
 helm
 helpdesk
 helpscout
+hepsiemlak
 here
 heroku
 hetzner
@@ -1590,6 +1600,7 @@ monoprix
 monster
 monzo
 moo
+moodle
 moonrepo
 moqups
 morrisons
@@ -1639,6 +1650,7 @@ netapp
 netbsd
 netcup
 netflix
+netgear
 netlify
 nette
 netto
@@ -1660,6 +1672,7 @@ nginxproxymanager
 ngrok
 ngrx
 nhl
+niantic
 niconico
 nike
 nikon
@@ -1707,6 +1720,7 @@ observable
 obsidian
 obsstudio
 ocaml
+oclif
 octanerender
 octave
 octobercms
@@ -1788,6 +1802,7 @@ oyo
 p5dotjs
 packagist
 packer
+packt
 paddlepaddle
 paddypower
 pagekit
@@ -1847,10 +1862,12 @@ php
 phpmyadmin
 phpstorm
 piaggiogroup
+piapro
 picardsurgeles
 picartodottv
 picnic
 picpay
+picxy
 pihole
 pimcore
 pinboard
@@ -2082,6 +2099,7 @@ republicofgamers
 rescript
 rescuetime
 researchgate
+resend
 resharper
 resurrectionremixos
 retool
@@ -2248,6 +2266,7 @@ singaporeairlines
 singlestore
 sitecore
 sitepoint
+skaffold
 sketch
 sketchfab
 sketchup
@@ -2281,6 +2300,7 @@ snyk
 socialblade
 society6
 socketdotio
+softpedia
 sogou
 solid
 solidity
@@ -2504,6 +2524,7 @@ tile
 timescale
 tina
 tinder
+tinkercad
 tinyletter
 tistory
 tmobile
@@ -2644,6 +2665,7 @@ vfairs
 viadeo
 viaplay
 viber
+viblo
 victoriametrics
 vim
 vimeo
@@ -2780,6 +2802,7 @@ xbox
 xcode
 xdadevelopers
 xdotorg
+xendit
 xero
 xfce
 xiaomi
