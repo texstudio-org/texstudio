@@ -9485,6 +9485,9 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 bool Texstudio::generateMirror(bool setCur)
 {
 	if (!currentEditorView()) return false;
+    if(currentEditor()->cursorMirrorCount()>0){
+        return false;
+    }
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
 	QDocumentCursor oldCursor = cursor;
 	QString line = cursor.line().text();
