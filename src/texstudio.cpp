@@ -3935,84 +3935,6 @@ void Texstudio::editEraseWordCmdEnv()
 
     bool handled=false;
 
-	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-	int tkPos = Parsing::getTokenAtCol(tl, cursor.columnNumber());
-	Token tk;
-	if (tkPos > -1)
-		tk = tl.at(tkPos);
-
-	switch (tk.type) {
-    case Token::commandUnknown:
-        [[gnu::fallthrough]];
-	case Token::command:
-		command = tk.getText();
-		if (command == "\\begin" || command == "\\end") {
-			value = Parsing::getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
-			//remove environment (surrounding)
-			currentEditorView()->editor->document()->beginMacro();
-			cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
-			cursor.removeSelectedText();
-			// remove curly brakets as well
-			if (cursor.nextChar() == QChar('{')) {
-				cursor.deleteChar();
-				line = cursor.line().text();
-				int col = cursor.columnNumber();
-				int i = findClosingBracket(line, col);
-				if (i > -1) {
-					cursor.movePosition(i - col + 1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-					cursor.removeSelectedText();
-					QDocument *doc = currentEditorView()->editor->document();
-					QString searchWord = "\\end{" + value + "}";
-					QString inhibitor = "\\begin{" + value + "}";
-					bool backward = (command == "\\end");
-					int step = 1;
-					if (backward) {
-						qSwap(searchWord, inhibitor);
-						step = -1;
-					}
-					int startLine = cursor.lineNumber();
-					int startCol = cursor.columnNumber();
-					int endLine = doc->findLineContaining(searchWord, startLine, Qt::CaseSensitive, backward);
-					int inhibitLine = doc->findLineContaining(inhibitor, startLine, Qt::CaseSensitive, backward); // not perfect (same line end/start ...)
-					while (inhibitLine > 0 && endLine > 0 && inhibitLine * step < endLine * step) {
-						endLine = doc->findLineContaining(searchWord, endLine + step, Qt::CaseSensitive, backward); // not perfect (same line end/start ...)
-						inhibitLine = doc->findLineContaining(inhibitor, inhibitLine + step, Qt::CaseSensitive, backward);
-					}
-					if (endLine > -1) {
-						line = doc->line(endLine).text();
-						int start = line.indexOf(searchWord);
-						cursor.moveTo(endLine, start);
-						cursor.movePosition(searchWord.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-						cursor.removeSelectedText();
-						cursor.moveTo(startLine, startCol); // move cursor back to text edit pos
-					}
-				}
-			}
-
-			currentEditorView()->editor->document()->endMacro();
-		} else {
-			currentEditorView()->editor->document()->beginMacro();
-			cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
-			cursor.removeSelectedText();
-			// remove curly brakets as well
-			if (cursor.nextChar() == QChar('{')) {
-				cursor.deleteChar();
-				line = cursor.line().text();
-				int col = cursor.columnNumber();
-				int i = findClosingBracket(line, col);
-				if (i > -1) {
-					cursor.moveTo(cursor.lineNumber(), i);
-					cursor.deleteChar();
-					cursor.moveTo(cursor.lineNumber(), col);
-				}
-			}
-			currentEditorView()->editor->document()->endMacro();
-		}
-        handled=true;
-		break;
-	default:
-		break;
-	}
     if(!handled){
         // remove matching brackets
         QDocumentCursor orig, to;
@@ -4026,6 +3948,86 @@ void Texstudio::editEraseWordCmdEnv()
             orig.removeSelectedText();
             currentEditorView()->editor->document()->endMacro();
             handled=true;
+        }
+    }
+    if(!handled){
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        int tkPos = Parsing::getTokenAtCol(tl, cursor.columnNumber());
+        Token tk;
+        if (tkPos > -1)
+            tk = tl.at(tkPos);
+
+        switch (tk.type) {
+        case Token::commandUnknown:
+            [[gnu::fallthrough]];
+        case Token::command:
+            command = tk.getText();
+            if (command == "\\begin" || command == "\\end") {
+                value = Parsing::getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
+                //remove environment (surrounding)
+                currentEditorView()->editor->document()->beginMacro();
+                cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
+                cursor.removeSelectedText();
+                // remove curly brakets as well
+                if (cursor.nextChar() == QChar('{')) {
+                    cursor.deleteChar();
+                    line = cursor.line().text();
+                    int col = cursor.columnNumber();
+                    int i = findClosingBracket(line, col);
+                    if (i > -1) {
+                        cursor.movePosition(i - col + 1, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                        cursor.removeSelectedText();
+                        QDocument *doc = currentEditorView()->editor->document();
+                        QString searchWord = "\\end{" + value + "}";
+                        QString inhibitor = "\\begin{" + value + "}";
+                        bool backward = (command == "\\end");
+                        int step = 1;
+                        if (backward) {
+                            qSwap(searchWord, inhibitor);
+                            step = -1;
+                        }
+                        int startLine = cursor.lineNumber();
+                        int startCol = cursor.columnNumber();
+                        int endLine = doc->findLineContaining(searchWord, startLine, Qt::CaseSensitive, backward);
+                        int inhibitLine = doc->findLineContaining(inhibitor, startLine, Qt::CaseSensitive, backward); // not perfect (same line end/start ...)
+                        while (inhibitLine > 0 && endLine > 0 && inhibitLine * step < endLine * step) {
+                            endLine = doc->findLineContaining(searchWord, endLine + step, Qt::CaseSensitive, backward); // not perfect (same line end/start ...)
+                            inhibitLine = doc->findLineContaining(inhibitor, inhibitLine + step, Qt::CaseSensitive, backward);
+                        }
+                        if (endLine > -1) {
+                            line = doc->line(endLine).text();
+                            int start = line.indexOf(searchWord);
+                            cursor.moveTo(endLine, start);
+                            cursor.movePosition(searchWord.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+                            cursor.removeSelectedText();
+                            cursor.moveTo(startLine, startCol); // move cursor back to text edit pos
+                        }
+                    }
+                }
+
+                currentEditorView()->editor->document()->endMacro();
+            } else {
+                currentEditorView()->editor->document()->beginMacro();
+                cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
+                cursor.removeSelectedText();
+                // remove curly brakets as well
+                if (cursor.nextChar() == QChar('{')) {
+                    cursor.deleteChar();
+                    line = cursor.line().text();
+                    int col = cursor.columnNumber();
+                    int i = findClosingBracket(line, col);
+                    if (i > -1) {
+                        cursor.moveTo(cursor.lineNumber(), i);
+                        cursor.deleteChar();
+                        cursor.moveTo(cursor.lineNumber(), col);
+                    }
+                }
+                currentEditorView()->editor->document()->endMacro();
+            }
+            handled=true;
+            break;
+        default:
+            break;
         }
     }
     if(!handled){
