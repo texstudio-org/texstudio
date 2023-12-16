@@ -3563,7 +3563,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 
 			QString baseText = ph.cursor.selectedText();
 
-			for ( int phm = 0; phm < ph.mirrors.count(); ++phm )
+            const int cnt=ph.mirrors.count();
+            for ( int phm = 0; phm < cnt; ++phm )
 			{
 				QString s = ph.affector ?  ph.affector->affect(e, baseText, m_curPlaceHolder, phm) : baseText;
 
