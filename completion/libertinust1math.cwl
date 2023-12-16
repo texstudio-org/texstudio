@@ -1,5 +1,5 @@
 # libertinust1math package
-# Matthew Bertucci 1/10/2022 for v2.0.1
+# Matthew Bertucci 2023/12/08 for v2.0.3
 
 #include:xkeyval
 #include:etoolbox
@@ -23,10 +23,17 @@ nosans
 sansmath
 reuseMathAlphabets
 mathsfit
-scale=%<factor%>
 scaled=%<factor%>
 amsthm
+spacing=##L
+stretch=##L
+shrink=##L
+theoremfont
 #endkeyvals
+
+\textth{text}
+\thdefault#*
+\thfamily
 
 \adots#m
 \alphait#*m
@@ -578,6 +585,7 @@ amsthm
 \tensorsym{arg}#m
 #endif
 
-\ShowMathFonts#*
-\loadsubfile{file}#*
-\readsufile{file}#*
+\ShowMathFonts#S
+\loadsubfile{file}#S
+\readsufile{file}#S
+\ifiscseq{arg}#S

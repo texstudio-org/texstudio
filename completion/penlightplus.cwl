@@ -1,5 +1,5 @@
 # penlightplus package
-# Matthew Bertucci 2023/11/27
+# Matthew Bertucci 2023/12/08
 
 #include:luacode
 #include:luakeys
@@ -34,6 +34,7 @@ pl
 \tblset{index}{value}
 \tblget{index}
 \tbldef{index}{csname}
+\tbldefall{table}{csname}
 \tblgdef{index}{csname}
 \tbldefxy{index}{csname}
 \tblif{index}{true}
