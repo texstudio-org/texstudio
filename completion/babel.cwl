@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2023/11/11 for v3.97
+# tbraun 4.11.2008; Matthew Bertucci 2023/12/06 for v3.98
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -16,7 +16,6 @@ main=%<language%>
 headfoot=%<language%>
 noconfigs
 showlanguages
-nocase
 silent
 hyphenmap=#off,first,select,other,other*
 bidi=#default,basic,basic-r,bidi-l,bidi-r
@@ -170,7 +169,7 @@ maparabic
 mapdigits
 calendar=%<calendar%>
 calendar=%<calendar%>.%<variant%>
-casing=#yiwn,eszett,iota
+casing=#yiwn,eszett,iota,nouv,uv
 #endkeyvals
 
 \localenumeral{style}{number}
@@ -210,6 +209,7 @@ extension.u.tag.bcp47
 
 \getlocaleproperty{cmd}{locale}{property}#*d
 \getlocaleproperty*{cmd}{locale}{property}#*d
+\ShowLocaleProperties{language}#*
 \LocaleForEach{code}#*
 \BabelEnsureInfo#*
 \localeid#*

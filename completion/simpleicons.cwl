@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/12/02 for v10.0.0
+# Matthew Bertucci 2023/12/15 for v10.2.0
 
 #include:iftex
 
@@ -13,6 +13,8 @@
 4chan
 4d
 500px
+99designs
+9gag
 abbott
 abbrobotstudio
 abbvie
@@ -125,6 +127,7 @@ amazongames
 amazoniam
 amazonlumberyard
 amazonluna
+amazonmusic
 amazonpay
 amazonprime
 amazonrds
@@ -186,6 +189,7 @@ apachestorm
 apachetomcat
 aparat
 apifox
+apmterminals
 apollographql
 apostrophe
 appian
@@ -247,7 +251,9 @@ aurelia
 auth0
 authelia
 authy
+autocad
 autodesk
+autodeskmaya
 autodeskrevit
 autohotkey
 automattic
@@ -276,6 +282,7 @@ backendless
 backstage
 badoo
 baidu
+bakalari
 bamboo
 bandcamp
 bandlab
@@ -361,6 +368,7 @@ brandfolder
 brave
 breaker
 brevo
+bricks
 britishairways
 broadcom
 bsd
@@ -411,6 +419,7 @@ castro
 caterpillar
 cbc
 cbs
+ccleaner
 cdprojekt
 celery
 celestron
@@ -471,6 +480,7 @@ cloudera
 cloudflare
 cloudflarepages
 cloudfoundry
+cloudinary
 cloudsmith
 cloudways
 clubhouse
@@ -496,6 +506,7 @@ codeforces
 codeigniter
 codeium
 codemagic
+codementor
 codemirror
 codenewbie
 codepen
@@ -511,6 +522,7 @@ codingame
 codingninjas
 codio
 coffeescript
+coggle
 cognizant
 coil
 coinbase
@@ -534,10 +546,12 @@ contactlesspayment
 containerd
 contao
 contentful
+contentstack
 conventionalcommits
 convertio
 cookiecutter
 coop
+coppel
 cora
 coronaengine
 coronarenderer
@@ -616,6 +630,7 @@ debian
 decapcms
 dedge
 deepin
+deepl
 deepnote
 delicious
 deliveroo
@@ -675,6 +690,7 @@ dotnet
 douban
 doubanread
 dovecot
+doxygen
 dpd
 dragonframe
 draugiemdotlv
@@ -693,6 +709,7 @@ duckdb
 duckduckgo
 dungeonsanddragons
 dunked
+dunzo
 duolingo
 dvc
 dwavesystems
@@ -716,10 +733,12 @@ eclipsevertdotx
 edeka
 editorconfig
 edotleclerc
+educative
 edx
 egghead
 egnyte
 eightsleep
+ejs
 elastic
 elasticcloud
 elasticsearch
@@ -916,9 +935,11 @@ genius
 gentoo
 geocaching
 gerrit
+getx
 ghost
 ghostery
 gimp
+gin
 giphy
 git
 gitbook
@@ -938,6 +959,7 @@ gitter
 glassdoor
 glitch
 globus
+glovo
 gmail
 gnome
 gnometerminal
@@ -973,6 +995,7 @@ googleclassroom
 googlecloud
 googlecloudcomposer
 googlecloudspanner
+googlecloudstorage
 googlecolab
 googlecontaineroptimizedos
 googledataflow
@@ -1018,10 +1041,13 @@ gradleplaypublisher
 grafana
 grammarly
 grandfrais
+grapheneos
+graphite
 graphql
 grav
 gravatar
 graylog
+greatlearning
 greenhouse
 greensock
 griddotai
@@ -1069,6 +1095,7 @@ haveibeenpwned
 haxe
 hbo
 hcl
+hdfcbank
 headlessui
 headphonezone
 headspace
@@ -1080,6 +1107,7 @@ hellyhansen
 helm
 helpdesk
 helpscout
+hepsiemlak
 here
 heroku
 hetzner
@@ -1134,6 +1162,7 @@ ibmcloud
 ibmwatson
 iced
 iceland
+icicibank
 icinga
 icloud
 icomoon
@@ -1171,6 +1200,7 @@ ingress
 inkdrop
 inkscape
 insomnia
+inspire
 insta360
 instacart
 instagram
@@ -1366,6 +1396,10 @@ librariesdotio
 librarything
 libreoffice
 libreofficebase
+libreofficedraw
+libreofficeimpress
+libreofficemath
+libreofficewriter
 libuv
 lichess
 lidl
@@ -1384,6 +1418,7 @@ linux
 linuxcontainers
 linuxfoundation
 linuxmint
+linuxprofessionalinstitute
 lionair
 liquibase
 lit
@@ -1481,6 +1516,7 @@ meetup
 mega
 meilisearch
 mendeley
+mentorcruise
 mercadopago
 mercedes
 merck
@@ -1564,7 +1600,9 @@ monoprix
 monster
 monzo
 moo
+moodle
 moonrepo
+moqups
 morrisons
 moscowmetro
 motorola
@@ -1586,6 +1624,7 @@ musescore
 musicbrainz
 mxlinux
 myanimelist
+myget
 myob
 myspace
 mysql
@@ -1609,7 +1648,9 @@ neovim
 nestjs
 netapp
 netbsd
+netcup
 netflix
+netgear
 netlify
 nette
 netto
@@ -1631,6 +1672,7 @@ nginxproxymanager
 ngrok
 ngrx
 nhl
+niantic
 niconico
 nike
 nikon
@@ -1678,6 +1720,7 @@ observable
 obsidian
 obsstudio
 ocaml
+oclif
 octanerender
 octave
 octobercms
@@ -1759,6 +1802,7 @@ oyo
 p5dotjs
 packagist
 packer
+packt
 paddlepaddle
 paddypower
 pagekit
@@ -1786,6 +1830,7 @@ paypal
 paytm
 pcgamingwiki
 pdm
+pdq
 peakdesign
 pearson
 peerlist
@@ -1817,10 +1862,12 @@ php
 phpmyadmin
 phpstorm
 piaggiogroup
+piapro
 picardsurgeles
 picartodottv
 picnic
 picpay
+picxy
 pihole
 pimcore
 pinboard
@@ -1878,6 +1925,7 @@ poly
 polygon
 polymerproject
 polywork
+pond5
 popos
 porsche
 portainer
@@ -1981,6 +2029,7 @@ quest
 quickbooks
 quicklook
 quicktime
+quicktype
 quip
 quora
 qwant
@@ -1999,12 +2048,14 @@ rainmeter
 rakuten
 ram
 rancher
+rapid
 rarible
 rasa
 raspberrypi
 ravelry
 ray
 raycast
+raylib
 razer
 razorpay
 react
@@ -2048,6 +2099,7 @@ republicofgamers
 rescript
 rescuetime
 researchgate
+resend
 resharper
 resurrectionremixos
 retool
@@ -2069,6 +2121,7 @@ riotgames
 ripple
 riscv
 riseup
+ritzcarlton
 rive
 roadmapdotsh
 roamresearch
@@ -2145,6 +2198,7 @@ scipy
 scopus
 scpfoundation
 scrapbox
+scrapy
 scratch
 screencastify
 scribd
@@ -2180,6 +2234,7 @@ session
 sessionize
 setapp
 sfml
+shadcnui
 shadow
 shanghaimetro
 sharex
@@ -2211,6 +2266,7 @@ singaporeairlines
 singlestore
 sitecore
 sitepoint
+skaffold
 sketch
 sketchfab
 sketchup
@@ -2244,6 +2300,7 @@ snyk
 socialblade
 society6
 socketdotio
+softpedia
 sogou
 solid
 solidity
@@ -2259,6 +2316,7 @@ songoda
 sonicwall
 sonos
 sony
+soriana
 soundcharts
 soundcloud
 sourceengine
@@ -2341,6 +2399,7 @@ storyblok
 storybook
 strapi
 strava
+streamlabs
 streamlit
 stripe
 strongswan
@@ -2385,6 +2444,7 @@ symphony
 sympy
 synology
 system76
+tabelog
 tableau
 tablecheck
 tacobell
@@ -2464,6 +2524,7 @@ tile
 timescale
 tina
 tinder
+tinkercad
 tinyletter
 tistory
 tmobile
@@ -2591,6 +2652,7 @@ vectorworks
 veeam
 veepee
 vega
+vegas
 velog
 venmo
 vercel
@@ -2603,6 +2665,7 @@ vfairs
 viadeo
 viaplay
 viber
+viblo
 victoriametrics
 vim
 vimeo
@@ -2614,6 +2677,7 @@ virustotal
 visa
 visualbasic
 visualstudio
+visualstudioappcenter
 visualstudiocode
 vite
 vitess
@@ -2738,6 +2802,7 @@ xbox
 xcode
 xdadevelopers
 xdotorg
+xendit
 xero
 xfce
 xiaomi
@@ -2760,10 +2825,12 @@ yeti
 yoast
 youtube
 youtubegaming
+youtubekids
 youtubemusic
 youtubeshorts
 youtubestudio
 youtubetv
+yr
 yubico
 zabka
 zalando
@@ -2787,6 +2854,7 @@ zettlr
 zhihu
 zig
 zigbee
+ziggo
 zilch
 zillow
 zingat
@@ -2814,3 +2882,4 @@ zyte
 \simpleiconsmapnine#S
 \simpleiconsmaponezero#S
 \simpleiconsmaponeone#S
+\simpleiconsmaponetwo#S

@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2023/09/29 for v6.24
+# Matthew Bertucci 2023/12/15 for v6.26b
 
 #include:amsmath
 #include:array
@@ -142,6 +142,7 @@ colortbl-like
 color-inside
 rounded-corners
 rounded-corners=##L
+no-cell-nodes
 #endkeyvals
 
 #keyvals:\NiceMatrixOptions,\begin{NiceTabular}

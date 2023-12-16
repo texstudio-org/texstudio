@@ -1,5 +1,5 @@
 # spacingtricks package
-# Matthew Bertucci 2/4/2022 for v1.4
+# Matthew Bertucci 2023/12/06 for v1.8
 
 #include:ifthen
 #include:setspace
@@ -21,8 +21,10 @@ pifont
 \footnt{text}#*
 \footnt[number]{text}#*
 \strutheight#*
+\strutdepth#*
 \vstrut{height}
 \vstrut[depth]{height}
+\cstrut{height}
 \parindentlength#*
 \begin{indentblock}
 \begin{indentblock}[length]

@@ -1,5 +1,5 @@
 # covington package
-# Matthew Bertucci 2023/12/02 for v2.13
+# Matthew Bertucci 2023/12/11 for v2.14
 
 #include:iftex
 #include:varwidth
@@ -106,6 +106,7 @@ subpostamble={%<text%>}
 \subexpostamblefs#*
 \thecovfnex#*
 \pxref{label}#r
+\ownexcounterprep#*
 \digloss{glossline1}{glossline2}{translation}
 \digloss{glossline1}[comment1]{glossline2}[comment2]{translation}
 \digloss[options%keyvals]{glossline1}{glossline2}{translation}

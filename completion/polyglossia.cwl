@@ -1,8 +1,7 @@
 # polyglossia package
-# Matthew Bertucci 2023/06/10 for v1.63
+# Matthew Bertucci 2023/12/11 for v1.66
 
 #include:etoolbox
-#include:makecmds
 #include:xkeyval
 #include:fontspec
 #include:iftex
@@ -145,6 +144,8 @@ verbose#true,false
 \textnorwegian{text}#*
 \textoccitan[options%keyvals]{text}#*
 \textoccitan{text}#*
+\textodia[options%keyvals]{text}#*
+\textodia{text}#*
 \textpersian[options%keyvals]{text}#*
 \textpersian{text}#*
 \textpiedmontese[options%keyvals]{text}#*
@@ -314,6 +315,8 @@ verbose#true,false
 \begin{norwegian}#*
 \begin{occitan}[options%keyvals]#*
 \begin{occitan}#*
+\begin{odia}[options%keyvals]#*
+\begin{odia}#*
 \begin{persian}[options%keyvals]#*
 \begin{persian}#*
 \begin{piedmontese}[options%keyvals]#*
@@ -424,6 +427,7 @@ verbose#true,false
 \end{nko}#*
 \end{norwegian}#*
 \end{occitan}#*
+\end{odia}#*
 \end{persian}#*
 \end{piedmontese}#*
 \end{polish}#*
@@ -688,6 +692,11 @@ numerals=#arabic,cyrillic-alph,cyrillic-trad
 
 #keyvals:\setdefaultlanguage/norwegian#c,\setmainlanguage/norwegian#c,\setotherlanguage/norwegian#c,\textlang/norwegian#c,\textnorwegian#c,\begin{lang}/norwegian#c,\begin{norwegian}#c,\selectlanguage/norwegian#c,\foreignlanguage/norwegian#c,\begin{otherlanguage}/norwegian#c,\begin{otherlanguage*}/norwegian#c,\resetdefaultlanguage/norwegian#c,\setlanguagealias/norwegian#c,\setlanguagealias*/norwegian#c,\pghyphenation/norwegian#c,\setlanghyphenmins/norwegian#c
 variant=#bokmal,nynorsk
+#endkeyvals
+
+#keyvals:\setdefaultlanguage/odia#c,\setmainlanguage/odia#c,\setotherlanguage/odia#c,\textlang/odia#c,\textodia#c,\begin{lang}/odia#c,\begin{odia}#c,\selectlanguage/odia#c,\foreignlanguage/odia#c,\begin{otherlanguage}/odia#c,\begin{otherlanguage*}/odia#c,\resetdefaultlanguage/odia#c,\setlanguagealias/odia#c,\setlanguagealias*/odia#c,\pghyphenation/odia#c,\setlanghyphenmins/odia#c
+numerals=#western,devanagari,odia
+changecounternumbering#true,false
 #endkeyvals
 
 #keyvals:\setdefaultlanguage/persian#c,\setmainlanguage/persian#c,\setotherlanguage/persian#c,\textlang/persian#c,\textpersian#c,\begin{lang}/persian#c,\begin{persian}#c,\selectlanguage/persian#c,\foreignlanguage/persian#c,\begin{otherlanguage}/persian#c,\begin{otherlanguage*}/persian#c,\resetdefaultlanguage/persian#c,\setlanguagealias/persian#c,\setlanguagealias*/persian#c,\pghyphenation/persian#c,\setlanghyphenmins/persian#c
@@ -1028,6 +1037,7 @@ lang=#local,main,%<language%>
 \textwidthfootnoterule#*
 
 \charifavailable{char code}{substitution}#*
+\IfCharIsAvailableTF{char code}{true}{false}#*
 \languagename#*
 \mainlanguagename#*
 \languagevariant#*
