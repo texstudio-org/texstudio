@@ -709,6 +709,7 @@ private:
 	bool dwVisOutline, dwVisFonts, dwVisInfo, dwVisSearch, dwVisOverview;
 	bool wasContinuous;
 	bool wasShowToolBar;
+	bool wasFullScreen;
 	PDFSearchDock *dwSearch;
 
 	PDFSearchResult lastSearchResult;
