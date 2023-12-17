@@ -173,6 +173,7 @@ public:
     }
 
     void updatePalette(const QPalette & pal);
+    void updatePanels();
 
     void setHelp(Help *obj){
         help=obj;

@@ -767,6 +767,15 @@ void LatexEditorView::updatePalette(const QPalette &pal)
     editor->horizontalScrollBar()->setPalette(pal);
     editor->verticalScrollBar()->setPalette(pal);
 }
+/*!
+ * \brief force an redraw/update on all sidepanels like numberlines, foldlines, etc.
+ */
+void LatexEditorView::updatePanels()
+{
+    for(QPanel *p:codeeditor->panels()){
+        p->update();
+    }
+}
 
 void LatexEditorView::paste()
 {

@@ -8579,16 +8579,17 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(pixmap));
 		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
 		doc->adjustWidth(toLine);
+        currentEditorView()->updatePanels();
 	}
 }
 
 void Texstudio::clearPreview()
 {
-	QEditor *edit = currentEditor();
-	if (!edit) return;
+    QEditor *edit = currentEditor();
+    if (!edit) return;
 
-	int startLine = 0;
-	int endLine = 0;
+    int startLine = 0;
+    int endLine = 0;
 
     LatexEditorView *edView=currentEditorView();
     int row=edView->getLineRowforContexMenu();
@@ -8598,40 +8599,41 @@ void Texstudio::clearPreview()
         startLine = row;
         endLine = startLine;
     } else if (edit->cursor().hasSelection()) {
-		startLine = edit->cursor().selectionStart().lineNumber();
-		endLine = edit->cursor().selectionEnd().lineNumber();
-	} else if (row>=0) {
+        startLine = edit->cursor().selectionStart().lineNumber();
+        endLine = edit->cursor().selectionEnd().lineNumber();
+    } else if (row>=0) {
         // inline preview context menu supplies the calling point as row/col in LatexEditorView member variable
         // That variable is only >-1 when context menu is active
         startLine = row;
-		endLine = startLine;
-	} else {
-		startLine = edit->cursor().lineNumber();
-		endLine = startLine;
-	}
+        endLine = startLine;
+    } else {
+        startLine = edit->cursor().lineNumber();
+        endLine = startLine;
+    }
 
-        for (int i = startLine; i <= endLine; i++) {
-            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
-            edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-            edit->document()->adjustWidth(i);
-            for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
-                if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
-                        currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
-                    // remove cookies from last previewed line
-                    int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
-                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
-                    edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
-                    // remove mark
-                    int sid = edit->document()->getFormatId("previewSelection");
-                    if (!sid) return;
-                    updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
-                    currentEditorView()->autoPreviewCursor.removeAt(j);
-                    if(el>endLine){
-                        edit->document()->adjustWidth(el); // text line with preview picture needs to be resized
-                    }
+    for (int i = startLine; i <= endLine; i++) {
+        edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE);
+        edit->document()->line(i).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+        edit->document()->adjustWidth(i);
+        for (int j = currentEditorView()->autoPreviewCursor.size() - 1; j >= 0; j--)
+            if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
+                    currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i) {
+                // remove cookies from last previewed line
+                int el=currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber();
+                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE);
+                edit->document()->line(el).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
+                // remove mark
+                int sid = edit->document()->getFormatId("previewSelection");
+                if (!sid) return;
+                updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j], -sid);
+                currentEditorView()->autoPreviewCursor.removeAt(j);
+                if(el>endLine){
+                    edit->document()->adjustWidth(el); // text line with preview picture needs to be resized
                 }
+            }
 
-        }
+    }
+    currentEditorView()->updatePanels();
 }
 
 void Texstudio::showImgPreview(const QString &fname)
