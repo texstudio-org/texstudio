@@ -708,6 +708,7 @@ private:
 	PDFDock *dwClock, *dwOutline, *dwFonts, *dwInfo, *dwOverview;
 	bool dwVisOutline, dwVisFonts, dwVisInfo, dwVisSearch, dwVisOverview;
 	bool wasContinuous;
+	bool wasShowToolBar;
 	PDFSearchDock *dwSearch;
 
 	PDFSearchResult lastSearchResult;

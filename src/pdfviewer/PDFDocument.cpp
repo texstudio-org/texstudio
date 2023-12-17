@@ -4475,6 +4475,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 	if (fullscreen) {
 		// entering full-screen mode
 		wasContinuous = actionContinuous->isChecked();
+		wasShowToolBar = toolBar->isVisible();
 		pdfWidget->saveState();
 		statusBar()->hide();
 		toolBar->hide();
@@ -4506,7 +4507,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		// exiting full-screen mode
 		statusBar()->show();
 		if (wasContinuous) actionContinuous->setChecked(true);
-		toolBar->show();
+		if (wasShowToolBar) toolBar->show();
 		if (globalConfig->windowMaximized)
 			showMaximized();
 		else
