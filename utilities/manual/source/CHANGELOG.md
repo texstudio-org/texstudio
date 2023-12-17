@@ -5,6 +5,7 @@
 - remove something (alt+del) handles matching delimiters
 - fix detecting parent/child documents when autoloading is disabled [#3411](https://github.com/texstudio-org/texstudio/issues/3411)
 - fix completion of user constructs like a_b [#3403](https://github.com/texstudio-org/texstudio/issues/3403)
+- fix navigating in subfiles [#3404](https://github.com/texstudio-org/texstudio/issues/3404)
 - fix duplicate shortcut in 'Additional Shortcut' column is not removed [#3408](https://github.com/texstudio-org/texstudio/pull/3408)
 
 ## TeXstudio 4.7.1
