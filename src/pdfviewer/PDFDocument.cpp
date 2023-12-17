@@ -4474,6 +4474,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 	bool presentation = false;
 	if (fullscreen) {
 		// entering full-screen mode
+		wasContinuous = actionContinuous->isChecked();
 		pdfWidget->saveState();
 		statusBar()->hide();
 		toolBar->hide();
@@ -4498,17 +4499,13 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			dwInfo->hide();
 			dwOverview->hide();
 			presentation = true;
-			if (actionContinuous->isChecked()) {
-				actionContinuous->setChecked(false);
-				wasContinuous = true;
-			} else wasContinuous = false;
+			if (wasContinuous) actionContinuous->setChecked(false);
 		} else
 			actionFull_Screen->setChecked(true);
-
-		//actionFull_Screen->setChecked(true);
 	} else {
 		// exiting full-screen mode
 		statusBar()->show();
+		if (wasContinuous) actionContinuous->setChecked(true);
 		toolBar->show();
 		if (globalConfig->windowMaximized)
 			showMaximized();
@@ -4524,9 +4521,8 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 		pdfWidget->setContextMenuPolicy(Qt::DefaultContextMenu);
 		if (exitFullscreen) {
 			delete exitFullscreen;
-            exitFullscreen = nullptr;
+			exitFullscreen = nullptr;
 		}
-		if (wasContinuous) actionContinuous->setChecked(true);
 	}
 }
 
