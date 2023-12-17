@@ -4473,11 +4473,11 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 	bool presentation = false;
 	if (fullscreen) {
 		// entering full-screen mode
+		pdfWidget->saveState();
 		statusBar()->hide();
 		toolBar->hide();
 		globalConfig->windowMaximized = isMaximized();
 		showFullScreen();
-		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
 		dwVisOutline = dwOutline->isVisible();
 		dwVisOverview = dwOverview->isVisible();
