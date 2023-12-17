@@ -9707,9 +9707,9 @@ LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaul
         curPaths<< ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
     }
     LatexEditorView * loaded = nullptr;
-    loaded = load(documents.getAbsoluteFilePath(name, defaultExt,curPaths));
+    loaded = load(doc->getAbsoluteFilePath(name, defaultExt,curPaths));
     if(loaded == nullptr){
-        loaded = load(documents.getAbsoluteFilePath(name, "",curPaths));
+        loaded = load(doc->getAbsoluteFilePath(name, "",curPaths));
     }
 
     if (loaded == nullptr) {
