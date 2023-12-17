@@ -2809,6 +2809,18 @@ void PDFWidget::restoreState()
 	emit changedScaleOption(scaleOption);
 }
 
+void PDFWidget::magnifierClicked()
+{
+	setTool(kMagnifier);
+	updateCursor();
+}
+
+void PDFWidget::scrollClicked()
+{
+	setTool(kScroll);
+	updateCursor();
+}
+
 PDFScrollArea *PDFWidget::getScrollArea() const
 {
 	QWidget *parent = parentWidget();
@@ -3000,8 +3012,14 @@ void PDFDocument::setupMenus(bool embedded)
     actionGrayscale=configManager->newManagedAction(menuroot,menuEdit, "grayscale", tr("Grayscale"), pdfWidget, SLOT(update()), QList<QKeySequence>());
     actionGrayscale->setCheckable(true);
 
-    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), this, "", QList<QKeySequence>(),"magnifier-button");
-    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), this, "", QList<QKeySequence>(),"hand");
+    QActionGroup *toolGroup = new QActionGroup(this);
+    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), pdfWidget, SLOT(magnifierClicked()), QList<QKeySequence>(),"magnifier-button");
+    actionMagnify->setCheckable(true);
+    toolGroup->addAction(actionMagnify);
+    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), pdfWidget, SLOT(scrollClicked()), QList<QKeySequence>(),"hand");
+    actionScroll->setCheckable(true);
+    toolGroup->addAction(actionScroll);
+
     menuView->addSeparator();
     actionFirst_Page=configManager->newManagedAction(menuroot,menuView, "firstPage", tr("&First Page"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>()<<Qt::Key_Home<<QKeySequence(Qt::ControlModifier | Qt::Key_Home),"go-first");
     actionBack=configManager->newManagedAction(menuroot,menuView, "back", tr("Back"), pdfWidget, SLOT(goBack()), QList<QKeySequence>()<< QKeySequence(Qt::AltModifier | Qt::Key_L),"back");
@@ -3898,6 +3916,7 @@ bool PDFDocument::closeElement()
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
 	else if (configManager->useEscForClosingEmbeddedViewer && isVisible()) {
 		// Note: avoid crash on osx where esc key is passed to hidden window
+		toggleFullScreen(false);
 		actionClose->trigger();
 	} else {
 		return false;  // nothing to close
@@ -4456,11 +4475,11 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 	if (fullscreen) {
 		// entering full-screen mode
 		wasContinuous = actionContinuous->isChecked();
+		pdfWidget->saveState();
 		statusBar()->hide();
 		toolBar->hide();
 		globalConfig->windowMaximized = isMaximized();
 		showFullScreen();
-		pdfWidget->saveState();
 		pdfWidget->fitWindow(true);
 		dwVisOutline = dwOutline->isVisible();
 		dwVisOverview = dwOverview->isVisible();

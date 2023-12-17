@@ -242,6 +242,9 @@ protected slots: //not private, so scripts have access
 	void goBack();
 	void doPageDialog();
 
+	void magnifierClicked();
+	void scrollClicked();
+
 	void fitWidth(bool checked = true);
 	void fitTextWidth(bool checked = true);
 	void zoomIn();
