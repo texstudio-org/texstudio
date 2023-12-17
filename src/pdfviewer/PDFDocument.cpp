@@ -3898,6 +3898,7 @@ bool PDFDocument::closeElement()
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
 	else if (configManager->useEscForClosingEmbeddedViewer && isVisible()) {
 		// Note: avoid crash on osx where esc key is passed to hidden window
+		toggleFullScreen(false);
 		actionClose->trigger();
 	} else {
 		return false;  // nothing to close
