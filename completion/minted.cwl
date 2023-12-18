@@ -2,7 +2,7 @@
 # modified by Tim Hoffmann 2014-03-24
 # modified by Elias Kirchgässner 2016-07-27
 # modified by muzimuzhi 2020 Feb 15, minted v2.5
-# modified by Matthew Bertucci 2023 Sep 12, minted v2.8
+# modified by Matthew Bertucci 2023 Dec 18, minted v2.9
 
 #include:keyval
 #include:kvoptions
@@ -108,6 +108,7 @@ funcnamehighlighting#true,false
 gobble=%<int%>
 highlightcolor=#%color
 highlightlines=%<list of lineno ranges%>
+ignorelexererrors#true,false
 keywordcase=#lower,upper,capitalize
 label=%<string%>
 labelposition=#none,topline,bottomline,all
