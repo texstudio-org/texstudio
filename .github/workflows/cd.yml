@@ -235,6 +235,7 @@ jobs:
 
   release:
     permissions:
+      actions: write   # for GeekyEggo/delete-artifact to delete artifacts
       contents: write  # for softprops/action-gh-release to create GitHub release
     name: Release
     needs: [build-win10, build-linux-release, macosx] # build-linux-win,macosx-qt5 is disabled
@@ -263,7 +264,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
-    - name: Delete temp artifact
-      uses: GeekyEggo/delete-artifact@v2.0.0
+    - name: Delete temp artifacts
+      uses: GeekyEggo/delete-artifact@v4
       with:
-        name: release
+        name: release-*
+        token: ${{ secrets.GITHUB_TOKEN }}
