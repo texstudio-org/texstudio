@@ -64,23 +64,23 @@ jobs:
 
       - name: Upload zip to GitHub Artifacts
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: texstudio-win-qt6-zip
           path: ./build/package-zip/texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.zip
           
       - name: Upload to GitHub Artifacts
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: texstudio-win-qt6-exe
           path: texstudio-win-qt6-${{ steps.package.outputs.VERSION_NAME }}.exe
 
       - name: Upload release file(s)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: release
+          name: release-win
           path: |
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-qt6.exe
             texstudio-${{ steps.package.outputs.GIT_VERSION }}-win-portable-qt6.zip
@@ -134,16 +134,16 @@ jobs:
         
     - name: Upload to Github Artifacts
       if: github.event_name == 'push'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: texstudio-linux
         path: texstudio-linux-${{ steps.package.outputs.VERSION_NAME }}-x86_64.AppImage
 
     - name: Upload release file(s)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        name: release
+        name: release-linux
         path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-x86_64.AppImage
 
 
@@ -221,16 +221,16 @@ jobs:
         
     - name: Upload to Github artifacts
       if: github.event_name == 'push'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: texstudio-osx
         path: texstudio-osx-${{ steps.package.outputs.VERSION_NAME }}.dmg
 
     - name: Upload release file(s)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        name: release
+        name: release-osx
         path: texstudio-${{ steps.package.outputs.GIT_VERSION }}-osx.dmg
 
   release:
@@ -241,10 +241,20 @@ jobs:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
-    - name: Download temp artifact
-      uses: actions/download-artifact@v3
+    - name: Download Windows release asset(s)
+      uses: actions/download-artifact@v4
       with:
-        name: release
+        name: release-win
+
+    - name: Download Linux release asset(s)
+      uses: actions/download-artifact@v4
+      with:
+        name: release-linux
+
+    - name: Download OS X release asset(s)
+      uses: actions/download-artifact@v4
+      with:
+        name: release-osx
 
     - name: Calculate hashes
       run: |

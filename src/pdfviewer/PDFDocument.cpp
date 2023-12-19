@@ -3378,6 +3378,7 @@ void PDFDocument::init(bool embedded)
     //connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
     //connect(actionFull_Screen, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
     //connect(actionPresentation, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
+	wasFullScreen = false;
 	connect(pdfWidget, SIGNAL(changedZoom(qreal)), this, SLOT(enableZoomActions(qreal)));
 	connect(pdfWidget, SIGNAL(changedScaleOption(autoScaleOption)), this, SLOT(adjustScaleActions(autoScaleOption)));
     connect(pdfWidget, SIGNAL(syncClick(int,const QPointF&,bool)), this, SLOT(syncClick(int,const QPointF&,bool)));
@@ -4473,10 +4474,12 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 {
 	bool presentation = false;
 	if (fullscreen) {
-		// entering full-screen mode
-		wasContinuous = actionContinuous->isChecked();
-		wasShowToolBar = toolBar->isVisible();
-		pdfWidget->saveState();
+		// entering full-screen mode (maybe a second time when switching from fullscreen to presentation)
+		if (!wasFullScreen) {
+			wasContinuous = actionContinuous->isChecked();
+			wasShowToolBar = toolBar->isVisible();
+			pdfWidget->saveState();
+		}
 		statusBar()->hide();
 		toolBar->hide();
 		globalConfig->windowMaximized = isMaximized();
@@ -4525,6 +4528,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			exitFullscreen = nullptr;
 		}
 	}
+	wasFullScreen = fullscreen;
 }
 
 void PDFDocument::zoomFromAction()
