@@ -174,7 +174,7 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry *section)
             do{
                 ++iter;
                 se=*iter;
-            }while(iter!=docStructure.cend() && se->type!=StructureEntry::SE_SECTION && se->level>level);
+            }while(iter!=docStructure.cend() && (se->type!=StructureEntry::SE_SECTION || se->level>level));
             if(iter==docStructure.cend()){
                 se=nullptr;
             }else{
