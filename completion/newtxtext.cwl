@@ -1,5 +1,5 @@
 # newtxtext package
-# Matthew Bertucci 2023/10/31 for v1.73
+# Matthew Bertucci 2023/12/19 for v1.735
 
 #include:xpatch
 #include:xcolor
@@ -47,6 +47,8 @@ supLspaced=##L
 supLRspaced=##L
 supscolor=#%color
 newsu
+no-math#true,false
+otfmath#true,false
 #endkeyvals
 
 \defigures#*
