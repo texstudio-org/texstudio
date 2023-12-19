@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2023/10/31 for v0.98m
+# Matthew Bertucci 2023/12/18 for v0.98r
 
 #include:pdfmanagement-testphase
 
@@ -18,6 +18,7 @@ activate-mc#true,false
 activate-struct#true,false
 no-struct-dest#true,false
 activate-tree#true,false
+activate-socket#true,false
 add-new-tag=%<tag/role%>
 add-new-tag={%<keyvals%>}
 interwordspace=#true,on,false,off
@@ -97,3 +98,4 @@ debug/structures
 
 # not documented
 \tagpdfsuppressmarks{arg}#*
+\UseTaggingSocket{socket name}#*
