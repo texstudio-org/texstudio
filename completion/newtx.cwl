@@ -1,5 +1,5 @@
 # newtx package
-# Matthew Bertucci 2023/11/10 for v1.732
+# Matthew Bertucci 2023/12/19 for v1.735
 
 #include:newtxtext
 #include:newtxmath
@@ -67,6 +67,8 @@ trueslanted
 scosf
 tighter
 looser
+no-math#true,false
+otfmath#true,false
 # options from newtxmath
 vecsep=##L
 amsthm
