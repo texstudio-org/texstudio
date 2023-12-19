@@ -1,8 +1,31 @@
 # fitch package
-# Matthew Bertucci 2023/09/06 for v0.6
+# Matthew Bertucci 2023/12/19 for v1.0
+
+#include:kvoptions
+
+#keyvals:\usepackage/fitch#c,\setkeys/fitch#c,\begin{nd},\begin{fitchproof},\begin{ndresume},\begin{fitchproof*}
+rules=%<csname%>
+arrayenv=%<envname%>
+justformat=%<csname%>
+refformat=%<csname%>
+height=##L
+topheight=##L
+depth=##L
+labelsep=##L
+indent=##L
+hsep=##L
+justsep=##L
+linethickness=##L
+cindent=##L
+outerline#true,false
+#endkeyvals
 
 \begin{nd}#m
+\begin{nd}[options%keyvals]#m
 \end{nd}#m
+\begin{fitchproof}#\math
+\begin{fitchproof}[options%keyvals]#\math
+\end{fitchproof}
 \hypo{label}{formula%plain}
 \hypo[symbol]{label}{formula%plain}
 \hypo[symbol][offset]{label}{formula%plain}
@@ -33,11 +56,16 @@
 \by{text}{ref list}
 \ndref{ref list}
 \begin{ndresume}#m
+\begin{ndresume}[options%keyvals]#m
 \end{ndresume}#m
+\begin{fitchproof*}#\math
+\begin{fitchproof*}[options%keyvals]#\math
+\end{fitchproof*}
 \hypocont{formula%plain}
 \havecont{formula%plain}
-\nddim{height}{topheight}{depth}{labelsep}{indent}{hsep}{justsep}{linethickness}
-\ndindent#L
+\ndrules#*
+\ndjustformat#*
+\ndrefformat#*
 
-# many internal commands look like \nd*<name> so add \nd#S here
-\nd#S
+# deprecated
+\nddim{height}{topheight}{depth}{labelsep}{indent}{hsep}{justsep}{linethickness}#S
