@@ -220,6 +220,7 @@ QStringList babelLanguages = QStringList()
   << "portuguese"
   << "russian"
   << "slovak"
+  << "slovene"
   << "spanish" ;
 
 void QuickDocumentDialog::Init()
