@@ -37,7 +37,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 
 	connect(ui.okButton, SIGNAL(clicked()), SLOT(slotOk()));
 
-	connect(ui.runScriptButton, SIGNAL(clicked()), SLOT(slotRunScript()));
+	connect(ui.runScriptButton, SIGNAL(clicked()), SLOT(slotExecMacro()));
 
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), SLOT(slotAdd()));
     connect(ui.pushButtonAddFolder, SIGNAL(clicked()), SLOT(slotAddFolder()));
@@ -314,12 +314,15 @@ void UserMenuDialog::slotOk()
 {
 	accept();
 }
-void UserMenuDialog::slotRunScript()
+void UserMenuDialog::slotExecMacro()
 {
-	QString script = codeedit->editor()->text();
-	if (script.startsWith("%SCRIPT\n"))
-		script = script.mid(8);
-	emit runScript(script);
+    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    if (item==nullptr) return;
+    QVariant v = item->data(0,Qt::UserRole);
+    if (v.isValid()){
+        Macro m = v.value<Macro>();
+        emit execMacro(m);
+    }
 }
 
 void UserMenuDialog::slotAdd()

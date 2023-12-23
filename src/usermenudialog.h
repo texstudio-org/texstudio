@@ -50,12 +50,12 @@ protected:
     virtual void keyPressEvent(QKeyEvent *e) override;
 
 signals:
-	void runScript(const QString &script);
+	void execMacro(const Macro &macro);
 
 private slots:
     void change(QTreeWidgetItem *current,QTreeWidgetItem *previous);
 	void slotOk();
-	void slotRunScript();
+	void slotExecMacro();
 	void slotAdd();
 	void slotRemove();
     void slotAddFolder();
