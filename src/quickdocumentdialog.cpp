@@ -92,7 +92,7 @@ QuickDocumentDialog::~QuickDocumentDialog()
 
 QString QuickDocumentDialog::getNewDocumentText()
 {
-	QString amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog to be sorted
+    QString algorithm, algorithmic, algorithmicx, algpseudocode, amssymb, amsthm, babel, fontenc, geometry, graphicx, hyperref, mathtools, nameref, thmtools, xcolor;  // packages initially available in the dialog to be sorted
 	QString  cleveref, inputenc, userPackages;  // packages added by user, special cases cleveref, inputenc need to be sorted
 
 	QString classOpt;
@@ -134,6 +134,10 @@ QString QuickDocumentDialog::getNewDocumentText()
 			QString text = itemPkgName->text();
 			packagesUsed << text;
 			// packages initially available from Packages tab
+            if (text=="algorithm"  ) algorithm   = QString("\\usepackage{algorithm}\n"); else
+            if (text=="algorithmic"  ) algorithmic   = QString("\\usepackage{algorithmic}\n"); else
+            if (text=="algorithmicx"  ) algorithmicx   = QString("\\usepackage{algorithmicx}\n"); else
+            if (text=="algpseudocode"  ) algpseudocode   = QString("\\usepackage{algpseudocode}\n"); else
 			if (text=="amssymb"  ) amssymb   = QString("\\usepackage{amssymb}\n"); else
 			if (text=="amsthm"   ) amsthm    = QString("\\usepackage{amsthm}\n"); else
 			if (text=="cleveref" ) cleveref  = QString("\\usepackage{cleveref}\n"); else   // special case for user (s. definition of cleveref)
@@ -148,7 +152,7 @@ QString QuickDocumentDialog::getNewDocumentText()
 		}
 	}
 // LaTeX code for all packages used
-	tag += inputenc + fontenc + geometry + graphicx + mathtools + amssymb + amsthm + thmtools + xcolor + nameref + babel + userPackages + hyperref + cleveref;
+    tag += inputenc + fontenc + geometry + graphicx + mathtools + algorithm + algorithmic + algorithmicx + algpseudocode + amssymb + amsthm + thmtools + xcolor + nameref + babel + userPackages + hyperref + cleveref;
 
 	QString makeTitle;
 	if (ui.lineEditTitle->text() != "") {
@@ -304,14 +308,18 @@ void QuickDocumentDialog::Init()
 
 	// each QStringList holds 2 items: the name of the package, and a short package description. These constitute a row of the table of the packages tab.
 	QList<QStringList> packages = QList<QStringList>()
-		<< QStringList( {"amssymb"     , tr("Mathematical symbols from AMS")} )
-		<< QStringList( {"graphicx"    , tr("Graphics package, easily include images (s. Insert Graphic Wizard)")} )
-		<< QStringList( {"hyperref"    , tr("Support for hyperlinks in your document")} )
-		<< QStringList( {"mathtools"   , tr("Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath")} )
-		<< QStringList( {"amsthm"      , tr("Define your theorem like env., has to be loaded after amsmath")} )
-		<< QStringList( {"nameref"     , tr("Reference to names of chapters, sections, ..., loaded by hyperref")} )
-		<< QStringList( {"thmtools"    , tr("Extension package to amsthm")} )
-		<< QStringList( {"xcolor"      , tr("Sophisticated package for colors, with table option to use colors in tables")} )
+        << QStringList( {"algorithm"     , tr("Float wrapper for algorithms")} )
+        << QStringList( {"algorithmic"   , tr("Typesetting environment for algorithms")} )
+        << QStringList( {"algorithmicx"  , tr("Another typesetting environment for algorithms")} )
+        << QStringList( {"algpseudocode" , tr("Support for typesetting pseudocode")} )
+        << QStringList( {"amssymb"       , tr("Mathematical symbols from AMS")} )
+        << QStringList( {"amsthm"        , tr("Define your theorem like env., has to be loaded after amsmath")} )
+        << QStringList( {"graphicx"      , tr("Graphics package, easily include images (s. Insert Graphic Wizard)")} )
+        << QStringList( {"hyperref"      , tr("Support for hyperlinks in your document")} )
+        << QStringList( {"mathtools"     , tr("Extension package to amsmath incl. fixes for bugs in amsmath, loads amsmath")} )
+        << QStringList( {"nameref"       , tr("Reference to names of chapters, sections, ..., loaded by hyperref")} )
+        << QStringList( {"thmtools"      , tr("Extension package to amsthm")} )
+        << QStringList( {"xcolor"        , tr("Sophisticated package for colors, with table option to use colors in tables")} )
 		;
 	//add user given packages
 	for (const QString& package:otherPackagesList){
