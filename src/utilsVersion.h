@@ -3,7 +3,7 @@
 
 #define TEXSTUDIO "TeXstudio"
 
-#define TXSVERSION "4.7.2"
+#define TXSVERSION "4.7.3"
 
 extern const char *TEXSTUDIO_GIT_REVISION;
 

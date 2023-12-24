@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.7.3
+
+- 
+
 
 ## TeXstudio 4.7.2
 
