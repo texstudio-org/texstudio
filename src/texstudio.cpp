@@ -5603,7 +5603,7 @@ void Texstudio::editMacros()
         userMacroDialog->selectFirst();
         connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
         connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
-        connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
+        connect(userMacroDialog, SIGNAL(execMacro(Macro)), SLOT(execMacro(Macro)));
         // persistent setting like wrap
         userMacroDialog->setLineWrap(configManager.macroEditorUsesLineWrap);
     }
