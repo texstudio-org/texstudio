@@ -327,6 +327,11 @@ void BibTeXDialog::generateBiblatexEntryTypes(bool forceRecreate)
 	                                 // applicable.
 	                                 QStringList() << "author" << "title" << "date",
 	                                 QStringList() << "subtitle" << "titleaddon" << "language" << "howpublished" << "note" << "location" << "isbn" << "date" << "month" << "year" << "addendum" << "pubstate" << "url" << "urldate");
+    biblatexEntryTypes << BibTeXType(tr("Software"), "@software",
+                                     // Specific bibliographic entry for
+                                     // describing software.
+                                     QStringList() << "author/editor" << "title" << "url" << "year",
+                                     QStringList() << "abstract" << "date" << "doi" << "eprint" << "eprintclass" << "eprinttype" << "file" << "hal_id" << "hal_version" << "institution" << "license" << "month" << "note" << "organization" << "publisher" << "related" << "relatedtype" << "relatedstring" << "repository" << "swhid" << "urldate" << "version");
 }
 
 
