@@ -261,8 +261,6 @@ jobs:
       with:
         prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
         files: ./*
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
     - name: Delete temp artifacts
       uses: GeekyEggo/delete-artifact@v4
