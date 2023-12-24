@@ -47,8 +47,10 @@ MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
 
 MacroBrowserUI::~MacroBrowserUI()
 {
-    networkManager->deleteLater();
-    networkManager=nullptr;
+    if (networkManager) {
+        networkManager->deleteLater();
+        networkManager=nullptr;
+    }
     foreach(QList<QTableWidgetItem *>lst,itemCache){
         foreach(auto *item,lst){
             delete item;
@@ -97,7 +99,11 @@ void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
     request.setAttribute(AttributeURL,url);
     QNetworkReply *reply = networkManager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(onRequestCompleted()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(onRequestError()));
+#if QT_VERSION_MAJOR<6
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError()));
+#else
+    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(onRequestError()));
+#endif
 }
 
 void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
@@ -143,7 +149,7 @@ void MacroBrowserUI::onRequestError()
     if (!reply) return;
 
     QMessageBox::warning(this, tr("Browse macro repository"),
-                                   tr("Repository not found. Network error:%1").arg(reply->errorString()),
+                                   tr("Repository not found. Network error:%1").arg("\n"+reply->errorString()),
                                    QMessageBox::Ok,
                                    QMessageBox::Ok);
     networkManager->deleteLater();
