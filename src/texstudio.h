@@ -610,7 +610,7 @@ protected slots:
 	void fileInConflictShowDiff();
 	void fileAutoReloading(QString fname);
 
-	void jumpToSearchResult(QDocument *doc, int lineNumber, const SearchQuery *query);
+	void jumpToSearchResult(LatexDocument *doc, int lineNumber, const SearchQuery *query);
 
 	void cursorPositionChanged();
 	void syncPDFViewer(QDocumentCursor cur, bool inForeground = true);

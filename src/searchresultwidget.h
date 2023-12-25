@@ -21,7 +21,7 @@ public:
 	void saveConfig();
 
 signals:
-	void jumpToSearchResult(QDocument *doc, int lineNumber, const SearchQuery *query);
+    void jumpToSearchResult(LatexDocument *doc, int lineNumber, const SearchQuery *query);
 	void runSearch(SearchQuery *query);
 
 public slots:

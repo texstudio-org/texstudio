@@ -130,7 +130,7 @@ void SearchResultWidget::updateSearchScopeBox(SearchQuery::Scope sc)
 void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
 {
 
-	QDocument *doc = query->model()->getDocument(index);
+    LatexDocument *doc = qobject_cast<LatexDocument*>(query->model()->getDocument(index));
 	int lineNr = query->model()->getLineNumber(index);
 	if (!doc || lineNr < 0) {
 		return;

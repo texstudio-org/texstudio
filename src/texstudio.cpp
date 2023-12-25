@@ -773,7 +773,7 @@ void Texstudio::setupDockWidgets()
         connect(outputView->getLogWidget(), SIGNAL(logLoaded()), this, SLOT(updateLogEntriesInEditors()));
         connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
         connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
-        connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument*,int,const SearchQuery*)), this, SLOT(jumpToSearchResult(QDocument*,int,const SearchQuery*)));
+        connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToSearchResult, this, &Texstudio::jumpToSearchResult);
         connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery*)), this, SLOT(runSearch(SearchQuery*)));
 
         connect(&buildManager, SIGNAL(previewAvailable(const QString&,const PreviewSource&)), this, SLOT(previewAvailable(const QString&,const PreviewSource&)));
@@ -7941,9 +7941,10 @@ void Texstudio::outputPageChanged(const QString &id)
 	}
 }
 
-void Texstudio::jumpToSearchResult(QDocument *doc, int lineNumber, const SearchQuery *query)
+void Texstudio::jumpToSearchResult(LatexDocument *doc, int lineNumber, const SearchQuery *query)
 {
-    REQUIRE(qobject_cast<LatexDocument *>(doc));
+    REQUIRE(doc);
+
     if (currentEditor() && currentEditor()->document() == doc && currentEditor()->cursor().lineNumber() == lineNumber) {
         QDocumentCursor c = currentEditor()->cursor();
         int col = c.columnNumber();
