@@ -162,7 +162,14 @@ QStringList LatexLogModel::getMissingCitations() const
 QString LatexLogModel::htmlErrorTable(const QList<int> &errors)
 {
 	QString msg = "<table>";
-	foreach (int error, errors) {
+    for(int n=0; n<errors.count(); n++) {
+        if(n==3){
+            // 3 errors maximum
+            // leads to crash on windows when excessive
+            msg.append("<tr><td colspan=\"4\">...</td></tr>");
+            break;
+        }
+        int error=errors[n];
 		if (error < 0 || error >= count()) continue;
 		msg.append(at(error).niceMessage());
 	}
