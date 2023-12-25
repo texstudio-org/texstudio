@@ -1,13 +1,12 @@
 # frenchmath package
-# Matthew Bertucci 2023/03/10 for v2.6
+# Matthew Bertucci 2023/12/26 for v2.7
 
 #include:mathrsfs
 #include:amssymb
 #include:amsopn
 #include:xspace
 #include:ibrackets
-#include:ncccomma
-#include:iftex
+#include:decimalcomma
 
 #keyvals:\usepackage/frenchmath#c
 capsit
@@ -115,9 +114,15 @@ noibrackets
 \cosec#m
 \cosech#m
 
+\DeclareMathUp{cmd}#*d
+\apply#S
+
 \ifcapsit#S
 \capsittrue#S
 \capsitfalse#S
+\iffrenchmathgreek#S
+\frenchmathgreektrue#S
+\frenchmathgreekfalse#S
 \iflgrmath#S
 \lgrmathtrue#S
 \lgrmathfalse#S
