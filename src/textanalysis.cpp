@@ -447,7 +447,8 @@ QByteArray escapeAsCSV(const QString &s)
 
 void TextAnalysisDialog::slotExportButton()
 {
-	QString fn = FileDialog::getSaveFileName(this, tr("CSV Export"), editor ? editor->document()->getFileName().replace(".tex", ".csv") : QString(), tr("CSV file") + " (*.csv)" ";;" + tr("All files") + " (*)");
+    LatexDocument *doc=editor ? qobject_cast<LatexDocument*>(editor->document()): nullptr;
+    QString fn = FileDialog::getSaveFileName(this, tr("CSV Export"), doc ? doc->getFileName().replace(".tex", ".csv") : QString(), tr("CSV file") + " (*.csv)" ";;" + tr("All files") + " (*)");
 	if (fn.isEmpty()) return;
 	QFile f(fn);
 	if (!f.open(QFile::WriteOnly))

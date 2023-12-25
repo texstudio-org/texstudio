@@ -4063,7 +4063,9 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
             target = defs.keys().constFirst();
             edView = getEditorViewFromHandle(target);
             if(edView->isHidden()){
-                openExternalFile(target->document()->getFileName());
+                LatexDocument *ltxdoc = qobject_cast<LatexDocument*>(target->document());
+                if(ltxdoc)
+                    openExternalFile(ltxdoc->getFileName());
             }
         }
 		if (!edView) return;
