@@ -200,6 +200,21 @@ void Macro::setTypedTag(const QString &m_tag)
     tag=parseTypedTag(m_tag,type);
 }
 
+QString Macro::getTag()
+{
+    return tag;
+}
+
+void Macro::setTag(const QString &ntag)
+{
+    tag=ntag;
+}
+
+void Macro::setType(const Macro::Type &ntype)
+{
+    type=ntype;
+}
+
 QString Macro::parseTypedTag(QString typedTag, Macro::Type &retType)
 {
 	if (typedTag.startsWith("%SCRIPT\n")) {
@@ -250,9 +265,9 @@ bool Macro::save(const QString &fileName) const {
         return false;
 
     QJsonObject dd;
-    dd.insert("formatVersion",1);
+    dd.insert("formatVersion",2);
     dd.insert("name",name);
-    QString tag= typedTag();
+    dd.insert("type", ( type==Script ? "Script" : ( type==Environment ? "Environment" : "Snippet" ) ) );
     dd.insert("tag",QJsonArray::fromStringList(tag.split("\n")));
     dd.insert("description",QJsonArray::fromStringList(description.split("\n")));
     dd.insert("abbrev",abbrev);
@@ -316,8 +331,25 @@ bool Macro::loadFromText(const QString &text)
 
     // distrbute data on internal structure
     Macro::Type typ;
-    QString typedTag=parseTypedTag(rawData.value("tag"),typ);
-    init(rawData.value("name"),typ,typedTag,rawData.value("abbrev"),rawData.value("trigger"));
+    QString tag;
+    switch(dd.value("formatVersion").toInt()) {
+      case 1:
+        tag = parseTypedTag(rawData.value("tag"),typ);
+        rawData.insert("formatVersion","2");
+        qDebug() << QString("Macro %1 with version 1 migrated as type %2.").arg(rawData.value("name"), ( typ==Script ? "Script" : ( typ==Environment ? "Environment" : "Snippet" ) ));
+        break;
+      case 2: {
+        QString qtype = rawData.value("type");
+        typ = ( qtype=="Script" ? Script : ( qtype=="Environment" ? Environment : Snippet ) );
+        tag = rawData.value("tag");
+        break;
+      }
+      default:
+        qDebug() << QString("Trying to import macro %1 with unknown version %2 as type Snippet. Type maybe wrong.").arg(rawData.value("name")).arg(dd.value("formatVersion").toInt());
+        typ = Snippet;
+        tag = rawData.value("tag");
+    }
+    init(rawData.value("name"),typ,tag,rawData.value("abbrev"),rawData.value("trigger"));
     m_shortcut=rawData.value("shortcut");
     menu=rawData.value("menu");
     description=rawData.value("description");
