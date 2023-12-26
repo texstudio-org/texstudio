@@ -365,7 +365,7 @@ Le package `mathtools` prend en charge `alignedat`, `matrix*`, `pmatrix*`, `bmat
     <message>
         <location filename="../src/bibtexdialog.cpp" line="330"/>
         <source>Software</source>
-        <translation type="unfinished"/>
+        <translation>Logiciel</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="345"/>
@@ -12691,7 +12691,7 @@ Il est possible d&apos;utiliser la valeur spéciale ?txs-start pour démarrer ce
     <message>
         <location filename="../src/usermenudialog.ui" line="449"/>
         <source>Exec Macro</source>
-        <translation type="unfinished"/>
+        <translation>Exécution de la macro</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="508"/>
