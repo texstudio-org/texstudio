@@ -7,6 +7,7 @@
 #include "latexdocument.h"
 #include <QJsonDocument>
 #include <QJsonArray>
+#include <QMessageBox>
 
 Macro::Macro() : type(Snippet), triggerLookBehind(false), document(nullptr)
 {
@@ -273,10 +274,10 @@ bool Macro::load(const QString &fileName){
     in.setCodec("UTF-8");
 #endif
     QString text=in.readAll();
-    return loadFromText(text);
+    return loadFromText(text,fileName);
 }
 
-bool Macro::loadFromText(const QString &text)
+bool Macro::loadFromText(const QString &text,const QString &fileName)
 {
     QHash<QString,QString>rawData;
     QJsonParseError parseError;
@@ -311,6 +312,10 @@ bool Macro::loadFromText(const QString &text)
     }else{
         //old format
         qDebug()<<"support for old macro format was removed!";
+        QString message = QObject::tr("Support for old macro format was removed!");
+        if (fileName!="")  // macrobrowser has no file name
+            message = message + "\n" + QObject::tr("Make a backup of file %1 before continuing. File will be deleted!").arg(fileName);
+        QMessageBox::warning(nullptr, QObject::tr("Error"), message);
         return false;
     }
 

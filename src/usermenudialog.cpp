@@ -429,8 +429,9 @@ void UserMenuDialog::importMacro()
     QStringList fileNames = QFileDialog::getOpenFileNames(this,tr("Import macros"), "", tr("txs macro files (*.txsMacro)"));
     for(const QString &fileName:fileNames){
         Macro m;
-        m.load(fileName);
-        addMacro(m,true);
+        if (m.load(fileName)) {
+            addMacro(m,true);
+        }
     }
 }
 

@@ -1066,8 +1066,9 @@ QSettings *ConfigManager::readSettings(bool reread)
                 QString fileName=joinPath(configBaseDir,"macro",QString("Macro_%1.txsMacro").arg(i));
                 if(QFile(fileName).exists()){
                     Macro macro;
-                    macro.load(fileName);
-                    completerConfig->userMacros.append(macro);
+                    if (macro.load(fileName)) {
+                        completerConfig->userMacros.append(macro);
+                    }
                 }else{
                     break;
                 }
