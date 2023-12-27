@@ -1326,12 +1326,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1718"/>
         <source>Replace Double Quotes:</source>
-        <translation>Αντικατάσταση διπλών εισαγωγικών:</translation>
+        <translation>Αντικατάσταση εισαγωγικών:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1731"/>
         <source>Default Font Encoding:</source>
-        <translation>Προεπιλεγμένη κωδικοποίηση χαρακτήρων:</translation>
+        <translation>Προεπιλεγμένη κωδικοποίηση:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1738"/>
@@ -1513,7 +1513,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="../src/configdialog.ui" line="1669"/>
         <source>Only Important Line Numbers</source>
-        <translation>να εμφανίζονται μόνο οι πιο σημαντικοί</translation>
+        <translation>να εμφανίζονται οι πιο σημαντικοί</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2092"/>
@@ -4520,7 +4520,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="394"/>
         <source>Move all others to other view</source>
-        <translation>Μετακινήστε όλων των υπολοίπων σε άλλη προβολή</translation>
+        <translation>Μετακίνηση των υπολοίπων σε άλλη προβολή</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="399"/>

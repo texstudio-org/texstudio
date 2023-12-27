@@ -365,7 +365,7 @@ O pacote mathtools suporta alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/bibtexdialog.cpp" line="330"/>
         <source>Software</source>
-        <translation type="unfinished"/>
+        <translation>Programa</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="345"/>
@@ -12689,7 +12689,7 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
     <message>
         <location filename="../src/usermenudialog.ui" line="449"/>
         <source>Exec Macro</source>
-        <translation type="unfinished"/>
+        <translation>Executar macro</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="508"/>
