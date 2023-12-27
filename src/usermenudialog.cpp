@@ -45,7 +45,19 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
 	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
 
-    connect(ui.pbExport,SIGNAL(clicked()), SLOT(exportMacro()));
+	QMenu *popup = new QMenu(ui.pbExport);
+	QAction *act = new QAction(tr("Current Macro"), popup);
+	act->setMenuRole(QAction::NoRole);
+	act->setData(QVariant(QString("current")));
+	connect(act, SIGNAL(triggered()), SLOT(exportMacro()));
+	popup->addAction(act);
+	act = new QAction(tr("All Macros"), popup);
+	act->setMenuRole(QAction::NoRole);
+	act->setData(QVariant(QString("all")));
+	connect(act, SIGNAL(triggered()), SLOT(exportMacro()));
+	popup->addAction(act);
+	ui.pbExport->setMenu(popup);
+
     connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
     connect(ui.pbBrowse,SIGNAL(clicked()), SLOT(browseMacrosOnRepository()));
 
@@ -316,7 +328,7 @@ void UserMenuDialog::slotOk()
 }
 void UserMenuDialog::slotExecMacro()
 {
-    QTreeWidgetItem *item=ui.treeWidget->currentItem();
+    QTreeWidgetItem *item = ui.treeWidget->currentItem();
     if (item==nullptr) return;
     QVariant v = item->data(0,Qt::UserRole);
     if (v.isValid()){
@@ -436,16 +448,31 @@ void UserMenuDialog::importMacro()
 
 void UserMenuDialog::exportMacro()
 {
-    QTreeWidgetItem *item=ui.treeWidget->currentItem();
-    if(item==nullptr || item->type()==1) return;
-    QString fileName = QFileDialog::getSaveFileName(this,tr("Export macro"), "", tr("txs macro files (*.txsMacro)"));
-    if(!fileName.isEmpty()){
-        QVariant v=item->data(0,Qt::UserRole);
-        if(v.isValid()){
-            Macro m=v.value<Macro>();
-            m.save(fileName);
-        }
-    }
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (!act) return;
+	QString exportType = act->data().toString();
+	if (exportType=="all") { // export all macros
+		QList<Macro> macros = getMacros();
+		if (macros.length()==0) return;
+		QString path = QFileDialog::getExistingDirectory(this,tr("Export all macros"),QString(),QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+		if (path=="") return;
+		int index = 0;
+		foreach (Macro macro, macros) {
+			macro.save(QString("%1/Macro_%2.txsMacro").arg(path).arg(index++));
+		}
+	} else { // export current macro
+		QTreeWidgetItem *item = ui.treeWidget->currentItem();
+		if (item==nullptr || item->type()==1) return;
+		QVariant v = item->data(0,Qt::UserRole);
+		if (v.isValid()) {
+			Macro m = v.value<Macro>();
+			QString fileName = QFileDialog::getSaveFileName(this,tr("Export macro"), "", tr("txs macro files (*.txsMacro)"));
+			if (!fileName.isEmpty()) {
+				QVariant v = item->data(0,Qt::UserRole);
+				m.save(fileName);
+			}
+		}
+	}
 }
 
 void UserMenuDialog::browseMacrosOnRepository(){
