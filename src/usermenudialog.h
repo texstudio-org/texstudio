@@ -63,6 +63,7 @@ private slots:
 	void slotMoveDown();
     void importMacro();
     void exportMacro();
+    void exportAllMacros();
     void browseMacrosOnRepository();
 	void textChanged();
 	void nameChanged();

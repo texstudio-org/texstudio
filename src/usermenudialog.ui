@@ -103,12 +103,30 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pbExport">
-           <property name="toolTip">
-            <string>Export macro to file</string>
+          <widget class="QToolButton" name="tbExport">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
            </property>
            <property name="text">
             <string>Export</string>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::MenuButtonPopup</enum>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextOnly</enum>
+           </property>
+           <property name="arrowType">
+            <enum>Qt::DownArrow</enum>
            </property>
           </widget>
          </item>
@@ -235,7 +253,7 @@
       </layout>
      </widget>
      <widget class="QWidget" name="verticalLayoutWidget_2">
-      <layout class="QGridLayout" columnstretch="0,1" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
@@ -414,7 +432,7 @@ p, li { white-space: pre-wrap; }
         </layout>
        </item>
        <item row="6" column="0" colspan="2">
-        <widget class="QGroupBox">
+        <widget class="QGroupBox" name="groupBox">
          <layout class="QHBoxLayout" name="horizontalLayout_1">
           <property name="leftMargin">
            <number>1</number>
@@ -431,7 +449,10 @@ p, li { white-space: pre-wrap; }
           <item>
            <widget class="QWidget" name="tagEdit" native="true">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding"/>
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
            </widget>
           </item>

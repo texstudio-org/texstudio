@@ -45,7 +45,12 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
 	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
 
-    connect(ui.pbExport,SIGNAL(clicked()), SLOT(exportMacro()));
+    QMenu *menuExport = new QMenu();
+
+    menuExport->addAction(tr("Export all macros"),this,SLOT(exportAllMacros()));
+
+    ui.tbExport->setMenu(menuExport);
+    connect(ui.tbExport,SIGNAL(clicked()), SLOT(exportMacro()));
     connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
     connect(ui.pbBrowse,SIGNAL(clicked()), SLOT(browseMacrosOnRepository()));
 
@@ -445,6 +450,22 @@ void UserMenuDialog::exportMacro()
             Macro m=v.value<Macro>();
             m.save(fileName);
         }
+    }
+}
+
+
+/*!
+ * \brief export all macros to given directory
+ * Macro is "Macro_%d.txsMacro"
+ */
+void UserMenuDialog::exportAllMacros(){
+    QList<Macro> macros = getMacros();
+    if (macros.length()==0) return;
+    QString path = QFileDialog::getExistingDirectory(this,tr("Export all macros"),QString(),QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+    if (path=="") return;
+    int index = 0;
+    foreach (Macro macro, macros) {
+        macro.save(QString("%1/Macro_%2.txsMacro").arg(path).arg(index++));
     }
 }
 
