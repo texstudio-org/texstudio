@@ -54,7 +54,6 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
     connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
     connect(ui.pbBrowse,SIGNAL(clicked()), SLOT(browseMacrosOnRepository()));
 
-
 	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeTypeToNormal()));
 	connect(ui.radioButtonEnvironment, SIGNAL(clicked()), SLOT(changeTypeToEnvironment()));
 	connect(ui.radioButtonScript, SIGNAL(clicked()), SLOT(changeTypeToScript()));
@@ -127,6 +126,8 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.triggerHelp, SIGNAL(linkActivated(QString)), SLOT(showTooltip()));
 
     codeedit->editor()->clearFocus();
+    ui.pbBrowse->setFocus();
+
 }
 
 UserMenuDialog::~UserMenuDialog()
