@@ -93,16 +93,6 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pbBrowse">
-           <property name="toolTip">
-            <string>Browse offered macros on txs site.</string>
-           </property>
-           <property name="text">
-            <string>Browse</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QToolButton" name="tbExport">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -115,6 +105,9 @@
              <width>100</width>
              <height>0</height>
             </size>
+           </property>
+           <property name="toolTip">
+            <string>Export macro(s) to file(s)</string>
            </property>
            <property name="text">
             <string>Export</string>
@@ -137,6 +130,16 @@
            </property>
            <property name="text">
             <string>Import</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pbBrowse">
+           <property name="toolTip">
+            <string>Browse offered macros on txs site.</string>
+           </property>
+           <property name="text">
+            <string>Browse</string>
            </property>
           </widget>
          </item>
