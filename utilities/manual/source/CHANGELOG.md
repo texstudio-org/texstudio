@@ -1,8 +1,8 @@
 # CHANGELOG
 ## TeXstudio 4.7.3
 
-- 
-
+- add export of all macros in Edit Macros dialog
+- fix missing connection error message when browsing macro repository [#3448](https://github.com/texstudio-org/texstudio/pull/3448)
 
 ## TeXstudio 4.7.2
 
@@ -11,6 +11,7 @@
 - fix completion of user constructs like a_b [#3403](https://github.com/texstudio-org/texstudio/issues/3403)
 - fix navigating in subfiles [#3404](https://github.com/texstudio-org/texstudio/issues/3404)
 - fix duplicate shortcut in 'Additional Shortcut' column is not removed [#3408](https://github.com/texstudio-org/texstudio/pull/3408)
+- fix wrong cursor, scaling, settings in pdf viewer when switching window mode [#3426](https://github.com/texstudio-org/texstudio/pull/3426) [#3428](https://github.com/texstudio-org/texstudio/pull/3428) ...
 
 ## TeXstudio 4.7.1
 
