@@ -1,5 +1,5 @@
 # scripture package
-# Matthew Bertucci 2023/01/08 for v1.3
+# Matthew Bertucci 2023/12/28 for v2.0
 
 \ch{chapter number}
 \ch*{chapter number}
@@ -14,6 +14,8 @@
 \redletteroff
 \scripturecurrentchapter
 \scripturecurrentverse
+\scripturestyle{name}{options%keyvals}#s#%scripturestyle
+\scripturestyle*{name}{options%keyvals}
 \selah
 \scripturesetup{options%keyvals}
 \textright{text}
@@ -41,7 +43,7 @@
 \begin{scripture}[reference][options%keyvals]
 \end{scripture}
 
-#keyvals:\usepackage/scripture#c,\scripturesetup,\textscripture,\begin{scripture}
+#keyvals:\usepackage/scripture#c,\scripturesetup,\scripturestyle,\scripturestyle*,\textscripture,\begin{scripture}
 aboveskip=##L
 added/font=%<font commands%>
 added/format=%<macro%>
@@ -60,10 +62,14 @@ colour=#%color
 color=#%color
 compact#true,false
 extraskip=##L
-inline
+font=%<font commands%>
+inline#true,false
 inline/begin=%<code%>
 inline/end=%<code%>
-font=%<font commands%>
+inline/reference/format=%<macro%>
+inline/reference/sep=##L
+inline/version/delim=%<delim%>
+inline/version/format=%<macro%>
 indent#true,false
 language=%<language name%>
 language/variant=%<language variant name%>
@@ -88,6 +94,7 @@ selah/font=%<font commands%>
 selah/format=%<macro%>
 selah/sep=##L
 selah/text=%<text%>
+style=#%scripturestyle
 textright/sep=##L
 verse/colour=#%color
 verse/color=#%color
