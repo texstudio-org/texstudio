@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/12/15 for v10.2.0
+# Matthew Bertucci 2023/12/22 for v10.3.0
 
 #include:iftex
 
@@ -83,6 +83,7 @@ airindia
 airplayaudio
 airplayvideo
 airtable
+airtel
 ajv
 akamai
 akaunting
@@ -317,6 +318,7 @@ billboard
 bim
 binance
 biolink
+biome
 bisecthosting
 bit
 bitbucket
@@ -431,6 +433,7 @@ chainguard
 chainlink
 chakraui
 channel4
+charles
 chartdotjs
 chartmogul
 chase
@@ -467,6 +470,7 @@ clarifai
 claris
 clarivate
 clerk
+clevercloud
 clickhouse
 clickup
 clion
@@ -496,6 +500,7 @@ cocos
 coda
 codacy
 codeberg
+codeblocks
 codecademy
 codeceptjs
 codechef
@@ -527,6 +532,7 @@ cognizant
 coil
 coinbase
 coinmarketcap
+comicfury
 commerzbank
 commitlint
 commodore
@@ -600,6 +606,7 @@ d
 d3dotjs
 dacia
 daf
+dailydotdev
 dailymotion
 daimler
 daisyui
@@ -620,9 +627,11 @@ datagrip
 dataiku
 datastax
 dataverse
+datefns
 datocms
 datto
 dazn
+dbeaver
 dblp
 dbt
 dcentertainment
@@ -758,6 +767,7 @@ ello
 elm
 elsevier
 embarcadero
+embark
 emberdotjs
 emby
 emirates
@@ -774,6 +784,7 @@ epson
 equinixmetal
 ericsson
 erlang
+erpnext
 esbuild
 esea
 eslgaming
@@ -898,6 +909,7 @@ framer
 framework
 framework7
 franprix
+frappe
 fraunhofergesellschaft
 freebsd
 freecodecamp
@@ -948,6 +960,7 @@ gitee
 gitextensions
 github
 githubactions
+githubcopilot
 githubpages
 githubsponsors
 gitignoredotio
@@ -977,6 +990,7 @@ gofundme
 gogdotcom
 goland
 goldenline
+goldmansachs
 goodreads
 google
 googleadmob
@@ -987,6 +1001,7 @@ googleappsscript
 googleassistant
 googlebard
 googlebigquery
+googlebigtable
 googlecalendar
 googlecardboard
 googlechat
@@ -1047,6 +1062,7 @@ graphql
 grav
 gravatar
 graylog
+greasyfork
 greatlearning
 greenhouse
 greensock
@@ -1102,6 +1118,7 @@ headspace
 hearth
 hearthisdotat
 hedera
+helium
 hellofresh
 hellyhansen
 helm
@@ -1355,6 +1372,7 @@ kubernetes
 kubuntu
 kuma
 kuula
+kx
 kyocera
 labview
 lada
@@ -1396,6 +1414,7 @@ librariesdotio
 librarything
 libreoffice
 libreofficebase
+libreofficecalc
 libreofficedraw
 libreofficeimpress
 libreofficemath
@@ -1419,6 +1438,7 @@ linuxcontainers
 linuxfoundation
 linuxmint
 linuxprofessionalinstitute
+linuxserver
 lionair
 liquibase
 lit
@@ -1432,6 +1452,7 @@ lmms
 local
 lodash
 logitech
+logitechg
 logmein
 logseq
 logstash
@@ -1525,6 +1546,7 @@ mermaid
 messenger
 meta
 metabase
+metacritic
 metafilter
 meteor
 metro
@@ -1649,6 +1671,7 @@ nestjs
 netapp
 netbsd
 netcup
+neteasecloudmusic
 netflix
 netgear
 netlify
@@ -1787,6 +1810,7 @@ oreilly
 org
 origin
 osano
+osf
 osgeo
 oshkosh
 osmc
@@ -1876,6 +1900,7 @@ pinetwork
 pingdom
 pinterest
 pioneerdj
+pipx
 pivotaltracker
 piwigo
 pix
@@ -1969,6 +1994,7 @@ progate
 progress
 prometheus
 prosieben
+proteus
 protocolsdotio
 protodotio
 proton
@@ -2007,6 +2033,7 @@ pythonanywhere
 pytorch
 pyup
 qantas
+qase
 qatarairways
 qemu
 qgis
@@ -2074,6 +2101,7 @@ reasonstudios
 recoil
 red
 redbubble
+redbull
 reddit
 redhat
 redhatopenshift
@@ -2162,6 +2190,7 @@ rumble
 rundeck
 runkeeper
 runkit
+runrundotit
 rust
 rxdb
 ryanair
@@ -2217,6 +2246,7 @@ selenium
 sellfy
 semanticrelease
 semanticscholar
+semanticui
 semanticuireact
 semanticweb
 semaphoreci
@@ -2252,6 +2282,7 @@ shortcut
 shotcut
 showpad
 showtime
+showwcase
 shutterstock
 siemens
 sifive
@@ -2260,6 +2291,7 @@ similarweb
 simkl
 simpleanalytics
 simpleicons
+simplelogin
 simplenote
 sinaweibo
 singaporeairlines
@@ -2357,6 +2389,7 @@ sqlite
 square
 squareenix
 squarespace
+srgssr
 ssrn
 sst
 stackbit
@@ -2475,6 +2508,7 @@ tekton
 tele5
 telegram
 telegraph
+telequebec
 temporal
 tencentqq
 tensorflow
@@ -2494,11 +2528,13 @@ tga
 thangs
 thealgorithms
 theconversation
+thefinals
 theirishtimes
 themighty
 themodelsresource
 themoviedatabase
 thenorthface
+theodinproject
 theregister
 thesoundsresource
 thespritersresource
@@ -2511,6 +2547,7 @@ threedotjs
 threema
 thumbtack
 thunderbird
+thunderstore
 thurgauerkantonalbank
 thymeleaf
 ticketmaster
@@ -2524,6 +2561,7 @@ tile
 timescale
 tina
 tinder
+tindie
 tinkercad
 tinyletter
 tistory
@@ -2563,6 +2601,7 @@ treyarch
 tricentis
 trilium
 triller
+trillertv
 trino
 tripadvisor
 tripdotcom
@@ -2614,6 +2653,8 @@ underscoredotjs
 undertale
 unicode
 unilever
+uniqlo
+uniqloja
 unitedairlines
 unitednations
 unity
@@ -2671,6 +2712,7 @@ vim
 vimeo
 vimeolivestream
 virgin
+virginatlantic
 virginmedia
 virtualbox
 virustotal
@@ -2783,6 +2825,7 @@ wizzair
 wolfram
 wolframlanguage
 wolframmathematica
+wondershare
 woo
 woocommerce
 wordpress

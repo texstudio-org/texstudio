@@ -1,5 +1,5 @@
 # mismath package
-# Matthew Bertucci 2023/07/27 for v2.8
+# Matthew Bertucci 2023/12/19 for v2.9
 
 #include:amsmath
 #include:mathtools
@@ -10,6 +10,7 @@
 
 #keyvals:\usepackage/mismath#c
 ibrackets
+decimalcomma
 # options passed to amsmath
 intlimits
 nointlimits
@@ -30,6 +31,10 @@ alignedleftspaceyesifneg
 
 #ifOption:ibrackets
 #include:ibrackets
+#endif
+
+#ifOption:decimalcomma
+#include:decimalcomma
 #endif
 
 \abs{arg}#m

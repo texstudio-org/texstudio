@@ -2371,6 +2371,7 @@
 <file>completion/minijs.cwl</file>
 <file>completion/minimalist.cwl</file>
 <file>completion/minimalist-plain.cwl</file>
+<file>completion/minim-mp.cwl</file>
 <file>completion/MinionPro.cwl</file>
 <file>completion/minipage-marginpar.cwl</file>
 <file>completion/minted.cwl</file>
@@ -2705,6 +2706,7 @@
 <file>completion/pgfgantt.cwl</file>
 <file>completion/pgf-interference.cwl</file>
 <file>completion/pgfkeys.cwl</file>
+<file>completion/pgfkeysearch.cwl</file>
 <file>completion/pgfmanual.cwl</file>
 <file>completion/pgfmath.cwl</file>
 <file>completion/pgfmath-xfp.cwl</file>
@@ -3100,6 +3102,7 @@
 <file>completion/resizegather.cwl</file>
 <file>completion/resmes.cwl</file>
 <file>completion/ResolSysteme.cwl</file>
+<file>completion/responsive.cwl</file>
 <file>completion/rest-api.cwl</file>
 <file>completion/returntogrid.cwl</file>
 <file>completion/revquantum.cwl</file>
@@ -4070,6 +4073,7 @@
 <file>completion/xinttrig.cwl</file>
 <file>completion/xistercian.cwl</file>
 <file>completion/xkcdcolors.cwl</file>
+<file>completion/xkeymask.cwl</file>
 <file>completion/xkeyval.cwl</file>
 <file>completion/xkvview.cwl</file>
 <file>completion/xlop.cwl</file>
