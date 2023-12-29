@@ -38,7 +38,6 @@ public:
     bool getLineWrap();
 
 private:
-	QToolButton *toolButton;
 	void setLanguageFromText(void);
     QTreeWidgetItem* findCreateFolder(const QString &menu);
     QTreeWidgetItem* findCreateFolder(QTreeWidgetItem *parent, QStringList folders);
