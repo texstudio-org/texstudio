@@ -40,26 +40,32 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	connect(ui.runScriptButton, SIGNAL(clicked()), SLOT(slotExecMacro()));
 
 	connect(ui.pushButtonAdd, SIGNAL(clicked()), SLOT(slotAdd()));
-    connect(ui.pushButtonAddFolder, SIGNAL(clicked()), SLOT(slotAddFolder()));
+	connect(ui.pushButtonAddFolder, SIGNAL(clicked()), SLOT(slotAddFolder()));
 	connect(ui.pushButtonRemove, SIGNAL(clicked()), SLOT(slotRemove()));
 	connect(ui.pushButtonUp, SIGNAL(clicked()), SLOT(slotMoveUp()));
 	connect(ui.pushButtonDown, SIGNAL(clicked()), SLOT(slotMoveDown()));
 
-	QMenu *popup = new QMenu(ui.pbExport);
-	QAction *act = new QAction(tr("Current Macro"), popup);
-	act->setMenuRole(QAction::NoRole);
-	act->setData(QVariant(QString("current")));
-	connect(act, SIGNAL(triggered()), SLOT(exportMacro()));
-	popup->addAction(act);
-	act = new QAction(tr("All Macros"), popup);
-	act->setMenuRole(QAction::NoRole);
-	act->setData(QVariant(QString("all")));
-	connect(act, SIGNAL(triggered()), SLOT(exportMacro()));
-	popup->addAction(act);
-	ui.pbExport->setMenu(popup);
+	toolButton = new QToolButton(ui.toolBarExport);
+	toolButton->setToolButtonStyle(Qt::ToolButtonTextOnly);
+	toolButton->setPopupMode(QToolButton::MenuButtonPopup);
 
-    connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
-    connect(ui.pbBrowse,SIGNAL(clicked()), SLOT(browseMacrosOnRepository()));
+	QMenu *menuExport = new QMenu(this);
+	menuExport->setToolTipsVisible(true);
+
+	QAction *act = menuExport->addAction(tr("Export"),this,exportMacro);
+	act->setToolTip("Export macro to file");
+	act->setData(QVariant(QString("current")));
+	toolButton->setDefaultAction(act);
+
+	act = menuExport->addAction(tr("Export all"),this,exportMacro);
+	act->setToolTip("Export all macros to files");
+	act->setData(QVariant(QString("all")));
+
+	toolButton->setMenu(menuExport);
+	ui.toolBarExport->addWidget(toolButton);
+
+	connect(ui.pbImport,SIGNAL(clicked()), SLOT(importMacro()));
+	connect(ui.pbBrowse,SIGNAL(clicked()), SLOT(browseMacrosOnRepository()));
 
 
 	connect(ui.radioButtonNormal, SIGNAL(clicked()), SLOT(changeTypeToNormal()));
@@ -451,6 +457,7 @@ void UserMenuDialog::exportMacro()
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
 	QString exportType = act->data().toString();
+	toolButton->setDefaultAction(act);
 	if (exportType=="all") { // export all macros
 		QList<Macro> macros = getMacros();
 		if (macros.length()==0) return;
