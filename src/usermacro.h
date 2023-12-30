@@ -41,11 +41,14 @@ public:
 
     bool isEmpty() const;
 
+    QString getTag();
+    void setTag(const QString &ntag);
     void setShortcut(const QString &sc);
     void setTrigger(const QString &newTrigger);
 
 	QString typedTag() const;
-    void setTypedTag(const QString &m_tag);
+	void setTypedTag(const QString &m_tag);
+	void setType(const Macro::Type &ntype);
 	static QString parseTypedTag(QString typedTag, Macro::Type &retType);
 
 	void parseTriggerLanguage(QLanguageFactory *langFactory);
