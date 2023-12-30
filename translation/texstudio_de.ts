@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="62"/>
         <source>Changelog</source>
-        <translation>Changelog</translation>
+        <translation>Änderungsprotokoll</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>

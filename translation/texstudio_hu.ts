@@ -365,7 +365,7 @@ A mathtools csomag támogatja az alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix
     <message>
         <location filename="../src/bibtexdialog.cpp" line="330"/>
         <source>Software</source>
-        <translation type="unfinished"/>
+        <translation>Software</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="345"/>
@@ -12644,7 +12644,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="410"/>
         <source>Script</source>
-        <translation>Parancsfájl</translation>
+        <translation>Szkript</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="469"/>
@@ -12670,7 +12670,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="449"/>
         <source>Exec Macro</source>
-        <translation type="unfinished"/>
+        <translation>Makró futtatása</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="508"/>
@@ -13115,10 +13115,10 @@ The html files are located in the %1 directory.</source>
 %1
 
 Do you trust this script?</source>
-        <translation>A parancsfájl igényli az írási mód engedélyezését, és az alábbi függvényt akarja futtatni:
+        <translation>Az aktuális szkript az írási mód engedélyezését igényli, és az alábbi függvényt akarja futtatni:
 %1
 
-Megbízik a parancsfájlban?</translation>
+Megbízik ebben a szkriptben?</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="716"/>
@@ -13142,10 +13142,10 @@ Megbízik a parancsfájlban?</translation>
 %1
 
 Do you trust this script?</source>
-        <translation>A parancsfájl igényli a privilegizált mód engedélyezését, és olvasni akarja az alábbi értéket:
+        <translation>Az aktuális szkript a kiváltságos módba való belépést igényli, és a következő értéket olvassa be:
 %1
 
-Megbízik a parancsfájlban?</translation>
+Megbízik ebben a szkriptben?</translation>
     </message>
     <message>
         <location filename="../src/scriptengine.cpp" line="738"/>
@@ -13160,7 +13160,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="../src/scriptengine.cpp" line="298"/>
         <source>Script-Error</source>
-        <translation>Parancsfájl hiba</translation>
+        <translation>Szkript hiba</translation>
     </message>
 </context>
 <context>

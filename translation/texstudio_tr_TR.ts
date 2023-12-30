@@ -365,7 +365,7 @@ Mathtools paketi alignat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatr
     <message>
         <location filename="../src/bibtexdialog.cpp" line="330"/>
         <source>Software</source>
-        <translation type="unfinished"/>
+        <translation>Yazılım</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="345"/>
@@ -12684,7 +12684,7 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
     <message>
         <location filename="../src/usermenudialog.ui" line="449"/>
         <source>Exec Macro</source>
-        <translation type="unfinished"/>
+        <translation>Makro çalıştır</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="508"/>

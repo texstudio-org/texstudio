@@ -123,8 +123,8 @@
         <location filename="../src/arraydialog.ui" line="75"/>
         <source>In case of an array environment sets the alignment for the column of the currently selected cell.
 For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation>Caso um ambiente array defina o alinhamento para a coluna da célula actualmente seleccionada.
-Para matrix* e parecidos (pacote mathtools) define o alinhamento para todas as colunas simultaneamente.</translation>
+        <translation>Caso um ambiente array defina o alinhamento para a coluna da célula atualmente selecionada.
+Para matrix* e análogos (pacote mathtools) define o alinhamento para todas as colunas simultaneamente.</translation>
     </message>
     <message>
         <location filename="../src/arraydialog.ui" line="86"/>
@@ -136,7 +136,7 @@ Para matrix* e parecidos (pacote mathtools) define o alinhamento para todas as c
         <source>Choose environment to be created (s. window title).
 Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
-        <translation>Escolha o ambiente a criar (s. título da janela).
+        <translation>Escolha o ambiente a ser criado (ver título da janela).
 O pacote amsmath suporta alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
 O pacote mathtools suporta alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</translation>
     </message>
@@ -1012,7 +1012,7 @@ Por favor, mude sua configuração e defina listas de comandos somente em &apos;
     <message>
         <location filename="../src/configdialog.ui" line="855"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation>Não abrir nova instância do visualizador de DVI/PS/PDF se já existir uma sendo executada</translation>
+        <translation>Não abrir nova instância do visualizador de DVI/PS/PDF se já existir uma aberta</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="864"/>
@@ -1331,7 +1331,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location filename="../src/configdialog.ui" line="1731"/>
         <source>Default Font Encoding:</source>
-        <translation>Codificação de Fonte Padrão:</translation>
+        <translation>Codificação Padrão da Fonte:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1738"/>
@@ -1703,7 +1703,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location filename="../src/configdialog.ui" line="2226"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uso de QSaveFile para evitar perda de dados existentes caso haja falha ao escrever o arquivo. Como consequência, o usuário torna-se o proprietário do arquivo e atributos estendidos são perdidos. Também, este método pode ter problemas com pastas dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uso de QSaveFile para evitar perda de dados existentes caso haja falha ao escrever no arquivo. Como consequência, o usuário torna-se o proprietário do arquivo e atributos estendidos são perdidos. Também, este método pode ter problemas com pastas dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2229"/>
@@ -1718,7 +1718,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location filename="../src/configdialog.ui" line="2380"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation>Isto somente tem efeito se a largura do documento for limitada por quebra suave ou dura de linhas.</translation>
+        <translation>Isto somente tem efeito se a largura do documento for limitada por quebra de linha suave ou dura.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2383"/>
@@ -1789,7 +1789,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2292"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programas externos (por ex. Zotero) podem transferir citações para o texstudio por meio de: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Se o cursor ainda não está dentro de um comando de citação, o &amp;quot;command&amp;quot; dado aqui é usado como \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programas externos (por ex. Zotero) podem transferir citações para o texstudio por meio de: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citação&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Se o cursor ainda não está dentro de um comando de citação, o &amp;quot;comando&amp;quot; dado aqui é usado como \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="1509"/>
@@ -1804,7 +1804,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="2295"/>
         <source>Latex Command for pushed citations:</source>
-        <translation>Comando Latex para citações transferidas:</translation>
+        <translation>Comando LaTeX para citações transferidas:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="2410"/>
@@ -1894,7 +1894,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="374"/>
         <source>Max. Recent Root Documents:</source>
-        <translation>Máx. documentos raiz recentes:</translation>
+        <translation>Máx. de Documentos Raízes Recentes:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="437"/>
@@ -2219,7 +2219,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="../src/configdialog.ui" line="3215"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation>Se um comando matemático é inserido via autocompletamento fora de um ambiente matemático, $ $ será inserido automaticamente.</translation>
+        <translation>Se um comando matemático é inserido via autocompletamento fora de um ambiente matemático, $$ é inserido automaticamente.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3218"/>
@@ -2270,7 +2270,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3399"/>
         <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation>Pastas com dicionários Hunspell separados por ponto e vírgula. As palavras-chave [txs-settings-dir] e [txs-app-dir] serão reservadas para os respectivos diretórios.</translation>
+        <translation>Pastas com dicionários Hunspell separadas por ponto e vírgula. As palavras-chave [txs-settings-dir] e [txs-app-dir] serão reservadas para os respectivos diretórios.</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3409"/>
@@ -2455,7 +2455,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="3803"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation>URL para conectar a ferramenta de idioma. </translation>
+        <translation>URL para conectar a Ferramenta de Idioma. </translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3900"/>
@@ -2653,7 +2653,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4304"/>
         <source>Highlight Duration</source>
-        <translation>Duração do destaque:</translation>
+        <translation>Duração do Destaque:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4522"/>
@@ -2751,7 +2751,7 @@ Obs.: Esta mudança afetará somente documentos abertos a seguir.</translation>
     <message>
         <location filename="../src/configdialog.ui" line="4482"/>
         <source>Paper Color</source>
-        <translation>Cor do papel:</translation>
+        <translation>Cor do Papel:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="4367"/>
@@ -3236,7 +3236,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math &amp;Definitions</source>
-        <translation>&amp;Definições Matemáticas</translation>
+        <translation>&amp;Definições matemáticas</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
@@ -3416,7 +3416,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="68"/>
         <source>The itemize environment produces a &apos;bulleted&apos; list.%nEach item of an itemized list begins with an \item command.</source>
-        <translation>O ambiente de lista produz uma lista com marcas. %nCada item da lista começa com um comando \item</translation>
+        <translation>O ambiente de lista produz uma lista com &apos;bolinhas&apos;. %nCada item da lista começa com um comando \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="69"/>
@@ -3426,7 +3426,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="70"/>
         <source>The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command.</source>
-        <translation>O ambiente enumerado produz uma lista numerada. %nCada item da lista começa com um comando \item</translation>
+        <translation>O ambiente enumerado produz uma lista numerada. %nCada item da lista começa com um comando \item.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="71"/>
@@ -3687,7 +3687,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="123"/>
         <source>The \newpage command ends the current page</source>
-        <translation>O comando \newpage termina a página atual.</translation>
+        <translation>O comando \newpage encerra a página atual.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="124"/>
@@ -4007,7 +4007,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="148"/>
         <source>This command generates an in-text citation to the reference associated with the ref entry in the bib file</source>
-        <translation>Este comando gera uma citação embebida à referência associada com a entrada ref no ficheiro bib.</translation>
+        <translation>Este comando gera uma citação à referência associada com a entrada ref no arquivo bib.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="150"/>
@@ -4017,7 +4017,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="151"/>
         <source>The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look</source>
-        <translation>O argumento de \bibliographystyle refere-se a um ficheiro style.bst, que define o aspecto das suas citações.</translation>
+        <translation>O argumento do \bibliographystyle refere-se a um arquivo style.bst, que define o aspecto das suas citações.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="152"/>
@@ -4372,7 +4372,7 @@ Deseja removê-las?</translation>
     <message>
         <location filename="../src/configmanager.cpp" line="2001"/>
         <source>Root Document: </source>
-        <translation>Documento raiz:</translation>
+        <translation>Documento Raiz: </translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="2770"/>
@@ -8150,7 +8150,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="212"/>
         <source>Font Encoding</source>
-        <translation>Codificação de Fonte</translation>
+        <translation>Codificação da Fonte</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.ui" line="236"/>
@@ -8220,7 +8220,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="308"/>
         <source>Mathematical symbols from AMS</source>
-        <translation>Símbolos matemáticos da AMS</translation>
+        <translation>Símbolos matemáticos da AMS.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="309"/>
@@ -8240,7 +8240,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="312"/>
         <source>Define your theorem like env., has to be loaded after amsmath</source>
-        <translation>Define ambientes teorema, e deve ser carregado após amsmath.</translation>
+        <translation>Define ambientes teorema e deve ser carregado após amsmath.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="313"/>
@@ -8250,7 +8250,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="314"/>
         <source>Extension package to amsthm</source>
-        <translation>Pacote de extensão ao amsthm</translation>
+        <translation>Pacote de extensão ao amsthm.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="315"/>
@@ -11536,7 +11536,7 @@ Voce deseja permitir e executar o novo comando?
     <message>
         <location filename="../src/texstudio.cpp" line="6972"/>
         <source>%1 is an invalid TeX project directory.</source>
-        <translation>%1 é uma pasta de projecto TeX inválida</translation>
+        <translation>%1 é uma pasta de projeto TeX inválida.</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="7265"/>
@@ -11693,8 +11693,9 @@ Press &quot;OK&quot; to show differences instead of the generated source by subv
 Press &quot;Cancel&quot;to do nothing.
 </source>
         <translation>%1 está em conflito com o repositório.
-Pressione &quot;OK&quot; para exibir as diferenças ao invés de fonte gerada por svn
-Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
+Pressione &quot;OK&quot; para exibir as diferenças ao invés da fonte gerada por svn
+Pressione &quot;Cancelar&quot; para fazer nada.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10658"/>
@@ -11712,7 +11713,8 @@ Please provide this file if you send a bug report.
 </source>
         <translation>Um registro de atividades foi escrito em
 %1
-Por favor, forneça este arquivo ao enviar um relatório de erros.</translation>
+Por favor, forneça este arquivo ao enviar um relatório de erros.
+</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="10665"/>
@@ -12295,7 +12297,7 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     <message>
         <location filename="../src/textanalysis.ui" line="384"/>
         <source>Min&amp;max words per phrase:</source>
-        <translation>Mín. e máx. de palavras por frase:</translation>
+        <translation>Mín. e Máx. de palavras por frase:</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.ui" line="399"/>

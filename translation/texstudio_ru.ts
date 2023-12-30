@@ -365,7 +365,7 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
     <message>
         <location filename="../src/bibtexdialog.cpp" line="330"/>
         <source>Software</source>
-        <translation type="unfinished"/>
+        <translation>Программное обеспечение</translation>
     </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="345"/>
@@ -2499,7 +2499,7 @@ them here.</source>
     <message>
         <location filename="../src/configdialog.ui" line="3952"/>
         <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
-        <translation type="unfinished"/>
+        <translation>При изменении моды предпросмотр формул также изменит стиль (но для внутристрочных он останется всплывающей подсказкой).</translation>
     </message>
     <message>
         <location filename="../src/configdialog.ui" line="3956"/>
@@ -12694,7 +12694,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="../src/usermenudialog.ui" line="449"/>
         <source>Exec Macro</source>
-        <translation type="unfinished"/>
+        <translation>Запустить макрос</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="508"/>
