@@ -167,7 +167,7 @@ in the macro-menu. It is rearranged with the
 \"up\"/\"down\"/\"add\"/\"remove\" buttons or with drag and drop.
 Folders can be added to sort a larger number of macros sensibly. To move
 macros into/from folders, only drag and drop works.
-The \"Exec Macro\" button directly places the text, environment, or the result from executing your script in the editor.
+The \"Exec Macro\" button executes the macro immediately.
 
 ![doc17](images/doc17.png)
 
@@ -223,8 +223,6 @@ inserted as:
 
 \end{environment}
 ```
-
-Don't forget to set the macro type to \"Environment\" by selecting that radio button.
 
 ### Script Macros
 
