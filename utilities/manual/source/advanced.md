@@ -143,9 +143,9 @@ the following magic comments:
 
 TeXstudio allows you to insert your own macros. These macros are defined
 with the \"Macros - Edit Macros\" menu. Macros can consist of simple
-text which is directly placed into txs. It can also be an
+text which is directly placed into txs (use type \"Normal\"). It can also be an
 \"environment\" which are automatically extended by begin/end or it can
-be a java script. The needed functionality can be selected by checkbox.
+be a java script. The needed macro type can be selected by radio buttons \"Normal\", \"Environment\", or \"Script\".
 
 The \"abbreviation\" is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
@@ -167,8 +167,7 @@ in the macro-menu. It is rearranged with the
 \"up\"/\"down\"/\"add\"/\"remove\" buttons or with drag and drop.
 Folders can be added to sort a larger number of macros sensibly. To move
 macros into/from folders, only drag and drop works.
-The \"run script\" button directly executes a script in the editor for
-testing.
+The \"Exec Macro\" button directly places the text, environment, or the result from executing your script in the editor.
 
 ![doc17](images/doc17.png)
 
@@ -216,7 +215,7 @@ on insertion.
 
 ### Environment macros
 
-The text will be used as environment-name, thus \"%environment\" will be
+The text must consist of one word and no newline. The word will be used as environment-name, thus \"environment\" will be
 inserted as:
 
 ```latex
@@ -225,10 +224,7 @@ inserted as:
 \end{environment}
 ```
 
-```{note}
-TeXstudio needs that the env-name starts with \"%\", though that
-character is not placed on insertion.
-```
+Don't forget to set the macro type to \"Environment\" by selecting that radio button.
 
 ### Script Macros
 
@@ -236,7 +232,7 @@ Instead of using code snippets, you can also make use of scripting with
 QJS, an application scripting language based on
 [ECMAScript](https://doc.qt.io/qt-6/qtqml-javascript-functionlist.html). 
 
-Put \"%SCRIPT\" in the first line to declare a macro as a script. Here
+Select radio button \"Script\" to declare a macro as a script. Here
 are the objects that provide the interface to the TeXstudio internals:
 
 -   \"editor\" allows some top level operations like
