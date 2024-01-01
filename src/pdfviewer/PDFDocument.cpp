@@ -2857,7 +2857,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
         int &h = globalConfig->windowHeight;
         QRect screen = UtilsUi::getAvailableGeometryAt(QPoint(x, y));
         // add some tolerance, as fullscreen seems to have negative coordinate (KDE, Win7 ...)
-        screen.adjust(-8, -8, +8, +8);
+//        screen.adjust(-8, -8, +8, +8);
         if (!screen.contains(x, y)) {
             // top left is not on screen
             x = screen.x() + screen.width() * 2 / 3;
@@ -2865,13 +2865,13 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
             if (x + w > screen.right()) w = screen.width() / 3 - 26;
             if (y + h > screen.height()) h = screen.height() - 100;
         }
+        resize(w, h); //important to first resize then move then maximize
+        move(x, y);
         if (globalConfig->windowMaximized)
             showMaximized();
         else
             setWindowState(Qt::WindowNoState);
 
-        resize(w, h); //important to first resize then move
-        move(x, y);
         if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
         toolBar->setVisible(globalConfig->toolbarVisible);
         statusbar->setVisible(true);
@@ -4298,10 +4298,12 @@ PDFDocument *PDFDocument::findDocument(const QString &fileName)
 
 void PDFDocument::saveGeometryToConfig()
 {
-	globalConfig->windowLeft = x();
-	globalConfig->windowTop = y();
-	globalConfig->windowWidth = width();
-	globalConfig->windowHeight = height();
+	if (!isMaximized() && !isFullScreen()) {
+		globalConfig->windowLeft = x();
+		globalConfig->windowTop = y();
+		globalConfig->windowWidth = width();
+		globalConfig->windowHeight = height();
+	}
 	globalConfig->windowMaximized = isMaximized();
 	globalConfig->windowState = saveState();
 	globalConfig->toolbarVisible = toolBar->isVisible();
