@@ -1,5 +1,5 @@
 # schulma-klausur class
-# Matthew Bertucci 202303/15 for v1.4
+# Matthew Bertucci 2024/01/01 for v1.6
 
 #include:etoolbox
 #include:schulma
@@ -14,6 +14,7 @@
 #include:adjustbox
 #include:babel
 #include:datetime2
+#include:isodate
 
 #keyvals:\documentclass/schulma-klausur#c
 SLK
@@ -25,6 +26,7 @@ AT
 GruppeA
 GruppeB
 Musterloesung
+MusterloesungD
 # other options passed to scrartcl
 #endkeyvals
 
