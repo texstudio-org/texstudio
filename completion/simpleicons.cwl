@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2023/12/22 for v10.3.0
+# Matthew Bertucci 2024/01/01 for v10.4.0
 
 #include:iftex
 
@@ -65,6 +65,7 @@ affinitydesigner
 affinityphoto
 affinitypublisher
 aframe
+afterpay
 agora
 aib
 aidungeon
@@ -257,6 +258,7 @@ autodesk
 autodeskmaya
 autodeskrevit
 autohotkey
+autoit
 automattic
 autoprefixer
 avajs
@@ -292,6 +294,7 @@ bandsintown
 bankofamerica
 barclays
 baremetrics
+barmenia
 basecamp
 basicattentiontoken
 bastyon
@@ -329,6 +332,7 @@ bitcomet
 bitdefender
 bitly
 bitrise
+bittorrent
 bitwarden
 bitwig
 blackberry
@@ -341,6 +345,7 @@ blockchaindotcom
 blogger
 bloglovin
 blueprint
+bluesky
 bluetooth
 bmcsoftware
 bmw
@@ -370,6 +375,7 @@ brandfolder
 brave
 breaker
 brevo
+brex
 bricks
 britishairways
 broadcom
@@ -404,6 +410,7 @@ caffeine
 cairographics
 cairometro
 cakephp
+calendly
 campaignmonitor
 canonical
 canva
@@ -657,6 +664,7 @@ derspiegel
 designernews
 deutschebahn
 deutschebank
+deutschepost
 devdotto
 devexpress
 deviantart
@@ -930,6 +938,7 @@ furrynetwork
 futurelearn
 g2
 g2a
+galaxus
 gameandwatch
 gamebanana
 gamedeveloper
@@ -1003,6 +1012,7 @@ googlebard
 googlebigquery
 googlebigtable
 googlecalendar
+googlecampaignmanager360
 googlecardboard
 googlechat
 googlechrome
@@ -1146,9 +1156,11 @@ homebridge
 homify
 honda
 honey
+hono
 honor
 hootsuite
 hoppscotch
+hostinger
 hotelsdotcom
 hotjar
 hotwire
@@ -1403,6 +1415,7 @@ leptos
 lequipe
 lerna
 leroymerlin
+leslibraires
 less
 letsencrypt
 letterboxd
@@ -1536,6 +1549,7 @@ medusa
 meetup
 mega
 meilisearch
+meituan
 mendeley
 mentorcruise
 mercadopago
@@ -1685,6 +1699,7 @@ newrelic
 newyorktimes
 nextbilliondotai
 nextcloud
+nextdns
 nextdoor
 nextdotjs
 nextra
@@ -1827,6 +1842,7 @@ p5dotjs
 packagist
 packer
 packt
+paddle
 paddlepaddle
 paddypower
 pagekit
@@ -1900,6 +1916,7 @@ pinetwork
 pingdom
 pinterest
 pioneerdj
+piped
 pipx
 pivotaltracker
 piwigo
@@ -2239,6 +2256,7 @@ scylladb
 seagate
 searxng
 seat
+seatgeek
 securityscorecard
 sefaria
 sega
@@ -2434,6 +2452,7 @@ strapi
 strava
 streamlabs
 streamlit
+streamrunners
 stripe
 strongswan
 stryker
@@ -2590,6 +2609,8 @@ traefikproxy
 trailforks
 trainerroad
 trakt
+transifex
+transmission
 transferwise
 transportforireland
 transportforlondon
