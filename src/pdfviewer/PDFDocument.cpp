@@ -4298,13 +4298,15 @@ PDFDocument *PDFDocument::findDocument(const QString &fileName)
 
 void PDFDocument::saveGeometryToConfig()
 {
-	if (!isMaximized() && !isFullScreen()) {
-		globalConfig->windowLeft = x();
-		globalConfig->windowTop = y();
-		globalConfig->windowWidth = width();
-		globalConfig->windowHeight = height();
+	if (!embeddedMode) {
+		if (!isMaximized() && !isFullScreen()) {
+			globalConfig->windowLeft = x();
+			globalConfig->windowTop = y();
+			globalConfig->windowWidth = width();
+			globalConfig->windowHeight = height();
+		}
+		globalConfig->windowMaximized = isMaximized();
 	}
-	globalConfig->windowMaximized = isMaximized();
 	globalConfig->windowState = saveState();
 	globalConfig->toolbarVisible = toolBar->isVisible();
 	globalConfig->annotationPanelVisible = annotationPanel->isVisible();
