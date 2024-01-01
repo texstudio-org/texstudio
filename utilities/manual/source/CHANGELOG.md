@@ -4,6 +4,7 @@
 - First line of macro editor no longer uses macro type, use buttons to set type. Macro format changes slightly. For details s. [#3458](https://github.com/texstudio-org/texstudio/pull/3458)
 - add export of all macros in Edit Macros dialog
 - fix missing connection error message when browsing macro repository [#3448](https://github.com/texstudio-org/texstudio/pull/3448)
+- fix pdf viewer window can be restored to maximized window from embedded state or start of txs [#3190](https://github.com/texstudio-org/texstudio/issues/3190)
 
 ## TeXstudio 4.7.2
 
