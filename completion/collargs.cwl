@@ -1,5 +1,5 @@
 # collargs package
-# Matthew Bertucci 2023/10/11 for v1.0.0
+# Matthew Bertucci 2024/01/02 for v1.1.0
 
 #include:pgfkeys
 #include:etoolbox
@@ -31,6 +31,7 @@ prepend prewrap=%<macro definition%>
 append postwrap=%<macro definition%>
 prepend postwrap=%<macro definition%>
 no delimiters#true,false
+brace collected#true,false
 verbatim
 verb
 no verbatim
@@ -84,6 +85,9 @@ verbatim ranges={%<from-to%>}
 \ifcollargsNoDelimiters#S
 \collargsNoDelimiterstrue#S
 \collargsNoDelimitersfalse#S
+\ifcollargsBraceCollected#S
+\collargsBraceCollectedtrue#S
+\collargsBraceCollectedfalse#S
 \collargsArg#S
 \collargsVerbatim#S
 \collargsVerb#S
