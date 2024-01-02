@@ -1,16 +1,19 @@
 # advice package
-# Matthew Bertucci 2023/10/11 for v1.0.0
+# Matthew Bertucci 2024/01/01 for v1.1.0
 
 #include:collargs
+#include:xparse
 
 \AdviceSetup{namespace}{command or env}{setup code}#*
 \AdviceTracingOn#*
 \AdviceTracingOff#*
 \AdviceNamespace#*
 \AdviceName#*
+\AdviceCsname#*
 \AdviceReplaced#*
 \AdviceOriginal#*
 \AdviceGetOriginal{namespace}{control sequence}#*
+\AdviceCsnameGetOriginal{namespace}{csname}#*
 \AdviceCollectTikZArguments#*
 
 \ifAdviceRun#S
