@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2022/12/16 for v0.9.1
+# Matthew Bertucci 2024/01/02 for v0.17.1
 
 #include:stmaryrd
 #include:amsmath
@@ -22,6 +22,7 @@
 #include:tikzlibraryarrows.meta
 #include:hyperref
 #include:trimclip
+#include:shellesc
 
 #keyvals:\usepackage/eolang#c
 tmpdir=%<path%>
