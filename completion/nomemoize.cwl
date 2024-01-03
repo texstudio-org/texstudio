@@ -1,7 +1,7 @@
 # nomemoize package
-# Matthew Bertucci 2023/10/15 for v1.0.0
+# Matthew Bertucci 2024/01/02 for v1.1.0
 
-#include:pgfopts
+#include:pgfkeys
 
 \mmzset{options%keyvals}
 \mmznext{options%keyvals}
@@ -23,3 +23,15 @@
 \ifinmemoize#*
 \IfMemoizing{name}{true code}{false code}#*
 \IfMemoizing[offset]{name}{true code}{false code}#*
+\mmzAbort
+\mmzUnmemoizable
+\mmzNoRef{label}#*
+\mmzForceNoRef{label}#*
+\mmzContext#*
+\mmzContextExtra#*
+\mmzCMemo#*
+\mmzCCMemo#*
+\mmzExternPages#*
+\mmzExtraPages#*
+\mmzTracingOn#*
+\mmzTracingOff#*
