@@ -1196,6 +1196,7 @@
 <file>completion/dcounter.cwl</file>
 <file>completion/ddphonism.cwl</file>
 <file>completion/debate.cwl</file>
+<file>completion/decimalcomma.cwl</file>
 <file>completion/decision-table.cwl</file>
 <file>completion/decorule.cwl</file>
 <file>completion/dejavu-otf.cwl</file>
@@ -1620,6 +1621,7 @@
 <file>completion/fp-upn.cwl</file>
 <file>completion/framed.cwl</file>
 <file>completion/frcursive.cwl</file>
+<file>completion/freealign.cwl</file>
 <file>completion/frege.cwl</file>
 <file>completion/frenchmath.cwl</file>
 <file>completion/fr-fancy.cwl</file>
@@ -1959,6 +1961,7 @@
 <file>completion/jsverb.cwl</file>
 <file>completion/jumplines.cwl</file>
 <file>completion/junicode.cwl</file>
+<file>completion/junicodevf.cwl</file>
 <file>completion/jupynotex.cwl</file>
 <file>completion/jurabase.cwl</file>
 <file>completion/jurabib.cwl</file>
@@ -3766,6 +3769,7 @@
 <file>completion/tikzpfeile.cwl</file>
 <file>completion/tikzpingus.cwl</file>
 <file>completion/tikz-qtree.cwl</file>
+<file>completion/tikzquests.cwl</file>
 <file>completion/tikzrput.cwl</file>
 <file>completion/tikzscale.cwl</file>
 <file>completion/tikzsymbols.cwl</file>
