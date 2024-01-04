@@ -1,5 +1,5 @@
 # junicode package
-# Matthew Bertucci 2024/01/02 for v2.204
+# Matthew Bertucci 2024/01/04 for v2.205
 
 #include:iftex
 #include:xkeyval
@@ -222,10 +222,15 @@ SmExpSmBoldFeatures={%<font features%>}
 \jcvflorin#*
 \jcvounce#*
 
+\sufigures
+\textsu{text}
+\infigures
+\textinf{text}
+\tabularnums{text}
+\proportionalnums{text}
+\liningnums{text}
+
 # not documented
-\ifjunc#S
-\junctrue#S
-\juncfalse#S
 \RegularDef#S
 \BoldDef#S
 \CondDef#S
@@ -245,3 +250,5 @@ SmExpSmBoldFeatures={%<font features%>}
 \SmExpBoldDef#S
 \SmExpMediumDef#S
 \SmExpSmBoldDef#S
+\junicode#S
+\junicodelgr#S
