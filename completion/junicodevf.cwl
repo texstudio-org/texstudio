@@ -1,82 +1,48 @@
-# junicode package
-# Matthew Bertucci 2024/01/02 for v2.204
+# junicodevf package
+# Matthew Bertucci 2023/01/03 for v2.204
 
-#include:iftex
+#include:luatex
+#include:ifluatex
 #include:xkeyval
 #include:fontspec
 
-#keyvals:\usepackage/junicode#c
-fonttype=#otf,ttf
+#keyvals:\usepackage/junicodevf#c
 light
 medium
 semibold
 condensed
 semicondensed
-expanded
 semiexpanded
-proportional
-tabular
-oldstyle
+expanded
+weightadjustment=%<number%>
+widthadjustment=%<number%>
 lining
-BoldFeatures={%<font features%>}
-CondFeatures={%<font features%>}
-CondLightFeatures={%<font features%>}
-CondMediumFeatures={%<font features%>}
-ExpFeatures={%<font features%>}
-ExpBoldDef={%<font features%>}
-ExpMediumFeatures={%<font features%>}
-ExpSmBoldFeatures={%<font features%>}
-LightDefFeatures={%<font features%>}
-MediumFeatures={%<font features%>}
-RegularFeatures={%<font features%>}
-SmBoldFeatures={%<font features%>}
-SmCondFeatures={%<font features%>}
-SmCondLightFeatures={%<font features%>}
-SmCondMediumFeatures={%<font features%>}
-SmExpFeatures={%<font features%>}
-SmExpBoldFeatures={%<font features%>}
-SmExpMediumFeatures={%<font features%>}
-SmExpSmBoldFeatures={%<font features%>}
+tabular
+proportional
+oldstyle
+MainFeatures={%<font features%>}
+MainRegularFeatures={%<font features%>}
+MainItalicFeatures={%<font features%>}
+MainBoldFeatures={%<font features%>}
+MainBoldItalicFeatures={%<font features%>}
+MainRegularSizeFeatures={%<font features%>}
+MainItalicSizeFeatures={%<font features%>}
+MainBoldSizeFeatures={%<font features%>}
+MainBoldItalicSizeFeatures={%<font features%>}
+ENLAOneSizeFeatures={%<font features%>}
+ENLATwoSizeFeatures={%<font features%>}
+ENLAThreeSizeFeatures={%<font features%>}
+ENLAFourSizeFeatures={%<font features%>}
 #endkeyvals
 
-\jBold
-\jBoldItalic
-\jCond
-\jCondItalic
-\jCondLight
-\jCondLightItalic
-\jCondMedium
-\jCondMediumItalic
-\jExp
-\jExpItalic
-\jExpBold
-\jExpBoldItalic
-\jExpMedium
-\jExpMediumItalic
-\jExpSmBold
-\jExpSmBoldItalic
-\jRegular
-\jItalic
-\jLight
-\jLightItalic
-\jMedium
-\jMediumItalic
-\jSmBold
-\jSmBoldItalic
-\jSmCond
-\jSmCondItalic
-\jSmCondLight
-\jSmCondLightItalic
-\jSmCondMedium
-\jSmCondMediumItalic
-\jSmExp
-\jSmExpItalic
-\jSmExpBold
-\jSmExpBoldItalic
-\jSmExpMedium
-\jSmExpMediumItalic
-\jSmExpSmBold
-\jSmExpSmBoldItalic
+\EnlargedOne
+\EnlargedOneItalic
+\EnlargedTwo
+\EnlargedTwoItalic
+\EnlargedThree
+\EnlargedThreeItalic
+\EnlargedFour
+\EnlargedFourItalic
 
 \textcv{variant}{text}
 \textcv[index]{variant}{text}
@@ -223,25 +189,19 @@ SmExpSmBoldFeatures={%<font features%>}
 \jcvounce#*
 
 # not documented
-\ifjunc#S
-\junctrue#S
-\juncfalse#S
-\RegularDef#S
-\BoldDef#S
-\CondDef#S
-\CondLightDef#S
-\CondMediumDef#S
-\ExpDef#S
-\ExpBoldDef#S
-\ExpMediumDef#S
-\ExpSmBoldDef#S
-\LightDef#S
-\MediumDef#S
-\SmBoldDef#S
-\SmCondDef#S
-\SmCondLightDef#S
-\SmCondMediumDef#S
-\SmExpDef#S
-\SmExpBoldDef#S
-\SmExpMediumDef#S
-\SmExpSmBoldDef#S
+\MainDef#S
+\MainRegDef#S
+\MainItalicDef#S
+\MainBoldDef#S
+\MainBoldItalicDef#S
+\ENLAOneSizeDef#S
+\ENLATwoSizeDef#S
+\ENLAThreeSizeDef#S
+\ENLAFourSizeDef#S
+\mkregweightcommands{arg1}{arg2}#S
+\mkboldweightcommands{arg1}{arg2}#S
+\mkwidthcommands{arg1}{arg2}#S
+\MainRegSizeDef#S
+\MainItalicSizeDef#S
+\MainBoldSizeDef#S
+\MainBoldItalicSizeDef#S

@@ -1,7 +1,6 @@
 # memoize package
-# Matthew Bertucci 2023/10/15 for v1.0.0
+# Matthew Bertucci 2024/01/02 for v1.1.0
 
-#include:pgfopts
 #include:etoolbox
 #include:pdftexcmds
 #include:advice
@@ -110,12 +109,19 @@
 \mmzAutoInit#*
 
 ## < Keyvals > ##
-#keyvals:\mmzset#c,\mmznext#c,\nommzkeys#c,\mmz#c,\begin{memoize}#c,\nommz#c,\begin{nomemoize}#c
+#keyvals:\usepackage/memoize#c
+options={%<options%>}
+#endkeyvals
+
+#keyvals:\usepackage/memoize#c,\mmzset#c,\mmznext#c,\nommzkeys#c,\mmz#c,\begin{memoize}#c,\nommz#c,\begin{nomemoize}#c
 enable
 disable
 normal
 readonly
 recompile
+#endkeyvals
+
+#keyvals:\mmzset#c,\mmznext#c,\nommzkeys#c,\mmz#c,\begin{memoize}#c,\nommz#c,\begin{nomemoize}#c
 verbatim
 verb
 no verbatim
@@ -144,7 +150,7 @@ include context in ccmemo
 direct ccmemo input
 memo dir=%<directory%>
 no memo dir
-path={%<key list%>}
+prefix=%<prefix%>
 mkdir#true,false
 mkdir command=%<system command%>
 output-directory=%<directory%>
@@ -183,7 +189,6 @@ ignore spaces#true,false
 
 # not documented
 \filetotoks{arg1}{arg2}#S
-\mmzUnquote{arg}#S
 \mmzRawCollectorOptions#S
 \mmzDriver#S
 \mmzvalueof{arg}#S

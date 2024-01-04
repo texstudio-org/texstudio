@@ -1,12 +1,14 @@
 # mathastext package
-# Matthew Bertucci 2023/12/21 for v1.3za
+# Matthew Bertucci 2024/01/01 for v1.3zb
 
 #keyvals:\usepackage/mathastext#c
 italic
 frenchmath
 ncccomma
+decimalcomma
 binarysemicolon
 frenchmath*
+frenchmath+
 endash
 noendash
 emdash
@@ -64,7 +66,15 @@ subdued
 #include:ncccomma
 #endif
 
+#ifOption:decimalcomma
+#include:decimalcomma
+#endif
+
 #ifOption:frenchmath*
+#include:decimalcomma
+#endif
+
+#ifOption:frenchmath+
 #include:ncccomma
 #endif
 

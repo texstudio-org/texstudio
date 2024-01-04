@@ -1,8 +1,11 @@
 # schulma-komp class
-# Matthew Bertucci 2/16/2022 for v1.2
+# Matthew Bertucci 2023/01/01 for v1.6
 
 #include:class-schulma-ab
+#include:datetime2
 
+\Nr{Nummer}
+\Klausurdatum{Datum}
 \Abschnitt{Thema%text}
 \Abschnitt[Nummer]{Thema%text}
 \Unterabschnitt{Thema%text}

@@ -1,5 +1,5 @@
 # exesheet package
-# Matthew Bertucci 2023/10/31 for v2.4
+# Matthew Bertucci 2024/01/01 for v2.5
 
 #include:kvoptions
 #include:ifthen
@@ -212,8 +212,6 @@ i
 #endkeyvals
 
 # not documented
-\gaddtolength{register}{length}#S
-\gsetlength{register}{length}#S
 \largemarginwidthfactor#S
 \leftnotemarginwidth{length}#S
 \noteragged#S

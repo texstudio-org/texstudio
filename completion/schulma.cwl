@@ -1,5 +1,5 @@
 # schulma package
-# Matthew Bertucci 2023/03/15 for v1.4
+# Matthew Bertucci 2024/01/01 for v1.6
 
 #include:mathtools
 #include:autoaligne
@@ -26,6 +26,8 @@ ohne-icomma
 \VekBr{x%formula}{y%formula}{z%formula}
 \GTRY{index}
 \GTRY{index}[term%formula]
+\Rechenkaestchen{Breite}{Höhe}
+\Rechenkaestchen[Kästchengröße]{Breite}{Höhe}
 
 #keyvals:\node#c
 Kreuz
