@@ -1,39 +1,39 @@
 # fontsetup package
-# Matthew Bertucci 2023/10/20 for v1.7
+# Matthew Bertucci 2024/01/06 for v2.02
 
+#include:iflang
+#include:iftex
 #include:fontspec
 #include:unicode-math
 #include:ifthen
-#include:iftex
 
 #keyvals:\usepackage/fontsetup#c
 default
 upint
 varnothing
-amsbb
-gfsartemisia
-gfsdidot
-gfsdidotclassic
-gfsneohellenic
+newcmbb
+olddefault
 cambria
-lucida
-kerkis
+concrete
+ebgaramond
+erewhon
+euler
 fira
-times
+gfsartemisia
+gfsdidotclassic
+gfsdidot
+gfsneohellenic
+kerkis
+libertinus
+lucida
+minion
+msgaramond
+oldstandard
 palatino
 stixtwo
-neokadmus
-msgaramond
-ebgaramond
-minion
-euler
-libertinus
-olddefault
-concrete
 talos
-oldstandard
+times
 xcharter
-erewhon
 #endkeyvals
 
 #ifOption:default
@@ -44,19 +44,21 @@ erewhon
 #include:newcomputermodern
 #endif
 
-#ifOption:gfsneohellenic
-#include:gfsneohellenicot
-#endif
-
-#ifOption:gfsdidot
-\GFSDidotoSubstFont#*
-\GFSDidotoSubst#*
-\phifix#*
+#ifOption:erewhon
+#include:fourier-otf
 #endif
 
 #ifOption:gfsdidotclassic
-\defaultfont#*
-\latinfont#*
+\defaultfont#S
+\latinfont#S
+#endif
+
+#ifOption:gfsdidot
+\phifix#S
+#endif
+
+#ifOption:gfsneohellenic
+#include:gfsneohellenicot
 #endif
 
 #ifOption:libertinus
@@ -67,35 +69,10 @@ erewhon
 #include:xcharter-otf
 #endif
 
-#ifOption:erewhon
-#include:fourier-otf
-#endif
+\leftgrquotes#*
+\rightgrquotes#*
 
-\leftgrquotes#S
-\rightgrquotes#S
-
-\fontsetupdefault#S
-\fontsetupgfsartemisia#S
-\fontsetupgfsdidot#S
-\fontsetupgfsdidotclassic#S
-\fontsetupgfsneohellenic#S
-\fontsetupcambria#S
-\fontsetuplucida#S
-\fontsetupkerkis#S
-\fontsetupfira#S
-\fontsetuptimes#S
-\fontsetuppalatino#S
-\fontsetupstixtwo#S
-\fontsetupneokadmus#S
-\fontsetupmsgaramond#S
-\fontsetupebgaramond#S
-\fontsetupminion#S
-\fontsetupeuler#S
-\fontsetuplibertinus#S
-\fontsetupolddefault#S
-\fontsetupconcrete#S
-\fontsetuptalos#S
-\fontsetupoldstandard#S
-\fontsetupxcharter#S
-\fontsetuperewhon#S
-\fontsetupfont#S
+# not documented
+\greeksetup#S
+\cvfoursetup#S
+\ncmsetup#S
