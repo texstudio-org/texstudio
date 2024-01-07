@@ -12679,7 +12679,7 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
     <message>
         <location filename="../src/usermenudialog.ui" line="110"/>
         <source>Export macro(s) to file(s)</source>
-        <translation type="unfinished"/>
+        <translation>Makroları dosyalar olarak dışa aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="473"/>
@@ -12746,7 +12746,7 @@ Betiği txs start ile başlatmak için ?txs-start özel değeri kullanılabilir.
         <location filename="../src/usermenudialog.cpp" line="50"/>
         <location filename="../src/usermenudialog.cpp" line="468"/>
         <source>Export all macros</source>
-        <translation type="unfinished"/>
+        <translation>Tüm makroları dışa aktar</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="354"/>

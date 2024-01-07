@@ -12686,7 +12686,7 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
     <message>
         <location filename="../src/usermenudialog.ui" line="110"/>
         <source>Export macro(s) to file(s)</source>
-        <translation type="unfinished"/>
+        <translation>Exportar macro(s) para ficheiro(s)</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="473"/>
@@ -12753,7 +12753,7 @@ Você pode utilizar o valor especial ?txs-start para iniciar o script junto com 
         <location filename="../src/usermenudialog.cpp" line="50"/>
         <location filename="../src/usermenudialog.cpp" line="468"/>
         <source>Export all macros</source>
-        <translation type="unfinished"/>
+        <translation>Exportar todas as macros</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="354"/>

@@ -12665,7 +12665,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="../src/usermenudialog.ui" line="110"/>
         <source>Export macro(s) to file(s)</source>
-        <translation type="unfinished"/>
+        <translation>Makrók exportálása fájlokba</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.ui" line="473"/>
@@ -12732,7 +12732,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
         <location filename="../src/usermenudialog.cpp" line="50"/>
         <location filename="../src/usermenudialog.cpp" line="468"/>
         <source>Export all macros</source>
-        <translation type="unfinished"/>
+        <translation>Összes makró exportálása</translation>
     </message>
     <message>
         <location filename="../src/usermenudialog.cpp" line="354"/>
