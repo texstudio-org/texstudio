@@ -1,5 +1,5 @@
 # lucida-otf package
-# Matthew Bertucci 11/13/2021 for v0.08
+# Matthew Bertucci 2023/01/06 for v0.09
 
 #include:ifxetex
 #include:ifluatex
@@ -28,4 +28,4 @@ useKerning#true,false
 \LucidaHandwriting
 \LucidaGrandeMonoDK
 \LucidaConsoleDK
-\lucidaSLshape#*
+\lucidaSLshape#S
