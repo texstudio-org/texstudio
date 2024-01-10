@@ -2,7 +2,7 @@
 # thatlittleboy/2018-06-07 for tcolorbox v4.13
 # muzimuzhi/30 Aug 2019 for tcolorbox v4.20
 #     reduce file size by using clist in "#keyvals:\cmdA,\cmdB"
-# Matthew Bertucci updated 2023/09/26 for v6.1.0
+# Matthew Bertucci updated 2024/01/10 for v6.2.0
 
 #include:environ
 #include:etoolbox
@@ -425,6 +425,12 @@ tikznode
 tikznode={%<TikZ options%>}
 varwidth upper
 varwidth upper=##L
+environment upper=%<name%>
+environment upper args={%<name%>}{%<code%>}
+environment lower=%<name%>
+environment lower args={%<name%>}{%<code%>}
+environment title=%<name%>
+environment title args={%<name%>}{%<code%>}
 overlay={%<code%>}
 no overlay
 overlay broken={%<code%>}
