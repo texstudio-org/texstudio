@@ -9730,6 +9730,8 @@ LatexEditorView* Texstudio::openExternalFile(QString name, const QString &defaul
 				if (!fi.absoluteDir().exists())
 					fi.absoluteDir().mkpath(".");
 				fileNew(fi.absoluteFilePath());
+                QDocumentLineHandle *dlh=doc->line(lineNr).handle();
+                dlh->setFlag(QDocumentLine::argumentsParsed,false); // force reinterpretation of line
 				doc->patchStructure(lineNr, 1);
 			}
 		}
