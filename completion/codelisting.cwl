@@ -1,5 +1,5 @@
 # codelisting package
-# Matthew Bertucci 2023/11/22 for v1.2
+# Matthew Bertucci 2024/01/08 for v1.3
 
 #include:listings
 #include:scontents
@@ -29,10 +29,14 @@ force-eol#true,false
 \tsdemo[code-keys%keyvals]{st-name}
 \tsdemo*{st-name}
 \tsdemo*[code-keys%keyvals]{st-name}
+\tsresult{st-name}
+\tsresult[code-keys%keyvals]{st-name}
+\tsresult*{st-name}
+\tsresult*[code-keys%keyvals]{st-name}
 
 \setcodekeys{code-keys%keyvals}
 
-#keyvals:\tscode,\tscode*,\tsdemo,\tsdemo*,\setcodekeys
+#keyvals:\tscode,\tscode*,\tsdemo,\tsdemo*,\tsresult,\tsresult*,\setcodekeys
 settexcs={%<csname1,csname2,...%>}
 settexcs2={%<csname1,csname2,...%>}
 settexcs3={%<csname1,csname2,...%>}

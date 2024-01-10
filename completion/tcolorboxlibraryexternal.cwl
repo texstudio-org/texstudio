@@ -1,5 +1,5 @@
 # external tcolorboxlibrary
-# 2022/12/12 for v5.1.1
+# 2024/01/10 for v6.2.0
 
 #include:incgraph
 # loads processing tcolorbox library
@@ -83,7 +83,4 @@ externalize example!=%<name%>
 #endkeyvals
 
 # from processing tcolorbox library
-#include:pdftexcmds
-#include:shellesc
-\tcbprocmdfivesum#S
 \tcbiffileprocess{condition}{source}{md5-file}{target}{true}{false}#*

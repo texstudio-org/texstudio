@@ -1,5 +1,5 @@
 # exsol package
-# Matthew Bertucci 2022/05/23 for v1.4
+# Matthew Bertucci 2024/01/07 for v1.6
 
 #include:ifmtarg
 #include:fancyvrb
@@ -10,6 +10,8 @@
 
 #keyvals:\usepackage/exsol#c
 local#true,false
+external#true,false
+inline#true,false
 nolabels#true,false
 exercisesfontsize=%<fontsize csname%>
 exerciseaslist#true,false
@@ -49,31 +51,31 @@ subrule
 \solutionsname
 \loadSolutions
 
-\begin{solutionseries}{arg1}{arg2}#*
-\begin{solutionseries}[options]{arg1}{arg2}#*
-\end{solutionseries}#*
-\columncount#*
-\exercisesfontsize#*
-\exercisestream#*
-\exsolexerciseitemindent#*
-\exsolexerciselabelsep#*
-\exsolexerciselabelwidth#*
-\exsolexerciseleftmargin#*
-\exsolexerciseparindent#*
-\exsolexerciseparsep#*
-\exsolexerciserightmargin#*
-\exsolexercisesaboveskip#*
-\exsolexercisesbelowskip#*
-\exsolexercisetopbottomsep#*
-\exsubrule#*
-\formulacollectionstream#*
-\formulastream#*
-\ifnoexinchapter#*
-\noexercisesinchapter#*
-\noexercisesinnextchapter#*
-\noexinchapterfalse#*
-\noexinchaptertrue#*
-\solsubrule#*
-\solutionstream#*
-\theexercise#*
-\theexerciseseries#*
+\begin{solutionseries}{arg1}{arg2}#S
+\begin{solutionseries}[options]{arg1}{arg2}#S
+\end{solutionseries}#S
+\columncount#S
+\exercisesfontsize#S
+\exercisestream#S
+\exsolexerciseitemindent#S
+\exsolexerciselabelsep#S
+\exsolexerciselabelwidth#S
+\exsolexerciseleftmargin#S
+\exsolexerciseparindent#S
+\exsolexerciseparsep#S
+\exsolexerciserightmargin#S
+\exsolexercisesaboveskip#S
+\exsolexercisesbelowskip#S
+\exsolexercisetopbottomsep#S
+\exsubrule#S
+\formulacollectionstream#S
+\formulastream#S
+\ifnoexinchapter#S
+\noexercisesinchapter#S
+\noexercisesinnextchapter#S
+\noexinchapterfalse#S
+\noexinchaptertrue#S
+\solsubrule#S
+\solutionstream#S
+\theexercise#S
+\theexerciseseries#S

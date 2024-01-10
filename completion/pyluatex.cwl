@@ -1,9 +1,8 @@
 # pyluatex package
-# Matthew Bertucci 2022/06/06 for v0.5.0
+# Matthew Bertucci 2023/01/07 for v0.6.2
 
 #include:luatex
 #include:kvoptions
-#include:atveryend
 
 #keyvals:\usepackage/pyluatex#c
 executable=%<path%>

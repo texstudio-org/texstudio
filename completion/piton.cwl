@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2023/09/05 for v2.2
+# Matthew Bertucci 2024/01/06 for v2.3
 
 #include:l3keys2e
 #include:luatexbase
@@ -99,6 +99,7 @@ indent-broken-lines
 end-of-broken-line=%<symbol%>
 continuation-symbol=%<symbol%>
 continuation-symbol-on-indentation=%<symbol%>
+write=%<file%>
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
@@ -187,8 +188,8 @@ Prompt
 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
 
-\myfiledate#S
-\myfileversion#S
+\PitonFileVersion#S
+\PitonFileDate#S
 \PitonBeginMarkerNotFound#S
 \PitonEndMarkerNotFound#S
 \PitonSyntaxError#S

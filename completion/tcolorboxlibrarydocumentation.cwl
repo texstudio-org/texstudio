@@ -1,5 +1,5 @@
 # documentation tcolorboxlibrary
-# 2023/03/17 for v6.0.3
+# 2024/01/10 for v6.2.0
 
 #include:tcolorboxlibrarylistings
 #include:tcolorboxlibraryskins
@@ -91,7 +91,9 @@
 \begin{absquote}
 \end{absquote}
 \tcbmakedocSubKey{envname}{key path}#N
+\tcbmakedocSubKey[options%keyvals]{envname}{key path}#N
 \tcbmakedocSubKeys{envname}{key path}#N
+\tcbmakedocSubKeys[options%keyvals]{envname}{key path}#N
 \refCom{name}
 \refCom*{name}
 \refEnv{name}
@@ -118,7 +120,7 @@ Hyperlink#B
 Fade#B
 
 # keys that make sense with \doc<type> commands
-#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*
+#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbmakedocSubKey,\tcbmakedocSubKeys,\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*
 doc name=%<name%>
 doc label=%<text%>
 doc index=%<text%>
@@ -128,7 +130,7 @@ doc no index
 #endkeyvals
 
 # keys that don't make sense with \doc<type> commands
-#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations}
+#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbmakedocSubKey,\tcbmakedocSubKeys,\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations}
 doc parameter=%<parameters%>
 doc description=%<description%>
 doc new=%<date%>
@@ -158,8 +160,13 @@ doc head environment={%<options%>}
 doc raster environment={%<options%>}
 #endkeyvals
 
-#keyvals:\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbset
+#keyvals:\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbmakedocSubKey,\tcbmakedocSubKeys,\tcbset
 doc keypath=%<key path%>
+doc key prefix=%<key prefix%>
+index key formatter
+index key formatter=%<macro%>
+index keys formatter
+index keys formatter=%<macro%>
 before doc body key={%<code%>}
 after doc body key={%<code%>}
 doc head key={%<options%>}
@@ -188,7 +195,7 @@ before example={%<code%>}
 after example={%<code%>}
 #endkeyvals
 
-#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*}
+#keyvals:\tcbset,\begin{docCommand},\begin{docCommand*},\begin{docCommands},\begin{docEnvironment},\begin{docEnvironment*},\begin{docEnvironments},\begin{docKey},\begin{docKey*},\begin{docKeys},\tcbmakedocSubKey,\tcbmakedocSubKeys,\begin{docPathOperation},\begin{docPathOperation*},\begin{docPathOperations},\docValue,\docValue*,\docAuxCommand,\docAuxCommand*,\docAuxEnvironment,\docAuxEnvironment*,\docAuxKey,\docAuxKey*,\docCounter,\docCounter*,\docLength,\docLength*,\docColor,\docColor*,\begin{dispExample*},\begin{dispListing*}
 keywords bold#true,false
 index command=%<macro%>
 index command name=%<name%>

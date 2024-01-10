@@ -1,5 +1,5 @@
 # listings tcolorboxlibrary
-# 2023/02/10 for v6.0.0
+# 2024/01/10 for v6.2.0
 
 #include:listings
 # loads processing and listingscore tcolorbox libraries
@@ -131,7 +131,4 @@ freeze jpg
 #endkeyvals
 
 # from processing tcolorbox library
-#include:pdftexcmds
-#include:shellesc
-\tcbprocmdfivesum#S
 \tcbiffileprocess{condition}{source}{md5-file}{target}{true}{false}#*

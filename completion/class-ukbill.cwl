@@ -1,5 +1,5 @@
 # ukbill class
-# Matthew Bertucci 2022/12/01 for v1.0.0
+# Matthew Bertucci 2024/01/07 for v1.2.0
 
 #include:class-memoir
 #include:hyphenat
@@ -40,6 +40,12 @@ private
 \printbillnum
 \whereas{text}
 \printwhereas
+\billday{day}
+\printbillday
+\billmonth{month}
+\printbillmonth
+\billyear{year}
+\printbillyear
 
 \begin{numstat}
 \end{numstat}
@@ -57,6 +63,7 @@ private
 \schdpart{title}#L4
 
 # not in main documentation
+\addordinal{arg}#S
 \begin{instatquote}#S
 \begin{schumstat}#S
 \begin{statquote}#S
@@ -72,6 +79,7 @@ private
 \Leftblock#S
 \oldsubsection{title}#SL3
 \oldsubsubsection{title}#SL4
+\ORDINAL{arg}#S
 \Rightblock#S
 \stat{arg1}{arg2}#S
 \stathead{arg1}{arg2}#S
