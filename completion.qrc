@@ -1828,6 +1828,7 @@
 <file>completion/holtpolt.cwl</file>
 <file>completion/holtxdoc.cwl</file>
 <file>completion/hpstatement.cwl</file>
+<file>completion/href-ul.cwl</file>
 <file>completion/hrefhide.cwl</file>
 <file>completion/hsetup.cwl</file>
 <file>completion/huaz.cwl</file>
@@ -3585,6 +3586,7 @@
 <file>completion/tikz.cwl</file>
 <file>completion/tikz-dependency.cwl</file>
 <file>completion/tikz-dimline.cwl</file>
+<file>completion/tikzdotncross.cwl</file>
 <file>completion/tikzducks.cwl</file>
 <file>completion/tikzexternal.cwl</file>
 <file>completion/tikz-feynhand.cwl</file>
