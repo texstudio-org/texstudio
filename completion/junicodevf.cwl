@@ -1,5 +1,5 @@
 # junicodevf package
-# Matthew Bertucci 2023/01/03 for v2.204
+# Matthew Bertucci 2023/01/10 for v2.206
 
 #include:luatex
 #include:ifluatex
@@ -198,10 +198,4 @@ ENLAFourSizeFeatures={%<font features%>}
 \ENLATwoSizeDef#S
 \ENLAThreeSizeDef#S
 \ENLAFourSizeDef#S
-\mkregweightcommands{arg1}{arg2}#S
-\mkboldweightcommands{arg1}{arg2}#S
-\mkwidthcommands{arg1}{arg2}#S
-\MainRegSizeDef#S
-\MainItalicSizeDef#S
-\MainBoldSizeDef#S
-\MainBoldItalicSizeDef#S
+\makemainfontcommand{arg1}{arg2}{arg3}{arg4}{arg5}#S
