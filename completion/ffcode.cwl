@@ -1,12 +1,12 @@
 # ffcode package
-# Matthew Bertucci 2022/11/30 for v0.7.0
+# Matthew Bertucci 2024/01/10 for v0.9.0
 
 #include:pgfopts
-#include:minted
+#include:xcolor
+#include:listings
 #include:tcolorbox
 
 #keyvals:\usepackage/ffcode#c
-nopygments
 noframes
 nobars
 nonumbers
@@ -17,6 +17,5 @@ sf
 
 \ff{code%definition}
 \begin{ffcode}#V
+\begin{ffcode}[listings options]#V
 \end{ffcode}
-\begin{ffcode*}{%<minted options%>}#V
-\end{ffcode*}
