@@ -1296,7 +1296,7 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
  * \param linenr first line to check
  * \param count number of lines to check (-1: all)
  * \param recheck method has been called a second time to handle profound syntax changes from first call (like newly loaded packages). This allows to avoid some costly operations on the second call.
- * \return true means a second run is suggested as packages are loadeed which change the outcome
+ * \return true means a second run is suggested as packages are loaded which change the outcome
  *         e.g. definition of specialDef command, but packages are load at the end of this method.
  */
 void LatexDocument::patchStructure(int linenr, int count, bool recheck)
