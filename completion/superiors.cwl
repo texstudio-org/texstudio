@@ -1,17 +1,27 @@
 # superiors package
-# Matthew Bertucci 9/13/2021 for v1.06
+# Matthew Bertucci 2024/01/12 for v2.0
 
-#include:pgffor
 #include:xkeyval
+#include:xcolor
+#include:iftex
+#include:etoolbox
+#include:ifthen
+#include:trace
 
 #keyvals:\usepackage/superiors#c
-scaled=%<factor%>
-supscaled=%<factor%>
-raised=##L
-supstfm=%<.tfm file name%>
-supsfam=#newtx,newtxtext,newpx,newpxtext,libertine,garamondx,zgm,erewhon,xcharter,baskervaldx,baskervillef,cochineal,stickstoo,fbb
+notitlepatch#true,false
+supscale=%<factor%>
+supscolor=#%color
+supsraised=##L
+supsfam=%<family%>
+supsotf=%<.otf file%>
+supsLspaced=##L
+supsRspaced=##L
 supspaced=##L
 #endkeyvals
 
-\sustyle
-\textsu{text}
+\textfnscript{text}
+\textSuperscript{text}
+
+# not documented
+\supsStyle#S
