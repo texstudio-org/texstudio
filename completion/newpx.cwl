@@ -1,5 +1,5 @@
 # newpx package
-# Matthew Bertucci 2023/08/22 for v1.533
+# Matthew Bertucci 2024/01/12 for v1.535
 
 #include:fontenc
 #include:fontaxes
@@ -65,9 +65,6 @@ trueslanted
 scosf
 tighter
 looser
-supscaled=%<factor%>
-supsraised=##L
-supspaced=##L
 #endkeyvals
 
 #ifOption:amsthm
