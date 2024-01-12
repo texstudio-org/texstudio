@@ -8018,7 +8018,17 @@ void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
 void Texstudio::gotoLine(QTreeWidgetItem *item, int)
 {
     StructureEntry *se=item->data(0,Qt::UserRole).value<StructureEntry *>();
-    if(!se) return;
+    if(!se){
+        // sepcial treatment for doc header
+        LatexDocument *document = static_cast<LatexDocument *>(item->data(0,Qt::UserRole).value<void *>());
+        if(document){
+            LatexEditorView *edView = document->getEditorView();
+            if(edView){
+                edView->setFocus();
+            }
+        }
+        return;
+    }
     const QList<StructureEntry::Type> lineTypes={StructureEntry::SE_SECTION,StructureEntry::SE_TODO,StructureEntry::SE_LABEL,StructureEntry::SE_MAGICCOMMENT};
     if(lineTypes.contains(se->type)){
         LatexEditorView *edView = se->document->getEditorView();
