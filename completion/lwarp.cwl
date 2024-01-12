@@ -1,10 +1,11 @@
 # lwarp package
-# Matthew Bertucci 2022/11/22 for v0.909
+# Matthew Bertucci 2024/01/12 for v0.914
 
 #include:iftex
 #include:ifpdf
 #include:ifptex
 #include:etoolbox
+#include:verifycommand
 #include:xpatch
 #include:ifplatform
 #include:letltxmacro
