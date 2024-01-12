@@ -1,5 +1,5 @@
 # bibcop package
-# Matthew Bertucci 2023/05/18 for v0.0.11
+# Matthew Bertucci 2024/01/12 for v0.0.16
 
 #keyvals:\usepackage/bibcop#c
 verbose
@@ -14,3 +14,4 @@ notags
 
 #include:iexec
 #include:pgfopts
+#include:shellesc
