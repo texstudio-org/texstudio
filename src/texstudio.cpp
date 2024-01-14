@@ -12116,6 +12116,45 @@ void Texstudio::updateStructureLocally(bool updateAll){
     if(configManager.parseMaster && master && master->isHidden()){
         showHiddenMasterFirst=true;
     }
+    // reorder documents
+    // on multi doc update only
+    if(!configManager.structureShowSingleDoc){
+        for(int i=0;i<documents.documents.length();++i){
+            bool found=false;
+            int j=i;
+            LatexDocument *document;
+            for(;j<structureTreeWidget->topLevelItemCount();++j){
+                QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
+                document = static_cast<LatexDocument*>(item->data(0,Qt::UserRole).value<void*>());
+                if(document == documents.documents.value(i)){
+                    found=true;
+                    break;
+                }
+            }
+            if(found && i<j){
+                QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
+                if(document==master){
+                    item->setIcon(0,getRealIcon("masterdoc"));
+                }else{
+                    item->setIcon(0,getRealIcon("doc"));
+                }
+                structureTreeWidget->insertTopLevelItem(i,item);
+            }
+            if(!found){
+                QTreeWidgetItem *item=new QTreeWidgetItem();
+                LatexDocument *doc=documents.documents.value(i);
+
+                item->setText(0,doc->getFileInfo().fileName());
+                item->setData(0,Qt::UserRole,QVariant::fromValue<void*>(static_cast<void*>(doc)));
+                if(doc==master){
+                    item->setIcon(0,getRealIcon("masterdoc"));
+                }else{
+                    item->setIcon(0,getRealIcon("doc"));
+                }
+                structureTreeWidget->insertTopLevelItem(i,item);
+            }
+        }
+    }
 
     for(LatexDocument *doc:docs){
         bool hiddenMasterStructureIsVisible=false;
@@ -12150,45 +12189,6 @@ void Texstudio::updateStructureLocally(bool updateAll){
                         structureTreeWidget->takeTopLevelItem(i);
                         delete item;
                         --i;
-                    }
-                }
-            }
-            // reorder documents
-            for(int i=0;i<documents.documents.length();++i){
-                bool found=false;
-                int j=i;
-                LatexDocument *document;
-                for(;j<structureTreeWidget->topLevelItemCount();++j){
-                    QTreeWidgetItem *item = structureTreeWidget->topLevelItem(j);
-                    document = static_cast<LatexDocument*>(item->data(0,Qt::UserRole).value<void*>());
-                    if(document == documents.documents.value(i)){
-                        found=true;
-                        break;
-                    }
-                }
-                if(found && i<j){
-                    QTreeWidgetItem *item = structureTreeWidget->takeTopLevelItem(j);
-                    if(document==master){
-                        item->setIcon(0,getRealIcon("masterdoc"));
-                    }else{
-                        item->setIcon(0,getRealIcon("doc"));
-                    }
-                    structureTreeWidget->insertTopLevelItem(i,item);
-                }
-                if(!found){
-                    QTreeWidgetItem *item=new QTreeWidgetItem();
-                    LatexDocument *doc=documents.documents.value(i);
-
-                    item->setText(0,doc->getFileInfo().fileName());
-                    item->setData(0,Qt::UserRole,QVariant::fromValue<void*>(static_cast<void*>(doc)));
-                    if(doc==master){
-                        item->setIcon(0,getRealIcon("masterdoc"));
-                    }else{
-                        item->setIcon(0,getRealIcon("doc"));
-                    }
-                    structureTreeWidget->insertTopLevelItem(i,item);
-                    if(doc==documents.getCurrentDocument()){
-                        root=item;
                     }
                 }
             }
