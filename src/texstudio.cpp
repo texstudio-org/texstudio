@@ -12098,15 +12098,15 @@ void Texstudio::updateStructureLocally(bool updateAll){
     if(!structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     QTreeWidgetItem *root= nullptr;
 
-    LatexDocument *doc=documents.getCurrentDocument();
-    if(!doc){
+    LatexDocument *currentDoc=documents.getCurrentDocument();
+    if(!currentDoc){
         // no root document
         // clear TOC completely
         structureTreeWidget->clear();
         return;
     }
 
-    QList<LatexDocument*> docs{doc};
+    QList<LatexDocument*> docs{currentDoc};
     if(updateAll){
         docs=documents.documents; // only visible documents
     }
@@ -12134,9 +12134,12 @@ void Texstudio::updateStructureLocally(bool updateAll){
                 if(document == doc){
                     root=item;
                 }else{
-                    QFont font=item->font(0);
-                    font.setBold(false);
-                    item->setFont(0,font);
+                    if(document!=currentDoc){
+                        // unset bold to all but current document
+                        QFont font=item->font(0);
+                        font.setBold(false);
+                        item->setFont(0,font);
+                    }
                     if(!documents.documents.contains(document) || documents.hiddenDocuments.contains(document)){
                         if(showHiddenMasterFirst && document == master && !hiddenMasterStructureIsVisible){
                             // run only once
@@ -12242,9 +12245,12 @@ void Texstudio::updateStructureLocally(bool updateAll){
         }else{
             root->setIcon(0,getRealIcon("doc"));
         }
-        QFont font=root->font(0);
-        font.setBold(true);
-        root->setFont(0,font);
+        if(doc==currentDoc){
+            // emphasize current document
+            QFont font=root->font(0);
+            font.setBold(true);
+            root->setFont(0,font);
+        }
 
         QList<QTreeWidgetItem*> todoList;
         QList<QTreeWidgetItem*> labelList;
