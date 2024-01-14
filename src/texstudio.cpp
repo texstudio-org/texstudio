@@ -12110,13 +12110,15 @@ void Texstudio::updateStructureLocally(bool updateAll){
     if(updateAll){
         docs=documents.documents; // only visible documents
     }
+
+    LatexDocument *master = documents.getMasterDocument();
+    bool showHiddenMasterFirst=false;
+    if(configManager.parseMaster && master && master->isHidden()){
+        showHiddenMasterFirst=true;
+    }
+
     for(LatexDocument *doc:docs){
-        LatexDocument *master = documents.getMasterDocument();
-        bool showHiddenMasterFirst=false;
         bool hiddenMasterStructureIsVisible=false;
-        if(configManager.parseMaster && master && master->isHidden()){
-            showHiddenMasterFirst=true;
-        }
         if(configManager.structureShowSingleDoc){
             root= structureTreeWidget->topLevelItem(0);
             if(structureTreeWidget->topLevelItemCount()>1){
