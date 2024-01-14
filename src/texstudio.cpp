@@ -12479,7 +12479,7 @@ void Texstudio::toggleSingleDocMode()
 {
     bool mode = configManager.structureShowSingleDoc;
     configManager.structureShowSingleDoc= !mode;
-    updateStructureLocally();
+    updateStructureLocally(mode); // inverted structureShowSingleDoc !
 }
 
 /*!
