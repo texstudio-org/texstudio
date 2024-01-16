@@ -125,6 +125,6 @@
         <file>images/rc/radio_checked_focus.png</file>
         <file>images/rc/radio_checked.png</file>
         <file>utilities/packageList.xml</file>
-        <file>utilities/PackageDatabase.json</file>
+        <file>utilities/packageDatabase.json</file>
     </qresource>
 </RCC>
