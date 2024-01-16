@@ -6,32 +6,72 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>363</width>
-    <height>174</height>
+    <width>527</width>
+    <height>484</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Packages Help (Texdoc)</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0" colspan="3">
-    <widget class="QTableWidget" name="tbPackages">
-     <property name="columnCount">
-      <number>2</number>
+   <item row="1" column="0" colspan="2">
+    <widget class="QSplitter" name="splitter_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-     <column>
-      <property name="text">
-       <string>Package</string>
+     <widget class="QTableWidget" name="tbPackages">
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Packages</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Caption</string>
-      </property>
-     </column>
+      <widget class="QTextBrowser" name="PackageInfoBrowser"/>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" name="LanguagesLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Package descriptions</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTextBrowser" name="PackageDescriptions"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </widget>
    </item>
-   <item row="2" column="1" colspan="2">
+   <item row="2" column="0" colspan="2">
     <layout class="QHBoxLayout" name="hboxWarning">
      <item>
       <spacer name="horizontalSpacerHboxWarning">
@@ -99,7 +139,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="1" colspan="2">
+   <item row="3" column="1">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -110,18 +150,22 @@
     </widget>
    </item>
    <item row="0" column="0" colspan="2">
-    <widget class="QLineEdit" name="lineEditSearch">
-     <property name="toolTip">
-      <string>Enter a term to search for in both columns.</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QCheckBox" name="cbShowAllPackages">
-     <property name="text">
-      <string>all packages</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="hboxFilter">
+     <item>
+      <widget class="QLineEdit" name="lineEditSearch">
+       <property name="toolTip">
+        <string>Enter a term to search for in both columns.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbShowAllPackages">
+       <property name="text">
+        <string>all packages</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

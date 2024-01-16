@@ -3,6 +3,7 @@
 
 #include "mostQtHeaders.h"
 #include "help.h"
+#include "latexrepository.h"
 
 
 namespace Ui {
@@ -38,6 +39,7 @@ private:
 	QString lastDocRequest;
     Help *help;
     QStringList m_packages;
+    QButtonGroup ButtonGroup;
 };
 
 #endif // TEXDOCDIALOG_H

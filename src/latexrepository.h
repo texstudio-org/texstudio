@@ -4,21 +4,123 @@
 #include "mostQtHeaders.h"
 enum TeXdocStatus { Undefined, Available, Unavailable };
 
+struct CTANAuthor
+{
+    QString Id;
+    QString Name;
+    QString FamilyName;
+    bool Active;
+};
+
+struct CTANCopyright
+{
+    QString OwnerId;
+    QString Year;
+};
+
+struct CTANVersion
+{
+    QString Number;
+    QDate Date;
+};
+
+struct CTANDescription
+{
+    QString Language;
+    QString Text;
+};
+
+struct CTANDocumentation
+{
+    QString Language;
+    QString Details;
+    QString Href;
+};
+
+struct CTANLicense
+{
+    QString Key;
+    QString Name;
+    bool IsFree;
+};
+
+struct CTANTopic
+{
+    QString Key;
+    QString Details;
+};
+
 class LatexPackageInfo
 {
 public:
-	LatexPackageInfo(const QString &name = QString(), const QString &shortDescr = QString(), bool inst = false, TeXdocStatus status = Undefined)
+    LatexPackageInfo(const QString &name = QString(), const QString &shortDescr = QString(), bool inst = false, TeXdocStatus status = Undefined)
 	{
-		this->name = name;
-		shortDescription = shortDescr;
+        this->Name = name;
+        Caption = shortDescr;
 		installed = inst;
 		docStatus = status;
 	}
 
-	QString name;
-	QString shortDescription;
-	bool installed;
-	TeXdocStatus docStatus;
+    QString Id;
+    QString Name;
+    QString Caption;
+    QList<CTANAuthor> Authors;
+    QList<CTANCopyright> Copyright;
+    QList<CTANLicense> Licences;
+    CTANVersion Version;
+    QList<CTANDescription> Descriptions;
+    QList<CTANDocumentation> Documentations;
+    QString CtanLink;
+    QList<CTANTopic> Topics;
+    QString Miktex;
+    QString Texlive;
+    QStringList Also;
+    bool installed;
+    TeXdocStatus docStatus;
+
+    QString AuthorsFullName(){
+        QString text;
+        for(CTANAuthor author : Authors){
+            text += "\t- "+author.Name+" "+author.FamilyName+"\n";
+        }
+        return text;
+    }
+
+    QString ShowAllCopyrights(){
+        QString text;
+        for(CTANCopyright copyright : Copyright){
+            if(!copyright.OwnerId.isEmpty() || !copyright.Year.isEmpty()){
+                text += "\t- "+copyright.OwnerId+", "+copyright.Year+"\n";
+            }
+        }
+        return text;
+    }
+
+    QString ShowAllLicenses(){
+        QString text;
+        QString isFree;
+        for(CTANLicense license : Licences){
+            isFree = (license.IsFree) ? QObject::tr(" (Free)") : QObject::tr(" (Not free)");
+            text += "\t- "+license.Key+", "+license.Name+isFree+"\n";
+        }
+        return text;
+    }
+
+    QString ShowAllDocumentation(){
+        QString text;
+        for(CTANDocumentation doc : Documentations){
+            text += "\t- ["+doc.Details+"](https://www.ctan.org/tex-archive"+doc.Href.remove("ctan:")+")\n";
+        }
+        return text;
+    }
+
+    QString ShowAllTopics(){
+        QString text;
+        for(CTANTopic topic : Topics){
+            text += "\t- "+topic.Key+" : "+topic.Details+"\n";
+        }
+        return text;
+    }
 };
 Q_DECLARE_METATYPE(LatexPackageInfo)
 
@@ -36,7 +138,9 @@ public:
 	QString shortDescription(const QString &name);
 	TeXdocStatus docStatus(const QString &name);
 	void updatePackageInfo(const QString &name, const TeXdocStatus &docStatus);
-	QStringList availablePackages();
+    QStringList availablePackages();
+    static QString packageInfo(LatexPackageInfo package);
+    QHash<QString, LatexPackageInfo> getPackageHash();
 
 private:
 	LatexRepository();
@@ -44,6 +148,7 @@ private:
 	LatexRepository &operator=(const LatexRepository &);
 
 	bool loadStaticPackageList(const QString &file);
+    QString AuthorsDBFile;
 
 	static LatexRepository *m_Instance;
 
