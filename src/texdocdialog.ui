@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
-    <height>484</height>
+    <width>818</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,8 +33,8 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QTextBrowser" name="PackageInfoBrowser"/>
-      <widget class="QWidget" name="">
+      <widget class="QTextBrowser" name="packageInfoBrowser"/>
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>0</number>
@@ -64,7 +64,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QTextBrowser" name="PackageDescriptions"/>
+         <widget class="QTextBrowser" name="packageDescriptions"/>
         </item>
        </layout>
       </widget>

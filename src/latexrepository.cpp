@@ -41,81 +41,81 @@ bool LatexRepository::loadStaticPackageList(const QString &file)
     for(const QJsonValue &value : array){
         const QJsonObject &object(value.toObject());
         LatexPackageInfo package;
-        package.Id = object["id"].toString();
-        package.Name = object["name"].toString();
-        package.Caption = object["caption"].toString().replace("\'","\''");
+        package.id = object["id"].toString();
+        package.name = object["name"].toString();
+        package.caption = object["caption"].toString().replace("\'","\''");
         //Authors
         QJsonArray authorsArray = object["authors"].toArray();
         for(const QJsonValue &item : authorsArray){
             CTANAuthor author;
             const QJsonObject &authorObject(item.toObject());
-            author.Id = authorObject["key"].toString();
-            author.Name = authorObject["givenname"].toString();
-            author.FamilyName = authorObject["familyname"].toString();
-            package.Authors.append(author);
+            author.id = authorObject["key"].toString();
+            author.name = authorObject["givenname"].toString();
+            author.familyName = authorObject["familyname"].toString();
+            package.authors.append(author);
         }
         //Copyright
         QJsonArray copyrightArray = object["copyright"].toArray();
         for(const QJsonValue &item : copyrightArray){
             CTANCopyright copyright;
             const QJsonObject &copyrightObject(item.toObject());
-            copyright.OwnerId = copyrightObject["owner"].toString();
-            copyright.Year = copyrightObject["year"].toString();
-            package.Copyright.append(copyright);
+            copyright.ownerId = copyrightObject["owner"].toString();
+            copyright.year = copyrightObject["year"].toString();
+            package.copyrights.append(copyright);
         }
         //License
         QJsonArray licenseArray = object["license"].toArray();
         for(const QJsonValue &item : licenseArray){
             CTANLicense license;
             const QJsonObject &licenseObject(item.toObject());
-            license.Key = licenseObject["key"].toString();
-            license.Name = licenseObject["name"].toString();
-            license.IsFree = licenseObject["free"].toBool();
-            package.Licences.append(license);
+            license.key = licenseObject["key"].toString();
+            license.name = licenseObject["name"].toString();
+            license.isFree = licenseObject["free"].toBool();
+            package.licences.append(license);
         }
 
         //Version
         QJsonObject item = object["version"].toObject();
         CTANVersion version;
-        version.Number = item["number"].toString();
+        version.number = item["number"].toString();
         QDate date = QDate::fromString(item["date"].toString(),"yyyy-MM-dd");
-        version.Date = date;
-        package.Version = version;
+        version.date = date;
+        package.version = version;
         //Description
         QJsonArray descriptionsArray = object["descriptions"].toArray();
         for(const QJsonValue &item : descriptionsArray){
             CTANDescription description;
             const QJsonObject &descriptionObject(item.toObject());
             QString language = descriptionObject["language"].toString();
-            description.Language = (language.isNull() || language.isEmpty()) ? "English" : language;
-            description.Text = descriptionObject["text"].toString().replace("\'","\''");
-            package.Descriptions.append(description);
+            description.language = (language.isNull() || language.isEmpty()) ? "en" : language;
+            description.text = descriptionObject["text"].toString().replace("\'","\''");
+            package.descriptions.append(description);
         }
         //Documentation
         QJsonArray documetationsArray = object["documentation"].toArray();
         for(const QJsonValue &item : documetationsArray){
             CTANDocumentation documentation;
             const QJsonObject &documetationObject(item.toObject());
-            documentation.Language = documetationObject["language"].toString().replace("\'","\''");
-            documentation.Details = documetationObject["details"].toString().replace("\'","\''");
-            documentation.Href = documetationObject["href"].toString();
-            package.Documentations.append(documentation);
+            documentation.language = documetationObject["language"].toString().replace("\'","\''");
+            documentation.details = documetationObject["details"].toString().replace("\'","\''");
+            documentation.href = documetationObject["href"].toString();
+            package.documentations.append(documentation);
         }
         QJsonObject ctanObject = object["ctan"].toObject();
-        package.CtanLink = ctanObject["path"].toString();
-        package.Miktex = object["miktex"].toString();
-        package.Texlive = object["texlive"].toString();
+        package.ctanLink = ctanObject["path"].toString();
+        package.miktex = object["miktex"].toString();
+        package.texlive = object["texlive"].toString();
 
         QJsonArray topicsArray = object["topics"].toArray();
         for(const QJsonValue &item : topicsArray){
             CTANTopic topic;
             const QJsonObject &topicsObject(item.toObject());
-            topic.Key = topicsObject["key"].toString();
-            topic.Details = topicsObject["details"].toString();
-            package.Topics.append(topic);
+            topic.key = topicsObject["key"].toString();
+            topic.details = topicsObject["details"].toString();
+            package.topics.append(topic);
 
         }
-        packages.insert(package.Id,package);
+        packages.insert(package.id,package);
     }
     f.close();
     m_dataSource = Static;
@@ -129,7 +129,7 @@ bool LatexRepository::packageExists(const QString &name)
 
 QString LatexRepository::shortDescription(const QString &name)
 {
-    return packages[name].Caption;
+    return packages[name].caption;
 }
 
 TeXdocStatus LatexRepository::docStatus(const QString &name)
@@ -153,18 +153,18 @@ QStringList LatexRepository::availablePackages()
 
 QString LatexRepository::packageInfo(LatexPackageInfo package)
 {
-    QString Info = tr("### Package %1 Info").arg(package.Id)+"\n";
-    Info += tr("- Name : ")+package.Name+"\n";
-    Info += tr("- Caption : ")+package.Caption+"\n";
-    Info += tr("- Authors : \n")+package.AuthorsFullName()+"\n";
-    Info += tr("- Version : ")+package.Version.Number+", "+package.Version.Date.toString()+"\n";
-    Info += tr("- Documentation : \n")+package.ShowAllDocumentation()+"\n";
-    Info += tr("- Copyright : \n")+package.ShowAllCopyrights()+"\n";
-    Info += tr("- License : \n")+package.ShowAllLicenses()+"\n";
-    Info += tr("- MikTex : ")+package.Miktex+"\n";
-    Info += tr("- TexLive : ")+package.Texlive+"\n";
-    Info += tr("- Topics : \n")+package.ShowAllTopics()+"\n";
-    Info += tr("- Link : ")+package.CtanLink+"\n";
+    QString Info = tr("### Package %1 Info").arg(package.id)+"\n";
+    Info += tr("- Name : ")+package.name+"\n";
+    Info += tr("- Caption : ")+package.caption+"\n";
+    Info += tr("- Authors : \n")+package.authorsFullName()+"\n";
+    Info += tr("- Version : ")+package.version.number+", "+package.version.date.toString()+"\n";
+    Info += tr("- Documentation : \n")+package.showAllDocumentation()+"\n";
+    Info += tr("- Copyright : \n")+package.showAllCopyrights()+"\n";
+    Info += tr("- License : \n")+package.showAllLicenses()+"\n";
+    Info += tr("- MikTex : ")+package.miktex+"\n";
+    Info += tr("- TexLive : ")+package.texlive+"\n";
+    Info += tr("- Topics : \n")+package.showAllTopics()+"\n";
+    Info += tr("- Link : ")+package.ctanLink+"\n";
     return Info;
 }
 

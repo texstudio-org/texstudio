@@ -39,7 +39,7 @@ private:
 	QString lastDocRequest;
     Help *help;
     QStringList m_packages;
-    QButtonGroup ButtonGroup;
+    QButtonGroup buttonGroup;
 };
 
 #endif // TEXDOCDIALOG_H

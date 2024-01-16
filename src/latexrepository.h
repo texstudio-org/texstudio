@@ -6,48 +6,48 @@ enum TeXdocStatus { Undefined, Available, Unavailable };
 
 struct CTANAuthor
 {
-    QString Id;
-    QString Name;
-    QString FamilyName;
-    bool Active;
+    QString id;
+    QString name;
+    QString familyName;
+    bool active;
 };
 
 struct CTANCopyright
 {
-    QString OwnerId;
-    QString Year;
+    QString ownerId;
+    QString year;
 };
 
 struct CTANVersion
 {
-    QString Number;
-    QDate Date;
+    QString number;
+    QDate date;
 };
 
 struct CTANDescription
 {
-    QString Language;
-    QString Text;
+    QString language;
+    QString text;
 };
 
 struct CTANDocumentation
 {
-    QString Language;
-    QString Details;
-    QString Href;
+    QString language;
+    QString details;
+    QString href;
 };
 
 struct CTANLicense
 {
-    QString Key;
-    QString Name;
-    bool IsFree;
+    QString key;
+    QString name;
+    bool isFree;
 };
 
 struct CTANTopic
 {
-    QString Key;
-    QString Details;
+    QString key;
+    QString details;
 };
 
 class LatexPackageInfo
@@ -55,69 +55,69 @@ class LatexPackageInfo
 public:
     LatexPackageInfo(const QString &name = QString(), const QString &shortDescr = QString(), bool inst = false, TeXdocStatus status = Undefined)
 	{
-        this->Name = name;
-        Caption = shortDescr;
+        this->name = name;
+        caption = shortDescr;
 		installed = inst;
 		docStatus = status;
 	}
 
-    QString Id;
-    QString Name;
-    QString Caption;
-    QList<CTANAuthor> Authors;
-    QList<CTANCopyright> Copyright;
-    QList<CTANLicense> Licences;
-    CTANVersion Version;
-    QList<CTANDescription> Descriptions;
-    QList<CTANDocumentation> Documentations;
-    QString CtanLink;
-    QList<CTANTopic> Topics;
-    QString Miktex;
-    QString Texlive;
-    QStringList Also;
+    QString id;
+    QString name;
+    QString caption;
+    QList<CTANAuthor> authors;
+    QList<CTANCopyright> copyrights;
+    QList<CTANLicense> licences;
+    CTANVersion version;
+    QList<CTANDescription> descriptions;
+    QList<CTANDocumentation> documentations;
+    QString ctanLink;
+    QList<CTANTopic> topics;
+    QString miktex;
+    QString texlive;
+    QStringList also;
     bool installed;
     TeXdocStatus docStatus;
 
-    QString AuthorsFullName(){
+    QString authorsFullName(){
         QString text;
-        for(CTANAuthor author : Authors){
-            text += "\t- "+author.Name+" "+author.FamilyName+"\n";
+        for(CTANAuthor author : authors){
+            text += "\t- "+author.name+" "+author.familyName+"\n";
         }
         return text;
     }
 
-    QString ShowAllCopyrights(){
+    QString showAllCopyrights(){
         QString text;
-        for(CTANCopyright copyright : Copyright){
-            if(!copyright.OwnerId.isEmpty() || !copyright.Year.isEmpty()){
-                text += "\t- "+copyright.OwnerId+", "+copyright.Year+"\n";
+        for(CTANCopyright copyright : copyrights){
+            if(!copyright.ownerId.isEmpty() || !copyright.year.isEmpty()){
+                text += "\t- "+copyright.ownerId+", "+copyright.year+"\n";
             }
         }
         return text;
     }
 
-    QString ShowAllLicenses(){
+    QString showAllLicenses(){
         QString text;
         QString isFree;
-        for(CTANLicense license : Licences){
-            isFree = (license.IsFree) ? QObject::tr(" (Free)") : QObject::tr(" (Not free)");
-            text += "\t- "+license.Key+", "+license.Name+isFree+"\n";
+        for(CTANLicense license : licences){
+            isFree = (license.isFree) ? QObject::tr(" (Free)") : QObject::tr(" (Not free)");
+            text += "\t- "+license.key+", "+license.name+isFree+"\n";
         }
         return text;
     }
 
-    QString ShowAllDocumentation(){
+    QString showAllDocumentation(){
         QString text;
-        for(CTANDocumentation doc : Documentations){
-            text += "\t- ["+doc.Details+"](https://www.ctan.org/tex-archive"+doc.Href.remove("ctan:")+")\n";
+        for(CTANDocumentation doc : documentations){
+            text += "\t- ["+doc.details+"](https://www.ctan.org/tex-archive"+doc.href.remove("ctan:")+")\n";
         }
         return text;
     }
 
-    QString ShowAllTopics(){
+    QString showAllTopics(){
         QString text;
-        for(CTANTopic topic : Topics){
-            text += "\t- "+topic.Key+" : "+topic.Details+"\n";
+        for(CTANTopic topic : topics){
+            text += "\t- "+topic.key+" : "+topic.details+"\n";
         }
         return text;
     }
@@ -148,7 +148,7 @@ private:
 	LatexRepository &operator=(const LatexRepository &);
 
 	bool loadStaticPackageList(const QString &file);
-    QString AuthorsDBFile;
+    // QString AuthorsDBFile;
 
 	static LatexRepository *m_Instance;
 

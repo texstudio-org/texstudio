@@ -9,7 +9,7 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
     help(obj)
 {
 	ui->setupUi(this);
-	UtilsUi::resizeInFontHeight(this, 28, 26);
+    UtilsUi::resizeInFontHeight(this, 50, 50);
 
 	foreach (QAbstractButton *bt, ui->buttonBox->buttons()) {
 		if (ui->buttonBox->buttonRole(bt) == QDialogButtonBox::AcceptRole) {
@@ -17,6 +17,10 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 			break;
 		}
 	}
+    int w = this->width();
+    int h = this->height();
+    ui->splitter->setSizes(QList<int>{0.8*h,0.2*h});
+    ui->splitter_2->setSizes(QList<int>{0.3*w,0.7*w});
 
 	checkTimer.setSingleShot(true);
 	connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
@@ -58,7 +62,7 @@ void TexdocDialog::regenerateTable(int state)
         QHash<QString, LatexPackageInfo> packageHash = repo->LatexRepository::getPackageHash();
         for (QString pkgname : pkgs) {
             LatexPackageInfo pkg = packageHash.value(pkgname);
-            QString name = pkg.Id;
+            QString name = pkg.id;
             if(state==0 && !repo->LatexRepository::packageExists(name)) continue;
             QTableWidgetItem *itemPkgName = new QTableWidgetItem(name);
             itemPkgName->setData(Qt::UserRole,QVariant::fromValue(pkg));
@@ -103,7 +107,7 @@ void TexdocDialog::tableSearchTermChanged(QString term) {
             // check description
             QTableWidgetItem *itemPkgName = tb->item(i,0);
             LatexPackageInfo packageInfo = itemPkgName->data(Qt::UserRole).value<LatexPackageInfo>();
-            match = packageInfo.Caption.contains(term,Qt::CaseInsensitive);
+            match = packageInfo.caption.contains(term,Qt::CaseInsensitive);
             if (n==0 && match) currentItem = itemPkgName;
         }
         if (match) n++;
@@ -141,23 +145,23 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
 	QString text = ui->tbPackages->item(row,0)->text();
     LatexPackageInfo package = item->data(Qt::UserRole).value<LatexPackageInfo>();
     QString Info = LatexRepository::packageInfo(package);
-    ui->PackageInfoBrowser->setMarkdown(Info);
+    ui->packageInfoBrowser->setMarkdown(Info);
     delayedCheckDocAvailable(text);
-    ButtonGroup.setExclusive(true);
+    buttonGroup.setExclusive(true);
 
-    while(ButtonGroup.buttons().count()>0){
-        QAbstractButton * bt = ButtonGroup.buttons().first();
+    while(buttonGroup.buttons().count()>0){
+        QAbstractButton * bt = buttonGroup.buttons().first();
         ui->LanguagesLayout->removeWidget(bt);
-        ButtonGroup.removeButton(bt);
+        buttonGroup.removeButton(bt);
         delete bt;
     }
-    for(CTANDescription description : package.Descriptions){
-        QPushButton * LangButton = new QPushButton(description.Language,this);
+    for(CTANDescription description : package.descriptions){
+        QPushButton * LangButton = new QPushButton(description.language,this);
         LangButton->setCheckable(true);
-        ButtonGroup.addButton(LangButton);
+        buttonGroup.addButton(LangButton);
         ui->LanguagesLayout->addWidget(LangButton);
         connect(LangButton,&QPushButton::toggled,this,[=](){
-            ui->PackageDescriptions->setHtml(description.Text);
+            ui->packageDescriptions->setHtml(description.text);
         });
         LangButton->setChecked(true);
     }
