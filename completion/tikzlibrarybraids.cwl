@@ -1,10 +1,15 @@
 # braids tikzlibrary
-# 2022/11/25 for v2.2
+# 2023/01/13 for v2.3
 
 #keyvals:\pic#c
 braid/add floor={%<x,y,width,height,name%>}
+braid/crossing convention=#over,under
+braid/flip crossing convention
+braid/set symbols=#over,under
+braid/flip symbols
 braid/number of strands=%<integer%>
 braid/height=##L
+braid/crossing height=##L
 braid/width=##L
 braid/border height=##L
 braid/gap=%<number 0-0.5%>

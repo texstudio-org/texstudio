@@ -2324,6 +2324,7 @@
 <file>completion/mdwtab.cwl</file>
 <file>completion/media4svg.cwl</file>
 <file>completion/media9.cwl</file>
+<file>completion/medmath.cwl</file>
 <file>completion/membranecomputing.cwl</file>
 <file>completion/memhangul-common.cwl</file>
 <file>completion/memhangul-x.cwl</file>
@@ -3974,6 +3975,7 @@
 <file>completion/verbments.cwl</file>
 <file>completion/verdana.cwl</file>
 <file>completion/verifiche.cwl</file>
+<file>completion/verifycommand.cwl</file>
 <file>completion/verse.cwl</file>
 <file>completion/version.cwl</file>
 <file>completion/versions.cwl</file>

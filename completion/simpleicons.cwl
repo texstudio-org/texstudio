@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/01/01 for v10.4.0
+# Matthew Bertucci 2024/01/13 for v10.5.0
 
 #include:iftex
 
@@ -278,7 +278,6 @@ azuredevops
 azurefunctions
 azurepipelines
 babel
-babylondotjs
 backblaze
 backbonedotjs
 backendless
@@ -563,6 +562,7 @@ contentstack
 conventionalcommits
 convertio
 cookiecutter
+coolermaster
 coop
 coppel
 cora
@@ -645,6 +645,7 @@ dcentertainment
 debian
 decapcms
 dedge
+deepcool
 deepin
 deepl
 deepnote
@@ -1175,7 +1176,6 @@ httpie
 huawei
 hubspot
 hugo
-hulu
 humblebundle
 hungryjacks
 husqvarna
@@ -1500,6 +1500,7 @@ maildotru
 mailgun
 mailtrap
 majorleaguehacking
+make
 makerbot
 mambaui
 mamp
@@ -1880,7 +1881,6 @@ pelican
 peloton
 penny
 penpot
-pepsi
 percy
 perforce
 perl
@@ -2302,6 +2302,7 @@ showpad
 showtime
 showwcase
 shutterstock
+sidequest
 siemens
 sifive
 signal
@@ -2316,6 +2317,7 @@ singaporeairlines
 singlestore
 sitecore
 sitepoint
+siyuan
 skaffold
 sketch
 sketchfab
@@ -2420,6 +2422,7 @@ stackpath
 stackshare
 stadia
 staffbase
+stagetimer
 standardjs
 standardresume
 starbucks
@@ -2680,7 +2683,6 @@ unitedairlines
 unitednations
 unity
 unlicense
-uno
 unocss
 unraid
 unrealengine
@@ -2729,6 +2731,7 @@ viaplay
 viber
 viblo
 victoriametrics
+victronenergy
 vim
 vimeo
 vimeolivestream
@@ -2858,6 +2861,7 @@ wprocket
 writedotas
 wwe
 wwise
+wyze
 x
 xamarin
 xaml

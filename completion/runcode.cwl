@@ -1,5 +1,5 @@
 # runcode package
-# Matthew Bertucci 2023/09/09 for v2.2
+# Matthew Bertucci 2024/01/17 for v2.3
 
 #include:etoolbox
 #include:morewrites
@@ -66,6 +66,43 @@ vbox
 tex
 inline
 #endkeyvals
+
+\runR{source file%file}{output file%file}
+\runR{source file%file}{output file%file}[run|cache]
+\runR[server spec]{source file%file}{output file%file}
+\runR[server spec]{source file%file}{output file%file}[run|cache]
+
+\runRIncOut{source file%file}
+\runRIncOut{source file%file}[run|cache]
+\runRIncOut{source file%file}[run|cache][output file%file]
+\runRIncOut{source file%file}[run|cache][output file%file][type%keyvals]
+\runRIncOut[server spec]{source file%file}
+\runRIncOut[server spec]{source file%file}[run|cache]
+\runRIncOut[server spec]{source file%file}[run|cache][output file%file]
+\runRIncOut[server spec]{source file%file}[run|cache][output file%file][type%keyvals]
+#keyvals:\runRIncOut
+vbox
+tex
+inline
+#endkeyvals
+
+\inlnR{code%definition}
+\inlnR{code%definition}[vbox|inline]
+\inlnR{code%definition}[output file%file]
+\inlnR{code%definition}[output file%file][vbox|inline]
+\inlnR[server spec]{code%definition}
+\inlnR[server spec]{code%definition}[vbox|inline]
+\inlnR[server spec]{code%definition}[output file%file]
+\inlnR[server spec]{code%definition}[output file%file][vbox|inline]
+
+\runRChunk{source file%file}{chunk id}
+\runRChunk{source file%file}{chunk id}[run|cache]
+\runRChunk{source file%file}{chunk id}[run|cache][output file%file]
+\runRChunk{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
+\runRChunk[server spec]{source file%file}{chunk id}
+\runRChunk[server spec]{source file%file}{chunk id}[run|cache]
+\runRChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file]
+\runRChunk[server spec]{source file%file}{chunk id}[run|cache][output file%file][vbox|inline]
 
 \runJulia{source file%file}{output file%file}
 \runJulia{source file%file}{output file%file}[run|cache]

@@ -1,5 +1,5 @@
 # newpxtext package
-# Matthew Bertucci 2023/10/31 for v1.53
+# Matthew Bertucci 2024/01/12 for v1.535
 
 #include:fontenc
 #include:xcolor
@@ -41,16 +41,10 @@ trueslanted
 scosf
 tighter
 looser
-supscaled=%<factor%>
-supsraised=##L
-supLspaced=##L
-supRspaced=##L
-supscolor=#%color
 #endkeyvals
 
 \defigures#*
 \destyle
-\fakesuperscript{text}#S
 \infigures#*
 \infstyle#*
 \instyle

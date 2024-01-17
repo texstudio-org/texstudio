@@ -1,5 +1,5 @@
 # texshade package
-# Matthew Bertucci 2024/01/07 for v1.27
+# Matthew Bertucci 2024/01/10 for v1.28
 
 #include:color
 #include:graphics
@@ -87,8 +87,8 @@ usenames
 \emphdefault{style%keyvals}
 \emphregion{seqref}{selection}
 \englishlanguage
-\exportconsensus[filename%file]{seqref}
-\exportconsensus{seqref}
+\exportconsensus[pymol/chimera]{seqref}{filename%file}
+\exportconsensus{seqref}{filename%file}
 \feature{position%keyvals}{seqref}{selection}{labelstyle}{text}
 \featurenamecolor{ttttop...bbbbottom}{color}
 \featurenamesbf
@@ -738,6 +738,10 @@ TC7#B
 TC8#B
 TC9#B
 TC99#B
+BrewerC#B
+BrewerG#B
+BrewerT#B
+BrewerA#B
 LightGreenYellow#B
 LightYellow#B
 LightGoldenrod#B

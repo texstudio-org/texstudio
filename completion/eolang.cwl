@@ -1,5 +1,5 @@
 # eolang package
-# Matthew Bertucci 2024/01/02 for v0.17.1
+# Matthew Bertucci 2024/01/12 for v0.19.0
 
 #include:stmaryrd
 #include:amsmath
@@ -28,6 +28,7 @@
 tmpdir=%<path%>
 nocomments
 anonymous
+noshell
 #endkeyvals
 
 \begin{phiquation}#\math
