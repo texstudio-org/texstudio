@@ -1,5 +1,5 @@
 # robust-externalize package
-# Matthew Bertucci 2023/11/14 for v2.2
+# Matthew Bertucci 2024/01/17 for v2.5
 
 #include:pgfkeys
 #include:pgffor
@@ -184,6 +184,33 @@
 \setPlaceholderRec{name placeholder%definition}{content placeholder%text}
 \setPlaceholderRecReplaceFromList{list of placeholders%definition}{new placeholder%definition}{content}
 \writeRobExt#*
+\robExtMv#*
+\robExtCp#*
+\copyFileToCache
+\definecolorAutoForward{color}{model}{value}#s#%color
+\definecolorAutoForward{color}{model}{value}[add. style]#s#%color
+\colorletAutoForward{color}{value}#s#%color
+\colorletAutoForward{color}{value}[add. style]#s#%color
+\runHereAndInPreambleOfCachedFiles{code}
+\runHereAndInPreambleOfCachedFiles[preset]{code}
+\lenToCm{length}
+\lenToCm[unit]{length}
+\robExtGpgetvar{variable}
+\robExtGpgetvarNb{variable}
+\robExtGpgetvarNb[text]{variable}
+\robExtGpgetvarNb*{variable}
+\robExtGpgetvarNb*[text]{variable}
+\includegraphicsWeb{URL}
+\includegraphicsWeb[graphics options]{URL}
+\includegraphicsWeb<options>{URL}
+\includegraphicsWeb<options>[graphics options]{URL}
+\doNotCacheTikz
+\cacheTikzit
+\cacheTikzit[preset]
+\cacheTikzitWithStyle{file}
+\cacheTikzitWithStyle[preset]{file}
+\tikzfig{name}
+\tikzfig<options>{name}
 
 # not documented
 \addPlaceholdersToGroupBefore{arg1}{arg2}#S
@@ -368,19 +395,51 @@
 \setPlaceholderFirst{arg1}{arg2}#S
 \setPlaceholderFromStringExpanded{arg1}{arg2}#S
 \showAllRegisteredGroupsAndPlaceholders#S
-\robExtGenericAutoForward{string}{code}
-\robExtGenericAutoForward{string}[add. style]{code}
-\robExtGenericAutoForward[preset]{string}{code}
-\robExtGenericAutoForward[preset]{string}[add. style]{code}
-\robExtGenericAutoForward*{string}{code}
-\robExtGenericAutoForward*{string}[add. style]{code}
-\robExtGenericAutoForward*[preset]{string}{code}
-\robExtGenericAutoForward*[preset]{string}[add. style]{code}
-\robExtGenericAutoForwardStringMatch{string}{code}
-\robExtGenericAutoForwardStringMatch{string}[add. style]{code}
-\robExtGenericAutoForwardStringMatch[preset]{string}{code}
-\robExtGenericAutoForwardStringMatch[preset]{string}[add. style]{code}
-\robExtGenericAutoForwardStringMatch*{string}{code}
-\robExtGenericAutoForwardStringMatch*{string}[add. style]{code}
-\robExtGenericAutoForwardStringMatch*[preset]{string}{code}
-\robExtGenericAutoForwardStringMatch*[preset]{string}[add. style]{code}
+
+\robExtGenericAutoForward{string}{code}#S
+\robExtGenericAutoForward{string}[add. style]{code}#S
+\robExtGenericAutoForward[preset]{string}{code}#S
+\robExtGenericAutoForward[preset]{string}[add. style]{code}#S
+\robExtGenericAutoForward*{string}{code}#S
+\robExtGenericAutoForward*{string}[add. style]{code}#S
+\robExtGenericAutoForward*[preset]{string}{code}#S
+\robExtGenericAutoForward*[preset]{string}[add. style]{code}#S
+\robExtGenericAutoForwardStringMatch{string}{code}#S
+\robExtGenericAutoForwardStringMatch{string}[add. style]{code}#S
+\robExtGenericAutoForwardStringMatch[preset]{string}{code}#S
+\robExtGenericAutoForwardStringMatch[preset]{string}[add. style]{code}#S
+\robExtGenericAutoForwardStringMatch*{string}{code}#S
+\robExtGenericAutoForwardStringMatch*{string}[add. style]{code}#S
+\robExtGenericAutoForwardStringMatch*[preset]{string}{code}#S
+\robExtGenericAutoForwardStringMatch*[preset]{string}[add. style]{code}#S
+\jobnameNoQuotes#S
+\setjobnameNoQuotes#S
+\setjobnameNoQuotesaux#S
+\robExtPrefixLogMessage#S
+\robExtLinesAfterError#S
+\robExtRemoveLineNumber#S
+\robExtMessageWithPrefixNumberLines#S
+\robExtDebugInfo{arg}#S
+\robExtPrefixAllCompilationCommands#S
+\robExtBackupSource{arg}#S
+\robExtRunCmdIfPossible{arg}#S
+\robExtCopyFileToCache{arg}#S
+\robExtRenameBackupFilesForArxiv{arg}#S
+\robExtRenameBackupFilesForArxiv[opt]{arg}#S
+\robExtRunHereAndInPreambleOfCachedFiles{code}#S
+\robExtRunHereAndInPreambleOfCachedFiles[preset]{code}#S
+\robExtRegisterWord{namespace}{word}{style}#S
+\robExtAutoForwardWords{namespace}#S
+\robExtWordSeparators#S
+\robExtRegisterWordCode{namespace}{word}{code}#S
+\robExtLenToCm{arg}#S
+\robExtLenToCm[opt]{arg}#S
+\robExtIncludegraphicsWeb{URL}#S
+\robExtIncludegraphicsWeb[graphics options]{URL}#S
+\robExtIncludegraphicsWeb<options>{URL}#S
+\robExtIncludegraphicsWeb<options>[graphics options]{URL}#S
+\robExtDoNotExternalizeAllTikzpictures#S
+\robExtCacheTikzit#S
+\robExtCacheTikzit[preset]#S
+\robExtCacheTikzitWithStyle{file}#S
+\robExtCacheTikzitWithStyle[preset]{file}#S
