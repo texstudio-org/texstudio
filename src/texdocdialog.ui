@@ -40,7 +40,7 @@
          <number>0</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="LanguagesLayout">
+         <layout class="QHBoxLayout" name="languagesLayout">
           <item>
            <widget class="QLabel" name="label">
             <property name="text">

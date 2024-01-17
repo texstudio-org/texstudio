@@ -146,13 +146,9 @@ private:
 	LatexRepository();
 	LatexRepository(const LatexRepository &);
 	LatexRepository &operator=(const LatexRepository &);
-
 	bool loadStaticPackageList(const QString &file);
-    // QString AuthorsDBFile;
-
 	static LatexRepository *m_Instance;
-
-	QHash<QString, LatexPackageInfo> packages; // name, short description
+    QHash<QString, LatexPackageInfo> packages; // name, package info
 	DataSource m_dataSource;
 };
 

@@ -19,8 +19,8 @@ TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
 	}
     int w = this->width();
     int h = this->height();
-    ui->splitter->setSizes(QList<int>{0.8*h,0.2*h});
-    ui->splitter_2->setSizes(QList<int>{0.3*w,0.7*w});
+    ui->splitter->setSizes(QList<int>{static_cast<int>(0.8*h),static_cast<int>(0.2*h)});
+    ui->splitter_2->setSizes(QList<int>{static_cast<int>(0.3*w),static_cast<int>(0.7*w)});
 
 	checkTimer.setSingleShot(true);
 	connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
@@ -151,19 +151,19 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
 
     while(buttonGroup.buttons().count()>0){
         QAbstractButton * bt = buttonGroup.buttons().first();
-        ui->LanguagesLayout->removeWidget(bt);
+        ui->languagesLayout->removeWidget(bt);
         buttonGroup.removeButton(bt);
         delete bt;
     }
     for(CTANDescription description : package.descriptions){
-        QPushButton * LangButton = new QPushButton(description.language,this);
-        LangButton->setCheckable(true);
-        buttonGroup.addButton(LangButton);
-        ui->LanguagesLayout->addWidget(LangButton);
-        connect(LangButton,&QPushButton::toggled,this,[=](){
+        QPushButton * langButton = new QPushButton(description.language,this);
+        langButton->setCheckable(true);
+        buttonGroup.addButton(langButton);
+        ui->languagesLayout->addWidget(langButton);
+        connect(langButton,&QPushButton::toggled,this,[=](){
             ui->packageDescriptions->setHtml(description.text);
         });
-        LangButton->setChecked(true);
+        langButton->setChecked(true);
     }
 }
 
