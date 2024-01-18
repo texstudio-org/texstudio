@@ -15,23 +15,23 @@ LatexRepository::LatexRepository() :
 
 LatexRepository *LatexRepository::instance()
 {
-	static QMutex mutex;
-	mutex.lock();
-	if (!m_Instance)
-		m_Instance = new LatexRepository();
-	mutex.unlock();
-	return m_Instance;
+    static QMutex mutex;
+    mutex.lock();
+    if (!m_Instance)
+        m_Instance = new LatexRepository();
+    mutex.unlock();
+    return m_Instance;
 }
 
 LatexRepository::DataSource LatexRepository::dataSource()
 {
-	return m_dataSource;
+    return m_dataSource;
 }
 
 bool LatexRepository::loadStaticPackageList(const QString &file)
 {
-	if (file.isEmpty()) return false;
-	packages.reserve(3000);
+    if (file.isEmpty()) return false;
+    packages.reserve(3000);
     QFile f(file);
     if (!f.open(QFile::ReadOnly | QFile::Text))
         return false;
@@ -119,7 +119,7 @@ bool LatexRepository::loadStaticPackageList(const QString &file)
     }
     f.close();
     m_dataSource = Static;
-	return true;
+    return true;
 }
 
 bool LatexRepository::packageExists(const QString &name)
@@ -164,7 +164,7 @@ QString LatexRepository::packageInfo(LatexPackageInfo package)
     Info += tr("- MikTex : ")+package.miktex+"\n";
     Info += tr("- TexLive : ")+package.texlive+"\n";
     Info += tr("- Topics : \n")+package.showAllTopics()+"\n";
-    Info += tr("- Link : ")+package.ctanLink+"\n";
+    Info += tr("- Link : ")+"[CTAN tex archive](https://www.ctan.org/tex-archive"+package.ctanLink+")";
     return Info;
 }
 

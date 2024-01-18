@@ -3,32 +3,33 @@
 #include "utilsUI.h"
 
 TexdocDialog::TexdocDialog(QWidget *parent,Help *obj) :
-	QDialog(parent),
-	ui(new Ui::TexdocDialog),
+    QDialog(parent),
+    ui(new Ui::TexdocDialog),
     openButton(nullptr),
     help(obj)
 {
-	ui->setupUi(this);
-    UtilsUi::resizeInFontHeight(this, 50, 50);
+    ui->setupUi(this);
+    UtilsUi::resizeInFontHeight(this, 50, 45);
 
-	foreach (QAbstractButton *bt, ui->buttonBox->buttons()) {
-		if (ui->buttonBox->buttonRole(bt) == QDialogButtonBox::AcceptRole) {
-			openButton = bt;
-			break;
-		}
-	}
+    foreach (QAbstractButton *bt, ui->buttonBox->buttons()) {
+        if (ui->buttonBox->buttonRole(bt) == QDialogButtonBox::AcceptRole) {
+            openButton = bt;
+            break;
+        }
+    }
     int w = this->width();
     int h = this->height();
     ui->splitter->setSizes(QList<int>{static_cast<int>(0.8*h),static_cast<int>(0.2*h)});
     ui->splitter_2->setSizes(QList<int>{static_cast<int>(0.3*w),static_cast<int>(0.7*w)});
 
-	checkTimer.setSingleShot(true);
-	connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
-	connect(ui->lineEditSearch, SIGNAL(textChanged(QString)),SLOT(tableSearchTermChanged(QString)));
-	connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
-	connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
-	connect(ui->buttonCTAN, SIGNAL(clicked()), SLOT(openCtanUrl()));
-	connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
+    checkTimer.setSingleShot(true);
+    connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
+    connect(ui->lineEditSearch, SIGNAL(textChanged(QString)),SLOT(tableSearchTermChanged(QString)));
+    connect(ui->tbPackages, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)), SLOT(itemChanged(QTableWidgetItem *)));
+    connect(help, SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
+    connect(ui->buttonCTAN, SIGNAL(clicked()), SLOT(openCtanUrl()));
+    connect(ui->cbShowAllPackages,&QCheckBox::stateChanged,this,&TexdocDialog::regenerateTable);
+    ui->packageDescriptions->setOpenExternalLinks(true);
 }
 
 TexdocDialog::~TexdocDialog()
@@ -137,12 +138,12 @@ void TexdocDialog::tableSearchTermChanged(QString term) {
 
 void TexdocDialog::itemChanged(QTableWidgetItem* item)
 {
-	ui->buttonCTAN->setEnabled(true);
-	ui->lbInfo->setText("");
-	ui->lbWarnIcon->setVisible(false);
-	openButton->setEnabled(false);
-	int row = item->row();
-	QString text = ui->tbPackages->item(row,0)->text();
+    ui->buttonCTAN->setEnabled(true);
+    ui->lbInfo->setText("");
+    ui->lbWarnIcon->setVisible(false);
+    openButton->setEnabled(false);
+    int row = item->row();
+    QString text = ui->tbPackages->item(row,0)->text();
     LatexPackageInfo package = item->data(Qt::UserRole).value<LatexPackageInfo>();
     QString Info = LatexRepository::packageInfo(package);
     ui->packageInfoBrowser->setOpenExternalLinks(true);
@@ -163,7 +164,10 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
     }
     if (package.descriptions.count()>1){
         for(const CTANDescription &description : package.descriptions){
-            QPushButton * langButton = new QPushButton(description.language,this);
+            QIcon flag(QString(":/utilities/flags/%1.png").arg(description.language));
+            QPushButton * langButton = new QPushButton(flag,QString(),this);
+            langButton->resize(35,20);
+            langButton->setIconSize(QSize(35,20));
             langButton->setCheckable(true);
             buttonGroup.addButton(langButton);
             ui->languagesLayout->addWidget(langButton);
@@ -187,41 +191,41 @@ void TexdocDialog::setPackageNames(const QStringList &packages)
 
 void TexdocDialog::setPreferredPackage(const QString &package)
 {
-	int i = 0;
-	int rows = ui->tbPackages->rowCount();
-	LatexRepository *repo = LatexRepository::instance();
-	if (repo->LatexRepository::packageExists(package)) {
-		for (;i<rows;i++) {
-			if (ui->tbPackages->item(i,0)->text() == package) break;
-		}
-		if (i>=rows) {
-			QString desc = repo->LatexRepository::shortDescription(package);
-			QTableWidgetItem *itemPkgName = new QTableWidgetItem(package);
-			QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
-			rows++;
-			ui->tbPackages->setRowCount(rows);
-			ui->tbPackages->setItem(i,0,itemPkgName);
-			ui->tbPackages->setItem(i,1,itemPkgDesc);
-		}
-	}
-	if (rows>0) {
-		QTableWidgetItem *itemPkgName = ui->tbPackages->item(i,0);
-		ui->tbPackages->setCurrentItem(itemPkgName);
-		itemPkgName->setSelected(true);
-	}
+    int i = 0;
+    int rows = ui->tbPackages->rowCount();
+    LatexRepository *repo = LatexRepository::instance();
+    if (repo->LatexRepository::packageExists(package)) {
+        for (;i<rows;i++) {
+            if (ui->tbPackages->item(i,0)->text() == package) break;
+        }
+        if (i>=rows) {
+            QString desc = repo->LatexRepository::shortDescription(package);
+            QTableWidgetItem *itemPkgName = new QTableWidgetItem(package);
+            QTableWidgetItem *itemPkgDesc = new QTableWidgetItem(desc);
+            rows++;
+            ui->tbPackages->setRowCount(rows);
+            ui->tbPackages->setItem(i,0,itemPkgName);
+            ui->tbPackages->setItem(i,1,itemPkgDesc);
+        }
+    }
+    if (rows>0) {
+        QTableWidgetItem *itemPkgName = ui->tbPackages->item(i,0);
+        ui->tbPackages->setCurrentItem(itemPkgName);
+        itemPkgName->setSelected(true);
+    }
 }
 
 QString TexdocDialog::selectedPackage() const
 {
-	return ui->tbPackages->item(ui->tbPackages->currentRow(),0)->text();
+    return ui->tbPackages->item(ui->tbPackages->currentRow(),0)->text();
 }
 
 // use delayed checking because the auto completion of the combo box fires two events
 // one with the actually typed text and one with the completed text
 void TexdocDialog::delayedCheckDocAvailable(const QString &package)
 {
-	lastDocRequest = package;
-	checkTimer.start(10);
+    lastDocRequest = package;
+    checkTimer.start(10);
 }
 
 void TexdocDialog::checkDockAvailable()
@@ -246,22 +250,22 @@ void TexdocDialog::checkDockAvailable()
 
 void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available, QString customWarning)
 {
-	if (package != lastDocRequest) return; // the request may have come from someone else
+    if (package != lastDocRequest) return; // the request may have come from someone else
 
-	bool showWarning = !package.isEmpty() && !available;
-	QString warning = customWarning.isNull() ? tr("No Documentation Available") : customWarning;
-	TeXdocStatus status = available ? Available : Unavailable;
-	LatexRepository::instance()->updatePackageInfo(package, status);
-	if (openButton) openButton->setEnabled(available);
-	ui->lbInfo->setText(showWarning ? warning : "");
-	ui->lbWarnIcon->setVisible(showWarning);
+    bool showWarning = !package.isEmpty() && !available;
+    QString warning = customWarning.isNull() ? tr("No Documentation Available") : customWarning;
+    TeXdocStatus status = available ? Available : Unavailable;
+    LatexRepository::instance()->updatePackageInfo(package, status);
+    if (openButton) openButton->setEnabled(available);
+    ui->lbInfo->setText(showWarning ? warning : "");
+    ui->lbWarnIcon->setVisible(showWarning);
 }
 
 void TexdocDialog::openCtanUrl()
 {
-	int row = ui->tbPackages->currentRow();
-	if (row<0) return;
-	QString package = ui->tbPackages->item(row,0)->text();
-	QUrl packageUrl(QString("https://www.ctan.org/pkg/%1").arg(package));
-	QDesktopServices::openUrl(packageUrl);
+    int row = ui->tbPackages->currentRow();
+    if (row<0) return;
+    QString package = ui->tbPackages->item(row,0)->text();
+    QUrl packageUrl(QString("https://www.ctan.org/pkg/%1").arg(package));
+    QDesktopServices::openUrl(packageUrl);
 }
