@@ -172,6 +172,10 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
             });
             langButton->setChecked(true);
         }
+    }else{
+        if(package.descriptions.count()>0){
+            ui->packageDescriptions->setHtml(package.descriptions.first().text);
+        }
     }
 }
 
