@@ -1,10 +1,9 @@
 # bodeplot package
-# Matthew Bertucci 2022/11/01 for v1.1.2
+# Matthew Bertucci 2024/01/13 for v1.1.5
 
 #include:tikz
 #include:pdftexcmds
 #include:ifplatform
-#include:environ
 #include:pgfplots
 #include:pgfplotslibrarygroupplots
 

@@ -1,5 +1,6 @@
 # zx-calculus package
-# Matthew Bertucci 2022/12/06 for v2021/10/22
+# Matthew Bertucci 2024/01/17 for v2.0
 
 #include:tikz
+#include:tikz-cd
 #include:tikzlibraryzx-calculus

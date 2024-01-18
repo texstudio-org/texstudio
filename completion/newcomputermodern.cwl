@@ -1,5 +1,5 @@
 # newcomputermodern package
-# Matthew Bertucci 2023/01/02 for v4.2
+# Matthew Bertucci 2024/01/12 for v5.1
 
 #include:fontspec
 #include:unicode-math
@@ -149,6 +149,64 @@
 \chemChi
 \chemPsi
 \chemOmega
+
+\aegeanseparator#*
+\aegeanseparatordot#*
+\aegeancheckmark#*
+\aegeanone#*
+\aegeantwo#*
+\aegeanthree#*
+\aegeanfour#*
+\aegeanfive#*
+\aegeansix#*
+\aegeanseven#*
+\aegeaneight#*
+\aegeanine#*
+\aegeanten#*
+\aegeantwenty#*
+\aegeanthirty#*
+\aegeanfourty#*
+\aegeanfifty#*
+\aegeansixty#*
+\aegeanseventy#*
+\aegeaneighty#*
+\aegeanninety#*
+\aegeanonehundred#*
+\aegeantwohundred#*
+\aegeanthreehundred#*
+\aegeanfourhundred#*
+\aegeanfivehundred#*
+\aegeansixhundred#*
+\aegeansevenhundred#*
+\aegeaneighthundred#*
+\aegeanninehundred#*
+\aegeanonethousand#*
+\aegeantwothousand#*
+\aegeanthreethousand#*
+\aegeanfourthousand#*
+\aegeanfivethousand#*
+\aegeansixthousand#*
+\aegeanseventhousand#*
+\aegeaneightthousand#*
+\aegeanninethousand#*
+\aegeantenthousand#*
+\aegeantwentythousand#*
+\aegeanthirtythousand#*
+\aegeanfourtythousand#*
+\aegeanfiftythousand#*
+\aegeansixtythousand#*
+\aegeanseventythousand#*
+\aegeaneightythousand#*
+\aegeanninetythousand#*
+\aegeanweightbaseunit#*
+\aegeanweightfirstsubunit#*
+\aegeanweightsecondsubunit#*
+\aegeanweightthirdsubunit#*
+\aegeanweightfourthsubunit#*
+\aegeandrymeasurefirstsubunit#*
+\aegeanliquidmeasurefirstsubunit#*
+\aegeansecondsubunit#*
+\aegeanthirdsubunit#*
 
 \accurrent#m
 \acidfree#m

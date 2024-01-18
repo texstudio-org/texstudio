@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/01/06 for v2.3
+# Matthew Bertucci 2024/01/15 for v2.4
 
 #include:l3keys2e
 #include:luatexbase
@@ -53,6 +53,7 @@ marker/include-lines
 #keyvals:\PitonOptions
 comment-latex=%<string%>
 math-comments#true,false
+detected-commands={%<csname1,csname2,...%>}
 line-numbers/absolute
 marker={%<options%>}
 marker/beginning=%<spec%>
@@ -71,7 +72,7 @@ line-numbers/start
 
 # keys for both \PitonOptions and \begin{Piton}
 #keyvals:\PitonOptions,\begin{Piton}
-language=#Python,OCaml,C,SQL
+language=#Python,OCaml,C,SQL,minimal
 gobble=%<integer%>
 auto-gobble
 tabs-auto-gobble
@@ -82,7 +83,6 @@ line-numbers/skip-empty-lines#true,false
 line-numbers/label-empty-lines#true,false
 line-numbers/resume
 line-numbers/sep=##L
-identifiers={%<names={<name1>,<name2>,...},style=<instructions>%>}
 splittable
 splittable=%<integer%>
 background-color=#%color
@@ -187,6 +187,9 @@ Prompt
 \PitonClearUserFunctions[languages]
 
 \NewPitonEnvironment{envname}{xargs}{begdef}{enddef}#N
+
+\SetPitonIdentifier{id1,id2,...}{code}
+\SetPitonIdentifier[language]{id1,id2,...}{code}
 
 \PitonFileVersion#S
 \PitonFileDate#S

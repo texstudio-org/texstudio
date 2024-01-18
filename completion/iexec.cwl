@@ -1,9 +1,9 @@
 # iexec package
-# Matthew Bertucci 2023/10/15 for v0.12.0
+# Matthew Bertucci 2024/01/15 for v0.14.0
 
 #include:shellesc
+#include:pgfopts
 #include:pgfkeys
-#include:xkeyval
 
 #keyvals:\usepackage/iexec#c
 trace
@@ -19,7 +19,9 @@ stderr=%<file name%>
 exit=%<file name%>
 trace
 append
+unskip
 log
 null
-unskip
+ignore
+maybe
 #endkeyvals
