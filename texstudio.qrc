@@ -125,5 +125,14 @@
         <file>images/rc/radio_checked_focus.png</file>
         <file>images/rc/radio_checked.png</file>
         <file>utilities/packageDatabase.json</file>
+        <file>utilities/flags/ca.png</file>
+        <file>utilities/flags/cs.png</file>
+        <file>utilities/flags/de.png</file>
+        <file>utilities/flags/el.png</file>
+        <file>utilities/flags/en.png</file>
+        <file>utilities/flags/es.png</file>
+        <file>utilities/flags/fr.png</file>
+        <file>utilities/flags/it.png</file>
+        <file>utilities/flags/nl.png</file>
     </qresource>
 </RCC>
