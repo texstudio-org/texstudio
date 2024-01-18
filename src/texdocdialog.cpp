@@ -145,7 +145,13 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
 	QString text = ui->tbPackages->item(row,0)->text();
     LatexPackageInfo package = item->data(Qt::UserRole).value<LatexPackageInfo>();
     QString Info = LatexRepository::packageInfo(package);
+    ui->packageInfoBrowser->setOpenExternalLinks(true);
+#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
     ui->packageInfoBrowser->setMarkdown(Info);
+#else
+    ui->packageInfoBrowser->setText(Info); // no markdown interpretation, just keep old qt version running
+#endif
+
     delayedCheckDocAvailable(text);
     buttonGroup.setExclusive(true);
 
