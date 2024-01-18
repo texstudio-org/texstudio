@@ -162,7 +162,7 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
         delete bt;
     }
     if (package.descriptions.count()>1){
-        for(CTANDescription description : package.descriptions){
+        for(const CTANDescription &description : package.descriptions){
             QPushButton * langButton = new QPushButton(description.language,this);
             langButton->setCheckable(true);
             buttonGroup.addButton(langButton);
