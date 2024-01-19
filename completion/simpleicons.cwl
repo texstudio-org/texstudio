@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/01/13 for v10.5.0
+# Matthew Bertucci 2024/01/19 for v10.6.0
 
 #include:iftex
 
@@ -13,6 +13,7 @@
 4chan
 4d
 500px
+7zip
 99designs
 9gag
 abbott
@@ -229,6 +230,7 @@ artifacthub
 artixlinux
 artstation
 arxiv
+asahilinux
 asana
 asciidoctor
 asciinema
@@ -278,6 +280,7 @@ azuredevops
 azurefunctions
 azurepipelines
 babel
+babelio
 backblaze
 backbonedotjs
 backendless
@@ -373,6 +376,7 @@ boxysvg
 brandfolder
 brave
 breaker
+brenntag
 brevo
 brex
 bricks
@@ -416,6 +420,7 @@ canva
 canvas
 capacitor
 cardano
+carlsberggroup
 carrd
 carrefour
 carthrottle
@@ -497,6 +502,7 @@ clubhouse
 clyp
 cmake
 cncf
+cnet
 cnn
 cocacola
 cockpit
@@ -637,6 +643,7 @@ dataverse
 datefns
 datocms
 datto
+davinciresolve
 dazn
 dbeaver
 dblp
@@ -749,6 +756,7 @@ eclipsejetty
 eclipsemosquitto
 eclipsevertdotx
 edeka
+edgeimpulse
 editorconfig
 edotleclerc
 educative
@@ -798,6 +806,7 @@ esbuild
 esea
 eslgaming
 eslint
+esotericsoftware
 esphome
 espressif
 esri
@@ -930,6 +939,7 @@ frontendmentor
 frontify
 fsecure
 fsharp
+fubo
 fugacloud
 fujifilm
 fujitsu
@@ -1180,6 +1190,7 @@ humblebundle
 hungryjacks
 husqvarna
 hyper
+hyperskill
 hypothesis
 hyundai
 i18next
@@ -1362,6 +1373,7 @@ klarna
 klm
 klook
 knative
+knexdotjs
 knowledgebase
 known
 koa
@@ -1445,6 +1457,7 @@ linear
 linkedin
 linkerd
 linkfire
+linksys
 linktree
 linux
 linuxcontainers
@@ -1727,6 +1740,7 @@ nodedotjs
 nodemon
 nodered
 nokia
+nomad
 norco
 nordicsemiconductor
 nordvpn
@@ -1821,6 +1835,7 @@ oppo
 opsgenie
 opslevel
 oracle
+orange
 orcid
 oreilly
 org
@@ -1858,6 +1873,7 @@ pandas
 pandora
 pantheon
 paperspace
+paramountplus
 paritysubstrate
 parsedotly
 passport
@@ -2104,6 +2120,7 @@ razer
 razorpay
 react
 reacthookform
+reactiveresume
 reactivex
 reactos
 reactquery
@@ -2354,6 +2371,7 @@ society6
 socketdotio
 softpedia
 sogou
+solana
 solid
 solidity
 sololearn
@@ -2390,6 +2408,7 @@ speedtest
 speedypage
 sphinx
 spigotmc
+spine
 spinnaker
 spinrilla
 splunk
@@ -2573,6 +2592,7 @@ thunderstore
 thurgauerkantonalbank
 thymeleaf
 ticketmaster
+ticktick
 tidal
 tiddlywiki
 tide
