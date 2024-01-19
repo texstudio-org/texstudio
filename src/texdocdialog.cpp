@@ -161,21 +161,21 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
         buttonGroup.removeButton(bt);
         delete bt;
     }
-    if (package.descriptions.count()>1){
-        for(const CTANDescription &description : package.descriptions){
-            QPushButton * langButton = new QPushButton(description.language,this);
-            langButton->setCheckable(true);
-            buttonGroup.addButton(langButton);
-            ui->languagesLayout->addWidget(langButton);
-            connect(langButton,&QPushButton::toggled,this,[=](){
-                ui->packageDescriptions->setHtml(description.text);
-            });
-            langButton->setChecked(true);
-        }
-    }else{
-        if(package.descriptions.count()>0){
-            ui->packageDescriptions->setHtml(package.descriptions.first().text);
-        }
+    switch(package.descriptions.count()) {
+        case 0: break;
+        case 1: ui->packageDescriptions->setHtml(package.descriptions.first().text);
+                break;
+        default:
+            for(const CTANDescription &description : package.descriptions){
+                QPushButton * langButton = new QPushButton(description.language,this);
+                langButton->setCheckable(true);
+                buttonGroup.addButton(langButton);
+                ui->languagesLayout->addWidget(langButton);
+                connect(langButton,&QPushButton::toggled,this,[=](){
+                    ui->packageDescriptions->setHtml(description.text);
+                });
+                langButton->setChecked(true);
+            }
     }
 }
 
