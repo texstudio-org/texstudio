@@ -1,5 +1,5 @@
 # csvsimple-l3 package
-# Matthew Bertucci 2023/10/16 for v2.5.0
+# Matthew Bertucci 2024/01/19 for v2.6.0
 
 \csvreader{file}{assignments%definition}{command list%definition}
 \csvreader[options%keyvals]{file}{assignments%definition}{command list%definition}
@@ -66,15 +66,21 @@
 \csvexpval%<\macro%>
 \csvexpnot%<\macro%>
 \csvcollectn{code}
-\csvcollectx{code}
+\csvcollecte{code}
+\csvcollectx{code}#*
 \csvcollectV%<\macro%>
 
-\ifcsvstrcmp{stringA}{stringB}{true}{false}
-\ifcsvnotstrcmp{stringA}{stringB}{true}{false}
-\ifcsvstrequal{stringA}{stringB}{true}{false}
-\ifcsvprostrequal{stringA}{stringB}{true}{false}
-\ifcsvfpcmp{floating point expr}{true}{false}
-\ifcsvintcmp{integer expr}{true}{false}
+\IfCsvsimStrEqualTF{stringA}{stringB}{true}{false}
+\ifcsvstrcmp{stringA}{stringB}{true}{false}#*
+\ifcsvnotstrcmp{stringA}{stringB}{true}{false}#*
+\IfCsvsimTlEqualTF{tokenlistA}{tokenlistB}{true}{false}
+\ifcsvstrequal{tokenlistA}{tokenlistB}{true}{false}#*
+\IfCsvsimTlProtectedEqualTF{tokenlistA}{tokenlistB}{true}{false}
+\ifcsvprostrequal{tokenlistA}{tokenlistB}{true}{false}#*
+\IfCsvsimFpCompareTF{floating point expr}{true}{false}
+\ifcsvfpcmp{floating point expr}{true}{false}#*
+\IfCsvsimIntCompareTF{integer expr}{true}{false}
+\ifcsvintcmp{integer expr}{true}{false}#*
 
 #keyvals:\csvreader,\csvloop,\csvautotabular,\csvautotabular*,\csvautolongtable,\csvautolongtable*,\csvautobooktabular,\csvautobooktabular*,\csvautobooklongtable,\csvautobooklongtable*,\csvautotabularray,\csvautotabularray*,\csvautolongtabularray,\csvautolongtabularray*,\csvset,\csvstyle
 before reading=%<code%>
@@ -166,6 +172,7 @@ csvsorter token=%<file%>
 sort by=%<file%>
 new sorting rule={%<name%>}{%<file%>}
 collect data#true,false
+consume collected data#true,false
 data collection=%<macro%>
 %csvstyle
 #endkeyvals
