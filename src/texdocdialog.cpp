@@ -162,29 +162,23 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
         buttonGroup.removeButton(bt);
         delete bt;
     }
-    if (package.descriptions.count()>0){//The language flag is always visible if there is a description
-        for(const CTANDescription &description : package.descriptions){
-            QIcon flag(QString(":/utilities/flags/%1.png").arg(description.language));
-            QPushButton * langButton = new QPushButton(flag,QString(),this);
-            langButton->resize(35,20);
-            langButton->setIconSize(QSize(35,20));
-            langButton->setCheckable(true);
-            langButton->setToolTip(description.language);
-            buttonGroup.addButton(langButton);
-            ui->languagesLayout->addWidget(langButton);
-            connect(langButton,&QPushButton::toggled,this,[=](){
-                ui->packageDescriptions->setHtml(description.text);
-            });
-            langButton->setChecked(true);
-        }
-    }/*else{
-        if(package.descriptions.count()>0){
-            QIcon flag(QString(":/utilities/flags/%1.png").arg(package.descriptions.first().language));
-            QLabel * label = new QLabel(this);
-            label->setPixmap();
-            ui->packageDescriptions->setHtml(package.descriptions.first().text);
-        }
-    }*/
+
+    switch(package.descriptions.count()) {
+        case 0: break;
+        case 1: ui->packageDescriptions->setHtml(package.descriptions.first().text);
+                break;
+        default:
+            for(const CTANDescription &description : package.descriptions){
+                QPushButton * langButton = new QPushButton(description.language,this);
+                langButton->setCheckable(true);
+                buttonGroup.addButton(langButton);
+                ui->languagesLayout->addWidget(langButton);
+                connect(langButton,&QPushButton::toggled,this,[=](){
+                    ui->packageDescriptions->setHtml(description.text);
+                });
+                langButton->setChecked(true);
+            }
+    }
 }
 
 void TexdocDialog::setPackageNames(const QStringList &packages)
