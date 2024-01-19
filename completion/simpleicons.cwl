@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/01/19 for v10.6.0
+# Matthew Bertucci 2024/01/19 for v11.1.0
 
 #include:iftex
 
