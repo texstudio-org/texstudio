@@ -162,13 +162,14 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
         buttonGroup.removeButton(bt);
         delete bt;
     }
-    if (package.descriptions.count()>1){
+    if (package.descriptions.count()>0){//The language flag is always visible if there is a description
         for(const CTANDescription &description : package.descriptions){
             QIcon flag(QString(":/utilities/flags/%1.png").arg(description.language));
             QPushButton * langButton = new QPushButton(flag,QString(),this);
             langButton->resize(35,20);
             langButton->setIconSize(QSize(35,20));
             langButton->setCheckable(true);
+            langButton->setToolTip(description.language);
             buttonGroup.addButton(langButton);
             ui->languagesLayout->addWidget(langButton);
             connect(langButton,&QPushButton::toggled,this,[=](){
@@ -176,11 +177,14 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
             });
             langButton->setChecked(true);
         }
-    }else{
+    }/*else{
         if(package.descriptions.count()>0){
+            QIcon flag(QString(":/utilities/flags/%1.png").arg(package.descriptions.first().language));
+            QLabel * label = new QLabel(this);
+            label->setPixmap();
             ui->packageDescriptions->setHtml(package.descriptions.first().text);
         }
-    }
+    }*/
 }
 
 void TexdocDialog::setPackageNames(const QStringList &packages)
