@@ -39,8 +39,8 @@ private slots:
 	void clickedOnLogModelIndex(const QModelIndex &index);
 	void gotoLogEntry(int logEntryNumber);
 	void gotoLogLine(int logLine);
-	void copyMessage();
-	void copyAllMessages();
+	void copyRow();
+	void copyAllRows();
 	void copyAllMessagesWithLineNumbers();
 	void setWidgetVisibleFromAction(bool visible);
 	void setInfo(const QString &message);
@@ -56,6 +56,8 @@ private:
 	LogEditor *log;
 	QLabel *infoLabel;
 	QAction *displayTableAction, *displayLogAction, *filterErrorAction, *filterWarningAction, *filterBadBoxAction;
+
+	void copyRowsWithColumnRange(int firstRow, int rows, int first, int last);
 };
 
 #endif // LATEXLOGWIDGET_H
