@@ -1,5 +1,5 @@
 # attachfile2 package
-# Matthew Bertucci 10/17/2021 for v2.11
+# Matthew Bertucci 2024/01/20 for v2.12
 
 #include:iftex
 #include:keyval
@@ -11,6 +11,18 @@
 #include:pdfescape
 #include:hyperref
 #include:hycolor
+
+#keyvals:\usepackage/attachfile2#c
+draft
+final
+nofiles
+pdftex
+luatex
+dvips
+dvipdfmx
+xetex
+driverfallback=%<driver%>
+#endkeyvals
 
 \attachfile{file}
 \attachfile[options%keyvals]{file}
@@ -37,19 +49,8 @@ size=%<integer%>
 subject=%<text%>
 timezone=%<offset%>
 zoom#true,false
+locked#true,false
 scale=%<factor%>
 ucfilespec=
 annotname=%<name%>
-#endkeyvals
-
-#keyvals:\usepackage/attachfile2#c
-draft
-final
-nofiles
-pdftex
-luatex
-dvips
-dvipdfmx
-xetex
-driverfallback=%<driver%>
 #endkeyvals
