@@ -55,13 +55,13 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	errorTable->setModel(proxyModel);
 
 	QAction *act = new QAction(tr("&Copy"), errorTable);
-	connect(act, SIGNAL(triggered()), SLOT(copyMessage()));
+	connect(act, SIGNAL(triggered()), SLOT(copyRow()));
 	errorTable->addAction(act);
-	act = new QAction(tr("&Copy All"), errorTable);
-	connect(act, SIGNAL(triggered()), SLOT(copyAllMessages()));
-	errorTable->addAction(act);
-	act = new QAction(tr("&Copy All With Line Numbers"), errorTable);
+	act = new QAction(tr("Copy All With Line &Numbers"), errorTable);
 	connect(act, SIGNAL(triggered()), SLOT(copyAllMessagesWithLineNumbers()));
+	errorTable->addAction(act);
+	act = new QAction(tr("Copy &All"), errorTable);
+	connect(act, SIGNAL(triggered()), SLOT(copyAllRows()));
 	errorTable->addAction(act);
 	errorTable->setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -207,7 +207,7 @@ void LatexLogWidget::copy()
 	if (log->isVisible())
 		log->copy();
 	else
-		copyMessage();
+		copyRow();
 }
 
 // TODO what is this for?
@@ -233,29 +233,33 @@ void LatexLogWidget::gotoLogLine(int logLine)
 	gotoLogEntry(logModel->logLineNumberToLogEntryNumber(logLine));
 }
 
-void LatexLogWidget::copyMessage()
+void LatexLogWidget::copyRow()
 {
 	QModelIndex curMessage = proxyModel->mapToSource(errorTable->currentIndex());
 	if (!curMessage.isValid()) return;
-	curMessage = logModel->index(curMessage.row(), 3);
-	REQUIRE(QApplication::clipboard());
-	QApplication::clipboard()->setText(logModel->data(curMessage, Qt::DisplayRole).toString());
-}
-
-void LatexLogWidget::copyAllMessages()
-{
-	QStringList result;
-	for (int i = 0; i < logModel->count(); i++)
-		result << logModel->data(logModel->index(i, 3), Qt::DisplayRole).toString();
-	REQUIRE(QApplication::clipboard());
-	QApplication::clipboard()->setText(result.join("\n"));
+	copyRowsWithColumnRange(curMessage.row(),1,0,3);
 }
 
 void LatexLogWidget::copyAllMessagesWithLineNumbers()
 {
+	copyRowsWithColumnRange(0,logModel->count(),2,3);
+}
+
+void LatexLogWidget::copyAllRows()
+{
+	copyRowsWithColumnRange(0,logModel->count(),0,3);
+}
+
+void LatexLogWidget::copyRowsWithColumnRange(int firstRow, int rows, int first, int last)
+{
 	QStringList result;
-	for (int i = 0; i < logModel->count(); i++)
-		result << logModel->data(logModel->index(i, 2), Qt::DisplayRole).toString() + ": " + logModel->data(logModel->index(i, 3), Qt::DisplayRole).toString();
+	for (int i = firstRow; i < firstRow + rows; i++) {
+		QString columns;
+		for (int j = first; j < last; j++) {
+			columns += logModel->data(logModel->index(i, j), Qt::DisplayRole).toString() + ": ";
+		}
+		result << columns + logModel->data(logModel->index(i, last), Qt::DisplayRole).toString();
+	}
 	REQUIRE(QApplication::clipboard());
 	QApplication::clipboard()->setText(result.join("\n"));
 }
