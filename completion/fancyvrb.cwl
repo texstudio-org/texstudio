@@ -80,10 +80,16 @@ aftersave={%<code%>}
 # writing and reading verbatim files
 \VerbatimInput{file}
 \VerbatimInput[options%keyvals]{file}
+\VerbatimInput*{file}
+\VerbatimInput*[options%keyvals]{file}
 \BVerbatimInput{file}
 \BVerbatimInput[options%keyvals]{file}
+\BVerbatimInput*{file}
+\BVerbatimInput*[options%keyvals]{file}
 \LVerbatimInput{file}
 \LVerbatimInput[options%keyvals]{file}
+\LVerbatimInput*{file}
+\LVerbatimInput*[options%keyvals]{file}
 \begin{VerbatimOut}{file name%file}#V
 \end{VerbatimOut}
 
