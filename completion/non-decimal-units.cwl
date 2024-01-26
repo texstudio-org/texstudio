@@ -1,5 +1,5 @@
 # non-decimal-units package
-# Matthew Bertucci 2023/10/10
+# Matthew Bertucci 2024/01/25
 
 #keyvals:\usepackage/non-decimal-units#c
 british
@@ -12,13 +12,15 @@ german
 \nduValue{unit group}[options%keyvals]{value}
 \VALUE
 \SYMBOL
-\nduMath{unit name}{variable}{operator}{value}
-\nduMath{unit name}[options%keyvals]{variable}{operator}{value}
-\nduResult{unit name}{variable}
-\nduResult{unit name}[options%keyvals]{variable}
+\nduMath{unit group}{variable}{operator}{value}
+\nduMath{unit group}[options%keyvals]{variable}{operator}{value}
+\nduResult{unit group}{variable}
+\nduResult{unit group}[options%keyvals]{variable}
+\nduNormalize{unit group}{amount}{unit}
+\nduNormalize{unit group}[options%keyvals]{amount}{unit}
 
-#keyvals:\nduKeys#c,\nduValue#c,\nduMath#c,\nduResult#c
-display=#values only,formatted,symbols only,numprint
+#keyvals:\nduKeys#c,\nduValue#c,\nduMath#c,\nduResult#c,\nduNormalize#c
+display=#values only,formatted,symbols only
 format=%<code%>
 replace nil with=%<code%>
 treat zero as nil
@@ -40,10 +42,10 @@ set aligned for environment=%<name%>
 tabularray column type=%<letter%>
 #endkeyvals
 
-\nduSymbol{unit name}
-\nduFactor{unit name}{unit name}
-\nduNewBaseUnit{unit name}{keyvals}
-\nduNewUnitGroup{unit name}{base units}
-\nduNewUnitGroup{unit name}{base units}[cmd]
-\nduNewUnitGroup[keyvals]{unit name}{base units}
-\nduNewUnitGroup{[keyvals]unit name}{base units}[cmd]
+\nduSymbol{unit group}
+\nduFactor{unit group}{unit name}
+\nduNewBaseUnit{unit group}{keyvals}
+\nduNewUnitGroup{unit group}{base units}
+\nduNewUnitGroup{unit group}{base units}[cmd]
+\nduNewUnitGroup[keyvals]{unit group}{base units}
+\nduNewUnitGroup[keyvals]{unit group}{base units}[cmd]
