@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/01/19 for v11.1.0
+# Matthew Bertucci 2024/01/26 for v11.2.0
 
 #include:iftex
 
@@ -9,6 +9,7 @@
 42
 1001tracklists
 1password
+2k
 3m
 4chan
 4d
@@ -86,6 +87,7 @@ airplayaudio
 airplayvideo
 airtable
 airtel
+airtransat
 ajv
 akamai
 akaunting
@@ -155,6 +157,7 @@ androidauto
 androidstudio
 angular
 anilist
+animalplanet
 ansible
 answer
 ansys
@@ -310,6 +313,7 @@ beijingsubway
 bem
 bentley
 bento
+bentobox
 bentoml
 bereal
 betfair
@@ -653,6 +657,7 @@ debian
 decapcms
 dedge
 deepcool
+deepgram
 deepin
 deepl
 deepnote
@@ -954,6 +959,7 @@ gameandwatch
 gamebanana
 gamedeveloper
 gamejolt
+gameloft
 gamemaker
 garmin
 gatling
@@ -975,6 +981,7 @@ gin
 giphy
 git
 gitbook
+gitconnected
 gitea
 gitee
 gitextensions
@@ -1394,6 +1401,7 @@ ktm
 kuaishou
 kubernetes
 kubuntu
+kucoin
 kuma
 kuula
 kx
@@ -1505,6 +1513,7 @@ macpaw
 macys
 magasinsu
 magento
+magic
 magisk
 mahindra
 mailchimp
@@ -1576,6 +1585,7 @@ meta
 metabase
 metacritic
 metafilter
+metasploit
 meteor
 metro
 metrodelaciudaddemexico
@@ -1669,6 +1679,7 @@ mulesoft
 muller
 multisim
 mumble
+muo
 mural
 musescore
 musicbrainz
@@ -2051,6 +2062,7 @@ puppeteer
 purescript
 purgecss
 purism
+pushbullet
 pusher
 pwa
 pycharm
@@ -2193,11 +2205,13 @@ robloxstudio
 robotframework
 rocketdotchat
 rocksdb
+rockstargames
 rockylinux
 roku
 rollsroyce
 rollupdotjs
 rome
+roon
 rootme
 roots
 rootsbedrock
@@ -2237,6 +2251,7 @@ sahibinden
 sailfishos
 sailsdotjs
 salesforce
+salla
 saltproject
 samsclub
 samsung
@@ -2252,6 +2267,7 @@ sat1
 satellite
 saturn
 saucelabs
+saudia
 scala
 scaleway
 scania
@@ -2527,6 +2543,7 @@ taichigraphics
 taichilang
 tails
 tailwindcss
+taketwointeractivesoftware
 talend
 talenthouse
 tamiya
@@ -2544,6 +2561,7 @@ teamcity
 teamspeak
 teamviewer
 ted
+teepublic
 teespring
 tekton
 tele5
@@ -2599,6 +2617,7 @@ tide
 tidyverse
 tietoevry
 tiktok
+tildapublishing
 tile
 timescale
 tina
@@ -2618,6 +2637,7 @@ toml
 tomorrowland
 ton
 topcoder
+topdotgg
 toptal
 torbrowser
 torproject
@@ -2709,6 +2729,7 @@ unrealengine
 unsplash
 untappd
 upcloud
+uphold
 uplabs
 upptime
 ups
@@ -2731,6 +2752,7 @@ vault
 vaultwarden
 vauxhall
 vbulletin
+vectary
 vectorlogozone
 vectorworks
 veeam
@@ -2923,6 +2945,7 @@ yubico
 zabka
 zalando
 zalo
+zap
 zapier
 zara
 zazzle
