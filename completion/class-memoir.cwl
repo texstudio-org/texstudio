@@ -1,4 +1,4 @@
-# updated 2023/08/13 for v3.8
+# updated 2024/01/26 for v3.8.2
 
 #include:iftex
 #include:array
@@ -10,6 +10,8 @@
 #include:etoolbox
 #include:xpatch
 #include:nameref
+#include:verbatim
+#include:shortvrb
 
 #keyvals:\documentclass/memoir
 10pt
@@ -586,7 +588,6 @@ right
 \defaultlists#*
 \defaultsecnum#*
 \deleted{change-id}#*
-\DeleteShortVerb{\%<character%>}#*
 \DisemulatePackage{package}#*
 \doccoltocetc#*
 \DoubleSpacing#*
@@ -968,7 +969,6 @@ right
 \makerunningheadwidth{pagestyle%keyvals}{width}#*
 \makerunningwidth{pagestyle%keyvals}{headwidth%l}#*
 \makerunningwidth{pagestyle%keyvals}[footwidth%l]{headwidth%l}#*
-\MakeShortVerb{\%<character%>}#*
 \makesidefootmark{text}#*
 \makesidefootmarkhook#*
 \makethanksmark#*
@@ -1542,7 +1542,6 @@ none
 \setulmargins{upper%l}{lower%l}{ratio}#*
 \setulmarginsandblock{upper%l}{lower%l}{ratio}#*
 \setupcomment#*
-\setverbatimbreak#*
 \setverbatimfont{font}#*
 \setverselinenums{first}{start at}#*
 \setxlvchars#*
@@ -1691,9 +1690,6 @@ none
 \symbollabel{arg}#*
 \symbolthanksmark#*
 \tablerefname#*
-\tabsoff#*
-\tabson#*
-\tabson[number]#*
 \tamark#*
 \teennumbername{arg}#*
 \teenordinalname{arg}#*
@@ -1790,10 +1786,6 @@ none
 \uppercaseheads#*
 \uppermargin#*
 \usethanksrule#*
-\verbatimbreakchar#*
-\verbatimindent#*
-\verbatiminput{file}
-\verbatiminput*{file}
 \verbfootnote#*
 \verselinebreak#*
 \verselinebreak[length]#*
@@ -1809,9 +1801,6 @@ none
 \vleftskip#*
 \vlvnumfont#*
 \vrightskip#*
-\wrappingoff#*
-\wrappingon#*
-\wrapright#*
 \xindyindex#*
 \xlvchars#*
 \zerotrivseps#*
@@ -1841,3 +1830,12 @@ title
 titlingpage
 %pagestyle
 #endkeyvals
+
+# deprecated
+\tabsoff#S
+\tabson#S
+\setverbatimbreak#S
+\verbatimbreakchar#S
+\wrappingoff#S
+\wrappingon#S
+\wrapright#S
