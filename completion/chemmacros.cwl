@@ -224,7 +224,7 @@ pos=#side,sub
 ## symbols-module
 # loads amstext package
 \transitionstatesymbol
-\standardstatesymbol
+\standardstate
 \changestate
 
 ## formula-module
