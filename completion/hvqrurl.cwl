@@ -1,5 +1,5 @@
 # hvqrurl package
-# Matthew Bertucci 9/27/2021 for v0.02
+# Matthew Bertucci 2024/01/28 for v0.05
 
 #include:qrcode
 #include:xcolor
@@ -19,4 +19,5 @@ qradjust=##L
 qrheight=##L
 qrlevel=#L,M,Q,H
 qrreverse
+linktext=%<text%>
 #endkeyvals
