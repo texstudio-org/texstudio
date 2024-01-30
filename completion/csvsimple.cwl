@@ -1,7 +1,5 @@
 # csvsimple package
-# Matthew Bertucci 12/22/2021 for v2.2.0
-
-#include:l3keys2e
+# Matthew Bertucci 2024/01/19 for v2.6.0
 
 # legacy option or default (no options)
 #include:csvsimple-legacy

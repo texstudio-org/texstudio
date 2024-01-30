@@ -9,7 +9,7 @@
 #include:textcomp
 
 \abstractname#*
-\addcontentsline{ext}{secunit}{entry%text}#*
+\addcontentsline{ext}{type}{entry%text}#*
 \Alph{counter}#*
 \alph{counter}#*
 \and#*
@@ -167,7 +167,7 @@
 \clearpage
 \cline{i-j}#t
 \columnwidth#L
-\contentsline{type}{text}{page}
+\contentsline{type}{text}{page}{Href}
 \contentsname
 \dashbox{dashlength}(width,height)[position]{text}#*/picture
 \dashbox{dashlength}(width,height){text}#*/picture

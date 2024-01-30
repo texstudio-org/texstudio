@@ -1,5 +1,5 @@
 # pagelayout class
-# Matthew Bertucci 2023/01/24 for v1.0.3
+# Matthew Bertucci 2024/01/18 for v1.1.0
 
 #include:pgfopts
 #include:tikz
@@ -141,6 +141,9 @@ back cover
 #keyvals:\setpagegraphic,\newgraphic
 file=%<imagefile%>
 scale=%<factor%>
+orientation=%<number%>
+hflip
+vflip
 vpos=%<number 0-1%>
 hpos=%<number 0-1%>
 unsharp=
@@ -192,6 +195,7 @@ leftrule=##L
 height=##L
 parbox
 breakable
+baselinesnap=##L
 border radius=##L
 arc=##L
 border width=##L
@@ -216,6 +220,9 @@ shadow yshift=##L
 #keyvals:\graphic
 file=%<imagefile%>
 scale=%<factor%>
+orientation=%<number%>
+hflip
+vflip
 vpos=%<number 0-1%>
 hpos=%<number 0-1%>
 unsharp=
@@ -302,3 +309,6 @@ downsample threshold=%<number%>
 \setcolor{color}#S
 \setgraphpaper{arg}#S
 \pagelayoutversion#S
+\togglesnapv#S
+\togglesnaph#S
+\togglepos#S

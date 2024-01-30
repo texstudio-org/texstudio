@@ -1766,7 +1766,7 @@ SuppressWarning#true,false
 #repl:"! ¡
 #endif
 
-### germanb.ldf v2.13 (and associated austrian.ldf and swissgerman.ldf) ###
+### germanb.ldf v2.14 (and associated austrian.ldf and swissgerman.ldf) ###
 #ifOption:german
 \captionsgerman#*
 \dategerman#*
@@ -1789,6 +1789,10 @@ SuppressWarning#true,false
 \mdqon#*
 \mdqoff#*
 \ck#*
+\ifcapsz#*
+\capsztrue#S
+\capszfalse#S
+\mkngender#*
 #repl:"a ä
 #repl:"e ë
 #repl:"i ï
@@ -1851,6 +1855,10 @@ SuppressWarning#true,false
 \mdqon#*
 \mdqoff#*
 \ck#*
+\ifcapsz#*
+\capsztrue#S
+\capszfalse#S
+\mkngender#*
 #repl:"a ä
 #repl:"e ë
 #repl:"i ï
@@ -1913,6 +1921,10 @@ SuppressWarning#true,false
 \mdqon#*
 \mdqoff#*
 \ck#*
+\ifcapsz#*
+\capsztrue#S
+\capszfalse#S
+\mkngender#*
 #repl:"a ä
 #repl:"e ë
 #repl:"i ï

@@ -1,5 +1,5 @@
 # unicode-math-input package
-# Matthew Bertucci 2023/05/12 for v0.0.0
+# Matthew Bertucci 2024/01/18 for v0.1.0
 
 #include:iftex
 
@@ -25,8 +25,8 @@ ignore-patch-prime
 \umiMathtt#*
 \umiFrac#*
 
-\umiDefineMathChar{character}{definition}
-\umiDefineMathDelimiter{character}{definition}
+\umiDeclareMathChar{character}{definition}
+\umiDeclareMathDelimiter{character}{definition}
 
 \umiRefreshDelimiterList#*
 
@@ -40,8 +40,15 @@ ignore-patch-prime
 \umiPatchPrime#*
 \umiUnpatchPrime#*
 
+\umiDeclareMathCharCopy{character}{cmd}
+\umiDeclareMathDelimiterCopy{character}{cmd}
+
 # not documented
 \umiPrime#S
 \umiPrimeNormalDefinition#S
 \umiBackprime#S
 \umiBackprimeNormalDefinition#S
+
+# deprecated
+\umiDefineMathChar{character}{definition}#S
+\umiDefineMathDelimiter{character}{definition}#S

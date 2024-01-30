@@ -1,8 +1,9 @@
 # pythonimmediate package
-# Matthew Bertucci 2023/01/11 for v0.1.0
+# Matthew Bertucci 2024/01/18 for v0.5.0
 
 #include:saveenv
 #include:currfile
+#include:currfile-abspath
 #include:precattl
 
 #keyvals:\usepackage/pythonimmediate#c

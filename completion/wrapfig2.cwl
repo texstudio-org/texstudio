@@ -1,10 +1,10 @@
 # wrapfig2 package
-# Matthew Bertucci 2/8/2022 for v5.0.7
+# Matthew Bertucci 2024/01/22 for v7.0.0
 
 #include:etoolbox
 #include:float
 #include:xcolor
-#include:curve2e
+#include:pict2e
 
 #keyvals:\usepackage/wrapfig2#c
 verbose
@@ -50,8 +50,10 @@ O
 \includeframedtext[width]{text}
 \includeframedtext[width]{text}[settings][radius%l]
 
-\framedbox{text}{frame thickness%l}{frame sep%l}
-\framedbox{text}{frame thickness%l}{frame sep%l}[corner radius%l]
+\framedbox{frame width%l}{frame thickness%l}{frame sep%l}{text}
+\framedbox{frame width%l}{frame thickness%l}{frame sep%l}[corner radius%l]{text}
+\Frame{frame width%l}{frame height%l}{corner radius%l}
+\Frame*{frame width%l}{frame height%l}{corner radius%l}
 
 \wrapoverhang#*
 \insertwidth#*
@@ -60,19 +62,17 @@ O
 \WFscalefactor#*
 \WFscalewidth#*
 \WFclear#*
-\textcorrection#*
-\textplacement#*
-\textoverhang#*
-
-\x#S
-\xc#S
-\WFXds#S
-\WFYuo#S
-\PSEl#S
-\PNEl#S
-\PSWu#S
-\WFrectangle#S
-\CurveStar#S
+\textcorrection#S
+\textplacement#S
+\textoverhang#S
+\WFfrthick#S
+\WFfrgap#S
+\WFfrwidth#S
+\WFfrheight#S
+\WFXR#S
+\WFYD#S
+\WFXL#S
+\WFYU#S
 
 WFbackground#B
 WFframe#B

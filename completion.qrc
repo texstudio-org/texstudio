@@ -297,6 +297,7 @@
 <file>completion/beamerthemeMadrid.cwl</file>
 <file>completion/beamerthemeMarburg.cwl</file>
 <file>completion/beamerthememetropolis.cwl</file>
+<file>completion/beamerthememoloch.cwl</file>
 <file>completion/beamerthemeNord.cwl</file>
 <file>completion/beamerthemePaloAlto.cwl</file>
 <file>completion/beamerthemepureminimalistic.cwl</file>
@@ -611,6 +612,7 @@
 <file>completion/class-acmart.cwl</file>
 <file>completion/class-acm-book.cwl</file>
 <file>completion/class-altacv.cwl</file>
+<file>completion/class-amnestyreport.cwl</file>
 <file>completion/class-amsart.cwl</file>
 <file>completion/class-amsbkrev.cwl</file>
 <file>completion/class-amsbook.cwl</file>
@@ -1653,6 +1655,7 @@
 <file>completion/gckanbun.cwl</file>
 <file>completion/gelasio.cwl</file>
 <file>completion/genealogytree.cwl</file>
+<file>completion/genealogy-profiles.cwl</file>
 <file>completion/gensymb.cwl</file>
 <file>completion/gentiumbook.cwl</file>
 <file>completion/gentium.cwl</file>
@@ -2587,6 +2590,7 @@
 <file>completion/ocgx.cwl</file>
 <file>completion/ocr.cwl</file>
 <file>completion/octave.cwl</file>
+<file>completion/odesandpdes.cwl</file>
 <file>completion/odsfile.cwl</file>
 <file>completion/ogonek.cwl</file>
 <file>completion/okumacro.cwl</file>

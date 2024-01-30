@@ -1,5 +1,5 @@
 # bclogo package
-# Matthew Bertucci 2/23/2022 for v3.1
+# Matthew Bertucci 2024/01/24 for v3.15
 
 #include:xkeyval
 #include:ifthen
@@ -7,11 +7,11 @@
 #include:mdframed
 #include:ifpdf
 #include:etoolbox
+#include:pst-blur
 
 #keyvals:\usepackage/bclogo#c
 tikz
 pstricks
-blur
 #endkeyvals
 
 #ifOption:tikz
@@ -24,11 +24,6 @@ blur
 #include:pstricks
 #include:pst-grad
 #include:pst-coil
-#endif
-
-#ifOption:blur
-#include:pst-blur
-\pagecolorOLD{color}#S
 #endif
 
 \begin{bclogo}{titre%text}
@@ -131,17 +126,14 @@ ombre#true,false
 \logowidth#L
 \listofbclogo
 \titrebclogo#*
-\bccaption{text}#*
-\bclogotitre#*
+\bccaption{text}#S
+\bclogotitre#S
 \styleSousTitre{text}#S
-\thebclogocompteur#*
-
-\ifbclogotikz#*
-\bclogotikztrue#*
-\bclogotikzfalse#*
-\ifbclogoblur#*
-\bclogoblurtrue#*
-\bclogoblurfalse#*
+\thebclogocompteur#S
+\pagecolorOLD{color}#S
+\ifbclogotikz#S
+\bclogotikztrue#S
+\bclogotikzfalse#S
 \PackageName#S
 \filedate#S
 \fileversion#S

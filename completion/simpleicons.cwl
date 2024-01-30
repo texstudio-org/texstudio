@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/01/13 for v10.5.0
+# Matthew Bertucci 2024/01/26 for v11.2.0
 
 #include:iftex
 
@@ -9,10 +9,12 @@
 42
 1001tracklists
 1password
+2k
 3m
 4chan
 4d
 500px
+7zip
 99designs
 9gag
 abbott
@@ -85,6 +87,7 @@ airplayaudio
 airplayvideo
 airtable
 airtel
+airtransat
 ajv
 akamai
 akaunting
@@ -154,6 +157,7 @@ androidauto
 androidstudio
 angular
 anilist
+animalplanet
 ansible
 answer
 ansys
@@ -229,6 +233,7 @@ artifacthub
 artixlinux
 artstation
 arxiv
+asahilinux
 asana
 asciidoctor
 asciinema
@@ -278,6 +283,7 @@ azuredevops
 azurefunctions
 azurepipelines
 babel
+babelio
 backblaze
 backbonedotjs
 backendless
@@ -307,6 +313,7 @@ beijingsubway
 bem
 bentley
 bento
+bentobox
 bentoml
 bereal
 betfair
@@ -373,6 +380,7 @@ boxysvg
 brandfolder
 brave
 breaker
+brenntag
 brevo
 brex
 bricks
@@ -416,6 +424,7 @@ canva
 canvas
 capacitor
 cardano
+carlsberggroup
 carrd
 carrefour
 carthrottle
@@ -497,6 +506,7 @@ clubhouse
 clyp
 cmake
 cncf
+cnet
 cnn
 cocacola
 cockpit
@@ -637,6 +647,7 @@ dataverse
 datefns
 datocms
 datto
+davinciresolve
 dazn
 dbeaver
 dblp
@@ -646,6 +657,7 @@ debian
 decapcms
 dedge
 deepcool
+deepgram
 deepin
 deepl
 deepnote
@@ -749,6 +761,7 @@ eclipsejetty
 eclipsemosquitto
 eclipsevertdotx
 edeka
+edgeimpulse
 editorconfig
 edotleclerc
 educative
@@ -798,6 +811,7 @@ esbuild
 esea
 eslgaming
 eslint
+esotericsoftware
 esphome
 espressif
 esri
@@ -930,6 +944,7 @@ frontendmentor
 frontify
 fsecure
 fsharp
+fubo
 fugacloud
 fujifilm
 fujitsu
@@ -944,6 +959,7 @@ gameandwatch
 gamebanana
 gamedeveloper
 gamejolt
+gameloft
 gamemaker
 garmin
 gatling
@@ -965,6 +981,7 @@ gin
 giphy
 git
 gitbook
+gitconnected
 gitea
 gitee
 gitextensions
@@ -1180,6 +1197,7 @@ humblebundle
 hungryjacks
 husqvarna
 hyper
+hyperskill
 hypothesis
 hyundai
 i18next
@@ -1362,6 +1380,7 @@ klarna
 klm
 klook
 knative
+knexdotjs
 knowledgebase
 known
 koa
@@ -1382,6 +1401,7 @@ ktm
 kuaishou
 kubernetes
 kubuntu
+kucoin
 kuma
 kuula
 kx
@@ -1445,6 +1465,7 @@ linear
 linkedin
 linkerd
 linkfire
+linksys
 linktree
 linux
 linuxcontainers
@@ -1492,6 +1513,7 @@ macpaw
 macys
 magasinsu
 magento
+magic
 magisk
 mahindra
 mailchimp
@@ -1563,6 +1585,7 @@ meta
 metabase
 metacritic
 metafilter
+metasploit
 meteor
 metro
 metrodelaciudaddemexico
@@ -1656,6 +1679,7 @@ mulesoft
 muller
 multisim
 mumble
+muo
 mural
 musescore
 musicbrainz
@@ -1727,6 +1751,7 @@ nodedotjs
 nodemon
 nodered
 nokia
+nomad
 norco
 nordicsemiconductor
 nordvpn
@@ -1821,6 +1846,7 @@ oppo
 opsgenie
 opslevel
 oracle
+orange
 orcid
 oreilly
 org
@@ -1858,6 +1884,7 @@ pandas
 pandora
 pantheon
 paperspace
+paramountplus
 paritysubstrate
 parsedotly
 passport
@@ -2035,6 +2062,7 @@ puppeteer
 purescript
 purgecss
 purism
+pushbullet
 pusher
 pwa
 pycharm
@@ -2104,6 +2132,7 @@ razer
 razorpay
 react
 reacthookform
+reactiveresume
 reactivex
 reactos
 reactquery
@@ -2176,11 +2205,13 @@ robloxstudio
 robotframework
 rocketdotchat
 rocksdb
+rockstargames
 rockylinux
 roku
 rollsroyce
 rollupdotjs
 rome
+roon
 rootme
 roots
 rootsbedrock
@@ -2220,6 +2251,7 @@ sahibinden
 sailfishos
 sailsdotjs
 salesforce
+salla
 saltproject
 samsclub
 samsung
@@ -2235,6 +2267,7 @@ sat1
 satellite
 saturn
 saucelabs
+saudia
 scala
 scaleway
 scania
@@ -2354,6 +2387,7 @@ society6
 socketdotio
 softpedia
 sogou
+solana
 solid
 solidity
 sololearn
@@ -2390,6 +2424,7 @@ speedtest
 speedypage
 sphinx
 spigotmc
+spine
 spinnaker
 spinrilla
 splunk
@@ -2508,6 +2543,7 @@ taichigraphics
 taichilang
 tails
 tailwindcss
+taketwointeractivesoftware
 talend
 talenthouse
 tamiya
@@ -2525,6 +2561,7 @@ teamcity
 teamspeak
 teamviewer
 ted
+teepublic
 teespring
 tekton
 tele5
@@ -2573,12 +2610,14 @@ thunderstore
 thurgauerkantonalbank
 thymeleaf
 ticketmaster
+ticktick
 tidal
 tiddlywiki
 tide
 tidyverse
 tietoevry
 tiktok
+tildapublishing
 tile
 timescale
 tina
@@ -2598,6 +2637,7 @@ toml
 tomorrowland
 ton
 topcoder
+topdotgg
 toptal
 torbrowser
 torproject
@@ -2689,6 +2729,7 @@ unrealengine
 unsplash
 untappd
 upcloud
+uphold
 uplabs
 upptime
 ups
@@ -2711,6 +2752,7 @@ vault
 vaultwarden
 vauxhall
 vbulletin
+vectary
 vectorlogozone
 vectorworks
 veeam
@@ -2903,6 +2945,7 @@ yubico
 zabka
 zalando
 zalo
+zap
 zapier
 zara
 zazzle
