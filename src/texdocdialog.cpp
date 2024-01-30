@@ -182,7 +182,10 @@ void TexdocDialog::itemChanged(QTableWidgetItem* item)
 void TexdocDialog::setPackageNames(const QStringList &packages)
 {
     m_packages=packages;
-    regenerateTable();
+    bool checked = false;
+    if (m_packages.count()==0) checked = true;
+    ui->cbShowAllPackages->setChecked(checked);
+    regenerateTable(checked);
 }
 
 void TexdocDialog::setPreferredPackage(const QString &package)
