@@ -1,5 +1,5 @@
-# pst-spinner package
-# Matthew Bertucci 2/22/2022 for v0.13
+# pst-solarsystem package
+# Matthew Bertucci 2024/01/30 for v0.14
 
 #include:pstricks
 #include:pst-node
@@ -21,8 +21,12 @@ Minute=%<minute%>
 Second=%<second%>
 solarValues#true,false
 viewpoint=
+language=#DE,FR,EN
 #endkeyvals
 
 \Jupiter#*
-\Saturne#*
+\Saturn#*
 \PSTSOLARSYSTEMELoaded#S
+\SolarSystemLangEN#S
+\SolarSystemLangDE#S
+\SolarSystemLangFR#S
