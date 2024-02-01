@@ -46,13 +46,13 @@ void TexdocDialog::regenerateTable(int state)
     ui->tbPackages->setRowCount(0);
     ui->tbPackages->horizontalHeader()->setStretchLastSection(true);
     int n=0;
-    if (!m_packages.isEmpty() || (state>0)) {
+    if (!m_packages.isEmpty() || (state==Qt::Checked)) {
         ui->tbPackages->setSelectionMode(QAbstractItemView::SingleSelection);
         ui->tbPackages->setSelectionBehavior(QAbstractItemView::SelectRows);
         LatexRepository *repo = LatexRepository::instance();
 
         QStringList pkgs;
-        if(state>0){
+        if(state==Qt::Checked){
             pkgs=repo->LatexRepository::availablePackages();
         }else{
             pkgs=m_packages;
@@ -63,7 +63,7 @@ void TexdocDialog::regenerateTable(int state)
         for (QString pkgname : pkgs) {
             LatexPackageInfo pkg = packageHash.value(pkgname);
             QString name = pkg.id;
-            if(state==0 && !repo->LatexRepository::packageExists(name)) continue;
+            if(state==Qt::Unchecked && !repo->LatexRepository::packageExists(name)) continue;
             QTableWidgetItem *itemPkgName = new QTableWidgetItem(name);
             itemPkgName->setData(Qt::UserRole,QVariant::fromValue(pkg));
             itemPkgName->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
