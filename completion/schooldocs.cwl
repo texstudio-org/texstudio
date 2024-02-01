@@ -1,5 +1,5 @@
 # schooldocs package
-# Matthew Bertucci 2023/01/26 for v1.2
+# Matthew Bertucci 2024/02/01 for v1.5
 
 #include:geometry
 #include:fancyhdr
@@ -60,3 +60,4 @@ headingcolor#B
 \correctname#*
 \identityname#*
 \identityforename#*
+\schooldocstitles#*
