@@ -24,7 +24,7 @@ public:
 	~TexdocDialog();
 
 private slots:
-    void regenerateTable(int state=0);
+    void regenerateTable(int state=Qt::Unchecked);
     void tableSearchTermChanged(QString term);
 	void itemChanged(QTableWidgetItem* item);
 	void delayedCheckDocAvailable(const QString &package);
