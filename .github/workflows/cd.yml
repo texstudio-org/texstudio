@@ -322,7 +322,7 @@ jobs:
       actions: write   # for GeekyEggo/delete-artifact to delete artifacts
       contents: write  # for softprops/action-gh-release to create GitHub release
     name: Release
-    needs: [build-win10, build-linux-release, macosx] # build-linux-win,macosx-qt5 is disabled
+    needs: [build-win10, build-linux-release, macosx, macosxM1] # build-linux-win,macosx-qt5 is disabled
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
