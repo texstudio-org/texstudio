@@ -204,8 +204,7 @@ jobs:
       run: |
         cd build
         mkdir -p texstudio.app/Contents/Frameworks
-        ls /usr/local/lib/*.dylib
-        cp /usr/local/lib/libbrotlicommon.*.dylib texstudio.app/Contents/Frameworks
+        cp /usr/local/lib/libbrotlicommon.1.dylib texstudio.app/Contents/Frameworks
         touch texstudio.app/Contents/Resources/empty.lproj
 
     - name: Package
@@ -289,7 +288,8 @@ jobs:
       run: |
         cd build
         mkdir -p texstudio.app/Contents/Frameworks
-        cp /usr/local/lib/libbrotlicommon.1.dylib texstudio.app/Contents/Frameworks
+        ls /usr/local/lib/*.dylib
+        cp /usr/local/lib/libbrotlicommon.*.dylib texstudio.app/Contents/Frameworks
         touch texstudio.app/Contents/Resources/empty.lproj
 
     - name: Package
