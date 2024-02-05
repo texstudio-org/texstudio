@@ -300,6 +300,8 @@ jobs:
         . ../.github/scripts/get-version.sh
         # cp texstudio.dmg ../texstudio-${GIT_VERSION}-osx-m1.dmg
         mv texstudio.app ../texstudio-osx-m1-${VERSION_NAME}.app
+        cd ..
+        zip -r texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-m1-${VERSION_NAME}.app
         echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
         echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
         echo "GIT_VERSION=${GIT_VERSION}" >> $GITHUB_OUTPUT
@@ -309,7 +311,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: texstudio-osx-m1
-        path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.app
+        path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.zip
 
     - name: Upload release file(s)
       uses: actions/upload-artifact@v4
