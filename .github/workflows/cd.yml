@@ -300,7 +300,7 @@ jobs:
         . ../.github/scripts/get-version.sh
         cp -r texstudio.app ../texstudio-${GIT_VERSION}-osx-m1.app
         mkdir ../app
-        mv texstudio.app ../texstudio-osx-m1-${VERSION_NAME}.app
+        mv texstudio.app ../app/texstudio-osx-m1-${VERSION_NAME}.app
         cd ..
         # zip -r texstudio-osx-m1-${VERSION_NAME}.zip texstudio-osx-m1-${VERSION_NAME}.app
         zip -r texstudio-${GIT_VERSION}-osx-m1.zip texstudio-${GIT_VERSION}-osx-m1.app
