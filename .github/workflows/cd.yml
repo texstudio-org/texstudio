@@ -294,10 +294,12 @@ jobs:
       id: package
       run: |
         cd build
-        /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app -dmg
+        # /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app -dmg
+        /usr/local/QtBase-${{ env.OSX_QT_VERSION }}-Darwin/bin/macdeployqt texstudio.app
+        codesign --force --deep --sign - texstudio.app
         . ../.github/scripts/get-version.sh
-        cp texstudio.dmg ../texstudio-${GIT_VERSION}-osx-m1.dmg
-        mv texstudio.dmg ../texstudio-osx-m1-${VERSION_NAME}.dmg
+        # cp texstudio.dmg ../texstudio-${GIT_VERSION}-osx-m1.dmg
+        mv texstudio.app ../texstudio-osx-m1-${VERSION_NAME}.app
         echo "VERSION_NAME=${VERSION_NAME}" >> $GITHUB_OUTPUT
         echo "TXS_VERSION=${TXS_VERSION}" >> $GITHUB_OUTPUT
         echo "GIT_VERSION=${GIT_VERSION}" >> $GITHUB_OUTPUT
@@ -307,7 +309,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: texstudio-osx-m1
-        path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.dmg
+        path: texstudio-osx-m1-${{ steps.package.outputs.VERSION_NAME }}.app
 
     - name: Upload release file(s)
       uses: actions/upload-artifact@v4
