@@ -12,7 +12,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Configuring TeXstudio" href="configuration.html" /><link rel="prev" title="Viewing a document (pdf)" href="viewing.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
-        <title>Advanced features - TeXstudio 4.7.2 documentation</title>
+        <title>Advanced features - TeXstudio 4.7.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
@@ -131,7 +131,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.7.2 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.7.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -157,7 +157,7 @@
     <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">TeXstudio 4.7.2 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.7.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -335,9 +335,9 @@ This is equivalent to
 <h2>Personal macros<a class="headerlink" href="#personal-macros" title="Permalink to this heading">#</a></h2>
 <p>TeXstudio allows you to insert your own macros. These macros are defined
 with the “Macros - Edit Macros” menu. Macros can consist of simple
-text which is directly placed into txs. It can also be an
+text which is directly placed into txs (use type “Normal”). It can also be an
 “environment” which are automatically extended by begin/end or it can
-be a java script. The needed functionality can be selected by checkbox.</p>
+be a java script. The needed macro type can be selected by radio buttons “Normal”, “Environment”, or “Script”.</p>
 <p>The “abbreviation” is a pseudo-command for the latex completer. If the
 pseudo-command is completed, the macro will be inserted instead. Note
 that the pseudo-command needs to start with a backslash (”\”).</p>
@@ -356,8 +356,7 @@ in the macro-menu. It is rearranged with the
 “up”/”down”/”add”/”remove” buttons or with drag and drop.
 Folders can be added to sort a larger number of macros sensibly. To move
 macros into/from folders, only drag and drop works.
-The “run script” button directly executes a script in the editor for
-testing.</p>
+The “Exec Macro” button executes the macro immediately.</p>
 <p><img alt="doc17" src="_images/doc17.png" /></p>
 <section id="text-macros">
 <h3>Text macros<a class="headerlink" href="#text-macros" title="Permalink to this heading">#</a></h3>
@@ -407,17 +406,12 @@ Qt-Filefilterformat. For example “Images (*.png *.xpm
 </section>
 <section id="environment-macros">
 <h3>Environment macros<a class="headerlink" href="#environment-macros" title="Permalink to this heading">#</a></h3>
-<p>The text will be used as environment-name, thus “%environment” will be
+<p>The text must consist of one word and no newline. The word will be used as environment-name, thus “environment” will be
 inserted as:</p>
 <div class="highlight-latex notranslate"><div class="highlight"><pre><span></span><span class="k">\begin</span><span class="nb">{</span>environment<span class="nb">}</span>
 
 <span class="k">\end</span><span class="nb">{</span>environment<span class="nb">}</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>TeXstudio needs that the env-name starts with “%”, though that
-character is not placed on insertion.</p>
 </div>
 </section>
 <section id="script-macros">
@@ -425,7 +419,7 @@ character is not placed on insertion.</p>
 <p>Instead of using code snippets, you can also make use of scripting with
 QJS, an application scripting language based on
 <a class="reference external" href="https://doc.qt.io/qt-6/qtqml-javascript-functionlist.html">ECMAScript</a>.</p>
-<p>Put “%SCRIPT” in the first line to declare a macro as a script. Here
+<p>Select radio button “Script” to declare a macro as a script. Here
 are the objects that provide the interface to the TeXstudio internals:</p>
 <ul class="simple">
 <li><p>“editor” allows some top level operations like

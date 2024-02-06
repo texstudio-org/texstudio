@@ -4,6 +4,10 @@
 - First line of macro editor no longer uses macro type, use buttons to set type. Macro format changes slightly. For details s. [#3458](https://github.com/texstudio-org/texstudio/pull/3458)
 - add export of all macros in Edit Macros dialog
 - fix missing connection error message when browsing macro repository [#3448](https://github.com/texstudio-org/texstudio/pull/3448)
+- fix switching (by clicking) between documents [#3473](https://github.com/texstudio-org/texstudio/issues/3473)
+- fix "Show all open documents in this tree" [#3476](https://github.com/texstudio-org/texstudio/issues/3476)
+- improved Package Help dialog [#3478](https://github.com/texstudio-org/texstudio/pull/3478)
+- fix handling a new file created from the context menu [#3471](https://github.com/texstudio-org/texstudio/issues/3471)
 
 ## TeXstudio 4.7.2
 
