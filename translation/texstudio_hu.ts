@@ -5297,12 +5297,12 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="60"/>
         <source>Copy All With Line &amp;Numbers</source>
-        <translation type="unfinished"/>
+        <translation>Másolja az összeset &amp;sorszámokkal</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="63"/>
         <source>Copy &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>Minden &amp;másolása</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="80"/>
@@ -5356,67 +5356,72 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="../src/latexrepository.cpp" line="156"/>
         <source>### Package %1 Info</source>
-        <translation type="unfinished"/>
+        <translation>### Csomag %1 Infó</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="157"/>
         <source>- Name : </source>
-        <translation type="unfinished"/>
+        <translation>- Név : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="158"/>
         <source>- Caption : </source>
-        <translation type="unfinished"/>
+        <translation>- Felirat : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="159"/>
         <source>- Authors : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Szerzők : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="160"/>
         <source>- Version : </source>
-        <translation type="unfinished"/>
+        <translation>- Verzió : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="161"/>
         <source>- Documentation : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Dokumentáció : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="162"/>
         <source>- Copyright : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Copyright : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="163"/>
         <source>- License : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Licensz : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="164"/>
         <source>- MikTex : </source>
-        <translation type="unfinished"/>
+        <translation>- MikTex : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="165"/>
         <source>- TexLive : </source>
-        <translation type="unfinished"/>
+        <translation>- TexLive : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="166"/>
         <source>- Topics : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Témák : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="167"/>
         <source>- Link : </source>
-        <translation type="unfinished"/>
+        <translation>- Link : </translation>
     </message>
 </context>
 <context>
@@ -7922,12 +7927,12 @@ Hiba:</translation>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Free)</source>
-        <translation type="unfinished"/>
+        <translation> (Ingyenes)</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Not free)</source>
-        <translation type="unfinished"/>
+        <translation> (Nem ingyenes)</translation>
     </message>
 </context>
 <context>
@@ -9375,12 +9380,12 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="../src/texdocdialog.ui" line="28"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>Csomagok</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="47"/>
         <source>Package descriptions</source>
-        <translation type="unfinished"/>
+        <translation>Csomagleírások</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="138"/>

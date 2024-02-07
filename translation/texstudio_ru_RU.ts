@@ -5310,12 +5310,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="60"/>
         <source>Copy All With Line &amp;Numbers</source>
-        <translation type="unfinished"/>
+        <translation>Копировать всё с &amp;номерами строк</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="63"/>
         <source>Copy &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>Копировать &amp;всё</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="80"/>
@@ -5369,67 +5369,73 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexrepository.cpp" line="156"/>
         <source>### Package %1 Info</source>
-        <translation type="unfinished"/>
+        <translation>### Информация о пакете %1</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="157"/>
         <source>- Name : </source>
-        <translation type="unfinished"/>
+        <translation>- Имя :</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="158"/>
         <source>- Caption : </source>
-        <translation type="unfinished"/>
+        <translation>- Заголовок :</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="159"/>
         <source>- Authors : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Авторы :
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="160"/>
         <source>- Version : </source>
-        <translation type="unfinished"/>
+        <translation>- Версия :</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="161"/>
         <source>- Documentation : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Документация :
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="162"/>
         <source>- Copyright : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Авторское право :
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="163"/>
         <source>- License : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Лицензия :
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="164"/>
         <source>- MikTex : </source>
-        <translation type="unfinished"/>
+        <translation>- MikTex : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="165"/>
         <source>- TexLive : </source>
-        <translation type="unfinished"/>
+        <translation>- TexLive : </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="166"/>
         <source>- Topics : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Темы : 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="167"/>
         <source>- Link : </source>
-        <translation type="unfinished"/>
+        <translation>- Ссылка :
+</translation>
     </message>
 </context>
 <context>
@@ -7942,12 +7948,12 @@ Error: </source>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Free)</source>
-        <translation type="unfinished"/>
+        <translation>(Свободный)</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Not free)</source>
-        <translation type="unfinished"/>
+        <translation>(Ограниченный)</translation>
     </message>
 </context>
 <context>
@@ -9394,12 +9400,12 @@ failed.</source>
     <message>
         <location filename="../src/texdocdialog.ui" line="28"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>Пакеты</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="47"/>
         <source>Package descriptions</source>
-        <translation type="unfinished"/>
+        <translation>Описания пакетов</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="138"/>

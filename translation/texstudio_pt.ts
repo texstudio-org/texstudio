@@ -5306,12 +5306,12 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="60"/>
         <source>Copy All With Line &amp;Numbers</source>
-        <translation type="unfinished"/>
+        <translation>Copiar tudo com &amp;números de linha</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="63"/>
         <source>Copy &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>Copi&amp;ar tudo</translation>
     </message>
     <message>
         <location filename="../src/latexlogwidget.cpp" line="80"/>
@@ -5365,67 +5365,72 @@ o assistente não suporta o comando </translation>
     <message>
         <location filename="../src/latexrepository.cpp" line="156"/>
         <source>### Package %1 Info</source>
-        <translation type="unfinished"/>
+        <translation>### Informação do pacote %1</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="157"/>
         <source>- Name : </source>
-        <translation type="unfinished"/>
+        <translation>- Nome:</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="158"/>
         <source>- Caption : </source>
-        <translation type="unfinished"/>
+        <translation>- Lagenda:</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="159"/>
         <source>- Authors : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Autores: 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="160"/>
         <source>- Version : </source>
-        <translation type="unfinished"/>
+        <translation>- Versão:</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="161"/>
         <source>- Documentation : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Documentação: 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="162"/>
         <source>- Copyright : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Direitos de autor: 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="163"/>
         <source>- License : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Licença: 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="164"/>
         <source>- MikTex : </source>
-        <translation type="unfinished"/>
+        <translation>- MikTex: </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="165"/>
         <source>- TexLive : </source>
-        <translation type="unfinished"/>
+        <translation>- TexLive: </translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="166"/>
         <source>- Topics : 
 </source>
-        <translation type="unfinished"/>
+        <translation>- Tópicos: 
+</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.cpp" line="167"/>
         <source>- Link : </source>
-        <translation type="unfinished"/>
+        <translation>- Ligação:</translation>
     </message>
 </context>
 <context>
@@ -7937,12 +7942,12 @@ Erro: </translation>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Free)</source>
-        <translation type="unfinished"/>
+        <translation>(Grátis)</translation>
     </message>
     <message>
         <location filename="../src/latexrepository.h" line="103"/>
         <source> (Not free)</source>
-        <translation type="unfinished"/>
+        <translation>(Pago)</translation>
     </message>
 </context>
 <context>
@@ -9391,12 +9396,12 @@ não pôde ser removido.</translation>
     <message>
         <location filename="../src/texdocdialog.ui" line="28"/>
         <source>Packages</source>
-        <translation type="unfinished"/>
+        <translation>Pacotes</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="47"/>
         <source>Package descriptions</source>
-        <translation type="unfinished"/>
+        <translation>Descrição dos pacotes</translation>
     </message>
     <message>
         <location filename="../src/texdocdialog.ui" line="138"/>
