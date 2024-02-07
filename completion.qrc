@@ -888,6 +888,7 @@
 <file>completion/class-qcm.cwl</file>
 <file>completion/class-quantumarticle.cwl</file>
 <file>completion/class-quantumview.cwl</file>
+<file>completion/class-randexam.cwl</file>
 <file>completion/class-rapport1.cwl</file>
 <file>completion/class-rapport3.cwl</file>
 <file>completion/class-ReadableCV.cwl</file>
@@ -4134,6 +4135,7 @@
 <file>completion/yhmath.cwl</file>
 <file>completion/youngtab.cwl</file>
 <file>completion/yquant.cwl</file>
+<file>completion/ysabeau.cwl</file>
 <file>completion/ytableau.cwl</file>
 <file>completion/zahl2string.cwl</file>
 <file>completion/Zallman.cwl</file>
