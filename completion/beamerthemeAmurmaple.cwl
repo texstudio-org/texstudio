@@ -1,9 +1,10 @@
 # Amurmaple beamertheme
-# Matthew Bertucci 2023/01/31 for v1.2
+# Matthew Bertucci 2024/02/07 for v1.3
 
 #include:multicol
 #include:iftex
 #include:pgfpages
+#include:fontawesome5
 #include:luamesh
 #include:tcolorbox
 #include:tcolorboxlibraryskins
@@ -19,6 +20,7 @@ nomail
 delaunay
 amurmapleblue
 amurmaplegreen
+amurmapleblack
 sidebarwidth=##L
 sidebar
 toplogo
@@ -57,6 +59,7 @@ image={%<graphics code%>}
 \xj#S
 
 AmurmapleRed#B
+AmurmapleBlack#B
 AmurmapleOrange#B
 AmurmapleBlue#B
 AmurmapleGreen#B

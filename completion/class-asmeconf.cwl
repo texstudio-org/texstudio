@@ -1,5 +1,5 @@
 # asmeconf class
-# Matthew Bertucci 2023/10/21 for v1.35
+# Matthew Bertucci 2024/02/07 for v1.37
 
 #include:etoolbox
 #include:ifthen
@@ -15,7 +15,6 @@
 #include:dcolumn
 #include:fontenc
 # loads T1 option of fontenc
-#include:inputenc
 #include:textcase
 #include:caption
 #include:subcaption
@@ -29,6 +28,7 @@
 #include:metalogo
 #include:hologo
 #include:fancyhdr
+#include:footmisc
 #include:fnpos
 #include:titlesec
 #include:hyperxmp
@@ -38,18 +38,17 @@
 #include:xcoffins
 
 #keyvals:\documentclass/asmeconf#c
-authorgrid
 balance
 colorlinks
 contractor
-fontspec
+nofontspec
 govt
+govtsome
 grid
 hyphenate
 largesc
 lineno
 mono
-nodefaultsups
 nofoot
 pdf-a
 pdfaconformance=#b,u
@@ -168,12 +167,6 @@ mathalfa=bbsymbols
 mathalfa=oldbold
 mathalfa=scaled=%<factor%>
 #endkeyvals
-
-#ifOption:fontspec
-#include:fontspec
-\MonoNotMono#*
-\ssztwo#*
-#endif
 
 #ifOption:lineno
 #include:lineno
@@ -2017,7 +2010,6 @@ SuppressWarning#true,false
 \ConfCity{city}
 \ConfDate{date}
 \ConfName{conference name%text}
-\ConstructAuthorBlock#*
 \CorrespondingAuthor{email%URL}#U
 \end{abstract*}
 \end{nomenclature}
@@ -2028,11 +2020,8 @@ SuppressWarning#true,false
 \fontspecloadedfalse#*
 \fontspecloadedtrue#*
 \fourthrowauthorblock#*
-\HeaderConfName#*
 \hrefurl{URL}{text%plain}#U
 \iffontspecloaded#*
-\isOtherfnote#S
-\isOthernote#S
 \JAwords#*
 \JointFirstAuthor
 \keywordname#*
@@ -2040,16 +2029,12 @@ SuppressWarning#true,false
 \LogNote{message%text}#*
 \MakeTitlePage#*
 \MyColorOption#*
-\nextToken#S
 \nomenwidth#*
 \nomname#*
-\oldaffil#S
-\oldCorrespondingAuthor#S
-\oldfootnote#S
-\oldJointFirstAuthor#S
 \paperno#*
-\PaperNo{paper number}
+\PaperNo{number}#*
 \papertitle#*
+\PaperTitle{text}#*
 \savemakefnmark#S
 \savethefootnote#S
 \savitemsep#*
@@ -2057,7 +2042,6 @@ SuppressWarning#true,false
 \scaption{text}#*
 \secondrowauthorblock#*
 \SetAffiliation{number}{address}
-\SetAuthorBlock#*
 \SetAuthors{name1,name2,...}
 \sfalpha#m
 \sfbeta#m
@@ -2106,9 +2090,6 @@ SuppressWarning#true,false
 \sfxi#m
 \sfzeta#m
 \shortcaption#*
-\svsection*{title}#*L2
-\svsection[short title]{title}#*L2
-\svsection{title}#*L2
 \theauthorcnt#*
 \theauthorno#*
 \thirdrowauthorblock#*

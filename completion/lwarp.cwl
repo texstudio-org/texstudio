@@ -1,5 +1,5 @@
 # lwarp package
-# Matthew Bertucci 2024/01/12 for v0.914
+# Matthew Bertucci 2024/02/07 for v0.915
 
 #include:iftex
 #include:ifpdf
@@ -90,6 +90,9 @@ BaseJobname=%<jobname%>
 \HTMLTitleAfterSection
 \HTMLAuthor{author}
 \HTMLDescription{description%text}
+\HTMLKeywords{keywords%text}
+\HTMLMeta{name}{contents%text}
+\HTMLAddMeta{name}{contents%text}
 \HTMLPageTop{contents%text}
 \HTMLPageBottom{contents%text}
 \LinkHome

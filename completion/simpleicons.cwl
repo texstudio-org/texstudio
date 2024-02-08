@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/01/26 for v11.2.0
+# Matthew Bertucci 2024/02/03 for v11.3.0
 
 #include:iftex
 
@@ -10,6 +10,7 @@
 1001tracklists
 1password
 2k
+365datascience
 3m
 4chan
 4d
@@ -352,6 +353,7 @@ blogger
 bloglovin
 blueprint
 bluesky
+bluesound
 bluetooth
 bmcsoftware
 bmw
@@ -768,6 +770,7 @@ educative
 edx
 egghead
 egnyte
+eight
 eightsleep
 ejs
 elastic
@@ -874,6 +877,7 @@ fig
 figma
 figshare
 fila
+filedotio
 files
 filezilla
 fineco
@@ -997,6 +1001,7 @@ gitlfs
 gitpod
 gitter
 glassdoor
+glide
 glitch
 globus
 glovo
@@ -1188,6 +1193,7 @@ hp
 hsbc
 html5
 htmlacademy
+htmx
 htop
 httpie
 huawei
@@ -1204,6 +1210,7 @@ i18next
 i3
 iata
 ibeacon
+iberia
 ibm
 ibmcloud
 ibmwatson
@@ -1235,6 +1242,7 @@ immich
 imou
 improvmx
 indeed
+indiehackers
 indigo
 inertia
 infiniti
@@ -1883,6 +1891,7 @@ panasonic
 pandas
 pandora
 pantheon
+paperlessngx
 paperspace
 paramountplus
 paritysubstrate
@@ -2029,6 +2038,7 @@ primevideo
 printables
 prisma
 prismic
+privatedivision
 privateinternetaccess
 probot
 processingfoundation
@@ -2162,6 +2172,7 @@ refine
 relay
 relianceindustrieslimited
 remark
+remedyentertainment
 remix
 renault
 render
@@ -2206,6 +2217,7 @@ robotframework
 rocketdotchat
 rocksdb
 rockstargames
+rockwellautomation
 rockylinux
 roku
 rollsroyce
@@ -2234,6 +2246,7 @@ rubygems
 rubyonrails
 rubysinatra
 ruff
+rumahweb
 rumble
 rundeck
 runkeeper
@@ -2642,6 +2655,7 @@ toptal
 torbrowser
 torproject
 toshiba
+totvs
 tourbox
 toyota
 tplink
@@ -2950,6 +2964,7 @@ zapier
 zara
 zazzle
 zcash
+zcool
 zdf
 zebpay
 zebratechnologies

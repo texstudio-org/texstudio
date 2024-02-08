@@ -1,5 +1,5 @@
 # refstyle package
-# Matthew Bertucci 4/5/2022 for v0.5
+# Matthew Bertucci 2024/01/31 for v0.6
 
 #include:keyval
 
@@ -301,20 +301,20 @@ refcmd=%<refcmd%>
 \RSfnmark{label}#*r
 
 \ifRSstar#*
-\RSstartrue#*
-\RSstarfalse#*
+\RSstartrue#S
+\RSstarfalse#S
 \ifRSnameon#*
-\RSnameontrue#*
-\RSnameonfalse#*
+\RSnameontrue#S
+\RSnameonfalse#S
 \ifRScapname#*
-\RScapnametrue#*
-\RScapnamefalse#*
+\RScapnametrue#S
+\RScapnamefalse#S
 \ifRSplural#*
-\RSpluraltrue#*
-\RSpluralfalse#*
+\RSpluraltrue#S
+\RSpluralfalse#S
 \ifRSlsttwo#*
-\RSlsttwotrue#*
-\RSlsttwofalse#*
+\RSlsttwotrue#S
+\RSlsttwofalse#S
 
 \RefstyleFileDate#S
 \RefstyleFileVersion#S

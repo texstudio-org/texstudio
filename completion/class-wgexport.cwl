@@ -1,5 +1,5 @@
 # wgexport class
-# Matthew Bertucci 2023/03/30 for v0.5
+# Matthew Bertucci 2024/02/03 for v0.6
 
 #include:class-standalone
 #include:wargame
@@ -45,8 +45,10 @@ varwidth=##L
 \info*{image-name}{category}{subcategory}
 \chitimages{counter}
 \chitimages[faction]{counter}
+\chitimages[faction][TikZ keys]{counter}
 \doublechitimages{counter}
 \doublechitimages[faction]{counter}
+\doublechitimages[faction][TikZ keys]{counter}
 \begin{boardimage}{image-name}{subcategory}
 \begin{boardimage}[classification]{image-name}{subcategory}
 \end{boardimage}
@@ -57,10 +59,13 @@ varwidth=##L
 
 \battlemarkers{arg}#S
 \battlemarkers[opt]{arg}#S
+\battlemarkers[opt1][opt2]{arg}#S
 \oddsmarkers{arg}#S
 \oddsmarkers[opt]{arg}#S
+\oddsmarkers[opt1][opt2]{arg}#S
 \resultmarkers{arg}#S
 \resultmarkers[opt]{arg}#S
+\resultmarkers[opt1][opt2]{arg}#S
 \commonicons{arg1}{arg2}#S
 
 ## from standalone options

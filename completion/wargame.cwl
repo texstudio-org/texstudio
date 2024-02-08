@@ -1,5 +1,5 @@
 # wargame package
-# Matthew Bertucci 2023/03/30 for v0.5
+# Matthew Bertucci 2024/02/03 for v0.6
 
 #include:xcolor
 # loads svgnames option of xcolor
@@ -16,6 +16,7 @@
 #include:tikzlibrarydecorations.pathreplacing
 #include:tikzlibrarydecorations.markings
 #include:tikzlibrarymath
+#include:tikzlibraryshadows.blur
 
 #keyvals:\usepackage/wargame#c
 noterrainpic
@@ -230,10 +231,13 @@ bevel={%<bevel-keys%>}
 \eliminatechit(arg)#*
 \stackchits(arg1)(arg2){arg3}#*
 \oob#S
+\hoob#S
 \chits{arg1}{arg2}{arg3}#*
 \chits*{arg1}{arg2}{arg3}#*
+\chitgrid{columns}{rows}{cell size}#*
 \doublechits{arg1}{arg2}{arg3}#*
 \doublechits*{arg1}{arg2}{arg3}#*
+\doublechitgrid{columns}{rows}{cell size}#*
 \chitmark{chit-keys}#*
 \chitmark[options%keyvals]{chit-keys}#*
 \stackmark#*

@@ -1,5 +1,5 @@
 # asmejour class
-# Matthew Bertucci 2023/10/24 for v1.21
+# Matthew Bertucci 2024/02/06 for v1.22
 
 #include:class-extarticle
 #include:etoolbox
@@ -50,7 +50,6 @@ largesc
 lineno
 mono
 nocopyright
-nodefaultsups
 nofoot
 nolists
 pdf-a
@@ -2071,9 +2070,6 @@ SuppressWarning#true,false
 \sfXi#m
 \sfxi#m
 \sfzeta#m
-\svsection*{title}#*L2
-\svsection[short title]{title}#*L2
-\svsection{title}#*L2
 \theauthorno#*
 \Titleheight#*
 \versiondate#*
@@ -2084,10 +2080,10 @@ SuppressWarning#true,false
 \ruleblock#*
 \Abstract#*
 \Title#*
-\CAemail{email%URL}#S
 \PaperNumber{number}
 \revfootnote{text}#*
 \thesavedlength#*
+\DateFootnote#S
 
 # from dvipsnames option of xcolor
 Apricot#B

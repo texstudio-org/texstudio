@@ -1,10 +1,14 @@
 # hvqrurl package
-# Matthew Bertucci 2024/01/28 for v0.05
+# Matthew Bertucci 2024/02/04 for v0.06
 
 #include:qrcode
 #include:xcolor
 #include:marginnote
 #include:url
+
+#keyvals:\usepackage/hvqrurl#c
+nohyperref
+#endkeyvals
 
 \hvqrset{options%keyvals}
 \hvqrurl{URL}#U

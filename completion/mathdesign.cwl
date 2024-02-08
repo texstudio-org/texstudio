@@ -36,7 +36,7 @@ greeklowercase=#upright,italicized
 cal=#cmcal,script
 #endkeyvals
 
-\ProcessUnusedOptions{key family}#*
+\ProcessUnusedOptions{key family}#S
 
 \selectgreekfamily{family%keyvals}#*
 
@@ -45,8 +45,8 @@ bodoni
 didot
 #endkeyvals
 
-\WarningIfLoaded{package}{warning%text}#*
-\WarningIfLoadedNoOption{package}{warning%text}#*
+\WarningIfLoaded{package}{warning%text}#S
+\WarningIfLoadedNoOption{package}{warning%text}#S
 
 \figurecircled{text}
 \fscshape{text}
