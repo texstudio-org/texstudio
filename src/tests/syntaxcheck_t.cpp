@@ -398,6 +398,8 @@ void SyntaxCheckTest::checkAllowedMath_data(){
              <<"\\alpha"<<true;
      QTest::newRow("nested text in math")
              <<"$\\textit{\\alpha}$"<<true;
+     QTest::newRow("nested text in math with linebreak")
+         <<"$\\textit{\n\\alpha}$"<<true;
      QTest::newRow("nested text in math (underscore)")
              <<"$\\textit{a_b}$"<<true;
      QTest::newRow("nested text in math and extra braces")
@@ -429,9 +431,13 @@ void SyntaxCheckTest::checkAllowedMath(){
     LatexDocument *doc=edView->getDocument();
     doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 
-    QDocumentLineHandle *dlh=doc->line(0).handle();
-    QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
-    QEQUAL(!formats.isEmpty(),error);
+    bool errorFlag=false;
+    for(int i=0;i<doc->lines();++i){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
+        errorFlag|=!formats.isEmpty();
+    }
+    QEQUAL(errorFlag,error);
 
     edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
     edView->getConfig()->realtimeChecking = realtimeChecking;
