@@ -4012,14 +4012,11 @@ void Texstudio::editEraseWordCmdEnv()
                 cursor.removeSelectedText();
                 // remove curly brakets as well
                 if (cursor.nextChar() == QChar('{')) {
+                    QDocumentCursor orig, to;
+                    cursor.getMatchingPair(orig, to, false);
                     cursor.deleteChar();
-                    line = cursor.line().text();
-                    int col = cursor.columnNumber();
-                    int i = findClosingBracket(line, col);
-                    if (i > -1) {
-                        cursor.moveTo(cursor.lineNumber(), i);
-                        cursor.deleteChar();
-                        cursor.moveTo(cursor.lineNumber(), col);
+                    if (orig.isValid() && to.isValid()){
+                        to.removeSelectedText();
                     }
                 }
                 currentEditorView()->editor->document()->endMacro();
