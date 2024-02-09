@@ -203,6 +203,8 @@ public:
         QStringList addedUsepackages;
         QStringList removedUserCommands;
         QStringList addedUserCommands;
+        QStringList removedUserSnippets; // small snippets which automatically generated for completion only, e.g. x_y or \mathsf{as}
+        QStringList addedUserSnippets;
         QStringList lstFilesToLoad;
         QStringList removedIncludes;
         QList<LatexDocument *> addedIncludes;

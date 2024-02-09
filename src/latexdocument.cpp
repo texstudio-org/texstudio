@@ -1036,8 +1036,8 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                 CodeSnippet cs(txt,true,true);
                 cs.type=CodeSnippet::userConstruct;
                 mUserCommandList.insert(dlh, UserCommandPair(QString(), cs));
-                if (!data.removedUserCommands.removeAll(txt)) {
-                    data.addedUserCommands << txt;
+                if (!data.removedUserSnippets.removeAll(txt)) {
+                    data.addedUserSnippets << txt;
                 }
             }
         }
@@ -1050,8 +1050,8 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
                     CodeSnippet cs(txt,true,true);
                     cs.type=CodeSnippet::userConstruct;
                     mUserCommandList.insert(dlh, UserCommandPair(QString(), cs));
-                    if (!data.removedUserCommands.removeAll(txt)) {
-                        data.addedUserCommands << txt;
+                    if (!data.removedUserSnippets.removeAll(txt)) {
+                        data.addedUserSnippets << txt;
                     }
                 }
             }
@@ -1239,8 +1239,10 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
                 ltxCommands.possibleCommands["user"].remove(elem);
             }
         }
-        if(cmd.snippet.type==CodeSnippet::userConstruct)
+        if(cmd.snippet.type==CodeSnippet::userConstruct){
+            changedCommands.removedUserSnippets << elem;
             continue;
+        }
         changedCommands.removedUserCommands << elem;
     }
     if (mLabelItem.contains(dlh)) {
