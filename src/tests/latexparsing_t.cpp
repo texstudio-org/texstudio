@@ -326,6 +326,8 @@ void LatexParsingTest::test_latexLexing() {
     *lp=LatexParser::getInstance();
     LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
     lp->commandDefs.unite(pkg_graphics.commandDescriptions);
+    LatexPackage pkg_tex = loadCwlFile("tex.cwl");
+    lp->commandDefs.unite(pkg_tex.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(TTypes, types);
     QFETCH(STypes, subtypes);
