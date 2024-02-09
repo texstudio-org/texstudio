@@ -648,7 +648,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
         }
         // force text != math when text command is used, i.e. \textbf in math env, see #2603
         if(tk.subtype==Token::text){
-            if(tk.type==Token::braces){
+            if(tk.type==Token::braces||tk.type==Token::openBrace){
                 // add to active env
                 // invalidates math env as active
                 Environment env;
@@ -658,11 +658,20 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 env.ticket = ticket;
                 env.level = tk.level;
                 env.startingColumn=tk.start+1;
-                env.endingColumn=tk.start+tk.length-1;
+                if(tk.type==Token::openBrace){
+                    env.endingColumn=-1;
+                }else{
+                    env.endingColumn=tk.start+tk.length-1;
+                }
                 // avoid stacking same env (e.g. braces in braces, see #2411 )
                 Environment topEnv=activeEnv.top();
                 if(topEnv.name!=env.name)
                     activeEnv.push(env);
+            }
+            if(tk.type==Token::closeBrace){
+                if(activeEnv.top().name=="text"){
+                    activeEnv.pop();
+                }
             }
         }
         // spell checking
