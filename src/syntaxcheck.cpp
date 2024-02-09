@@ -442,8 +442,18 @@ bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
     bool textOrMathEnvUsed=false;
     for (int i = envs.size()-1; i > -1; --i) {
 		Environment env = envs.at(i);
-        if(textOrMathEnvUsed &&(env.name=="math" || env.name=="text" )){
-            continue; // only the lowest text/math is valid as they can be used alternately
+        if(textOrMathEnvUsed){
+            if(env.name=="math" || env.name=="text" ) continue; // only the lowest text/math is valid as they can be used alternately
+            // look also for alias envs!
+            QStringList altEnvs = ltxCommands->environmentAliases.values(env.name);
+            bool skip=false;
+            foreach (const QString &altEnv, altEnvs) {
+                if (altEnv=="math" || altEnv=="text" ){
+                    skip=true;
+                    break;
+                }
+            }
+            if(skip) continue; // only the lowest text/math is valid as they can be used alternately
         }
 		if (ltxCommands->possibleCommands.contains(env.name) && ltxCommands->possibleCommands.value(env.name).contains(cmd))
 			return true;

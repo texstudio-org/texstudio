@@ -414,7 +414,10 @@ void SyntaxCheckTest::checkAllowedMath_data(){
              <<"$\\textit{$ {\\alpha}$}$"<<false;
      QTest::newRow("nested math in text in math and extra braces (underscore)")
              <<"$\\textit{$ {a_b}$}$"<<false;
-
+     QTest::newRow("handle math aliases correctly")
+         <<"\\usepackage{amsmath}\n\\begin{align}\n\\alpha\n\\end{align}"<<false;
+     QTest::newRow("handle math aliases correctly, force error")
+         <<"\\usepackage{amsmath}\n\\begin{align}\n\\text{\\alpha}\n\\end{align}"<<true;
 }
 
 void SyntaxCheckTest::checkAllowedMath(){
