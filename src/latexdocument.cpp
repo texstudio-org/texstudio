@@ -1241,9 +1241,9 @@ void LatexDocument::removeLineElements(QDocumentLineHandle *dlh, HandledData &ch
         }
         if(cmd.snippet.type==CodeSnippet::userConstruct){
             changedCommands.removedUserSnippets << elem;
-            continue;
+        }else{
+            changedCommands.removedUserCommands << elem;
         }
-        changedCommands.removedUserCommands << elem;
     }
     if (mLabelItem.contains(dlh)) {
         QList<ReferencePair> labels = mLabelItem.values(dlh);
