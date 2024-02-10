@@ -157,7 +157,8 @@ QString LatexRepository::packageInfo(LatexPackageInfo package)
     Info += tr("- Name : ")+package.name+"\n";
     Info += tr("- Caption : ")+package.caption+"\n";
     Info += tr("- Authors : \n")+package.authorsFullName()+"\n";
-    Info += tr("- Version : ")+package.version.number+", "+package.version.date.toString()+"\n";
+    QString delim = ( package.version.number.isEmpty() || !package.version.date.isValid() ? "" : ", " );
+    Info += tr("- Version : ")+package.version.number+delim+package.version.date.toString()+"\n";
     Info += tr("- Documentation : \n")+package.showAllDocumentation()+"\n";
     Info += tr("- Copyright : \n")+package.showAllCopyrights()+"\n";
     Info += tr("- License : \n")+package.showAllLicenses()+"\n";
