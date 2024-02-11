@@ -127,10 +127,10 @@ void TemplateSelector::addResource(AbstractTemplateResource *res)
 void TemplateSelector::addOnlineRepository()
 {
     QTreeWidgetItem *topitem = new QTreeWidgetItem(QStringList() << tr("Online Repository"));
-    //topitem->setIcon(0, res->icon());
     QFont ft = topitem->font(0);
     ft.setBold(true);
     topitem->setFont(0, ft);
+    topitem->setData(0, ResourceRole, tr("Online available template files"));
     topitem->setData(0, UrlRole, QString("https://api.github.com/repos/texstudio-org/texstudio-template/contents"));
     topitem->setData(0, PathRole, QString(""));
     ui.templatesTree->addTopLevelItem(topitem);
@@ -505,6 +505,16 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
             QString path=currentItem->data(0,PathRole).toString();
             QString url=currentItem->data(0,UrlRole).toString();
             QString downloadUrl=currentItem->data(0,DownloadRole).toString();
+            if (currentItem->data(0,ResourceRole).isValid()) {
+                QString topDescription = currentItem->data(0,ResourceRole).toString();
+                ui.lbName->setText(currentItem->text(0));
+                ui.lbDescription->setText(topDescription);
+                ui.lbAuthor->setText("");
+                ui.lbDate->setText("");
+                ui.lbVersion->setText("");
+                ui.lbLicense->setText("");
+                ui.lbAuthorTag->setVisible(false);
+            }
             if(!downloadUrl.isEmpty()){
                 makeRequest(downloadUrl,path,currentItem,true);
             }
