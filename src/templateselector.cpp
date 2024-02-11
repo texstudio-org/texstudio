@@ -130,7 +130,7 @@ void TemplateSelector::addOnlineRepository()
     QFont ft = topitem->font(0);
     ft.setBold(true);
     topitem->setFont(0, ft);
-    topitem->setData(0, ResourceRole, tr("Online available templates"));
+    topitem->setData(0, ResourceRole, tr("Online available template files"));
     topitem->setData(0, UrlRole, QString("https://api.github.com/repos/texstudio-org/texstudio-template/contents"));
     topitem->setData(0, PathRole, QString(""));
     ui.templatesTree->addTopLevelItem(topitem);
