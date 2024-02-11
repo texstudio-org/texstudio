@@ -7,7 +7,7 @@ MathAssistant *MathAssistant::m_Instance = nullptr;
 MathAssistant::MathAssistant() :
 	QObject()
 {
-	connect(&process, SIGNAL(error(QProcess::ProcessError)), this, SLOT(processError(QProcess::ProcessError)));
+	connect(&process, SIGNAL(errorOccurred(QProcess::ProcessError)), this, SLOT(processError(QProcess::ProcessError)));
 	connect(&process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(processFinished(int, QProcess::ExitStatus)));
 }
 
