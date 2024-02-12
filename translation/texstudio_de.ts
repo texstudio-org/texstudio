@@ -4843,7 +4843,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="390"/>
         <source>Here</source>
-        <translation>Here</translation>
+        <translation>here (h)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
