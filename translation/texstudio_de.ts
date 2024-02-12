@@ -4848,7 +4848,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
     <message>
         <location filename="../src/insertgraphics.ui" line="397"/>
         <source>Here (H)</source>
-        <translation>hier (H)</translation>
+        <translation>Here (H)</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.ui" line="404"/>
@@ -4903,8 +4903,8 @@ Note: The first 4 placement preferences are just suggestions. If the resulting p
 [t] Top: Seitenanfang
 [b] Bottom: Seitenende
 [p] Page: Extraseite nur für Bilder
-[h] Here: an dieser Position
-[H] Here: genau an dieser Position (benötigt Paket float)
+[h] here (h): an dieser Position
+[H] Here (H): genau an dieser Position (benötigt Paket float)
 [!]: Setze interne Parameter außer Kraft, die normalerweise entscheiden, wohin ein float gesetzt wird.
 
 Achtung: Die ersten 4 Platzierungsvorgaben sind nur Vorschläge. LaTeX wählt diejenige, die die beste Ansicht ergibt.</translation>
@@ -12686,9 +12686,9 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 You can use the special value ?txs-start to start the script at txs start.</source>
         <translation>Wenn dieser Triggertext in einem tex-Dokument geschrieben wird, so wird durch das aktuelle Makro ersetzt.
 
-Wenn der Trigger mit (?&lt;=etwas) anfängt, so passiert dies nur wenn &quot;etwas&quot; vor den restlichen Teil des Triggers geschrieben wurde.
+Wenn der Trigger mit (?&lt;=etwas) anfängt, so passiert dies nur, wenn &quot;etwas&quot; vor den restlichen Teil des Triggers geschrieben wurde.
 
-Da der Triggertext kein einfacher Suchtext, sondern eine regulärer Suchausdruck ist, kann (?&lt;=\S) verwendet werden, um Ersetzungen nach einem Wort und (?&lt;=\s|^) um Ersetzungen vor einem Wort auszulösen.
+Da der Triggertext kein einfacher Suchtext ist, sondern ein regulärer Suchausdruck, kann (?&lt;=\S) oder (?&lt;=\s|^) verwendet werden, um eine Ersetzung nach bzw. vor einem Wort auszulösen.
 
 
 Man kann den speziellen Wert ?txs-start verwenden, um das Skript bei Start von txs auszuführen.</translation>
