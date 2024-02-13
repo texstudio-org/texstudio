@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="48"
+   height="48"
+   viewBox="0 0 12.7 12.7"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="builtin.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="false"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1"
+     inkscape:cx="63.5"
+     inkscape:cy="54.5"
+     inkscape:window-width="1920"
+     inkscape:window-height="1137"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:none">
+    <ellipse
+       style="fill:none;stroke-width:0.264583"
+       id="path1"
+       cx="5.953125"
+       cy="6.0192709"
+       rx="1.9799848"
+       ry="1.2236979" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.671522;stroke-dasharray:none;stroke-opacity:1"
+       id="path2"
+       cx="6.2121272"
+       cy="6.3341632"
+       rx="5.113811"
+       ry="5.1136694"
+       transform="matrix(0.99997182,0.00750745,0,1,0,0)" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.680508;stroke-dasharray:none;stroke-opacity:1"
+       id="path3"
+       cx="6.2294574"
+       cy="6.3946953"
+       rx="2.3187516"
+       ry="4.9956012" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.66336;stroke-dasharray:none;stroke-opacity:1"
+       d="M 1.2953078,4.9278645 H 11.067128"
+       id="path4"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.671512;stroke-dasharray:none;stroke-opacity:1"
+       d="m 1.157552,8.1028645 h 9.888802"
+       id="path5"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Ebene 2">
+    <rect
+       style="display:inline;fill:#e6e6e6;stroke:#000000;stroke-width:0.754524;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6"
+       width="5.9217463"
+       height="6.743505"
+       x="4.7861028"
+       y="3.9268401" />
+    <rect
+       style="fill:#f9f9f9;stroke:#000000;stroke-width:0.668847;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect7"
+       width="6.221364"
+       height="3.7605674"
+       x="-2.0255537"
+       y="3.6537337"
+       transform="matrix(1,0,0.88355325,0.46833071,0,0)"
+       ry="0" />
+    <rect
+       style="display:inline;fill:#999999;stroke:#000000;stroke-width:0.843291;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8"
+       width="3.2647336"
+       height="6.6131458"
+       x="1.423414"
+       y="1.5206127"
+       transform="matrix(0.87279086,0.48809437,0,1,0,0)" />
+  </g>
+</svg>

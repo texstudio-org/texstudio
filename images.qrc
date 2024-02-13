@@ -24,6 +24,7 @@
 <file>images-ng/bookmark-new.svg</file>
 <file>images-ng/bookmarks.svg</file>
 <file>images-ng/build.svgz</file>
+<file>images-ng/builtin.svg</file>
 <file>images-ng/case_dm.svg</file>
 <file>images-ng/case.svg</file>
 <file>images-ng/chapter.svg</file>
@@ -118,6 +119,7 @@
 <file>images-ng/highlight.svg</file>
 <file>images-ng/home.svg</file>
 <file>images-ng/image.svg</file>
+<file>images-ng/internet.svg</file>
 <file>images-ng/italic.svg</file>
 <file>images-ng/itemize.svgz</file>
 <file>images-ng/item.svgz</file>
@@ -145,6 +147,7 @@
 <file>images-ng/math.svg</file>
 <file>images-ng/metapost.svg</file>
 <file>images-ng/modified.svgz</file>
+<file>images-ng/multifile.svg</file>
 <file>images-ng/non-comment_dm.svg</file>
 <file>images-ng/non-comment.svg</file>
 <file>images-ng/non-math.svg</file>

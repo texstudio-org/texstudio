@@ -14,6 +14,7 @@
 #include "qnetworkrequest.h"
 #include "smallUsefulFunctions.h"
 #include "templatemanager_p.h"
+#include "utilsSystem.h"
 
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -119,6 +120,7 @@ void TemplateSelector::addResource(AbstractTemplateResource *res)
 	foreach (TemplateHandle th, res->getTemplates()) {
 		QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << th.name());
 		twi->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
+		if (th.isMultifile()) twi->setIcon(0,getRealIcon("multifile"));
 		topitem->addChild(twi);
 	}
     topitem->setExpanded(true);
@@ -133,6 +135,7 @@ void TemplateSelector::addOnlineRepository()
     topitem->setData(0, ResourceRole, tr("Online available template files"));
     topitem->setData(0, UrlRole, QString("https://api.github.com/repos/texstudio-org/texstudio-template/contents"));
     topitem->setData(0, PathRole, QString(""));
+    topitem->setIcon(0,getRealIcon("internet"));
     ui.templatesTree->addTopLevelItem(topitem);
     QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << tr("<loading...>"));
     topitem->addChild(twi);
@@ -305,6 +308,7 @@ void TemplateSelector::onRequestCompleted()
                     if(i<0) continue;
                     auto *item=rootItem->child(i);
                     item->setData(0,TexRole,dd["download_url"].toString());
+                    if (name.endsWith(".zip")) item->setIcon(0,getRealIcon("multifile"));
                 }
             }else{
                 // folder
@@ -498,6 +502,7 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
 			ui.rbCreateInFolder->setChecked(true);
 			ui.rbCreateInEditor->setEnabled(false);
 		} else {
+			ui.rbCreateInEditor->setChecked(true);
 			ui.rbCreateInEditor->setEnabled(true);
 		}
 	} else {
