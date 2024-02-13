@@ -502,7 +502,6 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
 			ui.rbCreateInFolder->setChecked(true);
 			ui.rbCreateInEditor->setEnabled(false);
 		} else {
-			ui.rbCreateInEditor->setChecked(true);
 			ui.rbCreateInEditor->setEnabled(true);
 		}
 	} else {
