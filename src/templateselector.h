@@ -75,6 +75,7 @@ private slots:
 	void editTemplateInfo();
 	void removeTemplate();
 	void openTemplateLocation();
+	void onRequestError();
 
 private:
 	QString orDefault(const QString &val, const QString &defaultIfValEmpty) const
