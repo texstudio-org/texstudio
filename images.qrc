@@ -147,7 +147,7 @@
 <file>images-ng/math.svg</file>
 <file>images-ng/metapost.svg</file>
 <file>images-ng/modified.svgz</file>
-<file>images-ng/multifile.svg</file>
+<file>images-ng/view-pages-overview.svg</file>
 <file>images-ng/non-comment_dm.svg</file>
 <file>images-ng/non-comment.svg</file>
 <file>images-ng/non-math.svg</file>
@@ -187,7 +187,7 @@
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer-off.svg</file>
 <file>images-ng/syncViewer.svg</file>
-<file>images-ng/tex-template.svgz</file>
+<file>images-ng/view-pages-single.svgz</file>
 <file>images-ng/tikz.svg</file>
 <file>images-ng/toc.svg</file>
 <file>images-ng/underline.svg</file>
@@ -520,7 +520,7 @@
 <file>images-ng/colibre/metapost.svg</file>
 <file>images-ng/colibre/modified_dm.svg</file>
 <file>images-ng/colibre/modified.svg</file>
-<file>images-ng/colibre/multifile.svg</file>
+<file>images-ng/colibre/view-pages-overview.svg</file>
 <file>images-ng/colibre/newline_dm.svg</file>
 <file>images-ng/colibre/newline.svg</file>
 <file>images-ng/colibre/non-comment_dm.svg</file>
@@ -595,7 +595,7 @@
 <file>images-ng/colibre/syncViewer-off_dm.svg</file>
 <file>images-ng/colibre/syncViewer-off.svg</file>
 <file>images-ng/colibre/syncViewer.svg</file>
-<file>images-ng/colibre/tex-template.svg</file>
+<file>images-ng/colibre/view-pages-single.svg</file>
 <file>images-ng/colibre/tikz_dm.svg</file>
 <file>images-ng/colibre/tikz.svg</file>
 <file>images-ng/colibre/toc_dm.svg</file>
