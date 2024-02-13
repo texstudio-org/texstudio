@@ -2,12 +2,17 @@
 ## TeXstudio 4.7.3
 
 - First line of macro editor no longer uses macro type, use buttons to set type. Macro format changes slightly. For details s. [#3458](https://github.com/texstudio-org/texstudio/pull/3458)
-- add export of all macros in Edit Macros dialog
+- add export of all macros in Edit Macros dialog [#3451](https://github.com/texstudio-org/texstudio/pull/3451)
+- macro editor now executes normal and environment macros in addition to script macros [#3444](https://github.com/texstudio-org/texstudio/pull/3444)
+- macro editor with better button arrangement [#3451](https://github.com/texstudio-org/texstudio/pull/3451)
+- copy data from all issues in the messages pane (log) to clipboard [#3487](https://github.com/texstudio-org/texstudio/pull/3487)
+- insert graphics wizard opens position details without changing position or size of ui elements located above position details [#3509](https://github.com/texstudio-org/texstudio/pull/3509)
+- improved Package Help dialog [#3478](https://github.com/texstudio-org/texstudio/pull/3478), [#3497](https://github.com/texstudio-org/texstudio/pull/3497)
 - fix missing connection error message when browsing macro repository [#3448](https://github.com/texstudio-org/texstudio/pull/3448)
 - fix switching (by clicking) between documents [#3473](https://github.com/texstudio-org/texstudio/issues/3473)
 - fix "Show all open documents in this tree" [#3476](https://github.com/texstudio-org/texstudio/issues/3476)
-- improved Package Help dialog [#3478](https://github.com/texstudio-org/texstudio/pull/3478)
 - fix handling a new file created from the context menu [#3471](https://github.com/texstudio-org/texstudio/issues/3471)
+- small fixes
 
 ## TeXstudio 4.7.2
 
