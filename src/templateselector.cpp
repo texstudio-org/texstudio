@@ -516,6 +516,8 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
                 ui.lbVersion->setText("");
                 ui.lbLicense->setText("");
                 ui.lbAuthorTag->setVisible(false);
+                if (previewLabel)
+                    previewLabel->setScaledPixmap(QPixmap());
             }
             if(!downloadUrl.isEmpty()){
                 makeRequest(downloadUrl,path,currentItem,true);
