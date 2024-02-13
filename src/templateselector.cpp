@@ -308,6 +308,7 @@ void TemplateSelector::onRequestCompleted()
                     if(i<0) continue;
                     auto *item=rootItem->child(i);
                     item->setData(0,TexRole,dd["download_url"].toString());
+                    if (name.endsWith(".tex")) item->setIcon(0,getRealIcon("tex-template"));
                     if (name.endsWith(".zip")) item->setIcon(0,getRealIcon("multifile"));
                 }
             }else{
