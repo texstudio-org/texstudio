@@ -104,6 +104,10 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 
 TemplateSelector::~TemplateSelector()
 {
+    if (networkManager) {
+        networkManager->deleteLater();
+        networkManager=nullptr;
+    }
 }
 
 void TemplateSelector::addResource(AbstractTemplateResource *res)
@@ -157,7 +161,10 @@ const QNetworkRequest::Attribute tplAttributeItem = static_cast<QNetworkRequest:
  */
 void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *item,bool download)
 {
-
+    if(!networkManager){
+        networkManager = new QNetworkAccessManager();
+        if(!networkManager) return;
+    }
     QString m_url=appendPath(url,path);
     if(download){
         // check if cached
@@ -179,6 +186,11 @@ void TemplateSelector::makeRequest(QString url, QString path,QTreeWidgetItem *it
     request.setAttribute(tplAttributeItem,QVariant::fromValue(item));
     QNetworkReply *reply = networkManager->get(request);
     connect(reply, &QNetworkReply::finished, this, &TemplateSelector::onRequestCompleted);
+#if QT_VERSION_MAJOR<6
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError()));
+#else
+    connect(reply, SIGNAL(errorOccurred(QNetworkReply::NetworkError)), SLOT(onRequestError()));
+#endif
 }
 
 /*!
@@ -202,7 +214,6 @@ void TemplateSelector::saveToCache(const QByteArray &data, const QString &path)
         file.close();
     }
 }
-
 
 void TemplateSelector::itemExpanded(QTreeWidgetItem* item){
     bool populated=item->data(0,PopulatedRole).toBool();
@@ -618,3 +629,15 @@ void TemplateSelector::openTemplateLocation()
 	}
 }
 
+void TemplateSelector::onRequestError()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    if (!reply) return;
+
+    QTreeWidgetItem *rootItem=reply->request().attribute(tplAttributeItem).value<QTreeWidgetItem*>();
+    if (!rootItem) return;
+    rootItem->child(0)->setText(0,tr("Repository not found. Network error:%1").arg("\n"+reply->errorString()));
+
+    networkManager->deleteLater();
+    networkManager=nullptr;
+}
