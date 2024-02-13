@@ -119,7 +119,7 @@
 <file>images-ng/highlight.svg</file>
 <file>images-ng/home.svg</file>
 <file>images-ng/image.svg</file>
-<file>images-ng/internet.svg</file>
+<file>images-ng/folder-cloud.svg</file>
 <file>images-ng/italic.svg</file>
 <file>images-ng/itemize.svgz</file>
 <file>images-ng/item.svgz</file>
@@ -461,7 +461,7 @@
 <file>images-ng/colibre/image.svg</file>
 <file>images-ng/colibre/include_dm.svg</file>
 <file>images-ng/colibre/include.svg</file>
-<file>images-ng/colibre/internet.svg</file>
+<file>images-ng/colibre/folder-cloud.svg</file>
 <file>images-ng/colibre/italic_dm.svg</file>
 <file>images-ng/colibre/italic.svg</file>
 <file>images-ng/colibre/item_dm.svg</file>

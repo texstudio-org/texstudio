@@ -135,7 +135,7 @@ void TemplateSelector::addOnlineRepository()
     topitem->setData(0, ResourceRole, tr("Online available template files"));
     topitem->setData(0, UrlRole, QString("https://api.github.com/repos/texstudio-org/texstudio-template/contents"));
     topitem->setData(0, PathRole, QString(""));
-    topitem->setIcon(0,getRealIcon("internet"));
+    topitem->setIcon(0,getRealIcon("folder-cloud"));
     ui.templatesTree->addTopLevelItem(topitem);
     QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << tr("<loading...>"));
     topitem->addChild(twi);
