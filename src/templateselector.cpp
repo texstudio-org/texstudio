@@ -135,7 +135,7 @@ void TemplateSelector::addOnlineRepository()
     topitem->setData(0, ResourceRole, tr("Online available template files"));
     topitem->setData(0, UrlRole, QString("https://api.github.com/repos/texstudio-org/texstudio-template/contents"));
     topitem->setData(0, PathRole, QString(""));
-    topitem->setIcon(0,getRealIcon("internet"));
+    topitem->setIcon(0,getRealIcon("folder-cloud"));
     ui.templatesTree->addTopLevelItem(topitem);
     QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << tr("<loading...>"));
     topitem->addChild(twi);
@@ -308,7 +308,8 @@ void TemplateSelector::onRequestCompleted()
                     if(i<0) continue;
                     auto *item=rootItem->child(i);
                     item->setData(0,TexRole,dd["download_url"].toString());
-                    if (name.endsWith(".zip")) item->setIcon(0,getRealIcon("multifile"));
+                    if (name.endsWith(".tex")) item->setIcon(0,getRealIcon("view-pages-single"));
+                    if (name.endsWith(".zip")) item->setIcon(0,getRealIcon("view-pages-overview"));
                 }
             }else{
                 // folder
