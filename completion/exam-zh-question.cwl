@@ -1,5 +1,5 @@
 # exam-zh-question package
-# Matthew Bertucci 2023/06/02 for v0.1.25
+# Matthew Bertucci 2024/02/13 for v0.2.1
 
 #include:amsthm
 #include:tcolorbox
@@ -50,13 +50,12 @@ fillin/no-answer-counter-label=%<label%>
 fillin/show-answer#true,false
 fillin/width=##L
 fillin/width-type=#fill,normal
-fillin/color=#%color
+fillin/box-color=#%color
 fillin/text-color=#%color
 fillin/paren-type=#banjiao,quanjiao
 fillin/depth=##L
 solution={%<键值列表%>}
-solution/show-solution#true,false
-solution/show-answer#true,false
+solution/show-solution=#hide,show-stay,show-move
 solution/parbreak#true,false
 solution/show-qed#true,false
 solution/qedsymbol=%<symbol%>
@@ -126,7 +125,7 @@ no-answer-counter-label=%<label%>
 show-answer#true,false
 width=##L
 width-type=#fill,normal
-color=#%color
+box-color=#%color
 text-color=#%color
 paren-type=#banjiao,quanjiao
 depth=##L
@@ -139,8 +138,7 @@ depth=##L
 \end{solution}
 
 #keyvals:\begin{solution}
-show-solution#true,false
-show-answer#true,false
+show-solution=#hide,show-stay,show-move
 parbreak#true,false
 show-qed#true,false
 qedsymbol=%<symbol%>
