@@ -309,17 +309,19 @@ void TemplateSelector::onRequestCompleted()
             }else{
                 // folder
                 QString name=dd["name"].toString();
-                auto *item=new QTreeWidgetItem();
-                QFont ft = item->font(0);
-                ft.setBold(true);
-                item->setFont(0, ft);
-                item->setText(0,name);
-                item->setIcon(0,QIcon::fromTheme("folder"));
-                QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << tr("<loading...>"));
-                item->addChild(twi);
-                item->setData(0, UrlRole, url);
-                item->setData(0, PathRole, appendPath(path,name));
-                rootItem->addChild(item);
+                if(!name.startsWith(".")){
+                    auto *item=new QTreeWidgetItem();
+                    QFont ft = item->font(0);
+                    ft.setBold(true);
+                    item->setFont(0, ft);
+                    item->setText(0,name);
+                    item->setIcon(0,QIcon::fromTheme("folder"));
+                    QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << tr("<loading...>"));
+                    item->addChild(twi);
+                    item->setData(0, UrlRole, url);
+                    item->setData(0, PathRole, appendPath(path,name));
+                    rootItem->addChild(item);
+                }
             }
         }
     }
