@@ -1,5 +1,5 @@
 # exam-zh class
-# Matthew Bertucci 2023/06/02 for v0.1.25
+# Matthew Bertucci 2024/02/13 for v0.2.1
 
 #include:filehook
 #include:class-ctexbook
@@ -22,6 +22,7 @@
 #include:exam-zh-symbols
 #include:exam-zh-chinese-english
 #include:exam-zh-textfigure
+#include:exam-zh-math
 #include:hyperref
 #include:pifont
 
