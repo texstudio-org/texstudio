@@ -24,6 +24,7 @@
 <file>images-ng/bookmark-new.svg</file>
 <file>images-ng/bookmarks.svg</file>
 <file>images-ng/build.svgz</file>
+<file>images-ng/builtin.svg</file>
 <file>images-ng/case_dm.svg</file>
 <file>images-ng/case.svg</file>
 <file>images-ng/chapter.svg</file>
@@ -118,6 +119,7 @@
 <file>images-ng/highlight.svg</file>
 <file>images-ng/home.svg</file>
 <file>images-ng/image.svg</file>
+<file>images-ng/folder-cloud.svg</file>
 <file>images-ng/italic.svg</file>
 <file>images-ng/itemize.svgz</file>
 <file>images-ng/item.svgz</file>
@@ -145,6 +147,7 @@
 <file>images-ng/math.svg</file>
 <file>images-ng/metapost.svg</file>
 <file>images-ng/modified.svgz</file>
+<file>images-ng/view-pages-overview.svg</file>
 <file>images-ng/non-comment_dm.svg</file>
 <file>images-ng/non-comment.svg</file>
 <file>images-ng/non-math.svg</file>
@@ -184,6 +187,7 @@
 <file>images-ng/syncSource.svg</file>
 <file>images-ng/syncViewer-off.svg</file>
 <file>images-ng/syncViewer.svg</file>
+<file>images-ng/view-pages-single.svgz</file>
 <file>images-ng/tikz.svg</file>
 <file>images-ng/toc.svg</file>
 <file>images-ng/underline.svg</file>
@@ -306,6 +310,7 @@
 <file>images-ng/colibre/bookmarks.svg</file>
 <file>images-ng/colibre/build_dm.svg</file>
 <file>images-ng/colibre/build.svg</file>
+<file>images-ng/colibre/builtin.svg</file>
 <file>images-ng/colibre/case_dm.svg</file>
 <file>images-ng/colibre/case.svg</file>
 <file>images-ng/colibre/chapter_dm.svg</file>
@@ -456,6 +461,7 @@
 <file>images-ng/colibre/image.svg</file>
 <file>images-ng/colibre/include_dm.svg</file>
 <file>images-ng/colibre/include.svg</file>
+<file>images-ng/colibre/folder-cloud.svg</file>
 <file>images-ng/colibre/italic_dm.svg</file>
 <file>images-ng/colibre/italic.svg</file>
 <file>images-ng/colibre/item_dm.svg</file>
@@ -514,6 +520,7 @@
 <file>images-ng/colibre/metapost.svg</file>
 <file>images-ng/colibre/modified_dm.svg</file>
 <file>images-ng/colibre/modified.svg</file>
+<file>images-ng/colibre/view-pages-overview.svg</file>
 <file>images-ng/colibre/newline_dm.svg</file>
 <file>images-ng/colibre/newline.svg</file>
 <file>images-ng/colibre/non-comment_dm.svg</file>
@@ -588,6 +595,7 @@
 <file>images-ng/colibre/syncViewer-off_dm.svg</file>
 <file>images-ng/colibre/syncViewer-off.svg</file>
 <file>images-ng/colibre/syncViewer.svg</file>
+<file>images-ng/colibre/view-pages-single.svg</file>
 <file>images-ng/colibre/tikz_dm.svg</file>
 <file>images-ng/colibre/tikz.svg</file>
 <file>images-ng/colibre/toc_dm.svg</file>

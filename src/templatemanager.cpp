@@ -114,7 +114,7 @@ TemplateSelector *TemplateManager::createLatexTemplateDialog()
 	connect(dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
 
-    LocalLatexTemplateResource *builtinTemplates= new LocalLatexTemplateResource(builtinTemplateDir(), tr("Builtin"), this, QIcon(":/images/appicon.png"));
+    LocalLatexTemplateResource *builtinTemplates= new LocalLatexTemplateResource(builtinTemplateDir(), tr("Builtin"), this, getRealIcon("builtin"));
     LocalLatexTemplateResource *userTemplates= new LocalLatexTemplateResource(userTemplateDir(), tr("User"), this, getRealIcon("user"));
     QString description = tr("Basic template files shipped with TeXstudio.");
     builtinTemplates->setDescription(description);
