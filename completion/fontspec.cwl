@@ -1,22 +1,18 @@
 # fontspec package
 # nja/17 July 2007 for fontspec v1.14
 # muzimuzhi/30 Aug 2019 for fontspec v2.7c
+# Matthew Bertucci 13 Feb 2024 for v2.9a
 # url: http://www.ctan.org/tex-archive/help/Catalogue/entries/fontspec.html
 
 #keyvals:\usepackage/fontspec#c
-tuenc
-euenc
 math
 no-math
 config
 no-config
 quiet
 silent
+verbose
 #endkeyvals
-
-#ifOption:euenc
-#include:xunicode
-#endif
 
 ## Sec. I.4 Interaction with LaTeX2e and other packages
 \liningnums{text}
@@ -166,9 +162,11 @@ FontFace={%<series%>}{%<shape%>}{%<font name%>}
 Fractions=#On,Off,Reset,Alternate,ResetAll
 HyphenChar=%<character%>
 IgnoreFontspecFile
+Instance=%<instance%>
 ItalicFeatures={%<features%>}
 ItalicFont=%<font name%>
 Kerning=#On,Off,Reset,Uppercase,ResetAll
+KpseOnly
 Language=%<language%>
 LetterSpace=%<number%>
 Letters=#SmallCaps,PetiteCaps,UppercaseSmallCaps,UppercasePetiteCaps,Unicase,ResetAll
@@ -181,12 +179,14 @@ OpticalSize=%<size%>
 Ornament=
 Path=%<file path%>
 PunctuationSpace=%<number%>
+RawAxis={%<tag=number%>}
 RawFeature=%<feature tag%>
 Scale=%<number%>
 ScaleAgain=%<number%>
 Script=%<name%>
 Size=%<number%>
 SizeFeatures={%<features%>}
+Slant=%<number%>
 SlantedFeatures={%<features%>}
 SlantedFont=%<font name%>
 SmallCapsFeatures={%<features%>}
@@ -201,6 +201,8 @@ UprightFont=%<font name%>
 Variant=%<integer%>
 Vertical=#RotatedGlyphs,AlternatesForRotation,Alternates,KanaAlternates,Kerning,AlternateMetrics,HalfMetrics,ProportionalMetrics,ResetAll
 VerticalPosition=#Superior,Inferior,Numerator,Denominator,ScientificInferior,Ordinal,ResetAll
+Weight=%<number%>
+Width=%<number%>
 WordSpace=%<number%>
 Mapping=%<xetex-only feature%>
 Renderer=%<renderer%>

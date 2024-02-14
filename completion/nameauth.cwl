@@ -1,10 +1,8 @@
 # nameauth package
-# Matthew Bertucci 2023/02/04 for v3.7
+# Matthew Bertucci 2024/02/09 for v4.0
 
 #include:etoolbox
 #include:trimspaces
-#include:suffix
-#include:xargs
 
 #keyvals:\usepackage/nameauth#c
 comma
@@ -27,7 +25,13 @@ oldreset
 oldpass
 oldtoks
 oldsee
+oldargs
 #endkeyvals
+
+#ifOption:oldargs
+#include:suffix
+#include:xargs
+#endif
 
 \AccentCapThis
 \AKA*[forename]{surname}[xref forename]{xref surname}
