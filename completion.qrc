@@ -1094,6 +1094,7 @@
 <file>completion/continue.cwl</file>
 <file>completion/contour.cwl</file>
 <file>completion/contracard.cwl</file>
+<file>completion/contract.cwl</file>
 <file>completion/conv-xkv.cwl</file>
 <file>completion/cooking.cwl</file>
 <file>completion/cookingsymbols.cwl</file>
@@ -1360,6 +1361,7 @@
 <file>completion/emo.cwl</file>
 <file>completion/emojicite.cwl</file>
 <file>completion/emoji.cwl</file>
+<file>completion/emotion.cwl</file>
 <file>completion/emp.cwl</file>
 <file>completion/empheq.cwl</file>
 <file>completion/emptypage.cwl</file>
@@ -1445,6 +1447,7 @@
 <file>completion/exam-zh-chinese-english.cwl</file>
 <file>completion/exam-zh-choices.cwl</file>
 <file>completion/exam-zh-font.cwl</file>
+<file>completion/exam-zh-math.cwl</file>
 <file>completion/exam-zh-question.cwl</file>
 <file>completion/exam-zh-symbols.cwl</file>
 <file>completion/exam-zh-textfigure.cwl</file>
