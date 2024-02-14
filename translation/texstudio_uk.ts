@@ -4883,17 +4883,12 @@ Are you sure you want to undo all changes?</source>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="50"/>
-        <source>Insert Graphic</source>
-        <translation>Вставити графіку</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.cpp" line="78"/>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
         <translation>Вставити графіку</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="82"/>
+        <location filename="../src/insertgraphics.cpp" line="81"/>
         <source>Placement preferences for the figure
 
 [t] Top: At the top of the page
@@ -4916,47 +4911,47 @@ Note: The first 4 placement preferences are just suggestions. If the resulting p
 Зауваження: перші чотири параметр є лише пропонованими порядками. Якщо макет підсумкової сторінки виявиться надто поганий, то LaTeX може проігнорувати їх.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="263"/>
+        <location filename="../src/insertgraphics.cpp" line="262"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
         <translation>Не вдається обробити код включення графіки:
 недостатня кількість аргументів для</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="280"/>
+        <location filename="../src/insertgraphics.cpp" line="279"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
         <translation>Не вдається обробити код включення графіки:
 Майстер не підтримує дане оточення</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="289"/>
+        <location filename="../src/insertgraphics.cpp" line="288"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
         <translation>Не вдається обробити код включення графіки:
 Недійсна команда \caption.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="303"/>
+        <location filename="../src/insertgraphics.cpp" line="302"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
         <translation>Не вдається обробити код включення графіки:
 Відсутні параметри \includegraphics.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="320"/>
+        <location filename="../src/insertgraphics.cpp" line="319"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
         <translation>Не вдається обробити код включення графіки:
 Майстер не підтримує команду</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="422"/>
+        <location filename="../src/insertgraphics.cpp" line="421"/>
         <source>Images</source>
         <translation>Зображення</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="424"/>
+        <location filename="../src/insertgraphics.cpp" line="423"/>
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Вибрати файл</translation>
@@ -9305,93 +9300,98 @@ failed.</source>
         <translation>Рекомендується встановлювати шаблони в нову теку. В іншому випадку наявні файли можуть бути перезаписані.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="129"/>
+        <location filename="../src/templateselector.cpp" line="133"/>
         <source>Online Repository</source>
         <translation>Онлайн сховище</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="133"/>
+        <location filename="../src/templateselector.cpp" line="137"/>
         <source>Online available template files</source>
         <translation>Доступні файли взірців з інтернету</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="137"/>
-        <location filename="../src/templateselector.cpp" line="318"/>
+        <location filename="../src/templateselector.cpp" line="141"/>
+        <location filename="../src/templateselector.cpp" line="330"/>
         <source>&lt;loading...&gt;</source>
         <translation>&lt;завантажується...&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="457"/>
+        <location filename="../src/templateselector.cpp" line="470"/>
         <source>Select Target Folder</source>
         <translation>Виберіть цільову теку</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="487"/>
+        <location filename="../src/templateselector.cpp" line="500"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;Без імені&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="490"/>
+        <location filename="../src/templateselector.cpp" line="503"/>
         <source>Date</source>
         <translation>Дата</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="491"/>
+        <location filename="../src/templateselector.cpp" line="504"/>
         <source>Version</source>
         <translation>Версія</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="492"/>
+        <location filename="../src/templateselector.cpp" line="505"/>
         <source>License</source>
         <translation>Ліцензія</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="545"/>
+        <location filename="../src/templateselector.cpp" line="560"/>
         <source>Edit Template</source>
         <translation>Змінити шаблон</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="546"/>
+        <location filename="../src/templateselector.cpp" line="561"/>
         <source>Edit Template Info</source>
         <translation>Змінити дані про шаблон</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="547"/>
+        <location filename="../src/templateselector.cpp" line="562"/>
         <source>Remove</source>
         <translation>Видалити</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="550"/>
+        <location filename="../src/templateselector.cpp" line="565"/>
         <source>Open Template Location</source>
         <translation>Відкрити каталог шаблонів</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="564"/>
-        <location filename="../src/templateselector.cpp" line="575"/>
-        <location filename="../src/templateselector.cpp" line="586"/>
+        <location filename="../src/templateselector.cpp" line="579"/>
+        <location filename="../src/templateselector.cpp" line="590"/>
+        <location filename="../src/templateselector.cpp" line="601"/>
         <source>This template cannot be edited.</source>
         <translation>Цей шаблон не можна змінювати.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="591"/>
+        <location filename="../src/templateselector.cpp" line="606"/>
         <source>Please Confirm</source>
         <translation>Підтвердіть</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="591"/>
+        <location filename="../src/templateselector.cpp" line="606"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Ви справді хочете вилучити цей шаблон?</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="598"/>
-        <location filename="../src/templateselector.cpp" line="603"/>
+        <location filename="../src/templateselector.cpp" line="613"/>
+        <location filename="../src/templateselector.cpp" line="618"/>
         <source>You do not have permission to remove this file.</source>
         <translation>У Вас не має дозволу на вилучення цього файлу.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="613"/>
+        <location filename="../src/templateselector.cpp" line="628"/>
         <source>Could not open location:</source>
         <translation>Неможливо відкрити розташування:</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="639"/>
+        <source>Repository not found. Network error:%1</source>
+        <translation>Сховище не знайдено. Помилка мережі:%1</translation>
     </message>
 </context>
 <context>

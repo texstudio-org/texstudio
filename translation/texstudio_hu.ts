@@ -4873,17 +4873,12 @@ Biztos benne, hogy visszavon minden változást?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="50"/>
-        <source>Insert Graphic</source>
-        <translation>Kép beszúrása</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.cpp" line="78"/>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
         <translation>Kép beillesztése</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="82"/>
+        <location filename="../src/insertgraphics.cpp" line="81"/>
         <source>Placement preferences for the figure
 
 [t] Top: At the top of the page
@@ -4906,46 +4901,46 @@ Note: The first 4 placement preferences are just suggestions. If the resulting p
 Megjegyzés: Az első 4 megjelenítési paraméter csak javaslat. Ha a megjelenítés túl csúnyán nézne ki, a LaTeX figyelmen kívül hagyhatja.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="263"/>
+        <location filename="../src/insertgraphics.cpp" line="262"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
         <translation>Értelmezhetetlen grafikus kód: az argumentumok száma nem megfelelő</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="280"/>
+        <location filename="../src/insertgraphics.cpp" line="279"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
         <translation>Értelmezhetetlen grafikus kód:
 A varázsló nem támogatja a környezetet</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="289"/>
+        <location filename="../src/insertgraphics.cpp" line="288"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
         <translation>A grafika beillesztési kódja nem értelmezhető:
 Érvénytelen \caption parancs.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="303"/>
+        <location filename="../src/insertgraphics.cpp" line="302"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
         <translation>Értelmezhetetlen grafikus kód:
 Hiányzó \includegraphics opciók.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="320"/>
+        <location filename="../src/insertgraphics.cpp" line="319"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
         <translation>Értelmezhetetlen grafikus kód:
 A varázsló nem támogatja a parancsot</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="422"/>
+        <location filename="../src/insertgraphics.cpp" line="421"/>
         <source>Images</source>
         <translation>Képek</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="424"/>
+        <location filename="../src/insertgraphics.cpp" line="423"/>
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Fájl kiválasztása</translation>
@@ -9286,93 +9281,98 @@ fájlt nem lehet eltávolítani.</translation>
         <translation>A sajblont ajánlatos új könyvtárba telepíteni, hogy ne írjon át korábbi fájlokat.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="129"/>
+        <location filename="../src/templateselector.cpp" line="133"/>
         <source>Online Repository</source>
         <translation>Online tároló</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="133"/>
+        <location filename="../src/templateselector.cpp" line="137"/>
         <source>Online available template files</source>
         <translation>Online elérhető sablonfájlok</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="137"/>
-        <location filename="../src/templateselector.cpp" line="318"/>
+        <location filename="../src/templateselector.cpp" line="141"/>
+        <location filename="../src/templateselector.cpp" line="330"/>
         <source>&lt;loading...&gt;</source>
         <translation>&lt;betöltés...&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="457"/>
+        <location filename="../src/templateselector.cpp" line="470"/>
         <source>Select Target Folder</source>
         <translation>Célkönyvtár kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="487"/>
+        <location filename="../src/templateselector.cpp" line="500"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;Nincs név&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="490"/>
+        <location filename="../src/templateselector.cpp" line="503"/>
         <source>Date</source>
         <translation>Dátum</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="491"/>
+        <location filename="../src/templateselector.cpp" line="504"/>
         <source>Version</source>
         <translation>Verzió</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="492"/>
+        <location filename="../src/templateselector.cpp" line="505"/>
         <source>License</source>
         <translation>Licenc</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="545"/>
+        <location filename="../src/templateselector.cpp" line="560"/>
         <source>Edit Template</source>
         <translation>Sablon szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="546"/>
+        <location filename="../src/templateselector.cpp" line="561"/>
         <source>Edit Template Info</source>
         <translation>Sablon-információ szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="547"/>
+        <location filename="../src/templateselector.cpp" line="562"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="550"/>
+        <location filename="../src/templateselector.cpp" line="565"/>
         <source>Open Template Location</source>
         <translation>Sablon megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="564"/>
-        <location filename="../src/templateselector.cpp" line="575"/>
-        <location filename="../src/templateselector.cpp" line="586"/>
+        <location filename="../src/templateselector.cpp" line="579"/>
+        <location filename="../src/templateselector.cpp" line="590"/>
+        <location filename="../src/templateselector.cpp" line="601"/>
         <source>This template cannot be edited.</source>
         <translation>Ez a sablon nem szerkeszthető.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="591"/>
+        <location filename="../src/templateselector.cpp" line="606"/>
         <source>Please Confirm</source>
         <translation>Kérem erősítse meg</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="591"/>
+        <location filename="../src/templateselector.cpp" line="606"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Biztosan törli a sablont?</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="598"/>
-        <location filename="../src/templateselector.cpp" line="603"/>
+        <location filename="../src/templateselector.cpp" line="613"/>
+        <location filename="../src/templateselector.cpp" line="618"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Nincs jogosultsága törölni a fájlt.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="613"/>
+        <location filename="../src/templateselector.cpp" line="628"/>
         <source>Could not open location:</source>
         <translation>Nem nyitható meg:</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="639"/>
+        <source>Repository not found. Network error:%1</source>
+        <translation>A tároló nem található. Hálózati hiba:%1</translation>
     </message>
 </context>
 <context>

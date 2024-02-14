@@ -4881,17 +4881,12 @@ Deseja desfazer todas as alterações?</translation>
     </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="50"/>
-        <source>Insert Graphic</source>
-        <translation>Inserir Figura</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.cpp" line="78"/>
         <source>Insert Graphics</source>
         <comment>Wizard</comment>
         <translation>Inserir Figura</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="82"/>
+        <location filename="../src/insertgraphics.cpp" line="81"/>
         <source>Placement preferences for the figure
 
 [t] Top: At the top of the page
@@ -4914,47 +4909,47 @@ Note: The first 4 placement preferences are just suggestions. If the resulting p
 Nota: Os 4 primeiros posicionamentos são simplesmente sugestões. Se o layout da página for muito ruim, o LaTeX poderá ignorá-los.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="263"/>
+        <location filename="../src/insertgraphics.cpp" line="262"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
         <translation>Não foi possível analisar código de inclusão de figuras:
 Número de argumentos insuficiente para </translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="280"/>
+        <location filename="../src/insertgraphics.cpp" line="279"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
         <translation>Não foi possível analisar código de inclusão de figuras:
 O assistente não suporta o ambiente </translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="289"/>
+        <location filename="../src/insertgraphics.cpp" line="288"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
         <translation>Impossível efetuar código para inclusão de figuras:
 Comando \caption inválido.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="303"/>
+        <location filename="../src/insertgraphics.cpp" line="302"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
         <translation>Impossível efetuar código para inclusão de figuras:
 Faltando opções para \includegraphics.</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="320"/>
+        <location filename="../src/insertgraphics.cpp" line="319"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
         <translation>Impossível efetuar código para inclusão de figuras:
 O assistente não suporta o comando </translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="422"/>
+        <location filename="../src/insertgraphics.cpp" line="421"/>
         <source>Images</source>
         <translation>Imagens</translation>
     </message>
     <message>
-        <location filename="../src/insertgraphics.cpp" line="424"/>
+        <location filename="../src/insertgraphics.cpp" line="423"/>
         <source>Select a File</source>
         <comment>Wizard</comment>
         <translation>Selecionar um arquivo</translation>
@@ -9303,93 +9298,98 @@ não pode ser removido.</translation>
         <translation>É recomendado criar modelos em uma nova pasta. Caso contrário, arquivos existentes podem ser sobrescritos.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="129"/>
+        <location filename="../src/templateselector.cpp" line="133"/>
         <source>Online Repository</source>
         <translation>Repositório Online</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="133"/>
+        <location filename="../src/templateselector.cpp" line="137"/>
         <source>Online available template files</source>
         <translation>Modelos disponíveis em linha</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="137"/>
-        <location filename="../src/templateselector.cpp" line="318"/>
+        <location filename="../src/templateselector.cpp" line="141"/>
+        <location filename="../src/templateselector.cpp" line="330"/>
         <source>&lt;loading...&gt;</source>
         <translation>&lt;carregando...&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="457"/>
+        <location filename="../src/templateselector.cpp" line="470"/>
         <source>Select Target Folder</source>
         <translation>Selecionar Pasta de Destino</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="487"/>
+        <location filename="../src/templateselector.cpp" line="500"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;Sem Nome&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="490"/>
+        <location filename="../src/templateselector.cpp" line="503"/>
         <source>Date</source>
         <translation>Data</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="491"/>
+        <location filename="../src/templateselector.cpp" line="504"/>
         <source>Version</source>
         <translation>Versão</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="492"/>
+        <location filename="../src/templateselector.cpp" line="505"/>
         <source>License</source>
         <translation>Licença</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="545"/>
+        <location filename="../src/templateselector.cpp" line="560"/>
         <source>Edit Template</source>
         <translation>Editar Modelo</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="546"/>
+        <location filename="../src/templateselector.cpp" line="561"/>
         <source>Edit Template Info</source>
         <translation>Editar Informação do Modelo</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="547"/>
+        <location filename="../src/templateselector.cpp" line="562"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="550"/>
+        <location filename="../src/templateselector.cpp" line="565"/>
         <source>Open Template Location</source>
         <translation>Abrir Localização do Modelo</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="564"/>
-        <location filename="../src/templateselector.cpp" line="575"/>
-        <location filename="../src/templateselector.cpp" line="586"/>
+        <location filename="../src/templateselector.cpp" line="579"/>
+        <location filename="../src/templateselector.cpp" line="590"/>
+        <location filename="../src/templateselector.cpp" line="601"/>
         <source>This template cannot be edited.</source>
         <translation>Este modelo não pode ser editado.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="591"/>
+        <location filename="../src/templateselector.cpp" line="606"/>
         <source>Please Confirm</source>
         <translation>Confirme, por favor</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="591"/>
+        <location filename="../src/templateselector.cpp" line="606"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Deseja realmente remover o modelo?</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="598"/>
-        <location filename="../src/templateselector.cpp" line="603"/>
+        <location filename="../src/templateselector.cpp" line="613"/>
+        <location filename="../src/templateselector.cpp" line="618"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Você não tem permissão para remover este arquivo.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="613"/>
+        <location filename="../src/templateselector.cpp" line="628"/>
         <source>Could not open location:</source>
         <translation>Não foi possível abrir a localização:</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="639"/>
+        <source>Repository not found. Network error:%1</source>
+        <translation>Repositório não encontrado. Erro: %1</translation>
     </message>
 </context>
 <context>
