@@ -120,7 +120,8 @@ void TemplateSelector::addResource(AbstractTemplateResource *res)
 	foreach (TemplateHandle th, res->getTemplates()) {
 		QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << th.name());
 		twi->setData(0, TemplateHandleRole, QVariant::fromValue<TemplateHandle>(th));
-		if (th.isMultifile()) twi->setIcon(0,getRealIcon("multifile"));
+		if (th.isMultifile()) twi->setIcon(0,getRealIcon("view-pages-overview"));
+		else twi->setIcon(0,getRealIcon("view-pages-single"));
 		topitem->addChild(twi);
 	}
     topitem->setExpanded(true);
@@ -308,8 +309,8 @@ void TemplateSelector::onRequestCompleted()
                     if(i<0) continue;
                     auto *item=rootItem->child(i);
                     item->setData(0,TexRole,dd["download_url"].toString());
-                    if (name.endsWith(".tex")) item->setIcon(0,getRealIcon("view-pages-single"));
                     if (name.endsWith(".zip")) item->setIcon(0,getRealIcon("view-pages-overview"));
+                    else item->setIcon(0,getRealIcon("view-pages-single"));     // .tex
                 }
             }else{
                 // folder
