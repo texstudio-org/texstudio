@@ -504,8 +504,8 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *p
 
 		pbOk->setEnabled(true);
 		ui.lbName->setText(orDefault(th.name(), tr("<No Name>")));
-		ui.lbDescription->setText(orDefault(th.description(), "<No Description>"));
-		ui.lbAuthor->setText(orDefault(th.author(), "<Unknown Author>"));
+		ui.lbDescription->setText(orDefault(th.description(), tr("<No Description>")));
+		ui.lbAuthor->setText(orDefault(th.author(), tr("<Unknown Author>")));
 		ui.lbDate->setText(tr("Date") + ": " + th.date().toString(Qt::ISODate));
 		ui.lbVersion->setText(tr("Version") + ": " + th.version());
 		ui.lbLicense->setText(tr("License") + ": " + th.license());
@@ -576,9 +576,9 @@ void TemplateSelector::editTemplate()
 {
 	TemplateHandle th = selectedTemplate();
 	if (th.isMultifile()) {
-		UtilsUi::txsInformation("Editing of multi-file templates is not supported.\n"
+		UtilsUi::txsInformation(tr("Editing of multi-file templates is not supported.\n"
 		               "Please open the template location and unzip the\n"
-		               "template to edit individual files.");
+		               "template to edit individual files."));
 		return;
 	}
 	if (!th.isEditable()) {
