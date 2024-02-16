@@ -1,5 +1,5 @@
 # exesheet package
-# Matthew Bertucci 2024/01/01 for v2.5
+# Matthew Bertucci 2024/02/15 for v2.7
 
 #include:kvoptions
 #include:ifthen
@@ -161,6 +161,7 @@ debug#true,false
 
 \labelenumone#*
 \labelenuma#*
+\enumfont#*
 
 \begin{questions}
 \end{questions}
@@ -218,8 +219,8 @@ i
 \noteraggedleft#S
 \noteraggedright#S
 \ptsmark#S
+\refenuma#S
 \rightnotemarginwidth{length}#S
-\standardfrenchlists#S
 \standardmarginwidthfactor#S
 
 # deprecated
