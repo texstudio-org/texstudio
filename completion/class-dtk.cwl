@@ -1,10 +1,11 @@
 # dtk class
-# Matthew Bertucci 2023/07/31 for v2.10a
+# Matthew Bertucci 2024/02/15 for v2.10d
 
 #include:hyphsubst
 #include:iftex
 #include:xkeyval
 #include:dtk-url
+#include:hvqrurl
 #include:class-scrbook
 #include:scrhack
 #include:listings
