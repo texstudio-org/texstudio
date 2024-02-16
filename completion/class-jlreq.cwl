@@ -1,5 +1,5 @@
 # jlreq class
-# Matthew Bertucci 2022/11/28 for release 2022/11/28
+# Matthew Bertucci 2024-02-15 for release 2024-02-13
 
 #include:l3keys2e
 #include:etoolbox
@@ -9,6 +9,7 @@
 #include:everyhook
 #include:lmodern
 #include:jlreq-complements
+#include:stfloats
 
 #keyvals:\documentclass/jlreq#c
 uplatex
@@ -147,6 +148,8 @@ appendix_counter={%<counter%>={value=%<integer%>,the=%<code%>}%<,...%>}
 appendix_heading={%<sectionname%>={%<settings%>}%<,...%>}
 appendix_precode=%<code%>
 appendix_postcode=%<code%>
+abstract_with_maketitle#true,false
+tableofcontents_twocolumn#true,false
 #endkeyvals
 
 \part{title}[subtitle%text]#L0
