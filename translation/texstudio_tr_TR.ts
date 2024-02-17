@@ -6564,32 +6564,32 @@ You can now enter the password:</source>
         <translation>Belirtilen stderr yönlendirmesi desteklenmiyor: &quot;%1&quot;. Ayrıntılar için rehbere bakın.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2503"/>
+        <location filename="../src/buildmanager.cpp" line="2532"/>
         <source>Process started: %1</source>
         <translation>İşlem başlatıldı: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2509"/>
+        <location filename="../src/buildmanager.cpp" line="2538"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Hata: %1 komutu başlatılamadı</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2512"/>
+        <location filename="../src/buildmanager.cpp" line="2541"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Bir (La)TeX dağıtımı kurduğunuzdan&lt;/b&gt; Örnek: MiKTeX ya da TeX Live, ve komut yapılandırma sayfasında bu dağıtıma uygun yolları ayarladığınızdan emin olun.&lt;br&gt;TeXstudio gibi bir (La)TeX düzenleyicisi böyle bir dağıtım tarafından sağlanan (La)TeX komutları olmadan çalışamaz.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2516"/>
+        <location filename="../src/buildmanager.cpp" line="2545"/>
         <source>Error: Command crashed: %1</source>
         <translation>Hata: Komut çöktü: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2523"/>
+        <location filename="../src/buildmanager.cpp" line="2552"/>
         <source>Process exited with error(s)</source>
         <translation>İşlemden hata(lar) ile çıkıldı</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2526"/>
+        <location filename="../src/buildmanager.cpp" line="2555"/>
         <source>Process exited normally</source>
         <translation>İşlemden normal çıkıldı</translation>
     </message>
@@ -9287,106 +9287,123 @@ dosyası silinemedi.</translation>
 <context>
     <name>TemplateSelector</name>
     <message>
-        <location filename="../src/templateselector.cpp" line="46"/>
+        <location filename="../src/templateselector.cpp" line="47"/>
         <source>No Preview</source>
         <translation>Ön izleme yok</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="98"/>
+        <location filename="../src/templateselector.cpp" line="99"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
         <translation>Kalıplar için yeni bir klasör kullanılması önerilir. Yoksa var olan dosyaların üzerine yazılabilir.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="133"/>
+        <location filename="../src/templateselector.cpp" line="136"/>
         <source>Online Repository</source>
         <translation>Çevrimiçi depo</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="137"/>
+        <location filename="../src/templateselector.cpp" line="140"/>
         <source>Online available template files</source>
-        <translation type="unfinished"/>
+        <translation>Çevrim içi kullanılabilir kalıp dosyaları</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="141"/>
-        <location filename="../src/templateselector.cpp" line="330"/>
+        <location filename="../src/templateselector.cpp" line="145"/>
+        <location filename="../src/templateselector.cpp" line="336"/>
         <source>&lt;loading...&gt;</source>
         <translation>&lt;yükleniyor...&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="470"/>
+        <location filename="../src/templateselector.cpp" line="476"/>
         <source>Select Target Folder</source>
         <translation>Hedef klasörü seçin</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="500"/>
+        <location filename="../src/templateselector.cpp" line="506"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;Adsız&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="503"/>
+        <location filename="../src/templateselector.cpp" line="507"/>
+        <source>&lt;No Description&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="508"/>
+        <source>&lt;Unknown Author&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="509"/>
         <source>Date</source>
         <translation>Tarih</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="504"/>
+        <location filename="../src/templateselector.cpp" line="510"/>
         <source>Version</source>
         <translation>Sürüm</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="505"/>
+        <location filename="../src/templateselector.cpp" line="511"/>
         <source>License</source>
         <translation>Lisans</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="560"/>
+        <location filename="../src/templateselector.cpp" line="566"/>
         <source>Edit Template</source>
         <translation>Kalıbı düzenle</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="561"/>
+        <location filename="../src/templateselector.cpp" line="567"/>
         <source>Edit Template Info</source>
         <translation>Kalıp bilgilerini düzenle</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="562"/>
+        <location filename="../src/templateselector.cpp" line="568"/>
         <source>Remove</source>
         <translation>Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="565"/>
+        <location filename="../src/templateselector.cpp" line="571"/>
         <source>Open Template Location</source>
         <translation>Kalıp konumunu aç</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="579"/>
-        <location filename="../src/templateselector.cpp" line="590"/>
-        <location filename="../src/templateselector.cpp" line="601"/>
+        <source>Editing of multi-file templates is not supported.
+Please open the template location and unzip the
+template to edit individual files.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="585"/>
+        <location filename="../src/templateselector.cpp" line="596"/>
+        <location filename="../src/templateselector.cpp" line="607"/>
         <source>This template cannot be edited.</source>
         <translation>Bu kalıp düzenlenemez.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Please Confirm</source>
         <translation>Lütfen onaylayın</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Şu kalıbı silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="613"/>
-        <location filename="../src/templateselector.cpp" line="618"/>
+        <location filename="../src/templateselector.cpp" line="619"/>
+        <location filename="../src/templateselector.cpp" line="624"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Bu dosyayı silme izniniz yok.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="628"/>
+        <location filename="../src/templateselector.cpp" line="634"/>
         <source>Could not open location:</source>
         <translation>Şu konum açılamadı:</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="639"/>
+        <location filename="../src/templateselector.cpp" line="645"/>
         <source>Repository not found. Network error:%1</source>
         <translation>Depo bulunamadı. Ağ sorunu:%1</translation>
     </message>
