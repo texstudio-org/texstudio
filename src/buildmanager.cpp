@@ -2384,19 +2384,22 @@ void ProcessX::startCommand()
 
 	// Check if FLATPAK_SANDBOX_DIR is set
 	if (env.contains("FLATPAK_SANDBOX_DIR")) {
-		QStringList cmd_elements = cmd.split(" ");
+		if (!cmd.startsWith("flatpak-spawn")) {
+			QStringList cmd_elements = cmd.split(" ");
 
-		if (!cmd_elements.isEmpty()) {
-			QDir texlive_flatpak_dir("/app/texlive/bin");
-			QString executable = cmd_elements.first();
-			QString executable_path = texlive_flatpak_dir.filePath(executable);
+			if (!cmd_elements.isEmpty()) {
+				QDir texlive_flatpak_dir("/app/texlive/bin");
+				QString executable = cmd_elements.first();
 
-			// Check if the executable exists
-			QFileInfo fileInfo(executable_path);
-			if (fileInfo.isFile()) {
-				// don't change cmd
-			} else {
-				cmd = "flatpak-spawn --host "+cmd;
+				QString executable_path = texlive_flatpak_dir.filePath(executable);
+
+				// Check if the executable exists
+				QFileInfo fileInfo(executable_path);
+				if (fileInfo.isFile()) {
+					// don't change cmd
+				} else {
+					cmd = "flatpak-spawn --host "+cmd;
+				}
 			}
 		}
 	}
