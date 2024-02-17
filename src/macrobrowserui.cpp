@@ -139,7 +139,26 @@ void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
             requestMacroList(url);
         }
     }else{
-        requestMacroList(url,true);
+        if(cache.contains(url)){
+            // reuse cached
+            QByteArray ba = cache.value(url).toUtf8();
+            QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
+            QJsonObject dd=jsonDoc.object();
+            leName->setText(dd["name"].toString());
+            QJsonArray array=dd["description"].toArray();
+            QVariantList vl=array.toVariantList();
+            QString text;
+            foreach(auto v,vl){
+                if(!text.isEmpty()){
+                    text+="\n";
+                }
+                text+=v.toString();
+            }
+            teDescription->setPlainText(text);
+        }
+        else{
+            requestMacroList(url,true);
+        }
     }
 }
 
