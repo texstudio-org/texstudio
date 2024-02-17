@@ -2388,14 +2388,16 @@ void ProcessX::startCommand()
 			QStringList cmd_elements = cmd.split(" ");
 
 			if (!cmd_elements.isEmpty()) {
-				QDir texlive_flatpak_dir("/app/texlive/bin");
+
 				QString executable = cmd_elements.first();
 
-				QString executable_path = texlive_flatpak_dir.filePath(executable);
-
-				// Check if the executable exists
-				QFileInfo fileInfo(executable_path);
-				if (fileInfo.isFile() and executable.indexOf("/") == -1) {
+				// Check if the executable exists in the TeX Live Flatpak extension
+				if ((
+					QFileInfo(QDir("/app/texlive/bin").filePath(executable)).isFile() or
+					QFileInfo(QDir("/app/texlive/bin/x86_64-linux").filePath(executable)).isFile() or
+					QFileInfo(QDir("/app/texlive/bin/aarch64-linux").filePath(executable)).isFile()
+					)
+					and executable.indexOf("/") == -1) {
 					// don't change cmd
 				} else {
 					cmd = "flatpak-spawn --host "+cmd;
