@@ -2372,11 +2372,38 @@ void ProcessX::startCommand()
 		emit finished(0, NormalExit);
 		return;
 	}
+
 	if (stdoutEnabled || stdoutBuffer)
 		connect(this, SIGNAL(readyReadStandardOutput()), this, SLOT(readFromStandardOutput()));
 	if (stderrEnabled)
 		connect(this, SIGNAL(readyReadStandardError()), this, SLOT(readFromStandardError()));
 
+#ifdef Q_OS_LINUX
+	// Retrieve the environment variables
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+	// Check if FLATPAK_SANDBOX_DIR is set
+	if (env.contains("FLATPAK_SANDBOX_DIR")) {
+		if (!cmd.startsWith("flatpak-spawn")) {
+			QStringList cmd_elements = cmd.split(" ");
+
+			if (!cmd_elements.isEmpty()) {
+				QDir texlive_flatpak_dir("/app/texlive/bin");
+				QString executable = cmd_elements.first();
+
+				QString executable_path = texlive_flatpak_dir.filePath(executable);
+
+				// Check if the executable exists
+				QFileInfo fileInfo(executable_path);
+				if (fileInfo.isFile() and executable.indexOf("/") == -1) {
+					// don't change cmd
+				} else {
+					cmd = "flatpak-spawn --host "+cmd;
+				}
+			}
+		}
+	}
+#endif
 	ExecProgram execProgram(cmd, BuildManager::resolvePaths(BuildManager::additionalSearchPaths));
 	execProgram.execAndNoWait(*this);
 
