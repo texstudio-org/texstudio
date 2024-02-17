@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/02/03 for v11.3.0
+# Matthew Bertucci 2024/02/17 for v11.4.0
 
 #include:iftex
 
@@ -31,6 +31,7 @@ acm
 actigraph
 activision
 activitypub
+actix
 acura
 adafruit
 adblock
@@ -200,6 +201,7 @@ apmterminals
 apollographql
 apostrophe
 appian
+appium
 apple
 applearcade
 applemusic
@@ -318,6 +320,7 @@ bentobox
 bentoml
 bereal
 betfair
+betterstack
 bevy
 bigbasket
 bigbluebutton
@@ -379,6 +382,7 @@ boulanger
 bower
 box
 boxysvg
+braintree
 brandfolder
 brave
 breaker
@@ -402,8 +406,10 @@ buildkite
 bukalapak
 bulma
 bun
+bungie
 bunq
 burgerking
+burpsuite
 burton
 buymeacoffee
 buzzfeed
@@ -502,6 +508,7 @@ cloudflare
 cloudflarepages
 cloudfoundry
 cloudinary
+cloudron
 cloudsmith
 cloudways
 clubhouse
@@ -526,6 +533,7 @@ codeclimate
 codecov
 codefactor
 codeforces
+codefresh
 codeigniter
 codeium
 codemagic
@@ -826,6 +834,7 @@ etsy
 eventbrite
 eventstore
 evernote
+excalidraw
 exercism
 exordo
 exoscale
@@ -922,6 +931,7 @@ fontforge
 foodpanda
 ford
 forgejo
+formspree
 formstack
 fortinet
 fortran
@@ -1020,6 +1030,7 @@ godaddy
 godotengine
 gofundme
 gogdotcom
+gojek
 goland
 goldenline
 goldmansachs
@@ -1049,6 +1060,7 @@ googlecontaineroptimizedos
 googledataflow
 googledataproc
 googledatastudio
+googledisplayandvideo360
 googledocs
 googledomains
 googledrive
@@ -1171,6 +1183,7 @@ hiltonhotelsandresorts
 hitachi
 hive
 hiveblockchain
+hivemq
 homeadvisor
 homeassistant
 homeassistantcommunitystore
@@ -1362,6 +1375,7 @@ kaufland
 kde
 kdenlive
 kedro
+keenetic
 keepachangelog
 keepassxc
 kentico
@@ -1389,6 +1403,7 @@ klm
 klook
 knative
 knexdotjs
+knime
 knowledgebase
 known
 koa
@@ -1411,6 +1426,7 @@ kubernetes
 kubuntu
 kucoin
 kuma
+kununu
 kuula
 kx
 kyocera
@@ -1475,6 +1491,7 @@ linkerd
 linkfire
 linksys
 linktree
+lintcode
 linux
 linuxcontainers
 linuxfoundation
@@ -1700,6 +1717,7 @@ mysql
 n26
 namebase
 namecheap
+namuwiki
 nano
 nasa
 nationalgrid
@@ -1714,6 +1732,7 @@ near
 nec
 neo4j
 neovim
+neptune
 nestjs
 netapp
 netbsd
@@ -1737,6 +1756,7 @@ nextdoor
 nextdotjs
 nextra
 nextui
+nexusmods
 nfc
 nginx
 nginxproxymanager
@@ -2005,6 +2025,7 @@ polymerproject
 polywork
 pond5
 popos
+porkbun
 porsche
 portainer
 portswigger
@@ -2090,6 +2111,7 @@ pyup
 qantas
 qase
 qatarairways
+qbittorrent
 qemu
 qgis
 qi
@@ -2220,6 +2242,7 @@ rockstargames
 rockwellautomation
 rockylinux
 roku
+roll20
 rollsroyce
 rollupdotjs
 rome
@@ -2253,6 +2276,7 @@ runkeeper
 runkit
 runrundotit
 rust
+rustdesk
 rxdb
 ryanair
 rye
@@ -2710,6 +2734,7 @@ twitter
 typeform
 typescript
 typo3
+typst
 uber
 ubereats
 ubiquiti
@@ -2874,6 +2899,7 @@ wellfound
 wellsfargo
 wemo
 westerndigital
+westernunion
 wetransfer
 wezterm
 whatsapp
