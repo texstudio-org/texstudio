@@ -2394,12 +2394,16 @@ void ProcessX::startCommand()
 				QString executable_path = texlive_flatpak_dir.filePath(executable);
 
 				// Check if the executable exists
+				qDebug() << "checking if " << executable_path << " exists";
 				QFileInfo fileInfo(executable_path);
-				if (fileInfo.isFile()) {
+				if (fileInfo.isFile() and executable.indexOf("/") == -1) {
+					qDebug() << "executable exists in /app/texlive/bin";
 					// don't change cmd
 				} else {
 					cmd = "flatpak-spawn --host "+cmd;
 				}
+			} else {
+				qDebug() << "cmd is empty";
 			}
 		}
 	}
