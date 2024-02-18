@@ -9325,12 +9325,12 @@ dosyası silinemedi.</translation>
     <message>
         <location filename="../src/templateselector.cpp" line="507"/>
         <source>&lt;No Description&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;No Description&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="508"/>
         <source>&lt;Unknown Author&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Unknown Author&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="509"/>
@@ -9372,7 +9372,9 @@ dosyası silinemedi.</translation>
         <source>Editing of multi-file templates is not supported.
 Please open the template location and unzip the
 template to edit individual files.</source>
-        <translation type="unfinished"/>
+        <translation>Çok dosyalı kalıpların düzenlenmesi desteklenmiyor.
+Dosyaları ayrı ayrı düzenlemek için kalıp konumunu açın
+ve kalıbı ayıklayın.</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="585"/>

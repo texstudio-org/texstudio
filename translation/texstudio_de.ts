@@ -9359,8 +9359,8 @@ failed.</source>
         <source>Editing of multi-file templates is not supported.
 Please open the template location and unzip the
 template to edit individual files.</source>
-        <translation>Das Editiern einer Vorlage mit mehreren Dateien wird nicht unterstützt..
-Bitte öffnen sie das Verzeichnis der Vorlage und entpacken die Zip-Datei, um einzelne Dateien zu editieren.</translation>
+        <translation>Das Editieren einer Vorlage mit mehreren Dateien wird nicht unterstützt.
+Bitte öffnen Sie das Verzeichnis der Vorlage und entpacken die Zip-Datei, um einzelne Dateien zu editieren.</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="585"/>

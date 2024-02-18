@@ -6559,32 +6559,32 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
         <translation>La redirection de sortie standard (« stdout ») « %1 » n&apos;est pas supportée. Veuillez consulter le manuel pour plus de détails.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2503"/>
+        <location filename="../src/buildmanager.cpp" line="2532"/>
         <source>Process started: %1</source>
         <translation>Processus en cours : %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2509"/>
+        <location filename="../src/buildmanager.cpp" line="2538"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Erreur : impossible de lancer la commande %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2512"/>
+        <location filename="../src/buildmanager.cpp" line="2541"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Assurez-vous d&apos;avoir installé une distribution LaTeX&lt;/b&gt; par exemple MiKTeX ou TeX Live, et d&apos;avoir correctement configuré les chemins vers cette distribution sur la page de configuration des commandes de TeXstudio.&lt;br&gt; Un éditeur (La)TeX tel que TeXstudio ne peut fonctionner sans les commandes LaTeX fournies par une telle distribution.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2516"/>
+        <location filename="../src/buildmanager.cpp" line="2545"/>
         <source>Error: Command crashed: %1</source>
         <translation>Erreur : échec de la commande %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2523"/>
+        <location filename="../src/buildmanager.cpp" line="2552"/>
         <source>Process exited with error(s)</source>
         <translation>Processus terminé avec une ou plusieurs erreurs</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2526"/>
+        <location filename="../src/buildmanager.cpp" line="2555"/>
         <source>Process exited normally</source>
         <translation>Processus terminé normalement</translation>
     </message>
@@ -9284,106 +9284,124 @@ n&apos;a pas pu être supprimé.</translation>
 <context>
     <name>TemplateSelector</name>
     <message>
-        <location filename="../src/templateselector.cpp" line="46"/>
+        <location filename="../src/templateselector.cpp" line="47"/>
         <source>No Preview</source>
         <translation>Pas de prévisualisation</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="98"/>
+        <location filename="../src/templateselector.cpp" line="99"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
         <translation>Il est conseillé de ne pas instancier de modèles dans un nouveau répertoire, sans quoi des fichiers existants pourraient être écrasés.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="133"/>
+        <location filename="../src/templateselector.cpp" line="136"/>
         <source>Online Repository</source>
         <translation>Dépôt en ligne</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="137"/>
+        <location filename="../src/templateselector.cpp" line="140"/>
         <source>Online available template files</source>
         <translation>Fichiers de modèle disponibles en ligne</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="141"/>
-        <location filename="../src/templateselector.cpp" line="330"/>
+        <location filename="../src/templateselector.cpp" line="145"/>
+        <location filename="../src/templateselector.cpp" line="336"/>
         <source>&lt;loading...&gt;</source>
         <translation>&lt;chargement en cours...&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="470"/>
+        <location filename="../src/templateselector.cpp" line="476"/>
         <source>Select Target Folder</source>
         <translation>Sélectionner un répertoire cible</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="500"/>
+        <location filename="../src/templateselector.cpp" line="506"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;Sans nom&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="503"/>
+        <location filename="../src/templateselector.cpp" line="507"/>
+        <source>&lt;No Description&gt;</source>
+        <translation>&lt;No Description&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="508"/>
+        <source>&lt;Unknown Author&gt;</source>
+        <translation>&lt;Unknown Author&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="509"/>
         <source>Date</source>
         <translation>Date</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="504"/>
+        <location filename="../src/templateselector.cpp" line="510"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="505"/>
+        <location filename="../src/templateselector.cpp" line="511"/>
         <source>License</source>
         <translation>Licence</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="560"/>
+        <location filename="../src/templateselector.cpp" line="566"/>
         <source>Edit Template</source>
         <translation>Modifier le modèle</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="561"/>
+        <location filename="../src/templateselector.cpp" line="567"/>
         <source>Edit Template Info</source>
         <translation>Modifier les propriétés du modèle</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="562"/>
+        <location filename="../src/templateselector.cpp" line="568"/>
         <source>Remove</source>
         <translation>Supprimer le modèle</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="565"/>
+        <location filename="../src/templateselector.cpp" line="571"/>
         <source>Open Template Location</source>
         <translation>Ouvrir le dossier des modèles</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="579"/>
-        <location filename="../src/templateselector.cpp" line="590"/>
-        <location filename="../src/templateselector.cpp" line="601"/>
+        <source>Editing of multi-file templates is not supported.
+Please open the template location and unzip the
+template to edit individual files.</source>
+        <translation>L&apos;édition de modèles multi-fichiers n&apos;est pas prise en charge.
+Veuillez ouvrir l&apos;emplacement du modèle et décompresser le modèle pour modifier les fichiers individuels.</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="585"/>
+        <location filename="../src/templateselector.cpp" line="596"/>
+        <location filename="../src/templateselector.cpp" line="607"/>
         <source>This template cannot be edited.</source>
         <translation>Ce modèle ne peut pas être modifié.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Please Confirm</source>
         <translation>Veuillez confirmer</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Êtes-vous sûr de vouloir supprimer définitivement le modèle ?</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="613"/>
-        <location filename="../src/templateselector.cpp" line="618"/>
+        <location filename="../src/templateselector.cpp" line="619"/>
+        <location filename="../src/templateselector.cpp" line="624"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Vous n&apos;avez pas les droits nécessaires pour supprimer ce fichier.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="628"/>
+        <location filename="../src/templateselector.cpp" line="634"/>
         <source>Could not open location:</source>
         <translation>Impossilbe d&apos;ouvrir le dossier :</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="639"/>
+        <location filename="../src/templateselector.cpp" line="645"/>
         <source>Repository not found. Network error:%1</source>
         <translation>Dépôt introuvable. Erreur réseau : %1</translation>
     </message>

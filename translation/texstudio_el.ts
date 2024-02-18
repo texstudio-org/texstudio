@@ -44,7 +44,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="70"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation>Το TeXstudio χρησιμοποιεί την κλάση DSingleApplication (Συγγραφέας: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Άδεια χρήσης: GPL).</translation>
+        <translation>Το TeXstudio χρησιμοποιεί την κλάση DSingleApplication (Δημιουργός: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Άδεια χρήσης: GPL).</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="71"/>
@@ -3267,7 +3267,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="38"/>
         <source>The \author command declares the author(s), where names is a list of authors separated by \and commands.</source>
-        <translation>Η εντολή \author δηλώνει τον συγγραφέα ή τους συγγραφείς. Δέχεται ως όρισμα μία λίστα από ονόματα συγγραφέων, διαχωρισμένα με εντολές \and.</translation>
+        <translation>Η εντολή \author δηλώνει τον δημιουργό ή τους δημιουργούς. Δέχεται ως όρισμα μία λίστα από ονόματα, διαχωρισμένα με εντολές \and.</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="39"/>
@@ -5531,7 +5531,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="43"/>
         <source>Author</source>
-        <translation>Συγγραφέας</translation>
+        <translation>Δημιουργός</translation>
     </message>
     <message>
         <location filename="../src/maketemplatedialog.ui" line="53"/>
@@ -6569,32 +6569,32 @@ You can now enter the password:</source>
         <translation>Το stderr redirection που ορίστηκε δεν υποστηρίζεται: &quot;%1&quot;. Δείτε το εγχειρίδιο χρήσης για περισσότερες λεπτομέρειες.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2503"/>
+        <location filename="../src/buildmanager.cpp" line="2532"/>
         <source>Process started: %1</source>
         <translation>Η διαδικασία ξεκίνησε: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2509"/>
+        <location filename="../src/buildmanager.cpp" line="2538"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Σφάλμα: Δεν ήταν δυνατή η εκτέλεση της εντολής: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2512"/>
+        <location filename="../src/buildmanager.cpp" line="2541"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Βεβαιωθείτε πως υπάρχει εγκατεστημένη μια διανομή (La)TeX στον υπολογιστή σας&lt;/b&gt;, π.χ. MiKTeX ή TeX Live και πως έχετε ορίσει τις σωστές διαδρομές στην καρτέλα «Εντολές» των ρυθμίσεων του TeXstudio.&lt;br&gt;Ένας επεξεργαστής κειμένου (La)TeX όπως το TeXstudio δεν μπορεί να λειτουργήσει χωρίς τις εντολές (La)TeX που περιλαμβάνονται στις διανομές αυτές.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2516"/>
+        <location filename="../src/buildmanager.cpp" line="2545"/>
         <source>Error: Command crashed: %1</source>
         <translation>Σφάλμα: Η εκτέλεση της εντολής διακόπηκε απότομα: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2523"/>
+        <location filename="../src/buildmanager.cpp" line="2552"/>
         <source>Process exited with error(s)</source>
         <translation>Η διαδικασία τερματίστηκε με σφάλμα(τα)</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2526"/>
+        <location filename="../src/buildmanager.cpp" line="2555"/>
         <source>Process exited normally</source>
         <translation>Η διαδικασία τερματίστηκε κανονικά</translation>
     </message>
@@ -9288,106 +9288,125 @@ failed.</source>
 <context>
     <name>TemplateSelector</name>
     <message>
-        <location filename="../src/templateselector.cpp" line="46"/>
+        <location filename="../src/templateselector.cpp" line="47"/>
         <source>No Preview</source>
         <translation>Η προεπισκόπηση δεν είναι διαθέσιμη</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="98"/>
+        <location filename="../src/templateselector.cpp" line="99"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
         <translation>Συνιστάται η επιλογή νέου, κενού φακέλου για τη δημιουργία αρχείων από πρότυπο. Σε διαφορετική περίπτωση, τυχόν υπάρχοντα αρχεία ενδέχεται να αντικατασταθούν.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="133"/>
+        <location filename="../src/templateselector.cpp" line="136"/>
         <source>Online Repository</source>
         <translation>Διαδικτυακό αποθετήριο</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="137"/>
+        <location filename="../src/templateselector.cpp" line="140"/>
         <source>Online available template files</source>
-        <translation type="unfinished"/>
+        <translation>Πρότυπα που είναι διαθέσιμα διαδικτυακά</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="141"/>
-        <location filename="../src/templateselector.cpp" line="330"/>
+        <location filename="../src/templateselector.cpp" line="145"/>
+        <location filename="../src/templateselector.cpp" line="336"/>
         <source>&lt;loading...&gt;</source>
         <translation>&lt;φόρτωση...&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="470"/>
+        <location filename="../src/templateselector.cpp" line="476"/>
         <source>Select Target Folder</source>
         <translation>Επιλογή φακέλου προορισμού</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="500"/>
+        <location filename="../src/templateselector.cpp" line="506"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;No Name&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="503"/>
+        <location filename="../src/templateselector.cpp" line="507"/>
+        <source>&lt;No Description&gt;</source>
+        <translation>&lt;Δεν υπάρχει περιγραφή&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="508"/>
+        <source>&lt;Unknown Author&gt;</source>
+        <translation>&lt;Άγνωστος δημιουργός&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="509"/>
         <source>Date</source>
         <translation>Ημερομηνία</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="504"/>
+        <location filename="../src/templateselector.cpp" line="510"/>
         <source>Version</source>
         <translation>Έκδοση</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="505"/>
+        <location filename="../src/templateselector.cpp" line="511"/>
         <source>License</source>
         <translation>Άδεια χρήσης</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="560"/>
+        <location filename="../src/templateselector.cpp" line="566"/>
         <source>Edit Template</source>
         <translation>Επεξεργασία προτύπου</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="561"/>
+        <location filename="../src/templateselector.cpp" line="567"/>
         <source>Edit Template Info</source>
         <translation>Επεξεργασία δεδομένων προτύπου</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="562"/>
+        <location filename="../src/templateselector.cpp" line="568"/>
         <source>Remove</source>
         <translation>Κατάργηση</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="565"/>
+        <location filename="../src/templateselector.cpp" line="571"/>
         <source>Open Template Location</source>
         <translation>Άνοιγμα τοποθεσίας προτύπου</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="579"/>
-        <location filename="../src/templateselector.cpp" line="590"/>
-        <location filename="../src/templateselector.cpp" line="601"/>
+        <source>Editing of multi-file templates is not supported.
+Please open the template location and unzip the
+template to edit individual files.</source>
+        <translation>Η επεξεργασία προτύπων με πολλά αρχεία δεν υποστηρίζεται.
+Μπορείτε όμως να αποσυμπιέσετε τα αρχεία του προτύπου
+και να τα επεξεργαστείτε μεμονωμένα.</translation>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="585"/>
+        <location filename="../src/templateselector.cpp" line="596"/>
+        <location filename="../src/templateselector.cpp" line="607"/>
         <source>This template cannot be edited.</source>
         <translation>Δεν είναι δυνατή η επεξεργασία αυτού του προτύπου.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Please Confirm</source>
         <translation>Επιβεβαιώστε</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Are you sure to delete the following template?</source>
         <translation>Θέλετε πραγματικά να καταργήσετε το παρακάτω πρότυπο;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="613"/>
-        <location filename="../src/templateselector.cpp" line="618"/>
+        <location filename="../src/templateselector.cpp" line="619"/>
+        <location filename="../src/templateselector.cpp" line="624"/>
         <source>You do not have permission to remove this file.</source>
         <translation>Δεν έχετε άδεια να διαγράψετε αυτό το αρχείο.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="628"/>
+        <location filename="../src/templateselector.cpp" line="634"/>
         <source>Could not open location:</source>
         <translation>Δεν ήταν δυνατό το άνοιγμα της τοποθεσίας:</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="639"/>
+        <location filename="../src/templateselector.cpp" line="645"/>
         <source>Repository not found. Network error:%1</source>
         <translation>Δε βρέθηκε κάποιο αποθετήριο. Παρουσιάστηκε σφάλμα δικτύου: %1</translation>
     </message>
@@ -13287,7 +13306,7 @@ Do you trust this script?</source>
     <message>
         <location filename="../src/templateselector.ui" line="66"/>
         <source>Author:</source>
-        <translation>Συγγραφέας:</translation>
+        <translation>Δημιουργός:</translation>
     </message>
     <message>
         <location filename="../src/templateselector.ui" line="173"/>
