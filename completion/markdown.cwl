@@ -1,5 +1,5 @@
 # markdown package
-# Matthew Bertucci 2023/04/03 for v2.22.0-0-g5a3d0fe
+# Matthew Bertucci 2024/02/19 for v3.4.1-0-g457226ae
 
 #include:paralist
 #include:amsmath
@@ -21,9 +21,8 @@
 #endif
 
 \begin{markdown}
+\begin{markdown}[options%keyvals]
 \end{markdown}
-\begin{markdown*}{options%keyvals}
-\end{markdown*}
 
 \markdownInput{file}#i
 \markdownInput[options%keyvals]{file}#i
@@ -32,7 +31,7 @@
 \markdownSetupSnippet{name%specialDef}{options%keyvals}#s#%markdownsnippet
 \markdownIfSnippetExists{name}{true}{false}#*
 
-#keyvals:\usepackage/markdown#c,\begin{markdown*}#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
+#keyvals:\usepackage/markdown#c,\begin{markdown}#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
 plain#true,false
 import=#witiko/dot,witiko/graphicx/http,witiko/tilde,witiko/markdown/techdoc
 snippet=#%markdownsnippet
@@ -99,7 +98,7 @@ frozenCache#true,false
 frozenCacheFileName=%<file name%>
 #endkeyvals
 
-#keyvals:\begin{markdown*}#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
+#keyvals:\begin{markdown}#c,\markdownInput#c,\markdownSetup#c,\markdownSetupSnippet#c
 renderers={%<renderer options%>}
 rendererPrototypes={%<renderer prototype options%>}
 code={%<code%>}
@@ -127,8 +126,6 @@ jekyllDataRenderers={%<keyvals%>}
 #endif
 
 \ifmarkdownLaTeXLoaded#S
-\markdownError{error text%text}{help text%text}#S
-\markdownInfo{info text%text}#S
 \markdownInputPlainTeX{file}#Si
 \markdownLaTeXBasicCitations{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
 \markdownLaTeXBasicTextCitations{arg1}{arg2}{arg3}{arg4}{arg5}{arg6}#S
@@ -165,7 +162,6 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownOptionTexComments#*
 \markdownOptionUnderscores#*
 \markdownVersionSpace#S
-\markdownWarning{warning text%text}#S
 
 # from markdown.tex
 \markdown#S
@@ -206,7 +202,6 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownOptionInlineFootnotes#*
 \markdownOptionInputTempFileName#*
 \markdownOptionJekyllData#*
-\markdownOptionOutputDir#*
 \markdownOptionPipeTables#*
 \markdownOptionPreserveTabs#*
 \markdownOptionShiftHeadings#*
@@ -452,9 +447,3 @@ jekyllDataRenderers={%<keyvals%>}
 \markdownRendererUntickedBox#*
 \markdownRendererUntickedBoxPrototype#*
 \markdownVersion#S
-
-# deprecated
-\markdownRendererFootnote#S
-\markdownRendererFootnotePrototype#S
-\markdownRendererHorizontalRule#S
-\markdownRendererHorizontalRulePrototype#S
