@@ -1,5 +1,5 @@
 # homework class
-# Matthew Bertucci 2023/10/05 for v2023/10/01b
+# Matthew Bertucci 2024/02/21 for v2024-02-21
 
 #include:class-einfart
 #include:ProjLib
@@ -14,6 +14,8 @@
 \end{solution}
 
 \pretitle{text}
+
+\ManualNumbering{envname}{number}
 
 # not documented
 \begin{soluenumerate}#S
