@@ -5,22 +5,22 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
   <name>TeXstudio</name>
-  <summary>LaTeX editor</summary>
+  <summary>Craft beautiful LaTeX documents</summary>
   <description>
     <p>
-      TeXstudio is an integrated writing environment for creating LaTeX documents. It integrates editing, building and viewing into a single frontend.
+      TeXstudio is an integrated writing environment for creating LaTeX documents. It integrates editing, building and viewing into a single, user-friendly interface.
     </p>
     <p>
       Our goal is to make writing LaTeX as easy and comfortable as possible.
-      This is achieved through a rich feature set including:
+      This means you can focus on your content with the help of a powerful set of features:
     </p>
     <ul>
-      <li>Easy source code navigation: Structure view, links, cursor history</li>
+      <li>Easy source code navigation: A structure view, clickable links and a cursor history</li>
       <li>Detailed syntax highlighting</li>
       <li>Auto-completion</li>
       <li>Live checking for spelling, grammar, citations, references, syntax and packages</li>
       <li>Innovative table editing</li>
-      <li>Clear display of LaTeX errors and warnings (in editor and as list)</li>
+      <li>Clear display of LaTeX errors and warnings (in-editor and as a list)</li>
       <li>Integrated PDF viewer with (almost) word-level syncing</li>
       <li>Live-updating inline preview for formulas and code segments</li>
       <li>Scripting support</li>
@@ -54,7 +54,9 @@
   <url type="contact">https://texstudio.org/#about</url>
   <url type="vcs-browser">https://github.com/texstudio-org/texstudio</url>
   <url type="contribute">https://texstudio.org/#participate</url>
-  <developer_name>Benito van der Zander</developer_name>
+  <developer id="org.texstudio">
+    <name>J. Sundermeyer</name>
+  </developer>
   <content_rating type="oars-1.1"/>
   <update_contact>texstudio-list_at_lists.sourceforge.net</update_contact>
   <releases>
