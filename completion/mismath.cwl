@@ -1,5 +1,5 @@
 # mismath package
-# Matthew Bertucci 2023/12/19 for v2.9
+# Matthew Bertucci 2024/02/21 for v2.10
 
 #include:amsmath
 #include:mathtools
@@ -7,6 +7,7 @@
 #include:ifthen
 #include:xspace
 #include:iftex
+#include:etoolbox
 
 #keyvals:\usepackage/mismath#c
 ibrackets
