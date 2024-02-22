@@ -727,6 +727,9 @@ langscicol20#B
 \citetv[prenote][postnote]{bibid}#C
 \citetv[postnote]{bibid}#C
 \citetv{bibid}#C
+\citeyeartv[prenote][postnote]{bibid}#C
+\citeyeartv[postnote]{bibid}#C
+\citeyeartv{bibid}#C
 \textcitetv[prenote][postnote]{bibid}#C
 \textcitetv[postnote]{bibid}#C
 \textcitetv{bibid}#C
