@@ -1157,9 +1157,12 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
             if(!changedCommands.addedUsepackages.isEmpty()){
                 changedCommands.addedUsepackages.clear();
                 int start=0;
-                int cnt=lineCount();
-                lexLines(start,cnt,true);
-                reinterpretCommandArguments(changedCommands);
+                QList<LatexDocument *>listOfDocs = getListOfDocs();
+                foreach(LatexDocument *elem, listOfDocs){
+                    int cnt=elem->lineCount();
+                    elem->lexLines(start,cnt,true);
+                    elem->reinterpretCommandArguments(changedCommands);
+                }
                 if(!changedCommands.addedIncludes.isEmpty()||!changedCommands.addedUsepackages.isEmpty()||!changedCommands.lstFilesToLoad.isEmpty()){
                     loopAgain=true;
                     updateCompleter=true;
