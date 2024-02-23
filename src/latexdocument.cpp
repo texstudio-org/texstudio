@@ -1133,10 +1133,16 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
         // includes changed
         if(!changedCommands.lstFilesToLoad.isEmpty()){
             // lex2 & argument parsing, syntax check
-            bool newPackagesFound=parent->addDocsToLoad(changedCommands.lstFilesToLoad,this);
+            std::pair<bool,bool> result=parent->addDocsToLoad(changedCommands.lstFilesToLoad,this);
+            bool newPackagesFound=result.first;
+            bool newUserComamndsFound=result.second;
             changedCommands.lstFilesToLoad.clear();
             if(newPackagesFound){
                 changedCommands.addedUsepackages<<"dummy"; // force handling newly included packages
+            }
+            if(newUserComamndsFound){
+                changedCommands.addedUserCommands<<"dummy"; // force handling newly included packages
+                updateCompleter=true;
             }
         }
         if(!changedCommands.removedIncludes.isEmpty() || !changedCommands.addedIncludes.isEmpty()){
@@ -1180,6 +1186,7 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
                         ltxCommands.possibleCommands[category].insert(elem);
                     }
                 }
+                changedCommands.addedUserCommands.clear();
             }
             if(!changedCommands.removedUserCommands.isEmpty()){
                 for(const QString &key: changedCommands.removedUserCommands){
@@ -1191,6 +1198,7 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
                         ltxCommands.possibleCommands[category].remove(elem);
                     }
                 }
+                changedCommands.removedUserCommands.clear();
             }
 
             synChecker.setLtxCommands(lp); // redundant here, updateCompletionfiles
@@ -2443,10 +2451,11 @@ void LatexDocuments::removeDocs(QStringList removeIncludes)
  * \param filenames
  * \return true if newly loaded files contains packages
  */
-bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentDocument,bool isHigherLevel)
+std::pair<bool,bool> LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentDocument,bool isHigherLevel)
 {
     auto *conf=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
     bool newPackagesFound=false;
+    bool newUserCommandsFound=false;
     if(conf->autoLoadChildren){
         LatexDocument *docForUpdate=nullptr;
         for(const QString &fn:filenames){
@@ -2479,6 +2488,7 @@ bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
                 doc->lp->append(doc->ltxCommands);
                 docForUpdate=doc;
                 newPackagesFound|=!doc->usedPackages(true).isEmpty();
+                newUserCommandsFound|=!doc->userCommandList().isEmpty();
             }
         }
         if(docForUpdate){
@@ -2497,7 +2507,7 @@ bool LatexDocuments::addDocsToLoad(QStringList filenames, LatexDocument *parentD
             }
         }
     }
-    return newPackagesFound;
+    return std::pair<bool,bool>{newPackagesFound,newUserCommandsFound};
 }
 
 void LatexDocuments::hideDocInEditor(LatexEditorView *edView)
