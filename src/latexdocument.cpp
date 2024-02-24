@@ -1206,7 +1206,7 @@ void LatexDocument::handleRescanDocuments(HandledData changedCommands){
         }
     }while(loopAgain);
     if(updateCompleter){
-        emit updateCompleterCommands(); // TODO: necessary ?
+        emit updateCompleterCommands();
     }
     // user commands changed
     // update completer & syntax check
