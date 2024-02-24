@@ -629,7 +629,17 @@ void TemplateSelector::removeTemplate()
 void TemplateSelector::openTemplateLocation()
 {
 	TemplateHandle th = selectedTemplate();
-	QString url = "file:///" + QFileInfo(th.file()).absolutePath();
+	QString url = th.file();
+	QString proto = url;
+	proto.truncate(8);
+	if (proto=="https://") {
+		url.replace(0, QString( "https://raw.githubusercontent.com/texstudio-org/texstudio-template/main").size(),
+								"https://github.com/texstudio-org/texstudio-template/tree/main");
+		url.truncate(url.lastIndexOf("/"));
+	}
+	else {
+		url = "file:///" + QFileInfo(th.file()).absolutePath();
+	}
 	if (!QDesktopServices::openUrl(QUrl(url))) {
 		UtilsUi::txsCritical(tr("Could not open location:") + QString("\n%1").arg(url));
 	}
