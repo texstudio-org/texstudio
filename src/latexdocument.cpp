@@ -3640,7 +3640,6 @@ bool LatexDocument::restoreCachedData(const QString &folder,const QString fileNa
         mUsepackageList.insert(nullptr,package);
     }
     ja=dd.value("toc").toArray();
-    QVector<StructureEntry *> parent_level(lp->structureDepth()+1);
     for (int i = 0; i < ja.size(); ++i) {
         QString section=ja[i].toString();
         QStringList l_section=section.split("#");
