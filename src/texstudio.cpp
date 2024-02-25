@@ -4014,10 +4014,10 @@ void Texstudio::editEraseWordCmdEnv()
                 if (cursor.nextChar() == QChar('{')) {
                     QDocumentCursor orig, to;
                     cursor.getMatchingPair(orig, to, false);
-                    cursor.deleteChar();
                     if (orig.isValid() && to.isValid()){
                         to.removeSelectedText();
                     }
+                    cursor.deleteChar();
                 }
                 currentEditorView()->editor->document()->endMacro();
             }
