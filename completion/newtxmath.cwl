@@ -1,5 +1,5 @@
 # newtxmath package
-# Matthew Bertucci 2023/11/10 for v1.732
+# Matthew Bertucci 2024/02/26 for v1.739
 
 #include:amsmath
 #include:ifthen
@@ -64,6 +64,7 @@ noOT1
 amsthm
 scaled=%<factor%>
 vecsep=##L
+alth
 #endkeyvals
 
 #ifOption:amsthm
@@ -931,6 +932,12 @@ vecsep=##L
 #ifOption:cochineal
 \fAlt#m
 \rhoAlt#m
+#endif
+
+#ifOption:ebgaramond
+\hAlt#m
+\hslashAlt#m
+\hbarAlt#m
 #endif
 
 #ifOption:minion
