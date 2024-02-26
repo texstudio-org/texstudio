@@ -1,5 +1,5 @@
 # tex4ebook package
-# Matthew Bertucci 2022/05/09 for v0.1d
+# Matthew Bertucci 2024/02/26 for v0.4
 
 #include:etoolbox
 #include:kvoptions
@@ -7,6 +7,7 @@
 
 \coverimage{imagefile}#g
 \coverimage[options%keyvals]{imagefile}#g
+\epubpage
 
 #keyvals:\coverimage
 alt={%<alt text%>}
