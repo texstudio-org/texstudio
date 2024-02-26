@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/02/17 for v11.4.0
+# Matthew Bertucci 2024/02/26 for v11.5.0
 
 #include:iftex
 
@@ -160,6 +160,7 @@ androidstudio
 angular
 anilist
 animalplanet
+ankermake
 ansible
 answer
 ansys
@@ -178,6 +179,7 @@ apachecouchdb
 apachedruid
 apacheecharts
 apacheflink
+apachefreemarker
 apachegroovy
 apacheguacamole
 apachehadoop
@@ -427,6 +429,7 @@ cairometro
 cakephp
 calendly
 campaignmonitor
+camunda
 canonical
 canva
 canvas
@@ -1173,6 +1176,7 @@ hepsiemlak
 here
 heroku
 hetzner
+hevy
 hexlet
 hexo
 hey
@@ -1525,6 +1529,7 @@ lotpolishairlines
 ltspice
 lua
 lubuntu
+lucid
 ludwig
 lufthansa
 lumen
@@ -1646,6 +1651,7 @@ microstation
 microstrategy
 midi
 mikrotik
+milanote
 milvus
 minds
 minecraft
@@ -1717,6 +1723,7 @@ mysql
 n26
 namebase
 namecheap
+namemc
 namuwiki
 nano
 nasa
@@ -1737,6 +1744,7 @@ nestjs
 netapp
 netbsd
 netcup
+netdata
 neteasecloudmusic
 netflix
 netgear
@@ -1913,6 +1921,7 @@ pandora
 pantheon
 paperlessngx
 paperspace
+paperswithcode
 paramountplus
 paritysubstrate
 parsedotly
@@ -1953,6 +1962,7 @@ phonepe
 phosphoricons
 photobucket
 photocrowd
+photon
 photopea
 php
 phpmyadmin
@@ -2097,6 +2107,7 @@ pushbullet
 pusher
 pwa
 pycharm
+pycqa
 pydantic
 pyg
 pypi
@@ -2120,6 +2131,7 @@ qiskit
 qiwi
 qlik
 qmk
+qnap
 qt
 qualcomm
 qualtrics
@@ -2144,6 +2156,7 @@ r3
 rabbitmq
 racket
 radar
+radarr
 radiopublic
 radixui
 radstudio
@@ -2372,6 +2385,7 @@ showpad
 showtime
 showwcase
 shutterstock
+sidekiq
 sidequest
 siemens
 sifive
@@ -2433,6 +2447,7 @@ sonar
 sonarcloud
 sonarlint
 sonarqube
+sonarr
 sonatype
 songkick
 songoda
@@ -2594,6 +2609,7 @@ tata
 tauri
 taxbuzz
 tcs
+teal
 teamcity
 teamspeak
 teamviewer
@@ -2623,6 +2639,7 @@ textpattern
 tga
 thangs
 thealgorithms
+theboringcompany
 theconversation
 thefinals
 theirishtimes
@@ -2732,6 +2749,7 @@ twilio
 twitch
 twitter
 typeform
+typer
 typescript
 typo3
 typst
@@ -2833,6 +2851,7 @@ vivaldi
 vivawallet
 vivino
 vivint
+vivo
 vk
 vlcmediaplayer
 vmware
@@ -2910,6 +2929,7 @@ wikidata
 wikidotgg
 wikidotjs
 wikimediacommons
+wikimediafoundation
 wikipedia
 wikiquote
 wikivoyage
@@ -2983,6 +3003,7 @@ youtubetv
 yr
 yubico
 zabka
+zaim
 zalando
 zalo
 zap
