@@ -1,5 +1,5 @@
 # dtk class
-# Matthew Bertucci 2024/02/15 for v2.10d
+# Matthew Bertucci 2024/02/26 for v2.10e
 
 #include:hyphsubst
 #include:iftex
@@ -124,6 +124,7 @@ color#true,false
 \fullwidth#*
 \ifDTKrecord#*
 \journalname
+\Klasse{class}#*
 \Macro{csname}
 \ORIGprintbibliography#S
 \Package{package%plain}
