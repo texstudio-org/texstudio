@@ -1,10 +1,9 @@
 # dtk-url package
-# Matthew Bertucci 3/27/2022 for v1.5
+# Matthew Bertucci 2024/02/15 for v1.8
 
 #include:url
 #include:xcolor
 #include:xkeyval
-#include:hvqrurl
 #include:pdfescape
 #include:ifpdf
 #include:atveryend

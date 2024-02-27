@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/02/03 for v11.3.0
+# Matthew Bertucci 2024/02/26 for v11.5.0
 
 #include:iftex
 
@@ -31,6 +31,7 @@ acm
 actigraph
 activision
 activitypub
+actix
 acura
 adafruit
 adblock
@@ -159,6 +160,7 @@ androidstudio
 angular
 anilist
 animalplanet
+ankermake
 ansible
 answer
 ansys
@@ -177,6 +179,7 @@ apachecouchdb
 apachedruid
 apacheecharts
 apacheflink
+apachefreemarker
 apachegroovy
 apacheguacamole
 apachehadoop
@@ -200,6 +203,7 @@ apmterminals
 apollographql
 apostrophe
 appian
+appium
 apple
 applearcade
 applemusic
@@ -318,6 +322,7 @@ bentobox
 bentoml
 bereal
 betfair
+betterstack
 bevy
 bigbasket
 bigbluebutton
@@ -379,6 +384,7 @@ boulanger
 bower
 box
 boxysvg
+braintree
 brandfolder
 brave
 breaker
@@ -402,8 +408,10 @@ buildkite
 bukalapak
 bulma
 bun
+bungie
 bunq
 burgerking
+burpsuite
 burton
 buymeacoffee
 buzzfeed
@@ -421,6 +429,7 @@ cairometro
 cakephp
 calendly
 campaignmonitor
+camunda
 canonical
 canva
 canvas
@@ -502,6 +511,7 @@ cloudflare
 cloudflarepages
 cloudfoundry
 cloudinary
+cloudron
 cloudsmith
 cloudways
 clubhouse
@@ -526,6 +536,7 @@ codeclimate
 codecov
 codefactor
 codeforces
+codefresh
 codeigniter
 codeium
 codemagic
@@ -826,6 +837,7 @@ etsy
 eventbrite
 eventstore
 evernote
+excalidraw
 exercism
 exordo
 exoscale
@@ -922,6 +934,7 @@ fontforge
 foodpanda
 ford
 forgejo
+formspree
 formstack
 fortinet
 fortran
@@ -1020,6 +1033,7 @@ godaddy
 godotengine
 gofundme
 gogdotcom
+gojek
 goland
 goldenline
 goldmansachs
@@ -1049,6 +1063,7 @@ googlecontaineroptimizedos
 googledataflow
 googledataproc
 googledatastudio
+googledisplayandvideo360
 googledocs
 googledomains
 googledrive
@@ -1161,6 +1176,7 @@ hepsiemlak
 here
 heroku
 hetzner
+hevy
 hexlet
 hexo
 hey
@@ -1171,6 +1187,7 @@ hiltonhotelsandresorts
 hitachi
 hive
 hiveblockchain
+hivemq
 homeadvisor
 homeassistant
 homeassistantcommunitystore
@@ -1362,6 +1379,7 @@ kaufland
 kde
 kdenlive
 kedro
+keenetic
 keepachangelog
 keepassxc
 kentico
@@ -1389,6 +1407,7 @@ klm
 klook
 knative
 knexdotjs
+knime
 knowledgebase
 known
 koa
@@ -1411,6 +1430,7 @@ kubernetes
 kubuntu
 kucoin
 kuma
+kununu
 kuula
 kx
 kyocera
@@ -1475,6 +1495,7 @@ linkerd
 linkfire
 linksys
 linktree
+lintcode
 linux
 linuxcontainers
 linuxfoundation
@@ -1508,6 +1529,7 @@ lotpolishairlines
 ltspice
 lua
 lubuntu
+lucid
 ludwig
 lufthansa
 lumen
@@ -1629,6 +1651,7 @@ microstation
 microstrategy
 midi
 mikrotik
+milanote
 milvus
 minds
 minecraft
@@ -1700,6 +1723,8 @@ mysql
 n26
 namebase
 namecheap
+namemc
+namuwiki
 nano
 nasa
 nationalgrid
@@ -1714,10 +1739,12 @@ near
 nec
 neo4j
 neovim
+neptune
 nestjs
 netapp
 netbsd
 netcup
+netdata
 neteasecloudmusic
 netflix
 netgear
@@ -1737,6 +1764,7 @@ nextdoor
 nextdotjs
 nextra
 nextui
+nexusmods
 nfc
 nginx
 nginxproxymanager
@@ -1893,6 +1921,7 @@ pandora
 pantheon
 paperlessngx
 paperspace
+paperswithcode
 paramountplus
 paritysubstrate
 parsedotly
@@ -1933,6 +1962,7 @@ phonepe
 phosphoricons
 photobucket
 photocrowd
+photon
 photopea
 php
 phpmyadmin
@@ -2005,6 +2035,7 @@ polymerproject
 polywork
 pond5
 popos
+porkbun
 porsche
 portainer
 portswigger
@@ -2076,6 +2107,7 @@ pushbullet
 pusher
 pwa
 pycharm
+pycqa
 pydantic
 pyg
 pypi
@@ -2090,6 +2122,7 @@ pyup
 qantas
 qase
 qatarairways
+qbittorrent
 qemu
 qgis
 qi
@@ -2098,6 +2131,7 @@ qiskit
 qiwi
 qlik
 qmk
+qnap
 qt
 qualcomm
 qualtrics
@@ -2122,6 +2156,7 @@ r3
 rabbitmq
 racket
 radar
+radarr
 radiopublic
 radixui
 radstudio
@@ -2220,6 +2255,7 @@ rockstargames
 rockwellautomation
 rockylinux
 roku
+roll20
 rollsroyce
 rollupdotjs
 rome
@@ -2253,6 +2289,7 @@ runkeeper
 runkit
 runrundotit
 rust
+rustdesk
 rxdb
 ryanair
 rye
@@ -2348,6 +2385,7 @@ showpad
 showtime
 showwcase
 shutterstock
+sidekiq
 sidequest
 siemens
 sifive
@@ -2409,6 +2447,7 @@ sonar
 sonarcloud
 sonarlint
 sonarqube
+sonarr
 sonatype
 songkick
 songoda
@@ -2570,6 +2609,7 @@ tata
 tauri
 taxbuzz
 tcs
+teal
 teamcity
 teamspeak
 teamviewer
@@ -2599,6 +2639,7 @@ textpattern
 tga
 thangs
 thealgorithms
+theboringcompany
 theconversation
 thefinals
 theirishtimes
@@ -2708,8 +2749,10 @@ twilio
 twitch
 twitter
 typeform
+typer
 typescript
 typo3
+typst
 uber
 ubereats
 ubiquiti
@@ -2808,6 +2851,7 @@ vivaldi
 vivawallet
 vivino
 vivint
+vivo
 vk
 vlcmediaplayer
 vmware
@@ -2874,6 +2918,7 @@ wellfound
 wellsfargo
 wemo
 westerndigital
+westernunion
 wetransfer
 wezterm
 whatsapp
@@ -2884,6 +2929,7 @@ wikidata
 wikidotgg
 wikidotjs
 wikimediacommons
+wikimediafoundation
 wikipedia
 wikiquote
 wikivoyage
@@ -2957,6 +3003,7 @@ youtubetv
 yr
 yubico
 zabka
+zaim
 zalando
 zalo
 zap

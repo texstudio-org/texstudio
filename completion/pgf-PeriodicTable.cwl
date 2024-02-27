@@ -1,5 +1,5 @@
 # pgf-PeriodicTable package
-# Matthew Bertucci 2023/02/21 for v2.0.0
+# Matthew Bertucci 2024/02/17 for v2.1.0
 
 #include:tikz
 #include:tikzlibraryfadings
@@ -14,7 +14,27 @@ de
 it
 es
 br
+userlang=%<ISO 639-1 code%>
+numerals=#dvn,zh
 #endkeyvals
+
+#ifOption:numerals=dvn
+#include:xetex
+#endif
+
+#ifOption:numerals=zh
+#include:zhnumber
+#endif
+
+\pgfPTdvnfont{font name}
+\pgfPTdvnfont[font options]{font name}
+\pgfPTdvn#S
+\pgfPTnumberfont#S
+\pgfPTzhfont{font name}
+\pgfPTzhfont[font options]{font name}
+\pgfPTzhnumber{list}
+\pgfPTzhnumber[true|false]{list}
+\pgfPTzhnumberfont#S
 
 \pgfPT
 \pgfPT[options%keyvals]

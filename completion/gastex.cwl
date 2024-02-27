@@ -1,7 +1,7 @@
 # gastex package
-# Matthew Bertucci 2022/06/29 for v3.0
+# Matthew Bertucci 2024/02/15 for v3.1
 
-#include:ifpdf
+#include:iftex
 #include:xkeyval
 #include:xifthen
 #include:calc
@@ -98,8 +98,12 @@ decodearray={%<color array%>}
 \drawqbpedge[options%keyvals](startNode,sa,endNode,ea){label text}
 \drawbcedge(startNode,xs,ys,endNode,xe,ye){label text}
 \drawbcedge[options%keyvals](startNode,xs,ys,endNode,xe,ye){label text}
+\drawcbedge(startNode,xs,ys,endNode,xe,ye){label text}#S
+\drawcbedge[options%keyvals](startNode,xs,ys,endNode,xe,ye){label text}#S
 \drawbpedge(startNode,sa,sr,endNode,ea,er){label text}
 \drawbpedge[options%keyvals](startNode,sa,sr,endNode,ea,er){label text}
+\drawcbpedge(startNode,sa,sr,endNode,ea,er){label text}#S
+\drawcbpedge[options%keyvals](startNode,sa,sr,endNode,ea,er){label text}#S
 
 ## Lines and curves
 \drawline(%<x1,y1%>)(%<x2,y2%>)%<...(xn,yn)%>

@@ -1007,6 +1007,7 @@
 <file>completion/ClearSans.cwl</file>
 <file>completion/clefval.cwl</file>
 <file>completion/cleveref.cwl</file>
+<file>completion/cleveref-forward.cwl</file>
 <file>completion/cleveref-usedon.cwl</file>
 <file>completion/clicks.cwl</file>
 <file>completion/clipboard.cwl</file>
@@ -4014,6 +4015,7 @@
 <file>completion/web.cwl</file>
 <file>completion/wedn.cwl</file>
 <file>completion/weekday.cwl</file>
+<file>completion/weiqi.cwl</file>
 <file>completion/wela.cwl</file>
 <file>completion/wesa.cwl</file>
 <file>completion/wesu.cwl</file>

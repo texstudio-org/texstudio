@@ -1,5 +1,5 @@
 # polyglossia package
-# Matthew Bertucci 2023/12/11 for v1.66
+# Matthew Bertucci 2024/02/19 for v2.0
 
 #include:etoolbox
 #include:xkeyval
@@ -32,6 +32,8 @@ verbose#true,false
 \setotherlanguage{language}
 \setotherlanguage[options%keyvals]{language}
 \setotherlanguages{lang1,lang2,...}
+\inheritbabelshorthands{source language}{target language}
+\usebabelshorthands{language}
 
 \textlang{language}{text}
 \textlang[options%keyvals]{language}{text}

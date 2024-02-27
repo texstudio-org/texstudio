@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/01/15 for v2.4
+# Matthew Bertucci 2024/02/20 for v2.5
 
 #include:l3keys2e
 #include:luatexbase
@@ -100,6 +100,7 @@ end-of-broken-line=%<symbol%>
 continuation-symbol=%<symbol%>
 continuation-symbol-on-indentation=%<symbol%>
 write=%<file%>
+path-write=%<path%>
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}
