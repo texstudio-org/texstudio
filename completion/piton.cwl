@@ -1,8 +1,9 @@
 # piton package
-# Matthew Bertucci 2024/02/20 for v2.5
+# Matthew Bertucci 2024/02/27 for v2.6
 
 #include:l3keys2e
 #include:luatexbase
+#include:luacode
 
 #keyvals:\usepackage/piton#c
 footnote
