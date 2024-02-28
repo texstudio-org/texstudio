@@ -1,11 +1,10 @@
 # dtk class
-# Matthew Bertucci 2024/02/26 for v2.10e
+# Matthew Bertucci 2023/07/31 for v2.10a
 
 #include:hyphsubst
 #include:iftex
 #include:xkeyval
 #include:dtk-url
-#include:hvqrurl
 #include:class-scrbook
 #include:scrhack
 #include:listings
@@ -124,7 +123,6 @@ color#true,false
 \fullwidth#*
 \ifDTKrecord#*
 \journalname
-\Klasse{class}#*
 \Macro{csname}
 \ORIGprintbibliography#S
 \Package{package%plain}

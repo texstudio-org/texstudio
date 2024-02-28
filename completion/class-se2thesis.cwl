@@ -1,5 +1,5 @@
 # se2thesis class
-# Matthew Bertucci 2024/02/26 for v3.3.1
+# Matthew Bertucci 2023/09/12 for v3.2.0
 
 #include:graphicx
 #include:translations
@@ -15,7 +15,7 @@
 class=#scrreprt,scrbook
 paper=#a4,b5
 logofile={%<path-to-file%>}
-thesistype=#bachelor,bachelorproposal,master,masterproposal,phd,phdeng,phdproposal
+thesistype=#bachelor,bachelorproposal,master,masterproposal,phd,phdproposal
 colormode=#cmyk,rgb,bw
 #endkeyvals
 

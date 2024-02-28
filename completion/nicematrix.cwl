@@ -1,5 +1,5 @@
 # nicematrix package
-# Matthew Bertucci 2024/02/15 for v6.27
+# Matthew Bertucci 2023/12/15 for v6.26b
 
 #include:amsmath
 #include:array
@@ -123,7 +123,6 @@ notes/para
 notes/bottomrule
 small
 light-syntax
-light-syntax-expanded
 name=%<name%>
 create-medium-nodes
 create-large-nodes

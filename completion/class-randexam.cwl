@@ -1,5 +1,5 @@
 # randexam class
-# Matthew Bertucci 2024/02/19 for v2024E
+# Matthew Bertucci 2024/02/04 for v2024D
 
 #include:functional
 #include:etoolbox
@@ -16,8 +16,6 @@
 #include:zref-lastpage
 #include:tabularx
 #include:xcolor
-#include:tabularray
-#include:tabularraylibrarydiagbox
 
 # loaded by default
 #include:mathdesign
@@ -40,7 +38,6 @@ solidot
 sourcehan
 chinese
 seed=%<integer%>
-language=%<language%>
 #endkeyvals
 
 #ifOption:a3paper
@@ -68,8 +65,13 @@ language=%<language%>
 #endif
 
 #ifOption:moremath
+#include:diagbox
 #include:mathtools
 #include:extarrows
+\diagboxtwo{left}{right}#t
+\diagboxtwo[options%keyvals]{left}{right}#t
+\diagboxthree{left}{middle}{right}#t
+\diagboxthree[options%keyvals]{left}{middle}{right}#t
 \diff#m
 \dx#m
 \dy#m
@@ -232,13 +234,6 @@ language=%<language%>
 #include:xeCJKfntef
 #endif
 
-#ifOption:language=chinese
-#include:ctex
-#include:CJKnumb
-#include:CJKfntef
-#include:iftex
-#include:xeCJKfntef
-#endif
 #ifOption:chinese
 #include:ctex
 #include:CJKnumb
@@ -282,41 +277,22 @@ language=%<language%>
 \answertable
 \answertable[keyvals]
 \DeclareExamTemplate{element}{name}{code}
-\DeclareExamTheme{theme name}{code}
 \DeclareExamTranslation{language}{keyvals}
 \examdata{text}
-\ExamFillCdot
-\ExamFillUline
-\ExamFillUlinePhantom{text}
-\ExamFillUlineText{text}
-\exampart{title%text}
-\exampart{title%text}[note%text]
+\exampart{title%text}{note%text}
 \examtitle{keyvals}
 \fillin{text}
 \fillout{text}
 \gradetable
 \gradetable[keyvals]
-\IfExamBoolF{bool name}{false code}
-\IfExamBoolT{bool name}{true code}
-\IfExamBoolTF{bool name}{true code}{false code}
-\IfExamLanguageEqF{language}{false code}
-\IfExamLanguageEqT{language}{true code}
-\IfExamLanguageEqTF{language}{true code}{false code}
-\IfExamValueEmptyF{module}{key%plain}{false code}
-\IfExamValueEmptyT{module}{key%plain}{true code}
-\IfExamValueEmptyTF{module}{key%plain}{true code}{false code}
 \IfExamValueExistF{module}{key%plain}{false code}
 \IfExamValueExistT{module}{key%plain}{true code}
 \IfExamValueExistTF{module}{key%plain}{true code}{false code}
-\NewExamBool{bool name}
 \pickin{A|B|C|D}
 \pickout{A|B|C|D}
 \points{number}
 \SelectExamTemplate{element}{name}
-\SelectExamTheme{theme name}
 \SelectExamTranslation{language}
-\SetExamBoolFalse{bool name}
-\SetExamBoolTrue{bool name}
 \SetExamOption{options%keyvals}
 \SetExamTranslation{keyvals}
 \SetExamValue{module}{keyvals}
@@ -338,6 +314,7 @@ seed=%<integer%>
 \begin{abcdreal}#S
 \begin{questionreal}#S
 \begin{solutionreal}#S
+\cdotfill#S
 \DeclareExamValue{arg1}{arg2}#S
 \end{abcd*real}#S
 \end{abcdreal}#S
@@ -372,6 +349,7 @@ seed=%<integer%>
 \thequestionreal#S
 \thetotalquestions#S
 \tickin{arg}#S
+\ulinefill{arg}#S
 \underbox{arg1}{arg2}#S
 \underparbox{arg1}{arg2}#S
 \underspace{arg}#S

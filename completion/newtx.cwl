@@ -1,5 +1,5 @@
 # newtx package
-# Matthew Bertucci 2024/02/26 for v1.739
+# Matthew Bertucci 2023/12/19 for v1.735
 
 #include:newtxtext
 #include:newtxmath
@@ -97,11 +97,6 @@ varvw
 noOT1
 propmathfigs
 curlybraces
-cochrho
-cochf
-alty
-alth
-nochvw
 #endkeyvals
 
 #ifOption:libertine

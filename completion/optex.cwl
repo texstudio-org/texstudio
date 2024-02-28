@@ -1,5 +1,5 @@
 # opTeX commands
-# Matthew Bertucci 2024/02/15 for v1.14
+# Matthew Bertucci 2023/11/22 for v1.13
 
 #include:plaintex
 #include:luatex
@@ -374,7 +374,6 @@
 \lorem[%<from%>-%<to%>]
 \lipsum[%<number%>]#*
 \lipsum[%<from%>-%<to%>]#*
-\ConTeXt
 \OpTeX
 \LaTeX
 \LuaTeX
@@ -426,7 +425,6 @@
 \kv{key%plain}
 \kvdict={%<name%>}
 \kvx{key%plain}{code}
-\nnum{number}
 \nokvx{code}
 \nospaceafter %<\macro%>
 \nospacefuturelet
@@ -452,7 +450,6 @@
 \sxdef{string%definition}{def}#S
 \sxdef{%<string%>}%<⟨parameters⟩%>{%<body%>}
 \trycs{string%definition}{text}
-\trykv{key%plain}{code}
 \useit{arg}
 \usesecond{arg1}{arg2}
 \wterm{text}
@@ -752,10 +749,8 @@ bstyle=%<style%>
 \Erewhon#S
 \expd#S
 \extend#S
-\FBembo#S
 \Fraunces#S
 \Garamondl#S
-\Gentium#S
 \GFSBodoni#S
 \hair#S
 \Heros#S

@@ -1,5 +1,5 @@
 # robust-externalize package
-# Matthew Bertucci 2024/02/21 for v2.6
+# Matthew Bertucci 2024/01/17 for v2.5
 
 #include:pgfkeys
 #include:pgffor
@@ -211,12 +211,6 @@
 \cacheTikzitWithStyle[preset]{file}
 \tikzfig{name}
 \tikzfig<options>{name}
-\placeholderRemoveSpacesUntil{placeholder}{separator}
-\placeholderRemoveSpacesUntil{placeholder}[number]{separator}
-\placeholderPrependAllLines{placeholder}{text}
-\placeholderRemoveLeadingSpaces{placeholder}
-\lenToCmNoUnit{length}
-\lenToCmNoUnit[unit]{length}
 
 # not documented
 \addPlaceholdersToGroupBefore{arg1}{arg2}#S
@@ -401,6 +395,7 @@
 \setPlaceholderFirst{arg1}{arg2}#S
 \setPlaceholderFromStringExpanded{arg1}{arg2}#S
 \showAllRegisteredGroupsAndPlaceholders#S
+
 \robExtGenericAutoForward{string}{code}#S
 \robExtGenericAutoForward{string}[add. style]{code}#S
 \robExtGenericAutoForward[preset]{string}{code}#S
@@ -448,9 +443,3 @@
 \robExtCacheTikzit[preset]#S
 \robExtCacheTikzitWithStyle{file}#S
 \robExtCacheTikzitWithStyle[preset]{file}#S
-\robExtPlaceholderRemoveSpacesUntil{arg1}{arg2}#S
-\robExtPlaceholderRemoveSpacesUntil{arg1}[opt]{arg2}#S
-\robExtPlaceholderPrependAllLines{arg1}{arg2}#S
-\robExtPlaceholderRemoveLeadingSpaces{arg}#S
-\robExtLenToCmNoUnit{arg}#S
-\robExtLenToCmNoUnit[opt]{arg}#S

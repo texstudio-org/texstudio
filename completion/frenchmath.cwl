@@ -1,5 +1,5 @@
 # frenchmath package
-# Matthew Bertucci 2024/02/21 for v2.9
+# Matthew Bertucci 2023/12/26 for v2.7
 
 #include:mathrsfs
 #include:amssymb
@@ -114,14 +114,15 @@ noibrackets
 \cosec#m
 \cosech#m
 
-\SaveGreekItalics#*
-\upgreekUndefined#*
 \DeclareMathUp{cmd}#*d
 \apply#S
 
 \ifcapsit#S
 \capsittrue#S
 \capsitfalse#S
+\iffrenchmathgreek#S
+\frenchmathgreektrue#S
+\frenchmathgreekfalse#S
 \iflgrmath#S
 \lgrmathtrue#S
 \lgrmathfalse#S

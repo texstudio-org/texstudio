@@ -1,5 +1,5 @@
 # tabularray package
-# Matthew Bertucci 2024/02/17 for v2024A
+# Matthew Bertucci 2023/02/28 for v2023A
 
 #include:ninecolors
 
@@ -31,7 +31,6 @@ baseline=#t,T,m,b,B,%<row number%>
 long
 tall
 expand
-expand+
 #endkeyvals
 
 \SetTblrInner{options%keyvals}
@@ -413,8 +412,6 @@ booktabs
 counter
 diagbox
 functional
-hook
-html
 nameref
 siunitx
 varwidth
@@ -453,19 +450,3 @@ zref
 \lTblrLabelTl#S
 \lTblrMeasuringBool#*
 \lTblrRefMoreClist#S
-\lTblrCellRowSpanTl#*
-\lTblrCellColSpanTl#*
-\lTblrCellBackgroundTl#*
-\lTblrCellOmittedBool#*
-\lTblrCellAboveBorderStyleTl#*
-\lTblrCellAboveBorderWidthTl#*
-\lTblrCellAboveBorderColorTl#*
-\lTblrCellBelowBorderStyleTl#*
-\lTblrCellBelowBorderWidthTl#*
-\lTblrCellBelowBorderColorTl#*
-\lTblrCellLeftBorderStyleTl#*
-\lTblrCellLeftBorderWidthTl#*
-\lTblrCellLeftBorderColorTl#*
-\lTblrCellRightBorderStyleTl#*
-\lTblrCellRightBorderWidthTl#*
-\lTblrCellRightBorderColorTl#*

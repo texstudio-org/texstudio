@@ -1,5 +1,5 @@
 # langscibook class
-# Matthew Bertucci 2024-02-21 for v2024-02-07
+# Matthew Bertucci 2023/02/12 for v2023-02-08
 
 #include:xetex
 #include:silence
@@ -27,6 +27,7 @@
 #include:pst-barcode
 #include:datetime
 #include:scrlayer-scrpage
+#include:epigraph
 #include:babel
 # loads english option of babel
 #include:biblatex
@@ -45,6 +46,7 @@
 #keyvals:\documentclass/langscibook#c
 arabicfont
 babelshorthands
+biblatex
 biblatexbackend=#bibtex,bibtex8,biber
 booklanguage=%<language%>
 chinesefont
@@ -59,7 +61,9 @@ japanesefont
 koreanfont
 minimal
 multiauthors
+newtxmath
 nobabel
+nonewtxmath
 oldstylenumbers
 openreview
 output=#book,paper,minimal,guidelines
@@ -68,6 +72,7 @@ showindex
 smallfont
 spinewidth=##L
 syriacfont
+tblseight
 infn
 uniformtopskip
 #endkeyvals
@@ -417,6 +422,10 @@ SuppressWarning#true,false
 \krn
 #endif
 
+#ifOption:newtxmath
+#include:newtxmath
+#endif
+
 #ifOption:proofs
 #include:lineno
 #endif
@@ -552,9 +561,6 @@ SuppressWarning#true,false
 \lsDedication#*
 \lsDedicationFont#*
 \lsDetermineMultiauthors#*
-\lsDeterminePaperAuthorAffiliationIndexing#*
-\lsDetermineSpineWidth{arg}#*
-\lsDetermineSpineWidth[opt]{arg}#*
 \lsEditorPrefix#*
 \lsEditorSuffix#*
 \lsFontsize#*
@@ -615,7 +621,6 @@ SuppressWarning#true,false
 \newlineTOC#*
 \normalparindent#*
 \openreviewer{name}
-\orcid{ORCID}
 \paperhivetext#*
 \papernote{text}
 \partref{label}#r
@@ -643,6 +648,7 @@ SuppressWarning#true,false
 \subsubsubsubsection{title}#L6
 \subsubsubsubsectionmark{code}
 \tabref{label}#r
+\tblseight#*
 \tempnumber#S
 \theappendixsection#*
 \titleTemp#*
@@ -727,9 +733,6 @@ langscicol20#B
 \citetv[prenote][postnote]{bibid}#C
 \citetv[postnote]{bibid}#C
 \citetv{bibid}#C
-\citeyeartv[prenote][postnote]{bibid}#C
-\citeyeartv[postnote]{bibid}#C
-\citeyeartv{bibid}#C
 \textcitetv[prenote][postnote]{bibid}#C
 \textcitetv[postnote]{bibid}#C
 \textcitetv{bibid}#C
