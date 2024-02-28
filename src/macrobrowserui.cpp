@@ -8,7 +8,6 @@ const int MacroBrowserUI::FileRole = Qt::UserRole + 0;
 const int MacroBrowserUI::UrlRole = Qt::UserRole + 1;
 const int MacroBrowserUI::PathRole = Qt::UserRole + 2;
 const int MacroBrowserUI::PopulatedRole = Qt::UserRole + 3;
-Q_DECLARE_METATYPE(QTreeWidgetItem *)
 
 MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
 {
