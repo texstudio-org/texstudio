@@ -23,17 +23,23 @@ public:
 private slots:
     void onRequestError();
     void onRequestCompleted();
-    void requestMacroList(const QString &path="",const bool &directURL=false);
-    void itemClicked(QTableWidgetItem *item);
+    void requestMacroList(QTreeWidgetItem *item=nullptr,const bool &isFile=false);
+    void slotItemExpanded(QTreeWidgetItem *item);
+    void slotCurrentItemChanged(QTreeWidgetItem *item);
+    void slotItemClicked(QTreeWidgetItem *item);
+
+private:
+    static const int FileRole;
+    static const int UrlRole;
+    static const int PathRole;
+    static const int PopulatedRole;
 
 protected:
-    QTableWidget *tableWidget;
+    QTreeWidget *treeWidget;
     QDialogButtonBox *buttonBox;
     QLineEdit *leName;
     QPlainTextEdit *teDescription;
-    QString currentPath;
     QHash<QString,QString> cache;
-    QHash<QString,QList<QTableWidgetItem *> > itemCache;
 
     ConfigManager *config;
 

@@ -4,14 +4,18 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 
+const int MacroBrowserUI::FileRole = Qt::UserRole + 0;
+const int MacroBrowserUI::UrlRole = Qt::UserRole + 1;
+const int MacroBrowserUI::PathRole = Qt::UserRole + 2;
+const int MacroBrowserUI::PopulatedRole = Qt::UserRole + 3;
+#if QT_VERSION_MAJOR<6
+Q_DECLARE_METATYPE(QTreeWidgetItem *)
+#endif
 
 MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
 {
-    tableWidget=new QTableWidget(4,1);
-    tableWidget->setHorizontalHeaderLabels(QStringList()<<tr("Macro name"));
-    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    tableWidget->horizontalHeader()->setStretchLastSection(true);
-    connect(tableWidget,SIGNAL(itemClicked(QTableWidgetItem*)),SLOT(itemClicked(QTableWidgetItem*)));
+    treeWidget=new QTreeWidget(parent);
+    treeWidget->setHeaderHidden(true);
     auto *lblName=new QLabel(tr("Name"));
     lblName->setAlignment(Qt::AlignRight);
     auto *lblDescription=new QLabel(tr("Description"));
@@ -24,16 +28,14 @@ MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
     gridLay->setColumnStretch(0,1);
     gridLay->setColumnStretch(1,0);
     gridLay->setColumnStretch(2,1);
-    gridLay->addWidget(tableWidget,1,0,5,1);
+    gridLay->addWidget(treeWidget,1,0,5,1);
     gridLay->addWidget(lblName,1,1);
     gridLay->addWidget(lblDescription,2,1);
     gridLay->addWidget(leName,1,2);
-    gridLay->addWidget(teDescription,2,2);
+    gridLay->addWidget(teDescription,2,2,4,1);
 
     buttonBox=new QDialogButtonBox();
     buttonBox->setStandardButtons(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
-    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     auto *layout=new QVBoxLayout();
     layout->addLayout(gridLay);
     layout->addWidget(buttonBox);
@@ -42,7 +44,13 @@ MacroBrowserUI::MacroBrowserUI(QWidget *parent):QDialog (parent)
     config=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
     networkManager = new QNetworkAccessManager();
 
-    requestMacroList("");
+    connect(treeWidget, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),SLOT(slotCurrentItemChanged(QTreeWidgetItem*)));
+    connect(treeWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)),SLOT(slotItemClicked(QTreeWidgetItem*)));
+    connect(treeWidget, SIGNAL(itemActivated(QTreeWidgetItem*,int)),SLOT(slotItemClicked(QTreeWidgetItem*)));
+    connect(treeWidget, SIGNAL(itemExpanded(QTreeWidgetItem*)),SLOT(slotItemExpanded(QTreeWidgetItem*)));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    requestMacroList();
 }
 
 MacroBrowserUI::~MacroBrowserUI()
@@ -51,52 +59,54 @@ MacroBrowserUI::~MacroBrowserUI()
         networkManager->deleteLater();
         networkManager=nullptr;
     }
-    foreach(QList<QTableWidgetItem *>lst,itemCache){
-        foreach(auto *item,lst){
-            delete item;
-        }
-    }
+    delete treeWidget;
 }
 
 QList<Macro> MacroBrowserUI::getSelectedMacros()
 {
     QList<Macro> lst;
-    foreach(QList<QTableWidgetItem *>listOfItems,itemCache){
-        foreach(auto *item,listOfItems){
-            if(item->checkState()==Qt::Checked){
-                QString url=item->data(Qt::UserRole).toString();
-                QString macroJson=cache.value(url);
-                if(!macroJson.isEmpty()){
-                    Macro m;
-                    m.loadFromText(macroJson);
-                    lst << m;
-                }
-            }
+    QTreeWidgetItemIterator it(treeWidget,QTreeWidgetItemIterator::Checked);
+    while (*it) {
+        QString url=(*it)->data(0,UrlRole).toString();
+        QString macroJson=cache.value(url);
+        if(!macroJson.isEmpty()){
+            Macro m;
+            m.loadFromText(macroJson);
+            lst << m;
         }
+        ++it;
     }
-
     return lst;
 }
 
-const QNetworkRequest::Attribute AttributeDirectURL = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User);
-const QNetworkRequest::Attribute AttributeURL = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User+1);
+const QNetworkRequest::Attribute mbAttributeItem = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User);
+const QNetworkRequest::Attribute mbAttributeIsFile = static_cast<QNetworkRequest::Attribute>(QNetworkRequest::User+1);
 
-void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
+/* Note (1): The elements of the top level directory of the repository are added as top level items to the treeWidget. Thus they have no
+ * parent item (folder). Since folder items carry the path in the tree and the (repository) url as data, it is necessary to distinguish
+ * this situation where we use "" as path (think of the treeWidget as a folder).
+*/
+void MacroBrowserUI::requestMacroList(QTreeWidgetItem *currentItem,const bool &isFile)
 {
     if(!networkManager){
-        return;
+        networkManager = new QNetworkAccessManager();
+        if(!networkManager) return;
     }
-    QString url=config->URLmacroRepository+path;
-    //QString url="https://api.github.com/repos/sunderme/texstudio-macro/contents/"+path;
-    if(directURL){
-        url=path;
+    QString path=(currentItem ? currentItem->data(0,PathRole).toString() : "");  // s. (1)
+    QString url;
+    if(isFile) {
+        // like https://raw.githubusercontent.com/texstudio-org/texstudio-macro/master/automatedTextmanipulation/autoLabel.txsMacro
+        url=(currentItem ? currentItem->data(0,UrlRole).toString() : "");  // s. (1)
     }else{
-        currentPath=path;
+        path=(currentItem ? currentItem->data(0,PathRole).toString() : "");  // s. (1)
+        // like https://api.github.com/repos/texstudio/texstudio-macro/contents/automatedTextmanipulation
+        url=config->URLmacroRepository+path;
     }
+
     QNetworkRequest request = QNetworkRequest(QUrl(url));
     request.setRawHeader("User-Agent", "TeXstudio Macro Browser");
-    request.setAttribute(AttributeDirectURL,directURL);
-    request.setAttribute(AttributeURL,url);
+    request.setAttribute(mbAttributeIsFile,isFile);
+    request.setAttribute(mbAttributeItem,QVariant::fromValue(currentItem));
     QNetworkReply *reply = networkManager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(onRequestCompleted()));
 #if QT_VERSION_MAJOR<6
@@ -106,39 +116,107 @@ void MacroBrowserUI::requestMacroList(const QString &path,const bool &directURL)
 #endif
 }
 
-void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
+void MacroBrowserUI::onRequestError()
 {
-    QString url=item->data(Qt::UserRole).toString();
-    if(url.isEmpty()){
-        // descend into folder
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    if (!reply) return;
+
+    QString text=tr("Repository not found. Network error:%1");
+    QTreeWidgetItem *currentItem=reply->request().attribute(mbAttributeItem).value<QTreeWidgetItem*>();
+    if (currentItem) {
+        currentItem->child(0)->setText(0,text.arg("\n"+reply->errorString()));
+    }else{
+        QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << text.arg("\n"+reply->errorString()));
+        treeWidget->addTopLevelItem(twi);
+    }
+
+    networkManager->deleteLater();
+    networkManager=nullptr;
+}
+
+void MacroBrowserUI::onRequestCompleted()
+{
+    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
+    if (!reply || reply->error() != QNetworkReply::NoError) return;
+
+    QTreeWidgetItem *currentItem=reply->request().attribute(mbAttributeItem).value<QTreeWidgetItem*>();
+    bool isFile=reply->request().attribute(mbAttributeIsFile).toBool();
+    QString path;
+    QString url;
+    if(isFile) {
+        url=(currentItem ? currentItem->data(0,UrlRole).toString() : "");  // s. (1)
+    }else{
+        path=(currentItem ? currentItem->data(0,PathRole).toString() : "");  // s. (1)
+        url=config->URLmacroRepository+path;
+    }
+
+    if(path!="" && !currentItem) return;
+
+    QByteArray ba = reply->readAll();
+
+    if(isFile){
+        // file download requested
+        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
+        QJsonObject dd=jsonDoc.object();
+        leName->setText(dd["name"].toString());
+        QJsonArray array=dd["description"].toArray();
+        QVariantList vl=array.toVariantList();
+        QString text;
+        foreach(auto v,vl){
+            if(!text.isEmpty()){
+                text+="\n";
+            }
+            text+=v.toString();
+        }
+        teDescription->setPlainText(text);
+        // cache complete macro
+        cache.insert(url,QString(ba));
+    }else{
+        // folder contents requested
+        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
+        QJsonArray elements=jsonDoc.array();
+        if (currentItem) {     // not needed when inserting top level items, s. (1)
+            currentItem->takeChildren();
+            currentItem->setData(0,PopulatedRole,true);
+        }
+        foreach(auto element,elements){
+            QJsonObject dd=element.toObject();
+            if(dd["type"].toString()=="file"){
+                QString name=dd["name"].toString();
+                if(name.endsWith(".txsMacro")){
+                    auto *twi=new QTreeWidgetItem(QStringList()<<name);
+                    twi->setData(0,FileRole,true);
+                    twi->setData(0,UrlRole,dd["download_url"].toString());
+                    twi->setCheckState(0,Qt::Unchecked);
+                    currentItem->addChild(twi);
+                }
+            }else{ // folder
+                QString name=dd["name"].toString();
+                auto *item=new QTreeWidgetItem(QStringList()<<name);
+                QFont ft = item->font(0);
+                ft.setBold(true);
+                item->setFont(0,ft);
+                item->setText(0,name);
+                QTreeWidgetItem *twi = new QTreeWidgetItem(QStringList() << tr("<loading...>"));
+                item->addChild(twi);
+                item->setData(0,FileRole,false);
+                item->setData(0,UrlRole, url);
+                item->setData(0,PathRole, path+name);
+                if(!currentItem) treeWidget->addTopLevelItem(item);
+                else item->addChild(item);
+            }
+        }
+    }
+}
+
+void MacroBrowserUI::slotCurrentItemChanged(QTreeWidgetItem *item)
+{
+    bool isFile=item->data(0,FileRole).toBool();
+    if(!isFile){
         leName->setText("");
         teDescription->setPlainText("");
-        if(item->text()==".."){
-            int c=currentPath.lastIndexOf('/');
-            url=currentPath.left(c);
-        }else{
-            url=currentPath+"/"+item->text();
-        }
-        if(itemCache.contains(url)){
-            // reuse cached
-            currentPath=url;
-            int i=0;
-            for(int i=0;i<tableWidget->rowCount();i++){
-                tableWidget->takeItem(i,0);
-            }
-            if(!url.isEmpty()){
-                auto *item=new QTableWidgetItem(QIcon::fromTheme("file"),"..");
-                tableWidget->setRowCount(i+1);
-                tableWidget->setItem(i++,0,item);
-            }
-            foreach(QTableWidgetItem *item,itemCache.value(url)){
-                tableWidget->setRowCount(i+1);
-                tableWidget->setItem(i++,0,item);
-            }
-        }else{
-            requestMacroList(url);
-        }
     }else{
+        QString url=item->data(0,UrlRole).toString();
         if(cache.contains(url)){
             // reuse cached
             QByteArray ba = cache.value(url).toUtf8();
@@ -157,94 +235,20 @@ void MacroBrowserUI::itemClicked(QTableWidgetItem *item)
             teDescription->setPlainText(text);
         }
         else{
-            requestMacroList(url,true);
+            requestMacroList(item,true);
         }
     }
 }
 
-void MacroBrowserUI::onRequestError()
+void MacroBrowserUI::slotItemClicked(QTreeWidgetItem *item)
 {
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    if (!reply) return;
-
-    QMessageBox::warning(this, tr("Browse macro repository"),
-                                   tr("Repository not found. Network error:%1").arg("\n"+reply->errorString()),
-                                   QMessageBox::Ok,
-                                   QMessageBox::Ok);
-    networkManager->deleteLater();
-    networkManager=nullptr;
+    bool isFile=item->data(0,FileRole).toBool();
+    if(!isFile) return;
+    treeWidget->setCurrentItem(item);       // this may trigger slotCurrentItemChanged
 }
 
-void MacroBrowserUI::onRequestCompleted()
-{
-    QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-    if (!reply || reply->error() != QNetworkReply::NoError) return;
-
-    QByteArray ba = reply->readAll();
-
-    if(reply->request().attribute(AttributeDirectURL).toBool()){
-        // download requested
-        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
-        QJsonObject dd=jsonDoc.object();
-        leName->setText(dd["name"].toString());
-        QJsonArray array=dd["description"].toArray();
-        QVariantList vl=array.toVariantList();
-        QString text;
-        foreach(auto v,vl){
-            if(!text.isEmpty()){
-                text+="\n";
-            }
-            text+=v.toString();
-        }
-        teDescription->setPlainText(text);
-        // cache complete macro
-        QString url=reply->request().attribute(AttributeURL).toString();
-        cache.insert(url,QString(ba));
-    }else{
-        // folder overview requested
-        //tableWidget->clearContents();
-        for(int i=0;i<tableWidget->rowCount();i++){
-            tableWidget->takeItem(i,0);
-        }
-        QJsonDocument jsonDoc=QJsonDocument::fromJson(ba);
-        QJsonArray elements=jsonDoc.array();
-        int i=0;
-        // add .. (up)
-        if(!currentPath.isEmpty()){
-            auto *item=new QTableWidgetItem(QIcon::fromTheme("file"),"..");
-            tableWidget->setRowCount(i+1);
-            tableWidget->setItem(i++,0,item);
-        }
-        QList<QTableWidgetItem*> listOfItems;
-        foreach(auto element,elements){
-            QJsonObject dd=element.toObject();
-            if(dd["type"].toString()=="file"){
-                QString name=dd["name"].toString();
-                if(name.endsWith(".txsMacro")){
-                    auto *item=new QTableWidgetItem(QIcon::fromTheme("file"),name);
-                    item->setData(Qt::UserRole,dd["download_url"].toString());
-                    item->setCheckState(Qt::Unchecked);
-                    tableWidget->setRowCount(i+1);
-                    tableWidget->setItem(i++,0,item);
-                    if(i==1){
-                        requestMacroList(item->data(Qt::UserRole).toString(),true);
-                    }
-                    listOfItems<<item;
-                }
-            }else{
-                // folder
-                QString name=dd["name"].toString();
-                auto *item=new QTableWidgetItem(QIcon::fromTheme("folder"),name);
-                tableWidget->setRowCount(i+1);
-                tableWidget->setItem(i++,0,item);
-                listOfItems<<item;
-            }
-            //tableWidget->setRowCount(i);
-        }
-        tableWidget->setCurrentCell(0,0);
-        itemCache.insert(currentPath,listOfItems);
-    }
+void MacroBrowserUI::slotItemExpanded(QTreeWidgetItem *item){
+    bool populated=item->data(0,PopulatedRole).toBool();
+    if(populated) return;
+    requestMacroList(item);
 }
-
-
-
