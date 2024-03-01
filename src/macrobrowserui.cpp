@@ -179,7 +179,6 @@ void MacroBrowserUI::onRequestCompleted()
             currentItem->takeChildren();
             currentItem->setData(0,PopulatedRole,true);
         }
-        QList<QTreeWidgetItem*> listOfItems;
         foreach(auto element,elements){
             QJsonObject dd=element.toObject();
             if(dd["type"].toString()=="file"){
@@ -190,7 +189,6 @@ void MacroBrowserUI::onRequestCompleted()
                     twi->setData(0,UrlRole,dd["download_url"].toString());
                     twi->setCheckState(0,Qt::Unchecked);
                     currentItem->addChild(twi);
-                    listOfItems<<twi;
                 }
             }else{ // folder
                 QString name=dd["name"].toString();
@@ -206,7 +204,6 @@ void MacroBrowserUI::onRequestCompleted()
                 item->setData(0,PathRole, path+name);
                 if(!currentItem) treeWidget->addTopLevelItem(item);
                 else item->addChild(item);
-                listOfItems<<item;
             }
         }
     }
