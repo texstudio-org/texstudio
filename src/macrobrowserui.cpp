@@ -59,26 +59,25 @@ MacroBrowserUI::~MacroBrowserUI()
         networkManager->deleteLater();
         networkManager=nullptr;
     }
-    treeWidget->~QTreeWidget();
+    delete treeWidget;
 }
 
 QList<Macro> MacroBrowserUI::getSelectedMacros()
 {
     QList<Macro> lst;
-    foreach(QList<QTreeWidgetItem *>listOfItems,itemCache){
-        foreach(auto *item,listOfItems){
-            if(item->checkState(0)==Qt::Checked) {
-                QString url=item->data(0,UrlRole).toString();
-                QString macroJson=cache.value(url);
-                if(!macroJson.isEmpty()){
-                    Macro m;
-                    m.loadFromText(macroJson);
-                    lst << m;
-                }
+    QTreeWidgetItemIterator it(treeWidget);
+    while (*it) {
+        if ((*it)->checkState(0)==Qt::Checked) {
+            QString url=(*it)->data(0,UrlRole).toString();
+            QString macroJson=cache.value(url);
+            if(!macroJson.isEmpty()){
+                Macro m;
+                m.loadFromText(macroJson);
+                lst << m;
             }
         }
+        ++it;
     }
-
     return lst;
 }
 
@@ -212,7 +211,6 @@ void MacroBrowserUI::onRequestCompleted()
                 listOfItems<<item;
             }
         }
-        itemCache.insert(path,listOfItems);
     }
 }
 
