@@ -1,4 +1,8 @@
 # CHANGELOG
+## TeXstudio 4.7.4
+
+- 
+
 ## TeXstudio 4.7.3
 
 - First line of macro editor no longer uses macro type, use buttons to set type. Macro format changes slightly. For details s. [#3458](https://github.com/texstudio-org/texstudio/pull/3458)
