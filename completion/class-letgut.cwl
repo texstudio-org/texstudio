@@ -1,8 +1,7 @@
 # letgut class
-# Matthew Bertucci 2023/05/23 for v0.9.7
+# Matthew Bertucci 2024/02/29 for v0.9.8
 
 #include:luatex
-#include:l3keys2e
 #include:fontspec
 #include:microtype
 #include:parskip
