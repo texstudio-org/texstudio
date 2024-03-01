@@ -40,7 +40,6 @@ protected:
     QLineEdit *leName;
     QPlainTextEdit *teDescription;
     QHash<QString,QString> cache;
-    QMap<QString,QList<QTreeWidgetItem *> > itemCache;
 
     ConfigManager *config;
 
