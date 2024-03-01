@@ -65,16 +65,14 @@ MacroBrowserUI::~MacroBrowserUI()
 QList<Macro> MacroBrowserUI::getSelectedMacros()
 {
     QList<Macro> lst;
-    QTreeWidgetItemIterator it(treeWidget);
+    QTreeWidgetItemIterator it(treeWidget,QTreeWidgetItemIterator::Checked);
     while (*it) {
-        if ((*it)->checkState(0)==Qt::Checked) {
-            QString url=(*it)->data(0,UrlRole).toString();
-            QString macroJson=cache.value(url);
-            if(!macroJson.isEmpty()){
-                Macro m;
-                m.loadFromText(macroJson);
-                lst << m;
-            }
+        QString url=(*it)->data(0,UrlRole).toString();
+        QString macroJson=cache.value(url);
+        if(!macroJson.isEmpty()){
+            Macro m;
+            m.loadFromText(macroJson);
+            lst << m;
         }
         ++it;
     }
