@@ -836,8 +836,10 @@ bool CompletionListModel::isNextCharPossible(const QChar &c)
 	        LatexCompleter::config->caseSensitive == LatexCompleterConfig::CCS_CASE_SENSITIVE)
 		cs = Qt::CaseSensitive;
 	QString extension = curWord + c;
-	foreach (const CompletionWord &cw, words)
-		if (cw.word.startsWith(extension, cs)) return true;
+    foreach (const CompletionWord &cw, words){
+        // disregard spaces at the end of the word for assuming a word was entered completely (#3544)
+        if (cw.word.trimmed().startsWith(extension, cs)) return true;
+    }
 	return false;
 }
 
