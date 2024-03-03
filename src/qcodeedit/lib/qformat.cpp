@@ -39,7 +39,7 @@ QString QFormat::toCSS(bool simplifyCSS) const {
 	if ( italic )
 		result += "font-style: italic;";
 	if ( weight && (weight != QFont::Normal))
-		result += QString("font-weight: %1;").arg(weight*12-200);
+		result += QString("font-weight: %1;").arg(weight);
 	if ( simplifyCSS ) {
 		if ( overline || underline || strikeout || waveUnderline )
 			result += QString("text-decoration: %1 %2 %3;").arg(overline?"overline":"").arg(strikeout?"line-through":"").arg(underline?"underline":"");
