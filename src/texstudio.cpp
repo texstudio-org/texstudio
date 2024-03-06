@@ -3169,7 +3169,15 @@ void Texstudio::fileClose()
     if(!closeFile){
         return;
     }
+    if( (cnt_open-cnt_hidden) > 1){
+        // reload all discarded files in case they are just hidden (#3550)
+        // not necessary if only one file is open
+        for(auto *d:lst){
+            d->getEditorView()->editor->reload();
+        }
+    }
     documents.deleteDocument(currentEditorView()->document);
+
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
     updateTOCs();
 
@@ -3207,13 +3215,21 @@ void Texstudio::fileExitWithError()
 
 bool Texstudio::saveAllFilesForClosing()
 {
-    return saveFilesForClosing(documents.getDocuments());
+    QList<LatexDocument *> lst=documents.getDocuments();
+    return saveFilesForClosing(lst);
 }
-
-bool Texstudio::saveFilesForClosing(const QList<LatexDocument *> &documentList)
+/*!
+ * \brief ask for all documents in documentList if they should be saved before closing
+ * The documents which are discarded are collected and returned in the referenced documentList !
+ * \param documentList List of documents
+ * \return closing can go ahed (false: canceled)
+ */
+bool Texstudio::saveFilesForClosing(QList<LatexDocument *> &documentList)
 {
+    QList<LatexDocument *>inputDocs=documentList;
+    documentList.clear();
 	LatexEditorView *savedCurrentEditorView = currentEditorView();
-    foreach (LatexDocument *doc, documentList) {
+    foreach (LatexDocument *doc, inputDocs) {
 repeatAfterFileSavingFailed:
         LatexEditorView *edView=doc->getEditorView();
         if(!edView) continue;
@@ -3232,6 +3248,7 @@ repeatAfterFileSavingFailed:
 					goto repeatAfterFileSavingFailed;
 				break;
             case QMessageBox::Discard:
+                documentList<<doc;
 				break;
             case QMessageBox::Cancel:
 			default:
