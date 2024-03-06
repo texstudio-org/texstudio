@@ -3205,7 +3205,9 @@ void Texstudio::fileExit()
     if (canCloseNow())
 	qApp->quit();
 }
-
+/*!
+ * \brief special exit function which is only used with auto-tests and auto-tests result in errors
+ */
 void Texstudio::fileExitWithError()
 {
     if (canCloseNow()){
