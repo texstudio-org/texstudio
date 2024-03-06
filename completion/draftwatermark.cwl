@@ -1,9 +1,9 @@
 # draftwatermark package
-# Matthew Bertucci 11/2/2021 for v3.0
+# Matthew Bertucci 2024/03/06 for v3.3
 
 #include:kvoptions
 #include:graphicx
-#include:color
+#include:xcolor
 
 \DraftwatermarkOptions{options%keyvals}
 
