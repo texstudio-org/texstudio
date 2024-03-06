@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/02/26 for v11.5.0
+# Matthew Bertucci 2024/03/06 for v11.6.0
 
 #include:iftex
 
@@ -119,6 +119,7 @@ alpinelinux
 alteryx
 altiumdesigner
 alwaysdata
+alx
 amazon
 amazonalexa
 amazonapigateway
@@ -271,6 +272,7 @@ autohotkey
 autoit
 automattic
 autoprefixer
+autozone
 avajs
 avast
 avianca
@@ -310,6 +312,7 @@ basicattentiontoken
 bastyon
 bata
 battledotnet
+bazel
 beatport
 beats
 beatsbydre
@@ -773,6 +776,7 @@ eclipseide
 eclipsejetty
 eclipsemosquitto
 eclipsevertdotx
+ecovacs
 edeka
 edgeimpulse
 editorconfig
@@ -989,6 +993,7 @@ generalmotors
 genius
 gentoo
 geocaching
+geopandas
 gerrit
 getx
 ghost
@@ -1072,6 +1077,7 @@ googleearthengine
 googlefit
 googlefonts
 googleforms
+googlegemini
 googlehangouts
 googlehome
 googlekeep
@@ -1302,6 +1308,7 @@ ios
 iota
 ipfs
 iris
+irobot
 isc2
 issuu
 istio
@@ -1341,6 +1348,7 @@ johndeere
 joomla
 joplin
 jordan
+jouav
 jovian
 jpeg
 jquery
@@ -1728,6 +1736,7 @@ namuwiki
 nano
 nasa
 nationalgrid
+nationalrail
 nativescript
 natsdotio
 naver
@@ -1949,6 +1958,7 @@ penpot
 percy
 perforce
 perl
+perplexity
 persistent
 personio
 petsathome
@@ -2746,6 +2756,7 @@ turso
 tutanota
 tvtime
 twilio
+twinkly
 twitch
 twitter
 typeform
@@ -2952,6 +2963,7 @@ wolfram
 wolframlanguage
 wolframmathematica
 wondershare
+wondersharefilmora
 woo
 woocommerce
 wordpress
