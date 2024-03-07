@@ -3346,27 +3346,27 @@ void PDFDocument::init(bool embedded)
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
 		conf->registerOption("Preview/PageOffset", &globalConfig->pageOffset, 0);
 		pdfWidget->setPageOffset(globalConfig->pageOffset, true);
-        // set grid menu entry checked
-        QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
-        bool found=false;
-        for(QAction *a:actionGroupGrid->actions()){
-            if(a->property("grid").toString()==gs){
-                a->setChecked(true);
-                found=true;
-                break;
-            }
-        }
-        if(!found){
-            // if no other grid action fits, use custom
-            actionCustom->setChecked(true);
-        }
+		// set grid menu entry checked
+		QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
+		bool found=false;
+		for(QAction *a:actionGroupGrid->actions()){
+			if(a->property("grid").toString()==gs){
+				a->setChecked(true);
+				found=true;
+				break;
+			}
+		}
+		if(!found){
+			// if no other grid action fits, use custom
+			actionCustom->setChecked(true);
+		}
 
-        //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
+		//connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
-        conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
-        connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
+		conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
+		connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
 		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
-        conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
+		conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
 	} else {
 		pdfWidget->setGridSize(1, 1, true);
 		pdfWidget->setPageOffset(0, true);
