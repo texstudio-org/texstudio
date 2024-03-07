@@ -323,7 +323,7 @@ ypos
 
 # expl3 commands
 \ExplFileDate#S
-\ExplLoaderFileDate#S
+\ExplLoaderFileDate#*
 \ProvidesExplFile{name}{date}{version}{description}#*
 \ProvidesExplClass{name}{date}{version}{description}#*
 \ProvidesExplPackage{name}{date}{version}{description}#*
