@@ -2478,7 +2478,6 @@ void PDFWidget::fitWindow(bool checked)
 		if (scrollArea && !pages.isEmpty()) {
 			qreal portWidth = scrollArea->viewport()->width() - GridBorder * (gridx - 1);
             int gy=globalConfig->gridy;
-            if(pdfdocument->embeddedMode) gy=1;
             qreal portHeight = scrollArea->viewport()->height() - GridBorder * (gy - 1); // use globalConfig->gridy as gridy is automatically increased in continous mode to force rendering of surrounding pages
 			QSizeF	pageSize = maxPageSizeFDpiAdjusted();
             qreal sfh = portWidth / pageSize.width() / gridx;
@@ -3340,39 +3339,32 @@ void PDFDocument::init(bool embedded)
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
 
 
-	if (!embedded) {
-		conf->registerOption("Preview/GridX", &globalConfig->gridx, 1);
-		conf->registerOption("Preview/GridY", &globalConfig->gridy, 1);
-		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
-		conf->registerOption("Preview/PageOffset", &globalConfig->pageOffset, 0);
-		pdfWidget->setPageOffset(globalConfig->pageOffset, true);
-		// set grid menu entry checked
-		QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
-		bool found=false;
-		for(QAction *a:actionGroupGrid->actions()){
-			if(a->property("grid").toString()==gs){
-				a->setChecked(true);
-				found=true;
-				break;
-			}
+	conf->registerOption("Preview/GridX", &globalConfig->gridx, 1);
+	conf->registerOption("Preview/GridY", &globalConfig->gridy, 1);
+	pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
+	conf->registerOption("Preview/PageOffset", &globalConfig->pageOffset, 0);
+	pdfWidget->setPageOffset(globalConfig->pageOffset, true);
+	// set grid menu entry checked
+	QString gs=QString("%1x%2").arg(globalConfig->gridx).arg(globalConfig->gridy);
+	bool found=false;
+	for(QAction *a:actionGroupGrid->actions()){
+		if(a->property("grid").toString()==gs){
+			a->setChecked(true);
+			found=true;
+			break;
 		}
-		if(!found){
-			// if no other grid action fits, use custom
-			actionCustom->setChecked(true);
-		}
-
-		//connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
-		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
-		conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
-		connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
-		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
-		conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
-	} else {
-		pdfWidget->setGridSize(1, 1, true);
-		pdfWidget->setPageOffset(0, true);
-		pdfWidget->setSinglePageStep(true);
-		scrollArea->setContinuous(true);
 	}
+	if(!found){
+		// if no other grid action fits, use custom
+		actionCustom->setChecked(true);
+	}
+
+	//connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
+	conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
+	conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, LO_NONE);
+	connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
+	conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
+	conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, LO_NONE);
 
     //connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
     //connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
@@ -3395,6 +3387,10 @@ void PDFDocument::init(bool embedded)
 	conf->linkOptionToObject(&globalConfig->followFromScroll, actionCursor_follows_scrolling);
 	conf->registerOption("Preview/Sync Multiple Views", &globalConfig->syncViews, true);
 	conf->linkOptionToObject(&globalConfig->syncViews, actionSynchronize_multiple_views);
+	if (embedded) {
+		pdfWidget->addAction(actionContinuous);
+		pdfWidget->addAction(menuGrid->menuAction());
+	}
 	conf->registerOption("Preview/Invert Colors", &globalConfig->invertColors, false);
 	conf->linkOptionToObject(&globalConfig->invertColors, actionInvertColors);
     pdfWidget->addAction(actionInvertColors); // add invert color to widget context menu
@@ -4281,7 +4277,7 @@ void PDFDocument::setCurrentFile(const QString &fileName)
 	curFileUnnormalized = fileName;
 	curFile = QFileInfo(fileName).canonicalFilePath();
 	QString niceFile = QFileInfo(curFile).fileName();
-    setWindowTitle(tr("%1[*] - %2").arg(niceFile,tr(TEXSTUDIO)));
+	setWindowTitle(tr("%1[*] - %2").arg(niceFile,tr(TEXSTUDIO)));
 }
 
 PDFDocument *PDFDocument::findDocument(const QString &fileName)
