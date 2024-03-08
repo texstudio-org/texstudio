@@ -1,5 +1,5 @@
 # pkuthss class
-# Matthew Bertucci 2022/07/03 for v1.9.2
+# Matthew Bertucci 2024/03/08 for v1.9.4
 
 #include:amsmath
 #include:class-ctexbook
@@ -13,7 +13,7 @@
 #include:ulem
 #include:hyperref
 #include:unicode-math
-#include:latexsym
+#include:amssymb
 #include:tikz
 #include:scrextend
 #include:tocloft
@@ -94,6 +94,7 @@ openbib
 \ementor{English mentor}
 \ckeywords{中文关键词%text}
 \ekeywords{English keywords%text}
+\degreetype{type}
 \blindid{number}
 \discipline{discipline%text}
 
@@ -125,6 +126,7 @@ cmentor={%<中文导师%>}
 ementor={%<English mentor%>}
 ckeywords={%<中文关键词%>}
 ekeywords={%<English keywords%>}
+degreetype={%<type%>}
 blindid={%<number%>}
 discipline={%<discipline%>}
 cuniversity={%<text%>}
@@ -149,4 +151,5 @@ eabstractname={%<text%>}
 
 \prodop#*m
 \sumop#*m
+\blacksquare#*m
 \titlepagename#*
