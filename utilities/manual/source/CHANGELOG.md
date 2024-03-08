@@ -1,6 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.7.4
 
+- add basic syntax highlighting for latex3 code
 - 
 
 ## TeXstudio 4.7.3
