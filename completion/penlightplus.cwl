@@ -1,5 +1,5 @@
 # penlightplus package
-# Matthew Bertucci 2023/12/08
+# Matthew Bertucci 2024/03/08
 
 #include:luacode
 #include:luakeys
@@ -29,6 +29,10 @@ pl
 \tblfrkv{name}{key-val string}[luakeys opts]
 \tblfrkvN{name}{key-val string}
 \tblfrkvN{name}{key-val string}[luakeys opts]
+\tblfrkvCD{name}{key-val string}
+\tblfrkvCD{name}{key-val string}[luakeys opts]
+\tblfrkvNCD{name}{key-val string}
+\tblfrkvNCD{name}{key-val string}[luakeys opts]
 \tblfrcsv{name}{key-val string}
 \tblfrcsv{name}{key-val string}[luakeys opts]
 \tblset{index}{value}
@@ -42,6 +46,12 @@ pl
 \tblifv{index}{true}
 \tblifv{index}{true}[false]
 \tblkvundefcheck
+\tblfrcsvN{name}{csv}
+\tblapp{name}{value}
+\tblcon{name}{csv}
+\tbladd{index}{value}
+\tbladdN{index}{value}
+\tblprt{name}
 
 # not documented
 \writePDFmetadata#S
