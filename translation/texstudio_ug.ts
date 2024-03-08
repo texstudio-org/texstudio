@@ -4962,52 +4962,52 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1474"/>
-        <location filename="../src/latexcompleter.cpp" line="1484"/>
+        <location filename="../src/latexcompleter.cpp" line="1476"/>
+        <location filename="../src/latexcompleter.cpp" line="1486"/>
         <source>typical</source>
         <translation>تىپىك</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1475"/>
-        <location filename="../src/latexcompleter.cpp" line="1485"/>
+        <location filename="../src/latexcompleter.cpp" line="1477"/>
+        <location filename="../src/latexcompleter.cpp" line="1487"/>
         <source>most used</source>
         <translation>كۆپ ئىشلىتىلگىنى</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1476"/>
-        <location filename="../src/latexcompleter.cpp" line="1486"/>
+        <location filename="../src/latexcompleter.cpp" line="1478"/>
+        <location filename="../src/latexcompleter.cpp" line="1488"/>
         <source>fuzzy</source>
         <translation>تۇتۇق</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1477"/>
-        <location filename="../src/latexcompleter.cpp" line="1487"/>
+        <location filename="../src/latexcompleter.cpp" line="1479"/>
+        <location filename="../src/latexcompleter.cpp" line="1489"/>
         <source>all</source>
         <translation>ھەممە</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1478"/>
-        <location filename="../src/latexcompleter.cpp" line="1488"/>
+        <location filename="../src/latexcompleter.cpp" line="1480"/>
+        <location filename="../src/latexcompleter.cpp" line="1490"/>
         <source>press shift+space to change view</source>
         <translation>كۆرۈنۈشنى ئۆزگەرتىش ئۈچۈن shift + بوشلۇقنى بېسىڭ</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="1689"/>
+        <location filename="../src/latexcompleter.cpp" line="1691"/>
         <source> (Usertag)</source>
         <translation> (ئىشلەتكۈچى تەگلىكى)</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2051"/>
+        <location filename="../src/latexcompleter.cpp" line="2053"/>
         <source>label missing!</source>
         <translation>بەلگخسى يوقالغان!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2053"/>
+        <location filename="../src/latexcompleter.cpp" line="2055"/>
         <source>label defined multiple times!</source>
         <translation>بەلگە كۆپ قېتىم ئېنىقلانغان!</translation>
     </message>
     <message>
-        <location filename="../src/latexcompleter.cpp" line="2063"/>
+        <location filename="../src/latexcompleter.cpp" line="2065"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ھۆججەت نامى: %1&lt;/b&gt;
@@ -5022,17 +5022,17 @@ The wizard does not support command </source>
         <translation>نامەلۇم خاتالىق. يوشۇرۇن ھادىسە. TeXstudio نى قايتا قوزغىتىش تەۋسىيە قىلىنىدۇ</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2609"/>
+        <location filename="../src/latexdocument.cpp" line="2622"/>
         <source>Invalid codec</source>
         <translation>ئۈنۈمسىز كودلاش</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2623"/>
+        <location filename="../src/latexdocument.cpp" line="2636"/>
         <source>Missing value for -job-name</source>
         <translation>-job-name قىممىتى يوقالغان</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2626"/>
+        <location filename="../src/latexdocument.cpp" line="2639"/>
         <source>Unknown magic comment</source>
         <translation>نامەلۇم سېھىرگەرچە ئىزاھ</translation>
     </message>
@@ -5460,32 +5460,27 @@ The wizard does not support command </source>
 <context>
     <name>MacroBrowserUI</name>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="11"/>
-        <source>Macro name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/macrobrowserui.cpp" line="15"/>
+        <location filename="../src/macrobrowserui.cpp" line="19"/>
         <source>Name</source>
         <translation>نامى</translation>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="17"/>
+        <location filename="../src/macrobrowserui.cpp" line="21"/>
         <source>Description</source>
         <translation>چۈشەندۈرمە</translation>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="41"/>
+        <location filename="../src/macrobrowserui.cpp" line="43"/>
         <source>Browse macros from repository</source>
         <translation>ئامباردىكى ماكرولارنى كۆرۈش</translation>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="151"/>
-        <source>Browse macro repository</source>
-        <translation>ماكرو ئامبىرىنى كۆرۈش</translation>
+        <location filename="../src/macrobrowserui.cpp" line="200"/>
+        <source>&lt;loading...&gt;</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/macrobrowserui.cpp" line="152"/>
+        <location filename="../src/macrobrowserui.cpp" line="124"/>
         <source>Repository not found. Network error:%1</source>
         <translation>ئامبار تېپىلمىدى. تور خاتالىقى:%1</translation>
     </message>
@@ -6554,32 +6549,32 @@ You can now enter the password:</source>
         <translation>كۆرسىتىلگەن stderr قايتا نىشانلاشنى قوللىمايدۇ: &quot;%1&quot;. تەپسىلاتىنى قوللانمىنى كۆرۈڭ.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2503"/>
+        <location filename="../src/buildmanager.cpp" line="2532"/>
         <source>Process started: %1</source>
         <translation>جەريان باشلاندى: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2509"/>
+        <location filename="../src/buildmanager.cpp" line="2538"/>
         <source>Error: Could not start the command: %1</source>
         <translation>خاتالىق: بۇيرۇقنى قوزغىتالمىدى: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2512"/>
+        <location filename="../src/buildmanager.cpp" line="2541"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;(La) TeX تارقىتىشنى ئورناتقانلىقىڭىزنى جەزملەشتۈرۈڭ&lt;/b&gt;مەسىلەن MiKTeX ياكى TeX Live ، ھەمدە بۇيرۇق سەپلەش بېتىدە بۇ تارقىتىشنىڭ توغرا يولىنى بەلگىلىدىمۇ&lt;br&gt;TeXstudio غا ئوخشاش A (La) TeX تەھرىرى بۇنداق تەقسىمات تەمىنلىگەن (La) TeX بۇيرۇقلىرى بولمىسا ئىشلىمەيدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2516"/>
+        <location filename="../src/buildmanager.cpp" line="2545"/>
         <source>Error: Command crashed: %1</source>
         <translation>خاتالىق: بۇيرۇق ۋەيران بولدى: %1</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2523"/>
+        <location filename="../src/buildmanager.cpp" line="2552"/>
         <source>Process exited with error(s)</source>
         <translation>خاتالىق (لار) بىلەن چىققان جەريان</translation>
     </message>
     <message>
-        <location filename="../src/buildmanager.cpp" line="2526"/>
+        <location filename="../src/buildmanager.cpp" line="2555"/>
         <source>Process exited normally</source>
         <translation>جەريان نورمال تامام</translation>
     </message>
@@ -9159,27 +9154,27 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 <context>
     <name>TabbingDialog</name>
     <message>
-        <location filename="../src/tabbingdialog.ui" line="43"/>
+        <location filename="../src/tabbingdialog.ui" line="44"/>
         <source>OK</source>
         <translation>ھەئە</translation>
     </message>
     <message>
-        <location filename="../src/tabbingdialog.ui" line="50"/>
+        <location filename="../src/tabbingdialog.ui" line="51"/>
         <source>Cancel</source>
         <translation>ياق</translation>
     </message>
     <message>
-        <location filename="../src/tabbingdialog.ui" line="75"/>
+        <location filename="../src/tabbingdialog.ui" line="76"/>
         <source>Spacing</source>
         <translation>بوش</translation>
     </message>
     <message>
-        <location filename="../src/tabbingdialog.ui" line="90"/>
+        <location filename="../src/tabbingdialog.ui" line="91"/>
         <source>Num of Rows</source>
         <translation>قۇر سانى</translation>
     </message>
     <message>
-        <location filename="../src/tabbingdialog.ui" line="105"/>
+        <location filename="../src/tabbingdialog.ui" line="106"/>
         <source>Num of Columns</source>
         <translation>رەت سانى</translation>
     </message>
@@ -9277,106 +9272,123 @@ failed.</source>
 <context>
     <name>TemplateSelector</name>
     <message>
-        <location filename="../src/templateselector.cpp" line="46"/>
+        <location filename="../src/templateselector.cpp" line="47"/>
         <source>No Preview</source>
         <translation>كۆرۈنمە يوق</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="98"/>
+        <location filename="../src/templateselector.cpp" line="99"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
         <translation>يېڭى ھۆججەت قىسقۇچتا قېلىپلارنى دەرھال قوزغىتىش تەۋسىيە قىلىنىدۇ. بولمىسا ، مەۋجۇت ھۆججەتلەر قاپلىۋېتىلىشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="133"/>
+        <location filename="../src/templateselector.cpp" line="136"/>
         <source>Online Repository</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="137"/>
+        <location filename="../src/templateselector.cpp" line="140"/>
         <source>Online available template files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="141"/>
-        <location filename="../src/templateselector.cpp" line="330"/>
+        <location filename="../src/templateselector.cpp" line="145"/>
+        <location filename="../src/templateselector.cpp" line="336"/>
         <source>&lt;loading...&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="470"/>
+        <location filename="../src/templateselector.cpp" line="476"/>
         <source>Select Target Folder</source>
         <translation>نىشان ھۆججەت قىسقۇچىنى تاللاڭ</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="500"/>
+        <location filename="../src/templateselector.cpp" line="506"/>
         <source>&lt;No Name&gt;</source>
         <translation>&lt;نامسىز&gt;</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="503"/>
+        <location filename="../src/templateselector.cpp" line="507"/>
+        <source>&lt;No Description&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="508"/>
+        <source>&lt;Unknown Author&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="509"/>
         <source>Date</source>
         <translation>چېسلا</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="504"/>
+        <location filename="../src/templateselector.cpp" line="510"/>
         <source>Version</source>
         <translation>نەشىرى</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="505"/>
+        <location filename="../src/templateselector.cpp" line="511"/>
         <source>License</source>
         <translation>ئىجازىتى</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="560"/>
+        <location filename="../src/templateselector.cpp" line="566"/>
         <source>Edit Template</source>
         <translation>ئۇسلۇپ تەھرىرلەش</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="561"/>
+        <location filename="../src/templateselector.cpp" line="567"/>
         <source>Edit Template Info</source>
         <translation>ئۇسلۇپ ئۇچۇرى تەھرىرلەش</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="562"/>
+        <location filename="../src/templateselector.cpp" line="568"/>
         <source>Remove</source>
         <translation>چىقىرۋەت</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="565"/>
+        <location filename="../src/templateselector.cpp" line="571"/>
         <source>Open Template Location</source>
         <translation>قېلىپ ئورنىنى ئېچىڭ</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="579"/>
-        <location filename="../src/templateselector.cpp" line="590"/>
-        <location filename="../src/templateselector.cpp" line="601"/>
+        <source>Editing of multi-file templates is not supported.
+Please open the template location and unzip the
+template to edit individual files.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/templateselector.cpp" line="585"/>
+        <location filename="../src/templateselector.cpp" line="596"/>
+        <location filename="../src/templateselector.cpp" line="607"/>
         <source>This template cannot be edited.</source>
         <translation>بۇ قېلىپنى تەھرىرلىگىلى بولمايدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Please Confirm</source>
         <translation>مۇقۇملاڭ</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="606"/>
+        <location filename="../src/templateselector.cpp" line="612"/>
         <source>Are you sure to delete the following template?</source>
         <translation>تۆۋەندىكى قېلىپنى ئۆچۈرەمسىز؟</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="613"/>
-        <location filename="../src/templateselector.cpp" line="618"/>
+        <location filename="../src/templateselector.cpp" line="619"/>
+        <location filename="../src/templateselector.cpp" line="624"/>
         <source>You do not have permission to remove this file.</source>
         <translation>بۇ ھۆججەتنى ئۆچۈرۈش ھوقۇقىڭىز يوق.</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="628"/>
+        <location filename="../src/templateselector.cpp" line="644"/>
         <source>Could not open location:</source>
         <translation>ئورۇن ئاچالمىدى:</translation>
     </message>
     <message>
-        <location filename="../src/templateselector.cpp" line="639"/>
+        <location filename="../src/templateselector.cpp" line="655"/>
         <source>Repository not found. Network error:%1</source>
         <translation>ئامبار تېپىلمىدى. تور خاتالىقى:%1</translation>
     </message>
@@ -9563,7 +9575,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="362"/>
-        <location filename="../src/texstudio.cpp" line="6244"/>
+        <location filename="../src/texstudio.cpp" line="6263"/>
         <source>Ready</source>
         <translation>تەييار</translation>
     </message>
@@ -9604,8 +9616,8 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="443"/>
-        <location filename="../src/texstudio.cpp" line="9769"/>
-        <location filename="../src/texstudio.cpp" line="9776"/>
+        <location filename="../src/texstudio.cpp" line="9788"/>
+        <location filename="../src/texstudio.cpp" line="9795"/>
         <source>All files</source>
         <translation>بارلىق ھۆججەت</translation>
     </message>
@@ -9856,7 +9868,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="940"/>
-        <location filename="../src/texstudio.cpp" line="9970"/>
+        <location filename="../src/texstudio.cpp" line="9989"/>
         <source>&amp;Close</source>
         <translation>تاقاش(&amp;C)</translation>
     </message>
@@ -10093,9 +10105,9 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1010"/>
-        <location filename="../src/texstudio.cpp" line="7717"/>
-        <location filename="../src/texstudio.cpp" line="7742"/>
-        <location filename="../src/texstudio.cpp" line="7762"/>
+        <location filename="../src/texstudio.cpp" line="7736"/>
+        <location filename="../src/texstudio.cpp" line="7761"/>
+        <location filename="../src/texstudio.cpp" line="7781"/>
         <source>Line</source>
         <translation>قۇر</translation>
     </message>
@@ -11084,7 +11096,7 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1642"/>
-        <location filename="../src/texstudio.cpp" line="5756"/>
+        <location filename="../src/texstudio.cpp" line="5775"/>
         <source>show more entries ...</source>
         <translation>تېخىمۇ كۆپ مەزمۇنلارنى كۆرسەت ...</translation>
     </message>
@@ -11121,9 +11133,9 @@ failed.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1771"/>
         <location filename="../src/texstudio.cpp" line="1772"/>
-        <location filename="../src/texstudio.cpp" line="5786"/>
-        <location filename="../src/texstudio.cpp" line="5789"/>
-        <location filename="../src/texstudio.cpp" line="5790"/>
+        <location filename="../src/texstudio.cpp" line="5805"/>
+        <location filename="../src/texstudio.cpp" line="5808"/>
+        <location filename="../src/texstudio.cpp" line="5809"/>
         <source>Encoding</source>
         <translation>ئىنكودلاش</translation>
     </message>
@@ -11177,15 +11189,15 @@ failed.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2265"/>
-        <location filename="../src/texstudio.cpp" line="4182"/>
-        <location filename="../src/texstudio.cpp" line="5840"/>
-        <location filename="../src/texstudio.cpp" line="5893"/>
-        <location filename="../src/texstudio.cpp" line="6460"/>
-        <location filename="../src/texstudio.cpp" line="6641"/>
-        <location filename="../src/texstudio.cpp" line="6643"/>
-        <location filename="../src/texstudio.cpp" line="6653"/>
-        <location filename="../src/texstudio.cpp" line="6655"/>
-        <location filename="../src/texstudio.cpp" line="10448"/>
+        <location filename="../src/texstudio.cpp" line="4201"/>
+        <location filename="../src/texstudio.cpp" line="5859"/>
+        <location filename="../src/texstudio.cpp" line="5912"/>
+        <location filename="../src/texstudio.cpp" line="6479"/>
+        <location filename="../src/texstudio.cpp" line="6660"/>
+        <location filename="../src/texstudio.cpp" line="6662"/>
+        <location filename="../src/texstudio.cpp" line="6672"/>
+        <location filename="../src/texstudio.cpp" line="6674"/>
+        <location filename="../src/texstudio.cpp" line="10467"/>
         <source>Error</source>
         <translation>خاتالىق</translation>
     </message>
@@ -11239,7 +11251,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="2831"/>
-        <location filename="../src/texstudio.cpp" line="10278"/>
+        <location filename="../src/texstudio.cpp" line="10297"/>
         <source>Open Files</source>
         <translation>ھۆججەت ئېچىش</translation>
     </message>
@@ -11279,7 +11291,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="3057"/>
-        <location filename="../src/texstudio.cpp" line="11724"/>
+        <location filename="../src/texstudio.cpp" line="11743"/>
         <source>Copy</source>
         <translation>نۇسخىلاش</translation>
     </message>
@@ -11304,233 +11316,233 @@ this other file before you can overwrite it.</source>
         <translation>تەپسىلىي ھوقۇق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3224"/>
+        <location filename="../src/texstudio.cpp" line="3242"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>«%1» ھۆججىتىدە ساقلانمىغان ئەسەر بار. تاقاشتىن بۇرۇن ئۇنى ساقلىماقچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3350"/>
-        <location filename="../src/texstudio.cpp" line="3409"/>
-        <location filename="../src/texstudio.cpp" line="3489"/>
+        <location filename="../src/texstudio.cpp" line="3369"/>
+        <location filename="../src/texstudio.cpp" line="3428"/>
+        <location filename="../src/texstudio.cpp" line="3508"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>«%1» ھۆججىتى ئەمدى مەۋجۇت ئەمەس. ئۇنى يېقىنقى ھۆججەت تىزىملىكىدىن ئۆچۈرمەكچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3502"/>
+        <location filename="../src/texstudio.cpp" line="3521"/>
         <source>Loading of session failed.</source>
         <translation>دىيالوگنى يۈكلەش مەغلۇپ بولدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3519"/>
+        <location filename="../src/texstudio.cpp" line="3538"/>
         <source>Load Session</source>
         <translation>دىيالوگنى ئېچىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3519"/>
-        <location filename="../src/texstudio.cpp" line="3537"/>
+        <location filename="../src/texstudio.cpp" line="3538"/>
+        <location filename="../src/texstudio.cpp" line="3556"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudio دىيالوگى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3537"/>
+        <location filename="../src/texstudio.cpp" line="3556"/>
         <source>Save Session</source>
         <translation>دىيالوگنى ساقلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3543"/>
+        <location filename="../src/texstudio.cpp" line="3562"/>
         <source>Saving of session failed.</source>
         <translation>دىيالوگنى ساقلاش مەغلۇپ بولدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3619"/>
+        <location filename="../src/texstudio.cpp" line="3638"/>
         <source>The following files could not be loaded:</source>
         <translation>تۆۋەندىكى ھۆججەتلەرنى يۈكلەشكە بولمىدى:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3784"/>
+        <location filename="../src/texstudio.cpp" line="3803"/>
         <source>Image Formats (%1)</source>
         <translation>رەسىم فورماتى (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3786"/>
+        <location filename="../src/texstudio.cpp" line="3805"/>
         <source>Save Image</source>
         <translation>رەسىم ساقلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3791"/>
+        <location filename="../src/texstudio.cpp" line="3810"/>
         <source>Could not save the image file.</source>
         <translation>رەسىم ھۆججىتىنى ساقلىيالمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3879"/>
+        <location filename="../src/texstudio.cpp" line="3898"/>
         <source>Ascending</source>
         <translation>ئۆرلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3879"/>
+        <location filename="../src/texstudio.cpp" line="3898"/>
         <source>Descending</source>
         <translation>تۆۋەنلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3879"/>
+        <location filename="../src/texstudio.cpp" line="3898"/>
         <source>No Sorting</source>
         <translation>تەرتىپسىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3879"/>
+        <location filename="../src/texstudio.cpp" line="3898"/>
         <source>Random (Shuffle)</source>
         <translation>خالىغان</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3885"/>
+        <location filename="../src/texstudio.cpp" line="3904"/>
         <source>Sorting</source>
         <translation>تەرتىپلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3886"/>
+        <location filename="../src/texstudio.cpp" line="3905"/>
         <source>Complete Lines</source>
         <translation>پۈتۈن قۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3887"/>
+        <location filename="../src/texstudio.cpp" line="3906"/>
         <source>Case Sensitive</source>
         <translation>سەزگۈر ئەھۋال</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3888"/>
+        <location filename="../src/texstudio.cpp" line="3907"/>
         <source>Remove Duplicates</source>
         <translation>تەكرارنى چىقىرىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4145"/>
+        <location filename="../src/texstudio.cpp" line="4164"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>نۇرغۇن ھەرپلەردىن كېيىن قاتتىق سىزىقنى قىستۇرۇش:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4146"/>
+        <location filename="../src/texstudio.cpp" line="4165"/>
         <source>Smart scope selecting</source>
         <translation>ئەقلىي ئىقتىدار تاللاندى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4147"/>
+        <location filename="../src/texstudio.cpp" line="4166"/>
         <source>Join lines before wrapping</source>
         <translation>ئوراشتىن بۇرۇن قۇر قوشۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4161"/>
-        <location filename="../src/texstudio.cpp" line="6337"/>
-        <location filename="../src/texstudio.cpp" line="6394"/>
+        <location filename="../src/texstudio.cpp" line="4180"/>
+        <location filename="../src/texstudio.cpp" line="6356"/>
+        <location filename="../src/texstudio.cpp" line="6413"/>
         <source>No document open</source>
         <translation>ھېچقانداق ھۆججەت ئېچىلمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4167"/>
+        <location filename="../src/texstudio.cpp" line="4186"/>
         <source>No dictionary available.</source>
         <translation>ھېچقانداق لۇغەت يوق.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4182"/>
+        <location filename="../src/texstudio.cpp" line="4201"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>سۆزلۈك سانداننى يۈكلىيەلمەيدۇ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4591"/>
+        <location filename="../src/texstudio.cpp" line="4610"/>
         <source>Storing session failed</source>
         <translation>ساقلاش مەغلۇپ بولدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4591"/>
+        <location filename="../src/texstudio.cpp" line="4610"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>ساقلاش ئۇچۇرلىرىنى %1 گە ساقلاش مەغلۇب بولدى. ھۆججەت مەۋجۇت ، ئەمما يازغىلى بولمايدۇ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4676"/>
+        <location filename="../src/texstudio.cpp" line="4695"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4686"/>
+        <location filename="../src/texstudio.cpp" line="4705"/>
         <source>Unable to write to settings file %1</source>
         <translation>تەڭشەك ھۆججىتىگە%1 يېزىشقا ئامالسىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5456"/>
+        <location filename="../src/texstudio.cpp" line="5475"/>
         <source>Quick Start</source>
         <translation>باشلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5478"/>
+        <location filename="../src/texstudio.cpp" line="5497"/>
         <source>Quick Beamer Presentation</source>
         <translation>Beamer باشلامچىسى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5515"/>
+        <location filename="../src/texstudio.cpp" line="5534"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5547"/>
+        <location filename="../src/texstudio.cpp" line="5566"/>
         <source>Type: %1</source>
         <translation>تىپ: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5589"/>
+        <location filename="../src/texstudio.cpp" line="5608"/>
         <source>Edit User &amp;Tags</source>
         <translation>ئىشلەتكۈچى خەتكۈچلەرنى تەھرىرلەش(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5651"/>
+        <location filename="../src/texstudio.cpp" line="5670"/>
         <source>empty</source>
         <translation>بوش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5655"/>
+        <location filename="../src/texstudio.cpp" line="5674"/>
         <source>Labels:</source>
         <translation>بەلگىلەر:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5743"/>
+        <location filename="../src/texstudio.cpp" line="5762"/>
         <source>show less entries ...</source>
         <translation>ئاز تۈرلەرنى كۆرسەت ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5784"/>
+        <location filename="../src/texstudio.cpp" line="5803"/>
         <source>Encoding Aliases: </source>
         <translation>كودلاش ئۇسۇلى: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5840"/>
+        <location filename="../src/texstudio.cpp" line="5859"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>ھۆججەت نامىنى بايقىيالمىدى.
 ھۆججەتنى تۈزۈشتىن بۇرۇن ئۇنى ساقلىشىڭىز كېرەك.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5848"/>
+        <location filename="../src/texstudio.cpp" line="5867"/>
         <source>Can&apos;t detect the file name</source>
         <translation>ھۆججەت نامىنى بايقىيالمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5887"/>
+        <location filename="../src/texstudio.cpp" line="5906"/>
         <source>  Running this command: </source>
         <translation>  بۇ بۇيرۇقنى ئىجرا قىلىش: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5893"/>
+        <location filename="../src/texstudio.cpp" line="5912"/>
         <source>could not start the command</source>
         <translation>بۇيرۇقنى قوزغىتالمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6017"/>
+        <location filename="../src/texstudio.cpp" line="6036"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>ئىچكى pdf كۆرگۈچنى ئېچىش بۇيرۇقىنى چاقىردىڭىز.
 قانداقلا بولمىسۇن ، سىز ئىچكى pdf كۆرگۈچسىز تۈزۈلگەن TeXstudio نىڭ نەشرىنى ئىشلىتىۋاتىسىز.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6037"/>
+        <location filename="../src/texstudio.cpp" line="6056"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11547,222 +11559,222 @@ Do you want to allow and run the new, overriding command?
 (c) ياق ، &quot;%3&quot; بۇيرۇقىنى ئىشلەتمەڭ ھەمدە سۈكۈتتىكى &quot;%2&quot; بۇيرۇقىنى ئىجرا قىلىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6121"/>
+        <location filename="../src/texstudio.cpp" line="6140"/>
         <source>Unknown internal command: %1</source>
         <translation>نامەلۇم ئىچكى بۇيرۇق:%1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6156"/>
+        <location filename="../src/texstudio.cpp" line="6175"/>
         <source>%!TeX program used: %1</source>
         <translation>%! TeX پروگراممىسى ئىشلىتىلگەن:ۈ %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6159"/>
+        <location filename="../src/texstudio.cpp" line="6178"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>%!TeX پروگراممىسى ئېتىراپ قىلىنمىدى! (%1). سۈكۈتتىكى ئىشلىتىش.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6220"/>
+        <location filename="../src/texstudio.cpp" line="6239"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>ھۆججەتنى يازغىلى بولمايدىغان مۇندەرىجىدە تۈزەلمەيسىز.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6222"/>
+        <location filename="../src/texstudio.cpp" line="6241"/>
         <source>Could not start %1.</source>
         <translation>%1 نى قوزغىتالمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6251"/>
+        <location filename="../src/texstudio.cpp" line="6270"/>
         <source>Error:</source>
         <translation>خاتالىق:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6327"/>
+        <location filename="../src/texstudio.cpp" line="6346"/>
         <source>No open project or tex file to clean.</source>
         <translation>تازىلاش ئۈچۈن ئوچۇق تۈر ياكى تېكىست ھۆججىتى يوق.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6398"/>
+        <location filename="../src/texstudio.cpp" line="6417"/>
         <source>Text Analysis</source>
         <translation>تېكسىت ئانالىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6422"/>
+        <location filename="../src/texstudio.cpp" line="6441"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>ئىختىيارى تېكىست ھاسىللىغۇچ ھازىرقى سۆزلەردىن يېڭى تېكىستلەرنى قۇرىدۇ ، شۇڭا بەزى تېكىست ھۆججەتلىرىنى ئېچىشىڭىز كېرەك</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6460"/>
+        <location filename="../src/texstudio.cpp" line="6479"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>خاتىرەنى كۆرۈشتىن بۇرۇن ھۆججەت چوقۇم ساقلىنىشى ۋە تۈزۈلۈشى كېرەك</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6641"/>
-        <location filename="../src/texstudio.cpp" line="6653"/>
+        <location filename="../src/texstudio.cpp" line="6660"/>
+        <location filename="../src/texstudio.cpp" line="6672"/>
         <source>File not found</source>
         <translation>ھۆججەت تېپىلمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6643"/>
-        <location filename="../src/texstudio.cpp" line="6655"/>
+        <location filename="../src/texstudio.cpp" line="6662"/>
+        <location filename="../src/texstudio.cpp" line="6674"/>
         <source>Could not open browser</source>
         <translation>توركۆرگۈنى ئاچالمىدى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6971"/>
+        <location filename="../src/texstudio.cpp" line="6990"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7264"/>
+        <location filename="../src/texstudio.cpp" line="7283"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>ھۆججەتنى يىلتىز ھۆججىتى دەپ ئېنىقلىما بېرىشتىن بۇرۇن ساقلىشىڭىز كېرەك.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7720"/>
+        <location filename="../src/texstudio.cpp" line="7739"/>
         <source>Label</source>
         <translation>بەلگە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7722"/>
-        <location filename="../src/texstudio.cpp" line="7744"/>
+        <location filename="../src/texstudio.cpp" line="7741"/>
+        <location filename="../src/texstudio.cpp" line="7763"/>
         <source>Beyond end of document.</source>
         <translation>ھۆججەتنىڭ سىرتىدا.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7725"/>
-        <location filename="../src/texstudio.cpp" line="7746"/>
+        <location filename="../src/texstudio.cpp" line="7744"/>
+        <location filename="../src/texstudio.cpp" line="7765"/>
         <source>In Appendix.</source>
         <translation>قوشۇمچە ھۆججەتتە.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7764"/>
+        <location filename="../src/texstudio.cpp" line="7783"/>
         <source>File not found.</source>
         <translation>ھۆججەت تېپىلمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7779"/>
+        <location filename="../src/texstudio.cpp" line="7798"/>
         <source> (Line %1)</source>
         <translation> (قۇر %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9068"/>
+        <location filename="../src/texstudio.cpp" line="9087"/>
         <source>commit comment:</source>
         <translation>باھا بېرىش:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9072"/>
+        <location filename="../src/texstudio.cpp" line="9091"/>
         <source>check in whole directory ?</source>
         <translation>پۈتۈن مۇندەرىجىنى تەكشۈرۈڭ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9074"/>
+        <location filename="../src/texstudio.cpp" line="9093"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9431"/>
+        <location filename="../src/texstudio.cpp" line="9450"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>دىققەت: تېكىست قولدا تەھرىرلەنسە دىئالوگ ئاپتوماتىك تاقىلىدۇ!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9730"/>
+        <location filename="../src/texstudio.cpp" line="9749"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>&quot;%1&quot; ھۆججىتىنى ئاچالمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9732"/>
+        <location filename="../src/texstudio.cpp" line="9751"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>&quot;%1&quot; ھۆججىتى مەۋجۇت ئەمەس.
 ئۇنى قۇرماقچىمۇ؟</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9769"/>
+        <location filename="../src/texstudio.cpp" line="9788"/>
         <source>Save Profile</source>
         <translation>ئارخىپنى ساقلاڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9769"/>
-        <location filename="../src/texstudio.cpp" line="9776"/>
+        <location filename="../src/texstudio.cpp" line="9788"/>
+        <location filename="../src/texstudio.cpp" line="9795"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXS ئارخىپى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9776"/>
+        <location filename="../src/texstudio.cpp" line="9795"/>
         <source>Load Profile</source>
         <translation>ئارخىپىنى يۈكلەش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9829"/>
+        <location filename="../src/texstudio.cpp" line="9848"/>
         <source>Failed to read profile file %1.</source>
         <translation>%1 دىن ئارخىپى يۈكلىيەلمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9952"/>
+        <location filename="../src/texstudio.cpp" line="9971"/>
         <source>Problem</source>
         <translation>مەسىلە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9952"/>
+        <location filename="../src/texstudio.cpp" line="9971"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>سۆز تەكرارلاشنى تېپىش پەقەت ئاكتىپلانغان تور ئىملاسىنى تەكشۈرۈش بىلەنلا ئىشلەيدۇ!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9957"/>
+        <location filename="../src/texstudio.cpp" line="9976"/>
         <source>Find Word Repetitions</source>
         <translation>سۆز تەكرارلىقىنى تېپىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9966"/>
+        <location filename="../src/texstudio.cpp" line="9985"/>
         <source>&amp;Find Next</source>
         <translation>كىيىنكىنى ئىزدەش(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9968"/>
+        <location filename="../src/texstudio.cpp" line="9987"/>
         <source>&amp;Find Previous</source>
         <translation>ئالدىنقىنى ئىزدە(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10019"/>
+        <location filename="../src/texstudio.cpp" line="10038"/>
         <source>Reached beginning of text.</source>
         <translation>تېكىستنىڭ باشلىنىشىغا يەتتى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10019"/>
+        <location filename="../src/texstudio.cpp" line="10038"/>
         <source>Reached end of text.</source>
         <translation>تېكىستنىڭ ئاخىرىغا يەتتى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10278"/>
-        <location filename="../src/texstudio.cpp" line="10488"/>
-        <location filename="../src/texstudio.cpp" line="10491"/>
+        <location filename="../src/texstudio.cpp" line="10297"/>
+        <location filename="../src/texstudio.cpp" line="10507"/>
+        <location filename="../src/texstudio.cpp" line="10510"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>TeX ھۆججىتى (*.tex);;بارلىق ھۆججەتلەر (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10448"/>
+        <location filename="../src/texstudio.cpp" line="10467"/>
         <source>You do not have read permission to this file.</source>
         <translation>بۇ ھۆججەتكە ئىجازەت ئوقۇمىدىڭىز.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10488"/>
+        <location filename="../src/texstudio.cpp" line="10507"/>
         <source>Open Compare File</source>
         <translation>سېلىشتۇرۇش ھۆججىتىنى ئېچىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10491"/>
+        <location filename="../src/texstudio.cpp" line="10510"/>
         <source>Open Base File</source>
         <translation>ئاساس ھۆججىتىنى ئېچىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10572"/>
+        <location filename="../src/texstudio.cpp" line="10591"/>
         <source>SVN Conflict!</source>
         <translation>SVN زىتلىقى!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10573"/>
+        <location filename="../src/texstudio.cpp" line="10592"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11773,14 +11785,14 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10670"/>
-        <location filename="../src/texstudio.cpp" line="10761"/>
-        <location filename="../src/texstudio.cpp" line="10767"/>
+        <location filename="../src/texstudio.cpp" line="10689"/>
+        <location filename="../src/texstudio.cpp" line="10780"/>
+        <location filename="../src/texstudio.cpp" line="10786"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio جىددىيچىلىكى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10674"/>
+        <location filename="../src/texstudio.cpp" line="10693"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11793,7 +11805,7 @@ Please provide this file if you send a bug report.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10677"/>
+        <location filename="../src/texstudio.cpp" line="10696"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11802,18 +11814,18 @@ Please provide this file if you send a bug report.
 %2 TeXstudio نى ئىجرا قىلامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10678"/>
+        <location filename="../src/texstudio.cpp" line="10697"/>
         <source>Yes, try to recover</source>
         <translation>ھەئە ، ئەسلىگە كەلتۈرۈشكە تىرىشىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10679"/>
-        <location filename="../src/texstudio.cpp" line="10684"/>
+        <location filename="../src/texstudio.cpp" line="10698"/>
+        <location filename="../src/texstudio.cpp" line="10703"/>
         <source>No, kill the program</source>
         <translation>ياق ، پروگراممىنى ئۆلتۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10681"/>
+        <location filename="../src/texstudio.cpp" line="10700"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -11822,17 +11834,17 @@ Please provide this file if you send a bug report.
 %1 پروگراممىنى ئىجرا قىلىشنى خالامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10682"/>
+        <location filename="../src/texstudio.cpp" line="10701"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>شۇنداق ، ئايلىنىشنى توختىتىپ ئەسلىگە كەلتۈرۈشكە تىرىشىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10683"/>
+        <location filename="../src/texstudio.cpp" line="10702"/>
         <source>Yes, continue the loop</source>
         <translation>ھەئە ، دەۋرىيلىنىشنى داۋاملاشتۇرۇڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10762"/>
+        <location filename="../src/texstudio.cpp" line="10781"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11841,50 +11853,50 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇماتنىڭ بۇزۇلۇشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10767"/>
+        <location filename="../src/texstudio.cpp" line="10786"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>مەن ئۆلمەكچى بولدۇم ، ئەمما ھېچ ئىش بولمىدى.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10799"/>
+        <location filename="../src/texstudio.cpp" line="10818"/>
         <source>System Report</source>
         <translation>سىستېما دوكلاتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10937"/>
+        <location filename="../src/texstudio.cpp" line="10956"/>
         <source>LT Report</source>
         <translation>LT دوكلاتى</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10963"/>
+        <location filename="../src/texstudio.cpp" line="10982"/>
         <source>process failed to start
 </source>
         <translation>جەريان باشلىنامىدى
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10966"/>
+        <location filename="../src/texstudio.cpp" line="10985"/>
         <source>process crashed
 </source>
         <translation>جەريان ۋايرانچىلىقتا
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10976"/>
+        <location filename="../src/texstudio.cpp" line="10995"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>دەل ۋاقتىدا تەكشۈرۈش قوزغىتىلدى.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10978"/>
+        <location filename="../src/texstudio.cpp" line="10997"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>دەل ۋاقتىدا تەكشۈرۈش قوزغىتىلمىدى!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10981"/>
+        <location filename="../src/texstudio.cpp" line="11000"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -11893,7 +11905,7 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10983"/>
+        <location filename="../src/texstudio.cpp" line="11002"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -11902,7 +11914,7 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10986"/>
+        <location filename="../src/texstudio.cpp" line="11005"/>
         <source>Tries to start automatically.
 
 </source>
@@ -11911,7 +11923,7 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10988"/>
+        <location filename="../src/texstudio.cpp" line="11007"/>
         <source>Autostart disabled.
 
 </source>
@@ -11920,161 +11932,161 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10993"/>
+        <location filename="../src/texstudio.cpp" line="11012"/>
         <source>LT current status: </source>
         <translation>LT ھازىرقى ھالىتى: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10996"/>
+        <location filename="../src/texstudio.cpp" line="11015"/>
         <source>working</source>
         <translation>خىزمەتتە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10999"/>
+        <location filename="../src/texstudio.cpp" line="11018"/>
         <source>error</source>
         <translation>خاتالىق</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11003"/>
+        <location filename="../src/texstudio.cpp" line="11022"/>
         <source>unknown</source>
         <translation>نامەلۇم</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11006"/>
+        <location filename="../src/texstudio.cpp" line="11025"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11302"/>
+        <location filename="../src/texstudio.cpp" line="11321"/>
         <source>Error when communicating with LT: %1</source>
         <translation>LT بىلەن ئالاقىلاشقاندا خاتالىق:%1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11446"/>
-        <location filename="../src/texstudio.cpp" line="12236"/>
+        <location filename="../src/texstudio.cpp" line="11465"/>
+        <location filename="../src/texstudio.cpp" line="12255"/>
         <source>untitled</source>
         <translation>ماۋزۇسىز</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11456"/>
-        <location filename="../src/texstudio.cpp" line="12278"/>
+        <location filename="../src/texstudio.cpp" line="11475"/>
+        <location filename="../src/texstudio.cpp" line="12297"/>
         <source>TODO</source>
         <translation>TODO</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11572"/>
-        <location filename="../src/texstudio.cpp" line="11580"/>
-        <location filename="../src/texstudio.cpp" line="11611"/>
+        <location filename="../src/texstudio.cpp" line="11591"/>
+        <location filename="../src/texstudio.cpp" line="11599"/>
+        <location filename="../src/texstudio.cpp" line="11630"/>
         <source>Document: </source>
         <translation>ھۆججەت: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11664"/>
+        <location filename="../src/texstudio.cpp" line="11683"/>
         <source>Close document</source>
         <translation>ھۆججەتنى ياپ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11665"/>
+        <location filename="../src/texstudio.cpp" line="11684"/>
         <source>Set as explicit root document</source>
         <translation>ئېنىق يىلتىز ھۆججىتى قىلىپ بەلگىلەڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11666"/>
+        <location filename="../src/texstudio.cpp" line="11685"/>
         <source>Open all related documents</source>
         <translation>بارلىق مۇناسىۋەتلىك ھۆججەتلەرنى ئېچىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11667"/>
+        <location filename="../src/texstudio.cpp" line="11686"/>
         <source>Close all related documents</source>
         <translation>بارلىق مۇناسىۋەتلىك ھۆججەتلەرنى تاقاڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11669"/>
+        <location filename="../src/texstudio.cpp" line="11688"/>
         <source>Remove explicit root document role</source>
         <translation>ئېنىق يىلتىز ھۆججەت رولىنى ئۆچۈرۈڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11671"/>
+        <location filename="../src/texstudio.cpp" line="11690"/>
         <source>Show all open documents in this tree</source>
         <translation>بۇ دەرەختىكى بارلىق ئوچۇق ھۆججەتلەرنى كۆرسەت</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11673"/>
+        <location filename="../src/texstudio.cpp" line="11692"/>
         <source>Show only current document in this tree</source>
         <translation>بۇ دەرەختە پەقەت نۆۋەتتىكى ھۆججەتنىلا كۆرسىتىڭ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11686"/>
+        <location filename="../src/texstudio.cpp" line="11705"/>
         <source>Copy filename</source>
         <translation>ھۆججەت نامىنى كۆچۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11687"/>
+        <location filename="../src/texstudio.cpp" line="11706"/>
         <source>Copy file path</source>
         <translation>ھۆججەت يولىنى كۆچۈر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11696"/>
+        <location filename="../src/texstudio.cpp" line="11715"/>
         <source>Insert</source>
         <translation>قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11697"/>
-        <location filename="../src/texstudio.cpp" line="11698"/>
+        <location filename="../src/texstudio.cpp" line="11716"/>
+        <location filename="../src/texstudio.cpp" line="11717"/>
         <source>Insert as %1</source>
         <translation>%1 گە قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11700"/>
+        <location filename="../src/texstudio.cpp" line="11719"/>
         <source>Find Usages</source>
         <translation>ئىشلىتىلشىنى ئىزدە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11711"/>
+        <location filename="../src/texstudio.cpp" line="11730"/>
         <source>Insert Label</source>
         <translation>بەلگە قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11715"/>
+        <location filename="../src/texstudio.cpp" line="11734"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>%1 گە بەلگە قىستۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11719"/>
+        <location filename="../src/texstudio.cpp" line="11738"/>
         <source>Create Label</source>
         <translation>بەلگە قۇرۇش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11723"/>
+        <location filename="../src/texstudio.cpp" line="11742"/>
         <source>Cut</source>
         <translation>كىسىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11725"/>
+        <location filename="../src/texstudio.cpp" line="11744"/>
         <source>Paste Before</source>
         <translation>ئالدىغا چاپلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11726"/>
+        <location filename="../src/texstudio.cpp" line="11745"/>
         <source>Paste After</source>
         <translation>كەينىگە چاپلاش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11728"/>
+        <location filename="../src/texstudio.cpp" line="11747"/>
         <source>Indent Section</source>
         <translation>بۆلەك تارايغان</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11729"/>
+        <location filename="../src/texstudio.cpp" line="11748"/>
         <source>Unindent Section</source>
         <translation>بۆلەك تارايمىغان</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11680"/>
-        <location filename="../src/texstudio.cpp" line="11732"/>
+        <location filename="../src/texstudio.cpp" line="11699"/>
+        <location filename="../src/texstudio.cpp" line="11751"/>
         <source>Expand Subitems</source>
         <translation>تىزىملىكنى كېڭەرت</translation>
     </message>
@@ -12084,34 +12096,34 @@ TeXstudio نى ساقلاپ قالامسىز؟ بۇ سانلىق مەلۇمات�
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11681"/>
-        <location filename="../src/texstudio.cpp" line="11733"/>
+        <location filename="../src/texstudio.cpp" line="11700"/>
+        <location filename="../src/texstudio.cpp" line="11752"/>
         <source>Collapse Subitems</source>
         <translation>تىزىملىكنى يوشۇر</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11745"/>
+        <location filename="../src/texstudio.cpp" line="11764"/>
         <source>Open Document</source>
         <translation>ھۆججەتنى ئېچىش</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11746"/>
-        <location filename="../src/texstudio.cpp" line="11753"/>
+        <location filename="../src/texstudio.cpp" line="11765"/>
+        <location filename="../src/texstudio.cpp" line="11772"/>
         <source>Go to Definition</source>
         <translation>ئېنىقلىمىسىغا سەكرە</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12262"/>
+        <location filename="../src/texstudio.cpp" line="12281"/>
         <source>BIBLIOGRAPHY</source>
         <translation>پايدىلانما ماتېرىيال</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12270"/>
+        <location filename="../src/texstudio.cpp" line="12289"/>
         <source>MAGIC_COMMENTS</source>
         <translation>سېھىرگەرچە ئىزاھ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12286"/>
+        <location filename="../src/texstudio.cpp" line="12305"/>
         <source>LABELS</source>
         <translation>بەلگە</translation>
     </message>
