@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/02/27 for v2.6
+# Matthew Bertucci 2024/03/08 for v2.6a
 
 #include:l3keys2e
 #include:luatexbase
@@ -193,8 +193,6 @@ Prompt
 \SetPitonIdentifier{id1,id2,...}{code}
 \SetPitonIdentifier[language]{id1,id2,...}{code}
 
+\NewPitonLanguage{arg1}{arg2}#S
 \PitonFileVersion#S
 \PitonFileDate#S
-\PitonBeginMarkerNotFound#S
-\PitonEndMarkerNotFound#S
-\PitonSyntaxError#S
