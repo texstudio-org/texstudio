@@ -1,12 +1,11 @@
 # jsmembertable package
-# Matthew Bertucci 2022/07/21 for v1.12
+# Matthew Bertucci 2024/03/08 for v1.14
 
 #include:ifthen
 #include:calc
 #include:array
 #include:longtable
 #include:hhline
-#include:xkeyval
 #include:datatool
 
 #keyvals:\usepackage/jsmembertable#c
