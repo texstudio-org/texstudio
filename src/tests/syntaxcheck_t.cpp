@@ -446,6 +446,63 @@ void SyntaxCheckTest::checkAllowedMath(){
     edView->getConfig()->realtimeChecking = realtimeChecking;
 }
 
+void SyntaxCheckTest::checkExplHighlight_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<QList<int>>("start");
+    QTest::addColumn<QList<int>>("length");
+    QTest::addColumn<QList<int>>("colonStart");
+    QTest::addColumn<QList<int>>("colonLength");
+
+    QTest::newRow("simple")
+        <<"text"<<QList<int>{}<<QList<int>{}<<QList<int>{}<<QList<int>{};
+    QTest::newRow("simple text")
+        <<"\\ExplSyntaxOn text \\ExplSyntaxOff"<<QList<int>{}<<QList<int>{}<<QList<int>{}<<QList<int>{};
+    QTest::newRow("simple cmd")
+        <<"\\ExplSyntaxOn \\test \\ExplSyntaxOff"<<QList<int>{14}<<QList<int>{5}<<QList<int>{}<<QList<int>{};
+    QTest::newRow("simple cmd with _")
+        <<"\\ExplSyntaxOn \\test_asd_asd \\ExplSyntaxOff"<<QList<int>{14}<<QList<int>{13}<<QList<int>{}<<QList<int>{};
+    QTest::newRow("simple cmd with :")
+        <<"\\ExplSyntaxOn \\test_asd_asd:NN \\ExplSyntaxOff"<<QList<int>{14}<<QList<int>{14}<<QList<int>{28}<<QList<int>{2};
+    QTest::newRow("two cmds")
+        <<"\\ExplSyntaxOn \\test \\test \\ExplSyntaxOff"<<QList<int>{14,20}<<QList<int>{5,5}<<QList<int>{}<<QList<int>{};
+}
+
+void SyntaxCheckTest::checkExplHighlight(){
+    QFETCH(QString, text);
+    QFETCH(QList<int>, start);
+    QFETCH(QList<int>, length);
+    QFETCH(QList<int>, colonStart);
+    QFETCH(QList<int>, colonLength);
+
+    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+    bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+    edView->getConfig()->inlineSyntaxChecking = true;
+    edView->getConfig()->realtimeChecking = true;
+
+    edView->editor->setText(text, false);
+    LatexDocument *doc=edView->getDocument();
+    doc->synChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+
+    for(int i=0;i<doc->lineCount();++i){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        QList<QFormatRange> formats=dlh->getOverlays(doc->getFormatId("picture-keyword"));
+        QList<QFormatRange> colonTextFormat=dlh->getOverlays(LatexEditorView::numbersFormat);
+        QEQUAL(formats.length(),start.length());
+        QEQUAL(colonTextFormat.length(),colonStart.length());
+        for(int k=0;k<formats.length();++k){
+            QEQUAL(formats[k].offset,start.value(k));
+            QEQUAL(formats[k].length,length.value(k));
+        }
+        for(int k=0;k<colonTextFormat.length();++k){
+            QEQUAL(colonTextFormat[k].offset,colonStart.value(k));
+            QEQUAL(colonTextFormat[k].length,colonLength.value(k));
+        }
+    }
+
+    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+    edView->getConfig()->realtimeChecking = realtimeChecking;
+}
 
 #endif
 
