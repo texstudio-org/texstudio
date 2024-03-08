@@ -1,8 +1,7 @@
 # jslectureplanner package
-# Matthew Bertucci 2022/07/21 for v1.12
+# Matthew Bertucci 2024/03/08 for v1.13
 
 #include:etoolbox
-#include:xkeyval
 #include:datetime2
 # loads calc option of datetime2
 #include:calc
