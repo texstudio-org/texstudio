@@ -476,6 +476,8 @@ void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
     }
     ltArguments = config.languageToolArguments;
     javaPath = config.languageToolJavaPath;
+    javaPath.replace("[txs-settings-dir]", config.configDir);
+    javaPath.replace("[txs-app-dir]", config.appDir);
 
     ignoredRules.clear();
     foreach (const QString &r, config.languageToolIgnoredRules.split(","))
