@@ -579,6 +579,67 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
         if(!activeEnv.isEmpty() && activeEnv.top().endingColumn>=0 && tk.start>activeEnv.top().endingColumn){
             Environment env=activeEnv.pop();
         }
+        // special treatment for ExplSyntaxOff
+        // it is used to toggle expl3 mode off
+        if(!activeEnv.isEmpty() && activeEnv.top().name == "expl3"){
+            const QString word=tk.getText();
+            if( word == "\\ExplSyntaxOff"){
+                activeEnv.pop();
+                continue;
+            }
+            if(tk.type==Token::commandUnknown || tk.type==Token::command){
+                // collect next parts
+                // e.g. \cs_new:Npn is split into \cs _ new : Npn
+                const int start = tk.start;
+                int end=tk.start+tk.length;
+                int colonPosition=-1;
+                for(++i;i<tl.length();++i){
+                    tk= tl[i];
+                    if(end != tk.start){
+                        // token does not adjoin previous one
+                        --i;
+                        break;
+                    }
+                    end+=tk.length;
+                    if(tk.type==Token::word){
+                        continue;
+                    }
+                    if(tk.type==Token::punctuation){
+                        if(tk.getText()=="_"){
+                            continue;
+                        }
+                        if(tk.getText()==":"){
+                            colonPosition=end;
+                            continue;
+                        }
+                    }
+                    --i;
+                    break; // unwanted element, stop joing for latex3 command
+                }
+                if(colonPosition>=0) {
+                    // highlight part after colon as math/number
+                    // highlight command part
+                    Error elem;
+                    elem.range = QPair<int, int>(start, colonPosition-start);
+                    elem.format=mFormatList["#pictureHighlight"];
+                    elem.type = ERR_highlight;
+                    newRanges.append(elem); // highlight
+                    // highlight after column
+                    elem.range = QPair<int, int>(colonPosition, end-colonPosition);
+                    elem.format=mFormatList["math"];
+                    elem.type = ERR_highlight;
+                    newRanges.append(elem); // highlight
+                }else{
+                    // ltx3 command w/o colon inside
+                    Error elem;
+                    elem.range = QPair<int, int>(start, end-start);
+                    elem.format=mFormatList["#pictureHighlight"];
+                    elem.type = ERR_highlight;
+                    newRanges.append(elem); // highlight
+                }
+            }
+            continue;
+        }
 		// ignore commands in definition arguments e.g. \newcommand{cmd}{definition}
 		if (stackContainsDefinition(stack)) {
 			Token top = stack.top();
@@ -992,6 +1053,20 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					word = word + line.mid(tkEnvName.start, tkEnvName.length);
 				}
 			}
+            // special treatment for \ExplSyntaxOn and \ExplSyntaxOff
+            // activate latex3 mode which ignores _ in commandnames
+            if(word=="\\ExplSyntaxOn"){
+                Environment env;
+                env.name = "expl3";
+                env.id = 1; // to be changed
+                env.dlh = dlh;
+                env.ticket = ticket;
+                env.level = tk.level;
+                env.startingColumn=tk.start+tk.length;
+                activeEnv.push(env);
+                continue;
+            }
+
             // special treatment for & in math
             if(word=="&" && containsEnv("math", activeEnv)){
                 Error elem;
