@@ -1,8 +1,9 @@
 # hvfloat package
-# Matthew Bertucci 2023/10/17 for v2.47
+# Matthew Bertucci 2023/10/17 for v2.48
 
 #include:caption
 #include:varwidth
+#include:fbox
 #include:subcaption
 #include:atbegshi
 #include:picture
@@ -15,6 +16,7 @@
 #include:ifoddpage
 #include:afterpage
 #include:stfloats
+#include:zref-savepos
 
 #keyvals:\usepackage/hvfloat#c
 fbox
@@ -64,6 +66,8 @@ nonFloat#true,false
 wide#true,false
 inMargin#true,false
 objectFrame#true,false
+fboxLines=%<letters%>
+fboxSep=##L
 style=%<style%>
 capFormat={%<caption settings%>}
 subcapFormat={%<subcaption settings%>}
