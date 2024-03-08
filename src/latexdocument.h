@@ -201,6 +201,7 @@ public:
     struct HandledData {
         QStringList removedUsepackages;
         QStringList addedUsepackages;
+        QStringList handledUsepackages; // move packages from removed to handled if they were directly added in order to handle identical usepackage in one line better (#3556)
         QStringList removedUserCommands;
         QStringList addedUserCommands;
         QStringList removedUserSnippets; // small snippets which automatically generated for completion only, e.g. x_y or \mathsf{as}

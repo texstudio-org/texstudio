@@ -890,8 +890,13 @@ void LatexDocument::interpretCommandArguments(QDocumentLineHandle *dlh, const in
             }
 
             foreach (const QString &elem, packages) {
-                if (!data.removedUsepackages.removeOne(firstOptArg + "#" + elem))
-                    data.addedUsepackages << firstOptArg + "#" + elem;
+                if (!data.removedUsepackages.removeAll(firstOptArg + "#" + elem)){
+                    if(!data.handledUsepackages.contains(firstOptArg + "#" + elem)){
+                        data.addedUsepackages << firstOptArg + "#" + elem;
+                    }
+                }else{
+                    data.handledUsepackages << firstOptArg + "#" + elem;
+                }
                 mUsepackageList.insert(dlh, firstOptArg + "#" + elem); // hand on option of usepackages for conditional cwl load ..., force load if option is changed
             }
             continue;
