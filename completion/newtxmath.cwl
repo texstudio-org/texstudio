@@ -1,5 +1,5 @@
 # newtxmath package
-# Matthew Bertucci 2024/02/26 for v1.739
+# Matthew Bertucci 2024/03/08 for v1.742
 
 #include:amsmath
 #include:ifthen
@@ -930,12 +930,10 @@ alth
 #endif
 
 #ifOption:cochineal
-\fAlt#m
 \rhoAlt#m
 #endif
 
 #ifOption:ebgaramond
-\hAlt#m
 \hslashAlt#m
 \hbarAlt#m
 #endif

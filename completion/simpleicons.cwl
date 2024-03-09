@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/02/26 for v11.5.0
+# Matthew Bertucci 2024/03/09 for v11.7.0
 
 #include:iftex
 
@@ -119,6 +119,7 @@ alpinelinux
 alteryx
 altiumdesigner
 alwaysdata
+alx
 amazon
 amazonalexa
 amazonapigateway
@@ -271,6 +272,7 @@ autohotkey
 autoit
 automattic
 autoprefixer
+autozone
 avajs
 avast
 avianca
@@ -310,6 +312,7 @@ basicattentiontoken
 bastyon
 bata
 battledotnet
+bazel
 beatport
 beats
 beatsbydre
@@ -582,6 +585,7 @@ containerd
 contao
 contentful
 contentstack
+contributorcovenant
 conventionalcommits
 convertio
 cookiecutter
@@ -773,6 +777,7 @@ eclipseide
 eclipsejetty
 eclipsemosquitto
 eclipsevertdotx
+ecovacs
 edeka
 edgeimpulse
 editorconfig
@@ -863,6 +868,7 @@ fandango
 fandom
 fanfou
 fantom
+farcaster
 fareharbor
 farfetch
 fastapi
@@ -931,6 +937,7 @@ fonoma
 fontawesome
 fontbase
 fontforge
+foobar2000
 foodpanda
 ford
 forgejo
@@ -989,6 +996,7 @@ generalmotors
 genius
 gentoo
 geocaching
+geopandas
 gerrit
 getx
 ghost
@@ -1053,6 +1061,7 @@ googlecampaignmanager360
 googlecardboard
 googlechat
 googlechrome
+googlechronicle
 googleclassroom
 googlecloud
 googlecloudcomposer
@@ -1072,6 +1081,7 @@ googleearthengine
 googlefit
 googlefonts
 googleforms
+googlegemini
 googlehangouts
 googlehome
 googlekeep
@@ -1251,6 +1261,7 @@ igdb
 iheartradio
 ikea
 iledefrancemobilites
+imagedotsc
 imagej
 imdb
 imgur
@@ -1302,6 +1313,7 @@ ios
 iota
 ipfs
 iris
+irobot
 isc2
 issuu
 istio
@@ -1341,6 +1353,7 @@ johndeere
 joomla
 joplin
 jordan
+jouav
 jovian
 jpeg
 jquery
@@ -1728,6 +1741,7 @@ namuwiki
 nano
 nasa
 nationalgrid
+nationalrail
 nativescript
 natsdotio
 naver
@@ -1949,6 +1963,7 @@ penpot
 percy
 perforce
 perl
+perplexity
 persistent
 personio
 petsathome
@@ -2746,6 +2761,7 @@ turso
 tutanota
 tvtime
 twilio
+twinkly
 twitch
 twitter
 typeform
@@ -2952,6 +2968,7 @@ wolfram
 wolframlanguage
 wolframmathematica
 wondershare
+wondersharefilmora
 woo
 woocommerce
 wordpress

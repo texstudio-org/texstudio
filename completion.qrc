@@ -556,6 +556,7 @@
 <file>completion/chemcompounds.cwl</file>
 <file>completion/chemfig.cwl</file>
 <file>completion/chemformula.cwl</file>
+<file>completion/chemformula-ru.cwl</file>
 <file>completion/chemgreek.cwl</file>
 <file>completion/chemist.cwl</file>
 <file>completion/chemmacros.cwl</file>
@@ -1232,6 +1233,7 @@
 <file>completion/dialogue.cwl</file>
 <file>completion/dichokey.cwl</file>
 <file>completion/dictsym.cwl</file>
+<file>completion/didec.cwl</file>
 <file>completion/diffcoeff.cwl</file>
 <file>completion/digicap-pro.cwl</file>
 <file>completion/digiconfigs.cwl</file>
@@ -1589,6 +1591,7 @@
 <file>completion/fontenc.cwl</file>
 <file>completion/fontmfizz.cwl</file>
 <file>completion/fonts-arundina.cwl</file>
+<file>completion/fontscale.cwl</file>
 <file>completion/fontsetup.cwl</file>
 <file>completion/fontsize.cwl</file>
 <file>completion/fontsmpl.cwl</file>
@@ -2048,6 +2051,7 @@
 <file>completion/langsci-subparts.cwl</file>
 <file>completion/langsci-tbls.cwl</file>
 <file>completion/lapdf.cwl</file>
+<file>completion/lastbib.cwl</file>
 <file>completion/latex-209.cwl</file>
 <file>completion/latex2man.cwl</file>
 <file>completion/latex2pydata.cwl</file>
@@ -3953,6 +3957,7 @@
 <file>completion/url.cwl</file>
 <file>completion/urwchancal.cwl</file>
 <file>completion/usebib.cwl</file>
+<file>completion/useclass.cwl</file>
 <file>completion/ushort.cwl</file>
 <file>completion/utf8add.cwl</file>
 <file>completion/utf8hax.cwl</file>

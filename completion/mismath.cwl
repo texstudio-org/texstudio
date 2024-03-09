@@ -1,5 +1,5 @@
 # mismath package
-# Matthew Bertucci 2024/02/21 for v2.10
+# Matthew Bertucci 2024/02/27 for v2.11
 
 #include:amsmath
 #include:mathtools
@@ -8,6 +8,7 @@
 #include:xspace
 #include:iftex
 #include:etoolbox
+#include:xkeyval
 
 #keyvals:\usepackage/mismath#c
 ibrackets
@@ -112,7 +113,7 @@ alignedleftspaceyesifneg
 \Par
 \pinormal#*m
 \pinumber#m
-\pinumber[csname]#m
+\pinumber[option%keyvals]#m
 \pow{expr}{exponent}#m
 \probastyle#*
 \Q#m
@@ -145,6 +146,16 @@ alignedleftspaceyesifneg
 \end{mathcols}#m
 \changecol#/mathcols
 \bslash#*
+
+#keyvals:\pinumber
+lgrmath=%<font name%>
+upgreek=#Euler,Symbol
+mathdesign
+fourier
+kpfonts
+pxfonts
+txfonts
+#endkeyvals
 
 # deprecated
 \enumber#S
