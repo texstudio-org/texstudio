@@ -1,5 +1,5 @@
 # wheelchart package
-# Matthew Bertucci 2023/12/05 for v2.0
+# Matthew Bertucci 2024/03/09 for v3.0
 
 #include:tikz
 #include:tikzlibrarycalc
@@ -12,12 +12,15 @@ after slices={%<code%>}
 anchor xsep=%<degrees%>
 anchor ysep=%<degrees%>
 arc={%<TikZ keys%>}
+arc around line=%<number%>
 arc around text#true,false
 arc data={%<text%>}
 arc data align=#center,left,right
 arc data angle pos=%<value%>
 arc data angle shift=%<degrees%>
 arc data dir=%<value%>
+arc data expand=%<type%>
+arc data line sep factor=%<factor%>
 arc data pos=%<value%>
 arc data sep=%<value%>
 arc data style={%<TikZ keys%>}
@@ -106,7 +109,6 @@ name=%<name%>
 outer plot={%<code%>}
 outer plot style={%<TikZ keys%>}
 outer radius=%<value%>
-parse=#pgfmath,l3fp
 perc precision=%<integer%>
 pie#true,false
 plot={%<code%>}
@@ -128,10 +130,13 @@ slices arc outer end#true,false
 slices arc outer end start#true,false
 slices arc outer start#true,false
 slices arc outer start end#true,false
+slices Arrow=%<angle%>
 slices arrow={%<value1%>}{%<value2%>}
+slices end={%<path%>}
 slices end arc={%<value1%>}{%<value2%>}
 slices end arrow={%<value1%>}{%<value2%>}
 slices end to={%<value1%>}{%<value2%>}
+slices inner={%<path%>}
 slices inner angle reduce=%<degrees%>
 slices inner angle shift=%<degrees%>
 slices inner arc={%<value1%>}{%<value2%>}
@@ -140,6 +145,7 @@ slices inner arrow={%<value1%>}{%<value2%>}
 slices inner end angle shift=%<degrees%>
 slices inner start angle shift=%<degrees%>
 slices inner to={%<value1%>}{%<value2%>}
+slices outer={%<path%>}
 slices outer angle reduce=%<degrees%>
 slices outer angle shift=%<degrees%>
 slices outer arc={%<value1%>}{%<value2%>}
@@ -151,6 +157,7 @@ slices outer to={%<value1%>}{%<value2%>}
 slices pos=%<value%>
 slices scope={%<TikZ keys%>}
 slices sep=%<value%>
+slices start={%<path%>}
 slices start arc={%<value1%>}{%<value2%>}
 slices start arrow={%<value1%>}{%<value2%>}
 slices start to={%<value1%>}{%<value2%>}
@@ -183,6 +190,10 @@ xbar={%<width%>}{%<height%>}
 ybar={%<width%>}{%<height%>}
 #endkeyvals
 
+\WCangle{angle pos}{angle shift}{pos}{sep}
+\WCangle[number]{angle pos}{angle shift}{pos}{sep}
+\WCcoordinate{name}
+\WCcoordinate[number]{name}
 \WCcount
 \WCcountdiscrete
 \WCdataangle
@@ -198,6 +209,10 @@ ybar={%<width%>}{%<height%>}
 \WCperc
 \WCpercentage
 \WCpercentagerounded
+\WCpoint{angle pos}{angle shift}{pos}{sep}
+\WCpoint[number]{angle pos}{angle shift}{pos}{sep}
+\WCradius{pos}{sep}
+\WCradius[number]{pos}{sep}
 \WCtotalcount
 \WCtotalnum
 
