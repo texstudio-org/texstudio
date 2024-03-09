@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/03/06 for v11.6.0
+# Matthew Bertucci 2024/03/09 for v11.7.0
 
 #include:iftex
 
@@ -585,6 +585,7 @@ containerd
 contao
 contentful
 contentstack
+contributorcovenant
 conventionalcommits
 convertio
 cookiecutter
@@ -867,6 +868,7 @@ fandango
 fandom
 fanfou
 fantom
+farcaster
 fareharbor
 farfetch
 fastapi
@@ -935,6 +937,7 @@ fonoma
 fontawesome
 fontbase
 fontforge
+foobar2000
 foodpanda
 ford
 forgejo
@@ -1058,6 +1061,7 @@ googlecampaignmanager360
 googlecardboard
 googlechat
 googlechrome
+googlechronicle
 googleclassroom
 googlecloud
 googlecloudcomposer
@@ -1257,6 +1261,7 @@ igdb
 iheartradio
 ikea
 iledefrancemobilites
+imagedotsc
 imagej
 imdb
 imgur
