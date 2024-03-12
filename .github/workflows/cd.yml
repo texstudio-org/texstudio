@@ -207,6 +207,17 @@ jobs:
         cp /usr/local/lib/libbrotlicommon.1.dylib texstudio.app/Contents/Frameworks
         touch texstudio.app/Contents/Resources/empty.lproj
 
+    - name: poppler-data
+      run: |
+        cd build
+        wget https://poppler.freedesktop.org/poppler-data-0.4.12.tar.gz
+        tar xvf poppler-data-0.4.12.tar.gz
+        mkdir -p texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/cidToUnicode texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/cMap texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/nameToUnicode texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/unicodeMap texstudio.app/Contents/share/poppler
+
     - name: Package
       id: package
       run: |
@@ -289,6 +300,17 @@ jobs:
         cd build
         mkdir -p texstudio.app/Contents/Frameworks
         touch texstudio.app/Contents/Resources/empty.lproj
+
+    - name: poppler-data
+      run: |
+        cd build
+        wget https://poppler.freedesktop.org/poppler-data-0.4.12.tar.gz
+        tar xvf poppler-data-0.4.12.tar.gz
+        mkdir -p texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/cidToUnicode texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/cMap texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/nameToUnicode texstudio.app/Contents/share/poppler
+        cp -r poppler-data-0.4.12/unicodeMap texstudio.app/Contents/share/poppler
 
     - name: Package
       id: package
