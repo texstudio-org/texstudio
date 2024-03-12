@@ -1,5 +1,5 @@
 # robust-externalize package
-# Matthew Bertucci 2024/02/21 for v2.6
+# Matthew Bertucci 2024/03/12 for v2.7
 
 #include:pgfkeys
 #include:pgffor
@@ -19,9 +19,14 @@
 \begin{CacheMeNoContent}
 \end{CacheMeNoContent}
 \begin{PlaceholderFromCode}{name placeholder}#V
+\begin{PlaceholderFromCode}[style]{name placeholder}#V
+\begin{PlaceholderFromCode}*{name placeholder}#V
+\begin{PlaceholderFromCode}*[style]{name placeholder}#V
 \end{PlaceholderFromCode}
 \begin{PlaceholderPathFromCode}{name placeholder}#V
 \begin{PlaceholderPathFromCode}[suffix]{name placeholder}#V
+\begin{PlaceholderPathFromCode}*{name placeholder}#V
+\begin{PlaceholderPathFromCode}*[suffix]{name placeholder}#V
 \end{PlaceholderPathFromCode}
 \begin{SetPlaceholderCode}{name placeholder}#V
 \end{SetPlaceholderCode}
@@ -226,8 +231,13 @@
 \begin{RobExtCacheMeCode}{arg}#S
 \begin{RobExtCacheMeNoContent}#S
 \begin{RobExtPlaceholderFromCode}{arg}#S
+\begin{RobExtPlaceholderFromCode}[opt]{arg}#S
+\begin{RobExtPlaceholderFromCode}*{arg}#S
+\begin{RobExtPlaceholderFromCode}*[opt]{arg}#S
 \begin{RobExtPlaceholderPathFromCode}[opt]{arg}#S
 \begin{RobExtPlaceholderPathFromCode}{arg}#S
+\begin{RobExtPlaceholderPathFromCode}*[opt]{arg}#S
+\begin{RobExtPlaceholderPathFromCode}*{arg}#S
 \checkIfPlaceholderNameIsLegal{arg}#S
 \end{RobExtCacheMe}#S
 \end{RobExtCacheMeCode}#S
@@ -454,3 +464,4 @@
 \robExtPlaceholderRemoveLeadingSpaces{arg}#S
 \robExtLenToCmNoUnit{arg}#S
 \robExtLenToCmNoUnit[opt]{arg}#S
+\robExtCurrentPlaceholderName#S
