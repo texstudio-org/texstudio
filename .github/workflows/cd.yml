@@ -207,7 +207,7 @@ jobs:
         cp /usr/local/lib/libbrotlicommon.1.dylib texstudio.app/Contents/Frameworks
         touch texstudio.app/Contents/Resources/empty.lproj
 
-    - name: poppler-data
+    - name: poppler data
       run: |
         cd build
         wget https://poppler.freedesktop.org/poppler-data-0.4.12.tar.gz
@@ -301,7 +301,7 @@ jobs:
         mkdir -p texstudio.app/Contents/Frameworks
         touch texstudio.app/Contents/Resources/empty.lproj
 
-    - name: poppler-data
+    - name: poppler data
       run: |
         cd build
         wget https://poppler.freedesktop.org/poppler-data-0.4.12.tar.gz
