@@ -313,7 +313,7 @@ endif()
 # poppler
 
 find_package(PkgConfig)
-pkg_check_modules(POPPLER QUIET IMPORTED_TARGET poppler-cpp poppler-qt${QT_VERSION_MAJOR})
+pkg_check_modules(POPPLER QUIET IMPORTED_TARGET poppler poppler-cpp poppler-qt${QT_VERSION_MAJOR})
 if(POPPLER_FOUND)
     message(STATUS "Build internal pdf previewer.")
 else()

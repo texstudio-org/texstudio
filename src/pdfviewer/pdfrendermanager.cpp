@@ -16,6 +16,11 @@
 #include "configmanagerinterface.h"
 #include <QtCore/qmath.h>
 
+#ifdef Q_OS_MAC
+// enable setting datadir relative to binary on mac
+#include "GlobalParams.h"
+#endif
+
 const int kMaxPageZoom = 1000000;
 
 // maximal resolution for rendering
@@ -149,6 +154,13 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 		error = FileOpenFailed;
         return QSharedPointer<Poppler::Document>();
 	}
+
+#ifdef Q_OS_MAC
+    QDir dataDir{QCoreApplication::applicationDirPath()};
+    if (dataDir.cd(QStringLiteral("../share/poppler"))) {
+        GlobalParamsIniter::setCustomDataDir(qPrintable(dataDir.path()));
+    }
+#endif
 
     std::unique_ptr<Poppler::Document> docPtr;
 
