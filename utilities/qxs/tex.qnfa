@@ -3,6 +3,7 @@
 <!-- Note: languages name is used to determine on-line checking. If changed also sources have to be adapted (latexeditorview.cpp) -->
 <!--
 parenthesis weights:
+41: \\[ ]     special treatment for newline with []
 40: \[ \]  $   \(  \[
 30: \begin{..}
 20: \verb*  *
@@ -18,11 +19,13 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="texcurly:open" parenthesisWeight="00">\\{</sequence>
 	<sequence parenthesis="texcurly:close" parenthesisWeight="00">\\}</sequence>
 	<sequence parenthesis="square:open" parenthesisWeight="00" fold="true">\[</sequence>
-	<sequence parenthesis="square:close" parenthesisWeight="00" fold="true">\]</sequence>
+	<sequence parenthesis="square:close" ambiguous="True" parenthesisWeight="00" fold="true">\]</sequence>
 	<sequence parenthesis="mathN1:open" parenthesisWeight="40"  >\\\[</sequence>
 	<sequence parenthesis="mathN1:close" parenthesisWeight="40" >\\\]</sequence>
 	<sequence parenthesis="mathN2:open" parenthesisWeight="40" >\\\(</sequence>
 	<sequence parenthesis="mathN2:close" parenthesisWeight="40" >\\\)</sequence>
+	<sequence parenthesis="newline:open" parenthesisWeight="41"  >\\\\\[</sequence>
+	<sequence parenthesis="newline:close" ambiguous="True"  parenthesisWeight="41" >\]</sequence>
 
 
 	<sequence parenthesis="foldcomment:open" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
