@@ -1,5 +1,5 @@
 # citation-style-language package
-# Matthew Bertucci 2023/04/13 for v0.4.1
+# Matthew Bertucci 2024/03/12 for v0.4.8
 
 #include:filehook
 #include:url
@@ -23,8 +23,11 @@ suffix-separator=%<separator%>
 \addbibresource[options]{bib file}#S
 
 \cite[options%keyvals]{keylist}
+\cite*[options%keyvals]{keylist}
 \parencite{keylist}#*
 \parencite[options%keyvals]{keylist}#*
+\parencite*{keylist}#*
+\parencite*[options%keyvals]{keylist}#*
 \citep{keylist}#*
 \citep[options%keyvals]{keylist}#*
 \textcite{keylist}
@@ -36,8 +39,12 @@ suffix-separator=%<separator%>
 \cites{%<key1%>}{%<key2%>}%<...{keyN}%>
 \cites[%<options%>]{%<key1%>}[%<options%>]{%<key2%>}%<...[options]{keyN}%>
 \citeauthor{keylist}
+\citeyearpar{keylist}#*
+\citeyearpar[options%keyvals]{keylist}#*
+\citeyearpar*{keylist}#*
+\citeyearpar*[options%keyvals]{keylist}#*
 
-#keyvals:\cite,\parencite,\citep,\textcite,\citet,\cites
+#keyvals:\cite,\cite*,\parencite,\parencite*,\citep,\textcite,\citet,\cites,\citeyearpar,\citeyearpar*
 prefix=%<text%>
 suffix=%<text%>
 act=%<number%>
