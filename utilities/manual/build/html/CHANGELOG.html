@@ -7,12 +7,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="CHANGELOG.html" />
 <meta property="og:site_name" content="TeXstudio" />
-<meta property="og:description" content="TeXstudio 4.7.3: First line of macro editor no longer uses macro type, use buttons to set type. Macro format changes slightly. For details s.#3458, add export of all macros in Edit Macros dialog, f..." />
-<meta name="description" content="TeXstudio 4.7.3: First line of macro editor no longer uses macro type, use buttons to set type. Macro format changes slightly. For details s.#3458, add export of all macros in Edit Macros dialog, f..." />
+<meta property="og:description" content="TeXstudio 4.7.4: add basic syntax highlighting for latex3 code, fix handling CJK characters in pdf on OSX#3558, fix rare crash#3556, reload hidden docs when user chooses to discard changes#3550. Te..." />
+<meta name="description" content="TeXstudio 4.7.4: add basic syntax highlighting for latex3 code, fix handling CJK characters in pdf on OSX#3558, fix rare crash#3556, reload hidden docs when user chooses to discard changes#3550. Te..." />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Background information" href="background.html" />
 
     <link rel="shortcut icon" href="_static/texstudio.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
-        <title>CHANGELOG - TeXstudio 4.7.3 documentation</title>
+        <title>CHANGELOG - TeXstudio 4.7.4 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
@@ -131,7 +131,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">TeXstudio 4.7.3 documentation</div></a>
+      <a href="index.html"><div class="brand">TeXstudio 4.7.4 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -157,7 +157,7 @@
     <img class="sidebar-logo" src="_static/texstudio128x128.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">TeXstudio 4.7.3 documentation</span>
+  <span class="sidebar-brand-text">TeXstudio 4.7.4 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -211,16 +211,30 @@
         <article role="main">
           <section id="changelog">
 <h1>CHANGELOG<a class="headerlink" href="#changelog" title="Permalink to this heading">#</a></h1>
+<section id="texstudio-4-7-4">
+<h2>TeXstudio 4.7.4<a class="headerlink" href="#texstudio-4-7-4" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>add basic syntax highlighting for latex3 code</p></li>
+<li><p>fix handling CJK characters in pdf on OSX <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3558">#3558</a></p></li>
+<li><p>fix rare crash <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3556">#3556</a></p></li>
+<li><p>reload hidden docs when user chooses to discard changes <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3550">#3550</a></p></li>
+</ul>
+</section>
 <section id="texstudio-4-7-3">
 <h2>TeXstudio 4.7.3<a class="headerlink" href="#texstudio-4-7-3" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>First line of macro editor no longer uses macro type, use buttons to set type. Macro format changes slightly. For details s. <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3458">#3458</a></p></li>
-<li><p>add export of all macros in Edit Macros dialog</p></li>
+<li><p>add export of all macros in Edit Macros dialog <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3451">#3451</a></p></li>
+<li><p>macro editor now executes normal and environment macros in addition to script macros <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3444">#3444</a></p></li>
+<li><p>macro editor with better button arrangement <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3451">#3451</a></p></li>
+<li><p>copy data from all issues in the messages pane (log) to clipboard <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3487">#3487</a></p></li>
+<li><p>insert graphics wizard opens position details without changing position or size of ui elements located above position details <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3509">#3509</a></p></li>
+<li><p>improved Package Help dialog <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3478">#3478</a>, <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3497">#3497</a></p></li>
 <li><p>fix missing connection error message when browsing macro repository <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3448">#3448</a></p></li>
 <li><p>fix switching (by clicking) between documents <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3473">#3473</a></p></li>
 <li><p>fix “Show all open documents in this tree” <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3476">#3476</a></p></li>
-<li><p>improved Package Help dialog <a class="reference external" href="https://github.com/texstudio-org/texstudio/pull/3478">#3478</a></p></li>
 <li><p>fix handling a new file created from the context menu <a class="reference external" href="https://github.com/texstudio-org/texstudio/issues/3471">#3471</a></p></li>
+<li><p>small fixes</p></li>
 </ul>
 </section>
 <section id="texstudio-4-7-2">
@@ -1784,6 +1798,7 @@ Can be used for inverse search.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">CHANGELOG</a><ul>
+<li><a class="reference internal" href="#texstudio-4-7-4">TeXstudio 4.7.4</a></li>
 <li><a class="reference internal" href="#texstudio-4-7-3">TeXstudio 4.7.3</a></li>
 <li><a class="reference internal" href="#texstudio-4-7-2">TeXstudio 4.7.2</a></li>
 <li><a class="reference internal" href="#texstudio-4-7-1">TeXstudio 4.7.1</a></li>

@@ -2,7 +2,9 @@
 ## TeXstudio 4.7.4
 
 - add basic syntax highlighting for latex3 code
-- 
+- fix handling CJK characters in pdf on OSX [#3558](https://github.com/texstudio-org/texstudio/issues/3558)
+- fix rare crash [#3556](https://github.com/texstudio-org/texstudio/issues/3556)
+- reload hidden docs when user chooses to discard changes [#3550](https://github.com/texstudio-org/texstudio/issues/3550)
 
 ## TeXstudio 4.7.3
 
