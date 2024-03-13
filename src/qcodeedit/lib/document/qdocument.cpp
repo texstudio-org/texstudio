@@ -964,7 +964,7 @@ QDocument::LineEnding QDocument::lineEnding() const
 /*!
 	\return the lin endings detected upon loading
 
-	This should only ever take the the Window of Linux value
+	This should only ever take the Window of Linux value
 	if a document has been loaded. If no content has been
 	loaded it will fall back to Local.
 */
