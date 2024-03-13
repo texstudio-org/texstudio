@@ -501,7 +501,7 @@ QString LatexTables::getDef(QDocumentCursor &cur)
 	return opt;
 }
 
-// get the number of columns which are defined by the the tabular (or alike) env
+// get the number of columns which are defined by the tabular (or alike) env
 int LatexTables::getNumberOfColumns(QDocumentCursor &cur)
 {
 	QDocumentCursor c(cur);
@@ -517,7 +517,7 @@ int LatexTables::getNumberOfColumns(QDocumentCursor &cur)
 	return -1;
 }
 
-// get the number of columns which are defined by the the tabular (or alike) env, strings contain definition
+// get the number of columns which are defined by the tabular (or alike) env, strings contain definition
 int LatexTables::getNumberOfColumns(QStringList values)
 {
 	if (values.isEmpty())

@@ -69,7 +69,7 @@ bool TemplateManager::ensureUserTemplateDirExists()
 // Originally user templates were stored whereever the user wanted and maintained in the option "User/Templates".
 // This behavior has now been changed to always store user templates in [config]/templates/user/ The advantage is
 // that we don't have to maintain the template list and it's not lost when resetting the configuration.
-// This function allows to move existing templates to the the new location.
+// This function allows to move existing templates to the new location.
 void TemplateManager::checkForOldUserTemplates()
 {
 	ConfigManagerInterface *cfg = ConfigManager::getInstance();
