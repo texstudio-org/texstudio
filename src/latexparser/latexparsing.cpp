@@ -14,7 +14,7 @@ namespace Parsing {
 /*!
  * Realizes the first pass lexing
  * Following functionality is implemented:
- * + separate the the text into words,symbols
+ * + separate the text into words,symbols
  * + assign each symbol/word a basic context like word,command,symbol,open/close brace etc.
  * + set tokenlist as LEXER_RAW_COOKIE on line
  * + remove cookie LEXER_COOKIE (as it is invalid)
