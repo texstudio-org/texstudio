@@ -592,13 +592,13 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 		list = new XmlTagsListWidget(this, ":/tags/" + tagFile);
 		list->setObjectName("tags/" + tagFile.left(tagFile.indexOf("_tags.xml")));
 		UtilsUi::enableTouchScrolling(list);
-        connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertXmlTag(QListWidgetItem*)));
+		connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertXmlTag(QListWidgetItem*)));
 		leftPanel->addWidget(list, id, text, iconName);
 		//(*list)->setProperty("mType",2);
-    } else {
-        leftPanel->setWidgetText(list, text);
-        leftPanel->setWidgetIcon(list,iconName);
-    }
+	} else {
+		leftPanel->setWidgetText(list, text);
+		leftPanel->setWidgetIcon(list,iconName);
+	}
 }
 
 /*!
