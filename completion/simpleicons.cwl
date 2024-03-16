@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/03/09 for v11.7.0
+# Matthew Bertucci 2024/03/09 for v11.8.0
 
 #include:iftex
 
@@ -93,6 +93,7 @@ airtransat
 ajv
 akamai
 akaunting
+akiflow
 alacritty
 alamy
 albertheijn
@@ -367,6 +368,7 @@ bmcsoftware
 bmw
 bnbchain
 boardgamegeek
+boat
 boehringeringelheim
 boeing
 bombardier
@@ -1258,6 +1260,7 @@ ifixit
 ifood
 ifttt
 igdb
+ign
 iheartradio
 ikea
 iledefrancemobilites
@@ -1503,6 +1506,7 @@ lightning
 line
 lineageos
 linear
+lining
 linkedin
 linkerd
 linkfire
@@ -1737,6 +1741,7 @@ n26
 namebase
 namecheap
 namemc
+namesilo
 namuwiki
 nano
 nasa
@@ -2003,6 +2008,7 @@ pivotaltracker
 piwigo
 pix
 pixabay
+pixelfed
 pixiv
 pkgsrc
 planet
