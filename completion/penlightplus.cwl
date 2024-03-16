@@ -1,5 +1,5 @@
 # penlightplus package
-# Matthew Bertucci 2024/03/08
+# Matthew Bertucci 2024/03/16
 
 #include:luacode
 #include:luakeys
@@ -57,3 +57,5 @@ pl
 \writePDFmetadata#S
 \writePDFmetadatakv{arg}#S
 \writePDFmetadatakv*{arg}#S
+\tbladdo{arg1}{arg2}{arg3}#S
+\tbladdNo{arg1}{arg2}{arg3}#S
