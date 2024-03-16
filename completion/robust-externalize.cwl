@@ -1,5 +1,5 @@
 # robust-externalize package
-# Matthew Bertucci 2024/03/12 for v2.7
+# Matthew Bertucci 2024/03/16 for v2.9
 
 #include:pgfkeys
 #include:pgffor
@@ -52,6 +52,8 @@
 \cacheEnvironment{envname}{preset options}
 \cacheMe[preset style]{content%definition}
 \cacheMe{content%definition}
+\cacheMeCode[preset style]{code%definition}
+\cacheMeCode{code%definition}
 \cacheTikz
 \cacheTikz[preset for TikZ]
 \cacheTikz[preset for TikZ][preset for TikZpicture]
@@ -166,6 +168,7 @@
 \RenewDocumentCommandAutoForward{cmd}{xargs}{def}
 \RenewExpandableDocumentCommandAutoForward{cmd}{xargs}[add. style]{def}
 \RenewExpandableDocumentCommandAutoForward{cmd}{xargs}{def}
+\res{name}
 \rescanPlaceholderInVariableNoReplacement{name macro}{name placeholder%definition}
 \robExtAddCachePath{path%file}#*
 \robExtAddCachePathAndName{path%file}#*
@@ -465,3 +468,8 @@
 \robExtLenToCmNoUnit{arg}#S
 \robExtLenToCmNoUnit[opt]{arg}#S
 \robExtCurrentPlaceholderName#S
+\robExtCacheMeCode[preset style]{code%definition}#S
+\robExtCacheMeCode{code%definition}#S
+\robExtResForceNumber{arg}#S
+\robExtNoResult{arg}#S
+\robExtRes{arg}#S
