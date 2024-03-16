@@ -104,21 +104,21 @@ protected:
 	//these are just wrappers around configManager so we don't have to type so much (todo??? move them to configmanager.h and use a singleton design???)
 	Q_INVOKABLE inline QMenu *newManagedMenu(const QString &id, const QString &text) { return configManager.newManagedMenu(id, text); }
 	Q_INVOKABLE inline QMenu *newManagedMenu(QMenu *menu, const QString &id, const QString &text) { return configManager.newManagedMenu(menu, id, text); }
-    Q_INVOKABLE QAction *newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
+	Q_INVOKABLE QAction *newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
 	Q_INVOKABLE QAction *newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
-    Q_INVOKABLE QAction *newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
+	Q_INVOKABLE QAction *newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
 	Q_INVOKABLE QAction *newManagedEditorAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile = "", const QList<QVariant> &args = QList<QVariant>());
 	Q_INVOKABLE inline QAction *newManagedAction(QWidget *menu, const QString &id, QAction *act) { return configManager.newManagedAction(menu, id, act); }
 	Q_INVOKABLE inline QMenu *getManagedMenu(const QString &id) { return configManager.getManagedMenu(id); }
 	Q_INVOKABLE inline QAction *getManagedAction(const QString &id) { return configManager.getManagedAction(id); }
 	Q_INVOKABLE inline QList<QAction *> getManagedActions(const QStringList &ids, const QString &commonPrefix = "") { return configManager.getManagedActions(ids, commonPrefix); }
-    Q_INVOKABLE QAction *insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "");
-    Q_INVOKABLE void loadManagedMenu(const QString &fn);
+	Q_INVOKABLE QAction *insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName = nullptr, const QKeySequence &shortCut = 0, const QString &iconFile = "");
+	Q_INVOKABLE void loadManagedMenu(const QString &fn);
 
-    Q_INVOKABLE void setupToolBars();
+	Q_INVOKABLE void setupToolBars();
 
 	void addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile);
-    void addMacrosAsTagList();
+	void addMacrosAsTagList();
 
 private slots:
 	void updateToolBarMenu(const QString &menuName);
