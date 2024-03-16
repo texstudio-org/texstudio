@@ -7414,7 +7414,7 @@ void Texstudio::viewCloseElement()
 	}
     if (currentEditorView() && currentEditorView()->closeElement())
         return;
-    if (getManagedAction("main/tools/stopcompile")->isEnabled()) {
+    if (getManagedAction("main/tools/stopcompile")->shortcut().isEmpty() && getManagedAction("main/tools/stopcompile")->isEnabled()) {
         getManagedAction("main/tools/stopcompile")->trigger();
         return;
     }
