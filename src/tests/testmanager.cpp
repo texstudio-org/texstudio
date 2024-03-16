@@ -108,9 +108,11 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	bool allPassed=true;
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";
-	QCoreApplication *app = QCoreApplication::instance();
+    /* Deactivate filter as it does not work with Qt6.6.2+
+     * Original PR: #1055
+    QCoreApplication *app = QCoreApplication::instance();
     TestmanagerEventFilter eventFilter;
-    app->installNativeEventFilter(&eventFilter);
+    app->installNativeEventFilter(&eventFilter);*/
 	for (int i=0; i <tests.size();i++){
 		emit newMessage(tests[i]->metaObject()->className());
 		qDebug()<<tests[i]->metaObject()->className();
@@ -118,7 +120,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		tr+=res;
 		if (!res.contains(", 0 failed, 0 skipped")) allPassed=false;
 	}
-    app->removeNativeEventFilter(&eventFilter);
+    //app->removeNativeEventFilter(&eventFilter);
 
 	tr+=QString("\nTotal testing time: %1 ms\n").arg(totalTestTime);
 
