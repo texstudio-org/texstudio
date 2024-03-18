@@ -1,5 +1,5 @@
 # piton package
-# Matthew Bertucci 2024/03/08 for v2.6a
+# Matthew Bertucci 2024/03/18 for v2.6b
 
 #include:l3keys2e
 #include:luatexbase
@@ -139,7 +139,17 @@ Name.Table=%<formatting%>
 # not documented
 FormattingType=%<formatting%>
 Comment.Math=%<formatting%>
+directive=%<formatting%>
+Discard=%<formatting%>
 Identifier=%<formatting%>
+Keyword2=%<formatting%>
+Keyword3=%<formatting%>
+Keyword4=%<formatting%>
+Keyword5=%<formatting%>
+Keyword6=%<formatting%>
+Keyword7=%<formatting%>
+Keyword8=%<formatting%>
+Keyword9=%<formatting%>
 ParseAgain.noCR=%<formatting%>
 ParseAgain=%<formatting%>
 Prompt=%<formatting%>
