@@ -1,5 +1,5 @@
 # memoize package
-# Matthew Bertucci 2024/01/02 for v1.1.0
+# Matthew Bertucci 2024/03/18 for v1.2.0
 
 #include:etoolbox
 #include:pdftexcmds
@@ -108,6 +108,12 @@
 # Memoization-related additions to the advising framework
 \mmzAutoInit#*
 
+## < Automemoization > ##
+
+# PGF
+\mmzPgfAtBeginMemoization#*
+\mmzPgfAtEndMemoization#*
+
 ## < Keyvals > ##
 #keyvals:\usepackage/memoize#c
 options={%<options%>}
@@ -185,6 +191,8 @@ auto csname'={%<csname%>}{%<keylist%>}
 auto key'={%<key%>}{%<keylist%>}
 manual#true,false
 ignore spaces#true,false
+biblatex={%<additional configuration%>}
+biblatex ccmemo cite=#nocite,replicate
 #endkeyvals
 
 # not documented
