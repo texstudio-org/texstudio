@@ -375,7 +375,6 @@ jobs:
         files: ./*
 
     - name: Delete temp artifacts
-      uses: GeekyEggo/delete-artifact@v4
+      uses: GeekyEggo/delete-artifact@v5
       with:
         name: release-*
-        token: ${{ secrets.GITHUB_TOKEN }}
