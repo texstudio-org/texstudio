@@ -135,8 +135,8 @@ alignedleftspaceyesifneg
 \multlinetaggap#*
 \nobreakdash
 \notag#m
-\numberwithin{env}{counter}
-\numberwithin[format]{env}{counter}
+\numberwithin{counter}{within-counter}
+\numberwithin[format]{counter}{within-counter}
 \overleftrightarrow{argument}#m
 \overset{superscript}{argument}#m
 \overunderset{superscript}{subscript}{argument}#m
