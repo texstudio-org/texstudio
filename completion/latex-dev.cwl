@@ -636,7 +636,11 @@ debug={%<options%>}
 \allocationnumber#*
 \bfdefault#*
 \counterwithin{counter}{within-counter}#*
+\counterwithin[format]{counter}{within-counter}#*
+\counterwithin*{counter}{within-counter}#*
 \counterwithout{counter}{within-counter}#*
+\counterwithout[format]{counter}{within-counter}#*
+\counterwithout*{counter}{within-counter}#*
 \emforce#*
 \eminnershape#*
 \emreset#*
