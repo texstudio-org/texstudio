@@ -7464,6 +7464,8 @@ qreal QDocumentPrivate::textWidth(int fid, const QString& text){
 				containsSurrogates = true; //strange characters (e.g.  0xbcd, 0x1d164)
             else if (c < QChar(0x20))
 				containsAsianChars = true;
+            else if (c >= QChar(0xff00) && c <= QChar(0xffef))
+                containsAsianChars = true;
 		}
 		if (!containsAsianChars && !containsSurrogates)
 			// TODO: we've blacklisted certain characters from which we know they may have non-standard text width
