@@ -2,7 +2,7 @@
 # commands for biblatex users
 # tbraun, 19.08.2009
 # dbitouze, 14.02.2012
-# Matthew Bertucci 06.03.2023 for v3.19
+# Matthew Bertucci 03.23.2024 for v3.20
 
 #include:pdftexcmds
 #include:etoolbox
@@ -148,7 +148,7 @@ uniquetitle#true,false
 uniquebaretitle#true,false
 uniquework#true,false
 uniqueprimaryauthor#true,false
-uniquename=#true,false,init,full,allinit,allfull,mininit,minfull
+uniquename=#true,false,init,full,allinit,allfull,mininit,minfull,minyearinit,minyearfull
 uniquelist=#true,false,minyear
 nohashothers#true,false
 nosortothers#true,false
@@ -368,6 +368,7 @@ sorting=%<name%>
 sortingnamekeytemplatename=%<name%>
 uniquenametemplatename=%<name%>
 labelalphanametemplatename=%<name%>
+namehashtemplatename=%<name%>
 nametemplates=%<name%>
 labelprefix=%<string%>
 #endkeyvals
@@ -1193,6 +1194,7 @@ name=%<refcontextname%>
 \bibrangedash#*
 \bibrangessep#*
 \bibdatesep#*
+\bibdatendsep#*
 \bibdaterangesep#*
 \mkbibdatelong{year}{month}{day}#*
 \mkbibdateshort{year}{month}{day}#*
@@ -1571,6 +1573,7 @@ strside=#left,right
 inits#true,false
 base#true,false
 disambiguation=#none,init,initorfull,full
+hashscope=#init,full
 #endkeyvals
 \DeclareNolabel{specification}#*
 \nolabel{regexp}#*
@@ -1717,6 +1720,7 @@ override#true,false
 \ifsortingnamekeytemplatename{string}{true}{false}#*
 \ifuniquenametemplatename{string}{true}{false}#*
 \iflabelalphanametemplatename{string}{true}{false}#*
+\ifnamehashtemplatename{string}{true}{false}#*
 \iffieldundef{field}{true}{false}#*
 \iflistundef{literal list}{true}{false}#*
 \ifnameundef{name list}{true}{false}#*
@@ -2076,6 +2080,7 @@ override#true,false
 
 \AtBeginRefsection{code}#*
 \AtNextRefsection{code}#*
+\AtFollowingRefsections{code}#*
 \AtBeginBibliography{code}#*
 \AtBeginShorthands{code}#*
 \AtBeginBiblist{biblistname}{code}#*
@@ -2111,6 +2116,8 @@ override#true,false
 ## 4.11 Hints and Caveats ##
 \DeclareUniquenameTemplate{specification}#*
 \DeclareUniquenameTemplate[name]{specification}#*
+\DeclareNamehashTemplate{specification}#*
+\DeclareNamehashTemplate[name]{specification}#*
 
 # miscellaneous
 \actualoperator#*
