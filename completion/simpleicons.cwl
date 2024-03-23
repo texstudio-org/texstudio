@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/03/09 for v11.8.0
+# Matthew Bertucci 2024/03/23 for v11.9.0
 
 #include:iftex
 
@@ -169,6 +169,7 @@ ansys
 anta
 antdesign
 antena3
+anycubic
 anydesk
 aol
 apache
@@ -419,6 +420,7 @@ burgerking
 burpsuite
 burton
 buymeacoffee
+buysellads
 buzzfeed
 bvg
 byjus
@@ -474,6 +476,7 @@ checkio
 checkmarx
 checkmk
 chedraui
+cheerio
 chef
 chemex
 chevrolet
@@ -514,11 +517,13 @@ cloudcannon
 cloudera
 cloudflare
 cloudflarepages
+cloudflareworkers
 cloudfoundry
 cloudinary
 cloudron
 cloudsmith
 cloudways
+clubforce
 clubhouse
 clyp
 cmake
@@ -799,6 +804,7 @@ elavon
 electron
 electronbuilder
 electronfiddle
+elegoo
 element
 elementary
 elementor
@@ -816,6 +822,7 @@ emby
 emirates
 emlakjet
 empirekred
+endeavouros
 engadget
 enpass
 enterprisedb
@@ -914,6 +921,7 @@ fitbit
 fite
 fivem
 fiverr
+flashforge
 flask
 flat
 flathub
@@ -971,6 +979,7 @@ frontify
 fsecure
 fsharp
 fubo
+fueler
 fugacloud
 fujifilm
 fujitsu
@@ -1055,6 +1064,7 @@ googleadsense
 googleanalytics
 googleappsscript
 googleassistant
+googleauthenticator
 googlebard
 googlebigquery
 googlebigtable
@@ -1546,6 +1556,7 @@ lotpolishairlines
 ltspice
 lua
 lubuntu
+lucia
 lucid
 ludwig
 lufthansa
@@ -1571,6 +1582,7 @@ mailtrap
 majorleaguehacking
 make
 makerbot
+malt
 mambaui
 mamp
 man
@@ -2255,6 +2267,7 @@ revue
 rewe
 rezgo
 rhinoceros
+rich
 rider
 rimacautomobili
 ring
@@ -2484,6 +2497,7 @@ sourcehut
 sourcetree
 southwestairlines
 spacemacs
+spaceship
 spacex
 spacy
 sparkar
@@ -2749,6 +2763,7 @@ trivy
 trove
 trpc
 truenas
+trueup
 trulia
 trustedshops
 trustpilot
@@ -2910,6 +2925,7 @@ warp
 wasabi
 wasmcloud
 wasmer
+watchtower
 wattpad
 wayland
 waze
@@ -2998,6 +3014,7 @@ xdotorg
 xendit
 xero
 xfce
+xiaohongshu
 xiaomi
 xing
 xmpp
@@ -3038,6 +3055,7 @@ zcool
 zdf
 zebpay
 zebratechnologies
+zedindustries
 zelle
 zend
 zendesk
@@ -3079,3 +3097,4 @@ zyte
 \simpleiconsmaponezero#S
 \simpleiconsmaponeone#S
 \simpleiconsmaponetwo#S
+\simpleiconsmaponethree#S
