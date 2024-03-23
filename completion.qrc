@@ -1177,6 +1177,7 @@
 <file>completion/darkmode.cwl</file>
 <file>completion/dashbox.cwl</file>
 <file>completion/dashrule.cwl</file>
+<file>completion/dashrulex.cwl</file>
 <file>completion/dashundergaps.cwl</file>
 <file>completion/databar.cwl</file>
 <file>completion/databib.cwl</file>
@@ -1482,6 +1483,7 @@
 <file>completion/extraipa.cwl</file>
 <file>completion/extramarks.cwl</file>
 <file>completion/extsizes.cwl</file>
+<file>completion/fadingimage.cwl</file>
 <file>completion/faktor.cwl</file>
 <file>completion/familytree.cwl</file>
 <file>completion/fancybox.cwl</file>
@@ -2064,6 +2066,7 @@
 <file>completion/latex-l2tabu.cwl</file>
 <file>completion/latexsym.cwl</file>
 <file>completion/lato.cwl</file>
+<file>completion/lato-math.cwl</file>
 <file>completion/layaureo.cwl</file>
 <file>completion/layout.cwl</file>
 <file>completion/layouts.cwl</file>
