@@ -3,7 +3,7 @@
 # URL: http://www.ctan.org/pkg/mathtools
 # thatlittleboy/2018-05-07 edited
 # Edited by Rishi Advani (2020-12-06)
-# updated 2022-07-02 for v1.29
+# updated 2024/03/12 for v1.30
 
 #include:keyval
 #include:calc
@@ -129,8 +129,12 @@ rl
 \xleftrightharpoons[sub]{sup}#m
 \xlongrightarrow{sup}#m
 \xlongrightarrow[sub]{sup}#m
+\xLongrightarrow{sup}#m
+\xLongrightarrow[sub]{sup}#m
 \xlongleftarrow{sup}#m
 \xlongleftarrow[sub]{sup}#m
+\xLongleftarrow{sup}#m
+\xLongleftarrow[sub]{sup}#m
 \underbracket[rule thickness][bracket height]{arg}#m
 \underbracket[rule thickness]{arg}#*m
 \underbracket{arg}#m

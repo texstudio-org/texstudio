@@ -1,5 +1,5 @@
 # mode: listings.sty
-# dani/2006-02-18; Matthew Bertucci 2023-02-27 for v1.9
+# dani/2006-02-18; Matthew Bertucci 2024-03-13 for v1.10a
 
 #include:keyval
 
@@ -154,6 +154,7 @@ S
 [PLUS]S
 SAS
 Scala
+[3.0]Scala
 Scilab
 sh
 SHELXL

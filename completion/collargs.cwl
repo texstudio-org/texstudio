@@ -1,5 +1,5 @@
 # collargs package
-# Matthew Bertucci 2024/01/02 for v1.1.0
+# Matthew Bertucci 2024/03/18 for v1.2.0
 
 #include:pgfkeys
 #include:etoolbox
@@ -26,12 +26,9 @@ append expandable preprocessor=%<code%>
 prepend expandable preprocessor=%<code%>
 append expandable postprocessor=%<code%>
 prepend expandable postprocessor=%<code%>
-append prewrap=%<macro definition%>
-prepend prewrap=%<macro definition%>
-append postwrap=%<macro definition%>
-prepend postwrap=%<macro definition%>
 no delimiters#true,false
-brace collected#true,false
+return=#braced,plain,no
+clear args#true,false
 verbatim
 verb
 no verbatim
@@ -78,16 +75,18 @@ verbatim ranges={%<from-to%>}
 \collargsPrependExpandablePreprocessor{code}#S
 \collargsAppendExpandablePostprocessor{code}#S
 \collargsPrependExpandablePostprocessor{code}#S
-\collargsAppendPrewrap{definition}#S
-\collargsPrependPrewrap{definition}#S
-\collargsAppendPostwrap{definition}#S
-\collargsPrependPostwrap{definition}#S
 \ifcollargsNoDelimiters#S
 \collargsNoDelimiterstrue#S
 \collargsNoDelimitersfalse#S
-\ifcollargsBraceCollected#S
-\collargsBraceCollectedtrue#S
-\collargsBraceCollectedfalse#S
+\ifcollargsClearArgs#S
+\collargsClearArgstrue#S
+\collargsClearArgsfalse#S
+\collargsReturnBraced#S
+\collargsReturnPlain#S
+\collargsReturnNo#S
+\collargsReturn#S
+\collargsAlias{arg1}{arg2}#S
+\collargsArgs#S
 \collargsArg#S
 \collargsVerbatim#S
 \collargsVerb#S

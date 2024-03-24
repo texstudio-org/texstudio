@@ -1,5 +1,5 @@
 # njuthesis class
-# Matthew Bertucci 2023/06/08 for v1.3.0
+# Matthew Bertucci 2024/03/19 for v1.4.0
 
 #include:xtemplate
 #include:class-ctexbook
@@ -32,7 +32,7 @@ nl-cover#true,false
 decl-page#true,false
 oneside
 twoside
-draft#true,false
+draft
 anonymous#true,false
 biblatex#true,false
 cleveref#true,false
@@ -42,8 +42,8 @@ footmisc#true,false
 unicode-math#true,false
 minimal
 config={%<文件%>}
-cjk-font=#win,mac,fandol,founder,noto,source,none
-latin-font=#win,mac,gyre,none
+cjk-font=#fandol,founder,mac,macoffice,noto,source,win,none
+latin-font=#fandol,gyre,mac,macoffice,win,none
 math-font=#asana,cambria,fira,garamond,lm,libertinus,stix,bonum,dejavu,pagella,schola,termes,xits,none
 #endkeyvals
 

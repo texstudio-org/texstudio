@@ -1,7 +1,6 @@
 # nwejmart class
-# Matthew Bertucci 4/11/2022 for v1.0.4
+# Matthew Bertucci 2024/03/12 for v1.0.6
 
-#include:l3keys2e
 #include:etoolbox
 #include:class-book
 #include:nag
@@ -34,6 +33,7 @@
 #include:fmtcount
 #include:babel
 # loads english option of babel
+#include:listings
 #include:varioref
 #include:subcaption
 #include:tocvsec2

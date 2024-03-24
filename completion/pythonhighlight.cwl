@@ -1,5 +1,5 @@
 # pythonhighlight package
-# Matthew Bertucci 2021/12/16 for v4.2.1
+# Matthew Bertucci 2024/03/18
 
 #include:listings
 #include:xcolor
@@ -19,15 +19,21 @@ specmethodcolour#B
 \literatecolour{text}#*
 
 #keyvals:\lstset,\begin{lstlisting},\lstinputlisting,\lstdefinelanguage,\lstdefinestyle
-style=mypython
+style=pythonhighlight-style
 #endkeyvals
 
 #keyvals:\lstinline,\lstMakeShortInline,\lstdefinelanguage,\lstdefinestyle
-style=mypythoninline
+style=pythonhighlight-inline-style
 #endkeyvals
 
-\inputpython{file}{start num}{end num}
+\inputpythonfile{file}
+\inputpythonfile{file}[start num]
+\inputpythonfile{file}[start num][end num]
 \begin{python}#V
+\begin{python}[options]#V
 \end{python}
 \pyth|%<text%>|
 \pyth{verbatimSymbol}#S
+
+# deprecated
+\inputpython{file}{start num}{end num}#S

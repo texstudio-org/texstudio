@@ -1,8 +1,7 @@
 # incgraph package
 # muzimuzhi,31 Jul 2020 for incgraph 1.12
-# Matthew Bertucci 10/23/2021 for v1.2
+# Matthew Bertucci 2024/03/14 for v1.3.0
 
-#include:pgfkeys
 #include:pgf
 #include:pgffor
 #include:graphicx
@@ -107,6 +106,12 @@ bookmark=%<text%>
 bookmark options={%<options%>}
 bookmark heading=%<text%>
 bookmark heading options={%<options%>}
+autosize#true,false
+autosize width gap=##L
+autosize height gap=##L
+autosize gap=##L
+autosize min scale=%<fp expr%>
+autosize max scale=%<fp expr%>
 left border=##L
 bottom border=##L
 right border=##L
@@ -114,6 +119,8 @@ top border=##L
 horizontal border=##L
 vertical border=##L
 border=##L
+xshift=##L
+yshift=##L
 set matches={%<list%>}
 if match code={%<key%>}{%<then%>}{%<else%>}
 if match set={%<key%>}{%<then%>}{%<else%>}
@@ -124,6 +131,7 @@ overlay page number at=%<position%>
 overlay page number at bottom=##L
 overlay page number at top=##L
 overlay page number options={%<TikZ options%>}
+overlay page number options app={%<TikZ options%>}
 no overlay
 pagestyle=%<page style%>
 zerofill=%<digits%>
