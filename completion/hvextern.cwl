@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2023/08/29 for v0.37
+# Matthew Bertucci 2024/03/25 for v0.40
 
 #include:shellesc
 #include:xkeyval
@@ -81,6 +81,7 @@ aboveskip=##L
 belowpreambleskip=##L
 belowbodyskip=##L
 belowskip=##L
+mposttex=#tex,latex
 shellesc#true,false
 #endkeyvals
 
