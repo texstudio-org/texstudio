@@ -8,13 +8,7 @@ subfigure
 titles
 #endkeyvals
 
-\addcontentsline{file}{kind}{title}#n
-\contentsline{kind}{title}{page}#n
-\addtocontents{file}{text}#n
-
 \tocloftpagestyle{style}#n
-
-\addtocontents{file}{text}
 
 \cftmarktoc#n
 \cftmarklof#n
