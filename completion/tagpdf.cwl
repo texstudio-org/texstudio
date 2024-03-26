@@ -1,5 +1,5 @@
 # tagpdf package
-# Matthew Bertucci 2023/12/18 for v0.98r
+# Matthew Bertucci 2024/03/26 for v0.99a
 
 #include:pdfmanagement-testphase
 
@@ -12,32 +12,48 @@ disabledelayedshipout
 \tagpdfsetup{keyvals}
 
 #keyvals:\tagpdfsetup
-activate-all#true,false
 activate=%<tag%>
-activate-mc#true,false
-activate-struct#true,false
-no-struct-dest#true,false
-activate-tree#true,false
-activate-socket#true,false
-add-new-tag=%<tag/role%>
-add-new-tag={%<keyvals%>}
-interwordspace=#true,on,false,off
-log=#none,v,vv,vvv,all
-newattribute={%<name%>}{%<content%>}
-show-spaces#true,false
-paratagging#true,false
-paratagging-show#true,false
-paratag=%<string%>
-tabsorder=#row,column,structure,none
-tagunmarked#true,false
-uncompress
+activate/all#true,false
+activate/mc#true,false
+activate/spaces#true,false
+activate/struct#true,false
+activate/struct-dest#true,false
+activate/tagunmarked#true,false
+activate/tree#true,false
+role/mathml-tags#true,false
+role/new-tag=%<tag/role%>
+role/new-attribute={%<name%>}{%<content%>}
+role/map-tags=#false,pdf
+debug/show
+debug/show=#para,paraOff,spaces,spacesOff
+debug/log=#none,v,vv,vvv,all
+debug/uncompress
+viewer/pane/mathml#true,false
+viewer/pane/mathsource#true,false
+viewer/startstructure=%<number%>
+page/tabsorder=#row,column,structure,none
+page/exclude-header-footer=#false,pagination
+para/tagging#true,false
+para/tag=%<tag%>
+para/maintag=%<tag%>
+para/flattened#true,false
+math/alt/use#true,false
+math/mathml/write-dummy=%<code%>
+math/mathml/sources=%<comma list%>
+math/mathml/AF#true,false
+math/tex/AF#true,false
+table/tagging=
+table/header-rows=%<comma list%>
+text/lang=%<lang%>
 #endkeyvals
 
 \tagtool{keyvals}
 
 #keyvals:\tagtool
-para#true,false
-paratag=%<string%>
+para/tagging#true,false
+para/maintag=%<tag%>
+para/tag=%<tag%>
+para/flattened#true,false
 #endkeyvals
 
 \tagmcbegin{keyvals}
@@ -55,8 +71,6 @@ raw=%<PDF code%>
 \tagmcend
 \tagmcuse
 \tagmcifinTF{true code}{false code}
-\tagpdfparaOn
-\tagpdfparaOff
 
 \tagstructbegin{keyvals}
 
