@@ -161,6 +161,7 @@ private:
 	QFrame *centralFrame;
 	QToolBar *centralToolBar;
 	CustomWidgetList *leftPanel;
+    QDockWidget *m_firstDockWidget;
 	TitledPanel *sidePanel;
 	SymbolListModel *symbolListModel;
 	SymbolWidget *symbolWidget;
@@ -729,6 +730,7 @@ public slots:
 	void slowOperationEnded();
 
 	void openBugsAndFeatures();
+    void maniplateDockingTabBars();
 
 signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
