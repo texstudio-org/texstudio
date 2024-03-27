@@ -609,6 +609,7 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
         dock->setTitleBarWidget(lbl);
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         tabifyDockWidget(m_firstDockWidget,dock);
+        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(list, id, text, iconName);
 	} else {
 		leftPanel->setWidgetText(list, text);
@@ -654,6 +655,7 @@ void Texstudio::addMacrosAsTagList()
         dock->setTitleBarWidget(lbl);
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         tabifyDockWidget(m_firstDockWidget,dock);
+        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
     }else{
         leftPanel->setWidgetText(list,tr("Macros"));
@@ -746,6 +748,7 @@ void Texstudio::setupDockWidgets()
         dock->setTitleBarWidget(lbl);
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         tabifyDockWidget(m_firstDockWidget,dock);
+        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("toc"));
     } else {
         leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
@@ -765,6 +768,7 @@ void Texstudio::setupDockWidgets()
         dock->setTitleBarWidget(lbl);
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         tabifyDockWidget(m_firstDockWidget,dock);
+        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
     } else {
         leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
@@ -786,6 +790,7 @@ void Texstudio::setupDockWidgets()
         dock->setTitleBarWidget(lbl);
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         tabifyDockWidget(m_firstDockWidget,dock);
+        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
     } else {
         leftPanel->setWidgetText("symbols", tr("Symbols"));
