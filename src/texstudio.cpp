@@ -285,7 +285,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
-	iconSize = qRound(configManager.guiSecondaryToolbarIconSize*scale);
+    iconSize = qRound(configManager.guiSecondaryToolbarIconSize*scale);
 	centralToolBar->setIconSize(QSize(iconSize, iconSize));
 
 	editors = new Editors(centralFrame);
@@ -4629,7 +4629,7 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("GUI/sidePanelSplitter/state", sidePanelSplitter->saveState());
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
-        //config->setValue("GUI/sidePanel/visible", );
+        config->setValue("GUI/sidePanel/visible", m_toggleDocksAction->isChecked());
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
@@ -11283,7 +11283,10 @@ void Texstudio::changeSecondaryIconSize(int value)
 	int iconWidth=qRound(value*scale);
 
 	centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
-    //leftPanel->setToolbarIconSize(iconWidth);
+    QList<QTabBar*>lst=this->findChildren<QTabBar*>(Qt::FindDirectChildrenOnly);
+    foreach(QTabBar* tb,lst){
+        tb->setIconSize(QSize(iconWidth, iconWidth));
+    }
 
 	foreach (QObject *c, statusBar()->children()) {
 		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
@@ -11440,8 +11443,13 @@ void Texstudio::openBugsAndFeatures() {
  */
 void Texstudio::maniplateDockingTabBars() {
     QList<QTabBar*>lst=this->findChildren<QTabBar*>(Qt::FindDirectChildrenOnly);
+    const double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    const double scale=dpi/96;
+    const int iconSize = qRound(configManager.guiSecondaryToolbarIconSize*scale);
     foreach(QTabBar* tb,lst){
         int n=tb->count();
+        if(n==0) continue;
+        tb->setIconSize(QSize(iconSize, iconSize));
         for(int i=0;i<n;++i){
             qulonglong ptr_int=tb->tabData(i).toULongLong();
             QDockWidget *dw=reinterpret_cast<QDockWidget*>(ptr_int);
