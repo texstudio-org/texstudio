@@ -155,7 +155,6 @@ private:
 
 	//gui
 	Editors *editors;
-	QSplitter *sidePanelSplitter;
 	QSplitter *mainHSplitter;
 	QSplitter *centralVSplitter;
 	QFrame *centralFrame;

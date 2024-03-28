@@ -322,11 +322,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralVSplitter->addWidget(centralFrame);
 	centralVSplitter->setStretchFactor(0, 1);  // all stretch goes to the editor (0th widget)
 
-    sidePanelSplitter = new MiniSplitter(Qt::Horizontal, this);
-    sidePanelSplitter->addWidget(centralVSplitter);
-
 	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);  // top-level element: splits: [ everything else | PDF ]
-    mainHSplitter->addWidget(sidePanelSplitter);
+    mainHSplitter->addWidget(centralVSplitter);
 	mainHSplitter->setChildrenCollapsible(false);
 	setCentralWidget(mainHSplitter);
 
@@ -688,9 +685,6 @@ void Texstudio::setupDockWidgets()
         m_toggleDocksAction->setText(tr("Side Panel"));
         m_toggleDocksAction->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
         connect(m_toggleDocksAction, &QAction::toggled,this, &Texstudio::toggleDocks);
-        /*sidePanelSplitter->insertWidget(0, sidePanel);
-        sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
-        sidePanelSplitter->setStretchFactor(1, 1);*/
     }else{
         m_toggleDocksAction->setIcon(getRealIcon("sidebar"));
     }
@@ -4626,7 +4620,6 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("Geometries/MainwindowX", x());
 		config->setValue("Geometries/MainwindowY", y());
 
-		config->setValue("GUI/sidePanelSplitter/state", sidePanelSplitter->saveState());
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
         config->setValue("GUI/sidePanel/visible", m_toggleDocksAction->isChecked());
@@ -4653,7 +4646,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 	// TODO: parse old "Symbols/Favorite IDs"
 
-    //config->setValue("Symbols/hiddenlists", leftPanel->hiddenWidgets());
+    config->setValue("Symbols/hiddenlists", hiddenLeftPanelWidgets);
 
 	QHash<QString, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
@@ -6050,9 +6043,8 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln, col, displayPolicy);
 		viewer->fillRenderCache(pg);
         if (viewer->embeddedMode && configManager.viewerEnlarged) {
-            sidePanelSplitter->hide();
 			viewer->setStateEnlarged(true);
-            //centralVSplitter->hide();
+            centralVSplitter->hide();
 		}
 
 		if (preserveDuplicates) break;
@@ -11180,8 +11172,8 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 	PDFDocument *viewer = oldPDFs.first();
 	if (!viewer->embeddedMode)
 		return;
-	sidePanelSplitter->hide();
-	configManager.viewerEnlarged = true;
+    centralVSplitter->hide();
+    configManager.viewerEnlarged = true;
 	PDFDocumentConfig *pdfConfig=configManager.pdfDocumentConfig;
 	if(!enlargedViewer){
 		rememberFollowFromScroll=pdfConfig->followFromScroll;
@@ -11198,8 +11190,8 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 {
 #ifndef NO_POPPLER_PREVIEW
-	sidePanelSplitter->show();
-	if (!preserveConfig)
+    centralVSplitter->show();
+    if (!preserveConfig)
 		configManager.viewerEnlarged = false;
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
 	if (oldPDFs.isEmpty())
@@ -11474,8 +11466,13 @@ void Texstudio::maniplateDockingTabBars() {
 void Texstudio::toggleDocks(bool visible)
 {
     QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(Qt::FindDirectChildrenOnly);
+    const QStringList hiddenDocks=hiddenLeftPanelWidgets.split("|");
     foreach(QDockWidget* dw,lst){
-        dw->setVisible(visible);
+        if(hiddenDocks.contains(dw->objectName())){
+            dw->setVisible(false);
+        }else{
+            dw->setVisible(visible);
+        }
     }
 }
 /*!
