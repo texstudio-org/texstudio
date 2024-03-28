@@ -614,7 +614,7 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 void Texstudio::addMacrosAsTagList()
 {
     bool addToPanel=true;
-    QDockWidget *oldDock=findChild<QDockWidget *>("txs-macros",Qt::FindDirectChildrenOnly);
+    QDockWidget *oldDock=findChild<QDockWidget *>("txs-macro",Qt::FindDirectChildrenOnly);
     QListWidget *list = nullptr;
     if(oldDock){
         list=qobject_cast<QListWidget *>(oldDock->widget());
@@ -637,7 +637,7 @@ void Texstudio::addMacrosAsTagList()
     UtilsUi::enableTouchScrolling(list);
     connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertFromTagList(QListWidgetItem*)),Qt::UniqueConnection);
     if(addToPanel){
-        addDock("txs-macro","executeMacro",tr("Macros"),list);
+        addDock("txs-macro","executeMacro_R90",tr("Macros"),list);
     }
 }
 
@@ -675,7 +675,7 @@ void Texstudio::setupDockWidgets()
         structureTreeWidget->setHeaderHidden(true);
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         structureTreeWidget->installEventFilter(this);
-        addDock("structure", "structure",tr("Structure"), structureTreeWidget);
+        addDock("structure", "structure_R90",tr("Structure"), structureTreeWidget);
     }
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
@@ -686,7 +686,7 @@ void Texstudio::setupDockWidgets()
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         topTOCTreeWidget->installEventFilter(this);
-        addDock("TOC", "toc",tr("TOC"), topTOCTreeWidget);
+        addDock("TOC", "toc_R90",tr("TOC"), topTOCTreeWidget);
     }
     QDockWidget *dock=findChild<QDockWidget *>("bookmarks",Qt::FindDirectChildrenOnly);
     if (!dock) {
@@ -694,7 +694,7 @@ void Texstudio::setupDockWidgets()
         bookmarks->setDarkMode(darkMode);
         connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
         connect(bookmarks, SIGNAL(gotoLineRequest(int,int,LatexEditorView*)), this, SLOT(gotoLine(int,int,LatexEditorView*)));
-        addDock("bookmarks", "bookmarks",tr("Bookmarks"), bookmarksWidget);
+        addDock("bookmarks", "bookmarks_R90",tr("Bookmarks"), bookmarksWidget);
     } else {
         bookmarks->setDarkMode(darkMode);
     }
@@ -704,19 +704,19 @@ void Texstudio::setupDockWidgets()
         symbolWidget->restoreSplitter(configManager.stateSymbolsWidget);
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
         connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
-        addDock("symbols", "symbols",tr("Symbols"), symbolWidget);
+        addDock("symbols", "symbols_R90",tr("Symbols"), symbolWidget);
     } else {
         symbolListModel->setDarkmode(darkMode);
         symbolWidget->reloadData();
     }
 
-    addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
-    addTagList("pstricks", getRealIconFile("pstricks"), tr("PSTricks Commands"), "pstricks_tags.xml");
-    addTagList("metapost", getRealIconFile("metapost"), tr("MetaPost Commands"), "metapost_tags.xml");
-    addTagList("tikz", getRealIconFile("tikz"), tr("TikZ Commands"), "tikz_tags.xml");
-    addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
-    addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
-    addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
+    addTagList("brackets", getRealIconFile("leftright_R90"), tr("Left/Right Brackets"), "brackets_tags.xml");
+    addTagList("pstricks", getRealIconFile("pstricks_R90"), tr("PSTricks Commands"), "pstricks_tags.xml");
+    addTagList("metapost", getRealIconFile("metapost_R90"), tr("MetaPost Commands"), "metapost_tags.xml");
+    addTagList("tikz", getRealIconFile("tikz_R90"), tr("TikZ Commands"), "tikz_tags.xml");
+    addTagList("asymptote", getRealIconFile("asymptote_R90"), tr("Asymptote Commands"), "asymptote_tags.xml");
+    addTagList("beamer", getRealIconFile("beamer_R90"), tr("Beamer Commands"), "beamer_tags.xml");
+    addTagList("xymatrix", getRealIconFile("xy_R90"), tr("XY Commands"), "xymatrix_tags.xml");
     addMacrosAsTagList();
 
     // OUTPUT WIDGETS
