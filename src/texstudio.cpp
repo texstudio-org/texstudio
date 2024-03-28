@@ -209,9 +209,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
     int iconSize = qRound(qMax(16, configManager.guiToolbarIconSize)*scale);
 	setIconSize(QSize(iconSize, iconSize));
 
-	leftPanel = nullptr;
-	sidePanel = nullptr;
-    //structureTreeView = nullptr;
+    m_toggleDocksAction = nullptr;
     structureTreeWidget = nullptr;
     topTOCTreeWidget = nullptr;
 	outputView = nullptr;
@@ -587,7 +585,12 @@ void Texstudio::loadManagedMenu(const QString &fn)
  */
 void Texstudio::addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile)
 {
-	XmlTagsListWidget *list = qobject_cast<XmlTagsListWidget *>(leftPanel->widget(id));
+    QDockWidget *oldDock=findChild<QDockWidget *>(id,Qt::FindDirectChildrenOnly);
+    XmlTagsListWidget *list = nullptr;
+    if(oldDock){
+        list = qobject_cast<XmlTagsListWidget *>(oldDock->widget());
+    }
+
 	if (!list) {
 		// check for user tags
 		QString configBaseDir = configManager.configBaseDir;
@@ -612,8 +615,8 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
         connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(list, id, text, iconName);
 	} else {
-		leftPanel->setWidgetText(list, text);
-		leftPanel->setWidgetIcon(list,iconName);
+        QLabel *lbl=new QLabel(text);
+        oldDock->setTitleBarWidget(lbl);
 	}
 }
 
@@ -627,7 +630,11 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 void Texstudio::addMacrosAsTagList()
 {
     bool addToPanel=true;
-    QListWidget *list = qobject_cast<QListWidget *>(leftPanel->widget("txs-macros"));
+    QDockWidget *oldDock=findChild<QDockWidget *>("txs-macros",Qt::FindDirectChildrenOnly);
+    QListWidget *list = nullptr;
+    if(oldDock){
+        list=qobject_cast<QListWidget *>(oldDock->widget());
+    }
     if (!list) {
         list = new QListWidget(this);
         list->setObjectName("tags/txs-macros");
@@ -658,8 +665,8 @@ void Texstudio::addMacrosAsTagList()
         connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
     }else{
-        leftPanel->setWidgetText(list,tr("Macros"));
-        leftPanel->setWidgetIcon(list,getRealIconFile("executeMacro"));
+        QLabel *lbl=new QLabel(tr("Macros"));
+        oldDock->setTitleBarWidget(lbl);
     }
 }
 
@@ -674,33 +681,18 @@ void Texstudio::setupDockWidgets()
     double scale=dpi/96;
     setTabPosition(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea, QTabWidget::West);
 
-    if (!sidePanel) {
-        sidePanel = new SidePanel(this);
-        sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
-        sidePanel->toggleViewAction()->setText(tr("Side Panel"));
-        sidePanel->toggleViewAction()->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
-        addAction(sidePanel->toggleViewAction());
-
+    if (!m_toggleDocksAction) {
+        m_toggleDocksAction=new QAction(this);
+        m_toggleDocksAction->setCheckable(true);
+        m_toggleDocksAction->setIcon(getRealIcon("sidebar"));
+        m_toggleDocksAction->setText(tr("Side Panel"));
+        m_toggleDocksAction->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
+        connect(m_toggleDocksAction, &QAction::toggled,this, &Texstudio::toggleDocks);
         /*sidePanelSplitter->insertWidget(0, sidePanel);
         sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
         sidePanelSplitter->setStretchFactor(1, 1);*/
     }else{
-        sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
-    }
-
-    //Structure panel
-    if (!leftPanel) {
-        leftPanel = new CustomWidgetList(this);
-        leftPanel->setObjectName("leftPanel");
-        TitledPanelPage *page = new TitledPanelPage(leftPanel, "leftPanel", "TODO");
-        //sidePanel->appendPage(page);
-        if (hiddenLeftPanelWidgets != "") {
-            leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
-            hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
-        }
-        connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
-        connect(leftPanel, SIGNAL(currentWidgetChanged(QWidget*)), this, SLOT(leftPanelChanged(QWidget*)));
-        connect(sidePanel,&TitledPanel::showPanel,this,&Texstudio::updateTOCs);
+        m_toggleDocksAction->setIcon(getRealIcon("sidebar"));
     }
 
     // load icons for structure view
@@ -724,11 +716,9 @@ void Texstudio::setupDockWidgets()
         m_firstDockWidget->setTitleBarWidget(lbl);
         connect(m_firstDockWidget,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         addDockWidget(Qt::LeftDockWidgetArea, m_firstDockWidget);
-
-        //leftPanel->addWidget(structureTreeWidget, "structureTreeWidget", tr("Structure"), getRealIconFile("structure"));
     } else {
-        leftPanel->setWidgetText(structureTreeWidget, tr("Structure"));
-        leftPanel->setWidgetIcon(structureTreeWidget, getRealIconFile("structure"));
+        QLabel *lbl=new QLabel(tr("Structure"));
+        m_firstDockWidget->setTitleBarWidget(lbl);
     }
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
@@ -749,12 +739,13 @@ void Texstudio::setupDockWidgets()
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         tabifyDockWidget(m_firstDockWidget,dock);
         connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
-        //leftPanel->addWidget(topTOCTreeWidget, "topTOCTreeWidget", tr("TOC"), getRealIconFile("toc"));
     } else {
-        leftPanel->setWidgetText(topTOCTreeWidget, tr("TOC"));
-        leftPanel->setWidgetIcon(topTOCTreeWidget, getRealIconFile("toc"));
+        QDockWidget *dock=findChild<QDockWidget *>("TOC",Qt::FindDirectChildrenOnly);
+        QLabel *lbl=new QLabel(tr("TOC"));
+        dock->setTitleBarWidget(lbl);
     }
-    if (!leftPanel->widget("bookmarks")) {
+    QDockWidget *dock=findChild<QDockWidget *>("bookmarks",Qt::FindDirectChildrenOnly);
+    if (!dock) {
         QListWidget *bookmarksWidget = bookmarks->widget();
         bookmarks->setDarkMode(darkMode);
         connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
@@ -769,14 +760,13 @@ void Texstudio::setupDockWidgets()
         addDockWidget(Qt::LeftDockWidgetArea, dock);
         tabifyDockWidget(m_firstDockWidget,dock);
         connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
-        //leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
     } else {
-        leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
-        leftPanel->setWidgetIcon("bookmarks", getRealIconFile("bookmarks"));
+        QLabel *lbl=new QLabel(tr("Bookmarks"));
+        dock->setTitleBarWidget(lbl);
         bookmarks->setDarkMode(darkMode);
     }
-
-    if (!leftPanel->widget("symbols")) {
+    dock=findChild<QDockWidget *>("symbols",Qt::FindDirectChildrenOnly);
+    if (!dock) {
         symbolWidget = new SymbolWidget(symbolListModel, configManager.insertSymbolsAsUnicode, this);
         symbolWidget->restoreSplitter(configManager.stateSymbolsWidget);
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
@@ -793,8 +783,8 @@ void Texstudio::setupDockWidgets()
         connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
         //leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
     } else {
-        leftPanel->setWidgetText("symbols", tr("Symbols"));
-        leftPanel->setWidgetIcon("symbols", getRealIconFile("symbols"));
+        QLabel *lbl=new QLabel(tr("Symbols"));
+        dock->setTitleBarWidget(lbl);
         symbolListModel->setDarkmode(darkMode);
         symbolWidget->reloadData();
     }
@@ -807,25 +797,6 @@ void Texstudio::setupDockWidgets()
     addTagList("beamer", getRealIconFile("beamer"), tr("Beamer Commands"), "beamer_tags.xml");
     addTagList("xymatrix", getRealIconFile("xy"), tr("XY Commands"), "xymatrix_tags.xml");
     addMacrosAsTagList();
-
-    leftPanel->showWidgets();
-    // restore selected view in sidepanel
-	QList<QString> hiddenWidgetsIdsList = leftPanel->hiddenWidgets().split("|");
-    int viewNr = configManager.getOption("GUI/sidePanel/currentPage", 0).toInt();
-	int k = -1; // index of visible tool found
-	for (int i = 0; i < leftPanel->widgetCount(); i++)  {
-		QString currentWidgetId = leftPanel->widget(i)->property("id").toString();
-		if (!hiddenWidgetsIdsList.contains(currentWidgetId)) {
-			k++;
-			if (k == viewNr) {
-				leftPanel->setCurrentWidget(leftPanel->widget(i));
-				emit leftPanel->titleChanged(leftPanel->widget(i)->property("Name").toString());
-				break;
-			}
-		}
-	}
-	if (k == -1) // there are no visible tools
-		emit leftPanel->titleChanged("");
 
     // OUTPUT WIDGETS
     if (!outputView) {
@@ -854,15 +825,9 @@ void Texstudio::setupDockWidgets()
         connect(&buildManager, SIGNAL(latexCompiled(LatexCompileResult*)), SLOT(viewLogOrReRun(LatexCompileResult*)));
         connect(&buildManager, SIGNAL(runInternalCommand(QString,QFileInfo,QString)), SLOT(runInternalCommand(QString,QFileInfo,QString)));
         connect(&buildManager, SIGNAL(commandLineRequested(QString,QString*,bool*)), SLOT(commandLineRequested(QString,QString*,bool*)));
-
-        addAction(outputView->toggleViewAction());
-        QAction *temp = new QAction(this);
-        temp->setSeparator(true);
-        addAction(temp);
     }else{
         outputView->updateIcon();
     }
-    //sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
 }
 
 void Texstudio::updateToolBarMenu(const QString &menuName)
@@ -1427,7 +1392,7 @@ void Texstudio::setupMenus()
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "show", tr("Show"));
-	newManagedAction(submenu, "structureview", sidePanel->toggleViewAction());
+    newManagedAction(submenu, "structureview", m_toggleDocksAction);
 	newManagedAction(submenu, "outputview", outputView->toggleViewAction());
 	act = newManagedAction(submenu, "statusbar", tr("Statusbar"), SLOT(showStatusbar()));
 	act->setCheckable(true);
@@ -1782,7 +1747,7 @@ void Texstudio::createStatusBar()
     QSize iconSize = QSize(iconWidth, iconWidth);
 	QAction *act;
 	QToolButton *tb;
-	act = getManagedAction("main/view/show/structureview");
+    act = getManagedAction("main/view/show/structureview");
 	if (act) {
 		tb = new QToolButton(status);
 		tb->setCheckable(true);
@@ -4664,8 +4629,7 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("GUI/sidePanelSplitter/state", sidePanelSplitter->saveState());
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
-		config->setValue("GUI/sidePanel/visible", sidePanel->isVisible());
-        config->setValue("GUI/sidePanel/currentPage", leftPanel->currentIndex());
+        //config->setValue("GUI/sidePanel/visible", );
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
@@ -4689,7 +4653,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 	// TODO: parse old "Symbols/Favorite IDs"
 
-	config->setValue("Symbols/hiddenlists", leftPanel->hiddenWidgets());
+    //config->setValue("Symbols/hiddenlists", leftPanel->hiddenWidgets());
 
 	QHash<QString, int> keys = QEditor::getEditOperations(true);
 	config->remove("Editor/Use Tab for Move to Placeholder");
@@ -11319,7 +11283,7 @@ void Texstudio::changeSecondaryIconSize(int value)
 	int iconWidth=qRound(value*scale);
 
 	centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
-	leftPanel->setToolbarIconSize(iconWidth);
+    //leftPanel->setToolbarIconSize(iconWidth);
 
 	foreach (QObject *c, statusBar()->children()) {
 		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
@@ -11362,11 +11326,10 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 	int iconWidth=qRound(value*scale);
 
 	if (changePanel) {
-		QWidget *sympanel = leftPanel->widget("symbols");
-		if ( !leftPanel->hiddenWidgets().split("|").contains(sympanel->property("id").toString()) ) {
-			leftPanel->setCurrentWidget(sympanel);
-			emit leftPanel->titleChanged(sympanel->property("Name").toString());
-		}
+        QDockWidget *dock=findChild<QDockWidget *>("symbols",Qt::FindDirectChildrenOnly);
+        if(dock){
+            dock->raise();
+        }
 	}
 	symbolWidget->setSymbolSize(iconWidth);
 }
@@ -11493,6 +11456,18 @@ void Texstudio::maniplateDockingTabBars() {
                 tb->setTabIcon(i,getRealIcon(icons[idx]));
             }
         }
+    }
+}
+/*!
+ * \brief toggle visibility of all docks
+ * Former leftPanel
+ * \param visible
+ */
+void Texstudio::toggleDocks(bool visible)
+{
+    QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(Qt::FindDirectChildrenOnly);
+    foreach(QDockWidget* dw,lst){
+        dw->setVisible(visible);
     }
 }
 /*!

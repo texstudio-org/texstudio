@@ -160,9 +160,8 @@ private:
 	QSplitter *centralVSplitter;
 	QFrame *centralFrame;
 	QToolBar *centralToolBar;
-	CustomWidgetList *leftPanel;
     QDockWidget *m_firstDockWidget;
-	TitledPanel *sidePanel;
+    QAction *m_toggleDocksAction;
 	SymbolListModel *symbolListModel;
 	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
@@ -731,6 +730,7 @@ public slots:
 
 	void openBugsAndFeatures();
     void maniplateDockingTabBars();
+    void toggleDocks(bool visible);
 
 signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
