@@ -11202,7 +11202,7 @@ void Texstudio::changeSecondaryIconSize(int value)
 	int iconWidth=qRound(value*scale);
 
 	centralToolBar->setIconSize(QSize(iconWidth, iconWidth));
-    QList<QTabBar*>lst=this->findChildren<QTabBar*>(Qt::FindDirectChildrenOnly);
+    QList<QTabBar*>lst=this->findChildren<QTabBar*>(QString(),Qt::FindDirectChildrenOnly);
     foreach(QTabBar* tb,lst){
         tb->setIconSize(QSize(iconWidth, iconWidth));
     }
@@ -11362,7 +11362,7 @@ void Texstudio::openBugsAndFeatures() {
  * \brief manipulate QMainWindowTabBar which contains the tabbed QDockWidget to only show icons
  */
 void Texstudio::maniplateDockingTabBars() {
-    QList<QTabBar*>lst=this->findChildren<QTabBar*>(Qt::FindDirectChildrenOnly);
+    QList<QTabBar*>lst=this->findChildren<QTabBar*>(QString(),Qt::FindDirectChildrenOnly);
     const double dpi=QGuiApplication::primaryScreen()->logicalDotsPerInch();
     const double scale=dpi/96;
     const int iconSize = qRound(configManager.guiSecondaryToolbarIconSize*scale);
@@ -11411,7 +11411,7 @@ void Texstudio::addDock(const QString &name,const QString &iconName,const QStrin
  */
 void Texstudio::toggleDocks(bool visible)
 {
-    QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(Qt::FindDirectChildrenOnly);
+    QList<QDockWidget*>lst=this->findChildren<QDockWidget*>(QString(),Qt::FindDirectChildrenOnly);
     const QStringList hiddenDocks=hiddenLeftPanelWidgets.split("|");
     foreach(QDockWidget* dw,lst){
         if(hiddenDocks.contains(dw->objectName())){
