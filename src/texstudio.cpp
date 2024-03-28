@@ -1318,6 +1318,7 @@ void Texstudio::setupMenus()
 	act = newManagedAction(submenu, "statusbar", tr("Statusbar"), SLOT(showStatusbar()));
 	act->setCheckable(true);
 	act->setChecked(configManager.getOption("View/ShowStatusbar").toBool());
+    newManagedAction(submenu, "resetdocks", tr("Reset Sidepanel/docks"), SLOT(resetDocks()));
 
 	newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), SLOT(enlargeEmbeddedPDFViewer()));
 	newManagedAction(menu, "shrinkPDF", tr("Show embedded PDF small"), SLOT(shrinkEmbeddedPDFViewer()));
@@ -1423,7 +1424,6 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "checkcwls", tr("Check Active Completion Files"), SLOT(checkCWLs()));
     newManagedAction(menu, "checklt", tr("Check LanguageTool"), SLOT(checkLanguageTool()));
 	newManagedAction(menu, "bugreport", tr("Bugs Report/Feature Request"), SLOT(openBugsAndFeatures()));
-    newManagedAction(menu, "bugreport2", tr("test"), SLOT(maniplateDockingTabBars()));
 	newManagedAction(menu, "appinfo", tr("About TeXstudio..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 
 	//additional elements for development
@@ -11398,10 +11398,12 @@ void Texstudio::addDock(const QString &name,const QString &iconName,const QStrin
     dock->setTitleBarWidget(lbl);
     m_dockIcons.insert(name,iconName);
     addDockWidget(Qt::LeftDockWidgetArea, dock);
-    if(m_firstDockWidget)
+    if(m_firstDockWidget){
         tabifyDockWidget(m_firstDockWidget,dock);
-    else
+        m_docksOrder.append(dock);
+    } else {
         m_firstDockWidget=dock;
+    }
     connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
 }
 /*!
@@ -11420,6 +11422,17 @@ void Texstudio::toggleDocks(bool visible)
             dw->setVisible(visible);
         }
     }
+}
+/*!
+ * \brief reset docks to default order (tabified,left hand side)
+ */
+void Texstudio::resetDocks()
+{
+    addDockWidget(Qt::LeftDockWidgetArea, m_firstDockWidget);
+    foreach(QDockWidget* dw,m_docksOrder){
+        tabifyDockWidget(m_firstDockWidget,dw);
+    }
+    m_firstDockWidget->raise();
 }
 /*!
     \brief call updateTOC & updateStructureLocally as only one call works with a signal

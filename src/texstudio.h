@@ -165,6 +165,7 @@ private:
 	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
     QMap<QString, QString> m_dockIcons;
+    QList<QDockWidget*> m_docksOrder;
 
     //StructureTreeView *structureTreeView;
     QTreeWidget *structureTreeWidget;
@@ -732,6 +733,7 @@ public slots:
     void maniplateDockingTabBars();
     void addDock(const QString &name, const QString &iconName, const QString &title, QWidget *wgt);
     void toggleDocks(bool visible);
+    void resetDocks();
 
 signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
