@@ -11295,6 +11295,7 @@ void Texstudio::paletteChanged(const QPalette &palette){
         }
         setupMenus(); // reload actions for new icons !
         setupDockWidgets();
+        maniplateDockingTabBars();
         setStructureSectionIcons();
         updateStatusBarIcons();
         updateAllTOCs();
