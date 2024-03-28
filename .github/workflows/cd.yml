@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 env:
-  OSX_QT_VERSION: 6.6.2
+  OSX_QT_VERSION: 6.6.3
   OSX_POPPLER_VERSION: 24.03.0
   OSX_QUAZIP_VERSION: 1.4
 
