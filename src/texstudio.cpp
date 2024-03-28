@@ -349,6 +349,12 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	restoreState(windowstate, 0);
 	//workaround as toolbar central seems not be be handled by windowstate
 	centralToolBar->setVisible(configManager.centralVisible);
+    //check if config was written before txs 4.8.0, resetDock if yes
+    QSettings *config=configManager.getSettings();
+    QString txsVersionConfigWritten=config->value("version/written_by_TXS_version").toString();
+    if(Version::compareStringVersion(txsVersionConfigWritten,"4.8.0")==Version::Lower){
+        resetDocks();
+    }
 
 	createStatusBar();
 	completer = nullptr;
