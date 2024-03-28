@@ -1,10 +1,7 @@
 # CHANGELOG
 ## TeXstudio 4.8.0
 
-- 
-
-## TeXstudio 4.7.4
-
+- use moveable/**splitable** docks for sidepanel
 - add basic syntax highlighting for latex3 code
 - fix handling CJK characters in pdf on OSX [#3558](https://github.com/texstudio-org/texstudio/issues/3558)
 - fix rare crash [#3556](https://github.com/texstudio-org/texstudio/issues/3556)
