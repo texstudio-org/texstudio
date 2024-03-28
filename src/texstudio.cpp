@@ -600,21 +600,8 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 		list->setObjectName("tags/" + tagFile.left(tagFile.indexOf("_tags.xml")));
 		UtilsUi::enableTouchScrolling(list);
 		connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertXmlTag(QListWidgetItem*)));
-        QDockWidget *dock = new QDockWidget("", this);
-        dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-        dock->setFeatures(QDockWidget::DockWidgetMovable);
-        dock->setWidget(list);
-        dock->setObjectName(id);
-        QLabel *lbl=new QLabel(text);
-        dock->setTitleBarWidget(lbl);
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        tabifyDockWidget(m_firstDockWidget,dock);
-        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
-        //leftPanel->addWidget(list, id, text, iconName);
-	} else {
-        QLabel *lbl=new QLabel(text);
-        oldDock->setTitleBarWidget(lbl);
-	}
+        addDock(id,iconName,text,list);
+    }
 }
 
 /*!
@@ -650,20 +637,7 @@ void Texstudio::addMacrosAsTagList()
     UtilsUi::enableTouchScrolling(list);
     connect(list, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(insertFromTagList(QListWidgetItem*)),Qt::UniqueConnection);
     if(addToPanel){
-        QDockWidget *dock = new QDockWidget("", this);
-        dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-        dock->setFeatures(QDockWidget::DockWidgetMovable);
-        dock->setWidget(list);
-        dock->setObjectName("txs-macro");
-        QLabel *lbl=new QLabel(tr("Macros"));
-        dock->setTitleBarWidget(lbl);
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        tabifyDockWidget(m_firstDockWidget,dock);
-        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
-        //leftPanel->addWidget(list, "txs-macros", tr("Macros"), getRealIconFile("executeMacro"));
-    }else{
-        QLabel *lbl=new QLabel(tr("Macros"));
-        oldDock->setTitleBarWidget(lbl);
+        addDock("txs-macro","executeMacro",tr("Macros"),list);
     }
 }
 
@@ -701,18 +675,7 @@ void Texstudio::setupDockWidgets()
         structureTreeWidget->setHeaderHidden(true);
         structureTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         structureTreeWidget->installEventFilter(this);
-        m_firstDockWidget = new QDockWidget("", this);
-        m_firstDockWidget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-        m_firstDockWidget->setFeatures(QDockWidget::DockWidgetMovable);
-        m_firstDockWidget->setWidget(structureTreeWidget);
-        m_firstDockWidget->setObjectName("structure");
-        QLabel *lbl=new QLabel(tr("Structure"));
-        m_firstDockWidget->setTitleBarWidget(lbl);
-        connect(m_firstDockWidget,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
-        addDockWidget(Qt::LeftDockWidgetArea, m_firstDockWidget);
-    } else {
-        QLabel *lbl=new QLabel(tr("Structure"));
-        m_firstDockWidget->setTitleBarWidget(lbl);
+        addDock("structure", "structure",tr("Structure"), structureTreeWidget);
     }
     if(!topTOCTreeWidget){
         topTOCTreeWidget = new QTreeWidget();
@@ -723,20 +686,7 @@ void Texstudio::setupDockWidgets()
         topTOCTreeWidget->setHeaderHidden(true);
         topTOCTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
         topTOCTreeWidget->installEventFilter(this);
-        QDockWidget *dock = new QDockWidget("", this);
-        dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-        dock->setFeatures(QDockWidget::DockWidgetMovable);
-        dock->setWidget(topTOCTreeWidget);
-        dock->setObjectName("TOC");
-        QLabel *lbl=new QLabel(tr("TOC"));
-        dock->setTitleBarWidget(lbl);
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        tabifyDockWidget(m_firstDockWidget,dock);
-        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
-    } else {
-        QDockWidget *dock=findChild<QDockWidget *>("TOC",Qt::FindDirectChildrenOnly);
-        QLabel *lbl=new QLabel(tr("TOC"));
-        dock->setTitleBarWidget(lbl);
+        addDock("TOC", "toc",tr("TOC"), topTOCTreeWidget);
     }
     QDockWidget *dock=findChild<QDockWidget *>("bookmarks",Qt::FindDirectChildrenOnly);
     if (!dock) {
@@ -744,19 +694,8 @@ void Texstudio::setupDockWidgets()
         bookmarks->setDarkMode(darkMode);
         connect(bookmarks, SIGNAL(loadFileRequest(QString)), this, SLOT(load(QString)));
         connect(bookmarks, SIGNAL(gotoLineRequest(int,int,LatexEditorView*)), this, SLOT(gotoLine(int,int,LatexEditorView*)));
-        QDockWidget *dock = new QDockWidget("", this);
-        dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-        dock->setFeatures(QDockWidget::DockWidgetMovable);
-        dock->setWidget(bookmarksWidget);
-        dock->setObjectName("bookmarks");
-        QLabel *lbl=new QLabel(tr("Bookmarks"));
-        dock->setTitleBarWidget(lbl);
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        tabifyDockWidget(m_firstDockWidget,dock);
-        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
+        addDock("bookmarks", "bookmarks",tr("Bookmarks"), bookmarksWidget);
     } else {
-        QLabel *lbl=new QLabel(tr("Bookmarks"));
-        dock->setTitleBarWidget(lbl);
         bookmarks->setDarkMode(darkMode);
     }
     dock=findChild<QDockWidget *>("symbols",Qt::FindDirectChildrenOnly);
@@ -765,20 +704,8 @@ void Texstudio::setupDockWidgets()
         symbolWidget->restoreSplitter(configManager.stateSymbolsWidget);
         symbolWidget->setSymbolSize(qRound(configManager.guiSymbolGridIconSize*scale));
         connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
-        QDockWidget *dock = new QDockWidget("", this);
-        dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-        dock->setFeatures(QDockWidget::DockWidgetMovable);
-        dock->setWidget(symbolWidget);
-        dock->setObjectName("symbols");
-        QLabel *lbl=new QLabel(tr("Symbols"));
-        dock->setTitleBarWidget(lbl);
-        addDockWidget(Qt::LeftDockWidgetArea, dock);
-        tabifyDockWidget(m_firstDockWidget,dock);
-        connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
-        //leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("symbols"));
+        addDock("symbols", "symbols",tr("Symbols"), symbolWidget);
     } else {
-        QLabel *lbl=new QLabel(tr("Symbols"));
-        dock->setTitleBarWidget(lbl);
         symbolListModel->setDarkmode(darkMode);
         symbolWidget->reloadData();
     }
@@ -11448,15 +11375,33 @@ void Texstudio::maniplateDockingTabBars() {
             if(dw==nullptr) continue;
 
             QString txt=dw->objectName();
-            QStringList names={"TOC","structure","bookmarks","symbols","brackets","pstricks","metapost","tikz","asymptote","beamer","xymatrix","txs-macro"};
-            QStringList icons={"toc","structure","bookmarks","symbols","leftright","pstricks","metapost","tikz","asymptote","beamer","xy","executeMacro"};
-            QStringList texts={tr("TOC"),tr("Structure"),tr("Bookmarks"),tr("Symbols"),tr("Brackets"),tr("PSTricks"),tr("MetaPost"),tr("TikZ"),tr("Asymptote"),tr("Beamer"),tr("xymatrix"),tr("Macro")};
-            int idx=names.indexOf(txt);
-            if(idx>=0){
-                tb->setTabIcon(i,getRealIcon(icons[idx]));
+            QString iconName=m_dockIcons.value(txt);
+            if(!iconName.isEmpty()){
+                tb->setTabIcon(i,getRealIcon(iconName));
             }
         }
     }
+}
+/*!
+ * \brief add widget as a dock on the left side
+ * register icon and name.
+ */
+void Texstudio::addDock(const QString &name,const QString &iconName,const QString &title,QWidget *wgt)
+{
+    QDockWidget *dock = new QDockWidget("", this);
+    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dock->setFeatures(QDockWidget::DockWidgetMovable);
+    dock->setWidget(wgt);
+    dock->setObjectName(name);
+    QLabel *lbl=new QLabel(title);
+    dock->setTitleBarWidget(lbl);
+    m_dockIcons.insert(name,iconName);
+    addDockWidget(Qt::LeftDockWidgetArea, dock);
+    if(m_firstDockWidget)
+        tabifyDockWidget(m_firstDockWidget,dock);
+    else
+        m_firstDockWidget=dock;
+    connect(dock,SIGNAL(visibilityChanged(bool)),this,SLOT(maniplateDockingTabBars()));
 }
 /*!
  * \brief toggle visibility of all docks

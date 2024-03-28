@@ -159,11 +159,12 @@ private:
 	QSplitter *centralVSplitter;
 	QFrame *centralFrame;
 	QToolBar *centralToolBar;
-    QDockWidget *m_firstDockWidget;
+    QDockWidget *m_firstDockWidget = nullptr;
     QAction *m_toggleDocksAction;
 	SymbolListModel *symbolListModel;
 	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
+    QMap<QString, QString> m_dockIcons;
 
     //StructureTreeView *structureTreeView;
     QTreeWidget *structureTreeWidget;
@@ -729,6 +730,7 @@ public slots:
 
 	void openBugsAndFeatures();
     void maniplateDockingTabBars();
+    void addDock(const QString &name, const QString &iconName, const QString &title, QWidget *wgt);
     void toggleDocks(bool visible);
 
 signals:
