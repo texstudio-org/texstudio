@@ -1,6 +1,6 @@
 # babel.sty
 # available from ctan
-# tbraun 4.11.2008; Matthew Bertucci 2024/01/07 for v24.1
+# tbraun 4.11.2008; Matthew Bertucci 2024/03/29 for v24.3
 
 #keyvals:\usepackage/babel#c
 %<language%>
@@ -338,6 +338,7 @@ select.write=#shift,keep,omit
 select.encoding=#off
 #endkeyvals
 
+\localebox{text}#*
 \fmtname#*
 
 \glqq
