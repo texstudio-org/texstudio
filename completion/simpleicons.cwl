@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/03/23 for v11.9.0
+# Matthew Bertucci 2024/03/29 for v11.10.0
 
 #include:iftex
 
@@ -23,6 +23,7 @@ abbrobotstudio
 abbvie
 aboutdotme
 abstract
+abusedotch
 academia
 accenture
 accusoft
@@ -171,6 +172,7 @@ antdesign
 antena3
 anycubic
 anydesk
+anytype
 aol
 apache
 apacheairflow
@@ -479,6 +481,7 @@ chedraui
 cheerio
 chef
 chemex
+chessdotcom
 chevrolet
 chianetwork
 chinaeasternairlines
@@ -600,6 +603,7 @@ coolermaster
 coop
 coppel
 cora
+coreldraw
 coronaengine
 coronarenderer
 corsair
@@ -628,6 +632,7 @@ crowdsource
 crunchbase
 crunchyroll
 cryengine
+cryptpad
 crystal
 csharp
 css3
@@ -672,6 +677,7 @@ datefns
 datocms
 datto
 davinciresolve
+dazhongdianping
 dazn
 dbeaver
 dblp
@@ -679,6 +685,7 @@ dbt
 dcentertainment
 debian
 decapcms
+decentraland
 dedge
 deepcool
 deepgram
@@ -917,6 +924,7 @@ firefoxbrowser
 fireship
 firewalla
 first
+fishshell
 fitbit
 fite
 fivem
@@ -989,6 +997,7 @@ furrynetwork
 futurelearn
 g2
 g2a
+g2g
 galaxus
 gameandwatch
 gamebanana
@@ -1277,6 +1286,7 @@ iledefrancemobilites
 imagedotsc
 imagej
 imdb
+imessage
 imgur
 immer
 immich
@@ -1295,6 +1305,7 @@ infracost
 ingress
 inkdrop
 inkscape
+inoreader
 insomnia
 inspire
 insta360
@@ -1679,6 +1690,7 @@ microsoftword
 microstation
 microstrategy
 midi
+migadu
 mikrotik
 milanote
 milvus
@@ -1841,6 +1853,7 @@ nuke
 numba
 numpy
 nunjucks
+nushell
 nutanix
 nuxtdotjs
 nvidia
@@ -2633,6 +2646,7 @@ tailwindcss
 taketwointeractivesoftware
 talend
 talenthouse
+talos
 tamiya
 tampermonkey
 taobao
@@ -2689,6 +2703,7 @@ thespritersresource
 thewashingtonpost
 thingiverse
 thinkpad
+thirdweb
 threadless
 threads
 threedotjs
@@ -2780,6 +2795,7 @@ turbosquid
 turkishairlines
 turso
 tutanota
+tv4play
 tvtime
 twilio
 twinkly
@@ -2882,6 +2898,7 @@ visualstudio
 visualstudioappcenter
 visualstudiocode
 vite
+vitepress
 vitess
 vitest
 vivaldi
