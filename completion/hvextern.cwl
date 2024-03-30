@@ -1,5 +1,5 @@
 # hvextern package
-# Matthew Bertucci 2024/03/25 for v0.40
+# Matthew Bertucci 2024/03/30 for v0.41
 
 #include:shellesc
 #include:xkeyval
@@ -41,7 +41,7 @@ BGpreamble=#%color
 BGbody=#%color
 BOpreamble=#%color
 BObody=#%color
-docType=#context,lua,pl,tex,latex,mp,py
+docType=#latex,mp,tex,py,pl,lua,java,context,sh,R
 caption={%<text%>}
 label=##l
 pages={%<page numbers%>}
@@ -76,7 +76,7 @@ align=%<alignment commands%>
 ExampleDir=%<name%>
 eps#true,false
 verbose#true,false
-compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua
+compiler=#mpost,tex,latex,luatex,python3,perl,lua,java,xetex,pdflatex,lualatex,xelatex,context,sh,texlua,Rscript
 aboveskip=##L
 belowpreambleskip=##L
 belowbodyskip=##L
