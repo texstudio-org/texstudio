@@ -1,5 +1,5 @@
 # thuthesis class
-# Matthew Bertucci 2023/05/16 for v7.4.0
+# Matthew Bertucci 2024/03/30 for v7.5.0
 
 #include:iftex
 #include:kvdefinekeys
@@ -144,7 +144,8 @@ main-language=#chinese,english
 language=#chinese,english
 system=#auto,mac,unix,windows
 font=#auto,times,termes,stix,xits,libertinus,newcm,lm,newtx,none
-cjk-font=#auto,windows,mac,mac-world,noto,fandol,none
+cjk-font=#auto,windows,windows-local,mac,mac-word,noto,fandol,none
+windows-font-dir=%<path%>
 output=#print,electronic
 statement-page-style=#auto,empty,plain
 #endkeyvals
