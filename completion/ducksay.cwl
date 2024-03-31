@@ -1,7 +1,6 @@
 # ducksay package
-# Matthew Bertucci 2022/10/10 for v2.6
+# Matthew Bertucci 2024/03/30 for v2.7
 
-#include:l3keys2e
 #include:array
 #include:grabbox
 
@@ -108,6 +107,7 @@ tux
 head-in
 platypus
 pig
+turtle
 frog
 snowman
 bunny
