@@ -439,6 +439,7 @@ protected slots:
     void insertFromTagList(QListWidgetItem *item);
 	void insertBib();
     void openFromExplorer(const QModelIndex &index);
+    void insertFromExplorer(bool visible);
 	void closeEnvironment();
 
 	void insertBibEntryFromAction();

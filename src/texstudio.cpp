@@ -726,6 +726,11 @@ void Texstudio::setupDockWidgets()
         fileView->setColumnHidden(2,true);
         fileView->setColumnHidden(3,true);
         fileView->setRootIndex(fileExplorerModel->index(QDir::currentPath()));
+        QAction *act=new QAction();
+        act->setText(tr("Insert filename"));
+        connect(act,&QAction::triggered,this,&Texstudio::insertFromExplorer);
+        fileView->addAction(act);
+        fileView->setContextMenuPolicy(Qt::ActionsContextMenu);
         connect(fileView,&QAbstractItemView::doubleClicked,this,&Texstudio::openFromExplorer);
         addDock("explorer", "folder_R90",tr("Files"), fileView);
     }
@@ -5265,6 +5270,18 @@ void Texstudio::openFromExplorer(const QModelIndex &index)
     if (fi.isFile() && fi.isReadable()) {
         openExternalFile(fi.absoluteFilePath());
     }
+}
+/*!
+ * \brief insert file from context menu in the file explorer (dock)
+ * \param index
+ */
+void Texstudio::insertFromExplorer(bool )
+{
+    auto index=fileView->currentIndex();
+    QFileInfo fi = fileExplorerModel->fileInfo(index);
+    const QString rootDir=fileExplorerModel->rootPath();
+    const QString fn=getRelativeFileName(fi.absolutePath(),rootDir);
+    insertText(fn);
 }
 
 void Texstudio::quickTabular(const QMimeData *d)
