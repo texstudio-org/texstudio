@@ -715,6 +715,20 @@ void Texstudio::setupDockWidgets()
         symbolListModel->setDarkmode(darkMode);
         symbolWidget->reloadData();
     }
+    // setup a dock widget with a file explorer
+    dock=findChild<QDockWidget *>("explorer",Qt::FindDirectChildrenOnly);
+    if(!dock){
+        fileView=new QTreeView();
+        fileExplorerModel = new QFileSystemModel(this);
+        fileExplorerModel->setRootPath(QDir::currentPath());
+        fileView->setModel(fileExplorerModel);
+        fileView->setColumnHidden(1,true);
+        fileView->setColumnHidden(2,true);
+        fileView->setColumnHidden(3,true);
+        fileView->setRootIndex(fileExplorerModel->index(QDir::currentPath()));
+        connect(fileView,&QAbstractItemView::doubleClicked,this,&Texstudio::openFromExplorer);
+        addDock("explorer", "folder_R90",tr("Files"), fileView);
+    }
 
     addTagList("brackets", getRealIconFile("leftright_R90"), tr("Left/Right Brackets"), "brackets_tags.xml");
     addTagList("pstricks", getRealIconFile("pstricks_R90"), tr("PSTricks Commands"), "pstricks_tags.xml");
@@ -1833,14 +1847,22 @@ void Texstudio::currentEditorChanged()
 #ifdef INTERNAL_TERMINAL
 	outputView->getTerminalWidget()->setCurrentFileName(getCurrentFileName());
 #endif
-	if (!currentEditorView()) return;
+    LatexEditorView *edView = currentEditorView();
+    if (!edView) return;
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
-	editorSpellerChanged(currentEditorView()->getSpeller());
-	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
-	currentEditorView()->checkRTLLTRLanguageSwitching();
+    editorSpellerChanged(edView->getSpeller());
+    edView->lastUsageTime = QDateTime::currentDateTime();
+    edView->checkRTLLTRLanguageSwitching();
+
     // update global toc
     updateTOCs();
+    // set dock file explorer to current file, root to root document folder
+    LatexDocument *doc=edView->getDocument();
+    QFileInfo fi=doc->getFileInfo();
+    const QString rootDir=fi.absoluteDir().path();
+    fileExplorerModel->setRootPath(rootDir);
+    fileView->setRootIndex(fileExplorerModel->index(rootDir));
 }
 
 /*!
@@ -5231,7 +5253,18 @@ void Texstudio::insertBib()
 	insertTag(tag, 0, 1);
 	outputView->setMessage(QString("The argument to \\bibliography refers to the bib file (without extension)\n") +
 	                       "which should contain your database in BibTeX format.\n" +
-	                       "TeXstudio inserts automatically the base name of the TeX file");
+                           "TeXstudio inserts automatically the base name of the TeX file");
+}
+/*!
+ * \brief open file which was double clicked in the file explorer (dock)
+ * \param index
+ */
+void Texstudio::openFromExplorer(const QModelIndex &index)
+{
+    QFileInfo fi = fileExplorerModel->fileInfo(index);
+    if (fi.isFile() && fi.isReadable()) {
+        openExternalFile(fi.absoluteFilePath());
+    }
 }
 
 void Texstudio::quickTabular(const QMimeData *d)

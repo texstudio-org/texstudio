@@ -51,6 +51,7 @@
 #include "help.h"
 
 #include <QProgressDialog>
+#include <QFileSystemModel>
 
 /*!
  * \file texstudio.h
@@ -163,6 +164,8 @@ private:
     QAction *m_toggleDocksAction;
 	SymbolListModel *symbolListModel;
 	SymbolWidget *symbolWidget;
+    QTreeView *fileView; ///< file explorer in docks
+    QFileSystemModel *fileExplorerModel = nullptr;
 	QString hiddenLeftPanelWidgets;
     QMap<QString, QString> m_dockIcons;
     QList<QDockWidget*> m_docksOrder;
@@ -435,6 +438,7 @@ protected slots:
     void insertTextFromAction();
     void insertFromTagList(QListWidgetItem *item);
 	void insertBib();
+    void openFromExplorer(const QModelIndex &index);
 	void closeEnvironment();
 
 	void insertBibEntryFromAction();
