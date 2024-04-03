@@ -111,7 +111,7 @@ set(TRANSLATION_FILES
 )
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
     message(STATUS "Generate translation source option.")
-    qt6_add_lupdate(texstudio TS_FILES ${TRANSLATION_FILES})
+    qt6_add_lupdate(texstudio TS_FILES ${TRANSLATION_FILES} SOURCES ${SOURCE_FILES})
 endif()
 
 if(WIN32)
