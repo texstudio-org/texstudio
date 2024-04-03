@@ -1,5 +1,5 @@
 # minim-mp package
-# Matthew Bertucci 2024/03/06 for v1.5
+# Matthew Bertucci 2024/04/03 for v1.6
 
 #include:luatex
 
@@ -26,6 +26,10 @@ scaled
 double
 decimal
 #endkeyvals
+\everymplib{metapost code}
+\everymplib[instance name]{metapost code}
+\everyendmplib{metapost code%definition}
+\everyendmplib[instance name]{metapost code}
 #endif
 
 # from minim-mp.sty
