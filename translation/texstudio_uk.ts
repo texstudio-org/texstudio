@@ -2,16 +2,6 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.ui" line="14"/>
-        <source>About TeXstudio</source>
-        <translation>Про TeXstudio</translation>
-    </message>
-    <message>
-        <location filename="../src/aboutdialog.ui" line="81"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
         <location filename="../src/aboutdialog.cpp" line="59"/>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
         <translation>Використовується Qt версії %1, скомпільована з допомогою Qt %2 %3</translation>
@@ -105,67 +95,6 @@
 <context>
     <name>ArrayDialog</name>
     <message>
-        <location filename="../src/arraydialog.ui" line="31"/>
-        <source>Num of Columns</source>
-        <translation>Число стовпців</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.ui" line="48"/>
-        <source>Columns Alignment</source>
-        <translation>Вирівнювання стовпців</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.ui" line="62"/>
-        <source>Environment</source>
-        <translation>Оточення</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.ui" line="75"/>
-        <source>In case of an array environment sets the alignment for the column of the currently selected cell.
-For matrix* and the like (package mathtools) sets the alignment for all columns at once.</source>
-        <translation>У випадку середовища array задає вирівнювання для стовпчика поточної виділеної комірки.
-Для matrix* і подібних середовищ (пакет mathtools) задає вирівнювання для всіх стовпців одразу.</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.ui" line="86"/>
-        <source>Num of Rows</source>
-        <translation>Число рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.ui" line="96"/>
-        <source>Choose environment to be created (s. window title).
-Package amsmath supports alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
-Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</source>
-        <translation>Виберіть середовище, яке буде створено (див. заголовок вікна).
-Пакет amsmath підтримує alignedat, matrix, pmatrix, bmatrix, Bmatrix, vmatrix, Vmatrix.
-Пакет mathtools підтримує alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vmatrix*, Vmatrix*.</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.ui" line="128"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.ui" line="135"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.h" line="35"/>
-        <source>Center</source>
-        <translation>Посередині</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.h" line="35"/>
-        <source>Left</source>
-        <translation>Ліворуч</translation>
-    </message>
-    <message>
-        <location filename="../src/arraydialog.h" line="35"/>
-        <source>Right</source>
-        <translation>Праворуч</translation>
-    </message>
-    <message>
         <location filename="../src/arraydialog.cpp" line="108"/>
         <source>Quick Array</source>
         <translation>Швидкий масив</translation>
@@ -173,36 +102,6 @@ Package mathtools supports alignedat, matrix*, pmatrix*, bmatrix*, Bmatrix*, vma
 </context>
 <context>
     <name>BibTeXDialog</name>
-    <message>
-        <location filename="../src/bibtexdialog.ui" line="20"/>
-        <source>Insert in File:</source>
-        <translation>Вставити у файл:</translation>
-    </message>
-    <message>
-        <location filename="../src/bibtexdialog.ui" line="27"/>
-        <source>Entry Type:</source>
-        <translation>Тип запису:</translation>
-    </message>
-    <message>
-        <location filename="../src/bibtexdialog.ui" line="50"/>
-        <source>Fields:</source>
-        <translation>Поля:</translation>
-    </message>
-    <message>
-        <location filename="../src/bibtexdialog.ui" line="67"/>
-        <source>Field</source>
-        <translation>Поле</translation>
-    </message>
-    <message>
-        <location filename="../src/bibtexdialog.ui" line="72"/>
-        <source>Value</source>
-        <translation>Величина</translation>
-    </message>
-    <message>
-        <location filename="../src/bibtexdialog.ui" line="80"/>
-        <source>Insert Empty, Optional Fields</source>
-        <translation>Вставити порожні, необов&apos;язкові поля</translation>
-    </message>
     <message>
         <location filename="../src/bibtexdialog.cpp" line="20"/>
         <location filename="../src/bibtexdialog.cpp" line="77"/>
@@ -699,36 +598,6 @@ Please change your configuration and define command lists only at &apos;Options 
 <context>
     <name>CleanDialog</name>
     <message>
-        <location filename="../src/cleandialog.ui" line="14"/>
-        <source>Clean</source>
-        <translation>Очищення</translation>
-    </message>
-    <message>
-        <location filename="../src/cleandialog.ui" line="20"/>
-        <source>Scope</source>
-        <translation>Область пошуку</translation>
-    </message>
-    <message>
-        <location filename="../src/cleandialog.ui" line="30"/>
-        <source>File Extensions</source>
-        <translation>Розширення файлу</translation>
-    </message>
-    <message>
-        <location filename="../src/cleandialog.ui" line="42"/>
-        <source>Restore default</source>
-        <translation>Відновити усталення</translation>
-    </message>
-    <message>
-        <location filename="../src/cleandialog.ui" line="58"/>
-        <source>Delete the auxiliary files generated by LaTeX:</source>
-        <translation>Вилучити допоміжні файли, створені у LaTeX:</translation>
-    </message>
-    <message>
-        <location filename="../src/cleandialog.ui" line="88"/>
-        <source>Files to Delete</source>
-        <translation>Файли для вилучення</translation>
-    </message>
-    <message>
         <location filename="../src/cleandialog.cpp" line="57"/>
         <source>Project (Master file folder and all subfolders)</source>
         <translation>Проект (тека основного файлу і всі підтеки)</translation>
@@ -772,2068 +641,40 @@ Please change your configuration and define command lists only at &apos;Options 
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../src/configdialog.ui" line="14"/>
-        <source>Configure TeXstudio</source>
-        <translation>Налаштування TeXstudio</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4892"/>
-        <source>Show Advanced Options</source>
-        <translation>Показати додаткові параметри</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4918"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4928"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="166"/>
-        <location filename="../src/configdialog.ui" line="2069"/>
-        <source>Appearance</source>
-        <translation>Вигляд</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="238"/>
-        <location filename="../src/configdialog.ui" line="3724"/>
-        <source>Language:</source>
-        <translation>Мова:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="251"/>
-        <source>Font:</source>
-        <translation>Шрифт:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="283"/>
-        <location filename="../src/configdialog.ui" line="1808"/>
-        <location filename="../src/configdialog.ui" line="4819"/>
-        <source>Font Size:</source>
-        <translation>Розмір шрифту:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="259"/>
-        <source>Classic</source>
-        <translation>Класична</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="264"/>
-        <source>Modern</source>
-        <translation>Сучасна</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="215"/>
-        <source>Style:</source>
-        <translation>Стиль:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="305"/>
-        <source>Use System Theme Icons</source>
-        <translation>Використовувати системні піктограми</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="182"/>
-        <location filename="../src/configdialog.ui" line="4791"/>
-        <source>Color Scheme:</source>
-        <translation>Схема кольорів:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="295"/>
-        <source>Ignore Most System Colors</source>
-        <translation>Нехтувати більшістю системних кольорів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="447"/>
-        <source>MRU Document Chooser</source>
-        <translation>Вибирач часто вживаних документів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="269"/>
-        <source>Modern - dark</source>
-        <translation>Сучасна - темна</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="359"/>
-        <source>Files</source>
-        <translation>Файли</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="410"/>
-        <source>Max. Recent Documents:</source>
-        <translation>Макс. число останніх документів:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="381"/>
-        <source>Remember selected file filter in open/save dialog </source>
-        <translation>Пам&apos;ятати фільтр виділення файлів при відкритті/збереженні</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="430"/>
-        <source>Use system file dialogs</source>
-        <translation>Використовувати діалоги з системного файлу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="460"/>
-        <source>Session</source>
-        <translation>Сесія</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="469"/>
-        <source>Restore Previous Session at Startup</source>
-        <translation>Відновити попередній сеанс при запуску</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="476"/>
-        <source>Store relative paths</source>
-        <translation>Зберігати відносні шляхи</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="489"/>
-        <source>Startup</source>
-        <translation>Запуск</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="495"/>
-        <source>Check LaTeX Configuration</source>
-        <translation>Перевірити конфігурацію LaTeX</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="505"/>
-        <source>Update</source>
-        <translation>Оновлення</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="517"/>
-        <source>Defines the kinds of update notifications you will receive:
-- Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
-- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation>Визначає тип одержуваних сповіщень про оновлення:
- — Стабільні версії: виберіть цей тип, якщо стабільність найважливіша для вас.
- — Кандидати-версії: близькі до майбутнього стабільного випуску за функціональністю і стабільністю. Виберіть цей тип, щоб отримувати попередні версії майбутніх випусків і допомогти нам тестуванням версії перед її виходом як офіційної. (Також отримання сповіщень про стабільні версії).
- — Версії для розробників: містять останню функціональність, але можуть бути нестабільними. (Отримання сповіщень також про стабільні версії і версії-кандидати).</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="524"/>
-        <source>Stable Releases</source>
-        <translation>Стабільні версії</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="529"/>
-        <source>Release Candidates</source>
-        <translation>Версії-кандидати</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="534"/>
-        <source>Development Versions</source>
-        <translation>Версії для розробників</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="555"/>
-        <source>Check Now</source>
-        <translation>Перевірити зараз</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="582"/>
-        <source>Last Checked:</source>
-        <translation>Остання перевірка:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="589"/>
-        <source> days</source>
-        <translation>днів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="602"/>
-        <source>Automatically check every</source>
-        <translation>Автоматично перевіряти кожні</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="609"/>
-        <source>Update Level:</source>
-        <translation>Рівень оновлення:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="664"/>
-        <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
-        <translation>Команди (% - назва файлу без розширення;   @ - номер рядка;   ? - параметри розширеної назви файлу)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="671"/>
-        <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
-        <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Спеціальні символи:&lt;/span&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="678"/>
-        <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][pathname parts][terminating char]&lt;/b&gt;: formated filename</source>
-        <translation>&lt;b&gt;%&lt;/b&gt;: назва файлу без розширення; &lt;b&gt;@&lt;/b&gt;: номер рядка; &lt;b&gt;?[селектор][частини назви шляху][кінцевий символ]&lt;/b&gt;: форматована назва файлу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="704"/>
-        <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
-</source>
-        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; і &lt;b&gt;??&lt;/b&gt; стає: %, @ або ?
-</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="785"/>
-        <source>Meta Commands</source>
-        <translation>Метакоманди</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="798"/>
-        <source>User Commands</source>
-        <translation>Команди користувача</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="808"/>
-        <source>Build Options</source>
-        <translation>Параметри збирання</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="820"/>
-        <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation>Виконати txs:///recompile-bibliography, якщо файли бібліографії були змінені.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="823"/>
-        <source>Check and update bibliography before compiling</source>
-        <translation>Перевірити та оновити бібліографію перед компіляцією</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="830"/>
-        <source>Show messages when starting compiling</source>
-        <translation>Показувати повідомлення при початку компіляції</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="855"/>
-        <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation>Не запускати новий примірник переглядача, якщо dvi/ps/pdf файл вже відкрито</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="864"/>
-        <source>Show stdout:</source>
-        <translation>Показувати стандатний вивід (stdout): </translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="872"/>
-        <location filename="../src/configdialog.ui" line="2317"/>
-        <location filename="../src/configdialog.ui" line="4000"/>
-        <source>Never</source>
-        <translation>Ніколи</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="877"/>
-        <source>Only For User Commands</source>
-        <translation>Лише для команд користувача</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="882"/>
-        <source>Always (If not redirected &gt; /dev/null)</source>
-        <translation>Завжди (якщо не має перенаправлення &gt; /dev/null)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="890"/>
-        <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation>Деякі конструкції LaTeX (наприклад, посилання) для правильного відображення вимагають кількаразової компіляції.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="893"/>
-        <source>Maximum Compile Repetitions:</source>
-        <translation>Макс. число повторень компіляції:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="949"/>
-        <source>Commands ($PATH)</source>
-        <translation>Команди ($PATH)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="956"/>
-        <source>PDF File</source>
-        <translation>Файл PDF</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1000"/>
-        <source>Log File</source>
-        <translation>Файл журналу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1009"/>
-        <source>Additional Search Paths:</source>
-        <translation>Додаткові шляхи пошуку:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1016"/>
-        <source>Replaces environment variables in commands.The behavior is OS-specific.
-
-Windows:
-Variables are written as: %MYVAR%. They are case-insensitive.
-
-Linux, OS X:
-Variables are written as: $MYVAR. They are case-sensitive.
-</source>
-        <translation>Замінює змінні оточення у командах. Поводження залежить від типу ОС.
-
-Windows:
-Змінні записуються як: %MYVAR%. Не чутливі до регістру.
-
-Linux, OS X:
-Змінні записуються як: $MYVAR. Чутливі до регістру.
-</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1026"/>
-        <source>Replace Environment Variables</source>
-        <translation>Замінити змінні оточення</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1033"/>
-        <source>Show log in case of compile error</source>
-        <translation>Показати журнал у випадку помилки компіляції</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1040"/>
-        <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation>Це дозволяє перевизначити команди за допомогою коментаря з стилем &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; та &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. За подробицями див. цей посібник.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1043"/>
-        <source>Interpret command definition in magic comments</source>
-        <translation>Інтерпретувати означення команди у чарівних коментарях</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1073"/>
         <location filename="../src/configdialog.cpp" line="534"/>
         <source>Shortcuts</source>
         <translation>Скорочення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1080"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
-Then you can select a new shortcut by one of the following ways:
-(1) select from the dropdown list
-(2) hit the shortcut combination
-(3) type the string of the shortcut</source>
-        <translation>Для зміни двічі клацніть на записи в &apos;Поточне скорочення&apos; або &apos;Додаткове скорочення&apos;.
-Тоді ви зможете вибрати нове скорочення одним з наступних способів:
-(1) вибрати зі спадного списку
-(2) натиснути комбінацію клавіш
-(3) ввести рядок для скорочення клавіш</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1097"/>
-        <location filename="../src/configdialog.ui" line="1344"/>
-        <source>1</source>
-        <translation>1</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1102"/>
-        <source>2</source>
-        <translation>2</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1107"/>
-        <source>3</source>
-        <translation>3</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1112"/>
-        <source>4</source>
-        <translation>4</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1120"/>
-        <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation>Команда закрити елемент застосовується до певного списку елементів інтерфейсу (не всі перераховані тут). Буде закритий перший видимий елемент. З цим параметром ви можете виключити деякі параметри із закриття.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1123"/>
-        <source>Close Element (Esc)</source>
-        <translation>Закрити елемент (Esc)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1129"/>
-        <source>Close Log-View</source>
-        <translation>Закрити перегляд журналу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1136"/>
-        <source>Close Embedded Viewer</source>
-        <translation>Закрити вбудований переглядач</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1143"/>
-        <source>Close Full Screen Mode</source>
-        <translation>Закрити повноекранний режим</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1153"/>
-        <source>Show Shortcuts in Tooltips</source>
-        <translation>Показати ярлики в підказках</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1176"/>
         <location filename="../src/configdialog.cpp" line="535"/>
         <source>Menus</source>
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1183"/>
-        <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation>Тут наведені елементи меню, які можна приховати або змінити.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1196"/>
-        <source>Name</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1201"/>
         <location filename="../src/configdialog.cpp" line="523"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1206"/>
-        <source>Slot</source>
-        <translation>Слот</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1214"/>
-        <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation>Задайте, щоб вищевказаний список показував усі елементи меню або тільки часто змінювані.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1217"/>
-        <source>Show All</source>
-        <translation>Показувати усе</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1240"/>
-        <source>Toolbar Customization</source>
-        <translation>Панелі інструментів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1249"/>
-        <source>This shows all actions on the currently edited toolbar.</source>
-        <translation>Показує усі дії із редагованої панелі інструментів.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1274"/>
-        <source>This adds an action to the toolbar.</source>
-        <translation>Додає дію у панель інструментів.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1288"/>
-        <source>This removes an action from the toolbar.</source>
-        <translation>Вилучає дію із панелі інструментів.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1317"/>
-        <source>Here you can choose a toolbar to modify.</source>
-        <translation>Тут можна вибрати панель інструментів для видозміни.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1324"/>
-        <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation>Тут можна вибрати список команд, які здатні відображатися на панелі інструментів.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1331"/>
-        <source>This shows available actions to map on a toolbar.</source>
-        <translation>Показує дії, доступні для відображення на панелі інструментів.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1502"/>
-        <source>Secondary Toolbars</source>
-        <translation>Другорядні панелі інструментів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1424"/>
-        <location filename="../src/configdialog.ui" line="1431"/>
-        <location filename="../src/configdialog.ui" line="1488"/>
-        <location filename="../src/configdialog.ui" line="1541"/>
-        <source>Reset</source>
-        <translation>Оновити</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1495"/>
-        <source>Symbol Grid</source>
-        <translation>Таблиця символів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1417"/>
-        <source>Main Toolbar</source>
-        <translation>Головна панель інструментів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1460"/>
-        <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation>Змінює масштаб горизонтальних панелей інструментів (для дисплеїв з високою роздільною здатністю).</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1386"/>
-        <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation>Змінює масштаб таблиці символів (для дисплеїв з високою роздільною здатністю).</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1438"/>
-        <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation>Змінює масштаб вертикальних панелей інструментів (для дисплеїв з високою роздільною здатністю).</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1629"/>
         <location filename="../src/configdialog.cpp" line="538"/>
         <location filename="../src/configmanager.cpp" line="1512"/>
         <source>Editor</source>
         <translation>Редактор</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1641"/>
-        <source>Inline Checking:</source>
-        <translation>Вбудована перевірка:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1677"/>
-        <source>Check non tex files</source>
-        <translation>Перевіряти не-tex файли</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1687"/>
-        <source>Scan LaTeX distribution for installed packages</source>
-        <translation>Сканувати дистрибутив LaTeX за встановленими пакетами</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1697"/>
-        <source>Folding</source>
-        <translation>Згортання коду</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1704"/>
-        <source>Replace Indentation Tab by Spaces</source>
-        <translation>Замінити відступ табуляцією на пробіли</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1711"/>
-        <location filename="../src/configdialog.ui" line="4805"/>
-        <source>Font Family:</source>
-        <translation>Гарнітура шрифту:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1718"/>
-        <source>Replace Double Quotes:</source>
-        <translation>Заміна подвійних лапок:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1731"/>
-        <source>Default Font Encoding:</source>
-        <translation>Усталене кодування:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1738"/>
-        <source>Indentation Mode:</source>
-        <translation>Режим відступу:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1745"/>
-        <source>Automatic Encoding Detection:</source>
-        <translation>Автоматичне виявлення кодування:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1755"/>
-        <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
-        <translation>Аналізувати LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1762"/>
-        <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
-        <translation>можна вибирати тільки між utf-16/utf-8 та ISO 8859-1!</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1765"/>
-        <source>Analyze Characters</source>
-        <translation>Аналізувати символи</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1789"/>
-        <location filename="../src/configdialog.ui" line="4081"/>
-        <location filename="../src/configdialog.ui" line="4178"/>
-        <source>%</source>
-        <translation>%</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1815"/>
-        <source>Line Spacing:</source>
-        <translation>Відстань між рядками:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1826"/>
-        <source>No Replacement</source>
-        <translation>Не замінювати</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1831"/>
-        <source>English Quotes:  `` &apos;&apos;</source>
-        <translation>Англійські лапки:  `` &apos;&apos;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1836"/>
-        <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation>Французькі лапки:  &quot;&lt; &quot;&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1841"/>
-        <source>German Quotes:  &quot;` &quot;&apos;</source>
-        <translation>Німецькі лапки:  &quot;` &quot;&apos;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1846"/>
-        <source>French Quotes (babel): \og{} \fg{}</source>
-        <translation>Французькі лапки (babel): \og{} \fg{}</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1851"/>
-        <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
-        <translation>Обернені французькі лапки: &quot;&gt; &quot;&lt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1856"/>
-        <source>Package csquotes: \enquote{  }</source>
-        <translation>Пакет csquotes: \enquote{  }</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1861"/>
-        <source>English Quotes (unicode): “ ”</source>
-        <translation>Англійські лапки (юнікод): “ ”</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1866"/>
-        <source>Polish Quotes: ,, &apos;&apos;</source>
-        <translation>Польські лапки: ,, &apos;&apos;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1871"/>
-        <source>Polish Quotes (unicode): „ ”</source>
-        <translation>Польські лапки (юнікод): „ ”</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1879"/>
-        <source>Show Only Monospaced Fonts</source>
-        <translation>Показувати тільки шрифт фіксованої ширини</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1890"/>
-        <source>Ignore Indentation</source>
-        <translation>Нехтувати відступом</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1895"/>
-        <source>Keep Indentation</source>
-        <translation>Зберігати відступ</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1900"/>
-        <source>Indent and Unindent Automatically</source>
-        <translation>Автоматично створювати або вилучати відступ</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1920"/>
-        <source>Spelling</source>
-        <translation>Правопис</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1927"/>
-        <source>Grammar</source>
-        <translation>Граматика</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1934"/>
-        <source>Citations</source>
-        <translation>Цитати</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1941"/>
-        <source>References</source>
-        <translation>Посилання</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1948"/>
-        <source>Syntax</source>
-        <translation>Синтаксис</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1955"/>
-        <source>Package</source>
-        <translation>Пакет</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1965"/>
-        <source>Replace Tab in Text by Spaces</source>
-        <translation>Замінити табуляцію у тексті на пробіли</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1999"/>
-        <source>Automatically load included files</source>
-        <translation>Автоматично завантажувати включені файли</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1972"/>
-        <source>Hide grammar errors in non-text environments</source>
-        <translation>Приховати граматичні помилки поза текстом</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1982"/>
-        <source>Hide spelling errors in non-text environments</source>
-        <translation>Приховати правописні помилки поза текстом</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1992"/>
-        <source>Remove Trailing Whitespace on Save</source>
-        <translation>Видалити завершальні пробіли при збереженні</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1651"/>
-        <source>Show Line Numbers:</source>
-        <translation>Показувати номери рядків:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1659"/>
-        <source>No Line Numbers</source>
-        <translation>Без номерів рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1664"/>
-        <source>All Line Numbers</source>
-        <translation>Усі номери рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1669"/>
-        <source>Only Important Line Numbers</source>
-        <translation>Лише важливі номери рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2092"/>
-        <source>Show State Panel</source>
-        <translation>Показувати панель стану</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2104"/>
-        <source>Tab Width:</source>
-        <translation>Ширина табуляції:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2139"/>
-        <source>Show Whitespace</source>
-        <translation>Показувати символ пробілу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2152"/>
-        <source>Show Line Change State</source>
-        <translation>Показувати статус зміни рядка</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2162"/>
-        <source>Draw cursor as a thick line</source>
-        <translation>Відображати курсор як жирну лінію</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2165"/>
-        <source>Bold Cursor</source>
-        <translation>Жирний курсор</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2181"/>
-        <source>Search Panel</source>
-        <translation>Панель пошуку</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2187"/>
-        <source>Close search and replace panel together</source>
-        <translation>Закривати панелі пошуку і заміни одночасно</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2197"/>
-        <source>Use single line selection as Search Word</source>
-        <translation>Використовувати виділення одного рядка як взірець пошуку</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2207"/>
-        <source>Restrict search scope to an existing selection</source>
-        <translation>Обмежити область пошуку наявним виділенням</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2217"/>
-        <source>Special options</source>
-        <translation>Особливі параметри</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2257"/>
-        <source>Show log markers when clicking log entry</source>
-        <translation>Показувати маркери журналу при натисканні на елемент журналу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2303"/>
-        <source>Add Entries Directly To Context  Menu</source>
-        <translation>Додавати пропозиції безпосередньо у контекстне меню</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2308"/>
-        <source>Create Dedicated Submenu</source>
-        <translation>Створити окреме підменю</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2528"/>
-        <source>Spellchecking via context menu:</source>
-        <translation>Перевірка правопису через контекстне меню:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2463"/>
-        <source>Default Log Encoding</source>
-        <translation>Усталене кодування журналу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2322"/>
-        <source>1 minute</source>
-        <translation>1 хвилина</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2327"/>
-        <source>2 minutes</source>
-        <translation>2 хвилини</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2332"/>
-        <source>5 minutes</source>
-        <translation>5 хвилин</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2337"/>
-        <source>10 minutes</source>
-        <translation>10 хвилин</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2342"/>
-        <source>20 minutes</source>
-        <translation>20 хвилин</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2347"/>
-        <source>60 minutes</source>
-        <translation>60 хвилин</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2535"/>
-        <source>Auto Complete Parentheses</source>
-        <translation>Автоматично закривати дужки</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2250"/>
-        <source>Smooth Scrolling</source>
-        <translation>Плавне прокручування</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2373"/>
-        <source>Mouse Wheel Zoom</source>
-        <translation>Масштаб за допомогою коліщатка миші</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2470"/>
-        <source>Auto Save All Files:</source>
-        <translation>Автоматично зберігати усі файли:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2366"/>
-        <source>Line Wrapping:</source>
-        <translation>Перенесення слів:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2549"/>
-        <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation>Вибір подвійним клацанням: включати передню обернену скісну риску</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2276"/>
-        <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation>Перевантажувати збережені файли при зовнішніх змінах (очищається стек команд повернення/повтору)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2403"/>
-        <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation>Показувати довідку про команди у вбудованому переглядачі pdf (texdoc)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2418"/>
-        <source>Select Word</source>
-        <translation>Виділити слово</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2423"/>
-        <source>Select Word or Command</source>
-        <translation>Виділити слово чи команду</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2428"/>
-        <source>Select Parentheses Content</source>
-        <translation>Виділити вміст у дужках</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2433"/>
-        <source>Select Parentheses</source>
-        <translation>Виділити дужки</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2438"/>
-        <source>Select Line</source>
-        <translation>Вибрати рядок</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2285"/>
-        <source>Monitor open files for external changes</source>
-        <translation>Моніторити відкриті файли за зовнішніми змінами</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2393"/>
-        <source>Triple-Click Selection:</source>
-        <translation>Виділення потрійним клацанням:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2226"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Цей параметр використовує QSaveFile для уникнення втрати наявних даних, коли операція запису зазнала невдачі. Як недолік, поточний користувач стає власником файлу і втрачаються розширені атрибути файлу. Крім того, можуть появитися проблеми цього методу з теками dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2229"/>
-        <source>Safe writing of files</source>
-        <translation>Безпечний запис файлів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2456"/>
-        <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation>Переписувати праву дужку після заповнювача</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2380"/>
-        <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation>Це діє лише, коли довжина документа обмежена м&apos;яким жорстким перенесенням рядка.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2383"/>
-        <source>Center Document in Editor</source>
-        <translation>Центрувати документ в редакторі</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2514"/>
-        <source>Show help as tooltip on text in editor</source>
-        <translation>Показати довідку як підказку у текстовому полі редактора</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2446"/>
-        <source>Maximal Characters:</source>
-        <translation>Максимальне число символів:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2491"/>
-        <source>No Line Wrap</source>
-        <translation>Без  перенесення слів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2496"/>
-        <source>Soft Line Wrap at Window Edge</source>
-        <translation>М&apos;яке перенесення слів на краю вікна</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2501"/>
-        <source>Soft Line Wrap after max. Characters</source>
-        <translation>М&apos;яке перенесення слів після максимального числа символів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2506"/>
-        <source>Hard Line Wrap after max. Characters</source>
-        <translation>Тверде перенесення слів після макс. числа символів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2355"/>
-        <source>When using unicode characters in the source code, LaTeX still has
-to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation>При використанні символів Юнікоду у вихідному тексті LaTeX 
-продовжує формувати символи. Оскільки LaTeX не має прямої підтримки Юнікоду, вам потрібно включити пакети, які забезпечують символи Юнікоду.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2359"/>
-        <source>Insert Symbol as Unicode</source>
-        <translation>Вставляти як символ Юнікоду</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2521"/>
-        <source>Go to error when displaying log</source>
-        <translation>Перейти до помилки при відображенні журналу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2243"/>
-        <source>Show image tooltip on image files</source>
-        <translation>Показувати підказку як зображення на файли зображень</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2264"/>
-        <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation>Переписувати ліву дужку перед заповнювачем</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2542"/>
-        <source>Allow Drag and Drop</source>
-        <translation>Дозволити перетягування</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2292"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;External programs (such as Zotero) can push citations into texstudio by calling: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;If the cursor is not already within an citation command, the &amp;quot;command&amp;quot; given here is used as \cite-command.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Зовнішні програми (на кшталт Zotero) можуть надсилати цитування в texstudio через виклик: &lt;span style=&quot; font-family:&apos;monospace&apos;;&quot;&gt;texstudio --insert-cite &amp;quot;citation&amp;quot;&lt;/span&gt;.&lt;/p&gt;&lt;p&gt;Якщо курсор ще не перебуває в команді цитування, то ця &amp;quot;команда&amp;quot; вказана тут використовується як \cite-команда.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1509"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This changes the scaling of the toolbar of the embeded pdf viewer (for high resolution displays).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Змінює масштаб панелі інструментів вбудованого pdf переглядача (для екоанів з високою роздільною здатністю).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1534"/>
-        <source>Embedded PDF Toolbar</source>
-        <translation>Панель вбудованого PDF</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2295"/>
-        <source>Latex Command for pushed citations:</source>
-        <translation>Команди Latex для надісланих цитувань:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2410"/>
-        <source>Vertical Overscroll (Scroll below end of file)</source>
-        <translation>Вертикальне прокручування (прокручування вниз до кінця файлу)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2559"/>
-        <source>Structure Panel</source>
-        <translation>Панель структури</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2590"/>
-        <source>Mark structure elements beyond \end{document}</source>
-        <translation>Позначати структурні елементи за \end{document}</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2597"/>
-        <source>Reference commands in context menu:</source>
-        <translation>Команди перехресних посилань у контекстному меню:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2637"/>
-        <source>Mark structure elements in appendix</source>
-        <translation>Позначати структурні елементи у додатку</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2610"/>
-        <source>Regular expression for TODO comment: </source>
-        <translation>Регулярні вирази для коментаря СПРАВИ: </translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2617"/>
-        <source>Keep indentation of includes in structure tree</source>
-        <translation>Зберігати відступи елементів у дереві структури</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2569"/>
-        <source>No Color Background</source>
-        <translation>Без кольорового тла</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2574"/>
-        <source>Green Background</source>
-        <translation>Зелене тло</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2579"/>
-        <source>Blue Background</source>
-        <translation>Синє тло</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2587"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will &lt;span style=&quot; font-weight:600;&quot;&gt;not&lt;/span&gt; appear in the document.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Елементи подібні до &amp;quot;\section&amp;quot; виділяються різним тлом кольору,  щоб показати, що вони &lt;span style=&quot; font-weight:600;&quot;&gt;не будуть&lt;/span&gt; появлятися у документі.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2634"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elements like &amp;quot;\section&amp;quot; are highlighted with a different background color to show that they will appear as appendix.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Елемнти подібні до &amp;quot;\section&amp;quot; виділяються різним тлом кольору, щоби показати, що вони появляться як додаток.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2624"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The current cursor position is highlighted in the structure view.&lt;/p&gt;&lt;p&gt;If this option is active, the entry is expanded and scrolled to be visible.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Поточна позиція курсора виділяється у перегляді структури.&lt;/p&gt;&lt;p&gt;Якщо цей параметр активний, то відповідний пункт розкривається та стає видимим.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="330"/>
-        <source>Icon Theme:</source>
-        <translation>Тема піктограми:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="338"/>
-        <source>Colibre</source>
-        <translation>Колібрі</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="343"/>
-        <source>Oxygen Modern</source>
-        <translation>Oxygen сучасна</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="348"/>
-        <source>Oxygen Classic</source>
-        <translation>Oxygen класична</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="374"/>
-        <source>Max. Recent Root Documents:</source>
-        <translation>Максимум останніх кореневих документів:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="437"/>
-        <source>Always Show Structure of Root Document</source>
-        <translation>Завжди показувати структуру кореневого документа</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="688"/>
-        <source>&lt;i&gt;File selector (Optional. If present include the terminating colon):&lt;/i&gt; If no selector then select root file. &lt;b&gt;c:&lt;/b&gt; select current file, &lt;b&gt;p{ext}:&lt;/b&gt; Find a file with same basename as root file and extension &lt;b&gt;ext&lt;/b&gt;. Search is done in root file directory and additional PDF directories.&lt;br /&gt;&lt;i&gt;Pathname parts:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to root, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br/&gt;&lt;i&gt;Terminating chars:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br/&gt;&lt;i&gt;Examples:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation>&lt;i&gt;Селектор файлів (Необов&apos;язково. Якщо наявний, то долучіть кінцеву двокрапку):&lt;/i&gt; Якщо нема селектора, то виберіть головний файл. &lt;b&gt;c:&lt;/b&gt; виберіть поточний файл, &lt;b&gt;p{ext}:&lt;/b&gt; Знайдіть файл з тою самою базовою назвою, як у кореневого файла та розширенням &lt;b&gt;ext&lt;/b&gt;. Пошук зроблено у каталозі кореневого файла та додаткових каталогах PDF.&lt;br /&gt;&lt;i&gt;Частини назви шляху:&lt;/i&gt; поєднання &lt;b&gt;a&lt;/b&gt;: абсолютного шляху, &lt;b&gt;m&lt;/b&gt;: назва базового файлу без розширення,&lt;b&gt;e&lt;/b&gt;: розширення, &lt;b&gt;r&lt;/b&gt;: відносний шлях до кореневого, &lt;b&gt;*&lt;/b&gt;: усі файли, що відповідають наступному шаблону&lt;br/&gt;&lt;i&gt;Кінцеві символи:&lt;/i&gt;&lt;b&gt;)&lt;/b&gt;: закриває селектор. Наступні символи закривають селектор і мають додаткове значення&lt;br/&gt;&lt;b&gt;&amp;quot;&lt;/b&gt;: взяти у подвійні лапки, &lt;b&gt;.&lt;/b&gt;  (крапка) додає крапку в кінці, (пропуск): додає пропуск в кінці&lt;br/&gt;&lt;i&gt;Приклади:&lt;/i&gt;&lt;b&gt;?ame&amp;quot;&lt;/b&gt;: створює абсолютну назву файлу, взяту у подвійні лапки, &lt;b&gt;?e)&lt;/b&gt; просто розширення без передньої крапки (наприклад, tex), &lt;br/&gt;&lt;b&gt;?m&amp;quot;&lt;/b&gt; взята у подвійні лапки назва файлу без розширення (рівносильна &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; назва файлу з розширенням (наприклад, example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: усі файли .aux у поточному каталозі</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="1379"/>
-        <source>Note: The change of symbols can be monitored live</source>
-        <translation>Примітка: за зміною символів можна спостерігати напряму</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2009"/>
-        <source>Cache documents for faster reopening</source>
-        <translation>Кешувати документи для швидшого відкривання</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2565"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The global TOC uses different shades of background color to distinguish different files. The color scheme can be changed here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Глобальний TOC використовує різні відтінки кольору тла, щоб відрізнити різні файли. Схема кольорів може бути змінена тут.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2627"/>
-        <source>Scroll to current cursor position</source>
-        <translation>Прокрутити до поточної позиції курсора</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2644"/>
-        <source>Use color in global TOC:</source>
-        <translation>Використовувати колір у глобальному TOC:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2664"/>
-        <source>Bibliography</source>
-        <translation>Бібліографія</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2670"/>
-        <source>bib File Encoding:</source>
-        <translation>Кодування файлу bib:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2677"/>
-        <source>Parse BibTeX</source>
-        <translation>Здійснювати аналіз BibTeX</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2690"/>
-        <source>Table Autoformating</source>
-        <translation>Автоформатування таблиці</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2696"/>
-        <source>One Line Per Cell</source>
-        <translation>Один рядок на одну комірку</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2704"/>
-        <source>Behind Line Break</source>
-        <translation>Після кінця рядка</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2709"/>
-        <source>Separate Line (No Indent)</source>
-        <translation>Окремий рядок (без відступу)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2714"/>
-        <source>Separate Line (Indented to First Column)</source>
-        <translation>Окремий рядок (відступ до першого стовпчика)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2722"/>
-        <source>Special Commands Position:</source>
-        <translation>Позиція спеціальних команд:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2732"/>
-        <source>Special Commands:</source>
-        <translation>Спеціальні команди:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2742"/>
-        <source>Additional Search Paths</source>
-        <translation>Додаткові шляхи пошуку</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2751"/>
-        <source>Bib Files:</source>
-        <translation>Файли Bib:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2764"/>
-        <source>Image Files:</source>
-        <translation>Файли зображень:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2802"/>
-        <source>Bi-Di</source>
-        <translation>Двонапрямлений текст</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2808"/>
-        <source>Automatically insert LRM characters</source>
-        <translation>Автоматично вставляти символи LRM</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2815"/>
-        <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation>Візуальний стовпцевий режим курсору (тобто курсор переміщується в напрямку стрілок у rtl-тексті)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2822"/>
-        <source>Automatically switch keyboard layout: </source>
-        <translation>Автоматично перемикати розкладку клавіатури:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2829"/>
-        <source>depending on character direction</source>
-        <translation>за напрямком написання</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2836"/>
-        <source>depending on text/math mode</source>
-        <translation>за режимом текст/математика</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2846"/>
-        <source>Hacks/Workarounds</source>
-        <translation>Втулки/Манівці</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2852"/>
-        <source>Disable work-around on accent typing (Mac OS X only)</source>
-        <translation>Вимкнути тимчасові рішення для набору акцентів (лише Mac OS X) </translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2859"/>
-        <source>Try to automatically choose best display options</source>
-        <translation>Спробувати автоматично вибирати найкращі параметри дисплею</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2877"/>
-        <source>Render Mode:</source>
-        <translation>Режим вимальовування:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2885"/>
-        <source>QCE (recommended)</source>
-        <translation>QCE (рекомендовано)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2890"/>
-        <source>Qt</source>
-        <translation>Qt</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2895"/>
-        <source>Single Letter</source>
-        <translation>Одна буква</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2903"/>
-        <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation>Якщо активований кеш оброблюваних рядків, то такі рядки зберігаються у кеші, що скасовує необхідність їхньої повторної обробки. Метою цього є прискорення швидкості обробки (особливо на Mac) за рахунок  більшого використання пам&apos;яті.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2906"/>
-        <source>Disable cache of rendered lines</source>
-        <translation>Вимкнути кеш оброблювуваних рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2913"/>
-        <source>Disable fixed pitch mode</source>
-        <translation>Вимкнути моноширинний режим</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2920"/>
-        <source>Disable cache of character width</source>
-        <translation>Вимкнути кеш ширини символів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2927"/>
-        <source>Use QImage as cache type</source>
-        <translation>Використовувати QImage як тип кешу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2990"/>
-        <source>Formats</source>
-        <translation>Формати</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3019"/>
         <location filename="../src/configdialog.cpp" line="541"/>
         <source>Completion</source>
         <translation>Завершення</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3025"/>
-        <source>Allows in-place substitution of commands. Example:&lt;br&gt;
-&lt;code&gt;\textbf{foo}&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
-&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
-&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
-&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
-&lt;/ul&gt;</source>
-        <translation>Дозволити негайну підстановку команд. Приклад:&lt;br&gt;
-&lt;code&gt;\textbf{foo}&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Помістити курсор за &quot;текстом&quot;&lt;/li&gt;
-&lt;li&gt;Запустити процедуру завершення з допомогою Ctrl+Пропуск&lt;/li&gt;
-&lt;li&gt;Вибрати &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
-&lt;li&gt;Результат &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
-&lt;/ul&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3035"/>
-        <source>Auto Replace Latex-Commands</source>
-        <translation>Автозаміна команд  LaTeX</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3042"/>
-        <source>Insert Arguments</source>
-        <translation>Вставити аргументи</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3052"/>
-        <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation>Показує підказку із цільовим текстом для міток, посилань, бібліографії, кольорів чи зображень</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3055"/>
-        <source>ToolTip-Preview</source>
-        <translation>Перегляд при наведенні мишки</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3062"/>
-        <source>Arguments as Placeholders</source>
-        <translation>Аргументи як заповнювачі</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3072"/>
-        <source>Shows a tooltip with a description of the selected completer command</source>
-        <translation>Виконувати попередній перегляд у вигляді підказки з описом вибраної команди завершення</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3075"/>
-        <source>ToolTip-Help</source>
-        <translation>Довідка-підказка</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3085"/>
-        <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
-        <translation>Запустити завершувач як тільки буде введено символ &apos;\&apos; . Альтернативно, завершувач завжди може бути запущений вручну з допомогою Ctrl+Space.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3088"/>
-        <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation>Автозавершення команд LaTeX&apos;у при введенні</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3097"/>
-        <source>Size of the tab bar at the bottom or top of the completer</source>
-        <translation>Розмір маркера табуляції внизу або вгорі процедури завершення</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3100"/>
-        <source>Tab Bar Size</source>
-        <translation>Розмір маркера табулятора</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3110"/>
-        <source>Size of the command set tabs at the bottom or top of the completer</source>
-        <translation>Розмір команд встановлює величину табуляції внизу або вгорі завершувача</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3144"/>
-        <source>Complete selected text when non-word character is pressed</source>
-        <translation>Завершувати вибраний текст, коли введений несловесний символ</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3154"/>
-        <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
-        <translation>Якщо всі пропозиції завершувача використовують наступний спільний символ, Ви можете використовувати &lt;Tab&gt;, щоб автоматично вставити їх.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3157"/>
-        <source>Auto Complete Common Prefix</source>
-        <translation>Автоматично завершувати спільні префікси</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3169"/>
-        <source>Preferred Commands Set:</source>
-        <translation>Бажаний набір команд:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3177"/>
-        <source>Typical</source>
-        <translation>Типові</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3182"/>
-        <source>Most Used</source>
-        <translation>Найвживаніші</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3187"/>
-        <source>Fuzzy</source>
-        <translation>Нечітке</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3192"/>
-        <source>All</source>
-        <translation>Усі</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3215"/>
-        <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation>Якщо математична команда вставлена через завершення ззовні математичного середовища, то $$ автоматично вставляється.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3218"/>
-        <source>Auto Insert Math Delimiters where needed</source>
-        <translation>Автоматично вставляти математичні розділювачі за потреби</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3230"/>
-        <location filename="../src/configdialog.ui" line="3268"/>
-        <source>TXS tries to automatically load completion files for packages if a
-\usepackage{} command is found. These automatically included files
-are not shown here. Checking additional packages here is usually not
-necessary. However if automatic detection fails or you want to include
-specfic user completion files, you can enforce their usage by activating
-them here.</source>
-        <translation>TXS намагається автоматично завантажити файли завершення для пакетів, якщо
-знайдена команда \usepackage{} . Ці автоматично включені файли
-показано тут. Відзначати тут додаткові пакети, як правило, не
-вимагається. Однак, якщо автовизначення не спрацьовує або
-Ви хочете включити спеціальні власні файли завершення, то
-Ви можете змусити їх використовуватися через відмітку тут.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3238"/>
-        <source>Permanently active completion files:</source>
-        <translation>Постійно активні файли завершення:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3248"/>
-        <source>Filter list below</source>
-        <translation>Фільтрувати список нижче</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3359"/>
-        <source>Spell Check</source>
-        <translation>Перевірка правопису</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3365"/>
-        <source>Default Language:</source>
-        <translation>Усталена мова:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3392"/>
-        <source>Spelling Dictionary Directories:</source>
-        <translation>Каталоги із правописними словниками:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3399"/>
-        <source>Folders with Hunspell dictionaries separated by semicolon. The special keywords [txs-settings-dir] and [txs-app-dir] will be resolved to the respective directories.</source>
-        <translation>Теки зі словників Hunspell відокремлені крапкою з комою. Спеціальним ключовим словам [txs-settings-dir] та [txs-app-dir] будуть призначені відповідні каталоги.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3409"/>
-        <source>*.dat</source>
-        <translation>*.dat</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3416"/>
-        <source>Thesaurus Database:</source>
-        <translation>База даних тезауруса:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3446"/>
-        <source>TextLabel</source>
-        <translation>TextLabel</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3459"/>
-        <source>Import Dictionary...</source>
-        <translation>Імпортувати словник…</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3469"/>
-        <source>Internal Grammar Check</source>
-        <translation>Внутрішня перевірка граматики</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3475"/>
-        <source>Words repeated within a paragraph will be highlighted.</source>
-        <translation>Слова, що повторюються всередині абзацу, будуть виділені.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3478"/>
-        <source>Check for Word Repetitions</source>
-        <translation>Перевірка повторення слів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3485"/>
-        <source>Words Between Repetitions:</source>
-        <translation>Число слів між повтореннями:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3495"/>
-        <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
-        <translation>Однакові слова будуть відзначені як повторення, якщо між ними є не більше вказаного числа слів.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3505"/>
-        <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
-        <translation>Довгі слова будуть відзначені як далеке повторення, якщо між ними є не більше вказаного числа слів.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3515"/>
-        <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation>Тільки слова з вказаною довжиною перевіряються в якості віддалених повторень.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3525"/>
-        <source>Long Range Repetitions:</source>
-        <translation>Далекі повторення:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3535"/>
-        <source>Min Length of Words with Long Repetition:</source>
-        <translation>Мінімальна довжина слів з далекими повтореннями:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3545"/>
-        <source>Wordlist Directory:</source>
-        <translation>Каталог списку слів:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3552"/>
-        <source>Certain informal or weak words will be highlighted.</source>
-        <translation>Будуть підсвічуватися неформальні або сумнівні слова.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3555"/>
-        <source>Check for Bad Words</source>
-        <translation>Перевірка „лайливих“ слів</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3562"/>
-        <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
-        <translation>Каталог, що містить списки &quot;поганих&quot; слів або слів, які можуть повторюватися.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3589"/>
-        <source>LanguageTool</source>
-        <translation>LanguageTool</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3595"/>
-        <source>Path containing the LanguageTool java archive.</source>
-        <translation>Шлях, що містить java-архів LanguageTool.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3602"/>
-        <source>LT Path:</source>
-        <translation>Шлях до LanguageTool:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3609"/>
-        <source>Start LanguageTool if not running</source>
-        <translation>Запустити LanguageTool, якщо він ще не запущений</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3616"/>
-        <source>Server URL: </source>
-        <translation>URL сервера:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3623"/>
-        <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation>Список розділених комами правил LanguageTool, які не будуть виділятися як помилки.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3647"/>
-        <source>Ignored Rules:</source>
-        <translation>Правила ігнорування:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3654"/>
-        <location filename="../src/configdialog.ui" line="3664"/>
-        <location filename="../src/configdialog.ui" line="3674"/>
-        <location filename="../src/configdialog.ui" line="3704"/>
-        <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation>Список розділених комами правил LanguageTool, які визначають виділення в спеціальному форматі.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3684"/>
-        <source>Special Rules 3:</source>
-        <translation>Спеціальні правила 3:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3694"/>
-        <source>Special Rules 2:</source>
-        <translation>Спеціальні правила 2:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3714"/>
-        <source>Special Rules 1:</source>
-        <translation>Спеціальні правила 1:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3731"/>
-        <source>Special Rules 4:</source>
-        <translation>Спеціальні правила 4:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3741"/>
-        <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation>Буде прийнято рішення на основі мови для перевірки правопису, яка використовується в документі.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3748"/>
-        <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation>Виконуваний модуль Java, який використовується для запуску LanguageTool, якщо останній ще не запущений.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3755"/>
-        <source>Java:</source>
-        <translation>Java:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3762"/>
-        <location filename="../src/configdialog.ui" line="3810"/>
-        <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation>Аргументи надсилаються під час запуску LanguageTool. Цей параметр має вплив лише, коли LanguageTool запускається із TeXstudio (тобто він безсильний для вже запущеного сервера).</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3765"/>
-        <source>LT Arguments:</source>
-        <translation>Аргументи LT:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3789"/>
-        <location filename="../src/configdialog.ui" line="3817"/>
-        <source>Restore Default</source>
-        <translation>Відновити усталені значення</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3803"/>
-        <source>Url to connect to LanguageTool. </source>
-        <translation>Url для з&apos;єднання з LanguageTool.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3900"/>
-        <source>Command:</source>
-        <translation>Команда:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3911"/>
-        <source>Preview with dvipng</source>
-        <translation>Попередній перегляд через dvipng</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3916"/>
-        <source>Preview with dvipng --follow (parallel)</source>
-        <translation>Попередній перегляд через dvipng --follow (паралельний)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3921"/>
-        <source>Preview with dvips/ghostscript</source>
-        <translation>Попередній перегляд через dvips/ghostscript</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3926"/>
-        <source>Preview with pdflatex</source>
-        <translation>Попередній перегляд через pdflatex</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3931"/>
-        <source>Preview with lualatex</source>
-        <translation>Попередній перегляд через lualatex</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3939"/>
-        <source>Display Mode:</source>
-        <translation>Режим відображення:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3952"/>
-        <source>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it&apos;s still a tooltip).</source>
-        <translation>Коли цей режим змінено, попередній перегляд формул  відповідно видимий (але для формул у рядку він досі лишається спливною підказкою).</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3956"/>
-        <source>Show preview as tooltip if panel is hidden</source>
-        <translation>Показувати перегляд як підказку, якщо панель схована</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3961"/>
-        <source>Always show preview in preview panel</source>
-        <translation>Завжди показувати перегляд у панелі попереднього перегляду</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3966"/>
-        <source>Always show preview as tool tip</source>
-        <translation>Завжди показувати перегляд у вигляді підказки</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3971"/>
-        <source>Always show both</source>
-        <translation>Завжди показувати і те, і інше</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3976"/>
-        <source>Inline</source>
-        <translation>Вбудований</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3981"/>
-        <source>Show in embedded viewer</source>
-        <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation>Показувати у вбудованому переглядачі</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3989"/>
-        <source>Update the preview on text change</source>
-        <translation>Оновлювати перегляд при зміні тексту</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="3992"/>
-        <source>Auto Update:</source>
-        <translation>Автоматичне оновлення:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4005"/>
-        <source>Previously previewed text</source>
-        <translation>Раніше переглянутий текст</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4013"/>
-        <source>Auto Update Delay:</source>
-        <translation>Затримка автоматичного оновлення:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4023"/>
-        <source> ms</source>
-        <translation>мс</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4039"/>
-        <source>Replace beamer class by article</source>
-        <translation>Замінити клас beamer на article</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4052"/>
-        <source>Precompile Preamble</source>
-        <translation>Попередньо компілювати преамбулу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="2236"/>
-        <source>Show preview as tooltip on formulas in editor</source>
-        <translation>Показати перегляд формул у редакторі як підказку</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4068"/>
-        <location filename="../src/configdialog.ui" line="4191"/>
-        <source>Scaling:</source>
-        <translation>Масштаб:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4163"/>
         <location filename="../src/configdialog.cpp" line="544"/>
         <source>Internal PDF Viewer</source>
         <translation>Внутрішній переглядач pdf</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4314"/>
-        <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
-        <translation>Вказати шістнадцяткове значення RGBA. Примітка: прозорість потрібно вказати тому, що підсвічування синтаксису вимальовується поверх тексту через технічні обмеження.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4317"/>
-        <source>\#HHHHHHHH;_</source>
-        <translation>\#HHHHHHHH;_</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4331"/>
-        <source>Rectangle</source>
-        <translation>Прямокутник</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4399"/>
-        <source>Shadow</source>
-        <translation>Тінь</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4422"/>
-        <source>Original Size</source>
-        <translation>Початковий розмір</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4427"/>
-        <source>Fit to Window Width</source>
-        <translation>За шириною вікна</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4432"/>
-        <source>Fit to Window Size</source>
-        <translation>За розмірами вікна</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4437"/>
-        <source>Scaled Size</source>
-        <translation>Масштабований розмір</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4442"/>
-        <source>Fit to Text Width</source>
-        <translation>За шириною тексту</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4247"/>
-        <source>Infinite</source>
-        <translation>Нескінченна</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4532"/>
-        <source>Scale Option:</source>
-        <translation>Параметри масштабу:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4569"/>
-        <source>Magnifier Size:</source>
-        <translation>Розмір лупи:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4266"/>
-        <source> dpi</source>
-        <translation>т/д</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4336"/>
-        <source>Circle</source>
-        <translation>Коло</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4304"/>
-        <source>Highlight Duration</source>
-        <translation>Тривалість підсвічування:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4522"/>
-        <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
-        <translation>Вимкнути горизонтальну прокрутку для „За шириною тексту“</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4392"/>
-        <source>Border</source>
-        <translation>Межа</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4539"/>
-        <source>Magnifier Shape:</source>
-        <translation>Форма лупи:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4576"/>
-        <source>Auto-hide Toolbars in Embedded Mode</source>
-        <translation>Автоматично ховати панелі інструментів у вбудованому режимі</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4357"/>
-        <source>Highlight Color</source>
-        <translation>Колір підсвічування</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4276"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Визначає спосіб завантаження PDF:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Буферизований:&lt;/b&gt; Завантаження файлу в буфер і перевірка цілісності. Потім дані передаються в poppler. Переважно це було введено для прискорення старих версій poppler (&amp;lt;0.24), які не були безпечними щодо потоків. Наявні відомості, що poppler може аварійно завершитися при завантаженні великого буфера. Тому даний параметр вважається застарілим.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Прямий:&lt;/b&gt; Використовується рідне завантаження файлу poppler. Це найшвидший спосіб, але він не дозволяє перевіряти цілісність файлів.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Гібридний (рекомендується):&lt;/b&gt; файл завантажується в буфер і перевіряється його цілісність. Цей буфер використовується для невеликих документів (&amp;lt; 50МБ). Великі файли завантажуються через рідне завантаження файлів poppler. Так об&apos;єднуються перевірка файлів і запобігання проблем з великими файлами PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4286"/>
-        <source>Buffered</source>
-        <translation>Буферизований</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4291"/>
-        <source>Direct</source>
-        <translation>Прямий</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4296"/>
-        <source>Hybrid</source>
-        <translation>Гібридний</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4215"/>
-        <source>Cache Size:</source>
-        <translation>Розмір кешу:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4492"/>
-        <location filename="../src/configdialog.ui" line="4546"/>
-        <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
-Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation>Обробник вимальовування зображення, що використовується PDF-бібліотекою poppler.
-&apos;Splash&apos; використовується типово і підходить в більшості випадків.
-При появі помилок вимальовування ви можете спробувати альтернативний обробник &apos;Arthur&apos;.
-Зауваження: зміна цього параметра вплине тільки на документи, які відкриті після зміни.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4225"/>
-        <location filename="../src/configdialog.ui" line="4590"/>
-        <source> px</source>
-        <translation>пікс.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4472"/>
-        <source>Synchronized Files Types:</source>
-        <translation>Типи синхронізованих файлів:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4498"/>
-        <source>Render Backend:</source>
-        <translation>Обробник для вимальовування:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4198"/>
-        <source>Load Strategy:</source>
-        <translation>Стратегія завантаження:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4450"/>
-        <source> MB</source>
-        <translation> Мб</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4515"/>
-        <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
-        <translation>Зауваження: віконний/панельний режими налаштовуються в Збирання -&gt; Переглядач PDF</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4482"/>
-        <source>Paper Color</source>
-        <translation>Колір паперу</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4367"/>
-        <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation>Усталений колір тла. Вказується як шістнадцяткове значення RGB. Примітка: це діятим лише на файли PDF, завантажені після зміни цього параметра. Колір паперу вже відкритого файла  PDF не зміниться.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4208"/>
-        <source>Auto-recompile document on changes</source>
-        <translation>Автоматично компілювати документ під час змін</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4508"/>
-        <source>Presentation Laser Pointer Size:</source>
-        <translation>Розмір лазерного вказівника на презентації:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4583"/>
-        <source>Presentation Laser Pointer Color:</source>
-        <translation>Колір лазерного вказівника на презентації:</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4673"/>
-        <source>Use SVN</source>
-        <translation>Використовувати SVN</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4678"/>
-        <source>Use GIT</source>
-        <translation>Використовувати GIT</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4686"/>
-        <source>Select how txs checks in saved files</source>
-        <translation>Виберіть, як txs реєструє збережені файли</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4690"/>
-        <source>No automatic check-in after save</source>
-        <translation>Без автоматичної реєстрації після збереження</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4695"/>
-        <source>Check-in after File/Save only</source>
-        <translation>Реєстрація лише після Файл/Зберегти</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4700"/>
-        <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation>Перевіряти після усіх операцій збереження, тобто також перед компіляцією.</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4708"/>
-        <source>Use SVN/GIT revisions to undo before last saved version</source>
-        <translation>Використовувати варіанти SVN/GIT для скасування перед останнім збереженим варіантом</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4715"/>
-        <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
-        <translation>в svn додати executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4718"/>
-        <source>Substitute Keywords with Properties (on svn add)</source>
-        <translation>Замінювати ключові слова їхніми значеннями (при додаванні у SVN)</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4727"/>
-        <source>SVN Directory Search Depth: </source>
-        <translation>Глибина пошуку SVN каталогів: </translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4785"/>
         <location filename="../src/configdialog.cpp" line="547"/>
         <source>Internal Terminal</source>
         <translation>Внутрішній термінал</translation>
-    </message>
-    <message>
-        <location filename="../src/configdialog.ui" line="4836"/>
-        <source>Shell:</source>
-        <translation>Оболонка:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="202"/>
@@ -2910,7 +751,6 @@ to set the key anyway?</source>
         <translation>Різниці</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="3894"/>
         <location filename="../src/configdialog.cpp" line="501"/>
         <location filename="../src/configdialog.cpp" line="543"/>
         <source>Preview</source>
@@ -2977,7 +817,6 @@ to set the key anyway?</source>
         <translation>Панелі інструментів</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="1370"/>
         <location filename="../src/configdialog.cpp" line="537"/>
         <source>GUI Scaling</source>
         <translation>Масштабування ГІК</translation>
@@ -2998,7 +837,6 @@ to set the key anyway?</source>
         <translation>Перевірка мови</translation>
     </message>
     <message>
-        <location filename="../src/configdialog.ui" line="4666"/>
         <location filename="../src/configdialog.cpp" line="545"/>
         <source>SVN/GIT</source>
         <translation>SVN/GIT</translation>
@@ -4418,94 +2256,6 @@ Do you want to remove them?</source>
     </message>
 </context>
 <context>
-    <name>EditorConfig</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="23"/>
-        <source>Font</source>
-        <translation>Шрифт</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="79"/>
-        <source>text which &lt;i&gt;should&lt;/i&gt; be a &lt;b&gt;fair&lt;/b&gt; test of the font</source>
-        <translation>текст, за допомогою якого &lt;i&gt;можна&lt;/i&gt; &lt;b&gt;якісно&lt;/b&gt; перевірити шрифт</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="114"/>
-        <source>Tabulators &amp;&amp; Whitespaces</source>
-        <translation>Табулятори &amp;&amp; Пробіли</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="131"/>
-        <source>Tab width</source>
-        <translation>Ширина табулятора</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="163"/>
-        <source>Show leading whitespaces</source>
-        <translation>Показати початкові пробіли</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="173"/>
-        <source>Show tabs which are neither leading nor trailing</source>
-        <translation>Показати табулятори, які не є початковими чи завершальними</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="183"/>
-        <source>Show trailing whitespaces</source>
-        <translation>Показати завершальні пробіли</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="193"/>
-        <source>Replace tabs by blanks</source>
-        <translation>Замінити табулятори пробілами</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="203"/>
-        <source>Load &amp;&amp; Save</source>
-        <translation>Завантажити &amp;&amp; Зберегти</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="209"/>
-        <source>Default encoding</source>
-        <translation>Усталене кодування</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="219"/>
-        <source>Preserve line endings</source>
-        <translation>Зберегти закінчення рядка</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="233"/>
-        <source>Local</source>
-        <translation>Локаль</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="238"/>
-        <source>Unix/Linux</source>
-        <translation>Unix/Linux</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="243"/>
-        <source>DOS/Windows</source>
-        <translation>DOS/Windows</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="248"/>
-        <source>Old Mac</source>
-        <translation>Старий Mac</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="256"/>
-        <source>Remove trailing spaces</source>
-        <translation>Видалити завершальні пробіли</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/editconfig.ui" line="266"/>
-        <source>Preserve trailing indent</source>
-        <translation>Зберегти завершальні відступи</translation>
-    </message>
-</context>
-<context>
     <name>Editors</name>
     <message>
         <location filename="../src/editors.cpp" line="389"/>
@@ -4556,53 +2306,6 @@ Do you want to remove them?</source>
 <context>
     <name>EncodingDialog</name>
     <message>
-        <location filename="../src/encodingdialog.ui" line="14"/>
-        <source>Select File Encoding</source>
-        <translation>Вибрати кодування файлу</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="20"/>
-        <source>TextLabel</source>
-        <translation>Текстова мітка</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="27"/>
-        <source>View With</source>
-        <translation>Перегляд через</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="34"/>
-        <source>Reload With</source>
-        <translation>Оновити через</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="41"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="48"/>
-        <source>Change To</source>
-        <translation>Замінити на</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="90"/>
-        <source>File Encoding</source>
-        <translation>Кодування файлу</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="95"/>
-        <source>inputenc Parameter</source>
-        <translation>Параметр inputenc</translation>
-    </message>
-    <message>
-        <location filename="../src/encodingdialog.ui" line="98"/>
-        <source>The codec names as the inputenc package expects them. The names are only given for reference.
-You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation>Назви кодувань як їх очікує пакет inputenc. Назви даються тільки для посилання.
-Ви повинні переконатися, що кодування файлу збігається зі значенням параметра, що передається пакету inputenc.</translation>
-    </message>
-    <message>
         <location filename="../src/encodingdialog.cpp" line="35"/>
         <source>Select Encoding for</source>
         <translation>Виберіть кодування для</translation>
@@ -4627,73 +2330,9 @@ Are you sure you want to undo all changes?</source>
 <context>
     <name>FileChooser</name>
     <message>
-        <location filename="../src/filechooser.ui" line="55"/>
-        <source>File</source>
-        <translation>Файл</translation>
-    </message>
-    <message>
-        <location filename="../src/filechooser.ui" line="130"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
-        <location filename="../src/filechooser.ui" line="137"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
         <location filename="../src/filechooser.cpp" line="51"/>
         <source>Select a File</source>
         <translation>Вибрати файл</translation>
-    </message>
-</context>
-<context>
-    <name>FormatConfig</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="20"/>
-        <source>Form</source>
-        <translation>Форма</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/formatconfig.ui" line="35"/>
-        <source>Scheme :</source>
-        <translation>Схема:</translation>
-    </message>
-</context>
-<context>
-    <name>GotoDialog</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="19"/>
-        <source>Goto line ...</source>
-        <translation>Перейти до рядка...</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
-        <source>Select the line you want to go to :</source>
-        <translation>Вибрати рядок для переходу:</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
-        <source>line </source>
-        <translation>рядок</translation>
-    </message>
-</context>
-<context>
-    <name>GotoLine</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="14"/>
-        <source>Form</source>
-        <translation>Форма</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="27"/>
-        <source>&amp;Go to line :</source>
-        <translation>&amp;Перейти до рядка:</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/gotoline.ui" line="53"/>
-        <source>G&amp;o</source>
-        <translation>Перей&amp;ти</translation>
     </message>
 </context>
 <context>
@@ -4730,157 +2369,6 @@ Are you sure you want to undo all changes?</source>
 </context>
 <context>
     <name>InsertGraphics</name>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="40"/>
-        <source>File</source>
-        <translation>Файл</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="94"/>
-        <location filename="../src/insertgraphics.ui" line="176"/>
-        <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Задати параметри для \includegraphics[options]{file}.</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="97"/>
-        <source>Graphics Options</source>
-        <translation>Параметри графіки</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="103"/>
-        <source>Width/Height</source>
-        <translation>Ширина/Висота</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="113"/>
-        <source>Width</source>
-        <translation>Ширина</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="146"/>
-        <source>Height</source>
-        <translation>Висота</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="183"/>
-        <source>User Defined</source>
-        <translation>Визначено користувачем</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="195"/>
-        <source>Center Horizontally</source>
-        <translation>Центрувати горизонтально</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="219"/>
-        <source>Place in Figure Environment</source>
-        <translation>Встановити в оточення &quot;figure&quot;</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="228"/>
-        <source>Caption</source>
-        <translation>Підпис</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="239"/>
-        <source>Above graphic</source>
-        <translation>Над графікою</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="244"/>
-        <source>Below graphic</source>
-        <translation>Нижче графіки</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="271"/>
-        <source>Caption for the image</source>
-        <translation>Підпис до рисунка</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="324"/>
-        <source>Caption to be displayed in the list of figures (if wanted different from the long caption)</source>
-        <translation>Підпис буде показаний у списку рисунків (якщо захотіли відмінний від повного підпису)</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="278"/>
-        <source>Label</source>
-        <translation>Мітка</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="285"/>
-        <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
-        <translation>Ідентифікатор, що використовується для посилання на графіку; напр. \ref{thisLabel}</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="292"/>
-        <source>Span Two Columns</source>
-        <translation>Займати два стовпчики</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="299"/>
-        <source>Position</source>
-        <translation>Позиція</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="331"/>
-        <source>  Short</source>
-        <translation>  Короткий</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="338"/>
-        <source>  Long</source>
-        <translation>  Довгий</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="369"/>
-        <source>Top</source>
-        <translation>Вгорі</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="376"/>
-        <source>Bottom</source>
-        <translation>Внизу</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="383"/>
-        <source>Page</source>
-        <translation>Сторінка</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="390"/>
-        <source>Here</source>
-        <translation>Тут</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="397"/>
-        <source>Here (H)</source>
-        <translation>Тут (H)</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="404"/>
-        <source>Override Internal Layout Parameters</source>
-        <translation>Замінити параметри внутрішньої розмітки</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="440"/>
-        <source>Save current settings as default.</source>
-        <translation>Зберегти поточні установки як усталення</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="443"/>
-        <source>as Default</source>
-        <translation>як усталення</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="467"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
-        <location filename="../src/insertgraphics.ui" line="477"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
     <message>
         <location filename="../src/insertgraphics.cpp" line="50"/>
         <source>Insert Graphics</source>
@@ -5028,17 +2516,17 @@ The wizard does not support command </source>
         <translation>Невідома помилка. Можливий збій. Радимо перезапустити TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2622"/>
+        <location filename="../src/latexdocument.cpp" line="2627"/>
         <source>Invalid codec</source>
         <translation>Недійсний кодек</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2636"/>
+        <location filename="../src/latexdocument.cpp" line="2641"/>
         <source>Missing value for -job-name</source>
         <translation>Пропущене значення для -job-name</translation>
     </message>
     <message>
-        <location filename="../src/latexdocument.cpp" line="2639"/>
+        <location filename="../src/latexdocument.cpp" line="2644"/>
         <source>Unknown magic comment</source>
         <translation>Невідомий спецкоментар</translation>
     </message>
@@ -5433,36 +2921,6 @@ The wizard does not support command </source>
 <context>
     <name>LetterDialog</name>
     <message>
-        <location filename="../src/letterdialog.ui" line="42"/>
-        <source>Typeface Size</source>
-        <translation>Розмір шрифту</translation>
-    </message>
-    <message>
-        <location filename="../src/letterdialog.ui" line="57"/>
-        <source>Encoding</source>
-        <translation>Кодування</translation>
-    </message>
-    <message>
-        <location filename="../src/letterdialog.ui" line="64"/>
-        <source>AMS Packages</source>
-        <translation>Пакет AMS</translation>
-    </message>
-    <message>
-        <location filename="../src/letterdialog.ui" line="85"/>
-        <source>Paper Size</source>
-        <translation>Розмір паперу</translation>
-    </message>
-    <message>
-        <location filename="../src/letterdialog.ui" line="115"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
-        <location filename="../src/letterdialog.ui" line="122"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
         <location filename="../src/letterdialog.cpp" line="56"/>
         <source>Quick Letter</source>
         <translation>Швидкий лист</translation>
@@ -5498,51 +2956,6 @@ The wizard does not support command </source>
 </context>
 <context>
     <name>MakeTemplateDialog</name>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="14"/>
-        <source>Make Template</source>
-        <translation>Зробити шаблон</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="20"/>
-        <source>Create a template from the current file.</source>
-        <translation>Створити шаблон з поточного файлу.</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="27"/>
-        <source>Meta Data</source>
-        <translation>Метадані</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="33"/>
-        <source>Name</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="43"/>
-        <source>Author</source>
-        <translation>Автор</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="53"/>
-        <source>Version</source>
-        <translation>Версія</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="63"/>
-        <source>Description</source>
-        <translation>Опис</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="77"/>
-        <source>License</source>
-        <translation>Ліцензія</translation>
-    </message>
-    <message>
-        <location filename="../src/maketemplatedialog.ui" line="126"/>
-        <source>LaTeX Project Public License (LPPL)</source>
-        <translation>Громадська ліцензія проекту LaTeX (LPPL)</translation>
-    </message>
     <message>
         <location filename="../src/maketemplatedialog.cpp" line="46"/>
         <source>A template with the given name already exists.
@@ -5608,756 +3021,6 @@ Do you want to overwrite it?</source>
     </message>
 </context>
 <context>
-    <name>PDFAnnotation</name>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="30"/>
-        <source>Text</source>
-        <translation>Текст</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="32"/>
-        <source>Line</source>
-        <translation>Рядок</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="34"/>
-        <source>Geometric</source>
-        <translation>Фігура</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="36"/>
-        <source>Highlight</source>
-        <translation>Підсвічування</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="38"/>
-        <source>Stamp</source>
-        <translation>Штамп</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="40"/>
-        <source>Ink</source>
-        <translation>Чорнило</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="42"/>
-        <source>Link</source>
-        <translation>Посилання</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="44"/>
-        <source>Caret</source>
-        <translation>Символ вставки</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="46"/>
-        <source>Attachment</source>
-        <translation>Вкладення</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="48"/>
-        <source>Sound</source>
-        <translation>Звук</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="50"/>
-        <source>Movie</source>
-        <translation>Відео</translation>
-    </message>
-</context>
-<context>
-    <name>PDFAnnotationDlg</name>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotationdlg.ui" line="14"/>
-        <source>Annotation</source>
-        <translation>Анотація</translation>
-    </message>
-</context>
-<context>
-    <name>PDFAnnotationModel</name>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="232"/>
-        <source>Author</source>
-        <translation>Автор</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="234"/>
-        <source>Text</source>
-        <translation>Текст</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="236"/>
-        <source>Type</source>
-        <translation>Тип</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="238"/>
-        <source>Modified</source>
-        <translation>Змінено</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="240"/>
-        <source>Created</source>
-        <translation>Створено</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/pdfannotation.cpp" line="242"/>
-        <source>Page</source>
-        <translation>Сторінка</translation>
-    </message>
-</context>
-<context>
-    <name>PDFBaseSearchDock</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="462"/>
-        <source>Search</source>
-        <translation>Пошук</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="529"/>
-        <source>Enables case sensitive search.</source>
-        <translation>Вмикає пошук  з урахуванням регістру.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="540"/>
-        <source>Text or pattern to search for</source>
-        <translation>Текст або шаблон пошуку</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="541"/>
-        <source>Find next occurrence</source>
-        <translation>Знайти наступний збіг</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="542"/>
-        <source>Find previous occurrence</source>
-        <translation>Знайти попередній збіг</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="544"/>
-        <source> Find :</source>
-        <translation>Знайти:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="546"/>
-        <source>Case</source>
-        <translation>Регістр</translation>
-    </message>
-</context>
-<context>
-    <name>PDFClockDock</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="952"/>
-        <source>Set Interval...</source>
-        <translation>Задати інтервал…</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="953"/>
-        <source>Set Page Count...</source>
-        <translation>Задати підрахунок сторінок...</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="954"/>
-        <source>Restart</source>
-        <translation>Перезапуск</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="969"/>
-        <source>Clock</source>
-        <translation>Годинник</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="991"/>
-        <source>Start time</source>
-        <translation>Час початку:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="992"/>
-        <source>New clock interval (in minutes)</source>
-        <translation>Новий інтервал годинника (у хвилинах)</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1011"/>
-        <source>Page count (negative subtracts)</source>
-        <translation>Підрахунок сторінок (від&apos;ємні віднімаються)</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1042"/>
-        <source>wait</source>
-        <translation>очікування</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1044"/>
-        <source>%1 sec</source>
-        <translation>%1 с</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="1046"/>
-        <source>%1 min</source>
-        <translation>%1 хв</translation>
-    </message>
-</context>
-<context>
-    <name>PDFDocument</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2924"/>
-        <source>Toolbar</source>
-        <translation>Панель інструментів</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2978"/>
-        <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2979"/>
-        <source>&amp;Edit</source>
-        <translation>З&amp;міни</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2980"/>
-        <source>&amp;View</source>
-        <translation>&amp;Перегляд</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2981"/>
-        <source>Grid</source>
-        <translation>Сітка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2982"/>
-        <source>&amp;Window</source>
-        <translation>В&amp;ікно</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2983"/>
-        <source>&amp;Configure</source>
-        <translation>&amp;Конфігурація</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2984"/>
-        <source>&amp;Help</source>
-        <translation>&amp;Довідка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2990"/>
-        <source>User &amp;Manual...</source>
-        <translation>Посібник &amp;користувача…</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2993"/>
-        <source>About</source>
-        <translation>Про програму</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2994"/>
-        <source>&amp;Open...</source>
-        <translation>&amp;Відкрити…</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2995"/>
-        <source>Split &amp;&amp; Merge...</source>
-        <translation>Поділ &amp;&amp; злиття...</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2996"/>
-        <source>&amp;Close</source>
-        <translation>&amp;Закрити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2998"/>
-        <source>&amp;Quit TeXstudio</source>
-        <translation>&amp;Закрити TeXstudio</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2999"/>
-        <source>&amp;Configure TeXstudio</source>
-        <translation>&amp;Конфігурація TeXstudio</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3001"/>
-        <source>Scrolling follows cursor</source>
-        <translation>Прокрутка слідує за курсором</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3003"/>
-        <source>Cursor follows scrolling</source>
-        <translation>Курсор слідує за прокруткою</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3005"/>
-        <source>Synchronize multiple views</source>
-        <translation>Синхронізувати кілька переглядів</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3007"/>
-        <source>Ignore for synchronization</source>
-        <translation>Нехтувати для синхронізації</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3010"/>
-        <source>Invert Colors</source>
-        <translation>Обернути кольори</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3012"/>
-        <source>Grayscale</source>
-        <translation>Відтінки сірого</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3016"/>
-        <source>&amp;Magnify</source>
-        <translation>З&amp;більшити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3019"/>
-        <source>&amp;Scroll</source>
-        <translation>&amp;Прокрутити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3024"/>
-        <source>&amp;First Page</source>
-        <translation>&amp;Перша сторінка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3025"/>
-        <source>Back</source>
-        <translation>Назад</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3026"/>
-        <source>&amp;Previous Page</source>
-        <translation>&amp;Попередня сторінка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3027"/>
-        <source>&amp;Next Page</source>
-        <translation>&amp;Наступна сторінка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3028"/>
-        <source>Forward</source>
-        <translation>Вперед</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3029"/>
-        <source>&amp;Last Page</source>
-        <translation>&amp;Остання стоірнка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3031"/>
-        <source>&amp;Go to Page...</source>
-        <translation>&amp;Перейти до сторінки…</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3033"/>
-        <source>Zoom &amp;In</source>
-        <translation>З&amp;більшити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3034"/>
-        <source>Zoom &amp;Out</source>
-        <translation>З&amp;меншити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3035"/>
-        <source>&amp;Actual Size</source>
-        <translation>&amp;Справжній розмір</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3036"/>
-        <source>Fit to Wi&amp;dth</source>
-        <translation>За &amp;шириною вікна</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3038"/>
-        <source>Fit to &amp;Text Width</source>
-        <translation>За &amp;шириною тексту</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3040"/>
-        <source>Fit to &amp;Window</source>
-        <translation>Вписати у &amp;вікно</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3042"/>
-        <source>&amp;Continuous</source>
-        <translation>&amp;Неперервно</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3047"/>
-        <source>Full &amp;Screen</source>
-        <translation>На увесь &amp;екран</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3048"/>
-        <source>Presentation</source>
-        <translation>Презентація</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3049"/>
-        <source>External Viewer</source>
-        <translation>Зовнішній переглядач</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3050"/>
-        <source>Enlarge Viewer</source>
-        <translation>Розгорнути переглядач</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3051"/>
-        <source>Shrink Viewer</source>
-        <translation>Згорнути переглядач</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3052"/>
-        <source>Windowed/Embedded</source>
-        <translation>Віконний/Вбудований</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3053"/>
-        <source>Auto-hide Toolbar</source>
-        <translation>Автоматично ховати панель</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3069"/>
-        <source>Custom...</source>
-        <translation>Налаштувати…</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3074"/>
-        <source>Single Page Step</source>
-        <translation>Односторінковий крок</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3077"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3079"/>
-        <source>&amp;Close something</source>
-        <translation>Закрити &amp;щось</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3082"/>
-        <source>Stac&amp;k</source>
-        <translation>Сте&amp;к</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3083"/>
-        <source>&amp;Tile</source>
-        <translation>&amp;Клітинкою</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3084"/>
-        <source>&amp;Side by Side</source>
-        <translation>&amp;Поруч</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3086"/>
-        <source>&amp;Go to Source</source>
-        <translation>&amp;Перейти до джерела</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3087"/>
-        <source>Focus Editor</source>
-        <translation>Викликати редактор</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3089"/>
-        <source>New Window</source>
-        <translation>Нове вікно</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3090"/>
-        <source>&amp;Find</source>
-        <translation>З&amp;найти</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3091"/>
-        <source>Find &amp;again</source>
-        <translation>Знайти &amp;знову</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3093"/>
-        <source>Quick Build</source>
-        <translation>Швидке збирання</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3142"/>
-        <source>Show</source>
-        <translation>Показати</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3165"/>
-        <source>Windowed Viewer</source>
-        <translation>Віконний переглядач</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3168"/>
-        <source>Embedded Viewer</source>
-        <translation>Вбудований переглядач</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3231"/>
-        <source>of</source>
-        <comment>separator for page number: 1 of 3</comment>
-        <translation>із</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3254"/>
-        <source>Scale</source>
-        <translation>Шкала</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3272"/>
-        <source>Zoom Out</source>
-        <translation>Зменшити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3282"/>
-        <source>Zoom</source>
-        <translation>Масштаб</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3291"/>
-        <source>Zoom In</source>
-        <translation>Збільшити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3319"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3322"/>
-        <source>Annotations</source>
-        <translation>Анотації</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3462"/>
-        <source>Page Down</source>
-        <translation>Сторінка вниз</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3466"/>
-        <source>Page Up</source>
-        <translation>Сторінка вгору</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3656"/>
-        <source>Retry</source>
-        <translation>Спробувати знову</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3659"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4850"/>
-        <source>Close</source>
-        <translation>Закрити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3662"/>
-        <source>%1
-does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation>%1
-не є правильним PDF-документом. Файл або пошкоджений, або перебуває у процесі створення. Повторна спроба кожні дві секунди.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3676"/>
-        <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation>Не вдалося знайти файл &quot;%1&quot;; можливо, він був видалений.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3679"/>
-        <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation>Не вдалося завантажити файл &quot;%1&quot;; можливо, він не є правильним документом PDF.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3682"/>
-        <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation>Не вдалося знайти файл &quot;%1&quot; через поганий розподіл; вірогідно, він не є правильним PDF-документом.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3685"/>
-        <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation>Не вдалося знайти файл &quot;%1&quot; через виняток; вірогідно, він не є правильним PDF-документом.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3688"/>
-        <source>PDF file &quot;%1&quot; is locked.</source>
-        <translation>PDF-файл &quot;%1&quot; заблокований.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3690"/>
-        <source>PDF password</source>
-        <translation>Пароль для PDF</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="3690"/>
-        <source>PDF file &quot;%1&quot; is locked.
-You can now enter the password:</source>
-        <translation>PDF-файл &quot;%1&quot; заблокований.
-Тепер ви можете ввести пароль:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4079"/>
-        <source>Searching for</source>
-        <translation>Пошук зразка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4191"/>
-        <source>No SyncTeX data available</source>
-        <translation>Недоступні дані SyncTeX</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4193"/>
-        <source>SyncTeX: &quot;%1&quot;</source>
-        <translation>SyncTeX: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4284"/>
-        <source>%1[*] - %2</source>
-        <translation>%1[*] - %2</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4371"/>
-        <source>Page %1 of %2</source>
-        <translation>Сторінка %1 із %2</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4372"/>
-        <source>Pages %1 to %2 of %3</source>
-        <translation>Сторінки %1 - %2 із %3</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4397"/>
-        <source>Open PDF</source>
-        <translation>Відкрити PDF</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4672"/>
-        <source>Print</source>
-        <translation>Друкувати</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="4851"/>
-        <source>Close Message</source>
-        <translation>Закрити повідомлення</translation>
-    </message>
-</context>
-<context>
-    <name>PDFFontsDock</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
-        <source>Name</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
-        <source>Type</source>
-        <translation>Тип</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
-        <source>Subset</source>
-        <translation>Підмножина</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="409"/>
-        <source>File</source>
-        <translation>Файл</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="427"/>
-        <source>[none]</source>
-        <translation>[нема]</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
-        <source>yes</source>
-        <translation>так</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="432"/>
-        <source>no</source>
-        <translation>ні</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="433"/>
-        <source>[embedded]</source>
-        <translation>[вбудовано]</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="205"/>
-        <source>Fonts</source>
-        <translation>Шрифти</translation>
-    </message>
-</context>
-<context>
-    <name>PDFInfoDock</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="147"/>
-        <source>PDF Info</source>
-        <translation>Інформація про PDF</translation>
-    </message>
-</context>
-<context>
-    <name>PDFMovie</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="617"/>
-        <source>File %1 does not exists</source>
-        <translation>Файл %1 не існує</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="698"/>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="704"/>
-        <source>Volume:</source>
-        <translation>Гучність:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="714"/>
-        <source>Time:</source>
-        <translation>Час:</translation>
-    </message>
-</context>
-<context>
-    <name>PDFOutlineDock</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="204"/>
-        <source>No TOC</source>
-        <translation>Нема змісту (TOC)</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="107"/>
-        <source>Contents</source>
-        <translation>Зміст</translation>
-    </message>
-</context>
-<context>
-    <name>PDFOverviewDock</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.h" line="328"/>
-        <source>Overview</source>
-        <translation>Огляд</translation>
-    </message>
-</context>
-<context>
-    <name>PDFSearchDock</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="646"/>
-        <source>Words</source>
-        <translation>Слова</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="647"/>
-        <source>Only searches for whole words.</source>
-        <translation>Лише пошук цілих слів.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="654"/>
-        <source>Sync</source>
-        <translation>Синхронізувати</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocks.cpp" line="655"/>
-        <source>Synchronize editor when jumping to search results.</source>
-        <translation>Синхронізуйте редактор при переході до результатів пошуку.</translation>
-    </message>
-</context>
-<context>
     <name>PDFSplitMergeTool</name>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="43"/>
@@ -6388,135 +3051,6 @@ You can now enter the password:</source>
         <location filename="../src/pdfsplittool.cpp" line="254"/>
         <source>To:</source>
         <translation>До:</translation>
-    </message>
-</context>
-<context>
-    <name>PDFSplitTool</name>
-    <message>
-        <location filename="../src/pdfsplittool.ui" line="14"/>
-        <source>Split &amp; Merge</source>
-        <translation>Поділ &amp;&amp; злиття</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfsplittool.ui" line="39"/>
-        <source>Split &amp;&amp; Merge</source>
-        <translation>Поділ &amp;&amp; злиття</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfsplittool.ui" line="46"/>
-        <source>Backend:</source>
-        <translation>Обробник:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfsplittool.ui" line="86"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfsplittool.ui" line="95"/>
-        <source>Output file:</source>
-        <translation>Вихідний файл:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfsplittool.ui" line="108"/>
-        <source>Add input file</source>
-        <translation>Додати вхідний файл</translation>
-    </message>
-</context>
-<context>
-    <name>PDFVideoWidget</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="594"/>
-        <source>&amp;Play</source>
-        <translation>&amp;Відтворити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="595"/>
-        <source>P&amp;ause</source>
-        <translation>П&amp;ауза</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="596"/>
-        <source>&amp;Stop</source>
-        <translation>&amp;Зупинити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="598"/>
-        <source>S&amp;eek</source>
-        <translation>По&amp;шук</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="599"/>
-        <source>Set &amp;volume</source>
-        <translation>Задати &amp;гучність</translation>
-    </message>
-</context>
-<context>
-    <name>PDFWidget</name>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="818"/>
-        <source>Zoom In</source>
-        <translation>Збільшити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="820"/>
-        <source>Zoom Out</source>
-        <translation>Зменшити</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="823"/>
-        <source>Actual Size</source>
-        <translation>Справжній розмір</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="826"/>
-        <source>Fit to Width</source>
-        <translation>За шириною вікна</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="829"/>
-        <source>Fit to Window</source>
-        <translation>Вписати у вікно</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1434"/>
-        <source>Opening external files is currently only supported for PDFs.</source>
-        <translation>Відкриття зовнішніх файлів наразі підтримується лише для PDF.</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
-        <source>Error</source>
-        <translation>Помилка</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1453"/>
-        <source>Could not open link:</source>
-        <translation>Не вдається відкрити посилання:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="1569"/>
-        <source>Go to Source</source>
-        <translation>Перейти до джерела</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2377"/>
-        <source>Go to Page</source>
-        <translation>Перейти до сторінки</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2378"/>
-        <source>Page number:</source>
-        <translation>Номер сторінки:</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
-        <source>Calculating text width</source>
-        <translation>Обчислення ширини тексту</translation>
-    </message>
-    <message>
-        <location filename="../src/pdfviewer/PDFDocument.cpp" line="2767"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
     </message>
 </context>
 <context>
@@ -6606,711 +3140,6 @@ You can now enter the password:</source>
         <location filename="../src/utilsUI.cpp" line="167"/>
         <source>none</source>
         <translation>нема</translation>
-    </message>
-</context>
-<context>
-    <name>QCodeCompletionEngine</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
-        <location filename="../src/qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
-        <source>&amp;Trigger completion</source>
-        <translation>&amp;Завершення перемикача</translation>
-    </message>
-</context>
-<context>
-    <name>QDocumentSearch</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="783"/>
-        <source>Replacement prompt</source>
-        <translation>Запит заміни</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="784"/>
-        <source>Shall it be replaced?</source>
-        <translation>Замінити?</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
-        <source>Replacing Canceled</source>
-        <translation>Заміна скасована</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="789"/>
-        <source>%1 (of %2 found so far) occurrences have been replaced</source>
-        <translation>%1 (з %2 досі знайдених) збігів були замінені</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="828"/>
-        <source>Start of scope reached with no match.
-Restart from the end?</source>
-        <translation>Досягнуто початок області без збігів.
-Почати знову із кінця?</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="833"/>
-        <source>End of scope reached with no match.
-Restart from the beginning?</source>
-        <translation>Досягнуто кінець області без збігів.
-Почати знову із початку?</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="840"/>
-        <source>Failure</source>
-        <translation>Невдача</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="860"/>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="882"/>
-        <source>Replacing Finished</source>
-        <translation>Заміна завершена</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="861"/>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="882"/>
-        <source>%1 (of %2) occurrences have been replaced</source>
-        <translation>%1 (з %2) збігів були замінені</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/document/qdocumentsearch.cpp" line="862"/>
-        <source>Do you want to continue replacing from the beginning?</source>
-        <translation>Ви хочете продовжити заміни від початку?</translation>
-    </message>
-</context>
-<context>
-    <name>QEditor</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="265"/>
-        <source>Panels</source>
-        <translation>Панелі</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qcodeedit.cpp" line="267"/>
-        <source>&amp;View</source>
-        <translation>В&amp;игляд</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="199"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="701"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1468"/>
-        <source>Default</source>
-        <translation>Усталено</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="521"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1441"/>
-        <source>&amp;Undo</source>
-        <translation>&amp;Вернути</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="532"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1442"/>
-        <source>&amp;Redo</source>
-        <translation>&amp;Повторити</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="547"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1444"/>
-        <source>Cu&amp;t</source>
-        <translation>Вирі&amp;зати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="558"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1445"/>
-        <source>&amp;Copy</source>
-        <translation>&amp;Копіювати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="569"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1446"/>
-        <source>&amp;Paste</source>
-        <translation>&amp;Вставити</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="585"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1448"/>
-        <source>&amp;Indent</source>
-        <translation>Вставити ві&amp;дступ</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="593"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1449"/>
-        <source>&amp;Unindent</source>
-        <translation>&amp;Зняти відступ</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="605"/>
-        <source>Toggle &amp;Comment</source>
-        <translation>&amp;За/Розкоментувати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="610"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1450"/>
-        <source>Co&amp;mment</source>
-        <translation>За&amp;коментувати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="618"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1451"/>
-        <source>Unc&amp;omment</source>
-        <translation>&amp;Розкоментувати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="630"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1453"/>
-        <source>&amp;Select all</source>
-        <translation>&amp;Вибрати все</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="642"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1455"/>
-        <source>&amp;Find</source>
-        <translation>З&amp;найти</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="650"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1456"/>
-        <source>Fin&amp;d next</source>
-        <translation>Знайти &amp;далі</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="658"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1457"/>
-        <source>&amp;Replace</source>
-        <translation>&amp;Замінити</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="670"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1459"/>
-        <source>&amp;Goto line...</source>
-        <translation>&amp;Перейти до рядка...</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="682"/>
-        <source>Dynamic line wrapping</source>
-        <translation>Динамічний розрив рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="694"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1465"/>
-        <source>Input binding</source>
-        <translation>Прив&apos;язка вводу</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="719"/>
-        <source>Line endings</source>
-        <translation>Закінчення рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="726"/>
-        <source>Conservative</source>
-        <translation>Консервативно</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="727"/>
-        <source>Local</source>
-        <translation>Локально</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="728"/>
-        <source>Unix/Linux</source>
-        <translation>Unix/Linux</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="729"/>
-        <source>Dos/Windows</source>
-        <translation>DOS/Windows</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="730"/>
-        <source>Old Mac</source>
-        <translation>Старий Mac</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="920"/>
-        <source>Conflict!</source>
-        <translation>Конфлікт!</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="921"/>
-        <source>%1
-has been modified by another application.
-Press &quot;Save&quot; to overwrite the file on disk
-Press &quot;Reset&quot; to reload the file from disk.
-Press &quot;Diff&quot; to show differences in the editor.
-Press &quot;Ignore&quot; to ignore this warning.
-</source>
-        <translation>%1
-змінений іншою програмою.
-Щоб записати файл на диск, натисніть &quot;Зберегти&quot;.
-Щоб перевантажити файл із диску, натисніть &quot;Оновити&quot;.
-Щоб показати різниці в редакторі, натисніть „ Різниця“
-Щоб знехтувати цим повідомленням, натисніть &quot;Нехтувати&quot;.
-</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="933"/>
-        <source>Diff</source>
-        <translation>Різниці</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1012"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1022"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1051"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1088"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1110"/>
-        <source>Saving failed</source>
-        <translation>Провал збереження</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1013"/>
-        <source>%1
-Could not be written. Error (%2): %3.
-If the file already existed on disk, it was not modified by this operation.</source>
-        <translation>%1
-неможливо записати. Помилка (%2): %3.
-Якщо такий файл вже існував на диску, то він не змінився через цю дію.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1022"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1088"/>
-        <source>Could not get write permissions on file
-%1.
-
-Perhaps it is read-only or opened in another program?</source>
-        <translation>Неможливо отримати права запису у файл
-%1.
-
-Можливо, він доступний лише для читання або відкритий у іншій програмі?</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1052"/>
-        <source>There seems to be not enough space to save the file at
-%1
-
-File size: %2 kB
-Free space: %3 kB
-
-You should clean up some space and retry. Alternatively you can
-cancel the save operation and save to another location instead.
-When ignoring this warning TeXstudio will try save to the specified
-location. However if there is really not enough space, this will
-result in data loss.
-</source>
-        <translation>Бракує місця для збереження файлу в
-%1
-
-Розмір файлу: %2 kB
-Вільне місце: %3 kB
-
-Вам слід звільнити місце і повторити спробу. Ви може
-також скасувати збереження і зберегти файл
-в іншому місці. Якщо Ви проігноруєте це попередження,
-TeXstudio спробує зберегти файл у вказаному місці.
-Проте, якщо дійсно не буде вистачати простору, це
-може призвести до втрати даних.
-</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1077"/>
-        <source>Warning</source>
-        <translation>Попередження</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1078"/>
-        <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation>Створення файлу резервної копії завершилося невдачею. Ви можете продовжувати збереження. Однак, якщо збереження завершується невдачею, то це може призвести до втрати даних у початковому файлі. Хочете продовжити?</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1101"/>
-        <source>Writing the document to file
-%1
-failed.</source>
-        <translation>Запис документу в файл
-%1
-завершився невдачею.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1106"/>
-        <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
-%1</source>
-        <translation>Оригінальний файл на диску був знищений під час збереження.
-Ви можете знайти копію у
-%1</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
-        <source>File deleted</source>
-        <translation>Файл знищений</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1233"/>
-        <source>The file %1 has been deleted on disk.
-Should I save the document as it is to restore the file?
-</source>
-        <translation>Файл %1 був знищений на диску.
-Чи потрібно зберегти документ для відновлення файлу?
-</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1237"/>
-        <source>Well, this is strange: The file %1 is not deleted anymore.
-Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
-        <translation>Дивина та й годі: файл %1 не видаляється.
-Ймовірно, хтось відновив його, тому версія на диску не буде перевизначена (можливі зміни).</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1263"/>
-        <source>File changed</source>
-        <translation>Файл змінений</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1264"/>
-        <source>%1
-was changed outside of TeXstudio. Reload from disk?
-
-Notes:
-- Reloading overwrites the editor content with the file from disk. This cannot be undone.
-- You can permanently enable silent reloading in the options.</source>
-        <translation>%1
- змінений зовні TeXstudio. Оновити його з диска?
-
-Примітки:
-- Оновлення перепише вміст редактора файлом з диска. Цю дію не можна повернути.
-- Ви можете увімкнути постійне тихе оновлення у параметрах.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1338"/>
-        <source>Print Source Code</source>
-        <translation>Друк вихідного коду</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1471"/>
-        <source>&amp;Edit</source>
-        <translation>&amp;Зміни</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1472"/>
-        <source>&amp;Search</source>
-        <translation>&amp;Пошук</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1474"/>
-        <source>Edit</source>
-        <translation>Зміни</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1475"/>
-        <source>Search</source>
-        <translation>Пошук</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1597"/>
-        <source>Windows</source>
-        <translation>Windows</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="1599"/>
-        <source>Unix</source>
-        <translation>Unix</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4754"/>
-        <source>None</source>
-        <translation>Ні</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4755"/>
-        <source>Invalid</source>
-        <translation>Недійсний</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4757"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4774"/>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4791"/>
-        <source>Internal</source>
-        <translation>Внутрішній</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4759"/>
-        <source>Move cursor up</source>
-        <translation>Курсор вгору</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4760"/>
-        <source>Move cursor down</source>
-        <translation>Курсор вниз</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4761"/>
-        <source>Move cursor left (1 character)</source>
-        <translation>Курсор вліво (на 1 символ)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4762"/>
-        <source>Move cursor right (1 character)</source>
-        <translation>Курсор вправо (на 1 символ)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4763"/>
-        <source>Move cursor left (1 word)</source>
-        <translation>Курсор вліво (на 1 слово)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4764"/>
-        <source>Move cursor right (1 word)</source>
-        <translation>Курсор вправо (на 1 слово)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4765"/>
-        <source>Move cursor to line start</source>
-        <translation>Курсор на початок рядку</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4766"/>
-        <source>Move cursor to first character in line</source>
-        <translation>Перемістити курсор до першого символу в рядку</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4767"/>
-        <source>Move cursor to line end</source>
-        <translation>Курсор на кінець рядку</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4768"/>
-        <source>Move cursor to document start</source>
-        <translation>Курсор на початок документу</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4769"/>
-        <source>Move cursor to document end</source>
-        <translation>Курсор на кінець документу</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4771"/>
-        <source>Move cursor one page up</source>
-        <translation>Курсор на одну сторінку вгору</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4772"/>
-        <source>Move cursor one page down</source>
-        <translation>Курсор на одну сторінку вниз</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4776"/>
-        <source>Select up</source>
-        <translation>Виділити вгору</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4777"/>
-        <source>Select down</source>
-        <translation>Виділити вниз</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4778"/>
-        <source>Select left (1 character)</source>
-        <translation>Виділити вліво (1 символ)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4779"/>
-        <source>Select right (1 character)</source>
-        <translation>Виділити вправо (1 символ)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4780"/>
-        <source>Select left (1 word)</source>
-        <translation>Виділити вліво (1 слово)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4781"/>
-        <source>Select right (1 word)</source>
-        <translation>Виділити вправо (1 слово)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4782"/>
-        <source>Select to line start</source>
-        <translation>Виділити до початку рядка</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4783"/>
-        <source>Select to first character in line</source>
-        <translation>Виділити до першого символу в рядку</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4784"/>
-        <source>Select to line end</source>
-        <translation>Виділити до кінця рядка</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4785"/>
-        <source>Select to document start</source>
-        <translation>Виділити до початку документа</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4786"/>
-        <source>Select to document end</source>
-        <translation>Виділити до кінця документа</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4788"/>
-        <source>Select page up</source>
-        <translation>Виділити сторінку вгору</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4789"/>
-        <source>Select page down</source>
-        <translation>Виділити сторінку вниз</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4793"/>
-        <source>Delete left character</source>
-        <translation>Вилучити символ зліва</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4794"/>
-        <source>Delete right character</source>
-        <translation>Вилучити символ справа</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4795"/>
-        <source>Delete left word</source>
-        <translation>Вилучити слово зліва</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4796"/>
-        <source>Delete right word</source>
-        <translation>Вилучити слово справа</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4797"/>
-        <source>New line</source>
-        <translation>Новий рядок</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4799"/>
-        <source>Change overwrite mode</source>
-        <translation>Змінити режим перезапису</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4800"/>
-        <source>Undo</source>
-        <translation>Повернути</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4801"/>
-        <source>Redo</source>
-        <translation>Повторити</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4802"/>
-        <source>Copy</source>
-        <translation>Копіювати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4803"/>
-        <source>Paste</source>
-        <translation>Вставити</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4804"/>
-        <source>Cut</source>
-        <translation>Вирізати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4805"/>
-        <source>Print</source>
-        <translation>Друкувати</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4806"/>
-        <source>Select all</source>
-        <translation>Вибрати усе</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4807"/>
-        <source>Find</source>
-        <translation>Знайти</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4808"/>
-        <source>Find next</source>
-        <translation>Знайти наступний</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4809"/>
-        <source>Find previous</source>
-        <translation>Знайти попередній</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4810"/>
-        <source>Replace</source>
-        <translation>Замінити</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4812"/>
-        <source>Create cursor mirror up</source>
-        <translation>Створити відбиття курсора вгорі</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4813"/>
-        <source>Create cursor mirror down</source>
-        <translation>Створити відбиття курсора внизу</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4814"/>
-        <source>Next placeholder</source>
-        <translation>Наступний заповнювач</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4815"/>
-        <source>Previous placeholder</source>
-        <translation>Попередній заповнювач</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4816"/>
-        <source>Next placeholder or one word right</source>
-        <translation>Наступний заповнювач або одне слово вправо</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4817"/>
-        <source>Previous placeholder or one word left</source>
-        <translation>Попередній заповнювач або одне слово вліво</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4818"/>
-        <source>Next placeholder or character</source>
-        <translation>Наступний заповнювач чи символ</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4819"/>
-        <source>Previous placeholder or character</source>
-        <translation>Попередній заповнювач чи символ</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4820"/>
-        <source>Tab or Indent selection</source>
-        <translation>Табуляція або відступ для виділення</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4821"/>
-        <source>Insert tab</source>
-        <translation>Вставити табуляцію</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4822"/>
-        <source>Indent selection</source>
-        <translation>Зробити відступ для виділення</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4823"/>
-        <source>Unindent selection</source>
-        <translation>Зняти відступ для виділення</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qeditor.cpp" line="4826"/>
-        <source>Unknown</source>
-        <translation>Невідомо</translation>
     </message>
 </context>
 <context>
@@ -7775,117 +3604,6 @@ Notes:
         <source>normal</source>
         <translation>звичайний</translation>
     </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="59"/>
-        <source>Identifier</source>
-        <translation>Ідентифікатор</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="60"/>
-        <source>Bold</source>
-        <translation>Напівжирний</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="62"/>
-        <source>Italic</source>
-        <translation>Курсив</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="64"/>
-        <source>Underline</source>
-        <translation>Підкреслений</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
-        <source>Overline</source>
-        <translation>Надкреслений</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="68"/>
-        <source>Strikeout</source>
-        <translation>Перекреслений</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="70"/>
-        <source>Wave underline</source>
-        <translation>Підкреслений хвилькою</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="72"/>
-        <source>Text color (aka foreground)</source>
-        <translation>Колір тексту</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="74"/>
-        <source>Background color</source>
-        <translation>Колір тла</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
-        <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
-        <translation>Колір рядка (використовується для всіх форматів: підкресленого, надкресленого, ...)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="78"/>
-        <source>Font Family</source>
-        <translation>Гарнітура шрифту</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="79"/>
-        <source>Size</source>
-        <translation>Розмір</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="80"/>
-        <source>Font size relative to editor font size.
-
-Note: If the size is larger than the line spacing, characters may be clipped.</source>
-        <translation>Розмір шрифту стосується розміру шрифту редактора.
-
-Примітка: якщо цей розмір більший, ніж відстань між рядками, символи можуть виявитися обрізаними.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="81"/>
-        <source>Prio</source>
-        <translation>Пріоритет</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="82"/>
-        <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
-        <translation>Пріоритет визначає, який формат вищий за інші, якщо застосовується кілька форматів.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="281"/>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="325"/>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="560"/>
-        <source>&lt;default&gt;</source>
-        <translation>&lt;усталено&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="598"/>
-        <source>Unsaved changes</source>
-        <translation>Незбережені зміни</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qformatconfig.cpp" line="599"/>
-        <source>There are unsaved changes in this format scheme.
-Do you want them to be saved?</source>
-        <translation>У цьому наборі форматів є незбережені зміни.
-Зберегти їх?</translation>
-    </message>
-</context>
-<context>
-    <name>QLanguageFactory</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/qlanguagefactory.cpp" line="86"/>
-        <source>%1 files (*.%2)</source>
-        <translation>%1 файлів (*.%2)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/qlanguagefactory.cpp" line="88"/>
-        <source>All files (*)</source>
-        <translation>Усі файли (*)</translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -7933,243 +3651,9 @@ Error: </source>
         <translation>Невдача зчитування макросу
 Помилка:</translation>
     </message>
-    <message>
-        <location filename="../src/latexrepository.h" line="103"/>
-        <source> (Free)</source>
-        <translation> (Вільний)</translation>
-    </message>
-    <message>
-        <location filename="../src/latexrepository.h" line="103"/>
-        <source> (Not free)</source>
-        <translation> (Не вільний)</translation>
-    </message>
-</context>
-<context>
-    <name>QSearchReplacePanel</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="163"/>
-        <source>Enables case sensitive search.</source>
-        <translation>Вмикає пошук з урахування регістру.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="172"/>
-        <source>Only searches for whole words.</source>
-        <translation>Лише пошук цілих слів.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="182"/>
-        <source>This interprets the search text as a regular expression.
-Some common regexps:
- r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
- () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
-You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation>Шуканий текст інтерпретується як регулярний вираз.
-Деякі загальні регулярні вирази:
-r* буде шукати будь-яке число r, r+ рівне rr*, a? рівне a або нічому,
-() групує вирази, [xyz] буде шукати x,y або z, . рівна будь-якому символу, \. рівна .
-Ви можете використовувати конструкції від \1 до \9 в тексті для заміни, щоб вставити відповідний зразок.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="193"/>
-        <source>Highlights search matches and replaced text.</source>
-        <translation>Підсвітити збіги пошуку і заміненого тексту.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="202"/>
-        <source>Starts the search from the current cursor position.</source>
-        <translation>Починати пошук з позиції курсору.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="212"/>
-        <source>Only searches in the selected text.</source>
-        <translation>Шукати лише у виділеному тексті.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="221"/>
-        <source>Only searches in selected text type (math, commands, etc.)</source>
-        <translation>Шукати лише у вибраному типі тексту (математика, команди, тощо)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="242"/>
-        <source>Extended Search</source>
-        <translation>Розширений пошук</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="320"/>
-        <source>Ask before any match is replaced.</source>
-        <translation>Запитувати перед заміною кожного збігу.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="330"/>
-        <source>Enables the use of escape characters. These are:
- \n = new line, \r = carriage return, \t = tab, \\ = \</source>
-        <translation>Увімкнути використання escape-символів. Вони такі:
-\n = новий рядок, \r = повернення каретки, \t = табуляція, \\ = \</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="358"/>
-        <source>Close search/replace panel</source>
-        <translation>Закривати панель пошуку/заміни</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="359"/>
-        <source>Text or pattern to search for</source>
-        <translation>Текст або шаблон пошуку</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="360"/>
-        <source>Find next</source>
-        <translation>Знайти наступний</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="361"/>
-        <source>Find previous</source>
-        <translation>Знайти попередній</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="362"/>
-        <source>Count occurrences</source>
-        <translation>Число збігів</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="363"/>
-        <source>Replacement text</source>
-        <translation>Текст заміни</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="364"/>
-        <source>Replace and find next</source>
-        <translation>Замінити і знайти наступний</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="365"/>
-        <source>Replace and find previous</source>
-        <translation>Замінити і знайти попередній</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="366"/>
-        <source>Replace all</source>
-        <translation>Замінити усе</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="368"/>
-        <source>Find:</source>
-        <translation>Знайти:</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="369"/>
-        <source>Replace:</source>
-        <translation>Замінити:</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
-        <source>Count result</source>
-        <translation>Результат підрахунку</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="629"/>
-        <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation>Текст зустрічається %1 разів після курсору. Бажаєте продовжити з початку області пошуку?</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="634"/>
-        <source>The search text occurs %1 times within the search scope.</source>
-        <translation>Текст зустрічається %1 разів у області пошуку.</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="867"/>
-        <source> (col. %1)</source>
-        <translation> (стовп. %1)</translation>
-    </message>
-</context>
-<context>
-    <name>QStatusPanel</name>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="132"/>
-        <source>Line: %1</source>
-        <translation>Рядок: %1</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="133"/>
-        <source>Column: %1</source>
-        <translation>Стовпець: %1</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="137"/>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="143"/>
-        <source>Selected: %1</source>
-        <translation>Виділено: %1</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
-        <source>Lines: %1</source>
-        <translation>Рядків: %1</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="148"/>
-        <source>RTL</source>
-        <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation>RTL</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="159"/>
-        <source>(%1 min %2 s ago)</source>
-        <translation>(%1 хвилин %2 секунд тому)</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="175"/>
-        <source>OVERWRITE</source>
-        <translation>ЗАМІНА</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="175"/>
-        <source>INSERT</source>
-        <translation>ВСТАВКА</translation>
-    </message>
-    <message>
-        <location filename="../src/qcodeedit/lib/widgets/qstatuspanel.cpp" line="183"/>
-        <source>Conflict</source>
-        <translation>Конфлікт</translation>
-    </message>
 </context>
 <context>
     <name>QuickBeamerDialog</name>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation>Діалог</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="39"/>
-        <source>Encoding</source>
-        <translation>Кодування</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="46"/>
-        <source>Typeface Size</source>
-        <translation>Розмір шрифта</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="69"/>
-        <source>babel Package</source>
-        <translation>Пакет babel</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="29"/>
-        <source>Title</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="59"/>
-        <source>Author</source>
-        <translation>Автор</translation>
-    </message>
-    <message>
-        <location filename="../src/quickbeamerdialog.ui" line="22"/>
-        <source>Theme</source>
-        <translation>Тема</translation>
-    </message>
     <message>
         <location filename="../src/quickbeamerdialog.cpp" line="30"/>
         <source>Quick Beamer Presentation</source>
@@ -8178,116 +3662,6 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
 </context>
 <context>
     <name>QuickDocumentDialog</name>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="65"/>
-        <source>Title</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="94"/>
-        <source>Document Class</source>
-        <translation>Тип документа</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="118"/>
-        <source>Typeface Size</source>
-        <translation>Розмір шрифта</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="131"/>
-        <source>Other Options</source>
-        <translation>Інші параметри</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="183"/>
-        <source>Paper Size</source>
-        <translation>Розмір паперу</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="205"/>
-        <source>Author</source>
-        <translation>Автор</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="36"/>
-        <source>&amp;Class Options</source>
-        <translation>&amp;Параметри класу</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="75"/>
-        <source>Language</source>
-        <translation>Мова</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="78"/>
-        <source>Adds language support to your document with Babel package</source>
-        <translation>Додає підтримку різних мов до вашого документа з пакета Babel </translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="212"/>
-        <source>Font Encoding</source>
-        <translation>Кодування шрифту</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="236"/>
-        <source>&amp;Packages</source>
-        <translation>&amp;Пакети</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="254"/>
-        <source>Package</source>
-        <translation>Пакет</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="259"/>
-        <source>Description</source>
-        <translation>Опис</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="281"/>
-        <source>&amp;Geometry</source>
-        <translation>&amp;Геометрія</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="309"/>
-        <source>Page</source>
-        <translation>Сторінка</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="315"/>
-        <source>Width:</source>
-        <translation>Ширина:</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="406"/>
-        <source>Height:</source>
-        <translation>Висота:</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="416"/>
-        <source>Margins</source>
-        <translation>Межі</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="422"/>
-        <source>Left:</source>
-        <translation>Ліва:</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="474"/>
-        <source>Right:</source>
-        <translation>Права:</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="571"/>
-        <source>Top:</source>
-        <translation>Верхня:</translation>
-    </message>
-    <message>
-        <location filename="../src/quickdocumentdialog.ui" line="578"/>
-        <source>Bottom:</source>
-        <translation>Нижня:</translation>
-    </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="59"/>
         <source>Quick Start</source>
@@ -8361,92 +3735,6 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
 </context>
 <context>
     <name>RandomTextGenerator</name>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="14"/>
-        <source>Random Text Generator</source>
-        <translation>Генератор випадкового тексту</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="20"/>
-        <source>Options</source>
-        <translation>Параметри</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="93"/>
-        <source>First Order Word</source>
-        <translation>Слово першого порядку</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="145"/>
-        <source>Second Order Words</source>
-        <translation>Слова другого рівня</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="192"/>
-        <source>Third Order Words</source>
-        <translation>Слова третього рівня</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="228"/>
-        <source>Lorem Ipsum</source>
-        <translation>Випадковий текст</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="162"/>
-        <source>Length:</source>
-        <translation>Довжина:</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="59"/>
-        <source>Generate</source>
-        <translation>Згенерувати</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="155"/>
-        <source>Close</source>
-        <translation>Закрити</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="73"/>
-        <location filename="../src/randomtextgenerator.ui" line="100"/>
-        <source>Higher Order:</source>
-        <translation>Вищий рівень:</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="52"/>
-        <source>First Order Characters</source>
-        <translation>Символи першого рівня</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="131"/>
-        <source>Second Order Characters</source>
-        <translation>Символи другого рівня</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="124"/>
-        <source>Third Order Characters</source>
-        <translation>Символи третього рівня</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="66"/>
-        <source>Ignore Case</source>
-        <translation>Нехтувати регістром</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="138"/>
-        <source>Punctation</source>
-        <translation>Пунктуація</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="182"/>
-        <source>LaTeX Input</source>
-        <translation>Ввід LaTeX</translation>
-    </message>
-    <message>
-        <location filename="../src/randomtextgenerator.ui" line="107"/>
-        <source>Save to:</source>
-        <translation>Зберегти до:</translation>
-    </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="50"/>
         <source>No data given</source>
@@ -8606,71 +3894,6 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
 <context>
     <name>SpellerDialog</name>
     <message>
-        <location filename="../src/spellerdialog.ui" line="14"/>
-        <source>Check Spelling</source>
-        <translation>Перевірка правопису</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="43"/>
-        <source>Unknown Word</source>
-        <translation>Невідоме слово</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="60"/>
-        <source>Replace with</source>
-        <translation>Замінити на</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="67"/>
-        <source>Suggested Words</source>
-        <translation>Запропоновані слова</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="116"/>
-        <source>Add</source>
-        <translation>Додати</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="101"/>
-        <source>User-added Words</source>
-        <translation>Додані користувачем слова</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="77"/>
-        <source>&amp;Replace</source>
-        <translation>&amp;Замінити</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="87"/>
-        <source>Ignore &amp;Once</source>
-        <translation>Пропустити &amp;раз</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="127"/>
-        <source>Remove</source>
-        <translation>Видалити</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="147"/>
-        <source>Close</source>
-        <translation>Закрити</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="169"/>
-        <source>Hide Added Words</source>
-        <translation>Приховати додані слова</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="184"/>
-        <source>Ig&amp;nore All</source>
-        <translation>П&amp;ропустити все</translation>
-    </message>
-    <message>
-        <location filename="../src/spellerdialog.ui" line="191"/>
-        <source>&amp;Add to dictionary</source>
-        <translation>&amp;Додати до словника</translation>
-    </message>
-    <message>
         <location filename="../src/spellerdialog.cpp" line="85"/>
         <source>Check spelling selection...</source>
         <translation>Перевірка правопису у виділеному...</translation>
@@ -8728,146 +3951,6 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
         <location filename="../src/spellerutility.cpp" line="35"/>
         <source>Dictionary does not exist.</source>
         <translation>Словник не існує.</translation>
-    </message>
-</context>
-<context>
-    <name>SymbolListModel</name>
-    <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="333"/>
-        <source>Command: </source>
-        <translation>Команда: </translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="346"/>
-        <source>Package: </source>
-        <translation>Пакет: </translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="348"/>
-        <source>Packages: </source>
-        <translation>Пакети: </translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbollistmodel.cpp" line="359"/>
-        <source>Unicode Character: </source>
-        <translation>Символ Юнікоду:</translation>
-    </message>
-</context>
-<context>
-    <name>SymbolListView</name>
-    <message>
-        <location filename="../src/symbolpanel/symbollistview.cpp" line="40"/>
-        <source>Remove from Favorites</source>
-        <translation>Вилучити з обраного</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbollistview.cpp" line="44"/>
-        <source>Add to Favorites</source>
-        <translation>Додати до обраного</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbollistview.cpp" line="49"/>
-        <source>Insert command</source>
-        <translation>Вставити команду</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbollistview.cpp" line="54"/>
-        <source>Insert unicode</source>
-        <translation>Вставити символ юнікоду</translation>
-    </message>
-</context>
-<context>
-    <name>SymbolWidget</name>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="51"/>
-        <source>Operators</source>
-        <comment>Operator category</comment>
-        <translation>Оператори</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="52"/>
-        <source>Relations</source>
-        <comment>Operator category</comment>
-        <translation>Відношення</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="53"/>
-        <source>Arrows</source>
-        <comment>Operator category</comment>
-        <translation>Стрілки</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="54"/>
-        <source>Delimiters</source>
-        <comment>Operator category</comment>
-        <translation>Розділювачі</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="55"/>
-        <source>Greek</source>
-        <comment>Operator category</comment>
-        <translation>Грецькі букви</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="56"/>
-        <source>Cyrillic</source>
-        <comment>Operator category</comment>
-        <translation>Кирилиця</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="57"/>
-        <source>Misc. Math</source>
-        <comment>Operator category</comment>
-        <translation>Різна матем.</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="58"/>
-        <source>Misc. Text</source>
-        <comment>Operator category</comment>
-        <translation>Різний текст</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="59"/>
-        <source>wasysym</source>
-        <comment>Operator category</comment>
-        <translation>wasysym</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="60"/>
-        <source>fontawesome5</source>
-        <comment>Operator category</comment>
-        <translation>fontawesome5</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="61"/>
-        <source>Special</source>
-        <comment>Operator category</comment>
-        <translation>Спеціальне</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="97"/>
-        <source>Favorites</source>
-        <translation>Обрані</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="117"/>
-        <source>Most Used</source>
-        <translation>Найвживаніші</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="138"/>
-        <source>Search</source>
-        <translation>Пошук</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="142"/>
-        <source>Category</source>
-        <translation>Категорія</translation>
-    </message>
-    <message>
-        <location filename="../src/symbolpanel/symbolwidget.cpp" line="153"/>
-        <source>All</source>
-        <translation>Усі</translation>
     </message>
 </context>
 <context>
@@ -8965,86 +4048,6 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
 </context>
 <context>
     <name>TabDialog</name>
-    <message>
-        <location filename="../src/tabdialog.ui" line="37"/>
-        <source>Num of Columns</source>
-        <translation>Число стовпців</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="78"/>
-        <source>Columns</source>
-        <translation>Стовпчики</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="86"/>
-        <source>Column :</source>
-        <translation>Стовпець :</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="113"/>
-        <source>Alignment :</source>
-        <translation>Вирівнювання :</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="127"/>
-        <source>Left Border :</source>
-        <translation>Лівий край :</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="167"/>
-        <source>Apply to all columns</source>
-        <translation>Застосувати до усіх стовпчиків</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="194"/>
-        <source>Right Border (last column) :</source>
-        <translation>Правий край (останній стовпчик) :</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="232"/>
-        <source>Num of Rows</source>
-        <translation>Число рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="263"/>
-        <source>Rows</source>
-        <translation>Рядки</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="271"/>
-        <source>Row :</source>
-        <translation>Рядок :</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="296"/>
-        <source>Top Border</source>
-        <translation>Верхній край</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="305"/>
-        <source>Merge columns :</source>
-        <translation>Об&apos;єднати стовпчики :</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="321"/>
-        <source>-&gt;</source>
-        <translation>-&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="364"/>
-        <source>Apply to all rows</source>
-        <translation>Застосувати до усіх рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="389"/>
-        <source>Bottom Border (last row)</source>
-        <translation>Нижній край (останній рядок)</translation>
-    </message>
-    <message>
-        <location filename="../src/tabdialog.ui" line="396"/>
-        <source>Add vertical margin for each row</source>
-        <translation>Додати вертикальну межу для кожного рядка</translation>
-    </message>
     <message>
         <location filename="../src/tabdialog.cpp" line="59"/>
         <source>Center</source>
@@ -9167,31 +4170,6 @@ r* буде шукати будь-яке число r, r+ рівне rr*, a? р�
 </context>
 <context>
     <name>TabbingDialog</name>
-    <message>
-        <location filename="../src/tabbingdialog.ui" line="44"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
-        <location filename="../src/tabbingdialog.ui" line="51"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
-        <location filename="../src/tabbingdialog.ui" line="76"/>
-        <source>Spacing</source>
-        <translation>Пробіли</translation>
-    </message>
-    <message>
-        <location filename="../src/tabbingdialog.ui" line="91"/>
-        <source>Num of Rows</source>
-        <translation>Число рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/tabbingdialog.ui" line="106"/>
-        <source>Num of Columns</source>
-        <translation>Число стовпців</translation>
-    </message>
     <message>
         <location filename="../src/tabbingdialog.cpp" line="28"/>
         <source>Quick Tabbing</source>
@@ -9411,36 +4389,6 @@ template to edit individual files.</source>
 <context>
     <name>TexdocDialog</name>
     <message>
-        <location filename="../src/texdocdialog.ui" line="14"/>
-        <source>Packages Help (Texdoc)</source>
-        <translation>Довідка про пакети (Texdoc)</translation>
-    </message>
-    <message>
-        <location filename="../src/texdocdialog.ui" line="28"/>
-        <source>Packages</source>
-        <translation>Пакунки</translation>
-    </message>
-    <message>
-        <location filename="../src/texdocdialog.ui" line="47"/>
-        <source>Package descriptions</source>
-        <translation>Опис пакунка</translation>
-    </message>
-    <message>
-        <location filename="../src/texdocdialog.ui" line="138"/>
-        <source>open CTAN</source>
-        <translation>відкрити CTAN</translation>
-    </message>
-    <message>
-        <location filename="../src/texdocdialog.ui" line="157"/>
-        <source>Enter a term to search for in both columns.</source>
-        <translation>Введіть термін для пошуку його в обох стовпцях.</translation>
-    </message>
-    <message>
-        <location filename="../src/texdocdialog.ui" line="164"/>
-        <source>all packages</source>
-        <translation>усі пакунки </translation>
-    </message>
-    <message>
         <location filename="../src/texdocdialog.cpp" line="256"/>
         <source>No Documentation Available</source>
         <translation>Документація недоступна</translation>
@@ -9495,7 +4443,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="347"/>
-        <location filename="../src/texstudio.cpp" line="286"/>
+        <location filename="../src/texstudio.cpp" line="284"/>
         <source>Central</source>
         <translation>Центральний</translation>
     </message>
@@ -9589,1652 +4537,1662 @@ template to edit individual files.</source>
         <translation>Змінити &amp;макрос...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="362"/>
-        <location filename="../src/texstudio.cpp" line="6263"/>
+        <location filename="../src/texstudio.cpp" line="363"/>
+        <location filename="../src/texstudio.cpp" line="6270"/>
         <source>Ready</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="436"/>
+        <location filename="../src/texstudio.cpp" line="437"/>
         <source>TeX files</source>
         <translation>Файли TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="437"/>
+        <location filename="../src/texstudio.cpp" line="438"/>
         <source>LilyPond files</source>
         <translation>Файли LilyPond</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="438"/>
+        <location filename="../src/texstudio.cpp" line="439"/>
         <source>Plaintext files</source>
         <translation>Текстові файли</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="439"/>
+        <location filename="../src/texstudio.cpp" line="440"/>
         <source>Pweave files</source>
         <translation>Файли Pweave</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="440"/>
+        <location filename="../src/texstudio.cpp" line="441"/>
         <source>Sweave files</source>
         <translation>Файли Sweave</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="441"/>
+        <location filename="../src/texstudio.cpp" line="442"/>
         <source>Asymptote files</source>
         <translation>Файли Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="442"/>
+        <location filename="../src/texstudio.cpp" line="443"/>
         <source>PDF files</source>
         <translation>Файли PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="443"/>
-        <location filename="../src/texstudio.cpp" line="9788"/>
-        <location filename="../src/texstudio.cpp" line="9795"/>
+        <location filename="../src/texstudio.cpp" line="444"/>
+        <location filename="../src/texstudio.cpp" line="9794"/>
+        <location filename="../src/texstudio.cpp" line="9801"/>
         <source>All files</source>
         <translation>Усі файли</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="633"/>
-        <location filename="../src/texstudio.cpp" line="635"/>
+        <location filename="../src/texstudio.cpp" line="646"/>
         <source>Macros</source>
         <translation>Макроси</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="653"/>
+        <location filename="../src/texstudio.cpp" line="665"/>
         <source>Side Panel</source>
         <translation>Бічна панель</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="691"/>
-        <location filename="../src/texstudio.cpp" line="693"/>
+        <location filename="../src/texstudio.cpp" line="684"/>
         <source>Structure</source>
         <translation>Структура</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="715"/>
-        <location filename="../src/texstudio.cpp" line="717"/>
+        <location filename="../src/texstudio.cpp" line="703"/>
         <source>Bookmarks</source>
         <translation>Закладки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="727"/>
-        <location filename="../src/texstudio.cpp" line="729"/>
+        <location filename="../src/texstudio.cpp" line="713"/>
         <source>Symbols</source>
         <translation>Символи</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="735"/>
+        <location filename="../src/texstudio.cpp" line="738"/>
         <source>Left/Right Brackets</source>
         <translation>Ліва/Права дужки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="737"/>
+        <location filename="../src/texstudio.cpp" line="740"/>
         <source>MetaPost Commands</source>
         <translation>Команди MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="736"/>
+        <location filename="../src/texstudio.cpp" line="739"/>
         <source>PSTricks Commands</source>
         <translation>Команди PSTricks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="705"/>
-        <location filename="../src/texstudio.cpp" line="707"/>
+        <location filename="../src/texstudio.cpp" line="695"/>
         <source>TOC</source>
         <translation>Зміст</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="738"/>
+        <location filename="../src/texstudio.cpp" line="741"/>
         <source>TikZ Commands</source>
         <translation>Команди TikZ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="739"/>
+        <location filename="../src/texstudio.cpp" line="742"/>
         <source>Asymptote Commands</source>
         <translation>Команди Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="740"/>
+        <location filename="../src/texstudio.cpp" line="743"/>
         <source>Beamer Commands</source>
         <translation>Команди Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="741"/>
+        <location filename="../src/texstudio.cpp" line="744"/>
         <source>XY Commands</source>
         <translation>Команди XY</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="886"/>
+        <location filename="../src/texstudio.cpp" line="864"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="888"/>
+        <location filename="../src/texstudio.cpp" line="866"/>
         <source>&amp;New</source>
         <translation>&amp;Новий</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="889"/>
+        <location filename="../src/texstudio.cpp" line="867"/>
         <source>New From &amp;Template...</source>
         <translation>Новий із &amp;шаблону…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="890"/>
+        <location filename="../src/texstudio.cpp" line="868"/>
         <source>&amp;Open...</source>
         <translation>&amp;Відкрити…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="892"/>
+        <location filename="../src/texstudio.cpp" line="870"/>
         <source>Open &amp;Recent</source>
         <translation>Відкрити &amp;недавні</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="894"/>
+        <location filename="../src/texstudio.cpp" line="872"/>
         <source>Session</source>
         <translation>Сеанс</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="895"/>
+        <location filename="../src/texstudio.cpp" line="873"/>
         <source>Load Session...</source>
         <translation>Завантажити сеанс…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="896"/>
+        <location filename="../src/texstudio.cpp" line="874"/>
         <source>Save Session...</source>
         <translation>Зберегти сеанс…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="897"/>
+        <location filename="../src/texstudio.cpp" line="875"/>
         <source>Restore Previous Session</source>
         <translation>Відновити попередній сеанс</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="906"/>
+        <location filename="../src/texstudio.cpp" line="884"/>
         <source>&amp;Save</source>
         <translation>&amp;Зберегти</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="907"/>
+        <location filename="../src/texstudio.cpp" line="885"/>
         <source>Save &amp;As...</source>
         <translation>Зберегти &amp;як…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="908"/>
+        <location filename="../src/texstudio.cpp" line="886"/>
         <source>Save A&amp;ll</source>
         <translation>Зберегти &amp;усе</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="909"/>
+        <location filename="../src/texstudio.cpp" line="887"/>
         <source>&amp;Make Template...</source>
         <translation>&amp;Зробити шаблон…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="912"/>
+        <location filename="../src/texstudio.cpp" line="890"/>
         <source>Fifi&amp;x</source>
         <translation>&amp;Управління файлом</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="913"/>
+        <location filename="../src/texstudio.cpp" line="891"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>Зберегти перейменований/&amp;переміщений файл...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="914"/>
+        <location filename="../src/texstudio.cpp" line="892"/>
         <source>Save copied file...</source>
         <translation>Зберегти скопійований файл…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="915"/>
+        <location filename="../src/texstudio.cpp" line="893"/>
         <source>&amp;Delete file</source>
         <translation>&amp;Видалити файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="916"/>
+        <location filename="../src/texstudio.cpp" line="894"/>
         <source>Set &amp;permissions...</source>
         <translation>Задати &amp;права…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="918"/>
+        <location filename="../src/texstudio.cpp" line="896"/>
         <source>&amp;Revert to saved...</source>
         <translation>&amp;Повернути до збереженого…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="920"/>
+        <location filename="../src/texstudio.cpp" line="898"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>Копіювати назву файлу до &amp;буфера обміну</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="923"/>
+        <location filename="../src/texstudio.cpp" line="901"/>
         <source>S&amp;VN/GIT...</source>
         <translation>S&amp;VN/GIT...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="924"/>
+        <location filename="../src/texstudio.cpp" line="902"/>
         <source>Check &amp;in...</source>
         <translation>&amp;Зареєструвати…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="925"/>
+        <location filename="../src/texstudio.cpp" line="903"/>
         <source>SVN &amp;update...</source>
         <translation>&amp;Оновити SVN...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="926"/>
+        <location filename="../src/texstudio.cpp" line="904"/>
         <source>SVN update &amp;work directory</source>
         <translation>Оновити SVN і &amp;робочий каталог</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="927"/>
+        <location filename="../src/texstudio.cpp" line="905"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>Показати &amp;старі версії</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="928"/>
+        <location filename="../src/texstudio.cpp" line="906"/>
         <source>Lock &amp;PDF</source>
         <translation>Заблокувати &amp;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="929"/>
+        <location filename="../src/texstudio.cpp" line="907"/>
         <source>Check in P&amp;DF</source>
         <translation>Зареєструвати P&amp;DF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="930"/>
+        <location filename="../src/texstudio.cpp" line="908"/>
         <source>Show difference between two files</source>
         <translation>Показати різницю між двома файлами</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="931"/>
+        <location filename="../src/texstudio.cpp" line="909"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Показати різницю між двома файлами відносно базового файлу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="932"/>
+        <location filename="../src/texstudio.cpp" line="910"/>
         <source>Check SVN Conflict</source>
         <translation>Перевірити конфлікт SVN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="933"/>
+        <location filename="../src/texstudio.cpp" line="911"/>
         <source>Try to merge differences</source>
         <translation>Спробувати об&apos;єднати різниці</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="934"/>
+        <location filename="../src/texstudio.cpp" line="912"/>
         <source>Remove Difference-Markers</source>
         <translation>Видалити позначки різниць</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="935"/>
+        <location filename="../src/texstudio.cpp" line="913"/>
         <source>Declare Conflict Resolved</source>
         <translation>Оголосити конфлікт розв&apos;язаним</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="936"/>
+        <location filename="../src/texstudio.cpp" line="914"/>
         <source>Jump to next difference</source>
         <translation>Перейти до наступної різниці</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="937"/>
+        <location filename="../src/texstudio.cpp" line="915"/>
         <source>Jump to previous difference</source>
         <translation>Перейти до попередньої різниці</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="940"/>
-        <location filename="../src/texstudio.cpp" line="9989"/>
+        <location filename="../src/texstudio.cpp" line="918"/>
+        <location filename="../src/texstudio.cpp" line="9995"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="941"/>
+        <location filename="../src/texstudio.cpp" line="919"/>
         <source>Clos&amp;e All</source>
         <translation>Закри&amp;ти усе</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="944"/>
+        <location filename="../src/texstudio.cpp" line="922"/>
         <source>Print Source Code...</source>
         <translation>Друк вихідного коду…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="947"/>
+        <location filename="../src/texstudio.cpp" line="925"/>
         <source>Exit</source>
         <translation>Вийти</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="950"/>
+        <location filename="../src/texstudio.cpp" line="928"/>
         <source>&amp;Edit</source>
         <translation>З&amp;міни</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="951"/>
+        <location filename="../src/texstudio.cpp" line="929"/>
         <source>&amp;Undo</source>
         <translation>&amp;Повернути</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="952"/>
+        <location filename="../src/texstudio.cpp" line="930"/>
         <source>&amp;Redo</source>
         <translation>&amp;Повторити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="954"/>
+        <location filename="../src/texstudio.cpp" line="932"/>
         <source>Debug undo stack</source>
         <translation>Зневадження стеку повернень</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="958"/>
+        <location filename="../src/texstudio.cpp" line="936"/>
         <source>&amp;Copy</source>
         <translation>&amp;Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
+        <location filename="../src/texstudio.cpp" line="935"/>
         <source>C&amp;ut</source>
         <translation>Ви&amp;різати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="921"/>
+        <location filename="../src/texstudio.cpp" line="730"/>
+        <source>Insert filename</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="735"/>
+        <source>Files</source>
+        <translation>Файли</translation>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="899"/>
         <source>Copy root filename to clipboard</source>
         <translation>Копіювати назву кореневого файлу в буфер обміну</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="959"/>
+        <location filename="../src/texstudio.cpp" line="937"/>
         <source>&amp;Paste</source>
         <translation>&amp;Вставити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="961"/>
+        <location filename="../src/texstudio.cpp" line="939"/>
         <source>&amp;Selection</source>
         <translation>Ви&amp;бір</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="962"/>
+        <location filename="../src/texstudio.cpp" line="940"/>
         <source>Select &amp;All</source>
         <translation>Вибрати &amp;усе</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="963"/>
+        <location filename="../src/texstudio.cpp" line="941"/>
         <source>Select All &amp;Occurrences</source>
         <translation>Вибрати усі &amp;збіги</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="964"/>
+        <location filename="../src/texstudio.cpp" line="942"/>
         <source>Select &amp;Prev Occurrence</source>
         <translation>Вибрати &amp;попередній збіг</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="965"/>
+        <location filename="../src/texstudio.cpp" line="943"/>
         <source>Select &amp;Next Occurrence</source>
         <translation>Вибрати &amp;наступний збіг</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="966"/>
+        <location filename="../src/texstudio.cpp" line="944"/>
         <source>Also Select Prev Occurrence</source>
         <translation>Також вибрати попередній збіг</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="967"/>
+        <location filename="../src/texstudio.cpp" line="945"/>
         <source>Also Select Next Occurrence</source>
         <translation>Також вибрати наступний збіг</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="968"/>
+        <location filename="../src/texstudio.cpp" line="946"/>
         <source>Expand Selection to Word</source>
         <translation>Розширити виділення на слово</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="969"/>
+        <location filename="../src/texstudio.cpp" line="947"/>
         <source>Expand Selection to Line</source>
         <translation>Розширити виділення на рядок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="971"/>
+        <location filename="../src/texstudio.cpp" line="949"/>
         <source>&amp;Line Operations</source>
         <translation>Дії з &amp;рядками</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="972"/>
+        <location filename="../src/texstudio.cpp" line="950"/>
         <source>Delete &amp;Line</source>
         <translation>Видалити &amp;рядок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="975"/>
-        <location filename="../src/texstudio.cpp" line="977"/>
+        <location filename="../src/texstudio.cpp" line="953"/>
+        <location filename="../src/texstudio.cpp" line="955"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>Видалити до &amp;кінця рядка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="979"/>
+        <location filename="../src/texstudio.cpp" line="957"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>Видалити від &amp;початку рядка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="980"/>
+        <location filename="../src/texstudio.cpp" line="958"/>
         <source>Move Line &amp;Up</source>
         <translation>Пересунути рядок в&amp;гору</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="981"/>
+        <location filename="../src/texstudio.cpp" line="959"/>
         <source>Move Line &amp;Down</source>
         <translation>Пересунути рядок в&amp;низ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="982"/>
+        <location filename="../src/texstudio.cpp" line="960"/>
         <source>Du&amp;plicate Line</source>
         <translation>&amp;Дублювати рядок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
+        <location filename="../src/texstudio.cpp" line="961"/>
         <source>S&amp;ort Lines</source>
         <translation>&amp;Упорядкувати рядки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="984"/>
+        <location filename="../src/texstudio.cpp" line="962"/>
         <source>&amp;Align Cursors</source>
         <translation>&amp;Вирівняти курсори</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="986"/>
+        <location filename="../src/texstudio.cpp" line="964"/>
         <source>&amp;Text Operations</source>
         <translation>Дії з &amp;текстом</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="987"/>
+        <location filename="../src/texstudio.cpp" line="965"/>
         <source>To Lowercase</source>
         <translation>У нижній регістр</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/texstudio.cpp" line="966"/>
         <source>To Uppercase</source>
         <translation>У верхній регістр</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/texstudio.cpp" line="967"/>
         <source>To Titlecase (strict)</source>
         <translation>У верхній регістр (усе)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="990"/>
+        <location filename="../src/texstudio.cpp" line="968"/>
         <source>To Titlecase (smart)</source>
         <translation>У верхній регістр (кмітливо)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="994"/>
+        <location filename="../src/texstudio.cpp" line="972"/>
         <source>&amp;Searching</source>
         <translation>&amp;Пошук</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="995"/>
+        <location filename="../src/texstudio.cpp" line="973"/>
         <source>&amp;Find</source>
         <translation>З&amp;найти</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="996"/>
+        <location filename="../src/texstudio.cpp" line="974"/>
         <source>Find &amp;Next</source>
         <translation>Знайти &amp;наступний</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
+        <location filename="../src/texstudio.cpp" line="975"/>
         <source>Find &amp;Prev</source>
         <translation>Знайти &amp;попередній</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="998"/>
+        <location filename="../src/texstudio.cpp" line="976"/>
         <source>Continue F&amp;ind</source>
         <translation>П&amp;родовжити пошук</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="999"/>
+        <location filename="../src/texstudio.cpp" line="977"/>
         <source>&amp;Count</source>
         <translation>Число &amp;збігів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="978"/>
         <source>&amp;Select all matches...</source>
         <translation>&amp;Вибрати усі збіги…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1002"/>
+        <location filename="../src/texstudio.cpp" line="980"/>
         <source>&amp;Replace</source>
         <translation>&amp;Замінити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1003"/>
+        <location filename="../src/texstudio.cpp" line="981"/>
         <source>Replace Next</source>
         <translation>Замінити наступний</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1004"/>
+        <location filename="../src/texstudio.cpp" line="982"/>
         <source>Replace Prev</source>
         <translation>Замінити попередній</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1005"/>
+        <location filename="../src/texstudio.cpp" line="983"/>
         <source>Replace &amp;All</source>
         <translation>Замінити &amp;усе</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1008"/>
+        <location filename="../src/texstudio.cpp" line="986"/>
         <source>Go to</source>
         <translation>Перейти до</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1010"/>
-        <location filename="../src/texstudio.cpp" line="7736"/>
-        <location filename="../src/texstudio.cpp" line="7761"/>
-        <location filename="../src/texstudio.cpp" line="7781"/>
+        <location filename="../src/texstudio.cpp" line="988"/>
+        <location filename="../src/texstudio.cpp" line="7742"/>
+        <location filename="../src/texstudio.cpp" line="7767"/>
+        <location filename="../src/texstudio.cpp" line="7787"/>
         <source>Line</source>
         <translation>Рядок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1011"/>
+        <location filename="../src/texstudio.cpp" line="989"/>
         <source>Previous Change</source>
         <translation>Попередня зміна</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1013"/>
-        <location filename="../src/texstudio.cpp" line="1015"/>
+        <location filename="../src/texstudio.cpp" line="991"/>
+        <location filename="../src/texstudio.cpp" line="993"/>
         <source>Next Change</source>
         <translation>Наступна зміна</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1018"/>
+        <location filename="../src/texstudio.cpp" line="996"/>
         <source>Previous mark</source>
         <translation>Попередня позначка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1019"/>
+        <location filename="../src/texstudio.cpp" line="997"/>
         <source>Next mark</source>
         <translation>Наступна позначка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1022"/>
+        <location filename="../src/texstudio.cpp" line="1000"/>
         <source>Go Back</source>
         <translation>Назад</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1023"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
         <source>Go Forward</source>
         <translation>Вперед</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1026"/>
+        <location filename="../src/texstudio.cpp" line="1004"/>
         <source>Goto Bookmark</source>
         <translation>Перейти на закладку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1039"/>
-        <location filename="../src/texstudio.cpp" line="1048"/>
-        <location filename="../src/texstudio.cpp" line="1052"/>
+        <location filename="../src/texstudio.cpp" line="1017"/>
+        <location filename="../src/texstudio.cpp" line="1026"/>
+        <location filename="../src/texstudio.cpp" line="1030"/>
         <source>Bookmark %1</source>
         <translation>Закладка %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1043"/>
+        <location filename="../src/texstudio.cpp" line="1021"/>
         <source>Toggle Bookmark</source>
         <translation>Перемкнути закладку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1046"/>
-        <location filename="../src/texstudio.cpp" line="1050"/>
+        <location filename="../src/texstudio.cpp" line="1024"/>
+        <location filename="../src/texstudio.cpp" line="1028"/>
         <source>Unnamed Bookmark</source>
         <translation>Безіменна закладка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1057"/>
+        <location filename="../src/texstudio.cpp" line="1035"/>
         <source>Line Ending</source>
         <translation>Кінець рядка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1059"/>
+        <location filename="../src/texstudio.cpp" line="1037"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1063"/>
+        <location filename="../src/texstudio.cpp" line="1041"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1067"/>
+        <location filename="../src/texstudio.cpp" line="1045"/>
         <source>Old Mac (CR)</source>
         <translation>Старий Mac (CR)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1073"/>
+        <location filename="../src/texstudio.cpp" line="1051"/>
         <source>Setup Encoding...</source>
         <translation>Налаштувати кодування…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1075"/>
-        <location filename="../src/texstudio.cpp" line="1077"/>
+        <location filename="../src/texstudio.cpp" line="1053"/>
+        <location filename="../src/texstudio.cpp" line="1055"/>
         <source>Insert Unicode Character...</source>
         <translation>Вставити символ Юнікоду…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1083"/>
+        <location filename="../src/texstudio.cpp" line="1061"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Вигляд</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1084"/>
+        <location filename="../src/texstudio.cpp" line="1062"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Вилучити &amp;слово/команду/оточення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1087"/>
+        <location filename="../src/texstudio.cpp" line="1065"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Вста&amp;вити як LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1088"/>
+        <location filename="../src/texstudio.cpp" line="1066"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>Пере&amp;творити у LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1091"/>
+        <location filename="../src/texstudio.cpp" line="1069"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>Пере&amp;гляд обраного/дужок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1092"/>
+        <location filename="../src/texstudio.cpp" line="1070"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>О&amp;чистити вбудований перегляд</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1094"/>
+        <location filename="../src/texstudio.cpp" line="1072"/>
         <source>Preview Dis&amp;play Mode</source>
         <translation>Режим &amp;попереднього перегляду</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1096"/>
+        <location filename="../src/texstudio.cpp" line="1074"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Показувати перегляд як підказку, якщо панель схована</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1100"/>
+        <location filename="../src/texstudio.cpp" line="1078"/>
         <source>Always show preview in preview panel</source>
         <translation>Завжди показувати перегляд у панелі попереднього перегляду</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1104"/>
+        <location filename="../src/texstudio.cpp" line="1082"/>
         <source>Always show preview as tool tip</source>
         <translation>Завжди показувати перегляд у вигляді підказки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1108"/>
+        <location filename="../src/texstudio.cpp" line="1086"/>
         <source>Always show both</source>
         <translation>Завжди показувати і те, і інше</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1112"/>
+        <location filename="../src/texstudio.cpp" line="1090"/>
         <source>Inline</source>
         <translation>Вбудований</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1118"/>
+        <location filename="../src/texstudio.cpp" line="1096"/>
         <source>Show in embedded viewer</source>
         <translation>Показувати у вбудованому переглядачі</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1127"/>
+        <location filename="../src/texstudio.cpp" line="1105"/>
         <source>Toggle &amp;Comment</source>
         <translation>&amp;За/Розкоментувати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1128"/>
+        <location filename="../src/texstudio.cpp" line="1106"/>
         <source>&amp;Comment</source>
         <translation>&amp;Закоментувати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1129"/>
+        <location filename="../src/texstudio.cpp" line="1107"/>
         <source>&amp;Uncomment</source>
         <translation>&amp;Розкоментувати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1130"/>
+        <location filename="../src/texstudio.cpp" line="1108"/>
         <source>&amp;Indent</source>
         <translation>&amp;Зробити відступ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1131"/>
+        <location filename="../src/texstudio.cpp" line="1109"/>
         <source>Unin&amp;dent</source>
         <translation>Зняти &amp;відступ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1132"/>
+        <location filename="../src/texstudio.cpp" line="1110"/>
         <source>Hard Line &amp;Break...</source>
         <translation>&amp;Твердий розрив рядка…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1133"/>
+        <location filename="../src/texstudio.cpp" line="1111"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>&amp;Повторити твердий розрив рядка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1136"/>
+        <location filename="../src/texstudio.cpp" line="1114"/>
         <source>&amp;Go to</source>
         <translation>Перейти &amp;до</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1138"/>
+        <location filename="../src/texstudio.cpp" line="1116"/>
         <source>Previous Error</source>
         <translation>Попередня помилка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1138"/>
-        <location filename="../src/texstudio.cpp" line="1139"/>
+        <location filename="../src/texstudio.cpp" line="1116"/>
+        <location filename="../src/texstudio.cpp" line="1117"/>
         <source>No LaTeX errors detected !</source>
         <translation>Помилок LaTeX не виявлено!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1139"/>
+        <location filename="../src/texstudio.cpp" line="1117"/>
         <source>Next Error</source>
         <translation>Наступна помилка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1140"/>
+        <location filename="../src/texstudio.cpp" line="1118"/>
         <source>Previous Warning</source>
         <translation>Попереднє попередження</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1140"/>
-        <location filename="../src/texstudio.cpp" line="1141"/>
+        <location filename="../src/texstudio.cpp" line="1118"/>
+        <location filename="../src/texstudio.cpp" line="1119"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Попереджень LaTeX не виявлено!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1141"/>
+        <location filename="../src/texstudio.cpp" line="1119"/>
         <source>Next Warning</source>
         <translation>Наступне попередження</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1142"/>
+        <location filename="../src/texstudio.cpp" line="1120"/>
         <source>Previous Bad Box</source>
         <translation>Попереднє погане поле</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1142"/>
-        <location filename="../src/texstudio.cpp" line="1143"/>
+        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/texstudio.cpp" line="1121"/>
         <source>No bad boxes detected !</source>
         <translation>Не виявлено поганих полів!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1143"/>
+        <location filename="../src/texstudio.cpp" line="1121"/>
         <source>Next Bad Box</source>
         <translation>Наступне погане поле</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1146"/>
+        <location filename="../src/texstudio.cpp" line="1124"/>
         <source>Definition</source>
         <translation>Означення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1149"/>
+        <location filename="../src/texstudio.cpp" line="1127"/>
         <source>Re&amp;name Environment</source>
         <translation>Пере&amp;йменувати оточення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1151"/>
+        <location filename="../src/texstudio.cpp" line="1129"/>
         <source>Parenthesis</source>
         <translation>Дужки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1153"/>
-        <location filename="../src/texstudio.cpp" line="1163"/>
+        <location filename="../src/texstudio.cpp" line="1131"/>
+        <location filename="../src/texstudio.cpp" line="1141"/>
         <source>Jump to Match</source>
         <translation>Перейти до відповідної</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1154"/>
-        <location filename="../src/texstudio.cpp" line="1164"/>
+        <location filename="../src/texstudio.cpp" line="1132"/>
+        <location filename="../src/texstudio.cpp" line="1142"/>
         <source>Select Inner</source>
         <translation>Вибрати всередині</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1155"/>
-        <location filename="../src/texstudio.cpp" line="1165"/>
+        <location filename="../src/texstudio.cpp" line="1133"/>
+        <location filename="../src/texstudio.cpp" line="1143"/>
         <source>Select Outer</source>
         <translation>Вибрати ззовні</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1156"/>
-        <location filename="../src/texstudio.cpp" line="1166"/>
+        <location filename="../src/texstudio.cpp" line="1134"/>
+        <location filename="../src/texstudio.cpp" line="1144"/>
         <source>Select Command</source>
         <translation>Вибрати команду</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1157"/>
-        <location filename="../src/texstudio.cpp" line="1167"/>
+        <location filename="../src/texstudio.cpp" line="1135"/>
+        <location filename="../src/texstudio.cpp" line="1145"/>
         <source>Select Line</source>
         <translation>Вибрати рядок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1158"/>
-        <location filename="../src/texstudio.cpp" line="1168"/>
+        <location filename="../src/texstudio.cpp" line="1136"/>
+        <location filename="../src/texstudio.cpp" line="1146"/>
         <source>Select Inverting</source>
         <translation>Обернути вибір</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1161"/>
-        <location filename="../src/texstudio.cpp" line="1171"/>
+        <location filename="../src/texstudio.cpp" line="1139"/>
+        <location filename="../src/texstudio.cpp" line="1149"/>
         <source>Find Mismatch</source>
         <translation>Знайти невідповідність</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1174"/>
+        <location filename="../src/texstudio.cpp" line="1152"/>
         <source>Complete</source>
         <translation>Завершити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1175"/>
+        <location filename="../src/texstudio.cpp" line="1153"/>
         <source>Normal</source>
         <translation>Звично</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1176"/>
+        <location filename="../src/texstudio.cpp" line="1154"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ Завершення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/texstudio.cpp" line="1155"/>
         <source>Normal Text</source>
         <translation>Звичайний текст</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1178"/>
+        <location filename="../src/texstudio.cpp" line="1156"/>
         <source>Close latest open environment</source>
         <translation>Закрити найбільше відкрите оточення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1181"/>
+        <location filename="../src/texstudio.cpp" line="1159"/>
         <source>update TOC</source>
         <translation>оновити зміст</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1182"/>
+        <location filename="../src/texstudio.cpp" line="1160"/>
         <source>Refresh Structure</source>
         <translation>Оновити структуру</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1183"/>
+        <location filename="../src/texstudio.cpp" line="1161"/>
         <source>Refresh Language Model</source>
         <translation>Оновити мовну схему</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1184"/>
+        <location filename="../src/texstudio.cpp" line="1162"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation>Примусове оновлення схеми вибору мови, яка використовується для виділення і складання. Вірогідно вам не потрібно викликати цю функцію, бо оновлення, як правило, автоматично працює.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1185"/>
+        <location filename="../src/texstudio.cpp" line="1163"/>
         <source>Remove Placeholders</source>
         <translation>Вилучити заповнювачі</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1186"/>
+        <location filename="../src/texstudio.cpp" line="1164"/>
         <source>Remove Current Placeholder</source>
         <translation>Вилучити поточний заповнювач</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1191"/>
+        <location filename="../src/texstudio.cpp" line="1169"/>
         <source>&amp;Tools</source>
         <translation>&amp;Засоби</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/texstudio.cpp" line="1171"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Збирання &amp;&amp; перегляд</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1194"/>
+        <location filename="../src/texstudio.cpp" line="1172"/>
         <source>&amp;Compile</source>
         <translation>&amp;Компіляція</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1195"/>
+        <location filename="../src/texstudio.cpp" line="1173"/>
         <source>Stop Compile</source>
         <translation>Зупинити компіляцію</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1199"/>
-        <location filename="../src/texstudio.cpp" line="1351"/>
+        <location filename="../src/texstudio.cpp" line="1177"/>
+        <location filename="../src/texstudio.cpp" line="1329"/>
         <source>&amp;View</source>
         <translation>&amp;Перегляд</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1200"/>
-        <location filename="../src/texstudio.cpp" line="1298"/>
+        <location filename="../src/texstudio.cpp" line="1178"/>
+        <location filename="../src/texstudio.cpp" line="1276"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Бібліографія</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1201"/>
+        <location filename="../src/texstudio.cpp" line="1179"/>
         <source>&amp;Glossary</source>
         <translation>&amp;Словник</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1202"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
         <source>&amp;Index</source>
         <translation>&amp;Покажчик</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1205"/>
+        <location filename="../src/texstudio.cpp" line="1183"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>&amp;Команди</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
+        <location filename="../src/texstudio.cpp" line="1184"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1208"/>
-        <location filename="../src/texstudio.cpp" line="1258"/>
+        <location filename="../src/texstudio.cpp" line="1186"/>
+        <location filename="../src/texstudio.cpp" line="1236"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1209"/>
+        <location filename="../src/texstudio.cpp" line="1187"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1213"/>
+        <location filename="../src/texstudio.cpp" line="1191"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1214"/>
+        <location filename="../src/texstudio.cpp" line="1192"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1215"/>
+        <location filename="../src/texstudio.cpp" line="1193"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
+        <location filename="../src/texstudio.cpp" line="1195"/>
         <source>View &amp;DVI</source>
         <translation>Перегляд &amp;DVI</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1218"/>
+        <location filename="../src/texstudio.cpp" line="1196"/>
         <source>Vie&amp;w PS</source>
         <translation>Перегл&amp;яд PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1219"/>
+        <location filename="../src/texstudio.cpp" line="1197"/>
         <source>View PD&amp;F</source>
         <translation>Перегляд PD&amp;F</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1221"/>
+        <location filename="../src/texstudio.cpp" line="1199"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1222"/>
+        <location filename="../src/texstudio.cpp" line="1200"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-бітний</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1223"/>
+        <location filename="../src/texstudio.cpp" line="1201"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1225"/>
+        <location filename="../src/texstudio.cpp" line="1203"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1226"/>
+        <location filename="../src/texstudio.cpp" line="1204"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1227"/>
+        <location filename="../src/texstudio.cpp" line="1205"/>
         <source>&amp;Xindex</source>
         <translation>&amp;Xindex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1228"/>
+        <location filename="../src/texstudio.cpp" line="1206"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1230"/>
+        <location filename="../src/texstudio.cpp" line="1208"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1231"/>
+        <location filename="../src/texstudio.cpp" line="1209"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1233"/>
+        <location filename="../src/texstudio.cpp" line="1211"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>&amp;Власна команда</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1236"/>
+        <location filename="../src/texstudio.cpp" line="1214"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>Очи&amp;стити допоміжні файли…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1237"/>
+        <location filename="../src/texstudio.cpp" line="1215"/>
         <source>Open External &amp;Terminal</source>
         <translation>Відкрити зовнішній &amp;термінал</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
+        <location filename="../src/texstudio.cpp" line="1217"/>
         <source>View &amp;Log</source>
         <translation>Перегляд &amp;журналу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/texstudio.cpp" line="1218"/>
         <source>Show Log Markers</source>
         <translation>Показувати позначки журналу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/texstudio.cpp" line="1222"/>
         <source>C&amp;onvert to Html...</source>
         <translation>Перетворити у &amp;Html...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/texstudio.cpp" line="1223"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>Перетворити джерело у &amp;Html...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1247"/>
+        <location filename="../src/texstudio.cpp" line="1225"/>
         <source>Convert to Abridged Plaintext</source>
         <translation>Перетворити на скорочений відкритий текст</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1248"/>
+        <location filename="../src/texstudio.cpp" line="1226"/>
         <source>A&amp;nalyse Text...</source>
         <translation>А&amp;налізувати текст…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1249"/>
+        <location filename="../src/texstudio.cpp" line="1227"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Створити &amp;випадковий текст…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1251"/>
+        <location filename="../src/texstudio.cpp" line="1229"/>
         <source>Check Spelling...</source>
         <translation>Перевірка правопису…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1252"/>
+        <location filename="../src/texstudio.cpp" line="1230"/>
         <source>Thesaurus...</source>
         <translation>Тезаурус</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1253"/>
+        <location filename="../src/texstudio.cpp" line="1231"/>
         <source>Find Word Repetitions...</source>
         <translation>Пошук повторень слів…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1260"/>
+        <location filename="../src/texstudio.cpp" line="1238"/>
         <source>Insert \ref to Next Label</source>
         <translation>Вставити \ref на наступну мітку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1261"/>
+        <location filename="../src/texstudio.cpp" line="1239"/>
         <source>Insert \ref to Previous Label</source>
         <translation>Вставити \ref на попередню мітку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1262"/>
+        <location filename="../src/texstudio.cpp" line="1240"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>Робота з таблицями</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1263"/>
+        <location filename="../src/texstudio.cpp" line="1241"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>Додати рядок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1264"/>
+        <location filename="../src/texstudio.cpp" line="1242"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>Додати стовпець</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1265"/>
+        <location filename="../src/texstudio.cpp" line="1243"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>Вилучити рядок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1266"/>
+        <location filename="../src/texstudio.cpp" line="1244"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>Вилучити стовпець</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1267"/>
+        <location filename="../src/texstudio.cpp" line="1245"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>Вирізати стовпець</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1268"/>
+        <location filename="../src/texstudio.cpp" line="1246"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Вставити стовпець</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1269"/>
+        <location filename="../src/texstudio.cpp" line="1247"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>Додати \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/texstudio.cpp" line="1248"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>Вилучити \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1271"/>
+        <location filename="../src/texstudio.cpp" line="1249"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>Перебудувати таблицю з допомогою шаблону</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1272"/>
+        <location filename="../src/texstudio.cpp" line="1250"/>
         <source>Align Columns</source>
         <translation>Вирівняти стовпчики</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1273"/>
+        <location filename="../src/texstudio.cpp" line="1251"/>
         <source>Add magic comments ...</source>
         <translation>Додати чарівні коментарі…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1274"/>
+        <location filename="../src/texstudio.cpp" line="1252"/>
         <source>Insert root document name as TeX comment</source>
         <translation>Вставити назву головного документа як коментар TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1275"/>
-        <location filename="../src/texstudio.cpp" line="1659"/>
+        <location filename="../src/texstudio.cpp" line="1253"/>
+        <location filename="../src/texstudio.cpp" line="1638"/>
         <source>Insert language as TeX comment</source>
         <translation>Вставити мову як коментар TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1276"/>
+        <location filename="../src/texstudio.cpp" line="1254"/>
         <source>Insert document coding as TeX comment</source>
         <translation>Вставити кодування документа як коментар TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1277"/>
+        <location filename="../src/texstudio.cpp" line="1255"/>
         <source>Insert program as TeX comment</source>
         <translation>Вставити програму як коментар TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1278"/>
+        <location filename="../src/texstudio.cpp" line="1256"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation>Вставити засіб бібліографії як коментар TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1280"/>
+        <location filename="../src/texstudio.cpp" line="1258"/>
         <source>&amp;Math</source>
         <translation>&amp;Математика</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1284"/>
+        <location filename="../src/texstudio.cpp" line="1262"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Майстри</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1285"/>
+        <location filename="../src/texstudio.cpp" line="1263"/>
         <source>Quick &amp;Start...</source>
         <translation>Швидкий &amp;запуск...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1286"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>Швидка &amp;презентація Beamer...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1287"/>
+        <location filename="../src/texstudio.cpp" line="1265"/>
         <source>Quick &amp;Letter...</source>
         <translation>Швидкий &amp;лист...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1290"/>
+        <location filename="../src/texstudio.cpp" line="1268"/>
         <source>Quick &amp;Tabular...</source>
         <translation>Швидка &amp;таблиця...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1291"/>
+        <location filename="../src/texstudio.cpp" line="1269"/>
         <source>Quick T&amp;abbing...</source>
         <translation>Швидка т&amp;абуляція...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1292"/>
+        <location filename="../src/texstudio.cpp" line="1270"/>
         <source>Quick &amp;Array...</source>
         <translation>Швидкий &amp;масив...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1293"/>
+        <location filename="../src/texstudio.cpp" line="1271"/>
         <source>Insert &amp;Graphic...</source>
         <translation>Вставити &amp;графіку…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1295"/>
+        <location filename="../src/texstudio.cpp" line="1273"/>
         <source>Math Assistant...</source>
         <translation>Математичний помічник</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1323"/>
+        <location filename="../src/texstudio.cpp" line="1301"/>
         <source>&amp;Clean</source>
         <translation>&amp;Очистити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1325"/>
+        <location filename="../src/texstudio.cpp" line="1303"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>&amp;Вставити бібліографічний запис…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1327"/>
+        <location filename="../src/texstudio.cpp" line="1305"/>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1331"/>
-        <location filename="../src/texstudio.cpp" line="1341"/>
+        <location filename="../src/texstudio.cpp" line="1309"/>
+        <location filename="../src/texstudio.cpp" line="1319"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1336"/>
-        <location filename="../src/texstudio.cpp" line="1342"/>
+        <location filename="../src/texstudio.cpp" line="1314"/>
+        <location filename="../src/texstudio.cpp" line="1320"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1346"/>
+        <location filename="../src/texstudio.cpp" line="1324"/>
         <source>Ma&amp;cros</source>
         <translation>Ма&amp;кроси</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1352"/>
+        <location filename="../src/texstudio.cpp" line="1330"/>
         <source>Previous Document</source>
         <translation>Попередній документ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1353"/>
+        <location filename="../src/texstudio.cpp" line="1331"/>
         <source>Next Document</source>
         <translation>Наступний документ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1354"/>
+        <location filename="../src/texstudio.cpp" line="1332"/>
         <source>Open Documents</source>
         <translation>Відкрити документи</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1355"/>
+        <location filename="../src/texstudio.cpp" line="1333"/>
         <source>List Of Open Documents</source>
         <translation>Список відкритих документів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1356"/>
+        <location filename="../src/texstudio.cpp" line="1334"/>
         <source>List Of Hidden Documents</source>
         <translation>Список прихованих документів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1358"/>
+        <location filename="../src/texstudio.cpp" line="1336"/>
         <source>Focus Editor</source>
         <translation>Викликати редактор</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1359"/>
+        <location filename="../src/texstudio.cpp" line="1337"/>
         <source>Focus Viewer</source>
         <translation>Викликати переглядач</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1362"/>
+        <location filename="../src/texstudio.cpp" line="1340"/>
         <source>Show</source>
         <translation>Показати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1365"/>
+        <location filename="../src/texstudio.cpp" line="1343"/>
         <source>Statusbar</source>
         <translation>Рядок стану</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1369"/>
+        <location filename="../src/texstudio.cpp" line="1346"/>
+        <source>Reset Sidepanel/docks</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/texstudio.cpp" line="1348"/>
         <source>Show embedded PDF large</source>
         <translation>Показати вкладений PDF великим</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1370"/>
+        <location filename="../src/texstudio.cpp" line="1349"/>
         <source>Show embedded PDF small</source>
         <translation>Показати вкладений PDF малим</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1372"/>
+        <location filename="../src/texstudio.cpp" line="1351"/>
         <source>Close Element</source>
         <translation>Закрити елемент</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1375"/>
+        <location filename="../src/texstudio.cpp" line="1354"/>
         <source>Collapse</source>
         <translation>Згорнути</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1376"/>
-        <location filename="../src/texstudio.cpp" line="1381"/>
+        <location filename="../src/texstudio.cpp" line="1355"/>
+        <location filename="../src/texstudio.cpp" line="1360"/>
         <source>Everything</source>
         <translation>Усе</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1377"/>
-        <location filename="../src/texstudio.cpp" line="1382"/>
+        <location filename="../src/texstudio.cpp" line="1356"/>
+        <location filename="../src/texstudio.cpp" line="1361"/>
         <source>Nearest Block</source>
         <translation>Найближчий блок</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1379"/>
-        <location filename="../src/texstudio.cpp" line="1384"/>
+        <location filename="../src/texstudio.cpp" line="1358"/>
+        <location filename="../src/texstudio.cpp" line="1363"/>
         <source>Level %1</source>
         <translation>Рівень %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1380"/>
+        <location filename="../src/texstudio.cpp" line="1359"/>
         <source>Expand</source>
         <translation>Розкрити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1386"/>
+        <location filename="../src/texstudio.cpp" line="1365"/>
         <source>Grammar errors</source>
         <translation>Граматичні помилки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1389"/>
+        <location filename="../src/texstudio.cpp" line="1368"/>
         <source>Word Repetition</source>
         <translation>Повторення слова</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1390"/>
+        <location filename="../src/texstudio.cpp" line="1369"/>
         <source>Long-range Word Repetition</source>
         <translation>Повторення віддаленого слова</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1391"/>
+        <location filename="../src/texstudio.cpp" line="1370"/>
         <source>Bad words</source>
         <translation>Лайливі слова</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1392"/>
+        <location filename="../src/texstudio.cpp" line="1371"/>
         <source>Grammar Mistake</source>
         <translation>Граматична помилка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1394"/>
+        <location filename="../src/texstudio.cpp" line="1373"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Спеціальна граматична помилка %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1403"/>
+        <location filename="../src/texstudio.cpp" line="1382"/>
         <source>Editor Zoom</source>
         <translation>Масштаб редактора</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1404"/>
+        <location filename="../src/texstudio.cpp" line="1383"/>
         <source>Zoom In</source>
         <translation>Збільшити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1405"/>
+        <location filename="../src/texstudio.cpp" line="1384"/>
         <source>Zoom Out</source>
         <translation>Зменшити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1406"/>
+        <location filename="../src/texstudio.cpp" line="1385"/>
         <source>Reset Zoom</source>
         <translation>Скасувати збільшення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1408"/>
+        <location filename="../src/texstudio.cpp" line="1387"/>
         <source>Full &amp;Screen</source>
         <translation>На увесь &amp;екран</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1415"/>
+        <location filename="../src/texstudio.cpp" line="1394"/>
         <source>Highlighting</source>
         <translation>Підсвічування</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1439"/>
+        <location filename="../src/texstudio.cpp" line="1418"/>
         <source>&amp;Options</source>
         <translation>&amp;Параметри</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1440"/>
+        <location filename="../src/texstudio.cpp" line="1419"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;Конфігурація TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1443"/>
+        <location filename="../src/texstudio.cpp" line="1422"/>
         <source>Load &amp;Profile...</source>
         <translation>Завантажити &amp;профіль…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1444"/>
+        <location filename="../src/texstudio.cpp" line="1423"/>
         <source>S&amp;ave Profile...</source>
         <translation>З&amp;берегти профіль…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="1424"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>Зберегти &amp;поточні налаштування</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1446"/>
+        <location filename="../src/texstudio.cpp" line="1425"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>Відновити &amp;усталені налаштування…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="1428"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>Головний документ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1452"/>
+        <location filename="../src/texstudio.cpp" line="1431"/>
         <source>Detect &amp;Automatically</source>
         <translation>Виявляти &amp;автоматично</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1460"/>
+        <location filename="../src/texstudio.cpp" line="1439"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>Зробити поточний документ головним</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1463"/>
+        <location filename="../src/texstudio.cpp" line="1442"/>
         <source>&amp;Help</source>
         <translation>&amp;Довідка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1464"/>
+        <location filename="../src/texstudio.cpp" line="1443"/>
         <source>LaTeX Reference...</source>
         <translation>Довідка LaTeX...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1465"/>
+        <location filename="../src/texstudio.cpp" line="1444"/>
         <source>User Manual...</source>
         <translation>Посібник користувача</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1466"/>
+        <location filename="../src/texstudio.cpp" line="1445"/>
         <source>Packages Help...</source>
         <translation>Довідка про пакети…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1469"/>
+        <location filename="../src/texstudio.cpp" line="1448"/>
         <source>Check LaTeX Installation</source>
         <translation>Перевірити встановлення LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1470"/>
+        <location filename="../src/texstudio.cpp" line="1449"/>
         <source>Check Active Completion Files</source>
         <translation>Перевірити активні файли завершення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1471"/>
+        <location filename="../src/texstudio.cpp" line="1450"/>
         <source>Check LanguageTool</source>
         <translation>Перевірка LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1472"/>
+        <location filename="../src/texstudio.cpp" line="1451"/>
         <source>Bugs Report/Feature Request</source>
         <translation>Звіт про помилки/Запит на нові функції</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1473"/>
+        <location filename="../src/texstudio.cpp" line="1452"/>
         <source>About TeXstudio...</source>
         <translation>Про TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1642"/>
-        <location filename="../src/texstudio.cpp" line="5775"/>
+        <location filename="../src/texstudio.cpp" line="1621"/>
+        <location filename="../src/texstudio.cpp" line="5783"/>
         <source>show more entries ...</source>
         <translation>показати більше записів ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1650"/>
+        <location filename="../src/texstudio.cpp" line="1629"/>
         <source>Default</source>
         <translation>Усталено</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1684"/>
+        <location filename="../src/texstudio.cpp" line="1663"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>З&apos;єднано із LanguageTool на %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1688"/>
+        <location filename="../src/texstudio.cpp" line="1667"/>
         <source>No LanguageTool server found at %1</source>
         <translation>Не знайдено сервер LanguageTool на %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1692"/>
+        <location filename="../src/texstudio.cpp" line="1671"/>
         <source>LanguageTool status unknown</source>
         <translation>Стан LanguageTool — невідомий</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1696"/>
+        <location filename="../src/texstudio.cpp" line="1675"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation>Вбудована перевірка граматики вимкнена користувачем!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1759"/>
+        <location filename="../src/texstudio.cpp" line="1738"/>
         <source>Language</source>
         <translation>Мова</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1771"/>
-        <location filename="../src/texstudio.cpp" line="1772"/>
-        <location filename="../src/texstudio.cpp" line="5805"/>
-        <location filename="../src/texstudio.cpp" line="5808"/>
-        <location filename="../src/texstudio.cpp" line="5809"/>
+        <location filename="../src/texstudio.cpp" line="1750"/>
+        <location filename="../src/texstudio.cpp" line="1751"/>
+        <location filename="../src/texstudio.cpp" line="5813"/>
+        <location filename="../src/texstudio.cpp" line="5816"/>
+        <location filename="../src/texstudio.cpp" line="5817"/>
         <source>Encoding</source>
         <translation>Кодування</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1794"/>
+        <location filename="../src/texstudio.cpp" line="1773"/>
         <source>More Encodings...</source>
         <translation>Інші кодування…</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1802"/>
+        <location filename="../src/texstudio.cpp" line="1781"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Вставити кодування як коментар TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1816"/>
+        <location filename="../src/texstudio.cpp" line="1795"/>
         <source>Go to bookmark</source>
         <translation>Перейти на закладку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1858"/>
+        <location filename="../src/texstudio.cpp" line="1837"/>
         <source>Automatic</source>
         <translation>Автоматично</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1859"/>
+        <location filename="../src/texstudio.cpp" line="1838"/>
         <source>Automatic root document detection active</source>
         <translation>Автовиявлення  основного документу активне</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1864"/>
+        <location filename="../src/texstudio.cpp" line="1843"/>
         <source>&amp;Explicit</source>
         <translation>&amp;Явно</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1865"/>
+        <location filename="../src/texstudio.cpp" line="1844"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Головний</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1866"/>
+        <location filename="../src/texstudio.cpp" line="1845"/>
         <source>Explict root document:
 %1</source>
         <translation>Явний головний документ:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2166"/>
+        <location filename="../src/texstudio.cpp" line="2153"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Хочете зневадити файл SyncTeX?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2265"/>
-        <location filename="../src/texstudio.cpp" line="4201"/>
-        <location filename="../src/texstudio.cpp" line="5859"/>
-        <location filename="../src/texstudio.cpp" line="5912"/>
-        <location filename="../src/texstudio.cpp" line="6479"/>
-        <location filename="../src/texstudio.cpp" line="6660"/>
-        <location filename="../src/texstudio.cpp" line="6662"/>
-        <location filename="../src/texstudio.cpp" line="6672"/>
-        <location filename="../src/texstudio.cpp" line="6674"/>
-        <location filename="../src/texstudio.cpp" line="10467"/>
+        <location filename="../src/texstudio.cpp" line="2252"/>
+        <location filename="../src/texstudio.cpp" line="4188"/>
+        <location filename="../src/texstudio.cpp" line="5867"/>
+        <location filename="../src/texstudio.cpp" line="5920"/>
+        <location filename="../src/texstudio.cpp" line="6486"/>
+        <location filename="../src/texstudio.cpp" line="6667"/>
+        <location filename="../src/texstudio.cpp" line="6669"/>
+        <location filename="../src/texstudio.cpp" line="6679"/>
+        <location filename="../src/texstudio.cpp" line="6681"/>
+        <location filename="../src/texstudio.cpp" line="10473"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2265"/>
+        <location filename="../src/texstudio.cpp" line="2252"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>У вас не має прав на читання файлу %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2317"/>
+        <location filename="../src/texstudio.cpp" line="2304"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Файл відновлення із %1 знайдено для &quot;%2&quot;.
 Хочете відновити його?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2323"/>
+        <location filename="../src/texstudio.cpp" line="2310"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>Не вдалося відкрити файл відновлення &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2473"/>
+        <location filename="../src/texstudio.cpp" line="2460"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -11245,46 +6203,46 @@ Otherwise there might be random errors and crashes.</source>
 на кшталт аварійного завершення переглядача PDF.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2563"/>
+        <location filename="../src/texstudio.cpp" line="2550"/>
         <source>Could not write template data:</source>
         <translation>Не вдалося записати дані шаблону:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2595"/>
+        <location filename="../src/texstudio.cpp" line="2582"/>
         <source>Could not write template meta data:</source>
         <translation>Не вдалося записати метадані шаблону:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2646"/>
-        <location filename="../src/texstudio.cpp" line="2710"/>
+        <location filename="../src/texstudio.cpp" line="2633"/>
+        <location filename="../src/texstudio.cpp" line="2697"/>
         <source>File not found:</source>
         <translation>Файл не знайдено:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2650"/>
-        <location filename="../src/texstudio.cpp" line="2714"/>
+        <location filename="../src/texstudio.cpp" line="2637"/>
+        <location filename="../src/texstudio.cpp" line="2701"/>
         <source>You do not have read permission to this file:</source>
         <translation>Ви не володієте правами на читання цього файлу:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2831"/>
-        <location filename="../src/texstudio.cpp" line="10297"/>
+        <location filename="../src/texstudio.cpp" line="2818"/>
+        <location filename="../src/texstudio.cpp" line="10303"/>
         <source>Open Files</source>
         <translation>Відкрити файли</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2849"/>
-        <location filename="../src/texstudio.cpp" line="2856"/>
+        <location filename="../src/texstudio.cpp" line="2836"/>
+        <location filename="../src/texstudio.cpp" line="2843"/>
         <source>Loading of last session failed.</source>
         <translation>Не вдалося завантажити останній сеанс.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2922"/>
+        <location filename="../src/texstudio.cpp" line="2909"/>
         <source>Save As</source>
         <translation>Зберегти як</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2939"/>
+        <location filename="../src/texstudio.cpp" line="2926"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -11297,183 +6255,183 @@ this other file before you can overwrite it.</source>
  цей другий файл перед тим, як зможете його переписати.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2957"/>
+        <location filename="../src/texstudio.cpp" line="2944"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Не вдається синхронізувати файл PDF з TeX-джерелом, бо джерельний файл був перейменований при використанні операції «Зберегти як». Слід перекомпілювати новий файл і переглянути результат.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3057"/>
+        <location filename="../src/texstudio.cpp" line="3044"/>
         <source>Rename/Move</source>
         <translation>Перейменувати/пересунути</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3057"/>
-        <location filename="../src/texstudio.cpp" line="11743"/>
+        <location filename="../src/texstudio.cpp" line="3044"/>
+        <location filename="../src/texstudio.cpp" line="11828"/>
         <source>Copy</source>
         <translation>Копіювати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3072"/>
+        <location filename="../src/texstudio.cpp" line="3059"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Справді вилучити файл &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3081"/>
+        <location filename="../src/texstudio.cpp" line="3068"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Справді повернути файл &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3108"/>
+        <location filename="../src/texstudio.cpp" line="3095"/>
         <source>Numeric permissions</source>
         <translation>Права доступу, чисельно</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3109"/>
+        <location filename="../src/texstudio.cpp" line="3096"/>
         <source>Verbose permissions</source>
         <translation>Права доступу, докладно</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3242"/>
+        <location filename="../src/texstudio.cpp" line="3229"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>Документ &quot;%1&quot; містить незбережені зміни. Зберегти їх перед закриттям?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3369"/>
-        <location filename="../src/texstudio.cpp" line="3428"/>
-        <location filename="../src/texstudio.cpp" line="3508"/>
+        <location filename="../src/texstudio.cpp" line="3356"/>
+        <location filename="../src/texstudio.cpp" line="3415"/>
+        <location filename="../src/texstudio.cpp" line="3495"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>Файл &quot;%1&quot; більше не існує. Вилучити його із списку недавніх файлів?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3521"/>
+        <location filename="../src/texstudio.cpp" line="3508"/>
         <source>Loading of session failed.</source>
         <translation>Не вдалося завантажити сеанс.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3538"/>
+        <location filename="../src/texstudio.cpp" line="3525"/>
         <source>Load Session</source>
         <translation>Завантажити сеанс</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3538"/>
-        <location filename="../src/texstudio.cpp" line="3556"/>
+        <location filename="../src/texstudio.cpp" line="3525"/>
+        <location filename="../src/texstudio.cpp" line="3543"/>
         <source>TeXstudio Session</source>
         <translation>Сеанс TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3556"/>
+        <location filename="../src/texstudio.cpp" line="3543"/>
         <source>Save Session</source>
         <translation>Зберегти сеанс</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3562"/>
+        <location filename="../src/texstudio.cpp" line="3549"/>
         <source>Saving of session failed.</source>
         <translation>Не вдалося зберегти сеанс.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3638"/>
+        <location filename="../src/texstudio.cpp" line="3625"/>
         <source>The following files could not be loaded:</source>
         <translation>Наступні файли не вдалося завантажити:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3803"/>
+        <location filename="../src/texstudio.cpp" line="3790"/>
         <source>Image Formats (%1)</source>
         <translation>Формати зображень (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3805"/>
+        <location filename="../src/texstudio.cpp" line="3792"/>
         <source>Save Image</source>
         <translation>Зберегти зображення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3810"/>
+        <location filename="../src/texstudio.cpp" line="3797"/>
         <source>Could not save the image file.</source>
         <translation>Неможливо зберегти файл зображення.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3898"/>
+        <location filename="../src/texstudio.cpp" line="3885"/>
         <source>Ascending</source>
         <translation>Зростання</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3898"/>
+        <location filename="../src/texstudio.cpp" line="3885"/>
         <source>Descending</source>
         <translation>Спадання</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3898"/>
+        <location filename="../src/texstudio.cpp" line="3885"/>
         <source>No Sorting</source>
         <translation>Без упорядкування</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3898"/>
+        <location filename="../src/texstudio.cpp" line="3885"/>
         <source>Random (Shuffle)</source>
         <translation>Випадково (перемішати)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3904"/>
+        <location filename="../src/texstudio.cpp" line="3891"/>
         <source>Sorting</source>
         <translation>Упорядкування</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3905"/>
+        <location filename="../src/texstudio.cpp" line="3892"/>
         <source>Complete Lines</source>
         <translation>Завершити рядки</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3906"/>
+        <location filename="../src/texstudio.cpp" line="3893"/>
         <source>Case Sensitive</source>
         <translation>Враховувати регістр</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3907"/>
+        <location filename="../src/texstudio.cpp" line="3894"/>
         <source>Remove Duplicates</source>
         <translation>Вилучити дублікати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4164"/>
+        <location filename="../src/texstudio.cpp" line="4151"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Вставляти твердий розрив рядка після зазначеного числа символів:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4165"/>
+        <location filename="../src/texstudio.cpp" line="4152"/>
         <source>Smart scope selecting</source>
         <translation>Кмітливе виділення області пошуку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4166"/>
+        <location filename="../src/texstudio.cpp" line="4153"/>
         <source>Join lines before wrapping</source>
         <translation>Об&apos;єднувати рядки перед перенесенням слів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4180"/>
-        <location filename="../src/texstudio.cpp" line="6356"/>
-        <location filename="../src/texstudio.cpp" line="6413"/>
+        <location filename="../src/texstudio.cpp" line="4167"/>
+        <location filename="../src/texstudio.cpp" line="6363"/>
+        <location filename="../src/texstudio.cpp" line="6420"/>
         <source>No document open</source>
         <translation>Не має відкритого документа</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4186"/>
+        <location filename="../src/texstudio.cpp" line="4173"/>
         <source>No dictionary available.</source>
         <translation>Не має доступного словника.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4201"/>
+        <location filename="../src/texstudio.cpp" line="4188"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Не можна завантажити базу даних тезауруса</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4610"/>
+        <location filename="../src/texstudio.cpp" line="4595"/>
         <source>Storing session failed</source>
         <translation>Невдале збереження сеансу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4610"/>
+        <location filename="../src/texstudio.cpp" line="4595"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation>Невдале збереження інформації про сеанс у файл %1. Файл існує, але не доступний для запису.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4695"/>
+        <location filename="../src/texstudio.cpp" line="4680"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
@@ -11482,86 +6440,86 @@ Do you want to continue?</source>
 Волієте продовжити?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4705"/>
+        <location filename="../src/texstudio.cpp" line="4690"/>
         <source>Unable to write to settings file %1</source>
         <translation>Не вдалося записати файл %1 у налаштування</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5475"/>
+        <location filename="../src/texstudio.cpp" line="5483"/>
         <source>Quick Start</source>
         <translation>Швидкий запуск</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5497"/>
+        <location filename="../src/texstudio.cpp" line="5505"/>
         <source>Quick Beamer Presentation</source>
         <translation>Швидка презентація Beamer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5534"/>
+        <location filename="../src/texstudio.cpp" line="5542"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Поточний файл&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5566"/>
+        <location filename="../src/texstudio.cpp" line="5574"/>
         <source>Type: %1</source>
         <translation>Тип: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5608"/>
+        <location filename="../src/texstudio.cpp" line="5616"/>
         <source>Edit User &amp;Tags</source>
         <translation>Змінити &amp;теги користувача</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5670"/>
+        <location filename="../src/texstudio.cpp" line="5678"/>
         <source>empty</source>
         <translation>порожня</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5674"/>
+        <location filename="../src/texstudio.cpp" line="5682"/>
         <source>Labels:</source>
         <translation>Мітки:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5762"/>
+        <location filename="../src/texstudio.cpp" line="5770"/>
         <source>show less entries ...</source>
         <translation>показати менше записів ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5803"/>
+        <location filename="../src/texstudio.cpp" line="5811"/>
         <source>Encoding Aliases: </source>
         <translation>Скорочення для кодувань:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5859"/>
+        <location filename="../src/texstudio.cpp" line="5867"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Не вдається виявити назву файлу.
  Ви повинні зберегти документ, перш ніж його компілювати.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5867"/>
+        <location filename="../src/texstudio.cpp" line="5875"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Не вдається виявити назву файлу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5906"/>
+        <location filename="../src/texstudio.cpp" line="5914"/>
         <source>  Running this command: </source>
         <translation>Виконується команда:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5912"/>
+        <location filename="../src/texstudio.cpp" line="5920"/>
         <source>could not start the command</source>
         <translation>неможливо запустити команду</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6036"/>
+        <location filename="../src/texstudio.cpp" line="6043"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Викликано команду для відкриття вбудованого переглядача PDF.
 Однак,  вами використовується версію TeXstudio, яка була скомпільована без вбудованого переглядача PDF.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6056"/>
+        <location filename="../src/texstudio.cpp" line="6063"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -11576,222 +6534,222 @@ Do you want to allow and run the new, overriding command?
  (в) Ні, не використовувати команду &quot;%3&quot; і виконувати усталену команду &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6140"/>
+        <location filename="../src/texstudio.cpp" line="6147"/>
         <source>Unknown internal command: %1</source>
         <translation>Невідома внутрішня команда: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6175"/>
+        <location filename="../src/texstudio.cpp" line="6182"/>
         <source>%!TeX program used: %1</source>
         <translation>Програма %!TeX використала: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6178"/>
+        <location filename="../src/texstudio.cpp" line="6185"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>Не розпізнана програма %!TeX! (%1). Використовується типова.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6239"/>
+        <location filename="../src/texstudio.cpp" line="6246"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Ви не можете компілювати документ у каталозі, захищеному від запису.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6241"/>
+        <location filename="../src/texstudio.cpp" line="6248"/>
         <source>Could not start %1.</source>
         <translation>Неможливо запустити %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6270"/>
+        <location filename="../src/texstudio.cpp" line="6277"/>
         <source>Error:</source>
         <translation>Помилка: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6346"/>
+        <location filename="../src/texstudio.cpp" line="6353"/>
         <source>No open project or tex file to clean.</source>
         <translation>Не має відкритих файлів проекту або TeX для очищення.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6417"/>
+        <location filename="../src/texstudio.cpp" line="6424"/>
         <source>Text Analysis</source>
         <translation>Аналіз тексту</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6441"/>
+        <location filename="../src/texstudio.cpp" line="6448"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Генератор випадкових текстів створює новий текст з існуючих слів, тому ви повинні відкрити який-небудь текстовий файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6479"/>
+        <location filename="../src/texstudio.cpp" line="6486"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Файл має бути збережений і відкомпільований до того, як ви зможете переглянути журнал</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6660"/>
-        <location filename="../src/texstudio.cpp" line="6672"/>
+        <location filename="../src/texstudio.cpp" line="6667"/>
+        <location filename="../src/texstudio.cpp" line="6679"/>
         <source>File not found</source>
         <translation>Файл не знайдено</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6662"/>
-        <location filename="../src/texstudio.cpp" line="6674"/>
+        <location filename="../src/texstudio.cpp" line="6669"/>
+        <location filename="../src/texstudio.cpp" line="6681"/>
         <source>Could not open browser</source>
         <translation>Не вдається відкрити переглядач</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6990"/>
+        <location filename="../src/texstudio.cpp" line="6997"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation>%1 — недійсний каталог проєкту TeX.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7283"/>
+        <location filename="../src/texstudio.cpp" line="7290"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Необхідно зберегти файл перед заданням його, як головного документа.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7739"/>
+        <location filename="../src/texstudio.cpp" line="7745"/>
         <source>Label</source>
         <translation>Мітка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7741"/>
-        <location filename="../src/texstudio.cpp" line="7763"/>
+        <location filename="../src/texstudio.cpp" line="7747"/>
+        <location filename="../src/texstudio.cpp" line="7769"/>
         <source>Beyond end of document.</source>
         <translation>Після кінця документа.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7744"/>
-        <location filename="../src/texstudio.cpp" line="7765"/>
+        <location filename="../src/texstudio.cpp" line="7750"/>
+        <location filename="../src/texstudio.cpp" line="7771"/>
         <source>In Appendix.</source>
         <translation>У додаток.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7783"/>
+        <location filename="../src/texstudio.cpp" line="7789"/>
         <source>File not found.</source>
         <translation>Файл не знайдено.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7798"/>
+        <location filename="../src/texstudio.cpp" line="7804"/>
         <source> (Line %1)</source>
         <translation> (Рядок %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9087"/>
+        <location filename="../src/texstudio.cpp" line="9093"/>
         <source>commit comment:</source>
         <translation>надіслати коментар:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9091"/>
+        <location filename="../src/texstudio.cpp" line="9097"/>
         <source>check in whole directory ?</source>
         <translation>зареєструвати увесь каталог?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9093"/>
+        <location filename="../src/texstudio.cpp" line="9099"/>
         <source>Push to repository ?</source>
         <translation>Відправити у сховище?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9450"/>
+        <location filename="../src/texstudio.cpp" line="9456"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Увага: діалог автоматично закриється при ручному редагуванні тексту!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9749"/>
+        <location filename="../src/texstudio.cpp" line="9755"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>Не вдалося відкрити файл &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9751"/>
+        <location filename="../src/texstudio.cpp" line="9757"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Файл &quot;%1&quot; не існує.
 Хочете його створити?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9788"/>
+        <location filename="../src/texstudio.cpp" line="9794"/>
         <source>Save Profile</source>
         <translation>Зберегти профіль</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9788"/>
-        <location filename="../src/texstudio.cpp" line="9795"/>
+        <location filename="../src/texstudio.cpp" line="9794"/>
+        <location filename="../src/texstudio.cpp" line="9801"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Профіль TXS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9795"/>
+        <location filename="../src/texstudio.cpp" line="9801"/>
         <source>Load Profile</source>
         <translation>Завантажити профіль</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9848"/>
+        <location filename="../src/texstudio.cpp" line="9854"/>
         <source>Failed to read profile file %1.</source>
         <translation>Не вдалося прочитати файл профілю %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9971"/>
+        <location filename="../src/texstudio.cpp" line="9977"/>
         <source>Problem</source>
         <translation>Проблема</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9971"/>
+        <location filename="../src/texstudio.cpp" line="9977"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Пошук повторення слів працює тільки при активованій мережній перевірці правопису!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9976"/>
+        <location filename="../src/texstudio.cpp" line="9982"/>
         <source>Find Word Repetitions</source>
         <translation>Знайти повторення слів</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9985"/>
+        <location filename="../src/texstudio.cpp" line="9991"/>
         <source>&amp;Find Next</source>
         <translation>Знайти &amp;наступне</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9987"/>
+        <location filename="../src/texstudio.cpp" line="9993"/>
         <source>&amp;Find Previous</source>
         <translation>Знайти &amp;попереднє</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10038"/>
+        <location filename="../src/texstudio.cpp" line="10044"/>
         <source>Reached beginning of text.</source>
         <translation>Досягнуто початку тексту.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10038"/>
+        <location filename="../src/texstudio.cpp" line="10044"/>
         <source>Reached end of text.</source>
         <translation>Досягнуто кінця тексту.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10297"/>
-        <location filename="../src/texstudio.cpp" line="10507"/>
-        <location filename="../src/texstudio.cpp" line="10510"/>
+        <location filename="../src/texstudio.cpp" line="10303"/>
+        <location filename="../src/texstudio.cpp" line="10513"/>
+        <location filename="../src/texstudio.cpp" line="10516"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Файли LaTeX (*.tex);;Усі файли (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10467"/>
+        <location filename="../src/texstudio.cpp" line="10473"/>
         <source>You do not have read permission to this file.</source>
         <translation>Ви не володієте правами на читання цього файлу.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10507"/>
+        <location filename="../src/texstudio.cpp" line="10513"/>
         <source>Open Compare File</source>
         <translation>Відкрити порівнюваний файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10510"/>
+        <location filename="../src/texstudio.cpp" line="10516"/>
         <source>Open Base File</source>
         <translation>Відкрити основний файл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10591"/>
+        <location filename="../src/texstudio.cpp" line="10597"/>
         <source>SVN Conflict!</source>
         <translation>Конфлікт SVN!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10592"/>
+        <location filename="../src/texstudio.cpp" line="10598"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -11802,14 +6760,14 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10689"/>
-        <location filename="../src/texstudio.cpp" line="10780"/>
+        <location filename="../src/texstudio.cpp" line="10695"/>
         <location filename="../src/texstudio.cpp" line="10786"/>
+        <location filename="../src/texstudio.cpp" line="10792"/>
         <source>TeXstudio Emergency</source>
         <translation>Аварійна ситуація TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10693"/>
+        <location filename="../src/texstudio.cpp" line="10699"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -11822,7 +6780,7 @@ Please provide this file if you send a bug report.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10696"/>
+        <location filename="../src/texstudio.cpp" line="10702"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11831,18 +6789,18 @@ Please provide this file if you send a bug report.
 %2 дозволити продовжити роботу TeXstudio? Це може призвести до псування даних.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10697"/>
+        <location filename="../src/texstudio.cpp" line="10703"/>
         <source>Yes, try to recover</source>
         <translation>Так, спробувати відновити роботу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10698"/>
-        <location filename="../src/texstudio.cpp" line="10703"/>
+        <location filename="../src/texstudio.cpp" line="10704"/>
+        <location filename="../src/texstudio.cpp" line="10709"/>
         <source>No, kill the program</source>
         <translation>Ні, вбити програму</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10700"/>
+        <location filename="../src/texstudio.cpp" line="10706"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -11851,17 +6809,17 @@ Please provide this file if you send a bug report.
  %1 Дозволити продовжити виконання програми? Це може призвести до псування даних.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10701"/>
+        <location filename="../src/texstudio.cpp" line="10707"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Так, завершити цикл і спробувати відновити роботу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10702"/>
+        <location filename="../src/texstudio.cpp" line="10708"/>
         <source>Yes, continue the loop</source>
         <translation>Так, продовжити цикл</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10781"/>
+        <location filename="../src/texstudio.cpp" line="10787"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -11869,50 +6827,50 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
  Потік зупинений. Дозволити продовжити роботу TeXstudio? Це може призвести до псування даних.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10786"/>
+        <location filename="../src/texstudio.cpp" line="10792"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Я спробував померти, але нічого не вийшло.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10818"/>
+        <location filename="../src/texstudio.cpp" line="10824"/>
         <source>System Report</source>
         <translation>Системний звіт</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10956"/>
+        <location filename="../src/texstudio.cpp" line="10962"/>
         <source>LT Report</source>
         <translation>Звіт LT</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10982"/>
+        <location filename="../src/texstudio.cpp" line="10988"/>
         <source>process failed to start
 </source>
         <translation>не вдалося запустити процес
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10985"/>
+        <location filename="../src/texstudio.cpp" line="10991"/>
         <source>process crashed
 </source>
         <translation>процес зазнав краху
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10995"/>
+        <location filename="../src/texstudio.cpp" line="11001"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Увімкнено перевірку у реальному часі.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10997"/>
+        <location filename="../src/texstudio.cpp" line="11003"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Вимкнено перевірку у реальному часі!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11000"/>
+        <location filename="../src/texstudio.cpp" line="11006"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -11921,7 +6879,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11002"/>
+        <location filename="../src/texstudio.cpp" line="11008"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -11930,7 +6888,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11005"/>
+        <location filename="../src/texstudio.cpp" line="11011"/>
         <source>Tries to start automatically.
 
 </source>
@@ -11939,7 +6897,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11007"/>
+        <location filename="../src/texstudio.cpp" line="11013"/>
         <source>Autostart disabled.
 
 </source>
@@ -11948,198 +6906,198 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11012"/>
+        <location filename="../src/texstudio.cpp" line="11018"/>
         <source>LT current status: </source>
         <translation>Поточний стан LT: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11015"/>
+        <location filename="../src/texstudio.cpp" line="11021"/>
         <source>working</source>
         <translation>працює</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11018"/>
+        <location filename="../src/texstudio.cpp" line="11024"/>
         <source>error</source>
         <translation>помилка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11022"/>
+        <location filename="../src/texstudio.cpp" line="11028"/>
         <source>unknown</source>
         <translation>невідомо</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11025"/>
+        <location filename="../src/texstudio.cpp" line="11031"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11321"/>
+        <location filename="../src/texstudio.cpp" line="11329"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Помилка при взаємодії із LT: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11465"/>
-        <location filename="../src/texstudio.cpp" line="12255"/>
+        <location filename="../src/texstudio.cpp" line="11550"/>
+        <location filename="../src/texstudio.cpp" line="12340"/>
         <source>untitled</source>
         <translation>без назви</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11475"/>
-        <location filename="../src/texstudio.cpp" line="12297"/>
+        <location filename="../src/texstudio.cpp" line="11560"/>
+        <location filename="../src/texstudio.cpp" line="12382"/>
         <source>TODO</source>
         <translation>СПРАВИ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11591"/>
-        <location filename="../src/texstudio.cpp" line="11599"/>
-        <location filename="../src/texstudio.cpp" line="11630"/>
+        <location filename="../src/texstudio.cpp" line="11676"/>
+        <location filename="../src/texstudio.cpp" line="11684"/>
+        <location filename="../src/texstudio.cpp" line="11715"/>
         <source>Document: </source>
         <translation>Документ: </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11683"/>
+        <location filename="../src/texstudio.cpp" line="11768"/>
         <source>Close document</source>
         <translation>Закрити документ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11684"/>
+        <location filename="../src/texstudio.cpp" line="11769"/>
         <source>Set as explicit root document</source>
         <translation>Задати як явний головний документ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11685"/>
+        <location filename="../src/texstudio.cpp" line="11770"/>
         <source>Open all related documents</source>
         <translation>Відкрити усі пов&apos;язані документи</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11686"/>
+        <location filename="../src/texstudio.cpp" line="11771"/>
         <source>Close all related documents</source>
         <translation>Закрити усі пов&apos;язані документи</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11688"/>
+        <location filename="../src/texstudio.cpp" line="11773"/>
         <source>Remove explicit root document role</source>
         <translation>Зняти позначку головного документа</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11690"/>
+        <location filename="../src/texstudio.cpp" line="11775"/>
         <source>Show all open documents in this tree</source>
         <translation>Показати усі відкриті документи у цьому дереві</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11692"/>
+        <location filename="../src/texstudio.cpp" line="11777"/>
         <source>Show only current document in this tree</source>
         <translation>Показувати лише поточний документ у цьому дереві</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11705"/>
+        <location filename="../src/texstudio.cpp" line="11790"/>
         <source>Copy filename</source>
         <translation>Копіювати назву файла</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11706"/>
+        <location filename="../src/texstudio.cpp" line="11791"/>
         <source>Copy file path</source>
         <translation>Копіювати шлях до файла</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11715"/>
+        <location filename="../src/texstudio.cpp" line="11800"/>
         <source>Insert</source>
         <translation>Вставити</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11716"/>
-        <location filename="../src/texstudio.cpp" line="11717"/>
+        <location filename="../src/texstudio.cpp" line="11801"/>
+        <location filename="../src/texstudio.cpp" line="11802"/>
         <source>Insert as %1</source>
         <translation>Вставити як %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11719"/>
+        <location filename="../src/texstudio.cpp" line="11804"/>
         <source>Find Usages</source>
         <translation>Знайти використання</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11730"/>
+        <location filename="../src/texstudio.cpp" line="11815"/>
         <source>Insert Label</source>
         <translation>Вставити мітку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11734"/>
+        <location filename="../src/texstudio.cpp" line="11819"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>Вставити %1 у мітку</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11738"/>
+        <location filename="../src/texstudio.cpp" line="11823"/>
         <source>Create Label</source>
         <translation>Нова мітка</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11742"/>
+        <location filename="../src/texstudio.cpp" line="11827"/>
         <source>Cut</source>
         <translation>Вирізати</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11744"/>
+        <location filename="../src/texstudio.cpp" line="11829"/>
         <source>Paste Before</source>
         <translation>Вставити перед</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11745"/>
+        <location filename="../src/texstudio.cpp" line="11830"/>
         <source>Paste After</source>
         <translation>Вставити після</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11747"/>
+        <location filename="../src/texstudio.cpp" line="11832"/>
         <source>Indent Section</source>
         <translation>Зробити відступ розділу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11748"/>
+        <location filename="../src/texstudio.cpp" line="11833"/>
         <source>Unindent Section</source>
         <translation>Вилучити відступ розділу</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11699"/>
-        <location filename="../src/texstudio.cpp" line="11751"/>
+        <location filename="../src/texstudio.cpp" line="11784"/>
+        <location filename="../src/texstudio.cpp" line="11836"/>
         <source>Expand Subitems</source>
         <translation>Розгорнути піделементи</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
+        <location filename="../src/texstudio.cpp" line="951"/>
         <source>C&amp;ut Line or Selection</source>
         <translation>В&amp;ирізати рядок або обране</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11700"/>
-        <location filename="../src/texstudio.cpp" line="11752"/>
+        <location filename="../src/texstudio.cpp" line="11785"/>
+        <location filename="../src/texstudio.cpp" line="11837"/>
         <source>Collapse Subitems</source>
         <translation>Згорнути піделементи</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11764"/>
+        <location filename="../src/texstudio.cpp" line="11849"/>
         <source>Open Document</source>
         <translation>Відкрити документ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11765"/>
-        <location filename="../src/texstudio.cpp" line="11772"/>
+        <location filename="../src/texstudio.cpp" line="11850"/>
+        <location filename="../src/texstudio.cpp" line="11857"/>
         <source>Go to Definition</source>
         <translation>Перейти до означення</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12281"/>
+        <location filename="../src/texstudio.cpp" line="12366"/>
         <source>BIBLIOGRAPHY</source>
         <translation>БІБЛІОГРАФІЯ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12289"/>
+        <location filename="../src/texstudio.cpp" line="12374"/>
         <source>MAGIC_COMMENTS</source>
         <translation>СПЕЦ_КОМЕНТАРІ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12305"/>
+        <location filename="../src/texstudio.cpp" line="12390"/>
         <source>LABELS</source>
         <translation>МІТКИ</translation>
     </message>
@@ -12178,266 +7136,9 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 <context>
     <name>TextAnalysisDialog</name>
     <message>
-        <location filename="../src/textanalysis.ui" line="14"/>
-        <source>Text Analysis</source>
-        <translation>Аналіз тексту</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="20"/>
-        <source>Actions</source>
-        <translation>Дії</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="26"/>
-        <source>Count</source>
-        <extracomment>count as verb</extracomment>
-        <translation>Підрахувати</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="33"/>
-        <source>Search selection in the document</source>
-        <translation>Пошук виділеного у документі</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="40"/>
         <location filename="../src/textanalysis.cpp" line="451"/>
         <source>CSV Export</source>
         <translation>Експорт CSV</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="47"/>
-        <source>Close</source>
-        <translation>Закрити</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="57"/>
-        <source>Info</source>
-        <translation>Інформація</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="63"/>
-        <source>Total lines</source>
-        <translation>Всього рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="70"/>
-        <location filename="../src/textanalysis.ui" line="98"/>
-        <location filename="../src/textanalysis.ui" line="105"/>
-        <location filename="../src/textanalysis.ui" line="112"/>
-        <location filename="../src/textanalysis.ui" line="126"/>
-        <location filename="../src/textanalysis.ui" line="140"/>
-        <source>?</source>
-        <translation>?</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="77"/>
-        <source>Text lines</source>
-        <translation>Текстових рядків</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="84"/>
-        <source>Total shown phrases</source>
-        <translation>Всього показаних фраз</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="91"/>
-        <source>Comment lines</source>
-        <translation>Рядків з коментарями</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="119"/>
-        <source>Different phrases</source>
-        <translation>Різних фраз</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="133"/>
-        <source>Characters in phrases</source>
-        <translation>Символів у фразах</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="166"/>
-        <source>Options</source>
-        <translation>Параметри</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="172"/>
-        <source>If this is enabled, words/phrases in the normal text (which aren&apos;t in comments) are counted</source>
-        <translation>Якщо вибраний цей параметр, то будуть враховуватись слова чи фрази у звичайному (не закоментованому) тексті</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="175"/>
-        <source>Analyse normal text</source>
-        <translation>Аналізувати звичайний текст</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="185"/>
-        <source>If this is enabled, words/phrases in the comments are counted.</source>
-        <translation>Якщо вибраний цей параметр, то будуть враховуватись слова чи фрази у закоментованому тексті.</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="188"/>
-        <source>Analyse comments</source>
-        <translation>Аналізувати коментарі</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="195"/>
-        <source>If this is enabled, \commands are counted.</source>
-        <translation>Якщо вибраний цей параметр, то будуть враховуватись команди \commands.</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="198"/>
-        <source>Analyse commands</source>
-        <translation>Аналізувати команди</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="211"/>
-        <source>Possible Options:
-&quot;Show all&quot;: All phrases are shown.
-&quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
-&quot;Minimum word length (one)&quot;: A phrase is only shown, if it contains a word with at least this many characters. (e.g. &quot;a test&quot; has 4 characters)
-&quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
-&quot;Completely ignore&quot;: Shorter words are completely ignored.
-(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
-        <translation>Можливі значення:
-&quot;Показати все&quot;: всі фрази показуються.
-&quot;Мінімальна довжина фрази&quot;: фраза показується тільки, якщо вона має не менше зазначеного числа символів (напр. &quot;a test&quot; має 6 символів)
-&quot;Мінімальна довжина слова (одне)&quot;: фраза показується тільки, якщо вона містить слово довжиною не менше зазначеного числа символів (напр. &quot;a test&quot; має 4 символи)
-&quot;Мінімальна довжина слова (усе)&quot;: фраза показується тільки, якщо всі її слова мають довжину не менше зазначеного числа символів (напр. &quot;a test&quot; має 1 символ)
-&quot;Повністю ігнорувати&quot;: коротші слова повністю ігноруються
-(напр. з довжиною 3 пропозицію &quot;this is a test&quot; збігається з &quot;this test&quot;, в той час як протилежна опція виділяла б &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, навіть якщо жодна з цих фраз не показується)</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="224"/>
-        <source>Show all phrases</source>
-        <translation>Показувати усі фрази</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="229"/>
-        <source>Minimum phrase length:</source>
-        <translation>Довжина мінімальної фрази:</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="234"/>
-        <source>Minimum word length (one):</source>
-        <translation>Мінімальна довжина слова (одне):</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="239"/>
-        <source>Minimum word length (all):</source>
-        <translation>Мінімальна довжина слова (усі):</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="244"/>
-        <source>Fully ignore shorter words:</source>
-        <translation>Повністю ігнорувати коротші слова:</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="264"/>
-        <source>If &quot;show all&quot; is selected, all phrases are shown.
-If &quot;minimum phrase length&quot; is selected, a phrase is only shown if it has at least so many characters. (e.g. &quot;a test&quot; has 6 characters)
-If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if a word of it has at least so many characters. (e.g. &quot;a test&quot; has 4 characters)
-If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
-If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
-(e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
-        <translation>Якщо вибрано &quot;Показувати усі фрази&quot; -- будуть показані вс фрази.
-Якщо вибрано &quot;Мінімальна довжина фрази&quot; -- будуть показані фрази, які мають принаймі таку кількість символів (напр.: &quot;Темна ніч&quot; має 9 символів)
-Якщо вибрано &quot;Мінімальна довжина слова (одного)&quot; -- будуть показані фрази, у яких є слово, що має принаймі стільки символів (&quot;Темна ніч&quot; має 5 символи)
-Якщо вибрано &quot;Мінімальна довжина слова (всіх)&quot; -- будуть показані фрази, у яких всі слова мають принаймі стільки символів (&quot;Темна ніч&quot; має 3 символи)
-Якщо вибрано &quot;Ігнорувати коротші слова&quot; -- будуть повністю ігноруватись слова, коротші за вказану кількість символів.
-(напр. при довжині 4 фраза &quot;Темна ніч вже наступає&quot; еквівалентна фразі &quot;Темна наступає&quot;)</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="279"/>
-        <source>Minimum occurrence count:</source>
-        <translation>Найменше число збігів:</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="298"/>
-        <source>Only phrase are shown which appears at least so many times in the document.</source>
-        <translation>Будуть враховані лише фрази, які зустрічаються в документі не менше вказаної кількості разів.</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="317"/>
-        <location filename="../src/textanalysis.ui" line="373"/>
-        <source>The controls in this row determine how many consecuting words are treated as a single phrase.
-If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
-If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation>Визначає, скільки слів трактується як одна фраза.
-Якщо вибрано &quot;Мінімальне і максимальне число слів у фразі&quot; -- саме стільки слів враховуються (напр. якщо задано 2, то фразами є: &quot;Темна ніч&quot;, &quot;ніч вже&quot;, &quot;вже наступає&quot;,...)
-Якщо вибрано &quot;Максимальне число слів у фразі&quot;, то слова на початку також враховуються (тоді &quot;Темна&quot;, &quot;Темна ніч&quot;, &quot;ніч&quot;,...)</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="332"/>
-        <source>Source:</source>
-        <translation>Джерело:</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="351"/>
-        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
-If not, end characters are ignored.</source>
-        <translation>Якщо вибрано &quot;Враховувати символи завершення фрази&quot;, то слова перед вказаними знаками і після них трактуються як слова різних фраз.
-Якщо цей параметр не вибраний, то вказані символи ігноруються.</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="355"/>
-        <source>.;:?!</source>
-        <translation>.;:?!</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="362"/>
-        <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
-If not, end characters are ignored.</source>
-        <translation>Якщо „Враховувати символи кінця фраз&quot; відмічено, то слова до і після даного символу завжди трактуються як слова різних фраз.</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="366"/>
-        <source>Respect phrase end chars:</source>
-        <translation>Враховувати символи кінця фраз:</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="379"/>
-        <source>Maximum words per phrase:</source>
-        <translation>Максимальне число слів у фразі:</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="384"/>
-        <source>Min&amp;max words per phrase:</source>
-        <translation>Найменше і &amp;найбільше число слів у фразі:</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="399"/>
-        <source>None (.*)</source>
-        <translation>Нема (.*)</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="404"/>
-        <source>No Numbers (.*[^0-9].*)</source>
-        <translation>Без чисел (.*[^0-9].*)</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="409"/>
-        <source>No Digits ([^0-9]*)</source>
-        <translation>Без цифр ([^0-9]*)</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="417"/>
-        <source>Filter</source>
-        <translation>Фільтр</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="430"/>
-        <source>Determines if the whole document, only the selection, or only a certain chapter are analysed.</source>
-        <translation>Визначає, чи аналізувати весь документ, виділення або окрему главу.</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="437"/>
-        <source>Whole document</source>
-        <translation>Увесь документ</translation>
-    </message>
-    <message>
-        <location filename="../src/textanalysis.ui" line="442"/>
-        <source>Selection</source>
-        <translation>Виділення</translation>
     </message>
     <message>
         <location filename="../src/textanalysis.cpp" line="62"/>
@@ -12649,212 +7350,6 @@ included document in %1</source>
 <context>
     <name>UserMenuDialog</name>
     <message>
-        <location filename="../src/usermenudialog.ui" line="19"/>
-        <source>Edit Macros</source>
-        <translation>Змінити макрос</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="139"/>
-        <source>Browse offered macros on txs site.</source>
-        <translation>Перегляд запропонованих макросів на сайті TexStudio.</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="142"/>
-        <source>Browse</source>
-        <translation>Переглянути</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="113"/>
-        <source>Export</source>
-        <translation>Експорт</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="129"/>
-        <source>Import macro from file</source>
-        <translation>Імпортувати макрос із файлу</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="132"/>
-        <source>Import</source>
-        <translation>Імпорт</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="159"/>
-        <source>Add</source>
-        <translation>Додати</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="170"/>
-        <source>Folder</source>
-        <translation>Тека</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="187"/>
-        <source>Remove</source>
-        <translation>Видалити</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="223"/>
-        <source>Up</source>
-        <translation>Вгору</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="246"/>
-        <source>Down</source>
-        <translation>Вниз</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="60"/>
-        <location filename="../src/usermenudialog.ui" line="263"/>
-        <source>Name</source>
-        <translation>Назва</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="75"/>
-        <location filename="../src/usermenudialog.ui" line="280"/>
-        <source>Abbreviation</source>
-        <translation>Скорочення</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="70"/>
-        <location filename="../src/usermenudialog.ui" line="292"/>
-        <source>Trigger</source>
-        <translation>Перемикач</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="369"/>
-        <source>If this trigger string is written in any tex document, 
-it is replaced by the current tag.
-
-If the trigger starts with (?&lt;=something), this only happens 
-if something is written before the remaining part of the trigger.
-
-Since this trigger is not a plain string, but a regular expression, 
-(?&lt;=\S) can be used to mark replacements which should only occur after a word, 
-and (?&lt;=\s|^) to mark replacements which should only occur before a word.
-
-
-You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation>Якщо цей рядок-перемикач з&apos;явиться в будь-якому текстовому документі,
-то він буде замінена поточним теґом.
-
-Якщо рядок-перемикач починається з (?&lt;=чого-небудь), заміна відбудеться тільки,
-якщо що-небудь написано перед рештою рядка-перемикача.
-
-Так як цей перемикач не простий рядок, а регулярний вираз,
-то можна використовувати (?&lt;=\S) для позначення заміни, яка повинна зустрітися тільки після слова.
-
-
-Ви можете використовувати спеціальне значення ?txs-start , щоб запустити сценарій на початку txs.</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="402"/>
-        <source>Type</source>
-        <translation>Тип</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="411"/>
-        <source>Normal</source>
-        <translation>Звичайний</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="418"/>
-        <source>Environment</source>
-        <translation>Оточення</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="431"/>
-        <source>Script</source>
-        <translation>Сценарій</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="493"/>
-        <source>OK</source>
-        <translation>Гаразд</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="500"/>
-        <source>Cancel</source>
-        <translation>Скасувати</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="509"/>
-        <source>Description</source>
-        <translation>Опис</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="65"/>
-        <location filename="../src/usermenudialog.ui" line="516"/>
-        <source>Shortcut</source>
-        <translation>Скорочення</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="110"/>
-        <source>Export macro(s) to file(s)</source>
-        <translation>Експортувати макрос(и) у файл(и)</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="473"/>
-        <source>Exec Macro</source>
-        <translation>Виконати макрос</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="532"/>
-        <source>Shift+F1</source>
-        <translation>Shift+F1</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="537"/>
-        <source>Shift+F2</source>
-        <translation>Shift+F2</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="542"/>
-        <source>Shift+F4</source>
-        <translation>Shift+F4</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="547"/>
-        <location filename="../src/usermenudialog.ui" line="552"/>
-        <source>Shift+F5</source>
-        <translation>Shift+F5</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="557"/>
-        <source>Shift+F6</source>
-        <translation>Shift+F6</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="562"/>
-        <source>Shift+F7</source>
-        <translation>Shift+F7</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="567"/>
-        <source>Shift+F8</source>
-        <translation>Shift+F8</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="572"/>
-        <source>Shift+F9</source>
-        <translation>Shift+F9</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="577"/>
-        <source>Shift+F10</source>
-        <translation>Shift+F10</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="582"/>
-        <source>Shift+F11</source>
-        <translation>Shift+F11</translation>
-    </message>
-    <message>
-        <location filename="../src/usermenudialog.ui" line="587"/>
-        <source>Shift+F12</source>
-        <translation>Shift+F12</translation>
-    </message>
-    <message>
         <location filename="../src/usermenudialog.cpp" line="50"/>
         <location filename="../src/usermenudialog.cpp" line="468"/>
         <source>Export all macros</source>
@@ -12895,36 +7390,6 @@ You can use the special value ?txs-start to start the script at txs start.</sour
 <context>
     <name>UserQuickDialog</name>
     <message>
-        <location filename="../src/userquickdialog.ui" line="14"/>
-        <source>Quick Build Command</source>
-        <translation>Команда швидкого збирання</translation>
-    </message>
-    <message>
-        <location filename="../src/userquickdialog.ui" line="42"/>
-        <source>Add</source>
-        <translation>Додати</translation>
-    </message>
-    <message>
-        <location filename="../src/userquickdialog.ui" line="70"/>
-        <source>Ordered list of commands:</source>
-        <translation>Упорядкований список команд:</translation>
-    </message>
-    <message>
-        <location filename="../src/userquickdialog.ui" line="80"/>
-        <source>Up</source>
-        <translation>Вгору</translation>
-    </message>
-    <message>
-        <location filename="../src/userquickdialog.ui" line="91"/>
-        <source>Down</source>
-        <translation>Вниз</translation>
-    </message>
-    <message>
-        <location filename="../src/userquickdialog.ui" line="102"/>
-        <source>Delete</source>
-        <translation>Вилучити</translation>
-    </message>
-    <message>
         <location filename="../src/userquickdialog.cpp" line="39"/>
         <location filename="../src/userquickdialog.cpp" line="43"/>
         <location filename="../src/userquickdialog.cpp" line="57"/>
@@ -12943,150 +7408,9 @@ You can use the special value ?txs-start to start the script at txs start.</sour
 <context>
     <name>WebPublishDialog</name>
     <message>
-        <location filename="../src/webpublishdialog.ui" line="14"/>
         <location filename="../src/webpublishdialog.cpp" line="25"/>
         <source>Convert to Html</source>
         <translation>Перетворити в HTML</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="60"/>
-        <source>LaTeX options</source>
-        <translation>Параметри LaTeX</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="98"/>
-        <source>Number of LaTeX compilations for the input file</source>
-        <translation>Число компіляцій вхідного файла LaTeX</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="114"/>
-        <source>Content name :</source>
-        <translation>Назва змісту:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="121"/>
-        <source>Start Index :</source>
-        <translation>Початковий індекс:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="128"/>
-        <source>Tocdepth :</source>
-        <translation>Глибина змісту:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="135"/>
-        <source>LaTeX code for the title of the table of contents</source>
-        <translation>Код LaTeX для назви змісту</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="142"/>
-        <source>The number of the ps page corresponding to the first numberline indexed in the toc file</source>
-        <translation>Номер сторінки PS, що відповідає першій команді numberline у файлі змісту</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="158"/>
-        <source>Set the value of the LaTeX tocdepth counter</source>
-        <translation>Задати значення лічильника LaTeX для глибини змісту - tocdepth</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="174"/>
-        <source>Number of compilations :</source>
-        <translation>Число компіляцій:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="186"/>
-        <source>Html options</source>
-        <translation>Параметри HTML</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="224"/>
-        <source>Title :</source>
-        <translation>Назва:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="231"/>
-        <source>Title of the html files</source>
-        <translation>Назва файла html</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="238"/>
-        <source>Navigation :</source>
-        <translation>Навігація:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="245"/>
-        <source>Footnote :</source>
-        <translation>Колонтитул:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="252"/>
-        <source>Navigation mode</source>
-        <translation>Режим навігації</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="259"/>
-        <source>Alignment :</source>
-        <translation>Вирівнювання:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="266"/>
-        <source>Create an index page ?</source>
-        <translation>Створити сторінку покажчика?</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="273"/>
-        <source>Text displayed at the bottom of each html files </source>
-        <translation>Текст, що буде відображатись внизу кожного файла html</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="280"/>
-        <source>Alignment in the html files</source>
-        <translation>Спосіб вирівнювання у файлі html</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="287"/>
-        <source>Create index :</source>
-        <translation>Створити покажчик:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="316"/>
-        <source>Browser command. Let&apos;s empty to not run the browser at the end of the conversion</source>
-        <translation>Команда для запуску переглядача. Залишіть порожнім, якщо ви не хочете запускати браузер після перетворення</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="336"/>
-        <source>Launch</source>
-        <translation>Запуск</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="350"/>
-        <source>Input File :</source>
-        <translation>Вхідний файл:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="371"/>
-        <source>Close</source>
-        <translation>Закрити</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="378"/>
-        <source>Browser :</source>
-        <translation>Переглядач:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="390"/>
-        <source>Images options</source>
-        <translation>Параметри для зображень</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="411"/>
-        <source>Images Width :</source>
-        <translation>Ширина зображення:</translation>
-    </message>
-    <message>
-        <location filename="../src/webpublishdialog.ui" line="418"/>
-        <source>Width of the largest image</source>
-        <translation>Ширина найбільшого зображення</translation>
     </message>
     <message>
         <location filename="../src/webpublishdialog.cpp" line="30"/>
@@ -13294,34 +7618,6 @@ Do you trust this script?</source>
         <location filename="../src/scriptengine.cpp" line="298"/>
         <source>Script-Error</source>
         <translation>Помилка сценарію</translation>
-    </message>
-</context>
-<context>
-    <name>templateSelectorDialog</name>
-    <message>
-        <location filename="../src/templateselector.ui" line="14"/>
-        <source>Dialog</source>
-        <translation>Діалог</translation>
-    </message>
-    <message>
-        <location filename="../src/templateselector.ui" line="66"/>
-        <source>Author:</source>
-        <translation>Автор:</translation>
-    </message>
-    <message>
-        <location filename="../src/templateselector.ui" line="173"/>
-        <source>Create in Folder:</source>
-        <translation>Створити у теці:</translation>
-    </message>
-    <message>
-        <location filename="../src/templateselector.ui" line="205"/>
-        <source>Create in Editor</source>
-        <translation>Створити у редакторі</translation>
-    </message>
-    <message>
-        <location filename="../src/templateselector.ui" line="238"/>
-        <source>Target folder not empty.</source>
-        <translation>Цільова тека не порожня.</translation>
     </message>
 </context>
 </TS>
