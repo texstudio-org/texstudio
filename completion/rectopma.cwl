@@ -1,12 +1,10 @@
 # rectopma package
-# Matthew Bertucci 1/23/2022
+# Matthew Bertucci 2024/04/04
 
-\ifintitle#*
-\intitletrue#*
-\intitlefalse#*
 \intitlebreak
 \intitlebreakvs
-\OLDmaketitle#*
 \SaveTopMatter
 \SavedTitle
 \SavedAuthor
+
+\declarecommand{cmd}{def}#Sd
