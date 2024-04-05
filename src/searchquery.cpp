@@ -123,11 +123,13 @@ void SearchQuery::run(LatexDocument *doc)
         QFileInfo fi=doc->getFileInfo();
         QDir dir(fi.absoluteDir());
         QFileInfoList files = dir.entryInfoList(QStringList{"*.tex"},QDir::Files);
+        std::function<SearchInfo(const QFileInfo &)> searchInFiles = [regex, this](const QFileInfo &fi) -> SearchInfo { return this->searchInFile(fi.absoluteFilePath(),regex); };
+        std::function<void(SearchInfo &, const SearchInfo &)> reduce = [this](SearchInfo &result, const SearchInfo &value) { this->addToSearchResults(result, value); };
         mSearchInFilesWatcher.setFuture(
-            QtConcurrent::mappedReduced(
+            QtConcurrent::mappedReduced<SearchInfo>(
                 files,
-                [regex, this](const QFileInfo &fi) -> SearchInfo { return this->searchInFile(fi.absoluteFilePath(),regex); },
-                [this](SearchInfo &result, const SearchInfo &value) { this->addToSearchResults(result, value); },
+                searchInFiles,
+                reduce,
                 QtConcurrent::SequentialReduce)
             );
     }else{
