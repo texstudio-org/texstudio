@@ -9,6 +9,8 @@ class QDocumentLineHandle;
 struct SearchInfo {
 	QPointer<QDocument> doc;
 	QList<QDocumentLineHandle *> lines;
+    QStringList textlines;
+    QString filename;
 	QList<bool> checked;
 	mutable QList<int> lineNumberHints;
 };
@@ -43,6 +45,7 @@ public:
 	QList<SearchInfo> getSearches();
 	void clear();
 	QDocument *getDocument(const QModelIndex &index);
+    QString getFileName(const QModelIndex &index);
 	int getLineNumber(const QModelIndex &index);
 	void setSearchExpression(const QString &exp, const bool isCaseSensitive, const bool isWord, const bool isRegExp);
 	void setSearchExpression(const QString &exp, const QString &repl, const bool isCaseSensitive, const bool isWord, const bool isRegExp);
@@ -63,6 +66,7 @@ public:
 	void setAllowPartialSelection(bool b) { mAllowPartialSelection = b; }
 
 	virtual QList<SearchMatch> getSearchMatches(const QDocumentLine &docline) const;
+    virtual QList<SearchMatch> getSearchMatches(const QString &line) const;
 
 private:
 	QVariant dataForResultEntry(const SearchInfo &search, int lineIndex, int role) const;

@@ -617,6 +617,7 @@ protected slots:
 	void fileAutoReloading(QString fname);
 
 	void jumpToSearchResult(LatexDocument *doc, int lineNumber, const SearchQuery *query);
+    void jumpToFileSearchResult(QString fn, int lineNumber, const SearchQuery *query);
 
 	void cursorPositionChanged();
 	void syncPDFViewer(QDocumentCursor cur, bool inForeground = true);

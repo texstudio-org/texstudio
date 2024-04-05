@@ -758,6 +758,7 @@ void Texstudio::setupDockWidgets()
         connect(outputView->getLogWidget(), SIGNAL(logResetted()), this, SLOT(clearLogEntriesInEditors()));
         connect(outputView, SIGNAL(pageChanged(QString)), this, SLOT(outputPageChanged(QString)));
         connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToSearchResult, this, &Texstudio::jumpToSearchResult);
+        connect(outputView->getSearchResultWidget(), &SearchResultWidget::jumpToFileSearchResult, this, &Texstudio::jumpToFileSearchResult);
         connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery*)), this, SLOT(runSearch(SearchQuery*)));
 
         connect(&buildManager, SIGNAL(previewAvailable(const QString&,const PreviewSource&)), this, SLOT(previewAvailable(const QString&,const PreviewSource&)));
@@ -7976,6 +7977,30 @@ void Texstudio::jumpToSearchResult(LatexDocument *doc, int lineNumber, const Sea
         gotoLine(lineNumber, col);
     } else {
         gotoLine(lineNumber, doc->getFileName().size() ? doc->getFileName() : qobject_cast<LatexDocument *>(doc)->getTemporaryFileName());
+        int col = query->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text(), 0);
+        gotoLine(lineNumber, col);
+        outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+    }
+    QDocumentCursor highlight = currentEditor()->cursor();
+    highlight.movePosition(query->searchExpression().length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+    currentEditorView()->temporaryHighlight(highlight);
+}
+/*!
+ * \brief jump to search results for search in files (searchResultsWidget)
+ * \param fn
+ * \param lineNumber
+ * \param query
+ */
+void Texstudio::jumpToFileSearchResult(QString fn, int lineNumber, const SearchQuery *query)
+{
+    if (currentEditor() && currentEditor()->fileName() == fn && currentEditor()->cursor().lineNumber() == lineNumber) {
+        QDocumentCursor c = currentEditor()->cursor();
+        int col = c.columnNumber();
+        col = query->getNextSearchResultColumn(c.line().text() , col + 1);
+        gotoLine(lineNumber, col);
+    } else {
+        // in files linenr are 0-based
+        gotoLine(lineNumber, fn);
         int col = query->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text(), 0);
         gotoLine(lineNumber, col);
         outputView->showPage(outputView->SEARCH_RESULT_PAGE);

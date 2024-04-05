@@ -2,6 +2,7 @@
 #define Header_SearchQuery
 
 #include "mostQtHeaders.h"
+#include "qfuturewatcher.h"
 #include "searchresultmodel.h"
 #include "qdocument.h"
 #include "qdocumentline_p.h"
@@ -32,6 +33,7 @@ public:
 		CurrentDocumentScope,
 		ProjectScope,
 		GlobalScope,
+        FilesScope,
 	};
 
 	SearchQuery(QString expr, QString replaceText, SearchFlags f);
@@ -54,16 +56,24 @@ signals:
 public slots:
 	virtual void run(LatexDocument *doc);
 	void addDocSearchResult(QDocument *doc, QList<QDocumentLineHandle *> search);
+    void addFileSearchResult(SearchInfo search);
 	void setReplacementText(QString text);
 	QString replacementText();
 	virtual void replaceAll();
+
+private slots:
+    void searchInFilesFinished();
 	
 protected:
 	void setFlag(SearchFlag f, bool b=true);
+    SearchInfo searchInFile(QString file, const QRegularExpression &regex);
+    void addToSearchResults(SearchInfo &result, SearchInfo newResults);
 	QString mType;
 	Scope mScope;
 	SearchResultModel *mModel;
 	SearchFlags searchFlags;
+
+    QFutureWatcher<SearchInfo> mSearchInFilesWatcher;
 	
 private:
 

@@ -1,5 +1,6 @@
 #include "searchquery.h"
 #include "latexdocument.h"
+#include <QtConcurrent>
 // TODO: dependency should be refactored
 #include "buildmanager.h"
 
@@ -8,6 +9,7 @@ SearchQuery::SearchQuery(QString expr, QString replaceText, SearchFlags f) :
 {
 	mModel = new SearchResultModel(this);
 	mModel->setSearchExpression(expr, replaceText, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
+    connect(&mSearchInFilesWatcher, &QFutureWatcher<QStringList>::finished, this, &SearchQuery::searchInFilesFinished);
 }
 
 SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive, bool isWord, bool isRegExp) :
@@ -23,6 +25,7 @@ SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive
 	}
 	mModel = new SearchResultModel(this);
 	mModel->setSearchExpression(expr, replaceText, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
+    connect(&mSearchInFilesWatcher, &QFutureWatcher<QStringList>::finished, this, &SearchQuery::searchInFilesFinished);
 }
 
 bool SearchQuery::flag(SearchQuery::SearchFlag f) const
@@ -50,11 +53,53 @@ void SearchQuery::addDocSearchResult(QDocument *doc, QList<QDocumentLineHandle *
 	mModel->addSearch(search);
 }
 
+void SearchQuery::addFileSearchResult(SearchInfo search)
+{
+    mModel->addSearch(search);
+}
+
+
 int SearchQuery::getNextSearchResultColumn(QString text, int col) const
 {
 	return mModel->getNextSearchResultColumn(text, col);
 }
+SearchInfo SearchQuery::searchInFile(QString file, const QRegularExpression &regex){
+    QFile f(file);
+    f.open(QIODevice::ReadOnly);
+    QTextStream textStream(&f);
+    SearchInfo result;
+    int lineNr=0;
 
+    while (!textStream.atEnd()) {
+        const auto line =  textStream.readLine();
+        QRegularExpressionMatch match = regex.match(line);
+        if(match.hasMatch()){
+            result.textlines<<line;
+            result.lineNumberHints<<lineNr;
+        }
+        ++lineNr;
+    }
+    if(!result.textlines.isEmpty()){
+        result.filename=file;
+    }
+
+    return result;
+}
+void SearchQuery::addToSearchResults(SearchInfo &result, SearchInfo newResults){
+    result=newResults;
+    addFileSearchResult(newResults);
+}
+/*!
+ * \brief function to clean up search in files (qtconcurrent/watcher)
+ */
+void SearchQuery::searchInFilesFinished()
+{
+    // The finished signal from the QFutureWatcher is also emitted when cancelling.
+    if (mSearchInFilesWatcher.isCanceled())
+        return;
+
+    emit runCompleted();
+}
 void SearchQuery::run(LatexDocument *doc)
 {
 	mModel->removeAllSearches();
@@ -73,24 +118,37 @@ void SearchQuery::run(LatexDocument *doc)
 	default:
 		break;
 	}
+    if(mScope==FilesScope){
+        QRegularExpression regex=generateRegularExpression(searchExpression(),!flag(IsCaseSensitive),flag(IsWord), flag(IsRegExp));
+        QFileInfo fi=doc->getFileInfo();
+        QDir dir(fi.absoluteDir());
+        QFileInfoList files = dir.entryInfoList(QStringList{"*.tex"},QDir::Files);
+        mSearchInFilesWatcher.setFuture(
+            QtConcurrent::mappedReduced(
+                files,
+                [regex, this](const QFileInfo &fi) -> SearchInfo { return this->searchInFile(fi.absoluteFilePath(),regex); },
+                [this](SearchInfo &result, const SearchInfo &value) { this->addToSearchResults(result, value); },
+                QtConcurrent::SequentialReduce)
+            );
+    }else{
+        foreach (LatexDocument *doc, docs) {
+            if (!doc) continue;
+            QList<QDocumentLineHandle *> lines;
+            for (int l = 0; l < doc->lineCount(); l++) {
+                l = doc->findLineRegExp(searchExpression(), l,
+                                        flag(IsCaseSensitive) ? Qt::CaseSensitive : Qt::CaseInsensitive, flag(IsWord), flag(IsRegExp));
+                if (l < 0) break;
+                lines << doc->line(l).handle();
+            }
 
-	foreach (LatexDocument *doc, docs) {
-		if (!doc) continue;
-		QList<QDocumentLineHandle *> lines;
-		for (int l = 0; l < doc->lineCount(); l++) {
-			l = doc->findLineRegExp(searchExpression(), l,
-			                        flag(IsCaseSensitive) ? Qt::CaseSensitive : Qt::CaseInsensitive, flag(IsWord), flag(IsRegExp));
-			if (l < 0) break;
-			lines << doc->line(l).handle();
-		}
-
-		if (!lines.isEmpty()) { // don't add empty searches
-			if (doc->getFileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
-				doc->setTemporaryFileName(BuildManager::createTemporaryFileName());
-			addDocSearchResult(doc, lines);
-		}
-	}
-	emit runCompleted();
+            if (!lines.isEmpty()) { // don't add empty searches
+                if (doc->getFileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
+                    doc->setTemporaryFileName(BuildManager::createTemporaryFileName());
+                addDocSearchResult(doc, lines);
+            }
+        }
+        emit runCompleted();
+    }
 }
 
 void SearchQuery::setReplacementText(QString text)

@@ -18,6 +18,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	searchScopeBox->addItem(tr("Current Doc"), static_cast<uint>(SearchQuery::CurrentDocumentScope));
 	searchScopeBox->addItem(tr("All Docs"), static_cast<uint>(SearchQuery::GlobalScope));
 	searchScopeBox->addItem(tr("Project"), static_cast<uint>(SearchQuery::ProjectScope));
+    searchScopeBox->addItem(tr("Files on disk"), static_cast<uint>(SearchQuery::FilesScope));
 	searchScopeBox->setCurrentIndex(ConfigManagerInterface::getInstance()->getOption("Search/ScopeIndex").toInt());
 	connect(searchScopeBox, SIGNAL(currentIndexChanged(int)), SLOT(updateSearch()));
 
@@ -131,11 +132,16 @@ void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
 {
 
     LatexDocument *doc = qobject_cast<LatexDocument*>(query->model()->getDocument(index));
-	int lineNr = query->model()->getLineNumber(index);
-	if (!doc || lineNr < 0) {
-		return;
-	}
-	emit jumpToSearchResult(doc, lineNr, query);
+    int lineNr = query->model()->getLineNumber(index);
+    if (lineNr < 0) return;
+
+    if(doc){
+        emit jumpToSearchResult(doc, lineNr, query);
+    }else{
+        // result from search in files
+        QString fn=query->model()->getFileName(index);
+        emit jumpToFileSearchResult(fn, lineNr, query);
+    }
 }
 
 void SearchResultWidget::clearSearch()

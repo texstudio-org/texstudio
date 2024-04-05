@@ -70,12 +70,15 @@ void SearchResultModel::addSearch(const SearchInfo &search)
 	beginResetModel();
 
     m_searches.append(search);
-	int lineNumber = 0;
-	m_searches.last().lineNumberHints.clear();
-	for (int i = 0; i < search.lines.size(); i++) {
-		lineNumber = search.doc->indexOf(search.lines[i], lineNumber);
-		m_searches.last().lineNumberHints << lineNumber;
-	}
+    if(search.doc){
+        // update linenumbers
+        int lineNumber = 0;
+        m_searches.last().lineNumberHints.clear();
+        for (int i = 0; i < search.lines.size(); i++) {
+            lineNumber = search.doc->indexOf(search.lines[i], lineNumber);
+            m_searches.last().lineNumberHints << lineNumber;
+        }
+    }
 
 	endResetModel();
 }
@@ -125,7 +128,7 @@ int SearchResultModel::rowCount(const QModelIndex &parent) const
 	} else {
 		int i = parent.row();
 		if (i < m_searches.size() && !iidIsResultEntry(parent.internalId())) {
-			return qMin(m_searches[i].lines.size(), 1000); // maximum search results limited
+            return qMin(qMax(m_searches[i].lines.size(),m_searches[i].textlines.size()), 1000); // maximum search results limited
 		} else return 0;
 	}
 }
@@ -151,7 +154,37 @@ const
 
 QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lineIndex, int role) const
 {
-	if (!search.doc) return QVariant();
+    if (!search.doc){
+        // in file search results
+        bool lineIndexValid = (lineIndex >= 0 && lineIndex < search.textlines.size());
+        switch (role) {
+        case Qt::CheckStateRole:
+            if (!lineIndexValid) return QVariant();
+            return (search.checked.value(lineIndex, true) ? Qt::Checked : Qt::Unchecked);
+        case LineNumberRole: {
+            if (!lineIndexValid) return QVariant();
+            int lineNo = search.lineNumberHints[lineIndex];
+            if (lineNo < 0) return 0;
+            return lineNo+1; // internal line number is 0-based
+        }
+        case Qt::DisplayRole:
+        case Qt::ToolTipRole: {
+            if (!lineIndexValid) return "";
+            QString textline = search.textlines[lineIndex];
+            if (role == Qt::DisplayRole) {
+                return textline;
+            } else {  // tooltip role
+                return textline;
+            }
+            break;
+        }
+        case MatchesRole: {
+            QString textline = search.textlines[lineIndex];
+            return QVariant::fromValue<QList<SearchMatch> >(getSearchMatches(textline));
+        }
+        }
+        return QVariant();
+    }
 	bool lineIndexValid = (lineIndex >= 0 && lineIndex < search.lines.size() && lineIndex < search.lineNumberHints.size());
 	switch (role) {
 	case Qt::CheckStateRole:
@@ -205,7 +238,11 @@ QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int ro
     }
     case Qt::DisplayRole: {
         if(!search.doc){
-            return tr("File closed") + QString(" (%1)").arg(search.lines.size());
+            if(search.filename.isEmpty()){
+                return tr("File closed") + QString(" (%1)").arg(search.lines.size());
+            }else{
+                return QDir::toNativeSeparators(search.filename) + QString(" (%1)").arg(search.textlines.size());
+            }
         }
         LatexDocument *ldoc=dynamic_cast<LatexDocument*>(search.doc.data());
         QString fn=ldoc->getFileName();
@@ -307,9 +344,6 @@ QString SearchResultModel::prepareReplacedText(const QDocumentLine &docline) con
 			cur->replaceSelectedText(newText);*/
 		} else {
 			// simple replacement
-			/*int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
-			cur->select(lineNr,elem.first,lineNr,elem.second);
-			cur->replaceSelectedText(replaceText);*/
 			result = result.left(offset + match.pos) + "<b>" + mReplacementText + "</b>" + result.mid(match.pos + match.length + offset);
 			offset += mReplacementText.length() - match.length + 7;  // 7 is the length of the html tags.
 		}
@@ -321,11 +355,22 @@ QList<SearchMatch> SearchResultModel::getSearchMatches(const QDocumentLine &docl
 {
 	if (!docline.isValid() || mExpression.isEmpty()) return QList<SearchMatch>();
 
-    QRegularExpression regexp = generateRegularExpression(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
 	QString text = docline.text();
 
-	QList<SearchMatch> result;
-    QRegularExpressionMatch re_match = regexp.match(text);
+    return getSearchMatches(text);
+}
+/*!
+ * \brief find matches in text line
+ * \param line
+ * \return
+ */
+QList<SearchMatch> SearchResultModel::getSearchMatches(const QString &line) const
+{
+    if (line.isEmpty() || mExpression.isEmpty()) return QList<SearchMatch>();
+    QRegularExpression regexp = generateRegularExpression(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
+
+    QList<SearchMatch> result;
+    QRegularExpressionMatch re_match = regexp.match(line);
     int offset=re_match.capturedStart();
     while (offset > -1) {
         SearchMatch match;
@@ -333,11 +378,11 @@ QList<SearchMatch> SearchResultModel::getSearchMatches(const QDocumentLine &docl
         match.length = re_match.capturedLength();
         result << match;
         // next result
-        re_match = regexp.match(text,offset+match.length);
+        re_match = regexp.match(line,offset+match.length);
         offset = re_match.capturedStart();
     }
 
-	return result;
+    return result;
 }
 
 QDocument *SearchResultModel::getDocument(const QModelIndex &index)
@@ -347,6 +392,18 @@ QDocument *SearchResultModel::getDocument(const QModelIndex &index)
     if (!m_searches[i].doc) return nullptr;
 	return m_searches[i].doc;
 }
+/*!
+ * \brief return filename for search in files results
+ * \param index
+ * \return
+ */
+QString SearchResultModel::getFileName(const QModelIndex &index)
+{
+    int i = searchIndexFromIid(index.internalId());
+    if (i < 0 || i >= m_searches.size()) return nullptr;
+    if (m_searches[i].doc) return "";
+    return m_searches[i].filename;
+}
 
 int SearchResultModel::getLineNumber(const QModelIndex &index)
 {
@@ -355,7 +412,13 @@ int SearchResultModel::getLineNumber(const QModelIndex &index)
 	int searchIndex = searchIndexFromIid(iid);
 	if (searchIndex < 0 || searchIndex >= m_searches.size()) return -1;
 	const SearchInfo &search = m_searches.at(searchIndex);
-	if (!search.doc) return -1;
+    if (!search.doc){
+        if(!search.lineNumberHints.isEmpty()){
+            int lineIndex = index.row();
+            return search.lineNumberHints[lineIndex];
+        }
+        return -1;
+    }
 	int lineIndex = index.row();
 	if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()) return -1;
 	search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
