@@ -4872,7 +4872,7 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="730"/>
         <source>Insert filename</source>
-        <translation type="unfinished"/>
+        <translation>Fájlnév beszúrása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="735"/>
@@ -5864,7 +5864,7 @@ sablon helyét, és csomagolja ki a sablont.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1346"/>
         <source>Reset Sidepanel/docks</source>
-        <translation type="unfinished"/>
+        <translation>Oldalpanel/dokkok alaphelyzetbe állítása</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1348"/>

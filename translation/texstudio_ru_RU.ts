@@ -4878,7 +4878,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="730"/>
         <source>Insert filename</source>
-        <translation type="unfinished"/>
+        <translation>Вставить имя файла</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="735"/>
@@ -5870,7 +5870,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="1346"/>
         <source>Reset Sidepanel/docks</source>
-        <translation type="unfinished"/>
+        <translation>Сбросить боковую панель / окна</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1348"/>

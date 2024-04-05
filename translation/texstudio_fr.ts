@@ -4871,7 +4871,7 @@ Veuillez ouvrir l&apos;emplacement du modèle et décompresser le modèle pour m
     <message>
         <location filename="../src/texstudio.cpp" line="730"/>
         <source>Insert filename</source>
-        <translation type="unfinished"/>
+        <translation>Insérer le nom du fichier</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="735"/>
@@ -5863,7 +5863,7 @@ Veuillez ouvrir l&apos;emplacement du modèle et décompresser le modèle pour m
     <message>
         <location filename="../src/texstudio.cpp" line="1346"/>
         <source>Reset Sidepanel/docks</source>
-        <translation type="unfinished"/>
+        <translation>Réinitialiser le panneau latéral/les docks</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1348"/>

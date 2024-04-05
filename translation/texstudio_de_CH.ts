@@ -5857,7 +5857,7 @@ Bitte öffnen sie das Verzeichnis der Vorlage und entpacken die Zip-Datei, um ei
     <message>
         <location filename="../src/texstudio.cpp" line="1346"/>
         <source>Reset Sidepanel/docks</source>
-        <translation type="unfinished"/>
+        <translation>Seitenelemente zurücksetzen</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1348"/>

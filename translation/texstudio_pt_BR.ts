@@ -4878,7 +4878,7 @@ o modelo para editar ficheiros individuais.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="730"/>
         <source>Insert filename</source>
-        <translation type="unfinished"/>
+        <translation>Insira o nome do ficheiro</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="735"/>
@@ -5870,7 +5870,7 @@ o modelo para editar ficheiros individuais.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1346"/>
         <source>Reset Sidepanel/docks</source>
-        <translation type="unfinished"/>
+        <translation>Repor painel lateral/docas</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1348"/>
