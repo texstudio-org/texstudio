@@ -599,7 +599,10 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent,Qt::Dialog|Qt::Windo
 	connect(ui.tbRevertIcon, SIGNAL(clicked()), this, SLOT(revertClicked()));
 	connect(ui.tbRevertCentralIcon, SIGNAL(clicked()), this, SLOT(revertClicked()));
 	connect(ui.tbRevertSymbol, SIGNAL(clicked()), this, SLOT(revertClicked()));
-    connect(ui.tbRevertPDF, SIGNAL(clicked()), this, SLOT(revertClicked()));	
+    connect(ui.tbRevertPDF, SIGNAL(clicked()), this, SLOT(revertClicked()));
+
+    // ai chat
+    connect(ui.cbAIProvider, SIGNAL(currentIndexChanged(int)), this, SLOT(aiProviderChanged(int)));
 }
 
 
@@ -670,6 +673,33 @@ void ConfigDialog::revertClicked()
             ui.horizontalSliderPDF->setValue(16);
         }
 	}
+}
+/*!
+ * \brief adapt model list depending on ai provider
+ * \param[provider] 0: mistral
+ * 1: openai
+ */
+void ConfigDialog::aiProviderChanged(int provider)
+{
+    switch(provider){
+    case 0:
+        ui.cbAIPreferredModel->clear();
+        ui.cbAIPreferredModel->addItem("open-mistral-7b");
+        ui.cbAIPreferredModel->addItem("open-mixtral-8x7b");
+        ui.cbAIPreferredModel->addItem("mistral-small-latest");
+        ui.cbAIPreferredModel->addItem("mistral-medium-latest");
+        ui.cbAIPreferredModel->addItem("mistral-large-latest");
+        break;
+    case 1:
+        ui.cbAIPreferredModel->clear();
+        ui.cbAIPreferredModel->addItem("gpt-3.5-turbo");
+        ui.cbAIPreferredModel->addItem("gpt-4");
+        ui.cbAIPreferredModel->addItem("gpt-4-turbo-preview");
+        break;
+    default:
+        ui.cbAIPreferredModel->clear();
+        break;
+    }
 }
 
 //sets the items of a combobox to the filenames and sub-directory names in the directory which name

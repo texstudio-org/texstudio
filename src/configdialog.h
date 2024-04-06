@@ -144,6 +144,8 @@ private slots:
 
 	void revertClicked();
 
+    void aiProviderChanged(int provider);
+
 	void populateComboBoxFont(bool onlyMonospaced);
 private:
 #ifdef INTERNAL_TERMINAL
