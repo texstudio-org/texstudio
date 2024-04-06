@@ -2,6 +2,7 @@
 ## TeXstudio 4.8.0
 
 - use moveable/**splitable** docks for sidepanel
+- extended search can now also search in all files in one folder
 - add basic syntax highlighting for latex3 code
 - fix handling CJK characters in pdf on OSX [#3558](https://github.com/texstudio-org/texstudio/issues/3558)
 - fix rare crash [#3556](https://github.com/texstudio-org/texstudio/issues/3556)
