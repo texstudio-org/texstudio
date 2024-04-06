@@ -57,7 +57,15 @@ void AIChatAssistant::slotSend()
     QTreeWidgetItem *item=new QTreeWidgetItem(topItem);
     item->setText(0,question);
 
-    QString url("https://api.mistral.ai/v1/chat/completions");
+    QString url;
+    switch(config->ai_provider){
+        case 0: url="https://api.mistral.ai/v1/chat/completions";
+        break;
+        case 1: url="https://api.openai.com/v1/chat/completions";
+        break;
+        default:
+            url="https://api.mistral.ai/v1/chat/completions";
+    }
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
