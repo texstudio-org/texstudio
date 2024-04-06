@@ -211,6 +211,11 @@ public:
 	QString spell_dic, thesaurus_database;
     QStringList previouslyUsedDictionaries;
 
+    // ai chat assistant
+    QString ai_apikey;
+    int ai_provider;
+    QString ai_preferredModel;
+
 	//debug
 #ifndef QT_NO_DEBUG
 	QDateTime debugLastFileModification;

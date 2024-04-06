@@ -693,6 +693,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Terminal/Shell", &terminalConfig->terminalShell, "/bin/bash", &pseudoDialog->lineEditTerminalShell);
 #endif
 
+    // AI chat assistant
+    registerOption("AIchat/Provider",&ai_provider,0,&pseudoDialog->cbAIProvider);
+    registerOption("AIchat/APIKEY",&ai_apikey,"",&pseudoDialog->leAIAPIKey);
+    registerOption("AIchat/PreferredModel",&ai_preferredModel,"	open-mistral-7b",&pseudoDialog->cbAIPreferredModel);
+
 	//interfaces
     int defaultStyle=0;
 

@@ -111,7 +111,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>11</number>
          </property>
          <widget class="QWidget" name="pageGeneral">
           <layout class="QVBoxLayout">
@@ -1590,7 +1590,7 @@ Then you can select a new shortcut by one of the following ways:
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1085</width>
+                <width>639</width>
                 <height>423</height>
                </rect>
               </property>
@@ -3336,8 +3336,8 @@ them here.</string>
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>393</width>
-                <height>605</height>
+                <width>1085</width>
+                <height>714</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3578,6 +3578,77 @@ them here.</string>
                      <iconset resource="../images.qrc">
                       <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                     </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_Dictionaries">
+                 <property name="title">
+                  <string>AI chat assistant</string>
+                 </property>
+                 <layout class="QGridLayout" name="_4" columnstretch="0,0,0,0">
+                  <item row="0" column="3">
+                   <widget class="QComboBox" name="cbAIProvider">
+                    <item>
+                     <property name="text">
+                      <string>Mistral AI</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_91">
+                    <property name="text">
+                     <string>AI provider:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0" colspan="2">
+                   <widget class="QLabel" name="label_43">
+                    <property name="text">
+                     <string>API key:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLineEdit" name="leAIAPIKey"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_92">
+                    <property name="text">
+                     <string>Preferred model:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QComboBox" name="cbAIPreferredModel">
+                    <item>
+                     <property name="text">
+                      <string>open-mistral-7b</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>open-mixtral-8x7b</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>mistral-small-latest</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>mistral-medium-latest</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>mistral-large-latest</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                  </layout>
@@ -3875,7 +3946,7 @@ them here.</string>
                 <x>0</x>
                 <y>0</y>
                 <width>292</width>
-                <height>228</height>
+                <height>207</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3945,11 +4016,11 @@ them here.</string>
                   </item>
                   <item row="1" column="1">
                    <widget class="QComboBox" name="comboBoxPreviewMode">
-                    <property name="advancedOption" stdset="0">
-                     <bool>false</bool>
-                    </property>
                     <property name="toolTip">
                      <string>When the mode is changed, the preview on formulas is displayed accordingly (but for Inline it's still a tooltip).</string>
+                    </property>
+                    <property name="advancedOption" stdset="0">
+                     <bool>false</bool>
                     </property>
                     <item>
                      <property name="text">
