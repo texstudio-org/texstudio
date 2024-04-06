@@ -69,6 +69,7 @@
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
 #include "execprogram.h"
+#include "aichatassistant.h"
 
 #include <QScreen>
 
@@ -1264,6 +1265,9 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "start", tr("Quick &Start..."), SLOT(quickDocument()));
 	newManagedAction(menu, "beamer", tr("Quick &Beamer Presentation..."), SLOT(quickBeamer()));
 	newManagedAction(menu, "letter", tr("Quick &Letter..."), SLOT(quickLetter()));
+
+    menu->addSeparator();
+    newManagedAction(menu, "aichat", tr("AI &Chat..."), SLOT(aiChat()));
 
 	menu->addSeparator();
 	newManagedAction(menu, "tabular", tr("Quick &Tabular..."), SLOT(quickTabular()));
@@ -5412,6 +5416,12 @@ void Texstudio::quickMath()
 	connectUnique(MathAssistant::instance(), SIGNAL(formulaReceived(QString)), this, SLOT(insertFormula(QString)));
 	MathAssistant::instance()->exec();
 #endif
+}
+
+void Texstudio::aiChat()
+{
+    AIChatAssistant *aiChatDlg = new AIChatAssistant(this);
+    aiChatDlg->exec();
 }
 
 void Texstudio::quickTabbing()

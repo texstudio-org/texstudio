@@ -6,6 +6,7 @@ set(INC_DIRECTORIES
 
 set(HEADER_FILES ${HEADER_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/aichatassistant.h
     ${CMAKE_CURRENT_SOURCE_DIR}/arraydialog.h
     ${CMAKE_CURRENT_SOURCE_DIR}/bibtexdialog.h
     ${CMAKE_CURRENT_SOURCE_DIR}/bibtexparser.h
@@ -115,6 +116,7 @@ set(HEADER_FILES ${HEADER_FILES}
 set(SOURCE_FILES ${SOURCE_FILES}
     ${CMAKE_CURRENT_SOURCE_DIR}/aboutdialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/additionaltranslations.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/aichatassistant.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/arraydialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/bibtexdialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/bibtexparser.cpp
