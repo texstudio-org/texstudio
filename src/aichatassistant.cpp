@@ -51,7 +51,6 @@ void AIChatAssistant::slotSend()
     }
 
     QString url("https://api.mistral.ai/v1/chat/completions");
-    //QString data="{\"model\": \"mistral-small-latest\", \"messages\": [{\"role\": \"user\", \"content\": \"Who is the most renowned French painter?\"}]}";
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
