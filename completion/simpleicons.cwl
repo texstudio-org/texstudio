@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/03/29 for v11.10.0
+# Matthew Bertucci 2024/04/06 for v11.11.0
 
 #include:iftex
 
@@ -127,11 +127,13 @@ amazonalexa
 amazonapigateway
 amazonaws
 amazoncloudwatch
+amazoncognito
 amazondocumentdb
 amazondynamodb
 amazonec2
 amazonecs
 amazoneks
+amazonelasticache
 amazonfiretv
 amazongames
 amazoniam
@@ -284,9 +286,11 @@ avira
 awesomelists
 awesomewm
 awsamplify
+awselasticloadbalancing
 awsfargate
 awslambda
 awsorganizations
+awssecretsmanager
 axios
 azureartifacts
 azuredataexplorer
@@ -852,6 +856,7 @@ espressif
 esri
 etcd
 ethereum
+ethers
 ethiopianairlines
 etihadairways
 etsy
@@ -1368,6 +1373,7 @@ jetbrains
 jetpackcompose
 jfrog
 jfrogpipelines
+jhipster
 jinja
 jira
 jirasoftware
@@ -1423,6 +1429,7 @@ kentico
 keras
 keybase
 keycdn
+keycloak
 keystone
 kfc
 khanacademy
@@ -2237,6 +2244,7 @@ reason
 reasonstudios
 recoil
 red
+redash
 redbubble
 redbull
 reddit
@@ -2632,6 +2640,7 @@ symbolab
 symfony
 symphony
 sympy
+syncthing
 synology
 system76
 tabelog
