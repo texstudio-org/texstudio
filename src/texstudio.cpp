@@ -11241,6 +11241,12 @@ void Texstudio::showExtendedSearch()
 	bool isReg = edView->getSearchIsRegExp();
 	SearchQuery *query = new SearchQuery(edView->getSearchText(), edView->getReplaceText(), isCase, isWord, isReg);
 	query->setScope(searchResultWidget()->searchScope());
+    if(currentEditor()){
+        LatexDocument *doc=edView->getDocument();
+        QFileInfo fi=doc->getFileInfo();
+        query->setSearchFolder(fi);
+    }
+
 	searchResultWidget()->setQuery(query);
 	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 	runSearch(query);

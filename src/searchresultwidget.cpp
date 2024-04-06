@@ -20,7 +20,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	searchScopeBox->addItem(tr("Project"), static_cast<uint>(SearchQuery::ProjectScope));
     searchScopeBox->addItem(tr("Files on disk"), static_cast<uint>(SearchQuery::FilesScope));
 	searchScopeBox->setCurrentIndex(ConfigManagerInterface::getInstance()->getOption("Search/ScopeIndex").toInt());
-	connect(searchScopeBox, SIGNAL(currentIndexChanged(int)), SLOT(updateSearch()));
+    connect(searchScopeBox, &QComboBox::currentIndexChanged, this, &SearchResultWidget::changeScope);
 
 	searchTypeLabel = new QLabel;
 	searchTextLabel = new QLabel;
@@ -32,15 +32,24 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	replaceTextEdit = new QLineEdit;
 	replaceTextEdit->setClearButtonEnabled(true);
 	replaceButton = new QPushButton(tr("Replace all"));
+    m_replaceByLabel=new QLabel(tr("Replace by:"));
+
+    // special widgets for search in files
+    m_fileFilterBox = new QComboBox;
+    m_fileFilterBox->addItem(tr("Tex files")+" (*.tex)");
+    m_fileFilterBox->addItem(tr("Bib files")+" (*.bib)");
+    m_fileFilterBox->setVisible(false);
+    connect(m_fileFilterBox, &QComboBox::currentIndexChanged, this, &SearchResultWidget::changeFileFilter);
 
 	hLayout->addWidget(searchScopeBox);
 
 	hLayout->addWidget(searchTypeLabel);
 	hLayout->addWidget(searchTextLabel, 1);
 	hLayout->addWidget(searchAgainButton);
-	hLayout->addWidget(new QLabel(tr("Replace by:")));
+    hLayout->addWidget(m_replaceByLabel);
 	hLayout->addWidget(replaceTextEdit, 1);
 	hLayout->addWidget(replaceButton);
+    hLayout->addWidget(m_fileFilterBox);
 
 	searchTree = new QTreeView(this);
 	searchTree->header()->hide();
@@ -92,16 +101,39 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 	replaceButton->setEnabled(replaceAllowed);
 	connect(replaceTextEdit, SIGNAL(textChanged(QString)), query, SLOT(setReplacementText(QString)));
 	connect(replaceTextEdit, SIGNAL(returnPressed()), query, SLOT(replaceAll()));
-	connect(replaceButton, SIGNAL(clicked()), query, SLOT(replaceAll()));
+    //connect(replaceButton, SIGNAL(clicked()), query, SLOT(replaceAll()));
+    connect(replaceButton, &QPushButton::clicked, this, &SearchResultWidget::replaceButtonClicked);
 
 	searchTree->setModel(query->model());
-	connect(query, SIGNAL(runCompleted()), this, SLOT(searchCompleted()));
+    connect(query, &SearchQuery::runCompleted, this, &SearchResultWidget::searchCompleted);
+    adaptGUItoScope();
 }
 
 void SearchResultWidget::updateSearch()
 {
 	if (query) query->setScope(searchScope());
 	emit runSearch(query);
+}
+/*!
+ * \brief change UI and update search when mode is changed
+ * \param mode
+ */
+void SearchResultWidget::changeScope(int)
+{
+    adaptGUItoScope();
+    updateSearch();
+}
+/*!
+ * \brief change the file filter for search in file
+ * Stop current search and start a new one
+ * \param mode
+ */
+void SearchResultWidget::changeFileFilter(int)
+{
+    if(query){
+        query->setFileFilter(m_fileFilterBox->currentText());
+        updateSearch();
+    }
 }
 
 void SearchResultWidget::searchCompleted()
@@ -127,6 +159,26 @@ void SearchResultWidget::updateSearchScopeBox(SearchQuery::Scope sc)
 	if (index >= 0)
 		searchScopeBox->setCurrentIndex(index);
 }
+/*!
+ * \brief adapt replace text/current directory to current scope
+ */
+void SearchResultWidget::adaptGUItoScope()
+{
+    const auto scope=searchScope();
+    if(scope<SearchQuery::FilesScope){
+        m_fileFilterBox->setVisible(false);
+        m_replaceByLabel->setText(tr("Replace by:"));
+        replaceButton->setIcon(QIcon());
+        replaceButton->setText(tr("Replace all"));
+        replaceTextEdit->setText(query->replacementText());
+    }else{
+        m_fileFilterBox->setVisible(true);
+        m_replaceByLabel->setText(tr("Search in:"));
+        replaceButton->setIcon(getRealIcon("document-open"));
+        replaceButton->setText("");
+        replaceTextEdit->setText(query->searchFolder());
+    }
+}
 
 void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
 {
@@ -141,6 +193,26 @@ void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
         // result from search in files
         QString fn=query->model()->getFileName(index);
         emit jumpToFileSearchResult(fn, lineNr, query);
+    }
+}
+/*!
+ * \brief handle click on replace button
+ * Acts differently depending on the search scope
+ * + Current Doc/All Docs/Projects: replace all in txs documents
+ * + Files on disk: show folder browse dialog to select the folder where to search
+ */
+ void SearchResultWidget::replaceButtonClicked()
+{
+    const auto scope=searchScope();
+    if(scope<SearchQuery::FilesScope){
+        query->replaceAll();
+    }else{
+        // search in files
+        QString folder=QFileDialog::getExistingDirectory(this, tr("Select folder where to search"),query->searchFolder());
+        if(folder.isEmpty()) return;
+        query->setSearchFolder(folder);
+        replaceTextEdit->setText(folder);
+        updateSearch();
     }
 }
 

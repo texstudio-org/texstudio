@@ -5,15 +5,15 @@
 #include "buildmanager.h"
 
 SearchQuery::SearchQuery(QString expr, QString replaceText, SearchFlags f) :
-    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(f)
+    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(f),m_fileFilter({"*.tex"})
 {
 	mModel = new SearchResultModel(this);
 	mModel->setSearchExpression(expr, replaceText, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
-    connect(&mSearchInFilesWatcher, &QFutureWatcher<QStringList>::finished, this, &SearchQuery::searchInFilesFinished);
+    connect(&m_SearchInFilesWatcher, &QFutureWatcher<QStringList>::finished, this, &SearchQuery::searchInFilesFinished);
 }
 
 SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive, bool isWord, bool isRegExp) :
-    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(NoFlags)
+    mType(tr("Search")), mScope(CurrentDocumentScope), mModel(nullptr), searchFlags(NoFlags),m_fileFilter({"*.tex"})
 {
 	setFlag(IsCaseSensitive, isCaseSensitive);
 	setFlag(IsWord, isWord);
@@ -25,7 +25,7 @@ SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive
 	}
 	mModel = new SearchResultModel(this);
 	mModel->setSearchExpression(expr, replaceText, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
-    connect(&mSearchInFilesWatcher, &QFutureWatcher<QStringList>::finished, this, &SearchQuery::searchInFilesFinished);
+    connect(&m_SearchInFilesWatcher, &QFutureWatcher<QStringList>::finished, this, &SearchQuery::searchInFilesFinished);
 }
 
 bool SearchQuery::flag(SearchQuery::SearchFlag f) const
@@ -63,6 +63,54 @@ int SearchQuery::getNextSearchResultColumn(QString text, int col) const
 {
 	return mModel->getNextSearchResultColumn(text, col);
 }
+/*!
+ * \brief change file filter for search in files
+ * Stop current search before changing that value
+ * \param filter
+ */
+void SearchQuery::setFileFilter(const QString &filter)
+{
+    m_SearchInFilesWatcher.cancel();
+    if(filter.contains('(')){
+        int index=filter.indexOf('(');
+        int endIndex=filter.indexOf(')');
+        if(endIndex>=0){
+            QString filterString=filter.mid(index+1,endIndex-index-1);
+            m_fileFilter=filterString.split(";");
+        }
+    }else{
+        m_fileFilter=filter.split(";");
+    }
+}
+/*!
+ *  \brief change search folder for search in files
+ * Stop current search before changing that value
+ * \param folder
+ */
+void SearchQuery::setSearchFolder(const QString &folder)
+{
+    m_SearchInFilesWatcher.cancel();
+    m_fileFolder.setPath(folder);
+}
+/*!
+ *  \brief change search folder for search in files
+ * Stop current search before changing that value
+ * \param folder
+ */
+void SearchQuery::setSearchFolder(QFileInfo folder)
+{
+    m_SearchInFilesWatcher.cancel();
+    m_fileFolder=folder.absoluteDir();
+}
+/*!
+ * \brief return search folder (absolute path)
+ * \return
+ */
+QString SearchQuery::searchFolder() const
+{
+    return m_fileFolder.absolutePath();
+}
+
 SearchInfo SearchQuery::searchInFile(QString file, const QRegularExpression &regex){
     QFile f(file);
     f.open(QIODevice::ReadOnly);
@@ -87,7 +135,8 @@ SearchInfo SearchQuery::searchInFile(QString file, const QRegularExpression &reg
 }
 void SearchQuery::addToSearchResults(SearchInfo &result, SearchInfo newResults){
     result=newResults;
-    addFileSearchResult(newResults);
+    if(!newResults.filename.isEmpty())
+        addFileSearchResult(newResults);
 }
 /*!
  * \brief function to clean up search in files (qtconcurrent/watcher)
@@ -95,7 +144,7 @@ void SearchQuery::addToSearchResults(SearchInfo &result, SearchInfo newResults){
 void SearchQuery::searchInFilesFinished()
 {
     // The finished signal from the QFutureWatcher is also emitted when cancelling.
-    if (mSearchInFilesWatcher.isCanceled())
+    if (m_SearchInFilesWatcher.isCanceled())
         return;
 
     emit runCompleted();
@@ -120,12 +169,14 @@ void SearchQuery::run(LatexDocument *doc)
 	}
     if(mScope==FilesScope){
         QRegularExpression regex=generateRegularExpression(searchExpression(),!flag(IsCaseSensitive),flag(IsWord), flag(IsRegExp));
-        QFileInfo fi=doc->getFileInfo();
-        QDir dir(fi.absoluteDir());
-        QFileInfoList files = dir.entryInfoList(QStringList{"*.tex"},QDir::Files);
+        if(m_fileFolder.isEmpty()){
+            QFileInfo fi=doc->getFileInfo();
+            m_fileFolder=fi.absoluteDir();
+        }
+        QFileInfoList files = m_fileFolder.entryInfoList(m_fileFilter,QDir::Files);
         std::function<SearchInfo(const QFileInfo &)> searchInFiles = [regex, this](const QFileInfo &fi) -> SearchInfo { return this->searchInFile(fi.absoluteFilePath(),regex); };
         std::function<void(SearchInfo &, const SearchInfo &)> reduce = [this](SearchInfo &result, const SearchInfo &value) { this->addToSearchResults(result, value); };
-        mSearchInFilesWatcher.setFuture(
+        m_SearchInFilesWatcher.setFuture(
             QtConcurrent::mappedReduced<SearchInfo>(
                 files,
                 searchInFiles,

@@ -49,6 +49,11 @@ public:
 
 	void setScope(Scope sc) { mScope = sc; }
 	Scope scope() { return mScope; }
+
+    void setFileFilter(const QString &filter);
+    void setSearchFolder(const QString &folder);
+    void setSearchFolder(QFileInfo folder);
+    QString searchFolder() const;
 	
 signals:
 	void runCompleted();
@@ -72,8 +77,10 @@ protected:
 	Scope mScope;
 	SearchResultModel *mModel;
 	SearchFlags searchFlags;
+    QStringList m_fileFilter;
+    QDir m_fileFolder;
 
-    QFutureWatcher<SearchInfo> mSearchInFilesWatcher;
+    QFutureWatcher<SearchInfo> m_SearchInFilesWatcher;
 	
 private:
 
