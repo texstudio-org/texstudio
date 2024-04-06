@@ -36,7 +36,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 
     // special widgets for search in files
     m_fileFilterBox = new QComboBox;
-    m_fileFilterBox->addItem(tr("Tex files")+" (*.tex)");
+    m_fileFilterBox->addItem(tr("TeX files")+" (*.tex)");
     m_fileFilterBox->addItem(tr("Bib files")+" (*.bib)");
     m_fileFilterBox->setVisible(false);
     connect(m_fileFilterBox, &QComboBox::currentIndexChanged, this, &SearchResultWidget::changeFileFilter);
