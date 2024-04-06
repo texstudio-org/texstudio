@@ -5,6 +5,7 @@
 #include "configmanager.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QJsonArray>
 
 class AIChatAssistant : public QDialog
 {
@@ -22,9 +23,12 @@ private slots:
 
 protected:
     QTreeWidget *treeWidget;
+    QTreeWidgetItem *topItem;
     QTextBrowser *textBrowser;
     QPushButton *btSend;
     QLineEdit *leEntry;
+
+    QJsonArray ja_messages;
 
     ConfigManager *config;
 

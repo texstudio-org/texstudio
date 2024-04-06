@@ -7,10 +7,14 @@
 AIChatAssistant::AIChatAssistant(QWidget *parent)
     : QDialog{parent}
 {
-    QTreeView *treeView=new QTreeView();
+    treeWidget=new QTreeWidget();
+    treeWidget->setColumnCount(1);
+    treeWidget->setHeaderLabel(tr("Date"));
+    topItem=new QTreeWidgetItem(treeWidget);
+    topItem->setText(0,tr("Today"));
     textBrowser=new QTextBrowser();
     auto *hlBrowser=new QSplitter();
-    hlBrowser->addWidget(treeView);
+    hlBrowser->addWidget(treeWidget);
     hlBrowser->addWidget(textBrowser);
 
     leEntry=new QLineEdit();
@@ -49,15 +53,20 @@ void AIChatAssistant::slotSend()
         networkManager = new QNetworkAccessManager();
         if(!networkManager) return;
     }
+    // add question to treeWidget
+    QTreeWidgetItem *item=new QTreeWidgetItem(topItem);
+    item->setText(0,question);
 
     QString url("https://api.mistral.ai/v1/chat/completions");
 
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
+    //dd["stream"] = "True";
     QJsonObject ja_message;
     ja_message["role"]="user";
     ja_message["content"]=question;
-    QJsonArray ja_messages;
+
+    // remember previous messages
     ja_messages.append(ja_message);
 
     dd["messages"]=ja_messages;
@@ -93,14 +102,20 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
 {
     if (!nreply || nreply->error() != QNetworkReply::NoError) return;
     QByteArray data=nreply->readAll();
-    QJsonDocument doc=QJsonDocument::fromJson(data);
-    QJsonObject obj=doc.object();
-    QJsonArray arr=obj["choices"].toArray();
-    if(arr.size()>0){
-        QJsonObject ja_choice=arr[0].toObject();
-        QJsonObject ja_message=ja_choice["message"].toObject();
-        QString response=ja_message["content"].toString();
-        textBrowser->setText(response);
+    QString allData(data);
+    if(allData.startsWith("data: ")){
+        QStringList msgs=allData.split("data: ");
+        qDebug()<<msgs;
+    }else{
+        QJsonDocument doc=QJsonDocument::fromJson(data);
+        QJsonObject obj=doc.object();
+        QJsonArray arr=obj["choices"].toArray();
+        if(arr.size()>0){
+            QJsonObject ja_choice=arr[0].toObject();
+            QJsonObject ja_message=ja_choice["message"].toObject();
+            QString response=ja_message["content"].toString();
+            textBrowser->setText(response);
+        }
+        nreply->deleteLater();
     }
-    nreply->deleteLater();
 }
