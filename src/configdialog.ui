@@ -3584,11 +3584,11 @@ them here.</string>
                 </widget>
                </item>
                <item>
-                <widget class="QGroupBox" name="groupBox_Dictionaries">
+                <widget class="QGroupBox" name="groupBox_AIChat">
                  <property name="title">
                   <string>AI chat assistant</string>
                  </property>
-                 <layout class="QGridLayout" name="_4" columnstretch="0,0,0,0">
+                 <layout class="QGridLayout" name="gl_AIChat" columnstretch="0,0,0,0">
                   <item row="0" column="3">
                    <widget class="QComboBox" name="cbAIProvider">
                     <item>
@@ -3604,14 +3604,14 @@ them here.</string>
                    </widget>
                   </item>
                   <item row="0" column="0">
-                   <widget class="QLabel" name="label_91">
+                   <widget class="QLabel" name="label_AIProvider">
                     <property name="text">
                      <string>AI provider:</string>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="0" colspan="2">
-                   <widget class="QLabel" name="label_43">
+                   <widget class="QLabel" name="label_AIAPI">
                     <property name="text">
                      <string>API key:</string>
                     </property>
@@ -3621,7 +3621,7 @@ them here.</string>
                    <widget class="QLineEdit" name="leAIAPIKey"/>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QLabel" name="label_92">
+                   <widget class="QLabel" name="label_AIModel">
                     <property name="text">
                      <string>Preferred model:</string>
                     </property>
