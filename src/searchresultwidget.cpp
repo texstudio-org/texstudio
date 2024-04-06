@@ -20,7 +20,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	searchScopeBox->addItem(tr("Project"), static_cast<uint>(SearchQuery::ProjectScope));
     searchScopeBox->addItem(tr("Files on disk"), static_cast<uint>(SearchQuery::FilesScope));
 	searchScopeBox->setCurrentIndex(ConfigManagerInterface::getInstance()->getOption("Search/ScopeIndex").toInt());
-    connect(searchScopeBox, &QComboBox::currentIndexChanged, this, &SearchResultWidget::changeScope);
+    connect(searchScopeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeScope(int)));
 
 	searchTypeLabel = new QLabel;
 	searchTextLabel = new QLabel;
@@ -42,7 +42,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
     m_fileFilterBox->setEditable(true);
     m_fileFilterBox->setVisible(false);
 
-    connect(m_fileFilterBox, &QComboBox::currentIndexChanged, this, &SearchResultWidget::changeFileFilter);
+    connect(m_fileFilterBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeFileFilter(int)));
 
 	hLayout->addWidget(searchScopeBox);
 
