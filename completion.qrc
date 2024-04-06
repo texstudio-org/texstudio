@@ -2159,6 +2159,7 @@
 <file>completion/longdivision.cwl</file>
 <file>completion/longfbox.cwl</file>
 <file>completion/longfigure.cwl</file>
+<file>completion/longmath.cwl</file>
 <file>completion/longnamefilelist.cwl</file>
 <file>completion/longtable.cwl</file>
 <file>completion/lowcycle.cwl</file>

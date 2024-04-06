@@ -1,9 +1,10 @@
 # piton package
-# Matthew Bertucci 2024/03/18 for v2.6b
+# Matthew Bertucci 2024/03/25 for v2.7
 
 #include:l3keys2e
 #include:luatexbase
 #include:luacode
+#include:xcolor
 
 #keyvals:\usepackage/piton#c
 footnote
@@ -102,6 +103,8 @@ continuation-symbol=%<symbol%>
 continuation-symbol-on-indentation=%<symbol%>
 write=%<file%>
 path-write=%<path%>
+split-on-empty-lines#true,false
+split-separation=%<code%>
 #endkeyvals
 
 \SetPitonStyle{options%keyvals}

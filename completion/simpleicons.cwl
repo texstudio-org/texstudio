@@ -1,5 +1,5 @@
 # simpleicons package
-# Matthew Bertucci 2024/03/23 for v11.9.0
+# Matthew Bertucci 2024/04/06 for v11.11.0
 
 #include:iftex
 
@@ -23,6 +23,7 @@ abbrobotstudio
 abbvie
 aboutdotme
 abstract
+abusedotch
 academia
 accenture
 accusoft
@@ -126,11 +127,13 @@ amazonalexa
 amazonapigateway
 amazonaws
 amazoncloudwatch
+amazoncognito
 amazondocumentdb
 amazondynamodb
 amazonec2
 amazonecs
 amazoneks
+amazonelasticache
 amazonfiretv
 amazongames
 amazoniam
@@ -171,6 +174,7 @@ antdesign
 antena3
 anycubic
 anydesk
+anytype
 aol
 apache
 apacheairflow
@@ -282,9 +286,11 @@ avira
 awesomelists
 awesomewm
 awsamplify
+awselasticloadbalancing
 awsfargate
 awslambda
 awsorganizations
+awssecretsmanager
 axios
 azureartifacts
 azuredataexplorer
@@ -479,6 +485,7 @@ chedraui
 cheerio
 chef
 chemex
+chessdotcom
 chevrolet
 chianetwork
 chinaeasternairlines
@@ -600,6 +607,7 @@ coolermaster
 coop
 coppel
 cora
+coreldraw
 coronaengine
 coronarenderer
 corsair
@@ -628,6 +636,7 @@ crowdsource
 crunchbase
 crunchyroll
 cryengine
+cryptpad
 crystal
 csharp
 css3
@@ -672,6 +681,7 @@ datefns
 datocms
 datto
 davinciresolve
+dazhongdianping
 dazn
 dbeaver
 dblp
@@ -679,6 +689,7 @@ dbt
 dcentertainment
 debian
 decapcms
+decentraland
 dedge
 deepcool
 deepgram
@@ -845,6 +856,7 @@ espressif
 esri
 etcd
 ethereum
+ethers
 ethiopianairlines
 etihadairways
 etsy
@@ -917,6 +929,7 @@ firefoxbrowser
 fireship
 firewalla
 first
+fishshell
 fitbit
 fite
 fivem
@@ -989,6 +1002,7 @@ furrynetwork
 futurelearn
 g2
 g2a
+g2g
 galaxus
 gameandwatch
 gamebanana
@@ -1277,6 +1291,7 @@ iledefrancemobilites
 imagedotsc
 imagej
 imdb
+imessage
 imgur
 immer
 immich
@@ -1295,6 +1310,7 @@ infracost
 ingress
 inkdrop
 inkscape
+inoreader
 insomnia
 inspire
 insta360
@@ -1357,6 +1373,7 @@ jetbrains
 jetpackcompose
 jfrog
 jfrogpipelines
+jhipster
 jinja
 jira
 jirasoftware
@@ -1412,6 +1429,7 @@ kentico
 keras
 keybase
 keycdn
+keycloak
 keystone
 kfc
 khanacademy
@@ -1679,6 +1697,7 @@ microsoftword
 microstation
 microstrategy
 midi
+migadu
 mikrotik
 milanote
 milvus
@@ -1841,6 +1860,7 @@ nuke
 numba
 numpy
 nunjucks
+nushell
 nutanix
 nuxtdotjs
 nvidia
@@ -2224,6 +2244,7 @@ reason
 reasonstudios
 recoil
 red
+redash
 redbubble
 redbull
 reddit
@@ -2619,6 +2640,7 @@ symbolab
 symfony
 symphony
 sympy
+syncthing
 synology
 system76
 tabelog
@@ -2633,6 +2655,7 @@ tailwindcss
 taketwointeractivesoftware
 talend
 talenthouse
+talos
 tamiya
 tampermonkey
 taobao
@@ -2689,6 +2712,7 @@ thespritersresource
 thewashingtonpost
 thingiverse
 thinkpad
+thirdweb
 threadless
 threads
 threedotjs
@@ -2780,6 +2804,7 @@ turbosquid
 turkishairlines
 turso
 tutanota
+tv4play
 tvtime
 twilio
 twinkly
@@ -2882,6 +2907,7 @@ visualstudio
 visualstudioappcenter
 visualstudiocode
 vite
+vitepress
 vitess
 vitest
 vivaldi

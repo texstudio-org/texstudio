@@ -1,8 +1,7 @@
 # pdfmanagement-testphase package
-# Matthew Bertucci 2023/12/11 for v0.96d
+# Matthew Bertucci 2024/03/26 for v0.96g
 
-#include:tagpdf-base
-#include:pdfmanagement-firstaid
+#include:tagpdf
 
 ## l3pdfmanagement
 \PDFManagementAdd{resource path}{name}{value}

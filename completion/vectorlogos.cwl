@@ -1,5 +1,5 @@
 # vectorlogos package
-# Matthew Bertucci 2023/12/01 for v0.1.2
+# Matthew Bertucci 2024/03/30 for v0.1.3
 
 #include:calc
 #include:graphicx
@@ -18,6 +18,10 @@ geogebra
 scratch
 texmaker
 texstudio
+miktex
+ctanlion
+latexproject
+texworks
 #endkeyvals
 
 #keyvals:\simplevectorlogo,\simplevectorlogo*
@@ -38,6 +42,14 @@ texmaker-alt
 \logoemacs[suffix]
 \logotexmaker
 \logotexmaker[suffix]
+\logomiktex
+\logomiktex[suffix]
+\logoctanlion
+\logoctanlion[suffix]
+\logolatexproject
+\logolatexproject[suffix]
+\logotexworks
+\logotexworks[suffix]
 
 # not documented
 \GenMacroLogoVect{cmd}{name}#Sd
