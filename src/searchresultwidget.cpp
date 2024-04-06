@@ -38,7 +38,10 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
     m_fileFilterBox = new QComboBox;
     m_fileFilterBox->addItem(tr("TeX files")+" (*.tex)");
     m_fileFilterBox->addItem(tr("Bib files")+" (*.bib)");
+    m_fileFilterBox->addItem(tr("All files")+" (*)");
+    m_fileFilterBox->setEditable(true);
     m_fileFilterBox->setVisible(false);
+
     connect(m_fileFilterBox, &QComboBox::currentIndexChanged, this, &SearchResultWidget::changeFileFilter);
 
 	hLayout->addWidget(searchScopeBox);
