@@ -99,9 +99,8 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 	replaceTextEdit->setEnabled(replaceAllowed);
 	replaceTextEdit->setText(query->replacementText());
 	replaceButton->setEnabled(replaceAllowed);
-	connect(replaceTextEdit, SIGNAL(textChanged(QString)), query, SLOT(setReplacementText(QString)));
+    connect(replaceTextEdit, &QLineEdit::textChanged, this, &SearchResultWidget::replaceTextEditChanged);
 	connect(replaceTextEdit, SIGNAL(returnPressed()), query, SLOT(replaceAll()));
-    //connect(replaceButton, SIGNAL(clicked()), query, SLOT(replaceAll()));
     connect(replaceButton, &QPushButton::clicked, this, &SearchResultWidget::replaceButtonClicked);
 
 	searchTree->setModel(query->model());
@@ -171,12 +170,14 @@ void SearchResultWidget::adaptGUItoScope()
         replaceButton->setIcon(QIcon());
         replaceButton->setText(tr("Replace all"));
         replaceTextEdit->setText(query->replacementText());
+        replaceTextEdit->setEnabled(true);
     }else{
         m_fileFilterBox->setVisible(true);
         m_replaceByLabel->setText(tr("Search in:"));
         replaceButton->setIcon(getRealIcon("document-open"));
         replaceButton->setText("");
         replaceTextEdit->setText(query->searchFolder());
+        replaceTextEdit->setEnabled(false);
     }
 }
 
@@ -213,6 +214,18 @@ void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
         query->setSearchFolder(folder);
         replaceTextEdit->setText(folder);
         updateSearch();
+    }
+}
+/*!
+ * \brief replaceTextEditChanged slot
+ * update query if scope is not FileScope
+ * Otherwise only update folder with update button
+ * \param text
+ */
+void SearchResultWidget::replaceTextEditChanged(const QString &text)
+{
+    if(searchScope()<SearchQuery::FilesScope){
+        query->setReplacementText(text);
     }
 }
 

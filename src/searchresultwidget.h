@@ -31,6 +31,7 @@ public slots:
 private slots:
 	void clickedSearchResult(const QModelIndex &index);
     void replaceButtonClicked();
+    void replaceTextEditChanged(const QString &text);
 	void updateSearch();
     void changeScope(int mode);
     void changeFileFilter(int mode);
