@@ -3816,7 +3816,7 @@ Hiba:</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="21"/>
         <source>Files on disk</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok a lemezen</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="30"/>
@@ -3843,7 +3843,7 @@ Hiba:</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="40"/>
         <source>Bib files</source>
-        <translation type="unfinished"/>
+        <translation>Bib fájlok</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="41"/>
@@ -3868,12 +3868,12 @@ Hiba:</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="179"/>
         <source>Search in:</source>
-        <translation type="unfinished"/>
+        <translation>Keresés ebben:</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="215"/>
         <source>Select folder where to search</source>
-        <translation type="unfinished"/>
+        <translation>Válassza ki a mappát, ahol keresni szeretne</translation>
     </message>
 </context>
 <context>

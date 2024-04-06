@@ -3821,7 +3821,7 @@ Erro: </translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="21"/>
         <source>Files on disk</source>
-        <translation type="unfinished"/>
+        <translation>Ficheiros em disco</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="30"/>
@@ -3848,7 +3848,7 @@ Erro: </translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="40"/>
         <source>Bib files</source>
-        <translation type="unfinished"/>
+        <translation>Ficheiros Bib</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="41"/>
@@ -3873,12 +3873,12 @@ Erro: </translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="179"/>
         <source>Search in:</source>
-        <translation type="unfinished"/>
+        <translation>Procurar em:</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="215"/>
         <source>Select folder where to search</source>
-        <translation type="unfinished"/>
+        <translation>Escolha a pasta onde procurar</translation>
     </message>
 </context>
 <context>
