@@ -2445,7 +2445,7 @@ Ne vez ket kemeret e kont an urzhiad gant ar Skoazeller</translation>
 <context>
     <name>LabelSearchQuery</name>
     <message>
-        <location filename="../src/searchquery.cpp" line="161"/>
+        <location filename="../src/searchquery.cpp" line="272"/>
         <source>Label Search</source>
         <translation>Klask label</translation>
     </message>
@@ -3769,8 +3769,8 @@ Error: </source>
 <context>
     <name>SearchQuery</name>
     <message>
-        <location filename="../src/searchquery.cpp" line="7"/>
-        <location filename="../src/searchquery.cpp" line="14"/>
+        <location filename="../src/searchquery.cpp" line="8"/>
+        <location filename="../src/searchquery.cpp" line="16"/>
         <source>Search</source>
         <translation>Klask</translation>
     </message>
@@ -3778,17 +3778,17 @@ Error: </source>
 <context>
     <name>SearchResultModel</name>
     <message>
-        <location filename="../src/searchresultmodel.cpp" line="208"/>
+        <location filename="../src/searchresultmodel.cpp" line="242"/>
         <source>File closed</source>
         <translation>Restr serret</translation>
     </message>
     <message>
-        <location filename="../src/searchresultmodel.cpp" line="212"/>
+        <location filename="../src/searchresultmodel.cpp" line="249"/>
         <source>untitled</source>
         <translation>hep titl ebet</translation>
     </message>
     <message>
-        <location filename="../src/searchresultmodel.cpp" line="371"/>
+        <location filename="../src/searchresultmodel.cpp" line="434"/>
         <source>Results</source>
         <translation>Disoc&apos;hoù</translation>
     </message>
@@ -3811,34 +3811,61 @@ Error: </source>
         <translation>Raktres</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="29"/>
+        <location filename="../src/searchresultwidget.cpp" line="21"/>
+        <source>Files on disk</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/searchresultwidget.cpp" line="30"/>
         <source>Update Search</source>
         <translation>Hizivaat an enklask</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="33"/>
+        <location filename="../src/searchresultwidget.cpp" line="34"/>
+        <location filename="../src/searchresultwidget.cpp" line="171"/>
         <source>Replace all</source>
         <translation>Erlec&apos;hiañ pep-tra</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="40"/>
+        <location filename="../src/searchresultwidget.cpp" line="35"/>
+        <location filename="../src/searchresultwidget.cpp" line="169"/>
         <source>Replace by:</source>
         <translation>Erlec&apos;hian gant:</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="61"/>
+        <location filename="../src/searchresultwidget.cpp" line="39"/>
+        <source>TeX files</source>
+        <translation>Restroù TeX</translation>
+    </message>
+    <message>
+        <location filename="../src/searchresultwidget.cpp" line="40"/>
+        <source>Bib files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/searchresultwidget.cpp" line="71"/>
         <source>Expand All</source>
         <translation>Astenn pep-tra</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="64"/>
+        <location filename="../src/searchresultwidget.cpp" line="74"/>
         <source>Collapse All</source>
         <translation>Bihanaat pep-tra</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="67"/>
+        <location filename="../src/searchresultwidget.cpp" line="77"/>
         <source>Clear</source>
         <translation>Flastrañ</translation>
+    </message>
+    <message>
+        <location filename="../src/searchresultwidget.cpp" line="176"/>
+        <source>Search in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/searchresultwidget.cpp" line="212"/>
+        <source>Select folder where to search</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4528,7 +4555,7 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="363"/>
-        <location filename="../src/texstudio.cpp" line="6270"/>
+        <location filename="../src/texstudio.cpp" line="6271"/>
         <source>Ready</source>
         <translation>Prest</translation>
     </message>
@@ -4569,8 +4596,8 @@ template to edit individual files.</source>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="444"/>
-        <location filename="../src/texstudio.cpp" line="9794"/>
-        <location filename="../src/texstudio.cpp" line="9801"/>
+        <location filename="../src/texstudio.cpp" line="9819"/>
+        <location filename="../src/texstudio.cpp" line="9826"/>
         <source>All files</source>
         <translation>An holl restroù</translation>
     </message>
@@ -4640,228 +4667,228 @@ template to edit individual files.</source>
         <translation>Urzhiadoù XY</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="864"/>
+        <location filename="../src/texstudio.cpp" line="865"/>
         <source>&amp;File</source>
         <translation>&amp;Restr</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="866"/>
+        <location filename="../src/texstudio.cpp" line="867"/>
         <source>&amp;New</source>
         <translation>&amp;Nevez</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="867"/>
+        <location filename="../src/texstudio.cpp" line="868"/>
         <source>New From &amp;Template...</source>
         <translation>Nevez adalek ar &amp;patrom...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="868"/>
+        <location filename="../src/texstudio.cpp" line="869"/>
         <source>&amp;Open...</source>
         <translation>&amp;Digeriñ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="870"/>
+        <location filename="../src/texstudio.cpp" line="871"/>
         <source>Open &amp;Recent</source>
         <translation>Digeriñ ar re nevez</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="872"/>
+        <location filename="../src/texstudio.cpp" line="873"/>
         <source>Session</source>
         <translation>Dalc&apos;h</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="873"/>
+        <location filename="../src/texstudio.cpp" line="874"/>
         <source>Load Session...</source>
         <translation>Kargañ un dalc&apos;h...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="874"/>
+        <location filename="../src/texstudio.cpp" line="875"/>
         <source>Save Session...</source>
         <translation>Enrollañ un dalc&apos;h...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="875"/>
+        <location filename="../src/texstudio.cpp" line="876"/>
         <source>Restore Previous Session</source>
         <translation>Adsevel an dalc&apos;h kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="884"/>
+        <location filename="../src/texstudio.cpp" line="885"/>
         <source>&amp;Save</source>
         <translation>&amp;Enrollañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="885"/>
+        <location filename="../src/texstudio.cpp" line="886"/>
         <source>Save &amp;As...</source>
         <translation>Enroll&amp;añ evel....</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="886"/>
+        <location filename="../src/texstudio.cpp" line="887"/>
         <source>Save A&amp;ll</source>
         <translation>Enro&amp;llañ pep-tra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="887"/>
+        <location filename="../src/texstudio.cpp" line="888"/>
         <source>&amp;Make Template...</source>
         <translation>Sevel ur patro&amp;m...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="890"/>
+        <location filename="../src/texstudio.cpp" line="891"/>
         <source>Fifi&amp;x</source>
         <translation>Fifi&amp;x</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="891"/>
+        <location filename="../src/texstudio.cpp" line="892"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>Enrollañ restr adanvet/fiñvet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="892"/>
+        <location filename="../src/texstudio.cpp" line="893"/>
         <source>Save copied file...</source>
         <translation>Enrollañ ar restr eilet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="893"/>
+        <location filename="../src/texstudio.cpp" line="894"/>
         <source>&amp;Delete file</source>
         <translation>&amp;Dilemel ar restr</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="894"/>
+        <location filename="../src/texstudio.cpp" line="895"/>
         <source>Set &amp;permissions...</source>
         <translation>Termeniñ &amp;aotreadurioù....</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="896"/>
+        <location filename="../src/texstudio.cpp" line="897"/>
         <source>&amp;Revert to saved...</source>
         <translation>Dist&amp;reiñ da enrollet...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="898"/>
+        <location filename="../src/texstudio.cpp" line="899"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>Eilañ an anv-restr er &amp;golver</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="901"/>
+        <location filename="../src/texstudio.cpp" line="902"/>
         <source>S&amp;VN/GIT...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="902"/>
+        <location filename="../src/texstudio.cpp" line="903"/>
         <source>Check &amp;in...</source>
         <translation>Gw&amp;iriañ e-barzh...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="903"/>
+        <location filename="../src/texstudio.cpp" line="904"/>
         <source>SVN &amp;update...</source>
         <translation>Hizivadur SVN...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="904"/>
+        <location filename="../src/texstudio.cpp" line="905"/>
         <source>SVN update &amp;work directory</source>
         <translation>Kavlec&apos;hioù hizivadur SVN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="905"/>
+        <location filename="../src/texstudio.cpp" line="906"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>Gwelet ar stummoù k&amp;ozh</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="906"/>
+        <location filename="../src/texstudio.cpp" line="907"/>
         <source>Lock &amp;PDF</source>
         <translation>Morailhañ ar &amp;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="907"/>
+        <location filename="../src/texstudio.cpp" line="908"/>
         <source>Check in P&amp;DF</source>
         <translation>Gwiriañ er P&amp;DF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="908"/>
+        <location filename="../src/texstudio.cpp" line="909"/>
         <source>Show difference between two files</source>
         <translation>Diskouez an diforc&apos;h etre an div restr</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="909"/>
+        <location filename="../src/texstudio.cpp" line="910"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Diskouez an diforc&apos;h etre div restr e-liamm gant diaz ar restr</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="910"/>
+        <location filename="../src/texstudio.cpp" line="911"/>
         <source>Check SVN Conflict</source>
         <translation>Gwiriañ an dizemglev SVN</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="911"/>
+        <location filename="../src/texstudio.cpp" line="912"/>
         <source>Try to merge differences</source>
         <translation>Klask kendeuziñ an diforc&apos;hioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="912"/>
+        <location filename="../src/texstudio.cpp" line="913"/>
         <source>Remove Difference-Markers</source>
         <translation>Tennañ merkerien an diforc&apos;hioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="913"/>
+        <location filename="../src/texstudio.cpp" line="914"/>
         <source>Declare Conflict Resolved</source>
         <translation>Diskleriañ an dizemglevioù dirouestlet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="914"/>
+        <location filename="../src/texstudio.cpp" line="915"/>
         <source>Jump to next difference</source>
         <translation>Mont d&apos;an diforc&apos;h da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="915"/>
+        <location filename="../src/texstudio.cpp" line="916"/>
         <source>Jump to previous difference</source>
         <translation>Mont d&apos;an diforc&apos;h kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="918"/>
-        <location filename="../src/texstudio.cpp" line="9995"/>
+        <location filename="../src/texstudio.cpp" line="919"/>
+        <location filename="../src/texstudio.cpp" line="10020"/>
         <source>&amp;Close</source>
         <translation>&amp;Serriñ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="919"/>
+        <location filename="../src/texstudio.cpp" line="920"/>
         <source>Clos&amp;e All</source>
         <translation>&amp;Serriñ pep-tra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="922"/>
+        <location filename="../src/texstudio.cpp" line="923"/>
         <source>Print Source Code...</source>
         <translation>Moullañ ar c&apos;hod mammenn...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="925"/>
+        <location filename="../src/texstudio.cpp" line="926"/>
         <source>Exit</source>
         <translation>Kuitaat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="928"/>
+        <location filename="../src/texstudio.cpp" line="929"/>
         <source>&amp;Edit</source>
         <translation>&amp;Aozañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="929"/>
+        <location filename="../src/texstudio.cpp" line="930"/>
         <source>&amp;Undo</source>
         <translation>&amp;Dizober</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="930"/>
+        <location filename="../src/texstudio.cpp" line="931"/>
         <source>&amp;Redo</source>
         <translation>&amp;Adober</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="932"/>
+        <location filename="../src/texstudio.cpp" line="933"/>
         <source>Debug undo stack</source>
         <translation>Diveugadur ar bern nulladurioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="936"/>
+        <location filename="../src/texstudio.cpp" line="937"/>
         <source>&amp;Copy</source>
         <translation>&amp;Eilenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="935"/>
+        <location filename="../src/texstudio.cpp" line="936"/>
         <source>C&amp;ut</source>
         <translation>Troc&apos;hañ</translation>
     </message>
@@ -4876,1313 +4903,1313 @@ template to edit individual files.</source>
         <translation>Restroù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="899"/>
+        <location filename="../src/texstudio.cpp" line="900"/>
         <source>Copy root filename to clipboard</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="937"/>
+        <location filename="../src/texstudio.cpp" line="938"/>
         <source>&amp;Paste</source>
         <translation>&amp;Pegañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="939"/>
+        <location filename="../src/texstudio.cpp" line="940"/>
         <source>&amp;Selection</source>
         <translation>&amp;Diuzañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="940"/>
+        <location filename="../src/texstudio.cpp" line="941"/>
         <source>Select &amp;All</source>
         <translation>Diuz&amp;añ pep-tra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="941"/>
+        <location filename="../src/texstudio.cpp" line="942"/>
         <source>Select All &amp;Occurrences</source>
         <translation>Diuzañ an holl zeg&amp;ouezhioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="942"/>
+        <location filename="../src/texstudio.cpp" line="943"/>
         <source>Select &amp;Prev Occurrence</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="943"/>
+        <location filename="../src/texstudio.cpp" line="944"/>
         <source>Select &amp;Next Occurrence</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="944"/>
+        <location filename="../src/texstudio.cpp" line="945"/>
         <source>Also Select Prev Occurrence</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="945"/>
+        <location filename="../src/texstudio.cpp" line="946"/>
         <source>Also Select Next Occurrence</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="946"/>
+        <location filename="../src/texstudio.cpp" line="947"/>
         <source>Expand Selection to Word</source>
         <translation>Astenn diuzañ betek ar ger</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="947"/>
+        <location filename="../src/texstudio.cpp" line="948"/>
         <source>Expand Selection to Line</source>
         <translation>Astenn an diuzañ betek al linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="949"/>
+        <location filename="../src/texstudio.cpp" line="950"/>
         <source>&amp;Line Operations</source>
         <translation>Oberiadurioù &amp;linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="950"/>
+        <location filename="../src/texstudio.cpp" line="951"/>
         <source>Delete &amp;Line</source>
         <translation>Dilemel al &amp;linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="953"/>
-        <location filename="../src/texstudio.cpp" line="955"/>
+        <location filename="../src/texstudio.cpp" line="954"/>
+        <location filename="../src/texstudio.cpp" line="956"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>Dilem&amp;el fin al linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="957"/>
+        <location filename="../src/texstudio.cpp" line="958"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>Dilemel adalek &amp;Penn-kentañ al linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="958"/>
+        <location filename="../src/texstudio.cpp" line="959"/>
         <source>Move Line &amp;Up</source>
         <translation>Fiñval al linenn war-&amp;grec&apos;h</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="959"/>
+        <location filename="../src/texstudio.cpp" line="960"/>
         <source>Move Line &amp;Down</source>
         <translation>Fiñval al linenn war-&amp;draoñ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="960"/>
+        <location filename="../src/texstudio.cpp" line="961"/>
         <source>Du&amp;plicate Line</source>
         <translation>Eilañ al linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="961"/>
+        <location filename="../src/texstudio.cpp" line="962"/>
         <source>S&amp;ort Lines</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="962"/>
+        <location filename="../src/texstudio.cpp" line="963"/>
         <source>&amp;Align Cursors</source>
         <translation>Linenn&amp;añ ar retioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="964"/>
+        <location filename="../src/texstudio.cpp" line="965"/>
         <source>&amp;Text Operations</source>
         <translation>Oberiadurioù an des&amp;tenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="965"/>
+        <location filename="../src/texstudio.cpp" line="966"/>
         <source>To Lowercase</source>
         <translation>E lizherennoù-munut</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="966"/>
+        <location filename="../src/texstudio.cpp" line="967"/>
         <source>To Uppercase</source>
         <translation>E lizherennoù-bras</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="967"/>
+        <location filename="../src/texstudio.cpp" line="968"/>
         <source>To Titlecase (strict)</source>
         <translation>E titl-lizherennoù (strizh)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="968"/>
+        <location filename="../src/texstudio.cpp" line="969"/>
         <source>To Titlecase (smart)</source>
         <translation>E titl-lizherennoù (poellek)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="972"/>
+        <location filename="../src/texstudio.cpp" line="973"/>
         <source>&amp;Searching</source>
         <translation>&amp;O klask</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="973"/>
+        <location filename="../src/texstudio.cpp" line="974"/>
         <source>&amp;Find</source>
         <translation>&amp;Kavout</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="974"/>
+        <location filename="../src/texstudio.cpp" line="975"/>
         <source>Find &amp;Next</source>
         <translation>Kavout &amp;Da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="975"/>
+        <location filename="../src/texstudio.cpp" line="976"/>
         <source>Find &amp;Prev</source>
         <translation>Kavout &amp;Kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="976"/>
+        <location filename="../src/texstudio.cpp" line="977"/>
         <source>Continue F&amp;ind</source>
         <translation>Kendelc&apos;her da &amp;glask</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="977"/>
+        <location filename="../src/texstudio.cpp" line="978"/>
         <source>&amp;Count</source>
         <translation>&amp;Kontañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="978"/>
+        <location filename="../src/texstudio.cpp" line="979"/>
         <source>&amp;Select all matches...</source>
         <translation>&amp;Diuzañ an holl glokterioù...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="980"/>
+        <location filename="../src/texstudio.cpp" line="981"/>
         <source>&amp;Replace</source>
         <translation>&amp;Erlec&apos;hiañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="981"/>
+        <location filename="../src/texstudio.cpp" line="982"/>
         <source>Replace Next</source>
         <translation>Erlerc&apos;hiañ da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="982"/>
+        <location filename="../src/texstudio.cpp" line="983"/>
         <source>Replace Prev</source>
         <translation>Erlec&apos;hiañ kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="983"/>
+        <location filename="../src/texstudio.cpp" line="984"/>
         <source>Replace &amp;All</source>
         <translation>Erlec&apos;hiañ pep-tr&amp;a</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="986"/>
+        <location filename="../src/texstudio.cpp" line="987"/>
         <source>Go to</source>
         <translation>Mont da</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="988"/>
-        <location filename="../src/texstudio.cpp" line="7742"/>
-        <location filename="../src/texstudio.cpp" line="7767"/>
-        <location filename="../src/texstudio.cpp" line="7787"/>
+        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/texstudio.cpp" line="7743"/>
+        <location filename="../src/texstudio.cpp" line="7768"/>
+        <location filename="../src/texstudio.cpp" line="7788"/>
         <source>Line</source>
         <translation>Linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="989"/>
+        <location filename="../src/texstudio.cpp" line="990"/>
         <source>Previous Change</source>
         <translation>Kemm kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="991"/>
-        <location filename="../src/texstudio.cpp" line="993"/>
+        <location filename="../src/texstudio.cpp" line="992"/>
+        <location filename="../src/texstudio.cpp" line="994"/>
         <source>Next Change</source>
         <translation>Kemm da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="996"/>
+        <location filename="../src/texstudio.cpp" line="997"/>
         <source>Previous mark</source>
         <translation>Mark kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="997"/>
+        <location filename="../src/texstudio.cpp" line="998"/>
         <source>Next mark</source>
         <translation>Mark da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1000"/>
+        <location filename="../src/texstudio.cpp" line="1001"/>
         <source>Go Back</source>
         <translation>Distreiñ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1001"/>
+        <location filename="../src/texstudio.cpp" line="1002"/>
         <source>Go Forward</source>
         <translation>Mont war-raok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1004"/>
+        <location filename="../src/texstudio.cpp" line="1005"/>
         <source>Goto Bookmark</source>
         <translation>Mont d&apos;ar sined</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1017"/>
-        <location filename="../src/texstudio.cpp" line="1026"/>
-        <location filename="../src/texstudio.cpp" line="1030"/>
+        <location filename="../src/texstudio.cpp" line="1018"/>
+        <location filename="../src/texstudio.cpp" line="1027"/>
+        <location filename="../src/texstudio.cpp" line="1031"/>
         <source>Bookmark %1</source>
         <translation>Sined %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1021"/>
+        <location filename="../src/texstudio.cpp" line="1022"/>
         <source>Toggle Bookmark</source>
         <translation>Gwintañ ar sined</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1024"/>
-        <location filename="../src/texstudio.cpp" line="1028"/>
+        <location filename="../src/texstudio.cpp" line="1025"/>
+        <location filename="../src/texstudio.cpp" line="1029"/>
         <source>Unnamed Bookmark</source>
         <translation>Sined hep anv</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1035"/>
+        <location filename="../src/texstudio.cpp" line="1036"/>
         <source>Line Ending</source>
         <translation>Fin linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1037"/>
+        <location filename="../src/texstudio.cpp" line="1038"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1041"/>
+        <location filename="../src/texstudio.cpp" line="1042"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1045"/>
+        <location filename="../src/texstudio.cpp" line="1046"/>
         <source>Old Mac (CR)</source>
         <translation>Mac Kozh (CR)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1051"/>
+        <location filename="../src/texstudio.cpp" line="1052"/>
         <source>Setup Encoding...</source>
         <translation>Kefluniadur an enkodañ...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1053"/>
-        <location filename="../src/texstudio.cpp" line="1055"/>
+        <location filename="../src/texstudio.cpp" line="1054"/>
+        <location filename="../src/texstudio.cpp" line="1056"/>
         <source>Insert Unicode Character...</source>
         <translation>Enlakaat un arouez Unikod...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1061"/>
+        <location filename="../src/texstudio.cpp" line="1062"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idefiks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1062"/>
+        <location filename="../src/texstudio.cpp" line="1063"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Flastrañ &amp;Word/Cmd/Endr</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1065"/>
+        <location filename="../src/texstudio.cpp" line="1066"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Pegañ e La&amp;TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1066"/>
+        <location filename="../src/texstudio.cpp" line="1067"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>Emdreiñ da LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1069"/>
+        <location filename="../src/texstudio.cpp" line="1070"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>Rak&amp;welet an diuzañ/kromelloù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1070"/>
+        <location filename="../src/texstudio.cpp" line="1071"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>Spurjañ ar rakwel en&amp;linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1072"/>
+        <location filename="../src/texstudio.cpp" line="1073"/>
         <source>Preview Dis&amp;play Mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1074"/>
+        <location filename="../src/texstudio.cpp" line="1075"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Diskouez ar rakwel evel ul lagadenn ditouriñ ma vez kuzhet ar banell</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1078"/>
+        <location filename="../src/texstudio.cpp" line="1079"/>
         <source>Always show preview in preview panel</source>
         <translation>Diskouez ar rakwel e-barzh panell ar rakweloù dalc&apos;hmat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1082"/>
+        <location filename="../src/texstudio.cpp" line="1083"/>
         <source>Always show preview as tool tip</source>
         <translation>Diskouez ar rakwel evel ul lagadenn-ditouriñ dalc&apos;hmat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1086"/>
+        <location filename="../src/texstudio.cpp" line="1087"/>
         <source>Always show both</source>
         <translation>Diskouez an daou atav</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1090"/>
+        <location filename="../src/texstudio.cpp" line="1091"/>
         <source>Inline</source>
         <translation>Enlinenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1096"/>
+        <location filename="../src/texstudio.cpp" line="1097"/>
         <source>Show in embedded viewer</source>
         <translation>Diskouez e-barzh al lenner ambarket</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1105"/>
+        <location filename="../src/texstudio.cpp" line="1106"/>
         <source>Toggle &amp;Comment</source>
         <translation>Gwintañ &amp;Evezhiadenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1106"/>
+        <location filename="../src/texstudio.cpp" line="1107"/>
         <source>&amp;Comment</source>
         <translation>&amp;Evezhiadenniñ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1107"/>
+        <location filename="../src/texstudio.cpp" line="1108"/>
         <source>&amp;Uncomment</source>
         <translation>&amp;Dievezhiadenniñ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1108"/>
+        <location filename="../src/texstudio.cpp" line="1109"/>
         <source>&amp;Indent</source>
         <translation>&amp;Endantadur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1109"/>
+        <location filename="../src/texstudio.cpp" line="1110"/>
         <source>Unin&amp;dent</source>
         <translation>&amp;Di-endantadur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1110"/>
+        <location filename="../src/texstudio.cpp" line="1111"/>
         <source>Hard Line &amp;Break...</source>
         <translation>&amp;Distroioù d&apos;al linenn...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1111"/>
+        <location filename="../src/texstudio.cpp" line="1112"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>Adob&amp;er ar cheñchadurioù linennoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1114"/>
+        <location filename="../src/texstudio.cpp" line="1115"/>
         <source>&amp;Go to</source>
         <translation>&amp;Mont da</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1116"/>
+        <location filename="../src/texstudio.cpp" line="1117"/>
         <source>Previous Error</source>
         <translation>Fazi kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1116"/>
         <location filename="../src/texstudio.cpp" line="1117"/>
+        <location filename="../src/texstudio.cpp" line="1118"/>
         <source>No LaTeX errors detected !</source>
         <translation>Fazi LaTeX ebet diguzhet!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1117"/>
+        <location filename="../src/texstudio.cpp" line="1118"/>
         <source>Next Error</source>
         <translation>Fazi da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1118"/>
+        <location filename="../src/texstudio.cpp" line="1119"/>
         <source>Previous Warning</source>
         <translation>Kemenn-diwall kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1118"/>
         <location filename="../src/texstudio.cpp" line="1119"/>
+        <location filename="../src/texstudio.cpp" line="1120"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Kemenn-diwall LaTeX ebet diguzhet!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1119"/>
+        <location filename="../src/texstudio.cpp" line="1120"/>
         <source>Next Warning</source>
         <translation>Kemenn-diwall da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
+        <location filename="../src/texstudio.cpp" line="1121"/>
         <source>Previous Bad Box</source>
         <translation>Boest fall kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1120"/>
         <location filename="../src/texstudio.cpp" line="1121"/>
+        <location filename="../src/texstudio.cpp" line="1122"/>
         <source>No bad boxes detected !</source>
         <translation>Boest fall ebet diguzhet!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1121"/>
+        <location filename="../src/texstudio.cpp" line="1122"/>
         <source>Next Bad Box</source>
         <translation>Boest fall da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1124"/>
+        <location filename="../src/texstudio.cpp" line="1125"/>
         <source>Definition</source>
         <translation>Termenadur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1127"/>
+        <location filename="../src/texstudio.cpp" line="1128"/>
         <source>Re&amp;name Environment</source>
         <translation>Ade&amp;nvel an endro</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1129"/>
+        <location filename="../src/texstudio.cpp" line="1130"/>
         <source>Parenthesis</source>
         <translation>Kromelloù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1131"/>
-        <location filename="../src/texstudio.cpp" line="1141"/>
+        <location filename="../src/texstudio.cpp" line="1132"/>
+        <location filename="../src/texstudio.cpp" line="1142"/>
         <source>Jump to Match</source>
         <translation>Mont d&apos;ar glokted</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1132"/>
-        <location filename="../src/texstudio.cpp" line="1142"/>
+        <location filename="../src/texstudio.cpp" line="1133"/>
+        <location filename="../src/texstudio.cpp" line="1143"/>
         <source>Select Inner</source>
         <translation>Diuzañ an diabarzher</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1133"/>
-        <location filename="../src/texstudio.cpp" line="1143"/>
+        <location filename="../src/texstudio.cpp" line="1134"/>
+        <location filename="../src/texstudio.cpp" line="1144"/>
         <source>Select Outer</source>
         <translation>Diuzañ an diavaezher</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1134"/>
-        <location filename="../src/texstudio.cpp" line="1144"/>
+        <location filename="../src/texstudio.cpp" line="1135"/>
+        <location filename="../src/texstudio.cpp" line="1145"/>
         <source>Select Command</source>
         <translation>Diuzañ an urzhiad</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1135"/>
-        <location filename="../src/texstudio.cpp" line="1145"/>
+        <location filename="../src/texstudio.cpp" line="1136"/>
+        <location filename="../src/texstudio.cpp" line="1146"/>
         <source>Select Line</source>
         <translation>Diuzañ al linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1136"/>
-        <location filename="../src/texstudio.cpp" line="1146"/>
+        <location filename="../src/texstudio.cpp" line="1137"/>
+        <location filename="../src/texstudio.cpp" line="1147"/>
         <source>Select Inverting</source>
         <translation>Diuzañ an enep</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1139"/>
-        <location filename="../src/texstudio.cpp" line="1149"/>
+        <location filename="../src/texstudio.cpp" line="1140"/>
+        <location filename="../src/texstudio.cpp" line="1150"/>
         <source>Find Mismatch</source>
         <translation>Kavout an disklotadurioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1152"/>
+        <location filename="../src/texstudio.cpp" line="1153"/>
         <source>Complete</source>
         <translation>Klok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1153"/>
+        <location filename="../src/texstudio.cpp" line="1154"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1154"/>
+        <location filename="../src/texstudio.cpp" line="1155"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ Klokter</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1155"/>
+        <location filename="../src/texstudio.cpp" line="1156"/>
         <source>Normal Text</source>
         <translation>Testenn normal</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1156"/>
+        <location filename="../src/texstudio.cpp" line="1157"/>
         <source>Close latest open environment</source>
         <translation>Serriñ an endro digoret da ziwezhañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1159"/>
+        <location filename="../src/texstudio.cpp" line="1160"/>
         <source>update TOC</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1160"/>
+        <location filename="../src/texstudio.cpp" line="1161"/>
         <source>Refresh Structure</source>
         <translation>Freskaat ar framm</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1161"/>
+        <location filename="../src/texstudio.cpp" line="1162"/>
         <source>Refresh Language Model</source>
         <translation>Freskaat modal ar yezh</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1162"/>
+        <location filename="../src/texstudio.cpp" line="1163"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
         <translation>Rediañ un hizivadur patrom yezh dinamek implijet evit usskediñ hag ar plegañ kod. Sur-mat didalvoudus rak an hizivadurioù a vez peurvuiañ en un doare emgefreek.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1163"/>
+        <location filename="../src/texstudio.cpp" line="1164"/>
         <source>Remove Placeholders</source>
         <translation>Dilemel an dibarzhioù-faltaziet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1164"/>
+        <location filename="../src/texstudio.cpp" line="1165"/>
         <source>Remove Current Placeholder</source>
         <translation>Dilemel an dibarzhioù-faltaziet red</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1169"/>
+        <location filename="../src/texstudio.cpp" line="1170"/>
         <source>&amp;Tools</source>
         <translation>&amp;Ostilhoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1171"/>
+        <location filename="../src/texstudio.cpp" line="1172"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Sevel &amp;&amp; Gwelout</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1172"/>
+        <location filename="../src/texstudio.cpp" line="1173"/>
         <source>&amp;Compile</source>
         <translation>&amp;Kempunañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1173"/>
+        <location filename="../src/texstudio.cpp" line="1174"/>
         <source>Stop Compile</source>
         <translation>Paouez da gempunañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1177"/>
-        <location filename="../src/texstudio.cpp" line="1329"/>
+        <location filename="../src/texstudio.cpp" line="1178"/>
+        <location filename="../src/texstudio.cpp" line="1330"/>
         <source>&amp;View</source>
         <translation>&amp;Gwelet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1178"/>
-        <location filename="../src/texstudio.cpp" line="1276"/>
+        <location filename="../src/texstudio.cpp" line="1179"/>
+        <location filename="../src/texstudio.cpp" line="1277"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliografiezh</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1179"/>
+        <location filename="../src/texstudio.cpp" line="1180"/>
         <source>&amp;Glossary</source>
         <translation>&amp;Geriaoueg</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1180"/>
+        <location filename="../src/texstudio.cpp" line="1181"/>
         <source>&amp;Index</source>
         <translation>&amp;Indeks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1183"/>
+        <location filename="../src/texstudio.cpp" line="1184"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>&amp;Urzhiadoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1184"/>
+        <location filename="../src/texstudio.cpp" line="1185"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1186"/>
-        <location filename="../src/texstudio.cpp" line="1236"/>
+        <location filename="../src/texstudio.cpp" line="1187"/>
+        <location filename="../src/texstudio.cpp" line="1237"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1187"/>
+        <location filename="../src/texstudio.cpp" line="1188"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1191"/>
+        <location filename="../src/texstudio.cpp" line="1192"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1192"/>
+        <location filename="../src/texstudio.cpp" line="1193"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1193"/>
+        <location filename="../src/texstudio.cpp" line="1194"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1195"/>
+        <location filename="../src/texstudio.cpp" line="1196"/>
         <source>View &amp;DVI</source>
         <translation>Gwelout &amp;DVI</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1196"/>
+        <location filename="../src/texstudio.cpp" line="1197"/>
         <source>Vie&amp;w PS</source>
         <translation>G&amp;welet PS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1197"/>
+        <location filename="../src/texstudio.cpp" line="1198"/>
         <source>View PD&amp;F</source>
         <translation>Gwelet PD&amp;F</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1199"/>
+        <location filename="../src/texstudio.cpp" line="1200"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1200"/>
+        <location filename="../src/texstudio.cpp" line="1201"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1201"/>
+        <location filename="../src/texstudio.cpp" line="1202"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1203"/>
+        <location filename="../src/texstudio.cpp" line="1204"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;Sevel-indeks</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1204"/>
+        <location filename="../src/texstudio.cpp" line="1205"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1205"/>
+        <location filename="../src/texstudio.cpp" line="1206"/>
         <source>&amp;Xindex</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1206"/>
+        <location filename="../src/texstudio.cpp" line="1207"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Sevel-geriaouegoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1208"/>
+        <location filename="../src/texstudio.cpp" line="1209"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1209"/>
+        <location filename="../src/texstudio.cpp" line="1210"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1211"/>
+        <location filename="../src/texstudio.cpp" line="1212"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>&amp;Implijer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1214"/>
+        <location filename="../src/texstudio.cpp" line="1215"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>Goullonderiñ ar restroù-sko&amp;azell...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1215"/>
+        <location filename="../src/texstudio.cpp" line="1216"/>
         <source>Open External &amp;Terminal</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1217"/>
+        <location filename="../src/texstudio.cpp" line="1218"/>
         <source>View &amp;Log</source>
         <translation>Gwelet ar &amp;renabl</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1218"/>
+        <location filename="../src/texstudio.cpp" line="1219"/>
         <source>Show Log Markers</source>
         <translation>Gwelet merkerioù ar renabl</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1222"/>
+        <location filename="../src/texstudio.cpp" line="1223"/>
         <source>C&amp;onvert to Html...</source>
         <translation>Emdreiñ da Html...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1223"/>
+        <location filename="../src/texstudio.cpp" line="1224"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>Emdreiñ ar vammenn da Html...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1225"/>
+        <location filename="../src/texstudio.cpp" line="1226"/>
         <source>Convert to Abridged Plaintext</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1226"/>
+        <location filename="../src/texstudio.cpp" line="1227"/>
         <source>A&amp;nalyse Text...</source>
         <translation>A&amp;nalizadur an destenn...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1227"/>
+        <location filename="../src/texstudio.cpp" line="1228"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Genel ha testenn d&amp;re-zegouezh...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1229"/>
+        <location filename="../src/texstudio.cpp" line="1230"/>
         <source>Check Spelling...</source>
         <translation>Gwiriañ ar reizhskrivadur...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1230"/>
+        <location filename="../src/texstudio.cpp" line="1231"/>
         <source>Thesaurus...</source>
         <translation>Thesaurus...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1231"/>
+        <location filename="../src/texstudio.cpp" line="1232"/>
         <source>Find Word Repetitions...</source>
         <translation>Kavout gerioù adlavaret...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1238"/>
+        <location filename="../src/texstudio.cpp" line="1239"/>
         <source>Insert \ref to Next Label</source>
         <translation>Enlakaat \ref d&apos;al Label da zont</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1239"/>
+        <location filename="../src/texstudio.cpp" line="1240"/>
         <source>Insert \ref to Previous Label</source>
         <translation>Enlakaat \ref d&apos;al Label kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1240"/>
+        <location filename="../src/texstudio.cpp" line="1241"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>Dazverañ taolennoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1241"/>
+        <location filename="../src/texstudio.cpp" line="1242"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>Ouzhpennañ ul linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1242"/>
+        <location filename="../src/texstudio.cpp" line="1243"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>Ouzhpennañ ur bann</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1243"/>
+        <location filename="../src/texstudio.cpp" line="1244"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>Dilemel al linenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1244"/>
+        <location filename="../src/texstudio.cpp" line="1245"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>Dilemel ar bann</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1245"/>
+        <location filename="../src/texstudio.cpp" line="1246"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>Troc&apos;hañ ar bann</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1246"/>
+        <location filename="../src/texstudio.cpp" line="1247"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Pegañ ar bann</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1247"/>
+        <location filename="../src/texstudio.cpp" line="1248"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>Ouzhpennañ \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1248"/>
+        <location filename="../src/texstudio.cpp" line="1249"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>Dilemel \hline</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1249"/>
+        <location filename="../src/texstudio.cpp" line="1250"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>Adverañ an daolenn adalek ur patrom</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1250"/>
+        <location filename="../src/texstudio.cpp" line="1251"/>
         <source>Align Columns</source>
         <translation>Linennadur ar bannoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1251"/>
+        <location filename="../src/texstudio.cpp" line="1252"/>
         <source>Add magic comments ...</source>
         <translation>Ouzhpennañ evezhiadennoù hud</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1252"/>
+        <location filename="../src/texstudio.cpp" line="1253"/>
         <source>Insert root document name as TeX comment</source>
         <translation>Enlakaat un anv teul gwrizienn evel evezhiadenn TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1253"/>
-        <location filename="../src/texstudio.cpp" line="1638"/>
+        <location filename="../src/texstudio.cpp" line="1254"/>
+        <location filename="../src/texstudio.cpp" line="1639"/>
         <source>Insert language as TeX comment</source>
         <translation>Enlakaat ar yezh evel un evezhiadenn TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1254"/>
+        <location filename="../src/texstudio.cpp" line="1255"/>
         <source>Insert document coding as TeX comment</source>
         <translation>Enlakaat kodañ teuliadur evel un evezhiadenn TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1255"/>
+        <location filename="../src/texstudio.cpp" line="1256"/>
         <source>Insert program as TeX comment</source>
         <translation>Enlakaat programm evel evezhiadenn TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1256"/>
+        <location filename="../src/texstudio.cpp" line="1257"/>
         <source>Insert bibliography tool as TeX comment</source>
         <translation>Enlakaat un ostilh bibliografiezh evel evezhiadenn TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1258"/>
+        <location filename="../src/texstudio.cpp" line="1259"/>
         <source>&amp;Math</source>
         <translation>&amp;Matematik</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1262"/>
+        <location filename="../src/texstudio.cpp" line="1263"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Skoazellerioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1263"/>
+        <location filename="../src/texstudio.cpp" line="1264"/>
         <source>Quick &amp;Start...</source>
         <translation>Loc&apos;hañ &amp;prim...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1264"/>
+        <location filename="../src/texstudio.cpp" line="1265"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>Kinnig &amp;Beamer prim...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1265"/>
+        <location filename="../src/texstudio.cpp" line="1266"/>
         <source>Quick &amp;Letter...</source>
         <translation>Skoazeller skrivañ-&amp;lizhiri...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1268"/>
+        <location filename="../src/texstudio.cpp" line="1269"/>
         <source>Quick &amp;Tabular...</source>
         <translation>Skoazeller &amp;taolenn...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1269"/>
+        <location filename="../src/texstudio.cpp" line="1270"/>
         <source>Quick T&amp;abbing...</source>
         <translation>Skoazeller to&amp;alennatadur...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1270"/>
+        <location filename="../src/texstudio.cpp" line="1271"/>
         <source>Quick &amp;Array...</source>
         <translation>Skoazeller &amp;matris...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1271"/>
+        <location filename="../src/texstudio.cpp" line="1272"/>
         <source>Insert &amp;Graphic...</source>
         <translation>Enlakaat &amp;Grafikoù...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1273"/>
+        <location filename="../src/texstudio.cpp" line="1274"/>
         <source>Math Assistant...</source>
         <translation>Skoazeller matematikel...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1301"/>
+        <location filename="../src/texstudio.cpp" line="1302"/>
         <source>&amp;Clean</source>
         <translation>&amp;Netaat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1303"/>
+        <location filename="../src/texstudio.cpp" line="1304"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>&amp;Enlakaat un enmont Bibliografiezh...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1305"/>
+        <location filename="../src/texstudio.cpp" line="1306"/>
         <source>Type</source>
         <translation>Doare</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1309"/>
-        <location filename="../src/texstudio.cpp" line="1319"/>
+        <location filename="../src/texstudio.cpp" line="1310"/>
+        <location filename="../src/texstudio.cpp" line="1320"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1314"/>
-        <location filename="../src/texstudio.cpp" line="1320"/>
+        <location filename="../src/texstudio.cpp" line="1315"/>
+        <location filename="../src/texstudio.cpp" line="1321"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1324"/>
+        <location filename="../src/texstudio.cpp" line="1325"/>
         <source>Ma&amp;cros</source>
         <translation>Ma&amp;kroioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1330"/>
+        <location filename="../src/texstudio.cpp" line="1331"/>
         <source>Previous Document</source>
         <translation>Teuliad kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1331"/>
+        <location filename="../src/texstudio.cpp" line="1332"/>
         <source>Next Document</source>
         <translation>Teuliad da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1332"/>
+        <location filename="../src/texstudio.cpp" line="1333"/>
         <source>Open Documents</source>
         <translation>Digeriñ teuliadoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1333"/>
+        <location filename="../src/texstudio.cpp" line="1334"/>
         <source>List Of Open Documents</source>
         <translation>Listenn an teuliadoù digoret</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1334"/>
+        <location filename="../src/texstudio.cpp" line="1335"/>
         <source>List Of Hidden Documents</source>
         <translation>Listenn an teuliadoù kuzhet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1336"/>
+        <location filename="../src/texstudio.cpp" line="1337"/>
         <source>Focus Editor</source>
         <translation>Aozer Fokus</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1337"/>
+        <location filename="../src/texstudio.cpp" line="1338"/>
         <source>Focus Viewer</source>
         <translation>Fokus war al lenner</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1340"/>
+        <location filename="../src/texstudio.cpp" line="1341"/>
         <source>Show</source>
         <translation>Diskouez</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1343"/>
+        <location filename="../src/texstudio.cpp" line="1344"/>
         <source>Statusbar</source>
         <translation>Barrenn-statudoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1346"/>
+        <location filename="../src/texstudio.cpp" line="1347"/>
         <source>Reset Sidepanel/docks</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1348"/>
+        <location filename="../src/texstudio.cpp" line="1349"/>
         <source>Show embedded PDF large</source>
         <translation>Diskouez ar PDF bras ambarket</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1349"/>
+        <location filename="../src/texstudio.cpp" line="1350"/>
         <source>Show embedded PDF small</source>
         <translation>Diskouez ar PDF bihan ambarket</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1351"/>
+        <location filename="../src/texstudio.cpp" line="1352"/>
         <source>Close Element</source>
         <translation>Serriñ an elfenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1354"/>
+        <location filename="../src/texstudio.cpp" line="1355"/>
         <source>Collapse</source>
         <translation>Bihanaat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1355"/>
-        <location filename="../src/texstudio.cpp" line="1360"/>
+        <location filename="../src/texstudio.cpp" line="1356"/>
+        <location filename="../src/texstudio.cpp" line="1361"/>
         <source>Everything</source>
         <translation>Pep-tra</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1356"/>
-        <location filename="../src/texstudio.cpp" line="1361"/>
+        <location filename="../src/texstudio.cpp" line="1357"/>
+        <location filename="../src/texstudio.cpp" line="1362"/>
         <source>Nearest Block</source>
         <translation>Blok nesañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1358"/>
-        <location filename="../src/texstudio.cpp" line="1363"/>
+        <location filename="../src/texstudio.cpp" line="1359"/>
+        <location filename="../src/texstudio.cpp" line="1364"/>
         <source>Level %1</source>
         <translation>Live %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1359"/>
+        <location filename="../src/texstudio.cpp" line="1360"/>
         <source>Expand</source>
         <translation>Astenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1365"/>
+        <location filename="../src/texstudio.cpp" line="1366"/>
         <source>Grammar errors</source>
         <translation>Fazioù yezhadur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1368"/>
+        <location filename="../src/texstudio.cpp" line="1369"/>
         <source>Word Repetition</source>
         <translation>Adlavaradur gerioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1369"/>
+        <location filename="../src/texstudio.cpp" line="1370"/>
         <source>Long-range Word Repetition</source>
         <translation>Adlavaradur gerioù gant hir-hed</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1370"/>
+        <location filename="../src/texstudio.cpp" line="1371"/>
         <source>Bad words</source>
         <translation>Gerioù fall</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1371"/>
+        <location filename="../src/texstudio.cpp" line="1372"/>
         <source>Grammar Mistake</source>
         <translation>Fazi yezhadur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1373"/>
+        <location filename="../src/texstudio.cpp" line="1374"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Fazi yezhadur ispisial %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1382"/>
+        <location filename="../src/texstudio.cpp" line="1383"/>
         <source>Editor Zoom</source>
         <translation>Aozer Zoum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1383"/>
+        <location filename="../src/texstudio.cpp" line="1384"/>
         <source>Zoom In</source>
         <translation>Zoumañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1384"/>
+        <location filename="../src/texstudio.cpp" line="1385"/>
         <source>Zoom Out</source>
         <translation>Dizoumañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1385"/>
+        <location filename="../src/texstudio.cpp" line="1386"/>
         <source>Reset Zoom</source>
         <translation>Adderaouekaat ar zoum</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1387"/>
+        <location filename="../src/texstudio.cpp" line="1388"/>
         <source>Full &amp;Screen</source>
         <translation>Skramm &amp;Leun</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1394"/>
+        <location filename="../src/texstudio.cpp" line="1395"/>
         <source>Highlighting</source>
         <translation>Usskediñ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1418"/>
+        <location filename="../src/texstudio.cpp" line="1419"/>
         <source>&amp;Options</source>
         <translation>&amp;Dibarzhioù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1419"/>
+        <location filename="../src/texstudio.cpp" line="1420"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;Kefluniañ TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1422"/>
+        <location filename="../src/texstudio.cpp" line="1423"/>
         <source>Load &amp;Profile...</source>
         <translation>Kargañ ar &amp;profil...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1423"/>
+        <location filename="../src/texstudio.cpp" line="1424"/>
         <source>S&amp;ave Profile...</source>
         <translation>Enroll&amp;añ ar profil...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1424"/>
+        <location filename="../src/texstudio.cpp" line="1425"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>Enrollañ an &amp;arventennoù red</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1425"/>
+        <location filename="../src/texstudio.cpp" line="1426"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>Adlakaat an arventennoù &amp;dre-ziouer...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1428"/>
+        <location filename="../src/texstudio.cpp" line="1429"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>Teuliad gwrizienn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1431"/>
+        <location filename="../src/texstudio.cpp" line="1432"/>
         <source>Detect &amp;Automatically</source>
         <translation>Em-ziguzh&amp;añ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1439"/>
+        <location filename="../src/texstudio.cpp" line="1440"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>Lakaat an teul war implij evel gwrizienn ezpleget</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1442"/>
+        <location filename="../src/texstudio.cpp" line="1443"/>
         <source>&amp;Help</source>
         <translation>&amp;Sikour</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1443"/>
+        <location filename="../src/texstudio.cpp" line="1444"/>
         <source>LaTeX Reference...</source>
         <translation>Daveenn LaTeX...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1444"/>
+        <location filename="../src/texstudio.cpp" line="1445"/>
         <source>User Manual...</source>
         <translation>Dornlevr an implijeer...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1445"/>
+        <location filename="../src/texstudio.cpp" line="1446"/>
         <source>Packages Help...</source>
         <translation>Pakadoù skoazell...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1448"/>
+        <location filename="../src/texstudio.cpp" line="1449"/>
         <source>Check LaTeX Installation</source>
         <translation>Gwiriañ staliadur LaTeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1449"/>
+        <location filename="../src/texstudio.cpp" line="1450"/>
         <source>Check Active Completion Files</source>
         <translation>Gwiriañ ar restroù klokter oberiant</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1450"/>
+        <location filename="../src/texstudio.cpp" line="1451"/>
         <source>Check LanguageTool</source>
         <translation>Gwiriañ LanguageTool</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1451"/>
+        <location filename="../src/texstudio.cpp" line="1452"/>
         <source>Bugs Report/Feature Request</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1452"/>
+        <location filename="../src/texstudio.cpp" line="1453"/>
         <source>About TeXstudio...</source>
         <translation>Diwar-benn TeXstudio...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1621"/>
-        <location filename="../src/texstudio.cpp" line="5783"/>
+        <location filename="../src/texstudio.cpp" line="1622"/>
+        <location filename="../src/texstudio.cpp" line="5784"/>
         <source>show more entries ...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1629"/>
+        <location filename="../src/texstudio.cpp" line="1630"/>
         <source>Default</source>
         <translation>Dre-ziouer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1663"/>
+        <location filename="../src/texstudio.cpp" line="1664"/>
         <source>Connected to LanguageTool at %1</source>
         <translation>Kevreet ouzh LanguageTool da %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1667"/>
+        <location filename="../src/texstudio.cpp" line="1668"/>
         <source>No LanguageTool server found at %1</source>
         <translation>Servijer LanguageTool ebet kavet da %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1671"/>
+        <location filename="../src/texstudio.cpp" line="1672"/>
         <source>LanguageTool status unknown</source>
         <translation>LanguageTool: statud dizanv</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1675"/>
+        <location filename="../src/texstudio.cpp" line="1676"/>
         <source>Inline grammar checking disabled by user!</source>
         <translation>Gwiriañ yezhadur enlinenn lazhet gant an implijer!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1738"/>
+        <location filename="../src/texstudio.cpp" line="1739"/>
         <source>Language</source>
         <translation>Yezh</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1750"/>
         <location filename="../src/texstudio.cpp" line="1751"/>
-        <location filename="../src/texstudio.cpp" line="5813"/>
-        <location filename="../src/texstudio.cpp" line="5816"/>
+        <location filename="../src/texstudio.cpp" line="1752"/>
+        <location filename="../src/texstudio.cpp" line="5814"/>
         <location filename="../src/texstudio.cpp" line="5817"/>
+        <location filename="../src/texstudio.cpp" line="5818"/>
         <source>Encoding</source>
         <translation>Enkodañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1773"/>
+        <location filename="../src/texstudio.cpp" line="1774"/>
         <source>More Encodings...</source>
         <translation>Muioc&apos;h a enkodoù...</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1781"/>
+        <location filename="../src/texstudio.cpp" line="1782"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Enlakaat ar c&apos;hodañ enmont evel evezhiadenn TeX</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1795"/>
+        <location filename="../src/texstudio.cpp" line="1796"/>
         <source>Go to bookmark</source>
         <translation>Mont d&apos;ar sined</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1837"/>
+        <location filename="../src/texstudio.cpp" line="1838"/>
         <source>Automatic</source>
         <translation>Emgefreek</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1838"/>
+        <location filename="../src/texstudio.cpp" line="1839"/>
         <source>Automatic root document detection active</source>
         <translation>Em-ziguzhadur an teuliad gwrizienn war enaou</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1843"/>
+        <location filename="../src/texstudio.cpp" line="1844"/>
         <source>&amp;Explicit</source>
         <translation>&amp;Displegus</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1844"/>
+        <location filename="../src/texstudio.cpp" line="1845"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Gwrizienn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="1845"/>
+        <location filename="../src/texstudio.cpp" line="1846"/>
         <source>Explict root document:
 %1</source>
         <translation>Teuliad gwrizienn ezpleget:
 %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2153"/>
+        <location filename="../src/texstudio.cpp" line="2154"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Ha fellout a ra deoc&apos;h diveugiñ ur restr SyncTeX?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2252"/>
-        <location filename="../src/texstudio.cpp" line="4188"/>
-        <location filename="../src/texstudio.cpp" line="5867"/>
-        <location filename="../src/texstudio.cpp" line="5920"/>
-        <location filename="../src/texstudio.cpp" line="6486"/>
-        <location filename="../src/texstudio.cpp" line="6667"/>
-        <location filename="../src/texstudio.cpp" line="6669"/>
-        <location filename="../src/texstudio.cpp" line="6679"/>
-        <location filename="../src/texstudio.cpp" line="6681"/>
-        <location filename="../src/texstudio.cpp" line="10473"/>
+        <location filename="../src/texstudio.cpp" line="2253"/>
+        <location filename="../src/texstudio.cpp" line="4189"/>
+        <location filename="../src/texstudio.cpp" line="5868"/>
+        <location filename="../src/texstudio.cpp" line="5921"/>
+        <location filename="../src/texstudio.cpp" line="6487"/>
+        <location filename="../src/texstudio.cpp" line="6668"/>
+        <location filename="../src/texstudio.cpp" line="6670"/>
+        <location filename="../src/texstudio.cpp" line="6680"/>
+        <location filename="../src/texstudio.cpp" line="6682"/>
+        <location filename="../src/texstudio.cpp" line="10498"/>
         <source>Error</source>
         <translation>Fazi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2252"/>
+        <location filename="../src/texstudio.cpp" line="2253"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>N&apos;ho peus gwir ebet da lenn ar restr %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2304"/>
+        <location filename="../src/texstudio.cpp" line="2305"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Ur restr adtapout enep sac&apos;h adalek %1 a zo bet kavet &apos;%2&apos;.
 Ha fellout a ra deoc&apos;h hec&apos;h adsevel?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2310"/>
+        <location filename="../src/texstudio.cpp" line="2311"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>C&apos;hwitadur ar restr adtapout &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2460"/>
+        <location filename="../src/texstudio.cpp" line="2461"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -6191,46 +6218,46 @@ Kemerit al levraoueg seveniñ reizh (d.sk restroù .dll pe .so).
 Bez e vo fazioù ha sac&apos;hadennoù dre-zegouezh, mod-all.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2550"/>
+        <location filename="../src/texstudio.cpp" line="2551"/>
         <source>Could not write template data:</source>
         <translation>Dibosupl skrivañ roadennoù ar patrom:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2582"/>
+        <location filename="../src/texstudio.cpp" line="2583"/>
         <source>Could not write template meta data:</source>
         <translation>N&apos;heller ket skrivañ ar patrom meta-roadennoù:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2633"/>
-        <location filename="../src/texstudio.cpp" line="2697"/>
+        <location filename="../src/texstudio.cpp" line="2634"/>
+        <location filename="../src/texstudio.cpp" line="2698"/>
         <source>File not found:</source>
         <translation>Restr nann-kavet:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2637"/>
-        <location filename="../src/texstudio.cpp" line="2701"/>
+        <location filename="../src/texstudio.cpp" line="2638"/>
+        <location filename="../src/texstudio.cpp" line="2702"/>
         <source>You do not have read permission to this file:</source>
         <translation>N&apos;ho ket an aotre da lenn ar restr-mañ:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2818"/>
-        <location filename="../src/texstudio.cpp" line="10303"/>
+        <location filename="../src/texstudio.cpp" line="2819"/>
+        <location filename="../src/texstudio.cpp" line="10328"/>
         <source>Open Files</source>
         <translation>Restroù digoret</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2836"/>
-        <location filename="../src/texstudio.cpp" line="2843"/>
+        <location filename="../src/texstudio.cpp" line="2837"/>
+        <location filename="../src/texstudio.cpp" line="2844"/>
         <source>Loading of last session failed.</source>
         <translation>Kargadur an dalc&apos;h diwezhañ c&apos;hwitet.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2909"/>
+        <location filename="../src/texstudio.cpp" line="2910"/>
         <source>Save As</source>
         <translation>Enrollañ dindan</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2926"/>
+        <location filename="../src/texstudio.cpp" line="2927"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -6243,269 +6270,269 @@ gant an anv-mañ a zo war-implij e-barzh TeXstudio. Bez ho peus da enrollañ pe 
 ar restr all-mañ a-raok na c&apos;hallfec&apos;h he flastrañ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="2944"/>
+        <location filename="../src/texstudio.cpp" line="2945"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Ar PDF-mañ n&apos;hall ket bezañ sinkronelaet gant ar vammenn tex ken dre ma &apos;z eo bet cheñchet anv ar restr-vammenn dre un oberiadenn Enrollañ evel. Rankout a rit adkempunañ ar restr adanvet ha gwelet an disoc&apos;h.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3044"/>
+        <location filename="../src/texstudio.cpp" line="3045"/>
         <source>Rename/Move</source>
         <translation>Adenvel/Fiñval</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3044"/>
-        <location filename="../src/texstudio.cpp" line="11828"/>
+        <location filename="../src/texstudio.cpp" line="3045"/>
+        <location filename="../src/texstudio.cpp" line="11859"/>
         <source>Copy</source>
         <translation>Eilañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3059"/>
+        <location filename="../src/texstudio.cpp" line="3060"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Ha fellout a ra deoc&apos;h dilemel da vat ar restr &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3068"/>
+        <location filename="../src/texstudio.cpp" line="3069"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Ha fellout a ra deoc&apos;h adsevel da vat ar restr &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3095"/>
+        <location filename="../src/texstudio.cpp" line="3096"/>
         <source>Numeric permissions</source>
         <translation>Aotreadurioù niverel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3096"/>
+        <location filename="../src/texstudio.cpp" line="3097"/>
         <source>Verbose permissions</source>
         <translation>Aotreadurioù verbek</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3229"/>
+        <location filename="../src/texstudio.cpp" line="3230"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>An teuliad &quot;%1&quot; a endalc&apos;h labour chomet di-enroll. Ha fellout a ra deoc&apos;h enrollañ anezhañ a-raok serriñ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3356"/>
-        <location filename="../src/texstudio.cpp" line="3415"/>
-        <location filename="../src/texstudio.cpp" line="3495"/>
+        <location filename="../src/texstudio.cpp" line="3357"/>
+        <location filename="../src/texstudio.cpp" line="3416"/>
+        <location filename="../src/texstudio.cpp" line="3496"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>N&apos;eus ket eus ar &quot;%1&quot; ken. Ha fellout a ra deoc&apos;h dilemel anezhi diwar listenn ar restroù nevez?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3508"/>
+        <location filename="../src/texstudio.cpp" line="3509"/>
         <source>Loading of session failed.</source>
         <translation>Kargadur dalc&apos;h c&apos;hwitet.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3525"/>
+        <location filename="../src/texstudio.cpp" line="3526"/>
         <source>Load Session</source>
         <translation>Kargañ an dalc&apos;h</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3525"/>
-        <location filename="../src/texstudio.cpp" line="3543"/>
+        <location filename="../src/texstudio.cpp" line="3526"/>
+        <location filename="../src/texstudio.cpp" line="3544"/>
         <source>TeXstudio Session</source>
         <translation>Dalc&apos;h TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3543"/>
+        <location filename="../src/texstudio.cpp" line="3544"/>
         <source>Save Session</source>
         <translation>Enrollañ an dalc&apos;h</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3549"/>
+        <location filename="../src/texstudio.cpp" line="3550"/>
         <source>Saving of session failed.</source>
         <translation>Enrollañ un dalc&apos;h c&apos;hwitet.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3625"/>
+        <location filename="../src/texstudio.cpp" line="3626"/>
         <source>The following files could not be loaded:</source>
         <translation>N&apos;hall ket bezañ karget ar restroù da-heul:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3790"/>
+        <location filename="../src/texstudio.cpp" line="3791"/>
         <source>Image Formats (%1)</source>
         <translation>Stummoù ar skeudenn (%1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3792"/>
+        <location filename="../src/texstudio.cpp" line="3793"/>
         <source>Save Image</source>
         <translation>Enrollañ ar skeudenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3797"/>
+        <location filename="../src/texstudio.cpp" line="3798"/>
         <source>Could not save the image file.</source>
         <translation>N&apos;heller ket enrollañ ar restr skeudenn.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3885"/>
+        <location filename="../src/texstudio.cpp" line="3886"/>
         <source>Ascending</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3885"/>
+        <location filename="../src/texstudio.cpp" line="3886"/>
         <source>Descending</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3885"/>
+        <location filename="../src/texstudio.cpp" line="3886"/>
         <source>No Sorting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3885"/>
+        <location filename="../src/texstudio.cpp" line="3886"/>
         <source>Random (Shuffle)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3891"/>
+        <location filename="../src/texstudio.cpp" line="3892"/>
         <source>Sorting</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3892"/>
+        <location filename="../src/texstudio.cpp" line="3893"/>
         <source>Complete Lines</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3893"/>
+        <location filename="../src/texstudio.cpp" line="3894"/>
         <source>Case Sensitive</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="3894"/>
+        <location filename="../src/texstudio.cpp" line="3895"/>
         <source>Remove Duplicates</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4151"/>
+        <location filename="../src/texstudio.cpp" line="4152"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Enlakaat troc&apos;h linennoù garv goude &quot;n&quot; arouezioù:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4152"/>
+        <location filename="../src/texstudio.cpp" line="4153"/>
         <source>Smart scope selecting</source>
         <translation>Diuziñ hed speredek</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4153"/>
+        <location filename="../src/texstudio.cpp" line="4154"/>
         <source>Join lines before wrapping</source>
         <translation>Stagañ al linennoù a-raok o fakañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4167"/>
-        <location filename="../src/texstudio.cpp" line="6363"/>
-        <location filename="../src/texstudio.cpp" line="6420"/>
+        <location filename="../src/texstudio.cpp" line="4168"/>
+        <location filename="../src/texstudio.cpp" line="6364"/>
+        <location filename="../src/texstudio.cpp" line="6421"/>
         <source>No document open</source>
         <translation>Teuliad ebet digoret</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4173"/>
+        <location filename="../src/texstudio.cpp" line="4174"/>
         <source>No dictionary available.</source>
         <translation>N&apos;eus geriadur hegerz ebet.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4188"/>
+        <location filename="../src/texstudio.cpp" line="4189"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>N&apos;hall ket kargañ an diaz-roadenn Thesaurus</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4595"/>
+        <location filename="../src/texstudio.cpp" line="4596"/>
         <source>Storing session failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4595"/>
+        <location filename="../src/texstudio.cpp" line="4596"/>
         <source>Storing session information into %1 failed. File exists but is not writeable.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4680"/>
+        <location filename="../src/texstudio.cpp" line="4681"/>
         <source>This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.
 
 Do you want to continue?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="4690"/>
+        <location filename="../src/texstudio.cpp" line="4691"/>
         <source>Unable to write to settings file %1</source>
         <translation>Divarrek da skrivañ er restr arventennoù %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5483"/>
+        <location filename="../src/texstudio.cpp" line="5484"/>
         <source>Quick Start</source>
         <translation>Loc&apos;hañ fonnus</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5505"/>
+        <location filename="../src/texstudio.cpp" line="5506"/>
         <source>Quick Beamer Presentation</source>
         <translation>Kinnig Beamer prim</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5542"/>
+        <location filename="../src/texstudio.cpp" line="5543"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5574"/>
+        <location filename="../src/texstudio.cpp" line="5575"/>
         <source>Type: %1</source>
         <translation>Doare: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5616"/>
+        <location filename="../src/texstudio.cpp" line="5617"/>
         <source>Edit User &amp;Tags</source>
         <translation>Aozañ ar balizoù implijer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5678"/>
+        <location filename="../src/texstudio.cpp" line="5679"/>
         <source>empty</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5682"/>
+        <location filename="../src/texstudio.cpp" line="5683"/>
         <source>Labels:</source>
         <translation>Labelioù:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5770"/>
+        <location filename="../src/texstudio.cpp" line="5771"/>
         <source>show less entries ...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5811"/>
+        <location filename="../src/texstudio.cpp" line="5812"/>
         <source>Encoding Aliases: </source>
         <translation>Aliasoù enkodañ:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5867"/>
+        <location filename="../src/texstudio.cpp" line="5868"/>
         <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>N&apos;haller ket diguzhañ an anv-restr.
 Bez ho peus da enrollañ an teuliad a-raok gellet e gempunañ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5875"/>
+        <location filename="../src/texstudio.cpp" line="5876"/>
         <source>Can&apos;t detect the file name</source>
         <translation>N&apos;haller ket diguzhañ anv ar restr</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5914"/>
+        <location filename="../src/texstudio.cpp" line="5915"/>
         <source>  Running this command: </source>
         <translation>Lakaat da vont an urzhiad:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="5920"/>
+        <location filename="../src/texstudio.cpp" line="5921"/>
         <source>could not start the command</source>
         <translation>N&apos;heller ket loc&apos;hañ an urzhiad-mañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6043"/>
+        <location filename="../src/texstudio.cpp" line="6044"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Bez ho peus anvet an urzhiad evit digeriñ al lenner PDFoù diabarzh.
 Ar pezh a zo, implijit e vez ganeoc&apos;h ur stumm eus TeXstudio hag a zo bet kempunet hep al lenner PDFoù diabarzh.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6063"/>
+        <location filename="../src/texstudio.cpp" line="6064"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -6522,222 +6549,222 @@ Ha fellout a ra deoc&apos;h aotren hag implijout an urzhiad erlec&apos;hiañ?
 (c) Nann avat, chom hep implijout an urzhiad &quot;%3&quot; ha sevenit an urzhiad &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6147"/>
+        <location filename="../src/texstudio.cpp" line="6148"/>
         <source>Unknown internal command: %1</source>
         <translation>Urzhiad diabarzh dianav: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6182"/>
+        <location filename="../src/texstudio.cpp" line="6183"/>
         <source>%!TeX program used: %1</source>
         <translation>%!TeX program implijet: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6185"/>
+        <location filename="../src/texstudio.cpp" line="6186"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
         <translation>%!TeX program nann-anavezet! (%1). Implijout dre-ziouer.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6246"/>
+        <location filename="../src/texstudio.cpp" line="6247"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>N&apos;hallit ket kempunañ an teuliad en un nann-skrivus kavlec&apos;h.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6248"/>
+        <location filename="../src/texstudio.cpp" line="6249"/>
         <source>Could not start %1.</source>
         <translation>N&apos;haller ket loc&apos;hañ %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6277"/>
+        <location filename="../src/texstudio.cpp" line="6278"/>
         <source>Error:</source>
         <translation>Fazi:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6353"/>
+        <location filename="../src/texstudio.cpp" line="6354"/>
         <source>No open project or tex file to clean.</source>
         <translation>Raktres ebet digor pe restr tex da netaat.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6424"/>
+        <location filename="../src/texstudio.cpp" line="6425"/>
         <source>Text Analysis</source>
         <translation>Analizadurioù testenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6448"/>
+        <location filename="../src/texstudio.cpp" line="6449"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Ar geneler testenn dre-zegouezh a sav testennoù diwar-gerioù a zo anezho, bez ho peus da zigeriñ restroù testenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6486"/>
+        <location filename="../src/texstudio.cpp" line="6487"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>A-raok ne c&apos;hallfec&apos;h gwelet ar renabl ar restr a rank bezañ enrollet ha kempunet anezhi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6667"/>
-        <location filename="../src/texstudio.cpp" line="6679"/>
+        <location filename="../src/texstudio.cpp" line="6668"/>
+        <location filename="../src/texstudio.cpp" line="6680"/>
         <source>File not found</source>
         <translation>Restr nann-kavet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6669"/>
-        <location filename="../src/texstudio.cpp" line="6681"/>
+        <location filename="../src/texstudio.cpp" line="6670"/>
+        <location filename="../src/texstudio.cpp" line="6682"/>
         <source>Could not open browser</source>
         <translation>N&apos;hall ket bezañ digoret ar merdeer</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="6997"/>
+        <location filename="../src/texstudio.cpp" line="6998"/>
         <source>%1 is an invalid TeX project directory.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7290"/>
+        <location filename="../src/texstudio.cpp" line="7291"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Bez ho peus da enrollañ ar restr a-raok na vefe termenet evel bezañ un teul gwrizienn.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7745"/>
+        <location filename="../src/texstudio.cpp" line="7746"/>
         <source>Label</source>
         <translation>Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7747"/>
-        <location filename="../src/texstudio.cpp" line="7769"/>
+        <location filename="../src/texstudio.cpp" line="7748"/>
+        <location filename="../src/texstudio.cpp" line="7770"/>
         <source>Beyond end of document.</source>
         <translation>Pelloc&apos;h evit fin an teuliad.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7750"/>
-        <location filename="../src/texstudio.cpp" line="7771"/>
+        <location filename="../src/texstudio.cpp" line="7751"/>
+        <location filename="../src/texstudio.cpp" line="7772"/>
         <source>In Appendix.</source>
         <translation>E stagadenn.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7789"/>
+        <location filename="../src/texstudio.cpp" line="7790"/>
         <source>File not found.</source>
         <translation>Restr nann-kavet.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="7804"/>
+        <location filename="../src/texstudio.cpp" line="7805"/>
         <source> (Line %1)</source>
         <translation> (Linenn %1)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9093"/>
+        <location filename="../src/texstudio.cpp" line="9118"/>
         <source>commit comment:</source>
         <translation>kas un evezhiadenn:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9097"/>
+        <location filename="../src/texstudio.cpp" line="9122"/>
         <source>check in whole directory ?</source>
         <translation>gwiriañ e-barzh an holl gavlec&apos;hioù?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9099"/>
+        <location filename="../src/texstudio.cpp" line="9124"/>
         <source>Push to repository ?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9456"/>
+        <location filename="../src/texstudio.cpp" line="9481"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Diwallit: ar voest-kendiviz a vez em-sarret diouzhtu ma vez aozet an destenn gant an dorn!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9755"/>
+        <location filename="../src/texstudio.cpp" line="9780"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>Divarrek da zigeriñ ar restr &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9757"/>
+        <location filename="../src/texstudio.cpp" line="9782"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>N&apos;eus ket eus ar restr &quot;%1&quot;.
 Ha fellout a ra deoc&apos;h he c&apos;hrouiñ?</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9794"/>
+        <location filename="../src/texstudio.cpp" line="9819"/>
         <source>Save Profile</source>
         <translation>Enrollañ ar profil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9794"/>
-        <location filename="../src/texstudio.cpp" line="9801"/>
+        <location filename="../src/texstudio.cpp" line="9819"/>
+        <location filename="../src/texstudio.cpp" line="9826"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Profil TXS</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9801"/>
+        <location filename="../src/texstudio.cpp" line="9826"/>
         <source>Load Profile</source>
         <translation>Kargañ ar profil</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9854"/>
+        <location filename="../src/texstudio.cpp" line="9879"/>
         <source>Failed to read profile file %1.</source>
         <translation>C&apos;hwitet da lenn ar restr profil %1.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9977"/>
+        <location filename="../src/texstudio.cpp" line="10002"/>
         <source>Problem</source>
         <translation>Kudenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9977"/>
+        <location filename="../src/texstudio.cpp" line="10002"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Kavout gerioù adlavaret n&apos;a &apos;z a nemet en-dro gant ar gwiriekadur reizhskrivadurel enlinenn enaouet!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9982"/>
+        <location filename="../src/texstudio.cpp" line="10007"/>
         <source>Find Word Repetitions</source>
         <translation>Kavout gerioù adlavaret</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9991"/>
+        <location filename="../src/texstudio.cpp" line="10016"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Kavout da-heul</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="9993"/>
+        <location filename="../src/texstudio.cpp" line="10018"/>
         <source>&amp;Find Previous</source>
         <translation>&amp;Kavout kent</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10044"/>
+        <location filename="../src/texstudio.cpp" line="10069"/>
         <source>Reached beginning of text.</source>
         <translation>Tizhet penn-kentañ an destenn.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10044"/>
+        <location filename="../src/texstudio.cpp" line="10069"/>
         <source>Reached end of text.</source>
         <translation>Tizhet fin an destenn.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10303"/>
-        <location filename="../src/texstudio.cpp" line="10513"/>
-        <location filename="../src/texstudio.cpp" line="10516"/>
+        <location filename="../src/texstudio.cpp" line="10328"/>
+        <location filename="../src/texstudio.cpp" line="10538"/>
+        <location filename="../src/texstudio.cpp" line="10541"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Restroù LaTeX (*.tex);;An holl restroù (*)</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10473"/>
+        <location filename="../src/texstudio.cpp" line="10498"/>
         <source>You do not have read permission to this file.</source>
         <translation>N&apos;ho ket an aotre da lenn ar restr-mañ.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10513"/>
+        <location filename="../src/texstudio.cpp" line="10538"/>
         <source>Open Compare File</source>
         <translation>Digeriñ ar c&apos;heñverier restroù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10516"/>
+        <location filename="../src/texstudio.cpp" line="10541"/>
         <source>Open Base File</source>
         <translation>Digeriñ diaz restr</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10597"/>
+        <location filename="../src/texstudio.cpp" line="10622"/>
         <source>SVN Conflict!</source>
         <translation>Dizemglev SVN!</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10598"/>
+        <location filename="../src/texstudio.cpp" line="10623"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -6748,14 +6775,14 @@ Pouezit war &quot;Nullañ&quot; evit chom hep ober tra pe dra.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10695"/>
-        <location filename="../src/texstudio.cpp" line="10786"/>
-        <location filename="../src/texstudio.cpp" line="10792"/>
+        <location filename="../src/texstudio.cpp" line="10720"/>
+        <location filename="../src/texstudio.cpp" line="10811"/>
+        <location filename="../src/texstudio.cpp" line="10817"/>
         <source>TeXstudio Emergency</source>
         <translation>Skoazell prim TeXstudio</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10699"/>
+        <location filename="../src/texstudio.cpp" line="10724"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -6767,7 +6794,7 @@ Pourvezit ar restr-mañ ma kasit un danevell draen, mar plij.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10702"/>
+        <location filename="../src/texstudio.cpp" line="10727"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -6776,18 +6803,18 @@ Pourvezit ar restr-mañ ma kasit un danevell draen, mar plij.
 %2 Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10703"/>
+        <location filename="../src/texstudio.cpp" line="10728"/>
         <source>Yes, try to recover</source>
         <translation>Ya, klask adsevel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10704"/>
-        <location filename="../src/texstudio.cpp" line="10709"/>
+        <location filename="../src/texstudio.cpp" line="10729"/>
+        <location filename="../src/texstudio.cpp" line="10734"/>
         <source>No, kill the program</source>
         <translation>Ket, lazhañ ar program</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10706"/>
+        <location filename="../src/texstudio.cpp" line="10731"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -6796,17 +6823,17 @@ Pourvezit ar restr-mañ ma kasit un danevell draen, mar plij.
 %1 Ha fellout a ra deoc&apos;h laoskel ar programm o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10707"/>
+        <location filename="../src/texstudio.cpp" line="10732"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Ya, paouez ar vouklenn ha klask adsevel</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10708"/>
+        <location filename="../src/texstudio.cpp" line="10733"/>
         <source>Yes, continue the loop</source>
         <translation>Ya, kenderc&apos;hel ar vouklenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10787"/>
+        <location filename="../src/texstudio.cpp" line="10812"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -6815,50 +6842,50 @@ An orjal a zo bet paouezet.
 Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;hall degas breinadur er roadennoù.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10792"/>
+        <location filename="../src/texstudio.cpp" line="10817"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Klasket em eus mervel, n&apos;eus c&apos;hoarvezet netra, avat.</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10824"/>
+        <location filename="../src/texstudio.cpp" line="10849"/>
         <source>System Report</source>
         <translation>Danevell sistem</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10962"/>
+        <location filename="../src/texstudio.cpp" line="10987"/>
         <source>LT Report</source>
         <translation>Danevell LT</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10988"/>
+        <location filename="../src/texstudio.cpp" line="11013"/>
         <source>process failed to start
 </source>
         <translation>chomet eo bout an argerzh
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="10991"/>
+        <location filename="../src/texstudio.cpp" line="11016"/>
         <source>process crashed
 </source>
         <translation>sac&apos;het eo an argerzh
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11001"/>
+        <location filename="../src/texstudio.cpp" line="11026"/>
         <source>Real-time checking is enabled.
 </source>
         <translation>Gwiriañ an amzer wirion a zo enaouet.
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11003"/>
+        <location filename="../src/texstudio.cpp" line="11028"/>
         <source>Real-time checking is disabled!!!
 </source>
         <translation>Gwiriañ an amzer-wirion a zo lazhet!!!
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11006"/>
+        <location filename="../src/texstudio.cpp" line="11031"/>
         <source>Grammar checking is enabled.
 
 </source>
@@ -6867,7 +6894,7 @@ Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11008"/>
+        <location filename="../src/texstudio.cpp" line="11033"/>
         <source>Grammar checking is disabled!!!
 
 </source>
@@ -6876,7 +6903,7 @@ Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11011"/>
+        <location filename="../src/texstudio.cpp" line="11036"/>
         <source>Tries to start automatically.
 
 </source>
@@ -6885,7 +6912,7 @@ Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11013"/>
+        <location filename="../src/texstudio.cpp" line="11038"/>
         <source>Autostart disabled.
 
 </source>
@@ -6894,198 +6921,198 @@ Ha fellout a ra deoc&apos;h laoskel TeXstudio o vont en-dro? An dra-se a c&apos;
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11018"/>
+        <location filename="../src/texstudio.cpp" line="11043"/>
         <source>LT current status: </source>
         <translation>LT: statud a-vremañ:</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11021"/>
+        <location filename="../src/texstudio.cpp" line="11046"/>
         <source>working</source>
         <translation>o labourat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11024"/>
+        <location filename="../src/texstudio.cpp" line="11049"/>
         <source>error</source>
         <translation>fazi</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11028"/>
+        <location filename="../src/texstudio.cpp" line="11053"/>
         <source>unknown</source>
         <translation>dizanv</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11031"/>
+        <location filename="../src/texstudio.cpp" line="11056"/>
         <source>LT-URL: %1
 </source>
         <translation>LT-URL: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11329"/>
+        <location filename="../src/texstudio.cpp" line="11360"/>
         <source>Error when communicating with LT: %1</source>
         <translation>Fazi en ur eskemm gant LT: %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11550"/>
-        <location filename="../src/texstudio.cpp" line="12340"/>
+        <location filename="../src/texstudio.cpp" line="11581"/>
+        <location filename="../src/texstudio.cpp" line="12371"/>
         <source>untitled</source>
         <translation>hep titl ebet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11560"/>
-        <location filename="../src/texstudio.cpp" line="12382"/>
+        <location filename="../src/texstudio.cpp" line="11591"/>
+        <location filename="../src/texstudio.cpp" line="12413"/>
         <source>TODO</source>
         <translation>D&apos;OBER</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11676"/>
-        <location filename="../src/texstudio.cpp" line="11684"/>
+        <location filename="../src/texstudio.cpp" line="11707"/>
         <location filename="../src/texstudio.cpp" line="11715"/>
+        <location filename="../src/texstudio.cpp" line="11746"/>
         <source>Document: </source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11768"/>
+        <location filename="../src/texstudio.cpp" line="11799"/>
         <source>Close document</source>
         <translation>Serriñ an teuliad</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11769"/>
+        <location filename="../src/texstudio.cpp" line="11800"/>
         <source>Set as explicit root document</source>
         <translation>Lakaat evel teuliad gwrizienn ezpleget</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11770"/>
+        <location filename="../src/texstudio.cpp" line="11801"/>
         <source>Open all related documents</source>
         <translation>Digeriñ an holl deuliadoù liammet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11771"/>
+        <location filename="../src/texstudio.cpp" line="11802"/>
         <source>Close all related documents</source>
         <translation>Serriñ an holl deuliadoù liammet</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11773"/>
+        <location filename="../src/texstudio.cpp" line="11804"/>
         <source>Remove explicit root document role</source>
         <translation>Dilemel rol ezpleget an teul gwrizienn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11775"/>
+        <location filename="../src/texstudio.cpp" line="11806"/>
         <source>Show all open documents in this tree</source>
         <translation>Diskouez an holl deuliadoù er wezenn-mañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11777"/>
+        <location filename="../src/texstudio.cpp" line="11808"/>
         <source>Show only current document in this tree</source>
         <translation>Diskouez ar restr a-vremañ hepken er wezenn-mañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11790"/>
+        <location filename="../src/texstudio.cpp" line="11821"/>
         <source>Copy filename</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11791"/>
+        <location filename="../src/texstudio.cpp" line="11822"/>
         <source>Copy file path</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11800"/>
+        <location filename="../src/texstudio.cpp" line="11831"/>
         <source>Insert</source>
         <translation>Enlakaat</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11801"/>
-        <location filename="../src/texstudio.cpp" line="11802"/>
+        <location filename="../src/texstudio.cpp" line="11832"/>
+        <location filename="../src/texstudio.cpp" line="11833"/>
         <source>Insert as %1</source>
         <translation>Enlakaat evel %1</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11804"/>
+        <location filename="../src/texstudio.cpp" line="11835"/>
         <source>Find Usages</source>
         <translation>Kavout implijoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11815"/>
+        <location filename="../src/texstudio.cpp" line="11846"/>
         <source>Insert Label</source>
         <translation>Enlakaat al Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11819"/>
+        <location filename="../src/texstudio.cpp" line="11850"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert <byte value="xd"/>ef to Label</comment>
         <translation>Enlakaat %1 d&apos;al Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11823"/>
+        <location filename="../src/texstudio.cpp" line="11854"/>
         <source>Create Label</source>
         <translation>Krouiñ Label</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11827"/>
+        <location filename="../src/texstudio.cpp" line="11858"/>
         <source>Cut</source>
         <translation>Troc&apos;hañ</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11829"/>
+        <location filename="../src/texstudio.cpp" line="11860"/>
         <source>Paste Before</source>
         <translation>Pegañ a-raok</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11830"/>
+        <location filename="../src/texstudio.cpp" line="11861"/>
         <source>Paste After</source>
         <translation>Pegañ goude</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11832"/>
+        <location filename="../src/texstudio.cpp" line="11863"/>
         <source>Indent Section</source>
         <translation>Endantadur ar gevrenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11833"/>
+        <location filename="../src/texstudio.cpp" line="11864"/>
         <source>Unindent Section</source>
         <translation>Di-endantadur ar gevrenn</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11784"/>
-        <location filename="../src/texstudio.cpp" line="11836"/>
+        <location filename="../src/texstudio.cpp" line="11815"/>
+        <location filename="../src/texstudio.cpp" line="11867"/>
         <source>Expand Subitems</source>
         <translation>Astenn an is-elfennoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="951"/>
+        <location filename="../src/texstudio.cpp" line="952"/>
         <source>C&amp;ut Line or Selection</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11785"/>
-        <location filename="../src/texstudio.cpp" line="11837"/>
+        <location filename="../src/texstudio.cpp" line="11816"/>
+        <location filename="../src/texstudio.cpp" line="11868"/>
         <source>Collapse Subitems</source>
         <translation>Bihanaat an is-elfennoù</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11849"/>
+        <location filename="../src/texstudio.cpp" line="11880"/>
         <source>Open Document</source>
         <translation>Digeriñ an teuliad</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="11850"/>
-        <location filename="../src/texstudio.cpp" line="11857"/>
+        <location filename="../src/texstudio.cpp" line="11881"/>
+        <location filename="../src/texstudio.cpp" line="11888"/>
         <source>Go to Definition</source>
         <translation>Mont d&apos;an termenadur</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12366"/>
+        <location filename="../src/texstudio.cpp" line="12397"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAFIEZH</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12374"/>
+        <location filename="../src/texstudio.cpp" line="12405"/>
         <source>MAGIC_COMMENTS</source>
         <translation>EVEZHIADENNOÙ_HUD</translation>
     </message>
     <message>
-        <location filename="../src/texstudio.cpp" line="12390"/>
+        <location filename="../src/texstudio.cpp" line="12421"/>
         <source>LABELS</source>
         <translation>LABELIOÙ</translation>
     </message>
