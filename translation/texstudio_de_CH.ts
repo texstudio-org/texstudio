@@ -3825,13 +3825,13 @@ Fehler: </translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="34"/>
-        <location filename="../src/searchresultwidget.cpp" line="171"/>
+        <location filename="../src/searchresultwidget.cpp" line="174"/>
         <source>Replace all</source>
         <translation>Alles ersetze</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="35"/>
-        <location filename="../src/searchresultwidget.cpp" line="169"/>
+        <location filename="../src/searchresultwidget.cpp" line="172"/>
         <source>Replace by:</source>
         <translation>Ersetze durch:</translation>
     </message>
@@ -3846,27 +3846,32 @@ Fehler: </translation>
         <translation>Bib Dateien</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="71"/>
+        <location filename="../src/searchresultwidget.cpp" line="41"/>
+        <source>All files</source>
+        <translation>Alli Dateie</translation>
+    </message>
+    <message>
+        <location filename="../src/searchresultwidget.cpp" line="74"/>
         <source>Expand All</source>
         <translation>Alles usklappe</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="74"/>
+        <location filename="../src/searchresultwidget.cpp" line="77"/>
         <source>Collapse All</source>
         <translation>Alls zämeklappe</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="77"/>
+        <location filename="../src/searchresultwidget.cpp" line="80"/>
         <source>Clear</source>
         <translation>Leeren</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="176"/>
+        <location filename="../src/searchresultwidget.cpp" line="179"/>
         <source>Search in:</source>
         <translation>Suchen in:</translation>
     </message>
     <message>
-        <location filename="../src/searchresultwidget.cpp" line="212"/>
+        <location filename="../src/searchresultwidget.cpp" line="215"/>
         <source>Select folder where to search</source>
         <translation>Wähle Suchordner</translation>
     </message>
