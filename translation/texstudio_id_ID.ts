@@ -691,7 +691,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
-        <translation type="unfinished"/>
+        <translation>Pintasan &lt;%1&gt; telah diasosiasikan dengan perintah:</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="249"/>
@@ -746,7 +746,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="500"/>
         <source>Diff</source>
-        <translation type="unfinished"/>
+        <translation>Diff</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="501"/>
@@ -822,7 +822,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="539"/>
         <source>Adv. Editor</source>
-        <translation type="unfinished"/>
+        <translation>Editor lanjutan</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="540"/>
@@ -852,12 +852,12 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="733"/>
         <source>Select the grammar word lists dir</source>
-        <translation type="unfinished"/>
+        <translation>Pilih tata bahasa word lists dir</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="738"/>
         <source>Select the LanguageTool jar</source>
-        <translation type="unfinished"/>
+        <translation>Pilih LanguageTool jar</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="743"/>
@@ -927,7 +927,7 @@ to set the key anyway?</source>
     <message>
         <location filename="../src/configdialog.cpp" line="1177"/>
         <source>Import Dictionary</source>
-        <translation type="unfinished"/>
+        <translation>Impor Dictionary</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1177"/>
@@ -939,19 +939,23 @@ to set the key anyway?</source>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
-        <translation type="unfinished"/>
+        <translation>Berkas dictionary telah diimpor ke
+%1.
+Namun demikian, path tidak terkandung dalam daftar path  dictionary. Apakah anda ingin menambahkannya?</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="1286"/>
         <source>You have enabled the advanced options. This allows one to
 configure TXS in great detail. Disable the advanced
 options again to only view the most common settings.</source>
-        <translation type="unfinished"/>
+        <translation>Anda telah mengaktifkan opsi lanjutan. Hal ini memungkinkan seseorang untuk
+mengkonfigurasi TXS dengan sangat detil. Nonaktifkan opsi lanjutan
+kembali untuk hanya menampilkan pengaturan umum.</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1513"/>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished"/>
+        <translation>Pemetaan kunci dasar</translation>
     </message>
 </context>
 <context>
@@ -1004,12 +1008,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="20"/>
         <source>International &amp;Accents</source>
-        <translation type="unfinished"/>
+        <translation>Internasionalisasi &amp;Aksen</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="23"/>
         <source>Cross References</source>
-        <translation type="unfinished"/>
+        <translation>Referensi silang</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="24"/>
@@ -1044,7 +1048,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="33"/>
         <source>AMS packages</source>
-        <translation type="unfinished"/>
+        <translation>Paket AMS</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="21"/>
@@ -1064,12 +1068,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="26"/>
         <source>Math &amp;Equations</source>
-        <translation type="unfinished"/>
+        <translation>Matematika &amp;Persamaan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="28"/>
         <source>Math &amp;Definitions</source>
-        <translation type="unfinished"/>
+        <translation>Matematika &amp;Definisi</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="30"/>
@@ -1154,7 +1158,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="49"/>
         <source>part*</source>
-        <translation type="unfinished"/>
+        <translation>bagian*</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="50"/>
@@ -1164,17 +1168,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="51"/>
         <source>section*</source>
-        <translation type="unfinished"/>
+        <translation>seksi*</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="52"/>
         <source>subsection*</source>
-        <translation type="unfinished"/>
+        <translation>subseksi*</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="53"/>
         <source>subsubsection*</source>
-        <translation type="unfinished"/>
+        <translation>subsubseksi*</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="54"/>
@@ -1690,7 +1694,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="144"/>
         <source>label</source>
-        <translation type="unfinished"/>
+        <translation>label</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="146"/>
@@ -1962,7 +1966,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="220"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished"/>
+        <translation>Sans Serif - \mathsf{}</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="221"/>
@@ -2184,7 +2188,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/configmanager.cpp" line="1988"/>
         <source>Clear file list</source>
-        <translation type="unfinished"/>
+        <translation>Bersihkan daftar berkas</translation>
     </message>
     <message>
         <location filename="../src/configmanager.cpp" line="1989"/>
@@ -2252,17 +2256,17 @@ Do you want to remove them?</source>
     <message>
         <location filename="../src/editors.cpp" line="389"/>
         <source>Move to other view</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan ke tampilan lain</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="394"/>
         <source>Move all others to other view</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan semua yang lain ke tampilan lain</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="399"/>
         <source>Move all to other view</source>
-        <translation type="unfinished"/>
+        <translation>Pindahkan semua ke tampilan lain</translation>
     </message>
     <message>
         <location filename="../src/editors.cpp" line="405"/>
@@ -2334,7 +2338,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="../src/grammarcheck.cpp" line="334"/>
         <source>Word repetition. Distance %1</source>
-        <translation type="unfinished"/>
+        <translation>Pengulangan kata. Jarak %1</translation>
     </message>
     <message>
         <location filename="../src/grammarcheck.cpp" line="336"/>
@@ -2479,7 +2483,8 @@ The wizard does not support command </source>
         <location filename="../src/latexcompleter.cpp" line="2065"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation type="unfinished"/>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nama berkas: %1&lt;/b&gt;
+</translation>
     </message>
 </context>
 <context>
@@ -2520,7 +2525,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="397"/>
         <source>Save Image As...</source>
-        <translation type="unfinished"/>
+        <translation>Simpan gambar sebagai...</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="456"/>
@@ -2615,7 +2620,8 @@ The wizard does not support command </source>
         <location filename="../src/latexeditorview.cpp" line="2758"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
-        <translation type="unfinished"/>
+        <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nama berkas: %1&lt;/b&gt;
+</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/latexeditorview.cpp" line="2698"/>
@@ -2690,7 +2696,7 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3322"/>
         <source>Collapse All</source>
-        <translation type="unfinished"/>
+        <translation>Ciutkan semua</translation>
     </message>
     <message>
         <location filename="../src/latexeditorview.cpp" line="3326"/>
@@ -2914,12 +2920,12 @@ The wizard does not support command </source>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="200"/>
         <source>&lt;loading...&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;memuat...&gt;</translation>
     </message>
     <message>
         <location filename="../src/macrobrowserui.cpp" line="124"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"/>
+        <translation>Repositori tidak ditemukan. Jaringan error:%1</translation>
     </message>
 </context>
 <context>
@@ -2979,7 +2985,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/toolwidgets.cpp" line="313"/>
         <source>Terminal</source>
-        <translation type="unfinished"/>
+        <translation>Terminal</translation>
     </message>
     <message>
         <location filename="../src/toolwidgets.cpp" line="322"/>
@@ -3008,7 +3014,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="146"/>
         <source>Add page range</source>
-        <translation type="unfinished"/>
+        <translation>Tambahkan rentang halaman</translation>
     </message>
     <message>
         <location filename="../src/pdfsplittool.cpp" line="249"/>
@@ -3102,12 +3108,12 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/utilsUI.cpp" line="53"/>
         <source>Remember choice ?</source>
-        <translation type="unfinished"/>
+        <translation>Ingat pilihan ?</translation>
     </message>
     <message>
         <location filename="../src/utilsUI.cpp" line="167"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>tidak ada</translation>
     </message>
 </context>
 <context>
@@ -3125,42 +3131,42 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="248"/>
         <source>line:warning</source>
-        <translation type="unfinished"/>
+        <translation>garis: peringatan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="249"/>
         <source>line:badbox</source>
-        <translation type="unfinished"/>
+        <translation>garis: badbox</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="250"/>
         <source>line:bookmark</source>
-        <translation type="unfinished"/>
+        <translation>baris:penanda</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="251"/>
         <source>line:bookmark0</source>
-        <translation type="unfinished"/>
+        <translation>baris:penanda0</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="252"/>
         <source>line:bookmark1</source>
-        <translation type="unfinished"/>
+        <translation>baris:penanda1</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="253"/>
         <source>line:bookmark2</source>
-        <translation type="unfinished"/>
+        <translation>garis:penanda2</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="254"/>
         <source>line:bookmark3</source>
-        <translation type="unfinished"/>
+        <translation>garis:penanda3</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="255"/>
         <source>line:bookmark4</source>
-        <translation type="unfinished"/>
+        <translation>garis:penanda4</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="256"/>
@@ -3170,37 +3176,37 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="257"/>
         <source>line:bookmark6</source>
-        <translation type="unfinished"/>
+        <translation>baris:penanda6</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="258"/>
         <source>line:bookmark7</source>
-        <translation type="unfinished"/>
+        <translation>baris:penanda7</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="259"/>
         <source>line:bookmark8</source>
-        <translation type="unfinished"/>
+        <translation>garis:penanda8</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="260"/>
         <source>line:bookmark9</source>
-        <translation type="unfinished"/>
+        <translation>garis:penanda9</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="261"/>
         <source>magicComment</source>
-        <translation type="unfinished"/>
+        <translation>magicComment</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="262"/>
         <source>commentTodo</source>
-        <translation type="unfinished"/>
+        <translation>komentarUntukdilaksanakan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="263"/>
         <source>comment</source>
-        <translation type="unfinished"/>
+        <translation>komentar</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="264"/>
@@ -3255,7 +3261,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="274"/>
         <source>picture</source>
-        <translation type="unfinished"/>
+        <translation>gambar</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="275"/>
@@ -3275,27 +3281,27 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="278"/>
         <source>search</source>
-        <translation type="unfinished"/>
+        <translation>cari</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="279"/>
         <source>numbers</source>
-        <translation type="unfinished"/>
+        <translation>bilangan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="280"/>
         <source>math-delimiter</source>
-        <translation type="unfinished"/>
+        <translation>pemisah-matematika</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="281"/>
         <source>math-text</source>
-        <translation type="unfinished"/>
+        <translation>teks-matematika</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="282"/>
         <source>text</source>
-        <translation type="unfinished"/>
+        <translation>teks</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="283"/>
@@ -3360,7 +3366,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="295"/>
         <source>environment</source>
-        <translation type="unfinished"/>
+        <translation>lingkungan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="296"/>
@@ -3405,17 +3411,17 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="304"/>
         <source>current</source>
-        <translation type="unfinished"/>
+        <translation>kini</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="305"/>
         <source>selection</source>
-        <translation type="unfinished"/>
+        <translation>pemilihan</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="306"/>
         <source>replacement</source>
-        <translation type="unfinished"/>
+        <translation>penggantian</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="307"/>
@@ -3570,7 +3576,7 @@ Apakah anda ingin menimpanya?</translation>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="337"/>
         <source>normal</source>
-        <translation type="unfinished"/>
+        <translation>normal</translation>
     </message>
 </context>
 <context>
@@ -3579,18 +3585,18 @@ Apakah anda ingin menimpanya?</translation>
         <location filename="../src/codesnippet.cpp" line="255"/>
         <location filename="../src/codesnippet.cpp" line="257"/>
         <source>*environment-name*</source>
-        <translation type="unfinished"/>
+        <translation>*nama-lingkungan*</translation>
     </message>
     <message>
         <location filename="../src/codesnippet.cpp" line="256"/>
         <location filename="../src/codesnippet.cpp" line="282"/>
         <source>content...</source>
-        <translation type="unfinished"/>
+        <translation>konten...</translation>
     </message>
     <message>
         <location filename="../src/codesnippet.cpp" line="280"/>
         <source>label</source>
-        <translation type="unfinished"/>
+        <translation>label</translation>
     </message>
     <message>
         <location filename="../src/codesnippet.cpp" line="280"/>
@@ -3687,12 +3693,12 @@ Error: </source>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="568"/>
         <source>Hint</source>
-        <translation type="unfinished"/>
+        <translation>Petunjuk</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="568"/>
         <source>Package %1 is already defined.</source>
-        <translation type="unfinished"/>
+        <translation>Paket %1 telah terdefinisi.</translation>
     </message>
     <message>
         <location filename="../src/quickdocumentdialog.cpp" line="581"/>
@@ -3705,7 +3711,7 @@ Error: </source>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="50"/>
         <source>No data given</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada data yang diberikan.</translation>
     </message>
     <message>
         <location filename="../src/randomtextgenerator.cpp" line="53"/>
@@ -3788,7 +3794,7 @@ Error: </source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="21"/>
         <source>Files on disk</source>
-        <translation type="unfinished"/>
+        <translation>Berkas pada disk</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="30"/>
@@ -3810,12 +3816,12 @@ Error: </source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="39"/>
         <source>TeX files</source>
-        <translation type="unfinished"/>
+        <translation>File Tex</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="40"/>
         <source>Bib files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas Bib</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="41"/>
@@ -3830,7 +3836,7 @@ Error: </source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="77"/>
         <source>Collapse All</source>
-        <translation type="unfinished"/>
+        <translation>Ciutkan semua</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="80"/>
@@ -3881,12 +3887,12 @@ Error: </source>
     <message>
         <location filename="../src/configdialog.cpp" line="278"/>
         <source>delete row</source>
-        <translation type="unfinished"/>
+        <translation>hapus baris</translation>
     </message>
     <message>
         <location filename="../src/configdialog.cpp" line="284"/>
         <source>add row</source>
-        <translation type="unfinished"/>
+        <translation>tambah baris</translation>
     </message>
 </context>
 <context>
@@ -3980,32 +3986,32 @@ Error: </source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="243"/>
         <source>tabular command outside tabular env</source>
-        <translation type="unfinished"/>
+        <translation>perintah tabular di luar lingkungan tabular</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="244"/>
         <source>math command outside math env</source>
-        <translation type="unfinished"/>
+        <translation>perintah math diluar lingkungan math</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="245"/>
         <source>tabbing command outside tabbing env</source>
-        <translation type="unfinished"/>
+        <translation>perintah tabbing diluar lingkungan tabbing</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="246"/>
         <source>more cols in tabular than specified</source>
-        <translation type="unfinished"/>
+        <translation>lebih banyak cols pada tabular daripada yang dispesifikasi</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="247"/>
         <source>cols in tabular missing</source>
-        <translation type="unfinished"/>
+        <translation>cols pada tabular hilang</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="248"/>
         <source>\\ missing</source>
-        <translation type="unfinished"/>
+        <translation>\\ hilang</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="249"/>
@@ -4035,7 +4041,7 @@ Error: </source>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="254"/>
         <source>spelling</source>
-        <translation type="unfinished"/>
+        <translation>ejaan</translation>
     </message>
     <message>
         <location filename="../src/syntaxcheck.cpp" line="257"/>
@@ -4253,7 +4259,7 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="47"/>
         <source>No Preview</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ada pratampilan</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="99"/>
@@ -4263,43 +4269,43 @@ failed.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="136"/>
         <source>Online Repository</source>
-        <translation type="unfinished"/>
+        <translation>Repositori daring</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="140"/>
         <source>Online available template files</source>
-        <translation type="unfinished"/>
+        <translation>Templat berkas daring tersedia</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="145"/>
         <location filename="../src/templateselector.cpp" line="336"/>
         <source>&lt;loading...&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;memuat...&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="476"/>
         <source>Select Target Folder</source>
-        <translation type="unfinished"/>
+        <translation>Pilih folder target</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="506"/>
         <source>&lt;No Name&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;No Name&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="507"/>
         <source>&lt;No Description&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;No Description&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="508"/>
         <source>&lt;Unknown Author&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Unknown Author&gt;</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="509"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Tanggal</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="510"/>
@@ -4348,28 +4354,28 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/templateselector.cpp" line="612"/>
         <source>Please Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Silahkan konfirmasi</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="612"/>
         <source>Are you sure to delete the following template?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah anda yakin untuk menghapus templat ini?</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="619"/>
         <location filename="../src/templateselector.cpp" line="624"/>
         <source>You do not have permission to remove this file.</source>
-        <translation type="unfinished"/>
+        <translation>Anda tidak memiliki izin untuk menghapus file ini.</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="644"/>
         <source>Could not open location:</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat membuka lokasi:</translation>
     </message>
     <message>
         <location filename="../src/templateselector.cpp" line="655"/>
         <source>Repository not found. Network error:%1</source>
-        <translation type="unfinished"/>
+        <translation>Repositori tidak ditemukan. Jaringan error:%1</translation>
     </message>
 </context>
 <context>
@@ -4385,7 +4391,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="338"/>
         <source>Custom</source>
-        <translation type="unfinished"/>
+        <translation>Kustom</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="339"/>
@@ -4405,33 +4411,33 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="342"/>
         <source>Math</source>
-        <translation type="unfinished"/>
+        <translation>Matematika</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="343"/>
         <source>Format</source>
-        <translation type="unfinished"/>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="344"/>
         <source>Table</source>
-        <translation type="unfinished"/>
+        <translation>Tabel</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="345"/>
         <source>Diff</source>
-        <translation type="unfinished"/>
+        <translation>Diff</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="346"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Tinjau</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="347"/>
         <location filename="../src/texstudio.cpp" line="284"/>
         <source>Central</source>
-        <translation type="unfinished"/>
+        <translation>Pusat</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="348"/>
@@ -4449,7 +4455,7 @@ template to edit individual files.</source>
         <location filename="../src/additionaltranslations.cpp" line="350"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>Biner</translation>
     </message>
     <message>
         <location filename="../src/additionaltranslations.cpp" line="351"/>
@@ -4520,48 +4526,48 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/configmanager.cpp" line="2145"/>
         <source>Edit &amp;Macros...</source>
-        <translation type="unfinished"/>
+        <translation>Ubah &amp;Makro...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="363"/>
         <location filename="../src/texstudio.cpp" line="6271"/>
         <source>Ready</source>
-        <translation type="unfinished"/>
+        <translation>Siap</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="437"/>
         <source>TeX files</source>
-        <translation type="unfinished"/>
+        <translation>File Tex</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="438"/>
         <source>LilyPond files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas LilyPond</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="439"/>
         <source>Plaintext files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas Plaintext</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="440"/>
         <source>Pweave files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas Pweave</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="441"/>
         <source>Sweave files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas Sweave</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="442"/>
         <source>Asymptote files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas Asymptote</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="443"/>
         <source>PDF files</source>
-        <translation type="unfinished"/>
+        <translation>Berkas PDF</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="444"/>
@@ -4573,12 +4579,12 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="646"/>
         <source>Macros</source>
-        <translation type="unfinished"/>
+        <translation>Makro</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="665"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Panel sisi</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="684"/>
@@ -4588,52 +4594,52 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="703"/>
         <source>Bookmarks</source>
-        <translation type="unfinished"/>
+        <translation>Penanda</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="713"/>
         <source>Symbols</source>
-        <translation type="unfinished"/>
+        <translation>Simbol</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="738"/>
         <source>Left/Right Brackets</source>
-        <translation type="unfinished"/>
+        <translation>Kurung kanan/kiri</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="740"/>
         <source>MetaPost Commands</source>
-        <translation type="unfinished"/>
+        <translation>Perintah MetaPost</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="739"/>
         <source>PSTricks Commands</source>
-        <translation type="unfinished"/>
+        <translation>Perintah PSTricks</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="695"/>
         <source>TOC</source>
-        <translation type="unfinished"/>
+        <translation>TOC</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="741"/>
         <source>TikZ Commands</source>
-        <translation type="unfinished"/>
+        <translation>Perintah TikZ</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="742"/>
         <source>Asymptote Commands</source>
-        <translation type="unfinished"/>
+        <translation>Perintah Asymptote</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="743"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Perintah Beamer</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="744"/>
         <source>XY Commands</source>
-        <translation type="unfinished"/>
+        <translation>Perintah XY</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="865"/>
@@ -4643,7 +4649,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="867"/>
         <source>&amp;New</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Baru</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="868"/>
@@ -4658,7 +4664,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="871"/>
         <source>Open &amp;Recent</source>
-        <translation type="unfinished"/>
+        <translation>Buka &amp;Baru Saja</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="873"/>
@@ -4688,7 +4694,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="886"/>
         <source>Save &amp;As...</source>
-        <translation type="unfinished"/>
+        <translation>Simpan &amp;Sebagai...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="887"/>
@@ -4763,7 +4769,7 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="907"/>
         <source>Lock &amp;PDF</source>
-        <translation type="unfinished"/>
+        <translation>Kunci &amp;PDF</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="908"/>
@@ -5030,32 +5036,32 @@ template to edit individual files.</source>
     <message>
         <location filename="../src/texstudio.cpp" line="979"/>
         <source>&amp;Select all matches...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pilih semua yang sesuai...</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="981"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ganti</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="982"/>
         <source>Replace Next</source>
-        <translation type="unfinished"/>
+        <translation>Ganti Selanjutnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="983"/>
         <source>Replace Prev</source>
-        <translation type="unfinished"/>
+        <translation>Ganti Sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="984"/>
         <source>Replace &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>Ganti &amp;Semua</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="987"/>
         <source>Go to</source>
-        <translation type="unfinished"/>
+        <translation>Pergi ke</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="989"/>

@@ -3821,7 +3821,7 @@ Hata:</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="21"/>
         <source>Files on disk</source>
-        <translation type="unfinished"/>
+        <translation>Disk üzerindeki dosyalar</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="30"/>
@@ -3848,7 +3848,7 @@ Hata:</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="40"/>
         <source>Bib files</source>
-        <translation type="unfinished"/>
+        <translation>Bib dosyaları</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="41"/>
@@ -3873,12 +3873,12 @@ Hata:</translation>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="179"/>
         <source>Search in:</source>
-        <translation type="unfinished"/>
+        <translation>Şurada ara:</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="215"/>
         <source>Select folder where to search</source>
-        <translation type="unfinished"/>
+        <translation>Aramanın yapılacağı klasörü seçin</translation>
     </message>
 </context>
 <context>
@@ -4909,7 +4909,7 @@ ve kalıbı ayıklayın.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="730"/>
         <source>Insert filename</source>
-        <translation type="unfinished"/>
+        <translation>Dosya adı eklensin</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="735"/>
@@ -5901,7 +5901,7 @@ ve kalıbı ayıklayın.</translation>
     <message>
         <location filename="../src/texstudio.cpp" line="1347"/>
         <source>Reset Sidepanel/docks</source>
-        <translation type="unfinished"/>
+        <translation>Yan panoları/çubukları sıfırla</translation>
     </message>
     <message>
         <location filename="../src/texstudio.cpp" line="1349"/>
