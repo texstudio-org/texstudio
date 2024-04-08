@@ -1,5 +1,5 @@
 # bookcover class
-# Matthew Bertucci 12/30/2021 for v3.3
+# Matthew Bertucci 2024/04/08 for v3.6
 
 #include:kvoptions
 #include:geometry
@@ -10,6 +10,7 @@
 #include:fgruler
 
 #keyvals:\documentclass/bookcover#c
+cover=#default,a0,a1,a2,a3,a4,a5,a6,b0,b1,b2,b3,b4,b5,b6,c0,c1,c2,c3,c4,c5,c6,b0j,b1j,b2j,b3j,b4j,b5j,b6j,ansia,ansib,ansic,ansid,ansie,letter,legal,executive
 coverheight=##L
 coverwidth=##L
 spinewidth=##L
@@ -158,6 +159,7 @@ reversemarginpar#true,false
 
 \begin{bookcoverdescription}
 \end{bookcoverdescription}
+\showbookcoverparameters
 
 #ifOption:trimmed
 \bookcovertrimmedpart{trimmed part}
