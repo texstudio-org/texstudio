@@ -26,7 +26,7 @@ protected:
     QTreeWidgetItem *topItem;
     QTextBrowser *textBrowser;
     QPushButton *btSend;
-    QLineEdit *leEntry;
+    QTextEdit *leEntry;
 
     QJsonArray ja_messages;
 

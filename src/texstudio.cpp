@@ -5420,6 +5420,11 @@ void Texstudio::quickMath()
 
 void Texstudio::aiChat()
 {
+    if(configManager.ai_apikey.isEmpty()){
+        // message box for now
+        QMessageBox::warning(this, tr("AI Chat"), tr("Please set the API key in the settings."));
+        return;
+    }
     AIChatAssistant *aiChatDlg = new AIChatAssistant(this);
     aiChatDlg->exec();
 }

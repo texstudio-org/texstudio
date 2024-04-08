@@ -17,17 +17,25 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     hlBrowser->addWidget(treeWidget);
     hlBrowser->addWidget(textBrowser);
 
-    leEntry=new QLineEdit();
+    leEntry=new QTextEdit();
     btSend=new QPushButton(tr("Send"));
     connect(btSend,&QPushButton::clicked,this,&AIChatAssistant::slotSend);
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
-    hlayout->addWidget(btSend);
+    auto *vl=new QVBoxLayout();
+    vl->addWidget(btSend,0,Qt::AlignTop);
+    hlayout->addLayout(vl);
+    auto *wdgt=new QWidget();
+    wdgt->setLayout(hlayout);
 
-    auto *layout=new QVBoxLayout();
-    layout->addWidget(hlBrowser);
-    layout->addLayout(hlayout);
-    setLayout(layout);
+    auto *splt=new QSplitter();
+    splt->setOrientation(Qt::Vertical);
+    splt->addWidget(hlBrowser);
+    splt->addWidget(wdgt);
+
+    auto *ly=new QVBoxLayout();
+    ly->addWidget(splt);
+    setLayout(ly);
     setWindowTitle(tr("AI chat assistant"));
     config=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
     networkManager = new QNetworkAccessManager();
@@ -45,7 +53,7 @@ AIChatAssistant::~AIChatAssistant()
  */
 void AIChatAssistant::slotSend()
 {
-    QString question=leEntry->text();
+    QString question=leEntry->toPlainText();
     if(question.isEmpty()){
         return;
     }
@@ -74,7 +82,8 @@ void AIChatAssistant::slotSend()
     ja_message["role"]="user";
     ja_message["content"]=question;
 
-    // remember previous messages
+    // for now single questions only
+    ja_messages=QJsonArray();
     ja_messages.append(ja_message);
 
     dd["messages"]=ja_messages;
@@ -122,7 +131,7 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
             QJsonObject ja_choice=arr[0].toObject();
             QJsonObject ja_message=ja_choice["message"].toObject();
             QString response=ja_message["content"].toString();
-            textBrowser->setText(response);
+            textBrowser->setMarkdown(response);
         }
         nreply->deleteLater();
     }
