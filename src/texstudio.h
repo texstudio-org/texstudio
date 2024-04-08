@@ -14,6 +14,7 @@
 #ifndef Header_TexStudio
 #define Header_TexStudio
 
+#include "aichatassistant.h"
 #include "mostQtHeaders.h"
 
 #include "bibtexparser.h"
@@ -679,6 +680,8 @@ protected:
 	QDialog *svndlg;
 	UserMenuDialog *userMacroDialog;
 	QComboBox *cmbLog;
+
+    AIChatAssistant *aiChatDlg = nullptr;
 
 	QStringList m_columnCutBuffer;
 

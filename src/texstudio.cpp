@@ -69,7 +69,6 @@
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
 #include "execprogram.h"
-#include "aichatassistant.h"
 
 #include <QScreen>
 
@@ -5425,7 +5424,10 @@ void Texstudio::aiChat()
         QMessageBox::warning(this, tr("AI Chat"), tr("Please set the API key in the settings."));
         return;
     }
-    AIChatAssistant *aiChatDlg = new AIChatAssistant(this);
+    if(aiChatDlg==nullptr){
+        aiChatDlg = new AIChatAssistant(this);
+        connect(aiChatDlg,&AIChatAssistant::insertText,this,&Texstudio::insertText);
+    }
     aiChatDlg->exec();
 }
 

@@ -20,10 +20,13 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     leEntry=new QTextEdit();
     btSend=new QPushButton(tr("Send"));
     connect(btSend,&QPushButton::clicked,this,&AIChatAssistant::slotSend);
+    btInsert=new QPushButton(tr("Insert"));
+    connect(btInsert,&QPushButton::clicked,this,&AIChatAssistant::slotInsert);
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
     auto *vl=new QVBoxLayout();
     vl->addWidget(btSend,0,Qt::AlignTop);
+    vl->addWidget(btInsert,0,Qt::AlignTop);
     hlayout->addLayout(vl);
     auto *wdgt=new QWidget();
     wdgt->setLayout(hlayout);
@@ -61,6 +64,9 @@ void AIChatAssistant::slotSend()
         networkManager = new QNetworkAccessManager();
         if(!networkManager) return;
     }
+    // clear previous response
+    m_response.clear();
+    textBrowser->clear(); // for now, show contain history
     // add question to treeWidget
     QTreeWidgetItem *item=new QTreeWidgetItem(topItem);
     item->setText(0,question);
@@ -106,6 +112,45 @@ void AIChatAssistant::slotSend()
 
 }
 /*!
+ * \brief insert response
+ * Cut response to meanigful part and insert it to the editor
+ */
+void AIChatAssistant::slotInsert()
+{
+    if(m_response.isEmpty()) return;
+    if(m_response.contains("```")){
+        QStringList parts=m_response.split("```");
+        if(parts.size()>1){
+            parts=parts[1].split("\n");
+            if(parts.size()>1 && parts[0]=="latex"){
+                // insert latex code
+                // only insert part after begin/end document as AI tends to give complete example documents
+                parts.removeFirst();
+                int start=parts.indexOf("\\begin{document}");
+                int end=parts.indexOf("\\end{document}");
+                if(start>=0 && end>=0){
+                    // look for usepackage
+                    auto usepackage=parts.filter("\\usepackage");
+                    qDebug()<<"Usepackage:"<<usepackage; // insert usepackage
+                    parts=parts.mid(start+1,end-start-1);
+                    // remove empty lines at beginning and end
+                    while(parts.size()>0 && parts.first().isEmpty()){
+                        parts.removeFirst();
+                    }
+                    while(parts.size()>0 && parts.last().isEmpty()){
+                        parts.removeLast();
+                    }
+                }
+                QString text=parts.join("\n");
+                emit insertText(text);
+            }
+        }
+    }else{
+        // insert whole text
+        emit insertText(m_response);
+    }
+}
+/*!
  * \brief handle communication error with ai provider
  */
 void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
@@ -130,8 +175,8 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
         if(arr.size()>0){
             QJsonObject ja_choice=arr[0].toObject();
             QJsonObject ja_message=ja_choice["message"].toObject();
-            QString response=ja_message["content"].toString();
-            textBrowser->setMarkdown(response);
+            m_response=ja_message["content"].toString();
+            textBrowser->setMarkdown(m_response);
         }
         nreply->deleteLater();
     }

@@ -15,9 +15,11 @@ public:
     ~AIChatAssistant() override;
 
 signals:
+    void insertText(QString text);
 
 private slots:
     void slotSend();
+    void slotInsert();
     void onRequestError(QNetworkReply::NetworkError code);
     void onRequestCompleted(QNetworkReply *nreply);
 
@@ -26,7 +28,10 @@ protected:
     QTreeWidgetItem *topItem;
     QTextBrowser *textBrowser;
     QPushButton *btSend;
+    QPushButton *btInsert;
     QTextEdit *leEntry;
+
+    QString m_response;
 
     QJsonArray ja_messages;
 
