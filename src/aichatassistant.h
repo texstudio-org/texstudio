@@ -22,6 +22,7 @@ signals:
 private slots:
     void slotSend();
     void slotInsert();
+    void slotOptions();
     void onRequestError(QNetworkReply::NetworkError code);
     void onRequestCompleted(QNetworkReply *nreply);
 
@@ -31,6 +32,7 @@ protected:
     QTextBrowser *textBrowser;
     QPushButton *btSend;
     QPushButton *btInsert;
+    QPushButton *btOptions;
     QTextEdit *leEntry;
 
     QString m_response;

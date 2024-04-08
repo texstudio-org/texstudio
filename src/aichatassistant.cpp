@@ -22,11 +22,14 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     connect(btSend,&QPushButton::clicked,this,&AIChatAssistant::slotSend);
     btInsert=new QPushButton(tr("Insert"));
     connect(btInsert,&QPushButton::clicked,this,&AIChatAssistant::slotInsert);
+    btOptions=new QPushButton(tr("Options"));
+    connect(btOptions,&QPushButton::clicked,this,&AIChatAssistant::slotOptions);
     auto *hlayout=new QHBoxLayout();
     hlayout->addWidget(leEntry);
     auto *vl=new QVBoxLayout();
     vl->addWidget(btSend,0,Qt::AlignTop);
     vl->addWidget(btInsert,0,Qt::AlignTop);
+    vl->addWidget(btOptions,0,Qt::AlignBottom);
     hlayout->addLayout(vl);
     auto *wdgt=new QWidget();
     wdgt->setLayout(hlayout);
@@ -168,6 +171,38 @@ void AIChatAssistant::slotInsert()
         // insert whole text
         emit insertText(m_response);
     }
+}
+/*!
+ * \brief show a dialog
+ * Ask for textedit with systemprompt
+ * Slider with temperature
+ */
+void AIChatAssistant::slotOptions()
+{
+    QDialog dlg;
+    auto *ly=new QVBoxLayout();
+    auto *leSystemPrompt=new QTextEdit();
+    leSystemPrompt->setText(config->ai_systemPrompt);
+    ly->addWidget(leSystemPrompt);
+    auto *slTemp=new QSlider(Qt::Horizontal);
+    slTemp->setMinimum(0);
+    slTemp->setMaximum(1.0);
+    slTemp->setValue(config->ai_temperature);
+    // add label in front of slider
+    auto *lblTemp=new QLabel(tr("Temperature"));
+    auto *hl=new QHBoxLayout();
+    hl->addWidget(lblTemp);
+    hl->addWidget(slTemp);
+    ly->addLayout(hl);
+    auto *btOk=new QPushButton(tr("OK"));
+    connect(btOk,&QPushButton::clicked,[&](){
+        config->ai_systemPrompt=leSystemPrompt->toPlainText();
+        config->ai_temperature=slTemp->value();
+        dlg.close();
+    });
+    ly->addWidget(btOk);
+    dlg.setLayout(ly);
+    dlg.exec();
 }
 /*!
  * \brief handle communication error with ai provider
