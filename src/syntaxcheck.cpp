@@ -613,6 +613,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                             continue;
                         }
                     }
+                    end-=tk.length;
                     --i;
                     break; // unwanted element, stop joing for latex3 command
                 }
