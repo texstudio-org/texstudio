@@ -176,7 +176,12 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
             QJsonObject ja_choice=arr[0].toObject();
             QJsonObject ja_message=ja_choice["message"].toObject();
             m_response=ja_message["content"].toString();
+#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
             textBrowser->setMarkdown(m_response);
+#else
+            textBrowser->setText(m_response); // no markdown interpretation, just keep old qt version running
+#endif
+
         }
         nreply->deleteLater();
     }
