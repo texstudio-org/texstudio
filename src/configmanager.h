@@ -215,6 +215,7 @@ public:
     QString ai_apikey;
     int ai_provider;
     QString ai_preferredModel;
+    QString ai_systemPrompt;
 
 	//debug
 #ifndef QT_NO_DEBUG

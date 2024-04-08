@@ -697,6 +697,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/Provider",&ai_provider,0,&pseudoDialog->cbAIProvider);
     registerOption("AIchat/APIKEY",&ai_apikey,"",&pseudoDialog->leAIAPIKey);
     registerOption("AIchat/PreferredModel",&ai_preferredModel,"	open-mistral-7b",&pseudoDialog->cbAIPreferredModel);
+    registerOption("AIchat/SystemPrompt_test",&ai_systemPrompt,"");
 
 	//interfaces
     int defaultStyle=0;

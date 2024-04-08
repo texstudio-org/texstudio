@@ -93,6 +93,12 @@ void AIChatAssistant::slotSend()
     QJsonObject dd;
     dd["model"]=config->ai_preferredModel;
     //dd["stream"] = "True";
+    if(!config->ai_systemPrompt.isEmpty()){
+        // add system prompt to query
+        QJsonObject ja_message;
+        ja_message["role"]="system";
+        ja_message["content"]=config->ai_systemPrompt;
+    }
     QJsonObject ja_message;
     ja_message["role"]="user";
     // prepend selected text to question
