@@ -3820,7 +3820,7 @@ Error: </source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="21"/>
         <source>Files on disk</source>
-        <translation type="unfinished"/>
+        <translation>Файлы на диске</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="30"/>
@@ -3847,7 +3847,7 @@ Error: </source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="40"/>
         <source>Bib files</source>
-        <translation type="unfinished"/>
+        <translation>BIB-файлы</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="41"/>
@@ -3872,12 +3872,12 @@ Error: </source>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="179"/>
         <source>Search in:</source>
-        <translation type="unfinished"/>
+        <translation>Искать в:</translation>
     </message>
     <message>
         <location filename="../src/searchresultwidget.cpp" line="215"/>
         <source>Select folder where to search</source>
-        <translation type="unfinished"/>
+        <translation>Выберите папку для поиска</translation>
     </message>
 </context>
 <context>
