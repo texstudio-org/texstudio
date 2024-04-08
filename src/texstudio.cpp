@@ -5428,6 +5428,14 @@ void Texstudio::aiChat()
         aiChatDlg = new AIChatAssistant(this);
         connect(aiChatDlg,&AIChatAssistant::insertText,this,&Texstudio::insertText);
     }
+    // add selected text to chat
+    if (currentEditor()){
+        QDocumentCursor cur = currentEditor()->cursor();
+        QString txt=cur.selectedText();
+        if(!txt.isEmpty()){
+            aiChatDlg->setSelectedText(txt);
+        }
+    }
     aiChatDlg->exec();
 }
 

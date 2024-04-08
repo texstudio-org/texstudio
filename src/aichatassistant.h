@@ -14,6 +14,8 @@ public:
     explicit AIChatAssistant(QWidget *parent = nullptr);
     ~AIChatAssistant() override;
 
+    void setSelectedText(QString text);
+
 signals:
     void insertText(QString text);
 
@@ -32,6 +34,7 @@ protected:
     QTextEdit *leEntry;
 
     QString m_response;
+    QString m_selectedText;
 
     QJsonArray ja_messages;
 

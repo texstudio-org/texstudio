@@ -52,6 +52,15 @@ AIChatAssistant::~AIChatAssistant()
     }
 }
 /*!
+ * \brief set selected text
+ * To be used as "text" in AI questions
+ * \param text
+ */
+void AIChatAssistant::setSelectedText(QString text)
+{
+    m_selectedText=text;
+}
+/*!
  * \brief send question to ai provider
  */
 void AIChatAssistant::slotSend()
@@ -86,6 +95,10 @@ void AIChatAssistant::slotSend()
     //dd["stream"] = "True";
     QJsonObject ja_message;
     ja_message["role"]="user";
+    // prepend selected text to question
+    if(!m_selectedText.isEmpty()){
+        question="text=\"\"\""+m_selectedText+"\"\"\"\n"+question;
+    }
     ja_message["content"]=question;
 
     // for now single questions only
