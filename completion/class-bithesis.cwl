@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2024/03/25 for v3.7.1
+# Matthew Bertucci 2024/04/08 for v3.7.1
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -30,7 +30,6 @@
 #include:listings
 #include:enumitem
 #include:fmtcount
-#include:stmaryrd
 #include:environ
 
 #keyvals:\documentclass/bithesis#c
@@ -106,6 +105,9 @@ style/mathFont=#asana,bonum,cm,concrete,dejavu,erewhon,euler,fira,garamond,gfsne
 style/windowsSimSunFakeBold#true,false
 style/unicodeMathOptions=%<任意选项%>
 style/hyphen#true,false
+style/mathAboveDisplaySkip=##L
+style/mathBelowDisplaySkip=##L
+style/betterTimesNewRoman#true,false
 TOC={%<键值列表%>}
 TOC/abstract#true,false
 TOC/abstractEn#true,false
