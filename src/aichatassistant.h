@@ -39,6 +39,7 @@ protected:
 
     QString m_response;
     QString m_selectedText;
+    QString m_conversationFileName;
 
     QJsonArray ja_messages;
 
@@ -46,6 +47,8 @@ protected:
 
     QNetworkAccessManager *networkManager;
     QNetworkReply *m_reply = nullptr;
+    void writeToFile(QString filename, QString content);
+    QString makeJsonDoc() const;
 };
 
 #endif // AICHATASSISTANT_H

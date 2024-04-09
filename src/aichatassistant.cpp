@@ -71,6 +71,7 @@ void AIChatAssistant::setSelectedText(QString text)
 void AIChatAssistant::clearConversation()
 {
     ja_messages=QJsonArray();
+    m_conversationFileName=config->configBaseDir+"/ai_conversation/"+QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+"_conversation.json";
 }
 /*!
  * \brief send question to ai provider
@@ -288,10 +289,59 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
     nreply->deleteLater();
     m_reply=nullptr;
     btSend->setText(tr("Send"));
+    // update record of conversation
+    if(config->ai_recordConversation){
+        QString conv=makeJsonDoc();
+        writeToFile(m_conversationFileName,conv);
+    }
+}
+/*!
+ * \brief write content to file
+ * \param filename
+ * \param content
+ */
+void AIChatAssistant::writeToFile(QString filename, QString content)
+{
+    QFileInfo fi(filename);
+    QDir dir=fi.dir();
+    if(!dir.exists()){
+        dir.mkpath(fi.absolutePath());
+    }
+
+    QFile file(filename);
+    if (file.open(QIODevice::WriteOnly)) {
+        QTextStream stream(&file);
+        stream << content;
+        file.close();
+    }
+}
+/*!
+ * \brief construct json document
+ * \return
+ */
+QString AIChatAssistant::makeJsonDoc() const
+{
+    QJsonObject dd;
+    dd["model"]=config->ai_preferredModel;
+    if(!config->ai_systemPrompt.isEmpty()){
+        // add system prompt to query
+        QJsonObject ja_message;
+        ja_message["role"]="system";
+        ja_message["content"]=config->ai_systemPrompt;
+    }
+    //ja_messages is updated externally
+    dd["messages"]=ja_messages;
+
+    QJsonDocument jsonDoc(dd);
+    QString data=jsonDoc.toJson();
+    return data;
 }
 
 /*! TODO
+ *  - insert packages
+ *  - detect new document/insert all
  *  - add to macros
+ *  - history with Q/A , nicer
  *  - persistant storage of questions/conversations
  *  - search in questions/answers
  *  - icons/QToolbuttons for actions
