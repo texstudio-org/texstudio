@@ -216,7 +216,7 @@ public:
     int ai_provider;
     QString ai_preferredModel;
     QString ai_systemPrompt;
-    float ai_temperature;
+    QString ai_temperature;
 
 	//debug
 #ifndef QT_NO_DEBUG

@@ -5426,7 +5426,9 @@ void Texstudio::aiChat()
     }
     if(aiChatDlg==nullptr){
         aiChatDlg = new AIChatAssistant(this);
+        aiChatDlg->setModal(false);
         connect(aiChatDlg,&AIChatAssistant::insertText,this,&Texstudio::insertText);
+        connect(aiChatDlg,&AIChatAssistant::executeMacro,this,[this](QString script){this->runScript(script);});
     }
     // add selected text to chat
     if (currentEditor()){
@@ -5436,7 +5438,7 @@ void Texstudio::aiChat()
             aiChatDlg->setSelectedText(txt);
         }
     }
-    aiChatDlg->exec();
+    aiChatDlg->show();
 }
 
 void Texstudio::quickTabbing()

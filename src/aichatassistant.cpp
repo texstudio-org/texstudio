@@ -29,6 +29,8 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     auto *vl=new QVBoxLayout();
     vl->addWidget(btSend,0,Qt::AlignTop);
     vl->addWidget(btInsert,0,Qt::AlignTop);
+    auto *vspacer=new QSpacerItem(20,40,QSizePolicy::Minimum,QSizePolicy::Expanding);
+    vl->addSpacerItem(vspacer);
     vl->addWidget(btOptions,0,Qt::AlignBottom);
     hlayout->addLayout(vl);
     auto *wdgt=new QWidget();
@@ -68,6 +70,16 @@ void AIChatAssistant::setSelectedText(QString text)
  */
 void AIChatAssistant::slotSend()
 {
+    if(m_reply){
+        // if reply is active, stop it
+        m_reply->abort();
+        m_reply->deleteLater();
+        m_reply=nullptr;
+        btSend->setText(tr("Send"));
+        // remove last message from conversation
+        ja_messages.removeLast();
+        return;
+    }
     QString question=leEntry->toPlainText();
     if(question.isEmpty()){
         return;
@@ -111,7 +123,7 @@ void AIChatAssistant::slotSend()
     ja_message["content"]=question;
 
     // for now single questions only
-    ja_messages=QJsonArray();
+    //ja_messages=QJsonArray();
     ja_messages.append(ja_message);
 
     dd["messages"]=ja_messages;
@@ -124,14 +136,15 @@ void AIChatAssistant::slotSend()
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader("Accept", "application/json");
     request.setRawHeader("Authorization", QString("Bearer %1").arg(config->ai_apikey).toUtf8());
-    QNetworkReply *reply = networkManager->post(request,data.toUtf8());
+    m_reply = networkManager->post(request,data.toUtf8());
     connect(networkManager, &QNetworkAccessManager::finished, this, &AIChatAssistant::onRequestCompleted);
 #if QT_VERSION_MAJOR<6
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError(QNetworkReply::NetworkError)));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError(QNetworkReply::NetworkError)));
 #else
-    connect(reply, &QNetworkReply::errorOccurred, this, &AIChatAssistant::onRequestError);
+    connect(m_reply, &QNetworkReply::errorOccurred, this, &AIChatAssistant::onRequestError);
 #endif
-
+    // use btSend as stop button
+    btSend->setText(tr("Stop"));
 }
 /*!
  * \brief insert response
@@ -165,6 +178,25 @@ void AIChatAssistant::slotInsert()
                 }
                 QString text=parts.join("\n");
                 emit insertText(text);
+                return;
+            }
+            if(parts.size()>1 && parts[0]=="javascript"){
+                parts.removeFirst();
+                QString script=parts.join("\n");
+                emit executeMacro(script);
+                return;
+            }
+            if(parts.size()>1 && parts[0]=="bash"){
+                parts.removeFirst();
+                // filter out all lines starting with %, e.g. %SCRIPT
+                for(int i=0;i<parts.size();++i){
+                    if(parts[i].startsWith("%")){
+                        parts.remove(i);
+                        --i;
+                    }
+                }
+                QString script=parts.join("\n");
+                emit executeMacro(script);
             }
         }
     }else{
@@ -184,20 +216,18 @@ void AIChatAssistant::slotOptions()
     auto *leSystemPrompt=new QTextEdit();
     leSystemPrompt->setText(config->ai_systemPrompt);
     ly->addWidget(leSystemPrompt);
-    auto *slTemp=new QSlider(Qt::Horizontal);
-    slTemp->setMinimum(0);
-    slTemp->setMaximum(1.0);
-    slTemp->setValue(config->ai_temperature);
+    auto *leTemp=new QLineEdit();
+    leTemp->setText(config->ai_temperature);
     // add label in front of slider
     auto *lblTemp=new QLabel(tr("Temperature"));
     auto *hl=new QHBoxLayout();
     hl->addWidget(lblTemp);
-    hl->addWidget(slTemp);
+    hl->addWidget(leTemp);
     ly->addLayout(hl);
     auto *btOk=new QPushButton(tr("OK"));
     connect(btOk,&QPushButton::clicked,[&](){
         config->ai_systemPrompt=leSystemPrompt->toPlainText();
-        config->ai_temperature=slTemp->value();
+        config->ai_temperature=leTemp->text();
         dlg.close();
     });
     ly->addWidget(btOk);
@@ -210,6 +240,10 @@ void AIChatAssistant::slotOptions()
 void AIChatAssistant::onRequestError(QNetworkReply::NetworkError code)
 {
     qDebug()<<"Error:"<<code;
+    qDebug()<<m_reply->errorString();
+    btSend->setText(tr("Send"));
+    m_reply->deleteLater();
+    m_reply=nullptr;
 }
 /*!
  * \brief handle received data from AI provider
@@ -229,14 +263,22 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
         if(arr.size()>0){
             QJsonObject ja_choice=arr[0].toObject();
             QJsonObject ja_message=ja_choice["message"].toObject();
+            ja_messages.append(ja_message); // update conversation
             m_response=ja_message["content"].toString();
 #if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
             textBrowser->setMarkdown(m_response);
 #else
             textBrowser->setText(m_response); // no markdown interpretation, just keep old qt version running
 #endif
-
+            // check if macro, then execute instead of insert
+            if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
+                btInsert->setText(tr("Execute"));
+            }else{
+                btInsert->setText(tr("Insert"));
+            }
         }
-        nreply->deleteLater();
     }
+    nreply->deleteLater();
+    m_reply=nullptr;
+    btSend->setText(tr("Send"));
 }

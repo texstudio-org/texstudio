@@ -18,6 +18,7 @@ public:
 
 signals:
     void insertText(QString text);
+    void executeMacro(QString script);
 
 private slots:
     void slotSend();
@@ -43,6 +44,7 @@ protected:
     ConfigManager *config;
 
     QNetworkAccessManager *networkManager;
+    QNetworkReply *m_reply = nullptr;
 };
 
 #endif // AICHATASSISTANT_H
