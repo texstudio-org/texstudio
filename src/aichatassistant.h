@@ -15,6 +15,7 @@ public:
     ~AIChatAssistant() override;
 
     void setSelectedText(QString text);
+    void clearConversation();
 
 signals:
     void insertText(QString text);

@@ -66,6 +66,13 @@ void AIChatAssistant::setSelectedText(QString text)
     m_selectedText=text;
 }
 /*!
+ * \brief start a new conversation
+ */
+void AIChatAssistant::clearConversation()
+{
+    ja_messages=QJsonArray();
+}
+/*!
  * \brief send question to ai provider
  */
 void AIChatAssistant::slotSend()

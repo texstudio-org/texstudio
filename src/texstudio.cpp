@@ -5438,6 +5438,7 @@ void Texstudio::aiChat()
             aiChatDlg->setSelectedText(txt);
         }
     }
+    aiChatDlg->clearConversation();
     aiChatDlg->show();
 }
 
