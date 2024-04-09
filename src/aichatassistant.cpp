@@ -198,7 +198,7 @@ void AIChatAssistant::slotInsert()
                 // filter out all lines starting with %, e.g. %SCRIPT
                 for(int i=0;i<parts.size();++i){
                     if(parts[i].startsWith("%")){
-                        parts.remove(i);
+                        parts.removeAt(i);
                         --i;
                     }
                 }
@@ -289,3 +289,10 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
     m_reply=nullptr;
     btSend->setText(tr("Send"));
 }
+
+/*! TODO
+ *  - add to macros
+ *  - persistant storage of questions/conversations
+ *  - search in questions/answers
+ *  - icons/QToolbuttons for actions
+ */
