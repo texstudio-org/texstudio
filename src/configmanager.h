@@ -217,6 +217,7 @@ public:
     QString ai_preferredModel;
     QString ai_systemPrompt;
     QString ai_temperature;
+    bool ai_recordConversation;
 
 	//debug
 #ifndef QT_NO_DEBUG

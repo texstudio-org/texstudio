@@ -698,7 +698,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
     registerOption("AIchat/APIKEY",&ai_apikey,"",&pseudoDialog->leAIAPIKey);
     registerOption("AIchat/PreferredModel",&ai_preferredModel,"	open-mistral-7b",&pseudoDialog->cbAIPreferredModel);
     registerOption("AIchat/SystemPrompt_test",&ai_systemPrompt,"");
-    registerOption("AIchat/temperature",&ai_temperature,0.7);
+    registerOption("AIchat/Temperature",&ai_temperature,"0.7");
+    registerOption("AIchat/RecordConversation",&ai_recordConversation,true,&pseudoDialog->cbAIRecordConversation);
 
 	//interfaces
     int defaultStyle=0;

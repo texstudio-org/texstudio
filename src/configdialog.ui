@@ -3335,9 +3335,9 @@ them here.</string>
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-55</y>
                 <width>1085</width>
-                <height>714</height>
+                <height>735</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3585,48 +3585,13 @@ them here.</string>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_AIChat">
+                 <property name="toolTip">
+                  <string>Store the conversation with AI provider on disk to allow later retrieval</string>
+                 </property>
                  <property name="title">
                   <string>AI chat assistant</string>
                  </property>
                  <layout class="QGridLayout" name="gl_AIChat" columnstretch="0,0,0,0">
-                  <item row="0" column="3">
-                   <widget class="QComboBox" name="cbAIProvider">
-                    <item>
-                     <property name="text">
-                      <string>Mistral AI</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>OpenAI</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_AIProvider">
-                    <property name="text">
-                     <string>AI provider:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0" colspan="2">
-                   <widget class="QLabel" name="label_AIAPI">
-                    <property name="text">
-                     <string>API key:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="3">
-                   <widget class="QLineEdit" name="leAIAPIKey"/>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_AIModel">
-                    <property name="text">
-                     <string>Preferred model:</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="2" column="3">
                    <widget class="QComboBox" name="cbAIPreferredModel">
                     <item>
@@ -3654,6 +3619,51 @@ them here.</string>
                       <string>mistral-large-latest</string>
                      </property>
                     </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QComboBox" name="cbAIProvider">
+                    <item>
+                     <property name="text">
+                      <string>Mistral AI</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>OpenAI</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_AIProvider">
+                    <property name="text">
+                     <string>AI provider:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_AIModel">
+                    <property name="text">
+                     <string>Preferred model:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="3">
+                   <widget class="QLineEdit" name="leAIAPIKey"/>
+                  </item>
+                  <item row="1" column="0" colspan="2">
+                   <widget class="QLabel" name="label_AIAPI">
+                    <property name="text">
+                     <string>API key:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="cbAIRecordConversation">
+                    <property name="text">
+                     <string>Record Conversation</string>
+                    </property>
                    </widget>
                   </item>
                  </layout>
