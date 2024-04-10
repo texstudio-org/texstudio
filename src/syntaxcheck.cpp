@@ -594,26 +594,26 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 int end=tk.start+tk.length;
                 int colonPosition=-1;
                 for(++i;i<tl.length();++i){
-                    tk= tl[i];
-                    if(end != tk.start){
+                    Token tk2= tl[i];
+                    if(end != tk2.start){
                         // token does not adjoin previous one
                         --i;
                         break;
                     }
-                    end+=tk.length;
-                    if(tk.type==Token::word){
+                    end+=tk2.length;
+                    if(tk2.type==Token::word){
                         continue;
                     }
-                    if(tk.type==Token::punctuation){
-                        if(tk.getText()=="_"){
+                    if(tk2.type==Token::punctuation){
+                        if(tk2.getText()=="_"){
                             continue;
                         }
-                        if(tk.getText()==":"){
+                        if(tk2.getText()==":"){
                             colonPosition=end;
                             continue;
                         }
                     }
-                    end-=tk.length;
+                    end-=tk2.length;
                     --i;
                     break; // unwanted element, stop joing for latex3 command
                 }
