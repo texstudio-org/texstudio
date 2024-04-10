@@ -10,4 +10,8 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@ 
+	dh $@ --with qt5
+
+ifeq ($(QT_VERSION),qt6)
+    dh $@ --with qt6
+endif 
