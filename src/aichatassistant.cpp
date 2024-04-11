@@ -273,11 +273,8 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
             QJsonObject ja_message=ja_choice["message"].toObject();
             ja_messages.append(ja_message); // update conversation
             m_response=ja_message["content"].toString();
-#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
-            textBrowser->setMarkdown(m_response);
-#else
-            textBrowser->setText(m_response); // no markdown interpretation, just keep old qt version running
-#endif
+            QString responseText=getConversationForBrowser();
+            textBrowser->setHtml(responseText);
             // check if macro, then execute instead of insert
             if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
                 btInsert->setText(tr("Execute"));
@@ -335,6 +332,34 @@ QString AIChatAssistant::makeJsonDoc() const
     QJsonDocument jsonDoc(dd);
     QString data=jsonDoc.toJson();
     return data;
+}
+/*!
+ * \brief convert conversation in ja_messages to markdown string for presentation in QTextBrowser
+ * \return
+ */
+QString AIChatAssistant::getConversationForBrowser()
+{
+    QString result;
+    for(auto it=ja_messages.begin();it!=ja_messages.end();++it){
+        QJsonObject obj=it->toObject();
+        QString role=obj["role"].toString();
+        const QString content=QString("%%%txs%%%")+(obj["content"].toString())+QString("%%%txs%%%");
+        QTextDocument td;
+        td.setMarkdown(content);
+        const QString contentHTML=td.toHtml();
+        // strip html from surrounding default tags
+        const auto parts=contentHTML.split("%%%txs%%%");
+        if(role=="user"){
+            result.append("<p style=\"background-color: bisque\">\n");
+            result.append(parts.value(1));
+            result.append("\n</p>\n");
+        }else if(role=="assistant"){
+            result.append("<p style=\"background-color: aliceblue;margin-left: 20px\">\n");
+            result.append(parts.value(1));
+            result.append("\n</p>\n");
+        }
+    }
+    return result;
 }
 
 /*! TODO

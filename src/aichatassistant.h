@@ -49,6 +49,7 @@ protected:
     QNetworkReply *m_reply = nullptr;
     void writeToFile(QString filename, QString content);
     QString makeJsonDoc() const;
+    QString getConversationForBrowser();
 };
 
 #endif // AICHATASSISTANT_H
