@@ -343,19 +343,24 @@ QString AIChatAssistant::getConversationForBrowser()
     for(auto it=ja_messages.begin();it!=ja_messages.end();++it){
         QJsonObject obj=it->toObject();
         QString role=obj["role"].toString();
+#if QT_VERSION>=QT_VERSION_CHECK(5,14,0)
         const QString content=QString("%%%txs%%%")+(obj["content"].toString())+QString("%%%txs%%%");
         QTextDocument td;
         td.setMarkdown(content);
         const QString contentHTML=td.toHtml();
         // strip html from surrounding default tags
         const auto parts=contentHTML.split("%%%txs%%%");
+        const QString cnt=parts.value(1);
+#else
+        const QString cnt=obj["content"].toString();
+#endif
         if(role=="user"){
             result.append("<p style=\"background-color: bisque\">\n");
-            result.append(parts.value(1));
+            result.append(cnt);
             result.append("\n</p>\n");
         }else if(role=="assistant"){
             result.append("<p style=\"background-color: aliceblue;margin-left: 20px\">\n");
-            result.append(parts.value(1));
+            result.append(cnt);
             result.append("\n</p>\n");
         }
     }
@@ -366,8 +371,7 @@ QString AIChatAssistant::getConversationForBrowser()
  *  - insert packages
  *  - detect new document/insert all
  *  - add to macros
- *  - history with Q/A , nicer
- *  - persistant storage of questions/conversations
+ *  - modeltree for conversations
  *  - search in questions/answers
  *  - icons/QToolbuttons for actions
  */
