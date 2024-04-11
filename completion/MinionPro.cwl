@@ -4,7 +4,6 @@
 # updated 2023/04/04 for v2.3a
 
 #include:kvoptions
-#include:MinionPro-FontDef
 #include:MnSymbol
 #include:eufrak
 #include:microtype
