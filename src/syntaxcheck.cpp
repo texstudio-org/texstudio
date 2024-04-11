@@ -1,5 +1,4 @@
 #include "syntaxcheck.h"
-#include "latexdocument.h"
 #include "latexeditorview_config.h"
 #include "spellerutility.h"
 #include "tablemanipulation.h"
