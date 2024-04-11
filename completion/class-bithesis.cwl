@@ -1,5 +1,5 @@
 # bithesis class
-# Matthew Bertucci 2024/04/08 for v3.7.1
+# Matthew Bertucci 2024/04/11 for v3.7.3
 
 #include:l3keys2e
 #include:class-ctexbook
@@ -126,6 +126,7 @@ misc/arialFont=%<字符串%>
 misc/tabularFontSize=%<其他字号%>
 misc/autoref={%<键值列表%>}
 misc/hideLinks#true,false
+misc/floatSeparation=%<实数%>
 const={%<键值列表%>}
 const/autoref={%<键值列表%>}
 const/style/substituteSymbol=%<字符串%>
