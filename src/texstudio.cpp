@@ -11627,39 +11627,41 @@ void Texstudio::updateTOC(){
     updateCurrentPosInTOC(nullptr,nullptr,selectedEntry);
 }
 /*!
- * \brief update marking of current position in global TOC
- *
+ * \brief update marking of current position in global TOC and structure view
+ * Both need to be updated as the docks seem not to provide information whether they are visible or not.
  * Works recursively.
  * \param root nullptr at the start, treewidgetitem of which the children need to be checked later.
  * \param old  previously marked section of which the mark needs to be removed
  * \param selected  selected section
  */
-void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected)
+void Texstudio::updateCurrentPosInTOC(QTreeWidgetItem* root, StructureEntry *old, StructureEntry *selected,bool tocMode)
 {
-    if(!topTOCTreeWidget->isVisible() && !structureTreeWidget->isVisible()) return; // don't update if TOC is not shown, save unnecessary effort
     const QColor activeItemColor(UtilsUi::mediumLightColor(QPalette().color(QPalette::Highlight), 75));
-    bool tocMode=topTOCTreeWidget->isVisible();
     if(!root){
-        if(topTOCTreeWidget->isVisible()){
-            root=topTOCTreeWidget->topLevelItem(0);
-        }else{
-            root=nullptr;
-            for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
-                QTreeWidgetItem* item=structureTreeWidget->topLevelItem(i);
-                LatexDocument *doc = static_cast<LatexDocument*>(item->data(0,Qt::UserRole).value<void*>());
-                if(old && old->document!=documents.getCurrentDocument() && doc==old->document){
-                    // remove cursor mark from structureView of not current document (after document switch)
-                    updateCurrentPosInTOC(item,old);
-                    if(root)
-                        break; // no need to search further
-                }
-                if(doc == documents.getCurrentDocument()){
-                    root=item;
-                }
+        // run update on TOC and structureView
+        root=topTOCTreeWidget->topLevelItem(0);
+        if(root){
+            updateCurrentPosInTOC(root,old,selected,true);
+        }
+        root=nullptr;
+        for(int i=0;i<structureTreeWidget->topLevelItemCount();++i){
+            QTreeWidgetItem* item=structureTreeWidget->topLevelItem(i);
+            LatexDocument *doc = static_cast<LatexDocument*>(item->data(0,Qt::UserRole).value<void*>());
+            if(old && old->document!=documents.getCurrentDocument() && doc==old->document){
+                // remove cursor mark from structureView of not current document (after document switch)
+                updateCurrentPosInTOC(item,old);
+                if(root)
+                    break; // no need to search further
+            }
+            if(doc == documents.getCurrentDocument()){
+                root=item;
             }
         }
+        if(root){
+            updateCurrentPosInTOC(root,old,selected,false);
+        }
+        return;
     }
-    if(!root) return;
     for(int i=0;i<root->childCount();++i){
         QTreeWidgetItem *item=root->child(i);
         StructureEntry *se = item->data(0,Qt::UserRole).value<StructureEntry *>();

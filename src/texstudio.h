@@ -251,7 +251,7 @@ private slots:
     void updateAllTOCs();
 
     void updateTOC();
-    void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr,StructureEntry *old=nullptr,StructureEntry *selected=nullptr);
+    void updateCurrentPosInTOC(QTreeWidgetItem *root=nullptr, StructureEntry *old=nullptr, StructureEntry *selected=nullptr, bool tocMode=true);
     void syncExpanded(QTreeWidgetItem *item);
     void syncCollapsed(QTreeWidgetItem *item);
     void editSectionCopy();
