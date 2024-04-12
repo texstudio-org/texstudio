@@ -156,7 +156,7 @@ macro: When the last written characters match this expression, they are
 removed and the macro is inserted/executed. (see
 [below](#triggers) for more details).
 
-Some macros can be directly downloaded from an internet repository. The
+Some macros can be directly downloaded from an [internet repository](https://github.com/texstudio-org/texstudio-macro). The
 dialog is started with the button \"Browse\". For easier data exchange,
 macros can be im- and exported to a file. If you want to add a macro of
 your own to that repository, you can hand it in as a feature request on
