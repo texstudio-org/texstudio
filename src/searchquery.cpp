@@ -167,25 +167,22 @@ void SearchQuery::run(LatexDocument *doc)
 	default:
 		break;
 	}
+    QFileInfoList files;
     if(mScope==FilesScope){
-        QRegularExpression regex=generateRegularExpression(searchExpression(),!flag(IsCaseSensitive),flag(IsWord), flag(IsRegExp));
         if(m_fileFolder.isEmpty()){
             QFileInfo fi=doc->getFileInfo();
             m_fileFolder=fi.absoluteDir();
         }
-        QFileInfoList files = m_fileFolder.entryInfoList(m_fileFilter,QDir::Files);
-        std::function<SearchInfo(const QFileInfo &)> searchInFiles = [regex, this](const QFileInfo &fi) -> SearchInfo { return this->searchInFile(fi.absoluteFilePath(),regex); };
-        std::function<void(SearchInfo &, const SearchInfo &)> reduce = [this](SearchInfo &result, const SearchInfo &value) { this->addToSearchResults(result, value); };
-        m_SearchInFilesWatcher.setFuture(
-            QtConcurrent::mappedReduced<SearchInfo>(
-                files,
-                searchInFiles,
-                reduce,
-                QtConcurrent::SequentialReduce)
-            );
+        files = m_fileFolder.entryInfoList(m_fileFilter,QDir::Files);
     }else{
         foreach (LatexDocument *doc, docs) {
             if (!doc) continue;
+            if(doc->isIncompleteInMemory()){
+                // file was loaded from cache without content
+                // search in file on disk instead
+                files<<doc->getFileInfo();
+                continue;
+            }
             QList<QDocumentLineHandle *> lines;
             for (int l = 0; l < doc->lineCount(); l++) {
                 l = doc->findLineRegExp(searchExpression(), l,
@@ -201,6 +198,18 @@ void SearchQuery::run(LatexDocument *doc)
             }
         }
         emit runCompleted();
+    }
+    if(!files.isEmpty()){
+        QRegularExpression regex=generateRegularExpression(searchExpression(),!flag(IsCaseSensitive),flag(IsWord), flag(IsRegExp));
+        std::function<SearchInfo(const QFileInfo &)> searchInFiles = [regex, this](const QFileInfo &fi) -> SearchInfo { return this->searchInFile(fi.absoluteFilePath(),regex); };
+        std::function<void(SearchInfo &, const SearchInfo &)> reduce = [this](SearchInfo &result, const SearchInfo &value) { this->addToSearchResults(result, value); };
+        m_SearchInFilesWatcher.setFuture(
+            QtConcurrent::mappedReduced<SearchInfo>(
+                files,
+                searchInFiles,
+                reduce,
+                QtConcurrent::SequentialReduce)
+            );
     }
 }
 
