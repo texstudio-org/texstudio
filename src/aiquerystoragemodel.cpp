@@ -76,3 +76,10 @@ QString AIQueryStorageModel::getFileName(const QModelIndex &index) const
     }
     return m_storageDirectory.absoluteFilePath(m_files.at(index.row()));
 }
+
+void AIQueryStorageModel::addFileName(const QString &name)
+{
+    beginInsertRows(QModelIndex{},m_files.size(),m_files.size());
+    m_files.prepend(name);
+    endInsertRows();
+}

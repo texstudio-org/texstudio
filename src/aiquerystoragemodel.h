@@ -19,6 +19,7 @@ public:
 
     void setStoragePath(const QString &path);
     QString getFileName(const QModelIndex &index) const;
+    void addFileName(const QString &name);
 private:
     QDir m_storageDirectory;
     QStringList m_files;

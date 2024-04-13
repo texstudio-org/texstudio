@@ -76,11 +76,15 @@ void AIChatAssistant::setSelectedText(QString text)
 void AIChatAssistant::clearConversation()
 {
     ja_messages=QJsonArray();
-    m_conversationFileName=config->configBaseDir+"/ai_conversation/"+QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+"_conversation.json";
+    const QString fileName=QDateTime::currentDateTime().toString("yyyyMMddHHmmss")+"_conversation.json";
+    m_conversationFileName=config->configBaseDir+"/ai_conversation/"+fileName;
     // clear textbrowser
     textBrowser->clear();
     // clear textedit
     leEntry->clear();
+    // append new filename to list of conversations
+    AIQueryStorageModel *model=dynamic_cast<AIQueryStorageModel *>(treeView->model());
+    model->addFileName(fileName);
 }
 /*!
  * \brief send question to ai provider
