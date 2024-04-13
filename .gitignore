@@ -17,6 +17,7 @@ git_revision.o
 texstudio.app/
 build*/
 !utilities/manual/build/html
+!utilities/manual/build
 symbols-ng/gesymb-ng
 symbols-ng/gesymb-ng.o
 CMakeLists.txt.user
