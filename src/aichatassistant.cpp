@@ -312,6 +312,15 @@ void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
         ja_messages=obj["messages"].toArray();
         QString responseText=getConversationForBrowser();
         textBrowser->setHtml(responseText);
+        // prepare last repsonse
+        QJsonObject ja_message=ja_messages.last().toObject();
+        m_response=ja_message["content"].toString();
+        // check if macro, then execute instead of insert
+        if(m_response.contains("```javascript")||m_response.contains("```bash")){ // mistral ai sometimes declares txs macros as bash
+            btInsert->setText(tr("Execute"));
+        }else{
+            btInsert->setText(tr("Insert"));
+        }
     }
 }
 /*!
