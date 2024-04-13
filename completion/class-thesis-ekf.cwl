@@ -1,10 +1,9 @@
 # thesis-ekf class
-# Matthew Bertucci 2022/06/07 for v4.2
+# Matthew Bertucci 2024/04/13 for v4.3
 
 #include:kvoptions
 #include:class-report
 #include:iftex
-#include:cmap
 #include:setspace
 #include:hyperref
 #include:geometry
