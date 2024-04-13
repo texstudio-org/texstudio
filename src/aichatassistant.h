@@ -27,10 +27,10 @@ private slots:
     void slotOptions();
     void onRequestError(QNetworkReply::NetworkError code);
     void onRequestCompleted(QNetworkReply *nreply);
+    void onTreeViewClicked(const QModelIndex &index);
 
 protected:
-    QTreeWidget *treeWidget;
-    QTreeWidgetItem *topItem;
+    QTreeView *treeView;
     QTextBrowser *textBrowser;
     QPushButton *btSend;
     QPushButton *btInsert;

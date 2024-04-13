@@ -3,18 +3,23 @@
 #include <QNetworkProxyFactory>
 #include <QJsonDocument>
 #include <QJsonArray>
+#include "aiquerystoragemodel.h"
 
 AIChatAssistant::AIChatAssistant(QWidget *parent)
     : QDialog{parent}
 {
-    treeWidget=new QTreeWidget();
-    treeWidget->setColumnCount(1);
-    treeWidget->setHeaderLabel(tr("Date"));
-    topItem=new QTreeWidgetItem(treeWidget);
-    topItem->setText(0,tr("Today"));
+    config=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+
+    AIQueryStorageModel *model=new AIQueryStorageModel(this);
+    QString path=config->configBaseDir+QString("/ai_conversation");
+    model->setStoragePath(path);
+    treeView=new QTreeView();
+    treeView->setModel(model);
+    connect(treeView, &QTreeView::clicked, this, &AIChatAssistant::onTreeViewClicked);
+
     textBrowser=new QTextBrowser();
     auto *hlBrowser=new QSplitter();
-    hlBrowser->addWidget(treeWidget);
+    hlBrowser->addWidget(treeView);
     hlBrowser->addWidget(textBrowser);
 
     leEntry=new QTextEdit();
@@ -45,7 +50,7 @@ AIChatAssistant::AIChatAssistant(QWidget *parent)
     ly->addWidget(splt);
     setLayout(ly);
     setWindowTitle(tr("AI chat assistant"));
-    config=dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
+
     networkManager = new QNetworkAccessManager();
 }
 
@@ -100,8 +105,7 @@ void AIChatAssistant::slotSend()
     m_response.clear();
     textBrowser->clear(); // for now, show contain history
     // add question to treeWidget
-    QTreeWidgetItem *item=new QTreeWidgetItem(topItem);
-    item->setText(0,question);
+    // TODO !
 
     QString url;
     switch(config->ai_provider){
@@ -290,6 +294,24 @@ void AIChatAssistant::onRequestCompleted(QNetworkReply *nreply)
     if(config->ai_recordConversation){
         QString conv=makeJsonDoc();
         writeToFile(m_conversationFileName,conv);
+    }
+}
+/*!
+ * \brief show query and results of recorded conversation
+ * \param index
+ */
+void AIChatAssistant::onTreeViewClicked(const QModelIndex &index)
+{
+    AIQueryStorageModel *model=dynamic_cast<AIQueryStorageModel *>(treeView->model());
+    QString filename=model->getFileName(index);
+    QFile file(filename);
+    if(file.open(QIODevice::ReadOnly)){
+        QByteArray data=file.readAll();
+        QJsonDocument doc=QJsonDocument::fromJson(data);
+        QJsonObject obj=doc.object();
+        ja_messages=obj["messages"].toArray();
+        QString responseText=getConversationForBrowser();
+        textBrowser->setHtml(responseText);
     }
 }
 /*!
